@@ -1,0 +1,15 @@
+
+<% wrap_layout(:layout) do %>
+
+  <% if warning %>
+    <%= warning %>
+  <% end %>
+  <div class="chapter">
+    <%= chapter_heading %>
+    <hr>
+
+    <%= yield %>
+
+    <%= chapter_links %>
+  </div>
+<% end %>
