@@ -1,3 +1,7 @@
+---
+title: Quick Start
+---
+
 This guide will teach you how to build a simple app using Ember from scratch.
 
 We'll cover these steps:
@@ -68,7 +72,7 @@ We will start by editing the `application` template.
 This template is always on screen while the user has your application loaded.
 In your editor, open `app/templates/application.hbs` and change it to the following:
 
-```app/templates/application.hbs
+```app/templates/application.hbs{.line-numbers}
 <h1>PeopleTracker</h1>
 
 {{outlet}}

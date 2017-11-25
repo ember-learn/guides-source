@@ -1,0 +1,19 @@
+{
+  "name": "@ember/guides-source",
+  "version": "1.0.0",
+  "description": "Markdown files for Ember-Guides",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ember-learn/guides-source.git"
+  },
+  "author": "Chris Manson <chris@stonecircle.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ember-learn/guides-source/issues"
+  },
+  "homepage": "https://github.com/ember-learn/guides-source#readme"
+}
