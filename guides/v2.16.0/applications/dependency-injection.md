@@ -35,7 +35,7 @@ or application instance initializers (with the former being much more common).
 
 For example, an application initializer could register a `Logger` factory with the key `logger:main`:
 
-```app/initializers/logger.js
+```javascript {data-filename=app/initializers/logger.js}
 import EmberObject from "@ember/object";
 
 export function initialize(application) {
@@ -63,7 +63,7 @@ use the `instantiate: false` option to avoid attempts to re-instantiate it durin
 In the following example, the `logger` is a plain JavaScript object that should
 be returned "as is" when it's looked up:
 
-```app/initializers/logger.js
+```javascript {data-filename=app/initializers/logger.js}
 export function initialize(application) {
   let logger = {
     log(m) {
@@ -91,7 +91,7 @@ register your factories as non-singletons using the `singleton: false` option.
 
 In the following example, the `Message` class is registered as a non-singleton:
 
-```app/initializers/notification.js
+```javascript {data-filename=app/initializers/notification.js}
 import EmberObject from "@ember/object";
 
 export function initialize(application) {
@@ -114,7 +114,7 @@ Once a factory is registered, it can be "injected" where it is needed.
 
 Factories can be injected into whole "types" of factories with *type injections*. For example:
 
-```app/initializers/logger.js
+```javascript {data-filename=app/initializers/logger.js}
 import EmberObject from "@ember/object";
 
 export function initialize(application) {
@@ -140,7 +140,7 @@ The value of `logger` will come from the factory named `logger:main`.
 
 Routes in this example application can now access the injected logger:
 
-```app/routes/index.js
+```javascript {data-filename=app/routes/index.js}
 import Route from "@ember/routing/route";
 
 export default Route.extend({
@@ -170,7 +170,7 @@ and services (via `import { inject } from '@ember/service';`).
 
 The following code injects the `shopping-cart` service on the `cart-contents` component as the property `cart`:
 
-```app/components/cart-contents.js
+```javascript {data-filename=app/components/cart-contents.js}
 import Component from '@ember/component';
 import { inject as service } from "@ember/service";
 
@@ -182,7 +182,7 @@ export default Component.extend({
 If you'd like to inject a service with the same name as the property,
 simply leave off the service name (the dasherized version of the name will be used):
 
-```app/components/cart-contents.js
+```javascript {data-filename=app/components/cart-contents.js}
 import Component from '@ember/component';
 import { inject as service } from "@ember/service";
 
@@ -210,7 +210,7 @@ instance.
 Instance initializers receive an application instance as an argument, providing
 an opportunity to look up an instance of a registered factory.
 
-```app/instance-initializers/logger.js
+```javascript {data-filename=app/instance-initializers/logger.js}
 export function initialize(applicationInstance) {
   let logger = applicationInstance.lookup('logger:main');
 
@@ -233,7 +233,7 @@ instance at runtime.
 For example, this component plays songs with different audio services based
 on a song's `audioType`.
 
-```app/components/play-audio.js
+```javascript {data-filename=app/components/play-audio.js}
 import Component from '@ember/component';
 import { computed } from "@ember/object";
 import { getOwner } from "@ember/application";

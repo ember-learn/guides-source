@@ -7,7 +7,7 @@ component is bound to its `style` property.
 > You can follow along by generating your own component with `ember generate
 > component pretty-color`.
 
-```app/components/pretty-color.js
+```javascript {data-filename=app/components/pretty-color.js}
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 
@@ -21,7 +21,7 @@ export default Component.extend({
 });
 ```
 
-```app/templates/components/pretty-color.hbs
+```handlebars {data-filename=app/templates/components/pretty-color.hbs}
 Pretty Color: {{name}}
 ```
 
@@ -29,7 +29,7 @@ The `moduleForComponent` helper will find the component by name (`pretty-color`)
 and its template (if available).  Make sure to set `integration: true` to enable
 integration test capability.
 
-```tests/integration/components/pretty-color-test.js
+```javascript {data-filename=tests/integration/components/pretty-color-test.js}
 import { moduleForComponent, test } from 'ember-qunit';
 
 moduleForComponent('pretty-color', 'Integration | Component | pretty color', {
@@ -44,7 +44,7 @@ the component in template syntax, as we would in our application.
 We can test that changing the component's `name` property updates the
 component's `style` attribute and is reflected in the  rendered HTML:
 
-```tests/integration/components/pretty-color-test.js
+```javascript {data-filename=tests/integration/components/pretty-color-test.js}
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
@@ -71,7 +71,7 @@ test('should change colors', function(assert) {
 We might also test this component to ensure that the content of its template is
 being rendered properly:
 
-```tests/integration/components/pretty-color-test.js
+```javascript {data-filename=tests/integration/components/pretty-color-test.js}
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
@@ -107,7 +107,7 @@ clicked on:
 > You can follow along by generating your own component with `ember generate
 > component magic-title`.
 
-```app/components/magic-title.js
+```javascript {data-filename=app/components/magic-title.js}
 import Component from '@ember/component';
 
 export default Component.extend({
@@ -121,7 +121,7 @@ export default Component.extend({
 });
 ```
 
-```app/templates/components/magic-title.hbs
+```handlebars {data-filename=app/templates/components/magic-title.hbs}
 <h2>{{title}}</h2>
 
 <button class="title-button" {{action "updateTitle"}}>
@@ -132,7 +132,7 @@ export default Component.extend({
 We recommend using native DOM events wrapped inside the run loop or the [`ember-native-dom-helpers`](https://github.com/cibernox/ember-native-dom-helpers) addon to simulate user interaction and test that the title is updated when the button is clicked.<br>
 Using jQuery to simulate user click events might lead to unexpected test results as the action can potentially be called twice.
 
-```tests/integration/components/magic-title-test.js
+```javascript {data-filename=tests/integration/components/magic-title-test.js}
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import { run } from '@ember/runloop';
@@ -166,7 +166,7 @@ For example, imagine you have a comment form component that invokes a
 > You can follow along by generating your own component with `ember generate
 > component comment-form`.
 
-```app/components/comment-form.js
+```javascript {data-filename=app/components/comment-form.js}
 import Component from '@ember/component';
 
 export default Component.extend({
@@ -180,7 +180,7 @@ export default Component.extend({
 });
 ```
 
-```app/templates/components/comment-form.hbs
+```handlebars {data-filename=app/templates/components/comment-form.hbs}
 <form {{action "submitComment" on="submit"}}>
   <label>Comment:</label>
   {{textarea value=comment}}
@@ -195,7 +195,7 @@ of a test double (dummy function).
 `assert.expect(1)` at the top of the test makes sure that the assertion inside the
 external action is called:
 
-```tests/integration/components/comment-form-test.js
+```javascript {data-filename=tests/integration/components/comment-form-test.js}
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import { run } from '@ember/runloop';
@@ -236,7 +236,7 @@ and country of your current location:
 > You can follow along by generating your own component with `ember generate
 > component location-indicator`.
 
-```app/components/location-indicator.js
+```javascript {data-filename=app/components/location-indicator.js}
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
@@ -255,7 +255,7 @@ export default Component.extend({
 });
 ```
 
-```app/templates/components/location-indicator.hbs
+```handlebars {data-filename=app/templates/components/location-indicator.hbs}
 You currently are located in {{city}}, {{country}}
 ```
 To stub the location service in your test, create a local stub object that extends
@@ -263,7 +263,7 @@ To stub the location service in your test, create a local stub object that exten
 beforeEach function.  In this case we initially force location to New York.
 
 
-```tests/integration/components/location-indicator-test.js
+```javascript {data-filename=tests/integration/components/location-indicator-test.js}
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import Service from '@ember/service';
@@ -401,7 +401,7 @@ to limit requests to the server, and you want to verify that results are display
 > You can follow along by generating your own component with `ember generate
 > component delayed-typeahead`.
 
-```app/components/delayed-typeahead.js
+```javascript {data-filename=app/components/delayed-typeahead.js}
 import Component from '@ember/component';
 import { debounce } from "@ember/runloop";
 
@@ -415,7 +415,7 @@ export default Component.extend({
 });
 ```
 
-```app/templates/components/delayed-typeahead.hbs
+```handlebars {data-filename=app/templates/components/delayed-typeahead.hbs}
 {{input value=searchValue key-up=(action 'handleTyping')}}
 <ul>
 {{#each results as |result|}}
@@ -427,7 +427,7 @@ export default Component.extend({
 In your integration test, use the `wait` function to wait until your debounce timer is up and then assert
 that the page is rendered appropriately.
 
-```tests/integration/components/delayed-typeahead-test.js
+```javascript {data-filename=tests/integration/components/delayed-typeahead-test.js}
 import { moduleForComponent, test } from 'ember-qunit';
 import wait from 'ember-test-helpers/wait';
 import hbs from 'htmlbars-inline-precompile';

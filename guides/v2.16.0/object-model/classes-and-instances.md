@@ -28,7 +28,7 @@ of Ember's built-in [`Component`][3] class:
 
 [3]: https://www.emberjs.com/api/ember/2.16/classes/Component
 
-```app/components/todo-item.js
+```javascript {data-filename=app/components/todo-item.js}
 import Component from '@ember/component';
 
 export default Component.extend({
