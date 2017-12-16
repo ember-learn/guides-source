@@ -33,20 +33,20 @@ be their execution order, and that the previous helper has finished before the
 next one starts.
 
 * `visit(url)`
-  - Visits the given route and returns a promise that fulfills when all resulting
+    - Visits the given route and returns a promise that fulfills when all resulting
      async behavior is complete.
 * `fillIn(selector, text)`
-  - Fills in the selected input with the given text and returns a promise that
+    - Fills in the selected input with the given text and returns a promise that
      fulfills when all resulting async behavior is complete.
 * `click(selector)`
-  - Clicks an element and triggers any actions triggered by the element's `click`
+    - Clicks an element and triggers any actions triggered by the element's `click`
     event and returns a promise that fulfills when all resulting async behavior
     is complete.
 * `keyEvent(selector, type, keyCode)`
-  - Simulates a key event type, e.g. `keypress`, `keydown`, `keyup` with the
+    - Simulates a key event type, e.g. `keypress`, `keydown`, `keyup` with the
     desired keyCode on element found by the selector.
 * `triggerEvent(selector, type, options)`
-  - Triggers the given event, e.g. `blur`, `dblclick` on the element identified
+    - Triggers the given event, e.g. `blur`, `dblclick` on the element identified
     by the provided selector.
 
 ### Synchronous Helpers
@@ -54,16 +54,16 @@ next one starts.
 Synchronous helpers are performed immediately when triggered.
 
 * `find(selector, context)`
-  - Finds an element within the app's root element and within the context
+    - Finds an element within the app's root element and within the context
     (optional). Scoping to the root element is especially useful to avoid
     conflicts with the test framework's reporter, and this is done by default
     if the context is not specified.
 * `currentPath()`
-  - Returns the current path.
+    - Returns the current path.
 * `currentRouteName()`
-  - Returns the currently active route name.
+    - Returns the currently active route name.
 * `currentURL()`
-  - Returns the current URL.
+    - Returns the current URL.
 
 ### Wait Helpers
 
@@ -86,7 +86,7 @@ test('simple test', function() {
 });
 ```
 
-First we tell qunit that this test should have one assertion made by the end 
+First we tell qunit that this test should have one assertion made by the end
 of the test by calling `expect` with an argument of `1`. We then visit the new
 posts URL "/posts/new", enter the text "My new post" into an input control
 with the CSS class "title", and click on a button whose class is "submit".
