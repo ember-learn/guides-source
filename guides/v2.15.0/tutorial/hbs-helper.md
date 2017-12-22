@@ -61,12 +61,8 @@ Instead, our default template helper is returning back our `rental.propertyType`
 Let's update our helper to look if a property exists in an array of `communityPropertyTypes`,
 if so, we'll return either `'Community'` or `'Standalone'`:
 
-```app/helpers/rental-property-type.js{-3,-4,-5,+7,+8,+9,+10,+11,+13,+14,+15,+16,+17,+18,+19}
+```app/helpers/rental-property-type.js
 import Ember from 'ember';
-
-export function rentalPropertyType(params/*, hash*/) {
-  return params;
-}
 
 const communityPropertyTypes = [
   'Condo',
