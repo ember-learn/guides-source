@@ -5,7 +5,7 @@ When you open the Data tab, you will see a list of model types defined
 in your application. Each model type has the number loaded records next
 to it. You can click on one type to view all of its loaded records.
 
-<img src="../../images/guides/ember-inspector/data-screenshot.png" width="680"/>
+<img src="/images/guides/ember-inspector/data-screenshot.png" width="680"/>
 
 ### Inspecting Records
 
@@ -14,7 +14,7 @@ as columns (just enough attributes to identify the record). To view all
 of the attributes and more properties, click on the record and it will
 open in the object inspector.
 
-<img src="../../images/guides/ember-inspector/data-object-inspector.png"
+<img src="/images/guides/ember-inspector/data-object-inspector.png"
 width="680"/>
 
 ### Record States and Filtering
@@ -26,18 +26,18 @@ bound.
 
 New unsaved records are green.
 
-<img src="../../images/guides/ember-inspector/data-new-records.png"
+<img src="/images/guides/ember-inspector/data-new-records.png"
 width="680"/>
 
 Modified unsaved records are blue.
 
-<img src="../../images/guides/ember-inspector/data-modified-records.png"
+<img src="/images/guides/ember-inspector/data-modified-records.png"
 width="680"/>
 
 You can filter records based on state by clicking on one of the pills
 below:
 
-<img src="../../images/guides/ember-inspector/data-filtering.png" width="400" />
+<img src="/images/guides/ember-inspector/data-filtering.png" width="400" />
 
 You can also filter records by entering a query in the search box.
 

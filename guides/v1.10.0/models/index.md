@@ -209,7 +209,7 @@ adapter. Your adapter will go and retrieve the record from your
 persistence layer; typically, this will be a JSON representation of the
 record served from an HTTP server.
 
-![Diagram showing process for finding an unloaded record](../images/guides/models/finding-unloaded-record-step1-diagram.png)
+![Diagram showing process for finding an unloaded record](/images/models/finding-unloaded-record-step1-diagram.png)
 
 As illustrated in the diagram above, the adapter cannot always return the
 requested record immediately. In this case, the adapter must make an
@@ -228,12 +228,12 @@ The store then takes that JSON, initializes the record with the
 JSON data, and resolves the promise returned to your application
 with the newly-loaded record.
 
-![Diagram showing process for finding an unloaded record after the payload has returned from the server](../images/guides/models/finding-unloaded-record-step2-diagram.png)
+![Diagram showing process for finding an unloaded record after the payload has returned from the server](/images/models/finding-unloaded-record-step2-diagram.png)
 
 Let's look at what happens if you request a record that the store
 already has in its cache.
 
-![Diagram showing process for finding an unloaded record after the payload has returned from the server](../images/guides/models/finding-loaded-record-diagram.png)
+![Diagram showing process for finding an unloaded record after the payload has returned from the server](/images/models/finding-loaded-record-diagram.png)
 
 In this case, because the store already knew about the record, it
 returns a promise that it resolves with the record immediately. It does

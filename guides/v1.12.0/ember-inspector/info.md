@@ -1,7 +1,7 @@
 To see a list of libraries you are using along with their versions,
 click on the `Info` menu.
 
-<img src="../../images/guides/ember-inspector/info-screenshot.png" width="680"/>
+<img src="/images/guides/ember-inspector/info-screenshot.png" width="680"/>
 
 ### Registering a Library
 

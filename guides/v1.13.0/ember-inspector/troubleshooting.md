@@ -27,7 +27,7 @@ mode.
 To use the inspector, switch to the "live preview" mode by clicking on the
 arrow circled below.
 
-<img src="../../images/guides/ember-inspector/troubleshooting-jsbin.png" width="350">
+<img src="/images/guides/ember-inspector/troubleshooting-jsbin.png" width="350">
 
 
 ### Application is not Detected Without Reload
@@ -42,7 +42,7 @@ already booted.
 
 When you click on the Data tab, and see this message:
 
-<img src="../../images/guides/ember-inspector/troubleshooting-data-adapter.png" width="350">
+<img src="/images/guides/ember-inspector/troubleshooting-data-adapter.png" width="350">
 
 It means that you are either not using a data persistence library
 (such as Ember Data), or the library you're using does not support the
@@ -54,7 +54,7 @@ If you are the library's author, [see this section](../data/#toc_building-a-data
 
 You click on the Promises tab, and see this message:
 
-<img src="../../images/guides/ember-inspector/troubleshooting-promises-not-detected.png" width="350">
+<img src="/images/guides/ember-inspector/troubleshooting-promises-not-detected.png" width="350">
 
 This happens if you are using a version of Ember < 1.3.
 
@@ -66,7 +66,7 @@ inspector is activated.
 
 To start detecting promises the moment the app boots, click on the `Reload` button below:
 
-<img src="../../images/guides/ember-inspector/troubleshooting-promises-toolbar.png" width="350">
+<img src="/images/guides/ember-inspector/troubleshooting-promises-toolbar.png" width="350">
 
 #### Inspector Version Old on Firefox
 

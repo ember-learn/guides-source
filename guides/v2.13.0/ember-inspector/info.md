@@ -1,6 +1,6 @@
 To see a list of libraries used in your application, click on the `Info` menu. This view displays the libraries used, along with their version.
 
-<img src="../../images/guides/ember-inspector/info-screenshot.png" width="680"/>
+<img src="/images/guides/ember-inspector/info-screenshot.png" width="680"/>
 
 ### Registering a Library
 

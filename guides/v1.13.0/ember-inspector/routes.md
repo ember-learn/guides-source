@@ -11,7 +11,7 @@ this.route('posts', function() {
 
 The Route Tree will display these routes:
 
-<img src="../../images/guides/ember-inspector/routes-screenshot.png" width="680"/>
+<img src="/images/guides/ember-inspector/routes-screenshot.png" width="680"/>
 
 As you can see, it shows you the routes you defined, and the routes that
 are automatically generated for you by Ember.js.
@@ -35,5 +35,5 @@ number, it can be quite crowded, and harder to find the current route just by lo
 font weight. A better way is to click on the `Current Route Only`
 checkbox to hide all routes except the currently active ones.
 
-<img src="../../images/guides/ember-inspector/routes-current-route.png"
+<img src="/images/guides/ember-inspector/routes-current-route.png"
 width="680"/>

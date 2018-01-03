@@ -80,7 +80,7 @@ nothing about which (if any) controllers are decorating it, and
 controller does not know which views are presenting its properties.
 
 <figure>
-<img src="../images/controller-guide/objects.png">
+<img src="/images/controller-guide/objects.png">
 </figure>
 
 This also means that as far as a template is concerned, all of its

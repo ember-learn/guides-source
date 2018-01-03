@@ -23,7 +23,7 @@ Router.map(function() {
 This would mean there are currently three nested active routes in this
 application. The `route:application`, `route:about` and the `route:about-faq`.
 
-<img src="../images/guides/routing/active-route.png" alt="Active route" class="highlight">
+<img src="/images/guides/routing/active-route.png" alt="Active route" class="highlight">
 
 Lets assume a user clicks on a `link-to` for the `controller:user/profile` like
 the one below.
@@ -48,7 +48,7 @@ Next Ember will trigger a `willTransition` action on the currently
 active routes starting with the leaf-most route (in this example the
 `AboutFaqRoute`).
 
-<img src="../images/guides/routing/willtransition-event.png" alt="Active route" class="highlight">
+<img src="/images/guides/routing/willtransition-event.png" alt="Active route" class="highlight">
 
 The argument for the `willTransition` action is the transition
 object. This gives each active route, the opportunity to decide
@@ -89,7 +89,7 @@ as well as allow for any of the
 hooks to reject elsewhere. If any of these hooks return a promise, the
 transition will pause until the promise resolves/rejects.
 
-<img src="../images/guides/routing/route-model-validation.png" alt="Active route" class="highlight">
+<img src="/images/guides/routing/route-model-validation.png" alt="Active route" class="highlight">
 
 If the promise rejects, and `error` action is triggered from the
 erroring route and upwards with the rejected/thrown error. Calling
@@ -107,7 +107,7 @@ routes and
 [setup](http://emberjs.com/api/classes/Ember.Route.html#method_setup)
 on the newly entered routes.
 
-<img src="../images/guides/routing/sync-phase.png" alt="Active route" class="highlight">
+<img src="/images/guides/routing/sync-phase.png" alt="Active route" class="highlight">
 
 If any errors are thrown, the transition promise will be rejected and
 the `error` action will be triggered from the erroring route and

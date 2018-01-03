@@ -1,7 +1,7 @@
 You can use the inspector to measure the time it takes for your views to
 be created. Click on `Render Performance` to start inspecting render times.
 
-<img src="../../images/guides/ember-inspector/render-performance-screenshot.png" width="680"/>
+<img src="/images/guides/ember-inspector/render-performance-screenshot.png" width="680"/>
 
 ### Accuracy
 

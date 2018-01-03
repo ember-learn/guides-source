@@ -3,7 +3,7 @@ in your application. Click on the `Promises` menu to start inspecting
 your promises.
 
 
-<img src="../../images/guides/ember-inspector/promises-screenshot.png" width="680" />
+<img src="/images/guides/ember-inspector/promises-screenshot.png" width="680" />
 
 You can see a hierarchical list of promises with labels describing each
 promise, its state, settled value, and the time it took to
@@ -14,16 +14,16 @@ settle.
 
 Promises will have different colors based on their state.
 
-<img src="../../images/guides/ember-inspector/promises-fulfilled.png" width="300"/>
+<img src="/images/guides/ember-inspector/promises-fulfilled.png" width="300"/>
 
-<img src="../../images/guides/ember-inspector/promises-pending.png" width="300"/>
+<img src="/images/guides/ember-inspector/promises-pending.png" width="300"/>
 
-<img src="../../images/guides/ember-inspector/promises-rejected.png" width="300"/>
+<img src="/images/guides/ember-inspector/promises-rejected.png" width="300"/>
 
 You can filter promises by state by clicking on one of the following
 pills: `Rejected`, `Pending`, `Fulfilled`.
 
-<img src="../../images/guides/ember-inspector/promises-toolbar.png" width="600"/>
+<img src="/images/guides/ember-inspector/promises-toolbar.png" width="600"/>
 
 You can also search for promises by typing a query in the search box.
 
@@ -35,12 +35,12 @@ top left of the tab.
 If the fulfillment value is an Ember object or an array, you can click
 on that object to open it in the object inspector.
 
-<img src="../../images/guides/ember-inspector/promises-object-inspector.png" width="400"/>
+<img src="/images/guides/ember-inspector/promises-object-inspector.png" width="400"/>
 
 If the rejection value is an `Error` object, you can send its stack trace to
 the console.
 
-<img src="../../images/guides/ember-inspector/promises-error.png" width="400"/>
+<img src="/images/guides/ember-inspector/promises-error.png" width="400"/>
 
 You can also click on the `$E` button to send the value to the console.
 
@@ -51,13 +51,13 @@ Tracing promises is disabled by default for performance reasons. To
 enable tracing, check the `Trace promise` checkbox. You may want to
 reload to trace existing promises.
 
-<img src="../../images/guides/ember-inspector/promises-trace-checkbox.png"
+<img src="/images/guides/ember-inspector/promises-trace-checkbox.png"
 width="200"/>
 
 To trace a promise, click on the `Trace` button next to the label,
 which will send the promise stack trace to the console.
 
-<img src="../../images/guides/ember-inspector/promises-trace.png" width="300"/>
+<img src="/images/guides/ember-inspector/promises-trace.png" width="300"/>
 
 ### Labeling Promises
 
