@@ -25,7 +25,7 @@ Due to the way JS Bin uses iframes, the Inspector doesn't work with edit
 mode. To use the Inspector with JS Bin, switch to the "live preview" mode by clicking on
 the arrow circled below.
 
-<img src="../../images/guides/ember-inspector/troubleshooting-jsbin.png" width="350">
+<img src="/images/guides/ember-inspector/troubleshooting-jsbin.png" width="350">
 
 ### Application is not Detected Without Reload
 
@@ -37,7 +37,7 @@ the application's booted state is corrupt. This happens if you call `advanceRead
 
 When you click on the Data tab, and see this message:
 
-<img src="../../images/guides/ember-inspector/troubleshooting-data-adapter.png" width="350">
+<img src="/images/guides/ember-inspector/troubleshooting-data-adapter.png" width="350">
 
 It means that the data persistence library you're using does not support the Inspector.
 If you are the library's author, [see this section](../data/#toc_building-a-data-custom-adapter) on how to add Inspector support to your library.
@@ -46,7 +46,7 @@ If you are the library's author, [see this section](../data/#toc_building-a-data
 
 You click on the Promises tab, and see this message:
 
-<img src="../../images/guides/ember-inspector/troubleshooting-promises-not-detected.png" width="350">
+<img src="/images/guides/ember-inspector/troubleshooting-promises-not-detected.png" width="350">
 
 This happens if you are using a version of Ember < 1.3.
 
@@ -56,7 +56,7 @@ If the Promises tab is working, but there are Promises you can't find,
 it's probably because these Promises were created before the
 Inspector was activated. To detect Promises the moment the app boots, click on the `Reload` button below:
 
-<img src="../../images/guides/ember-inspector/troubleshooting-promises-toolbar.png" width="350">
+<img src="/images/guides/ember-inspector/troubleshooting-promises-toolbar.png" width="350">
 
 #### Inspector Version Old on Firefox
 

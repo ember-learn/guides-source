@@ -1,6 +1,6 @@
 You can use the Inspector to measure your app's render times. Click on `Render Performance` to start inspecting render times.
 
-<img src="../../images/guides/ember-inspector/render-performance-screenshot.png" width="680"/>
+<img src="/images/guides/ember-inspector/render-performance-screenshot.png" width="680"/>
 
 ### Accuracy
 

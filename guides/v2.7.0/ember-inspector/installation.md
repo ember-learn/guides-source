@@ -10,12 +10,12 @@ Tool. To begin, visit the Extension page on the [Chrome Web Store][ember-inspect
 
 Click on "Add To Chrome":
 
-<img src="../../images/guides/ember-inspector/installation-chrome-store.png" width="680" />
+<img src="/images/guides/ember-inspector/installation-chrome-store.png" width="680" />
 
 Once installed, go to an Ember application, open the Developer Tools,
 and click on the `Ember` tab at the far right.
 
-<img src="../../images/guides/ember-inspector/installation-chrome-panel.png" width="680">
+<img src="/images/guides/ember-inspector/installation-chrome-panel.png" width="680">
 
 [ember-inspector-chrome]: https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi
 
@@ -23,7 +23,7 @@ and click on the `Ember` tab at the far right.
 
 To use the Inspector with the `file://` protocol, visit `chrome://extensions` in Chrome and check the "Allow access to file URLs" checkbox:
 
-<img src="../../images/guides/ember-inspector/installation-chrome-file-urls.png" width="400">
+<img src="/images/guides/ember-inspector/installation-chrome-file-urls.png" width="400">
 
 #### Enable Tomster
 
@@ -31,11 +31,11 @@ You can configure a Tomster icon to show up in Chrome's URL bar whenever you are
 
 Visit `chrome://extensions`, then click on `Options`.
 
-<img src="../../images/guides/ember-inspector/installation-chrome-tomster.png" width="400">
+<img src="/images/guides/ember-inspector/installation-chrome-tomster.png" width="400">
 
 Make sure the "Display the Tomster" checkbox is checked.
 
-<img src="../../images/guides/ember-inspector/installation-chrome-tomster-checkbox.png" width="400">
+<img src="/images/guides/ember-inspector/installation-chrome-tomster-checkbox.png" width="400">
 
 
 ### Firefox
@@ -45,12 +45,12 @@ site][ember-inspector-mozilla].
 
 Click on "Add to Firefox".
 
-<img src="../../images/guides/ember-inspector/installation-firefox-store.png" width="680">
+<img src="/images/guides/ember-inspector/installation-firefox-store.png" width="680">
 
 Once installed, go to an Ember application, open the Developer Tools,
 and click on the `Ember` tab.
 
-<img src="../../images/guides/ember-inspector/installation-firefox-panel.png" width="680">
+<img src="/images/guides/ember-inspector/installation-firefox-panel.png" width="680">
 
 [ember-inspector-mozilla]: https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/
 
@@ -62,11 +62,11 @@ visiting a site that uses Ember visit `about:addons`.
 
 Click on `Extensions` -> `Preferences`.
 
-<img src="../../images/guides/ember-inspector/installation-firefox-preferences.png" width="600">
+<img src="/images/guides/ember-inspector/installation-firefox-preferences.png" width="600">
 
 Then make sure the "Display the Tomster icon when a site runs Ember.js" checkbox is checked.
 
-<img src="../../images/guides/ember-inspector/installation-firefox-tomster-checkbox.png" width="400">
+<img src="/images/guides/ember-inspector/installation-firefox-tomster-checkbox.png" width="400">
 
 
 ### Via Bookmarklet
