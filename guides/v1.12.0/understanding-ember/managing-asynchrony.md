@@ -79,13 +79,13 @@ tasks.
 You would normally use ember-data for this example, but let's see how
 you would model the above example using jQuery for Ajax in Ember.
 
-```app/models/post.js
+```javascript {data-filename=app/models/post.js}
 export default Ember.Object.extend({
 
 });
 ```
 
-```app/controllers/post.js
+```javascript {data-filename=app/controllers/post.js}
 export default Ember.Controller.extend({
 
   salutation: Ember.computed.alias('model.salutation'),
@@ -99,21 +99,21 @@ export default Ember.Controller.extend({
 });
 ```
 
-```app/views/post.js
+```javascript {data-filename=app/views/post.js}
 export default Ember.View.extend({
   // the controller is the initial context for the template
   controller: null
 });
 ```
 
-```app/templates/post.hbs
+```handlebars {data-filename=app/templates/post.hbs}
 <h1>  {{title}}  </h1>
 <h2>  {{author}} </h2>
 <div> {{body}}   </div>
 ```
 
 
-```app/routes/post.js
+```javascript {data-filename=app/routes/post.js}
 import Post from "app/models/post";
 
 export default Ember.Route.extend({
@@ -149,7 +149,7 @@ to each user event.
 
 Let's take another look at the `author` computed property.
 
-```app/controllers/post.js
+```javascript {data-filename=app/controllers/post.js}
 export default Ember.Controller.extend({
   // ...
   author: function() {
@@ -217,7 +217,7 @@ you execute the jQuery UI code at the right time?
 
 The answer is lifecycle callbacks.
 
-```app/components/my-button.js
+```javascript {data-filename=app/components/my-button.js}
 export default Ember.Component.extend({
   tagName: 'button',
 
@@ -227,7 +227,7 @@ export default Ember.Component.extend({
 });
 ```
 
-```app/templates/example-usage.hbs
+```handlebars {data-filename=app/templates/example-usage.hbs}
 {{my-button}}
 ```
 

@@ -80,7 +80,7 @@ module.exports = function(environment) {
 
 You will notice that this is then used to configure your application's router:
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 import Router from "@ember/routing/router";
 import config from './config/environment';
 

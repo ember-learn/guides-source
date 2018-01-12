@@ -4,7 +4,7 @@ You create a link to a route using the
 [`{{link-to}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_link-to)
 component.
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('photos', function(){
     this.route('edit', { path: '/:photo_id' });
@@ -12,7 +12,7 @@ Router.map(function() {
 });
 ```
 
-```app/templates/photos.hbs
+```handlebars {data-filename=app/templates/photos.hbs}
 <ul>
   {{#each photos as |photo|}}
     <li>{{#link-to "photos.edit" photo}}{{photo.title}}{{/link-to}}</li>
@@ -41,7 +41,7 @@ The `{{link-to}}` component takes one or two arguments:
   the dynamic segment with either `1`, `2`, or `3`. If there is no model to pass to the component, you can provide
   an explicit value instead:
 
-```app/templates/photos.hbs
+```handlebars {data-filename=app/templates/photos.hbs}
 {{#link-to "photos.edit" 1}}
   First Photo Ever
 {{/link-to}}
@@ -65,7 +65,7 @@ the first example above would render as:
 If the route is nested, you can supply a model or an identifier for each dynamic
 segment.
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('photos', function(){
     this.route('photo', { path: '/:photo_id' }, function(){
@@ -76,7 +76,7 @@ Router.map(function() {
 });
 ```
 
-```app/templates/photo/index.hbs
+```handlebars {data-filename=app/templates/photo/index.hbs}
 <div class="photo">
   {{body}}
 </div>
@@ -89,7 +89,7 @@ The `:photo_id` segment will use the current photo.
 
 Alternatively, you could pass both a photo's ID and a comment to the component:
 
-```app/templates/photo/index.hbs
+```handlebars {data-filename=app/templates/photo/index.hbs}
 <p>
   {{#link-to 'photo.comment' 5 primaryComment}}
     Main Comment for the Next Photo

@@ -53,7 +53,7 @@ should go to `/formulae/1` instead of `/formulas/1`.
 Endpoint paths can be prefixed with a namespace by setting the `namespace`
 property on the adapter:
 
-```app/adapters/application.js
+```javascript {data-filename=app/adapters/application.js}
 export default DS.RESTAdapter.extend({
   namespace: 'api/1'
 });
@@ -65,7 +65,7 @@ Requests for `person` would now target `http://emberjs.com/api/1/people/1`.
 
 An adapter can target other hosts by setting the `host` property.
 
-```app/adapters/application.js
+```javascript {data-filename=app/adapters/application.js}
 export default DS.RESTAdapter.extend({
   host: 'https://api.example.com'
 });
@@ -111,7 +111,7 @@ extractDeleteRecord: function(store, type, payload) {
 
 Attribute names should be camelized.  For example, if you have a model like this:
 
-```app/models/person.js
+```javascript {data-filename=app/models/person.js}
 export default DS.Model.extend({
   firstName: DS.attr('string'),
   lastName:  DS.attr('string'),
@@ -137,13 +137,13 @@ Irregular keys can be mapped with a custom serializer. If the JSON for
 attribute name is simply `lastName`, then create a custom Serializer
 for the model and override the `normalizeHash` property.
 
-```app/models/person.js
+```javascript {data-filename=app/models/person.js}
 export default DS.Model.extend({
   lastName: DS.attr('string')
 });
 ```
 
-```app/serializers/person.js
+```javascript {data-filename=app/serializers/person.js}
 export default DS.RESTSerializer.extend({
   normalizeHash: {
     lastNameOfPerson: function(hash) {
@@ -161,7 +161,7 @@ export default DS.RESTSerializer.extend({
 References to other records should be done by ID. For example, if you
 have a model with a `hasMany` relationship:
 
-```app/models/post.js
+```javascript {data-filename=app/models/post.js}
 export default DS.Model.extend({
   comments: DS.hasMany('comment', {async: true})
 });
@@ -184,7 +184,7 @@ Any `belongsTo` relationships in the JSON representation should be the
 camelized version of the Ember Data model's name, with the string
 `Id` appended. For example, if you have a model:
 
-```app/models/comment.js
+```javascript {data-filename=app/models/comment.js}
 export default DS.Model.extend({
   post: DS.belongsTo('post')
 });
@@ -203,7 +203,7 @@ The JSON should encode the relationship as an ID to another record:
 If needed these naming conventions can be overwritten by implementing
 the `keyForRelationship` method.
 
-```app/serializers/application.js
+```javascript {data-filename=app/serializers/application.js}
 export default DS.RESTSerializer.extend({
   keyForRelationship: function(key, relationship) {
     return key + 'Ids';
@@ -249,7 +249,7 @@ server may return a non-standard date format.
 Ember Data can have new JSON transforms
 registered for use as attributes:
 
-```app/transforms/coordinate-point.js
+```javascript {data-filename=app/transforms/coordinate-point.js}
 export default DS.Transform.extend({
   serialize: function(value) {
     return [value.get('x'), value.get('y')];
@@ -260,7 +260,7 @@ export default DS.Transform.extend({
 });
 ```
 
-```app/models/cursor.js
+```javascript {data-filename=app/models/cursor.js}
 export default DS.Model.extend({
   position: DS.attr('coordinatePoint')
 });

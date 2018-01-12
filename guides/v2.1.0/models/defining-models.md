@@ -14,7 +14,7 @@ ember generate model person
 
 This will generate the following file:
 
-```app/models/person.js
+```javascript {data-filename=app/models/person.js}
 export default DS.Model.extend({
 });
 ```
@@ -28,7 +28,7 @@ and [working with records](../creating-updating-and-deleting-records) of that ty
 The `person` model we generated earlier didn't have any attributes. Let's
 add first and last name, as well as the birthday, using `DS.attr`:
 
-```app/models/person.js
+```javascript {data-filename=app/models/person.js}
 export default DS.Model.extend({
   firstName: DS.attr(),
   lastName: DS.attr(),
@@ -44,7 +44,7 @@ You can use attributes just like any other property, including as part of a
 computed property. Frequently, you will want to define computed
 properties that combine or transform primitive attributes.
 
-```app/models/person.js
+```javascript {data-filename=app/models/person.js}
 export default DS.Model.extend({
   firstName: DS.attr(),
   lastName: DS.attr(),
@@ -71,7 +71,7 @@ For example if you would like to transform an
 [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string to a
 JavaScript date object you would define your attribute like this:
 
-```app/models/person.js
+```javascript {data-filename=app/models/person.js}
 export default DS.Model.extend({
   birthday: DS.attr('date')
 });
@@ -94,7 +94,7 @@ In the following example we define that `verified` has a default value of
 `false` and `createdAt` defaults to the current date at the time of the model's
 creation:
 
-```app/models/user.js
+```javascript {data-filename=app/models/user.js}
 export default DS.Model.extend({
   username: DS.attr('string'),
   email: DS.attr('string'),
@@ -116,13 +116,13 @@ define how your models relate to each other.
 To declare a one-to-one relationship between two models, use
 `DS.belongsTo`:
 
-```app/models/user.js
+```javascript {data-filename=app/models/user.js}
 export default DS.Model.extend({
   profile: DS.belongsTo('profile')
 });
 ```
 
-```app/models/profile.js
+```javascript {data-filename=app/models/profile.js}
 export default DS.Model.extend({
   user: DS.belongsTo('user')
 });
@@ -133,13 +133,13 @@ export default DS.Model.extend({
 To declare a one-to-many relationship between two models, use
 `DS.belongsTo` in combination with `DS.hasMany`, like this:
 
-```app/models/post.js
+```javascript {data-filename=app/models/post.js}
 export default DS.Model.extend({
   comments: DS.hasMany('comment')
 });
 ```
 
-```app/models/comment.js
+```javascript {data-filename=app/models/comment.js}
 export default DS.Model.extend({
   post: DS.belongsTo('post')
 });
@@ -150,13 +150,13 @@ export default DS.Model.extend({
 To declare a many-to-many relationship between two models, use
 `DS.hasMany`:
 
-```app/models/post.js
+```javascript {data-filename=app/models/post.js}
 export default DS.Model.extend({
   tags: DS.hasMany('tag')
 });
 ```
 
-```app/models/tag.js
+```javascript {data-filename=app/models/tag.js}
 export default DS.Model.extend({
   posts: DS.hasMany('post')
 });
@@ -177,7 +177,7 @@ option. Relationships without an inverse can be indicated as such by
 including `{ inverse: null }`.
 
 
-```app/models/comment.js
+```javascript {data-filename=app/models/comment.js}
 export default DS.Model.extend({
   onePost: DS.belongsTo('post', { inverse: null }),
   twoPost: DS.belongsTo('post'),
@@ -186,7 +186,7 @@ export default DS.Model.extend({
 });
 ```
 
-```app/models/post.js
+```javascript {data-filename=app/models/post.js}
 export default DS.Model.extend({
   comments: DS.hasMany('comment', {
     inverse: 'redPost'
@@ -202,7 +202,7 @@ is no inverse relationship then you can set the inverse to `null`.
 
 Here's an example of a one-to-many reflexive relationship:
 
-```app/models/folder.js
+```javascript {data-filename=app/models/folder.js}
 export default DS.Model.extend({
   children: DS.hasMany('folder', { inverse: 'parent' }),
   parent: DS.belongsTo('folder', { inverse: 'children' })
@@ -211,7 +211,7 @@ export default DS.Model.extend({
 
 Here's an example of a one-to-one reflexive relationship:
 
-```app/models/user.js
+```javascript {data-filename=app/models/user.js}
 export default DS.Model.extend({
   name: DS.attr('string'),
   bestFriend: DS.belongsTo('user', { inverse: 'bestFriend' }),
@@ -220,7 +220,7 @@ export default DS.Model.extend({
 
 You can also define a reflexive relationship that doesn't have an inverse:
 
-```app/models/folder.js
+```javascript {data-filename=app/models/folder.js}
 export default DS.Model.extend({
   parent: DS.belongsTo('folder', { inverse: null })
 });

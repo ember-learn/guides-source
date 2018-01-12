@@ -54,7 +54,7 @@ In this case we are passing, or "yielding", our filter data to the inner markup 
 
 We want the component to simply provide an input field and yield the results list to its block, so our template will be simple:
 
-```app/templates/components/list-filter.hbs
+```handlebars {data-filename=app/templates/components/list-filter.hbs}
 {{input value=value
         key-up=(action 'handleFilterEntry')
         class="light"
@@ -73,7 +73,7 @@ The `key-up` property will be bound to the `handleFilterEntry` action.
 
 Here is what the component's JavaScript looks like:
 
-```app/components/list-filter.js
+```javascript {data-filename=app/components/list-filter.js}
 import Ember from 'ember';
 
 export default Ember.Component.extend({
@@ -123,7 +123,7 @@ ember g controller rentals
 
 Now, define your new controller like so:
 
-```app/controllers/rentals.js
+```javascript {data-filename=app/controllers/rentals.js}
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
@@ -148,7 +148,7 @@ The result of the query is returned to the caller.
 For this action to work, we need to replace our Mirage `config.js` file with the following, so that it can respond to our queries.
 Instead of simply returning the list of rentals, our Mirage HTTP GET handler for `rentals` will return rentals matching the string provided in the URL query parameter called `city`.
 
-```mirage/config.js
+```javascript {data-filename=mirage/config.js}
 export default function() {
   this.namespace = '/api';
 
@@ -297,7 +297,7 @@ similar to [how we tested our rental listing component earlier](../simple-compon
 Lets begin by opening the component integration test created when we generated our `list-filter` component, `tests/integration/components/list-filter-test.js`.
 Remove the default test, and create a new test that verifies that by default, the component will list all items.
 
-```tests/integration/components/list-filter-test.js
+```javascript {data-filename=tests/integration/components/list-filter-test.js}
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
@@ -438,7 +438,7 @@ represented by the variable `FILTERED_ITEMS` when any value is set.
 
 We force the action by generating a `keyUp` event on our input field, and then assert that only one item is rendered.
 
-```tests/integration/components/list-filter-test.js
+```javascript {data-filename=tests/integration/components/list-filter-test.js}
 test('should update with matching listings', function (assert) {
   this.on('filterByCity', (val) => {
     if (val === '') {
@@ -485,7 +485,7 @@ We'll verify that a user visiting the rentals page can enter text into the searc
 Open our existing acceptance test, `tests/acceptance/list-rentals-test.js`, and implement the test labeled "should filter the list of rentals by city".
 
 
-```/tests/acceptance/list-rentals-test.js
+```javascript {data-filename=/tests/acceptance/list-rentals-test.js}
 test('should filter the list of rentals by city.', function (assert) {
   visit('/');
   fillIn('.list-filter input', 'Seattle');

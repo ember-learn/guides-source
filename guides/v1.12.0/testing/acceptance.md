@@ -14,7 +14,7 @@ The helper also sets the router's location to 'none' so that the window's locati
 will not be modified. After each test run, the application is destroyed to assure your 
 tests are run in isolation.
 
-```tests/acceptance/user-can-login-via-form-test.js
+```javascript {data-filename=tests/acceptance/user-can-login-via-form-test.js}
 var application;
 
 module('Acceptance: UserCanLoginViaForm', {
@@ -31,7 +31,7 @@ module('Acceptance: UserCanLoginViaForm', {
 ember-cli also generates a sample test. In this case, we `visit` 
 `'/user-can-login-via-form'` and `assert` we got there without any problem.
 
-```tests/acceptance/user-can-login-via-form-test.js
+```javascript {data-filename=tests/acceptance/user-can-login-via-form-test.js}
 test('visiting /user-can-login-via-form', function(assert) {
   visit('/user-can-login-via-form');
 

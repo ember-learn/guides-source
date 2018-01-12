@@ -73,7 +73,7 @@ lists the drafts for the currently logged in user.
 You might be tempted to make the component responsible for fetching that
 data and storing it:
 
-```app/components/list-of-drafts.js
+```javascript {data-filename=app/components/list-of-drafts.js}
 export default Ember.Component.extend({
   willRender() {
     $.getJSON('/drafts').then(data => {
@@ -86,7 +86,7 @@ export default Ember.Component.extend({
 You could then show the list of drafts in your component's template like
 this:
 
-```app/templates/components/list-of-drafts.hbs
+```handlebars {data-filename=app/templates/components/list-of-drafts.hbs}
 <ul>
   {{#each drafts key="id" as |draft|}}
     <li>{{draft.title}}</li>
@@ -100,7 +100,7 @@ may want a component to display the number of drafts. You may be
 tempted to copy and paste your existing `willRender` code into the new
 component.
 
-```app/components/drafts-button.js
+```javascript {data-filename=app/components/drafts-button.js}
 export default Ember.Component.extend({
   willRender() {
     $.getJSON('/drafts').then(data => {
@@ -110,7 +110,7 @@ export default Ember.Component.extend({
 });
 ```
 
-```app/templates/components/drafts-button.hbs
+```handlebars {data-filename=app/templates/components/drafts-button.hbs}
 {{#link-to 'drafts' tagName="button"}}
 Drafts ({{drafts.length}})
 {{/link-to}}
@@ -188,7 +188,7 @@ Models define the type of data that will be provided by your server. For
 example, a `Person` model might have a `firstName` attribute that is a
 string, and a `birthday` attribute that is a date:
 
-```app/models/person.js
+```javascript {data-filename=app/models/person.js}
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
 
@@ -202,7 +202,7 @@ A model also describes its relationships with other objects. For
 example, an `order` may have many `line-items`, and a
 `line-item` may belong to a particular `order`.
 
-```app/models/order.js
+```javascript {data-filename=app/models/order.js}
 import Model from 'ember-data/model';
 import { hasMany } from 'ember-data/relationships';
 
@@ -211,7 +211,7 @@ export default Model.extend({
 });
 ```
 
-```app/models/line-item.js
+```javascript {data-filename=app/models/line-item.js}
 import Model from 'ember-data/model';
 import { belongsTo } from 'ember-data/relationships';
 

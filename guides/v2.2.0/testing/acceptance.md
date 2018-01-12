@@ -7,7 +7,7 @@ ember g acceptance-test login
 
 This generates this file:
 
-```tests/acceptance/login-test.js
+```javascript {data-filename=tests/acceptance/login-test.js}
 import { test } from 'qunit';
 import moduleForAcceptance from 'people/tests/helpers/module-for-acceptance';
 
@@ -30,7 +30,7 @@ Almost every test has a pattern of visiting a route, interacting with the page
 
 For example:
 
-```tests/acceptance/new-post-appears-first-test.js
+```javascript {data-filename=tests/acceptance/new-post-appears-first-test.js}
 test('should add new post', function(assert) {
   visit('/posts/new');
   fillIn('input.title', 'My new post');
@@ -113,7 +113,7 @@ The `andThen` helper will wait for all preceding asynchronous helpers to
 complete prior to progressing forward. Let's take a look at the following
 example.
 
-```tests/acceptance/new-post-appears-first-test.js
+```javascript {data-filename=tests/acceptance/new-post-appears-first-test.js}
 test('should add new post', function(assert) {
   visit('/posts/new');
   fillIn('input.title', 'My new post');
@@ -153,7 +153,7 @@ For creating your own test helper, run `ember generate test-helper
 <helper-name>`. Here is the result of running `ember g test-helper
 shouldHaveElementWithCount`:
 
-```tests/helpers/should-have-element-with-count.js
+```javascript {data-filename=tests/helpers/should-have-element-with-count.js}
 export default Ember.Test.registerAsyncHelper(
     'shouldHaveElementWithCount', function(app) {
 });
@@ -175,7 +175,7 @@ first parameter. Other parameters need to be provided when calling the helper. H
 
 Here is an example of a non-async helper:
 
-```tests/helpers/should-have-element-with-count.js
+```javascript {data-filename=tests/helpers/should-have-element-with-count.js}
 export default Ember.Test.registerHelper('shouldHaveElementWithCount', function(app, assert, selector, n, context) {
   const el = findWithAssert(selector, context);
   const count = el.length;
@@ -186,7 +186,7 @@ export default Ember.Test.registerHelper('shouldHaveElementWithCount', function(
 
 Here is an example of an async helper:
 
-```tests/helpers/dblclick.js
+```javascript {data-filename=tests/helpers/dblclick.js}
 export default Ember.Test.registerAsyncHelper('dblclick',
   function(app, assert, selector, context) {
     let $el = findWithAssert(selector, context);
@@ -200,7 +200,7 @@ export default Ember.Test.registerAsyncHelper('dblclick',
 Async helpers also come in handy when you want to group interaction
 into one helper. For example:
 
-```tests/helpers/add-contact.js
+```javascript {data-filename=tests/helpers/add-contact.js}
 export default Ember.Test.registerAsyncHelper('addContact',
   function(app, assert, name) {
     fillIn('#name', name);
@@ -234,7 +234,7 @@ Finally, don't forget to add your helpers in `tests/.jshintrc` and in
 In `tests/helpers/start-app.js` you need to import the helper file: it
 will be registered then.
 
-```tests/helpers/start-app.js
+```javascript {data-filename=tests/helpers/start-app.js}
 import Ember from 'ember';
 import Application from '../../app';
 import Router from '../../router';

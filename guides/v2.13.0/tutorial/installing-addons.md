@@ -44,7 +44,7 @@ ember install ember-cli-mirage
 
 Let's now configure Mirage to send back our rentals that we had defined above by updating `mirage/config.js`:
 
-```mirage/config.js
+```javascript {data-filename=mirage/config.js}
 export default function() {
   this.namespace = '/api';
 
@@ -103,7 +103,7 @@ This adapter will extend the [`JSONAPIAdapter`][1] base class from Ember Data:
 
 [1]: http://emberjs.com/api/data/classes/DS.JSONAPIAdapter.html
 
-```app/adapters/application.js
+```javascript {data-filename=app/adapters/application.js}
 import DS from 'ember-data';
 
 export default DS.JSONAPIAdapter.extend({

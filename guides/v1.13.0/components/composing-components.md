@@ -4,7 +4,7 @@ If we want the same type of behavior, then we have to compose our components.
 
 Just like we compose regular HTML elements, we can do the same with components.
 
-```app/templates/application.hbs
+```handlebars {data-filename=app/templates/application.hbs}
 {{#user-list users=activeUsers sortBy='name' as |user|}}
   {{user-card user=user}}
 {{/user-list}}
@@ -16,7 +16,7 @@ Components can be used in two forms, just like regular HTML elements.
 
 **Inline Form**
 
-```app/templates/application.hbs
+```handlebars {data-filename=app/templates/application.hbs}
 {{user-list users=activeUsers}}
 ```
 
@@ -28,7 +28,7 @@ and forms.
 
 **Block Form**
 
-```app/templates/application.hbs
+```handlebars {data-filename=app/templates/application.hbs}
 {{#user-list users=activeUsers}}
   {{!-- custom template here --}}
 {{/user-list}}
@@ -38,7 +38,7 @@ To compose components, we must use the block form, but we must also
 be able to distinguish from within our component which form is being used.
 This can be done with the `hasBlock` property from within our component.
 
-```app/templates/components/user-list.hbs
+```handlebars {data-filename=app/templates/components/user-list.hbs}
 {{#if hasBlock}}
   {{yield}}
 {{else}}
@@ -52,7 +52,7 @@ whatever the user has placed inside the block wherever we want via the `{{yield}
 This `{{yield}}` helper can be used in the component's template definition multiple times,
 allowing us to create a component that works like a list, where we output a headline and yielded body for each post.
 
-```app/templates/components/post-list.hbs
+```handlebars {data-filename=app/templates/components/post-list.hbs}
 {{#each posts as |post|}}
   <h3>{{post.title}}</h3>
   <p>{{yield}}</p>
@@ -61,7 +61,7 @@ allowing us to create a component that works like a list, where we output a head
 
 Which can be used like so:
 
-```app/templates/posts.hbs
+```handlebars {data-filename=app/templates/posts.hbs}
 {{#post-list posts=headlinePosts}}
   Greatest post ever!
 {{/post-list}}
@@ -101,7 +101,7 @@ For the consumer to get access to the data, she needs to know what data a compon
 this is where documentation is so crucial, and from there the yielded data can be accessed
 with the `as` operator. Let's take the following template as an example:
 
-```app/components/user-list/template.hbs
+```handlebars {data-filename=app/components/user-list/template.hbs}
 {{#each users as |user|}}
   {{yield user}}
 {{/each}}
@@ -110,7 +110,7 @@ with the `as` operator. Let's take the following template as an example:
 This `{{user-list}}` component will yield as many times as there are users.
 We can consume it in the following way:
 
-```app/users/template.hbs
+```handlebars {data-filename=app/users/template.hbs}
 {{#user-list users=users as |user|}}
   {{user-card user=user}}
 {{/user-list}}
@@ -121,7 +121,7 @@ since the `{{yield user}}` is inside the `{{each}}` block. Although this is nice
 without a block, i.e. `{{user-list users=users}}`? This would make the component pretty useless since nothing is yielding,
 but the users are still being iterated. Let's mix in the `hasBlock` attribute and see if we can make it more useful.
 
-```app/components/user-list/template.hbs
+```handlebars {data-filename=app/components/user-list/template.hbs}
 {{#if hasBlock}}
   {{#each users as |user|}}
     {{yield user}}
@@ -166,7 +166,7 @@ We can create these names by using the `{{concat}}` helper in nested form.
 
 Now that our component names are valid due to the use of dashed, we can put together the full template with the two modes.
 
-```app/users/template.hbs
+```handlebars {data-filename=app/users/template.hbs}
 {{#user-list users=users as |user basicMode|}}
   {{#if basicMode}}
     {{component (concat 'basic-card-' user.type) user=user}}
@@ -186,7 +186,7 @@ which we've added to our yield, i.e. `{{yield user basic}}`.
 
 The consumer can decide how to name the yielded values. We could have named our yields like so:
 
-```app/users/template.hbs
+```handlebars {data-filename=app/users/template.hbs}
 {{#user-list users=users as |userModel isBasic|}}
   {{! something creative here }}
 {{/user-list}}
@@ -201,7 +201,7 @@ We'll be looking at a `{{user-profile}}` component that implements a save action
 
 Here's our component's definition:
 
-```app/components/user-profile/component.js
+```javascript {data-filename=app/components/user-profile/component.js}
 import Ember from 'ember';
 
 export default Ember.Component.extend({
@@ -221,7 +221,7 @@ export default Ember.Component.extend({
 });
 ```
 
-```app/components/user-profile/template.hbs
+```handlebars {data-filename=app/components/user-profile/template.hbs}
 {{! most likely we have some markup here }}
 {{yield profile (action "saveUser")}}
 ```
@@ -230,7 +230,7 @@ So now the consumer will have access to our data and the
 action that we have defined. Lets see how this component could be consumed
 in block form.
 
-```app/templates/user/profile.hbs
+```handlebars {data-filename=app/templates/user/profile.hbs}
 {{#user-profile user=user as |profile saveUser|}}
   {{user-avatar url=profile.imageUrl onchange=saveUser}}
 {{/user-profile}}

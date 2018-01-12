@@ -8,7 +8,7 @@ ensures Ember picks up the components automatically.
 
 A sample component template would look like this:
 
-```app/templates/components/blog-post.hbs
+```handlebars {data-filename=app/templates/components/blog-post.hbs}
 <h1>Blog Post</h1>
 <p>Lorem ipsum dolor sit amet.</p>
 ```
@@ -19,7 +19,7 @@ component of the same name. Given the above template, you can now use the
 
 <!--- <a class="jsbin-embed" href="http://jsbin.com/tikenoniku/1/edit?output">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script> -->
 <!--- The example above uses `<script>` tags to work inside of JSBin.-->
-```app/templates/index.hbs
+```handlebars {data-filename=app/templates/index.hbs}
 {{#each}}
   {{#blog-post title=title}}
     {{body}}
@@ -27,7 +27,7 @@ component of the same name. Given the above template, you can now use the
 {{/each}}
 ```
 
-```app/templates/components/blog-post.hbs
+```handlebars {data-filename=app/templates/components/blog-post.hbs}
 <article class="blog-post">
   <h1>{{title}}</h1>
   <p>{{yield}}</p>
@@ -35,7 +35,7 @@ component of the same name. Given the above template, you can now use the
 </article>
 ```
 
-```app/routes/index.js
+```javascript {data-filename=app/routes/index.js}
 var posts = [{
     title: "Rails is omakase",
     body: "There are lots of à la carte software environments in this world."
@@ -51,7 +51,7 @@ export default Ember.Route.extend({
 });
 ```
 
-```app/components/blog-post.js
+```javascript {data-filename=app/components/blog-post.js}
 export default Ember.Component.extend({
   
 });

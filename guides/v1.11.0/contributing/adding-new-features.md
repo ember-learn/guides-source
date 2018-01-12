@@ -64,7 +64,7 @@ described above.
 
 #### Feature Naming Conventions
 
-```config/environment.js
+```javascript {data-filename=config/environment.js}
 Ember.FEATURES["<packageName>-<feature>"] // if package specific
 Ember.FEATURES["container-factory-injections"]
 Ember.FEATURES["htmlbars"]
@@ -77,7 +77,7 @@ guarded by the conditionals in the original source. This means that
 users of the canary build can enable whatever features they want by
 enabling them before creating their Ember.Application.
 
-```config/environment.js
+```javascript {data-filename=config/environment.js}
 module.exports = function(environment) {
   var ENV = {
     EmberENV: {

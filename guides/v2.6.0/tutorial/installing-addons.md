@@ -40,7 +40,7 @@ If you were running `ember serve` in another shell, restart the server to includ
 
 Let's now configure Mirage to send back our rentals that we had defined above by updating `/mirage/config.js`:
 
-```mirage/config.js
+```javascript {data-filename=mirage/config.js}
 export default function() {
   this.get('/rentals', function() {
     return {

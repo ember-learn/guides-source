@@ -6,7 +6,7 @@ Data record.
 Throughout this guide, we will assume the existence of the following
 model:
 
-```app/models/person.js
+```javascript {data-filename=app/models/person.js}
 export default DS.Model.extend({
   firstName: DS.attr('string'),
   lastName: DS.attr('string'),

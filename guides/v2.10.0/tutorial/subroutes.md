@@ -24,7 +24,7 @@ Opening the template for this route reveals an outlet underneath the route's gen
 At the bottom of the template, you'll notice an `{{outlet}}` helper.
 This is where the active nested route will be rendered.
 
-```app/templates/rentals.hbs
+```handlebars {data-filename=app/templates/rentals.hbs}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>Welcome!</h2>
@@ -62,7 +62,7 @@ ember g route rentals/index
 
 If you open up your Router (`app/router`) you may notice that nothing has updated.
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('about');
   this.route('contact');
@@ -136,7 +136,7 @@ Start by running `ember g controller rentals/index` to create an index controlle
 
 Instead of copying the whole controller file over to `app/controller/rentals/index.js` from `app/controller/rentals.js`, we'll just take advantage of JavaScript's import/export feature to re-export the rentals controller as the rentals/index controller:
 
-```app/controller/rentals/index.js
+```javascript {data-filename=app/controller/rentals/index.js}
 import RentalsController from '../rentals';
 
 export default RentalsController;
@@ -294,7 +294,7 @@ When we call `this.get('store').findRecord('rental', params.rental_id)`, Ember D
 
 Next, we can update the template for our show route (`app/templates/rentals/show.hbs`) and list the information for our rental.
 
-```app/templates/rentals/show.hbs
+```handlebars {data-filename=app/templates/rentals/show.hbs}
 <div class="jumbo show-listing">
   <h2 class="title">{{model.title}}</h2>
   <div class="right detail-section">

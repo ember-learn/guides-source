@@ -2,7 +2,7 @@ Sometimes, especially when nesting resources, we find ourselves needing
 to have some kind of connection between two controllers. Let's take this
 router as an example:
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('post', { path: '/posts/:post_id' }, function() {
     this.route('comments', { path: '/comments' });
@@ -18,7 +18,7 @@ some information about it in the `comments` template.
 To do this, we inject the `PostController` into the
 `CommentsController` (which has the desired `Post` model).
 
-```app/controllers/comments.js
+```javascript {data-filename=app/controllers/comments.js}
 export default Ember.Controller.extend({
   postController: Ember.inject.controller('post')
 });
@@ -28,14 +28,14 @@ Once comments has access to the `PostController`, a read-only alias can be
 used to read the model from that controller. In order to get the
 `Post` model, we refer to `postController.model`:
 
-```app/controllers/comments.js
+```javascript {data-filename=app/controllers/comments.js}
 export default Ember.Controller.extend({
   postController: Ember.inject.controller('post'),
   post: Ember.computed.reads('postController.model')
 });
 ```
 
-```app/templates/comments.hbs
+```handlebars {data-filename=app/templates/comments.hbs}
 <h1>Comments for {{post.title}}</h1>
 
 <ul>

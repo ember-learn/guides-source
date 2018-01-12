@@ -14,7 +14,7 @@ When using `history`, Ember uses the browser's
 Given the following router, entering `/posts/new` will take you to the `posts.new`
 route.
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('posts', function() {
     this.route('new');

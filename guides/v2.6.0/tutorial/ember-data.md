@@ -20,7 +20,7 @@ installing model-test
 
 When we open the model file, we see:
 
-```app/models/rental.js
+```javascript {data-filename=app/models/rental.js}
 import DS from 'ember-data';
 
 export default DS.Model.extend({
@@ -31,7 +31,7 @@ export default DS.Model.extend({
 Let's add the same attributes for our rental that we used in our hard-coded array of JavaScript objects -
 _title_, _owner_, _city_, _type_, _image_, and _bedrooms_:
 
-```app/models/rental.js
+```javascript {data-filename=app/models/rental.js}
 import DS from 'ember-data';
 
 export default DS.Model.extend({
@@ -50,7 +50,7 @@ Now we have a model in our Ember Data store.
 
 To use our new data store, we need to update the `model` hook in our route handler.
 
-```app/routes/index.js
+```javascript {data-filename=app/routes/index.js}
 import Ember from 'ember';
 
 export default Ember.Route.extend({

@@ -335,7 +335,7 @@ test('should toggle wide class on click', function(assert) {
 ```
 The final test should look as follows:
 
-```tests/integration/components/rental-listing-test.js
+```javascript {data-filename=tests/integration/components/rental-listing-test.js}
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import EmberObject from '@ember/object';

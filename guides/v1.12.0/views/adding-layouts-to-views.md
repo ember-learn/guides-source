@@ -9,7 +9,7 @@ The HTML contents of a view's rendered `template` will be inserted where the `{{
 
 First, you define the following layout template:
 
-```app/templates/my-layout.hbs
+```handlebars {data-filename=app/templates/my-layout.hbs}
 <div class="content-wrapper">
   {{yield}}
 </div>
@@ -17,13 +17,13 @@ First, you define the following layout template:
 
 And then the following main template:
 
-```app/templates/has-a-layout.hbs
+```handlebars {data-filename=app/templates/has-a-layout.hbs}
   Hello, <b>{{view.name}}</b>!
 ```
 
 Finally, you define a view, and instruct it to wrap the template with the defined layout:
 
-```app/views/with-a-layout.js
+```javascript {data-filename=app/views/with-a-layout.js}
 export default Ember.View.extend({
   name: 'Teddy',
   layoutName: 'my-layout',

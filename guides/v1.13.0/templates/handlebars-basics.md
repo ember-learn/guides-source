@@ -18,7 +18,7 @@ Next, you can define templates in the `app/templates` folder. Remember from
 [Naming Convetions](../../concepts/naming-conventions/#toc_route-controller-and-template-defaults) that by default,
 a route will render a template with the same name as the route.
 
-```app/templates/kittens.hbs
+```handlebars {data-filename=app/templates/kittens.hbs}
 <h1>Kittens</h1>
 <p>Kittens are the cutest!</p>
 ```
@@ -43,7 +43,7 @@ put them into the DOM.
 
 By default, your top-most application template is bound to your application controller. Note that this file is not shown by default because it is created behind the scenes by Ember CLI. To customize the controller, create the following file:
 
-```app/controllers/application.js
+```javascript {data-filename=app/controllers/application.js}
 export default Ember.Controller.extend({
   firstName: "Trek",
   lastName: "Glowacki"

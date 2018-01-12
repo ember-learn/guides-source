@@ -6,7 +6,7 @@ define how your models relate to each other.
 To declare a one-to-one relationship between two models, use
 `belongsTo`:
 
-```app/models/user.js
+```javascript {data-filename=app/models/user.js}
 import Model from 'ember-data/model';
 import { belongsTo } from 'ember-data/relationships';
 
@@ -15,7 +15,7 @@ export default Model.extend({
 });
 ```
 
-```app/models/profile.js
+```javascript {data-filename=app/models/profile.js}
 import Model from 'ember-data/model';
 import { belongsTo } from 'ember-data/relationships';
 
@@ -29,7 +29,7 @@ export default Model.extend({
 To declare a one-to-many relationship between two models, use
 `belongsTo` in combination with `hasMany`, like this:
 
-```app/models/post.js
+```javascript {data-filename=app/models/post.js}
 import Model from 'ember-data/model';
 import { hasMany } from 'ember-data/relationships';
 
@@ -38,7 +38,7 @@ export default Model.extend({
 });
 ```
 
-```app/models/comment.js
+```javascript {data-filename=app/models/comment.js}
 import Model from 'ember-data/model';
 import { belongsTo } from 'ember-data/relationships';
 
@@ -52,7 +52,7 @@ export default Model.extend({
 To declare a many-to-many relationship between two models, use
 `hasMany`:
 
-```app/models/post.js
+```javascript {data-filename=app/models/post.js}
 import Model from 'ember-data/model';
 import { hasMany } from 'ember-data/relationships';
 
@@ -61,7 +61,7 @@ export default Model.extend({
 });
 ```
 
-```app/models/tag.js
+```javascript {data-filename=app/models/tag.js}
 import Model from 'ember-data/model';
 import { hasMany } from 'ember-data/relationships';
 
@@ -85,7 +85,7 @@ option. Relationships without an inverse can be indicated as such by
 including `{ inverse: null }`.
 
 
-```app/models/comment.js
+```javascript {data-filename=app/models/comment.js}
 import Model from 'ember-data/model';
 import { belongsTo } from 'ember-data/relationships';
 
@@ -97,7 +97,7 @@ export default Model.extend({
 });
 ```
 
-```app/models/post.js
+```javascript {data-filename=app/models/post.js}
 import Model from 'ember-data/model';
 import { hasMany } from 'ember-data/relationships';
 
@@ -116,7 +116,7 @@ is no inverse relationship then you can set the inverse to `null`.
 
 Here's an example of a one-to-many reflexive relationship:
 
-```app/models/folder.js
+```javascript {data-filename=app/models/folder.js}
 import Model from 'ember-data/model';
 import { belongsTo, hasMany } from 'ember-data/relationships';
 
@@ -128,7 +128,7 @@ export default Model.extend({
 
 Here's an example of a one-to-one reflexive relationship:
 
-```app/models/user.js
+```javascript {data-filename=app/models/user.js}
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
 import { belongsTo } from 'ember-data/relationships';
@@ -141,7 +141,7 @@ export default Model.extend({
 
 You can also define a reflexive relationship that doesn't have an inverse:
 
-```app/models/folder.js
+```javascript {data-filename=app/models/folder.js}
 import Model from 'ember-data/model';
 import { belongsTo } from 'ember-data/relationships';
 
@@ -167,7 +167,7 @@ extraneous models.
 
 Let's assume that we have a `post` and a `comment` model, which are related to each other as follows:
 
-```app/models/post.js
+```javascript {data-filename=app/models/post.js}
 import Model from 'ember-data/model';
 import { hasMany } from 'ember-data/relationships';
 
@@ -176,7 +176,7 @@ export default Model.extend({
 });
 ```
 
-```app/models/comment.js
+```javascript {data-filename=app/models/comment.js}
 import Model from 'ember-data/model';
 import { belongsTo } from 'ember-data/relationships';
 

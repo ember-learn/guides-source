@@ -17,13 +17,13 @@ the [`beforeModel()`][3] hook of your route handler.
 
 [3]: http://emberjs.com/api/classes/Ember.Route.html#method_beforeModel
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('posts');
 });
 ```
 
-```app/routes/index.js
+```javascript {data-filename=app/routes/index.js}
 import Ember from 'ember';
 
 export default Ember.Route.extend({
@@ -45,14 +45,14 @@ the second one. For example:
 
 [4]: http://emberjs.com/api/classes/Ember.Route.html#method_afterModel
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('posts');
   this.route('post', { path: '/post/:post_id' });
 });
 ```
 
-```app/routes/posts.js
+```javascript {data-filename=app/routes/posts.js}
 import Ember from 'ember';
 
 export default Ember.Route.extend({
@@ -72,7 +72,7 @@ with the single post object being its model.
 
 Let's change the router above to use a nested route, like this:
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('posts', function() {
     this.route('post', { path: ':post_id' });
@@ -91,7 +91,7 @@ transition validated, and not cause the parent route's hooks to fire again:
 
 [5]: http://emberjs.com/api/classes/Ember.Route.html#method_redirect
 
-```app/routes/posts.js
+```javascript {data-filename=app/routes/posts.js}
 import Ember from 'ember';
 
 export default Ember.Route.extend({

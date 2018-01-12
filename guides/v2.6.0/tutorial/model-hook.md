@@ -11,7 +11,7 @@ Here's what our homepage will look like when we're done:
 In Ember, route handlers are responsible for loading model data.
 Let's open `app/routes/index.js` and add our hard-coded data as the return value of the `model` hook:
 
-```app/routes/index.js
+```javascript {data-filename=app/routes/index.js}
 import Ember from 'ember';
 
 let rentals = [{

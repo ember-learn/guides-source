@@ -20,7 +20,7 @@ installing model-test
 
 When we open the model file, we see:
 
-```app/models/rental.js
+```javascript {data-filename=app/models/rental.js}
 import DS from 'ember-data';
 
 export default DS.Model.extend({
@@ -31,7 +31,7 @@ export default DS.Model.extend({
 Let's add the same attributes for our rental that we used in our hard-coded array of JavaScript objects -
 _owner_, _city_, _type_, _image_, and _bedrooms_:
 
-```app/models/rental.js
+```javascript {data-filename=app/models/rental.js}
 import DS from 'ember-data';
 
 export default DS.Model.extend({
@@ -60,7 +60,7 @@ ember install ember-cli-mirage
 
 Let's now configure Mirage to send back our rentals that we had defined above by updating `app/mirage/config.js`:
 
-```app/mirage/config.js
+```javascript {data-filename=app/mirage/config.js}
 export default function() {
   this.get('/rentals', function() {
     return {
@@ -110,7 +110,7 @@ Mirage will return this JavaScript object as JSON.
 
 To use our new data store, we need to update the `model` hook in our route handler.
 
-```app/routes/index.js
+```javascript {data-filename=app/routes/index.js}
 import Ember from 'ember';
 
 export default Ember.Route.extend({

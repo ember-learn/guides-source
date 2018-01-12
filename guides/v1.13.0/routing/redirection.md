@@ -15,13 +15,13 @@ Passing a model will skip that segment's `model` hook.  Passing an identifier wi
 If you want to redirect from one route to another, you can do the transition in
 the `beforeModel` hook of your route handler.
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('posts');
 });
 ```
 
-```app/routes/index.js
+```javascript {data-filename=app/routes/index.js}
 export default Ember.Route.extend({
   beforeModel() {
     this.transitionTo('posts');
@@ -37,14 +37,14 @@ They receive the resolved model as the first parameter and the transition as
 the second one, and thus function as aliases. (In fact, the default
 implementation of `afterModel` just calls `redirect`.)
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('posts');
   this.route('post', { path: '/post/:post_id' });
 });
 ```
 
-```app/routes/post.js
+```javascript {data-filename=app/routes/post.js}
 export default Ember.Route.extend({
   afterModel(posts, transition) {
     if (posts.get('length') === 1) {
@@ -62,7 +62,7 @@ with the single post object being its model.
 
 You can conditionally transition based on some other application state.
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('topCharts', function() {
     this.route('choose', { path: '/' });
@@ -74,7 +74,7 @@ Router.map(function() {
 });
 ```
 
-```app/routes/top-charts/choose.js
+```javascript {data-filename=app/routes/top-charts/choose.js}
 export default Ember.Route.extend({
   beforeModel() {
     var lastFilter = this.controllerFor('application').get('lastFilter');
@@ -83,7 +83,7 @@ export default Ember.Route.extend({
 });
 ```
 
-```app/routes/filter.js
+```javascript {data-filename=app/routes/filter.js}
 // Superclass to be used by all of the filter routes: albums, songs, artists, playlists
 export default Ember.Route.extend({
   activate() {

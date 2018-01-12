@@ -21,7 +21,7 @@ For our initial test, we'll simply check that all the cities we provide are rend
 Since we plan to use Ember Data as our model store, we need to make our action calls to fetch data asynchronous, so we'll return promises.
 Because accessing persisted data is typically done asynchronously, we want to use the wait helper at the end of our test, which will wait for all promises to resolve before completing the test.
 
-```tests/integration/components/list-filter-test.js
+```javascript {data-filename=tests/integration/components/list-filter-test.js}
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import wait from 'ember-test-helpers/wait';
@@ -70,7 +70,7 @@ For our second test, we'll check that typing text in the filter will actually ap
 
 We force the action by generating a `keyUp` event on our input field, and then assert that only one item is rendered.
 
-```tests/integration/components/list-filter-test.js
+```javascript {data-filename=tests/integration/components/list-filter-test.js}
 test('should update with matching listings', function (assert) {
   this.on('filterByCity', (val) => {
     if (val === '') {
@@ -105,7 +105,7 @@ test('should update with matching listings', function (assert) {
 
 Next, in our `app/templates/rentals.hbs` file, we'll add our new `list-filter` component in a similar way to what we did in our test.  Instead of just showing the city, we'll use our `rental-listing` component to display details of the the rental.
 
-```app/templates/rentals.hbs
+```handlebars {data-filename=app/templates/rentals.hbs}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>Welcome!</h2>
@@ -131,7 +131,7 @@ Next, in our `app/templates/rentals.hbs` file, we'll add our new `list-filter` c
 Now that we have failing tests and an idea of what we want our component contract to be, we'll implement the component.
 We want the component to simply provide an input field and yield the results list to its block, so our template will be simple:
 
-```app/templates/components/list-filter.hbs
+```handlebars {data-filename=app/templates/components/list-filter.hbs}
 {{input value=value key-up=(action 'handleFilterEntry') class="light" placeholder="Filter By City"}}
 {{yield results}}
 ```
@@ -142,7 +142,7 @@ The `key-up` property will be bound to the `handleFilterEntry` action.
 
 Here is what the component's JavaScript looks like:
 
-```app/components/list-filter.js
+```javascript {data-filename=app/components/list-filter.js}
 import Ember from 'ember';
 
 export default Ember.Component.extend({
@@ -180,7 +180,7 @@ ember g controller rentals
 
 Now, define your new controller like so:
 
-```app/controllers/rentals.js
+```javascript {data-filename=app/controllers/rentals.js}
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
@@ -202,7 +202,7 @@ The result of the query is returned to the caller.
 
 For this action to work, we need to replace our Mirage `config.js` file with the following, so that it can respond to our queries.
 
-```mirage/config.js
+```javascript {data-filename=mirage/config.js}
 export default function() {
   this.namespace = '/api';
 

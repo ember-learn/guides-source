@@ -10,7 +10,7 @@ Handlebars expressions read their properties. In Ember this is often a component
 
 For example, this `application.hbs` template will render a first and last name:
 
-```app/templates/application.hbs
+```handlebars {data-filename=app/templates/application.hbs}
 Hello, <strong>{{firstName}} {{lastName}}</strong>!
 ```
 
@@ -22,7 +22,7 @@ To provide a `firstName` and `lastName` to the above template, properties
 must be added to the application controller. If you are following along with
 an Ember CLI application, you may need to create this file:
 
-```app/controllers/application.js
+```javascript {data-filename=app/controllers/application.js}
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
@@ -50,7 +50,7 @@ Ember gives you the ability to [write your own helpers](../writing-helpers/), to
 
 For example, let's say you would like the ability to add a few numbers together, without needing to define a computed property everywhere you would like to do so.
 
-```app/helpers/sum.js
+```javascript {data-filename=app/helpers/sum.js}
 export function sum(params) {
   return params.reduce((a, b) => {
     return a + b;

@@ -4,7 +4,7 @@ to calculate the incomplete todo's based on their `isDone` property.
 
 To facilitate this, Ember provides the `@each` key illustrated below:
 
-```app/components/todo-list.js
+```javascript {data-filename=app/components/todo-list.js}
 export default Ember.Component.extend({
   todos: null,
 
@@ -35,7 +35,7 @@ Ember also provides a computed property macro
 [`computed.filterBy`](http://emberjs.com/api/classes/Ember.computed.html#method_filterBy),
 which is a shorter way of expressing the above computed property:
 
-```app/components/todo-list.js
+```javascript {data-filename=app/components/todo-list.js}
 export default Ember.Component.extend({
   todos: null,
 
@@ -87,7 +87,7 @@ case use the `[]` key instead of `@each`. Computed properties dependent on an ar
 using the `[]` key will only update if items are added to or removed from the array,
 or if the array property is set to a different array. For example:
 
-```app/components/todo-list.js
+```javascript {data-filename=app/components/todo-list.js}
 export default Ember.Component.extend({
   todos: null,
 

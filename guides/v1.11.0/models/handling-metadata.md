@@ -58,7 +58,7 @@ You can also customize metadata extraction by overriding the `extractMeta` metho
 
 You could extract it like so:
 
-```app/serializers/application.js
+```javascript {data-filename=app/serializers/application.js}
 export default DS.RESTSerializer.extend({
   extractMeta: function(store, type, payload) {
     if (payload && payload.total) {

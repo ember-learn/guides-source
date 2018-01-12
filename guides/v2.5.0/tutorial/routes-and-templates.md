@@ -51,7 +51,7 @@ The fourth file that is touched is the router.
 When we open the router, we can see that the generator has mapped a new _about_ route for us.
 This route will load the `about` route handler.
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 import Ember from 'ember';
 import config from './config/environment';
 
@@ -72,7 +72,7 @@ This means we don't actually have to change anything in the new `app/routes/abou
 With all of the routing in place from the generator, we can get right to work on coding our template.
 For our `about` page, we'll add some HTML that has a bit of information about the site:
 
-```app/templates/about.hbs
+```handlebars {data-filename=app/templates/about.hbs}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>About Super Rentals</h2>
@@ -102,7 +102,7 @@ Since we will be using the `contact` template, the `contact` route does not need
 
 In `contact.hbs`, we can add the details for contacting our Super Rentals HQ:
 
-```app/templates/contact.hbs
+```handlebars {data-filename=app/templates/contact.hbs}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>Contact Us</h2>
@@ -154,7 +154,7 @@ When we look at our about page at `http://localhost:4200/about`, we now have a w
 
 Now, we'll add a link to our contact page so we can navigate from back and forth between `about` and `contact`.
 
-```app/templates/contact.hbs
+```handlebars {data-filename=app/templates/contact.hbs}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>Contact Us</h2>
@@ -200,7 +200,7 @@ We'll learn more about why the entry isn't required when we look at nested route
 
 Let's update our `index.hbs` with some HTML for our home page and our links to the other routes in our application:
 
-```app/templates/index.hbs
+```handlebars {data-filename=app/templates/index.hbs}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>Welcome!</h2>
@@ -223,7 +223,7 @@ Anything you put in this template is shown for every page in the application.
 The default `application.hbs` file contains an `h2` tag with the text "Welcome to Ember", and an [`{{outlet}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_outlet).
 The `{{outlet}}` defers to the router, which will render in its place the markup for the current route.
 
-```app/templates/application.hbs
+```handlebars {data-filename=app/templates/application.hbs}
 <h2 id="title">Welcome to Ember</h2>
 
 {{outlet}}

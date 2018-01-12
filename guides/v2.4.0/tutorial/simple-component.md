@@ -27,7 +27,7 @@ For our integration test, we'll create a stub rental that has all the properties
 We will assert that the component is initially rendered without the `wide` class name. Clicking the image will add the class `wide` to our element, and clicking it a second time will take the `wide` class away.
 Note that we find the image element using the the CSS selector `.image`.
 
-```tests/integration/components/rental-listing-test.js
+```javascript {data-filename=tests/integration/components/rental-listing-test.js}
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import Ember from 'ember';
@@ -151,7 +151,7 @@ Let's use the `{{#if}}` helper to show our current rental image larger only when
 The value of `isWide` comes from our component's JavaScript file, in this case `rental-listing.js`.
 Since we do not want the image to be smaller at first, we will set the property to start as `false`:
 
-```app/components/rental-listing.js
+```javascript {data-filename=app/components/rental-listing.js}
 import Ember from 'ember';
 
 export default Ember.Component.extend({

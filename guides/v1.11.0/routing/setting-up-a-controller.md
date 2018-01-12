@@ -13,7 +13,7 @@ display-specific properties.
 To tell one of these controllers which model to present, set its
 `model` property in the route handler's `setupController` hook.
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('post', { path: '/posts/:post_id' });
 });
@@ -38,7 +38,7 @@ controller as its first argument. In this case, the `PostRoute`'s
 To specify a controller other than the default, set the route's
 `controllerName` property:
 
-```app/routes/special-post.js
+```javascript {data-filename=app/routes/special-post.js}
 export default Ember.Route.extend({
   controllerName: 'post'
 });
@@ -53,7 +53,7 @@ associated controller to the route handler's model.
 If you want to configure a controller other than the controller
 associated with the route handler, use the `controllerFor` method:
 
-```app/routes/post.js
+```javascript {data-filename=app/routes/post.js}
 export default Ember.Route.extend({
   setupController: function(controller, model) {
     this.controllerFor('topPost').set('model', model);

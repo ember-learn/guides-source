@@ -48,7 +48,7 @@ This list is kept current, and reflects what is available in each channel
 When using the Ember.js canary or beta builds you can enable any "**present** but **disabled**"
 by setting its flag value to `true` before your application boots:
 
-```config/environment.js
+```javascript {data-filename=config/environment.js}
 var ENV = {
   EmberENV: {
     FEATURES: {

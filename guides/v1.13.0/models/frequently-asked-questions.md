@@ -64,7 +64,7 @@ This will offload searching all of the possible records to the server,
 while still creating a live updating list that includes records created
 and modified on the client.
 
-```app/routes/posts/favourited.js
+```javascript {data-filename=app/routes/posts/favourited.js}
 export default Ember.Route.extend({
   model() {
     var store = this.store;

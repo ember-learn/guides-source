@@ -12,7 +12,7 @@ that the field has been focused, and add a computed property named
 been focused. The component expects to get the validation result as the
 `valid` property.
 
-```app/components/validated-input.js
+```javascript {data-filename=app/components/validated-input.js}
 export default Ember.Component.extend({
   beenFocused: false,
   valid: null,
@@ -31,7 +31,7 @@ And in the template of the component, put an `{{input}}` and wrap it
 into a div, which would have the class of `has-error` bound to
 `hasError`.
 
-```app/templates/components/validated-input.hbs
+```handlebars {data-filename=app/templates/components/validated-input.hbs}
 <div class="{{if hasError 'has-error'}} form-group">
     {{input type=type value=value size=size pattern=pattern name=name placeholder=placeholder disaled=disabled maxlength=maxlength tabindex=tabindex class=input-class}}
   </div>

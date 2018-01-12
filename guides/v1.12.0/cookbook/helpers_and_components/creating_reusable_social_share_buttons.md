@@ -13,7 +13,7 @@ passed in.
                     data-hashtags="emberjs"}}
 ```
 
-```app/components/share-twitter.js
+```javascript {data-filename=app/components/share-twitter.js}
 export default Ember.Component.extend({
   tagName: 'a',
   classNames: 'twitter-share-button',

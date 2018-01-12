@@ -17,7 +17,7 @@ The model function we've added to our `rentals` route handler will be called whe
 
 Let's open `app/routes/rentals.js` and return an array of rental objects from the `model` function:
 
-```app/routes/rentals.js
+```javascript {data-filename=app/routes/rentals.js}
 import Ember from 'ember';
 
 export default Ember.Route.extend({

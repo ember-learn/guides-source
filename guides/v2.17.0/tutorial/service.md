@@ -53,7 +53,7 @@ which makes use of `google.maps.Map` to create our map element,
 `google.maps.Geocoder` to lookup the coordinates of our location,
 and `google.maps.Marker` to pin our map based on the resolved location.
 
-```app/utils/google-maps.js
+```javascript {data-filename=app/utils/google-maps.js}
 import EmberObject from '@ember/object';
 
 const google = window.google;
@@ -112,7 +112,7 @@ Now implement the service as follows.
 Note that we check if a map already exists for the given location and use that one,
 otherwise we call a Google Maps utility to create one.
 
-```app/services/maps.js
+```javascript {data-filename=app/services/maps.js}
 import Service from '@ember/service';
 import { camelize } from '@ember/string';
 import EmberObject from '@ember/object';
@@ -166,7 +166,7 @@ Running this command generates three files: a component JavaScript file, a templ
 Let's start by adding a `div` element to the component template.
 This `div` will act as a place for the 3rd party map API to render the map to.
 
-```app/templates/components/location-map.hbs
+```handlebars {data-filename=app/templates/components/location-map.hbs}
 <div class="map-container"></div>
 ```
 
@@ -182,7 +182,7 @@ We append the map element we get back from the service by implementing `didInser
 which is a [component lifecycle hook](../../components/the-component-lifecycle/#toc_integrating-with-third-party-libraries-with-code-didinsertelement-code).
 This function runs during the component render, after the component's markup gets inserted into the page.
 
-```app/components/location-map.js
+```javascript {data-filename=app/components/location-map.js}
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 
@@ -246,7 +246,7 @@ On line 6 of `maps-test.js` below we create an Ember object to simulate the beha
 To instantiate the object under test, use the `this.subject` function, passing in initial values as arguments.
 In our case we are passing in our fake map utility object in the first test, and passing a cache object for the second test.
 
-```tests/unit/services/maps-test.js
+```javascript {data-filename=tests/unit/services/maps-test.js}
 import { moduleFor, test } from 'ember-qunit';
 import EmberObject from '@ember/object';
 
@@ -303,7 +303,7 @@ That way when Ember injects the map service into the component, it uses our fake
 A stub stands in place of the real object in your application and simulates its behavior.
 In the stub service, define a method that will fetch the map based on location, called `getMapElement`.
 
-```tests/integration/components/location-map-test.js
+```javascript {data-filename=tests/integration/components/location-map-test.js}
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import Service from '@ember/service';

@@ -9,7 +9,7 @@ of the ember-qunit framework.
 Here we have a controller `PostsController` with some computed properties and an
 action `setProps`.
 
-```app/controllers/posts.js
+```javascript {data-filename=app/controllers/posts.js}
 export default Ember.Controller.extend({
 
   propA: 'You need to write tests',
@@ -32,7 +32,7 @@ export default Ember.Controller.extend({
 generated test, ember-cli already uses the `moduleFor` helper to setup a test 
 container:
 
-```tests/unit/controllers/posts-test.js
+```javascript {data-filename=tests/unit/controllers/posts-test.js}
 moduleFor('controller:posts', {
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
@@ -44,7 +44,7 @@ write a test to check the action. `this.subject()` is a helper method from the
 `ember-qunit` library that returns a singleton instance of the module set up
 using `moduleFor`.
 
-```tests/unit/controllers/posts-test.js
+```javascript {data-filename=tests/unit/controllers/posts-test.js}
 test('calling the action setProps updates props A and B', function(assert) {
   assert.expect(4);
 
@@ -72,13 +72,13 @@ Sometimes controllers have dependencies on other controllers. This is
 accomplished by using [needs]. For example, here are two simple controllers. The
 `PostController` is a dependency of the `CommentsController`:
 
-```app/controllers/post.js
+```javascript {data-filename=app/controllers/post.js}
 export default Ember.Controller.extend({
   title: Ember.computed.alias('model.title')
 });
 ```
 
-```app/controllers/comments.js
+```javascript {data-filename=app/controllers/comments.js}
 export default Ember.Controller.extend({
   needs: 'post',
   title: Ember.computed.alias('controllers.post.title'),
@@ -88,7 +88,7 @@ export default Ember.Controller.extend({
 This time when we setup our `moduleFor` we need to pass an options object as
 our third argument that has the controller's `needs`.
 
-```tests/unit/controllers/comments-test.js
+```javascript {data-filename=tests/unit/controllers/comments-test.js}
 moduleFor('controller:comments', 'Comments Controller', {
   needs: ['controller:post']
 });
@@ -97,7 +97,7 @@ moduleFor('controller:comments', 'Comments Controller', {
 Now let's write a test that sets a property on our `post` model in the
 `PostController` that would be available on the `CommentsController`.
 
-```tests/unit/controllers/comments-test.js
+```javascript {data-filename=tests/unit/controllers/comments-test.js}
 test('modify the post', function(assert) {
   assert.expect(2);
 

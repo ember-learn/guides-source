@@ -3,13 +3,13 @@ You can use `Ember.View` to render a Handlebars template and insert it into the 
 To tell the view which template to use, set its `templateName` property. For example
 if your project contains this template:
 
-```app/templates/say-hello.hbs
+```handlebars {data-filename=app/templates/say-hello.hbs}
 Hello, <b>{{view.name}}</b>
 ```
 
 I would set the `templateName` property to `"say-hello"`.
 
-```app/views/some-view.js
+```javascript {data-filename=app/views/some-view.js}
 var view = Ember.View.create({
   templateName: 'say-hello',
   name: "Bob"

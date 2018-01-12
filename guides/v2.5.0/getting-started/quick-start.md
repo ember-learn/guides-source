@@ -111,7 +111,7 @@ That's Ember telling you that it has created:
 Open the newly-created template in `app/templates/scientists.hbs` and add
 the following HTML:
 
-```app/templates/scientists.hbs
+```handlebars {data-filename=app/templates/scientists.hbs}
 <h2>List of Scientists</h2>
 ```
 
@@ -186,7 +186,7 @@ ember generate component people-list
 Copy and paste the `scientists` template into the `people-list`
 component's template and edit it to look as follows:
 
-```app/templates/components/people-list.hbs
+```handlebars {data-filename=app/templates/components/people-list.hbs}
 <h2>{{title}}</h2>
 
 <ul>

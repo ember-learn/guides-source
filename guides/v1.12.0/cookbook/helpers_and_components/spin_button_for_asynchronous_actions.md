@@ -6,11 +6,11 @@ Write an Ember Component to change to loading state when action is taking place.
 
 For example a button to save data could be as
 
-```app/templates/application.hbs
+```handlebars {data-filename=app/templates/application.hbs}
 {{spin-button id="forapplication" isLoading = isLoading buttonText=buttonText action='saveData'}}
 ```
 
-```app/templates/components/spin-button.hbs
+```handlebars {data-filename=app/templates/components/spin-button.hbs}
 
 <button id={{id}} {{action 'showLoading'}}>
   {{#if isLoading}}
@@ -21,7 +21,7 @@ For example a button to save data could be as
 </button>
 ```
 
-```app/controllers/application.js
+```javascript {data-filename=app/controllers/application.js}
 export default Ember.Controller.extend({
     isLoading:false,
     buttonText:"Submit",
@@ -38,7 +38,7 @@ export default Ember.Controller.extend({
 });
 ```
 
-```app/components/spin-button.js
+```javascript {data-filename=app/components/spin-button.js}
 export default Ember.Component.extend({
 	classNames: ['button'],
     buttonText:"Save",

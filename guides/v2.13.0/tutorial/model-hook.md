@@ -17,7 +17,7 @@ The model function we've added to our `rentals` route handler will be called whe
 
 Let's open `app/routes/rentals.js` and return an array of rental objects from the `model` function:
 
-```app/routes/rentals.js
+```javascript {data-filename=app/routes/rentals.js}
 import Ember from 'ember';
 
 export default Ember.Route.extend({
@@ -114,7 +114,7 @@ To find the elements that have a class called `listing`, we'll use a test helper
 The `find` function returns the elements that match the given [CSS selector](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors).
 In this case it will return an array of all the elements with a class called `listing`.
 
-```/tests/acceptance/list-rentals-test.js
+```javascript {data-filename=/tests/acceptance/list-rentals-test.js}
 test('should list available rentals.', function (assert) {
   visit('/');
   andThen(function() {

@@ -14,7 +14,7 @@ ember generate model person
 
 This will generate the following file:
 
-```app/models/person.js
+```javascript {data-filename=app/models/person.js}
 import Model from 'ember-data/model';
 
 export default Model.extend({
@@ -30,7 +30,7 @@ and [working with records](../creating-updating-and-deleting-records) of that ty
 The `person` model we generated earlier didn't have any attributes. Let's
 add first and last name, as well as the birthday, using `attr`:
 
-```app/models/person.js
+```javascript {data-filename=app/models/person.js}
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
 
@@ -49,7 +49,7 @@ You can use attributes like any other property, including as part of a
 computed property. Frequently, you will want to define computed
 properties that combine or transform primitive attributes.
 
-```app/models/person.js
+```javascript {data-filename=app/models/person.js}
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
 
@@ -77,7 +77,7 @@ transform name as the first argument to the `attr` method. Ember Data
 supports attribute types of `string`, `number`, `boolean`, and `date`,
 which coerce the value to the JavaScript type that matches its name.
 
-```app/models/person.js
+```javascript {data-filename=app/models/person.js}
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
 
@@ -110,7 +110,7 @@ ember generate transform dollars
 
 Here is a simple transform that converts values between cents and US dollars.
 
-```app/transforms/dollars.js
+```javascript {data-filename=app/transforms/dollars.js}
 import Transform from 'ember-data/transform';
 
 export default Transform.extend({
@@ -130,7 +130,7 @@ reverse and converts a value to the format expected by the persistence layer.
 
 You would use the custom `dollars` transform like this:
 
-```app/models/product.js
+```javascript {data-filename=app/models/product.js}
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
 
@@ -149,7 +149,7 @@ In the following example we define that `verified` has a default value of
 `false` and `createdAt` defaults to the current date at the time of the model's
 creation:
 
-```app/models/user.js
+```javascript {data-filename=app/models/user.js}
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
 

@@ -16,7 +16,7 @@ common cases.
 Let's start by creating an object that has a `computedFoo` computed property
 based on a `foo` property.
 
-```app/models/some-thing.js
+```javascript {data-filename=app/models/some-thing.js}
 import Ember from 'ember';
 
 export default Ember.Object.extend({
@@ -33,7 +33,7 @@ Within the test for this object we'll create an instance, update the `foo` prope
 should trigger the computed property), and assert that the logic in our
 computed property is working correctly.
 
-```tests/unit/models/some-thing-test.js
+```javascript {data-filename=tests/unit/models/some-thing-test.js}
 import { moduleFor, test } from 'ember-qunit';
 
 moduleFor('model:some-thing', 'Unit | some thing', {
@@ -59,7 +59,7 @@ Next let's look at testing logic found within an object's method. In this case
 the `testMethod` method alters some internal state of the object (by updating
 the `foo` property).
 
-```app/models/some-thing.js
+```javascript {data-filename=app/models/some-thing.js}
 import Ember from 'ember';
 
 export default Ember.Object.extend({
@@ -74,7 +74,7 @@ To test it, we create an instance of our class `SomeThing` as defined above,
 call the `testMethod` method and assert that the internal state is correct as a
 result of the method call.
 
-```tests/unit/models/some-thing-test.js
+```javascript {data-filename=tests/unit/models/some-thing-test.js}
 test('should update foo on testMethod', function(assert) {
   const someThing = this.subject();
   someThing.testMethod();
@@ -86,7 +86,7 @@ In the event the object's method returns a value you can simply assert that the
 return value is calculated correctly. Suppose our object has a `calc` method
 that returns a value based on some internal state.
 
-```app/models/some-thing.js
+```javascript {data-filename=app/models/some-thing.js}
 import Ember from 'ember';
 
 export default Ember.Object.extend({
@@ -101,7 +101,7 @@ export default Ember.Object.extend({
 
 The test would call the `calc` method and assert it gets back the correct value.
 
-```tests/unit/models/some-thing-test.js
+```javascript {data-filename=tests/unit/models/some-thing-test.js}
 test('should return incremented count on calc', function(assert) {
   const someThing = this.subject();
   assert.equal(someThing.calc(), 'count: 1');
@@ -113,7 +113,7 @@ test('should return incremented count on calc', function(assert) {
 
 Suppose we have an object that has a property and a method observing that property.
 
-```app/models/some-thing.js
+```javascript {data-filename=app/models/some-thing.js}
 import Ember from 'ember';
 
 export default Ember.Object.extend({
@@ -128,7 +128,7 @@ export default Ember.Object.extend({
 In order to test the `doSomething` method we create an instance of `SomeThing`,
 update the observed property (`foo`), and assert that the expected effects are present.
 
-```tests/unit/models/some-thing-test.js
+```javascript {data-filename=tests/unit/models/some-thing-test.js}
 test('should set other prop to yes when foo changes', function(assert) {
   const someThing = this.subject();
   someThing.set('foo', 'baz');

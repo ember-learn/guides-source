@@ -29,7 +29,7 @@ Our new `rental-listing` component will manage how a user sees and interacts wit
 To start, let's move the rental display details for a single rental from the `index.hbs` template
 into `rental-listing.hbs`:
 
-```app/templates/components/rental-listing.hbs
+```handlebars {data-filename=app/templates/components/rental-listing.hbs}
 <h2>{{rental.title}}</h2>
 <p>Owner: {{rental.owner}}</p>
 <p>Type: {{rental.type}}</p>
@@ -40,7 +40,7 @@ into `rental-listing.hbs`:
 In our `index.hbs` template, let's replace the old HTML markup within our `{{#each}}` loop
 with our new `rental-listing` component:
 
-```app/templates/index.hbs
+```handlebars {data-filename=app/templates/index.hbs}
 …
 {{#each model as |rentalUnit|}}
   {{rental-listing rental=rentalUnit}}
@@ -57,7 +57,7 @@ Now we can add functionality that will show the image of a rental when requested
 Let's use the `{{#if}}` helper to show our current rental image only when `isImageShowing` is set to true.
 Otherwise, let's show a button to allow our user to toggle this:
 
-```app/templates/components/rental-listing.hbs
+```handlebars {data-filename=app/templates/components/rental-listing.hbs}
 <h2>{{rental.title}}</h2>
 <p>Owner: {{rental.owner}}</p>
 <p>Type: {{rental.type}}</p>
@@ -73,7 +73,7 @@ Otherwise, let's show a button to allow our user to toggle this:
 The value of `isImageShowing` comes from our component's JavaScript file, in this case `rental-listing.js`.
 Since we do not want the image to be showing at first, we will set the property to start as `false`:
 
-```app/components/rental-listing.js
+```javascript {data-filename=app/components/rental-listing.js}
 import Ember from 'ember';
 
 export default Ember.Component.extend({
@@ -85,7 +85,7 @@ To make it where clicking on the button shows the image to the user,
 we will need to add an action that changes the value of `isImageShowing` to `true`.
 Let's call this action `imageShow`
 
-```app/templates/components/rental-listing.hbs
+```handlebars {data-filename=app/templates/components/rental-listing.hbs}
 ...
 <button {{action "imageShow"}}>Show image</button>
 ...
@@ -95,7 +95,7 @@ Clicking this button will send the action to the component.
 Ember will then go into the `actions` hash and call the `imageShow` function.
 Let's create the `imageShow` function and set `isImageShowing` to `true` on our component:
 
-```app/components/rental-listing.js
+```javascript {data-filename=app/components/rental-listing.js}
 export default Ember.Component.extend({
   isImageShowing: false,
   actions: {
@@ -111,7 +111,7 @@ Now when we click the button in our browser, we can see our image.
 We should also let users hide the image.
 In our template, let's add a button with an `imageHide` action:
 
-```app/templates/components/rental-listing.hbs
+```handlebars {data-filename=app/templates/components/rental-listing.hbs}
 <h2>{{rental.title}}</h2>
 <p>Owner: {{rental.owner}}</p>
 <p>Type: {{rental.type}}</p>
@@ -127,7 +127,7 @@ In our template, let's add a button with an `imageHide` action:
 
 Then let's setup an `imageHide` action handler in our component to set `isImageShowing` to `false`:
 
-```app/components/rental-listing.js
+```javascript {data-filename=app/components/rental-listing.js}
 export default Ember.Component.extend({
   isImageShowing: false,
   actions: {

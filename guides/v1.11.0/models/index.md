@@ -61,7 +61,7 @@ You will use the store to retrieve records, as well to create new ones.
 For example, we might want to find a `person` with the ID of
 `1` from our route's `model` hook:
 
-```app/routes/index.js
+```javascript {data-filename=app/routes/index.js}
 export default Ember.Route.extend({
   model: function() {
     return this.store.find('person', 1);
@@ -90,7 +90,7 @@ Models define the type of data that will be provided by your server. For
 example, a `Person` model might have a `firstName` attribute that is a
 string, and a `birthday` attribute that is a date:
 
-```app/models/person.js
+```javascript {data-filename=app/models/person.js}
 export default DS.Model.extend({
   firstName: DS.attr('string'),
   birthday:  DS.attr('date')
@@ -101,13 +101,13 @@ A model also describes its relationships with other objects. For
 example, an `order` may have many `line-items`, and a
 `line-item` may belong to a particular `order`.
 
-```app/models/order.js
+```javascript {data-filename=app/models/order.js}
 export default DS.Model.extend({
   lineItems: DS.hasMany('lineItem')
 });
 ```
 
-```app/models/line-item.js
+```javascript {data-filename=app/models/line-item.js}
 export default DS.Model.extend({
   order: DS.belongsTo('order')
 });

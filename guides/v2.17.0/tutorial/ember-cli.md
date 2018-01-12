@@ -80,7 +80,7 @@ and Ember CLI's test runner **testem** is configured in `testem.js`.
 If you take a look at `app/router.js`, you'll notice some syntax that may be
 unfamiliar to you.
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 import EmberRouter from '@ember/routing/router';
 import config from './config/environment';
 
@@ -102,7 +102,7 @@ Ember's Router class as the variable `EmberRouter`. And the `import config from
 './config/environment';` line gives us access to our app's configuration data
 as the variable `config`. `const` is a way to declare a read-only variable to make
 sure it is not accidentally reassigned elsewhere. At the end of the file,
-`export default Router;` makes the `Router` variable defined in this file available 
+`export default Router;` makes the `Router` variable defined in this file available
 to other parts of the app.
 
 

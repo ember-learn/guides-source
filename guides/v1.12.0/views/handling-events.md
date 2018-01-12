@@ -13,7 +13,7 @@ For example, imagine we have a template like this:
 Let's implement `view:clickable` such that when it is
 clicked, an alert is displayed:
 
-```app/views/clickable.js
+```javascript {data-filename=app/views/clickable.js}
 export default Ember.View.extend({
   click: function(evt) {
     alert("ClickableView was clicked!");

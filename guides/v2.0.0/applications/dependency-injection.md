@@ -40,7 +40,7 @@ instance initializers (with the former being much more common).
 For example, an application initializer could register a `Logger` factory with
 the key `logger:main`:
 
-```app/initializers/logger.js
+```javascript {data-filename=app/initializers/logger.js}
 export function initialize(application) {
   var Logger = Ember.Object.extend({
     log(m) {
@@ -67,7 +67,7 @@ during lookups.
 In the following example, the `logger` is a plain JavaScript object that should
 be returned "as is" when it's looked up:
 
-```app/initializers/logger.js
+```javascript {data-filename=app/initializers/logger.js}
 export function initialize(application) {
   var logger = {
     log(m) {
@@ -95,7 +95,7 @@ factories as non-singletons using the `singleton: false` option.
 
 In the following example, the `Message` class is registered as a non-singleton:
 
-```app/initializers/logger.js
+```javascript {data-filename=app/initializers/logger.js}
 export function initialize(application) {
   var Message = Ember.Object.extend({
     text: ''
@@ -117,7 +117,7 @@ Once a factory is registered, it can be "injected" where it is needed.
 Factories can be injected into whole "types" of factories with *type
 injections*. For example:
 
-```app/initializers/logger.js
+```javascript {data-filename=app/initializers/logger.js}
 export function initialize(application) {
   var Logger = Ember.Object.extend({
     log(m) {
@@ -141,7 +141,7 @@ come from the factory named `logger:main`.
 
 Routes in this example application can now access the injected logger:
 
-```app/routes/index.js
+```javascript {data-filename=app/routes/index.js}
 export default Ember.Route.extend({
   activate() {
     // The logger property is injected into all routes
@@ -171,7 +171,7 @@ Dependency injections can also be declared directly on Ember classes using
 The following code injects the `shopping-cart` service on the `cart-contents`
 component as the property `cart`:
 
-```app/components/cart-contents.js
+```javascript {data-filename=app/components/cart-contents.js}
 export default Ember.Component.extend({
   cart: Ember.inject.service('shopping-cart')
 });
@@ -180,7 +180,7 @@ export default Ember.Component.extend({
 If you'd like to inject a service with the same name as the property, simply
 leave off the service name (the dasherized version of the name will be used):
 
-```app/components/cart-contents.js
+```javascript {data-filename=app/components/cart-contents.js}
 export default Ember.Component.extend({
   shoppingCart: Ember.inject.service()
 });
@@ -194,7 +194,7 @@ In the rare cases in which you want to perform an explicit lookup of a
 registered factory, you can do so on an application instance in its associated
 instance initializer. For example:
 
-```app/instance-initializers/logger.js
+```javascript {data-filename=app/instance-initializers/logger.js}
 export function initialize(applicationInstance) {
   var logger = applicationInstance.lookup('logger:main');
 

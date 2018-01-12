@@ -20,7 +20,7 @@ installing helper-test
 
 Our new helper starts out with some boilerplate code from the generator:
 
-```app/helpers/rental-property-type.js
+```javascript {data-filename=app/helpers/rental-property-type.js}
 import Ember from 'ember';
 
 export function rentalPropertyType(params/*, hash*/) {

@@ -15,7 +15,7 @@ the transition will resume.
 
 Consider the following:
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('foo', function() {
     this.route('slow-model');
@@ -23,7 +23,7 @@ Router.map(function() {
 });
 ```
 
-```app/routes/foo/slow-model.js
+```javascript {data-filename=app/routes/foo/slow-model.js}
 export default Ember.Route.extend({
   model() {
     return somePromiseThatTakesAWhileToResolve();
@@ -47,7 +47,7 @@ So, how can we provide some visual feedback during the transition?
 Ember provides a default implementation of the `loading` process that implements
 the following loading substate behavior.
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('foo', function() {
     this.route('bar', function() {
@@ -126,7 +126,7 @@ If the `loading` handler is not defined at the specific route,
 the event will continue to bubble above a transition's pivot
 route, providing the `route:application` the opportunity to manage it.
 
-```app/routes/foo-slow-model.js
+```javascript {data-filename=app/routes/foo-slow-model.js}
 export default Ember.Route.extend({
   model() {
     return somePromiseThatTakesAWhileToResolve();
@@ -150,7 +150,7 @@ The `loading` handler provides the ability to decide what to do during
 the loading process. If the last loading handler is not defined
 or returns `true`, Ember will perform the loading substate behavior.
 
-```app/routes/application.js
+```javascript {data-filename=app/routes/application.js}
 export default Ember.Route.extend({
   actions: {
     loading(transition, originRoute) {
@@ -172,7 +172,7 @@ Similar to how the default `loading` event handlers are implemented,
 the default `error` handlers will look for an appropriate error substate to
 enter, if one can be found.
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('articles', function() {
     this.route('overview');
@@ -201,7 +201,7 @@ logged.
 Routes with dynamic segments are often mapped to a mental model of "two
 separate levels." Take for example:
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('foo', { path: '/foo/:id' }, function() {
     this.route('baz');
@@ -209,7 +209,7 @@ Router.map(function() {
 });
 ```
 
-```app/routes/foo.js
+```javascript {data-filename=app/routes/foo.js}
 export default Ember.Route.extend({
   model(params) {
     return new Ember.RSVP.Promise(function(resolve, reject) {
@@ -227,7 +227,7 @@ intentionally parallel behavior as the `foo` route is never successfully
 entered. In order to create a `foo` scope for errors and render `foo/error`
 into `foo`'s `outlet` you would need to split the dynamic segment:
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('foo', {path: '/foo'}, function() {
     this.route('elem', {path: ':id'}, function() {
@@ -249,7 +249,7 @@ This `error` event can be handled and used to display an error message,
 redirect to a login page, etc.
 
 
-```app/routes/articles-overview.js
+```javascript {data-filename=app/routes/articles-overview.js}
 export default Ember.Route.extend({
   model(params) {
     return new Ember.RSVP.Promise(function(resolve, reject) {
@@ -276,7 +276,7 @@ at the Application level to perform any application logic and based on the
 result of the last `error` handler, Ember will decide if substate behavior
 must be performed or not.
 
-```app/routes/application.js
+```javascript {data-filename=app/routes/application.js}
 export default Ember.Route.extend({
   actions: {
     error(error, transition) {

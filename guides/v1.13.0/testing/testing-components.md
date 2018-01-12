@@ -10,7 +10,7 @@ component is bound to its `style` property.
 > You can follow along by generating your own component with `ember generate
 > component pretty-color`.
 
-```app/components/pretty-color.js
+```javascript {data-filename=app/components/pretty-color.js}
 import Ember from 'ember';
 
 export default Ember.Component.extend({
@@ -22,14 +22,14 @@ export default Ember.Component.extend({
 });
 ```
 
-```app/templates/components/pretty-color.hbs
+```handlebars {data-filename=app/templates/components/pretty-color.hbs}
 Pretty Color: {{name}}
 ```
 
 The `moduleForComponent` helper will find the component by name (`pretty-color`)
 and its template (if available).
 
-```tests/unit/components/pretty-color-test.js
+```javascript {data-filename=tests/unit/components/pretty-color-test.js}
 moduleForComponent('pretty-color', {
   // specify the other units that are required for this test
   // needs: ['component:foo', 'helper:bar']
@@ -43,7 +43,7 @@ provide any initial values we want it to have.
 We can test that changing the component's `name` property updates the
 component's `style` attribute and is reflected in the  rendered HTML:
 
-```tests/unit/components/pretty-color-test.js
+```javascript {data-filename=tests/unit/components/pretty-color-test.js}
 test('changing colors', function(assert) {
   assert.expect(2);
 
@@ -70,7 +70,7 @@ test('changing colors', function(assert) {
 We might also test this component to ensure that the content of its template is
 being rendered properly:
 
-```tests/unit/components/pretty-color-test.js
+```javascript {data-filename=tests/unit/components/pretty-color-test.js}
 test('template is rendered with the color name', function(assert) {
   assert.expect(2);
 
@@ -107,7 +107,7 @@ clicked on:
 > You can follow along by generating your own component with `ember generate
 > component magic-title`.
 
-```app/components/magic-title.js
+```javascript {data-filename=app/components/magic-title.js}
 import Ember from 'ember';
 
 export default Ember.Component.extend({
@@ -121,7 +121,7 @@ export default Ember.Component.extend({
 });
 ```
 
-```app/templates/components/magic-title.hbs
+```handlebars {data-filename=app/templates/components/magic-title.hbs}
 <h2>{{title}}</h2>
 
 <button {{action "updateTitle"}}>
@@ -132,7 +132,7 @@ export default Ember.Component.extend({
 jQuery triggers can be used to simulate user interaction and test that the title
 is updated when the button is clicked on:
 
-```tests/unit/components/magic-title-test.js
+```javascript {data-filename=tests/unit/components/magic-title-test.js}
 test('clicking the button updates the title', function(assert) {
   assert.expect(2);
 
@@ -163,7 +163,7 @@ For example, imagine you have a comment form component that sends a specified
 > You can follow along by generating your own component with `ember generate
 > component comment-form`.
 
-```app/components/comment-form.js
+```javascript {data-filename=app/components/comment-form.js}
 import Ember from 'ember';
 
 export default Ember.Component.extend({
@@ -179,7 +179,7 @@ export default Ember.Component.extend({
 });
 ```
 
-```app/templates/components/comment-form.hbs
+```handlebars {data-filename=app/templates/components/comment-form.hbs}
 <form {{action "submit" on="submit"}}>
   <label>Comment:</label>
   {{textarea value=body}}
@@ -198,7 +198,7 @@ Here's an example test that asserts that the specified `externalAction` action
 is sent when the component's internal `submit` action is triggered by making use
 of a test double (dummy object):
 
-```tests/unit/components/comment-form-test.js
+```javascript {data-filename=tests/unit/components/comment-form-test.js}
 test('external action is triggered when form is submitted', function(assert) {
   // This is important to make sure that the test fails if
   // our assertion is never called
@@ -239,7 +239,7 @@ test('external action is triggered when form is submitted', function(assert) {
 Sometimes components are easier to maintain if they're broken up into parent and child
 components. Here is a simple example:
 
-```app/components/my-album.js
+```javascript {data-filename=app/components/my-album.js}
 import layout from '../templates/components/my-kittens';
 
 export default Ember.Component.extend({
@@ -252,12 +252,12 @@ export default Ember.Component.extend({
 });
 ```
 
-```app/templates/components/my-album.hbs
+```handlebars {data-filename=app/templates/components/my-album.hbs}
 <h3>{{title}}</h3>
 {{yield}}
 ```
 
-```app/components/my-kitten.js
+```javascript {data-filename=app/components/my-kitten.js}
 import layout from '../templates/components/my-kitten';
 
 export default Ember.Component.extend({
@@ -283,7 +283,7 @@ Usage of this component might look something like this:
 Using the `needs` callback greatly simplifies testing components
 with a parent-child relationship.
 
-```tests/unit/components/my-album-test.js
+```javascript {data-filename=tests/unit/components/my-album-test.js}
 moduleForComponent('my-album', {
   // specify the other units that are required for this test
   needs: ['component:my-kitten']

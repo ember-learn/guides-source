@@ -26,7 +26,7 @@ Services must extend the [`Ember.Service`][1] base class:
 
 [1]: http://emberjs.com/api/classes/Ember.Service.html
 
-```app/services/shopping-cart.js
+```javascript {data-filename=app/services/shopping-cart.js}
 import Ember from 'ember';
 
 export default Ember.Service.extend({
@@ -36,7 +36,7 @@ export default Ember.Service.extend({
 Like any Ember object, a service is initialized and can have properties and methods of its own.
 Below the shopping cart service manages an items array that represents the items currently in the shopping cart.
 
-```app/services/shopping-cart.js
+```javascript {data-filename=app/services/shopping-cart.js}
 import Ember from 'ember';
 
 export default Ember.Service.extend({
@@ -70,7 +70,7 @@ You can either invoke it with no arguments, or you can pass it the registered na
 When no arguments are passed, the service is loaded based on the name of the variable key.
 You can load the shopping cart service with no arguments like below.
 
-```app/components/cart-contents.js
+```javascript {data-filename=app/components/cart-contents.js}
 import Ember from 'ember';
 
 export default Ember.Component.extend({
@@ -81,7 +81,7 @@ export default Ember.Component.extend({
 
 The other way to inject a service is to provide the name of the service as the argument.
 
-```app/components/cart-contents.js
+```javascript {data-filename=app/components/cart-contents.js}
 import Ember from 'ember';
 
 export default Ember.Component.extend({
@@ -100,7 +100,7 @@ Once loaded, a service will persist until the application exits.
 Below we add a remove action to the `cart-contents` component.
 Notice that below we access the `cart` service with a call to`this.get`.
 
-```app/components/cart-contents.js
+```javascript {data-filename=app/components/cart-contents.js}
 import Ember from 'ember';
 
 export default Ember.Component.extend({
@@ -116,7 +116,7 @@ export default Ember.Component.extend({
 Once injected into a component, a service can also be used in the template.
 Note `cart` being used below to get data from the cart.
 
-```app/templates/components/cart-contents.hbs
+```handlebars {data-filename=app/templates/components/cart-contents.hbs}
 <ul>
   {{#each cart.items as |item|}}
     <li>

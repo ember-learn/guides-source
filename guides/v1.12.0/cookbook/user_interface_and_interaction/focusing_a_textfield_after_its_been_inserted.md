@@ -6,7 +6,7 @@ Subclass `Ember.TextField` and define a method marked with
 `.on('didInsertElement')`. Inside this method apply `focus`
 to the text field by accessing the component's jQuery `$` property:
 
-```app/components/focus-input.js
+```javascript {data-filename=app/components/focus-input.js}
 export default Ember.TextField.extend({
   becomeFocused: function() {
     this.$().focus();

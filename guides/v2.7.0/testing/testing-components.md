@@ -7,7 +7,7 @@ component is bound to its `style` property.
 > You can follow along by generating your own component with `ember generate
 > component pretty-color`.
 
-```app/components/pretty-color.js
+```javascript {data-filename=app/components/pretty-color.js}
 import Ember from 'ember';
 
 export default Ember.Component.extend({
@@ -20,7 +20,7 @@ export default Ember.Component.extend({
 });
 ```
 
-```app/templates/components/pretty-color.hbs
+```handlebars {data-filename=app/templates/components/pretty-color.hbs}
 Pretty Color: {{name}}
 ```
 
@@ -28,7 +28,7 @@ The `moduleForComponent` helper will find the component by name (`pretty-color`)
 and its template (if available).  Make sure to set `integration: true` to enable
 integration test capability.
 
-```tests/integration/components/pretty-color-test.js
+```javascript {data-filename=tests/integration/components/pretty-color-test.js}
 moduleForComponent('pretty-color', 'Integration | Component | pretty color', {
   integration: true
 });
@@ -41,7 +41,7 @@ the component in template syntax, as we would in our application.
 We can test that changing the component's `name` property updates the
 component's `style` attribute and is reflected in the  rendered HTML:
 
-```tests/integration/components/pretty-color-test.js
+```javascript {data-filename=tests/integration/components/pretty-color-test.js}
 test('should change colors', function(assert) {
   assert.expect(2);
 
@@ -61,7 +61,7 @@ test('should change colors', function(assert) {
 We might also test this component to ensure that the content of its template is
 being rendered properly:
 
-```tests/integration/components/pretty-color-test.js
+```javascript {data-filename=tests/integration/components/pretty-color-test.js}
 test('should be rendered with its color name', function(assert) {
   assert.expect(2);
 
@@ -90,7 +90,7 @@ clicked on:
 > You can follow along by generating your own component with `ember generate
 > component magic-title`.
 
-```app/components/magic-title.js
+```javascript {data-filename=app/components/magic-title.js}
 import Ember from 'ember';
 
 export default Ember.Component.extend({
@@ -104,7 +104,7 @@ export default Ember.Component.extend({
 });
 ```
 
-```app/templates/components/magic-title.hbs
+```handlebars {data-filename=app/templates/components/magic-title.hbs}
 <h2>{{title}}</h2>
 
 <button {{action "updateTitle"}}>
@@ -115,7 +115,7 @@ export default Ember.Component.extend({
 jQuery triggers can be used to simulate user interaction and test that the title
 is updated when the button is clicked on:
 
-```tests/integration/components/magic-title-test.js
+```javascript {data-filename=tests/integration/components/magic-title-test.js}
 test('should update title on button click', function(assert) {
   assert.expect(2);
 
@@ -141,7 +141,7 @@ For example, imagine you have a comment form component that invokes a
 > You can follow along by generating your own component with `ember generate
 > component comment-form`.
 
-```app/components/comment-form.js
+```javascript {data-filename=app/components/comment-form.js}
 import Ember from 'ember';
 
 export default Ember.Component.extend({
@@ -155,7 +155,7 @@ export default Ember.Component.extend({
 });
 ```
 
-```app/templates/components/comment-form.hbs
+```handlebars {data-filename=app/templates/components/comment-form.hbs}
 <form {{action "submitComment" on="submit"}}>
   <label>Comment:</label>
   {{textarea value=comment}}
@@ -168,7 +168,7 @@ Here's an example test that asserts that the specified `externalAction` function
 is invoked when the component's internal `submitComment` action is triggered by making use
 of a test double (dummy function):
 
-```tests/integration/components/comment-form-test.js
+```javascript {data-filename=tests/integration/components/comment-form-test.js}
 test('should trigger external action on form submit', function(assert) {
 
   // test double for the external action
@@ -199,7 +199,7 @@ and country of your current location:
 > You can follow along by generating your own component with `ember generate
 > component location-indicator`.
 
-```app/components/location-indicator.js
+```javascript {data-filename=app/components/location-indicator.js}
 import Ember from 'ember';
 
 export default Ember.Component.extend({
@@ -216,7 +216,7 @@ export default Ember.Component.extend({
 });
 ```
 
-```app/templates/components/location-indicator.hbs
+```handlebars {data-filename=app/templates/components/location-indicator.hbs}
 You currently are located in {{city}}, {{country}}
 ```
 To stub the location service in your test, create a local stub object that extends
@@ -224,7 +224,7 @@ To stub the location service in your test, create a local stub object that exten
 beforeEach function.  In this case we initially force location to New York.
 
 
-```tests/integration/components/location-indicator-test.js
+```javascript {data-filename=tests/integration/components/location-indicator-test.js}
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import Ember from 'ember';
@@ -261,7 +261,7 @@ moduleForComponent('location-indicator', 'Integration | Component | location ind
 Once the stub service is registered the test simply needs to check that the stub data that
 is being returned from the service is reflected in the component output.
 
-```tests/integration/components/location-indicator-test.js
+```javascript {data-filename=tests/integration/components/location-indicator-test.js}
 test('should reveal current location', function(assert) {
   this.render(hbs`{{location-indicator}}`);
   assert.equal(this.$().text().trim(), 'You currently are located in New York, USA');
@@ -271,7 +271,7 @@ test('should reveal current location', function(assert) {
 In the next example, we'll add another test that validates that the display changes
 when we modify the values on the service.
 
-```tests/integration/components/location-indicator-test.js
+```javascript {data-filename=tests/integration/components/location-indicator-test.js}
 test('should change displayed location when current location changes', function (assert) {
   this.render(hbs`{{location-indicator}}`);
   assert.equal(this.$().text().trim(), 'You currently are located in New York, USA', 'origin location should display');
@@ -293,7 +293,7 @@ to limit requests to the server, and you want to verify that results are display
 > You can follow along by generating your own component with `ember generate
 > component delayed-typeahead`.
 
-```app/components/delayed-typeahead.js
+```javascript {data-filename=app/components/delayed-typeahead.js}
 import Ember from 'ember';
 
 export default Ember.Component.extend({
@@ -306,7 +306,7 @@ export default Ember.Component.extend({
 });
 ```
 
-```app/templates/components/delayed-typeahead.hbs
+```handlebars {data-filename=app/templates/components/delayed-typeahead.hbs}
 {{input value=searchValue key-up=(action 'handleTyping')}}
 <ul>
 {{#each results as |result|}}
@@ -318,7 +318,7 @@ export default Ember.Component.extend({
 In your integration test, use the `wait` function to wait until your debounce timer is up and then assert
 that the page is rendered appropriately.
 
-```tests/integration/components/delayed-typeahead-test.js
+```javascript {data-filename=tests/integration/components/delayed-typeahead-test.js}
 import { moduleForComponent, test } from 'ember-qunit';
 import wait from 'ember-test-helpers/wait';
 import hbs from 'htmlbars-inline-precompile';

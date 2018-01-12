@@ -4,7 +4,7 @@ template scope in which it is used.
 For example, imagine you have a `blog-post` component that is used to
 display a blog post:
 
-```app/templates/components/blog-post.hbs
+```handlebars {data-filename=app/templates/components/blog-post.hbs}
 <h1>Component: {{title}}</h1>
 <p>Lorem ipsum dolor sit amet.</p>
 ```
@@ -14,7 +14,7 @@ value of the `title` property inside the `<h1>`.
 
 Now imagine we have the following template and route:
 
-```app/routes/index.js
+```javascript {data-filename=app/routes/index.js}
 export default Ember.Route.extend({
   model() {
     return {
@@ -24,7 +24,7 @@ export default Ember.Route.extend({
 });
 ```
 
-```app/templates/index.hbs
+```handlebars {data-filename=app/templates/index.hbs}
 
 <h1>Template: {{title}}</h1>
 {{blog-post}}

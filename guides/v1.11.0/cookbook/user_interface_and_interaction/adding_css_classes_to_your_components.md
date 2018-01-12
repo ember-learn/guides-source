@@ -6,7 +6,7 @@ You want to add CSS class names to your Ember Components.
 
 Set additional class names with the `classNames` property of subclassed components:
 
-```app/component/awesome-input.js
+```javascript {data-filename=app/component/awesome-input.js}
 export default Ember.Component.extend({
   classNames: ['css-framework-fancy-class']  
 });

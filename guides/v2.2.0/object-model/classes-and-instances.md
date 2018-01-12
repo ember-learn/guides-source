@@ -26,7 +26,7 @@ of Ember's built-in [`Ember.Component`][1] class:
 
 [1]: http://emberjs.com/api/classes/Ember.Component.html
 
-```app/components/todo-item.js
+```javascript {data-filename=app/components/todo-item.js}
 export default Ember.Component.extend({
   classNameBindings: ['isUrgent'],
   isUrgent: true

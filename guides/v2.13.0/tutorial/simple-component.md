@@ -199,7 +199,7 @@ Our component integration test will test two different behaviors:
 
 Let's update the default test to contain the scenarios we want to verify:
 
-```tests/integration/components/rental-listing-test.js
+```javascript {data-filename=tests/integration/components/rental-listing-test.js}
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import Ember from 'ember';
@@ -221,7 +221,7 @@ For the test we'll pass the component a fake object that has all the properties 
 We'll give the variable the name `rental`, and in each test we'll set `rental` to our local scope, represented by the `this` object.
 The render template can access values in local scope.
 
-```tests/integration/components/rental-listing-test.js
+```javascript {data-filename=tests/integration/components/rental-listing-test.js}
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import Ember from 'ember';
@@ -252,7 +252,7 @@ Now lets render our component using the `render` function.
 The `render` function allows us to pass a template string, so that we can declare the component in the same way we do in our templates.
 Since we set the `rentalObj` variable to our local scope, we can access it as part of our render string.
 
-```tests/integration/components/rental-listing-test.js
+```javascript {data-filename=tests/integration/components/rental-listing-test.js}
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import Ember from 'ember';
@@ -285,7 +285,7 @@ Finally, lets add our actions and assertions.
 
 In the first test, we just want to verify the output of the component, so we just assert that the title and owner text match what we provided in the fake `rental`.
 
-```tests/integration/components/rental-listing-test.js
+```javascript {data-filename=tests/integration/components/rental-listing-test.js}
 test('should display rental details', function(assert) {
   this.set('rentalObj', rental);
   this.render(hbs`{{rental-listing rental=rentalObj}}`);
@@ -298,7 +298,7 @@ We will assert that the component is initially rendered without the `wide` class
 Clicking the image will add the class `wide` to our element, and clicking it a second time will take the `wide` class away.
 Note that we find the image element using the CSS selector `.image`.
 
-```tests/integration/components/rental-listing-test.js
+```javascript {data-filename=tests/integration/components/rental-listing-test.js}
 test('should toggle wide class on click', function(assert) {
   this.set('rentalObj', rental);
   this.render(hbs`{{rental-listing rental=rentalObj}}`);
@@ -311,7 +311,7 @@ test('should toggle wide class on click', function(assert) {
 ```
 The final test should look as follows:
 
-```tests/integration/components/rental-listing-test.js
+```javascript {data-filename=tests/integration/components/rental-listing-test.js}
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import Ember from 'ember';

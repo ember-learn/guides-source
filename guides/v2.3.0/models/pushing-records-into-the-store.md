@@ -28,7 +28,7 @@ We can use the `route:application` to do so. The `route:application` is
 the top-most route in the route hierarchy, and its `model` hook gets
 called once when the app starts up.
 
-```app/models/album.js
+```javascript {data-filename=app/models/album.js}
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
 
@@ -39,7 +39,7 @@ export default Model.extend({
 });
 ```
 
-```app/routes/application.js
+```javascript {data-filename=app/routes/application.js}
 export default Ember.Route.extend({
   model() {
     this.store.push({
@@ -79,7 +79,7 @@ If you would like the data to be normalized by the model's default
 serializer before pushing it into the store, you can use the
 [`store.pushPayload()`](http://emberjs.com/api/data/classes/DS.Store.html#method_pushPayload) method.
 
-```app/serializers/album.js
+```javascript {data-filename=app/serializers/album.js}
 import RestSerializer from 'ember-data/serializers/rest';
 
 export default RestSerializer.extend({
@@ -92,7 +92,7 @@ export default RestSerializer.extend({
 })
 ```
 
-```app/routes/application.js
+```javascript {data-filename=app/routes/application.js}
 export default Ember.Route.extend({
   model() {
     this.store.pushPayload({
@@ -124,7 +124,7 @@ custom AJAX request and push the resulting model data into the store
 so it can be accessed by other parts of your application.
 
 
-```app/routes/confirm-payment.js
+```javascript {data-filename=app/routes/confirm-payment.js}
 export default Ember.Route.extend({
   actions: {
     confirm: function(data) {
