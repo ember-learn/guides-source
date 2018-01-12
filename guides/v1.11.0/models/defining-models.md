@@ -22,7 +22,7 @@ specify a record's type using the model name. For example, the store's
 `find()` method expects a string as the first argument to tell it what
 type of record to find:
 
-```js
+```javascript
 store.find('person', 1);
 ```
 

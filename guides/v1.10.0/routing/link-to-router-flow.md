@@ -8,7 +8,7 @@ phases of the transition.
 Lets imagine a user is on the `/about/faq/` page of an application
 with the following router.
 
-```js
+```javascript
 App.Router.map(function() {
   this.resource('about', function() {
     this.route('faq');
@@ -56,7 +56,7 @@ whether or not the transition should occur. The code to intercept the
 `willTransition` action and abort a transition might looks something
 like this.
 
-```js
+```javascript
 App.AboutFaqRoute = Ember.Route.extend({
   actions: {
     willTransition: function(transition) {

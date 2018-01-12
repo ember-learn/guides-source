@@ -24,7 +24,7 @@ export default Ember.Component.extend({
 
 If desired, you can apply multiple class names.
 
-```js
+```javascript
 classNames: ['bold', 'italic', 'blue']
 ```
 

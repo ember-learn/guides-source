@@ -88,7 +88,7 @@ To accomplish composability beyond simple templates, we need to pass data to tho
 The `{{yield}}` defines where the content we defined inside our component block will yield in the component's layout,
 as we saw in the previous section. Apart from that, the yield helper also allows us to send data down by yielding params back to the scope the component was invoked in.
 
-```hbs
+```handlebars
 {{yield}}
 {{yield "post"}}
 {{yield item}}
@@ -160,7 +160,7 @@ a component for each type plus for the simple and detailed modes. We want to hav
 
 We can create these names by using the `{{concat}}` helper in nested form.
 
-```hbs
+```handlebars
 {{component (concat 'basic-card-' user.type)}}
 ```
 
@@ -243,7 +243,7 @@ with the `(action "saveUser")` nested helper.  This helper reads a property off 
 We could also leverage this format to place actions on native HTML elements
 like an input button:
 
-```hbs
+```handlebars
 {{#user-profile user=user as |profile saveUser|}}
   <button type="button" onclick={{action saveUser}}>Save</button>
 {{/user-profile}}

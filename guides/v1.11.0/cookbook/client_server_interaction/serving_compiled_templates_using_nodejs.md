@@ -44,7 +44,7 @@ for your grunt tasks.
 5. Open the Gruntfile and paste in the following code:
 
 
-```js
+```javascript
 'use strict'
 
 module.exports = function (grunt) {

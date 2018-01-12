@@ -132,7 +132,7 @@ Let's make a contact link on the about page and an about link on the contact pag
 Ember has built-in **helpers** that provide functionality such as linking to other routes.
 Here we will use the `{{link-to}}` helper in our code to link between routes:
 
-```app/templates/about.hbs{+9,+10,+11}
+```handlebars {data-filename=app/templates/about.hbs data-diff="+9,+10,+11"}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>About Super Rentals</h2>
@@ -231,7 +231,7 @@ The `{{outlet}}` defers to the router, which will render in its place the markup
 
 Let's replace "Welcome to Ember" with our own banner information, including links to our new routes:
 
-```app/templates/application.hbs{-1,+2,+3,+4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+20,+21}
+```handlebars {data-filename=app/templates/application.hbs data-diff="-1,+2,+3,+4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+20,+21"}
 <h2 id="title">Welcome to Ember</h2>
 <div class="container">
   <div class="menu">

@@ -35,7 +35,7 @@ Imagine you want to render the full name of an `App.Person`. In this
 case, you will want to update the output if the person itself changes,
 or if the `firstName` or `lastName` properties change.
 
-```js
+```javascript
 Ember.Handlebars.helper('fullName', function(person) {
   return person.get('firstName') + ' ' + person.get('lastName');
 }, 'firstName', 'lastName');

@@ -127,7 +127,7 @@ Let's make a contact link on the about page and an about link on the contact pag
 Ember has built-in **helpers** that provide functionality such as linking to other routes.
 Here we will use the `{{link-to}}` helper in our code to link between routes:
 
-```app/templates/about.hbs{+9,+10,+11}
+```handlebars {data-filename=app/templates/about.hbs data-diff="+9,+10,+11"}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>About Super Rentals</h2>

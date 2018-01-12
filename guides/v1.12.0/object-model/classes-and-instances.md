@@ -96,7 +96,7 @@ When a new instance is created, its `init` method is invoked
 automatically. This is the ideal place to do setup required on new
 instances:
 
-```js
+```javascript
 Person = Ember.Object.extend({
   init: function() {
     var name = this.get('name');
@@ -122,7 +122,7 @@ in your application.
 When accessing the properties of an object, use the `get`
 and `set` accessor methods:
 
-```js
+```javascript
 var person = Person.create();
 
 var name = person.get('name');

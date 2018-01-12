@@ -4,7 +4,7 @@ you want to respond to as a method on your component.
 
 For example, imagine we have a template like this:
 
-```hbs
+```handlebars
 {{#double-clickable}}
   This is a double clickable area!
 {{/double-clickable}}
@@ -43,7 +43,7 @@ In some cases your component needs to define event handlers, perhaps to support
 various draggable behaviors. For example, a component may need to send an `id`
 when it receives a drop event:
 
-```hbs
+```handlebars
 {{drop-target action="didDrop"}}
 ```
 

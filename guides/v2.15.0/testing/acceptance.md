@@ -227,7 +227,7 @@ Finally, don't forget to add your helpers in `tests/.eslintrc.js` and in
 `tests/helpers/start-app.js`. In `tests/.eslintrc.js` you need to add it in the
 `globals` section, otherwise you will get failing ESLint tests:
 
-```tests/.eslintrc.js{-4,+5,+6,+7,+8,+9,+10}
+```javascript {data-filename=tests/.eslintrc.js data-diff="-4,+5,+6,+7,+8,+9,+10"}
 module.exports = {
   env: {
     embertest: true

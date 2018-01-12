@@ -18,7 +18,7 @@ To use a tag other than `div`, subclass `Ember.Component` and assign it
 a `tagName` property. This property can be any valid HTML5 tag name as a
 string.
 
-```js
+```javascript
 App.NavigationBarComponent = Ember.Component.extend({
   tagName: 'nav'
 });
@@ -47,7 +47,7 @@ If you want class names to be determined by properties of the component,
 you can use class name bindings. If you bind to a Boolean property, the
 class name will be added or removed depending on the value:
 
-```js
+```javascript
 App.TodoItemComponent = Ember.Component.extend({
   classNameBindings: ['isUrgent'],
   isUrgent: true

@@ -11,7 +11,7 @@ The REST adapter is smart enough to determine the URLs it communicates
 with based on the name of the model. For example, if you ask for a
 `Post` by ID:
 
-```js
+```javascript
 store.find('post', 1).then(function(post) {
 });
 ```
@@ -38,7 +38,7 @@ REST adapter:
 
 Irregular or uncountable pluralizations can be specified via `Ember.Inflector.inflector`:
 
-```js
+```javascript
 var inflector = Ember.Inflector.inflector;
 
 inflector.irregular('formula', 'formulae');
@@ -85,7 +85,7 @@ The primary record being returned should be in a named root. For
 example, if you request a record from `/people/123`, the response should
 be nested inside a property called `person`:
 
-```js
+```javascript
 {
   "person": {
     "firstName": "Jeff",
@@ -99,7 +99,7 @@ After `destroyRecord` or after `deleteRecord` and `save`, the adapter expects th
 If you don't have the option to change the data that the server responds with, you can override the 
 [DS.JSONSerializer#extractDeleteRecord](http://emberjs.com/api/data/classes/DS.JSONSerializer.html#method_extractDeleteRecord), like so:
 
-```js
+```javascript
 extractDeleteRecord: function(store, type, payload) {
   // If the payload is {delete: true}, Ember Data will try to set
   // the new properties. Return null so it doesn't try to do that.
@@ -122,7 +122,7 @@ export default DS.Model.extend({
 
 The JSON returned from your server should look like this:
 
-```js
+```javascript
 {
   "person": {
     "firstName": "Barack",
@@ -169,7 +169,7 @@ export default DS.Model.extend({
 
 The JSON should encode the relationship as an array of IDs:
 
-```js
+```javascript
 {
   "post": {
     "comments": [1, 2, 3]
@@ -192,7 +192,7 @@ export default DS.Model.extend({
 
 The JSON should encode the relationship as an ID to another record:
 
-```js
+```javascript
 {
   "comment": {
     "post": 1
@@ -217,7 +217,7 @@ To reduce the number of HTTP requests necessary, you can sideload
 additional records in your JSON response. Sideloaded records live
 outside the JSON root, and are represented as an array of hashes:
 
-```js
+```javascript
 {
   "post": {
     "id": 1,
@@ -269,7 +269,7 @@ export default DS.Model.extend({
 When `coordinatePoint` is received from the API, it is
 expected to be an array:
 
-```js
+```javascript
 {
   cursor: {
     position: [4,9]
@@ -279,7 +279,7 @@ expected to be an array:
 
 But once loaded on a model instance, it will behave as an object:
 
-```js
+```javascript
 var cursor = App.Cursor.find(1);
 cursor.get('position.x'); //=> 4
 cursor.get('position.y'); //=> 9

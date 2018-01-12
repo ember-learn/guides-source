@@ -73,7 +73,7 @@ export default DS.Model.extend({
 Ember Data expects that a `GET` request to `/posts/1` would
 return the JSON in the following format:
 
-```js
+```javascript
 {
   "post": {
     "id": 1,

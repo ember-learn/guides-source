@@ -4,7 +4,7 @@ You can create records by calling the
 [`createRecord()`](http://emberjs.com/api/data/classes/DS.Store.html#method_createRecord)
 method on the store.
 
-```js
+```javascript
 store.createRecord('post', {
   title: 'Rails is Omakase',
   body: 'Lorem ipsum'
@@ -18,7 +18,7 @@ The store object is available in controllers and routes using `this.get('store')
 Making changes to Ember Data records is as simple as setting the attribute you
 want to change:
 
-```js
+```javascript
 this.get('store').findRecord('person', 1).then(function(tyrion) {
   // ...after the record has loaded
   tyrion.set('firstName', "Yollo");
@@ -29,7 +29,7 @@ All of the Ember.js conveniences are available for
 modifying attributes. For example, you can use `Ember.Object`'s
 [`incrementProperty`](http://emberjs.com/api/classes/Ember.Object.html#method_incrementProperty) helper:
 
-```js
+```javascript
 person.incrementProperty('age'); // Happy birthday!
 ```
 
@@ -75,7 +75,7 @@ the record were changed and what the original value was using the
 method. `changedAttributes` returns an object, whose keys are the changed
 properties and values are an array of values `[oldValue, newValue]`.
 
-```js
+```javascript
 person.get('isAdmin');            //=> false
 person.get('hasDirtyAttributes'); //=> false
 person.set('isAdmin', true);
@@ -89,7 +89,7 @@ back your changes. Calling
 for a saved record reverts all the `changedAttributes` to their original value.
 If the record `isNew` it will be removed from the store.
 
-```js
+```javascript
 person.get('hasDirtyAttributes'); //=> true
 person.changedAttributes();       //=> { isAdmin: [false, true] }
 
@@ -106,7 +106,7 @@ If the backend server returns validation errors after trying to save, they will
 be available on the `errors` property of your model. Here's how you might display
 the errors from saving a blog post in your template:
 
-```hbs
+```handlebars
 {{#each post.errors.title as |error|}}
   <div class="error">{{error.message}}</div>
 {{/each}}
@@ -150,7 +150,7 @@ on any instance of `DS.Model`. This flags the record as `isDeleted`. The
 deletion can then be persisted using `save()`.  Alternatively, you can use 
 the `destroyRecord` method to delete and persist at the same time.
 
-```js
+```javascript
 store.findRecord('post', 1).then(function(post) {
   post.deleteRecord();
   post.get('isDeleted'); // => true

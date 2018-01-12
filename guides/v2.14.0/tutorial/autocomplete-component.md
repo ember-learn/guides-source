@@ -22,7 +22,7 @@ which allows a Handlebars template to be rendered _inside_ the component's templ
 
 In this case we are passing, or "yielding", our filter data to the inner markup as a variable called `rentals` (line 14).
 
-```app/templates/rentals.hbs{+12,+13,+14,+15,+16,+17,+18,+19,+20,-21,-22,-23}
+```handlebars {data-filename=app/templates/rentals.hbs data-diff="+12,+13,+14,+15,+16,+17,+18,+19,+20,-21,-22,-23"}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>Welcome!</h2>
@@ -229,7 +229,7 @@ test('should initially load all listings', function (assert) {
 Our list-filter component takes a function as an argument, used to find the list of matching rentals based on the filter string provided by the user.
 We provide an action function by setting it to the local scope of our test by calling `this.on`.
 
-```tests/integration/components/list-filter-test.js{+3,+5,+6,+13,+14,+15,+16,+17,+18,+19,+20,+21}
+```javascript {data-filename=tests/integration/components/list-filter-test.js data-diff="+3,+5,+6,+13,+14,+15,+16,+17,+18,+19,+20,+21"}
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import RSVP from 'rsvp';
@@ -270,7 +270,7 @@ Since our component is expecting the filter process to be asynchronous, we retur
 
 Next, we'll add the call to render the component to show the cities we've provided above.
 
-```tests/integration/components/list-filter-test.js{+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33,+34,+35,+36}
+```javascript {data-filename=tests/integration/components/list-filter-test.js data-diff="+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33,+34,+35,+36"}
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import RSVP from 'rsvp';
@@ -321,7 +321,7 @@ If you return a promise from a QUnit test, the test will wait to finish until th
 In this case our test completes when the `wait` helper decides that processing is finished,
 and the function we provide that asserts the resulting state is completed.
 
-```tests/integration/components/list-filter-test.js{+3,+37,+38,+39,+40}
+```javascript {data-filename=tests/integration/components/list-filter-test.js data-diff="+3,+37,+38,+39,+40"}
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import wait from 'ember-test-helpers/wait';

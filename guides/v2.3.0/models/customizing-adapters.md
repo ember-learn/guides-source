@@ -78,7 +78,7 @@ The `JSONAPIAdapter` is smart enough to determine the URLs it
 communicates with based on the name of the model. For example, if you
 ask for a `Post` by ID:
 
-```js
+```javascript
 store.findRecord('post', 1).then(function(post) {
 });
 ```

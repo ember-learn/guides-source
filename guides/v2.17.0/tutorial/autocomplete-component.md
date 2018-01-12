@@ -24,7 +24,7 @@ which allows a Handlebars template to be rendered _inside_ the component's templ
 
 In this case we are passing, or "yielding", our filter data to the inner markup as a variable called `rentals` (line 14).
 
-```app/templates/rentals.hbs{+12,+13,+14,+15,+16,+17,+18,+19,+20,-21,-22,-23}
+```handlebars {data-filename=app/templates/rentals.hbs data-diff="+12,+13,+14,+15,+16,+17,+18,+19,+20,-21,-22,-23"}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>Welcome!</h2>
@@ -217,7 +217,7 @@ Lets add some protective code to ensure our results do not get out of sync with 
 To do this we'll simply provide the filter text to the filter function, so that when the results come back we can compare the original filter value with the current filter value.
 We will update the results on screen only if the original filter value and the current filter value are the same.
 
-```app/controllers/rentals.js{-7,+8,+9,+10,+11,-13,+14,+15,+16,+17}
+```javascript {data-filename=app/controllers/rentals.js data-diff="-7,+8,+9,+10,+11,-13,+14,+15,+16,+17"}
 import Controller from '@ember/controller';
 
 export default Controller.extend({
@@ -244,7 +244,7 @@ export default Controller.extend({
 In the `filterByCity` function in the rental controller above,
 we've added a new property called `query` to the filter results instead of just returning an array of rentals as before.
 
-```app/components/list-filter.js{-18,+9,+10,+11,+19,+20,+21,+22}
+```javascript {data-filename=app/components/list-filter.js data-diff="-18,+9,+10,+11,+19,+20,+21,+22"}
 import Component from '@ember/component';
 
 export default Component.extend({
@@ -312,7 +312,7 @@ test('should initially load all listings', function (assert) {
 Our list-filter component takes a function as an argument, used to find the list of matching rentals based on the filter string provided by the user.
 We provide an action function by setting it to the local scope of our test by calling `this.on`.
 
-```tests/integration/components/list-filter-test.js{+3,+5,+6,+13,+14,+15,+16,+17}
+```javascript {data-filename=tests/integration/components/list-filter-test.js data-diff="+3,+5,+6,+13,+14,+15,+16,+17"}
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import RSVP from 'rsvp';
@@ -344,7 +344,7 @@ Since our component is expecting the filter process to be asynchronous, we retur
 
 Next, we'll add the call to render the component to show the cities we've provided above.
 
-```tests/integration/components/list-filter-test.js{+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32}
+```javascript {data-filename=tests/integration/components/list-filter-test.js data-diff="+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32"}
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import RSVP from 'rsvp';
@@ -391,7 +391,7 @@ If you return a promise from a QUnit test, the test will wait to finish until th
 In this case our test completes when the `wait` helper decides that processing is finished,
 and the function we provide that asserts the resulting state is completed.
 
-```tests/integration/components/list-filter-test.js{+3,+33,+34,+35,+36}
+```javascript {data-filename=tests/integration/components/list-filter-test.js data-diff="+3,+33,+34,+35,+36"}
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import wait from 'ember-test-helpers/wait';

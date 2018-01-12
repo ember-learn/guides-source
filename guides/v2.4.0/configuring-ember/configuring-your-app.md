@@ -10,7 +10,7 @@ You can access these environment variables in your application code by importing
 
 For example:
 
-```js
+```javascript
 import ENV from 'your-application-name/config/environment';
 
 if (ENV.environment === 'development') {

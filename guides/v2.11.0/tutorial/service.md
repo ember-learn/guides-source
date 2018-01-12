@@ -10,7 +10,7 @@ We'll start by displaying the map and work our way back to using the Google Maps
 
 We'll start by adding a component that shows the rental's city on a map.
 
-```app/templates/components/rental-listing.hbs{+19}
+```handlebars {data-filename=app/templates/components/rental-listing.hbs data-diff="+19"}
 <article class="listing">
   <a {{action 'toggleImageSize'}} class="image {{if isWide "wide"}}">
     <img src="{{rental.image}}" alt="">
@@ -233,7 +233,7 @@ curl -o vendor/gmaps.js "https://maps.googleapis.com/maps/api/js?v=3.22"
 Once in the vendor directory, the script can be built into the app.
 We just need to tell Ember CLI to import it using our build file:
 
-```ember-cli-build.js{+22}
+```javascript {data-filename=ember-cli-build.js data-diff="+22"}
 /*jshint node:true*/
 /* global require, module */
 let EmberApp = require('ember-cli/lib/broccoli/ember-app');
@@ -320,7 +320,7 @@ To stub these services we simply have to register a stub service that implements
 
 Add the following code after the imports to our acceptance test:
 
-```/tests/acceptance/list-rentals-test.js{+3,+5,+6,+7,+8,+9,+10,-11,+12,+13,+14,+15,+16,+17}
+```javascript {data-filename=/tests/acceptance/list-rentals-test.js data-diff="+3,+5,+6,+7,+8,+9,+10,-11,+12,+13,+14,+15,+16,+17"}
 import { test } from 'qunit';
 import moduleForAcceptance from 'super-rentals/tests/helpers/module-for-acceptance';
 import Ember from 'ember';

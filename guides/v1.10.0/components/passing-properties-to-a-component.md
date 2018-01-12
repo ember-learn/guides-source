@@ -16,7 +16,7 @@ value of the `title` property inside the `<h1>`.
 
 Now imagine we have the following template and route:
 
-```js
+```javascript
 App.IndexRoute = Ember.Route.extend({
   model: function() {
     return {

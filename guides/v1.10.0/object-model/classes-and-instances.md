@@ -15,7 +15,7 @@ You can also create a _subclass_ from any existing class by calling
 its `extend()` method. For example, you might want to create a subclass
 of Ember's built-in `Ember.View` class:
 
-```js
+```javascript
 App.PersonView = Ember.View.extend({
   tagName: 'li',
   classNameBindings: ['isAdministrator']
@@ -94,7 +94,7 @@ When a new instance is created, its `init` method is invoked
 automatically. This is the ideal place to do setup required on new
 instances:
 
-```js
+```javascript
 App.Person = Ember.Object.extend({
   init: function() {
     var name = this.get('name');
@@ -118,7 +118,7 @@ in your application.
 When accessing the properties of an object, use the `get`
 and `set` accessor methods:
 
-```js
+```javascript
 var person = App.Person.create();
 
 var name = person.get('name');

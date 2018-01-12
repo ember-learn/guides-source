@@ -15,7 +15,7 @@ with the fulfilled value as its sole argument, and if the promise rejects,
 the rejection handler gets called with a reason for the rejection as its
 sole argument. For example:
 
-```js
+```javascript
 var promise = fetchTheAnswer();
 
 promise.then(fulfill, reject);
@@ -32,7 +32,7 @@ function reject(reason) {
 Much of the power of promises comes from the fact that they can be
 chained together to perform sequential asynchronous operations:
 
-```js
+```javascript
 // Note: jQuery AJAX methods return promises
 var usernamesPromise = Ember.$.getJSON('/usernames.json');
 
@@ -78,7 +78,7 @@ will be the fulfilled values from the promises.
 
 A basic example:
 
-```js
+```javascript
 App.TardyRoute = Ember.Route.extend({
   model: function() {
     return new Ember.RSVP.Promise(function(resolve) {
@@ -118,7 +118,7 @@ will be fired on that route and bubble up to `ApplicationRoute`'s
 default error handler unless it is handled by a custom error handler
 along the way, e.g.:
 
-```js
+```javascript
 App.GoodForNothingRoute = Ember.Route.extend({
   model: function() {
     return Ember.RSVP.reject("FAIL");
@@ -149,7 +149,7 @@ Rejected model promises halt transitions, but because promises are chainable,
 you can catch promise rejects within the `model` hook itself and convert 
 them into fulfills that won't halt the transition.
 
-```js
+```javascript
 App.FunkyRoute = Ember.Route.extend({
   model: function() {
     return iHopeThisWorks().then(null, function() {
@@ -196,7 +196,7 @@ The following is a far-from-exhaustive list of use cases in which
   onward to `model`
 - Loading application code required by this route 
 
-```js
+```javascript
 App.SecretArticlesRoute  = Ember.Route.extend({
   beforeModel: function() {
     if (!this.controllerFor('auth').get('isLoggedIn')) {
@@ -216,7 +216,7 @@ promise) is resolved, and follows the same pause-on-promise semantics as
 and can therefore perform any additional logic that
 depends on the fully resolved value of a model.
 
-```js
+```javascript
 App.ArticlesRoute = Ember.Route.extend({
   model: function() {
     // App.Article.find() returns a promise-like object

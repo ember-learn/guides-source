@@ -82,7 +82,7 @@ a restaurant, you might have models like `order`, `line-item`, and
 
 Fetching orders becomes very easy:
 
-```js
+```javascript
 this.store.find('order');
 ```
 
@@ -128,7 +128,7 @@ For example, if you were writing a contact management app, you might
 have a `person`. An individual record in your app might
 have a type of `person` and an ID of `1` or `steve-buscemi`.
 
-```js
+```javascript
 this.store.find('person', 1); // => { id: 1, name: 'steve-buscemi' }
 ```
 

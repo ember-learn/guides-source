@@ -45,7 +45,7 @@ If we open `/app/router.js`, we'll see a new line of code for the **about** rout
 `this.route('about')` in the `Router.map` function. That new line of code tells the Ember router
 to run our `/app/routes/about.js` file when a visitor navigates to `/about`.
 
-```app/router.js{+10}
+```javascript {data-filename=app/router.js data-diff="+10"}
 import Ember from 'ember';
 import config from './config/environment';
 
@@ -123,7 +123,7 @@ page on the contact page.
 To do that, we'll use a [`{{link-to}}`](../../templates/links/) helper that Ember provides
 that makes it easy to link between our routes.  Let's adjust our `about.hbs` file:
 
-```app/templates/about.hbs{+9,+10,+11}
+```handlebars {data-filename=app/templates/about.hbs data-diff="+9,+10,+11"}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>About Super Rentals</h2>
@@ -146,7 +146,7 @@ a working link to our contact page:
 
 Now, we'll add our corresponding link to the contact page so we can move back and forth between `about` and `contact`:
 
-```app/templates/contact.hbs{+15,+16,+17}
+```handlebars {data-filename=app/templates/contact.hbs data-diff="+15,+16,+17"}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>Contact Us</h2>
@@ -232,7 +232,7 @@ Since we want our `rentals` route to serve as our home page, we will use the `re
 
 In our index route handler, we add the `replaceWith` invocation to `beforeModel`.
 
-```app/routes/index.js{+4,+5,+6}
+```javascript {data-filename=app/routes/index.js data-diff="+4,+5,+6"}
 import Ember from 'ember';
 
 export default Ember.Route.extend({

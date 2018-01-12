@@ -24,7 +24,7 @@ each item in the array, with the each item set to the `person` block param.
 
 Given an input array like:
 
-```js
+```javascript
 [
   { name: 'Yehuda' },
   { name: 'Tom' },

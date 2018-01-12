@@ -27,7 +27,7 @@ type names should be pluralized and attribute and relationship names
 should be dash-cased. For example, if you request a record from
 `/people/123`, the response should look like this:
 
-```js
+```javascript
 {
   "data": {
     "type": "people",
@@ -43,7 +43,7 @@ should be dash-cased. For example, if you request a record from
 A response that contains multiple records may have an array in its
 `data` property.
 
-```js
+```javascript
 {
   "data": [{
     "type": "people",
@@ -71,7 +71,7 @@ key. For example, if you request `/people/1` and the backend also
 returned any comments associated with that person the response
 should look like this:
 
-```js
+```javascript
 {
   "data": [{
     "type": "articles",
@@ -288,7 +288,7 @@ export default DS.Model.extend({
 However, the `JSONAPISerializer` expects attributes to be dasherized
 in the document payload returned by your server:
 
-```js
+```javascript
 {
   "data": {
     "id": "44",
@@ -357,7 +357,7 @@ export default DS.Model.extend({
 
 The JSON should encode the relationship as an array of IDs and types:
 
-```js
+```javascript
 {
   "data": {
     "type": "posts",
@@ -390,7 +390,7 @@ export default DS.Model.extend({
 
 The JSON should encode the relationship as an ID to another record:
 
-```js
+```javascript
 {
   "data": {
     "type": "comment",
@@ -446,7 +446,7 @@ export default DS.Model.extend({
 When `coordinatePoint` is received from the API, it is
 expected to be an array:
 
-```js
+```javascript
 {
   cursor: {
     position: [4,9]
@@ -456,7 +456,7 @@ expected to be an array:
 
 But once loaded on a model instance, it will behave as an object:
 
-```js
+```javascript
 var cursor = store.findRecord('cursor', 1);
 cursor.get('position.x'); //=> 4
 cursor.get('position.y'); //=> 9
@@ -653,7 +653,7 @@ export default DS.Model.extend({
 
 `store.push` would accept an object that looked like this:
 
-```js
+```javascript
 {
   data: {
     id: "1",

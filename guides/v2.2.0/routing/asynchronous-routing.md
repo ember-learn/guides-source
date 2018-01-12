@@ -17,7 +17,7 @@ sole argument. For example:
 
 [1]: http://emberjs.com/api/classes/RSVP.Promise.html#method_then
 
-```js
+```javascript
 var promise = fetchTheAnswer();
 
 promise.then(fulfill, reject);
@@ -34,7 +34,7 @@ function reject(reason) {
 Much of the power of promises comes from the fact that they can be
 chained together to perform sequential asynchronous operations:
 
-```js
+```javascript
 // Note: jQuery AJAX methods return promises
 var usernamesPromise = Ember.$.getJSON('/usernames.json');
 

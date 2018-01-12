@@ -126,7 +126,7 @@ Ember has built-in template **helpers** that provide functionality for interacti
 The [`{{link-to}}`](../../templates/links/) helper provides special ease of use features in linking to Ember routes.
 Here we will use the `{{link-to}}` helper in our code to perform a basic link between routes:
 
-```app/templates/about.hbs{+9,+10,+11}
+```handlebars {data-filename=app/templates/about.hbs data-diff="+9,+10,+11"}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>About Super Rentals</h2>

@@ -128,7 +128,7 @@ event listeners and enables to work with one-way bindings.
 
 Let's assume we have an action handler that prints its first parameter:
 
-```js
+```javascript
 actions: {
   bandDidChange(newValue) {
     console.log(newValue);

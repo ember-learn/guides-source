@@ -44,7 +44,7 @@ So how do you trigger sending a component's primary action? After
 the relevant event occurs, you can call the `sendAction()` method
 without arguments:
 
-```js
+```javascript
 App.MyButtonComponent = Ember.Component.extend({
   click: function() {
     this.sendAction();
@@ -65,14 +65,14 @@ To send parameters with the primary action, call `sendAction()` with the
 string `'action'` as the first argument and any additional parameters
 following it:
 
-```js
+```javascript
 this.sendAction('action', param1, param2);
 ```
 
 For example, imagine we're building a todo list that allows the user to
 delete a todo:
 
-```js
+```javascript
 App.IndexRoute = Ember.Route.extend({
   model: function() {
     return {
@@ -109,7 +109,7 @@ action.
 In the component, when triggering the primary action, we'll pass an
 additional argument that the component user can specify:
 
-```js
+```javascript
 App.ConfirmButtonComponent = Ember.Component.extend({
   actions: {
     showConfirmation: function() {
@@ -183,7 +183,7 @@ particular event, calling `sendAction()` has no effect.
 For example, if you define a component that triggers the primary action
 on click:
 
-```js
+```javascript
 App.MyButtonComponent = Ember.Component.extend({
   click: function() {
     this.sendAction();

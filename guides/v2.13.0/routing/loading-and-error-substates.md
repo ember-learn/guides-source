@@ -163,7 +163,7 @@ The model hooks (`beforeModel`, `model`, and `afterModel`) of an error substate
 are not called. Only the `setupController` method of the error substate is
 called with the `error` as the model. See example below:
 
-```js
+```javascript
 setupController: function(controller, error) {
   Ember.Logger.debug(error.message);
   this._super(...arguments);

@@ -28,7 +28,7 @@ We can use the `ApplicationRoute` to do so. The `ApplicationRoute` is
 the top-most route in the route hierarchy, and its `model` hook gets
 called once when the app starts up.
 
-```js
+```javascript
 var attr = DS.attr;
 
 App.Album = DS.Model.extend({

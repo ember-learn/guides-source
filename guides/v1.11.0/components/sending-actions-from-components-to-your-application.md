@@ -65,7 +65,7 @@ To send parameters with the primary action, call `sendAction()` with the
 string `'action'` as the first argument and any additional parameters
 following it:
 
-```js
+```javascript
 this.sendAction('action', param1, param2);
 ```
 

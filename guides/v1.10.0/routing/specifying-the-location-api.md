@@ -19,7 +19,7 @@ If you want `/posts/new` to work instead, you can tell the Router to use the bro
 Keep in mind that your server must serve the Ember app from all the URLs defined in your 
 `Router.map` function. 
 
-```js
+```javascript
 App.Router.reopen({
   location: 'history'
 });
@@ -31,7 +31,7 @@ testing, or when you need to manage state with your Router, but temporarily
 don't want it to muck with the URL (for example when you embed your
 application in a larger page).
 
-```js
+```javascript
 App.Router.reopen({
   location: 'none'
 });

@@ -11,7 +11,7 @@ the template, and implementing its `model` hook.
 For example, to provide some model data to the `photos` template, we
 would define an `App.PhotosRoute` object:
 
-```js
+```javascript
 App.PhotosRoute = Ember.Route.extend({
   model: function() {
     return [{
@@ -56,7 +56,7 @@ in the Asynchronous Routing guide.
 Let's look at an example in action. Here's a route that loads the most
 recent pull requests sent to Ember.js on GitHub:
 
-```js
+```javascript
 App.PullRequestsRoute = Ember.Route.extend({
   model: function() {
     return Ember.$.getJSON('https://api.github.com/repos/emberjs/ember.js/pulls');
@@ -83,7 +83,7 @@ the template only displayed the three most recent pull requests. We can
 rely on promise chaining to modify the data returned from the JSON
 request before it gets passed to the template:
 
-```js
+```javascript
 App.PullRequestsRoute = Ember.Route.extend({
   model: function() {
     var url = 'https://api.github.com/repos/emberjs/ember.js/pulls';
@@ -140,7 +140,7 @@ A dynamic segment is a part of the URL that is filled in by the current
 model's ID. Dynamic segments always start with a colon (`:`). Our photo
 example might have its `photo` route defined like this:
 
-```js
+```javascript
 App.Router.map(function() {
   this.resource('photo', { path: '/photos/:photo_id' });
 });
@@ -172,7 +172,7 @@ from the URL.
 Luckily, Ember will extract any dynamic segments from the URL for
 you and pass them as a hash to the `model` hook as the first argument:
 
-```js
+```javascript
 App.Router.map(function() {
   this.resource('photo', { path: '/photos/:photo_id' });
 });

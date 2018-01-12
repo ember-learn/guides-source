@@ -42,7 +42,7 @@ Since we haven't added any functionality to our application yet, we'll use this 
 
 To do that, replace occurrences of `/list-rentals` in the generated test with `/`. The test will start our app at the base url, `http://localhost:4200/`, and then do a basic check that the page has finished loading and that the url is what we want it to be.
 
-```/tests/acceptance/list-rentals-test.js{-6,+7,-8,+9,-12,+13}
+```javascript {data-filename=/tests/acceptance/list-rentals-test.js data-diff="-6,+7,-8,+9,-12,+13"}
 import { test } from 'qunit';
 import moduleForAcceptance from 'super-rentals/tests/helpers/module-for-acceptance';
 

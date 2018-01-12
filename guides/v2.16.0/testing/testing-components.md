@@ -300,7 +300,7 @@ moduleForComponent('location-indicator', 'Integration | Component | location ind
 Once the stub service is registered the test simply needs to check that the stub data that
 is being returned from the service is reflected in the component output.
 
-```tests/integration/components/location-indicator-test.js{+33,+34,+35,+36}
+```javascript {data-filename=tests/integration/components/location-indicator-test.js data-diff="+33,+34,+35,+36"}
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import Service from '@ember/service';
@@ -342,7 +342,7 @@ test('should reveal current location', function(assert) {
 In the next example, we'll add another test that validates that the display changes
 when we modify the values on the service.
 
-```tests/integration/components/location-indicator-test.js{+38,+39,+40,+41,+42,+43,+44,+45}
+```javascript {data-filename=tests/integration/components/location-indicator-test.js data-diff="+38,+39,+40,+41,+42,+43,+44,+45"}
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import Service from '@ember/service';

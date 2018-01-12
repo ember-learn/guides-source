@@ -74,7 +74,7 @@ The `JSONAPIAdapter` is smart enough to determine the URLs it
 communicates with based on the name of the model. For example, if you
 ask for a `Post` by ID:
 
-```js
+```javascript
 store.find('post', 1).then(function(post) {
 });
 ```
@@ -106,7 +106,7 @@ ActiveSupport::Inflector compatible library for inflecting words
 between plural and singular forms. Irregular or uncountable
 pluralizations can be specified via `Ember.Inflector.inflector`:
 
-```js
+```javascript
 var inflector = Ember.Inflector.inflector;
 
 inflector.irregular('formula', 'formulae');

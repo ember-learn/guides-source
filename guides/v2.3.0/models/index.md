@@ -236,7 +236,7 @@ For example, if you were writing a contact management app, you might
 have a `Person` model. An individual record in your app might
 have a type of `person` and an ID of `1` or `steve-buscemi`.
 
-```js
+```javascript
 this.store.findRecord('person', 1); // => { id: 1, name: 'steve-buscemi' }
 ```
 

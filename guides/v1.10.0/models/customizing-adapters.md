@@ -21,7 +21,7 @@ If your backend has some consistent rules you can define an
 the default Adapter, however it will still be superseded by model
 specific Adapters.
 
-```js
+```javascript
 App.ApplicationAdapter = DS.RESTAdapter.extend({
   // Application specific overrides go here
 });
@@ -31,7 +31,7 @@ If you have one model that has exceptional rules for communicating
 with its backend than the others you can create a Model specific
 Adapter by naming an adapter "ModelName" + "Adapter".
 
-```js
+```javascript
 App.PostAdapter = DS.RESTAdapter.extend({
   namespace: 'api/v1'
 });
@@ -72,7 +72,7 @@ non-standard backends.
 The `namespace` property can be used to prefix requests with a
 specific url namespace.
 
-```js
+```javascript
 App.ApplicationAdapter = DS.RESTAdapter.extend({
   namespace: 'api/1'
 });
@@ -87,7 +87,7 @@ By default the adapter will target the current domain. If you would
 like to specify a new domain you can do so by setting the `host`
 property on the adapter.
 
-```js
+```javascript
 App.ApplicationAdapter = DS.RESTAdapter.extend({
   host: 'https://api.example.com'
 });
@@ -106,7 +106,7 @@ For example, if you did not want to pluralize model names and needed
 underscore_case instead of camelCase you could override the
 `pathForType` method like this:
 
-```js
+```javascript
 App.ApplicationAdapter = DS.RESTAdapter.extend({
   pathForType: function(type) {
     return Ember.String.underscore(type);
@@ -129,7 +129,7 @@ adapter it is important to remember to set this property to ensure
 Ember does the right thing in the case a user of your adapter
 does not specify an `ApplicationSerializer`.
 
-```js
+```javascript
 MyCustomAdapterAdapter = DS.RESTAdapter.extend({
   defaultSerializer: '-default'
 });

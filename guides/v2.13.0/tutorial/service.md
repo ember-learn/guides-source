@@ -215,7 +215,7 @@ This property will be passed in to the component by its parent template below.
 
 Finally open the template file for our `rental-listing` component and add the new `location-map` component.
 
-```app/templates/components/rental-listing.hbs{+20}
+```handlebars {data-filename=app/templates/components/rental-listing.hbs data-diff="+20"}
 <article class="listing">
   <a {{action 'toggleImageSize'}} class="image {{if isWide "wide"}}">
     <img src="{{rental.image}}" alt="">
@@ -364,7 +364,7 @@ To stub these services we simply have to register a stub service that implements
 
 Add the following code after the imports to our acceptance test:
 
-```/tests/acceptance/list-rentals-test.js{+3,+5,+6,+7,+8,+9,+10,-11,+12,+13,+14,+15,+16,+17}
+```javascript {data-filename=/tests/acceptance/list-rentals-test.js data-diff="+3,+5,+6,+7,+8,+9,+10,-11,+12,+13,+14,+15,+16,+17"}
 import { test } from 'qunit';
 import moduleForAcceptance from 'super-rentals/tests/helpers/module-for-acceptance';
 import Ember from 'ember';

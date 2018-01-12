@@ -62,13 +62,13 @@ function and insert whatever you return from the helper into the DOM.
 
 So, if we want to display a purchase total we can pass the value into the template in cents:
 
-```hbs
+```handlebars
 Your total is {{format-currency 250}}.
 ```
 
 And Ember makes use of our new helper function to replace the content inside the ```{{ }}``` with the formatted amount.
 
-```hbs
+```handlebars
 Your total is $2.50.
 ```
 

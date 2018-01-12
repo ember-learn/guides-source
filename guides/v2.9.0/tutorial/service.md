@@ -10,7 +10,7 @@ We'll start by displaying the map and work our way back to using the Google Map 
 
 We'll start by adding a component that shows the rental's city on a map.
 
-```app/templates/components/rental-listing.hbs{+19}
+```handlebars {data-filename=app/templates/components/rental-listing.hbs data-diff="+19"}
 <article class="listing">
   <a {{action 'toggleImageSize'}} class="image {{if isWide "wide"}}">
     <img src="{{rental.image}}" alt="">
@@ -233,7 +233,7 @@ curl -o vendor/gmaps.js https://maps.googleapis.com/maps/api/js?v=3.22
 Once in the vendor directory, the script can be built into the app.
 We just need to tell Ember CLI to import it using our build file:
 
-```ember-cli-build.js{+22}
+```javascript {data-filename=ember-cli-build.js data-diff="+22"}
 /*jshint node:true*/
 /* global require, module */
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');

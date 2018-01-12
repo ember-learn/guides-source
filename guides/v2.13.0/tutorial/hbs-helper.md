@@ -32,7 +32,7 @@ export default Ember.Helper.helper(rentalPropertyType);
 
 Let's update our `rental-listing` component template to use our new helper and pass in `rental.propertyType`:
 
-```app/templates/components/rental-listing.hbs{-11,+12,+13}
+```handlebars {data-filename=app/templates/components/rental-listing.hbs data-diff="-11,+12,+13"}
 <article class="listing">
   <a {{action 'toggleImageSize'}} class="image {{if isWide "wide"}}">
     <img src="{{rental.image}}" alt="">

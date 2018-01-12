@@ -12,7 +12,7 @@ Write a custom Handlebars helper that can be called from any template and gets u
 </script>
 ```
 
-```js
+```javascript
 App = Ember.Application.create();
 
 App.ApplicationRoute = Em.Route.extend({

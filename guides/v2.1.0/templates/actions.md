@@ -117,7 +117,7 @@ one-way bindings.
 
 Let's assume we have an action handler that just prints its first parameter:
 
-```js
+```javascript
 actions: {
   bandDidChange(newValue) {
     console.log(newValue);

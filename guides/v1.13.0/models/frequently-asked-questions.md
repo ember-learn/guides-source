@@ -112,7 +112,7 @@ the JSON object before pushing it into the store.
 array of records to the store you can call
 [pushMany](http://emberjs.com/api/data/classes/DS.Store.html#method_pushMany).
 
-```js
+```javascript
 socket.on('message', function (message) {
   var modelName = message.model;
   store.push(modelName, store.normalize(modelName, message.data));
@@ -131,7 +131,7 @@ method. It is important to note this method will not work with the
 `JSONSerializer` because it does not implement a `pushPayload`
 method.
 
-```js
+```javascript
 socket.on('message', function (message) {
   store.pushPayload(message.model, message.data);
 });

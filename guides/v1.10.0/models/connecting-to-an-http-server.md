@@ -22,7 +22,7 @@ send JSON to.
 
 For example, if you ask for an `App.Photo` record by ID:
 
-```js
+```javascript
 App.PhotoRoute = Ember.Route.extend({
   model: function(params) {
     return this.store.find('photo', params.photo_id);
@@ -52,7 +52,7 @@ REST adapter:
 
 Given the following models:
 
-```js
+```javascript
 App.Post = DS.Model.extend({
   title:    DS.attr(),
   comments: DS.hasMany('comment'),
@@ -67,7 +67,7 @@ App.Comment = DS.Model.extend({
 Ember Data expects that a `GET` request to `/posts/1` would
 return the JSON in the following format:
 
-```js
+```javascript
 {
   "post": {
     "id": 1,
@@ -98,7 +98,7 @@ and methods to customize how records are retrieved and saved.
 
 It's entirely possible that you need to define options for just one model instead of an application-wide customization. In that case, you can create an adapter named after the model you are specifying:
 
-```js
+```javascript
 App.PostAdapter = DS.RESTAdapter.extend({
   namespace: 'api/v2',
   host: 'https://api.example2.com'
@@ -124,7 +124,7 @@ particular person might go to `/api/v1/people/1`.
 
 In that case, set `namespace` property to `api/v1`.
 
-```js
+```javascript
 App.ApplicationAdapter = DS.RESTAdapter.extend({
   namespace: 'api/v1'
 });
@@ -143,7 +143,7 @@ your server will need to be configured to send the correct CORS headers.
 
 To change the host that requests are sent to, set the `host` property:
 
-```js
+```javascript
 App.ApplicationAdapter = DS.RESTAdapter.extend({
   host: 'https://api.example.com'
 });
@@ -159,7 +159,7 @@ property and Ember Data will send them along with each ajax request.
 
 For Example
 
-```js
+```javascript
 App.ApplicationAdapter = DS.RESTAdapter.extend({
   headers: {
     'API_KEY': 'secret key',
