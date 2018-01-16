@@ -1,7 +1,7 @@
 In Ember Data, the Adapter determines how data is persisted to a
 backend data store, such as the URL format and headers for a REST API.
 (The format of the data itself is determined by the
-[serializer](../customizing-serializers/).)
+[serializer](customizing-serializers/).)
 Ember Data's default Adapter has some built-in
 assumptions of how a [REST API should look](http://jsonapi.org/). If
 your backend conventions differ from these assumptions Ember Data

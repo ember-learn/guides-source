@@ -24,6 +24,6 @@ formattedAmount: function(key, value) {
 <!---#### Example
 
 <a class="jsbin-embed" href="http://emberjs.jsbin.com/AqeVuZI/2/embed?live">JS Bin</a>-->
-[setters]: /guides/object-model/computed-properties/
+[setters]: ../../object-model/computed-properties/
 [accounting]: http://josscrowcroft.github.io/accounting.js/
 

@@ -11,7 +11,7 @@ Click on the `View Tree` menu on the left to see your views.
 You can click on any model, controller, view, or component
 to send them to the [object inspector][object-inspector-guide].
 
-[object-inspector-guide]: /guides/ember-inspector/object-inspector
+[object-inspector-guide]: object-inspector
 
 
 <img src="/images/guides/ember-inspector/view-tree-object-inspector.png" width="680">
@@ -85,4 +85,3 @@ Instrumentation however adds its own delay to rendering, so the
 numbers you see are not an exact representation of production apps.
 These numbers should be used to compare rendering times, and not as a
 replacement for performance benchmarking.
-

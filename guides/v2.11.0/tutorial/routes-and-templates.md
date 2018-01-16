@@ -1,7 +1,7 @@
 In Super Rentals we want to arrive at a home page which shows a list of rentals.
 From there, we should be able to navigate to an about page and a contact page.
 
-Ember provides a [robust routing mechanism](../../routing/) to define logical, addressable pages within our application.
+Ember provides a [robust routing mechanism](../routing/) to define logical, addressable pages within our application.
 
 ## An About Route
 
@@ -42,7 +42,7 @@ A route is composed of the following parts:
 Opening `/app/router.js` shows that there is a new line of code for the _about_ route, calling `this.route('about')` in the `map` function.
 Calling the function `this.route(routeName)`, tells the Ember router to load the specified route handler when the user navigates to the URI with the same name.
 In this case when the user navigates to `/about`, the route handler represented by `/app/routes/about.js` will be used.
-See the guide for [defining routes](../../routing/defining-your-routes/) for more details.
+See the guide for [defining routes](../routing/defining-your-routes/) for more details.
 
 ```app/router.js
 import Ember from 'ember';
@@ -123,7 +123,7 @@ so let's add some navigational links at the bottom of each page.
 Let's make a contact link on the about page and an about link on the contact page.
 
 Ember has built-in template **helpers** that provide functionality for interacting with the framework.
-The [`{{link-to}}`](../../templates/links/) helper provides special ease of use features in linking to Ember routes.
+The [`{{link-to}}`](../templates/links/) helper provides special ease of use features in linking to Ember routes.
 Here we will use the `{{link-to}}` helper in our code to perform a basic link between routes:
 
 ```app/templates/about.hbs{+9,+10,+11}
@@ -215,13 +215,13 @@ installing route-test
 
 Unlike the other route handlers we've made so far, the `index` route is special:
 it does NOT require an entry in the router's mapping.
-We'll learn more about why the entry isn't required when we look at [nested routes](../subroutes) in Ember.
+We'll learn more about why the entry isn't required when we look at [nested routes](subroutes) in Ember.
 
 Let's start by implementing the unit test for our new index route.
 
 Since all we want to do is transition people who visit `/` to `/rentals`,
 our unit test will make sure that the route's [`replaceWith`](http://emberjs.com/api/classes/Ember.Route.html#method_replaceWith) method is called with the desired route.
-`replaceWith` is similar to the route's [`transitionTo`](../../routing/redirection/#toc_transitioning-before-the-model-is-known) function; the difference being that `replaceWith` will replace the current URL in the browser's history, while `transitionTo` will add to the history.
+`replaceWith` is similar to the route's [`transitionTo`](../routing/redirection/#toc_transitioning-before-the-model-is-known) function; the difference being that `replaceWith` will replace the current URL in the browser's history, while `transitionTo` will add to the history.
 Since we want our `rentals` route to serve as our home page, we will use the `replaceWith` function.
 
 In our test, we'll make sure that our index route is redirecting by stubbing the `replaceWith` method for the route and asserting that the `rentals` route is passed when called.

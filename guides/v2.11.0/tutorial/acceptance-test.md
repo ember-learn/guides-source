@@ -14,7 +14,7 @@ We want our application to:
 * Link to contact information.
 * Filter the list of rentals by city.
 
-We can represent these goals as [Ember acceptance tests](../../testing/acceptance/).
+We can represent these goals as [Ember acceptance tests](../testing/acceptance/).
 Acceptance tests interact with our app like an actual person would, but can be automated, ensuring that our app doesn't break in the future.
 
 We'll start by using Ember CLI to generate a new acceptance test:
@@ -103,7 +103,7 @@ test('should redirect to rentals route', function (assert) {
 A few helpers are in play in this test:
 
 * The [`visit`](http://emberjs.com/api/classes/Ember.Test.html#method_visit) helper loads the route specified for the given URL.
-* The [`andThen`](../../testing/acceptance/#toc_wait-helpers) helper waits for all previously called test helpers to complete before executing the function you provide it.
+* The [`andThen`](../testing/acceptance/#toc_wait-helpers) helper waits for all previously called test helpers to complete before executing the function you provide it.
 In this case, we need to wait for the page to load after `visit`, so that we can assert that the listings are displayed.
 * [`currentURL`](http://emberjs.com/api/classes/Ember.Test.html#method_currentURL) returns the URL that test application is currently visiting.
 
@@ -140,7 +140,7 @@ test('should link to contact information', function (assert) {
   });
 });
 ```
-Note that we can call two [asynchronous test helpers](../../testing/acceptance/#toc_asynchronous-helpers) in a row without needing to use `andThen` or a promise.
+Note that we can call two [asynchronous test helpers](../testing/acceptance/#toc_asynchronous-helpers) in a row without needing to use `andThen` or a promise.
 This is because each asynchronous test helper is made to wait until other test helpers are complete.
 
 After testing URLs, we'll drill down on our main rental page to test that we can filter the list down according to a city search criteria.

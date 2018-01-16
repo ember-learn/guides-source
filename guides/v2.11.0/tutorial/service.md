@@ -95,7 +95,7 @@ Then update the component to append the map output to its inner container elemen
 We'll add a maps service injection, and call the `getMapElement` function with the provided location.
 
 We then append the map element we get back from the service by implementing `didInsertElement`,
-which is a [component lifecycle hook](../../components/the-component-lifecycle/#toc_integrating-with-third-party-libraries-with-code-didinsertelement-code).
+which is a [component lifecycle hook](../components/the-component-lifecycle/#toc_integrating-with-third-party-libraries-with-code-didinsertelement-code).
 This function gets executed at render time after the component's markup gets inserted into the DOM.
 
 ```app/components/location-map.js
@@ -118,7 +118,7 @@ export default Ember.Component.extend({
 At this point we should have a passing component integration test. However, no maps show up when we view our web page.
 To actually generate the maps, we'll implement the maps service.
 
-Accessing our maps API through a [service](../../applications/services) will give us several benefits
+Accessing our maps API through a [service](../applications/services) will give us several benefits
 
 * It is injected with a [service locator](https://en.wikipedia.org/wiki/Service_locator_pattern), meaning it will abstract the maps API from the code that uses it, allowing for easier refactoring and maintenance.
 * It is lazy-loaded, meaning it won't be initialized until it is called the first time.
@@ -219,7 +219,7 @@ export default Ember.Service.extend({
 ### Making Google Maps Available
 
 Before implementing the map utility, we need to make the 3rd party map API available to our Ember app.
-There are several ways to include 3rd party libraries in Ember. See the guides section on [managing dependencies](../../addons-and-dependencies/managing-dependencies/) as a starting point when you need to add one.
+There are several ways to include 3rd party libraries in Ember. See the guides section on [managing dependencies](../addons-and-dependencies/managing-dependencies/) as a starting point when you need to add one.
 
 Since Google provides its map API as a remote script, we'll use curl to download it into our project's vendor directory.
 
@@ -341,7 +341,7 @@ moduleForAcceptance('Acceptance | list rentals', {
 ```
 
 What's happening here is we are adding our own stub maps service that simply creates an empty div.
-Then we are putting it in Ember's [registry](../../applications/dependency-injection#toc_factory-registrations), and injecting it into the `location-map` component that uses it.
+Then we are putting it in Ember's [registry](../applications/dependency-injection#toc_factory-registrations), and injecting it into the `location-map` component that uses it.
 That way every time that component is created, our stub map service gets injected over the Google maps service.
 Now when we run our acceptance tests, you'll notice that maps do not get rendered as the test runs.
 

@@ -366,6 +366,6 @@ with Embedded Components</a>
 
 <script src="http://static.jsbin.com/js/embed.js"></script>
 
-[Unit Testing Basics]: /guides/testing/unit-testing-basics
-[Integration Test Helpers]: /guides/testing/test-helpers
+[Unit Testing Basics]: unit-testing-basics
+[Integration Test Helpers]: test-helpers
 [layout]: http://emberjs.com/api/classes/Ember.Component.html#property_layout

@@ -6,8 +6,8 @@ Up to this point, we've generated four top level routes.
 * The `index` route, which we've set up to redirect to the `rentals` route.
 
 Our `rentals` route is going to serve multiple functions.
-From our [acceptance tests](../acceptance-test), we've shown that we want our users to be able to browse and search rentals, as well as see detailed information for individual rentals.
-To satisfy that requirement, we are going to make use of Ember's [nested route capability](../../routing/defining-your-routes/#toc_nested-routes).
+From our [acceptance tests](acceptance-test), we've shown that we want our users to be able to browse and search rentals, as well as see detailed information for individual rentals.
+To satisfy that requirement, we are going to make use of Ember's [nested route capability](../routing/defining-your-routes/#toc_nested-routes).
 
 By the end of this section we want to have created the following new routes:
 
@@ -18,7 +18,7 @@ The `show` route will get substituted with the id of the rental being shown (for
 
 ## The Parent Route
 
-Previously, in the [Routes and Templates tutorial](../routes-and-templates), we set up a `rentals` route.
+Previously, in the [Routes and Templates tutorial](routes-and-templates), we set up a `rentals` route.
 
 Opening the template for this route reveals an outlet underneath the route's general page information.
 At the bottom of the template, you'll notice an `{{outlet}}` helper.
@@ -76,7 +76,7 @@ Ember knows that the default action is to take the user to the `index` route.
 However, you can add the `index` route if you want to customize it.
 For example, you can modify the `index` route's path by specifying `this.route('index', { path: '/custom-path'})`.
 
-In the section on [using Ember Data](../ember-data#toc_updating-the-model-hook), we added a call to fetch all rentals.
+In the section on [using Ember Data](ember-data#toc_updating-the-model-hook), we added a call to fetch all rentals.
 Let's implement our newly generated `rentals/index` route by moving this `findAll` call from the parent `rentals` route to our new sub-route.
 
 ```app/routes/rentals.js{-2,-3,-4}
@@ -147,13 +147,13 @@ export default RentalsController;
 
 Next, we will want to create a sub-route that will list information for a specific rental.
 To do this, we will need to update a couple of files.
-To find a specific rental, we will want to use Ember Data's `findRecord` function [(see "Finding Records" for more details)](../../models/finding-records/).
+To find a specific rental, we will want to use Ember Data's `findRecord` function [(see "Finding Records" for more details)](../models/finding-records/).
 The `findRecord` function requires that we search by a unique key.
 
 While on the `show` route, we will also want to show additional information about our specific rental.
 
 In order to do this, we will need to modify the Mirage `config.js` file that we added
-back in the [Installing Addons section](../installing-addons). We will add a new route
+back in the [Installing Addons section](installing-addons). We will add a new route
 handler to return a specific rental:
 
 ```mirage/config.js{+57,+58,+59,+60}
@@ -288,7 +288,7 @@ export default Ember.Route.extend({
 ```
 
 Since we added `:rental_id` to the `show` path in our router, `rental_id` is now available in our `model` hook.
-When we call `this.get('store').findRecord('rental', params.rental_id)`, Ember Data queries `/rentals/our-id` using a HTTP GET request ([learn more about that here](../../models/)).
+When we call `this.get('store').findRecord('rental', params.rental_id)`, Ember Data queries `/rentals/our-id` using a HTTP GET request ([learn more about that here](../models/)).
 
 ## Adding the Rental To Our Template
 
@@ -354,7 +354,7 @@ Clicking on the title will load the detail page for that rental.
 ```
 ![Rental Page Nested Index Route](../../images/subroutes/subroutes-super-rentals-index.png)
 
-At this point you can do a [deployment](../deploying/) and share your Super Rentals application to the world
+At this point you can do a [deployment](deploying/) and share your Super Rentals application to the world
 or you can use this as a base to explore other Ember features and addons.
 Regardless, we hope this has helped you get started with creating your own ambitious applications with Ember!
 
@@ -375,6 +375,6 @@ test('should show details for a specific rental', function (assert) {
 });
 ```
 
-At this point all our tests should pass, including the [list of acceptance tests](../acceptance-test) we created as our beginning requirements.
+At this point all our tests should pass, including the [list of acceptance tests](acceptance-test) we created as our beginning requirements.
 
 ![Acceptance Tests Pass](../../images/subroutes/all-acceptance-pass.png)

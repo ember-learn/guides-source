@@ -63,7 +63,7 @@ account and delete it.
 In Ember, each component can
 have a property called `actions`, where you put functions that can be
 [invoked by the user interacting with the component
-itself](../../templates/actions/), or by child components.
+itself](../templates/actions/), or by child components.
 
 Let's look at the parent component's JavaScript file. In this example,
 imagine we have a parent component called `user-profile` that shows the
@@ -71,7 +71,7 @@ user's profile to them.
 
 We'll implement an action on the parent component called
 `userDidDeleteAccount()` that, when called, gets a hypothetical `login`
-[service](../../applications/services/) and calls the service's
+[service](../applications/services/) and calls the service's
 `deleteUser()` method.
 
 ```app/components/user-profile.js

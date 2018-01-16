@@ -85,5 +85,5 @@ test('updates the currency sign when it changes', function(assert) {
 });
 ```
 
-[Testing Components]: ../unit-testing-basics
-[Writing Helpers]: ../../templates/writing-helpers
+[Testing Components]: unit-testing-basics
+[Writing Helpers]: ../templates/writing-helpers

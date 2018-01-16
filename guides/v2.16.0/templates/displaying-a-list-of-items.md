@@ -45,7 +45,7 @@ The above template will render HTML like this:
 Like other helpers, the `{{#each}}` helper is bound.  If a new item is added to
 or removed from the iterated array, the DOM will be updated without having to
 write any additional code. That said, Ember requires that you use [special
-methods](../../object-model/enumerables/#toc_use-of-observable-methods-and-properties)
+methods](../object-model/enumerables/#toc_use-of-observable-methods-and-properties)
 to update bound arrays. Also be aware that [using the `key` option with an each
 helper](https://www.emberjs.com/api/ember/2.16/classes/Ember.Templates.helpers/methods/if?anchor=each)
 can improve re-render performance when an array is replaced with another

@@ -33,4 +33,4 @@ isRelatedBinding: "content.isRelated" // value resolves to boolean
 
 <a class="jsbin-embed" href="http://jsbin.com/jogizaqepe/2/embed?live">JS Bin</a>
 
-See [Customizing a Component's Element](../../components/customizing-a-components-element/) for further examples. -->
+See [Customizing a Component's Element](../../components/customizing-a-components-element) for further examples. -->

@@ -1,4 +1,4 @@
-As explained in the [routing guide](../defining-your-routes), whenever you define a new route,
+As explained in the [routing guide](defining-your-routes), whenever you define a new route,
 Ember.js attempts to find corresponding Route, Controller, View, and Template
 classes named according to naming conventions. If an implementation of any of
 these objects is not found, appropriate objects will be generated in memory for you.

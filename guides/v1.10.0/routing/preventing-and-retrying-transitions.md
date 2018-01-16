@@ -47,7 +47,7 @@ called. This will result in the browser displaying the new URL, even if
 ### Aborting Transitions Within `model`, `beforeModel`, `afterModel`
 
 The `model`, `beforeModel`, and `afterModel` hooks described in
-[Asynchronous Routing](../asynchronous-routing)
+[Asynchronous Routing](asynchronous-routing)
 each get called with a transition object. This makes it possible for
 destination routes to abort attempted transitions.
 

@@ -63,7 +63,7 @@ account and delete it.
 In Ember, each component can
 have a property called `actions`, where you put functions that can be
 [invoked by the user interacting with the component
-itself](../../templates/actions/), or by child components.
+itself](../templates/actions/), or by child components.
 
 Let's look at the parent component's JavaScript file. In this example,
 imagine we have a parent component called `user-profile` that shows the
@@ -71,7 +71,7 @@ user's profile to them.
 
 We'll implement an action on the parent component called
 `userDidDeleteAccount()` that, when called, gets a hypothetical `login`
-[service](../../applications/services/) and calls the service's
+[service](../applications/services/) and calls the service's
 `deleteUser()` method.
 
 ```app/components/user-profile.js
@@ -245,7 +245,7 @@ The action helper will add the arguments provided in the template to the call.
 
 Action arguments curry, meaning that you can provide partial arguments to the action helper and provide the rest of the
 arguments when you call the function within the component javascript file.
-For example, our `button-with-confirmation` component will now [yield](../wrapping-content-in-a-component/) the content
+For example, our `button-with-confirmation` component will now [yield](wrapping-content-in-a-component/) the content
 of the confirmation dialog to collect extra information to be sent along with the `onConfirm` action:
 
 ```app/templates/components/button-with-confirmation.hbs

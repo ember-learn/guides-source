@@ -163,8 +163,7 @@ You should begin a run loop when the callback fires.
 The `Ember.run` method can be used to create a run loop.
 In this example, jQuery and `Ember.run` are used to handle a click event and run some Ember code.
 
-This example uses the `=>` function syntax, which is a [new ES2015 syntax for callback functions]
-(https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+This example uses the `=>` function syntax, which is a [new ES2015 syntax for callback functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
 that provides a lexical `this`.
 If this syntax is new,
 think of it as a function that has the same `this` as the context it is defined in.

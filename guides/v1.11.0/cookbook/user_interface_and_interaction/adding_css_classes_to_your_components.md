@@ -32,4 +32,4 @@ classNames: ['bold', 'italic', 'blue']
 
 <a class="jsbin-embed" href="http://jsbin.com/gihupoqeja/2/embed?live">JS Bin</a>
 
-See [Customizing a Component's Element](../../components/customizing-a-components-element/) for further examples. -->
+See [Customizing a Component's Element](../../components/customizing-a-components-element) for further examples. -->

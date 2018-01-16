@@ -137,7 +137,7 @@ We want the component to simply provide an input field and yield the results lis
 {{yield results}}
 ```
 
-The template contains an [`{{input}}`](../../templates/input-helpers) helper that renders as a text field, in which the user can type a pattern to filter the list of cities used in a search. 
+The template contains an [`{{input}}`](../templates/input-helpers) helper that renders as a text field, in which the user can type a pattern to filter the list of cities used in a search. 
 The `value` property of the `input` will be bound to the `value` property in our component.
 The `key-up` property will be bound to the `handleFilterEntry` action.
 
@@ -169,7 +169,7 @@ export default Ember.Component.extend({
 We use the `init` hook to seed our initial listings by calling the `filter` action with an empty value.
 Our `handleFilterEntry` action calls our filter action based on the `value` attribute set by our input helper.
 
-Both the `filter` action is [passed](../../components/triggering-changes-with-actions/#toc_passing-the-action-to-the-component) in by the calling object. This is a pattern known as _closure actions_.
+Both the `filter` action is [passed](../components/triggering-changes-with-actions/#toc_passing-the-action-to-the-component) in by the calling object. This is a pattern known as _closure actions_.
 
 To implement these actions, we'll create the index controller for the application.  The index controller is executed when the user goes to the base (index) route for the application.
 

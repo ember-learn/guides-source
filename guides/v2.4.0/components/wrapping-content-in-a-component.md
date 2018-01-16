@@ -17,7 +17,7 @@ in another template:
 ```
 
 (See [Passing Properties to a
-Component](../passing-properties-to-a-component/) for
+Component](passing-properties-to-a-component/) for
 more.)
 
 In this case, the content we wanted to display came from the model. But
