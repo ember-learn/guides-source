@@ -1,7 +1,3 @@
----
-title: Quick Start
----
-
 This guide will teach you how to build a simple app using Ember from scratch.
 
 We'll cover these steps:
@@ -52,7 +48,7 @@ Let's make sure everything is working properly.
 
 ```sh
 cd ember-quickstart
-ember serve
+ember server
 ```
 
 After a few seconds, you should see output that looks like this:
@@ -72,7 +68,7 @@ We will start by editing the `application` template.
 This template is always on screen while the user has your application loaded.
 In your editor, open `app/templates/application.hbs` and change it to the following:
 
-```app/templates/application.hbs{.line-numbers}
+```app/templates/application.hbs
 <h1>PeopleTracker</h1>
 
 {{outlet}}
@@ -90,7 +86,7 @@ To do that, the first step is to create a route.
 For now, you can think of routes as being the different pages that make up your application.
 
 Ember comes with _generators_ that automate the boilerplate code for common tasks.
-To generate a route, type this in a new terminal window in your `ember-quickstart` directory:
+To generate a route, type this in your terminal:
 
 ```sh
 ember generate route scientists
