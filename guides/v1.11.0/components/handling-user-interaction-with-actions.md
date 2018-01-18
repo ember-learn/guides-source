@@ -18,14 +18,14 @@ bubble.
 For example, imagine the following component that shows a post's title.
 When the title is clicked, the entire post body is shown:
 
-```app/templates/components/post-summary.hbs
+```handlebars {data-filename=app/templates/components/post-summary.hbs}
 <h3 {{action "toggleBody"}}>{{title}}</h3>
 {{#if isShowingBody}}
   <p>{{{body}}}</p>
 {{/if}}
 ```
 
-```app/components/post-summary.js
+```javascript {data-filename=app/components/post-summary.js}
 export default Ember.Component.extend({
   actions: {
     toggleBody: function() {

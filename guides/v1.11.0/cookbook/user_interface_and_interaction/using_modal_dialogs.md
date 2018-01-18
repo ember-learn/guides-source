@@ -26,7 +26,7 @@ In a template:
 
 In your application route:
 
-```app/routes/application.js
+```javascript {data-filename=app/routes/application.js}
 export default Ember.Route.extend({
   actions: {
     openModal: function(modalName) {

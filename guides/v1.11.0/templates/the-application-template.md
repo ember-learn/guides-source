@@ -8,7 +8,7 @@ based on the current URL.
 
 Here's an example template:
 
-```app/templates/application.hbs
+```handlebars {data-filename=app/templates/application.hbs}
 <header>
   <h1>Igor's Blog</h1>
 </header>

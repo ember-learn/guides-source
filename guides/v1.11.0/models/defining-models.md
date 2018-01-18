@@ -12,7 +12,7 @@ Make sure to include `ember-data.js` after `ember.js`
 
 For every model in your application, create a subclass of `DS.Model`:
 
-```app/models/person.js
+```javascript {data-filename=app/models/person.js}
 export default DS.Model.extend();
 ```
 
@@ -22,7 +22,7 @@ specify a record's type using the model name. For example, the store's
 `find()` method expects a string as the first argument to tell it what
 type of record to find:
 
-```js
+```javascript
 store.find('person', 1);
 ```
 
@@ -49,7 +49,7 @@ The table below shows how model names map to model file paths.
 
 You can specify which attributes a model has by using `DS.attr`.
 
-```app/models/person.js
+```javascript {data-filename=app/models/person.js}
 export default DS.Model.extend({
   firstName: DS.attr(),
   lastName: DS.attr(),
@@ -65,7 +65,7 @@ You can use attributes just like any other property, including as part of a
 computed property. Frequently, you will want to define computed
 properties that combine or transform primitive attributes.
 
-```app/models/person.js
+```javascript {data-filename=app/models/person.js}
 export default DS.Model.extend({
   firstName: attr(),
   lastName: attr(),
@@ -83,7 +83,7 @@ If you don't specify the type of the attribute, it will be whatever was
 provided by the server. You can make sure that an attribute is always
 coerced into a particular type by passing a `type` to `attr`:
 
-```app/models/person.js
+```javascript {data-filename=app/models/person.js}
 export default DS.Model.extend({
   birthday: DS.attr('date')
 });
@@ -129,13 +129,13 @@ define how your models relate to each other.
 To declare a one-to-one relationship between two models, use
 `DS.belongsTo`:
 
-```app/models/user.js
+```javascript {data-filename=app/models/user.js}
 export default DS.Model.extend({
   profile: DS.belongsTo('profile')
 });
 ```
 
-```app/models/profile.js
+```javascript {data-filename=app/models/profile.js}
 export default DS.Model.extend({
   user: DS.belongsTo('user')
 });
@@ -146,13 +146,13 @@ export default DS.Model.extend({
 To declare a one-to-many relationship between two models, use
 `DS.belongsTo` in combination with `DS.hasMany`, like this:
 
-```app/models/post.js
+```javascript {data-filename=app/models/post.js}
 export default DS.Model.extend({
   comments: DS.hasMany('comment')
 });
 ```
 
-```app/models/comment.js
+```javascript {data-filename=app/models/comment.js}
 export default DS.Model.extend({
   post: DS.belongsTo('post')
 });
@@ -163,12 +163,12 @@ export default DS.Model.extend({
 To declare a many-to-many relationship between two models, use
 `DS.hasMany`:
 
-```app/models/post.js
+```javascript {data-filename=app/models/post.js}
 export default DS.Model.extend({
   tags: DS.hasMany('tag')
 });
 
-```app/models/tag.js
+```javascript {data-filename=app/models/tag.js}
 export default DS.Model.extend({
   posts: DS.hasMany('post')
 });
@@ -186,7 +186,7 @@ However, sometimes you may have multiple `belongsTo`/`hasMany`s for the
 same type. You can specify which property on the related model is the
 inverse using `DS.hasMany`'s `inverse` option:
 
-```app/models/comment.js
+```javascript {data-filename=app/models/comment.js}
 export default DS.Model.extend({
   onePost: DS.belongsTo('post'),
   twoPost: DS.belongsTo('post'),
@@ -195,7 +195,7 @@ export default DS.Model.extend({
 });
 ```
 
-```app/models/post.js
+```javascript {data-filename=app/models/post.js}
 export default DS.Model.extend({
   comments: DS.hasMany('comment', {
     inverse: 'redPost'
@@ -211,7 +211,7 @@ When you want to define a reflexive relation, you must either explicitly define
 the other side, and set the explicit inverse accordingly, and if you don't need the
 other side, set the inverse to null.
 
-```app/models/folder.js
+```javascript {data-filename=app/models/folder.js}
 export default DS.Model.extend({
   children: DS.hasMany('folder', {inverse: 'parent'}),
   parent: DS.belongsTo('folder', {inverse: 'children'})
@@ -220,7 +220,7 @@ export default DS.Model.extend({
 
 or
 
-```app/models/folder.js
+```javascript {data-filename=app/models/folder.js}
 export default DS.Model.extend({
   parent: belongsTo('folder', {inverse: null})
 });

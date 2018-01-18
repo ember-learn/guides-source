@@ -6,11 +6,11 @@ Ember.js provides several helpers that allow you to render templates in differen
 
 `{{partial}}` does not change context or scope.  It simply drops the given template into place with the current scope.
 
-```app/templates/author.hbs
+```handlebars {data-filename=app/templates/author.hbs}
 Written by {{author.firstName}} {{author.lastName}}
 ```
 
-```app/templates/post.hbs
+```handlebars {data-filename=app/templates/post.hbs}
 <h1>{{title}}</h1>
 <div>{{body}}</div>
 {{partial "author"}}
@@ -41,18 +41,18 @@ Output:
 
 Modifying the post / author example slightly:
 
-```app/templates/author.hbs
+```handlebars {data-filename=app/templates/author.hbs}
 Written by {{firstName}} {{lastName}}.
 Total Posts: {{postCount}}
 ```
 
-```app/templates/post.hbs
+```handlebars {data-filename=app/templates/post.hbs}
 <h1>{{title}}</h1>
 <div>{{body}}</div>
 {{render "author" author}}
 ```
 
-```app/controllers/author.js
+```javascript {data-filename=app/controllers/author.js}
 export default Ember.Controller.extend({
   postCount: Ember.computed('model.posts.[]', function() {
     return this.get('model.posts.length');

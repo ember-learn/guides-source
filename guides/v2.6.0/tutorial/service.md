@@ -10,7 +10,7 @@ We'll start by displaying the map and work our way back to using the Google Map 
 
 We'll start by adding a component that shows the rental's city on a map.
 
-```app/templates/components/rental-listing.hbs{+19}
+```handlebars {data-filename=app/templates/components/rental-listing.hbs data-diff="+19"}
 <article class="listing">
   <a {{action 'toggleImageSize'}} class="image {{if isWide "wide"}}">
     <img src="{{rental.image}}" alt="">
@@ -49,7 +49,7 @@ To limit the test to validating just this behavior, we'll take advantage of the 
 A stub stands in place of the real object in your application and simulates its behavior.
 In the stub service, define a method that will fetch the map based on location, called `getMapElement`.
 
-```tests/integration/components/location-map-test.js
+```javascript {data-filename=tests/integration/components/location-map-test.js}
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import Ember from 'ember';
@@ -87,7 +87,7 @@ In the example we assert that `calledWithLocation` in our stub is set to the loc
 
 To get the test to pass, add the container element to the component template.
 
-```app/templates/components/location-map.hbs
+```handlebars {data-filename=app/templates/components/location-map.hbs}
 <div class="map-container"></div>
 ```
 
@@ -98,7 +98,7 @@ We then append the map element we get back from the service by implementing `did
 which is a [component lifecycle hook](../../components/the-component-lifecycle/#toc_integrating-with-third-party-libraries-with-code-didinsertelement-code).
 This function gets executed at render time after the component's markup gets inserted into the DOM.
 
-```app/components/location-map.js
+```javascript {data-filename=app/components/location-map.js}
 import Ember from 'ember';
 
 export default Ember.Component.extend({
@@ -137,7 +137,7 @@ If the map element exists in the cache, the service will return it, otherwise it
 
 To test our service, we'll want to assert that locations that have been previously loaded are fetched from cache, while new locations are created using the utility.
 
-```tests/unit/services/maps-test.js
+```javascript {data-filename=tests/unit/services/maps-test.js}
 import { moduleFor, test } from 'ember-qunit';
 import Ember from 'ember';
 
@@ -181,7 +181,7 @@ Also note that the location has been `camelized` in the cache object, so that it
 Now implement the service as follows.  Note that we check if a map already exists for the given location and use that one, otherwise we call a Google Maps utility to create one.
 We abstract our interaction with the maps API behind an Ember utility so that we can test our service without making network requests to Google.
 
-```app/services/maps.js
+```javascript {data-filename=app/services/maps.js}
 import Ember from 'ember';
 import MapUtil from '../utils/google-maps';
 
@@ -233,7 +233,7 @@ curl -o vendor/gmaps.js https://maps.googleapis.com/maps/api/js?v=3.22
 Once in the vendor directory, the script can be built into the app.
 We just need to tell Ember CLI to import it using our build file:
 
-```ember-cli-build.js{+22}
+```javascript {data-filename=ember-cli-build.js data-diff="+22"}
 /*jshint node:true*/
 /* global require, module */
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
@@ -274,7 +274,7 @@ The CLI `generate util` command will create a utility file and a unit test.
 We'll delete the unit test since we don't want to test Google code.
 Our app needs a single function, `createMapElement`, which makes use of `google.maps.Map` to create our map element, `google.maps.Geocoder` to lookup the coordinates of our location, and `google.maps.Marker` to pin our map based on the resolved location.
 
-```app/utils/google-maps.js
+```javascript {data-filename=app/utils/google-maps.js}
 import Ember from 'ember';
 
 const google = window.google;
@@ -321,7 +321,7 @@ To stub these services we simply have to register a stub service that implements
 
 Add the following code after the imports to our acceptance test:
 
-```/tests/acceptance/list-rentals-test.js
+```javascript {data-filename=/tests/acceptance/list-rentals-test.js}
 import Ember from 'ember';
 
 let StubMapsService = Ember.Service.extend({

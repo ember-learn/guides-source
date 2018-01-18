@@ -22,7 +22,7 @@ function on the route.
 Identifying records by slugs is a two step problem. Given a Router
 mapping that looks like this:
 
-```js
+```javascript
 App.Router.map(function() {
   this.route('post', { path: '/post/:post_slug' });
 });
@@ -41,7 +41,7 @@ by a property (other then the id property). Luckily, it is easy to
 extend Ember Data's store object to provide this functionality. The
 code below adds a `findOne` method to the store.
 
-```js
+```javascript
 App.ApplicationStore = DS.Store.extend({
   findOne: function() {
     return this.find.apply(this, arguments).then(function(results) {
@@ -54,7 +54,7 @@ App.ApplicationStore = DS.Store.extend({
 Using `findOne` we can easily fetch a record by its `slug` property in
 the Route's model hook.
 
-```js
+```javascript
 App.PostRoute = Ember.Route.extend({
   model: function(params) {
     return this.store.findOne('post', {slug: params.post_slug});
@@ -82,7 +82,7 @@ Unfortunately it will generate an anchor tag that includes the `Post`'s
 You can work around this behavior by defining a custom `serialize`
 method on the route.
 
-```js
+```javascript
 App.PostRoute = Ember.Route.extend({
   serialize: function(model) {
     return {

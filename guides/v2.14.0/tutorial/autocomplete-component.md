@@ -22,7 +22,7 @@ which allows a Handlebars template to be rendered _inside_ the component's templ
 
 In this case we are passing, or "yielding", our filter data to the inner markup as a variable called `rentals` (line 14).
 
-```app/templates/rentals.hbs{+12,+13,+14,+15,+16,+17,+18,+19,+20,-21,-22,-23}
+```handlebars {data-filename=app/templates/rentals.hbs data-diff="+12,+13,+14,+15,+16,+17,+18,+19,+20,-21,-22,-23"}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>Welcome!</h2>
@@ -51,7 +51,7 @@ In this case we are passing, or "yielding", our filter data to the inner markup 
 
 We want the component to simply provide an input field and yield the results list to its block, so our template will be simple:
 
-```app/templates/components/list-filter.hbs
+```handlebars {data-filename=app/templates/components/list-filter.hbs}
 {{input value=value
         key-up=(action 'handleFilterEntry')
         class="light"
@@ -70,7 +70,7 @@ The `key-up` property will be bound to the `handleFilterEntry` action.
 
 Here is what the component's JavaScript looks like:
 
-```app/components/list-filter.js
+```javascript {data-filename=app/components/list-filter.js}
 import Ember from 'ember';
 
 export default Ember.Component.extend({
@@ -118,7 +118,7 @@ ember g controller rentals
 
 Now, define your new controller like so:
 
-```app/controllers/rentals.js
+```javascript {data-filename=app/controllers/rentals.js}
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
@@ -141,7 +141,7 @@ The result of the query is returned to the caller.
 For this action to work, we need to replace our Mirage `config.js` file with the following, so that it can respond to our queries.
 Instead of simply returning the list of rentals, our Mirage HTTP GET handler for `rentals` will return rentals matching the string provided in the URL query parameter called `city`.
 
-```mirage/config.js
+```javascript {data-filename=mirage/config.js}
 export default function() {
   this.namespace = '/api';
 
@@ -214,7 +214,7 @@ similar to [how we tested our rental listing component earlier](../simple-compon
 Lets begin by opening the component integration test created when we generated our `list-filter` component, `tests/integration/components/list-filter-test.js`.
 Remove the default test, and create a new test that verifies that by default, the component will list all items.
 
-```tests/integration/components/list-filter-test.js
+```javascript {data-filename=tests/integration/components/list-filter-test.js}
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
@@ -229,7 +229,7 @@ test('should initially load all listings', function (assert) {
 Our list-filter component takes a function as an argument, used to find the list of matching rentals based on the filter string provided by the user.
 We provide an action function by setting it to the local scope of our test by calling `this.on`.
 
-```tests/integration/components/list-filter-test.js{+3,+5,+6,+13,+14,+15,+16,+17,+18,+19,+20,+21}
+```javascript {data-filename=tests/integration/components/list-filter-test.js data-diff="+3,+5,+6,+13,+14,+15,+16,+17,+18,+19,+20,+21"}
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import RSVP from 'rsvp';
@@ -270,7 +270,7 @@ Since our component is expecting the filter process to be asynchronous, we retur
 
 Next, we'll add the call to render the component to show the cities we've provided above.
 
-```tests/integration/components/list-filter-test.js{+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33,+34,+35,+36}
+```javascript {data-filename=tests/integration/components/list-filter-test.js data-diff="+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33,+34,+35,+36"}
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import RSVP from 'rsvp';
@@ -321,7 +321,7 @@ If you return a promise from a QUnit test, the test will wait to finish until th
 In this case our test completes when the `wait` helper decides that processing is finished,
 and the function we provide that asserts the resulting state is completed.
 
-```tests/integration/components/list-filter-test.js{+3,+37,+38,+39,+40}
+```javascript {data-filename=tests/integration/components/list-filter-test.js data-diff="+3,+37,+38,+39,+40"}
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import wait from 'ember-test-helpers/wait';
@@ -369,7 +369,7 @@ For our second test, we'll check that typing text in the filter will actually ap
 
 We force the action by generating a `keyUp` event on our input field, and then assert that only one item is rendered.
 
-```tests/integration/components/list-filter-test.js
+```javascript {data-filename=tests/integration/components/list-filter-test.js}
 test('should update with matching listings', function (assert) {
   this.on('filterByCity', (val) => {
     if (val === '') {
@@ -412,7 +412,7 @@ We'll verify that a user visiting the rentals page can enter text into the searc
 Open our existing acceptance test, `tests/acceptance/list-rentals-test.js`, and implement the test labeled "should filter the list of rentals by city".
 
 
-```/tests/acceptance/list-rentals-test.js
+```javascript {data-filename=/tests/acceptance/list-rentals-test.js}
 test('should filter the list of rentals by city.', function (assert) {
   visit('/');
   fillIn('.list-filter input', 'Seattle');

@@ -16,7 +16,7 @@ controller.
 
 For example, this `application.hbs` template will render a first and last name:
 
-```app/templates/application.hbs
+```handlebars {data-filename=app/templates/application.hbs}
 Hello, <strong>{{firstName}} {{lastName}}</strong>!
 ```
 
@@ -28,7 +28,7 @@ To provide a `firstName` and `lastName` to the above template, properties
 must be added to the application controller. If you are following along with
 an Ember CLI application, you may need to create this file:
 
-```app/controllers/application.js
+```javascript {data-filename=app/controllers/application.js}
 import Ember from 'ember';
 
 export default Ember.Controller.extend({

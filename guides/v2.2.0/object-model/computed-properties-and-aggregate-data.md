@@ -4,7 +4,7 @@ to calculate how many remain incomplete based on their `isDone` property.
 
 To facilitate this, Ember provides the `@each` key illustrated below:
 
-```app/components/todos.js
+```javascript {data-filename=app/components/todos.js}
 export default Ember.Component.extend({
   todos: [
     Ember.Object.create({ isDone: true }),
@@ -63,7 +63,7 @@ case use the `[]` key instead of `@each`. Computed properties dependent on an ar
 using the `[]` key will only update if items are added to or removed from the array,
 or if the array property is set to a different array. For example:
 
-```app/components/todos.js
+```javascript {data-filename=app/components/todos.js}
 export default Ember.Component.extend({
   todos: [
     Ember.Object.create({ isDone: true }),

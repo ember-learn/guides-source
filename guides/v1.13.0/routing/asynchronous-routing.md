@@ -15,7 +15,7 @@ with the fulfilled value as its sole argument, and if the promise rejects,
 the rejection handler gets called with a reason for the rejection as its
 sole argument. For example:
 
-```js
+```javascript
 var promise = fetchTheAnswer();
 
 promise.then(fulfill, reject);
@@ -32,7 +32,7 @@ function reject(reason) {
 Much of the power of promises comes from the fact that they can be
 chained together to perform sequential asynchronous operations:
 
-```js
+```javascript
 // Note: jQuery AJAX methods return promises
 var usernamesPromise = Ember.$.getJSON('/usernames.json');
 
@@ -78,7 +78,7 @@ will be the fulfilled values from the promises.
 
 A basic example:
 
-```app/routes/tardy.js
+```javascript {data-filename=app/routes/tardy.js}
 export default Ember.Route.extend({
   model() {
     return new Ember.RSVP.Promise(function(resolve) {
@@ -118,7 +118,7 @@ will be fired on that route and bubble up to `route:application`'s
 default error handler unless it is handled by a custom error handler
 along the way, e.g.:
 
-```app/routes/good-for-nothing.js
+```javascript {data-filename=app/routes/good-for-nothing.js}
 export default Ember.Route.extend({
   model() {
     return Ember.RSVP.reject("FAIL");
@@ -149,7 +149,7 @@ Rejected model promises halt transitions, but because promises are chainable,
 you can catch promise rejects within the `model` hook itself and convert
 them into fulfills that won't halt the transition.
 
-```app/routes/funky.js
+```javascript {data-filename=app/routes/funky.js}
 export default Ember.Route.extend({
   model() {
     return iHopeThisWorks().then(null, function() {
@@ -196,7 +196,7 @@ The following is a far-from-exhaustive list of use cases in which
   onward to `model`
 - Loading application code required by this route
 
-```app/routes/secret-articles.js
+```javascript {data-filename=app/routes/secret-articles.js}
 export default Ember.Route.extend({
   beforeModel() {
     if (!this.controllerFor('auth').get('isLoggedIn')) {
@@ -216,7 +216,7 @@ promise) is resolved, and follows the same pause-on-promise semantics as
 and can therefore perform any additional logic that
 depends on the fully resolved value of a model.
 
-```app/routes/articles.js
+```javascript {data-filename=app/routes/articles.js}
 export default Ember.Route.extend({
   model() {
     // `this.store.findAll('article')` returns a promise-like object

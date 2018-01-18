@@ -44,7 +44,7 @@ Calling the function `this.route(routeName)`, tells the Ember router to load the
 In this case when the user navigates to `/about`, the route handler represented by `/app/routes/about.js` will be used.
 See the guide for [defining routes](../../routing/defining-your-routes/) for more details.
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 import Ember from 'ember';
 import config from './config/environment';
 
@@ -66,7 +66,7 @@ This means we don't actually have to change anything in the new `app/routes/abou
 With all of the routing in place from the generator, we can get right to work on coding our template.
 For our `about` page, we'll add some HTML that has a bit of information about the site:
 
-```app/templates/about.hbs
+```handlebars {data-filename=app/templates/about.hbs}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>About Super Rentals</h2>
@@ -95,7 +95,7 @@ and a corresponding route handler in `app/routes/contact.js`.
 
 In the route template `/app/templates/contact.hbs`, we can add the details for contacting our Super Rentals HQ:
 
-```app/templates/contact.hbs
+```handlebars {data-filename=app/templates/contact.hbs}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>Contact Us</h2>
@@ -126,7 +126,7 @@ Ember has built-in template **helpers** that provide functionality for interacti
 The [`{{link-to}}`](../../templates/links/) helper provides special ease of use features in linking to Ember routes.
 Here we will use the `{{link-to}}` helper in our code to perform a basic link between routes:
 
-```app/templates/about.hbs{+9,+10,+11}
+```handlebars {data-filename=app/templates/about.hbs data-diff="+9,+10,+11"}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>About Super Rentals</h2>
@@ -148,7 +148,7 @@ When we look at our about page at [`http://localhost:4200/about`](http://localho
 
 Now, we'll add a link to our contact page so we can navigate back and forth between `about` and `contact`.
 
-```app/templates/contact.hbs
+```handlebars {data-filename=app/templates/contact.hbs}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>Contact Us</h2>
@@ -180,7 +180,7 @@ ember g route rentals
 Let's update the newly generated `app/templates/rentals.hbs` with some basic markup to add some initial content our rentals list page.
 We'll come back to this page later to add in the actual rental properties.
 
-```app/templates/rentals.hbs
+```handlebars {data-filename=app/templates/rentals.hbs}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>Welcome!</h2>
@@ -229,7 +229,7 @@ In our test, we'll make sure that our index route is redirecting by stubbing the
 A `stub` is simply a fake function that we provide to an object we are testing, that takes the place of one that is already there.
 In this case we are stubbing the `replaceWith` function to assert that it is called with what we expect.
 
-```tests/unit/routes/index-test.js
+```javascript {data-filename=tests/unit/routes/index-test.js}
 import { moduleFor, test } from 'ember-qunit';
 
 moduleFor('route:index', 'Unit | Route | index');
@@ -246,7 +246,7 @@ test('should transition to rentals route', function(assert) {
 
 In our index route, we simply add the actual `replaceWith` invocation.
 
-```app/routes/index.js
+```javascript {data-filename=app/routes/index.js}
 import Ember from 'ember';
 
 export default Ember.Route.extend({
@@ -267,7 +267,7 @@ The application template is generated when you create a new project.
 Let's open the application template at `/app/templates/application.hbs`, and add the following banner navigation markup:
 
 
-```app/templates/application.hbs
+```handlebars {data-filename=app/templates/application.hbs}
 <div class="container">
   <div class="menu">
     {{#link-to 'index'}}

@@ -1,7 +1,7 @@
 The model of a controller can represent several records as well as a single
 one. Here, our route's `model` hook returns an array of songs:
 
-```app/routes/songs.js
+```javascript {data-filename=app/routes/songs.js}
 export default Ember.Route.extend({
   model() {
     return this.store.findAll('song');
@@ -12,7 +12,7 @@ export default Ember.Route.extend({
 In the `songs` template, we can use the `{{#each}}` helper to display
 each song:
 
-```app/templates/songs.hbs
+```handlebars {data-filename=app/templates/songs.hbs}
 <h1>Playlist</h1>
 
 <ul>
@@ -27,7 +27,7 @@ the model it hosts. For example, imagine we want to display the
 number of songs that are over 30 seconds long. We can add a new computed
 property called `longSongCount` to the controller:
 
-```app/controllers/songs.js
+```javascript {data-filename=app/controllers/songs.js}
 export default Ember.Controller.extend({
   longSongCount: Ember.computed('model.@each.duration', function() {
     let songs = this.get('model');
@@ -41,7 +41,7 @@ export default Ember.Controller.extend({
 
 Now we can use this property in our template:
 
-```app/templates/songs.hbs
+```handlebars {data-filename=app/templates/songs.hbs}
 <ul>
   {{#each model as |song|}}
     <li>{{song.name}} by {{song.artist}}</li>

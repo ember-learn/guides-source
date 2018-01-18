@@ -19,7 +19,7 @@ made on the form, which can make for a pretty frustrating user experience.
 
 Here's one way this situation could be handled:
 
-```app/routes/form.js
+```javascript {data-filename=app/routes/form.js}
 export default Ember.Route.extend({
   actions: {
     willTransition: function(transition) {
@@ -51,7 +51,7 @@ The `model`, `beforeModel`, and `afterModel` hooks described in
 each get called with a transition object. This makes it possible for
 destination routes to abort attempted transitions.
 
-```app/routes/disco.js
+```javascript {data-filename=app/routes/disco.js}
 export default Ember.Route.extend({
   beforeModel: function(transition) {
     if (new Date() < new Date("January 1, 1980")) {
@@ -69,7 +69,7 @@ for this is having an authenticated route redirect the user to a login
 page, and then redirecting them back to the authenticated route once
 they've logged in.
 
-```app/routes/some-authenticated.js
+```javascript {data-filename=app/routes/some-authenticated.js}
 export default Ember.Route.extend({
   beforeModel: function(transition) {
     if (!this.controllerFor('auth').get('userIsLoggedIn')) {
@@ -81,7 +81,7 @@ export default Ember.Route.extend({
 });
 ```
 
-```app/controllers/login.js
+```javascript {data-filename=app/controllers/login.js}
 export default Ember.Controller.extend({
   actions: {
     login: function() {

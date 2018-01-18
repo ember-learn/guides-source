@@ -4,7 +4,7 @@ appropriate template to the screen.
 By default, a route handler will render the template with the same name as the
 route. Take this router:
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('posts', function() {
     this.route('new');
@@ -23,7 +23,7 @@ the `application.hbs`'s `{{outlet}}`.
 If you want to render a template other than the default one, implement the
 `renderTemplate` hook:
 
-```app/routes/posts.js
+```javascript {data-filename=app/routes/posts.js}
 export default Ember.Route.extend({
   renderTemplate() {
     this.render('favoritePosts');

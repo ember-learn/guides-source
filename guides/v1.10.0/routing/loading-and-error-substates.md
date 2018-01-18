@@ -15,7 +15,7 @@ the transition will resume.
 
 Consider the following:
 
-```js
+```javascript
 App.Router.map(function() {
   this.resource('foo', function() { // -> FooRoute
     this.route('slowModel');        // -> FooSlowModelRoute
@@ -45,7 +45,7 @@ So, how can we provide some visual feedback during the transition?
 Ember provides a default implementation of the `loading` process that implements
 the following loading substate behavior.
 
-```js
+```javascript
 App.Router.map(function() {
   this.resource('foo', function() {       // -> FooRoute
     this.resource('foo.bar', function() { // -> FooBarRoute
@@ -124,7 +124,7 @@ If the `loading` handler is not defined at the specific route,
 the event will continue to bubble above a transition's pivot
 route, providing the `ApplicationRoute` the opportunity to manage it.
 
-```js
+```javascript
 App.FooSlowModelRoute = Ember.Route.extend({
   model: function() {
     return somePromiseThatTakesAWhileToResolve();
@@ -145,7 +145,7 @@ The `loading` handler provides the ability to decide what to do during
 the loading process. If the last loading handler is not defined
 or returns `true`, Ember will perform the loading substate behavior.
 
-```js
+```javascript
 App.ApplicationRoute = Ember.Route.extend({
   actions: {
     loading: function(transition, originRoute) {
@@ -167,7 +167,7 @@ Similar to how the default `loading` event handlers are implemented,
 the default `error` handlers will look for an appropriate error substate to
 enter, if one can be found.
 
-```js
+```javascript
 App.Router.map(function() {
   this.resource('articles', function() { // -> ArticlesRoute
     this.route('overview');              // -> ArticlesOverviewRoute
@@ -196,7 +196,7 @@ logged.
 Routes with dynamic segments are often mapped to a mental model of "two
 separate levels." Take for example:
 
-```js
+```javascript
 App.Router.map(function() {
   this.resource('foo', {path: '/foo/:id'}, function() {
     this.route('baz');
@@ -220,7 +220,7 @@ intentionally parallel behavior as the `foo` route is never successfully
 entered. In order to create a `foo` scope for errors and render `foo/error`
 into `foo`'s `outlet` you would need to split the dynamic segment:
 
-```js
+```javascript
 App.Router.map(function() {
   this.resource('foo', {path: '/foo'}, function() {
     this.resource('elem', {path: ':id'}, function() {
@@ -242,7 +242,7 @@ This `error` event can be handled and used to display an error message,
 redirect to a login page, etc.
 
 
-```js
+```javascript
 App.ArticlesOverviewRoute = Ember.Route.extend({
   model: function(params) {
     return new Ember.RSVP.Promise(function(resolve, reject) {
@@ -269,7 +269,7 @@ at the Application level to perform any app logic and based on the
 result of the last `error` handler, Ember will decide if substate behavior
 must be performed or not.
 
-```js
+```javascript
 App.ApplicationRoute = Ember.Route.extend({
   actions: {
     error: function(error, transition) {
@@ -297,7 +297,7 @@ spinner during slow transitions. Loading events/substates give you far
 more control, but if you'd like to emulate something similar to the legacy
 `LoadingRoute` behavior, you could do as follows:
 
-```js
+```javascript
 App.LoadingView = Ember.View.extend({
   templateName: 'global-loading',
   elementId: 'global-loading'

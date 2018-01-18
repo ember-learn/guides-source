@@ -22,7 +22,7 @@ ember generate service shopping-cart
 
 Services must extend the `Ember.Service` base class:
 
-```app/services/shopping-cart.js
+```javascript {data-filename=app/services/shopping-cart.js}
 export default Ember.Service.extend({
 });
 ```
@@ -30,7 +30,7 @@ export default Ember.Service.extend({
 Like any Ember object, a service is initialized and can have properties and
 methods of its own.
 
-```app/services/shopping-cart.js
+```javascript {data-filename=app/services/shopping-cart.js}
 export default Ember.Service.extend({
   items: null,
 
@@ -57,7 +57,7 @@ export default Ember.Service.extend({
 
 To access a service, inject it either in an initializer or with `Ember.inject`:
 
-```app/components/cart-contents.js
+```javascript {data-filename=app/components/cart-contents.js}
 export default Ember.Component.extend({
   cart: Ember.inject.service('shopping-cart')
 });
@@ -68,7 +68,7 @@ as the `cart` property.
 
 You can then access properties and methods on the service:
 
-```app/components/cart-contents.js
+```javascript {data-filename=app/components/cart-contents.js}
 export default Ember.Component.extend({
   cart: Ember.inject.service('shopping-cart'),
 
@@ -80,7 +80,7 @@ export default Ember.Component.extend({
 });
 ```
 
-```app/templates/components/cart-contents.hbs
+```handlebars {data-filename=app/templates/components/cart-contents.hbs}
 <ul>
   {{#each cart.items as |item|}}
     <li>
@@ -97,7 +97,7 @@ property is explicitly called. It will then persist until the application exits.
 If no argument is provided to `service()`, Ember will use the dasherized version
 of the property name:
 
-```app/components/cart-contents.js
+```javascript {data-filename=app/components/cart-contents.js}
 export default Ember.Component.extend({
   shoppingCart: Ember.inject.service()
 });

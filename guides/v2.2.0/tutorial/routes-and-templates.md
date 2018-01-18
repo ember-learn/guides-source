@@ -53,7 +53,7 @@ The fourth file that is touched is the router.
 When we open the router, we can see that the generator has mapped a new _about_ route for us.
 This route will load the `about` route handler.
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 import Ember from 'ember';
 import config from './config/environment';
 
@@ -74,7 +74,7 @@ This means we don't actually have to change anything in the new `app/routes/abou
 With all of the routing in place from the generator, we can get right to work on coding our template.
 For our `about` page, we'll add some HTML that has a bit of information about the site:
 
-```app/templates/about.hbs
+```handlebars {data-filename=app/templates/about.hbs}
 <h2>About Super Rentals</h2>
 
 <p>The Super Rentals website is a delightful project created to explore Ember.
@@ -100,7 +100,7 @@ Since we will be using the `contact` template, the `contact` route does not need
 
 In `contact.hbs`, we can add the details for contacting our Super Rentals HQ:
 
-```app/templates/contact.hbs
+```handlebars {data-filename=app/templates/contact.hbs}
 <p>Super Rentals Representatives would love to help you choose a destination or answer
 any questions you may have.</p>
 
@@ -129,7 +129,7 @@ Let's make a contact link on the about page and an about link on the contact pag
 Ember has built-in **helpers** that provide functionality such as linking to other routes.
 Here we will use the `{{link-to}}` helper in our code to link between routes:
 
-```app/templates/about.hbs
+```handlebars {data-filename=app/templates/about.hbs}
 <h2>About Super Rentals</h2>
 
 <p>The Super Rentals website is a delightful project created to explore Ember.<br>
@@ -146,7 +146,7 @@ When we look at our about page, we now have a working link to our contact page.
 
 Now, we'll add a to link to our about page so we can navigate from back and forth between `about` and `contact`.
 
-```app/templates/contact.hbs
+```handlebars {data-filename=app/templates/contact.hbs}
 <p>Super Rentals Representatives would love to help you <br>
   choose a destination or answer any questions you may have.</p>
 
@@ -186,7 +186,7 @@ We'll learn more about why the entry isn't required when we look at nested route
 
 Let's update our `index.hbs` with some HTML for our home page and our links to the other routes in our application:
 
-```hbs
+```handlebars
 <h1>Welcome to Super Rentals</h1>
 
 <p>We hope you find exactly what you're looking for in a place to stay.</p>

@@ -25,13 +25,13 @@ Passing a model will skip the route's `model()` hook since the model is already 
 Since a route's [`beforeModel()`](http://emberjs.com/api/classes/Ember.Route.html#method_beforeModel) executes before the `model()` hook,
 it's a good place to do a redirect if you don't need any information that is contained in the model.
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('posts');
 });
 ```
 
-```app/routes/index.js
+```javascript {data-filename=app/routes/index.js}
 import Ember from 'ember';
 
 export default Ember.Route.extend({
@@ -57,14 +57,14 @@ If you need information about the current model in order to decide about redirec
 It receives the resolved model as the first parameter and the transition as the second one.
 For example:
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('posts');
   this.route('post', { path: '/post/:post_id' });
 });
 ```
 
-```app/routes/posts.js
+```javascript {data-filename=app/routes/posts.js}
 import Ember from 'ember';
 
 export default Ember.Route.extend({
@@ -84,7 +84,7 @@ with the single post object being its model.
 
 Let's change the router above to use a nested route, like this:
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('posts', function() {
     this.route('post', { path: ':post_id' });
@@ -101,7 +101,7 @@ before the redirect.
 Instead, we can use the [`redirect()`](http://emberjs.com/api/classes/Ember.Route.html#method_redirect) method, which will leave the original
 transition validated, and not cause the parent route's hooks to fire again:
 
-```app/routes/posts.js
+```javascript {data-filename=app/routes/posts.js}
 import Ember from 'ember';
 
 export default Ember.Route.extend({

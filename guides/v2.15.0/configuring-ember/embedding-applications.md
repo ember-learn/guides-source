@@ -13,7 +13,7 @@ and attach it to the document's `body` element.
 You can tell the application to append the application template to a
 different element by specifying its `rootElement` property:
 
-```app/app.js{+4}
+```javascript {data-filename=app/app.js data-diff="+4"}
 …
 
 App = Ember.Application.extend({
@@ -36,7 +36,7 @@ You can prevent Ember from making changes to the URL by [changing the
 router's `location`](../specifying-url-type) to
 `none`:
 
-```config/environment.js{-8,+9}
+```javascript {data-filename=config/environment.js data-diff="-8,+9"}
 /* eslint-env node */
 
 module.exports = function(environment) {
@@ -63,7 +63,7 @@ For example, if you wanted to serve your blogging application from `http://ember
 
 This can be achieved by configuring the `rootURL` property on `ENV`:
 
-```config/environment.js{-7,+8}
+```javascript {data-filename=config/environment.js data-diff="-7,+8"}
 /* eslint-env node */
 
 module.exports = function(environment) {
@@ -80,7 +80,7 @@ module.exports = function(environment) {
 
 You will notice that this is then used to configure your application's router:
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 import Ember from 'ember';
 import config from './config/environment';
 

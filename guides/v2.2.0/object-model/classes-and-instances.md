@@ -26,7 +26,7 @@ of Ember's built-in [`Ember.Component`][1] class:
 
 [1]: http://emberjs.com/api/classes/Ember.Component.html
 
-```app/components/todo-item.js
+```javascript {data-filename=app/components/todo-item.js}
 export default Ember.Component.extend({
   classNameBindings: ['isUrgent'],
   isUrgent: true
@@ -131,7 +131,7 @@ instances:
 
 [1]: http://emberjs.com/api/classes/Ember.Object.html#method_init
 
-```js
+```javascript
 Person = Ember.Object.extend({
   init() {
     var name = this.get('name');
@@ -153,7 +153,7 @@ setup work, and you'll see strange behavior in your application.
 
 Arrays and objects defined directly on any `Ember.Object` are shared across all instances of that object.
 
-```js
+```javascript
 Person = Ember.Object.extend({
   shoppingList: ['eggs', 'cheese']
 });
@@ -178,7 +178,7 @@ Person.create({
 
 To avoid this behavior, it is encouraged to initialize those arrays and object properties during `init()`. Doing so ensures each instance will be unique.
 
-```js
+```javascript
 Person = Ember.Object.extend({
   init() {
     this.set('shoppingList', ['eggs', 'cheese']);
@@ -211,7 +211,7 @@ and [`set()`][2] accessor methods:
 [1]: http://emberjs.com/api/classes/Ember.Object.html#method_get
 [2]: http://emberjs.com/api/classes/Ember.Object.html#method_set
 
-```js
+```javascript
 var person = Person.create();
 
 var name = person.get('name');

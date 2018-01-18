@@ -7,7 +7,7 @@ these objects is not found, appropriate objects will be generated in memory for 
 
 Given you have the following route:
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('posts');
 });

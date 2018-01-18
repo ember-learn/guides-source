@@ -8,14 +8,14 @@ Add property names to the `classNameBindings` property of subclassed components.
 
 You can apply classes based on properties of the component, or even by properties bound to data passed into the component. This is done by binding the class attribute using `classNameBindings`.
 
-```js
+```javascript
 classNameBindings: ['active'],
 active: true
 ```
 
 You can also set the class name based on a computed property.
 
-```js
+```javascript
 classNameBindings: ['isActive'],
 isActive: function() {
   return 'active';
@@ -24,7 +24,7 @@ isActive: function() {
 
 Another way would be to bind the class name to a bound property.
 
-```js
+```javascript
 classNameBindings: ['isRelated:relative'],
 isRelatedBinding: "content.isRelated" // value resolves to boolean
 ```

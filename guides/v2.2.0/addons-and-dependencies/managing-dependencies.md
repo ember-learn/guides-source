@@ -41,7 +41,7 @@ The globals provided by some assets (like `moment` in the below example) can be 
 without the need to `import` them.
 Provide the asset path as the first and only argument.
 
-```ember-cli-build.js
+```javascript {data-filename=ember-cli-build.js}
 app.import('bower_components/moment/moment.js');
 ```
 
@@ -52,7 +52,7 @@ about using an undefined variable.
 
 Provide the asset path as the first argument, and the list of modules and exports as the second.
 
-```ember-cli-build.js
+```javascript {data-filename=ember-cli-build.js}
 app.import('bower_components/ic-ajax/dist/named-amd/main.js', {
   exports: {
     'ic-ajax': [
@@ -73,7 +73,7 @@ You can now `import` them in your app. (e.g. `import { raw as icAjaxRaw } from '
 If you need to use different assets in different environments, specify an object as the first parameter.
 That object's key should be the environment name, and the value should be the asset to use in that environment.
 
-```ember-cli-build.js
+```javascript {data-filename=ember-cli-build.js}
 app.import({
   development: 'bower_components/ember/ember.js',
   production:  'bower_components/ember/ember.prod.js'
@@ -84,7 +84,7 @@ If you need to import an asset in only one environment you can wrap `app.import`
 For assets needed during testing, you should also use the `{type: 'test'}` option to make sure they
 are available in test mode.
 
-```ember-cli-build.js
+```javascript {data-filename=ember-cli-build.js}
 if (app.env === 'development') {
   // Only import when in development mode
   app.import('vendor/ember-renderspeed/ember-renderspeed.js');
@@ -100,7 +100,7 @@ if (app.env === 'test') {
 
 Provide the asset path as the first argument:
 
-```ember-cli-build.js
+```javascript {data-filename=ember-cli-build.js}
 app.import('bower_components/foundation/css/foundation.css');
 ```
 
@@ -112,7 +112,7 @@ All other assets like images or fonts can also be added via `import()`.
 By default, they
 will be copied to `dist/` as they are.
 
-```ember-cli-build.js
+```javascript {data-filename=ember-cli-build.js}
 app.import('bower_components/font-awesome/fonts/fontawesome-webfont.ttf');
 ```
 
@@ -121,7 +121,7 @@ This example would create the font file in `dist/font-awesome/fonts/fontawesome-
 You can also optionally tell `import()` to place the file at a different path.
 The following example will copy the file to `dist/assets/fontawesome-webfont.ttf`.
 
-```ember-cli-build.js
+```javascript {data-filename=ember-cli-build.js}
 app.import('bower_components/font-awesome/fonts/fontawesome-webfont.ttf', {
   destDir: 'assets'
 });
@@ -131,7 +131,7 @@ If you need to load certain dependencies before others,
 you can set the `prepend` property equal to `true` on the second argument of `import()`.
 This will prepend the dependency to the vendor file instead of appending it, which is the default behavior.
 
-```ember-cli-build.js
+```javascript {data-filename=ember-cli-build.js}
 app.import('bower_components/es5-shim/es5-shim.js', {
   type: 'vendor',
   prepend: true

@@ -2,7 +2,7 @@
 
 You create a link to a route using the `{{link-to}}` helper.
 
-```js
+```javascript
 App.Router.map(function() {
   this.resource("photos", function(){
     this.route("edit", { path: "/:photo_id" });
@@ -59,7 +59,7 @@ The `{{link-to}}` helper takes:
 If the route is nested, you can supply a model or an identifier for each dynamic
 segment.
 
-```js
+```javascript
 App.Router.map(function() {
   this.resource("photos", function(){
     this.resource("photo", { path: "/:photo_id" }, function(){

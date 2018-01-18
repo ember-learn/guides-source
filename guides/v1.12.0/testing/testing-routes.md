@@ -12,7 +12,7 @@ our application. The alert function `displayAlert` should be put into the
 `ApplicationRoute` because all actions and events bubble up to it from 
 sub-routes, controllers and views.
 
-```app/routes/application.js
+```javascript {data-filename=app/routes/application.js}
 export default Ember.Route.extend({
   actions: {
     displayAlert: function(text) {
@@ -37,7 +37,7 @@ for testing, which in turn allows you to catch bugs more easily.
 
 Here is an example of how to unit test this route:
 
-```tests/unit/routes/application-test.js
+```javascript {data-filename=tests/unit/routes/application-test.js}
 let originalAlert;
 
 moduleFor('route:application', {

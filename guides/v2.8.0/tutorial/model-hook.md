@@ -11,7 +11,7 @@ Here's what our homepage will look like when we're done:
 In Ember, route handlers are responsible for loading model data.
 Let's open `app/routes/rentals.js` and add our hard-coded data as the return value of the `model` hook:
 
-```app/routes/rentals.js
+```javascript {data-filename=app/routes/rentals.js}
 import Ember from 'ember';
 
 let rentals = [{
@@ -59,7 +59,7 @@ We can use the model data to display our list of rentals.
 Here, we'll use another common Handlebars helper called `{{each}}`.
 This helper will let us loop through each of the objects in our model:
 
-```app/templates/rentals.hbs{+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29}
+```handlebars {data-filename=app/templates/rentals.hbs data-diff="+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29"}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>Welcome!</h2>

@@ -4,7 +4,7 @@ You want to base the value of one property on the value of another property.
 ### Solution
 Use one of the computed property macros like `Ember.computed.alias` or `Ember.computed.gte`
 
-```app/models/person.js
+```javascript {data-filename=app/models/person.js}
 export default Ember.Object.extend({
 	firstName : null,
 	lastName : null,

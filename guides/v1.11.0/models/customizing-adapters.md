@@ -21,7 +21,7 @@ If your backend has some consistent rules you can define an
 the default Adapter, however it will still be superseded by model
 specific Adapters.
 
-```app/adapters/application.js
+```javascript {data-filename=app/adapters/application.js}
 export default DS.RESTAdapter.extend({
   // Application specific overrides go here
 });
@@ -33,7 +33,7 @@ Adapter by running the command `ember generate adapter adapter-name`".
 For example, running `ember generate adapter post` will create the
 following file:
 
-```app/adapters/post.js
+```javascript {data-filename=app/adapters/post.js}
 export default DS.RESTAdapter.extend({
   namespace: 'api/v1'
 });
@@ -74,7 +74,7 @@ non-standard backends.
 The `namespace` property can be used to prefix requests with a
 specific url namespace.
 
-```app/adapters/application.js
+```javascript {data-filename=app/adapters/application.js}
 export default DS.RESTAdapter.extend({
   namespace: 'api/1'
 });
@@ -89,7 +89,7 @@ By default the adapter will target the current domain. If you would
 like to specify a new domain you can do so by setting the `host`
 property on the adapter.
 
-```app/adapters/application.js
+```javascript {data-filename=app/adapters/application.js}
 export default DS.RESTAdapter.extend({
   host: 'https://api.example.com'
 });
@@ -108,7 +108,7 @@ For example, if you did not want to pluralize model names and needed
 underscore_case instead of camelCase you could override the
 `pathForType` method like this:
 
-```app/adapters/application.js
+```javascript {data-filename=app/adapters/application.js}
 export default DS.RESTAdapter.extend({
   pathForType: function(type) {
     return Ember.String.underscore(type);
@@ -131,7 +131,7 @@ adapter it is important to remember to set this property to ensure
 Ember does the right thing in the case a user of your adapter
 does not specify an `ApplicationSerializer`.
 
-```app/adapters/my-custom-adapter.js
+```javascript {data-filename=app/adapters/my-custom-adapter.js}
 export default DS.RESTAdapter.extend({
   defaultSerializer: '-default'
 });

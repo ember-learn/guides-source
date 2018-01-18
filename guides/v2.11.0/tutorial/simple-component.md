@@ -27,7 +27,7 @@ For our integration test, we'll create a stub rental that has all the properties
 We will assert that the component is initially rendered without the `wide` class name. Clicking the image will add the class `wide` to our element, and clicking it a second time will take the `wide` class away.
 Note that we find the image element using the CSS selector `.image`.
 
-```tests/integration/components/rental-listing-test.js
+```javascript {data-filename=tests/integration/components/rental-listing-test.js}
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import Ember from 'ember';
@@ -64,7 +64,7 @@ A component consists of two parts:
 Our new `rental-listing` component will manage how a user sees and interacts with a rental.
 To start, let's move the rental display details for a single rental from the `rentals.hbs` template into `rental-listing.hbs` and add the image field:
 
-```app/templates/components/rental-listing.hbs{+2}
+```handlebars {data-filename=app/templates/components/rental-listing.hbs data-diff="+2"}
 <article class="listing">
   <img src="{{rental.image}}" alt="">
   <h3>{{rental.title}}</h3>
@@ -86,7 +86,7 @@ To start, let's move the rental display details for a single rental from the `re
 In our `rentals.hbs` template, let's replace the old HTML markup within our `{{#each}}` loop
 with our new `rental-listing` component:
 
-```app/templates/rentals.hbs{+12,+13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29}
+```handlebars {data-filename=app/templates/rentals.hbs data-diff="+12,+13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29"}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>Welcome!</h2>
@@ -126,7 +126,7 @@ Now we can add functionality that will show the image of a rental when requested
 
 Let's use the `{{if}}` helper to show our current rental image larger only when `isWide` is set to true, by setting the element class name to `wide`. We'll also add some text to indicate that the image can be clicked on, and wrap both with an anchor element, giving it the `image` class name so that our test can find it.
 
-```app/templates/components/rental-listing.hbs{+2,+4,+5}
+```handlebars {data-filename=app/templates/components/rental-listing.hbs data-diff="+2,+4,+5"}
 <article class="listing">
   <a class="image {{if isWide "wide"}}">
     <img src="{{rental.image}}" alt="">
@@ -151,7 +151,7 @@ Let's use the `{{if}}` helper to show our current rental image larger only when 
 The value of `isWide` comes from our component's JavaScript file, in this case `rental-listing.js`.
 Since we want the image to be smaller at first, we will set the property to start as `false`:
 
-```app/components/rental-listing.js{+4}
+```javascript {data-filename=app/components/rental-listing.js data-diff="+4"}
 import Ember from 'ember';
 
 export default Ember.Component.extend({
@@ -162,7 +162,7 @@ export default Ember.Component.extend({
 To allow the user to widen the image, we will need to add an action that toggles the value of `isWide`.
 Let's call this action `toggleImageSize`
 
-```app/templates/components/rental-listing.hbs{+2}
+```handlebars {data-filename=app/templates/components/rental-listing.hbs data-diff="+2"}
 <article class="listing">
   <a {{action 'toggleImageSize'}} class="image {{if isWide "wide"}}">
     <img src="{{rental.image}}" alt="">
@@ -188,7 +188,7 @@ Clicking the anchor element will send the action to the component.
 Ember will then go into the `actions` hash and call the `toggleImageSize` function.
 Let's create the `toggleImageSize` function and toggle the `isWide` property on our component:
 
-```app/components/rental-listing.js{+5,+6,+7,+8,+9}
+```javascript {data-filename=app/components/rental-listing.js data-diff="+5,+6,+7,+8,+9"}
 import Ember from 'ember';
 
 export default Ember.Component.extend({

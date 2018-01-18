@@ -19,7 +19,7 @@ of your Ember application's router can be invoked to define URL mappings. When
 calling `map()`, you should pass a function that will be invoked with the value
 `this` set to an object which you can use to create routes.
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('about', { path: '/about' });
   this.route('favorites', { path: '/favs' });
@@ -32,7 +32,7 @@ template. Visiting `/favs` will render the `favorites` template.
 You can leave off the path if it is the same as the route
 name. In this case, the following is equivalent to the above example:
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('about');
   this.route('favorites', { path: '/favs' });
@@ -58,7 +58,7 @@ points to the currently active route.
 
 Multi-word route names are conventionally dasherized, such as:
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('blog-post', { path: '/blog-post' });
 });
@@ -70,7 +70,7 @@ the `blog-post.hbs` template, and be referred to as `blog-post` in any
 
 Multi-word route names that break this convention, such as:
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('blog_post', { path: '/blog-post' });
 });
@@ -92,7 +92,7 @@ of another.
 
 You can define nested routes by passing a callback to `this.route`:
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('posts', function() {
     this.route('new');
@@ -109,7 +109,7 @@ ember generate route posts/new
 And then add the `{{outlet}}` helper to your template where you want the nested
 template to display:
 
-```templates/posts.hbs
+```handlebars {data-filename=templates/posts.hbs}
 <h1>Posts</h1>
 <!-- Display posts and other content -->
 {{outlet}}
@@ -147,7 +147,7 @@ whenever you see a `function`, that's a new level.
 
 For example, if you write a simple router like this:
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function(){
   this.route('favorites');
 });
@@ -155,7 +155,7 @@ Router.map(function(){
 
 It is the equivalent of:
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function(){
   this.route('index', { path: '/' });
   this.route('favorites');
@@ -169,7 +169,7 @@ template.
 
 A nested router like this:
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('posts', function() {
     this.route('favorites');
@@ -179,7 +179,7 @@ Router.map(function() {
 
 Is the equivalent of:
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function(){
   this.route('index', { path: '/' });
   this.route('posts', function() {
@@ -214,7 +214,7 @@ Enter _dynamic segments_.
 A dynamic segment is a portion of a URL that starts with a `:` and is
 followed by an identifier.
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('posts');
   this.route('post', { path: '/post/:post_id' });
@@ -228,7 +228,7 @@ The first reason is that Routes know how to fetch the right model by default, if
 The second is that `params` is an object, and can only have one value associated with a key.
 To put it in code, the following will *not* work properly:
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route("photo", { path: "photo/:id" }, function() {
     this.route("comment", { path: "comment/:id" });
@@ -238,7 +238,7 @@ Router.map(function() {
 
 But the following will:
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route("photo", { path: "photo/:photo_id" }, function() {
     this.route("comment", { path: "comment/:comment_id" });
@@ -254,7 +254,7 @@ You can define wildcard routes that will match multiple URL segments. This could
 if you'd like a catch-all route which is useful when the user enters an incorrect URL not managed
 by your app.
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('page-not-found', { path: '/*wildcard' });
 });

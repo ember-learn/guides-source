@@ -2,13 +2,13 @@
 
 Let's assume that we have a `post` and a `comment` model, which are related to each other as follows:
 
-```app/models/post.js
+```javascript {data-filename=app/models/post.js}
 export default DS.Model.extend({
   comments: DS.hasMany('comment')
 });
 ```
 
-```app/models/comment.js
+```javascript {data-filename=app/models/comment.js}
 export default DS.Model.extend({
   post: DS.belongsTo('post')
 });

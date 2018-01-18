@@ -77,7 +77,7 @@ lists the drafts for the currently logged in user.
 You might be tempted to make the component responsible for fetching that
 data and storing it:
 
-```app/components/list-of-drafts.js
+```javascript {data-filename=app/components/list-of-drafts.js}
 import Component from "ember-component";
 
 export default Component.extend({
@@ -92,7 +92,7 @@ export default Component.extend({
 You could then show the list of drafts in your component's template like
 this:
 
-```app/templates/components/list-of-drafts.hbs
+```handlebars {data-filename=app/templates/components/list-of-drafts.hbs}
 <ul>
   {{#each drafts key="id" as |draft|}}
     <li>{{draft.title}}</li>
@@ -143,7 +143,7 @@ You use the store to retrieve records (an instance of a model), as well
 to create new ones.  For example, we might want to find a `person` with
 the ID of `1` from our route's `model` hook:
 
-```app/routes/index.js
+```javascript {data-filename=app/routes/index.js}
 export default Ember.Route.extend({
   model() {
     return this.store.findRecord('person', 1);
@@ -194,7 +194,7 @@ Models define the type of data that will be provided by your server. For
 example, a `Person` model might have a `firstName` attribute that is a
 string, and a `birthday` attribute that is a date:
 
-```app/models/person.js
+```javascript {data-filename=app/models/person.js}
 import Model, { attr } from "ember-data/model";
 
 export default Model.extend({
@@ -207,7 +207,7 @@ A model also describes its relationships with other objects. For
 example, an `order` may have many `line-items`, and a
 `line-item` may belong to a particular `order`.
 
-```app/models/order.js
+```javascript {data-filename=app/models/order.js}
 import Model, { hasMany } from "ember-data/model";
 
 export default Model.extend({
@@ -215,7 +215,7 @@ export default Model.extend({
 });
 ```
 
-```app/models/line-item.js
+```javascript {data-filename=app/models/line-item.js}
 import Model, { belongsTo } from "ember-data/model";
 
 export default Model.extend({
@@ -239,7 +239,7 @@ For example, if you were writing a contact management app, you might
 have a `Person` model. An individual record in your app might
 have a type of `person` and an ID of `1` or `steve-buscemi`.
 
-```js
+```javascript
 this.store.findRecord('person', 1); // => { id: 1, name: 'steve-buscemi' }
 ```
 

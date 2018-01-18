@@ -4,7 +4,7 @@ You want to set multiple properties on an object with a single method call.
 ### Solution
 Use the `setProperties` method of `Ember.Object`.
 
-```js
+```javascript
 person.setProperties({
   name: 'Gavin',
   age: 36

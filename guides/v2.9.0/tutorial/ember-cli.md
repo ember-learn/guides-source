@@ -87,7 +87,7 @@ and Ember CLI's test runner **testem** is configured in `testem.js`.
 If you take a look at `app/router.js`, you'll notice some syntax that may be
 unfamiliar to you.
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 import Ember from 'ember';
 import config from './config/environment';
 

@@ -42,7 +42,7 @@ The fourth file that is touched is the router.
 When we open the router, we can see that the generator has mapped a new _about_ route for us.
 This route will load the `about` route handler.
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 import Ember from 'ember';
 import config from './config/environment';
 
@@ -64,7 +64,7 @@ This means we don't actually have to change anything in the new `app/routes/abou
 With all of the routing in place from the generator, we can get right to work on coding our template.
 For our `about` page, we'll add some HTML that has a bit of information about the site:
 
-```app/templates/about.hbs
+```handlebars {data-filename=app/templates/about.hbs}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>About Super Rentals</h2>
@@ -94,7 +94,7 @@ Since we will be using the `contact` template, the `contact` route does not need
 
 In `contact.hbs`, we can add the details for contacting our Super Rentals HQ:
 
-```app/templates/contact.hbs
+```handlebars {data-filename=app/templates/contact.hbs}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>Contact Us</h2>
@@ -124,7 +124,7 @@ Let's make a contact link on the about page and an about link on the contact pag
 Ember has built-in **helpers** that provide functionality such as linking to other routes.
 Here we will use the `{{link-to}}` helper in our code to link between routes:
 
-```app/templates/about.hbs{+9,+10,+11}
+```handlebars {data-filename=app/templates/about.hbs data-diff="+9,+10,+11"}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>About Super Rentals</h2>
@@ -146,7 +146,7 @@ When we look at our about page at [`http://localhost:4200/about`](http://localho
 
 Now, we'll add a link to our contact page so we can navigate back and forth between `about` and `contact`.
 
-```app/templates/contact.hbs
+```handlebars {data-filename=app/templates/contact.hbs}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>Contact Us</h2>
@@ -178,7 +178,7 @@ ember g route rentals
 Let's update the newly generated `rentals.hbs` with some basic markup to seed our rentals list page.
 We'll come back to this page later to add in the actual rental properties.
 
-```app/templates/rentals.hbs
+```handlebars {data-filename=app/templates/rentals.hbs}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>Welcome!</h2>
@@ -221,7 +221,7 @@ Since all we want to do is transition to `rentals`, our unit test will make sure
 Since we want our `rentals` route to serve as our home page, we will use the `replaceWith` function.
 We'll verify that by stubbing the `replaceWith` method for the route and asserting that the `rentals` route is passed when called.
 
-```tests/unit/routes/index-test.js
+```javascript {data-filename=tests/unit/routes/index-test.js}
 import { moduleFor, test } from 'ember-qunit';
 
 moduleFor('route:index', 'Unit | Route | index');
@@ -238,7 +238,7 @@ test('should transition to rentals route', function(assert) {
 
 In our index route, we simply add the `replaceWith` invocation.
 
-```app/routes/index.js
+```javascript {data-filename=app/routes/index.js}
 import Ember from 'ember';
 
 export default Ember.Route.extend({
@@ -265,7 +265,7 @@ installing template
 When `application.hbs` exists, anything you put in it is shown for every page in the application. Now add the following banner navigation markup:
 
 
-```app/templates/application.hbs
+```handlebars {data-filename=app/templates/application.hbs}
 <div class="container">
   <div class="menu">
     {{#link-to 'index'}}

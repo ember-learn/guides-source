@@ -31,7 +31,7 @@ described above.
 
 To do so, simply set the `EmberENV.EXTEND_PROTOTYPES` flag to `false`:
 
-```config/environment.js
+```javascript {data-filename=config/environment.js}
 ENV = {
   EmberENV: {
     EXTEND_PROTOTYPES: false
@@ -42,7 +42,7 @@ ENV = {
 Or you can choose class which you want to disable prototype extension
 by added a property to your application's configuration:
 
-```config/environment.js
+```javascript {data-filename=config/environment.js}
 ENV = {
   EmberENV: {
     EXTEND_PROTOTYPES: {

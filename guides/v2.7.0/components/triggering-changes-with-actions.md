@@ -30,13 +30,13 @@ ember generate component button-with-confirmation
 
 We'll plan to use the component in a template something like this:
 
-```app/templates/components/user-profile.hbs
+```handlebars {data-filename=app/templates/components/user-profile.hbs}
 {{button-with-confirmation text="Click OK to delete your account."}}
 ```
 
 We'll also want to use the component elsewhere, perhaps like this:
 
-```app/templates/components/send-message.hbs
+```handlebars {data-filename=app/templates/components/send-message.hbs}
 {{button-with-confirmation text="Click OK to send your message."}}
 ```
 
@@ -74,7 +74,7 @@ We'll implement an action on the parent component called
 [service](../../applications/services/) and calls the service's
 `deleteUser()` method.
 
-```app/components/user-profile.js
+```javascript {data-filename=app/components/user-profile.js}
 import Ember from 'ember';
 
 export default Ember.Component.extend({
@@ -96,7 +96,7 @@ want this action to be triggered, which is the next step.
 Next, let's implement the logic to confirm that the user wants to take
 the action from the component:
 
-```app/components/button-with-confirmation.js
+```javascript {data-filename=app/components/button-with-confirmation.js}
 import Ember from 'ember';
 
 export default Ember.Component.extend({
@@ -121,7 +121,7 @@ export default Ember.Component.extend({
 The component template will have a button and a div that shows the confirmation dialog
 based on the value of `confirmShown`.
 
-```app/templates/components/button-with-confirmation.hbs
+```handlebars {data-filename=app/templates/components/button-with-confirmation.hbs}
 <button {{action "launchConfirmDialog"}}>{{text}}</button>
 {{#if confirmShown}}
   <div class="confirm-dialog">
@@ -141,7 +141,7 @@ One important thing to know about actions is that they're functions
 you can call, like any other method on your component.
 So they can be passed from one component to another like this:
 
-```app/templates/components/user-profile.hbs
+```handlebars {data-filename=app/templates/components/user-profile.hbs}
 {{button-with-confirmation text="Click here to delete your account." onConfirm=(action "userDidDeleteAccount")}}
 ```
 
@@ -151,14 +151,14 @@ parent and make it available on the child component as
 
 We can do a similar thing for our `send-message` component:
 
-```app/templates/components/send-message.hbs
+```handlebars {data-filename=app/templates/components/send-message.hbs}
 {{button-with-confirmation text="Click to send your message." onConfirm=(action "sendMessage")}}
 ```
 
 Now, we can use `onConfirm` in the child component to invoke the action on the
 parent:
 
-```app/components/button-with-confirmation.js
+```javascript {data-filename=app/components/button-with-confirmation.js}
 import Ember from 'ember';
 
 export default Ember.Component.extend({
@@ -207,7 +207,7 @@ operation has completed successfully.
 This is accomplished by expecting a promise to be returned from `onConfirm`.
 Upon resolution of the promise, we set a property used to indicate the visibility of the confirmation modal.
 
-```app/components/button-with-confirmation.js
+```javascript {data-filename=app/components/button-with-confirmation.js}
 import Ember from 'ember';
 
 export default Ember.Component.extend({
@@ -240,7 +240,7 @@ For example, we'll update the `send-message` action to take a message type in ad
 Since the `button-with-confirmation` component doesn't know or care about what type of message its collecting, we want
 to provide a message type from `send-message` when we define the action.
 
-```app/templates/components/send-message.hbs
+```handlebars {data-filename=app/templates/components/send-message.hbs}
 {{button-with-confirmation text="Click to send your message." onConfirm=(action "sendMessage" "info")}}
 ```
 
@@ -253,7 +253,7 @@ arguments when you call the function within the component javascript file.
 For example, our `button-with-confirmation` component will now [yield](../wrapping-content-in-a-component/) the content
 of the confirmation dialog to collect extra information to be sent along with the `onConfirm` action:
 
-```app/templates/components/button-with-confirmation.hbs
+```handlebars {data-filename=app/templates/components/button-with-confirmation.hbs}
 <button {{action "launchConfirmDialog"}}>{{text}}</button>
 {{#if confirmShown}}
   <div class="confirm-dialog">
@@ -267,7 +267,7 @@ of the confirmation dialog to collect extra information to be sent along with th
 The `send-message` component provides an input as block content to the `button-with-confirmation` component, setting
 `confirmValue`.
 
-```app/templates/components/send-message.hbs
+```handlebars {data-filename=app/templates/components/send-message.hbs}
 {{#button-with-confirmation
     text="Click to send your message."
     onConfirm=(action "sendMessage" "info")
@@ -278,7 +278,7 @@ The `send-message` component provides an input as block content to the `button-w
 
 Now when the `submitConfirm` action is invoked, we call it with the value provided by our yielded input.
 
-```app/components/button-with-confirmation.js
+```javascript {data-filename=app/components/button-with-confirmation.js}
 import Ember from 'ember';
 
 export default Ember.Component.extend({
@@ -305,7 +305,7 @@ This action will call our bound `sendMessage` function with both the message typ
 and the message value provided in the component JavaScript.
 
 
-```app/components/send-message.js
+```javascript {data-filename=app/components/send-message.js}
 import Ember from 'ember';
 
 export default Ember.Component.extend({
@@ -322,7 +322,7 @@ export default Ember.Component.extend({
 Actions can be invoked on objects other than the component directly from the template.  For example, in our
 `send-message` component we might include a service that processes the `sendMessage` logic.
 
-```app/components/send-message.js
+```javascript {data-filename=app/components/send-message.js}
 import Ember from 'ember';
 
 export default Ember.Component.extend({
@@ -334,7 +334,7 @@ export default Ember.Component.extend({
 
 We can tell the action to invoke the `sendMessage` action directly on the messaging service with the `target` attribute.
 
-```app/templates/components/send-message.hbs
+```handlebars {data-filename=app/templates/components/send-message.hbs}
 {{#button-with-confirmation
     text="Click to send your message."
     onConfirm=(action "sendMessage" "info" target=messaging)
@@ -346,7 +346,7 @@ We can tell the action to invoke the `sendMessage` action directly on the messag
 By supplying the `target` attribute, the action helper will look to invoke the `sendMessage` action directly on the messaging
 service, saving us from writing code on the component that just passes the action along to the service.
 
-```app/services/messaging.js
+```javascript {data-filename=app/services/messaging.js}
 import Ember from 'ember';
 
 export default Ember.Service.extend({
@@ -366,7 +366,7 @@ For example, our `user-profile` component is going to notify its parent, `system
 user's account was deleted, and passes along with it the full user profile object.
 
 
-```app/components/user-profile.js
+```javascript {data-filename=app/components/user-profile.js}
 import Ember from 'ember';
 
 export default Ember.Component.extend({
@@ -385,13 +385,13 @@ All our `system-preferences-editor` component really needs to process a user del
 For this case, the action helper provides the `value` attribute to allow a parent component to dig into the passed
 object to pull out only what it needs.
 
-```app/templates/components/system-preferences-editor.hbs
+```handlebars {data-filename=app/templates/components/system-preferences-editor.hbs}
 {{user-profile didDelete=(action "userDeleted" value="account.id")}}
 ```
 
 Now when the `system-preferences-editor` handles the delete action, it receives only the user's account `id` string.
 
-```app/components/system-preferences-editor.js
+```javascript {data-filename=app/components/system-preferences-editor.js}
 import Ember from 'ember';
 
 export default Ember.Component.extend({
@@ -413,7 +413,7 @@ For example, we want to take account deletion out of the `user-profile` componen
 In our template in `user-profile.hbs`, we can change our action to call `deleteCurrentUser`,
 which will be defined on `system-preferences-editor`.
 
-```app/templates/components/user-profile.hbs
+```handlebars {data-filename=app/templates/components/user-profile.hbs}
 {{button-with-confirmation onConfirm=(action deleteCurrentUser)
   text="Click OK to delete your account."}}
 ```
@@ -428,13 +428,13 @@ component's local `actions` object.
 Here our `system-preferences-editor` template passes its `deleteUser` action into the `user-profile`
 component's local `deleteCurrentUser` property.
 
-```app/templates/components/system-preferences-editor.hbs
+```handlebars {data-filename=app/templates/components/system-preferences-editor.hbs}
 {{user-profile deleteCurrentUser=(action 'deleteUser' login.currentUser.id)}}
 ```
 
 Now when you confirm deletion, the action goes straight to the `system-preferences-editor` to handle.
 
-```app/components/system-preferences-editor.js
+```javascript {data-filename=app/components/system-preferences-editor.js}
 import Ember from 'ember';
 
 export default Ember.Component.extend({

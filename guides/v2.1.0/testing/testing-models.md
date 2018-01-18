@@ -10,7 +10,7 @@ new `levelName` when the player reaches level 5.
 > You can follow along by generating your own model with `ember generate
 > model player`.
 
-```app/models/player.js
+```javascript {data-filename=app/models/player.js}
 export default DS.Model.extend({
   level:     DS.attr('number', { defaultValue: 0 }),
   levelName: DS.attr('string', { defaultValue: 'Noob' }),
@@ -27,7 +27,7 @@ export default DS.Model.extend({
 Now let's create a test which will call `levelUp` on the player when they are
 level 4 to assert that the `levelName` changes. We will use `moduleForModel`:
 
-```tests/unit/models/player-test.js
+```javascript {data-filename=tests/unit/models/player-test.js}
 import { moduleForModel, test } from 'ember-qunit';
 import Ember from 'ember';
 
@@ -58,12 +58,12 @@ Assume that a `User` can own a `Profile`.
 > You can follow along by generating your own user and profile models with `ember
 > generate model user` and `ember generate model profile`.
 
-```app/models/profile.js
+```javascript {data-filename=app/models/profile.js}
 export default DS.Model.extend({
 });
 ```
 
-```app/models/user.js
+```javascript {data-filename=app/models/user.js}
 export default DS.Model.extend({
   profile: DS.belongsTo('profile')
 });
@@ -72,7 +72,7 @@ export default DS.Model.extend({
 Then you could test that the relationship is wired up correctly
 with this test.
 
-```tests/unit/models/user-test.js
+```javascript {data-filename=tests/unit/models/user-test.js}
 import { moduleForModel, test } from 'ember-qunit';
 import Ember from 'ember';
 

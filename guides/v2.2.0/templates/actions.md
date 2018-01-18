@@ -7,7 +7,7 @@ If you add the
 helper to an HTML element, when a user clicks the element, the named event
 will be sent to the template's corresponding component or controller.
 
-```app/templates/components/single-post.hbs
+```handlebars {data-filename=app/templates/components/single-post.hbs}
 <h3 {{action "toggleBody"}}>{{title}}</h3>
 {{#if isShowingBody}}
   <p>{{{body}}}</p>
@@ -17,7 +17,7 @@ will be sent to the template's corresponding component or controller.
 In the component or controller, you can then define what the action does within
 the `actions` hook:
 
-```app/components/single-post.js
+```javascript {data-filename=app/components/single-post.js}
 export default Ember.Component.extend({
   actions: {
     toggleBody() {
@@ -42,7 +42,7 @@ For example, if the `post` argument was passed:
 The `select` action handler would be called with a single argument
 containing the post model:
 
-```app/components/single-post.js
+```javascript {data-filename=app/components/single-post.js}
 export default Ember.Component.extend({
   actions: {
     select(post) {
@@ -121,7 +121,7 @@ event listeners and enables to work with one-way bindings.
 
 Let's assume we have an action handler that prints its first parameter:
 
-```js
+```javascript
 actions: {
   bandDidChange(newValue) {
     console.log(newValue);

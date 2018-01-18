@@ -2,7 +2,7 @@ Along with the records returned from your store, you'll likely need to handle so
 
 Pagination is a common example of using metadata. Imagine a blog with far more posts than you can display at once. You might query it like so:
 
-```js
+```javascript
 let result = this.get('store').query('post', {
   limit: 10,
   offset: 0
@@ -13,7 +13,7 @@ To get different *pages* of data, you'd simply change your offset in increments 
 
 Each serializer will expect the metadata to be returned differently. For example, Ember Data's JSON deserializer looks for a `meta` key:
 
-```js
+```javascript
 {
   "post": {
     "id": 1,
@@ -35,7 +35,7 @@ Regardless of the serializer used, this metadata is extracted from the response.
 
 This can be done on the result of a `store.query()` call:
 
-```js
+```javascript
 store.query('post').then((result) => {
   let meta = result.get('meta');
 })
@@ -43,7 +43,7 @@ store.query('post').then((result) => {
 
 On a belongsTo relationship:
 
-```js
+```javascript
 let post = store.peekRecord('post', 1);
 
 post.get('author').then((author) => {
@@ -53,7 +53,7 @@ post.get('author').then((author) => {
 
 Or on a hasMany relationship:
 
-```js
+```javascript
 let post = store.peekRecord('post', 1);
 
 post.get('comments').then((comments) => {
@@ -65,7 +65,7 @@ After reading it, `meta.total` can be used to calculate how many pages of posts 
 
 To use the `meta` data outside of the `model` hook, you need to return it:
 
-```app/routes/users.js
+```javascript {data-filename=app/routes/users.js}
 import Ember from 'ember';
 
 export default Ember.Route.extend({

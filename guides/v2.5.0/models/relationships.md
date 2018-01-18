@@ -6,13 +6,13 @@ define how your models relate to each other.
 To declare a one-to-one relationship between two models, use
 `DS.belongsTo`:
 
-```app/models/user.js
+```javascript {data-filename=app/models/user.js}
 export default DS.Model.extend({
   profile: DS.belongsTo('profile')
 });
 ```
 
-```app/models/profile.js
+```javascript {data-filename=app/models/profile.js}
 export default DS.Model.extend({
   user: DS.belongsTo('user')
 });
@@ -23,13 +23,13 @@ export default DS.Model.extend({
 To declare a one-to-many relationship between two models, use
 `DS.belongsTo` in combination with `DS.hasMany`, like this:
 
-```app/models/post.js
+```javascript {data-filename=app/models/post.js}
 export default DS.Model.extend({
   comments: DS.hasMany('comment')
 });
 ```
 
-```app/models/comment.js
+```javascript {data-filename=app/models/comment.js}
 export default DS.Model.extend({
   post: DS.belongsTo('post')
 });
@@ -40,13 +40,13 @@ export default DS.Model.extend({
 To declare a many-to-many relationship between two models, use
 `DS.hasMany`:
 
-```app/models/post.js
+```javascript {data-filename=app/models/post.js}
 export default DS.Model.extend({
   tags: DS.hasMany('tag')
 });
 ```
 
-```app/models/tag.js
+```javascript {data-filename=app/models/tag.js}
 export default DS.Model.extend({
   posts: DS.hasMany('post')
 });
@@ -67,7 +67,7 @@ option. Relationships without an inverse can be indicated as such by
 including `{ inverse: null }`.
 
 
-```app/models/comment.js
+```javascript {data-filename=app/models/comment.js}
 export default DS.Model.extend({
   onePost: DS.belongsTo('post', { inverse: null }),
   twoPost: DS.belongsTo('post'),
@@ -76,7 +76,7 @@ export default DS.Model.extend({
 });
 ```
 
-```app/models/post.js
+```javascript {data-filename=app/models/post.js}
 export default DS.Model.extend({
   comments: DS.hasMany('comment', {
     inverse: 'redPost'
@@ -92,7 +92,7 @@ is no inverse relationship then you can set the inverse to `null`.
 
 Here's an example of a one-to-many reflexive relationship:
 
-```app/models/folder.js
+```javascript {data-filename=app/models/folder.js}
 export default DS.Model.extend({
   children: DS.hasMany('folder', { inverse: 'parent' }),
   parent: DS.belongsTo('folder', { inverse: 'children' })
@@ -101,7 +101,7 @@ export default DS.Model.extend({
 
 Here's an example of a one-to-one reflexive relationship:
 
-```app/models/user.js
+```javascript {data-filename=app/models/user.js}
 export default DS.Model.extend({
   name: DS.attr('string'),
   bestFriend: DS.belongsTo('user', { inverse: 'bestFriend' }),
@@ -110,7 +110,7 @@ export default DS.Model.extend({
 
 You can also define a reflexive relationship that doesn't have an inverse:
 
-```app/models/folder.js
+```javascript {data-filename=app/models/folder.js}
 export default DS.Model.extend({
   parent: DS.belongsTo('folder', { inverse: null })
 });
@@ -133,13 +133,13 @@ extraneous models.
 
 Let's assume that we have a `post` and a `comment` model, which are related to each other as follows:
 
-```app/models/post.js
+```javascript {data-filename=app/models/post.js}
 export default DS.Model.extend({
   comments: DS.hasMany('comment')
 });
 ```
 
-```app/models/comment.js
+```javascript {data-filename=app/models/comment.js}
 export default DS.Model.extend({
   post: DS.belongsTo('post')
 });
@@ -175,7 +175,7 @@ is that you cannot assign a promise as a relationship, currently.
 For example, if you want to set the `author` property of a post, this would **not** work
 if the `user` with id isn't already loaded into the store:
 
-```js
+```javascript
 this.store.createRecord('post', {
   title: 'Rails is Omakase',
   body: 'Lorem ipsum',
@@ -185,7 +185,7 @@ this.store.createRecord('post', {
 
 However, you can easily set the relationship after the promise has fulfilled:
 
-```js
+```javascript
 let post = this.store.createRecord('post', {
   title: 'Rails is Omakase',
   body: 'Lorem ipsum'

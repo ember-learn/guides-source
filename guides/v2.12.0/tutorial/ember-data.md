@@ -23,7 +23,7 @@ installing model-test
 
 When we open the model file, we can see a blank class extending [`DS.Model`](http://emberjs.com/api/data/classes/DS.Model.html):
 
-```app/models/rental.js
+```javascript {data-filename=app/models/rental.js}
 import DS from 'ember-data';
 
 export default DS.Model.extend({
@@ -36,7 +36,7 @@ _title_, _owner_, _city_, _type_, _image_, _bedrooms_ and _description_.
 Define attributes by giving them the result of the function [`DS.attr()`](http://emberjs.com/api/data/classes/DS.html#method_attr).
 For more information on Ember Data Attributes, read the section called [Defining Attributes](../../models/defining-models/#toc_defining-attributes) in the guides.
 
-```app/models/rental.js
+```javascript {data-filename=app/models/rental.js}
 import DS from 'ember-data';
 
 export default DS.Model.extend({
@@ -60,7 +60,7 @@ The [store service](http://emberjs.com/api/data/classes/DS.Store.html) is inject
 It is the main interface you use to interact with Ember Data.
 In this case, call the [`findAll`](http://emberjs.com/api/data/classes/DS.Store.html#method_findAll) function on the store and provide it with the name of your newly created rental model class.
 
-```app/routes/rentals.js{+5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,-33}
+```javascript {data-filename=app/routes/rentals.js data-diff="+5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,-33"}
 import Ember from 'ember';
 
 export default Ember.Route.extend({

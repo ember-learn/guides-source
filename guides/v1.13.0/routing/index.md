@@ -35,7 +35,7 @@ or more of the following:
 
 As your application increases in complexity, it can be helpful to see exactly what is going on with the router. To have Ember write out transition events to the log modify your project configuration:
 
-```config/environment.js
+```javascript {data-filename=config/environment.js}
 ENV.APP.LOG_TRANSITIONS = true;
 ```
 
@@ -46,7 +46,7 @@ For example, if you wanted to serve your blogging application from `http://ember
 
 This can be achieved by setting the `rootURL` on the router:
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Ember.Router.extend({
   rootURL: '/blog/'
 });

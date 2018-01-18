@@ -3,11 +3,11 @@ but they can also return output to be used in a block expression.
 
 ### Return values from a component with `yield`
 
-```app/templates/index.hbs
+```handlebars {data-filename=app/templates/index.hbs}
 {{blog-post post=model}}
 ```
 
-```app/templates/components/blog-post.hbs
+```handlebars {data-filename=app/templates/components/blog-post.hbs}
 {{yield post.title post.body post.author}}
 ```
 
@@ -23,7 +23,7 @@ This allows for template customization when using a component,
 where the markup is provided by the consuming template,
 but any event handling behavior implemented in the component is retained such as `click()` handlers.
 
-```app/templates/index.hbs
+```handlebars {data-filename=app/templates/index.hbs}
 {{#blog-post post=model as |title body author|}}
   <h2>{{title}}</h2>
   <p class="author">by {{author}}</p>
@@ -38,7 +38,7 @@ The names are bound in the order that they are passed to `yield` in the componen
 It is possible to support both block and non-block usage of a component from a single component template
 using the `hasBlock` property.
 
-```app/templates/components/blog-post.hbs
+```handlebars {data-filename=app/templates/components/blog-post.hbs}
 {{#if hasBlock}}
   {{yield post.title}}
   {{yield post.body}}

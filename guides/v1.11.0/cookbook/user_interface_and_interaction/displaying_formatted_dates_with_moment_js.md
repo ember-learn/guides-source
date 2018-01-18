@@ -15,7 +15,7 @@ Let's look at a simple example. You're working on a website for your
 client, and one of the requirements is to have the current date on the index page in human readable format. This is a perfect place to use a
 Handlebars helper that "pretty prints" the current date:
 
-```app/helpers/current-date.js
+```javascript {data-filename=app/helpers/current-date.js}
 export default Ember.Handlebars.makeBoundHelper(function() {
   return moment().format('LL');
 });
@@ -29,7 +29,7 @@ Today's date: {{currentDate}}  // Today's date: August 30 2013
 
 You can even enhance your code and pass in the date format to the helper:
 
-```app/route/application.js
+```javascript {data-filename=app/route/application.js}
 Ember.Handlebars.registerBoundHelper('currentDate', function(format) {
   return moment().format(format);
 });
@@ -52,7 +52,7 @@ Define `formattedDate` computed property that depends on
 `date` and `format`. Computed property in this example does
 the same thing as Handlebars helpers defined above.
 
-```app/controllers/application.js
+```javascript {data-filename=app/controllers/application.js}
 export default Ember.Controller.extend({
   format: "YYYYMMDD",
   date: null,
@@ -64,7 +64,7 @@ export default Ember.Controller.extend({
 });
 ```
 
-```/app/templates/application.hbs
+```handlebars {data-filename=/app/templates/application.hbs}
 {{input value=date}}
 {{input value=format}}
 <div>{{formattedDate}}</div>

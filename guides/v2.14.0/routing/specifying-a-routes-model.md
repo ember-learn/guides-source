@@ -3,7 +3,7 @@ appropriate model is one job of a route.
 
 For example, take this router:
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('favorite-posts');
 });
@@ -14,7 +14,7 @@ hook in the `favorite-posts` route handler:
 
 [1]: http://emberjs.com/api/classes/Ember.Route.html#method_model
 
-```app/routes/favorite-posts.js
+```javascript {data-filename=app/routes/favorite-posts.js}
 import Ember from 'ember';
 
 export default Ember.Route.extend({
@@ -32,7 +32,7 @@ Ember will wait until the data finishes loading (until the promise is resolved) 
 The route will then set the return value from the `model` hook as the `model` property of the controller.
 You will then be able to access the controller's `model` property in your template:
 
-```app/templates/favorite-posts.hbs
+```handlebars {data-filename=app/templates/favorite-posts.hbs}
 <h1>Favorite Posts</h1>
 {{#each model as |post|}}
   <p>{{post.body}}</p>
@@ -64,13 +64,13 @@ Once you have defined a route with a dynamic segment,
 Ember will extract the value of the dynamic segment from the URL for
 you and pass them as a hash to the `model` hook as the first argument:
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('photo', { path: '/photos/:photo_id' });
 });
 ```
 
-```app/routes/photo.js
+```javascript {data-filename=app/routes/photo.js}
 import Ember from 'ember';
 
 export default Ember.Route.extend({
@@ -94,7 +94,7 @@ If an identifier (such as an id or slug) is provided instead then the model hook
 For example, transitioning to the `photo` route this way won't cause the `model` hook to be executed (because `link-to`
 was passed a model):
 
-```app/templates/photos.hbs
+```handlebars {data-filename=app/templates/photos.hbs}
 <h1>Photos</h1>
 {{#each model as |photo|}}
   <p>
@@ -108,7 +108,7 @@ was passed a model):
 while transitioning this way will cause the `model` hook to be executed (because `link-to` was passed `photo.id`, an
 identifier, instead):
 
-```app/templates/photos.hbs
+```handlebars {data-filename=app/templates/photos.hbs}
 <h1>Photos</h1>
 {{#each model as |photo|}}
   <p>
@@ -129,7 +129,7 @@ The `RSVP.hash` takes
 parameters that return promises, and when all parameter promises resolve, then
 the `RSVP.hash` promise resolves. For example:
 
-```app/routes/songs.js
+```javascript {data-filename=app/routes/songs.js}
 import Ember from 'ember';
 import RSVP from 'rsvp';
 
@@ -146,7 +146,7 @@ export default Ember.Route.extend({
 In the `songs` template, we can specify both models and use the `{{#each}}` helper to display
 each record in the song model and album model:
 
-```app/templates/songs.hbs
+```handlebars {data-filename=app/templates/songs.hbs}
 <h1>Playlist</h1>
 
 <ul>

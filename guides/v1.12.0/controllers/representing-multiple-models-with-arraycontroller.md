@@ -6,7 +6,7 @@ You can treat an `ArrayController` just like its underlying array. For
 example, imagine we want to display the current playlist. In our route,
 we setup our `SongsController` to represent the songs in the playlist:
 
-```app/routes/songs.js
+```javascript {data-filename=app/routes/songs.js}
 export default Ember.Route.extend({
   setupController: function(controller, playlist) {
     controller.set('model', playlist.get('songs'));
@@ -17,7 +17,7 @@ export default Ember.Route.extend({
 In the `songs` template, we can use the `{{#each}}` helper to display
 each song:
 
-```app/templates/songs.hbs
+```handlebars {data-filename=app/templates/songs.hbs}
 <h1>Playlist</h1>
 
 <ul>
@@ -32,7 +32,7 @@ the models it represents. For example, imagine we want to display the
 number of songs that are over 30 seconds long. We can add a new computed
 property called `longSongCount` to the controller:
 
-```app/controllers/songs.js
+```javascript {data-filename=app/controllers/songs.js}
 export default Ember.ArrayController.extend({
   longSongCount: function() {
     var longSongs = this.filter(function(song) {
@@ -45,7 +45,7 @@ export default Ember.ArrayController.extend({
 
 Now we can use this property in our template:
 
-```app/templates/songs.hbs
+```handlebars {data-filename=app/templates/songs.hbs}
 <ul>
   {{#each model as |song|}}
     <li>{{song.name}} by {{song.artist}}</li>
@@ -60,7 +60,7 @@ Now we can use this property in our template:
 The `Ember.ArrayController` uses the [Ember.SortableMixin](http://emberjs.com/api/classes/Ember.SortableMixin.html) to allow sorting
 of content. There are two properties that can be set in order to set up sorting:
 
-```app/controllers/songs.js
+```javascript {data-filename=app/controllers/songs.js}
 export default Ember.ArrayController.extend({
   sortProperties: ['name', 'artist'],
   sortAscending: true // false for descending
@@ -73,7 +73,7 @@ It is often useful to specify a controller to decorate individual items in
 the `ArrayController` while iterating over them. This can be done by
 creating a `Controller`:
  
-```app/controllers/song.js
+```javascript {data-filename=app/controllers/song.js}
 export default Ember.Controller.extend({
 
   name: Ember.computed.alias('model.name'),
@@ -88,13 +88,13 @@ export default Ember.Controller.extend({
 Then, the `ArrayController` `itemController` property must be set to
 the decorating controller.
 
-```app/controllers/songs.js
+```javascript {data-filename=app/controllers/songs.js}
 export default Ember.ArrayController.extend({
   itemController: 'song'
 });
 ```
 
-```app/templates/songs.hbs
+```handlebars {data-filename=app/templates/songs.hbs}
 {{#each controller as |item|}}
   <li>{{item.fullName}}</li>
 {{/each}}
@@ -102,12 +102,12 @@ export default Ember.ArrayController.extend({
 
 or you could setup the `itemController` directly in the template:
 
-```app/controllers/songs.js
+```javascript {data-filename=app/controllers/songs.js}
 export default Ember.ArrayController.extend({
 });
 ```
 
-```app/templates/songs.hbs
+```handlebars {data-filename=app/templates/songs.hbs}
 {{#each controller itemController="song" as |item|}}
   <li>{{item.fullName}}</li>
 {{/each}}

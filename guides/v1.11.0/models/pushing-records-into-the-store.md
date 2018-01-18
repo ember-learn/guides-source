@@ -28,7 +28,7 @@ We can use the `route:application` to do so. The `route:application` is
 the top-most route in the route hierarchy, and its `model` hook gets
 called once when the app starts up.
 
-```app/models/album.js
+```javascript {data-filename=app/models/album.js}
 export default DS.Model.extend({
   title: DS.attr(),
   artist: DS.attr(),
@@ -36,7 +36,7 @@ export default DS.Model.extend({
 });
 ```
 
-```app/routes/application.js
+```javascript {data-filename=app/routes/application.js}
 export default Ember.Route.extend({
   model: function() {
     this.store.push('album', {

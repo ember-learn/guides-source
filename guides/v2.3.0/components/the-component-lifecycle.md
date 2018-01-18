@@ -48,7 +48,7 @@ you can use `didUpdateAttrs` to clear any error state that was built up from edi
 
 `/app/templates/components/profile-editor.hbs`
 
-```js
+```javascript
 <ul class="errors">
   {{#each errors as |error|}}
     <li>{{error.message}}</li>
@@ -63,7 +63,7 @@ you can use `didUpdateAttrs` to clear any error state that was built up from edi
 
 `/app/components/profile-editor.js`
 
-```js
+```javascript
 import Ember from 'ember';
 
 export default Ember.Component.extend({
@@ -133,7 +133,7 @@ Ember guarantees that, by the time `didInsertElement()` is called:
 A component's [`$()`][dollar] method allows you to access the component's DOM element by returning a JQuery element.
 For example, you can set an attribute using jQuery's `attr()` method:
 
-```js
+```javascript
 didInsertElement() {
   this._super(...arguments);
   this.$().attr('contenteditable', true);
@@ -142,7 +142,7 @@ didInsertElement() {
 
 [`$()`][dollar] will, by default, return a jQuery object for the component's root element, but you can also target child elements within the component's template by passing a selector:
 
-```js
+```javascript
 didInsertElement() {
   this._super(...arguments);
   this.$('div p button').addClass('enabled');
@@ -153,7 +153,7 @@ Let's initialize our date picker by overriding the [`didInsertElement()`][did-in
 
 Date picker libraries usually attach to an `<input>` element, so we will use jQuery to find an appropriate input within our component's template.
 
-```js
+```javascript
 didInsertElement() {
   this._super(...arguments);
   this.$('input.date').myDatePickerLib();
@@ -168,7 +168,7 @@ handler][event-names].
 For example, perhaps you have some custom CSS animations trigger when the component
 is rendered and you want to handle some cleanup when it ends:
 
-```js
+```javascript
 didInsertElement() {
   this._super(...arguments);
   this.$().on('animationend', () => {
@@ -203,7 +203,7 @@ We can first render this list, and then set the scroll.
 The component below takes a list of items and displays them on the screen.
 Additionally, it takes an object representing which item is selected and will select and set the scroll top to that item.
 
-```hbs
+```handlebars
 {{selected-item-list items=items selectedItem=selection}}
 ```
 
@@ -211,7 +211,7 @@ When rendered the component will iterate through the given list and apply a clas
 
 `/app/templates/components/selected-item-list.hbs`
 
-```hbs
+```handlebars
 {{#each items as |item|}}
   <div class="list-item {{if item.isSelected 'selected-item'}}">{{item.label}}</div>
 {{/each}}
@@ -221,7 +221,7 @@ The scroll happens on `didRender`, where it will scroll the component's containe
 
 `/app/components/selected-item-list.js`
 
-```js
+```javascript
 import Ember from 'ember';
 
 export default Ember.Component.extend({
@@ -252,7 +252,7 @@ allowing for any teardown logic to be performed.
 Component teardown can be triggered by a number of different conditions.
 For instance, the user may navigate to a different route, or a conditional Handlebars block surrounding your component may change:
 
-```hbs
+```handlebars
 {{#if falseBool}}
   {{my-component}}
 {{/if}}
@@ -260,7 +260,7 @@ For instance, the user may navigate to a different route, or a conditional Handl
 
 Let's use this hook to cleanup our date picker and event listener from above:
 
-```js
+```javascript
 willDestroyElement() {
   this._super(...arguments);
   this.$().off('animationend');

@@ -11,7 +11,7 @@ Here's what our homepage will look like when we're done:
 In Ember, route handlers art responsible for loading model data.
 Let's open `app/routes/index.js` and add our hard-coded data as the return value of the `model` hook:
 
-```app/routes/index.js
+```javascript {data-filename=app/routes/index.js}
 import Ember from 'ember';
 
 var rentals = [{
@@ -59,7 +59,7 @@ We can use the model data to display our list of rentals.
 Here, we'll use another common Handlebars helper called `{{each}}`.
 This helper will let us loop through each of the objects in our model:
 
-```app/templates/index.hbs
+```handlebars {data-filename=app/templates/index.hbs}
 <h1> Welcome to Super Rentals </h1>
 
 We hope you find exactly what you're looking for in a place to stay.

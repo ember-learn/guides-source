@@ -11,7 +11,7 @@ The REST adapter is smart enough to determine the URLs it communicates
 with based on the name of the model. For example, if you ask for a
 `Post` by ID:
 
-```js
+```javascript
 store.find('post', 1).then(function(post) {
 });
 ```
@@ -38,7 +38,7 @@ REST adapter:
 
 Irregular or uncountable pluralizations can be specified via `Ember.Inflector.inflector`:
 
-```js
+```javascript
 var inflector = Ember.Inflector.inflector;
 
 inflector.irregular('formula', 'formulae');
@@ -53,7 +53,7 @@ should go to `/formulae/1` instead of `/formulas/1`.
 Endpoint paths can be prefixed with a namespace by setting the `namespace`
 property on the adapter:
 
-```js
+```javascript
 App.ApplicationAdapter = DS.RESTAdapter.extend({
   namespace: 'api/1'
 });
@@ -65,7 +65,7 @@ Requests for `App.Person` would now target `http://emberjs.com/api/1/people/1`.
 
 An adapter can target other hosts by setting the `host` property.
 
-```js
+```javascript
 App.ApplicationAdapter = DS.RESTAdapter.extend({
   host: 'https://api.example.com'
 });
@@ -85,7 +85,7 @@ The primary record being returned should be in a named root. For
 example, if you request a record from `/people/123`, the response should
 be nested inside a property called `person`:
 
-```js
+```javascript
 {
   "person": {
     "firstName": "Jeff",
@@ -99,7 +99,7 @@ _Note: Although after `destroyRecord` or `deleteRecord`/`save` the adapter expec
 If you don't have the option to change the data that the server responds with, you can override the 
 [DS.JSONSerializer#extractDeleteRecord](http://emberjs.com/api/data/classes/DS.JSONSerializer.html#method_extractDeleteRecord), like so:
 
-```js
+```javascript
 extractDeleteRecord: function(store, type, payload) {
   // payload is {delete: true} and then ember data wants to go ahead and set
   // the new properties, return null so it doesn't try to do that
@@ -111,7 +111,7 @@ extractDeleteRecord: function(store, type, payload) {
 
 Attribute names should be camelized.  For example, if you have a model like this:
 
-```js
+```javascript
 App.Person = DS.Model.extend({
   firstName: DS.attr('string'),
   lastName:  DS.attr('string'),
@@ -122,7 +122,7 @@ App.Person = DS.Model.extend({
 
 The JSON returned from your server should look like this:
 
-```js
+```javascript
 {
   "person": {
     "firstName": "Barack",
@@ -137,7 +137,7 @@ the `Person` model has a key of `lastNameOfPerson`, and the desired
 attribute name is simply `lastName`, then create a custom Serializer
 for the model and override the `normalizeHash` property.
 
-```js
+```javascript
 App.Person = DS.Model.extend({
   lastName: DS.attr('string')
 });
@@ -159,7 +159,7 @@ App.PersonSerializer = DS.RESTSerializer.extend({
 References to other records should be done by ID. For example, if you
 have a model with a `hasMany` relationship:
 
-```js
+```javascript
 App.Post = DS.Model.extend({
   comments: DS.hasMany('comment', {async: true})
 });
@@ -167,7 +167,7 @@ App.Post = DS.Model.extend({
 
 The JSON should encode the relationship as an array of IDs:
 
-```js
+```javascript
 {
   "post": {
     "comments": [1, 2, 3]
@@ -182,7 +182,7 @@ Any `belongsTo` relationships in the JSON representation should be the
 camelized version of the Ember Data model's name, with the string
 `Id` appended. For example, if you have a model:
 
-```js
+```javascript
 App.Comment = DS.Model.extend({
   post: DS.belongsTo('post')
 });
@@ -190,7 +190,7 @@ App.Comment = DS.Model.extend({
 
 The JSON should encode the relationship as an ID to another record:
 
-```js
+```javascript
 {
   "comment": {
     "post": 1
@@ -201,7 +201,7 @@ The JSON should encode the relationship as an ID to another record:
 If needed these naming conventions can be overwritten by implementing
 the `keyForRelationship` method.
 
-```js
+```javascript
  App.ApplicationSerializer = DS.RESTSerializer.extend({
    keyForRelationship: function(key, relationship) {
       return key + 'Ids';
@@ -215,7 +215,7 @@ To reduce the number of HTTP requests necessary, you can sideload
 additional records in your JSON response. Sideloaded records live
 outside the JSON root, and are represented as an array of hashes:
 
-```js
+```javascript
 {
   "post": {
     "id": 1,
@@ -247,7 +247,7 @@ server may return a non-standard date format.
 Ember Data can have new JSON transforms
 registered for use as attributes:
 
-```js
+```javascript
 App.CoordinatePointTransform = DS.Transform.extend({
   serialize: function(value) {
     return [value.get('x'), value.get('y')];
@@ -265,7 +265,7 @@ App.Cursor = DS.Model.extend({
 When `coordinatePoint` is received from the API, it is
 expected to be an array:
 
-```js
+```javascript
 {
   cursor: {
     position: [4,9]
@@ -275,7 +275,7 @@ expected to be an array:
 
 But once loaded on a model instance, it will behave as an object:
 
-```js
+```javascript
 var cursor = App.Cursor.find(1);
 cursor.get('position.x'); //=> 4
 cursor.get('position.y'); //=> 9

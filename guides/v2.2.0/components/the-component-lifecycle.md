@@ -33,7 +33,7 @@ A component's [`$()`][dollar] method allows you to access the
 component's DOM element via jQuery. For example, you can set an
 attribute using jQuery's `attr()` method:
 
-```js
+```javascript
 didInsertElement() {
   this.$().attr('contenteditable', true);
 }
@@ -43,7 +43,7 @@ didInsertElement() {
 component's root element, but you can also target child elements within
 the component's template by passing a selector:
 
-```js
+```javascript
 didInsertElement() {
   this.$('div p button').addClass('enabled');
 }
@@ -55,7 +55,7 @@ Let's initialize our date picker by overriding the
 Date picker libraries usually attach to an `<input>` element, so we will
 use jQuery to find an appropriate input within our component's template.
 
-```js
+```javascript
 didInsertElement() {
   this.$('input.date').myDatePickerLib();
 }
@@ -69,7 +69,7 @@ handler][event-names].
 For example, perhaps you have some custom CSS animations trigger when the component
 is rendered and you want to handle some cleanup when it ends:
 
-```js
+```javascript
 didInsertElement() {
   this.$().on('animationend', () => {
     $(this).removeClass('.sliding-anim');
@@ -106,7 +106,7 @@ Component teardown can be triggered by a number of different conditions.
 For instance, the user may navigate to a different route, or a
 conditional Handlebars block surrounding your component may change:
 
-```hbs
+```handlebars
 {{#if falseBool}}
   {{my-component}}
 {{/if}}
@@ -114,7 +114,7 @@ conditional Handlebars block surrounding your component may change:
 
 Let's use this hook to cleanup our date picker and event listener from above:
 
-```js
+```javascript
 willDestroyElement() {
   this.$().off('animationend');
   this.$('input.date').myDatepickerLib().destroy();

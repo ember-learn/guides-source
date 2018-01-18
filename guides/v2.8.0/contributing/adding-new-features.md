@@ -41,7 +41,7 @@ precisely this format. We are choosing conditionals rather than a block
 form because functions change the surrounding scope and may introduce
 problems with early return.
 
-```js
+```javascript
 if (Ember.FEATURES.isEnabled("feature")) {
   // implementation
 }
@@ -64,7 +64,7 @@ described above.
 
 #### Feature Naming Conventions
 
-```config/environment.js
+```javascript {data-filename=config/environment.js}
 Ember.FEATURES['<packageName>-<feature>'] // if package specific
 Ember.FEATURES['container-factory-injections']
 Ember.FEATURES['htmlbars']
@@ -77,7 +77,7 @@ guarded by the conditionals in the original source. This means that
 users of the canary build can enable whatever features they want by
 enabling them before creating their Ember.Application.
 
-```config/environment.js
+```javascript {data-filename=config/environment.js}
 module.exports = function(environment) {
   var ENV = {
     EmberENV: {
@@ -98,7 +98,7 @@ builds.
 This file is populated when branching, and may not gain additional
 features after the original branch. It may remove features.
 
-```js
+```javascript
 {
   "htmlbars": true
 }

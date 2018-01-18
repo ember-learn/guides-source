@@ -8,7 +8,7 @@ then load the data returned into the store.
 You provide the hooks to Ember Data by implementing a `sync` object on
 each model:
 
-```app/models/person.js
+```javascript {data-filename=app/models/person.js}
 var Person = DS.Model.extend({
   //...model definition...
 });
@@ -50,7 +50,7 @@ Ember Data expects that the JSON you load in will have keys with the
 same name as the attributes and relationships that you have defined in
 the model. For example, if you have a `Person` model:
 
-```app/models/person.js
+```javascript {data-filename=app/models/person.js}
 export default DS.Model.extend({
   firstName: DS.attr('string'),
   lastName: DS.attr('string'),

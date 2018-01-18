@@ -34,7 +34,7 @@ Opening the new test file will reveal some boilerplate code that will try to go 
 This boilerplate code is there to guide you into your first working acceptance test.
 Since we are testing our index route, which is `/`, we'll replace occurrences of `/list-rentals` with `/`:
 
-```/tests/acceptance/list-rentals-test.js{-6,+7,-8,+9,-12,+13}
+```javascript {data-filename=/tests/acceptance/list-rentals-test.js data-diff="-6,+7,-8,+9,-12,+13"}
 import { test } from 'qunit';
 import moduleForAcceptance from 'super-rentals/tests/helpers/module-for-acceptance';
 
@@ -56,7 +56,7 @@ Now run your test suite with `ember test --server` from the command line in a ne
 
 As mentioned before, this test boilerplate is just for checking the environment, so now let's replace this test with our list of goals.
 
-```/tests/acceptance/list-rentals-test.js
+```javascript {data-filename=/tests/acceptance/list-rentals-test.js}
 import { test } from 'qunit';
 import moduleForAcceptance from 'super-rentals/tests/helpers/module-for-acceptance';
 
@@ -92,7 +92,7 @@ waiting for pages to render.
 We want the main focus of our site to be selecting rentals, so we plan to redirect traffic going to the root URL `/`, to our `rentals` route.
 We can create a simple test using our test helpers to verify this:
 
-```/tests/acceptance/list-rentals-test.js
+```javascript {data-filename=/tests/acceptance/list-rentals-test.js}
 test('should redirect to rentals route', function (assert) {
   visit('/');
   andThen(function() {
@@ -109,7 +109,7 @@ In this case, we need to wait for the page to load after `visit`, so that we can
 
 To check that rentals are listed, we'll first visit the index route and check that the results show 3 listings:
 
-```/tests/acceptance/list-rentals-test.js
+```javascript {data-filename=/tests/acceptance/list-rentals-test.js}
 test('should list available rentals.', function (assert) {
   visit('/');
   andThen(function() {
@@ -123,7 +123,7 @@ For the next two tests, we want to verify that clicking the about and contact pa
 We'll use the [`click`](http://emberjs.com/api/classes/Ember.Test.html#method_click) helper to simulate a user clicking these links.
 After the new screen loads, we just verify that the new URL matches our expectation using the [`currentURL`](http://emberjs.com/api/classes/Ember.Test.html#method_currentURL) helper.
 
-```/tests/acceptance/list-rentals-test.js
+```javascript {data-filename=/tests/acceptance/list-rentals-test.js}
 test('should link to information about the company.', function (assert) {
   visit('/');
   click('a:contains("About")');
@@ -148,7 +148,7 @@ We anticipate having an input field in a container with a class of `list-filter`
 We will fill out "Seattle" as the search criteria in that field and send a key up event to trigger our filtering action.
 Since we control our data, we know that there is only one rental with a city of "Seattle", so we assert that the number of listings is one and that its location is "Seattle".
 
-```/tests/acceptance/list-rentals-test.js
+```javascript {data-filename=/tests/acceptance/list-rentals-test.js}
 test('should filter the list of rentals by city.', function (assert) {
   visit('/');
   fillIn('.list-filter input', 'seattle');
@@ -163,7 +163,7 @@ test('should filter the list of rentals by city.', function (assert) {
 Finally, we want to verify that we can click on a specific rental and load a detailed view to the page.
 We'll click on the title and validate that an expanded description of the rental is shown.
 
-```/tests/acceptance/list-rentals-test.js
+```javascript {data-filename=/tests/acceptance/list-rentals-test.js}
 test('should show details for a specific rental', function (assert) {
   visit('/rentals');
   click('a:contains("Grand Old Mansion")');

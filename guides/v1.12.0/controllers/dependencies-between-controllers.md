@@ -2,7 +2,7 @@ Sometimes, especially when nesting resources, we find ourselves needing
 to have some kind of connection between two controllers. Let's take this
 router as an example:
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 var Router = Ember.Router.extend({});
 
 Router.map(function() {
@@ -22,7 +22,7 @@ some information about it in the `comments` template.
 To be able to do this we define our `CommentsController` to `need` the `PostController`
 which has our desired `Post` model.
 
-```app/controllers/comments.js
+```javascript {data-filename=app/controllers/comments.js}
 export default Ember.ArrayController.extend({
   needs: "post"
 });
@@ -33,14 +33,14 @@ its parent `PostController`, which can be done via `controllers.post`
 (either in the template or in the controller itself). In order to get the
 actual `Post` model, we need to refer to `controllers.post.model`:
 
-```app/controllers/comments.js
+```javascript {data-filename=app/controllers/comments.js}
 export default Ember.ArrayController.extend({
   needs: "post",
   post: Ember.computed.alias("controllers.post.model")
 });
 ```
 
-```app/templates/comments.hbs
+```handlebars {data-filename=app/templates/comments.hbs}
 <h1>Comments for {{post.title}}</h1>
 
 <ul>
@@ -53,7 +53,7 @@ export default Ember.ArrayController.extend({
 If you want to connect multiple controllers together, you can specify an
 array of controller names:
 
-```app/controllers/overview.js
+```javascript {data-filename=app/controllers/overview.js}
 export default Ember.Controller.extend({
   needs: ['post', 'comments']
 });

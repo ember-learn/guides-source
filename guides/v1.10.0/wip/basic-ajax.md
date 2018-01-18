@@ -27,7 +27,7 @@ When your user enters a route, Ember will ask the associated
 
 For example, if you have a `posts` resource:
 
-```js
+```javascript
 App.Router.map(function() {
   this.resource('posts');
 });
@@ -37,7 +37,7 @@ When the user goes to `/posts`, Ember will ask `App.PostsRoute` which
 model to use. This method, called the "model hook", can return an Array,
 which will then become the model for the `posts` template. 
 
-```js
+```javascript
 App.PostsRoute = Ember.Route.extend({
   model: function() {
     return [...];
@@ -60,7 +60,7 @@ If you want to tell Ember that the model for a route is the result of
 making an Ajax request instead of a value that you have locally, just
 return a jQuery Ajax request.
 
-```js
+```javascript
 App.PostsRoute = Ember.Route.extend({
   model: function() {
     return $.getJSON("/posts");
@@ -74,7 +74,7 @@ If you want to do some data munging before setting the model, just do it
 in the success handler of the Ajax request. Whatever value you return
 from the success handler will become the model.
 
-```js
+```javascript
 App.PostsRoute = Ember.Route.extend({
   model: function() {
     return $.getJSON("/posts").then(function(json) {
@@ -92,7 +92,7 @@ All of that works great for routes that only have a single model
 associated with them. But what about routes that use `:post_id` to allow
 a single route to represent many different models?
 
-```js
+```javascript
 App.Router.map(function() {
   this.resource('posts');
   this.resource('post', { path: '/posts/:post_id' });
@@ -108,7 +108,7 @@ in question.
 
 First, if you already have the data locally:
 
-```js
+```javascript
 var posts = [{
   id: "1",
   title: "Rails is omakase",
@@ -140,7 +140,7 @@ from the server. As before, we can replace our code with an Ajax lookup.
 Because jQuery provides promises by default, we can return the result of
 a call to `$.getJSON`.
 
-```js
+```javascript
 App.PostsRoute = Ember.Route.extend({
   model: function() {
     return $.getJSON("/posts");
@@ -171,7 +171,7 @@ prefer to use the post we already downloaded.
 In order to achieve this, you can build a simple cache that will first
 try to use loaded data before fetching.
 
-```js
+```javascript
 // A simple cache class
 App.Cache = Ember.Object.extend({
   init: function() {
@@ -215,7 +215,7 @@ App.Cache = Ember.Object.extend({
 
 Then, we can use the cache in our model hooks:
 
-```js
+```javascript
 App.CacheController = Ember.Controller.extend({
   init: function() {
     this.posts = App.Cache.create();

@@ -12,7 +12,7 @@ sets one of those properties, and an action named `setProps`.
 > You can follow along by generating your own controller with `ember generate
 > controller posts`.
 
-```app/controllers/posts.js
+```javascript {data-filename=app/controllers/posts.js}
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
@@ -36,7 +36,7 @@ The `setProps` action directly sets one property, and calls the method to set th
 In our generated test, ember-cli already uses the `moduleFor` helper to set up a test
 container:
 
-```tests/unit/controllers/posts-test.js
+```javascript {data-filename=tests/unit/controllers/posts-test.js}
 moduleFor('controller:posts', {
 });
 ```
@@ -46,7 +46,7 @@ write a test to check the action. `this.subject()` is a helper method from the
 `ember-qunit` library that returns a singleton instance of the module set up
 using `moduleFor`.
 
-```tests/unit/controllers/posts-test.js
+```javascript {data-filename=tests/unit/controllers/posts-test.js}
 test('should update A and B on setProps action', function(assert) {
   assert.expect(4);
 
@@ -77,7 +77,7 @@ accomplished by injecting one controller into another. For example, here are two
 > You can follow along by generating your own controller with `ember generate
 > controller post`, and `ember generate controller comments`.
 
-```app/controllers/post.js
+```javascript {data-filename=app/controllers/post.js}
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
@@ -85,7 +85,7 @@ export default Ember.Controller.extend({
 });
 ```
 
-```app/controllers/comments.js
+```javascript {data-filename=app/controllers/comments.js}
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
@@ -97,7 +97,7 @@ export default Ember.Controller.extend({
 This time when we setup our `moduleFor` we need to pass an options object as
 our third argument that has the controller's `needs`.
 
-```tests/unit/controllers/comments-test.js
+```javascript {data-filename=tests/unit/controllers/comments-test.js}
 moduleFor('controller:comments', 'Comments Controller', {
   needs: ['controller:post']
 });
@@ -106,7 +106,7 @@ moduleFor('controller:comments', 'Comments Controller', {
 Now let's write a test that sets a property on our `post` model in the
 `PostController` that would be available on the `CommentsController`.
 
-```tests/unit/controllers/comments-test.js
+```javascript {data-filename=tests/unit/controllers/comments-test.js}
 test('should modify the post model', function(assert) {
   assert.expect(2);
 

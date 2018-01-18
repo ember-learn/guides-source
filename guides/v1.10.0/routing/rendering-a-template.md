@@ -4,7 +4,7 @@ appropriate template to the screen.
 By default, a route handler will render the template into the closest
 parent with a template.
 
-```js
+```javascript
 App.Router.map(function() {
   this.resource('posts');
 });
@@ -15,7 +15,7 @@ App.PostsRoute = Ember.Route.extend();
 If you want to render a template other than the one associated with the
 route handler, implement the `renderTemplate` hook:
 
-```js
+```javascript
 App.PostsRoute = Ember.Route.extend({
   renderTemplate: function() {
     this.render('favoritePost');
@@ -26,7 +26,7 @@ App.PostsRoute = Ember.Route.extend({
 If you want to use a different controller than the route handler's
 controller, pass the controller's name in the `controller` option:
 
-```js
+```javascript
 App.PostsRoute = Ember.Route.extend({
   renderTemplate: function() {
     this.render({ controller: 'favoritePost' });
@@ -45,7 +45,7 @@ you to specify two outlets with distinct names:
 So, if you want to render your posts into the `sidebar` outlet, use code
 like this:
 
-```js
+```javascript
 App.PostsRoute = Ember.Route.extend({
   renderTemplate: function() {
     this.render({ outlet: 'sidebar' });
@@ -56,7 +56,7 @@ App.PostsRoute = Ember.Route.extend({
 All of the options described above can be used together in whatever
 combination you'd like:
 
-```js
+```javascript
 App.PostsRoute = Ember.Route.extend({
   renderTemplate: function() {
     var controller = this.controllerFor('favoritePost');
@@ -74,7 +74,7 @@ App.PostsRoute = Ember.Route.extend({
 
 If you want to render two different templates into outlets of two different rendered templates of a route:
 
-```js
+```javascript
 App.PostRoute = App.Route.extend({
   renderTemplate: function() {
     this.render('favoritePost', {   // the template to render

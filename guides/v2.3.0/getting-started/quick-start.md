@@ -111,7 +111,7 @@ That's Ember telling you that it has created:
 Open the newly-created template in `app/templates/scientists.hbs` and add
 the following HTML:
 
-```app/templates/scientists.hbs
+```handlebars {data-filename=app/templates/scientists.hbs}
 <h2>List of Scientists</h2>
 ```
 
@@ -127,7 +127,7 @@ we can specify a model by editing `app/routes/scientists.js`.
 We'll take the code created for us by the generator and add a `model()`
 method to the `Route`:
 
-```app/routes/scientists.js{+4,+5,+6}
+```javascript {data-filename=app/routes/scientists.js data-diff="+4,+5,+6"}
 import Ember from 'ember';
 
 export default Ember.Route.extend({
@@ -154,7 +154,7 @@ Now let's tell Ember how to turn that array of strings into HTML. Open
 the `scientists` template and add some Handlebars code to loop through the
 array and print it:
 
-```app/templates/scientists.hbs{+3,+4,+5,+6,+7}
+```handlebars {data-filename=app/templates/scientists.hbs data-diff="+3,+4,+5,+6,+7"}
 <h2>List of Scientists</h2>
 
 <ul>
@@ -186,7 +186,7 @@ ember generate component people-list
 Copy and paste the `scientists` template into the `people-list`
 component's template and edit it to look as follows:
 
-```app/templates/components/people-list.hbs
+```handlebars {data-filename=app/templates/components/people-list.hbs}
 <h2>{{title}}</h2>
 
 <ul>
@@ -210,7 +210,7 @@ curly braces (`{{component}}`). We're going to tell our component:
 2. What array of people to use, via the `people` attribute. We'll
    provide this route's `model` as the list of people.
 
-```app/templates/scientists.hbs{-1,-2,-3,-4,-5,-6,-7,+8}
+```handlebars {data-filename=app/templates/scientists.hbs data-diff="-1,-2,-3,-4,-5,-6,-7,+8"}
 <h2>List of Scientists</h2>
 
 <ul>

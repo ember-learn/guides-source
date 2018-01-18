@@ -9,7 +9,7 @@ You can use the `{{action}}` helper to make an HTML element clickable.
 When a user clicks the element, the named event will be sent to your
 application.
 
-```app/templates/post.hbs
+```handlebars {data-filename=app/templates/post.hbs}
 <div class='intro'>
   {{intro}}
 </div>
@@ -22,7 +22,7 @@ application.
 {{/if}}
 ```
 
-```app/controllers/post.js
+```javascript {data-filename=app/controllers/post.js}
 export default Ember.ObjectController.extend({
   // initial value
   isExpanded: false,
@@ -70,7 +70,7 @@ a method directly on the controller, it is strongly recommended that you
 put your action handling methods inside an `actions` hash for forward
 compatibility.
 
-```app/routes/post.js
+```javascript {data-filename=app/routes/post.js}
 export default Ember.Route.extend({
   actions: {
     expand: function() {
@@ -89,7 +89,7 @@ that when executed, `this` is the route, not the `actions` hash.
 
 To continue bubbling the action, you must return true from the handler:
 
-```app/routes/post.js
+```javascript {data-filename=app/routes/post.js}
 export default Ember.Route.extend({
   actions: {
     expand: function() {
@@ -138,7 +138,7 @@ For example, if the `post` argument was passed:
 The controller's `select` action handler would be called with a single argument
 containing the post model:
 
-```app/controllers/post.js
+```javascript {data-filename=app/controllers/post.js}
 export default Ember.ObjectController.extend({
   actions: {
     select: function(post) {
@@ -224,7 +224,7 @@ is most commonly used to send actions to a view instead of a controller.
 
 You would handle this in an `actions` hash on your view.
 
-```app/views/posts.js
+```javascript {data-filename=app/views/posts.js}
 export default Ember.View.extend({
   actions: {
     select: function(post) {

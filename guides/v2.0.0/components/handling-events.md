@@ -4,7 +4,7 @@ you want to respond to as a method on your component.
 
 For example, imagine we have a template like this:
 
-```hbs
+```handlebars
 {{#double-clickable}}
   This is a double clickable area!
 {{/double-clickable}}
@@ -13,7 +13,7 @@ For example, imagine we have a template like this:
 Let's implement `double-clickable` such that when it is
 clicked, an alert is displayed:
 
-```app/components/double-clickable.js
+```javascript {data-filename=app/components/double-clickable.js}
 export default Ember.Component.extend({
   doubleClick: function() {
     alert("DoubleClickableComponent was clicked!");
@@ -25,7 +25,7 @@ Browser events may bubble up the DOM which potentially target parent component(s
 in succession. To enable bubbling `return true;` from the event handler method
 in your component.
 
-```app/components/double-clickable.js
+```javascript {data-filename=app/components/double-clickable.js}
 export default Ember.Component.extend({
   doubleClick: function() {
     Ember.Logger.info("DoubleClickableComponent was clicked!");
@@ -43,7 +43,7 @@ In some cases your component needs to define event handlers, perhaps to support
 various draggable behaviors. For example, a component may need to send an `id`
 when it receives a drop event:
 
-```hbs
+```handlebars
 {{drop-target action="didDrop"}}
 ```
 
@@ -51,7 +51,7 @@ You can define the component's event handlers to manage the drop event.
 And if you need to, you may also stop events from bubbling, by using
 `return false;`.
 
-```app/components/drop-target.js
+```javascript {data-filename=app/components/drop-target.js}
 export default Ember.Component.extend({
   attributeBindings: ['draggable'],
   draggable: 'true',

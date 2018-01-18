@@ -20,7 +20,7 @@ installing helper-test
 
 Our new helper starts out with some boilerplate code from the generator:
 
-```app/helpers/rental-property-type.js
+```javascript {data-filename=app/helpers/rental-property-type.js}
 import Ember from 'ember';
 
 export function rentalPropertyType(params/*, hash*/) {
@@ -32,7 +32,7 @@ export default Ember.Helper.helper(rentalPropertyType);
 
 Let's update our `rental-listing` component template to use our new helper and pass in `rental.propertyType`:
 
-```app/templates/components/rental-listing.hbs{-11,+12,+13}
+```handlebars {data-filename=app/templates/components/rental-listing.hbs data-diff="-11,+12,+13"}
 <article class="listing">
   <a {{action 'toggleImageSize'}} class="image {{if isWide "wide"}}">
     <img src="{{rental.image}}" alt="">
@@ -61,7 +61,7 @@ Instead, our default template helper is returning back our `rental.propertyType`
 Let's update our helper to look if a property exists in an array of `communityPropertyTypes`,
 if so, we'll return either `'Community'` or `'Standalone'`:
 
-```app/helpers/rental-property-type.js
+```javascript {data-filename=app/helpers/rental-property-type.js}
 import Ember from 'ember';
 
 const communityPropertyTypes = [
@@ -91,7 +91,7 @@ while the other two are listed as "Community".
 
 Update the content of the integration test to the following to fix it:
 
-```/tests/integration/helpers/rental-property-type-test.js{-15,+16}
+```javascript {data-filename=/tests/integration/helpers/rental-property-type-test.js data-diff="-15,+16"}
 
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';

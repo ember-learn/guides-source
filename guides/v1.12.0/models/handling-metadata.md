@@ -2,7 +2,7 @@ Along with the records returned from your store, you'll likely need to handle so
 
 Pagination is a common example of using metadata. Imagine a blog with far more posts than you can display at once. You might query it like so:
 
-```js
+```javascript
 var result = this.store.find("post", {
   limit: 10,
   offset: 0
@@ -13,7 +13,7 @@ To get different *pages* of data, you'd simply change your offset in increments 
 
 By default, Ember Data's JSON deserializer looks for a `meta` key:
 
-```js
+```javascript
 {
   "post": {
     "id": 1,
@@ -33,13 +33,13 @@ By default, Ember Data's JSON deserializer looks for a `meta` key:
 
 The metadata for a specific type is then set to the contents of `meta`. You can access it either with `store.metadataFor`, which is updated any time any query is made against the same type:
 
-```js
+```javascript
 var meta = this.store.metadataFor("post");
 ```
 
 Or you can access the metadata just for this query:
 
-```js
+```javascript
 var meta = result.get("content.meta");
 ```
 
@@ -47,7 +47,7 @@ Now, `meta.total` can be used to calculate how many pages of posts you'll have.
 
 You can also customize metadata extraction by overriding the `extractMeta` method. For example, if instead of a `meta` object, your server simply returned:
 
-```js
+```javascript
 {
   "post": [
     // ...
@@ -58,7 +58,7 @@ You can also customize metadata extraction by overriding the `extractMeta` metho
 
 You could extract it like so:
 
-```app/serializers/application.js
+```javascript {data-filename=app/serializers/application.js}
 export default DS.RESTSerializer.extend({
   extractMeta: function(store, type, payload) {
     if (payload && payload.total) {

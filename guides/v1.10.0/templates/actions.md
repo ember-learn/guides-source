@@ -24,7 +24,7 @@ application.
 {{/if}}
 ```
 
-```js
+```javascript
 App.PostController = Ember.ObjectController.extend({
   // initial value
   isExpanded: false,
@@ -72,7 +72,7 @@ a method directly on the controller, it is strongly recommended that you
 put your action handling methods inside an `actions` hash for forward
 compatibility.
 
-```js
+```javascript
 App.PostRoute = Ember.Route.extend({
   actions: {
     expand: function() {
@@ -91,7 +91,7 @@ that when executed, `this` is the route, not the `actions` hash.
 
 To continue bubbling the action, you must return true from the handler:
 
-```js
+```javascript
 App.PostRoute = Ember.Route.extend({
   actions: {
     expand: function() {
@@ -140,7 +140,7 @@ For example, if the `post` argument was passed:
 The controller's `select` action handler would be called with a single argument
 containing the post model:
 
-```js
+```javascript
 App.PostController = Ember.ObjectController.extend({
   actions: {
     select: function(post) {

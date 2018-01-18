@@ -39,7 +39,7 @@ ember generate helper format-currency
 
 That file should export a function wrapped with `Ember.Helper.helper()`:
 
-```app/helpers/format-currency.js
+```javascript {data-filename=app/helpers/format-currency.js}
 export default Ember.Helper.helper(function(params) {
   let value = params[0],
       dollars = Math.floor(value / 100),
@@ -61,14 +61,14 @@ function and insert whatever you return from the helper into the DOM.
 So, for example, if we had a template like this where we pass a value in
 cents:
 
-```hbs
+```handlebars
 Your total is {{format-currency 250}}.
 ```
 
 Ember would replace the content inside the `{{ }}` with the formatted
 amount:
 
-```hbs
+```handlebars
 Your total is $2.50.
 ```
 
@@ -96,7 +96,7 @@ list after the helper name:
 
 An array of these arguments is passed to the helper function:
 
-```app/helpers/my-helper.js
+```javascript {data-filename=app/helpers/my-helper.js}
 export default Ember.Helper.helper(function(params) {
   let arg1 = params[0];
   let arg2 = params[1];
@@ -109,7 +109,7 @@ export default Ember.Helper.helper(function(params) {
 You can use JavaScript's destructuring assignment shorthand to clean up
 the code. This example is equivalent to the above example (note the function signature):
 
-```app/helpers/my-helper.js
+```javascript {data-filename=app/helpers/my-helper.js}
 export default Ember.Helper.helper(function([arg1, arg2]) {
   console.log(arg1); // => "hello"
   console.log(arg2); // => "world"
@@ -151,7 +151,7 @@ The object containing named arguments is passed as the second argument
 to the helper function.  Here is our example from above, updated to
 support the optional `sign` option:
 
-```app/helpers/format-currency.js
+```javascript {data-filename=app/helpers/format-currency.js}
 export default Ember.Helper.helper(function(params, namedArgs) {
   let value = params[0],
       dollars = Math.floor(value / 100),
@@ -170,7 +170,7 @@ You can pass as many named arguments as you'd like. They get added to the
 {{my-helper option1="hello" option2="world" option3="goodbye cruel world"}}
 ```
 
-```app/helpers/my-helper.js
+```javascript {data-filename=app/helpers/my-helper.js}
 export default Ember.Helper.helper(function(params, namedArgs) {
   console.log(namedArgs.option1); // => "hello"
   console.log(namedArgs.option2); // => "world"
@@ -181,7 +181,7 @@ export default Ember.Helper.helper(function(params, namedArgs) {
 You can use JavaScript's destructuring assignment shorthand in this case
 as well to clean up the above code:
 
-```app/helpers/my-helper.js
+```javascript {data-filename=app/helpers/my-helper.js}
 export default Ember.Helper.helper(function(params, { option1, option2, option3 }) {
   console.log(option1); // => "hello"
   console.log(option2); // => "world"
@@ -240,7 +240,7 @@ access its properties from within the `compute()` method.
 To exemplify, let's make a helper utilizing an authentication service that
 welcomes users by their name if they're logged in:
 
-```app/helpers/is-authenticated.js
+```javascript {data-filename=app/helpers/is-authenticated.js}
 export default Ember.Helper.extend({
   authentication: Ember.inject.service(),
   compute() {
@@ -258,7 +258,7 @@ export default Ember.Helper.extend({
 In fact, we could also refactor the above stateless helper into a class-based
 helper just by making the function into a `compute` method on the class:
 
-```app/helpers/format-currency.js
+```javascript {data-filename=app/helpers/format-currency.js}
 export default Ember.Helper.extend({
   compute(params, hash) {
     let value = params[0],
@@ -284,7 +284,7 @@ the browser will not interpret it as HTML.
 
 For example, here's a `make-bold` helper that returns a string containing HTML:
 
-```app/helpers/make-bold.js
+```javascript {data-filename=app/helpers/make-bold.js}
 export default Ember.Helper.helper(function(params) {
   return `<b>${params[0]}</b>`;
 });
@@ -307,7 +307,7 @@ than the text in bold as you probably intended. We can tell Ember not to
 escape the return value (that is, that it is _safe_) by using the
 `htmlSafe` string utility:
 
-```app/helpers/make-bold.js
+```javascript {data-filename=app/helpers/make-bold.js}
 export default Ember.Helper.helper(function(params) {
   return Ember.String.htmlSafe(`<b>${params[0]}</b>`);
 });
@@ -340,7 +340,7 @@ and values from models in what you return from the helper, make sure you
 escape anything that may have come from an untrusted user with the
 `escapeExpression` utility:
 
-```app/helpers/make-bold.js
+```javascript {data-filename=app/helpers/make-bold.js}
 export default Ember.Helper.helper(function(params) {
   let value = Ember.Handlebars.Utils.escapeExpression(params[0]);
   return Ember.String.htmlSafe(`<b>${value}</b>`);

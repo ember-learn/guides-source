@@ -34,7 +34,7 @@ Add google analytic's base code to the html file that renders your ember app.
 Then reopen the application router and add this function. It will be called when
 `didTransition` is fired by the router.
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 var Router = Ember.Router.extend({
   // customization goes here
 });

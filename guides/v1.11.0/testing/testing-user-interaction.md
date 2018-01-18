@@ -3,7 +3,7 @@ Almost every test has a pattern of visiting a route, interacting with the page
 
 Example:
 
-```tests/acceptance/root-lists-first-page-of-posts-test.js
+```javascript {data-filename=tests/acceptance/root-lists-first-page-of-posts-test.js}
 test('root lists first page of posts', function(assert){
   visit('/posts');
   andThen(function() {
@@ -16,7 +16,7 @@ The helpers that perform actions use a global promise object and automatically
 chain onto that promise object if it exists. This allows you to write your tests
 without worrying about async behaviour your helper might trigger.
 
-```tests/acceptance/new-post-appears-first-test.js
+```javascript {data-filename=tests/acceptance/new-post-appears-first-test.js}
 var application;
 module('Acceptance: New Post Appears First', {
   beforeEach: function() {
@@ -44,7 +44,7 @@ Suppose we have an application which requires authentication. When a visitor
 visits a certain URL as an unauthenticated user, we expect them to be transitioned
 to a login page.
 
-```app/routes/profile.js
+```javascript {data-filename=app/routes/profile.js}
 export default Ember.Route.extend({
   beforeModel: function() {
     var user = this.modelFor('application');
@@ -58,7 +58,7 @@ export default Ember.Route.extend({
 We could use the route helpers to ensure that the user would be redirected to the login page
 when the restricted URL is visited.
 
-```tests/acceptance/transitions-test.js
+```javascript {data-filename=tests/acceptance/transitions-test.js}
 var application;
 
 module('Acceptance: Transitions', {

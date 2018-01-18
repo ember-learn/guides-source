@@ -22,7 +22,7 @@ specify a record's type using the model name. For example, the store's
 `find()` method expects a string as the first argument to tell it what
 type of record to find:
 
-```js
+```javascript
 store.find('person', 1);
 ```
 
@@ -87,7 +87,7 @@ If you don't specify the type of the attribute, it will be whatever was
 provided by the server. You can make sure that an attribute is always
 coerced into a particular type by passing a `type` to `attr`:
 
-```js
+```javascript
 App.Person = DS.Model.extend({
   birthday: DS.attr('date')
 });
@@ -135,7 +135,7 @@ define how your models relate to each other.
 To declare a one-to-one relationship between two models, use
 `DS.belongsTo`:
 
-```js
+```javascript
 App.User = DS.Model.extend({
   profile: DS.belongsTo('profile')
 });
@@ -150,7 +150,7 @@ App.Profile = DS.Model.extend({
 To declare a one-to-many relationship between two models, use
 `DS.belongsTo` in combination with `DS.hasMany`, like this:
 
-```js
+```javascript
 App.Post = DS.Model.extend({
   comments: DS.hasMany('comment')
 });
@@ -165,7 +165,7 @@ App.Comment = DS.Model.extend({
 To declare a many-to-many relationship between two models, use
 `DS.hasMany`:
 
-```js
+```javascript
 App.Post = DS.Model.extend({
   tags: DS.hasMany('tag')
 });

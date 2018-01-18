@@ -44,7 +44,7 @@ So how do you trigger sending a component's primary action? After
 the relevant event occurs, you can call the `sendAction()` method
 without arguments:
 
-```app/components/my-button.js
+```javascript {data-filename=app/components/my-button.js}
 export default Ember.Component.extend({
   click() {
     this.sendAction();
@@ -65,14 +65,14 @@ To send parameters with the primary action, call `sendAction()` with the
 string `'action'` as the first argument and any additional parameters
 following it:
 
-```js
+```javascript
 this.sendAction('action', param1, param2);
 ```
 
 For example, imagine we're building a todo list that allows the user to
 delete a todo:
 
-```app/routes/index.js
+```javascript {data-filename=app/routes/index.js}
 export default Ember.Route.extend({
   model() {
     return {
@@ -93,7 +93,7 @@ export default Ember.Route.extend({
 });
 ```
 
-```app/templates/index.hbs
+```handlebars {data-filename=app/templates/index.hbs}
 {{#each model.todos as |todo|}}
   <p>{{todo.title}} <button {{action "deleteTodo" todo}}>Delete</button></p>
 {{/each}}
@@ -107,7 +107,7 @@ action.
 In the component, when triggering the primary action, we'll pass an
 additional argument that the component user can specify:
 
-```app/components/confirm-button.js
+```javascript {data-filename=app/components/confirm-button.js}
 export default Ember.Component.extend({
   actions: {
     showConfirmation() {
@@ -122,7 +122,7 @@ export default Ember.Component.extend({
 });
 ```
 
-```app/templates/components/confirm-button.hbs
+```handlebars {data-filename=app/templates/components/confirm-button.hbs}
 {{#if isShowingConfirmation}}
   <button {{action "confirm"}}>Click again to confirm</button>
 {{else}}
@@ -133,7 +133,7 @@ export default Ember.Component.extend({
 Now we can update our initial template and replace the `{{action}}`
 helper with our new component:
 
-```app/templates/index.hbs
+```handlebars {data-filename=app/templates/index.hbs}
 {{#each model.todos as |todo|}}
   <p>{{todo.title}} {{confirm-button title="Delete" action="deleteTodo" param=todo}}</p>
 {{/each}}
@@ -177,7 +177,7 @@ particular event, calling `sendAction()` has no effect.
 For example, if you define a component that triggers the primary action
 on click:
 
-```app/components/my-button.js
+```javascript {data-filename=app/components/my-button.js}
 export default Ember.Component.extend({
   click() {
     this.sendAction();

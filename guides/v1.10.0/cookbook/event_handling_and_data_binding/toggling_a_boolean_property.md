@@ -4,7 +4,7 @@ You want to toggle a boolean property.
 ### Solution
 Use the `toggleProperty` method of an `Ember.Object`.
 
-```js
+```javascript
 obj.toggleProperty('isVisible');
 ```
 

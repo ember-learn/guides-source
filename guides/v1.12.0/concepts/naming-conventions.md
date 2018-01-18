@@ -36,7 +36,7 @@ the `setupController` hook.
 
 Here's a simple example that uses a route, controller, and template:
 
-```app/routes/application.js
+```javascript {data-filename=app/routes/application.js}
 export default Ember.Route.extend({
   setupController: function(controller) {
     // `controller` is the instance of ApplicationController
@@ -45,13 +45,13 @@ export default Ember.Route.extend({
 });
 ```
 
-```app/controllers/application.js
+```javascript {data-filename=app/controllers/application.js}
 export default Ember.Controller.extend({
   appName: 'My First Example'
 });
 ```
 
-```app/templates/application.hbs
+```handlebars {data-filename=app/templates/application.hbs}
 <h1>{{appName}}</h1>
 <h2>{{title}}</h2>
 ```
@@ -69,7 +69,7 @@ same name as the route.
 
 Let's start with a simple router:
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 export default Ember.Router.extend().map(function(){
   this.route('favorites');
 });
@@ -96,7 +96,7 @@ to the template.
 
 Here's an example:
 
-```app/routes/favorites.js
+```javascript {data-filename=app/routes/favorites.js}
 export default Ember.Route.extend({
   model: function() {
     // the model is an Array of all of the posts
@@ -156,7 +156,7 @@ parameter into a model. The `serialize` hook converts a model object
 back into the URL parameters for this route (for example, when
 generating a link for a model object).
 
-```app/routes/post.js
+```javascript {data-filename=app/routes/post.js}
 export default Ember.Route.extend({
   model: function(params) {
     return $.ajax('/my-service/posts/' + params.post_id);
@@ -249,7 +249,7 @@ automatically provides a route for the `/` path named `index`.
 
 For example, if you write a simple router like this:
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 export default Ember.Router.extend().map(function(){
   this.route('favorites');
 });
@@ -257,7 +257,7 @@ export default Ember.Router.extend().map(function(){
 
 It is the equivalent of:
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 export default Ember.Router.extend().map(function(){
   this.route('index', { path: '/' });
   this.route('favorites');
@@ -277,7 +277,7 @@ template.
 
 A nested router like this:
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 export default Ember.Router.extend().map(function(){
   this.route('posts', function() {
     this.route('favorites');
@@ -287,7 +287,7 @@ export default Ember.Router.extend().map(function(){
 
 Is the equivalent of:
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 export default Ember.Router.extend().map(function(){
   this.route('index', { path: '/' });
   this.route('posts', function() {

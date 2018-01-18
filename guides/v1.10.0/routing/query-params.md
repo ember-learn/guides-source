@@ -23,7 +23,7 @@ query parameter that will filter out all the articles that haven't
 been categorized as popular. To do this, we specify `'category'`
 as one of `ArticlesController`'s `queryParams`:
 
-```js
+```javascript
 App.ArticlesController = Ember.ArrayController.extend({
   queryParams: ['category'],
   category: null
@@ -39,7 +39,7 @@ on `ArticlesController`, and vice versa.
 Now we just need to define a computed property of our category-filtered
 array that the `articles` template will render:
 
-```js
+```javascript
 App.ArticlesController = Ember.ArrayController.extend({
   queryParams: ['category'],
   category: null,
@@ -134,7 +134,7 @@ associated with that controller, and set that query param's
 `refreshModel` config property to `true`:
 
 
-```js
+```javascript
 App.ArticlesRoute = Ember.Route.extend({
   queryParams: {
     category: {
@@ -167,7 +167,7 @@ additional item from being added to your browser's history), you can
 specify this on the `Route`'s `queryParams` config hash, e.g. (continued
 from the example above):
 
-```js
+```javascript
 App.ArticlesRoute = Ember.Route.extend({
   queryParams: {
     category: {
@@ -188,7 +188,7 @@ bind to a query param whose key is `foo`, e.g. `?foo=123`. You can also map
 a controller property to a different query param key using the
 following configuration syntax:
 
-```js
+```javascript
 App.ArticlesController = Ember.ArrayController.extend({
   queryParams: {
     category: "articles_category"
@@ -203,7 +203,7 @@ property to update the `articles_category` query param, and vice versa.
 Note that query params that require additional customization can
 be provided along with strings in the `queryParams` array.
 
-```js
+```javascript
 App.ArticlesController = Ember.ArrayController.extend({
   queryParams: [ "page", "filter", {
     category: "articles_category"
@@ -219,7 +219,7 @@ App.ArticlesController = Ember.ArrayController.extend({
 In the following example, the controller query param property `page` is
 considered to have a default value of `1`.
 
-```js
+```javascript
 App.ArticlesController = Ember.ArrayController.extend({
   queryParams: 'page',
   page: 1
@@ -283,7 +283,7 @@ The result of this is that all links pointing back into the exited route
 will use the newly reset value `1` as the value for the `page` query
 param.
 
-```js
+```javascript
 App.ArticlesRoute = Ember.Route.extend({
   resetController: function (controller, isExiting, transition) {
     if (isExiting) {
@@ -300,7 +300,7 @@ even as a route's model changes. This can be accomplished by setting the
 `scope` option to `"controller"` within the controller's `queryParams`
 config hash:
 
-```js
+```javascript
 App.ArticlesController = Ember.ArrayController.extend({
   queryParams: [{
     showMagnifyingGlass: {
@@ -313,7 +313,7 @@ App.ArticlesController = Ember.ArrayController.extend({
 The following demonstrates how you can override both the scope and the
 query param URL key of a single controller query param property:
 
-```js
+```javascript
 App.ArticlesController = Ember.Controller.extend({
   queryParams: [ "page", "filter",
     {

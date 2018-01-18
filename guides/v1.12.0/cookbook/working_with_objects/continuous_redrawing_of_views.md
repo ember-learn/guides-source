@@ -26,7 +26,7 @@ with a time of 250 milliseconds as the interval. A property is set at the end
 of the interval. Since the `tick` method observes the incremented property
 another interval is triggered each time the property increases.
 
-```app/services/clock.js
+```javascript {data-filename=app/services/clock.js}
 export default Ember.Object.extend({
     pulse: Ember.computed.oneWay('_seconds').readOnly(),
     tick: function () {
@@ -47,7 +47,7 @@ export default Ember.Object.extend({
 In this recipe, an application initializer is used to inject an instance of the
 `ClockService` object, setting a controller's `clock` property to this instance.
 
-```app/initializers/services.js
+```javascript {data-filename=app/initializers/services.js}
 export default {
   name: 'services',
   initialize: function(container, app) {
@@ -67,7 +67,7 @@ initialization.
 The controller has (session) data to display `seconds` to visitors, as well as
 a handful of properties used as conditions in the Handlebars template.
 
-```app/controllers/interval.js
+```javascript {data-filename=app/controllers/interval.js}
 export default Ember.Controller.extend({
     secondsBinding: 'clock.pulse',
     fullSecond: function () {
@@ -90,13 +90,13 @@ instance when added to the list. The comment item controller sets up
 the `seconds` binding, used by the template to show the time since the
 comment was created.
 
-```app/controllers/comment-item.js
+```javascript {data-filename=app/controllers/comment-item.js}
 export default Ember.Controller.extend({
   seconds: Ember.computed.oneWay('clock.pulse').readOnly()
 });
 ```
 
-```app/controllers/comments.js
+```javascript {data-filename=app/controllers/comments.js}
 import ClockService from '../services/clock';
 
 export default Ember.ArrayController.extend({
@@ -120,7 +120,7 @@ The `seconds` value is computed from the `pulse` attribute. And the controller
 has a few properties to select a component to render, `fullSecond`,
 `quarterSecond`, `halfSecond`, `threeQuarterSecond`.
 
-```app/templates/interval.hbs
+```handlebars {data-filename=app/templates/interval.hbs}
 {{#if fullSecond}}
   {{nyan-start}}
 {{/if}}
@@ -138,7 +138,7 @@ has a few properties to select a component to render, `fullSecond`,
 ```
 
 A template for a list of comments
-```app/templates/comments.hbs
+```handlebars {data-filename=app/templates/comments.hbs}
 <form {{action "add" on="submit"}}>
   {{input value=comment}}
   <button>Add Comment</button>
@@ -155,7 +155,7 @@ A template for a list of comments
 This helper is used in the template like so `{{digital-clock seconds}}`,
 `seconds` is the property of the controller that will be displayed (h:m:s).
 
-```app/helpers/digital-clock.js
+```javascript {data-filename=app/helpers/digital-clock.js}
 export default Ember.Handlebars.makeBoundHelper(function(seconds) {
     var h = Math.floor(seconds / 3600);
     var m = Math.floor((seconds % 3600) / 60);

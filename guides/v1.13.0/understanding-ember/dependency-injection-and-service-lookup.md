@@ -1,6 +1,6 @@
   Dependency injection and service lookup are two important framework concepts. The first, **dependency injection**, refers to a dependent object being injected onto another object during instantiation. For example, all route objects have the property `router` set on them during instantiation. We say that the dependency of the router has been injected onto the route object.
 
-```app/routes/index.js
+```javascript {data-filename=app/routes/index.js}
 export default Ember.Route.extend({
   actions: {
     showPath() {
@@ -13,7 +13,7 @@ export default Ember.Route.extend({
 
 Sometimes an Ember.js library will use dependency injection to expose its API to developers. An example of this is Ember-Data, which injects its store into all routes and controllers.
 
-```app/controllers/index.js
+```javascript {data-filename=app/controllers/index.js}
 export default Ember.Controller.extend({
   actions: {
     findItems() {
@@ -40,13 +40,13 @@ A common use-case for service lookup is that of a singleton service. Often, thes
 
 For example, a session service can easily be made available to this index controller:
 
-```app/services/session.js
+```javascript {data-filename=app/services/session.js}
 export default Ember.Service.extend({
   isAuthenticated: false
 });
 ```
 
-```app/controllers/index.js
+```javascript {data-filename=app/controllers/index.js}
 export default Ember.Controller.extend({
   session: Ember.inject.service(),
   // Using inject, the service instance will be available:
@@ -61,7 +61,7 @@ is required, that name can be passed as an argument to `service()`.
 For example, this component can take advantage of reading state from the
 same singleton service instance:
 
-```app/components/sign-in-button.js
+```javascript {data-filename=app/components/sign-in-button.js}
 export default Ember.Component.extend({
   sessionService: Ember.inject.service('session'),
   isLoggedIn: Ember.computed.alias('sessionService.isAuthenticated'),
@@ -95,7 +95,7 @@ it in the application template.
 
 And we must create an `app/templates/components/audio-player.hbs` template to render:
 
-```app/templates/components/audio-player.hbs
+```handlebars {data-filename=app/templates/components/audio-player.hbs}
 <audio id="audio" controls loop>
   <source src={{audioService.currentSrc}} type="audio/mpeg"></source>
 </audio>
@@ -105,7 +105,7 @@ And we must create an `app/templates/components/audio-player.hbs` template to re
 The JavaScript of this component registers itself to the service to control
 play functionality.
 
-```app/components/audio-player.js
+```javascript {data-filename=app/components/audio-player.js}
 export default Ember.Component.extend({
   audioService: Ember.inject.service('audio')
 });
@@ -114,7 +114,7 @@ export default Ember.Component.extend({
 To allow other controllers to play audio, we author a service that can set
 `currentSrc` to play audio:
 
-```app/services/audio.js
+```javascript {data-filename=app/services/audio.js}
 export default Ember.Service.extend({
   currentSrc: null,
   selectSrc(src) {
@@ -151,7 +151,7 @@ Ember's container should be viewed as an implementation detail, and is not part 
 
 Instead of accessing the container directly, Ember provides an API for registering factories and managing injections on the application instance with an initializer
 
-```app/initializers/logger.js
+```javascript {data-filename=app/initializers/logger.js}
 export function initialize(container, application) {
   var logger = {
     log(message) {
@@ -173,7 +173,7 @@ Initializers can be declared at any time before an application is instantiated, 
 
 Any dependency injection is comprised of two parts. The first is the **factory registration**:
 
-```app/initializers/logger.js
+```javascript {data-filename=app/initializers/logger.js}
 var logger = {
   log(m) {
     console.log(m);
@@ -187,7 +187,7 @@ The `register` function adds the factory (`logger`) into the container. It adds 
 
 Often, it is preferable to register a factory that can be instantiated:
 
-```app/initializers/logger.js
+```javascript {data-filename=app/initializers/logger.js}
 var Logger = Ember.Object.extend({
   log(m) {
     console.log(m);
@@ -201,13 +201,13 @@ This class will be instantiated before it is used by the container. This gives i
 
 The second part of dependency injection is, you guessed it, the **dependency injection**:
 
-```app/initializers/logger.js
+```javascript {data-filename=app/initializers/logger.js}
 application.inject('route', 'logger', 'logger:main');
 ```
 
 This is an example of a *type injection*. Onto all factories of the type `route` the property, `logger` will be injected with the factory named `logger:main`. Routes in this example application can now access the logger:
 
-```app/routes/index.js
+```javascript {data-filename=app/routes/index.js}
 export default Ember.Route.extend({
   activate() {
     // The logger property is injected into all routes

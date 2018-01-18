@@ -27,7 +27,7 @@ You should refer to [Defining a Model][1] for a more in-depth guide on using
 Ember Data Models, but for the purposes of demonstration we'll use an example
 modeling people who document Ember.js.
 
-```app/models/documenter.js
+```javascript {data-filename=app/models/documenter.js}
 export default DS.Model.extend({
   firstName: DS.attr( 'string' ),
   lastName: DS.attr( 'string' )
@@ -39,7 +39,7 @@ export default DS.Model.extend({
 In order to attach fixtures to your model, you have to use `reopenClass` method and define
 fixtures:
 
-```app/models/documenter.js
+```javascript {data-filename=app/models/documenter.js}
 var Documenter = DS.Model.extend({
   firstName: DS.attr( 'string' ),
   lastName: DS.attr( 'string' )
@@ -58,7 +58,7 @@ export default Documenter;
 That's it! You can now use all of methods for [Finding Records][2] in your
 application. For example:
 
-```app/routes/documenter.js
+```javascript {data-filename=app/routes/documenter.js}
 export default Ember.Route.extend({
   model: function() {
     return this.store.find('documenter', 1); // returns a promise that will resolve

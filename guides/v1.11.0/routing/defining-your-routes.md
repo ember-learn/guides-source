@@ -9,7 +9,7 @@ calling `map`, you should pass a function that will be invoked with the value
 `this` set to an object which you can use to create
 [routes](../defining-your-routes/).
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('about', { path: '/about' });
   this.route('favorites', { path: '/favs' });
@@ -26,7 +26,7 @@ template. Visiting `/favs` will render the `favorites` template.
 You can leave off the path if it is the same as the route
 name. In this case, the following is equivalent to the above example:
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('about');
   this.route('favorites', { path: '/favs' });
@@ -53,7 +53,7 @@ You can customize the behavior of a route by creating an `Ember.Route`
 subclass. For example, to customize what happens when your user visits
 `/`, create an `route:index`:
 
-```app/routes/index.js
+```javascript {data-filename=app/routes/index.js}
 export default Ember.Route.extend({
   setupController: function(controller) {
     // Set the IndexController's `title`
@@ -121,7 +121,7 @@ the name you pass to `this.route`.
 ### Nested Routes
 You can define nested routes by passing a callback to `this.route`:
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('posts', { path: '/posts' }, function() {
     this.route('new');
@@ -210,7 +210,7 @@ into a model.
 For example, if we have the route `this.route('posts');`, our
 route handler might look like this:
 
-```app/posts/route.js
+```javascript {data-filename=app/posts/route.js}
 export default Ember.Route.extend({
   model: function() {
     return $.getJSON("/url/to/some/posts.json");
@@ -231,14 +231,14 @@ Enter _dynamic segments_.
 A dynamic segment is a portion of a URL that starts with a `:` and is
 followed by an identifier.
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('posts');
   this.route('post', { path: '/post/:post_id' });
 });
 ```
 
-```app/routes/post.js
+```javascript {data-filename=app/routes/post.js}
 export default Ember.Route.extend({
   model: function(params) {
     return $.getJSON("/url/to/some/posts/" + params.post_id + ".json");
@@ -250,13 +250,13 @@ export default Ember.Route.extend({
 If your model does not use the `id` property in the URL, you should
 define a serialize method on your route:
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('post', {path: '/posts/:post_slug'});
 });
 ```
 
-```app/routes/post.js
+```javascript {data-filename=app/routes/post.js}
 export default Ember.Route.extend({
   model: function(params) {
     // the server returns `{ slug: 'foo-post' }`
@@ -303,7 +303,7 @@ Router.map(function() {
 Like all routes with a dynamic segment, you must provide a context when using a `{{link-to}}`
 or `transitionTo` to programatically enter this route.
 
-```app/routes/application.js
+```javascript {data-filename=app/routes/application.js}
 export default Ember.Route.extend({
   actions: {
     error: function() {

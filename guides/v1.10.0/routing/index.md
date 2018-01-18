@@ -48,7 +48,7 @@ If for example, you wanted to serve your blogging application from emberjs.com/b
 
 This can be achieved by setting the rootURL on the router:
 
-```js
+```javascript
 App.Router.reopen({
   rootURL: '/blog/'
 });

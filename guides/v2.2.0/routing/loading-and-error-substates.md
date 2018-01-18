@@ -9,13 +9,13 @@ returned from each hook fulfill.
 
 Consider the following:
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('slow-model');
 });
 ```
 
-```app/routes/slow-model.js
+```javascript {data-filename=app/routes/slow-model.js}
 export default Ember.Route.extend({
   model() {
     return this.store.findAll('slowModel');
@@ -47,7 +47,7 @@ route will be exited and the transition to `slow-model` will continue.
 
 For nested routes, like:
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('foo', function() {
     this.route('bar', function() {
@@ -77,7 +77,7 @@ don't immediately resolve, a [`loading`][1] event will be fired on that route.
 
 [1]: http://emberjs.com/api/classes/Ember.Route.html#event_loading
 
-```app/routes/foo-slow-model.js
+```javascript {data-filename=app/routes/foo-slow-model.js}
 export default Ember.Route.extend({
   model() {
     return this.store.findAll('slowModel');
@@ -97,7 +97,7 @@ route, providing the `application` route the opportunity to manage it.
 
 When using the `loading` handler, we can make use of the transition promise to know when the loading event is over:
 
-```app/routes/foo-slow-model.js
+```javascript {data-filename=app/routes/foo-slow-model.js}
 export default Ember.Route.extend({
   ...
   actions: {
@@ -121,7 +121,7 @@ Similar to how the default `loading` event handlers are implemented,
 the default `error` handlers will look for an appropriate error substate to
 enter, if one can be found.
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('articles', function() {
     this.route('overview');
@@ -156,7 +156,7 @@ redirect to a login page, etc.
 
 [1]: http://emberjs.com/api/classes/Ember.Route.html#event_error
 
-```app/routes/articles-overview.js
+```javascript {data-filename=app/routes/articles-overview.js}
 export default Ember.Route.extend({
   model(params) {
     return this.store.findAll('problematicModel');

@@ -5,7 +5,7 @@ attributes. Attributes behave just like normal properties in Ember.js
 objects. Making changes is as simple as setting the attribute you
 want to change:
 
-```js
+```javascript
 var tyrion = this.store.find('person', 1);
 // ...after the record has loaded
 tyrion.set('firstName', "Yollo");
@@ -15,7 +15,7 @@ All of the Ember.js conveniences are available for
 modifying attributes. For example, you can use `Ember.Object`'s
 `incrementProperty` helper:
 
-```js
+```javascript
 person.incrementProperty('age'); // Happy birthday!
 ```
 
@@ -26,7 +26,7 @@ the record were changed and what the original value was using the
 whose keys are the changed properties and values are an array of values
 `[oldValue, newValue]`.
 
-```js
+```javascript
 person.get('isAdmin');      //=> false
 person.get('isDirty');      //=> false
 person.set('isAdmin', true);
@@ -38,7 +38,7 @@ At this point, you can either persist your changes via `save()` or you
 can rollback your changes. Calling `rollback()` reverts all the
 `changedAttributes` to their original value.
 
-```js
+```javascript
 person.get('isDirty');      //=> true
 person.changedAttributes(); //=> { isAdmin: [false, true] }
 

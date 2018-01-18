@@ -9,13 +9,13 @@ returned from each hook fulfill.
 
 Consider the following:
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('slow-model');
 });
 ```
 
-```app/routes/slow-model.js
+```javascript {data-filename=app/routes/slow-model.js}
 export default Ember.Route.extend({
   model() {
     return this.store.findAll('slowModel');
@@ -47,7 +47,7 @@ route will be exited and the transition to `slow-model` will continue.
 
 For nested routes, like:
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('foo', function() {
     this.route('bar', function() {
@@ -75,7 +75,7 @@ for a leaf route like `slow-model`.
 If the various `beforeModel`/`model`/`afterModel` hooks
 don't immediately resolve, a `loading` event will be fired on that route.
 
-```app/routes/foo-slow-model.js
+```javascript {data-filename=app/routes/foo-slow-model.js}
 export default Ember.Route.extend({
   model() {
     return this.store.findAll('slowModel');
@@ -101,7 +101,7 @@ Similar to how the default `loading` event handlers are implemented,
 the default `error` handlers will look for an appropriate error substate to
 enter, if one can be found.
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('articles', function() {
     this.route('overview');
@@ -135,7 +135,7 @@ This `error` event can be handled and used to display an error message,
 redirect to a login page, etc.
 
 
-```app/routes/articles-overview.js
+```javascript {data-filename=app/routes/articles-overview.js}
 export default Ember.Route.extend({
   model(params) {
     return this.store.findAll('nonexistentModel');

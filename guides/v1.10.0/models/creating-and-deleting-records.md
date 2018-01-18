@@ -1,6 +1,6 @@
 You can create records by calling the `createRecord` method on the store.
 
-```js
+```javascript
 store.createRecord('post', {
   title: 'Rails is Omakase',
   body: 'Lorem ipsum'
@@ -15,7 +15,7 @@ is that you cannot assign a promise as a relationship, currently.
 For example, if you want to set the `author` property of a post, this would **not** work
 if the `user` with id isn't already loaded into the store:
 
-```js
+```javascript
 var store = this.store;
 
 store.createRecord('post', {
@@ -27,7 +27,7 @@ store.createRecord('post', {
 
 However, you can easily set the relationship after the promise has fulfilled:
 
-```js
+```javascript
 var store = this.store;
 
 var post = store.createRecord('post', {
@@ -47,7 +47,7 @@ on any instance of `DS.Model`. This flags the record as `isDeleted` and thus rem
 it from `all()` queries on the `store`. The deletion can then be persisted using `save()`.
 Alternatively, you can use the `destroyRecord` method to delete and persist at the same time.
 
-```js
+```javascript
 store.find('post', 1).then(function (post) {
   post.deleteRecord();
   post.get('isDeleted'); // => true

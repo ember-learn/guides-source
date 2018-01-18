@@ -10,7 +10,7 @@ Write a custom Handlebars helper that can truncates text.
 
 The Handlebars helper is very simple. It takes two parameters: str (string) and len (length).
 
-```js
+```javascript
 Ember.Handlebars.helper('truncate', function(str, len) {
   if (str.length > len) {
     return str.substring(0, len - 3) + '...';

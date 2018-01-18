@@ -24,7 +24,7 @@ Opening the template for this route reveals an outlet underneath the route's gen
 At the bottom of the template, you'll notice an `{{outlet}}` helper.
 This is where the active nested route will be rendered.
 
-```app/templates/rentals.hbs
+```handlebars {data-filename=app/templates/rentals.hbs}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>Welcome!</h2>
@@ -62,7 +62,7 @@ ember g route rentals/index
 
 If you open up your Router (`app/router`) you may notice that nothing has updated.
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('about');
   this.route('contact');
@@ -78,7 +78,7 @@ For example, you can modify the `index` route's path by specifying `this.route('
 In the section on [using Ember Data](../ember-data#toc_updating-the-model-hook), we added a call to fetch all rentals.
 Let's implement our newly generated `rentals/index` route by moving this `findAll` call from the parent `rentals` route to our new sub-route.
 
-```app/routes/rentals.hbs{-2,-3,-4}
+```handlebars {data-filename=app/routes/rentals.hbs data-diff="-2,-3,-4"}
 export default Ember.Route.extend({
   model() {
     return this.store.findAll('rental');
@@ -86,7 +86,7 @@ export default Ember.Route.extend({
 });
 ```
 
-```app/routes/rentals/index.js{+2,+3,+4}
+```javascript {data-filename=app/routes/rentals/index.js data-diff="+2,+3,+4"}
 export default Ember.Route.extend({
   model() {
     return this.store.findAll('rental');
@@ -96,7 +96,7 @@ export default Ember.Route.extend({
 
 Now that we are returning all of our rentals to the nested route's model, we will also move the rental list markup from our main route template to our nested route index template.
 
-```app/templates/rentals.hbs{-9,-10,-11,-12,-13,-14,-15,-16,-17}
+```handlebars {data-filename=app/templates/rentals.hbs data-diff="-9,-10,-11,-12,-13,-14,-15,-16,-17"}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>Welcome!</h2>
@@ -117,7 +117,7 @@ Now that we are returning all of our rentals to the nested route's model, we wil
 {{outlet}}
 ```
 
-```app/templates/rentals/index.hbs{+1,+2,+3,+4,+5,+6,+7,+8,+9}
+```handlebars {data-filename=app/templates/rentals/index.hbs data-diff="+1,+2,+3,+4,+5,+6,+7,+8,+9"}
 {{#list-filter
    filter=(action 'filterByCity')
    as |rentals|}}
@@ -136,7 +136,7 @@ Start by running `ember g controller rentals/index` to create an index controlle
 
 Instead of copying the whole controller file over to `app/controller/rentals/index.js` from `app/controller/rentals.js`, we'll just take advantage of JavaScript's import/export feature to re-export the rentals controller as the rentals/index controller:
 
-```app/controller/rentals/index.js
+```javascript {data-filename=app/controller/rentals/index.js}
 import RentalsController from '../rentals';
 
 export default RentalsController;
@@ -155,7 +155,7 @@ In order to do this, we will need to modify the Mirage `config.js` file that we 
 back in the [Installing Addons section](../installing-addons). We will add a new route
 handler to return a specific rental:
 
-```mirage/config.js{+57,+58,+59,+60}
+```javascript {data-filename=mirage/config.js data-diff="+57,+58,+59,+60"}
 export default function() {
   this.namespace = '/api';
 
@@ -244,7 +244,7 @@ installing route-test
 
 Let's start by looking at the changes to our Router (`app/router.js`).
 
-```app/router.js{+5}
+```javascript {data-filename=app/router.js data-diff="+5"}
 Router.map(function() {
   this.route('about');
   this.route('contact');
@@ -262,7 +262,7 @@ We also want to simplify the URL so that it looks more like this: `localhost:420
 
 To do that, we modify our route as follows:
 
-```app/router.js{+5}
+```javascript {data-filename=app/router.js data-diff="+5"}
 Router.map(function() {
   this.route('about');
   this.route('contact');
@@ -279,7 +279,7 @@ The `rental_id` will now be passed to the route.
 
 Next, we want to edit our `show` route to retrieve the requested rental:
 
-```app/routes/rentals/show.js{+2,+3,+4}
+```javascript {data-filename=app/routes/rentals/show.js data-diff="+2,+3,+4"}
 export default Ember.Route.extend({
   model(params) {
     return this.store.findRecord('rental', params.rental_id);
@@ -294,7 +294,7 @@ When we call `this.store.findRecord('rental', params.rental_id)`, Ember Data que
 
 Next, we can update the template for our show route (`app/templates/rentals/show.hbs`) and list the information for our rental.
 
-```app/templates/rentals/show.hbs
+```handlebars {data-filename=app/templates/rentals/show.hbs}
 <div class="jumbo show-listing">
   <h2 class="title">{{model.title}}</h2>
   <div class="right detail-section">
@@ -329,7 +329,7 @@ Alternately, you may just pass `rental.id` for clarity.
 
 Clicking on the title will load the detail page for that rental.
 
-```app/templates/components/rental-listing.hbs{+6}
+```handlebars {data-filename=app/templates/components/rental-listing.hbs data-diff="+6"}
 <article class="listing">
   <a {{action 'toggleImageSize'}} class="image {{if isWide "wide"}}">
     <img src="{{rental.image}}" alt="">

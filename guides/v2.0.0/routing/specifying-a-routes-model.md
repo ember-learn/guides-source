@@ -3,7 +3,7 @@ appropriate model is one job of a route.
 
 For example, take this router:
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('favoritePosts');
 });
@@ -12,7 +12,7 @@ Router.map(function() {
 To load a model for the `favoritePosts` route, you would use the `model` hook in
 the `posts` route handler:
 
-```app/routes/favorite-posts.js
+```javascript {data-filename=app/routes/favorite-posts.js}
 export default Ember.Route.extend({
   model() {
     return this.store.query('post', { favorite: true });
@@ -29,7 +29,7 @@ rendering the template.
 The return value from the `model` hook is then available in your template and
 controller with the `model` property:
 
-```app/templates/favorite-post.hbs
+```handlebars {data-filename=app/templates/favorite-post.hbs}
 <h1>Favorite Posts</h1>
 {{#each model as |post|}}
   <p>{{post.body}}</p>
@@ -61,13 +61,13 @@ Once you have defined a route with a dynamic segment,
 Ember will extract the value of the dynamic segment from the URL for
 you and pass them as a hash to the `model` hook as the first argument:
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('photo', { path: '/photos/:photo_id' });
 });
 ```
 
-```app/routes/photo.js
+```javascript {data-filename=app/routes/photo.js}
 export default Ember.Route.extend({
   model(params) {
     return this.store.findRecord('photo', params.photo_id);
@@ -95,7 +95,7 @@ The `Ember.RSVP.hash` takes
 parameters that return promises, and when all parameter promises resolve, then
 the `Ember.RSVP.hash` promise resolves. For example:
 
-```app/routes/songs.js
+```javascript {data-filename=app/routes/songs.js}
 export default Ember.Route.extend({
   model() {
     return Ember.RSVP.hash({
@@ -109,7 +109,7 @@ export default Ember.Route.extend({
 In the `songs` template, we can specify both models and use the `{{#each}}` helper to display
 each record in the song model and album model:
 
-```app/templates/songs.hbs
+```handlebars {data-filename=app/templates/songs.hbs}
 <h1>Playlist</h1>
 
 <ul>

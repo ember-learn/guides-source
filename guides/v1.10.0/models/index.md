@@ -66,7 +66,7 @@ You will use the store to retrieve records, as well to create new ones.
 For example, we might want to find an `App.Person` model with the ID of
 `1` from our route's `model` hook:
 
-```js
+```javascript
 App.IndexRoute = Ember.Route.extend({
   model: function() {
     return this.store.find('person', 1);
@@ -87,7 +87,7 @@ a restaurant, you might have models like `Order`, `LineItem`, and
 
 Fetching orders becomes very easy:
 
-```js
+```javascript
 this.store.find('order');
 ```
 
@@ -95,7 +95,7 @@ Models define the type of data that will be provided by your server. For
 example, a `Person` model might have a `firstName` attribute that is a
 string, and a `birthday` attribute that is a date:
 
-```js
+```javascript
 App.Person = DS.Model.extend({
   firstName: DS.attr('string'),
   birthday:  DS.attr('date')
@@ -106,7 +106,7 @@ A model also describes its relationships with other objects. For
 example, an `Order` may have many `LineItems`, and a `LineItem` may
 belong to a particular `Order`.
 
-```js
+```javascript
 App.Order = DS.Model.extend({
   lineItems: DS.hasMany('lineItem')
 });
@@ -131,7 +131,7 @@ For example, if you were writing a contact management app, you might
 have a model called `Person`. An individual record in your app might
 have a type of `Person` and an ID of `1` or `steve-buscemi`.
 
-```js
+```javascript
 this.store.find('person', 1); // => { id: 1, name: 'steve-buscemi' }
 ```
 

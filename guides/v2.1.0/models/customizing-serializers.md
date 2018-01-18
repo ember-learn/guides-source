@@ -27,7 +27,7 @@ type names should be pluralized and attribute and relationship names
 should be dash-cased. For example, if you request a record from
 `/people/123`, the response should looks like this:
 
-```js
+```javascript
 {
   "data": {
     "type": "people",
@@ -43,7 +43,7 @@ should be dash-cased. For example, if you request a record from
 A response that contains multiple records may have an array in its
 `data` property.
 
-```js
+```javascript
 {
   "data": [{
     "type": "people",
@@ -71,7 +71,7 @@ key. For example if you `/people/1` and the backend also returned any
 comments associated with that relationship the response should look
 like this:
 
-```js
+```javascript
 {
   "data": {
     "type": "articles",
@@ -121,7 +121,7 @@ ways to define a custom serializer. First, you can define a custom
 serializer for you entire application by defining an "application"
 serializer.
 
-```app/serializers/application.js
+```javascript {data-filename=app/serializers/application.js}
 import DS from 'ember-data';
 
 export default DS.JSONSerializer.extend({});
@@ -130,7 +130,7 @@ export default DS.JSONSerializer.extend({});
 You can also define serializer for a specific model. For example if
 you had a `post` model you could also define a `post` serializer:
 
-```app/serializers/post.js
+```javascript {data-filename=app/serializers/post.js}
 import DS from 'ember-data';
 
 export default DS.JSONSerializer.extend({});
@@ -174,7 +174,7 @@ But our server expects data in this format:
 
 Here's how you can change the data:
 
-```app/serializers/application.js
+```javascript {data-filename=app/serializers/application.js}
 import DS from 'ember-data';
 
 export default DS.JSONSerializer.extend({
@@ -232,7 +232,7 @@ And so we need to change it to look like:
 
 Here's how we could do it:
 
-```app/serializers/application.js
+```javascript {data-filename=app/serializers/application.js}
 import DS from 'ember-data';
 
 export default DS.JSONSerializer.extend({
@@ -261,7 +261,7 @@ backend used a different key other then `id` you can use the
 serializer's `primaryKey` property to correctly transform the id
 property to `id` when serializing and deserializing data.
 
-```app/serializers/application.js
+```javascript {data-filename=app/serializers/application.js}
 export default DS.JSONSerializer.extend({
   primaryKey: '_id'
 });
@@ -272,7 +272,7 @@ export default DS.JSONSerializer.extend({
 In Ember Data the convention is to camelize attribute names on a
 model. For example:
 
-```app/models/person.js
+```javascript {data-filename=app/models/person.js}
 export default DS.Model.extend({
   firstName: DS.attr('string'),
   lastName:  DS.attr('string'),
@@ -284,7 +284,7 @@ export default DS.Model.extend({
 However, the `JSONAPISerializer` expects attributes to be dasherized
 in the document payload returned by your server:
 
-```js
+```javascript
 {
   "data": {
     "id": "44",
@@ -305,7 +305,7 @@ example, if your backend returned attributes that are `under_scored`
 instead of `dash-cased` you could override the `keyForAttribute`
 method like this.
 
-```app/serializers/application.js
+```javascript {data-filename=app/serializers/application.js}
 export default DS.JSONAPISerializer.extend({
   keyForAttribute: function(attr) {
     return Ember.String.underscore(attr);
@@ -324,13 +324,13 @@ If the JSON for `person` has a key of `lastNameOfPerson`, and the
 desired attribute name is simply `lastName`, then create a custom
 Serializer for the model and override the `attrs` property.
 
-```app/models/person.js
+```javascript {data-filename=app/models/person.js}
 export default DS.Model.extend({
   lastName: DS.attr('string')
 });
 ```
 
-```app/serializers/person.js
+```javascript {data-filename=app/serializers/person.js}
 export default DS.JSONAPISerializer.extend({
   attrs: {
     lastName: 'lastNameOfPerson',
@@ -343,7 +343,7 @@ export default DS.JSONAPISerializer.extend({
 References to other records should be done by ID. For example, if you
 have a model with a `hasMany` relationship:
 
-```app/models/post.js
+```javascript {data-filename=app/models/post.js}
 export default DS.Model.extend({
   comments: DS.hasMany('comment', { async: true })
 });
@@ -351,7 +351,7 @@ export default DS.Model.extend({
 
 The JSON should encode the relationship as an array of IDs and types:
 
-```js
+```javascript
 {
   "data": {
     "type": "posts",
@@ -376,7 +376,7 @@ Any `belongsTo` relationships in the JSON representation should be the
 dasherized version of the property's name. For example, if you have
 a model:
 
-```app/models/comment.js
+```javascript {data-filename=app/models/comment.js}
 export default DS.Model.extend({
   originalPost: DS.belongsTo('post')
 });
@@ -384,7 +384,7 @@ export default DS.Model.extend({
 
 The JSON should encode the relationship as an ID to another record:
 
-```js
+```javascript
 {
   "data": {
     "type": "comment",
@@ -400,7 +400,7 @@ The JSON should encode the relationship as an ID to another record:
 If needed these naming conventions can be overwritten by implementing
 the `keyForRelationship` method.
 
-```app/serializers/application.js
+```javascript {data-filename=app/serializers/application.js}
 export default DS.JSONAPISerializer.extend({
   keyForRelationship: function(key, relationship) {
     return key + 'Ids';
@@ -418,7 +418,7 @@ server may return a non-standard date format.
 Ember Data can have new JSON transforms
 registered for use as attributes:
 
-```app/transforms/coordinate-point.js
+```javascript {data-filename=app/transforms/coordinate-point.js}
 export default DS.Transform.extend({
   serialize: function(value) {
     return [value.get('x'), value.get('y')];
@@ -429,7 +429,7 @@ export default DS.Transform.extend({
 });
 ```
 
-```app/models/cursor.js
+```javascript {data-filename=app/models/cursor.js}
 export default DS.Model.extend({
   position: DS.attr('coordinate-point')
 });
@@ -438,7 +438,7 @@ export default DS.Model.extend({
 When `coordinatePoint` is received from the API, it is
 expected to be an array:
 
-```js
+```javascript
 {
   cursor: {
     position: [4,9]
@@ -448,7 +448,7 @@ expected to be an array:
 
 But once loaded on a model instance, it will behave as an object:
 
-```js
+```javascript
 var cursor = store.findRecord('cursor', 1);
 cursor.get('position.x'); //=> 4
 cursor.get('position.y'); //=> 9
@@ -470,7 +470,7 @@ serializer that ships with Ember Data that can be used along side the
 To use it in your application you will need to define an
 `adapter:application` that extends the `JSONSerializer`.
 
-```app/serializer/application.js
+```javascript {data-filename=app/serializer/application.js}
 export default DS.JSONSerializer.extend({
   // ...
 });
@@ -545,7 +545,7 @@ that looks similar to this:
 
 You would define your relationship like this:
 
-```app/serializers/post.js
+```javascript {data-filename=app/serializers/post.js}
 export default DS.JSONSerializer.extend(DS.EmbeddedRecordsMixin, {
   attrs: {
     author: {
@@ -560,7 +560,7 @@ If you find yourself needing to both serialize and deserialize the
 embedded relationship you can use the shorthand option of `{ embedded:
 'always' }`. The following example and the one above are equivalent.
 
-```app/serializers/post.js
+```javascript {data-filename=app/serializers/post.js}
 export default DS.JSONSerializer.extend(DS.EmbeddedRecordsMixin, {
   attrs: {
     author: { embedded: 'always' }
@@ -580,7 +580,7 @@ serializing the record. This is possible by using the `serialize:
 'ids'` option. You can also opt out of serializing a relationship by
 setting `serialize: false`.
 
-```app/serializers/post.js
+```javascript {data-filename=app/serializers/post.js}
 export default DS.JSONSerializer.extend(DS.EmbeddedRecordsMixin, {
   attrs: {
     author: {
@@ -634,7 +634,7 @@ relationship properites on the Model.
 
 For Example: given this `post` model.
 
-```app/models/post.js
+```javascript {data-filename=app/models/post.js}
 export default DS.Model.extend({
   title: DS.attr('string'),
   tag: DS.attr('string'),
@@ -645,7 +645,7 @@ export default DS.Model.extend({
 
 `store.push` would accept an object that looked like this:
 
-```js
+```javascript
 {
   data: {
     id: "1",

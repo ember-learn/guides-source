@@ -45,7 +45,7 @@ If we open `/app/router.js`, we'll see a new line of code for the **about** rout
 `this.route('about')` in the `Router.map` function. That new line of code tells the Ember router
 to run our `/app/routes/about.js` file when a visitor navigates to `/about`.
 
-```app/router.js{+10}
+```javascript {data-filename=app/router.js data-diff="+10"}
 import EmberRouter from '@ember/routing/router';
 import config from './config/environment';
 
@@ -65,7 +65,7 @@ Because we only plan to display static content on our about page, we won't adjus
 route handler file right now. Instead, let's open our `/app/templates/about.hbs` template file and add some info about
 Super Rentals:
 
-```app/templates/about.hbs
+```handlebars {data-filename=app/templates/about.hbs}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>About Super Rentals</h2>
@@ -94,7 +94,7 @@ Here again, we add a new `contact` route in `app/router.js` and generate a route
 
 In the route template `/app/templates/contact.hbs`, let's add our contact details:
 
-```app/templates/contact.hbs
+```handlebars {data-filename=app/templates/contact.hbs}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>Contact Us</h2>
@@ -123,7 +123,7 @@ page on the contact page.
 To do that, we'll use a [`{{link-to}}`](../../templates/links/) helper that Ember provides
 that makes it easy to link between our routes.  Let's adjust our `about.hbs` file:
 
-```app/templates/about.hbs{+9,+10,+11}
+```handlebars {data-filename=app/templates/about.hbs data-diff="+9,+10,+11"}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>About Super Rentals</h2>
@@ -146,7 +146,7 @@ a working link to our contact page:
 
 Now, we'll add our corresponding link to the contact page so we can move back and forth between `about` and `contact`:
 
-```app/templates/contact.hbs{+15,+16,+17}
+```handlebars {data-filename=app/templates/contact.hbs data-diff="+15,+16,+17"}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>Contact Us</h2>
@@ -178,7 +178,7 @@ ember g route rentals
 And then let's update our new template (`/app/templates/rentals.hbs`) with some initial content.
 We'll come back to this page in a bit to add in the actual rental properties.
 
-```app/templates/rentals.hbs
+```handlebars {data-filename=app/templates/rentals.hbs}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>Welcome!</h2>
@@ -232,7 +232,7 @@ Since we want our `rentals` route to serve as our home page, we will use the `re
 
 In our index route handler, we add the `replaceWith` invocation to `beforeModel`.
 
-```app/routes/index.js{+4,+5,+6}
+```javascript {data-filename=app/routes/index.js data-diff="+4,+5,+6"}
 import Route from '@ember/routing/route';
 
 export default Route.extend({
@@ -252,7 +252,7 @@ add a common header across the top of our page to display our app's title and it
 To show something on every page, we can use the application template (which we edited earlier).
 Let's open it again (`/app/templates/application.hbs`) and replace its contents with the following:
 
-```app/templates/application.hbs
+```handlebars {data-filename=app/templates/application.hbs}
 <div class="container">
   <div class="menu">
     {{#link-to 'index'}}
@@ -296,7 +296,7 @@ goals, which include the ability to navigate to an `about` page and a `contact` 
 First, we want to test that visiting `/` properly redirects to `/rentals`. We'll use the Ember `visit` helper
 and then make sure our current URL is `/rentals` once the redirect occurs.
 
-```/tests/acceptance/list-rentals-test.js{+2,+3,+4,+5}
+```javascript {data-filename=/tests/acceptance/list-rentals-test.js data-diff="+2,+3,+4,+5"}
 test('should show rentals as the home page', function (assert) {
   visit('/');
   andThen(function() {
@@ -332,7 +332,7 @@ Some of the helpers we'll use commonly are:
 ### Test visiting our About and Contact pages
 Now let's add code that simulates a visitor arriving on our homepage, clicking one of our links and then visiting a new page.
 
-```/tests/acceptance/list-rentals-test.js{+2,+3,+4,+5,+6,+10,+11,+12,+13,+14}
+```javascript {data-filename=/tests/acceptance/list-rentals-test.js data-diff="+2,+3,+4,+5,+6,+10,+11,+12,+13,+14"}
 test('should link to information about the company.', function (assert) {
   visit('/');
   click('a:contains("About")');

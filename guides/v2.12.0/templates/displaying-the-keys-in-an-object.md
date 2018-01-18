@@ -1,7 +1,7 @@
 If you need to display all of the keys or values of a JavaScript object in your template,
 you can use the [`{{#each-in}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_each-in) helper:
 
-```/app/components/store-categories.js
+```javascript {data-filename=/app/components/store-categories.js}
 import Ember from 'ember';
 
 export default Ember.Component.extend({
@@ -17,7 +17,7 @@ export default Ember.Component.extend({
 });
 ```
 
-```/app/templates/components/store-categories.hbs
+```handlebars {data-filename=/app/templates/components/store-categories.hbs}
 <ul>
   {{#each-in categories as |category products|}}
     <li>{{category}}

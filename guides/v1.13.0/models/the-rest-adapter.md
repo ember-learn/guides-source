@@ -11,7 +11,7 @@ The REST adapter is smart enough to determine the URLs it communicates
 with based on the name of the model. For example, if you ask for a
 `Post` by ID:
 
-```js
+```javascript
 store.findRecord('post', 1).then(function(post) {
 });
 ```
@@ -40,7 +40,7 @@ REST adapter:
 
 Irregular or uncountable pluralizations can be specified via `Ember.Inflector.inflector`:
 
-```js
+```javascript
 var inflector = Ember.Inflector.inflector;
 
 inflector.irregular('person', 'people');
@@ -55,7 +55,7 @@ should go to `/people/1` instead of `/persons/1`.
 Endpoint paths can be prefixed with a namespace by setting the `namespace`
 property on the adapter:
 
-```app/adapters/application.js
+```javascript {data-filename=app/adapters/application.js}
 export default DS.RESTAdapter.extend({
   namespace: 'api/1'
 });
@@ -67,7 +67,7 @@ Requests for `person` would now target `http://emberjs.com/api/1/people/1`.
 
 An adapter can target other hosts by setting the `host` property.
 
-```app/adapters/application.js
+```javascript {data-filename=app/adapters/application.js}
 export default DS.RESTAdapter.extend({
   host: 'https://api.example.com'
 });
@@ -87,7 +87,7 @@ The primary record being returned should be in a named root. For
 example, if you request a record from `/people/123`, the response should
 be nested inside a property called `person`:
 
-```js
+```javascript
 {
   "person": {
     "firstName": "Jeff",
@@ -101,7 +101,7 @@ After `destroyRecord` or after `deleteRecord` and `save`, the adapter expects th
 If you don't have the option to change the data that the server responds with, you can override the
 [DS.JSONSerializer#extractDeleteRecord](http://emberjs.com/api/data/classes/DS.JSONSerializer.html#method_extractDeleteRecord), like so:
 
-```js
+```javascript
 extractDeleteRecord: function(store, type, payload) {
   // If the payload is {delete: true}, Ember Data will try to set
   // the new properties. Return null so it doesn't try to do that.
@@ -113,7 +113,7 @@ extractDeleteRecord: function(store, type, payload) {
 
 Attribute names should be camelized.  For example, if you have a model like this:
 
-```app/models/person.js
+```javascript {data-filename=app/models/person.js}
 export default DS.Model.extend({
   firstName: DS.attr('string'),
   lastName:  DS.attr('string'),
@@ -124,7 +124,7 @@ export default DS.Model.extend({
 
 The JSON returned from your server should look like this:
 
-```js
+```javascript
 {
   "person": {
     "firstName": "Barack",
@@ -139,13 +139,13 @@ Irregular keys can be mapped with a custom serializer. If the JSON for
 attribute name is simply `lastName`, then create a custom Serializer
 for the model and override the `normalizeHash` property.
 
-```app/models/person.js
+```javascript {data-filename=app/models/person.js}
 export default DS.Model.extend({
   lastName: DS.attr('string')
 });
 ```
 
-```app/serializers/person.js
+```javascript {data-filename=app/serializers/person.js}
 export default DS.RESTSerializer.extend({
   normalizeHash: {
     lastNameOfPerson: function(hash) {
@@ -163,7 +163,7 @@ export default DS.RESTSerializer.extend({
 References to other records should be done by ID. For example, if you
 have a model with a `hasMany` relationship:
 
-```app/models/post.js
+```javascript {data-filename=app/models/post.js}
 export default DS.Model.extend({
   comments: DS.hasMany('comment', { async: true })
 });
@@ -171,7 +171,7 @@ export default DS.Model.extend({
 
 The JSON should encode the relationship as an array of IDs:
 
-```js
+```javascript
 {
   "post": {
     "comments": [1, 2, 3]
@@ -182,7 +182,7 @@ The JSON should encode the relationship as an array of IDs:
 `Comments` for a `post` can be loaded by `post.get('comments')`. The REST
 adapter will send a `GET` request for each related comment.
 
-```js
+```javascript
 post.get('comments');
 
 // GET /comments/1
@@ -193,7 +193,7 @@ post.get('comments');
 You may prevent sending multiple requests by setting [coalesceFindRequests](http://emberjs.com/api/data/classes/DS.RESTAdapter.html#property_coalesceFindRequests)
 to `true` in your adapter.
 
-```app/adapters/application.js
+```javascript {data-filename=app/adapters/application.js}
 export default DS.RESTAdapter.extend({
   coalesceFindRequests: true
 });
@@ -205,7 +205,7 @@ Any `belongsTo` relationships in the JSON representation should be the
 camelized version of the Ember Data model's name. For example, if you have
 a model:
 
-```app/models/comment.js
+```javascript {data-filename=app/models/comment.js}
 export default DS.Model.extend({
   post: DS.belongsTo('post')
 });
@@ -213,7 +213,7 @@ export default DS.Model.extend({
 
 The JSON should encode the relationship as an ID to another record:
 
-```js
+```javascript
 {
   "comment": {
     "post": 1
@@ -224,7 +224,7 @@ The JSON should encode the relationship as an ID to another record:
 If needed these naming conventions can be overwritten by implementing
 the `keyForRelationship` method.
 
-```app/serializers/application.js
+```javascript {data-filename=app/serializers/application.js}
 export default DS.RESTSerializer.extend({
   keyForRelationship: function(key, relationship) {
     return key + 'Ids';
@@ -238,7 +238,7 @@ To reduce the number of HTTP requests necessary, you can sideload
 additional records in your JSON response. Sideloaded records live
 outside the JSON root, and are represented as an array of hashes:
 
-```js
+```javascript
 {
   "post": {
     "id": 1,
@@ -270,7 +270,7 @@ server may return a non-standard date format.
 Ember Data can have new JSON transforms
 registered for use as attributes:
 
-```app/transforms/coordinate-point.js
+```javascript {data-filename=app/transforms/coordinate-point.js}
 export default DS.Transform.extend({
   serialize: function(value) {
     return [value.get('x'), value.get('y')];
@@ -281,7 +281,7 @@ export default DS.Transform.extend({
 });
 ```
 
-```app/models/cursor.js
+```javascript {data-filename=app/models/cursor.js}
 export default DS.Model.extend({
   position: DS.attr('coordinatePoint')
 });
@@ -290,7 +290,7 @@ export default DS.Model.extend({
 When `coordinatePoint` is received from the API, it is
 expected to be an array:
 
-```js
+```javascript
 {
   cursor: {
     position: [4,9]
@@ -300,7 +300,7 @@ expected to be an array:
 
 But once loaded on a model instance, it will behave as an object:
 
-```js
+```javascript
 var cursor = this.store.findRecord('cursor', 1);
 cursor.get('position.x'); //=> 4
 cursor.get('position.y'); //=> 9

@@ -30,13 +30,13 @@ ember generate component button-with-confirmation
 
 We'll plan to use the component in a template something like this:
 
-```app/templates/components/user-profile.hbs
+```handlebars {data-filename=app/templates/components/user-profile.hbs}
 {{button-with-confirmation text="Click OK to delete your account."}}
 ```
 
 We'll also want to use the component elsewhere, perhaps like this:
 
-```app/templates/components/send-message.hbs
+```handlebars {data-filename=app/templates/components/send-message.hbs}
 {{button-with-confirmation text="Click OK to send your message."}}
 ```
 
@@ -74,7 +74,7 @@ We'll implement an action on the parent component called
 [service](../../applications/services/) and calls the service's
 `deleteUser()` method.
 
-```app/components/user-profile.js
+```javascript {data-filename=app/components/user-profile.js}
 export default Ember.Component.extend({
   login: Ember.inject.service(),
 
@@ -94,7 +94,7 @@ want this action to be triggered, which is the next step.
 Next, let's implement the logic to confirm that the user wants to take
 the action from the component:
 
-```app/components/button-with-confirmation.js
+```javascript {data-filename=app/components/button-with-confirmation.js}
 export default Ember.Component.extend({
   tagName: 'button',
   click() {
@@ -114,7 +114,7 @@ One important thing to know about actions is that they're functions
 you can call, like any other method on your component.
 So they can be passed from one component to another like this:
 
-```app/components/user-profile.hbs
+```handlebars {data-filename=app/components/user-profile.hbs}
 {{button-with-confirmation text="Click here to delete your account." onConfirm=(action 'userDidDeleteAccount')}}
 ```
 
@@ -124,14 +124,14 @@ parent and make it available on the child component as
 
 We can do a similar thing for our `send-message` component:
 
-```app/templates/components/send-message.hbs
+```handlebars {data-filename=app/templates/components/send-message.hbs}
 {{button-with-confirmation text="Click to send your message." onConfirm=(action 'sendMessage')}}
 ```
 
 Now, we can use `onConfirm` in the child component to invoke the action on the
 parent:
 
-```app/components/button-with-confirmation.js
+```javascript {data-filename=app/components/button-with-confirmation.js}
 export default Ember.Component.extend({
   tagName: 'button',
   click() {

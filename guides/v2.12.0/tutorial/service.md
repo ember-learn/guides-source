@@ -69,7 +69,7 @@ which makes use of `google.maps.Map` to create our map element,
 `google.maps.Geocoder` to lookup the coordinates of our location,
 and `google.maps.Marker` to pin our map based on the resolved location.
 
-```app/utils/google-maps.js
+```javascript {data-filename=app/utils/google-maps.js}
 import Ember from 'ember';
 
 const google = window.google;
@@ -128,7 +128,7 @@ Now implement the service as follows.
 Note that we check if a map already exists for the given location and use that one,
 otherwise we call a Google Maps utility to create one.
 
-```app/services/maps.js
+```javascript {data-filename=app/services/maps.js}
 import Ember from 'ember';
 import MapUtil from '../utils/google-maps';
 
@@ -179,7 +179,7 @@ Running this command generates three files: a component JavaScript file, a templ
 Let's start by adding a `div` element to the component template.
 This `div` will act as a place for the 3rd party map API to render the map to.
 
-```app/templates/components/location-map.hbs
+```handlebars {data-filename=app/templates/components/location-map.hbs}
 <div class="map-container"></div>
 ```
 
@@ -195,7 +195,7 @@ We append the map element we get back from the service by implementing `didInser
 which is a [component lifecycle hook](../../components/the-component-lifecycle/#toc_integrating-with-third-party-libraries-with-code-didinsertelement-code).
 This function runs during the component render, after the component's markup gets inserted into the page.
 
-```app/components/location-map.js
+```javascript {data-filename=app/components/location-map.js}
 import Ember from 'ember';
 
 export default Ember.Component.extend({
@@ -215,7 +215,7 @@ This property will be passed in to the component by its parent template below.
 
 Finally open the template file for our `rental-listing` component and add the new `location-map` component.
 
-```app/templates/components/rental-listing.hbs{+19}
+```handlebars {data-filename=app/templates/components/rental-listing.hbs data-diff="+19"}
 <article class="listing">
   <a {{action 'toggleImageSize'}} class="image {{if isWide "wide"}}">
     <img src="{{rental.image}}" alt="">
@@ -257,7 +257,7 @@ On line 6 of `maps-test.js` below we create an Ember object to simulate the beha
 Unit tests use the function called `this.subject` to instantiate the object to test, and lets the test pass in initial values as arguments.
 In our case we are passing in our fake map utility object in the first test, and passing a cache object for the second test.
 
-```tests/unit/services/maps-test.js
+```javascript {data-filename=tests/unit/services/maps-test.js}
 import { moduleFor, test } from 'ember-qunit';
 import Ember from 'ember';
 
@@ -314,7 +314,7 @@ That way when Ember injects the map service into the component, it uses our fake
 A stub stands in place of the real object in your application and simulates its behavior.
 In the stub service, define a method that will fetch the map based on location, called `getMapElement`.
 
-```tests/integration/components/location-map-test.js
+```javascript {data-filename=tests/integration/components/location-map-test.js}
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import Ember from 'ember';
@@ -363,7 +363,7 @@ To stub these services we simply have to register a stub service that implements
 
 Add the following code after the imports to our acceptance test:
 
-```/tests/acceptance/list-rentals-test.js{+3,+5,+6,+7,+8,+9,+10,-11,+12,+13,+14,+15,+16,+17}
+```javascript {data-filename=/tests/acceptance/list-rentals-test.js data-diff="+3,+5,+6,+7,+8,+9,+10,-11,+12,+13,+14,+15,+16,+17"}
 import { test } from 'qunit';
 import moduleForAcceptance from 'super-rentals/tests/helpers/module-for-acceptance';
 import Ember from 'ember';

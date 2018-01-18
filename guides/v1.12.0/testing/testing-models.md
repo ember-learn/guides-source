@@ -7,7 +7,7 @@ Let's assume we have a `Player` model that has `level` and `levelName`
 attributes. We want to call `levelUp()` to increment the `level` and assign a 
 new `levelName` when the player reaches level 5.
 
-```app/models/player.js
+```javascript {data-filename=app/models/player.js}
 export default DS.Model.extend({
   level:     DS.attr('number', { defaultValue: 0 }),
   levelName: DS.attr('string', { defaultValue: 'Noob' }),
@@ -24,7 +24,7 @@ export default DS.Model.extend({
 Now let's create a test which will call `levelUp` on the player when they are
 level 4 to assert that the `levelName` changes. We will use `moduleForModel`:
 
-```tests/unit/models/player-test.js
+```javascript {data-filename=tests/unit/models/player-test.js}
 moduleForModel('player');
 
 test('levelUp', function(assert) {
@@ -48,13 +48,13 @@ declarations are setup properly.
 
 Assume that a `User` can own a `Profile`.
 
-```app/models/profile.js
+```javascript {data-filename=app/models/profile.js}
 export default DS.Model.extend({
   
 });
 ```
 
-```app/models/user.js
+```javascript {data-filename=app/models/user.js}
 export default DS.Model.extend({
   profile: DS.belongsTo('profile')
 });
@@ -63,7 +63,7 @@ export default DS.Model.extend({
 Then you could test that the relationship is wired up correctly
 with this test.
 
-```tests/unit/models/user-test.js
+```javascript {data-filename=tests/unit/models/user-test.js}
 moduleForModel('user', {
   // Specify the other units that are required for this test.
   needs: ['model:profile']

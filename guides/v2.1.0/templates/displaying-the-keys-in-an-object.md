@@ -2,7 +2,7 @@ If you need to display all of the keys or values of a
 JavaScript object in your template, you can use the `{{#each-in}}`
 helper:
 
-```/app/components/store-categories.js
+```javascript {data-filename=/app/components/store-categories.js}
 export default Ember.Component.extend({
   willRender() {
     // Set the "categories" property to a JavaScript object
@@ -16,7 +16,7 @@ export default Ember.Component.extend({
 });
 ```
 
-```/app/templates/components/store-categories.hbs
+```handlebars {data-filename=/app/templates/components/store-categories.hbs}
 <ul>
   {{#each-in categories as |category products|}}
     <li>{{category}}
@@ -62,7 +62,7 @@ changes** to the object passed into it. In the above example, if you were
 to add a key to the component's `categories` property after the
 component had rendered, the template would **not** automatically update.
 
-```/app/components/store-categories.js
+```javascript {data-filename=/app/components/store-categories.js}
 export default Ember.Component.extend({
   willRender() {
     this.set('categories', {
@@ -86,7 +86,7 @@ removed or changed a property from an object, you need to either `set()` the
 property on the component again, or manually trigger a re-render of the
 component via `rerender()`:
 
-```/app/components/store-categories.js
+```javascript {data-filename=/app/components/store-categories.js}
 export default Ember.Component.extend({
   willRender() {
     this.set('categories', {
