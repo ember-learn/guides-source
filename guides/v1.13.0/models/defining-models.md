@@ -92,7 +92,7 @@ export default DS.Model.extend({
 The default adapter supports attribute types of `string`,
 `number`, `boolean`, and `date`. Custom adapters may offer additional
 attribute types, and new types can be registered as transforms. See the
-[documentation section on the REST Adapter](../the-rest-adapter).
+[documentation section on the REST Adapter](the-rest-adapter).
 
 **Please note:** Ember Data serializes and deserializes dates according to
                  [ISO 8601][]. For example: `2014-05-27T12:54:01`
