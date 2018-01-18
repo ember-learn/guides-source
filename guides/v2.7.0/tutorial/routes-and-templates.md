@@ -217,7 +217,7 @@ installing route-test
 
 Unlike the other route handlers we've made so far, the `index` route is special:
 it does NOT require an entry in the router's mapping.
-We'll learn more about why the entry isn't required when we look at [nested routes](../subroutes) in Ember.
+We'll learn more about why the entry isn't required when we look at [nested routes](subroutes) in Ember.
 
 We can start by implementing the unit test for index.
 Since all we want to do is transition to `rentals`, our unit test will make sure that the route's [`replaceWith`](http://emberjs.com/api/classes/Ember.Route.html#method_replaceWith) method is called with the desired route.

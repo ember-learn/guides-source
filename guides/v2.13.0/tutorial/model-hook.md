@@ -59,11 +59,11 @@ export default Ember.Route.extend({
 Note that here, we are using the ES6 shorthand method definition syntax: `model()` is the same as writing `model: function()`.
 
 Ember will use the model object returned above and save it as an attribute called `model`,
-available to the rentals template we generated with our route in [Routes and Templates](../routes-and-templates/#toc_a-rentals-route).
+available to the rentals template we generated with our route in [Routes and Templates](routes-and-templates/#toc_a-rentals-route).
 
 Now, let's switch over to our rentals page template.
 We can use the model attribute to display our list of rentals.
-Here, we'll use another common Handlebars helper called [`{{each}}`](../../templates/displaying-a-list-of-items/).
+Here, we'll use another common Handlebars helper called [`{{each}}`](../templates/displaying-a-list-of-items/).
 This helper will let us loop through each of the rental objects in our model:
 
 ```handlebars {data-filename=app/templates/rentals.hbs data-diff="+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29"}
@@ -101,7 +101,7 @@ In this template, we loop through each object.
 On each iteration, the current object gets stored in a variable called `rental`.
 From the rental variable in each step, we create a listing with information about the property.
 
-You may move onto the [next page](../installing-addons/) to keep implementing new features, or continue reading on testing the app you've created.
+You may move onto the [next page](installing-addons/) to keep implementing new features, or continue reading on testing the app you've created.
 
 ### Acceptance Testing the Rental List
 

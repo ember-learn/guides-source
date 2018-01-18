@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/ember-learn/guides-source/issues"
   },
-  "homepage": "https://github.com/ember-learn/guides-source#readme"
+  "homepage": "https://github.com/ember-learn/guides-source#readme",
+  "devDependencies": {
+    "markdown-link-extractor": "^1.1.1"
+  }
 }

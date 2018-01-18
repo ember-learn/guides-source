@@ -281,4 +281,4 @@ test('renders kittens', function(assert) {
 ```
 -->
 
-[Unit Testing Basics]: ../unit-testing-basics
+[Unit Testing Basics]: unit-testing-basics

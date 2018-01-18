@@ -18,11 +18,11 @@ For the remainder of this page, we'll give you an introduction to testing in Emb
 On subsequent tutorial pages, the final sections of each page will be devoted to adding a test for the feature you just implemented.
 These sections aren't required for a working application and you may move on with the tutorial without writing them.
 
-At this point, you can continue to the [next page](../routes-and-templates/) or read more about Ember testing below.
+At this point, you can continue to the [next page](routes-and-templates/) or read more about Ember testing below.
 
 ### Testing Our Application As We Go
 
-We can represent the goals above as [Ember acceptance tests](../../testing/acceptance/).
+We can represent the goals above as [Ember acceptance tests](../testing/acceptance/).
 Acceptance tests interact with our app like an actual person would, but are automated, helping ensure that our app doesn't break in the future.
 
 When we create a new Ember Project using Ember CLI, it uses the [`QUnit`](https://qunitjs.com/) JavaScript test framework to define and run tests.

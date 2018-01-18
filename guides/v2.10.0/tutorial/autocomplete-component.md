@@ -19,9 +19,9 @@ We want our component to call out to two actions: one action to provide a list o
 For our initial test, we will check that all the cities we provide are rendered and that the listing object is accessible from the template.
 
 Our action call to filter by city will be made asynchronously and we will have to accommodate for this in our test.
-We will leverage [actions](../../components/triggering-changes-with-actions/#toc_handling-action-completion) here to handle asynchronous action completion from our `filterByCity` call by returning a promise from our stubbed action.
+We will leverage [actions](../components/triggering-changes-with-actions/#toc_handling-action-completion) here to handle asynchronous action completion from our `filterByCity` call by returning a promise from our stubbed action.
 
-Note that we also need to add a `wait` call at the end of our test to assert the results. Ember's [`wait` helper](../../testing/testing-components/#toc_waiting-on-asynchronous-behavior) waits for all promises to resolve before running the given function callback and finishing the test.
+Note that we also need to add a `wait` call at the end of our test to assert the results. Ember's [`wait` helper](../testing/testing-components/#toc_waiting-on-asynchronous-behavior) waits for all promises to resolve before running the given function callback and finishing the test.
 
 ```javascript {data-filename=tests/integration/components/list-filter-test.js}
 import { moduleForComponent, test } from 'ember-qunit';
@@ -138,7 +138,7 @@ We want the component to simply provide an input field and yield the results lis
 {{yield results}}
 ```
 
-The template contains an [`{{input}}`](../../templates/input-helpers) helper that renders as a text field, in which the user can type a pattern to filter the list of cities used in a search.
+The template contains an [`{{input}}`](../templates/input-helpers) helper that renders as a text field, in which the user can type a pattern to filter the list of cities used in a search.
 The `value` property of the `input` will be bound to the `value` property in our component.
 The `key-up` property will be bound to the `handleFilterEntry` action.
 
@@ -170,7 +170,7 @@ export default Ember.Component.extend({
 We use the `init` hook to seed our initial listings by calling the `filter` action with an empty value.
 Our `handleFilterEntry` action calls our filter action based on the `value` attribute set by our input helper.
 
-The `filter` action is [passed](../../components/triggering-changes-with-actions/#toc_passing-the-action-to-the-component) in by the calling object. This is a pattern known as _closure actions_.
+The `filter` action is [passed](../components/triggering-changes-with-actions/#toc_passing-the-action-to-the-component) in by the calling object. This is a pattern known as _closure actions_.
 
 To implement these actions, we'll create a `rentals` controller.
 Controllers can contain actions and properties available to the template of its corresponding route.

@@ -1,5 +1,5 @@
 As they search for a rental, users might also want to narrow their search to a specific city.
-While our [initial](../simple-component/) rental listing component only displayed rental information, this new filter component will also allow the user to provide input in the form of filter criteria.
+While our [initial](simple-component/) rental listing component only displayed rental information, this new filter component will also allow the user to provide input in the form of filter criteria.
 
 To begin, let's generate our new component.
 We'll call this component `list-filter`, since all we want our component to do is filter the list of rentals based on input.
@@ -8,7 +8,7 @@ We'll call this component `list-filter`, since all we want our component to do i
 ember g component list-filter
 ```
 
-As before when we created the [`rental-listing` component](../simple-component), the "generate component" CLI command creates
+As before when we created the [`rental-listing` component](simple-component), the "generate component" CLI command creates
 
 * a Handlebars template (`app/templates/components/list-filter.hbs`),
 * a JavaScript file (`app/components/list-filter.js`),
@@ -19,7 +19,7 @@ As before when we created the [`rental-listing` component](../simple-component),
 In our `app/templates/rentals.hbs` template file, we'll add a reference to our new `list-filter` component.
 
 Notice that below we "wrap" our rentals markup inside the open and closing mentions of `list-filter` on lines 12 and 20.
-This is an example of the [**block form**](../../components/wrapping-content-in-a-component) of a component,
+This is an example of the [**block form**](../components/wrapping-content-in-a-component) of a component,
 which allows a Handlebars template to be rendered _inside_ the component's template wherever the `{{yield}}` expression appears.
 
 In this case we are passing, or "yielding", our filter data to the inner markup as a variable called `rentals` (line 14).
@@ -62,10 +62,10 @@ We want the component to simply provide an input field and yield the results lis
 {{yield results}}
 ```
 
-The template contains an [`{{input}}`](../../templates/input-helpers) helper that renders as a text field, in which the user can type a pattern to filter the list of cities used in a search.
+The template contains an [`{{input}}`](../templates/input-helpers) helper that renders as a text field, in which the user can type a pattern to filter the list of cities used in a search.
 The `value` property of the `input` will be kept in sync with the `value` property in the component.
 
-Another way to say this is that the `value` property of `input` is [**bound**](../../object-model/bindings/) to the `value` property of the component.
+Another way to say this is that the `value` property of `input` is [**bound**](../object-model/bindings/) to the `value` property of the component.
 If the property changes, either by the user typing in the input field, or by assigning a new value to it in our program,
 the new value of the property is present in both the rendered web page and in the code.
 
@@ -101,7 +101,7 @@ export default Component.extend({
 In the above example we use the `init` hook to seed our initial listings by calling the `filter` action with an empty value.
 Our `handleFilterEntry` action calls a function called `filter` based on the `value` attribute set by the input helper.
 
-The `filter` function is passed in by the calling object. This is a pattern known as [closure actions](../../components/triggering-changes-with-actions/#toc_passing-the-action-to-the-component).
+The `filter` function is passed in by the calling object. This is a pattern known as [closure actions](../components/triggering-changes-with-actions/#toc_passing-the-action-to-the-component).
 
 Notice the `then` function called on the result of calling the `filter` function.
 The code expects the `filter` function to return a promise.
@@ -111,7 +111,7 @@ To account for this, it provides functions, like `then` that let you give it cod
 
 
 To implement the `filter` function to do the actual filter of rentals by city, we'll create a `rentals` controller.
-[Controllers](../../controllers/) contain actions and properties available to the template of its corresponding route.
+[Controllers](../controllers/) contain actions and properties available to the template of its corresponding route.
 In our case we want to generate a controller called `rentals`.
 Ember will know that a controller with the name of `rentals` will apply to the route with the same name.
 
@@ -284,15 +284,15 @@ To create effective and robust autocomplete behavior for your applications,
 we recommend considering the [`ember-concurrency`](http://ember-concurrency.com/#/docs/introduction) addon project.
 
 
-You can now proceed on to implement the [next feature](../service/), or continue on to test our newly created filter component.
+You can now proceed on to implement the [next feature](service/), or continue on to test our newly created filter component.
 
 ### An Integration Test
 
 Now that we've created a new component for filtering a list,
 we want to create a test to verify it.
-Let's use a [component integration test](../../testing/testing-components)
+Let's use a [component integration test](../testing/testing-components)
 to verify our component behavior,
-similar to [how we tested our rental listing component earlier](../simple-component/#toc_an-integration-test).
+similar to [how we tested our rental listing component earlier](simple-component/#toc_an-integration-test).
 
 Lets begin by opening the component integration test created when we generated our `list-filter` component, `tests/integration/components/list-filter-test.js`.
 Remove the default test, and create a new test that verifies that by default, the component will list all items.
@@ -383,7 +383,7 @@ test('should initially load all listings', function (assert) {
 
 Finally we add a `wait` call at the end of our test to assert the results.
 
-Ember's [wait helper](../../testing/testing-components/#toc_waiting-on-asynchronous-behavior)
+Ember's [wait helper](../testing/testing-components/#toc_waiting-on-asynchronous-behavior)
 waits for all asynchronous tasks to complete before running the given function callback.
 It returns a promise that we also return from the test.
 
@@ -510,7 +510,7 @@ Our test fills out "Seattle" as the search criteria in the search field,
 and then sends a `keyup` event to the same field with a code of `69` (the `e` key) to simulate a user typing.
 
 The test locates the results of the search by finding elements with a class of `listing`,
-which we gave to our `rental-listing` component in the ["Building a Simple Component"](../simple-component) section of the tutorial.
+which we gave to our `rental-listing` component in the ["Building a Simple Component"](simple-component) section of the tutorial.
 
 Since our data is hard-coded in Mirage, we know that there is only one rental with a city name of "Seattle",
 so we assert that the number of listings is one and that the location it displays is named, "Seattle".

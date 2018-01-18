@@ -34,7 +34,7 @@ the specified attribute. For example, given this template:
 ```
 
 For further control over how these values are applied, see the [inline-if syntax
-documentation on the Conditionals page](../conditionals/#toc_inline-if-syntax).
+documentation on the Conditionals page](conditionals/#toc_inline-if-syntax).
 
 ### Adding data attributes
 

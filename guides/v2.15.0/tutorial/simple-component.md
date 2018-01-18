@@ -161,7 +161,7 @@ Let's call this action `toggleImageSize`
 Clicking the anchor element will send the action to the component.
 Ember will then go into the `actions` hash and call the `toggleImageSize` function.
 
-An [actions hash](../../templates/actions/) is an object in the component that contains functions.
+An [actions hash](../templates/actions/) is an object in the component that contains functions.
 These functions are called when the user interacts with the UI, such as clicking.
 
 Let's create the `toggleImageSize` function and toggle the `isWide` property on our component:
@@ -186,13 +186,13 @@ When we click the enlarged image again, we see it smaller.
 
 ![rental listing with expand](../../images/simple-component/styled-rental-listings.png)
 
-Move on to the [next page](../hbs-helper/) for the next feature, or continue on here to test what you just wrote.
+Move on to the [next page](hbs-helper/) for the next feature, or continue on here to test what you just wrote.
 
 ### An Integration Test
 
-Ember components are commonly tested with [component integration tests](../../testing/testing-components/).
+Ember components are commonly tested with [component integration tests](../testing/testing-components/).
 Component integration tests verify the behavior of a component within the context of Ember's rendering engine.
-When running in an integration test, the component goes through its regular [render lifecycle](../../components/the-component-lifecycle/),
+When running in an integration test, the component goes through its regular [render lifecycle](../components/the-component-lifecycle/),
 and has access to dependent objects, loaded through Ember's resolver.
 
 Our component integration test will test two different behaviors:

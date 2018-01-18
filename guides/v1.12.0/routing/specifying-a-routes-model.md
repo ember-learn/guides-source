@@ -50,7 +50,7 @@ eventually returned over the network. Ember uses this promise object to
 know when it has enough data to continue rendering.
 
 For more about promises, see [A Word on
-Promises](../../routing/asynchronous-routing/#toc_a-word-on-promises)
+Promises](../routing/asynchronous-routing/#toc_a-word-on-promises)
 in the Asynchronous Routing guide.
 
 Let's look at an example in action. Here's a route that loads the most
@@ -114,7 +114,7 @@ default behavior. Note that if you override the default behavior and do
 not set the `model` property on a controller, your template will not
 have any data to render!
 
-[1]: ../setting-up-a-controller
+[1]: setting-up-a-controller
 
 ### Dynamic Models
 
@@ -151,7 +151,7 @@ When the user goes to the `photo` route to display a particular photo
 model (usually via the `{{link-to}}` helper), that model's ID will be
 placed into the URL automatically.
 
-See [Links](../../templates/links) for more information about linking
+See [Links](../templates/links) for more information about linking
 to a route with a model using the `{{link-to}}` helper.
 
 For example, if you transitioned to the `photo` route with a model whose
@@ -195,7 +195,7 @@ return a promise for the JSON model data.
 
 Note: A route with a dynamic segment will only have its `model` hook called
 when it is entered via the URL. If the route is entered through a transition
-(e.g. when using the [link-to](../../templates/links) Handlebars helper), then a model context is
+(e.g. when using the [link-to](../templates/links) Handlebars helper), then a model context is
 already provided and the hook is not executed. Routes without dynamic segments
 will always execute the model hook.
 
@@ -221,4 +221,4 @@ significantly improving the performance of your application.
 
 One popular model library built for Ember is Ember Data. To learn more
 about using Ember Data to manage your models, see the
-[Models](../../models) guide.
+[Models](../models) guide.

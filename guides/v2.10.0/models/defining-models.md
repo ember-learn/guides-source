@@ -21,8 +21,8 @@ export default DS.Model.extend({
 });
 ```
 
-After you have defined a model class, you can start [finding](../finding-records)
-and [working with records](../creating-updating-and-deleting-records) of that type.
+After you have defined a model class, you can start [finding](finding-records)
+and [working with records](creating-updating-and-deleting-records) of that type.
 
 
 ## Defining Attributes
@@ -62,7 +62,7 @@ export default DS.Model.extend({
 ```
 
 For more about adding computed properties to your classes, see [Computed
-Properties](../../object-model/computed-properties).
+Properties](../object-model/computed-properties).
 
 ### Transforms
 

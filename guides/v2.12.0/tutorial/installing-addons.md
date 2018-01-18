@@ -10,7 +10,7 @@ For Super Rentals, we'll take advantage of two addons: [ember-cli-tutorial-style
 Instead of having you copy/paste in CSS to style Super Rentals, we've created an addon called [ember-cli-tutorial-style](https://github.com/ember-learn/ember-cli-tutorial-style) that instantly adds CSS to the tutorial.
 The addon works by generating a file called `ember-tutorial.css` and putting that file in the super-rentals `vendor` directory.
 
-The [`vendor` directory](../../addons-and-dependencies/managing-dependencies/#toc_other-assets) in Ember is a special directory where you can include content that gets compiled into your application.
+The [`vendor` directory](../addons-and-dependencies/managing-dependencies/#toc_other-assets) in Ember is a special directory where you can include content that gets compiled into your application.
 When Ember CLI builds our app from our source code, it copies `ember-tutorial.css` into a file called `vendor.css`.
 
 As Ember CLI runs, it takes the `ember-tutorial` CSS file and puts it in a file called `vendor.css`.

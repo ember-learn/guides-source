@@ -135,4 +135,4 @@ template deprecation warnings during compile in favor of showing them in the bro
 
 Ember Inspector also provides deprecation handling capability.  It can work complimentary to ember-cli-deprecation-workflow.  As you unsilence deprecations to
 fix them, the inspector can allow you to more quickly find where in your code a deprecation occurs when you run into it at runtime, reducing the amount of
-stack trace browsing you have to do.  For more information on using deprecation handling in Ember Inspector, see its [guides section](../../ember-inspector/deprecations/).
+stack trace browsing you have to do.  For more information on using deprecation handling in Ember Inspector, see its [guides section](../ember-inspector/deprecations/).

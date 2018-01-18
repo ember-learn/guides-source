@@ -50,6 +50,6 @@ export default Ember.Controller.extend({
 ```
 
 For more information about dependency injection in Ember.js,
-see the [dependency injection guide](../../understanding-ember/dependency-injection-and-service-lookup).
+see the [dependency injection guide](../understanding-ember/dependency-injection-and-service-lookup).
 For more information about aliases, see the API docs for
 [aliased properties](http://emberjs.com/api/#method_computed_alias).

@@ -28,8 +28,8 @@ export default Ember.Controller.extend({
 });
 ```
 
-`setProps` sets a property on the controller and also calls a method. In our 
-generated test, ember-cli already uses the `moduleFor` helper to setup a test 
+`setProps` sets a property on the controller and also calls a method. In our
+generated test, ember-cli already uses the `moduleFor` helper to setup a test
 container:
 
 ```javascript {data-filename=tests/unit/controllers/posts-test.js}
@@ -123,5 +123,5 @@ test('modify the post', function(assert) {
 });
 ```
 
-[Unit Testing Basics]: /guides/testing/unit-testing-basics
-[needs]: /guides/controllers/dependencies-between-controllers
+[Unit Testing Basics]: unit-testing-basics
+[needs]: ../controllers/dependencies-between-controllers

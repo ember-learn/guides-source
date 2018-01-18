@@ -15,7 +15,7 @@ Some of the reasons this may happen:
 - This is not an Ember application
 - You are using an old Ember version ( < 1.0 ).
 - You are using a protocol other than http or https. For file:// protocol,
-follow [these steps](../installation/#toc_file-protocol).
+follow [these steps](installation/#toc_file-protocol).
 - The Ember application is inside a sandboxed iframe with no url (if you
   are using JS Bin, follow [these steps](#toc_using-the-inspector-with-jsbin).
 
@@ -40,7 +40,7 @@ When you click on the Data tab, and see this message:
 <img src="/images/guides/ember-inspector/troubleshooting-data-adapter.png" width="350">
 
 It means that the data persistence library you're using does not support the Inspector.
-If you are the library's author, [see this section](../data/#toc_building-a-data-custom-adapter) on how to add Inspector support to your library.
+If you are the library's author, [see this section](data/#toc_building-a-data-custom-adapter) on how to add Inspector support to your library.
 
 ### Promises Not Detected
 

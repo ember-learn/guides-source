@@ -107,7 +107,7 @@ Ember.String.camelize("my_cool_class");
 
 ### Functions
 
-The [Object Model](../../object-model/) section of the Guides describes
+The [Object Model](../object-model/) section of the Guides describes
 how to write computed properties, observers, and bindings without
 prototype extensions. Below you can learn about how to convert existing
 code to the format now encouraged.

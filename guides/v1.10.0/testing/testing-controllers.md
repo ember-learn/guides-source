@@ -130,5 +130,5 @@ test('modify the post', function() {
 
 <script src="http://static.jsbin.com/js/embed.js"></script>
 
-[Unit Testing Basics]: /guides/testing/unit-testing-basics
-[needs]: /guides/controllers/dependencies-between-controllers
+[Unit Testing Basics]: unit-testing-basics
+[needs]: ../controllers/dependencies-between-controllers

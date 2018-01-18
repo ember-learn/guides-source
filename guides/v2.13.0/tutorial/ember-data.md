@@ -31,10 +31,10 @@ export default DS.Model.extend({
 });
 ```
 
-Let's define the structure of a rental object using the same attributes for our rental that we [previously used](../model-hook/) in our hard-coded array of JavaScript objects -
+Let's define the structure of a rental object using the same attributes for our rental that we [previously used](model-hook/) in our hard-coded array of JavaScript objects -
 _title_, _owner_, _city_, _property type_, _image_, _bedrooms_ and _description_.
 Define attributes by giving them the result of the function [`DS.attr()`](http://emberjs.com/api/data/classes/DS.html#method_attr).
-For more information on Ember Data Attributes, read the section called [Defining Attributes](../../models/defining-models/#toc_defining-attributes) in the guides.
+For more information on Ember Data Attributes, read the section called [Defining Attributes](../models/defining-models/#toc_defining-attributes) in the guides.
 
 ```javascript {data-filename=app/models/rental.js}
 import DS from 'ember-data';
@@ -54,8 +54,8 @@ We now have a model object that we can use for our Ember Data implementation.
 
 ### Updating the Model Hook
 
-To use our new Ember Data Model object, we need to update the `model` function we [previously defined](../model-hook/) in our route handler.
-Delete the hard-coded JavaScript Array, and replace it with the following call to the [Ember Data Store service](../../models/#toc_the-store-and-a-single-source-of-truth).
+To use our new Ember Data Model object, we need to update the `model` function we [previously defined](model-hook/) in our route handler.
+Delete the hard-coded JavaScript Array, and replace it with the following call to the [Ember Data Store service](../models/#toc_the-store-and-a-single-source-of-truth).
 The [store service](http://emberjs.com/api/data/classes/DS.Store.html) is injected into all routes and components in Ember.
 It is the main interface you use to interact with Ember Data.
 In this case, call the [`findAll`](http://emberjs.com/api/data/classes/DS.Store.html#method_findAll) function on the store and provide it with the name of your newly created rental model class.
@@ -99,9 +99,9 @@ export default Ember.Route.extend({
 ```
 
 When we call `findAll`, Ember Data will attempt to fetch rentals from `/api/rentals`.
-If you recall, in the section titled [Installing Addons](../installing-addons/) we set up an adapter to route data requests through `/api`.
+If you recall, in the section titled [Installing Addons](installing-addons/) we set up an adapter to route data requests through `/api`.
 
-You can read more about Ember Data in the [Models section](../../models/).
+You can read more about Ember Data in the [Models section](../models/).
 
 Since we have already set up Ember Mirage in our development environment, Mirage will return the data we requested without actually making a network request.
 

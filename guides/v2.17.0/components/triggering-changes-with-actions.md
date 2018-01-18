@@ -67,7 +67,7 @@ account and delete it.
 In Ember, each component can
 have a property called `actions`, where you put functions that can be
 [invoked by the user interacting with the component
-itself](../../templates/actions/), or by child components.
+itself](../templates/actions/), or by child components.
 
 Let's look at the parent component's JavaScript file. In this example,
 imagine we have a parent component called `user-profile` that shows the
@@ -75,7 +75,7 @@ user's profile to them.
 
 We'll implement an action on the parent component called
 `userDidDeleteAccount()` that, when called, gets a hypothetical `login`
-[service](../../applications/services/) and calls the service's
+[service](../applications/services/) and calls the service's
 `deleteUser()` method.
 
 ```javascript {data-filename=app/components/user-profile.js}
@@ -328,7 +328,7 @@ export default Component.extend({
 In order for `confirmValue` to take on the value of the message text,
 we'll bind the property to the value of a user input field that will appear when the button is clicked.
 To accomplish this,
-we'll first modify the component so that it can be used in block form and we will [yield](../wrapping-content-in-a-component/) `confirmValue` to the block within the `"confirmDialog"` element:
+we'll first modify the component so that it can be used in block form and we will [yield](wrapping-content-in-a-component/) `confirmValue` to the block within the `"confirmDialog"` element:
 
 ```handlebars {data-filename=app/templates/components/button-with-confirmation.hbs}
 <button {{action "launchConfirmDialog"}}>{{text}}</button>

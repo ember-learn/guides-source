@@ -22,7 +22,7 @@ export default Route.extend({
 });
 ```
 
-Typically, the `model` hook should return an [Ember Data](../../models/) record,
+Typically, the `model` hook should return an [Ember Data](../models/) record,
 but it can also return any [promise](https://www.promisejs.org/) object (Ember Data records are promises),
 or a plain JavaScript object or array.
 Ember will wait until the data finishes loading (until the promise is resolved) before rendering the template.
@@ -56,7 +56,7 @@ In cases like this, it's important that we include some information in
 the URL about not only which template to display, but also which model.
 
 In Ember, this is accomplished by defining routes with [dynamic
-segments](../defining-your-routes/#toc_dynamic-segments).
+segments](defining-your-routes/#toc_dynamic-segments).
 
 Once you have defined a route with a dynamic segment,
 Ember will extract the value of the dynamic segment from the URL for
@@ -85,7 +85,7 @@ photo's ID (`params.photo_id`) as an argument to Ember Data's `findRecord`
 method.
 
 Note: A route with a dynamic segment will always have its `model` hook called when it is entered via the URL.
-If the route is entered through a transition (e.g. when using the [link-to](../../templates/links) Handlebars helper),
+If the route is entered through a transition (e.g. when using the [link-to](../templates/links) Handlebars helper),
 and a model context is provided (second argument to `link-to`), then the hook is not executed.
 If an identifier (such as an id or slug) is provided instead then the model hook will be executed.
 
@@ -162,7 +162,7 @@ each record in the song model and album model:
 </ul>
 ```
 
-If you use [Ember Data](../../models/) and you are building an `RSVP.hash` with the model's relationship, consider instead properly setting up your [relationships](../../models/relationships) and letting Ember Data take care of loading them.
+If you use [Ember Data](../models/) and you are building an `RSVP.hash` with the model's relationship, consider instead properly setting up your [relationships](../models/relationships) and letting Ember Data take care of loading them.
 
 ## Reusing Route Context
 

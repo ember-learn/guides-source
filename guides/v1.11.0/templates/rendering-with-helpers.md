@@ -69,7 +69,7 @@ When using `{{view "author"}}`:
 * An instance of author view will be created
 * It will be rendered here, using the template associated with that view (the default template being "author")
 
-For more information, see [Inserting Views in Templates](../../views/inserting-views-in-templates)
+For more information, see [Inserting Views in Templates](../views/inserting-views-in-templates)
 
 ### The `{{render}}` Helper
 

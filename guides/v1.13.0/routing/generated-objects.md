@@ -1,4 +1,4 @@
-As explained in the [routing guide](../defining-your-routes), whenever
+As explained in the [routing guide](defining-your-routes), whenever
 you define a new path in your router, Ember.js attempts to find a
 corresponding route, controller, and template, each named according to
 naming conventions. If an implementation of any of these objects is not

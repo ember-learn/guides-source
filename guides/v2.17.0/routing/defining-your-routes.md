@@ -243,7 +243,7 @@ Router.map(function() {
 });
 ```
 
-In the next section, [Specifying a Route's Model](../specifying-a-routes-model), you will learn more about how to load a model.
+In the next section, [Specifying a Route's Model](specifying-a-routes-model), you will learn more about how to load a model.
 
 ## Wildcard / globbing routes
 

@@ -7,7 +7,7 @@ Let's start by building our "about" page.
 
 In Ember, when we want to make a new page that can be visited using a URL,
 we need to generate a "route" using Ember CLI. For a quick overview of how
-Ember structures things, see [our diagram on the Core Concepts page](../../getting-started/core-concepts/).
+Ember structures things, see [our diagram on the Core Concepts page](../getting-started/core-concepts/).
 
 Let's use Ember's route generator to start our `about` route.
 
@@ -120,7 +120,7 @@ Moving around our site is a bit of a pain right now, so let's make that easier.
 We'll put a link to the contact page on the about page, and a corresponding link to the about
 page on the contact page.
 
-To do that, we'll use a [`{{link-to}}`](../../templates/links/) helper that Ember provides
+To do that, we'll use a [`{{link-to}}`](../templates/links/) helper that Ember provides
 that makes it easy to link between our routes.  Let's adjust our `about.hbs` file:
 
 ```handlebars {data-filename=app/templates/about.hbs data-diff="+9,+10,+11"}
@@ -213,7 +213,7 @@ installing route-test
 
 Unlike the other route handlers we've made so far, the `index` route is special:
 it does NOT require an entry in the router's mapping.
-We'll learn more about why the entry isn't required later on when we look at [nested routes](../subroutes) in Ember.
+We'll learn more about why the entry isn't required later on when we look at [nested routes](subroutes) in Ember.
 
 All we want to do when a user visits the root (`/`) URL is transition to `/rentals`.
 To do this we will add code to our index route handler by implementing a route lifecycle hook,
@@ -222,7 +222,7 @@ called `beforeModel`.
 Each route handler has a set of "lifecycle hooks", which are functions that are invoked at specific times during the loading of a page.
 The [`beforeModel`](https://www.emberjs.com/api/ember/2.16/classes/Route/methods/beforeModel?anchor=beforeModel)
 hook gets executed before the data gets fetched from the model hook, and before the page is rendered.
-See [the next section](../model-hook) for an explanation of the model hook.
+See [the next section](model-hook) for an explanation of the model hook.
 
 In our index route handler, we'll call the [`replaceWith`](https://www.emberjs.com/api/ember/2.16/classes/Route/methods/beforeModel?anchor=replaceWith) function.
 The `replaceWith` function is similar to the route's [`transitionTo()`](https://www.emberjs.com/api/ember/2.16/classes/Route/methods/transitionTo?anchor=transitionTo) function,
@@ -281,13 +281,13 @@ or `contact`) should be shown.
 
 At this point, we should be able to navigate between our `about`, `contact`, and `rentals` pages.
 
-From here you can move on to the [next page](../model-hook/) or dive into testing the new functionality we just added.
+From here you can move on to the [next page](model-hook/) or dive into testing the new functionality we just added.
 
 ## Implementing Acceptance Tests
 
 Now that we have various pages in our application, let's walk through how to build tests for them.
 
-As mentioned earlier on the [Planning the Application page](../acceptance-test/),
+As mentioned earlier on the [Planning the Application page](acceptance-test/),
 an Ember acceptance test automates interacting with our app in a similar way to a visitor.
 
 If you open the acceptance test we created (`/tests/acceptance/list-rentals-test.js`), you'll see our
@@ -325,7 +325,7 @@ Some of the helpers we'll use commonly are:
 
 * [`visit`](http://emberjs.com/api/classes/Ember.Test.html#method_visit) - loads a given URL
 * [`click`](http://emberjs.com/api/classes/Ember.Test.html#method_click) - pretends to be a user clicking on a specific part of the screen
-* [`andThen`](../../testing/acceptance/#toc_wait-helpers) - waits for our previous commands to run before executing our function.
+* [`andThen`](../testing/acceptance/#toc_wait-helpers) - waits for our previous commands to run before executing our function.
   In our test below, we want to wait for our page to load after `click` is called so that we can double-check that the new page has loaded
 * [`currentURL`](http://emberjs.com/api/classes/Ember.Test.html#method_currentURL) - returns the URL of the page we're currently on
 
@@ -355,7 +355,7 @@ to see if two items (our first and second arguments) equal each other.  If they 
 The third optional argument allows us to provide a nicer message which we'll be shown if this test fails.
 
 In our tests, we also call two helpers (`visit` and `click`) one after another. Although Ember does a number
-of things when we make those calls, Ember hides those complexities by giving us these [asynchronous test helpers](../../testing/acceptance/#toc_asynchronous-helpers).
+of things when we make those calls, Ember hides those complexities by giving us these [asynchronous test helpers](../testing/acceptance/#toc_asynchronous-helpers).
 
 If you left `ember test` running, it should have automatically updated to show the three tests related to
 navigating have now passed.

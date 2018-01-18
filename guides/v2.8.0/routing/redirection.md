@@ -1,7 +1,7 @@
 Calling [`transitionTo()`][1] from a route or [`transitionToRoute()`][2] from a 
 controller will stop any transition currently in progress and start a new 
 one, functioning as a redirect. `transitionTo()` behaves exactly like the 
-[link-to](../../templates/links) helper.
+[link-to](../templates/links) helper.
 
 [1]: http://emberjs.com/api/classes/Ember.Route.html#method_transitionTo
 [2]: http://emberjs.com/api/classes/Ember.Controller.html#method_transitionToRoute
@@ -34,7 +34,7 @@ export default Ember.Route.extend({
 ```
 
 If you need to examine some application state to figure out where to redirect,
-you might use a [service](../../applications/services).
+you might use a [service](../applications/services).
 
 ## Transitioning After the Model is Known
 
