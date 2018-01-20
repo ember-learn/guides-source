@@ -229,7 +229,7 @@ Finally open the template file for our `rental-listing` component and add the ne
 
 After starting the server we should now see some end to end maps functionality show up on our front page!
 
-![super rentals homepage with maps](../../images/service/style-super-rentals-maps.png)
+![super rentals homepage with maps](/images/service/style-super-rentals-maps.png)
 
 You may now either move onto the [next feature](../subroutes/), or continue here to test the maps feature we just added.
 
@@ -377,4 +377,4 @@ Then we are putting it in Ember's [registry](../../applications/dependency-injec
 That way every time that component is created, our stub map service gets injected over the Google maps service.
 Now when we run our acceptance tests, you'll notice that maps do not get rendered as the test runs.
 
-![acceptance tests without maps](../../images/service/acceptance-without-maps.png)
+![acceptance tests without maps](/images/service/acceptance-without-maps.png)

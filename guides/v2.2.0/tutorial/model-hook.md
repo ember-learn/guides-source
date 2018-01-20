@@ -6,7 +6,7 @@ Later, we'll switch to using Ember Data, a library for robustly managing data in
 
 Here's what our homepage will look like when we're done:
 
-![super rentals homepage with rentals list](../../images/models/super-rentals-index-with-list.png)
+![super rentals homepage with rentals list](/images/models/super-rentals-index-with-list.png)
 
 In Ember, route handlers art responsible for loading model data.
 Let's open `app/routes/index.js` and add our hard-coded data as the return value of the `model` hook:

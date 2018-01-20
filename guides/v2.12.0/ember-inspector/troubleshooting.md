@@ -8,7 +8,7 @@ If the Inspector cannot detect an Ember application, you will see
 the following message:
 
 <img
-src="../../images/guides/ember-inspector/troubleshooting-application-not-detected.png" width="350">
+src="/images/ember-inspector/troubleshooting-application-not-detected.png" width="350">
 
 Some of the reasons this may happen:
 

@@ -8,7 +8,7 @@ a library for robustly managing data in our app.
 
 Here's what our homepage will look like when we're done:
 
-![super rentals homepage with rentals list](../../images/models/super-rentals-index-with-list.png)
+![super rentals homepage with rentals list](/images/models/super-rentals-index-with-list.png)
 
 In Ember, route handlers are responsible for loading the model with data for the page.
 It loads the data in a function called `model`.
@@ -104,4 +104,4 @@ From the rental variable in each step, we create a listing with information abou
 
 Now that we are listing rentals, our acceptance test validating that rentals display should show passing:
 
-![list rentals test passing](../../images/model-hook/passing-list-rentals-tests.png)
+![list rentals test passing](/images/model-hook/passing-list-rentals-tests.png)

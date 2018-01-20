@@ -205,4 +205,4 @@ export default Ember.Component.extend({
 Now when we click the image or the `View Larger` link in our browser, we  see our image show larger.
 When we click the enlarged image we again see it smaller.
 
-![rental listing with expand](../../images/simple-component/styled-rental-listings.png)
+![rental listing with expand](/images/simple-component/styled-rental-listings.png)

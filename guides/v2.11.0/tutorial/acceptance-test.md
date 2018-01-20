@@ -3,7 +3,7 @@ It will start with a homepage, an about page and a contact page.
 
 Here's a look at the desired application before we get started.
 
-![super rentals homepage screenshot](../../images/service/style-super-rentals-maps.png)
+![super rentals homepage screenshot](/images/service/style-super-rentals-maps.png)
 
 Let's think through what we want to do on the home page of our Super Rentals application.
 
@@ -178,7 +178,7 @@ test('should show details for a specific rental', function (assert) {
 Of course because we have not implemented this functionality yet, our tests will all fail.
 So, your test output should now show all failed tests when running `ember test --server`, which gives us a todo list for the rest of the tutorial.
 
-![failing tests](../../images/acceptance-test/failed-acceptance-tests.png)
+![failing tests](/images/acceptance-test/failed-acceptance-tests.png)
 
 As we walk through the tutorial, we'll use our acceptance tests as a checklist of functionality.
 When all are green, we've accomplished our high level goals!

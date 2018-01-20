@@ -306,7 +306,7 @@ export default Ember.Object.extend({
 ```
 After we restart the server we should now see some end to end maps functionality show up on our front page!
 
-![super rentals homepage with maps](../../images/service/style-super-rentals-maps.png)
+![super rentals homepage with maps](/images/service/style-super-rentals-maps.png)
 
 ### Stubbing Services in Acceptance Tests
 
@@ -345,4 +345,4 @@ Then we are putting it in Ember's [registry](../../applications/dependency-injec
 That way every time that component is created, our stub map service gets injected over the Google maps service.
 Now when we run our acceptance tests, you'll notice that maps do not get rendered as the test runs.
 
-![acceptance tests without maps](../../images/service/acceptance-without-maps.png)
+![acceptance tests without maps](/images/service/acceptance-without-maps.png)

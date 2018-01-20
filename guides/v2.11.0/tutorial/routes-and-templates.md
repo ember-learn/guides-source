@@ -144,7 +144,7 @@ Here we will use the `{{link-to}}` helper in our code to perform a basic link be
 The `{{link-to}}` helper takes an argument with the name of the route to link to, in this case: `contact`.
 When we look at our about page at [`http://localhost:4200/about`](http://localhost:4200/about), we now have a working link to our contact page.
 
-![super rentals about page screenshot](../../images/routes-and-templates/ember-super-rentals-about.png)
+![super rentals about page screenshot](/images/routes-and-templates/ember-super-rentals-about.png)
 
 Now, we'll add a link to our contact page so we can navigate back and forth between `about` and `contact`.
 
@@ -295,4 +295,4 @@ The [`{{outlet}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#m
 
 Now that we've added routes and linkages between them, the three acceptance tests we created for navigating to our routes should now pass.
 
-![passing navigation tests](../../images/routes-and-templates/passing-navigation-tests.png)
+![passing navigation tests](/images/routes-and-templates/passing-navigation-tests.png)

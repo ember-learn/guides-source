@@ -142,7 +142,7 @@ In this case, we're telling the `{{link-to}}` helper the name of the route we wa
 When we look at our about page at [`http://localhost:4200/about`](http://localhost:4200/about), we now have
 a working link to our contact page:
 
-![super rentals about page screenshot](../../images/routes-and-templates/ember-super-rentals-about.png)
+![super rentals about page screenshot](/images/routes-and-templates/ember-super-rentals-about.png)
 
 Now, we'll add our corresponding link to the contact page so we can move back and forth between `about` and `contact`:
 
@@ -361,5 +361,5 @@ navigating have now passed.
 In the screen recording below, we run the tests, deselect "Hide passed tests", and set the module to our acceptance test,
 revealing the 3 tests we got passing.
 
-![passing navigation tests](../../images/routes-and-templates/ember-route-tests.gif)
+![passing navigation tests](/images/routes-and-templates/ember-route-tests.gif)
 

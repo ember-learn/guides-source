@@ -318,7 +318,7 @@ Next, we can update the template for our show route (`app/templates/rentals/show
 
 Now browse to `localhost:4200/rentals/grand-old-mansion` and you should see the information listed for that specific rental.
 
-![Rental Page Nested Show Route](../../images/subroutes/subroutes-super-rentals-show.png)
+![Rental Page Nested Show Route](/images/subroutes/subroutes-super-rentals-show.png)
 
 ## Linking to a Specific Rental
 
@@ -351,7 +351,7 @@ Clicking on the title will load the detail page for that rental.
   {{location-map location=rental.city}}
 </article>
 ```
-![Rental Page Nested Index Route](../../images/subroutes/subroutes-super-rentals-index.png)
+![Rental Page Nested Index Route](/images/subroutes/subroutes-super-rentals-index.png)
 
 At this point you can do a [deployment](../deploying/) and share your Super Rentals application to the world
 or you can use this as a base to explore other Ember features and addons.
@@ -376,4 +376,4 @@ test('should show details for a specific rental', function (assert) {
 
 At this point all our tests should pass, including the [list of acceptance tests](../acceptance-test) we created as our beginning requirements.
 
-![Acceptance Tests Pass](../../images/subroutes/all-acceptance-pass.png)
+![Acceptance Tests Pass](/images/subroutes/all-acceptance-pass.png)

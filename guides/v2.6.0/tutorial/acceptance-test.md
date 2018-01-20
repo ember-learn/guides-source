@@ -137,7 +137,7 @@ test('should filter the list of rentals by city.', function (assert) {
 Of course because we have not implemented this functionality yet, our tests will all fail.
 Your test output should now show all failed tests, which gives us a todo list for the rest of the tutorial.
 
-![failing tests](../../images/acceptance-test/failed-acceptance-tests.png)
+![failing tests](/images/acceptance-test/failed-acceptance-tests.png)
 
 As we walk through the tutorial, we'll use our acceptance tests as a checklist of functionality.
 When all are green, we've accomplished our high level goals!

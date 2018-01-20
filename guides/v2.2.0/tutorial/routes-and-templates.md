@@ -2,7 +2,7 @@ To demonstrate the basic setup and processing of an Ember application, this sect
 It will start with a homepage, an about page and a contact page.
 Let's take a look at the application from the user perspective before we get started.
 
-![super rentals homepage screenshot](../../images/routes-and-templates/ember-super-rentals-index.png)
+![super rentals homepage screenshot](/images/routes-and-templates/ember-super-rentals-index.png)
 
 We arrive at the home page which shows a list of rentals.
 From here, we will be able to navigate to an about page and a contact page.
@@ -142,7 +142,7 @@ Here we will use the `{{link-to}}` helper in our code to link between routes:
 The `{{link-to}}` helper takes an argument with the name of the route to link to, in this case: `contact`.
 When we look at our about page, we now have a working link to our contact page.
 
-![super rentals about page screenshot](../../images/routes-and-templates/ember-super-rentals-about.png)
+![super rentals about page screenshot](/images/routes-and-templates/ember-super-rentals-about.png)
 
 Now, we'll add a to link to our about page so we can navigate from back and forth between `about` and `contact`.
 
