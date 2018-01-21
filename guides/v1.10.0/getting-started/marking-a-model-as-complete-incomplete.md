@@ -61,6 +61,6 @@ In `index.html` include `js/controllers/todo_controller.js` as a dependency:
 
   * [Changes in this step in `diff` format](https://github.com/emberjs/quickstart-code-sample/commit/8d469c04c237f39a58903a3856409a2592cc18a9)
   * [Ember.Checkbox API documentation](http://emberjs.com/api/classes/Ember.Checkbox.html)
-  * [Ember Controller Guide](../../controllers)
+  * [Ember Controller Guide](../../controllers/)
   * [Computed Properties Guide](../../object-model/computed-properties/)
   * [Naming Conventions Guide](../../concepts/naming-conventions)

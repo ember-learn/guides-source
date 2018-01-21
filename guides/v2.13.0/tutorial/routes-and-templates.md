@@ -213,7 +213,7 @@ installing route-test
 
 Unlike the other route handlers we've made so far, the `index` route is special:
 it does NOT require an entry in the router's mapping.
-We'll learn more about why the entry isn't required later on when we look at [nested routes](../subroutes) in Ember.
+We'll learn more about why the entry isn't required later on when we look at [nested routes](../subroutes/) in Ember.
 
 All we want to do when a user visits the root (`/`) URL is transition to `/rentals`.
 To do this we will add code to our index route handler by implementing a route lifecycle hook,
@@ -222,7 +222,7 @@ called `beforeModel`.
 Each route handler has a set of "lifecycle hooks", which are functions that are invoked at specific times during the loading of a page.
 The [`beforeModel`](http://emberjs.com/api/classes/Ember.Route.html#method_beforeModel)
 hook gets executed before the data gets fetched from the model hook, and before the page is rendered.
-See [the next section](../model-hook) for an explanation of the model hook.
+See [the next section](../model-hook/) for an explanation of the model hook.
 
 In our index route handler, we'll call the [`replaceWith`](http://emberjs.com/api/classes/Ember.Route.html#method_replaceWith) function.
 The `replaceWith` function is similar to the route's `transitionTo` function,

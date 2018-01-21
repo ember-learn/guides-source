@@ -222,4 +222,4 @@ significantly improving the performance of your application.
 
 One popular model library built for Ember is Ember Data. To learn more
 about using Ember Data to manage your models, see the
-[Models](../../models) guide.
+[Models](../../models/) guide.

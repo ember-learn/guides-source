@@ -21,8 +21,8 @@ export default Model.extend({
 });
 ```
 
-After you have defined a model class, you can start [finding](../finding-records)
-and [working with records](../creating-updating-and-deleting-records) of that type.
+After you have defined a model class, you can start [finding](../finding-records/)
+and [working with records](../creating-updating-and-deleting-records/) of that type.
 
 
 ## Defining Attributes

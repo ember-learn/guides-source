@@ -8,7 +8,7 @@ We'll call this component `list-filter`, since all we want our component to do i
 ember g component list-filter
 ```
 
-As before when we created the [`rental-listing` component](../simple-component), the "generate component" CLI command creates
+As before when we created the [`rental-listing` component](../simple-component/), the "generate component" CLI command creates
 
 * a Handlebars template (`app/templates/components/list-filter.hbs`),
 * a JavaScript file (`app/components/list-filter.js`),
@@ -437,7 +437,7 @@ Our test fills out "Seattle" as the search criteria in the search field,
 and then sends a `keyup` event to the same field with a code of `69` (the `e` key) to simulate a user typing.
 
 The test locates the results of the search by finding elements with a class of `listing`,
-which we gave to our `rental-listing` component in the ["Building a Simple Component"](../simple-component) section of the tutorial.
+which we gave to our `rental-listing` component in the ["Building a Simple Component"](../simple-component/) section of the tutorial.
 
 Since our data is hard-coded in Mirage, we know that there is only one rental with a city name of "Seattle",
 so we assert that the number of listings is one and that the location it displays is named, "Seattle".

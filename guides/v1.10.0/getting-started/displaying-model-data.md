@@ -41,5 +41,5 @@ Reload your web browser to ensure that all files have been referenced correctly 
 
   * [Changes in this step in `diff` format](https://github.com/emberjs/quickstart-code-sample/commit/87bd57700110d9dd0b351c4d4855edf90baac3a8)
   * [Templates Guide](../../templates/handlebars-basics)
-  * [Controllers Guide](../../controllers)
+  * [Controllers Guide](../../controllers/)
   * [Naming Conventions Guide](../../concepts/naming-conventions)

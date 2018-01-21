@@ -45,4 +45,4 @@ Reload your web browser to ensure that there are no errors and the behavior desc
 
   * [Changes in this step in `diff` format](https://github.com/emberjs/quickstart-code-sample/commit/1da450a8d693f083873a086d0d21e031ee3c129e)
   * [Handlebars Conditionals Guide](../../templates/conditionals)
-  * [Enumerables Guide](../../enumerables)
+  * [Enumerables Guide](../../enumerables/)
