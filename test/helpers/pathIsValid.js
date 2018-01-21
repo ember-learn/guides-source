@@ -14,12 +14,20 @@ const checkIfPathExists = require('./checkIfPathExists');
  * @return {[type]}          [description]
  */
 module.exports = function pathIsValid(filepath, link) {
-  let cleanedLink = stripOffAnchorTags(link);
-  cleanedLink = removeTrailingSlash(cleanedLink);
+  const endsWithSlashRegex = /\/(#[\w-_]+)?$/;
+  const endsWithSlash = endsWithSlashRegex.test(link);
+
+  if (!endsWithSlash) {
+    return false;
+  }
+
+  const cleanedLink = stripOffAnchorTags(link);
   const cleanedFilepath = removeMarkdownFileFromFilepath(filepath);
+
   let normalized = computeLinkRelativeToWorkingDir(cleanedFilepath, cleanedLink);
   normalized = handleImageEdgeCases(normalized, link);
+
   // return true if it is a valid path to a directory OR markdown file.
   // No easy way to tell which is which, so try both
-  return checkIfPathExists(normalized) || checkIfPathExists(`${normalized}.md`);
+  return checkIfPathExists(normalized.replace(/\/$/, '.md')) || checkIfPathExists(`${normalized}/index.md`);
 };

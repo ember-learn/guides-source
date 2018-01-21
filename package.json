@@ -4,7 +4,8 @@
   "description": "Markdown files for Ember-Guides",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "test-watch": "npm test -- -w"
   },
   "repository": {
     "type": "git",

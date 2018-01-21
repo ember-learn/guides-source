@@ -15,5 +15,5 @@ const { normalize } = require('path');
  * @type {[type]}
  */
 module.exports = function (cleanedFilepath, cleanedLink) {
-  return (normalize(`${cleanedFilepath}/${cleanedLink}`)).replace(/\/$/, '');
+  return (normalize(`${cleanedFilepath}/${cleanedLink}`));
 };
