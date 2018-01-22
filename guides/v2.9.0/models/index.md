@@ -25,7 +25,7 @@ avoid writing and hosting your own servers.
 Once you've loaded your models from storage, components know how to
 translate model data into a UI that your user can interact with.  For
 more information about how components get model data, see the
-[Specifying a Route's Model](../routing/specifying-a-routes-model/)
+[Specifying a Route's Model](../../routing/specifying-a-routes-model/)
 guide.
 
 Ember Data, included by default when you create a new application, is a
