@@ -76,7 +76,7 @@ Ember knows that the default action is to take the user to the `index` route.
 However, you can add the `index` route if you want to customize it.
 For example, you can modify the `index` route's path by specifying `this.route('index', { path: '/custom-path'})`.
 
-In the section on [using Ember Data](../ember-data#toc_updating-the-model-hook), we added a call to fetch all rentals.
+In the section on [using Ember Data](../ember-data/#toc_updating-the-model-hook), we added a call to fetch all rentals.
 Let's implement our newly generated `rentals/index` route by moving this `findAll` call from the parent `rentals` route to our new sub-route.
 
 ```javascript {data-filename=app/routes/rentals.js data-diff="-2,-3,-4"}

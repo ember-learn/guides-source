@@ -385,7 +385,7 @@ moduleForAcceptance('Acceptance | list rentals', {
 ```
 
 What's happening here is we are adding our own stub maps service that simply creates an empty div.
-Then we are putting it in Ember's [registry](../../applications/dependency-injection#toc_factory-registrations), and injecting it into the `location-map` component that uses it.
+Then we are putting it in Ember's [registry](../../applications/dependency-injection/#toc_factory-registrations), and injecting it into the `location-map` component that uses it.
 That way every time that component is created, our stub map service gets injected over the Google maps service.
 Now when we run our acceptance tests, you'll notice that maps do not get rendered as the test runs.
 
