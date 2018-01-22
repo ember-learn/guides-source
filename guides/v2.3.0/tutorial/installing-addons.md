@@ -20,7 +20,7 @@ ember install ember-cli-tutorial-style
 
 Starting the server will incorporate the new CSS and refreshing our browser window will give you this:
 
-![super rentals styled homepage](../../images/installing-addons/styled-super-rentals-basic.png)
+![super rentals styled homepage](/images/installing-addons/styled-super-rentals-basic.png)
 
 ### ember-cli-mirage
 

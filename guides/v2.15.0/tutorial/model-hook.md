@@ -8,7 +8,7 @@ a library for robustly managing data in our app.
 
 Here's what our homepage will look like when we're done:
 
-![super rentals homepage with rentals list](../../images/model-hook/super-rentals-index-with-list.png)
+![super rentals homepage with rentals list](/images/model-hook/super-rentals-index-with-list.png)
 
 In Ember, route handlers are responsible for loading the model with data for the page.
 It loads the data in a function called [`model`](http://emberjs.com/api/classes/Ember.Route.html#method_model).
@@ -128,4 +128,4 @@ Run the tests again using the command `ember t -s`, and toggle "Hide passed test
 Now we are listing rentals, and verifying it with an acceptance test.
 This leaves us with 2 remaining acceptance test failures (and 1 eslint failure):
 
-![list rentals test passing](../../images/model-hook/model-hook.png)
+![list rentals test passing](/images/model-hook/model-hook.png)

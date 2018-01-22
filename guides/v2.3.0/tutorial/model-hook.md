@@ -6,7 +6,7 @@ Later, we'll switch to using Ember Data, a library for robustly managing data in
 
 Here's what our homepage will look like when we're done:
 
-![super rentals homepage with rentals list](../../images/models/super-rentals-index-with-list.png)
+![super rentals homepage with rentals list](/images/models/super-rentals-index-with-list.png)
 
 In Ember, route handlers are responsible for loading model data.
 Let's open `app/routes/index.js` and add our hard-coded data as the return value of the `model` hook:
@@ -96,4 +96,4 @@ For each rental, we then create a listing with information about the property.
 
 Now that we are listing rentals, our acceptance test validating that rentals display should show passing:
 
-![list rentals test passing](../../images/model-hook/passing-list-rentals-tests.png)
+![list rentals test passing](/images/model-hook/passing-list-rentals-tests.png)

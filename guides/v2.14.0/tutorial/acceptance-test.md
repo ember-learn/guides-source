@@ -2,7 +2,7 @@ To show the basic setup of an Ember application, we'll walk through building an 
 
 Here's a look at what we want to build before we get started.
 
-![super rentals homepage screenshot](../../images/service/style-super-rentals-maps.png)
+![super rentals homepage screenshot](/images/service/style-super-rentals-maps.png)
 
 Let's work through what we want to do on the home page. We want our application to:
 
@@ -72,7 +72,7 @@ By default, when you run `ember test --server`, Ember CLI runs the [Testem test 
 
 Our launched Chrome web browser now shows 10 successful tests. If you toggle the box labeled "Hide passed tests", you should see our successful acceptance test, along with 9 passing ESLint tests. Ember tests each file you create for syntax issues (known as "linting") using [ESLint](http://eslint.org/).
 
-![Initial Tests Screenshot](../../images/acceptance-test/initial-tests.png)
+![Initial Tests Screenshot](/images/acceptance-test/initial-tests.png)
 
 ### Adding Your Application Goals as Acceptance Tests
 
@@ -114,4 +114,4 @@ Running `ember test --server` will now show 7 failing tests (out of 15). Each of
 
 As we continue through this tutorial, we'll use these acceptance tests as our checklist. Once all the tests are passing, we'll have accomplished our high level goals.
 
-![Initial Tests Screenshot](../../images/acceptance-test/acceptance-test.png)
+![Initial Tests Screenshot](/images/acceptance-test/acceptance-test.png)

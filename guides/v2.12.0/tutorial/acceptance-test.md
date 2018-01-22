@@ -3,7 +3,7 @@ We'll start with a homepage, an about page and a contact page.
 
 Here's a look at what we want to build before we get started.
 
-![super rentals homepage screenshot](../../images/service/style-super-rentals-maps.png)
+![super rentals homepage screenshot](/images/service/style-super-rentals-maps.png)
 
 Let's work through what we want to do on the home page. We want our application to:
 
@@ -88,7 +88,7 @@ Our launched Chrome web browser now shows 10 successful tests. If you toggle the
 you should see our successful acceptance test, along with 9 passing JSHint tests. Ember tests each file you create
 for syntax issues (known as "linting") using [JSHint](http://jshint.com/).
 
-![Initial Tests Screenshot](../../images/acceptance-test/initial-tests.png)
+![Initial Tests Screenshot](/images/acceptance-test/initial-tests.png)
 
 ### Adding Your Application Goals as Acceptance Tests
 

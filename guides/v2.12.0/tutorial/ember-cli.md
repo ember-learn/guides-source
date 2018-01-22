@@ -132,7 +132,7 @@ ember s
 If we navigate to [`http://localhost:4200`](http://localhost:4200), we'll see the default welcome screen.
 When we edit the `app/templates/application.hbs` file, we'll replace that content with our own.
 
-![default welcome screen](../../images/ember-cli/default-welcome-page.png)
+![default welcome screen](/images/ember-cli/default-welcome-page.png)
 
 The first thing we want to do in our new project is to remove the welcome screen.
 We do this by simply opening up the application template file located at `app/templates/application.hbs`.

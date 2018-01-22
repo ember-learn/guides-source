@@ -196,7 +196,7 @@ export default function() {
 After updating our mirage configuration, we should see passing tests, as well as a simple filter on your home screen,
 that will update the rental list as you type:
 
-![home screen with filter component](../../images/autocomplete-component/styled-super-rentals-filter.png)
+![home screen with filter component](/images/autocomplete-component/styled-super-rentals-filter.png)
 
 You can now proceed on to implement the [next feature](../service/), or continue on to test our newly created filter component.
 
@@ -444,6 +444,6 @@ and the item displayed shows "Seattle" as the location.
 
 You should be down to only 2 failing tests: One remaining acceptance test failure; and our JSHint test that fails on an unused assert for our unimplemented test.
 
-![passing acceptance tests](../../images/autocomplete-component/passing-acceptance-tests.png)
+![passing acceptance tests](/images/autocomplete-component/passing-acceptance-tests.png)
 
 

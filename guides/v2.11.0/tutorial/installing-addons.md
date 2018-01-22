@@ -22,7 +22,7 @@ Since Ember addons are npm packages, `ember install` installs them in the `node_
 in `package.json`. Be sure to restart your server after the addon has installed successfully. Restarting the server will
 incorporate the new CSS and refreshing the browser window will give you this:
 
-![super rentals styled homepage](../../images/installing-addons/styled-super-rentals-basic.png)
+![super rentals styled homepage](/images/installing-addons/styled-super-rentals-basic.png)
 
 ### ember-cli-mirage
 

@@ -3,7 +3,7 @@ changes to the framework.  Before any functionality or API is removed it first g
 still supported, but usage of it generates a warning logged to the browser console.  These warnings can pile up between major releases to a point where the amount of
 deprecation warnings that scroll through the console becomes overwhelming.
 
-<img width="675px" title="Deprecations Clouding up the Browser JavaScript Console" src="../../images/guides/configuring-ember/handling-deprecations/deprecations-in-console.png"/>
+<img width="675px" title="Deprecations Clouding up the Browser JavaScript Console" src="/images/guides/configuring-ember/handling-deprecations/deprecations-in-console.png"/>
 
 Fortunately, Ember provides a way for projects to deal with deprecations in an organized and efficient manner.
 
@@ -47,7 +47,7 @@ manually exercise functionality within your app where needed.  Once you've exerc
 your browser console: `deprecationWorkflow.flushDeprecations()`.  This will print to the console JavaScript code, which you should then copy to a
 new file in your project called `/config/deprecation-workflow.js`
 
-<img width="675px" title="Generated Deprecation Code from Browser Console" src="../../images/guides/configuring-ember/handling-deprecations/generate-deprecation-code.png"/>
+<img width="675px" title="Generated Deprecation Code from Browser Console" src="/images/guides/configuring-ember/handling-deprecations/generate-deprecation-code.png"/>
 
 Here's an example of a deprecation-workflow file after generated from the console:
 
@@ -108,7 +108,7 @@ window.deprecationWorkflow.config = {
   ]
 };
 ```
-<img width="675px" src="../../images/guides/configuring-ember/handling-deprecations/failed-test-from-deprecation.png"/>
+<img width="675px" src="/images/guides/configuring-ember/handling-deprecations/failed-test-from-deprecation.png"/>
 
 
 ### 3. Fix and Repeat
@@ -125,7 +125,7 @@ so that you can start the process over for the next release.
 You might also notice as you upgrade between releases that your terminal log begins to stream template-related deprecation warnings during the compile process, making
 it difficult to review your compilation logs.
 
-<img width="675px" src="../../images/guides/configuring-ember/handling-deprecations/compile-deprecations.png" title="Compile Deprecations Clouding Log"/>
+<img width="675px" src="/images/guides/configuring-ember/handling-deprecations/compile-deprecations.png" title="Compile Deprecations Clouding Log"/>
 
 If you are using the deprecation workflow process above you will likely prefer to gather these same warnings during runtime execution.  The way to hide these
 warnings during compile is to install the [ember-cli-template-lint](http://emberobserver.com/addons/ember-cli-template-lint) addon.  It suppresses

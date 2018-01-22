@@ -87,7 +87,7 @@ Here we invoke the `rental-listing` component by name, and assign each `rentalUn
 
 Our app should behave now as before, with the addition of an image for each rental item.
 
-![App with component and images](../../images/simple-component/app-with-images.png)
+![App with component and images](/images/simple-component/app-with-images.png)
 
 ## Hiding and Showing an Image
 
@@ -181,7 +181,7 @@ export default Ember.Component.extend({
 Now when we click the image or the `View Larger` link in our browser, we  see our image show larger.
 When we click the enlarged image again, we see it smaller.
 
-![rental listing with expand](../../images/simple-component/styled-rental-listings.png)
+![rental listing with expand](/images/simple-component/styled-rental-listings.png)
 
 Move on to the [next page](../hbs-helper/) for the next feature, or continue on here to test what you just wrote.
 

@@ -142,7 +142,7 @@ In this case, we're telling the `{{link-to}}` helper the name of the route we wa
 When we look at our about page at [`http://localhost:4200/about`](http://localhost:4200/about), we now have
 a working link to our contact page:
 
-![super rentals about page screenshot](../../images/routes-and-templates/ember-super-rentals-about.png)
+![super rentals about page screenshot](/images/routes-and-templates/ember-super-rentals-about.png)
 
 Now, we'll add our corresponding link to the contact page so we can move back and forth between `about` and `contact`:
 
@@ -314,7 +314,7 @@ in the drop down input labeled "Module" on the test UI.
 You can also toggle "Hide passed tests" to show your passing test case along with the tests that are still
 failing (because we haven't yet built them).
 
-![6_fail](../../images/routes-and-templates/routes-and-templates.gif)
+![6_fail](/images/routes-and-templates/routes-and-templates.gif)
 
 ### Ember's test helpers
 
@@ -363,4 +363,4 @@ navigating have now passed.
 In the screen recording below, we run the tests, deselect "Hide passed tests", and set the module to our acceptance test,
 revealing the 3 tests we got passing.
 
-![passing navigation tests](../../images/routes-and-templates/ember-route-tests.gif)
+![passing navigation tests](/images/routes-and-templates/ember-route-tests.gif)

@@ -2,7 +2,7 @@ To demonstrate the basic setup and processing of an Ember application, this sect
 It will start with a homepage, an about page and a contact page.
 Let's take a look at the application from the user perspective before we get started.
 
-![super rentals homepage screenshot](../../images/service/style-super-rentals-maps.png)
+![super rentals homepage screenshot](/images/service/style-super-rentals-maps.png)
 
 We arrive at the home page which shows a list of rentals.
 From here, we will be able to navigate to an about page and a contact page.
@@ -145,7 +145,7 @@ Here we will use the `{{link-to}}` helper in our code to link between routes:
 The `{{link-to}}` helper takes an argument with the name of the route to link to, in this case: `contact`.
 When we look at our about page at [`http://localhost:4200/about`](http://localhost:4200/about), we now have a working link to our contact page.
 
-![super rentals about page screenshot](../../images/routes-and-templates/ember-super-rentals-about.png)
+![super rentals about page screenshot](/images/routes-and-templates/ember-super-rentals-about.png)
 
 Now, we'll add a link to our contact page so we can navigate from back and forth between `about` and `contact`.
 
@@ -250,4 +250,4 @@ Notice the inclusion of an `{{outlet}}` within the body `div` element.  The [`{{
 
 Now that we've added routes and linkages between them, the two acceptance tests we created for navigating the about and contact links will now pass:
 
-![passing navigation tests](../../images/routes-and-templates/passing-navigation-tests.png)
+![passing navigation tests](/images/routes-and-templates/passing-navigation-tests.png)
