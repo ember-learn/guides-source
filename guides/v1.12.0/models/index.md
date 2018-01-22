@@ -4,8 +4,7 @@ In Ember, every route has an associated model. This model is set by
 implementing a route's `model` hook, by passing the model as an argument
 to `{{link-to}}`, or by calling a route's `transitionTo()` method.
 
-See [Specifying a Route's
-Model](../routing/specifying-a-routes-model) for more information
+See [Specifying a Route's Model](../routing/specifying-a-routes-model/) for more information
 on setting a route's model.
 
 For simple applications, you can get by using jQuery to load JSON data

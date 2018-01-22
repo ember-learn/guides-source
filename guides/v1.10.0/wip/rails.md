@@ -11,9 +11,9 @@ In this guide, we'll show you how to build a simple, personal photoblog applicat
 
 Ember.js is a front-end javascript model-view-controller framework. It is designed to help you create ambitious web applications which run inside the browser. These applications can use AJAX as their primary mechanism for communicating with an API, much like a desktop or mobile application.
 
-Ruby on Rails is a Ruby-based full stack web framework. It also uses a model-view-controller paradigm to architect applications built on top of it, but in a much different way than Ember.js. The differences are beyond the scope of this guide, but you can read about them in our [Ember MVC guide](../../ember_mvc/). What is critical to understand is that Ruby on Rails runs on the server, not the client. It is an excellent platform to build websites and APIs.
+Ruby on Rails is a Ruby-based full stack web framework. It also uses a model-view-controller paradigm to architect applications built on top of it, but in a much different way than Ember.js. The differences are beyond the scope of this guide, but you can read about them in our Ember MVC guide. What is critical to understand is that Ruby on Rails runs on the server, not the client. It is an excellent platform to build websites and APIs.
 
-In the next few steps, we'll create a Ruby on Rails application which does two distinct but equally important things: It acts as a host for the Ember.js application we will write, and it acts as an API with which the application will communicate. 
+In the next few steps, we'll create a Ruby on Rails application which does two distinct but equally important things: It acts as a host for the Ember.js application we will write, and it acts as an API with which the application will communicate.
 
 It's worth noting that it's not at all necessary to host an Ember.js application using Ruby on Rails. It can be served from any standard web server (or a local file.)
 
@@ -33,7 +33,7 @@ The -m option specifies a template on which to base your new project. We have pr
 * Generates an appropriate directory structure inside `app/assets/javascripts/`
 * Generates an `AssetsController` and supplies an appropriate route in order to serve your application
 * Generates an appropirate `ApplicationSerializer` for Ember.js' RESTAdapter.
-  
+
 When rails has finished creating your application it will reside in the `photoblog` directory. Switch to this newly created directory:
 
 ```
@@ -80,7 +80,7 @@ class Comment < ActiveRecord::Base
 end
 ```
 
-If we look inside `db/migrate`, you'll see the database migrations that have been generated for us. We'll need to modify the `<datetime>_create_comments.rb` file to reference our photo model. 
+If we look inside `db/migrate`, you'll see the database migrations that have been generated for us. We'll need to modify the `<datetime>_create_comments.rb` file to reference our photo model.
 
 ```ruby
 class CreateComments < ActiveRecord::Migration
@@ -159,18 +159,18 @@ Photoblog.StateManager = Ember.StateManager.extend({
         });
 
         manager.set('store', store);
-		
+
         var photos = store.find(Photoblog.Photo);
         manager.photosController.set('model', photos);
 
         store.adapter.mappings = {
           comments: Photoblog.Comment
         };
-		
+
         manager.goToState('photos');
       }
     }),
-	
+
     photos: Ember.State.create({
       initialState: 'index',
 
@@ -179,11 +179,11 @@ Photoblog.StateManager = Ember.StateManager.extend({
           return Photoblog.IndexView.create()
         }.property()
       })
-	  
+
     }) // End Photos state
-	
+
   } // End States
-  
+
 });
 ```
 
@@ -197,7 +197,7 @@ To see all our photos, we need an write an index view which shows them.  We have
 rails generate ember:view index photos
 ```
 
-Note that we pass two additional arguments after 'ember:view', `index` and `photos`. `index` specifies the name of the view, and `photos` specifies the name of the owning controller. We'll get to that in the next step. 
+Note that we pass two additional arguments after 'ember:view', `index` and `photos`. `index` specifies the name of the view, and `photos` specifies the name of the owning controller. We'll get to that in the next step.
 
 Our generator creates two new files, one at `app/assets/javascripts/templates/photos/index.handlebars` and one at `app/assets/javascripts/views/photos/index_view.js`. First, let's look at the the `app/assets/javascripts/views/photos/index_view.js`.
 
@@ -308,7 +308,7 @@ We're doing a few things here. First, we're getting all the photos in our data s
 
 You can now view the app in your browser by running `rails server` going to `http://localhost:3000`. You should see something like this:
 
-![First site screenshot](/images/rails_site_1.png)
+(missing screenshot)
 
 There's our title, but there's no content! We need to add some photos first, of course.
 

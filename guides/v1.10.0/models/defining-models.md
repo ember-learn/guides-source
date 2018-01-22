@@ -80,8 +80,7 @@ App.Person = DS.Model.extend({
 });
 ```
 
-For more about adding computed properties to your classes, see [Computed
-Properties](../../object-model/computed-properties).
+For more about adding computed properties to your classes, see [Computed Properties](../../object-model/computed-properties/).
 
 If you don't specify the type of the attribute, it will be whatever was
 provided by the server. You can make sure that an attribute is always
@@ -233,4 +232,3 @@ App.Folder = DS.Model.extend({
   parent: belongsTo('folder', {inverse: null})
 });
 ```
-
