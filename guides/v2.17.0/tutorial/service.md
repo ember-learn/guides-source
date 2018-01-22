@@ -13,7 +13,7 @@ See the guides section on [managing dependencies](../../addons-and-dependencies/
 as a starting point when you need to add one.
 
 
-The [Google Maps API](https://developers.google.com/maps/documentation/javascript/tutorial) requires us to reference its library from a remote script.
+The [Google Maps API](https://developers.google.com/maps/documentation/javascript/tutorial/) requires us to reference its library from a remote script.
 In this case we'll provide this script to our Ember app via an Addon called `ember-simple-google-maps`.
 
 ```shell
@@ -21,7 +21,7 @@ ember install ember-simple-google-maps
 ```
 
 Google Maps requires an API key for deployment.
-You can [Generate an API key](https://developers.google.com/maps/documentation/javascript/get-api-key)
+You can [Generate an API key](https://developers.google.com/maps/documentation/javascript/get-api-key/)
 from Google.
 Add your new API key to the application by stopping the server and restarting it with the environment variable, `GOOGLE_MAPS_API_KEY`.
 
@@ -90,9 +90,9 @@ Now that we are able to generate a map element,
 we will implement a maps service that will keep a reference to the Map object we create,
 and attach the map to an element in our application
 
-Accessing our maps API through a [service](../../applications/services) will give us several benefits
+Accessing our maps API through a [service](../../applications/services/) will give us several benefits
 
-* It is injected with a [service locator](https://en.wikipedia.org/wiki/Service_locator_pattern),
+* It is injected with a [service locator](https://en.wikipedia.org/wiki/Service_locator_pattern/),
   meaning it will abstract the maps API from the code that uses it,
   allowing for easier refactoring and maintenance.
 * It is lazy-loaded, meaning it won't be initialized until it is called the first time.
@@ -130,13 +130,13 @@ export default Service.extend({
     }
   },
 
-  getMapElement(location) {
-    let camelizedLocation = camelize(location);
+  getMapElement(location/) {
+    let camelizedLocation = camelize(location/);
     let element = this.get(`cachedMaps.${camelizedLocation}`);
-    if (!element) {
+    if (!element/) {
       element = this.createMapElement();
-      this.get('mapUtil').createMap(element, location);
-      this.set(`cachedMaps.${camelizedLocation}`, element);
+      this.get('mapUtil').createMap(element, location/);
+      this.set(`cachedMaps.${camelizedLocation}`, element/);
     }
     return element;
   },

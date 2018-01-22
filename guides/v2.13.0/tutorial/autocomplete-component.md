@@ -17,10 +17,10 @@ As before when we created the [`rental-listing` component](../simple-component/)
 In our `app/templates/rentals.hbs` template file, we'll add a reference to our new `list-filter` component.
 
 Notice that below we "wrap" our rentals markup inside the open and closing mentions of `list-filter` on lines 12 and 20.
-This is an example of the [**block form**](../../components/wrapping-content-in-a-component) of a component,
+This is an example of the [**block form**](../../components/wrapping-content-in-a-component/) of a component,
 which allows a Handlebars template to be rendered _inside_ the component's template wherever the `{{yield}}` expression appears.
 
-In this case we are passing, or "yielding", our filter data to the inner markup as a variable called `rentals` (line 14).
+In this case we are passing, or "yielding", our filter data to the inner markup as a variable called `rentals` (line 14/).
 
 ```handlebars {data-filename=app/templates/rentals.hbs data-diff="+35,+36,+37,+38,+39,+40,+41,+42,+43,+44,+45,-46,-47,-48"}
 <div class="jumbo">
@@ -59,7 +59,7 @@ We want the component to simply provide an input field and yield the results lis
 {{yield results}}
 ```
 
-The template contains an [`{{input}}`](../../templates/input-helpers) helper that renders as a text field, in which the user can type a pattern to filter the list of cities used in a search.
+The template contains an [`{{input}}`](../../templates/input-helpers/) helper that renders as a text field, in which the user can type a pattern to filter the list of cities used in a search.
 The `value` property of the `input` will be kept in sync with the `value` property in the component.
 
 Another way to say this is that the `value` property of `input` is [**bound**](../../object-model/bindings/) to the `value` property of the component.
@@ -78,15 +78,15 @@ export default Ember.Component.extend({
   value: '',
 
   init() {
-    this._super(...arguments);
-    this.get('filter')('').then((results) => this.set('results', results));
+    this._super(...arguments/);
+    this.get('filter')('').then((results/) => this.set('results', results/));
   },
 
   actions: {
     handleFilterEntry() {
       let filterInputValue = this.get('value');
       let filterAction = this.get('filter');
-      filterAction(filterInputValue).then((filterResults) => this.set('results', filterResults));
+      filterAction(filterInputValue/).then((filterResults/) => this.set('results', filterResults/));
     }
   }
 
@@ -123,7 +123,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   actions: {
-    filterByCity(param) {
+    filterByCity(param/) {
       if (param !== '') {
         return this.get('store').query('rental', { city: param });
       } else {
@@ -154,7 +154,7 @@ export default function() {
         city: 'San Francisco',
         "property-type": 'Estate',
         bedrooms: 15,
-        image: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg',
+        image: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5/).jpg',
         description: "This grand old mansion sits on over 100 acres of rolling hills and dense redwood forests."
       }
     }, {
@@ -183,9 +183,9 @@ export default function() {
       }
     }];
 
-  this.get('/rentals', function(db, request) {
-    if(request.queryParams.city !== undefined) {
-      let filteredRentals = rentals.filter(function(i) {
+  this.get('/rentals', function(db, request/) {
+    if(request.queryParams.city !== undefined/) {
+      let filteredRentals = rentals.filter(function(i/) {
         return i.attributes.city.toLowerCase().indexOf(request.queryParams.city.toLowerCase()) !== -1;
       });
       return { data: filteredRentals };
@@ -199,7 +199,7 @@ export default function() {
 After updating our mirage configuration, we should see passing tests, as well as a simple filter on your home screen,
 that will update the rental list as you type:
 
-![home screen with filter component](/images/autocomplete-component/styled-super-rentals-filter.png)
+![home screen with filter component](/images/autocomplete-component/styled-super-rentals-filter.png/)
 
 You can now proceed on to implement the [next feature](../service/), or continue on to test our newly created filter component.
 
@@ -207,7 +207,7 @@ You can now proceed on to implement the [next feature](../service/), or continue
 
 Now that we've created a new component for filtering a list,
 we want to create a test to verify it.
-Let's use a [component integration test](../../testing/testing-components)
+Let's use a [component integration test](../../testing/testing-components/)
 to verify our component behavior,
 similar to [how we tested our rental listing component earlier](../simple-component/#toc_an-integration-test).
 

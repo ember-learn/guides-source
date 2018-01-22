@@ -12,7 +12,7 @@ There are several ways to include 3rd party libraries in Ember.
 See the guides section on [managing dependencies](../../addons-and-dependencies/managing-dependencies/)
 as a starting point when you need to add one.
 
-The [Google Maps API](https://developers.google.com/maps/documentation/javascript/tutorial) requires us to reference its library from a script tag.
+The [Google Maps API](https://developers.google.com/maps/documentation/javascript/tutorial/) requires us to reference its library from a script tag.
 We can add custom script references to our application by updating the main HTML page at `app/index.html`.
 
 ```app/index.html{+22}
@@ -106,9 +106,9 @@ Now that we are able to generate a map element,
 we will implement a maps service that will keep a reference to the Map object we create,
 and attach the map to an element in our application
 
-Accessing our maps API through a [service](../../applications/services) will give us several benefits
+Accessing our maps API through a [service](../../applications/services/) will give us several benefits
 
-* It is injected with a [service locator](https://en.wikipedia.org/wiki/Service_locator_pattern),
+* It is injected with a [service locator](https://en.wikipedia.org/wiki/Service_locator_pattern/),
   meaning it will abstract the maps API from the code that uses it,
   allowing for easier refactoring and maintenance.
 * It is lazy-loaded, meaning it won't be initialized until it is called the first time.
@@ -143,13 +143,13 @@ export default Ember.Service.extend({
     }
   },
 
-  getMapElement(location) {
+  getMapElement(location/) {
     let camelizedLocation = location.camelize();
     let element = this.get(`cachedMaps.${camelizedLocation}`);
-    if (!element) {
+    if (!element/) {
       element = this.createMapElement();
-      this.get('mapUtil').createMap(element, location);
-      this.set(`cachedMaps.${camelizedLocation}`, element);
+      this.get('mapUtil').createMap(element, location/);
+      this.set(`cachedMaps.${camelizedLocation}`, element/);
     }
     return element;
   },

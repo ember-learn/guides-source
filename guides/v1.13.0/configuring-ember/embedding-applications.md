@@ -6,7 +6,7 @@ existing page, or run alongside other JavaScript frameworks?
 
 ### Changing the Root Element
 
-By default, your application will render the [application template](../../templates/the-application-template)
+By default, your application will render the [application template](../../templates/the-application-template/)
 and attach it to the document's `body` element.
 
 You can tell the application to append the application template to a

@@ -24,8 +24,8 @@ export default Ember.Route.extend({
 
 Typically, the `model` hook should return an [Ember Data](../../models/) record,
 but it can also return any [promise](https://www.promisejs.org/) object (Ember
-Data records are promises), or a plain JavaScript object or array. Ember will
-wait until the data finishes loading (until the promise is resolved) before
+Data records are promises/), or a plain JavaScript object or array. Ember will
+wait until the data finishes loading (until the promise is resolved/) before
 rendering the template.
 
 The route will then set the return value from the `model` hook as the `model` property of the controller.
@@ -85,7 +85,7 @@ method.
 
 Note: A route with a dynamic segment will only have its `model` hook called
 when it is entered via the URL. If the route is entered through a transition
-(e.g. when using the [link-to](../../templates/links) Handlebars helper), then a model context is
+(e.g. when using the [link-to](../../templates/links/) Handlebars helper/), then a model context is
 already provided and the hook is not executed. Routes without dynamic segments
 will always execute the model hook.
 

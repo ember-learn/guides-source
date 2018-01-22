@@ -10,9 +10,9 @@ Ember allows you to control that access with a combination of hooks and methods 
 One of the methods is [`transitionTo()`](https://www.emberjs.com/api/ember/2.16/classes/Route/methods/transitionTo?anchor=transitionTo).
 Calling `transitionTo()` from a route or
 [`transitionToRoute()`](https://www.emberjs.com/api/ember/2.16/classes/Controller/methods/transitionToRoute?anchor=transitionToRoute) from a controller will stop any transitions currently in progress and start a new one, functioning as a redirect.
-`transitionTo()` behaves exactly like the [link-to](../../templates/links) helper.
+`transitionTo()` behaves exactly like the [link-to](../../templates/links/) helper.
 
-The other one is [`replaceWith()`](https://www.emberjs.com/api/ember/2.16/classes/Route/methods/transitionTo?anchor=replaceWith) which works the same way as `transitionTo()`.
+The other one is [`replaceWith()`](https://www.emberjs.com/api/ember/2.16/classes/Route/methods/transitionTo?anchor=replaceWith/) which works the same way as `transitionTo()`.
 The only difference between them is how they manage history.
 `replaceWith()` substitutes the current route entry and replaces it with that of the route we are redirecting to,
 while `transitionTo()` leaves the entry for the current route and creates a new one for the redirection.
@@ -49,7 +49,7 @@ See [Storing and Retrying a Transition](../preventing-and-retrying-transitions/#
 for how to do that.
 
 If you need to examine some application state to figure out where to redirect,
-you might use a [service](../../applications/services).
+you might use a [service](../../applications/services/).
 
 ## Transitioning After the Model is Known
 
