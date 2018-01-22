@@ -18,12 +18,21 @@ const pathIsValid = require('./pathIsValid');
 module.exports = function getBadRelativeUrlsForFile(mdFile) {
   return _.chain(mdFile.links)
     .map((link) => {
+      // skip it if it's a url or just an anchor tag
       if (link.includes('http' || link[0] === '#')) {
-        // skip it if it's a url or just an anchor tag
         return null;
-      } else if (!pathIsValid(mdFile.filepath, link)) {
+      }
+
+      // this function is only for checking relative urls
+      if (!link.startsWith('../')) {
+        return null;
+      }
+
+      if (!pathIsValid(mdFile.filepath, link)) {
         return { fileToFix: mdFile.filepath, badLink: link };
       }
+
+      // no issues found
       return null;
     })
     .compact()
