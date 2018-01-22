@@ -17,7 +17,7 @@ property updates in your app, it will be reflected in the Inspector.
 
 If a property name is preceded by a calculator icon, that means it is a [computed property][computed-property]. If the value of a computed property hasn't yet been computed, you can
 click on the calculator to compute it.
-[computed-property]: ../../../object-model/computed-properties/
+[computed-property]:../../object-model/computed-properties
 
 ### Exposing Objects to the Console
 
