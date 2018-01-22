@@ -1,5 +1,5 @@
 const stripOffAnchorTags = require('./stripOffAnchorTags');
-const removeTrailingSlash = require('./removeTrailingSlash');
+const removeTrailingIndex = require('./removeTrailingIndex');
 const removeMarkdownFileFromFilepath = require('./removeMarkdownFileFromFilepath');
 const computeLinkRelativeToWorkingDir = require('./computeLinkRelativeToWorkingDir');
 const handleImageEdgeCases = require('./handleImageEdgeCases');
@@ -22,7 +22,8 @@ module.exports = function pathIsValid(filepath, link) {
   }
 
   const cleanedLink = stripOffAnchorTags(link);
-  const cleanedFilepath = removeMarkdownFileFromFilepath(filepath);
+  let cleanedFilepath = removeMarkdownFileFromFilepath(filepath);
+  cleanedFilepath = removeTrailingIndex(cleanedFilepath);
 
   let normalized = computeLinkRelativeToWorkingDir(cleanedFilepath, cleanedLink);
   normalized = handleImageEdgeCases(normalized, link);
