@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 
-const { getBadRelativeUrlsForFile, findMarkdownLinks } = require('./helpers');
+const { getBadRelativeUrlsForFile, findMarkdownLinks, getBadImageUrls } = require('./helpers');
 
 /**
  * Autogenerate some mocha tests
@@ -21,12 +21,20 @@ function printBadLinks(badLinks) {
 describe('check all links in markdown files', function () {
   paths.forEach((filepath) => {
     it(`processing ${filepath}`, function () {
+      const links = findMarkdownLinks(filepath);
       const badLinks = getBadRelativeUrlsForFile({
         filepath,
-        links: findMarkdownLinks(filepath),
+        links,
       });
 
       expect(badLinks, printBadLinks(badLinks)).to.be.empty;
+
+      const badImageLinks = getBadImageUrls({
+        filepath,
+        links,
+      });
+
+      expect(badImageLinks, printBadLinks(badImageLinks)).to.be.empty;
     });
   });
 });
