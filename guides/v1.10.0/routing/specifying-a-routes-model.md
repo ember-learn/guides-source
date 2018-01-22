@@ -114,7 +114,7 @@ default behavior. Note that if you override the default behavior and do
 not set the `model` property on a controller, your template will not
 have any data to render!
 
-[1]: ../setting-up-a-controller
+[1]: ../setting-up-a-controller/
 
 ### Dynamic Models
 
@@ -197,7 +197,7 @@ when it is entered via the URL. If the route is entered through a transition
 already provided and the hook is not executed. Routes without dynamic segments
 will always execute the model hook.
 
-[2]: ../../templates/links
+[2]: ../../templates/links/
 
 
 ### Refreshing your model

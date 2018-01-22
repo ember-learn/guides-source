@@ -123,5 +123,5 @@ test('modify the post', function(assert) {
 });
 ```
 
-[Unit Testing Basics]: ../unit-testing-basics
-[needs]: ../../controllers/dependencies-between-controllers
+[Unit Testing Basics]: ../unit-testing-basics/
+[needs]: ../../controllers/dependencies-between-controllers/

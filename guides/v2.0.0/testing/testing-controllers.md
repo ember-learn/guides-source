@@ -126,5 +126,5 @@ test('should modify the post model', function(assert) {
 });
 ```
 
-[Unit Testing Basics]: ../unit-testing-basics
-[needs]: ../../controllers/dependencies-between-controllers
+[Unit Testing Basics]: ../unit-testing-basics/
+[needs]: ../../controllers/dependencies-between-controllers/

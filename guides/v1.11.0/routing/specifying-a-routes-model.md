@@ -114,7 +114,7 @@ default behavior. Note that if you override the default behavior and do
 not set the `model` property on a controller, your template will not
 have any data to render!
 
-[1]: ../setting-up-a-controller
+[1]: ../setting-up-a-controller/
 
 ### Dynamic Models
 
