@@ -215,7 +215,7 @@ installing route-test
 
 Unlike the other route handlers we've made so far, the `index` route is special:
 it does NOT require an entry in the router's mapping.
-We'll learn more about why the entry isn't required when we look at [nested routes](../subroutes) in Ember.
+We'll learn more about why the entry isn't required when we look at [nested routes](../subroutes/) in Ember.
 
 Let's start by implementing the unit test for our new index route.
 

@@ -8,7 +8,7 @@ We'll call this component `list-filter`, since all we want our component to do i
 ember g component list-filter
 ```
 
-As before when we created the [`rental-listing` component](../simple-component), the "generate component" CLI command creates
+As before when we created the [`rental-listing` component](../simple-component/), the "generate component" CLI command creates
 
 * a Handlebars template (`app/templates/components/list-filter.hbs`),
 * a JavaScript file (`app/components/list-filter.js`),
@@ -19,10 +19,10 @@ As before when we created the [`rental-listing` component](../simple-component),
 In our `app/templates/rentals.hbs` template file, we'll add a reference to our new `list-filter` component.
 
 Notice that below we "wrap" our rentals markup inside the open and closing mentions of `list-filter` on lines 12 and 20.
-This is an example of the [**block form**](../../components/wrapping-content-in-a-component) of a component,
+This is an example of the [**block form**](../../components/wrapping-content-in-a-component/) of a component,
 which allows a Handlebars template to be rendered _inside_ the component's template wherever the `{{yield}}` expression appears.
 
-In this case we are passing, or "yielding", our filter data to the inner markup as a variable called `rentals` (line 14).
+In this case we are passing, or "yielding", our filter data to the inner markup as a variable called `rentals` (line 14/).
 
 ```handlebars {data-filename=app/templates/rentals.hbs data-diff="+12,+13,+14,+15,+16,+17,+18,+19,+20,-21,-22,-23"}
 <div class="jumbo">
@@ -62,7 +62,7 @@ We want the component to simply provide an input field and yield the results lis
 {{yield results}}
 ```
 
-The template contains an [`{{input}}`](../../templates/input-helpers) helper that renders as a text field, in which the user can type a pattern to filter the list of cities used in a search.
+The template contains an [`{{input}}`](../../templates/input-helpers/) helper that renders as a text field, in which the user can type a pattern to filter the list of cities used in a search.
 The `value` property of the `input` will be kept in sync with the `value` property in the component.
 
 Another way to say this is that the `value` property of `input` is [**bound**](../../object-model/bindings/) to the `value` property of the component.
@@ -81,15 +81,15 @@ export default Component.extend({
   value: '',
 
   init() {
-    this._super(...arguments);
-    this.get('filter')('').then((results) => this.set('results', results));
+    this._super(...arguments/);
+    this.get('filter')('').then((results/) => this.set('results', results/));
   },
 
   actions: {
     handleFilterEntry() {
       let filterInputValue = this.get('value');
       let filterAction = this.get('filter');
-      filterAction(filterInputValue).then((filterResults) => this.set('results', filterResults));
+      filterAction(filterInputValue/).then((filterResults/) => this.set('results', filterResults/));
     }
   }
 
@@ -128,7 +128,7 @@ import Controller from '@ember/controller';
 
 export default Controller.extend({
   actions: {
-    filterByCity(param) {
+    filterByCity(param/) {
       if (param !== '') {
         return this.get('store').query('rental', { city: param });
       } else {
@@ -290,7 +290,7 @@ You can now proceed on to implement the [next feature](../service/), or continue
 
 Now that we've created a new component for filtering a list,
 we want to create a test to verify it.
-Let's use a [component integration test](../../testing/testing-components)
+Let's use a [component integration test](../../testing/testing-components/)
 to verify our component behavior,
 similar to [how we tested our rental listing component earlier](../simple-component/#toc_an-integration-test).
 
@@ -510,7 +510,7 @@ Our test fills out "Seattle" as the search criteria in the search field,
 and then sends a `keyup` event to the same field with a code of `69` (the `e` key) to simulate a user typing.
 
 The test locates the results of the search by finding elements with a class of `listing`,
-which we gave to our `rental-listing` component in the ["Building a Simple Component"](../simple-component) section of the tutorial.
+which we gave to our `rental-listing` component in the ["Building a Simple Component"](../simple-component/) section of the tutorial.
 
 Since our data is hard-coded in Mirage, we know that there is only one rental with a city name of "Seattle",
 so we assert that the number of listings is one and that the location it displays is named, "Seattle".

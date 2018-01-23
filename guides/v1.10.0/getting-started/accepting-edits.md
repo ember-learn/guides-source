@@ -78,5 +78,5 @@ This method will set the controller's `isEditing` property to false and commit a
 ### Additional Resources
 
   * [Changes in this step in `diff` format](https://github.com/emberjs/quickstart-code-sample/commit/a7e2f40da4d75342358acdfcbda7a05ccc90f348)
-  * [Controller Guide](../../controllers)
+  * [Controller Guide](../../controllers/)
   * [Ember.TextField API documentation](http://emberjs.com/api/classes/Ember.TextField.html)

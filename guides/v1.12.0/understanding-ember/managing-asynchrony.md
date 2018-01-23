@@ -267,4 +267,4 @@ the parts of the render process outside of these callbacks.
 ### Routing
 
 There's an entire page dedicated to managing async within the Ember
-Router: [Asynchronous Routing](../../routing/asynchronous-routing)
+Router: [Asynchronous Routing](../../routing/asynchronous-routing/)

@@ -137,7 +137,7 @@ We want the component to simply provide an input field and yield the results lis
 {{yield results}}
 ```
 
-The template contains an [`{{input}}`](../../templates/input-helpers) helper that renders as a text field, in which the user can type a pattern to filter the list of cities used in a search. 
+The template contains an [`{{input}}`](../../templates/input-helpers/) helper that renders as a text field, in which the user can type a pattern to filter the list of cities used in a search. 
 The `value` property of the `input` will be bound to the `value` property in our component.
 The `key-up` property will be bound to the `handleFilterEntry` action.
 
@@ -151,15 +151,15 @@ export default Ember.Component.extend({
   value: '',
 
   init() {
-    this._super(...arguments);
-    this.get('filter')('').then((results) => this.set('results', results));
+    this._super(...arguments/);
+    this.get('filter')('').then((results/) => this.set('results', results/));
   },
 
   actions: {
     handleFilterEntry() {
       let filterInputValue = this.get('value');
       let filterAction = this.get('filter');
-      filterAction(filterInputValue).then((filterResults) => this.set('results', filterResults));
+      filterAction(filterInputValue/).then((filterResults/) => this.set('results', filterResults/));
     }
   }
 

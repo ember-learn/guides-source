@@ -11,11 +11,11 @@ write any additional code to make sure it keeps up-to-date.
 
 ### Defining Templates
 
-The first thing you should change is your [application template](../the-application-template) that is created
+The first thing you should change is your [application template](../the-application-template/) that is created
 automatically for you and is displayed when your app loads.
 
 Next, you can define templates in the `app/templates` folder. Remember from
-[Naming Convetions](../../concepts/naming-conventions/#toc_route-controller-and-template-defaults) that by default,
+[Naming Convetions](../../getting-started/naming-conventions/#toc_route-controller-and-template-defaults) that by default,
 a route will render a template with the same name as the route.
 
 ```handlebars {data-filename=app/templates/kittens.hbs}

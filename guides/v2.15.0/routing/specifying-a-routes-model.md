@@ -25,9 +25,9 @@ export default Ember.Route.extend({
 ```
 
 Typically, the `model` hook should return an [Ember Data](../../models/) record,
-but it can also return any [promise](https://www.promisejs.org/) object (Ember Data records are promises),
+but it can also return any [promise](https://www.promisejs.org/) object (Ember Data records are promises/),
 or a plain JavaScript object or array.
-Ember will wait until the data finishes loading (until the promise is resolved) before rendering the template.
+Ember will wait until the data finishes loading (until the promise is resolved/) before rendering the template.
 
 The route will then set the return value from the `model` hook as the `model` property of the controller.
 You will then be able to access the controller's `model` property in your template:
@@ -87,12 +87,12 @@ photo's ID (`params.photo_id`) as an argument to Ember Data's `findRecord`
 method.
 
 Note: A route with a dynamic segment will always have its `model` hook called when it is entered via the URL.
-If the route is entered through a transition (e.g. when using the [link-to](../../templates/links) Handlebars helper),
+If the route is entered through a transition (e.g. when using the [link-to](../../templates/links/) Handlebars helper/),
 and a model context is provided (second argument to `link-to`), then the hook is not executed.
-If an identifier (such as an id or slug) is provided instead then the model hook will be executed.
+If an identifier (such as an id or slug/) is provided instead then the model hook will be executed.
 
 For example, transitioning to the `photo` route this way won't cause the `model` hook to be executed (because `link-to`
-was passed a model):
+was passed a model/):
 
 ```handlebars {data-filename=app/templates/photos.hbs}
 <h1>Photos</h1>
@@ -164,7 +164,7 @@ each record in the song model and album model:
 </ul>
 ```
 
-If you use [Ember Data](../../models/) and you are building an `RSVP.hash` with the model's relationship, consider instead properly setting up your [relationships](../../models/relationships) and letting Ember Data take care of loading them.
+If you use [Ember Data](../../models/) and you are building an `RSVP.hash` with the model's relationship, consider instead properly setting up your [relationships](../../models/relationships/) and letting Ember Data take care of loading them.
 
 ## Reusing Route Context
 

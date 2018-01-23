@@ -1,10 +1,10 @@
 Calling `transitionTo` from a route or `transitionToRoute` from a controller
 will stop any transition currently in progress and start a new one, functioning
-as a redirect. `transitionTo` behaves exactly like the [link-to](../../templates/links) helper.
+as a redirect. `transitionTo` behaves exactly like the [link-to](../../templates/links/) helper.
 
 If the new route has dynamic segments, you need to pass either a _model_ or an _identifier_ for each segment.
 Passing a model will skip that segment's `model` hook (since the model is
-already loaded).
+already loaded/).
 
 ## Transitioning Before the Model is Known
 
@@ -26,7 +26,7 @@ export default Ember.Route.extend({
 ```
 
 If you need to examine some application state to figure out where to redirect,
-you might use a [service](../../applications/services).
+you might use a [service](../../applications/services/).
 
 ## Transitioning After the Model is Known
 

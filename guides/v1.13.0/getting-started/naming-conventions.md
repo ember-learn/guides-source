@@ -24,9 +24,9 @@ purposes (e.g. `model`, `setupController`, etc). In the example below
 `route:application` Route, which is an `Ember.Route` object, implements
 the `setupController` hook.
 
-[1]: ../../routing/specifying-a-routes-model
-[2]: ../../routing/setting-up-a-controller
-[3]: ../../routing/rendering-a-template
+[1]: ../../routing/specifying-a-routes-model/
+[2]: ../../routing/setting-up-a-controller/
+[3]: ../../routing/rendering-a-template/
 
 Here's a simple example that uses a route, controller, and template:
 

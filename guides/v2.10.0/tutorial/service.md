@@ -118,9 +118,9 @@ export default Ember.Component.extend({
 At this point we should have a passing component integration test, but our acceptance test should now fail, unable to find our maps service.  In addition to our acceptance test failing, no maps show up when we view our web page.
 To actually generate the maps, we'll implement the maps service.
 
-Accessing our maps API through a [service](../../applications/services) will give us several benefits
+Accessing our maps API through a [service](../../applications/services/) will give us several benefits
 
-* It is injected with a [service locator](https://en.wikipedia.org/wiki/Service_locator_pattern), meaning it will abstract the maps API from the code that uses it, allowing for easier refactoring and maintenance.
+* It is injected with a [service locator](https://en.wikipedia.org/wiki/Service_locator_pattern/), meaning it will abstract the maps API from the code that uses it, allowing for easier refactoring and maintenance.
 * It is lazy-loaded, meaning it won't be initialized until it is called the first time.
 In some cases this can reduce your app's processor load and memory consumption.
 * It is a singleton, which will allow us cache map data.
@@ -144,7 +144,7 @@ import Ember from 'ember';
 const DUMMY_ELEMENT = {};
 
 let MapUtilStub = Ember.Object.extend({
-  createMap(element, location) {
+  createMap(element, location/) {
     this.assert.ok(element, 'createMap called with element');
     this.assert.ok(location, 'createMap called with location');
     return DUMMY_ELEMENT;
@@ -155,8 +155,8 @@ moduleFor('service:maps', 'Unit | Service | maps', {
   needs: ['util:google-maps']
 });
 
-test('should create a new map if one isnt cached for location', function (assert) {
-  assert.expect(4);
+test('should create a new map if one isnt cached for location', function (assert/) {
+  assert.expect(4/);
   let stubMapUtil = MapUtilStub.create({ assert });
   let mapService = this.subject({ mapUtil: stubMapUtil });
   let element = mapService.getMapElement('San Francisco');
@@ -164,8 +164,8 @@ test('should create a new map if one isnt cached for location', function (assert
   assert.equal(element.className, 'map', 'element has class name of map');
 });
 
-test('should use existing map if one is cached for location', function (assert) {
-  assert.expect(1);
+test('should use existing map if one is cached for location', function (assert/) {
+  assert.expect(1/);
   let stubCachedMaps = Ember.Object.create({
     sanFrancisco: DUMMY_ELEMENT
   });
@@ -196,13 +196,13 @@ export default Ember.Service.extend({
     }
   },
 
-  getMapElement(location) {
+  getMapElement(location/) {
     let camelizedLocation = location.camelize();
     let element = this.get(`cachedMaps.${camelizedLocation}`);
-    if (!element) {
+    if (!element/) {
       element = this.createMapElement();
-      this.get('mapUtil').createMap(element, location);
-      this.set(`cachedMaps.${camelizedLocation}`, element);
+      this.get('mapUtil').createMap(element, location/);
+      this.set(`cachedMaps.${camelizedLocation}`, element/);
     }
     return element;
   },
@@ -224,7 +224,7 @@ There are several ways to include 3rd party libraries in Ember. See the guides s
 Since Google provides its map API as a remote script, we'll use curl to download it into our project's vendor directory.
 
 From your project's root directory, run the following command to put the Google maps script in your projects vendor folder as `gmaps.js`.  
-`Curl` is a UNIX command, so if you are on windows you should take advantage of [Windows bash support](https://msdn.microsoft.com/en-us/commandline/wsl/about), or use an alternate method to download the script into the vendor directory.
+`Curl` is a UNIX command, so if you are on windows you should take advantage of [Windows bash support](https://msdn.microsoft.com/en-us/commandline/wsl/about/), or use an alternate method to download the script into the vendor directory.
 
 ```shell
 curl -o vendor/gmaps.js https://maps.googleapis.com/maps/api/js?v=3.22
@@ -338,7 +338,7 @@ moduleForAcceptance('Acceptance | list rentals', {
 ```
 
 What's happening here is we are adding our own stub maps service that simply creates an empty div.
-Then we are putting it in Ember's [registry](../../applications/dependency-injection#toc_factory-registrations), and injecting it into the `location-map` component that uses it.
+Then we are putting it in Ember's [registry](../../applications/dependency-injection/#toc_factory-registrations), and injecting it into the `location-map` component that uses it.
 That way every time that component is created, our stub map service gets injected over the Google maps service.
 Now when we run our acceptance tests, you'll notice that maps do not get rendered as the test runs.
 

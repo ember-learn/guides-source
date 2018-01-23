@@ -3,7 +3,7 @@ You'd like to redraw your views every few seconds/minutes e.g. to update
 relative timestamps (like on twitter.com).
 
 ## Solution
-Have a clock object with a `pulse` attribute in your application which 
+Have a clock object with a `pulse` attribute in your application which
 increments using a timed interval. You want to let view(s) bind values to be
 refreshed when the `pulse` attribute increments.
 
@@ -191,7 +191,7 @@ Further reading:
 * [Ember Object](http://emberjs.com/api/classes/Ember.Object.html)
 * [Ember Application Initializers](http://emberjs.com/api/classes/Ember.Application.html#toc_initializers)
 * [Method Inject](http://emberjs.com/api/classes/Ember.Application.html#method_inject)
-* [Conditionals](../../templates/conditionals/)
-* [Writing Helpers](../../templates/writing-helpers/)
-* [Defining a Component](../../components/defining-a-component/)
+* [Conditionals](../../../templates/conditionals/)
+* [Writing Helpers](../../../templates/writing-helpers/)
+* [Defining a Component](../../../components/defining-a-component/)
 * [Ember Array Controller](http://emberjs.com/api/classes/Ember.ArrayController.html)

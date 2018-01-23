@@ -135,7 +135,7 @@ Without this change, navigation to `/rentals` in our application would conflict 
 
 In order for this to work, we need our application to default to making requests to the namespace of `/api`.
 To do this, we want to generate an application adapter.
-An [Adapter](../../models/customizing-adapters) is an object that [Ember Data](../../models) uses to determine how we communicate with our backend.
+An [Adapter](../../models/customizing-adapters/) is an object that [Ember Data](../../models/) uses to determine how we communicate with our backend.
 We will cover Ember Data in more detail later in this tutorial.
 For now, let's generate an adapter for our application:
 
@@ -143,7 +143,7 @@ For now, let's generate an adapter for our application:
 ember generate adapter application
 ```
 
-This adapter will extend the [`JSONAPIAdapter`](https://www.emberjs.com/api/ember-data/2.16/classes/DS.JSONAPIAdapter) base class from Ember Data:
+This adapter will extend the [`JSONAPIAdapter`](https://www.emberjs.com/api/ember-data/2.16/classes/DS.JSONAPIAdapter/) base class from Ember Data:
 
 ```javascript {data-filename=app/adapters/application.js data-diff="+4"}
 import DS from 'ember-data';

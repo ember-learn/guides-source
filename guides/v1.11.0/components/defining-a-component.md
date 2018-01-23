@@ -53,15 +53,14 @@ export default Ember.Route.extend({
 
 ```javascript {data-filename=app/components/blog-post.js}
 export default Ember.Component.extend({
-  
+
 });
 ```
 
 Each component, under the hood, is backed by an element. By default
 Ember will use a `<div>` element to contain your component's template.
 To learn how to change the element Ember uses for your component, see
-[Customizing a Component's
-Element](../customizing-a-components-element).
+[Customizing a Component's Element](../customizing-a-components-element/).
 
 
 ### Defining a Component Subclass
@@ -81,7 +80,7 @@ changes to the component's element using JavaScript.
 Ember knows which subclass powers a component based on its name. For
 example, if you have a component called `blog-post`, you would create a
 file at `app/components/blog-post.js`. If your component was called
-`audio-player-controls`, the file name would be at 
+`audio-player-controls`, the file name would be at
 `app/components/audio-player-controls.js`
 
 In other words, Ember will look for a class with the camelized name of

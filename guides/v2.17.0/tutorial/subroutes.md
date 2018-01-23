@@ -6,7 +6,7 @@ Up to this point, we've generated four top level routes.
 * The `index` route, which we've set up to redirect to the `rentals` route.
 
 Our `rentals` route is going to serve multiple functions.
-From our [acceptance tests](../acceptance-test), we've shown that we want our users to be able to browse and search rentals, as well as see detailed information for individual rentals.
+From our [acceptance tests](../acceptance-test/), we've shown that we want our users to be able to browse and search rentals, as well as see detailed information for individual rentals.
 To satisfy that requirement, we are going to make use of Ember's [nested route capability](../../routing/defining-your-routes/#toc_nested-routes).
 
 By the end of this section we want to have created the following new routes:
@@ -18,7 +18,7 @@ The `show` route will get substituted with the id of the rental being shown (for
 
 ## The Parent Route
 
-Previously, in the [Routes and Templates tutorial](../routes-and-templates), we set up a `rentals` route.
+Previously, in the [Routes and Templates tutorial](../routes-and-templates/), we set up a `rentals` route.
 
 Opening the template for this route reveals an outlet underneath the route's general page information.
 At the bottom of the template, you'll notice an `{{outlet}}` helper.
@@ -76,7 +76,7 @@ Ember knows that the default action is to take the user to the `index` route.
 However, you can add the `index` route if you want to customize it.
 For example, you can modify the `index` route's path by specifying `this.route('index', { path: '/custom-path'})`.
 
-In the section on [using Ember Data](../ember-data#toc_updating-the-model-hook), we added a call to fetch all rentals.
+In the section on [using Ember Data](../ember-data/#toc_updating-the-model-hook), we added a call to fetch all rentals.
 Let's implement our newly generated `rentals/index` route by moving this `findAll` call from the parent `rentals` route to our new sub-route.
 
 ```javascript {data-filename=app/routes/rentals.js data-diff="-4,-5,-6"}
@@ -164,7 +164,7 @@ The `findRecord` function requires that we search by a unique key.
 While on the `show` route, we will also want to show additional information about our specific rental.
 
 In order to do this, we will need to modify the Mirage `config.js` file that we added
-back in the [Installing Addons section](../installing-addons). We will add a new route
+back in the [Installing Addons section](../installing-addons/). We will add a new route
 handler to return a specific rental:
 
 ```javascript {data-filename=mirage/config.js data-diff="+57,+58,+59,+60"}
@@ -391,6 +391,6 @@ test('should show details for a specific rental', function (assert) {
 });
 ```
 
-At this point all our tests should pass, including the [list of acceptance tests](../acceptance-test) we created as our beginning requirements.
+At this point all our tests should pass, including the [list of acceptance tests](../acceptance-test/) we created as our beginning requirements.
 
 ![Acceptance Tests Pass](/images/subroutes/all-acceptance-pass.png)
