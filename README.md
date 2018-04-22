@@ -8,7 +8,7 @@ help improve the learning experience of other developers.
 The markdown files in this repository are fetched and
 displayed by the [guides-app](https://github.com/ember-learn/guides-app). 
 
-Looking for repositories for the other parts of [emberjs.com](https://emberjs.com)]? 
+Looking for repositories for the other parts of [emberjs.com](https://emberjs.com)? 
 Check out
 [website](https://github.com/emberjs/website),
 [ember-api-docs](https://github.com/ember-learn/ember-api-docs),
@@ -35,8 +35,8 @@ except in the case of bug reports for broken links.
 
 ## Local Development
 To see your changes locally, you need two repositories on your
-computer. This repository, `guides-source` is made of only markdown files,
-so you will need to run the 
+computer. This repository, `guides-source` contains only written content
+as markdown files, which are fetched and displayed by
 [guides-app](https://github.com/ember-learn/guides-app).
 
 ```sh
