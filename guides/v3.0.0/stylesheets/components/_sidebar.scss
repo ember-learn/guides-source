@@ -1,0 +1,26 @@
+.sidebar {
+  padding-top: $small-spacing;
+  background-color: $sidebar-background-color;
+  border-bottom: $base-border;
+  position: relative;
+  z-index: 1;
+
+  @include media($large-screen) {
+    @include span-columns(3.5);
+    border-bottom: 0;
+    border-right: $base-border;
+    padding: $large-spacing $gutter $large-spacing 0;
+
+    &::before {
+      @include position(absolute, 0 0 0 -100vw);
+      content: "";
+      display: block;
+      background-color: $sidebar-background-color;
+      z-index: -1;
+    }
+  }
+
+  .select2 {
+    margin-bottom: 1em;
+  }
+}
