@@ -54,7 +54,7 @@ In this case we are passing, or "yielding", our filter data to the inner markup 
 
 We want the component to simply provide an input field and yield the results list to its block, so our template will be simple:
 
-```app/templates/components/list-filter.hbs
+```handlebars {data-filename=app/templates/components/list-filter.hbs}
 {{input value=value
         key-up=(action 'handleFilterEntry')
         class="light"
@@ -73,7 +73,7 @@ The `key-up` property will be bound to the `handleFilterEntry` action.
 
 The `handleFilterEntry` action will apply the search term filter to the list of rentals, and set a component attribute called `results`. The `results` are passed to the `{{yield}}` helper in the template. In the yielded block component, those same `results` are referred to as `|filteredResults|`. Let's apply the filter to our rentals:
 
-```app/components/list-filter.js
+```javascript {data-filename=app/components/list-filter.js}
 import Component from '@ember/component';
 
 export default Component.extend({
@@ -123,7 +123,7 @@ ember g controller rentals
 
 Now, define your new controller like so:
 
-```app/controllers/rentals.js
+```javascript {data-filename=app/controllers/rentals.js}
 import Controller from '@ember/controller';
 
 export default Controller.extend({
@@ -462,7 +462,7 @@ represented by the variable `FILTERED_ITEMS` when any value is set.
 
 We force the action by generating a `keyUp` event on our input field, and then assert that only one item is rendered.
 
-```tests/integration/components/list-filter-test.js
+```javascript {data-filename=tests/integration/components/list-filter-test.js}
 test('should update with matching listings', function (assert) {
   this.on('filterByCity', (val) => {
     if (val === '') {
@@ -509,7 +509,7 @@ We'll verify that a user visiting the rentals page can enter text into the searc
 Open our existing acceptance test, `tests/acceptance/list-rentals-test.js`, and implement the test labeled "should filter the list of rentals by city".
 
 
-```/tests/acceptance/list-rentals-test.js
+```javascript {data-filename=/tests/acceptance/list-rentals-test.js}
 test('should filter the list of rentals by city.', function (assert) {
   visit('/');
   fillIn('.list-filter input', 'Seattle');

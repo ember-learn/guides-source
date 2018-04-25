@@ -90,7 +90,7 @@ and help you get started writing your first test straight away.
 Imagine we create a new `location` service by running `ember generate service location`.
 If we have a look at the newly created blueprint under `tests/unit/services/location-test.js` we'll find the following:
 
-```tests/unit/models/some-thing-test.js
+```javascript {data-filename=tests/unit/models/some-thing-test.js}
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 

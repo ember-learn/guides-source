@@ -23,7 +23,7 @@ installing model-test
 
 When we open the model file, we can see a blank class extending [`DS.Model`](https://www.emberjs.com/api/ember-data/release/classes/DS.Model):
 
-```app/models/rental.js
+```javascript {data-filename=app/models/rental.js}
 import DS from 'ember-data';
 
 export default DS.Model.extend({

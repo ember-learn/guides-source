@@ -22,7 +22,7 @@ ember generate service shopping-cart
 
 Services must extend the [`Service`](https://www.emberjs.com/api/ember/2.16/modules/@ember%2Fservice) base class:
 
-```app/services/shopping-cart.js
+```javascript {data-filename=app/services/shopping-cart.js}
 import Service from '@ember/service';
 
 export default Service.extend({
@@ -32,7 +32,7 @@ export default Service.extend({
 Like any Ember object, a service is initialized and can have properties and methods of its own.
 Below, the shopping cart service manages an items array that represents the items currently in the shopping cart.
 
-```app/services/shopping-cart.js
+```javascript {data-filename=app/services/shopping-cart.js}
 import Service from '@ember/service';
 
 export default Service.extend({
@@ -66,7 +66,7 @@ You can either invoke it with no arguments, or you can pass it the registered na
 When no arguments are passed, the service is loaded based on the name of the variable key.
 You can load the shopping cart service with no arguments like below.
 
-```app/components/cart-contents.js
+```javascript {data-filename=app/components/cart-contents.js}
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 
@@ -78,7 +78,7 @@ export default Component.extend({
 
 Another way to inject a service is to provide the name of the service as the argument.
 
-```app/components/cart-contents.js
+```javascript {data-filename=app/components/cart-contents.js}
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 
@@ -94,7 +94,7 @@ Sometimes a service may or may not exist, like when an initializer conditionally
 Since normal injection will throw an error if the service doesn't exist,
 you must look up the service using Ember's [`getOwner`](https://emberjs.com/api/ember/2.16/classes/@ember%2Fapplication/methods/getOwner?anchor=getOwner) instead.
 
-```app/components/cart-contents.js
+```javascript {data-filename=app/components/cart-contents.js}
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { getOwner } from '@ember/application';
@@ -115,7 +115,7 @@ Once loaded, a service will persist until the application exits.
 Below we add a remove action to the `cart-contents` component.
 Notice that below we access the `cart` service with a call to`this.get`.
 
-```app/components/cart-contents.js
+```javascript {data-filename=app/components/cart-contents.js}
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 
@@ -132,7 +132,7 @@ export default Component.extend({
 Once injected into a component, a service can also be used in the template.
 Note `cart` being used below to get data from the cart.
 
-```app/templates/components/cart-contents.hbs
+```handlebars {data-filename=app/templates/components/cart-contents.hbs}
 <ul>
   {{#each cart.items as |item|}}
     <li>
