@@ -10,7 +10,7 @@ new `levelName` when the player reaches level 5.
 > You can follow along by generating your own model with `ember generate
 > model player`.
 
-```app/models/player.js
+```javascript {data-filename=app/models/player.js}
 import Model from 'ember-data/model';
 import { attr } from 'ember-data/model';
 
@@ -30,7 +30,7 @@ export default Model.extend({
 Now let's create a test which will call `levelUp` on the player when they are
 level 4 to assert that the `levelName` changes. We will use `module` together with the `setupTest` helper method:
 
-```tests/unit/models/player-test.js
+```javascript {data-filename=tests/unit/models/player-test.js}
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 import { run } from "@ember/runloop";
@@ -64,14 +64,14 @@ Assume that a `User` can own a `Profile`.
 > You can follow along by generating your own user and profile models with `ember
 > generate model user` and `ember generate model profile`.
 
-```app/models/profile.js
+```javascript {data-filename=app/models/profile.js}
 import Model from 'ember-data/model';
 
 export default Model.extend({
 });
 ```
 
-```app/models/user.js
+```javascript {data-filename=app/models/user.js}
 import Model from 'ember-data/model';
 import { belongsTo } from 'ember-data/model';
 
@@ -82,7 +82,7 @@ export default Model.extend({
 
 Then you could test that the relationship by looking it up on the `user` model which it is part of.
 
-```tests/unit/models/user-test.js
+```javascript {data-filename=tests/unit/models/user-test.js}
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 import { get } from '@ember/object';

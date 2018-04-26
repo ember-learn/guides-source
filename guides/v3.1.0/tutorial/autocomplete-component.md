@@ -54,7 +54,7 @@ In this case we are passing, or "yielding", our filter data to the inner markup 
 
 We want the component to simply provide an input field and yield the results list to its block, so our template will be simple:
 
-```app/templates/components/list-filter.hbs
+```handlebars {data-filename=app/templates/components/list-filter.hbs}
 {{input value=value
         key-up=(action 'handleFilterEntry')
         class="light"
@@ -73,7 +73,7 @@ The `key-up` property will be bound to the `handleFilterEntry` action.
 
 The `handleFilterEntry` action will apply the search term filter to the list of rentals, and set a component attribute called `results`. The `results` are passed to the `{{yield}}` helper in the template. In the yielded block component, those same `results` are referred to as `|filteredResults|`. Let's apply the filter to our rentals:
 
-```app/components/list-filter.js
+```javascript {data-filename=app/components/list-filter.js}
 import Component from '@ember/component';
 
 export default Component.extend({
@@ -123,7 +123,7 @@ ember g controller rentals
 
 Now, define your new controller like so:
 
-```app/controllers/rentals.js
+```javascript {data-filename=app/controllers/rentals.js}
 import Controller from '@ember/controller';
 
 export default Controller.extend({
@@ -468,7 +468,7 @@ We force the action by generating a `keyUp` event on our input field, and then a
 
 First add `triggerKeyEvent` and `fillIn` to the list of imports.  The [`fillIn`](https://github.com/emberjs/ember-test-helpers/blob/master/API.md#fillin) helper simulates the user filling in the element. The [`triggerKeyEvent`](https://github.com/emberjs/ember-test-helpers/blob/master/API.md#triggerkeyevent) helper sends a key stroke event to the UI, simulating the user typing a key.
 
-```tests/integration/components/list-filter-test.js
+```javascript {data-filename=tests/integration/components/list-filter-test.js}
 import { render, settled, triggerKeyEvent, fillIn } from '@ember/test-helpers';
 ```
 
@@ -523,7 +523,7 @@ We'll verify that a user visiting the rentals page can enter text into the searc
 Open our existing application test, `tests/acceptance/list-rentals-test.js`, and implement the test labeled "should filter the list of rentals by city".
 
 
-```/tests/acceptance/list-rentals-test.js
+```javascript {data-filename=/tests/acceptance/list-rentals-test.js}
 test('should filter the list of rentals by city', async function(assert) {
   await visit('/');
   await fillIn('.list-filter input', 'seattle');

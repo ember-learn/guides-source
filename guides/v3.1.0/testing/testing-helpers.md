@@ -11,7 +11,7 @@ helper from [Writing Helpers].
 > You can follow along by generating your own helper with `ember generate helper
 > format-currency`.
 
-```app/helpers/format-currency.js
+```javascript {data-filename=app/helpers/format-currency.js}
 import { helper } from '@ember/component/helper';
 
 export function formatCurrency([value, ...rest], namedArgs) {
@@ -31,7 +31,7 @@ to testing with a rendering test afterwards.
 
 Helpers are functions, which can be easily tested through `module` alone.
 
-```tests/unit/helpers/format-currency-test.js
+```javascript {data-filename=tests/unit/helpers/format-currency-test.js}
 import { formatCurrency } from 'my-app/helpers/format-currency';
 import { module, test } from 'qunit';
 
@@ -49,7 +49,7 @@ an object as the second argument.
 Now we can move on to a more complex test case that ensures our helper is rendered correctly as well. This can be done
 with the `setupRenderingTest` helper, as shown in [Testing Components].
 
-```tests/integration/helpers/format-currency-test.js
+```javascript {data-filename=tests/integration/helpers/format-currency-test.js}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
@@ -71,7 +71,7 @@ module('Integration | Helper | format currency', function(hooks) {
 
 We can now also properly test if a helper will respond to property changes.
 
-```tests/integration/helpers/format-currency-test.js
+```javascript {data-filename=tests/integration/helpers/format-currency-test.js}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';

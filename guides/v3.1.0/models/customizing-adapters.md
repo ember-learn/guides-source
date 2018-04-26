@@ -24,7 +24,7 @@ If your backend has some consistent rules you can define an
 the default Adapter, however it will still be superseded by model
 specific Adapters.
 
-```app/adapters/application.js
+```javascript {data-filename=app/adapters/application.js}
 import DS from 'ember-data';
 
 export default DS.JSONAPIAdapter.extend({
@@ -38,7 +38,7 @@ Adapter by running the command `ember generate adapter adapter-name`.
 For example, running `ember generate adapter post` will create the
 following file:
 
-```app/adapters/post.js
+```javascript {data-filename=app/adapters/post.js}
 import DS from 'ember-data';
 
 export default DS.JSONAPIAdapter.extend({
@@ -110,12 +110,12 @@ between plural and singular forms. Irregular or uncountable
 pluralizations can be specified via `Ember.Inflector.inflector`.
 A common way to do this is:
 
-```app/app.js
+```javascript {data-filename=app/app.js}
 // sets up Ember.Inflector
 import './models/custom-inflector-rules';
 ```
 
-```app/models/custom-inflector-rules.js
+```javascript {data-filename=app/models/custom-inflector-rules.js}
 import Inflector from 'ember-inflector';
 
 const inflector = Inflector.inflector;
@@ -142,7 +142,7 @@ inflector.irregular('cow', 'kine');
 The `namespace` property can be used to prefix requests with a
 specific url namespace.
 
-```app/adapters/application.js
+```javascript {data-filename=app/adapters/application.js}
 import DS from 'ember-data';
 
 export default DS.JSONAPIAdapter.extend({
@@ -159,7 +159,7 @@ By default, the adapter will target the current domain. If you would
 like to specify a new domain you can do so by setting the `host`
 property on the adapter.
 
-```app/adapters/application.js
+```javascript {data-filename=app/adapters/application.js}
 import DS from 'ember-data';
 
 export default DS.JSONAPIAdapter.extend({
@@ -180,7 +180,7 @@ For example, if you did not want to pluralize model names and needed
 underscore_case instead of camelCase you could override the
 `pathForType` method like this:
 
-```app/adapters/application.js
+```javascript {data-filename=app/adapters/application.js}
 import DS from 'ember-data';
 import { underscore } from '@ember/string';
 
@@ -202,7 +202,7 @@ object and Ember Data will send them along with each ajax request.
 (Note that we set headers in `init()` because default property values
 should not be arrays or objects.)
 
-```app/adapters/application.js
+```javascript {data-filename=app/adapters/application.js}
 import DS from 'ember-data';
 
 export default DS.JSONAPIAdapter.extend({
@@ -221,7 +221,7 @@ export default DS.JSONAPIAdapter.extend({
 headers. In the example below, the headers are generated with a computed
 property dependent on the `session` service.
 
-```app/adapters/application.js
+```javascript {data-filename=app/adapters/application.js}
 import DS from 'ember-data';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
@@ -245,7 +245,7 @@ object outside of Ember's observer system (for example
 function to set the property into a non-cached mode causing the headers to
 be recomputed with every request.
 
-```app/adapters/application.js
+```javascript {data-filename=app/adapters/application.js}
 import DS from 'ember-data';
 import { computed } from '@ember/object';
 import { get } from '@ember/object';
@@ -272,7 +272,7 @@ community adapter it is important to remember to set this property to
 ensure Ember does the right thing in the case a user of your adapter
 does not specify an `serializer:application`.
 
-```app/adapters/my-custom-adapter.js
+```javascript {data-filename=app/adapters/my-custom-adapter.js}
 import DS from 'ember-data';
 
 export default DS.JSONAPIAdapter.extend({

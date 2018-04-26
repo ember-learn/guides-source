@@ -350,7 +350,7 @@ import hbs from 'htmlbars-inline-precompile';
 ```
 The final test should look as follows:
 
-```tests/integration/components/rental-listing-test.js
+```javascript {data-filename=tests/integration/components/rental-listing-test.js}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render, click } from '@ember/test-helpers';

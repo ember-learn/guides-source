@@ -7,7 +7,7 @@ ember g acceptance-test login
 
 This generates this file:
 
-```tests/acceptance/login-test.js
+```javascript {data-filename=tests/acceptance/login-test.js}
 import { module, test } from 'qunit';
 import { visit, currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
@@ -34,7 +34,7 @@ Almost every test has a pattern of visiting a route, interacting with the page
 
 For example:
 
-```tests/acceptance/new-post-appears-first-test.js
+```javascript {data-filename=tests/acceptance/new-post-appears-first-test.js}
 import { module, test } from 'qunit';
 import { click, fillIn, visit } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
@@ -107,14 +107,14 @@ deal with asynchronous behavior as follows:
 
 Mark the callback passed to the `test` function as asynchronous using the `async` keyword:
 
-```tests/acceptance/new-post-appears-first-test.js
+```javascript {data-filename=tests/acceptance/new-post-appears-first-test.js}
   test('should add new post', async function(assert) {
 
   });
 ```
 Before making an assertion, wait for the execution of each asynchronous helper to finish with the `await` keyword:
 
-```tests/acceptance/new-post-appears-first-test.js
+```javascript {data-filename=tests/acceptance/new-post-appears-first-test.js}
   test('should add new post', async function(assert) {
     await visit('/posts/new');
     await fillIn('input.title', 'My new post');

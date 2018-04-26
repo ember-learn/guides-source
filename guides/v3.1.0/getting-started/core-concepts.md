@@ -71,7 +71,7 @@ Some examples of a hook are:
 
 In the following example, the [`didRender()`](https://emberjs.com/api/ember/release/classes/Component/methods?anchor=didRender/) component lifecycle hook is used to log "I rendered!" to the console after each time the component is rendered.
 
-```/app/components/foo-did-render-example.js
+```javascript {data-filename=/app/components/foo-did-render-example.js}
 import Component from '@ember/component';
 
 export default Component.extend({

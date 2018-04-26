@@ -11,7 +11,7 @@ and apply the minimum set of transformations possible to your code.
 
 If you open `config/targets.js`, you will find the following code:
 
-```config/targets.js
+```javascript {data-filename=config/targets.js}
 const browsers = [
   'last 1 Chrome versions',
   'last 1 Firefox versions',
@@ -37,7 +37,7 @@ for developers to debug code that is much closer to what they actually wrote.
 
 However, if your app does not need to support IE anymore, you could change it to:
 
-```config/targets.js
+```javascript {data-filename=config/targets.js}
 module.exports = {
   browsers: [
     'last 1 edge versions',
@@ -57,7 +57,7 @@ These websites track usage stats of browsers, so you can use complex queries bas
 If you want to target all browsers with more than a 4% market share in Canada,
 you'd have the following options:
 
-```config/targets.js
+```javascript {data-filename=config/targets.js}
 module.exports = {
   browsers: [
     '> 4% in CA'
