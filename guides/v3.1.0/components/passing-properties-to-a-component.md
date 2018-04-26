@@ -4,7 +4,7 @@ needs has to be passed in.
 For example, imagine you have a `blog-post` component that is used to
 display a blog post:
 
-```app/templates/components/blog-post.hbs
+```handlebars {data-filename=app/templates/components/blog-post.hbs}
 <article class="blog-post">
   <h1>{{title}}</h1>
   <p>{{body}}</p>
@@ -13,7 +13,7 @@ display a blog post:
 
 Now imagine we have the following template and route:
 
-```app/routes/index.js
+```javascript {data-filename=app/routes/index.js}
 import Route from '@ember/routing/route';
 
 export default Route.extend({
@@ -25,7 +25,7 @@ export default Route.extend({
 
 If we tried to use the component like this:
 
-```app/templates/index.hbs
+```handlebars {data-filename=app/templates/index.hbs}
 {{#each model as |post|}}
   {{blog-post}}
 {{/each}}
@@ -43,7 +43,7 @@ The following HTML would be rendered:
 In order to make a property available to a component, you must pass it
 in like this:
 
-```app/templates/index.hbs
+```handlebars {data-filename=app/templates/index.hbs}
 {{#each model as |post|}}
   {{blog-post title=post.title body=post.body}}
 {{/each}}
@@ -59,7 +59,7 @@ change. The reverse is true as well.
 In addition to passing parameters in by name, you can pass them in by position.
 In other words, you can invoke the above component example like this:
 
-```app/templates/index.hbs
+```handlebars {data-filename=app/templates/index.hbs}
 {{#each model as |post|}}
   {{blog-post post.title post.body}}
 {{/each}}
@@ -68,7 +68,7 @@ In other words, you can invoke the above component example like this:
 To set the component up to receive parameters this way, you need to
 set the [`positionalParams`](https://www.emberjs.com/api/ember/release/classes/Component/properties/positionalParams?anchor=positionalParams) attribute in your component class.
 
-```app/components/blog-post.js
+```javascript {data-filename=app/components/blog-post.js}
 import Component from '@ember/component';
 
 export default Component.extend({}).reopenClass({
@@ -87,7 +87,7 @@ Alternatively, you can accept an arbitrary number of parameters by
 setting `positionalParams` to a string, e.g. `positionalParams: 'params'`. This
 will allow you to access those params as an array like so:
 
-```app/components/blog-post.js
+```javascript {data-filename=app/components/blog-post.js}
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 

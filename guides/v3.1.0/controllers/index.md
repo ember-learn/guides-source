@@ -33,7 +33,7 @@ The `BlogPost` model would have properties like:
 Your template would bind to these properties in the `blog-post`
 template:
 
-```app/templates/blog-post.hbs
+```handlebars {data-filename=app/templates/blog-post.hbs}
 <h1>{{model.title}}</h1>
 <h2>by {{model.author}}</h2>
 
@@ -56,7 +56,7 @@ toggle the display of the body section. To implement this, we would
 first modify our template to show the body only if the value of a
 new `isExpanded` property is true.
 
-```app/templates/blog-post.hbs
+```handlebars {data-filename=app/templates/blog-post.hbs}
 <h1>{{model.title}}</h1>
 <h2>by {{model.author}}</h2>
 
@@ -78,7 +78,7 @@ new `isExpanded` property is true.
 You can then define what the action does within the `actions` hook
 of the controller, as you would with a component:
 
-```app/controllers/blog-post.js
+```javascript {data-filename=app/controllers/blog-post.js}
 import Controller from '@ember/controller';
 
 export default Controller.extend({

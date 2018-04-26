@@ -24,7 +24,7 @@ Opening the template for this route reveals an outlet underneath the route's gen
 At the bottom of the template, you'll notice an `{{outlet}}` helper.
 This is where the active nested route will be rendered.
 
-```app/templates/rentals.hbs
+```handlebars {data-filename=app/templates/rentals.hbs}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>Welcome!</h2>
@@ -63,7 +63,7 @@ ember g route rentals/index
 If you open up your Router (`app/router.js`) you may notice that the rentals line has changed.
 This extra `function() {}` is required because it needs a child route, the `this.route('index', { path: '/'});` is implied.
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('about');
   this.route('contact');

@@ -5,7 +5,7 @@ with your application.
 
 #### Log router transitions
 
-```app/app.js
+```javascript {data-filename=app/app.js}
 import Application from '@ember/application';
 
 export default Application.extend({
@@ -23,7 +23,7 @@ export default Application.extend({
 
 #### Log view lookups
 
-```config/environment.js
+```javascript {data-filename=config/environment.js}
 ENV.APP.LOG_VIEW_LOOKUPS = true;
 ```
 #### View all registered templates
@@ -35,7 +35,7 @@ Ember.keys(Ember.TEMPLATES)
 
 #### Log generated controller
 
-```config/environment.js
+```javascript {data-filename=config/environment.js}
 ENV.APP.LOG_ACTIVE_GENERATION = true;
 ```
 
@@ -49,7 +49,7 @@ Ember.observersFor(comments, keyName);
 
 #### Log object bindings
 
-```config/environments.js
+```javascript {data-filename=config/environments.js}
 ENV.APP.LOG_BINDINGS = true;
 ```
 
@@ -63,7 +63,7 @@ you've created yourself have a tick, and Ember generated ones don't.
 It's useful for understanding which objects Ember is finding when it does a lookup
 and which it is generating automatically for you.
 
-```app/app.js
+```javascript {data-filename=app/app.js}
 import Application from '@ember/application';
 
 export default Application.extend({
@@ -118,7 +118,7 @@ details if any errors occur within your promise. This function can be anything,
 but a common practice is to call `console.assert` to dump the error to the
 console.
 
-```app/app.js
+```javascript {data-filename=app/app.js}
 import { assert } from '@ember/debug';
 import RSVP from 'rsvp';
 

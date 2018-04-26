@@ -6,7 +6,7 @@ define how your models relate to each other.
 To declare a one-to-one relationship between two models, use
 `DS.belongsTo`:
 
-```app/models/user.js
+```javascript {data-filename=app/models/user.js}
 import DS from 'ember-data';
 
 export default DS.Model.extend({
@@ -14,7 +14,7 @@ export default DS.Model.extend({
 });
 ```
 
-```app/models/profile.js
+```javascript {data-filename=app/models/profile.js}
 import DS from 'ember-data';
 
 export default DS.Model.extend({
@@ -27,7 +27,7 @@ export default DS.Model.extend({
 To declare a one-to-many relationship between two models, use
 `DS.belongsTo` in combination with `DS.hasMany`, like this:
 
-```app/models/blog-post.js
+```javascript {data-filename=app/models/blog-post.js}
 import DS from 'ember-data';
 
 export default DS.Model.extend({
@@ -35,7 +35,7 @@ export default DS.Model.extend({
 });
 ```
 
-```app/models/comment.js
+```javascript {data-filename=app/models/comment.js}
 import DS from 'ember-data';
 
 export default DS.Model.extend({
@@ -48,7 +48,7 @@ export default DS.Model.extend({
 To declare a many-to-many relationship between two models, use
 `DS.hasMany`:
 
-```app/models/blog-post.js
+```javascript {data-filename=app/models/blog-post.js}
 import DS from 'ember-data';
 
 export default DS.Model.extend({
@@ -56,7 +56,7 @@ export default DS.Model.extend({
 });
 ```
 
-```app/models/tag.js
+```javascript {data-filename=app/models/tag.js}
 import DS from 'ember-data';
 
 export default DS.Model.extend({
@@ -79,7 +79,7 @@ option. Relationships without an inverse can be indicated as such by
 including `{ inverse: null }`.
 
 
-```app/models/comment.js
+```javascript {data-filename=app/models/comment.js}
 import DS from 'ember-data';
 
 export default DS.Model.extend({
@@ -90,7 +90,7 @@ export default DS.Model.extend({
 });
 ```
 
-```app/models/blog-post.js
+```javascript {data-filename=app/models/blog-post.js}
 import DS from 'ember-data';
 
 export default DS.Model.extend({
@@ -108,7 +108,7 @@ is no inverse relationship then you can set the inverse to `null`.
 
 Here's an example of a one-to-many reflexive relationship:
 
-```app/models/folder.js
+```javascript {data-filename=app/models/folder.js}
 import DS from 'ember-data';
 
 export default DS.Model.extend({
@@ -119,7 +119,7 @@ export default DS.Model.extend({
 
 Here's an example of a one-to-one reflexive relationship:
 
-```app/models/user.js
+```javascript {data-filename=app/models/user.js}
 import DS from 'ember-data';
 
 export default DS.Model.extend({
@@ -130,7 +130,7 @@ export default DS.Model.extend({
 
 You can also define a reflexive relationship that doesn't have an inverse:
 
-```app/models/folder.js
+```javascript {data-filename=app/models/folder.js}
 import DS from 'ember-data';
 
 export default DS.Model.extend({
@@ -152,7 +152,7 @@ property on the model. Confused? See the API response below.
 
 First, let's look at the model definitions:
 
-```app/models/user.js
+```javascript {data-filename=app/models/user.js}
 import DS from 'ember-data';
 
 export default DS.Model.extend({
@@ -160,7 +160,7 @@ export default DS.Model.extend({
 });
 ```
 
-```app/models/payment-method.js
+```javascript {data-filename=app/models/payment-method.js}
 import DS from 'ember-data';
 
 export default DS.Model.extend({
@@ -168,7 +168,7 @@ export default DS.Model.extend({
 });
 ```
 
-```app/models/payment-method-cc.js
+```javascript {data-filename=app/models/payment-method-cc.js}
 import { computed } from '@ember/object';
 import PaymentMethod from './payment-method';
 
@@ -181,7 +181,7 @@ export default PaymentMethod.extend({
 });
 ```
 
-```app/models/payment-method-paypal.js
+```javascript {data-filename=app/models/payment-method-paypal.js}
 import { computed } from '@ember/object';
 import DS from 'ember-data';
 import PaymentMethod from './payment-method'
@@ -261,7 +261,7 @@ extraneous models.
 
 Let's assume that we have a `blog-post` and a `comment` model. A single blog post can have several comments linked to it. The correct relationship is shown below:
 
-```app/models/blog-post.js
+```javascript {data-filename=app/models/blog-post.js}
 import DS from 'ember-data';
 
 export default DS.Model.extend({
@@ -269,7 +269,7 @@ export default DS.Model.extend({
 });
 ```
 
-```app/models/comment.js
+```javascript {data-filename=app/models/comment.js}
 import DS from 'ember-data';
 
 export default DS.Model.extend({
@@ -359,7 +359,7 @@ For example, given a `post` model that has a `hasMany` relationship with a `comm
 when retrieving a specific post we can have the server also return that post's comments
 as follows:
 
-```app/routes/post.js
+```javascript {data-filename=app/routes/post.js}
 import Route from '@ember/routing/route';
 
 export default Route.extend({
@@ -374,7 +374,7 @@ Nested relationships can be specified in the `include` parameter as a dot-separa
 So to request both the post's comments and the authors of those comments the request
 would look like this:
 
-```app/routes/post.js
+```javascript {data-filename=app/routes/post.js}
 import Route from '@ember/routing/route';
 
 export default Route.extend({
@@ -388,7 +388,7 @@ serialized directly into the URL query string and the `include` parameter may
 form part of that argument.
 For example:
 
-```app/routes/adele.js
+```javascript {data-filename=app/routes/adele.js}
 import Route from '@ember/routing/route';
 
 export default Route.extend({

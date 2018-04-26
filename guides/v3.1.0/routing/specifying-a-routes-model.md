@@ -3,7 +3,7 @@ appropriate model is one job of a route.
 
 For example, take this router:
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('favorite-posts');
 });
@@ -12,7 +12,7 @@ Router.map(function() {
 To load a model for the `favorite-posts` route, you would use the [`model()`](https://www.emberjs.com/api/ember/release/classes/Route/methods/model?anchor=model)
 hook in the `favorite-posts` route handler:
 
-```app/routes/favorite-posts.js
+```javascript {data-filename=app/routes/favorite-posts.js}
 import Route from '@ember/routing/route';
 
 export default Route.extend({
@@ -30,7 +30,7 @@ Ember will wait until the data finishes loading (until the promise is resolved/)
 The route will then set the return value from the `model` hook as the `model` property of the controller.
 You will then be able to access the controller's `model` property in your template:
 
-```app/templates/favorite-posts.hbs
+```handlebars {data-filename=app/templates/favorite-posts.hbs}
 <h1>Favorite Posts</h1>
 {{#each model as |post|}}
   <p>{{post.body}}</p>
@@ -62,13 +62,13 @@ Once you have defined a route with a dynamic segment,
 Ember will extract the value of the dynamic segment from the URL for
 you and pass them as a hash to the `model` hook as the first argument:
 
-```app/router.js
+```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('photo', { path: '/photos/:photo_id' });
 });
 ```
 
-```app/routes/photo.js
+```javascript {data-filename=app/routes/photo.js}
 import Route from '@ember/routing/route';
 
 export default Route.extend({
@@ -92,7 +92,7 @@ If an identifier (such as an id or slug/) is provided instead then the model hoo
 For example, transitioning to the `photo` route this way won't cause the `model` hook to be executed (because `link-to`
 was passed a model/):
 
-```app/templates/photos.hbs
+```handlebars {data-filename=app/templates/photos.hbs}
 <h1>Photos</h1>
 {{#each model as |photo|}}
   <p>
@@ -106,7 +106,7 @@ was passed a model/):
 while transitioning this way will cause the `model` hook to be executed (because `link-to` was passed `photo.id`, an
 identifier, instead):
 
-```app/templates/photos.hbs
+```handlebars {data-filename=app/templates/photos.hbs}
 <h1>Photos</h1>
 {{#each model as |photo|}}
   <p>
@@ -126,7 +126,7 @@ Multiple models can be returned through an
 The `RSVP.hash` method takes an object with promises or values as properties as an argument, and returns a single promise.
 When all of the promises in the object resolve, the returned promise will resolve with an object of all of the promise values. For example:
 
-```app/routes/songs.js
+```javascript {data-filename=app/routes/songs.js}
 import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
 
@@ -143,7 +143,7 @@ export default Route.extend({
 In the `songs` template, we can specify both models and use the `{{#each}}` helper to display
 each record in the song model and album model:
 
-```app/templates/songs.hbs
+```handlebars {data-filename=app/templates/songs.hbs}
 <h1>Playlist</h1>
 
 <ul>
@@ -171,7 +171,7 @@ needs.
 
 In this scenario, you can use the `paramsFor` method to get the parameters of a parent route.
 
-```app/routes/album/index.js
+```javascript {data-filename=app/routes/album/index.js}
 import Route from '@ember/routing/route';
 
 export default Route.extend({
@@ -195,7 +195,7 @@ In our case, the parent route had already loaded its songs, so we would be writi
 Let's rewrite the same route, but use `modelFor`, which works the same way, but returns the model
 from the parent route.
 
-```app/routes/album/index.js
+```javascript {data-filename=app/routes/album/index.js}
 import Route from '@ember/routing/route';
 
 export default Route.extend({
@@ -209,7 +209,7 @@ export default Route.extend({
 
 In the case above, the parent route looked something like this:
 
-```app/routes/album.js
+```javascript {data-filename=app/routes/album.js}
 import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
 

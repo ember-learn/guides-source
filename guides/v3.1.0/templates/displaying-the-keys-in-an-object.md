@@ -1,7 +1,7 @@
 If you need to display all of the keys or values of a JavaScript object in your template,
 you can use the [`{{#each-in}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/if?anchor=each-in) helper:
 
-```/app/components/store-categories.js
+```javascript {data-filename=/app/components/store-categories.js}
 import Component from '@ember/component';
 
 export default Component.extend({
@@ -17,7 +17,7 @@ export default Component.extend({
 });
 ```
 
-```/app/templates/components/store-categories.hbs
+```handlebars {data-filename=/app/templates/components/store-categories.hbs}
 <ul>
   {{#each-in categories as |category products|}}
     <li>{{category}}
