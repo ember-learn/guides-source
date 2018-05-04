@@ -138,7 +138,7 @@ export default Route.extend({
         method: 'POST',
         url: 'process-payment'
       }).then((digitalInventory) => {
-        this.get('store').pushPayload(digitalInventory);
+        this.get('store').push(digitalInventory);
         this.transitionTo('thank-you');
       });
     }
