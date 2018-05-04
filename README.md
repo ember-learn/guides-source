@@ -42,7 +42,12 @@ as markdown files, which are fetched and displayed by
 ```sh
 git clone git://github.com/ember-learn/guides-app.git
 git clone git://github.com/ember-learn/guides-source.git
-cd guides-app
-yarn install
-ember server
+
+cd guides-source
+npm link
+
+cd ../guides-app/
+npm i
+npm link guides-source
+npm start
 ```
