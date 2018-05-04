@@ -4,7 +4,7 @@ const checkIfPathExists = require('./checkIfPathExists');
 
 module.exports = function getBadRelativeUrlsForFile(mdFile) {
   return _.chain(mdFile.links)
-    .filter(link => link.endsWith('.png'))
+    .filter(link => link.endsWith('.png') || link.endsWith('.gif'))
     .map((link) => {
       // ignore external images
       if (link.startsWith('http://') || link.startsWith('https://')) {
