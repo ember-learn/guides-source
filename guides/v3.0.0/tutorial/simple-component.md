@@ -375,4 +375,4 @@ test('should toggle wide class on click', function(assert) {
 Run `ember t -s` to verify that our new test is passing.
 To find the new test, locate "Integration | Component | rental listing" in the "Module" field of the test UI.
 
-![simple_component_test](/images/simple-component/simple-component-test.gif/)
+![simple_component_test](/images/simple-component/simple-component-test.gif)
