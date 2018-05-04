@@ -320,7 +320,7 @@ in the drop down input labeled "Module" on the test UI.
 You can also toggle "Hide passed tests" to show your passing test case along with the tests that are still
 failing (because we haven't yet built them/).
 
-![6_fail](/images/routes-and-templates/routes-and-templates.gif/)
+![6_fail](/images/routes-and-templates/routes-and-templates.gif)
 
 ### Ember's test helpers
 
@@ -374,4 +374,4 @@ navigating have now passed.
 In the screen recording below, we run the tests, deselect "Hide passed tests", and set the module to our application test,
 revealing the 3 tests we got passing.
 
-![passing navigation tests](/images/routes-and-templates/ember-route-tests.gif/)
+![passing navigation tests](/images/routes-and-templates/ember-route-tests.gif)
