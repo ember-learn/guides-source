@@ -158,7 +158,7 @@ For example, if you transitioned to the `photo` route with a model whose
 `id` property was `47`, the URL in the user's browser would be updated
 to:
 
-```shell
+```bash
 /photos/47
 ```
 

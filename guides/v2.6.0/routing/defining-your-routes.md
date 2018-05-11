@@ -4,7 +4,7 @@ templates, loading data, and setting up application state.
 
 To define a route, run
 
-```shell
+```bash
 ember generate route route-name
 ```
 
@@ -102,7 +102,7 @@ Router.map(function() {
 
 To generate the above nested route, run:
 
-```shell
+```bash
 ember generate route posts/new
 ```
 

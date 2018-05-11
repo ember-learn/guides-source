@@ -5,13 +5,13 @@ Let's use a handlebars helper to allow our users to quickly see if a property is
 
 To get started, let's generate a helper for `rental-property-type`:
 
-```shell
+```bash
 ember g helper rental-property-type
 ```
 
 This will create two files, our helper and its related test:
 
-```shell
+```bash
 installing helper
   create app/helpers/rental-property-type.js
 installing helper-test

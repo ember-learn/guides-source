@@ -1,7 +1,7 @@
 Now that you have Ember CLI installed, you can create your first Ember app by
 running:
 
-```shell
+```bash
 ember new my-new-app
 ```
 
@@ -9,7 +9,7 @@ This will create a new `my-new-app` directory with your new Ember app inside.
 
 Once the process finishes, launch the Ember development server:
 
-```shell
+```bash
 cd my-new-app
 ember server
 ```
@@ -24,7 +24,7 @@ In a production environment, you'll
 want to build an optimized version of your website assets that can be copied to a
 server. To build your app for production, run:
 
-```shell
+```bash
 ember build --environment=production
 ```
 

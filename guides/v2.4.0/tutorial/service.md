@@ -35,7 +35,7 @@ We'll start by adding a component that shows the rental's city on a map.
 
 Next, generate the map component using Ember-CLI.
 
-```shell
+```bash
 ember g component location-map
 ```
 
@@ -128,7 +128,7 @@ In some cases this can reduce your app's processor load and memory consumption.
 
 Let's get started creating our service by generating it through Ember-CLI, which will create the service file, as well as a unit test for it.
 
-```shell
+```bash
 ember g service maps
 ```
 
@@ -226,7 +226,7 @@ Since Google provides its map API as a remote script, we'll use curl to download
 From your project's root directory, run the following command to put the Google maps script in your projects vendor folder as `gmaps.js`.  
 `Curl` is a UNIX command, so if you are on windows you should take advantage of [Windows bash support](https://msdn.microsoft.com/en-us/commandline/wsl/about), or use an alternate method to download the script into the vendor directory.
 
-```shell
+```bash
 curl -o vendor/gmaps.js https://maps.googleapis.com/maps/api/js?v=3.22
 ```
 
@@ -266,7 +266,7 @@ module.exports = function(defaults) {
 Now that we have the maps API available to the application, we can create our map utility.
 Utility files can be generated using Ember CLI.
 
-```shell
+```bash
 ember g util google-maps
 ```
 

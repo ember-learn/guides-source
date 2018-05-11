@@ -4,7 +4,7 @@ Let's build a component that will let them filter rentals by city.
 To begin, let's generate our new component.
 We'll call this component `list-filter`, since all we want our component to do is filter the list of rentals based on input.
 
-```shell
+```bash
 ember g component list-filter
 ```
 
@@ -177,7 +177,7 @@ Controllers can contain actions and properties available to the template of its 
 
 Generate a controller for the `rentals` route by running the following:
 
-```shell
+```bash
 ember g controller rentals
 ```
 

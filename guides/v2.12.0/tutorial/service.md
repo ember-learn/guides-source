@@ -57,7 +57,7 @@ and easier testing of code that depends on it.
 Now that we have the maps API available to the application, we can create our map utility.
 Utility files can be generated using Ember CLI.
 
-```shell
+```bash
 ember g util google-maps
 ```
 
@@ -120,7 +120,7 @@ Accessing our maps API through a [service](../../applications/services/) will gi
 Let's get started creating our service by generating it through Ember CLI,
 which will create the service file, as well as a unit test for it.
 
-```shell
+```bash
 ember g service maps
 ```
 
@@ -170,7 +170,7 @@ we'll connect it to our application using a component.
 
 Generate the map component using Ember CLI.
 
-```shell
+```bash
 ember g component location-map
 ```
 

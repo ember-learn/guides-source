@@ -56,7 +56,7 @@ Therefore in our case, when we navigate to `/rentals`, Ember will attempt to loa
 
 To create an index nested route, run the following command:
 
-```shell
+```bash
 ember g route rentals/index
 ```
 
@@ -226,13 +226,13 @@ export default function() {
 Now that our API is ready to return individual rentals, we can generate our `show` sub-route.
 Much like generating our `rentals` route, we will use `ember g` to create a nested route.
 
-```shell
+```bash
 ember g route rentals/show
 ```
 
 You will see output like this:
 
-```shell
+```bash
 installing route
   create app/routes/rentals/show.js
   create app/templates/rentals/show.hbs

@@ -6,7 +6,7 @@ There are also services that will let you deploy easily.
 
 You can deploy your application to any web server by copying the output from `ember build` to any web server:
 
-```shell
+```bash
 ember build
 scp -r dist/* myserver.com:/var/www/public/
 ```
@@ -18,7 +18,7 @@ To deploy an Ember application you can simply deploy the folder produced by `emb
 
 You will need to have the surge cli tool installed:
 
-```shell
+```bash
 npm install -g surge
 ```
 
@@ -26,7 +26,7 @@ Then you can use the `surge` command to deploy your application.
 Note you will also need to provide a copy of index.html with the filename 200.html
 so that surge can support Ember's client-side routing.
 
-```shell
+```bash
 ember build --environment=development
 cd dist
 cp index.html 200.html
@@ -38,7 +38,7 @@ You will be provided with a URL in the form `funny-name.surge.sh` that you can u
 
 So to deploy to the same URL after making changes, perform the same steps, this time providing the URL for your site:
 
-```shell
+```bash
 rm -rf dist
 ember build --environment=development
 cd dist

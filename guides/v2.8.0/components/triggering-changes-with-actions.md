@@ -24,7 +24,7 @@ component, we want to be able to reuse it all over our application.
 Let's call our component `button-with-confirmation`. We can create it by
 typing:
 
-```shell
+```bash
 ember generate component button-with-confirmation
 ```
 

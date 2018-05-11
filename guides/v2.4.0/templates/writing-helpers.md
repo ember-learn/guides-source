@@ -33,7 +33,7 @@ To add a new helper, create a file with the name of the helper you want
 (e.g. `format-currency.js`) in your application's `helpers` directory.
 You can also have Ember generate the file for you from the command line:
 
-```shell
+```bash
 ember generate helper format-currency
 ```
 

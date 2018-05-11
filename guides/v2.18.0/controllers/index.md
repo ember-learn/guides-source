@@ -8,7 +8,7 @@ the return value of the Route's `model()` method.
 
 To define a Controller, run:
 
-```shell
+```bash
 ember generate controller my-controller-name
 ```
 

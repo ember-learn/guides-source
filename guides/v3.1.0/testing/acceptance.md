@@ -1,7 +1,7 @@
 To create an application test, run `ember generate acceptance-test <name>`.
 For example:
 
-```shell
+```bash
 ember g acceptance-test login
 ```
 
