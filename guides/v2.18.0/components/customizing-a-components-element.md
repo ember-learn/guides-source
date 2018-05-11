@@ -38,7 +38,7 @@ export default Component.extend({
 You can specify the class of a component's element at invocation time the same
 way you would for a regular HTML element:
 
-```hbs
+```handlebars
 {{navigation-bar class="primary"}}
 ```
 
