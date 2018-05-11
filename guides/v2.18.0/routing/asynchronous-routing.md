@@ -16,7 +16,7 @@ the rejection handler gets called with a reason for the rejection as its
 sole argument. For example:
 
 
-```js
+```javascript
 let promise = fetchTheAnswer();
 
 promise.then(fulfill, reject);
@@ -33,7 +33,7 @@ function reject(reason) {
 Much of the power of promises comes from the fact that they can be
 chained together to perform sequential asynchronous operations:
 
-```js
+```javascript
 // Note: jQuery AJAX methods return promises
 let usernamesPromise = Ember.$.getJSON('/usernames.json');
 

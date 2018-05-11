@@ -453,7 +453,7 @@ behavior to complete that is triggered by a DOM interaction induced by those.
 To use them in your tests, you can simply `await` any of them to make sure that subsequent assertions are executed at the right time
 when the asynchronous behavior has fully settled:
 
-```js
+```javascript
 await click('button.submit-button'); // clicks a button and waits for any async behavior initiated by the click to settle
 assert.equal(this.element.querySelector('.form-message').textContent, 'Your details have been submitted successfully.');
 ```

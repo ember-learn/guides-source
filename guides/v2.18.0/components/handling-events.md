@@ -91,7 +91,7 @@ The `signUp` action is simply a function defined on the `actions` hash
 of a component. Since the action is assigned to an inline handler, the
 function definition can define the event object as its first parameter.
 
-```js
+```javascript
 actions: {
   signUp(event){
   	// Only when assigning the action to an inline handler, the event object
@@ -109,7 +109,7 @@ default behavior using an action.
 <button {{action "signUp"}}>Sign Up</button>
 ```
 
-```js
+```javascript
 actions: {
   signUp() {
     // No event object is passed to the action.

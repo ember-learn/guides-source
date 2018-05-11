@@ -448,7 +448,7 @@ Often, interacting with a component will cause asynchronous behavior to occur, s
 The module `@ember/test-helpers` provides you with several [useful helpers](https://github.com/emberjs/ember-test-helpers/blob/master/API.md) that will allow you to wait for any asynchronous behavior to complete that is triggered by a DOM interaction induced by those.  
 To use them in your tests, you can `await` any of them to make sure that subsequent assertions are executed once the asynchronous behavior has fully settled:
 
-```js
+```javascript
 await click('button.submit-button'); // clicks a button and waits for any async behavior initiated by the click to settle
 assert.equal(this.element.querySelector('.form-message').textContent, 'Your details have been submitted successfully.');
 ```
