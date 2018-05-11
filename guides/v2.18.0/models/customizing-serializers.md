@@ -123,7 +123,7 @@ ways to define a custom serializer. First, you can define a custom
 serializer for your entire application by defining an "application"
 serializer.
 
-```app/serializers/application.js
+```javascript {data-filename="app/serializers/application.js"}
 import DS from 'ember-data';
 
 export default DS.JSONAPISerializer.extend({});
@@ -132,7 +132,7 @@ export default DS.JSONAPISerializer.extend({});
 You can also define a serializer for a specific model. For example, if
 you had a `post` model you could also define a `post` serializer:
 
-```app/serializers/post.js
+```javascript {data-filename="app/serializers/post.js"}
 import DS from 'ember-data';
 
 export default DS.JSONAPISerializer.extend({});
@@ -176,7 +176,7 @@ But our server expects data in this format:
 
 Here's how you can change the data:
 
-```app/serializers/application.js
+```javascript {data-filename="app/serializers/application.js"}
 import DS from 'ember-data';
 
 export default DS.JSONAPISerializer.extend({
@@ -236,7 +236,7 @@ And so we need to change it to look like:
 
 Here's how we could do it:
 
-```app/serializers/application.js
+```javascript {data-filename="app/serializers/application.js"}
 import DS from 'ember-data';
 
 export default DS.JSONAPISerializer.extend({
@@ -267,7 +267,7 @@ backend uses a key other than `id` you can use the
 serializer's `primaryKey` property to correctly transform the id
 property to `id` when serializing and deserializing data.
 
-```app/serializers/application.js
+```javascript {data-filename="app/serializers/application.js"}
 import DS from 'ember-data';
 
 export default DS.JSONAPISerializer.extend({
@@ -280,7 +280,7 @@ export default DS.JSONAPISerializer.extend({
 In Ember Data the convention is to camelize attribute names on a
 model. For example:
 
-```app/models/person.js
+```javascript {data-filename="app/models/person.js"}
 import DS from 'ember-data';
 
 export default DS.Model.extend({
@@ -315,7 +315,7 @@ payload. For example, if your backend returned attributes that are
 `under_scored` instead of `dash-cased` you could override the `keyForAttribute`
 method like this.
 
-```app/serializers/application.js
+```javascript {data-filename="app/serializers/application.js"}
 import { underscore } from '@ember/string';
 import DS from 'ember-data';
 
@@ -337,7 +337,7 @@ If the JSON for `person` has a key of `lastNameOfPerson`, and the
 desired attribute name is simply `lastName`, then create a custom
 Serializer for the model and override the `attrs` property.
 
-```app/models/person.js
+```javascript {data-filename="app/models/person.js"}
 import DS from 'ember-data';
 
 export default DS.Model.extend({
@@ -345,7 +345,7 @@ export default DS.Model.extend({
 });
 ```
 
-```app/serializers/person.js
+```javascript {data-filename="app/serializers/person.js"}
 import DS from 'ember-data';
 
 export default DS.JSONAPISerializer.extend({
@@ -360,7 +360,7 @@ export default DS.JSONAPISerializer.extend({
 References to other records should be done by ID. For example, if you
 have a model with a `hasMany` relationship:
 
-```app/models/post.js
+```javascript {data-filename="app/models/post.js"}
 import DS from 'ember-data';
 
 export default DS.Model.extend({
@@ -396,7 +396,7 @@ Any `belongsTo` relationships in the JSON representation should be the
 dasherized version of the property's name. For example, if you have
 a model:
 
-```app/models/comment.js
+```javascript {data-filename="app/models/comment.js"}
 import DS from 'ember-data';
 
 export default DS.Model.extend({
@@ -424,7 +424,7 @@ the
 [`keyForRelationship()`](https://www.emberjs.com/api/ember-data/release/classes/DS.JSONAPISerializer/methods/keyForAttribute?anchor=keyForRelationship)
 method.
 
-```app/serializers/application.js
+```javascript {data-filename="app/serializers/application.js"}
 import DS from 'ember-data';
 
 export default DS.JSONAPISerializer.extend({
@@ -444,7 +444,7 @@ server may return a non-standard date format.
 Ember Data can have new JSON transforms
 registered for use as attributes:
 
-```app/transforms/coordinate-point.js
+```javascript {data-filename="app/transforms/coordinate-point.js"}
 import DS from 'ember-data';
 import EmberObject from '@ember/object';
 
@@ -458,7 +458,7 @@ export default DS.Transform.extend({
 });
 ```
 
-```app/models/cursor.js
+```javascript {data-filename="app/models/cursor.js"}
 import DS from 'ember-data';
 
 export default DS.Model.extend({
@@ -501,7 +501,7 @@ serializer that ships with Ember Data that can be used alongside the
 To use it in your application you will need to define a
 `serializer:application` that extends the `JSONSerializer`.
 
-```app/serializers/application.js
+```javascript {data-filename="app/serializers/application.js"}
 import DS from 'ember-data';
 
 export default DS.JSONSerializer.extend({
@@ -578,7 +578,7 @@ that looks similar to this:
 
 You would define your relationship like this:
 
-```app/serializers/post.js
+```javascript {data-filename="app/serializers/post.js"}
 import DS from 'ember-data';
 
 export default DS.JSONSerializer.extend(DS.EmbeddedRecordsMixin, {
@@ -595,7 +595,7 @@ If you find yourself needing to both serialize and deserialize the
 embedded relationship you can use the shorthand option of `{ embedded:
 'always' }`. The example above could therefore be expressed as such:
 
-```app/serializers/post.js
+```javascript {data-filename="app/serializers/post.js"}
 import DS from 'ember-data';
 
 export default DS.JSONSerializer.extend(DS.EmbeddedRecordsMixin, {
@@ -618,7 +618,7 @@ serializing the record. This is possible by using the `serialize:
 'ids'` option. You can also opt out of serializing a relationship by
 setting `serialize: false`.
 
-```app/serializers/post.js
+```javascript {data-filename="app/serializers/post.js"}
 import DS from 'ember-data';
 
 export default DS.JSONSerializer.extend(DS.EmbeddedRecordsMixin, {
@@ -708,7 +708,7 @@ follows the [JSON API](http://jsonapi.org/) specification.
 
 Example: given this `post` model.
 
-```app/models/post.js
+```javascript {data-filename="app/models/post.js"}
 import DS from 'ember-data';
 
 export default DS.Model.extend({

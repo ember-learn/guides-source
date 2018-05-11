@@ -13,13 +13,13 @@ returned from each hook fulfill.
 
 Consider the following:
 
-```app/router.js
+```javascript {data-filename="app/router.js"}
 Router.map(function() {
   this.route('slow-model');
 });
 ```
 
-```app/routes/slow-model.js
+```javascript {data-filename="app/routes/slow-model.js"}
 import Route from '@ember/routing/route';
 
 export default Route.extend({
@@ -53,7 +53,7 @@ route will be exited and the transition to `slow-model` will continue.
 
 For nested routes, like:
 
-```app/router.js
+```javascript {data-filename="app/router.js"}
 Router.map(function() {
   this.route('foo', function() {
     this.route('bar', function() {
@@ -90,7 +90,7 @@ It's important to note that `foo.bar.loading` is not considered now.
 If the various `beforeModel`/`model`/`afterModel` hooks
 don't immediately resolve, a [`loading`](https://www.emberjs.com/api/ember/2.16/classes/Route/events/loading?anchor=loading) event will be fired on that route.
 
-```app/routes/foo-slow-model.js
+```javascript {data-filename="app/routes/foo-slow-model.js"}
 import Route from '@ember/routing/route';
 
 export default Route.extend({
@@ -115,7 +115,7 @@ route, providing the `application` route the opportunity to manage it.
 
 When using the `loading` handler, we can make use of the transition promise to know when the loading event is over:
 
-```app/routes/foo-slow-model.js
+```javascript {data-filename="app/routes/foo-slow-model.js"}
 import Route from '@ember/routing/route';
 
 export default Route.extend({
@@ -136,7 +136,7 @@ export default Route.extend({
 In case we want both custom logic and the default behaviour for the loading substate,
 we can implement the `loading` action and let it bubble by returning `true`.
 
-```app/routes/foo-slow-model.js
+```javascript {data-filename="app/routes/foo-slow-model.js"}
 import Route from '@ember/routing/route';
 
 export default Route.extend({
@@ -163,7 +163,7 @@ Similar to how the default `loading` event handlers are implemented,
 the default `error` handlers will look for an appropriate error substate to
 enter, if one can be found.
 
-```app/router.js
+```javascript {data-filename="app/router.js"}
 Router.map(function() {
   this.route('articles', function() {
     this.route('overview');
@@ -207,7 +207,7 @@ etc.), an [`error`](https://www.emberjs.com/api/ember/2.16/classes/Route/events/
 This `error` event can be handled and used to display an error message,
 redirect to a login page, etc.
 
-```app/routes/articles-overview.js
+```javascript {data-filename="app/routes/articles-overview.js"}
 import Route from '@ember/routing/route';
 
 export default Route.extend({
@@ -234,7 +234,7 @@ at the application level to avoid writing the same code for multiple routes.
 In case we want to run some custom logic and have the default behaviour of rendering the error template,
 we can handle the `error` event and let it bubble by returning `true`.
 
-```app/routes/articles-overview.js
+```javascript {data-filename="app/routes/articles-overview.js"}
 import Route from '@ember/routing/route';
 
 export default Route.extend({

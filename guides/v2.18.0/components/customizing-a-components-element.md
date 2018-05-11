@@ -18,7 +18,7 @@ To use a tag other than `div`, subclass `Component` and assign it
 a `tagName` property. This property can be any valid HTML5 tag name as a
 string.
 
-```app/components/navigation-bar.js
+```javascript {data-filename="app/components/navigation-bar.js"}
 import Component from '@ember/component';
 
 export default Component.extend({
@@ -26,7 +26,7 @@ export default Component.extend({
 });
 ```
 
-```app/templates/components/navigation-bar.hbs
+```handlebars {data-filename="app/templates/components/navigation-bar.hbs"}
 <ul>
   <li>{{#link-to "home"}}Home{{/link-to}}</li>
   <li>{{#link-to "about"}}About{{/link-to}}</li>
@@ -45,7 +45,7 @@ way you would for a regular HTML element:
 You can also specify which class names are applied to the component's
 element by setting its `classNames` property to an array of strings:
 
-```app/components/navigation-bar.js
+```javascript {data-filename="app/components/navigation-bar.js"}
 import Component from '@ember/component';
 
 export default Component.extend({
@@ -57,7 +57,7 @@ If you want class names to be determined by properties of the component,
 you can use class name bindings. If you bind to a Boolean property, the
 class name will be added or removed depending on the value:
 
-```app/components/todo-item.js
+```javascript {data-filename="app/components/todo-item.js"}
 import Component from '@ember/component';
 
 export default Component.extend({
@@ -77,7 +77,7 @@ If `isUrgent` is changed to `false`, then the `is-urgent` class name will be rem
 By default, the name of the Boolean property is dasherized. You can customize the class name
 applied by delimiting it with a colon:
 
-```app/components/todo-item.js
+```javascript {data-filename="app/components/todo-item.js"}
 import Component from '@ember/component';
 
 export default Component.extend({
@@ -94,7 +94,7 @@ This would render this HTML:
 
 Besides the custom class name for the value being `true`, you can also specify a class name which is used when the value is `false`:
 
-```app/components/todo-item.js
+```javascript {data-filename="app/components/todo-item.js"}
 import Component from '@ember/component';
 
 export default Component.extend({
@@ -112,7 +112,7 @@ This would render this HTML:
 You can also specify a class which should only be added when the property is
 `false` by declaring `classNameBindings` like this:
 
-```app/components/todo-item.js
+```javascript {data-filename="app/components/todo-item.js"}
 import Component from '@ember/component';
 
 export default Component.extend({
@@ -136,7 +136,7 @@ If the `isEnabled` property is set to `true`, no class name is added:
 If the bound property's value is a string, that value will be added as a class name without
 modification:
 
-```app/components/todo-item.js
+```javascript {data-filename="app/components/todo-item.js"}
 import Component from '@ember/component';
 
 export default Component.extend({
@@ -156,7 +156,7 @@ This would render this HTML:
 You can bind attributes to the DOM element that represents a component
 by using `attributeBindings`:
 
-```app/components/link-item.js
+```javascript {data-filename="app/components/link-item.js"}
 import Component from '@ember/component';
 
 export default Component.extend({
@@ -169,7 +169,7 @@ export default Component.extend({
 
 You can also bind these attributes to differently named properties:
 
-```app/components/link-item.js
+```javascript {data-filename="app/components/link-item.js"}
 import Component from '@ember/component';
 
 export default Component.extend({
@@ -182,7 +182,7 @@ export default Component.extend({
 
 If the attribute is null, it won't be rendered:
 
-```app/components/link-item.js
+```javascript {data-filename="app/components/link-item.js"}
 import Component from '@ember/component';
 
 export default Component.extend({

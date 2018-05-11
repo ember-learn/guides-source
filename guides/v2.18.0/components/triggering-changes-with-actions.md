@@ -30,7 +30,7 @@ ember generate component button-with-confirmation
 
 We'll plan to use the component in a template something like this:
 
-```app/templates/components/user-profile.hbs
+```handlebars {data-filename="app/templates/components/user-profile.hbs"}
 {{button-with-confirmation
   text="Click OK to delete your account."
 }}
@@ -38,7 +38,7 @@ We'll plan to use the component in a template something like this:
 
 We'll also want to use the component elsewhere, perhaps like this:
 
-```app/templates/components/send-message.hbs
+```handlebars {data-filename="app/templates/components/send-message.hbs"}
 {{button-with-confirmation
   text="Click OK to send your message."
 }}
@@ -78,7 +78,7 @@ We'll implement an action on the parent component called
 [service](../../applications/services/) and calls the service's
 `deleteUser()` method.
 
-```app/components/user-profile.js
+```javascript {data-filename="app/components/user-profile.js"}
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 
@@ -101,7 +101,7 @@ want this action to be triggered, which is the next step.
 Next,
 in the child component we will implement the logic to confirm that the user wants to take the action they indicated by clicking the button:
 
-```app/components/button-with-confirmation.js
+```javascript {data-filename="app/components/button-with-confirmation.js"}
 import Component from '@ember/component';
 
 export default Component.extend({
@@ -125,7 +125,7 @@ export default Component.extend({
 The component template will have a button and a div that shows the confirmation dialog
 based on the value of `confirmShown`.
 
-```app/templates/components/button-with-confirmation.hbs
+```handlebars {data-filename="app/templates/components/button-with-confirmation.hbs"}
 <button {{action "launchConfirmDialog"}}>{{text}}</button>
 {{#if confirmShown}}
   <div class="confirm-dialog">
@@ -142,7 +142,7 @@ We'll do this by passing the action to the child component in exactly the same w
 This is possible since actions are simply functions, just like any other method on a component,
 and they can therefore be passed from one component to another like this:
 
-```app/templates/components/user-profile.hbs
+```handlebars {data-filename="app/templates/components/user-profile.hbs"}
 {{button-with-confirmation
   text="Click here to delete your account."
   onConfirm=(action "userDidDeleteAccount")
@@ -155,7 +155,7 @@ which serves to return the function named `"userDidDeleteAccount"` that we are p
 
 We can do a similar thing for our `send-message` component:
 
-```app/templates/components/send-message.hbs
+```handlebars {data-filename="app/templates/components/send-message.hbs"}
 {{button-with-confirmation
   text="Click to send your message."
   onConfirm=(action "sendMessage")
@@ -165,7 +165,7 @@ We can do a similar thing for our `send-message` component:
 Now, we can use `onConfirm` in the child component to invoke the action on the
 parent:
 
-```app/components/button-with-confirmation.js
+```javascript {data-filename="app/components/button-with-confirmation.js"}
 import Component from '@ember/component';
 
 export default Component.extend({
@@ -211,7 +211,7 @@ operation has completed successfully.
 This is accomplished by expecting a promise to be returned from `onConfirm`.
 Upon resolution of the promise, we set a property used to indicate the visibility of the confirmation modal.
 
-```app/components/button-with-confirmation.js
+```javascript {data-filename="app/components/button-with-confirmation.js"}
 import Component from '@ember/component';
 
 export default Component.extend({
@@ -243,7 +243,7 @@ Consider, for example,
 the case where the `button-with-confirmation` component we've defined is used within `send-message`.
 The `sendMessage` action that we pass to the child component may expect a message type parameter to be provided as an argument:
 
-```app/components/send-message.js
+```javascript {data-filename="app/components/send-message.js"}
 import Component from '@ember/component';
 
 export default Component.extend({
@@ -260,7 +260,7 @@ the `button-with-confirmation` component invoking the action doesn't know or car
 In cases like this, the parent template can provide the required parameter when the action is passed to the child.
 For example, if we want to use the button to send a message of type `"info"`:
 
-```app/templates/components/send-message.hbs
+```handlebars {data-filename="app/templates/components/send-message.hbs"}
 {{button-with-confirmation
   text="Click to send your message."
   onConfirm=(action "sendMessage" "info")
@@ -270,7 +270,7 @@ For example, if we want to use the button to send a message of type `"info"`:
 Within `button-with-confirmation`, the code in the `submitConfirm` action does not change.
 It will still invoke `onConfirm` without explicit arguments:
 
-```app/components/button-with-confirmation.js
+```javascript {data-filename="app/components/button-with-confirmation.js"}
 const promise = this.get('onConfirm')();
 ```
 However the expression `(action "sendMessage" "info")` used in passing the action to the component creates a closure,
@@ -283,7 +283,7 @@ So far in our example, the action we have passed to `button-with-confirmation` i
 Suppose we want to extend this by allowing `sendMessage` to take a second argument,
 the actual text of the message the user is sending:
 
-```app/components/send-message.js
+```javascript {data-filename="app/components/send-message.js"}
 import Component from '@ember/component';
 
 export default Component.extend({
@@ -307,7 +307,7 @@ However, remember that internally our `button-with-confirmation` component does 
 Therefore within the component's javascript file,
 we will use a property `confirmValue` to represent that argument and pass it to `onConfirm` as shown here:
 
-```app/components/button-with-confirmation.js
+```javascript {data-filename="app/components/button-with-confirmation.js"}
 import Component from '@ember/component';
 
 export default Component.extend({
@@ -330,7 +330,7 @@ we'll bind the property to the value of a user input field that will appear when
 To accomplish this,
 we'll first modify the component so that it can be used in block form and we will [yield](../wrapping-content-in-a-component/) `confirmValue` to the block within the `"confirmDialog"` element:
 
-```app/templates/components/button-with-confirmation.hbs
+```handlebars {data-filename="app/templates/components/button-with-confirmation.hbs"}
 <button {{action "launchConfirmDialog"}}>{{text}}</button>
 {{#if confirmShown}}
   <div class="confirm-dialog">
@@ -344,7 +344,7 @@ we'll first modify the component so that it can be used in block form and we wil
 With this modification,
 we can now use the component in `send-message` to wrap a text input element whose `value` attribute is set to `confirmValue`:
 
-```app/templates/components/send-message.hbs
+```handlebars {data-filename="app/templates/components/send-message.hbs"}
 {{#button-with-confirmation
     text="Click to send your message."
     onConfirm=(action "sendMessage" "info")
@@ -363,7 +363,7 @@ thus invoking the `sendMessage` action in `send-message` with both the `messageT
 Actions can be invoked on objects other than the component directly from the template.  For example, in our
 `send-message` component we might include a service that processes the `sendMessage` logic.
 
-```app/components/send-message.js
+```javascript {data-filename="app/components/send-message.js"}
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 
@@ -376,7 +376,7 @@ export default Component.extend({
 
 We can tell the action to invoke the `sendMessage` action directly on the messaging service with the `target` attribute.
 
-```app/templates/components/send-message.hbs
+```handlebars {data-filename="app/templates/components/send-message.hbs"}
 {{#button-with-confirmation
     text="Click to send your message."
     onConfirm=(action "sendMessage" "info" target=messaging)
@@ -388,7 +388,7 @@ We can tell the action to invoke the `sendMessage` action directly on the messag
 By supplying the `target` attribute, the action helper will look to invoke the `sendMessage` action directly on the messaging
 service, saving us from writing code on the component that just passes the action along to the service.
 
-```app/services/messaging.js
+```javascript {data-filename="app/services/messaging.js"}
 import Service from '@ember/service';
 
 export default Ember.Service.extend({
@@ -408,7 +408,7 @@ For example, our `user-profile` component is going to notify its parent, `system
 user's account was deleted, and passes along with it the full user profile object.
 
 
-```app/components/user-profile.js
+```javascript {data-filename="app/components/user-profile.js"}
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 
@@ -428,13 +428,13 @@ All our `system-preferences-editor` component really needs to process a user del
 For this case, the action helper provides the `value` attribute to allow a parent component to dig into the passed
 object to pull out only what it needs.
 
-```app/templates/components/system-preferences-editor.hbs
+```handlebars {data-filename="app/templates/components/system-preferences-editor.hbs"}
 {{user-profile didDelete=(action "userDeleted" value="account.id")}}
 ```
 
 Now when the `system-preferences-editor` handles the delete action, it receives only the user's account `id` string.
 
-```app/components/system-preferences-editor.js
+```javascript {data-filename="app/components/system-preferences-editor.js"}
 import Component from '@ember/component';
 
 export default Component.extend({
@@ -455,7 +455,7 @@ For example, say we want to move account deletion from the `user-profile` compon
 
 First we would move the `deleteUser` action from `user-profile.js` to the actions object on `system-preferences-editor`.
 
-```app/components/system-preferences-editor.js
+```javascript {data-filename="app/components/system-preferences-editor.js"}
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 
@@ -472,7 +472,7 @@ export default Component.extend({
 Then our `system-preferences-editor` template passes its local `deleteUser` action into the `user-profile` as that
 component's `deleteCurrentUser` property.
 
-```app/templates/components/system-preferences-editor.hbs
+```handlebars {data-filename="app/templates/components/system-preferences-editor.hbs"}
 {{user-profile
   deleteCurrentUser=(action 'deleteUser' login.currentUser.id)
 }}
@@ -482,7 +482,7 @@ The action `deleteUser` is in quotes, since `system-preferences-editor` is where
 
 In our `user-profile.hbs` template we change our action to call `deleteCurrentUser` as passed above.
 
-```app/templates/components/user-profile.hbs
+```handlebars {data-filename="app/templates/components/user-profile.hbs"}
 {{button-with-confirmation
   onConfirm=(action deleteCurrentUser)
   text="Click OK to delete your account."

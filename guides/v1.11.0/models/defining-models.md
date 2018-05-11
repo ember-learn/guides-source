@@ -106,7 +106,7 @@ attribute types, and new types can be registered as transforms. See the
 
   Example
 
-  ```app/models/user.js
+  ```javascript {data-filename="app/models/user.js"}
   export default DS.Model.extend({
       username: DS.attr('string'),
       email: DS.attr('string'),

@@ -29,7 +29,7 @@ A component consists of two parts:
 Our new `rental-listing` component will manage how a user sees and interacts with a rental.
 To start, let's move the rental display details for a single rental from the `rentals.hbs` template into `rental-listing.hbs` and add the image field:
 
-```app/templates/components/rental-listing.hbs{-1,+2,+3,+4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17}
+```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="-1,+2,+3,+4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17"}
 {{yield}}
 <article class="listing">
   <img src="{{rental.image}}" alt="">
@@ -52,7 +52,7 @@ To start, let's move the rental display details for a single rental from the `re
 Now in our `rentals.hbs` template, let's replace the old HTML markup within our `{{#each}}` loop
 with our new `rental-listing` component:
 
-```app/templates/rentals.hbs{+12,+13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29}
+```handlebars {data-filename="app/templates/rentals.hbs" data-diff="+12,+13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29"}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>Welcome!</h2>
@@ -99,7 +99,7 @@ We'll also add some text to indicate that the image can be clicked on,
 and wrap both with an anchor element,
 giving it the `image` class name so that our test can find it.
 
-```app/templates/components/rental-listing.hbs{+2,+4,+5}
+```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="+2,+4,+5"}
 <article class="listing">
   <a class="image {{if isWide "wide"}}">
     <img src="{{rental.image}}" alt="">
@@ -124,7 +124,7 @@ giving it the `image` class name so that our test can find it.
 The value of `isWide` comes from our component's JavaScript file, in this case `rental-listing.js`.
 Since we want the image to be smaller at first, we will set the property to start as `false`:
 
-```app/components/rental-listing.js{+4}
+```javascript {data-filename="app/components/rental-listing.js" data-diff="+4"}
 import Component from '@ember/component';
 
 export default Component.extend({
@@ -135,7 +135,7 @@ export default Component.extend({
 To allow the user to widen the image, we will need to add an action that toggles the value of `isWide`.
 Let's call this action `toggleImageSize`
 
-```app/templates/components/rental-listing.hbs{-2,+3}
+```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="-2,+3"}
 <article class="listing">
   <a class="image {{if isWide "wide"}}">
   <a {{action 'toggleImageSize'}} class="image {{if isWide "wide"}}">
@@ -166,7 +166,7 @@ These functions are called when the user interacts with the UI, such as clicking
 
 Let's create the `toggleImageSize` function and toggle the `isWide` property on our component:
 
-```app/components/rental-listing.js{-4,+5,+6,+7,+8,+9,+10}
+```javascript {data-filename="app/components/rental-listing.js" data-diff="-4,+5,+6,+7,+8,+9,+10"}
 import Component from '@ember/component';
 
 export default Component.extend({
@@ -202,7 +202,7 @@ Our component integration test will test two different behaviors:
 
 Let's update the default test to contain the scenarios we want to verify:
 
-```tests/integration/components/rental-listing-test.js{+3,+4,+9,+10,+11,+12,+13,+14,+15,+16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,-33,-34}
+```javascript {data-filename="tests/integration/components/rental-listing-test.js" data-diff="+3,+4,+9,+10,+11,+12,+13,+14,+15,+16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,-33,-34"}
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import EmberObject from '@ember/object';
@@ -243,7 +243,7 @@ For the test we'll pass the component a fake object that has all the properties 
 We'll give the variable the name `rental`, and in each test we'll set `rental` to our local scope, represented by the `this` object.
 The render template can access values in local scope.
 
-```tests/integration/components/rental-listing-test.js{+6,+7,+8,+9,+10,+11,+12,+13,+20,+24}
+```javascript {data-filename="tests/integration/components/rental-listing-test.js" data-diff="+6,+7,+8,+9,+10,+11,+12,+13,+20,+24"}
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import EmberObject from '@ember/object';
@@ -275,7 +275,7 @@ Now let's render our component using the `render` function.
 The `render` function allows us to pass a template string, so that we can declare the component in the same way we do in our templates.
 Since we set the `rentalObj` variable to our local scope, we can access it as part of our render string.
 
-```tests/integration/components/rental-listing-test.js{+21,+26}
+```javascript {data-filename="tests/integration/components/rental-listing-test.js" data-diff="+21,+26"}
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import EmberObject from '@ember/object';
@@ -309,7 +309,7 @@ Finally, let's add our actions and assertions.
 
 In the first test, we just want to verify the output of the component, so we just assert that the title and owner text match what we provided in the fake `rental`.
 
-```tests/integration/components/rental-listing-test.js{+4,+5}
+```javascript {data-filename="tests/integration/components/rental-listing-test.js" data-diff="+4,+5"}
 test('should display rental details', function(assert) {
   this.set('rentalObj', rental);
   this.render(hbs`{{rental-listing rental=rentalObj}}`);
@@ -322,7 +322,7 @@ We will assert that the component is initially rendered without the `wide` class
 Clicking the image will add the class `wide` to our element, and clicking it a second time will take the `wide` class away.
 Note that we find the image element using the CSS selector `.image`.
 
-```tests/integration/components/rental-listing-test.js{+4,+5,+6,+7,+8}
+```javascript {data-filename="tests/integration/components/rental-listing-test.js" data-diff="+4,+5,+6,+7,+8"}
 test('should toggle wide class on click', function(assert) {
   this.set('rentalObj', rental);
   this.render(hbs`{{rental-listing rental=rentalObj}}`);
@@ -335,7 +335,7 @@ test('should toggle wide class on click', function(assert) {
 ```
 The final test should look as follows:
 
-```tests/integration/components/rental-listing-test.js
+```javascript {data-filename="tests/integration/components/rental-listing-test.js"}
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import EmberObject from '@ember/object';

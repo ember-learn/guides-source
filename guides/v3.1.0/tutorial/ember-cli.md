@@ -132,7 +132,7 @@ We do this by simply opening up the application template file located at `app/te
 Once open, remove the component labeled `{{welcome-page}}`.
 The application should now be a completely blank canvas to build our application on.
 
-```app/templates/application.hbs{-1,-2,-3}
+```handlebars {data-filename="app/templates/application.hbs" data-diff="-1,-2,-3"}
 {{!-- The following component displays Ember's default welcome message. --}}
 {{welcome-page}}
 {{!-- Feel free to remove this! --}}

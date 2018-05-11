@@ -15,7 +15,7 @@ release a deprecated feature will be removed.  An example handler is shown below
 in release 2.0.0.
 
 
-``` app/initializers/main.js
+```javascript {data-filename=" app/initializers/main.js"}
 import Ember from 'ember';
 
 export function initialize() {
@@ -58,7 +58,7 @@ new file in your project called `config/deprecation-workflow.js`
 
 Here's an example of a deprecation-workflow file after generated from the console:
 
-```config/deprecation-workflow.js
+```javascript {data-filename="config/deprecation-workflow.js"}
 window.deprecationWorkflow = window.deprecationWorkflow || {};
 window.deprecationWorkflow.config = {
   workflow: [
@@ -79,7 +79,7 @@ duplication, you can use a simple regular expression with a wildcard (`.*`) for 
 
 Below is the same deprecation-workflow file as above, now with a regular expression on line 7 to remove some redundant messages. Note that the double quotes around `matchMessage` have also been replaced with forward slashes.
 
-```config/deprecation-workflow.js
+```javascript {data-filename="config/deprecation-workflow.js"}
 window.deprecationWorkflow = window.deprecationWorkflow || {};
 window.deprecationWorkflow.config = {
   workflow: [
@@ -104,7 +104,7 @@ deprecations.
 The code below is the deprecation-workflow file with the first deprecation set to throw an exception on occurrence.  The image demonstrates what
 that deprecation looks like when you run your tests.
 
-```config/deprecation-workflow.js
+```javascript {data-filename="config/deprecation-workflow.js"}
 window.deprecationWorkflow = window.deprecationWorkflow || {};
 window.deprecationWorkflow.config = {
   workflow: [

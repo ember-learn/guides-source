@@ -12,7 +12,7 @@ spec, and ensures Ember detects the components automatically.
 
 A sample component template could look like this:
 
-```app/templates/components/blog-post.hbs
+```handlebars {data-filename="app/templates/components/blog-post.hbs"}
 <article class="blog-post">
   <h1>{{title}}</h1>
   <p>{{yield}}</p>
@@ -22,7 +22,7 @@ A sample component template could look like this:
 
 Given the above template, you can now use the `{{blog-post}}` component:
 
-```app/templates/index.hbs
+```handlebars {data-filename="app/templates/index.hbs"}
 {{#each model as |post|}}
   {{#blog-post title=post.title}}
     {{post.body}}
@@ -32,7 +32,7 @@ Given the above template, you can now use the `{{blog-post}}` component:
 
 Its model is populated in `model` hook in the route handler:
 
-```app/routes/index.js
+```javascript {data-filename="app/routes/index.js"}
 import Route from '@ember/routing/route';
 
 export default Route.extend({
@@ -85,17 +85,17 @@ The real value of [`{{component}}`](https://www.emberjs.com/api/ember/2.16/class
 the component being rendered. Below is an example of using the helper as a
 means of choosing different components for displaying different kinds of posts:
 
-```app/templates/components/foo-component.hbs
+```handlebars {data-filename="app/templates/components/foo-component.hbs"}
 <h3>Hello from foo!</h3>
 <p>{{post.body}}</p>
 ```
 
-```app/templates/components/bar-component.hbs
+```handlebars {data-filename="app/templates/components/bar-component.hbs"}
 <h3>Hello from bar!</h3>
 <div>{{post.author}}</div>
 ```
 
-```app/routes/index.js
+```javascript {data-filename="app/routes/index.js"}
 import Route from '@ember/routing/route';
 
 export default Route.extend({
@@ -105,7 +105,7 @@ export default Route.extend({
 });
 ```
 
-```app/templates/index.hbs
+```handlebars {data-filename="app/templates/index.hbs"}
 {{#each model as |post|}}
   {{!-- either foo-component or bar-component --}}
   {{component post.componentName post=post}}
