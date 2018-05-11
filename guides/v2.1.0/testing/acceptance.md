@@ -211,7 +211,7 @@ Finally, don't forget to add your helpers in `tests/.jshintrc` and in
 `tests/helpers/start-app.js`. In `tests/.jshintrc` you need to add it in the
 `predef` section, otherwise you will get failing jshint tests:
 
-```tests/.jshintc
+```json {data-filename="tests/.jshintrc"}
 {
   "predef": [
     "document",
