@@ -292,6 +292,6 @@ If you deploy your application to an Apache web server, first create a new virtu
 To make sure all routes are handled by index.html,
 add the following directive to the application's virtual host configuration:
 
-```apache
+```apacheconf
 FallbackResource index.html
 ```
