@@ -16,7 +16,7 @@ Using the fixture adapter entails three very simple setup steps:
 Simply attach it as the `ApplicationAdapter` property on your instance
 of `Ember.Application`:
 
-```JavaScript
+```javascript
 var App = Ember.Application.create();
 App.ApplicationAdapter = DS.FixtureAdapter;
 ```

@@ -1,6 +1,6 @@
 Dependency injection and service lookup are two important framework concepts. The first, **dependency injection**, refers to a dependent object being injected onto another object during instantiation. For example, all route objects have the property `router` set on them during instantiation. We say that the dependency of the router has been injected onto the route object.
 
-```JavaScript
+```javascript
 App.IndexRoute = Ember.Route.extend({
   actions: {
     showPath: function(){
@@ -13,7 +13,7 @@ App.IndexRoute = Ember.Route.extend({
 
 Sometimes an Ember.js library will use dependency injection to expose its API to developers. An example of this is Ember-Data, which injects its store into all routes and controllers.
 
-```JavaScript
+```javascript
 App.IndexController = Ember.ObjectController.extend({
   actions: {
     findItems: function(){
@@ -149,7 +149,7 @@ Instead of accessing the container directly, Ember provides an API for registeri
 
 There are two ways to access this API. Many Ember applications can access this API directly on the application instance:
 
-```JavaScript
+```javascript
 App = Ember.Application.create();
 
 App.register('logger:main', {
@@ -163,7 +163,7 @@ App.inject('route', 'logger', 'logger:main');
 
 But ember-cli applications (and libraries) will need to use a more flexible hook, an initializer:
 
-```JavaScript
+```javascript
 Ember.Application.initializer({
   name: 'logger',
   
@@ -184,7 +184,7 @@ Initializers can be declared at any time before an application is instantiated, 
 
 Any dependency injection is comprised of two parts. The first is the **factory registration**:
 
-```JavaScript
+```javascript
 var logger = {
   log: function(m) {
     console.log(m);
@@ -198,7 +198,7 @@ The `register` function adds the factory (`logger`) into the container. It adds 
 
 Often, it is preferable to register a factory that can be instantiated:
 
-```JavaScript
+```javascript
 var Logger = Ember.Object.extend({
   log: function(m) {
     console.log(m);
@@ -212,13 +212,13 @@ This class will be instantiated before it is used by the container. This gives i
 
 The second part of dependency injection is, you guessed it, the **dependency injection**:
 
-```JavaScript
+```javascript
 application.inject('route', 'logger', 'logger:main');
 ```
 
 This is an example of a *type injection*. Onto all factories of the type `route` the property, `logger` will be injected with the factory named `logger:main`. Routes in this example application can now access the logger:
 
-```JavaScript
+```javascript
 App = Ember.Application.extend();
 
 App.Logger = Ember.Object.extend({
@@ -248,7 +248,7 @@ App.create();
 
 Injections can also be made on a specific factory by using its full name:
 
-```JavaScript
+```javascript
 application.inject('route:index', 'logger', 'logger:main');
 ```
 
@@ -257,7 +257,7 @@ Injections can be made onto all of Ember's major framework classes, including vi
 **Note:** For injections into models (if not using ember-cli), you need to enable the `MODEL_FACTORY_INJECTIONS` 
 flag before you initialize your application. You can do this like so:
 
-```JavaScript
+```javascript
 Ember.MODEL_FACTORY_INJECTIONS = true;
 
 var App = Ember.Application.create({

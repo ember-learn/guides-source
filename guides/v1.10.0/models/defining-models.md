@@ -110,7 +110,7 @@ attribute types, and new types can be registered as transforms. See the
 
   Example
 
-  ```JavaScript
+  ```javascript
   var attr = DS.attr;
 
   App.User = DS.Model.extend({
