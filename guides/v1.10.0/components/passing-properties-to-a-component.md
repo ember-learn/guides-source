@@ -27,7 +27,7 @@ App.IndexRoute = Ember.Route.extend({
 ```
 
 ```handlebars
-{{! index.handlebars }}
+{{!-- index.handlebars --}}
 <h1>Template: {{title}}</h1>
 {{blog-post}}
 ```

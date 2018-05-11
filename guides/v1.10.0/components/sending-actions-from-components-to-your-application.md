@@ -94,7 +94,7 @@ App.IndexRoute = Ember.Route.extend({
 ```
 
 ```handlebars
-{{! index.handlebars }}
+{{!-- index.handlebars --}}
 
 {{#each todo in todos}}
   <p>{{todo.title}} <button {{action "deleteTodo" todo}}>Delete</button></p>
@@ -138,7 +138,7 @@ Now we can update our initial template and replace the `{{action}}`
 helper with our new component:
 
 ```handlebars
-{{! index.handlebars }}
+{{!-- index.handlebars --}}
 
     {{#each todo in todos}}
       <p>{{todo.title}} {{confirm-button title="Delete" action="deleteTodo" param=todo}}</p>
