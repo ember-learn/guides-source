@@ -45,13 +45,13 @@ its findings.
 To collect deprecations, first run your in-browser test suite by starting your development server and navigating to [`http://localhost:4200/tests`](http://localhost:4200/tests).  If your test suite isn't fully covering your app's functionality, you may also
 manually exercise functionality within your app where needed.  Once you've exercised the app to your satisfaction, run the following command within
 your browser console: `deprecationWorkflow.flushDeprecations()`.  This will print to the console JavaScript code, which you should then copy to a
-new file in your project called `/config/deprecation-workflow.js`
+new file in your project called `config/deprecation-workflow.js`
 
 <img width="675px" title="Generated Deprecation Code from Browser Console" src="/images/guides/configuring-ember/handling-deprecations/generate-deprecation-code.png"/>
 
 Here's an example of a deprecation-workflow file after generated from the console:
 
-``` /config/deprecation-workflow.js
+```config/deprecation-workflow.js
 window.deprecationWorkflow = window.deprecationWorkflow || {};
 window.deprecationWorkflow.config = {
   workflow: [
@@ -72,7 +72,7 @@ duplication, you can use a simple regular expression with a wildcard (`.*`) for 
 
 Below is the same deprecation-workflow file as above, now with a regular expression on line 7 to remove some redundant messages. Note that the double quotes around `matchMessage` have also been replaced with forward slashes.
 
-``` /config/deprecation-workflow.js
+```config/deprecation-workflow.js
 window.deprecationWorkflow = window.deprecationWorkflow || {};
 window.deprecationWorkflow.config = {
   workflow: [
@@ -97,7 +97,7 @@ deprecations.
 The code below is the deprecation-workflow file with the first deprecation set to throw an exception on occurrence.  The image demonstrates what
 that deprecation looks like when you run your tests.
 
-``` /config/deprecation-workflow.js
+```config/deprecation-workflow.js
 window.deprecationWorkflow = window.deprecationWorkflow || {};
 window.deprecationWorkflow.config = {
   workflow: [
