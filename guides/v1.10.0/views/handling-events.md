@@ -31,18 +31,17 @@ documentation below.
 
 To have the click event from `App.ClickableView` affect the state of your application, simply send an event to the view's controller:
 
-````javascript
+```javascript
 App.ClickableView = Ember.View.extend({
   click: function(evt) {
     this.get('controller').send('turnItUp', 11);
   }
 });
-````
+```
 
 If the controller has an action handler called `turnItUp`, it will be called:
 
-
-````javascript
+```javascript
 App.PlaybackController = Ember.ObjectController.extend({
   actions: {
     turnItUp: function(level){
@@ -50,11 +49,11 @@ App.PlaybackController = Ember.ObjectController.extend({
     }
   }
 });
-````
+```
 
 If it doesn't, the message will be passed to the current route:
 
-````javascript
+```javascript
 App.PlaybackRoute = Ember.Route.extend({
   actions: {
     turnItUp: function(level){
@@ -62,7 +61,7 @@ App.PlaybackRoute = Ember.Route.extend({
     }
   }
 });
-````
+```
 
 To see a full listing of the `Ember.View` built-in events, see the
 documentation section on [Event Names](http://emberjs.com/api/classes/Ember.View.html#toc_event-names).
