@@ -59,7 +59,7 @@ you can use `didUpdateAttrs` to clear any error state that was built up from edi
 </fieldset>
 ```
 
-```/app/components/profile-editor.js
+```app/components/profile-editor.js
 import Component from '@ember/component';
 
 export default Component.extend({
@@ -229,7 +229,7 @@ When rendered the component will iterate through the given list and apply a clas
 
 The scroll happens on `didRender`, where it will scroll the component's container to the element with the selected class name.
 
-```/app/components/selected-item-list.js
+```app/components/selected-item-list.js
 import Component from '@ember/component';
 
 export default Component.extend({
