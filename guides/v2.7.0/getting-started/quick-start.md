@@ -14,7 +14,7 @@ We'll cover these steps:
 You can install Ember with a single command using npm, the Node.js package
 manager. Type this into your terminal:
 
-```sh
+```bash
 npm install -g ember-cli
 ```
 
@@ -29,7 +29,7 @@ Once you've installed Ember CLI via npm, you will have access to a new
 `ember` command in your terminal. You can use the `ember new` command to
 create a new application.
 
-```sh
+```bash
 ember new ember-quickstart
 ```
 
@@ -49,7 +49,7 @@ a breeze.
 Let's make sure everything is working properly. `cd` into the application
 directory `ember-quickstart` and start the development server by typing:
 
-```sh
+```bash
 cd ember-quickstart
 ember server
 ```
@@ -70,7 +70,7 @@ app.
 
 Let's create a new template using the `ember generate` command.
 
-```sh
+```bash
 ember generate template application
 ```
 
@@ -97,7 +97,7 @@ being the different pages that make up your application.
 Ember comes with _generators_ that automate the boilerplate code for
 common tasks. To generate a route, type this in your terminal:
 
-```sh
+```bash
 ember generate route scientists
 ```
 
@@ -191,7 +191,7 @@ in multiple places to show a list of people.
 As usual, there's a generator that makes this easy for us. Make a new
 component by typing:
 
-```sh
+```bash
 ember generate component people-list
 ```
 
@@ -249,7 +249,7 @@ Now that we've written our application and verified that it works in
 development, it's time to get it ready to deploy to our users. To do so,
 run the following command:
 
-```sh
+```bash
 ember build --env production
 ```
 
