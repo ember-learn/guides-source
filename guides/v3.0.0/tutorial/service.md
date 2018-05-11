@@ -366,7 +366,7 @@ To stub these services we simply have to register a stub service that implements
 
 Add the following code after the imports to our acceptance test:
 
-```/tests/acceptance/list-rentals-test.js{+3,+5,+6,+7,+8,+9,+10,-11,+12,+13,+14,+15,+16,+17}
+```tests/acceptance/list-rentals-test.js{+3,+5,+6,+7,+8,+9,+10,-11,+12,+13,+14,+15,+16,+17}
 import { test } from 'qunit';
 import moduleForAcceptance from 'super-rentals/tests/helpers/module-for-acceptance';
 import Service from '@ember/service';

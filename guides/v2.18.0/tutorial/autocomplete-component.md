@@ -509,7 +509,7 @@ We'll verify that a user visiting the rentals page can enter text into the searc
 Open our existing acceptance test, `tests/acceptance/list-rentals-test.js`, and implement the test labeled "should filter the list of rentals by city".
 
 
-```/tests/acceptance/list-rentals-test.js
+```tests/acceptance/list-rentals-test.js
 test('should filter the list of rentals by city.', function (assert) {
   visit('/');
   fillIn('.list-filter input', 'Seattle');

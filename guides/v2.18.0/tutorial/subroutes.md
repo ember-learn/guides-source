@@ -379,7 +379,7 @@ Regardless, we hope this has helped you get started with creating your own ambit
 We want to verify that we can click on a specific rental and load a detailed view to the page.
 We'll click on the title and validate that an expanded description of the rental is shown.
 
-```/tests/acceptance/list-rentals-test.js{+2,+3,+4,+5,+6,+7,+8}
+```tests/acceptance/list-rentals-test.js{+2,+3,+4,+5,+6,+7,+8}
 test('should show details for a specific rental', function (assert) {
   visit('/rentals');
   click('a:contains("Grand Old Mansion")');

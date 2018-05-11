@@ -296,7 +296,7 @@ goals, which include the ability to navigate to an `about` page and a `contact` 
 First, we want to test that visiting `/` properly redirects to `/rentals`. We'll use the Ember `visit` helper
 and then make sure our current URL is `/rentals` once the redirect occurs.
 
-```/tests/acceptance/list-rentals-test.js{+9,+10}
+```tests/acceptance/list-rentals-test.js{+9,+10}
 import { module, test } from 'qunit';
 import { visit, currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
@@ -346,7 +346,7 @@ import {
 ### Test visiting our About and Contact pages
 Now let's add code that simulates a visitor arriving on our homepage, clicking one of our links and then visiting a new page.
 
-```/tests/acceptance/list-rentals-test.js{+2,+3,+4,+8,+9,+10}
+```tests/acceptance/list-rentals-test.js{+2,+3,+4,+8,+9,+10}
 test('should link to information about the company', async function(assert) {
   await visit('/');
   await click(".menu-about");

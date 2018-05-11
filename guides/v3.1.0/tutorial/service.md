@@ -392,7 +392,7 @@ To stub these services we simply have to register a stub service that implements
 
 Add the following code to your application test
 
-```/tests/acceptance/list-rentals-test.js{+1,+13,+14,+15,+16,+17,+23,+24,+25}
+```tests/acceptance/list-rentals-test.js{+1,+13,+14,+15,+16,+17,+23,+24,+25}
 import Service from '@ember/service';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';

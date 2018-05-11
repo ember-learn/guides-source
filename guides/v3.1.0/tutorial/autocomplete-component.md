@@ -539,7 +539,7 @@ Notice we introduce a new helper into this test, `fillIn`.
 
 Let's not forget to add these two helpers to our list of imports.
 
-```/tests/acceptance/list-rentals-test.js{+5,+6}
+```tests/acceptance/list-rentals-test.js{+5,+6}
 import {
   click,
   currentURL,

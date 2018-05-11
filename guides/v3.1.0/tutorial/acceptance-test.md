@@ -43,7 +43,7 @@ Since we haven't added any functionality to our application yet, we'll use this 
 
 To do that, replace occurrences of `/list-rentals` in the generated test with `/`. The test will start our app at the base url, `http://localhost:4200/`, and then do a basic check that the page has finished loading and that the url is what we want it to be.
 
-```/tests/acceptance/list-rentals-test.js{-8,+9,-10,+11,-12,+13}
+```tests/acceptance/list-rentals-test.js{-8,+9,-10,+11,-12,+13}
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 import { visit, currentURL } from '@ember/test-helpers';
@@ -79,7 +79,7 @@ Our launched Chrome web browser now shows 9 successful tests. If you toggle the 
 
 As mentioned before, our initial test just made sure everything was running properly. Now let's replace that test with the list of tasks we want our app to handle (described up above).
 
-```/tests/acceptance/list-rentals-test.js{+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,-26,-27,-28,-29}
+```tests/acceptance/list-rentals-test.js{+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,-26,-27,-28,-29}
 import { module, test } from 'qunit';
 import { visit, currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';

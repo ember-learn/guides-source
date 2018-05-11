@@ -118,7 +118,7 @@ To tell our application tests to use Mirage, open `/tests/acceptance/list-rental
 
 First Add the import for Mirage's test setup function.
 
-```/tests/acceptance/list-rentals-test.js{+3}
+```tests/acceptance/list-rentals-test.js{+3}
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
@@ -132,7 +132,7 @@ import {
 
 Next, call the setup function immediately after your call to set up the application test.
 
-```/tests/acceptance/list-rentals-test.js{+3}
+```tests/acceptance/list-rentals-test.js{+3}
 module('Acceptance | list rentals', function(hooks) {
   setupApplicationTest(hooks);
   setupMirage(hooks);

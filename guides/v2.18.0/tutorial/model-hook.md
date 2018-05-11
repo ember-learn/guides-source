@@ -112,7 +112,7 @@ To find the elements that have a class called `listing`, we'll use a test helper
 The `find` function returns the elements that match the given [CSS selector](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors).
 In this case it will return an array of all the elements with a class called `listing`.
 
-```/tests/acceptance/list-rentals-test.js{+2,+3,+4,+5}
+```tests/acceptance/list-rentals-test.js{+2,+3,+4,+5}
 test('should list available rentals.', function (assert) {
   visit('/');
   andThen(function() {

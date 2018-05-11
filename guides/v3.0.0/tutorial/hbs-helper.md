@@ -95,7 +95,7 @@ while the other two are listed as "Community".
 
 Update the content of the integration test to the following to fix it:
 
-```/tests/integration/helpers/rental-property-type-test.js{-9,-10,-11,-17,+12,+13,+18,+21,+22,+23,+24,+25,+26,+27}
+```tests/integration/helpers/rental-property-type-test.js{-9,-10,-11,-17,+12,+13,+18,+21,+22,+23,+24,+25,+26,+27}
 
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
