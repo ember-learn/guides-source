@@ -79,8 +79,24 @@ In code samples:
 * Follow the [Ember Style Guide](https://github.com/emberjs/ember.js/blob/master/STYLEGUIDE.md).
 * Use double-quotes in templates, i.e., `<div class="awesome">{{foo-bar title="Tomster"}}</div>`.
 * Omit the boilerplate that Ember CLI generates, especially the `import Ember from 'ember'` at the top of every file.
-* In fenced code blocks, include the filename or language after the triple-backticks, like <code>&#96;&#96;&#96;routes/kittens.js</code> or <code>&#96;&#96;&#96;hbs</code>.
-* Write paths relative to the project root.
+* In fenced code blocks, write paths relative to the project root. e.g., `app/router.js`, `config/environment.js`
+* When writing a fenced code block with a filename, do so by writing the language name first followed by the file name within a data-filename block as shown below,
+
+\`\`\` javascript {data-filename="app/router.js"}
+
+\`\`\`
+
+* When writing a fenced code block with diffs, do so by writing the patch information within a data-diff block as shown below,
+
+\`\`\` javascript {data-filename="app/router.js" data-diff="-2,+3"}
+
+\`\`\`
+
+* All fenced code blocks should begin with a language code supported by [prism.js](http://prismjs.com/) so that they get highlighted properly when rendered. Here are some frequently used language codes,
+  * bash
+  * javascript
+  * css
+  * handlebars
 
 When linking to API pages:
 
