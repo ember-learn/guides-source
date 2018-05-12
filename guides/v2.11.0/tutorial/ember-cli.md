@@ -17,14 +17,14 @@ type `ember help <command-name>`.
 To create a new project using Ember CLI, use the `new` command. In preparation
 for the tutorial in the next section, you can make an app called `super-rentals`.
 
-```shell
+```bash
 ember new super-rentals
 ```
 
 A new project will be created inside your current directory. You can now go to
 your `super-rentals` project directory and start working on it.
 
-```shell
+```bash
 cd super-rentals
 ```
 
@@ -117,13 +117,13 @@ to other parts of the app.
 Once we have a new project in place, we can confirm everything is working by
 starting the Ember development server:
 
-```shell
+```bash
 ember server
 ```
 
 or, for short:
 
-```shell
+```bash
 ember s
 ```
 

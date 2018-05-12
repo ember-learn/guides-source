@@ -35,7 +35,7 @@ EmberENV.EXTEND_PROTOTYPES = false;
 ```
 
 Or you can choose class which you want to disable prototype extension.
-``` javascript
+```javascript
 EmberENV.EXTEND_PROTOTYPES = {
   String: false,
   Array: true

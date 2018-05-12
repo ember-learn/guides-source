@@ -351,7 +351,7 @@ module('Integration | Component | location indicator', function(hooks) {
 Once the stub service is registered the test simply needs to check that the stub data that
 is being returned from the service is reflected in the component output.
 
-```tests/integration/components/location-indicator-test.js{+34,+35,+36,+37,+38}
+```javascript {data-filename="tests/integration/components/location-indicator-test.js" data-diff="+34,+35,+36,+37,+38"}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
@@ -393,7 +393,7 @@ module('Integration | Component | location indicator', function(hooks) {
 In the next example, we'll add another test that validates that the display changes
 when we modify the values on the service.
 
-```tests/integration/components/location-indicator-test.js{+40,+41,+42,+43,+44,+45,+46,+47,+48,+49,+50,+51,+52,+53}
+```javascript {data-filename="tests/integration/components/location-indicator-test.js" data-diff="+40,+41,+42,+43,+44,+45,+46,+47,+48,+49,+50,+51,+52,+53"}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
@@ -453,7 +453,7 @@ behavior to complete that is triggered by a DOM interaction induced by those.
 To use them in your tests, you can simply `await` any of them to make sure that subsequent assertions are executed at the right time
 when the asynchronous behavior has fully settled:
 
-```js
+```javascript
 await click('button.submit-button'); // clicks a button and waits for any async behavior initiated by the click to settle
 assert.equal(this.element.querySelector('.form-message').textContent, 'Your details have been submitted successfully.');
 ```

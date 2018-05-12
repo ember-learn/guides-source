@@ -1,13 +1,13 @@
 To create an application test, run `ember generate acceptance-test <name>`.
 For example:
 
-```shell
+```bash
 ember g acceptance-test login
 ```
 
 This generates this file:
 
-```tests/acceptance/login-test.js
+```javascript {data-filename="tests/acceptance/login-test.js"}
 import { module, test } from 'qunit';
 import { visit } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
@@ -34,7 +34,7 @@ Almost every test has a pattern of visiting a route, interacting with the page
 
 For example:
 
-```tests/acceptance/new-post-appears-first-test.js
+```javascript {data-filename="tests/acceptance/new-post-appears-first-test.js"}
 import { module, test } from 'qunit';
 import { click, fillIn, visit } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
@@ -107,14 +107,14 @@ deal with asynchronous behavior as follows:
 
 Mark the callback passed to the `test` function as asynchronous using the `async` keyword:
 
-```tests/acceptance/new-post-appears-first-test.js
+```javascript {data-filename="tests/acceptance/new-post-appears-first-test.js"}
   test('should add new post', async function(assert) {
 
   });
 ```
 Before making an assertion, wait for the execution of each asynchronous helper to finish with the `await` keyword:
 
-```tests/acceptance/new-post-appears-first-test.js
+```javascript {data-filename="tests/acceptance/new-post-appears-first-test.js"}
   test('should add new post', async function(assert) {
     await visit('/posts/new');
     await fillIn('input.title', 'My new post');
@@ -159,7 +159,7 @@ For creating your own test helper, run `ember generate test-helper
 <helper-name>`. Here is the result of running `ember g test-helper
 shouldHaveElementWithCount`:
 
-```tests/helpers/should-have-element-with-count.js
+```javascript {data-filename="tests/helpers/should-have-element-with-count.js"}
 import { registerAsyncHelper } from '@ember/test';
 
 export default registerAsyncHelper(
@@ -183,7 +183,7 @@ first parameter. Other parameters, such as assert, need to be provided when call
 
 Here is an example of a non-async helper:
 
-```tests/helpers/should-have-element-with-count.js
+```javascript {data-filename="tests/helpers/should-have-element-with-count.js"}
 import { registerHelper } from '@ember/test';
 
 export default registerHelper('shouldHaveElementWithCount',
@@ -199,7 +199,7 @@ export default registerHelper('shouldHaveElementWithCount',
 
 Here is an example of an async helper:
 
-```tests/helpers/dblclick.js
+```javascript {data-filename="tests/helpers/dblclick.js"}
 import { run } from '@ember/runloop';
 import { registerAsyncHelper } from '@ember/test';
 
@@ -216,7 +216,7 @@ export default registerAsyncHelper('dblclick',
 Async helpers also come in handy when you want to group interaction
 into one helper. For example:
 
-```tests/helpers/add-contact.js
+```javascript {data-filename="tests/helpers/add-contact.js"}
 import { registerAsyncHelper } from '@ember/test';
 
 export default registerAsyncHelper('addContact',
@@ -234,7 +234,7 @@ Finally, don't forget to add your helpers in `tests/.eslintrc.js` and in
 `tests/helpers/start-app.js`. In `tests/.eslintrc.js` you need to add it in the
 `globals` section, otherwise you will get failing ESLint tests:
 
-```tests/.eslintrc.js{-4,+5,+6,+7,+8,+9,+10}
+```javascript {data-filename="tests/.eslintrc.js" data-diff="-4,+5,+6,+7,+8,+9,+10"}
 module.exports = {
   env: {
     embertest: true
@@ -251,7 +251,7 @@ module.exports = {
 In `tests/helpers/start-app.js` you need to import the helper file: it
 will be registered then.
 
-```tests/helpers/start-app.js
+```javascript {data-filename="tests/helpers/start-app.js"}
 import Ember from 'ember';
 import Application from '../../app';
 import Router from '../../router';

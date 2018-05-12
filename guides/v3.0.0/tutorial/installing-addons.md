@@ -19,13 +19,13 @@ We can make additional style tweaks to `vendor/ember-tutorial.css`, and the chan
 
 Run the following command to install the addon:
 
-```shell
+```bash
 ember install ember-cli-tutorial-style
 ```
 
 Here is the output:
 
-```shell
+```bash
 NPM: Installed ember-cli-tutorial-style
 installing ember-cli-tutorial-style
   create public/assets/images/teaching.png
@@ -48,7 +48,7 @@ The data and endpoints we setup here will come into play later in the tutorial, 
 
 Install the Mirage addon as follows:
 
-```shell
+```bash
 ember install ember-cli-mirage
 ```
 
@@ -56,7 +56,7 @@ Our primary focus with mirage will be in the `config.js` file, which is where we
 We will be following the [JSON-API specification](http://jsonapi.org/) which requires our data to be formatted a certain way.
 Let's configure Mirage to send back our rentals that we had defined above by updating `mirage/config.js`:
 
-```mirage/config.js{+1,+2,+3,+4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33,+34,+35,+36,+37,+38,+39,+40,+41,+42,-43,-44,-45,-46,-47,-48,-49,-50,-51,-52,-53,-54,-55,-56,-57,-58,-59,-60,-61,-62,-63,-64,-65,-66,-67}
+```javascript {data-filename="mirage/config.js" data-diff="+1,+2,+3,+4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33,+34,+35,+36,+37,+38,+39,+40,+41,+42,-43,-44,-45,-46,-47,-48,-49,-50,-51,-52,-53,-54,-55,-56,-57,-58,-59,-60,-61,-62,-63,-64,-65,-66,-67"}
 export default function() {
   this.namespace = '/api';
 
@@ -138,13 +138,13 @@ An [Adapter](../../models/customizing-adapters/) is an object that [Ember Data](
 We will cover Ember Data in more detail later in this tutorial.
 For now, let's generate an adapter for our application:
 
-```shell
+```bash
 ember generate adapter application
 ```
 
 This adapter will extend the [`JSONAPIAdapter`](https://www.emberjs.com/api/ember-data/2.16/classes/DS.JSONAPIAdapter/) base class from Ember Data:
 
-```app/adapters/application.js{+4}
+```javascript {data-filename="app/adapters/application.js" data-diff="+4"}
 import DS from 'ember-data';
 
 export default DS.JSONAPIAdapter.extend({

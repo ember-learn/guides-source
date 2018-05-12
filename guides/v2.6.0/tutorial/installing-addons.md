@@ -14,7 +14,7 @@ We can make additional style tweaks to `/vendor/ember-tutorial.css`, and the cha
 
 Run the following command to install the addon:
 
-```shell
+```bash
 ember install ember-cli-tutorial-style
 ```
 
@@ -32,7 +32,7 @@ Mirage will allow us to create fake data to work with while developing our app a
 
 Install the Mirage addon as follows:
 
-```shell
+```bash
 ember install ember-cli-mirage
 ```
 

@@ -56,7 +56,7 @@ Therefore in our case, when we navigate to `/rentals`, Ember will attempt to loa
 
 To create an index nested route, run the following command:
 
-```shell
+```bash
 ember g route rentals/index
 ```
 
@@ -79,7 +79,7 @@ For example, you can modify the `index` route's path by specifying `this.route('
 In the section on [using Ember Data](../ember-data/#toc_updating-the-model-hook), we added a call to fetch all rentals.
 Let's implement our newly generated `rentals/index` route by moving this `findAll` call from the parent `rentals` route to our new sub-route.
 
-```app/routes/rentals.js{-4,-5,-6}
+```javascript {data-filename="app/routes/rentals.js" data-diff="-4,-5,-6"}
 import Route from '@ember/routing/route';
 
 export default Route.extend({
@@ -89,7 +89,7 @@ export default Route.extend({
 });
 ```
 
-```app/routes/rentals/index.js{+4,+5,+6}
+```javascript {data-filename="app/routes/rentals/index.js" data-diff="+4,+5,+6"}
 import Route from '@ember/routing/route';
 
 export default Route.extend({
@@ -101,7 +101,7 @@ export default Route.extend({
 
 Now that we are returning all of our rentals to the nested route's model, we will also move the rental list markup from our main route template to our nested route index template.
 
-```app/templates/rentals.hbs{-9,-10,-11,-12,-13,-14,-15,-16,-17}
+```handlebars {data-filename="app/templates/rentals.hbs" data-diff="-9,-10,-11,-12,-13,-14,-15,-16,-17"}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>Welcome!</h2>
@@ -122,7 +122,7 @@ Now that we are returning all of our rentals to the nested route's model, we wil
 {{outlet}}
 ```
 
-```app/templates/rentals/index.hbs{+1,+2,+3,+4,+5,+6,+7,+8,+9}
+```handlebars {data-filename="app/templates/rentals/index.hbs" data-diff="+1,+2,+3,+4,+5,+6,+7,+8,+9"}
 {{#list-filter
    filter=(action 'filterByCity')
    as |filteredResults|}}
@@ -139,13 +139,13 @@ Finally, we need to make our controller that has our filter action available to 
 
 Start by running the following command to create an index controller for our nested route:
 
-```shell
+```bash
 ember g controller rentals/index
 ```
 
 Instead of copying the whole controller file over to `app/controllers/rentals/index.js` from `app/controllers/rentals.js`, we'll just take advantage of JavaScript's import/export feature to re-export the rentals controller as the rentals/index controller:
 
-```app/controllers/rentals/index.js{-1,+2,-4,-5,+6}
+```javascript {data-filename="app/controllers/rentals/index.js" data-diff="-1,+2,-4,-5,+6"}
 import Controller from '@ember/controller';
 import RentalsController from '../rentals';
 
@@ -167,7 +167,7 @@ In order to do this, we will need to modify the Mirage `config.js` file that we 
 back in the [Installing Addons section](../installing-addons/). We will add a new route
 handler to return a specific rental:
 
-```mirage/config.js{+57,+58,+59,+60}
+```javascript {data-filename="mirage/config.js" data-diff="+57,+58,+59,+60"}
 export default function() {
   this.namespace = '/api';
 
@@ -237,13 +237,13 @@ export default function() {
 Now that our API is ready to return individual rentals, we can generate our `show` sub-route.
 Much like generating our `rentals` route, we will use `ember g` to create a nested route.
 
-```shell
+```bash
 ember g route rentals/show
 ```
 
 You will see output like this:
 
-```shell
+```bash
 installing route
   create app/routes/rentals/show.js
   create app/templates/rentals/show.hbs
@@ -255,7 +255,7 @@ installing route-test
 
 Let's start by looking at the changes to our Router (`app/router.js`).
 
-```app/router.js{+5}
+```javascript {data-filename="app/router.js" data-diff="+5"}
 Router.map(function() {
   this.route('about');
   this.route('contact');
@@ -273,7 +273,7 @@ We also want to simplify the URL so that it looks more like this: `localhost:420
 
 To do that, we modify our route as follows:
 
-```app/router.js{-5,+6}
+```javascript {data-filename="app/router.js" data-diff="-5,+6"}
 Router.map(function() {
   this.route('about');
   this.route('contact');
@@ -291,7 +291,7 @@ The `rental_id` will now be passed to the route.
 
 Next, we want to edit our `show` route to retrieve the requested rental:
 
-```app/routes/rentals/show.js{+4,+5,+6}
+```javascript {data-filename="app/routes/rentals/show.js" data-diff="+4,+5,+6"}
 import Route from '@ember/routing/route';
 
 export default Route.extend({
@@ -308,7 +308,7 @@ When we call `this.get('store').findRecord('rental', params.rental_id)`, Ember D
 
 Next, we can update the template for our show route (`app/templates/rentals/show.hbs`) and list the information for our rental.
 
-```app/templates/rentals/show.hbs{+1,+2,+3,+4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19,-20}
+```handlebars {data-filename="app/templates/rentals/show.hbs" data-diff="+1,+2,+3,+4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19,-20"}
 <div class="jumbo show-listing">
   <h2 class="title">{{model.title}}</h2>
   <div class="right detail-section">
@@ -344,7 +344,7 @@ Alternately, you may just pass `rental.id` for clarity.
 
 Clicking on the title will load the detail page for that rental.
 
-```app/templates/components/rental-listing.hbs{-6,+7}
+```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="-6,+7"}
 <article class="listing">
   <a {{action 'toggleImageSize'}} class="image {{if isWide "wide"}}">
     <img src="{{rental.image}}" alt="">
@@ -379,7 +379,7 @@ Regardless, we hope this has helped you get started with creating your own ambit
 We want to verify that we can click on a specific rental and load a detailed view to the page.
 We'll click on the title and validate that an expanded description of the rental is shown.
 
-```/tests/acceptance/list-rentals-test.js{+2,+3,+4,+5,+6,+7,+8}
+```javascript {data-filename="tests/acceptance/list-rentals-test.js" data-diff="+2,+3,+4,+5,+6,+7,+8"}
 test('should show details for a specific rental', function (assert) {
   visit('/rentals');
   click('a:contains("Grand Old Mansion")');

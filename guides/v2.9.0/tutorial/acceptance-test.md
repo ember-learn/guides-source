@@ -19,13 +19,13 @@ Acceptance tests interact with our app like an actual person would, but can be a
 
 We'll start by using Ember CLI to generate a new acceptance test:
 
-```shell
+```bash
 ember g acceptance-test list-rentals
 ```
 
 The command will generate the following output, showing that it created a single file called `list-rentals-test`.
 
-```shell
+```bash
 installing acceptance-test
   create tests/acceptance/list-rentals-test.js
 ```

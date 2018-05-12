@@ -16,7 +16,7 @@ as a starting point when you need to add one.
 The [Google Maps API](https://developers.google.com/maps/documentation/javascript/tutorial/) requires us to reference its library from a remote script.
 In this case we'll provide this script to our Ember app via an Addon called `ember-simple-google-maps`.
 
-```shell
+```bash
 ember install ember-simple-google-maps
 ```
 
@@ -25,7 +25,7 @@ You can [Generate an API key](https://developers.google.com/maps/documentation/j
 from Google.
 Add your new API key to the application by stopping the server and restarting it with the environment variable, `GOOGLE_MAPS_API_KEY`.
 
-```shell
+```bash
 GOOGLE_MAPS_API_KEY=<your key here> ember s
 ```
 
@@ -41,7 +41,7 @@ and easier testing of code that depends on it.
 Now that we have the maps API available to the application, we can create our map utility.
 Utility files can be generated using Ember CLI.
 
-```shell
+```bash
 ember g util google-maps
 ```
 
@@ -53,7 +53,7 @@ which makes use of `google.maps.Map` to create our map element,
 `google.maps.Geocoder` to lookup the coordinates of our location,
 and `google.maps.Marker` to pin our map based on the resolved location.
 
-```app/utils/google-maps.js{-1,-2,-3,+4,+6,+8,+10,+11,+12,+14,+15,+16,+17,+18,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+31}
+```javascript {data-filename="app/utils/google-maps.js" data-diff="-1,-2,-3,+4,+6,+8,+10,+11,+12,+14,+15,+16,+17,+18,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+31"}
 export default function googleMaps() {
   return true;
 }
@@ -107,7 +107,7 @@ Accessing our maps API through a [service](../../applications/services/) will gi
 Let's get started creating our service by generating it through Ember CLI,
 which will create the service file, as well as a unit test for it.
 
-```shell
+```bash
 ember g service maps
 ```
 
@@ -115,7 +115,7 @@ Now implement the service as follows.
 Note that we check if a map already exists for the given location and use that one,
 otherwise we call a Google Maps utility to create one.
 
-```app/services/maps.js{+2,+3,+5,+9,+10,+11,+12,+13,+14,+15,+16,+17,+19+,+20,+21,+22,+23,+24,+25,+26,+27,+28,+30,+31,+32,+33,+34}
+```javascript {data-filename="app/services/maps.js" data-diff="+2,+3,+5,+9,+10,+11,+12,+13,+14,+15,+16,+17,+19+,+20,+21,+22,+23,+24,+25,+26,+27,+28,+30,+31,+32,+33,+34"}
 import Service from '@ember/service';
 import { camelize } from '@ember/string';
 import EmberObject from '@ember/object';
@@ -161,7 +161,7 @@ we'll connect it to our application using a component.
 
 Generate the map component using Ember CLI.
 
-```shell
+```bash
 ember g component location-map
 ```
 
@@ -170,7 +170,7 @@ Running this command generates three files: a component JavaScript file, a templ
 Let's start by adding a `div` element to the component template.
 This `div` will act as a place for the 3rd party map API to render the map to.
 
-```app/templates/components/location-map.hbs{-1,+2}
+```handlebars {data-filename="app/templates/components/location-map.hbs" data-diff="-1,+2"}
 {{yield}}
 <div class="map-container"></div>
 ```
@@ -187,7 +187,7 @@ We append the map element we get back from the service by implementing `didInser
 which is a [component lifecycle hook](../../components/the-component-lifecycle/#toc_integrating-with-third-party-libraries-with-code-didinsertelement-code).
 This function runs during the component render, after the component's markup gets inserted into the page.
 
-```app/components/location-map.js{+2,+5,+7,+8,+9,+10,+11,+12}
+```javascript {data-filename="app/components/location-map.js" data-diff="+2,+5,+7,+8,+9,+10,+11,+12"}
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 
@@ -208,7 +208,7 @@ This property will be passed in to the component by its parent template below.
 
 Finally open the template file for our `rental-listing` component and add the new `location-map` component.
 
-```app/templates/components/rental-listing.hbs{+20}
+```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="+20"}
 <article class="listing">
   <a {{action 'toggleImageSize'}} class="image {{if isWide "wide"}}">
     <img src="{{rental.image}}" alt="">
@@ -255,7 +255,7 @@ To instantiate the service, we can instantiate it through ember's resolver using
 For cases where we do not need to override parts of the service, we can use [`lookup`](https://emberjs.com/api/ember/release/classes/ApplicationInstance/methods/lookup?anchor=lookup)
 In our test below we are passing in our fake map utility object in the first test, and passing a cache object for the second test.
 
-```tests/unit/services/maps-test.js{+4,+5,-7,+8,+10,-11,-12,-13,-14,-15,-16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33,+34,+35,+36,+37,+38,+39,+40,+41}
+```javascript {data-filename="tests/unit/services/maps-test.js" data-diff="+4,+5,-7,+8,+10,-11,-12,-13,-14,-15,-16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33,+34,+35,+36,+37,+38,+39,+40,+41"}
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 
@@ -322,7 +322,7 @@ That way when Ember injects the map service into the component, it uses our fake
 A stub stands in place of the real object in your application and simulates its behavior.
 In the stub service, define a method that will fetch the map based on location, called `getMapElement`.
 
-```tests/integration/components/location-map-test.js{+1,+7,+8,+9,+10,+11,+12,+13,+14,+19,+20,+21,+22,+24,+25,+26,+27,+28,+29,-31,-32,-33,-34,-35,-36,-37,-38,-39,-40,-41,-42,-43,-44,-45,-46,-47}
+```javascript {data-filename="tests/integration/components/location-map-test.js" data-diff="+1,+7,+8,+9,+10,+11,+12,+13,+14,+19,+20,+21,+22,+24,+25,+26,+27,+28,+29,-31,-32,-33,-34,-35,-36,-37,-38,-39,-40,-41,-42,-43,-44,-45,-46,-47"}
 import Service from '@ember/service';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
@@ -392,7 +392,7 @@ To stub these services we simply have to register a stub service that implements
 
 Add the following code to your application test
 
-```/tests/acceptance/list-rentals-test.js{+1,+13,+14,+15,+16,+17,+23,+24,+25}
+```javascript {data-filename="tests/acceptance/list-rentals-test.js" data-diff="+1,+13,+14,+15,+16,+17,+23,+24,+25"}
 import Service from '@ember/service';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';

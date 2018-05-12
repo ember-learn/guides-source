@@ -16,7 +16,7 @@ Using the fixture adapter entails three very simple setup steps:
 Simply attach it as the `ApplicationAdapter` property on your instance
 of `Ember.Application`:
 
-```JavaScript
+```javascript
 var App = Ember.Application.create();
 App.ApplicationAdapter = DS.FixtureAdapter;
 ```
@@ -27,7 +27,7 @@ You should refer to [Defining a Model][1] for a more in-depth guide on using
 Ember Data Models, but for the purposes of demonstration we'll use an example
 modeling people who document Ember.js.
 
-```JavaScript
+```javascript
 App.Documenter = DS.Model.extend({
   firstName: DS.attr( 'string' ),
   lastName: DS.attr( 'string' )
@@ -39,7 +39,7 @@ App.Documenter = DS.Model.extend({
 In order to attach fixtures to your model, you have to use `reopenClass` method and define
 fixtures:
 
-```JavaScript
+```javascript
 App.Documenter.reopenClass({
   FIXTURES: [
     { id: 1, firstName: 'Trek', lastName: 'Glowacki' },
@@ -51,7 +51,7 @@ App.Documenter.reopenClass({
 That's it! You can now use all of methods for [Finding Records][2] in your
 application. For example:
 
-```JavaScript
+```javascript
 App.DocumenterRoute = Ember.Route.extend({
   model: function() {
     return this.store.find('documenter', 1); // returns a promise that will resolve

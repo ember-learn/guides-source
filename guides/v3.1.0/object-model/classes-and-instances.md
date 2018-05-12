@@ -147,7 +147,7 @@ instances:
 
 [6]: https://www.emberjs.com/api/ember/release/classes/EmberObject/methods/init?anchor=init
 
-```js
+```javascript
 import EmberObject from '@ember/object';
 
 const Person = EmberObject.extend({
@@ -170,7 +170,7 @@ setup work, and you'll see strange behavior in your application.
 
 Arrays and objects defined directly on any `Ember.Object` are shared across all instances of that class.
 
-```js
+```javascript
 import EmberObject from '@ember/object';
 
 const Person = EmberObject.extend({
@@ -197,7 +197,7 @@ Person.create({
 
 To avoid this behavior, it is encouraged to initialize those arrays and object properties during `init()`. Doing so ensures each instance will be unique.
 
-```js
+```javascript
 import EmberObject from '@ember/object';
 
 const Person = EmberObject.extend({
@@ -232,7 +232,7 @@ and [`set()`][8] accessor methods:
 [7]: https://www.emberjs.com/api/ember/release/classes/@ember%2Fobject/methods/get?anchor=get
 [8]: https://www.emberjs.com/api/ember/release/classes/@ember%2Fobject/methods/set?anchor=set
 
-```js
+```javascript
 import EmberObject from '@ember/object';
 
 const Person = EmberObject.extend({

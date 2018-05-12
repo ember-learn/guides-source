@@ -4,7 +4,7 @@ While our [initial](../simple-component/) rental listing component only displaye
 To begin, let's generate our new component.
 We'll call this component `list-filter`, since all we want our component to do is filter the list of rentals based on input.
 
-```shell
+```bash
 ember g component list-filter
 ```
 
@@ -24,7 +24,7 @@ which allows a Handlebars template to be rendered _inside_ the component's templ
 
 In this case we are passing, or "yielding", our filter data to the inner markup as a variable called `filteredResults` (line 14/).
 
-```app/templates/rentals.hbs{+12,+13,+14,+15,+16,+17,+18,+19,+20,-21,-22,-23}
+```handlebars {data-filename="app/templates/rentals.hbs" data-diff="+12,+13,+14,+15,+16,+17,+18,+19,+20,-21,-22,-23"}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>Welcome!</h2>
@@ -117,7 +117,7 @@ Ember will know that a controller with the name of `rentals` will apply to the r
 
 Generate a controller for the `rentals` route by running the following:
 
-```shell
+```bash
 ember g controller rentals
 ```
 
@@ -148,7 +148,7 @@ The result of the query is returned to the caller.
 For this action to work, we need to replace our Mirage `config.js` file with the following, so that it can respond to our queries.
 Instead of simply returning the list of rentals, our Mirage HTTP GET handler for `rentals` will return rentals matching the string provided in the URL query parameter called `city`.
 
-```mirage/config.js{+4,-5,-6,-7,-44,-45,+47,+48,+49,+50,+51,+52,+53,+54,+55,+56,+57}
+```javascript {data-filename="mirage/config.js" data-diff="+4,-5,-6,-7,-44,-45,+47,+48,+49,+50,+51,+52,+53,+54,+55,+56,+57"}
 export default function() {
   this.namespace = '/api';
 
@@ -222,7 +222,7 @@ Lets add some protective code to ensure our results do not get out of sync with 
 To do this we'll simply provide the filter text to the filter function, so that when the results come back we can compare the original filter value with the current filter value.
 We will update the results on screen only if the original filter value and the current filter value are the same.
 
-```app/controllers/rentals.js{-7,+8,+9,+10,+11,-13,+14,+15,+16,+17}
+```javascript {data-filename="app/controllers/rentals.js" data-diff="-7,+8,+9,+10,+11,-13,+14,+15,+16,+17"}
 import Controller from '@ember/controller';
 
 export default Controller.extend({
@@ -249,7 +249,7 @@ export default Controller.extend({
 In the `filterByCity` function in the rentals controller above,
 we've added a new property called `query` to the filter results instead of just returning an array of rentals as before.
 
-```app/components/list-filter.js{-19,-9,+10,+11,+12,+20,+21,+22,+23,+24}
+```javascript {data-filename="app/components/list-filter.js" data-diff="-19,-9,+10,+11,+12,+20,+21,+22,+23,+24"}
 import Component from '@ember/component';
 
 export default Component.extend({
@@ -303,7 +303,7 @@ similar to [how we tested our rental listing component earlier](../simple-compon
 Lets begin by opening the component integration test created when we generated our `list-filter` component, `tests/integration/components/list-filter-test.js`.
 Remove the default test, and create a new test that verifies that by default, the component will list all items.
 
-```tests/integration/components/list-filter-test.js{+9,+10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28}
+```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="+9,+10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28"}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
@@ -338,7 +338,7 @@ module('Integration | Component | rental-listing', function(hooks) {
 
 Our list-filter component takes a function as an argument, used to find the list of matching rentals based on the filter string provided by the user.
 
-```tests/integration/components/list-filter-test.js{+5,+7,+8,+14,+15,+16,+17,+18}
+```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="+5,+7,+8,+14,+15,+16,+17,+18"}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
@@ -371,7 +371,7 @@ Since our component is expecting the filter process to be asynchronous, we retur
 
 Next, we'll add the call to render the component to show the cities we've provided above.
 
-```tests/integration/components/list-filter-test.js{+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33}
+```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33"}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
@@ -419,7 +419,7 @@ If you return a promise from a QUnit test, the test will wait to finish until th
 In this case our test completes when the `settled` helper decides that processing is finished,
 and the function we provide that asserts the resulting state is completed.
 
-```tests/integration/components/list-filter-test.js{+3,+31,+32,+33,+34}
+```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="+3,+31,+32,+33,+34"}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render, settled } from '@ember/test-helpers';
@@ -474,7 +474,7 @@ import { render, settled, triggerKeyEvent, fillIn } from '@ember/test-helpers';
 
 Now use it to simulate the user typing a key into the search field.
 
-```tests/integration/components/list-filter-test.js{+27}
+```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="+27"}
 test('should update with matching listings', async function (assert) {
   this.set('filterByCity', (val) =>  {
     if (val === '') {
@@ -539,7 +539,7 @@ Notice we introduce a new helper into this test, `fillIn`.
 
 Let's not forget to add these two helpers to our list of imports.
 
-```/tests/acceptance/list-rentals-test.js{+5,+6}
+```javascript {data-filename="tests/acceptance/list-rentals-test.js" data-diff="+5,+6"}
 import {
   click,
   currentURL,

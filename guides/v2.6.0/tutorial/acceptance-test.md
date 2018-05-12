@@ -12,13 +12,13 @@ Acceptance tests interact with our app like an actual person would, but can be a
 
 We'll start by using Ember CLI to generate a new acceptance test:
 
-```shell
+```bash
 ember g acceptance-test list-rentals
 ```
 
 The command will generate the following output, showing that it created a single file called `list-rentals-test`.
 
-```shell
+```bash
 installing acceptance-test
   create tests/acceptance/list-rentals-test.js
 ```
@@ -27,7 +27,7 @@ Opening the new test file will reveal some boilerplate code that will try to go 
 This boilerplate code is there to guide you into your first working acceptance test.
 Since we are testing our index route, which is `/`, we'll replace occurrences of `/list-rentals` with `/`:
 
-```javascript{-6,+7,-8,+9,-12,+13}
+```javascript {data-filename="tests/acceptance/list-rentals-test.js" data-diff="-6,+7,-8,+9,-12,+13"}
 import { test } from 'qunit';
 import moduleForAcceptance from 'super-rentals/tests/helpers/module-for-acceptance';
 

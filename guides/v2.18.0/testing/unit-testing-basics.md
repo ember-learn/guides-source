@@ -12,7 +12,7 @@ looking up the service on the application's container and running assertions aga
 Let's start by creating an service that has a `computedFoo` computed property
 based on a `foo` property.
 
-```app/services/some-thing.js
+```javascript {data-filename="app/services/some-thing.js"}
 import Service from '@ember/service';
 import { computed } from '@ember/object';
 
@@ -31,7 +31,7 @@ Within the test for this object, we'll lookup the service instance, update the `
 should trigger the computed property), and assert that the logic in our
 computed property is working correctly.
 
-```tests/unit/service/some-thing-test.js
+```javascript {data-filename="tests/unit/service/some-thing-test.js"}
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 
@@ -63,7 +63,7 @@ Next let's look at testing logic found within an object's method. In this case
 the `testMethod` method alters some internal state of the object (by updating
 the `foo` property).
 
-```app/services/some-thing.js
+```javascript {data-filename="app/services/some-thing.js"}
 import Service from '@ember/service';
 
 export default Service.extend({
@@ -79,7 +79,7 @@ To test it, we create an instance of our class `SomeThing` as defined above,
 call the `testMethod` method and assert that the internal state is correct as a
 result of the method call.
 
-```tests/unit/services/some-thing-test.js
+```javascript {data-filename="tests/unit/services/some-thing-test.js"}
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 
@@ -100,7 +100,7 @@ In case the object's method returns a value, you can simply assert that the
 return value is calculated correctly. Suppose our object has a `calc` method
 that returns a value based on some internal state.
 
-```app/services/some-thing.js
+```javascript {data-filename="app/services/some-thing.js"}
 import Service from '@ember/service';
 
 export default EmberObject.extend({
@@ -117,7 +117,7 @@ export default EmberObject.extend({
 
 The test would call the `calc` method and assert it gets back the correct value.
 
-```tests/unit/services/some-thing-test.js
+```javascript {data-filename="tests/unit/services/some-thing-test.js"}
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 
@@ -137,7 +137,7 @@ module('Unit | Service | some thing', function(hooks) {
 
 Suppose we have an object that has a property and a method observing that property.
 
-```app/services/some-thing.js
+```javascript {data-filename="app/services/some-thing.js"}
 import Service from '@ember/service';
 import { observer } from "@ember/object";
 
@@ -154,7 +154,7 @@ export default Service.extend({
 In order to test the `doSomething` method we create an instance of `SomeThing`,
 update the observed property (`foo`), and assert that the expected effects are present.
 
-```tests/unit/services/some-thing-test.js
+```javascript {data-filename="tests/unit/services/some-thing-test.js"}
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 

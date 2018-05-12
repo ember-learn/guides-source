@@ -8,13 +8,13 @@ Ember Data requires you to define the structure of the data you wish to provide 
 You can generate a Ember Data Model using Ember CLI.
 We'll call our model `rental` and generate it as follows:
 
-```shell
+```bash
 ember g model rental
 ```
 
 This results in the creation of a model file and a test file:
 
-```shell
+```bash
 installing model
   create app/models/rental.js
 installing model-test

@@ -106,7 +106,7 @@ attribute types, and new types can be registered as transforms. See the
 
   Example
 
-  ```app/models/user.js
+  ```javascript {data-filename="app/models/user.js"}
   export default DS.Model.extend({
       username: DS.attr('string'),
       email: DS.attr('string'),
@@ -166,6 +166,7 @@ To declare a many-to-many relationship between two models, use
 export default DS.Model.extend({
   tags: DS.hasMany('tag')
 });
+```
 
 ```javascript {data-filename=app/models/tag.js}
 export default DS.Model.extend({

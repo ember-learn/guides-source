@@ -8,13 +8,13 @@ Ember Data requires you to define the structure of the data you wish to provide 
 You can generate an Ember Data Model using Ember CLI.
 We'll call our model `rental` and generate it as follows:
 
-```shell
+```bash
 ember g model rental
 ```
 
 This results in the creation of a model file and a test file:
 
-```shell
+```bash
 installing model
   create app/models/rental.js
 installing model-test
@@ -36,7 +36,7 @@ _title_, _owner_, _city_, _category_, _image_, _bedrooms_ and _description_.
 Define attributes by giving them the result of the function [`DS.attr()`](https://www.emberjs.com/api/ember-data/release/classes/DS/methods/attr?anchor=attr).
 For more information on Ember Data Attributes, read the section called [Defining Attributes](../../models/defining-models/#toc_defining-attributes) in the guides.
 
-```app/models/rental.js{+4,+5,+6,+7,+8,+9,+10}
+```javascript {data-filename="app/models/rental.js" data-diff="+4,+5,+6,+7,+8,+9,+10"}
 import DS from 'ember-data';
 
 export default DS.Model.extend({
@@ -60,7 +60,7 @@ The [store service](https://www.emberjs.com/api/ember-data/release/classes/DS.St
 It is the main interface you use to interact with Ember Data.
 In this case, call the [`findAll`](https://www.emberjs.com/api/ember-data/release/classes/DS.Store/methods/findAll?anchor=findAll) function on the store and provide it with the name of your newly created rental model class.
 
-```app/routes/rentals.js{+5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,-33}
+```javascript {data-filename="app/routes/rentals.js" data-diff="+5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,-33"}
 import Route from '@ember/routing/route';
 
 export default Route.extend({
@@ -118,7 +118,7 @@ To tell our application tests to use Mirage, open `/tests/acceptance/list-rental
 
 First Add the import for Mirage's test setup function.
 
-```/tests/acceptance/list-rentals-test.js{+3}
+```javascript {data-filename="tests/acceptance/list-rentals-test.js" data-diff="+3"}
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
@@ -132,7 +132,7 @@ import {
 
 Next, call the setup function immediately after your call to set up the application test.
 
-```/tests/acceptance/list-rentals-test.js{+3}
+```javascript {data-filename="tests/acceptance/list-rentals-test.js" data-diff="+3"}
 module('Acceptance | list rentals', function(hooks) {
   setupApplicationTest(hooks);
   setupMirage(hooks);

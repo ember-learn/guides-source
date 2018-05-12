@@ -14,7 +14,7 @@ You can install Ember with a single command using npm,
 the Node.js package manager.
 Type this into your terminal:
 
-```sh
+```bash
 npm install -g ember-cli
 ```
 
@@ -28,7 +28,7 @@ Once you've installed Ember CLI via npm,
 you will have access to a new `ember` command in your terminal.
 You can use the `ember new` command to create a new application.
 
-```sh
+```bash
 ember new ember-quickstart
 ```
 
@@ -46,7 +46,7 @@ Ember makes starting new projects a breeze.
 Let's make sure everything is working properly.
 `cd` into the application directory `ember-quickstart` and start the development server by typing:
 
-```sh
+```bash
 cd ember-quickstart
 ember serve
 ```
@@ -68,7 +68,7 @@ We will start by editing the `application` template.
 This template is always on screen while the user has your application loaded.
 In your editor, open `app/templates/application.hbs` and change it to the following:
 
-```app/templates/application.hbs
+```handlebars {data-filename="app/templates/application.hbs"}
 <h1>PeopleTracker</h1>
 
 {{outlet}}
@@ -88,7 +88,7 @@ For now, you can think of routes as being the different pages that make up your 
 Ember comes with _generators_ that automate the boilerplate code for common tasks.
 To generate a route, type this in a new terminal window in your `ember-quickstart` directory:
 
-```sh
+```bash
 ember generate route scientists
 ```
 
@@ -113,7 +113,7 @@ That is Ember telling you that it has created:
 
 Open the newly-created template in `app/templates/scientists.hbs` and add the following HTML:
 
-```app/templates/scientists.hbs
+```handlebars {data-filename="app/templates/scientists.hbs"}
 <h2>List of Scientists</h2>
 ```
 
@@ -128,7 +128,7 @@ and we can specify a model by editing `app/routes/scientists.js`.
 
 We'll take the code created for us by the generator and add a `model()` method to the `Route`:
 
-```app/routes/scientists.js{+4,+5,+6}
+```javascript {data-filename="app/routes/scientists.js" data-diff="+4,+5,+6"}
 import Route from '@ember/routing/route';
 
 export default Route.extend({
@@ -149,7 +149,7 @@ the `model()` method supports any library that uses [JavaScript Promises](https:
 Now let's tell Ember how to turn that array of strings into HTML.
 Open the `scientists` template and add the following code to loop through the array and print it:
 
-```app/templates/scientists.hbs{+3,+4,+5,+6,+7}
+```handlebars {data-filename="app/templates/scientists.hbs" data-diff="+3,+4,+5,+6,+7"}
 <h2>List of Scientists</h2>
 
 <ul>
@@ -172,13 +172,13 @@ Let's create a `people-list` component that we can use in multiple places to sho
 As usual, there's a generator that makes this easy for us.
 Make a new component by typing:
 
-```sh
+```bash
 ember generate component people-list
 ```
 
 Copy and paste the `scientists` template into the `people-list` component's template and edit it to look as follows:
 
-```app/templates/components/people-list.hbs
+```handlebars {data-filename="app/templates/components/people-list.hbs"}
 <h2>{{title}}</h2>
 
 <ul>
@@ -202,7 +202,7 @@ We're going to tell our component:
 2. What array of people to use, via the `people` attribute. We'll
    provide this route's `model` as the list of people.
 
-```app/templates/scientists.hbs{-1,-2,-3,-4,-5,-6,-7,+8}
+```handlebars {data-filename="app/templates/scientists.hbs" data-diff="-1,-2,-3,-4,-5,-6,-7,+8"}
 <h2>List of Scientists</h2>
 
 <ul>
@@ -229,7 +229,7 @@ In web applications you often want to listen for user events like clicks or hove
 Ember makes this easy to do.
 First add an `action` helper to the `li` in your `people-list` component.
 
-```app/templates/components/people-list.hbs{-5,+6}
+```handlebars {data-filename="app/templates/components/people-list.hbs" data-diff="-5,+6"}
 <h2>{{title}}</h2>
 
 <ul>
@@ -249,7 +249,7 @@ Think of this like calling `this.actions.showPerson(person)` from our template.
 To handle this function call you need to modify the `people-list` component file to add the function to be called.
 In the component, add an `actions` object with a `showPerson` function that alerts the first argument.
 
-```app/components/people-list.js{+4,+5,+6,+7,+8}
+```javascript {data-filename="app/components/people-list.js" data-diff="+4,+5,+6,+7,+8"}
 import Component from '@ember/component';
 
 export default Component.extend({
@@ -271,7 +271,7 @@ it's time to get it ready to deploy to our users.
 
 To do so, run the following command:
 
-```sh
+```bash
 ember build --env production
 ```
 
@@ -292,6 +292,6 @@ If you deploy your application to an Apache web server, first create a new virtu
 To make sure all routes are handled by index.html,
 add the following directive to the application's virtual host configuration:
 
-```apache
+```apacheconf
 FallbackResource index.html
 ```

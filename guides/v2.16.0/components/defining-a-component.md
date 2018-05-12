@@ -1,6 +1,6 @@
 To define a component, run:
 
-```shell
+```bash
 ember generate component my-component-name
 ```
 

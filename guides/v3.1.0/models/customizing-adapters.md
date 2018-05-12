@@ -77,7 +77,7 @@ The `JSONAPIAdapter` is smart enough to determine the URLs it
 communicates with based on the name of the model. For example, if you
 ask for a `Post` by ID:
 
-```js
+```javascript
 store.findRecord('post', 1).then(function(post) {
 });
 ```
@@ -138,7 +138,7 @@ and requests for `advice` to `/advice` and `/advice/1` (instead of
 
 When specifying irregular inflection rules for compound words, only the final word or phrase should be specified. For example, to specify the plural of `redCow` as `redKine` or `red-cow` as `red-kine`, only the final word segments `cow` and `kine` should be specified:
 
-```js
+```javascript
 inflector.irregular('cow', 'kine');
 ```
 

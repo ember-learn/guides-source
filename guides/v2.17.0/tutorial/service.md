@@ -16,7 +16,7 @@ as a starting point when you need to add one.
 The [Google Maps API](https://developers.google.com/maps/documentation/javascript/tutorial/) requires us to reference its library from a remote script.
 In this case we'll provide this script to our Ember app via an Addon called `ember-simple-google-maps`.
 
-```shell
+```bash
 ember install ember-simple-google-maps
 ```
 
@@ -25,7 +25,7 @@ You can [Generate an API key](https://developers.google.com/maps/documentation/j
 from Google.
 Add your new API key to the application by stopping the server and restarting it with the environment variable, `GOOGLE_MAPS_API_KEY`.
 
-```shell
+```bash
 GOOGLE_MAPS_API_KEY=<your key here> ember s
 ```
 
@@ -41,7 +41,7 @@ and easier testing of code that depends on it.
 Now that we have the maps API available to the application, we can create our map utility.
 Utility files can be generated using Ember CLI.
 
-```shell
+```bash
 ember g util google-maps
 ```
 
@@ -104,7 +104,7 @@ Accessing our maps API through a [service](../../applications/services/) will gi
 Let's get started creating our service by generating it through Ember CLI,
 which will create the service file, as well as a unit test for it.
 
-```shell
+```bash
 ember g service maps
 ```
 
@@ -157,7 +157,7 @@ we'll connect it to our application using a component.
 
 Generate the map component using Ember CLI.
 
-```shell
+```bash
 ember g component location-map
 ```
 

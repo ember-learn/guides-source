@@ -2,7 +2,7 @@ Sometimes, you may want to define a component that wraps content provided by oth
 
 For example, imagine we are building a `blog-post` component that we can use in our application to display a blog post:
 
-```app/templates/components/blog-post.hbs
+```handlebars {data-filename="app/templates/components/blog-post.hbs"}
 <h1>{{title}}</h1>
 <div class="body">{{body}}</div>
 ```
@@ -30,7 +30,7 @@ See the Handlebars documentation on [block expressions](http://handlebarsjs.com/
 In that case, we can use the `{{blog-post}}` component in **block form** and tell Ember where the block content should be rendered using the `{{yield}}` helper.
 To update the example above, we'll first change the component's template:
 
-```app/templates/components/blog-post.hbs
+```handlebars {data-filename="app/templates/components/blog-post.hbs"}
 <h1>{{title}}</h1>
 <div class="body">{{yield}}</div>
 ```
@@ -40,7 +40,7 @@ This tells Ember that this content will be provided when the component is used.
 
 Next, we'll update the template using the component to use the block form:
 
-```app/templates/index.hbs
+```handlebars {data-filename="app/templates/index.hbs"}
 {{#blog-post title=title}}
   <p class="author">by {{author}}</p>
   {{body}}
@@ -56,7 +56,7 @@ There is also a way to share data within your blog post component with the conte
 In our blog post component we want to provide a way for the user to configure what type of style they want to write their post in.
 We will give them the option to specify either `markdown-style` or `html-style`.
 
-```app/templates/index.hbs
+```handlebars {data-filename="app/templates/index.hbs"}
 {{#blog-post editStyle="markdown-style"}}
   <p class="author">by {{author}}</p>
   {{body}}
@@ -69,7 +69,7 @@ you can yield the component using the [`component helper`](https://www.emberjs.c
 Here, the appropriate component is assigned to a hash using nested helpers and yielded to the template.
 Notice `editStyle` being used as an argument to the component helper.
 
-```app/templates/components/blog-post.hbs
+```handlebars {data-filename="app/templates/components/blog-post.hbs"}
 <h2>{{title}}</h2>
 <div class="body">{{yield (hash body=(component editStyle))}}</div>
 ```
@@ -77,7 +77,7 @@ Notice `editStyle` being used as an argument to the component helper.
 Once yielded, the data can be accessed by the wrapped content by referencing the `post` variable.
 Now a component called `markdown-style` will be rendered in `{{post.body}}`.
 
-```app/templates/index.hbs
+```handlebars {data-filename="app/templates/index.hbs"}
 {{#blog-post editStyle="markdown-style" postData=myText as |post|}}
   <p class="author">by {{author}}</p>
   {{post.body}}
@@ -87,7 +87,7 @@ Now a component called `markdown-style` will be rendered in `{{post.body}}`.
 Finally, we need to share `myText` with the body in order to have it display.
 To pass the blog text to the body component, we'll add a `postData` argument to the component helper.
 
-```app/templates/components/blog-post.hbs
+```handlebars {data-filename="app/templates/components/blog-post.hbs"}
 <h2>{{title}}</h2>
 <div class="body">
   {{yield (hash
@@ -105,7 +105,7 @@ In this case we'll add a text style option which will dictate the style of the b
 When `{{post.body}}` is instantiated, it will have both the `editStyle` and `postData` given by its wrapping component,
 as well as the `bodyStyle` declared in the template.
 
-```app/templates/index.hbs
+```handlebars {data-filename="app/templates/index.hbs"}
 {{#blog-post editStyle="markdown-style" postData=myText as |post|}}
   <p class="author">by {{author}}</p>
   {{post.body bodyStyle="compact-style"}}

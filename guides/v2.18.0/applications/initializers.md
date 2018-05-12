@@ -28,7 +28,7 @@ ember generate initializer shopping-cart
 
 Let's customize the `shopping-cart` initializer to inject a `cart` property into all the routes in your application:
 
-```app/initializers/shopping-cart.js
+```javascript {data-filename="app/initializers/shopping-cart.js"}
 export function initialize(application) {
   application.inject('route', 'cart', 'service:shopping-cart');
 };
@@ -48,7 +48,7 @@ ember generate instance-initializer logger
 
 Let's add some simple logging to indicate that the instance has booted:
 
-```app/instance-initializers/logger.js
+```javascript {data-filename="app/instance-initializers/logger.js"}
 export function initialize(applicationInstance) {
   let logger = applicationInstance.lookup('logger:main');
   logger.log('Hello from the instance initializer!');
@@ -63,7 +63,7 @@ export default {
 
 If you'd like to control the order in which initializers run, you can use the `before` and/or `after` options:
 
-```app/initializers/config-reader.js
+```javascript {data-filename="app/initializers/config-reader.js"}
 export function initialize(application) {
   // ... your code ...
 };
@@ -74,7 +74,7 @@ export default {
 };
 ```
 
-```app/initializers/websocket-init.js
+```javascript {data-filename="app/initializers/websocket-init.js"}
 export function initialize(application) {
   // ... your code ...
 };
@@ -85,7 +85,7 @@ export default {
 };
 ```
 
-```app/initializers/asset-init.js
+```javascript {data-filename="app/initializers/asset-init.js"}
 export function initialize(application) {
   // ... your code ...
 };
@@ -103,7 +103,7 @@ Application initializers will always run before application instance initializer
 
 By default initializer names are derived from their module name. This initializer will be given the name `logger`:
 
-```app/instance-initializers/logger.js
+```javascript {data-filename="app/instance-initializers/logger.js"}
 export function initialize(applicationInstance) {
   let logger = applicationInstance.lookup('logger:main');
   logger.log('Hello from the instance initializer!');
@@ -114,7 +114,7 @@ export default { initialize };
 
 If you want to change the name you can simply rename the file, but if needed you can also specify the name explicitly:
 
-```app/instance-initializers/logger.js
+```javascript {data-filename="app/instance-initializers/logger.js"}
 export function initialize(applicationInstance) {
   let logger = applicationInstance.lookup('logger:main');
   logger.log('Hello from the instance initializer!');

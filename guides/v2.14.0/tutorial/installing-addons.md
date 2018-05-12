@@ -20,7 +20,7 @@ We can make additional style tweaks to `vendor/ember-tutorial.css`, and the chan
 
 Run the following command to install the addon:
 
-```shell
+```bash
 ember install ember-cli-tutorial-style
 ```
 
@@ -39,7 +39,7 @@ The data and endpoints we setup here will come into play later in the tutorial, 
 
 Install the Mirage addon as follows:
 
-```shell
+```bash
 ember install ember-cli-mirage
 ```
 
@@ -129,7 +129,7 @@ An [Adapter](../../models/customizing-adapters/) is an object that [Ember Data](
 We will cover Ember Data in more detail later in this tutorial.
 For now, let's generate an adapter for our application:
 
-```shell
+```bash
 ember generate adapter application
 ```
 

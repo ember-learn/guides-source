@@ -4,7 +4,7 @@ While our [initial](../simple-component/) rental listing component only displaye
 To begin, let's generate our new component.
 We'll call this component `list-filter`, since all we want our component to do is filter the list of rentals based on input.
 
-```shell
+```bash
 ember g component list-filter
 ```
 
@@ -109,7 +109,7 @@ Ember will know that a controller with the name of `rentals` will apply to the r
 
 Generate a controller for the `rentals` route by running the following:
 
-```shell
+```bash
 ember g controller rentals
 ```
 

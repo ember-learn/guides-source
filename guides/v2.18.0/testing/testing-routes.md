@@ -18,7 +18,7 @@ sub-routes and controllers.
 > template, so when asked whether we want to overwrite `app/templates/application.hbs`
 > we will answer 'n'.
 
-```app/routes/application.js
+```javascript {data-filename="app/routes/application.js"}
 import Route from '@ember/route';
 
 export default Route.extend({
@@ -43,7 +43,7 @@ for testing, which in turn allows you to catch bugs more easily.
 
 Here is an example of test this route in an isolated test case:
 
-```tests/unit/routes/application-test.js
+```javascript {data-filename="tests/unit/routes/application-test.js"}
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 

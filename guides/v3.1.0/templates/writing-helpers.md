@@ -33,7 +33,7 @@ To add a new helper, create a file with the name of the helper you want
 (e.g. `format-currency.js`) in your application's `helpers` directory.
 You can also have Ember generate the file for you from the command line:
 
-```shell
+```bash
 ember generate helper format-currency
 ```
 
@@ -63,13 +63,13 @@ function and insert whatever you return from the helper into the DOM.
 
 So, if we want to display a purchase total we can pass the value into the template in cents:
 
-```hbs
+```handlebars
 Your total is {{format-currency 250}}.
 ```
 
 And Ember makes use of our new helper function to replace the content inside the ```{{ }}``` with the formatted amount.
 
-```hbs
+```handlebars
 Your total is $2.50.
 ```
 

@@ -4,7 +4,7 @@ you want to respond to as a method on your component.
 
 For example, imagine we have a template like this:
 
-```hbs
+```handlebars
 {{#double-clickable}}
   This is a double clickable area!
 {{/double-clickable}}
@@ -13,7 +13,7 @@ For example, imagine we have a template like this:
 Let's implement `double-clickable` such that when it is
 clicked, an alert is displayed:
 
-```app/components/double-clickable.js
+```javascript {data-filename="app/components/double-clickable.js"}
 import Component from '@ember/component';
 
 export default Component.extend({
@@ -27,7 +27,7 @@ Browser events may bubble up the DOM which potentially target parent component(s
 in succession. To enable bubbling `return true;` from the event handler method
 in your component.
 
-```app/components/double-clickable.js
+```javascript {data-filename="app/components/double-clickable.js"}
 import Component from '@ember/component';
 import Ember from 'ember';
 
@@ -48,7 +48,7 @@ In some cases your component needs to define event handlers, perhaps to support
 various draggable behaviors. For example, a component may need to send an `id`
 when it receives a drop event:
 
-```hbs
+```handlebars
 {{drop-target action=(action "didDrop")}}
 ```
 
@@ -56,7 +56,7 @@ You can define the component's event handlers to manage the drop event.
 And if you need to, you may also stop events from bubbling, by using
 `return false;`.
 
-```app/components/drop-target.js
+```javascript {data-filename="app/components/drop-target.js"}
 import Component from '@ember/component';
 
 export default Component.extend({
@@ -83,7 +83,7 @@ Another way to preserve native event behaviors and use an action, is to
 assign a (closure) action to an inline event handler. Consider the
 template below which includes an `onclick` handler on a `button` element:
 
-```hbs
+```handlebars
 <button onclick={{action "signUp"}}>Sign Up</button>
 ```
 
@@ -91,7 +91,7 @@ The `signUp` action is simply a function defined on the `actions` hash
 of a component. Since the action is assigned to an inline handler, the
 function definition can define the event object as its first parameter.
 
-```js
+```javascript
 actions: {
   signUp(event){
   	// Only when assigning the action to an inline handler, the event object
@@ -105,11 +105,11 @@ browser event as an argument. So, the function definition for the action cannot
 define an event parameter. The following example demonstrates the
 default behavior using an action.
 
-```hbs
+```handlebars
 <button {{action "signUp"}}>Sign Up</button>
 ```
 
-```js
+```javascript
 actions: {
   signUp() {
     // No event object is passed to the action.

@@ -28,7 +28,7 @@ We can use the `route:application` to do so. The `route:application` is
 the top-most route in the route hierarchy, and its `model` hook gets
 called once when the app starts up.
 
-```app/models/album.js
+```javascript {data-filename="app/models/album.js"}
 import DS from 'ember-data';
 
 export default DS.Model.extend({
@@ -38,7 +38,7 @@ export default DS.Model.extend({
 });
 ```
 
-```app/routes/application.js
+```javascript {data-filename="app/routes/application.js"}
 import Route from '@ember/routing/route';
 
 export default Route.extend({
@@ -80,7 +80,7 @@ If you would like the data to be normalized by the model's default
 serializer before pushing it into the store, you can use the
 [`store.pushPayload()`](https://www.emberjs.com/api/ember-data/2.16/classes/DS.Store/methods/push?anchor=pushPayload) method.
 
-```app/serializers/album.js
+```javascript {data-filename="app/serializers/album.js"}
 import DS from 'ember-data';
 
 export default DS.RestSerializer.extend({
@@ -92,7 +92,7 @@ export default DS.RestSerializer.extend({
 });
 ```
 
-```app/routes/application.js
+```javascript {data-filename="app/routes/application.js"}
 import Route from '@ember/routing/route';
 
 export default Route.extend({
@@ -126,7 +126,7 @@ custom AJAX request and push the resulting model data into the store
 so it can be accessed by other parts of your application.
 
 
-```app/routes/confirm-payment.js
+```javascript {data-filename="app/routes/confirm-payment.js"}
 import Route from '@ember/routing/route';
 import $ from 'jquery';
 

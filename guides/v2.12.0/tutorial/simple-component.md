@@ -6,14 +6,14 @@ Let's generate a `rental-listing` component that will manage the behavior for ea
 A dash is required in every component name to avoid conflicting with a possible HTML element,
 so `rental-listing` is acceptable but `rental` isn't.
 
-```shell
+```bash
 ember g component rental-listing
 ```
 
 Ember CLI will then generate a handful of files for our component:
 
 
-```shell
+```bash
 installing component
   create app/components/rental-listing.js
   create app/templates/components/rental-listing.hbs

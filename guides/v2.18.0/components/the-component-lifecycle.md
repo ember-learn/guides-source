@@ -46,7 +46,7 @@ This hook can be an effective alternative to an observer, as it will run prior t
 An example of this scenario in action is a profile editor component.  As you are editing one user, and the user attribute is changed,
 you can use `didUpdateAttrs` to clear any error state that was built up from editing the previous user.
 
-```app/templates/components/profile-editor.hbs
+```handlebars {data-filename="app/templates/components/profile-editor.hbs"}
 <ul class="errors">
   {{#each errors as |error|}}
     <li>{{error.message}}</li>
@@ -59,7 +59,7 @@ you can use `didUpdateAttrs` to clear any error state that was built up from edi
 </fieldset>
 ```
 
-```/app/components/profile-editor.js
+```javascript {data-filename="app/components/profile-editor.js"}
 import Component from '@ember/component';
 
 export default Component.extend({
@@ -94,7 +94,7 @@ you can use the hook to effectively act as an observer, ensuring code is execute
 For example, if you have a component that renders based on a json configuration, but you want to provide your component with the option of taking the config as a string,
 you can leverage `didReceiveAttrs` to ensure the incoming config is always parsed.
 
-```app/components/profile-editor.js
+```javascript {data-filename="app/components/profile-editor.js"}
 import Component from '@ember/component';
 
 export default Component.extend({
@@ -129,7 +129,7 @@ Ember guarantees that, by the time `didInsertElement()` is called:
 A component's [`$()`][dollar] method allows you to access the component's DOM element by returning a JQuery element.
 For example, you can set an attribute using jQuery's `attr()` method:
 
-```app/components/profile-editor.js
+```javascript {data-filename="app/components/profile-editor.js"}
 import Component from '@ember/component';
 
 export default Component.extend({
@@ -142,7 +142,7 @@ export default Component.extend({
 
 [`$()`][dollar] will, by default, return a jQuery object for the component's root element, but you can also target child elements within the component's template by passing a selector:
 
-```app/components/profile-editor.js
+```javascript {data-filename="app/components/profile-editor.js"}
 import Component from '@ember/component';
 
 export default Component.extend({
@@ -157,7 +157,7 @@ Let's initialize our date picker by overriding the [`didInsertElement()`][did-in
 
 Date picker libraries usually attach to an `<input>` element, so we will use jQuery to find an appropriate input within our component's template.
 
-```app/components/profile-editor.js
+```javascript {data-filename="app/components/profile-editor.js"}
 import Component from '@ember/component';
 
 export default Component.extend({
@@ -176,7 +176,7 @@ handler][event-names].
 For example, perhaps you have some custom CSS animations trigger when the component
 is rendered and you want to handle some cleanup when it ends:
 
-```app/components/profile-editor.js
+```javascript {data-filename="app/components/profile-editor.js"}
 import Component from '@ember/component';
 
 export default Component.extend({
@@ -214,14 +214,14 @@ We can first render this list, and then set the scroll.
 The component below takes a list of items and displays them on the screen.
 Additionally, it takes an object representing which item is selected and will select and set the scroll top to that item.
 
-```app/templates/application.hbs
+```handlebars {data-filename="app/templates/application.hbs"}
 {{selected-item-list items=items selectedItem=selection}}
 ```
 
 When rendered the component will iterate through the given list and apply a class to the one that is selected.
 
 
-```app/templates/components/selected-item-list.hbs
+```handlebars {data-filename="app/templates/components/selected-item-list.hbs"}
 {{#each items as |item|}}
   <div class="list-item {{if item.isSelected 'selected-item'}}">{{item.label}}</div>
 {{/each}}
@@ -229,7 +229,7 @@ When rendered the component will iterate through the given list and apply a clas
 
 The scroll happens on `didRender`, where it will scroll the component's container to the element with the selected class name.
 
-```/app/components/selected-item-list.js
+```javascript {data-filename="app/components/selected-item-list.js"}
 import Component from '@ember/component';
 
 export default Component.extend({
@@ -260,7 +260,7 @@ allowing for any teardown logic to be performed.
 Component teardown can be triggered by a number of different conditions.
 For instance, the user may navigate to a different route, or a conditional Handlebars block surrounding your component may change:
 
-```app/templates/application.hbs
+```handlebars {data-filename="app/templates/application.hbs"}
 {{#if falseBool}}
   {{my-component}}
 {{/if}}
@@ -268,7 +268,7 @@ For instance, the user may navigate to a different route, or a conditional Handl
 
 Let's use this hook to cleanup our date picker and event listener from above:
 
-```app/components/profile-editor.js
+```javascript {data-filename="app/components/profile-editor.js"}
 import Component from '@ember/component';
 
 export default Component.extend({

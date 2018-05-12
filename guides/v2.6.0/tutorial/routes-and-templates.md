@@ -17,19 +17,19 @@ The route handler then loads a template.
 If we run `ember help generate`, we can see a variety of tools that come with Ember for automatically generating files for various Ember resources.
 Let's use the route generator to start our `about` route.
 
-```shell
+```bash
 ember generate route about
 ```
 
 or for short,
 
-```shell
+```bash
 ember g route about
 ```
 
 We can then see what actions were taken by the generator:
 
-```shell
+```bash
 installing route
   create app/routes/about.js
   create app/templates/about.hbs
@@ -87,7 +87,7 @@ and then go to [`http://localhost:4200/about`](http://localhost:4200/about) to s
 Let's create another route with details for contacting the company.
 Once again, we'll start by generating a route, a route handler, and a template.
 
-```shell
+```bash
 ember g route contact
 ```
 
@@ -175,13 +175,13 @@ Now, we'll add a link to our contact page so we can navigate from back and forth
 With our two static pages in place, we are ready to add our home page which welcomes users to the site.
 Using the same process we did for our about and contact pages, we will first generate a new route called `index`.
 
-```shell
+```bash
 ember g route index
 ```
 
 We can see the now familiar output for the route generator:
 
-```shell
+```bash
 installing route
   create app/routes/index.js
   create app/templates/index.hbs
@@ -215,7 +215,7 @@ In addition to providing button-style links in each route of our application, we
 
 First, create the application by typing `ember g template application`.
 
-```shell
+```bash
 installing template
   create app/templates/application.hbs
 ```

@@ -10,7 +10,7 @@ When a promise runs, it schedules fulfillment/rejection to be executed by the ru
 
 Getting the results of a promise requires you to use the `then` method. Calling the `then` function on an existing promise:
 
-``` javascript
+```javascript
 // let's call the existing promise promise1, so you'd write:
 promise1.then(fulfillmentCallback, rejectionCallback);
 
@@ -27,7 +27,7 @@ In the case that `promise1` succeeds, then the `fulfillmentCallback` function wi
 
 If you pass in a function to `then` it casts the function into a promise and returns the promise.  The results of that promise will be what's returned from the function.
 
-``` javascript
+```javascript
 // let's call the existing promise promise1 and will have the result `3`, so you'd write:
 var promise2 = promise1.then(function(results){
   return results + 2;
@@ -57,7 +57,7 @@ var promise4 = promise1.then(function(results){
 
 If you pass a promise into `then` it will return the results of that promise.
 
-``` javascript
+```javascript
 // let's call the existing promises promise1 and promise2, so you'd write:
 var promise3 = promise1.then(promise2);
 
@@ -100,7 +100,7 @@ promise3.then(function(result){
 6. Run loop: run "fulfill the promise" task (which includes notifying all chained promises/observers of fulfillment)
 7. Run loop is off since there are no more tasks
 
-``` javascript
+```javascript
 new Ember.RSVP.Promise(function(resolve){
   // resolve will run ~10 ms after the then has been called and is observing
   Ember.run.later(this, resolve, 'hello', 10);
@@ -121,7 +121,7 @@ new Ember.RSVP.Promise(function(resolve){
 8. Code: Observe Promise1 (since the promise has already fulfilled, schedule an async task to notify this observer of fulfillment)
 9. Uncaught Error: Assertion Failed: You have turned on testing mode, which disabled the run-loop's autorun. You will need to wrap any code with asynchronous side-effects in an Ember.run
 
-``` javascript
+```javascript
 var promise = new Ember.RSVP.Promise(function(resolve){
   // this will run before the then has happened below
   // and finish the triggered run loop

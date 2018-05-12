@@ -215,7 +215,7 @@ App.IndexRoute = Ember.Route.extend({
 
 Injections can also be made on a specific factory by using its full name:
 
-```JavaScript
+```javascript
 application.inject('route:index', 'logger', 'logger:main');
 ```
 

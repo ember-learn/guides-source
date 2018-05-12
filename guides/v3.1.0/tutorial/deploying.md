@@ -9,13 +9,13 @@ so that you can view [the maps we set up previously](../service/).
 
 For many Unix shell environments you can simply provide the key in front of the of the build command, such as:
 
-```shell
+```bash
 GOOGLE_MAPS_API_KEY=<your key> ember build --environment=development
 ```
 
 For windows environments, type the following:
 
-```shell
+```bash
 set GOOGLE_MAPS_API_KEY=<your key>
 ember build --environment=development
 ```
@@ -28,7 +28,7 @@ However, normally we would use `ember build --environment=production` which opti
 
 You can deploy your application to any web server by copying the output from `ember build` to any web server:
 
-```shell
+```bash
 scp -r dist/* myserver.com:/var/www/public/
 ```
 
@@ -39,14 +39,14 @@ To deploy an Ember application you can simply deploy the folder produced by `emb
 
 You will need to have the surge cli tool installed:
 
-```shell
+```bash
 npm install -g surge
 ```
 
 Then you can use the `surge` command to deploy your application.
 Note you will also need to rename index.html to 200.html to enable Ember's client-side routing.
 
-```shell
+```bash
 mv dist/index.html dist/200.html
 surge dist funny-name.surge.sh
 ```
@@ -58,7 +58,7 @@ If the second argument is left blank surge will prompt you with a suggested subd
 To deploy to the same URL after making changes, perform the same steps, reusing
 the same domain as before.
 
-```shell
+```bash
 rm -rf dist
 GOOGLE_MAPS_API_KEY=<your key> ember build --environment=development
 mv dist/index.html dist/200.html

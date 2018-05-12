@@ -11,13 +11,13 @@ Ember structures things, see [our diagram on the Core Concepts page](../../getti
 
 Let's use Ember's route generator to start our `about` route.
 
-```shell
+```bash
 ember generate route about
 ```
 
 or for short,
 
-```shell
+```bash
 ember g route about
 ```
 
@@ -25,7 +25,7 @@ _Note: Running `ember help generate` will list a number of other Ember resources
 
 And here's what our generator prints out:
 
-```shell
+```bash
 installing route
   create app/routes/about.js
   create app/templates/about.hbs
@@ -86,7 +86,7 @@ see our new page in action!
 Now let's create another route with contact details for the company.
 Once again, we'll start by generating a route:
 
-```shell
+```bash
 ember g route contact
 ```
 
@@ -171,7 +171,7 @@ Now, we'll add our corresponding link to the contact page so we can move back an
 In addition to our `about` and `contact` pages, we want to show a list of rentals that
 our visitors can look through. So let's add a third route and call it `rentals`:
 
-```shell
+```bash
 ember g route rentals
 ```
 
@@ -197,13 +197,13 @@ Therefore, we want our index route to simply forward to the `rentals` route we'v
 
 Using the same process we did for our about and contact pages, we will first generate a new route called `index`.
 
-```shell
+```bash
 ember g route index
 ```
 
 We can see the now familiar output for the route generator:
 
-```shell
+```bash
 installing route
   create app/routes/index.js
   create app/templates/index.hbs

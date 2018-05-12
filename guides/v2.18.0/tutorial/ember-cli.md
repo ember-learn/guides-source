@@ -17,14 +17,14 @@ type `ember help <command-name>`.
 To create a new project using Ember CLI, use the `new` command. In preparation
 for the tutorial in the next section, you can make an app called `super-rentals`.
 
-```shell
+```bash
 ember new super-rentals
 ```
 
 A new project will be created inside your current directory. You can now go to
 your `super-rentals` project directory and start working on it.
 
-```shell
+```bash
 cd super-rentals
 ```
 
@@ -80,7 +80,7 @@ and Ember CLI's test runner **testem** is configured in `testem.js`.
 If you take a look at `app/router.js`, you'll notice some syntax that may be
 unfamiliar to you.
 
-```app/router.js
+```javascript {data-filename="app/router.js"}
 import EmberRouter from '@ember/routing/router';
 import config from './config/environment';
 
@@ -111,13 +111,13 @@ to other parts of the app.
 Once we have a new project in place, we can confirm everything is working by
 starting the Ember development server:
 
-```shell
+```bash
 ember serve
 ```
 
 or, for short:
 
-```shell
+```bash
 ember s
 ```
 
@@ -132,7 +132,7 @@ We do this by simply opening up the application template file located at `app/te
 Once open, remove the component labeled `{{welcome-page}}`.
 The application should now be a completely blank canvas to build our application on.
 
-```app/templates/application.hbs{-1,-2,-3}
+```handlebars {data-filename="app/templates/application.hbs" data-diff="-1,-2,-3"}
 {{!-- The following component displays Ember's default welcome message. --}}
 {{welcome-page}}
 {{!-- Feel free to remove this! --}}

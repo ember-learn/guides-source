@@ -5,13 +5,13 @@ Ember integrates with a data management library called Ember Data to help solve 
 
 Let's generate our first Ember Data model called `rental`:
 
-```shell
+```bash
 ember g model rental
 ```
 
 This results in the creation of a model file and a test file:
 
-```shell
+```bash
 installing model
   create app/models/rental.js
 installing model-test
@@ -54,7 +54,7 @@ This will allow us to create fake data to work with while developing our app and
 
 Let's start by installing Mirage:
 
-```shell
+```bash
 ember install ember-cli-mirage
 ```
 

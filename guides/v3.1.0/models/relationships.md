@@ -315,7 +315,7 @@ is that you cannot assign a promise as a relationship, currently.
 For example, if you want to set the `author` property of a blogPost, this would **not** work
 if the `user` with id isn't already loaded into the store:
 
-```js
+```javascript
 this.get('store').createRecord('blog-post', {
   title: 'Rails is Omakase',
   body: 'Lorem ipsum',
@@ -325,7 +325,7 @@ this.get('store').createRecord('blog-post', {
 
 However, you can easily set the relationship after the promise has fulfilled:
 
-```js
+```javascript
 let blogPost = this.get('store').createRecord('blog-post', {
   title: 'Rails is Omakase',
   body: 'Lorem ipsum'

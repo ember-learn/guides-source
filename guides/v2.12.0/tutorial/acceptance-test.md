@@ -29,13 +29,13 @@ When we create a new Ember Project using Ember CLI, it uses the [`QUnit`](https:
 
 We'll start by using Ember CLI to generate a new acceptance test:
 
-```shell
+```bash
 ember g acceptance-test list-rentals
 ```
 
 The command will generate the following output, showing that it created a single file called `tests/acceptance/list-rentals-test.js`.
 
-```shell
+```bash
 installing acceptance-test
   create tests/acceptance/list-rentals-test.js
 ```
