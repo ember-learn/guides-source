@@ -371,7 +371,7 @@ Since our component is expecting the filter process to be asynchronous, we retur
 
 Next, we'll add the call to render the component to show the cities we've provided above.
 
-```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33"}
+```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31"}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
@@ -468,13 +468,17 @@ We force the action by generating a `keyUp` event on our input field, and then a
 
 First add `triggerKeyEvent` and `fillIn` to the list of imports.  The [`fillIn`](https://github.com/emberjs/ember-test-helpers/blob/master/API.md#fillin) helper simulates the user filling in the element. The [`triggerKeyEvent`](https://github.com/emberjs/ember-test-helpers/blob/master/API.md#triggerkeyevent) helper sends a key stroke event to the UI, simulating the user typing a key.
 
-```javascript {data-filename=tests/integration/components/list-filter-test.js}
+```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="+3"}
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
 import { render, settled, triggerKeyEvent, fillIn } from '@ember/test-helpers';
+import hbs from 'htmlbars-inline-precompile';
+import { resolve } from 'rsvp';
 ```
 
 Now use it to simulate the user typing a key into the search field.
 
-```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="+27"}
+```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="+1,+2,+3,+4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33,+34,+35"}
 test('should update with matching listings', async function (assert) {
   this.set('filterByCity', (val) =>  {
     if (val === '') {
@@ -500,9 +504,9 @@ test('should update with matching listings', async function (assert) {
     {{/list-filter}}
   `);
 
-  // filling in the component's input field with 's'
+  // fill in the input field with 's'
   await fillIn(this.element.querySelector('.list-filter input'),'s');
-  // The keyup event here should invoke an action that will cause the list to be filtered
+  // keyup event to invoke an action that will cause the list to be filtered
   await triggerKeyEvent(this.element.querySelector('.list-filter input'), "keyup", 83);
 
   return settled().then(() => {
