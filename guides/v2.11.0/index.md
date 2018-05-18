@@ -97,8 +97,8 @@ Good luck!
 [babeljs]: https://babeljs.io/docs/learn-es2015/
 [es6]: https://leanpub.com/understandinges6/read
 
-[gh-guides]: https://github.com/emberjs/guides/
-[gh-guides-issues]: https://github.com/emberjs/guides/issues
-[gh-guides-contributing]: https://github.com/emberjs/guides/blob/master/CONTRIBUTING.md
+[gh-guides]: https://github.com/ember-learn/guides-source/
+[gh-guides-issues]: https://github.com/ember-learn/guides-source/issues
+[gh-guides-contributing]: https://github.com/ember-learn/guides-source/blob/master/CONTRIBUTING.md
 
 [slackin]: https://ember-community-slackin.herokuapp.com/

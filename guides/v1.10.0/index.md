@@ -16,7 +16,7 @@ you'll find what you're looking for in the [Understanding Ember.js](understandin
 section.
 
 These guides are written in Markdown and are [available on
-GitHub](https://github.com/emberjs/guides/), inside the `source/guides`
+GitHub](https://github.com/ember-learn/guides-source/), inside the `source/guides`
 directory.  If there is something missing, or you find a typo or
 mistake, please help us by filing an issue or submitting a pull
 request. Thanks!
