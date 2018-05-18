@@ -12,7 +12,7 @@ For exhaustive documentation of every Ember feature and API, see the
 [Ember.js API documentation](http://emberjs.com/api/).
 
 These guides are written in Markdown and are
-[available on GitHub](https://github.com/emberjs/guides/).
+[available on GitHub](https://github.com/ember-learn/guides-source/).
 If there is something missing, or you find a typo or
 mistake, please help us by filing an issue or submitting a pull
 request. You can easily jump to Github's editor for any page by
