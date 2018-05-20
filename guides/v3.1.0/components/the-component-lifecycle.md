@@ -33,6 +33,7 @@ Listed below are the component lifecycle [hooks](../../getting-started/core-conc
 
 ## Lifecycle Hook Examples
 
+
 Below are some samples of ways to use lifecycle hooks within your components.
 
 ### Resetting Presentation State on Attribute Change with `didUpdateAttrs`
@@ -247,7 +248,7 @@ export default Component.extend({
 
   didRender() {
     this._super(...arguments);
-    this.$('.item-list').scrollTop(this.$('.selected-item').position.top);
+    this.$('.item-list').scrollTop(this.$('.selected-item').position().top);
   }
 });
 ```
