@@ -247,7 +247,7 @@ export default Component.extend({
 
   didRender() {
     this._super(...arguments);
-    this.$('.item-list').scrollTop(this.$('.selected-item').position.top);
+    this.$('.item-list').scrollTop(this.$('.selected-item').position().top);
   }
 });
 ```
