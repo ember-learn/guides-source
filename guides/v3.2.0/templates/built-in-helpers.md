@@ -38,7 +38,7 @@ This will display the result of `this.get('foo.item1')` when index is 1,
 and `this.get('foo.item2')` when index is 2, etc.
 
 ### Built-in block helpers
-Now let's say your template is starting to get a bit cluttered and you now want to clean up the logic in your templates. This can be achieved with the `let` block helper. The [`{{let}}`](#) helper lets you create new bindings in your template.
+Now let's say your template is starting to get a bit cluttered and you now want to clean up the logic in your templates. This can be achieved with the `let` block helper. The [`{{let}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/get?anchor=let) helper lets you create new bindings in your template.
 
 Say your template now looks like this:
 
