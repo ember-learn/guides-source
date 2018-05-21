@@ -1,5 +1,5 @@
 
-## Ember Guides Source
+## Ember Guides Source [![Build Status](https://travis-ci.org/ember-learn/guides-source.svg?branch=master)](https://travis-ci.org/ember-learn/guides-source)
 
 This repository contains the written content
 for the [Ember.js Guides](https://guides.emberjs.com). 
