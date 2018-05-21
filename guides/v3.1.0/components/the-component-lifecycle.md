@@ -172,7 +172,7 @@ export default Component.extend({
 [`didInsertElement()`][did-insert-element] is also a good place to
 attach event listeners. This is particularly useful for custom events or
 other browser events which do not have a [built-in event
-handler][event-names].
+handler](../components/handling-events/#toc_event-names).
 
 For example, perhaps you have some custom CSS animations trigger when the component
 is rendered and you want to handle some cleanup when it ends:
@@ -201,7 +201,6 @@ There are a few things to note about the `didInsertElement()` hook:
 
 [did-insert-element]: https://www.emberjs.com/api/ember/release/classes/Component/events/didInsertElement?anchor=didInsertElement
 [dollar]: https://www.emberjs.com/api/ember/release/classes/Component/methods/$?anchor=%24
-[event-names]: http://guides.emberjs.com/v2.1.0/components/handling-events/#toc_event-names
 
 ### Making Updates to the Rendered DOM with `didRender`
 
