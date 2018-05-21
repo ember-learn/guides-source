@@ -172,7 +172,7 @@ export default Component.extend({
 [`didInsertElement()`][did-insert-element] is also a good place to
 attach event listeners. This is particularly useful for custom events or
 other browser events which do not have a [built-in event
-handler](../components/handling-events/#toc_event-names).
+handler](./handling-events/#toc_event-names).
 
 For example, perhaps you have some custom CSS animations trigger when the component
 is rendered and you want to handle some cleanup when it ends:
