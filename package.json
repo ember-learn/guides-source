@@ -1,6 +1,6 @@
 {
-  "name": "@ember/guides-source",
-  "version": "3.1.6",
+  "name": "@ember-learn/guides-source",
+  "version": "3.1.7",
   "description": "Markdown files for Ember-Guides",
   "main": "index.js",
   "scripts": {
