@@ -2,29 +2,37 @@
   "name": "@ember-learn/guides-source",
   "version": "3.1.7",
   "description": "Markdown files for Ember-Guides",
-  "main": "index.js",
-  "scripts": {
-    "test": "mocha",
-    "test-watch": "npm test -- -w"
+  "homepage": "https://github.com/ember-learn/guides-source#readme",
+  "bugs": {
+    "url": "https://github.com/ember-learn/guides-source/issues"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ember-learn/guides-source.git"
   },
-  "author": "Chris Manson <chris@stonecircle.io>",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/ember-learn/guides-source/issues"
+  "contributors": [
+    "Chris Manson <chris@stonecircle.io>",
+    "Ember.JS Learning team"
+  ],
+  "publishConfig": {
+    "access": "public"
   },
-  "homepage": "https://github.com/ember-learn/guides-source#readme",
+  "main": "index.js",
+  "scripts": {
+    "release": "np",
+    "test": "mocha",
+    "test-watch": "npm test -- -w"
+  },
   "devDependencies": {
     "chai": "^4.1.2",
-    "eslint": "^4.15.0",
+    "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
     "lodash": "^4.17.4",
     "markdown-link-extractor": "^1.1.1",
     "mocha": "^5.0.0",
+    "np": "*",
     "require-directory": "^2.1.1",
     "walk-sync": "^0.3.2"
   }
