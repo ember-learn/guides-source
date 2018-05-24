@@ -39,10 +39,10 @@ computer. This repository, `guides-source` contains only written content
 as markdown files, which are fetched and displayed by
 [guides-app](https://github.com/ember-learn/guides-app).
 
-Before following the below instructions and making any changes first-time
+Before following the below instructions and making any changes, first-time
 contributors should see [CONTRIBUTING.md](CONTRIBUTING.md) for
 instructions on forking the `guides-source` and `guides-app`
-repositories and making your first pull
+repositories and making a first pull
 request.
 
 ```sh
