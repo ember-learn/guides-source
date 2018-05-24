@@ -11,7 +11,7 @@ Here's what our homepage will look like when we're done:
 ![super rentals homepage with rentals list](/images/model-hook/super-rentals-index-with-list.png)
 
 In Ember, route handlers are responsible for loading the model with data for the page.
-It loads the data in a function called [`model`](https://www.emberjs.com/api/ember/2.16/classes/Route/methods/model?anchor=model).
+It loads the data in a function called [`model`](https://www.emberjs.com/api/ember/2.18/classes/Route/methods/model?anchor=model).
 The `model` function acts as a **hook**, meaning that Ember will call it for us during different times in our app.
 The model function we've added to our `rentals` route handler will be called when a user navigates to the rentals route via root URL `http://localhost:4200`, or via `http://localhost:4200/rentals`.
 
@@ -64,7 +64,7 @@ We can use the model attribute to display our list of rentals.
 Here, we'll use another common Handlebars helper called [`{{each}}`](../../templates/displaying-a-list-of-items/).
 This helper will let us loop through each of the rental objects in our model:
 
-```handlebars {data-filename="app/templates/rentals.hbs" data-diff="+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29"}
+```handlebars {data-filename="app/templates/rentals.hbs" data-diff="+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28"}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>Welcome!</h2>
