@@ -95,7 +95,7 @@ Then update the component to append the map output to its inner container elemen
 We'll add a maps service injection, and call the `getMapElement` function with the provided location.
 
 We then append the map element we get back from the service by implementing `didInsertElement`, 
-which is a [component lifecycle hook](../../components/the-component-lifecycle/#toc_integrating-with-third-party-libraries-with-code-didinsertelement-code).
+which is a [component lifecycle hook](../../components/the-component-lifecycle/#toc_integrating-with-third-party-libraries-with-didinsertelement).
 This function gets executed at render time after the component's markup gets inserted into the DOM.
 
 ```javascript {data-filename=app/components/location-map.js}
