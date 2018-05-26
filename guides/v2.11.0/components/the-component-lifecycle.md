@@ -11,23 +11,23 @@ Listed below are the component lifecycle hooks in order of execution according t
 ### On Initial Render
 
 1. `init`
-2. [`didReceiveAttrs`](#toc_formatting-component-attributes-with-code-didreceiveattrs-code)
+2. [`didReceiveAttrs`](#toc_formatting-component-attributes-with-didreceiveattrs)
 3. `willRender`
-4. [`didInsertElement`](#toc_integrating-with-third-party-libraries-with-code-didinsertelement-code)
-5. [`didRender`](#toc_making-updates-to-the-rendered-dom-with-code-didrender-code)
+4. [`didInsertElement`](#toc_integrating-with-third-party-libraries-with-didinsertelement)
+5. [`didRender`](#toc_making-updates-to-the-rendered-dom-with-didrender)
 
 ### On Re-Render 
 
-1. [`didUpdateAttrs`](#toc_resetting-presentation-state-on-attribute-change-with-code-didupdateattrs-code)
-2. [`didReceiveAttrs`](#toc_formatting-component-attributes-with-code-didreceiveattrs-code)
+1. [`didUpdateAttrs`](#toc_resetting-presentation-state-on-attribute-change-with-didupdateattrs)
+2. [`didReceiveAttrs`](#toc_formatting-component-attributes-with-didreceiveattrs)
 3. `willUpdate`
 4. `willRender`
 5. `didUpdate`
-6. [`didRender`](#toc_making-updates-to-the-rendered-dom-with-code-didrender-code)
+6. [`didRender`](#toc_making-updates-to-the-rendered-dom-with-didrender)
 
 ### On Component Destroy
 
-1. [`willDestroyElement`](#toc_detaching-and-tearing-down-component-elements-with-code-willdestroyelement-code)
+1. [`willDestroyElement`](#toc_detaching-and-tearing-down-component-elements-with-willdestroyelement)
 2. `willClearRender`
 3. `didDestroyElement`
 
