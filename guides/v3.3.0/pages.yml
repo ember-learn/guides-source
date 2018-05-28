@@ -230,6 +230,8 @@
   pages:
     - title: "Managing Dependencies"
       url: "managing-dependencies"
+    - title: "Removing jQuery"
+      url: "removing-jquery"
 
 - title: "Configuring Ember.js"
   url: 'configuring-ember'
