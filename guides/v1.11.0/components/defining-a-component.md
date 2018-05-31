@@ -60,7 +60,7 @@ export default Ember.Component.extend({
 Each component, under the hood, is backed by an element. By default
 Ember will use a `<div>` element to contain your component's template.
 To learn how to change the element Ember uses for your component, see
-[Customizing a Component's Element](../customizing-a-components-element/).
+[Customizing a Component's Element](./customizing-a-components-element/).
 
 
 ### Defining a Component Subclass
