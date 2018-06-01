@@ -130,7 +130,7 @@ RSVP.on('error', function(error) {
 #### Errors within `Ember.run.later` ([Backburner.js](https://github.com/ebryn/backburner.js))
 
 Backburner has support for stitching the stacktraces together so that you can
-track down where an erroring `Ember.run.later` is being initiated from. Unfortunately,
+track down where an error thrown by `Ember.run.later` is being initiated from. Unfortunately,
 this is quite slow and is not appropriate for production or even normal development.
 
 To enable full stacktrace mode in Backburner, and thus determine the stack of the task

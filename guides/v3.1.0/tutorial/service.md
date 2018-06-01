@@ -14,7 +14,7 @@ as a starting point when you need to add one.
 
 
 The [Google Maps API](https://developers.google.com/maps/documentation/javascript/tutorial/) requires us to reference its library from a remote script.
-In this case we'll provide this script to our Ember app via an Addon called `ember-simple-google-maps`.
+In this case we'll provide this script to our Ember app via an addon called `ember-simple-google-maps`.
 
 ```bash
 ember install ember-simple-google-maps
