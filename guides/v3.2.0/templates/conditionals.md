@@ -69,7 +69,7 @@ of that invocation is rendered:
 {{/if}}
 ```
 
-`{{else}}` can chain helper invocation, the most common usecase for this being
+`{{else}}` can chain helper invocation, the most common use case for this being
 `{{else if}}`:
 
 ```handlebars

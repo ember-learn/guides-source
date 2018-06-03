@@ -42,7 +42,7 @@ types of servers without you writing any networking code.
 
 If you need to integrate your Ember.js app with a server that does not
 have an adapter available (for example, you hand-rolled an API server
-that does not adhere to any JSON specification/), Ember Data is designed
+that does not adhere to any JSON specification), Ember Data is designed
 to be configurable to work with whatever data your server returns.
 
 Ember Data is also designed to work with streaming servers, like those
@@ -314,8 +314,8 @@ _asynchronous_ request to the server, and only when that request finishes
 loading can the record be created with its backing data.
 
 Because of this asynchronicity, the store immediately returns a
-_promise_ from the `findRecord()` method. Similarly, any requests that the
-store makes to the adapter also return promises.
+_promise_ from the `findRecord()` method. Similarly, any request that the
+store makes to the adapter also returns promises.
 
 Once the request to the server returns with a JSON payload for the
 requested record, the adapter resolves the promise it returned to the
@@ -334,7 +334,7 @@ already has in its cache.
 
 In this case, because the store already knew about the record, it
 returns a promise that it resolves with the record immediately. It does
-not need to ask the adapter (and, therefore, the server/) for a copy
+not need to ask the adapter (and, therefore, the server) for a copy
 since it already has it saved locally.
 
 ---

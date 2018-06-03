@@ -82,14 +82,14 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
-    this.get('filter')('').then((results) => this.set('results', results/));
+    this.get('filter')('').then((results) => this.set('results', results));
   },
 
   actions: {
     handleFilterEntry() {
       let filterInputValue = this.get('value');
       let filterAction = this.get('filter');
-      filterAction(filterInputValue/).then((filterResults/) => this.set('results', filterResults/));
+      filterAction(filterInputValue).then((filterResults) => this.set('results', filterResults));
     }
   }
 
@@ -128,7 +128,7 @@ import Controller from '@ember/controller';
 
 export default Controller.extend({
   actions: {
-    filterByCity(param/) {
+    filterByCity(param) {
       if (param !== '') {
         return this.get('store').query('rental', { city: param });
       } else {

@@ -176,7 +176,7 @@ Ember tries to set that property with a service matching its name.
 
 With our `maps` service, our component will call the `getMapElement` function with the provided location.
 We append the map element we get back from the service by implementing `didInsertElement`,
-which is a [component lifecycle hook](../../components/the-component-lifecycle/#toc_integrating-with-third-party-libraries-with-code-didinsertelement-code).
+which is a [component lifecycle hook](../../components/the-component-lifecycle/#toc_integrating-with-third-party-libraries-with-didinsertelement).
 This function runs during the component render, after the component's markup gets inserted into the page.
 
 ```javascript {data-filename=app/components/location-map.js}

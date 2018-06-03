@@ -91,7 +91,7 @@ module.exports = function(environment) {
 
 ### `features.json`
 
-The root of the repository will contain a features.json file, which will
+The root of the repository will contain a `features.json` file, which will
 contain a list of features that should be enabled for beta or release
 builds.
 
@@ -137,7 +137,7 @@ Every six weeks, the core team goes through the following process.
 #### Beta Branch
 
 All remaining features on the beta branch are vetted for readiness. If
-any feature isn't ready, it is removed from features.json.
+any feature isn't ready, it is removed from `features.json`.
 
 Once this is done, the beta branch is tagged and merged into release.
 
@@ -158,6 +158,6 @@ Once this is done, the master branch is merged into beta. A
 
 Every week, we repeat the Go/No-Go process for the features that remain
 on the beta branch. Any feature that has become unready is removed from
-the features.json.
+the `features.json`.
 
 Once this is done, a Beta release is tagged and pushed.

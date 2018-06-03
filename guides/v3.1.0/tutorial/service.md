@@ -14,7 +14,7 @@ as a starting point when you need to add one.
 
 
 The [Google Maps API](https://developers.google.com/maps/documentation/javascript/tutorial/) requires us to reference its library from a remote script.
-In this case we'll provide this script to our Ember app via an Addon called `ember-simple-google-maps`.
+In this case we'll provide this script to our Ember app via an addon called `ember-simple-google-maps`.
 
 ```bash
 ember install ember-simple-google-maps
@@ -184,7 +184,7 @@ Ember tries to set that property with a service matching its name.
 
 With our `maps` service, our component will call the `getMapElement` function with the provided location.
 We append the map element we get back from the service by implementing `didInsertElement`,
-which is a [component lifecycle hook](../../components/the-component-lifecycle/#toc_integrating-with-third-party-libraries-with-code-didinsertelement-code).
+which is a [component lifecycle hook](../../components/the-component-lifecycle/#toc_integrating-with-third-party-libraries-with-didinsertelement).
 This function runs during the component render, after the component's markup gets inserted into the page.
 
 ```javascript {data-filename="app/components/location-map.js" data-diff="+2,+5,+7,+8,+9,+10,+11,+12"}
