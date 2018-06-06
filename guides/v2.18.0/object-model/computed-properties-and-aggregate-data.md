@@ -1,6 +1,6 @@
 Sometimes you have a computed property whose value depends on the properties of
 items in an array. For example, you may have an array of todo items, and want
-to calculate the incomplete todo's based on their `isDone` property.
+to calculate the incomplete todos based on their `isDone` property.
 
 ## `@each`
 
