@@ -420,7 +420,7 @@ module('Integration | Component | location indicator', function(hooks) {
     this.owner.register('service:location-service', locationStub);
   });
 
-  test('should reveal current location', function(assert) {
+  test('should reveal current location', async function(assert) {
     await render(hbs`{{location-indicator}}`);
     assert.equal(this.element.textContent.trim(),
      'You currently are located in New York, USA');
