@@ -135,12 +135,12 @@ export default Service.extend({
   },
 
   getMapElement(location) {
-    let camelizedLocation = camelize(location/);
+    let camelizedLocation = camelize(location);
     let element = this.get(`cachedMaps.${camelizedLocation}`);
-    if (!element/) {
+    if (!element) {
       element = this.createMapElement();
-      this.get('mapUtil').createMap(element, location/);
-      this.set(`cachedMaps.${camelizedLocation}`, element/);
+      this.get('mapUtil').createMap(element, location);
+      this.set(`cachedMaps.${camelizedLocation}`, element);
     }
     return element;
   },
