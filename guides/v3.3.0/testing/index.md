@@ -76,7 +76,7 @@ If we need to test the interactions between various parts of the application, su
 
 Rendering Tests are, as the name suggests, rendering components and helpers by verifying the correct behaviour when the component or helper interacts with the system in the same way that it will within the context of the application, including being rendered from a template and receiving Ember's lifecycle hooks.
 
-In terms of setting up the test – Rendering Tests are roughly similar to Container Tests but instead of using `setupTest` from ember-qunit, we import and invoke `setupRendingTest` to render arbitrary templates, including components and helpers (`setupRendingTest` is actually using `setupTest` underneath so everything we had from Container Tests are still applicable.)
+In terms of setting up the test – Rendering Tests are roughly similar to Container Tests but instead of using `setupTest` from ember-qunit, we import and invoke `setupRenderingTest` to render arbitrary templates, including components and helpers (`setupRenderingTest` is actually using `setupTest` underneath so everything we had from Container Tests are still applicable.)
 
 For the example below, we also import the `render` and `click` functions from ember-test-helpers to show and interact with the component being tested as well as `hbs` from [htmlbars-inline-precompile](https://github.com/ember-cli/ember-cli-htmlbars-inline-precompile) to help with inline template definitions. With these APIs, we can test clicking on this component and check if the text is successfully updated with each click.
 
