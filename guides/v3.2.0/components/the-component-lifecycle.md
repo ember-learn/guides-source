@@ -66,7 +66,7 @@ import Component from '@ember/component';
 export default Component.extend({
   init() {
     this._super(...arguments);
-    this.errors = [];
+    this.set('errors', []);
   },
 
   didUpdateAttrs() {
@@ -77,7 +77,7 @@ export default Component.extend({
   actions: {
     required(event) {
       if (!event.target.value) {
-        this.get('errors').pushObject({ message: `${event.target.name} is required`});
+        this.errors.pushObject({ message: `${event.target.name} is required`});
       }
     }
   }
@@ -101,7 +101,7 @@ import Component from '@ember/component';
 export default Component.extend({
   didReceiveAttrs() {
     this._super(...arguments);
-    const profile = this.get('data');
+    const profile = this.data;
     if (typeof profile === 'string') {
       this.set('profile', JSON.parse(profile));
     } else {
@@ -237,12 +237,11 @@ export default Component.extend({
 
   didReceiveAttrs() {
     this._super(...arguments);
-    this.set('items', this.get('items').map((item) => {
-      if (item.id === this.get('selectedItem.id')) {
+    this.items.forEach((item) => {
+      if (item.id === this.selectedItem.id) {
         item.isSelected = true;
       }
-      return item;
-    }));
+    });
   },
 
   didRender() {

@@ -18,7 +18,7 @@ import Route from '@ember/routing/route';
 
 export default Route.extend({
   model() {
-    return this.get('store').findAll('post');
+    return this.store.findAll('post');
   }
 });
 ```
@@ -93,10 +93,10 @@ import { computed } from '@ember/object';
 
 export default Component.extend({
   title: computed('params.[]', function(){
-    return this.get('params')[0];
+    return this.params[0];
   }),
   body: computed('params.[]', function(){
-    return this.get('params')[1];
+    return this.params[1];
   })
 }).reopenClass({
   positionalParams: 'params'

@@ -288,7 +288,7 @@ export default Helper.extend({
   authentication: service(),
 
   compute() {
-    let authentication = this.get('authentication');
+    let authentication = this.authentication;
 
     if (authentication.get('isAuthenticated')) {
       return 'Welcome back, ' + authentication.get('username');

@@ -51,8 +51,8 @@ export default Controller.extend({
   category: null,
 
   filteredArticles: computed('category', 'model', function() {
-    let category = this.get('category');
-    let articles = this.get('model');
+    let category = this.category;
+    let articles = this.model;
 
     if (category) {
       return articles.filterBy('category', category);
@@ -147,7 +147,7 @@ export default Route.extend({
 
     // params has format of { category: "someValueOrJustNull" },
     // which we can forward to the server.
-    return this.get('store').query('article', params);
+    return this.store.query('article', params);
   }
 });
 ```

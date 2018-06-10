@@ -176,7 +176,7 @@ export default PaymentMethod.extend({
   last4: DS.attr(),
 
   obfuscatedIdentifier: computed('last4', function () {
-    return `**** **** **** ${this.get('last4')}`;
+    return `**** **** **** ${this.last4}`;
   })
 });
 ```
@@ -190,7 +190,7 @@ export default PaymentMethod.extend({
   linkedEmail: DS.attr(),
 
   obfuscatedIdentifier: computed('linkedEmail', function () {
-    let last5 = this.get('linkedEmail').split('').reverse().slice(0, 5).reverse().join('');
+    let last5 = this.linkedEmail.split('').reverse().slice(0, 5).reverse().join('');
 
     return `••••${last5}`;
   })
@@ -280,14 +280,14 @@ export default DS.Model.extend({
 Now, suppose we want to add comments to an existing blogPost. We can do this in two ways, but for both of them, we first need to look up a blog post that is already loaded in the store, using its id:
 
 ```javascript
-let myBlogPost = this.get('store').peekRecord('blog-post', 1);
+let myBlogPost = this.store.peekRecord('blog-post', 1);
 ```
 Now we can either set the `belongsTo` relationship in our new comment, or, update the blogPost's `hasMany` relationship. As you might observe, we don't need to set both `hasMany` and `belongsTo` for a record. Ember Data will do that for us.
 
 First, let's look at setting the `belongsTo` relationship in our new comment:
 
 ```javascript
-let comment = this.get('store').createRecord('comment', {
+let comment = this.store.createRecord('comment', {
   blogPost: myBlogPost
 });
 comment.save();
@@ -299,7 +299,7 @@ This will create a new `comment` record and save it to the server. Ember Data wi
 The second way of doing the same thing is to link the two records together by updating the blogPost's `hasMany` relationship as shown below:
 
 ```javascript
-let comment = this.get('store').createRecord('comment', {
+let comment = this.store.createRecord('comment', {
 });
 myBlogPost.get('comments').pushObject(comment);
 comment.save().then(function () {
@@ -316,22 +316,22 @@ For example, if you want to set the `author` property of a blogPost, this would 
 if the `user` with id isn't already loaded into the store:
 
 ```javascript
-this.get('store').createRecord('blog-post', {
+this.store.createRecord('blog-post', {
   title: 'Rails is Omakase',
   body: 'Lorem ipsum',
-  author: this.get('store').findRecord('user', 1)
+  author: this.store.findRecord('user', 1)
 });
 ```
 
 However, you can easily set the relationship after the promise has fulfilled:
 
 ```javascript
-let blogPost = this.get('store').createRecord('blog-post', {
+let blogPost = this.store.createRecord('blog-post', {
   title: 'Rails is Omakase',
   body: 'Lorem ipsum'
 });
 
-this.get('store').findRecord('user', 1).then(function(user) {
+this.store.findRecord('user', 1).then(function(user) {
   blogPost.set('author', user);
 });
 ```
@@ -409,8 +409,8 @@ export default Route.extend({
 Sometimes we want to set relationships on already existing records. We can simply set a `belongsTo` relationship:
 
 ```javascript
-let blogPost = this.get('store').peekRecord('blog-post', 1);
-let comment = this.get('store').peekRecord('comment', 1);
+let blogPost = this.store.peekRecord('blog-post', 1);
+let comment = this.store.peekRecord('comment', 1);
 comment.set('blogPost', blogPost);
 comment.save();
 ```
@@ -418,8 +418,8 @@ comment.save();
 Alternatively, we could update the `hasMany` relationship by pushing a record into the relationship:
 
 ```javascript
-let blogPost = this.get('store').peekRecord('blog-post', 1);
-let comment = this.get('store').peekRecord('comment', 1);
+let blogPost = this.store.peekRecord('blog-post', 1);
+let comment = this.store.peekRecord('comment', 1);
 blogPost.get('comments').pushObject(comment);
 blogPost.save();
 ```
@@ -429,7 +429,7 @@ blogPost.save();
 To remove a `belongsTo` relationship, we can set it to `null`, which will also remove it from the `hasMany` side:
 
 ```javascript
-let comment = this.get('store').peekRecord('comment', 1);
+let comment = this.store.peekRecord('comment', 1);
 comment.set('blogPost', null);
 comment.save();
 ```
@@ -437,8 +437,8 @@ comment.save();
 It is also possible to remove a record from a `hasMany` relationship:
 
 ```javascript
-let blogPost = this.get('store').peekRecord('blog-post', 1);
-let comment = this.get('store').peekRecord('comment', 1);
+let blogPost = this.store.peekRecord('blog-post', 1);
+let comment = this.store.peekRecord('comment', 1);
 blogPost.get('comments').removeObject(comment);
 blogPost.save();
 ```
@@ -452,7 +452,7 @@ While working with relationships it is important to remember that they return pr
 For example, if we were to work on a blogPost's asynchronous comments, we would have to wait until the promise has fulfilled:
 
 ```javascript
-let blogPost = this.get('store').peekRecord('blog-post', 1);
+let blogPost = this.store.peekRecord('blog-post', 1);
 
 blogPost.get('comments').then((comments) => {
   // now we can work with the comments
@@ -462,7 +462,7 @@ blogPost.get('comments').then((comments) => {
 The same applies to `belongsTo` relationships:
 
 ```javascript
-let comment = this.get('store').peekRecord('comment', 1);
+let comment = this.store.peekRecord('comment', 1);
 
 comment.get('blogPost').then((blogPost) => {
   // the blogPost is available here

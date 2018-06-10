@@ -74,7 +74,7 @@ export default EmberObject.extend({
   },
 
   pinLocation(location, map) {
-    this.get('geocoder').geocode({address: location}, (result, status) => {
+    this.geocoder.geocode({address: location}, (result, status) => {
       if (status === google.maps.GeocoderStatus.OK) {
         let geometry = result[0].geometry.location;
         let position = { lat: geometry.lat(), lng: geometry.lng() };
@@ -126,10 +126,10 @@ export default Service.extend({
 
   init() {
     this._super(...arguments);
-    if (!this.get('cachedMaps')) {
+    if (!this.cachedMaps) {
       this.set('cachedMaps', EmberObject.create());
     }
-    if (!this.get('mapUtil')) {
+    if (!this.mapUtil) {
       this.set('mapUtil', MapUtil.create());
     }
   },
@@ -139,7 +139,7 @@ export default Service.extend({
     let element = this.get(`cachedMaps.${camelizedLocation}`);
     if (!element) {
       element = this.createMapElement();
-      this.get('mapUtil').createMap(element, location);
+      this.mapUtil.createMap(element, location);
       this.set(`cachedMaps.${camelizedLocation}`, element);
     }
     return element;
@@ -196,14 +196,13 @@ export default Component.extend({
 
   didInsertElement() {
     this._super(...arguments);
-    let location = this.get('location');
-    let mapElement = this.get('maps').getMapElement(location);
+    let mapElement = this.maps.getMapElement(this.location);
     this.$('.map-container').append(mapElement);
   }
 });
 ```
 
-You may have noticed that `this.get('location')` refers to a property location we haven't defined.
+You may have noticed that `this.location` refers to a property location we haven't defined.
 This property will be passed in to the component by its parent template below.
 
 Finally open the template file for our `rental-listing` component and add the new `location-map` component.
@@ -350,7 +349,7 @@ module('Integration | Component | location map', function(hooks) {
     this.set('myLocation', 'New York');
     await render(hbs`{{location-map location=myLocation}}`);
     assert.equal(this.element.querySelector('.map-container').childNodes.length, 1, 'container should have one child');
-    assert.equal(this.get('mapsService.calledWithLocation'), 'New York', 'should call service with New York');
+    assert.equal(this.mapsService.calledWithLocation, 'New York', 'should call service with New York');
   });
 
   test('it renders', async function(assert) {
@@ -377,7 +376,7 @@ module('Integration | Component | location map', function(hooks) {
 In the `beforeEach` function that runs before each test, we use the built-in function `this.register` to [register](../../applications/dependency-injection/#toc_factory-registrations) our stub service in place of the maps service.
 Registration makes an object available to your Ember application for things like loading components from templates and injecting services in this case.
 
-The call to the function `this.inject.service` [injects](../../applications/dependency-injection/#toc_ad-hoc-injections) the service we just registered into the context of the tests, so each test may access it through `this.get('mapsService')`.
+The call to the function `this.inject.service` [injects](../../applications/dependency-injection/#toc_ad-hoc-injections) the service we just registered into the context of the tests, so each test may access it through `this.mapsService`.
 In the example we assert that `calledWithLocation` in our stub is set to the location we passed to the component.
 
 ### Stubbing Services in Application Tests

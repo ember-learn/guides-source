@@ -15,8 +15,7 @@ export default Component.extend({
   attributeBindings: ['style'],
 
   style: computed('name', function() {
-    const name = this.get('name');
-    return `color: ${name}`;
+    return `color: ${this.name}`;
   })
 });
 ```
@@ -226,7 +225,7 @@ export default Component.extend({
 
   actions: {
     submitComment() {
-      this.get('submitComment')({ comment: this.get('comment') });
+      this.submitComment({ comment: this.comment });
     }
   }
 });
@@ -295,11 +294,11 @@ export default Component.extend({
 
   // when the coordinates change, call the location service to get the current city and country
   city: computed('locationService.currentLocation', function () {
-    return this.get('locationService').getCurrentCity();
+    return this.locationService.getCurrentCity();
   }),
 
   country: computed('locationService.currentLocation', function () {
-    return this.get('locationService').getCurrentCountry();
+    return this.locationService.getCurrentCountry();
   })
 });
 ```
@@ -329,10 +328,10 @@ const locationStub = Service.extend({
   },
 
   getCurrentCity() {
-    return this.get('city');
+    return this.city;
   },
   getCurrentCountry() {
-    return this.get('country');
+    return this.country;
   }
 });
 
@@ -365,10 +364,10 @@ const locationStub = Service.extend({
   },
 
   getCurrentCity() {
-    return this.get('city');
+    return this.city;
   },
   getCurrentCountry() {
-    return this.get('country');
+    return this.country;
   }
 });
 
@@ -406,10 +405,10 @@ const locationStub = Service.extend({
   },
 
   getCurrentCity() {
-    return this.get('city');
+    return this.city;
   },
   getCurrentCountry() {
-    return this.get('country');
+    return this.country;
   }
 });
 
@@ -472,7 +471,7 @@ export default Component.extend({
   actions: {
     handleTyping() {
       //the fetchResults function is passed into the component from its parent
-      debounce(this, this.get('fetchResults'), this.get('searchValue'), 250);
+      debounce(this, this.fetchResults, this.searchValue, 250);
     }
   }
 });
