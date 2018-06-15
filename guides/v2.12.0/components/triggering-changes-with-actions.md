@@ -356,10 +356,8 @@ service, saving us from writing code on the component that just passes the actio
 import Ember from 'ember';
 
 export default Ember.Service.extend({
-  actions: {
-    sendMessage(messageType, text) {
-      //handle message send and return a promise
-    }
+  sendMessage(messageType, text) {
+    //handle message send and return a promise
   }
 });
 ```
@@ -411,7 +409,7 @@ export default Ember.Component.extend({
 
 ## Calling Actions Up Multiple Component Layers
 
-When your components go multiple template layers deep, it is common to need to handle an action several layers up the tree. 
+When your components go multiple template layers deep, it is common to need to handle an action several layers up the tree.
 Using the action helper, parent components can pass actions to child components through templates alone without adding JavaScript code to those child components.
 
 For example, say we want to move account deletion from the `user-profile` component to its parent `system-preferences-editor`.
