@@ -1,6 +1,11 @@
 const { expect } = require('chai');
 
-const { getBadRelativeUrlsForFile, findMarkdownLinks, getBadImageUrls } = require('./helpers');
+const {
+  findMarkdownLinks,
+  getBadRelativeUrlsForFile,
+  getBadLineBreaks,
+  getBadImageUrls,
+} = require('./helpers');
 
 /**
  * Autogenerate some mocha tests
@@ -28,6 +33,9 @@ describe('check all links in markdown files', function () {
       });
 
       expect(badLinks, printBadLinks(badLinks)).to.be.empty;
+
+      const badLineBreaks = getBadLineBreaks(filepath);
+      expect(badLineBreaks, printBadLinks(badLineBreaks)).to.be.empty;
 
       const badImageLinks = getBadImageUrls({
         filepath,
