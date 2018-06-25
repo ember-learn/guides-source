@@ -12,7 +12,7 @@ new `levelName` when the player reaches level 5.
 
 ```javascript {data-filename=app/models/player.js}
 import Model from 'ember-data/model';
-import { attr } from 'ember-data/model';
+import attr from 'ember-data/attr';
 
 export default Model.extend({
   level: attr('number', { defaultValue: 0 }),
@@ -71,7 +71,7 @@ export default Model.extend({
 
 ```javascript {data-filename=app/models/user.js}
 import Model from 'ember-data/model';
-import { belongsTo } from 'ember-data/model';
+import { belongsTo } from 'ember-data/relationships';
 
 export default Model.extend({
   profile: belongsTo('profile')
