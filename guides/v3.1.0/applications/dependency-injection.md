@@ -164,9 +164,13 @@ This includes all of Ember's major framework classes, such as components, helper
 
 ### Ad Hoc Injections
 
-Dependency injections can also be declared directly on Ember classes using `inject`.
+Dependency injections can also be declared directly on Ember classes using `inject` or on ES6 classes using `ember-decorators`.
+
+#### Injection into Ember Objects
+
 Currently, `inject` supports injecting controllers (via `import { inject } from '@ember/controller';`)
-and services (via `import { inject } from '@ember/service';`).
+and services (via `import { inject } from '@ember/service';`) into Ember objects. If you use this method in an ES6 class
+you will get a compile time error.
 
 The following code injects the `shopping-cart` service on the `cart-contents` component as the property `cart`:
 
@@ -189,6 +193,37 @@ import { inject as service } from '@ember/service';
 export default Component.extend({
   shoppingCart: service()
 });
+```
+
+#### Injection into ES6 classes
+
+**NOTE** ES6 classes in Ember are bleeding edge, so your mileage will vary elsewhere, but here's how to get injection working with them.
+
+The above `inject` method with ES6 classes works (accidentally) in Ember 2.x but not at all in Ember 3.x.
+
+> If you get the compile error `Assertion Failed: InjectedProperties should be defined with the inject computed property macros.` then you're using the above `inject` helper on at least one ES6 class in Ember 3.x. Replace it with the `@service` decorator instead as below.
+
+The following code is the correct way to inject the `shopping-cart` service on the `cart-contents` ES6 component as the property `cart`:
+
+```javascript {data-filename=app/components/cart-contents.js}
+import Component from '@ember/component';
+import { service } from 'ember-decorators/service';
+
+export default class CartContents extends Component {
+  @service('shopping-cart') cart;
+}
+```
+
+If you'd like to inject a service with the same name as the property,
+simply leave off the service name (the dasherized version of the name will be used):
+
+```javascript {data-filename=app/components/cart-contents.js}
+import Component from '@ember/component';
+import { service } from 'ember-decorators/service';
+
+export default class CartContents extends Component {
+  @service shoppingCart;
+}
 ```
 
 ## Factory Instance Lookups
