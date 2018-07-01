@@ -197,6 +197,8 @@ export default Component.extend({
 
 #### Injection into ES6 classes
 
+**NOTE** ES6 classes in Ember are bleeding edge, so your mileage will vary elsewhere, but here's how to get injection working with them.
+
 The above `inject` method with ES6 classes works (accidentally) in Ember 2.x but not at all in Ember 3.x.
 
 > If you get the compile error `Assertion Failed: InjectedProperties should be defined with the inject computed property macros.` then you're using the above `inject` helper on at least one ES6 class in Ember 3.x. Replace it with the `@service` decorator instead as below.
