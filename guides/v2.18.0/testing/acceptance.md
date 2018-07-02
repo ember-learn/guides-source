@@ -1,4 +1,4 @@
-To create an application test, run `ember generate acceptance-test <name>`.
+To create an acceptance test, run `ember generate acceptance-test <name>`.
 For example:
 
 ```bash
@@ -7,47 +7,40 @@ ember g acceptance-test login
 
 This generates this file:
 
-```javascript {data-filename="tests/acceptance/login-test.js"}
-import { module, test } from 'qunit';
-import { visit } from '@ember/test-helpers';
-import { setupApplicationTest } from 'ember-qunit';
+```javascript {data-filename=tests/acceptance/login-test.js}
+import { test } from 'qunit';
+import moduleForAcceptance from 'my-app/tests/helpers/module-for-acceptance';
 
-module('Acceptance | login', function(hooks) {
-  setupApplicationTest(hooks);
+moduleForAcceptance('Acceptance | login');
 
-  test('visiting /login', async function(assert) {
-    await visit('/login');
+test('visiting /login', function(assert) {
+  visit('/login');
+
+  andThen(function() {
     assert.equal(currentURL(), '/login');
   });
 });
 ```
 
-`module` allows you to scope your tests: Any test setup that is done inside of this scope will
-apply to all test cases contained in this module.
-Scoping your tests with `module` also allows you to execute your tests independently from other tests.
-For example, to only run your tests from your `login` module, run `ember test --module='Acceptance | login'`.
-`setupApplicationTest` deals with application setup and teardown.
-The `test` function contains an example test.
+`moduleForAcceptance` deals with application setup and teardown. The last few lines, within
+the function `test`, contain an example test.
 
 Almost every test has a pattern of visiting a route, interacting with the page
 (using the helpers), and checking for expected changes in the DOM.
 
 For example:
 
-```javascript {data-filename="tests/acceptance/new-post-appears-first-test.js"}
-import { module, test } from 'qunit';
-import { click, fillIn, visit } from '@ember/test-helpers';
-import { setupApplicationTest } from 'ember-qunit';
+```javascript {data-filename=tests/acceptance/new-post-appears-first-test.js}
+import { test } from 'qunit';
+import moduleForAcceptance from 'my-app/tests/helpers/module-for-acceptance';
 
-module('Acceptance | posts', function(hooks) {
-  setupApplicationTest(hooks);
+moduleForAcceptance('Acceptance | posts');
 
-  test('should add new post', async function(assert) {
-    await visit('/posts/new');
-    await fillIn('input.title', 'My new post');
-    await click('button.submit');
-    assert.equal(this.element.querySelector('ul.posts li').textContent, 'My new post');
-  });
+test('should add new post', function(assert) {
+  visit('/posts/new');
+  fillIn('input.title', 'My new post');
+  click('button.submit');
+  andThen(() => assert.equal(find('ul.posts li:first').text(), 'My new post'));
 });
 ```
 
@@ -81,7 +74,10 @@ types of helpers: **asynchronous** and **synchronous**.
 Asynchronous helpers are "aware" of (and wait for) asynchronous behavior within
 your application, making it much easier to write deterministic tests.
 
-Some of these handy helpers are:
+Also, these helpers register themselves in the order that you call them and will
+be run in a chain; each one is only called after the previous one finishes. You can rest assured, therefore, that the order you call them in will also
+be their execution order, and that the previous helper has finished before the
+next one starts.
 
 * [`click(selector)`][1]
   - Clicks an element and triggers any actions triggered by the element's `click`
@@ -100,32 +96,6 @@ Some of these handy helpers are:
   - Visits the given route and returns a promise that fulfills when all resulting
      async behavior is complete.
 
-You can find the full list of helpers in the [API Documentation of ember-test-helpers](https://github.com/emberjs/ember-test-helpers/blob/master/API.md).
-
-The asynchronous test helpers from `@ember/test-helpers` are meant to be used together with the [ES2017 feature async/await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await) to write easy-to-read tests which
-deal with asynchronous behavior as follows:
-
-Mark the callback passed to the `test` function as asynchronous using the `async` keyword:
-
-```javascript {data-filename="tests/acceptance/new-post-appears-first-test.js"}
-  test('should add new post', async function(assert) {
-
-  });
-```
-Before making an assertion, wait for the execution of each asynchronous helper to finish with the `await` keyword:
-
-```javascript {data-filename="tests/acceptance/new-post-appears-first-test.js"}
-  test('should add new post', async function(assert) {
-    await visit('/posts/new');
-    await fillIn('input.title', 'My new post');
-    await click('button.submit');
-    assert.equal(this.element.querySelector('ul.posts li').textContent, 'My new post');
-  });
-```
-
-Once we `await` the execution of the asynchronous helpers this way, we will ensure that all subsequent assertions are always made **after** the
-previous steps in the test have completed.
-
 ### Synchronous Helpers
 
 Synchronous helpers are performed immediately when triggered.
@@ -142,6 +112,40 @@ Synchronous helpers are performed immediately when triggered.
     conflicts with the test framework's reporter, and this is done by default
     if the context is not specified.
 
+### Wait Helpers
+
+The `andThen` helper will wait for all preceding asynchronous helpers to
+complete prior to progressing forward. Let's take a look at the following
+example.
+
+```javascript {data-filename=tests/acceptance/new-post-appears-first-test.js}
+import { test } from 'qunit';
+import moduleForAcceptance from 'my-app/tests/helpers/module-for-acceptance';
+
+moduleForAcceptance('Acceptance | posts');
+
+test('should add new post', function(assert) {
+  visit('/posts/new');
+  fillIn('input.title', 'My new post');
+  click('button.submit');
+  andThen(() => assert.equal(find('ul.posts li:first').text(), 'My new post'));
+});
+```
+
+First we visit the new posts URL "/posts/new", enter the text "My new post"
+into an input control with the CSS class "title", and click on a button whose
+class is "submit".
+
+We then make a call to the `andThen` helper which will wait for the preceding
+asynchronous test helpers to complete (specifically, `andThen` will only be
+called **after** the new posts URL was visited, the text filled in and the
+submit button was clicked, **and** the browser has returned from doing whatever
+those actions required). Note `andThen` has a single argument of the function
+that contains the code to execute after the other test helpers have finished.
+
+In the `andThen` helper, we finally make our call to `assert.equal` which makes an
+assertion that the text found in the first li of the ul whose class is "posts"
+is equal to "My new post".
 
 [1]: http://emberjs.com/api/classes/Ember.Test.html#method_click
 [2]: http://emberjs.com/api/classes/Ember.Test.html#method_fillIn
@@ -159,8 +163,8 @@ For creating your own test helper, run `ember generate test-helper
 <helper-name>`. Here is the result of running `ember g test-helper
 shouldHaveElementWithCount`:
 
-```javascript {data-filename="tests/helpers/should-have-element-with-count.js"}
-import { registerAsyncHelper } from '@ember/test';
+```javascript {data-filename=tests/helpers/should-have-element-with-count.js}
+import { registerAsyncHelper } from "@ember/test"
 
 export default registerAsyncHelper(
     'shouldHaveElementWithCount', function(app) {
@@ -183,8 +187,8 @@ first parameter. Other parameters, such as assert, need to be provided when call
 
 Here is an example of a non-async helper:
 
-```javascript {data-filename="tests/helpers/should-have-element-with-count.js"}
-import { registerHelper } from '@ember/test';
+```javascript {data-filename=tests/helpers/should-have-element-with-count.js}
+import { registerHelper } from "@ember/test"
 
 export default registerHelper('shouldHaveElementWithCount',
   function(app, assert, selector, n, context) {
@@ -199,14 +203,13 @@ export default registerHelper('shouldHaveElementWithCount',
 
 Here is an example of an async helper:
 
-```javascript {data-filename="tests/helpers/dblclick.js"}
-import { run } from '@ember/runloop';
-import { registerAsyncHelper } from '@ember/test';
+```javascript {data-filename=tests/helpers/dblclick.js}
+import { registerAsyncHelper } from "@ember/test"
 
 export default registerAsyncHelper('dblclick',
   function(app, assert, selector, context) {
     let $el = findWithAssert(selector, context);
-    run(() => $el.dblclick());
+    Ember.run(() => $el.dblclick());
   }
 );
 
@@ -216,8 +219,8 @@ export default registerAsyncHelper('dblclick',
 Async helpers also come in handy when you want to group interaction
 into one helper. For example:
 
-```javascript {data-filename="tests/helpers/add-contact.js"}
-import { registerAsyncHelper } from '@ember/test';
+```javascript {data-filename=tests/helpers/add-contact.js}
+import { registerAsyncHelper } from "@ember/test"
 
 export default registerAsyncHelper('addContact',
   function(app, name) {
@@ -234,7 +237,7 @@ Finally, don't forget to add your helpers in `tests/.eslintrc.js` and in
 `tests/helpers/start-app.js`. In `tests/.eslintrc.js` you need to add it in the
 `globals` section, otherwise you will get failing ESLint tests:
 
-```javascript {data-filename="tests/.eslintrc.js" data-diff="-4,+5,+6,+7,+8,+9,+10"}
+```javascript {data-filename=tests/.eslintrc.js data-diff="-4,+5,+6,+7,+8,+9,+10"}
 module.exports = {
   env: {
     embertest: true
@@ -251,7 +254,7 @@ module.exports = {
 In `tests/helpers/start-app.js` you need to import the helper file: it
 will be registered then.
 
-```javascript {data-filename="tests/helpers/start-app.js"}
+```javascript {data-filename=tests/helpers/start-app.js}
 import Ember from 'ember';
 import Application from '../../app';
 import Router from '../../router';
