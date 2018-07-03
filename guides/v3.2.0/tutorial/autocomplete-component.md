@@ -312,7 +312,7 @@ import hbs from 'htmlbars-inline-precompile';
 module('Integration | Component | rental-listing', function(hooks) {
   setupRenderingTest(hooks);
 
-  test('should initially load all listings', function (assert) {
+  test('should initially load all listings', async function (assert) {
   });
 
   test('it renders', async function(assert) {
