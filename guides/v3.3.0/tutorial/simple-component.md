@@ -318,7 +318,7 @@ Finally, let's add our actions and assertions.
 In the first test, we just want to verify the output of the component, so we just assert that the title and owner text match what we provided in the fake `rental`.
 
 ```javascript {data-filename="tests/integration/components/rental-listing-test.js" data-diff="+3,+4"}
-test('should display rental details', function(assert) {
+test('should display rental details', async function(assert) {
   await render(hbs`{{rental-listing rental=rental}}`);
   assert.equal(this.element.querySelector('.listing h3').textContent.trim(), 'test-title', 'Title: test-title');
   assert.equal(this.element.querySelector('.listing .owner').textContent.trim(), 'Owner: test-owner', 'Owner: test-owner');
