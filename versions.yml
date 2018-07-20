@@ -25,4 +25,5 @@ allVersions:
   - "v3.0.0"
   - "v3.1.0"
   - "v3.2.0"
-currentVersion: "v3.2.0"
+  - "v3.3.0"
+currentVersion: "v3.3.0"
