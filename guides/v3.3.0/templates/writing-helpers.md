@@ -159,7 +159,7 @@ to the helper function.  Here is our example from above, updated to
 support the optional `sign` option:
 
 ```javascript {data-filename=app/helpers/format-currency.js}
-export default helper(myHelper)
+import { helper } from '@ember/component/helper';
 
 export function formatCurrency([value, ...rest], namedArgs) {
   let dollars = Math.floor(value / 100);
@@ -181,7 +181,7 @@ You can pass as many named arguments as you'd like. They get added to the
 ```
 
 ```javascript {data-filename=app/helpers/my-helper.js}
-export default helper(myHelper)
+import { helper } from '@ember/component/helper';
 
 export function myHelper(params, namedArgs) {
   console.log(namedArgs.option1); // => "hello"
@@ -189,14 +189,14 @@ export function myHelper(params, namedArgs) {
   console.log(namedArgs.option3); // => "goodbye cruel world"
 });
 
-export default helper(myHelper)
+export default helper(myHelper);
 ```
 
 You can use JavaScript's destructuring assignment shorthand in this case
 as well to clean up the above code:
 
 ```javascript {data-filename=app/helpers/my-helper.js}
-export default helper(myHelper)
+import { helper } from '@ember/component/helper';
 
 export function myHelper(params, { option1, option2, option3 }) {
   console.log(option1); // => "hello"
