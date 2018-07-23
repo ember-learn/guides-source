@@ -189,7 +189,7 @@ export function myHelper(params, namedArgs) {
   console.log(namedArgs.option3); // => "goodbye cruel world"
 });
 
-export default helper(myHelper)
+export default helper(myHelper);
 ```
 
 You can use JavaScript's destructuring assignment shorthand in this case
