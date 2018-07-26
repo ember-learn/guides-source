@@ -85,7 +85,7 @@ ironMan.get('fullName'); // no console output since dependencies have not change
 ### Multiple dependents on the same object
 
 In the previous example, the `fullName` computed property depends on two other properties of the same object.  
-However, you may find that you have to observe properties a different object.
+However, you may find that you have to observe the properties of a different object.
 For example, look at this computed property:
 
 ```javascript
