@@ -49,7 +49,7 @@ various draggable behaviors. For example, a component may need to send an `id`
 when it receives a drop event:
 
 ```handlebars
-{{drop-target action=(action "didDrop")}}
+{{drop-target dropAction=(action "didDrop")}}
 ```
 
 You can define the component's event handlers to manage the drop event.
@@ -69,7 +69,7 @@ export default Component.extend({
 
   drop(event) {
     let id = event.dataTransfer.getData('text/data');
-    this.get('action')(id);
+    this.dropAction(id);
   }
 });
 ```

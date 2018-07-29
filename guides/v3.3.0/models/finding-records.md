@@ -7,9 +7,9 @@ This will return a promise that fulfills with the requested record:
 
 ```javascript
 // GET /blog-posts/1
-this.get('store').findRecord('blog-post', 1)
+this.store.findRecord('blog-post', 1)  // => GET /blog-posts/1
   .then(function(blogPost) {
-    // Do something with `blogPost`
+      // Do something with `blogPost`
   });
 ```
 
@@ -17,8 +17,7 @@ Use [`store.peekRecord()`](https://www.emberjs.com/api/ember-data/release/classe
 This will return the record only if it is already present in the store:
 
 ```javascript
-// no network request
-let blogPost = this.get('store').peekRecord('blog-post', 1);
+let blogPost = this.store.peekRecord('blog-post', 1); // => no network request
 ```
 
 ### Retrieving Multiple Records
@@ -27,7 +26,7 @@ Use [`store.findAll()`](https://www.emberjs.com/api/ember-data/release/classes/D
 
 ```javascript
 // GET /blog-posts
-this.get('store').findAll('blog-post')
+this.store.findAll('blog-post') // => GET /blog-posts
   .then(function(blogPosts) {
     // Do something with `blogPosts`
   });
@@ -36,8 +35,7 @@ this.get('store').findAll('blog-post')
 Use [`store.peekAll()`](http://emberjs.com/api/data/classes/DS.Store.html#method_peekAll) to retrieve all of the records for a given type that are already loaded into the store, without making a network request:
 
 ```javascript
-// no network request
-let blogPosts = this.get('store').peekAll('blog-post');
+let blogPosts = this.store.peekAll('blog-post'); // => no network request
 ```
 
 `store.findAll()` returns a `DS.PromiseArray` that fulfills to a `DS.RecordArray` and `store.peekAll` directly returns a `DS.RecordArray`.
@@ -57,7 +55,7 @@ For example, we could search for all `person` models who have the name of
 
 ```javascript
 // GET to /persons?filter[name]=Peter
-this.get('store').query('person', {
+this.store.query('person', {
   filter: {
     name: 'Peter'
   }

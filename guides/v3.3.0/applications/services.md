@@ -44,15 +44,15 @@ export default Service.extend({
   },
 
   add(item) {
-    this.get('items').pushObject(item);
+    this.items.pushObject(item);
   },
 
   remove(item) {
-    this.get('items').removeObject(item);
+    this.items.removeObject(item);
   },
 
   empty() {
-    this.get('items').clear();
+    this.items.clear();
   }
 });
 ```
@@ -108,12 +108,10 @@ export default Component.extend({
 ```
 
 Injected properties are lazy loaded; meaning the service will not be instantiated until the property is explicitly called.
-Therefore you need to access services in your component using the `get` function otherwise you might get an undefined.
 
 Once loaded, a service will persist until the application exits.
 
 Below we add a remove action to the `cart-contents` component.
-Notice that below we access the `cart` service with a call to `this.get`.
 
 ```javascript {data-filename=app/components/cart-contents.js}
 import Component from '@ember/component';
@@ -124,7 +122,7 @@ export default Component.extend({
 
   actions: {
     remove(item) {
-      this.get('cart').remove(item);
+      this.cart.remove(item);
     }
   }
 });

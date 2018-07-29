@@ -43,7 +43,7 @@ import Route from '@ember/routing/route';
 
 export default Route.extend({
   model() {
-    this.get('store').push({
+    this.store.push({
       data: [{
         id: 1,
         type: 'album',
@@ -97,7 +97,7 @@ import Route from '@ember/routing/route';
 
 export default Route.extend({
   model() {
-    this.get('store').pushPayload({
+    this.store.pushPayload({
       albums: [
         {
           id: 1,
@@ -138,7 +138,7 @@ export default Route.extend({
         method: 'POST',
         url: 'process-payment'
       }).then((digitalInventory) => {
-        this.get('store').push(digitalInventory);
+        this.store.push(digitalInventory);
         this.transitionTo('thank-you');
       });
     }

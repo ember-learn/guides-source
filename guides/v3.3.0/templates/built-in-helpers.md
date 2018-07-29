@@ -20,7 +20,7 @@ to output one of several values based on the result of a computed property.
 ```
 
 if the `part` computed property returns "zip", this will display the result of
-`this.get('address.zip')`. If it returns "city", you get `this.get('address.city')`.
+`this.address.zip`. If it returns "city", you get `this.address.city`.
 
 ### Nesting built-in helpers
 
@@ -34,8 +34,8 @@ format of a concatenated string.
 {{get "foo" (concat "item" index)}}
 ```
 
-This will display the result of `this.get('foo.item1')` when index is 1,
-and `this.get('foo.item2')` when index is 2, etc.
+This will display the result of `this.foo.item1` when index is 1,
+and `this.foo.item2` when index is 2, etc.
 
 ### Built-in block helpers
 Now let's say your template is starting to get a bit cluttered and you now want to clean up the logic in your templates. This can be achieved with the `let` block helper. The [`{{let}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/get?anchor=let) helper lets you create new bindings in your template.

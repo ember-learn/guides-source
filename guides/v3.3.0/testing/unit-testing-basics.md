@@ -21,9 +21,7 @@ export default Service.extend({
   foo: 'bar',
 
   computedFoo: computed('foo', function() {
-    const foo = this.get('foo');
-
-    return `computed ${foo}`;
+    return `computed ${this.foo}`;
   })
 });
 ```
@@ -109,9 +107,7 @@ export default Service.extend({
 
   calc() {
     this.incrementProperty('count');
-    let count = this.get('count');
-
-    return `count: ${count}`;
+    return `count: ${this.count}`;
   }
 });
 ```
