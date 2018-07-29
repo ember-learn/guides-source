@@ -82,13 +82,13 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
-    this.get('filter')('').then((results) => this.set('results', results));
+    this.filter('').then((results) => this.set('results', results));
   },
 
   actions: {
     handleFilterEntry() {
-      let filterInputValue = this.get('value');
-      let filterAction = this.get('filter');
+      let filterInputValue = this.value;
+      let filterAction = this.filter;
       filterAction(filterInputValue).then((filterResults) => this.set('results', filterResults));
     }
   }
@@ -130,9 +130,9 @@ export default Controller.extend({
   actions: {
     filterByCity(param) {
       if (param !== '') {
-        return this.get('store').query('rental', { city: param });
+        return this.store.query('rental', { city: param });
       } else {
-        return this.get('store').findAll('rental');
+        return this.store.findAll('rental');
       }
     }
   }
@@ -229,14 +229,14 @@ export default Controller.extend({
   actions: {
     filterByCity(param) {
       if (param !== '') {
-        return this.get('store').query('rental', { city: param });
-        return this.get('store')
+        return this.store.query('rental', { city: param });
+        return this.store
           .query('rental', { city: param }).then((results) => {
             return { query: param, results: results };
           });
       } else {
-        return this.get('store').findAll('rental');
-        return this.get('store')
+        return this.store.findAll('rental');
+        return this.store
           .findAll('rental').then((results) => {
             return { query: param, results: results };
           });
@@ -258,19 +258,19 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
-    this.get('filter')('').then((results) => this.set('results', results));
-    this.get('filter')('').then((allResults) => {
+    this.filter('').then((results) => this.set('results', results));
+    this.filter('').then((allResults) => {
       this.set('results', allResults.results);
     });
   },
 
   actions: {
     handleFilterEntry() {
-      let filterInputValue = this.get('value');
-      let filterAction = this.get('filter');
+      let filterInputValue = this.value;
+      let filterAction = this.filter;
       filterAction(filterInputValue).then((filterResults) => this.set('results', filterResults));
       filterAction(filterInputValue).then((filterResults) => {
-        if (filterResults.query === this.get('value')) {
+        if (filterResults.query === this.value) {
           this.set('results', filterResults.results);
         }
       });

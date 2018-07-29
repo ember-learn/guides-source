@@ -236,7 +236,7 @@ export default DS.JSONAPIAdapter.extend({
   session: service('session'),
   headers: computed('session.authToken', function() {
     return {
-      'API_KEY': this.get('session.authToken'),
+      'API_KEY': this.session.authToken,
       'ANOTHER_HEADER': 'Some header value'
     };
   })

@@ -87,7 +87,7 @@ export default Component.extend({
 
   actions: {
     userDidDeleteAccount() {
-      this.get('login').deleteUser();
+      this.login.deleteUser();
     }
   }
 });
@@ -176,7 +176,7 @@ export default Component.extend({
 
     submitConfirm() {
       //call the onConfirm property to invoke the passed in action
-      this.get('onConfirm')();
+      this.onConfirm();
     },
 
     cancelConfirm() {
@@ -185,9 +185,6 @@ export default Component.extend({
   }
 });
 ```
-
-`this.get('onConfirm')` will return the function passed from the parent as the
-value of `onConfirm`, and the following `()` will invoke the function.
 
 Like normal attributes, actions can be a property on the component; the
 only difference is that the property is set to a function that knows how
@@ -222,7 +219,7 @@ export default Component.extend({
 
     submitConfirm() {
       // call onConfirm with the value of the input field as an argument
-      let promise = this.get('onConfirm')();
+      let promise = this.onConfirm();
       promise.then(() => {
         this.set('confirmShown', false);
       });
@@ -271,7 +268,7 @@ Within `button-with-confirmation`, the code in the `submitConfirm` action does n
 It will still invoke `onConfirm` without explicit arguments:
 
 ```javascript {data-filename=app/components/button-with-confirmation.js}
-const promise = this.get('onConfirm')();
+const promise = this.onConfirm();
 ```
 However the expression `(action "sendMessage" "info")` used in passing the action to the component creates a closure,
 i.e. an object that binds the parameter we've provided to the function specified.
@@ -315,7 +312,7 @@ export default Component.extend({
     //...
     submitConfirm() {
       // call onConfirm with a second argument
-      let promise = this.get('onConfirm')(this.get('confirmValue'));
+      let promise = this.onConfirm(this.confirmValue);
       promise.then(() => {
         this.set('confirmShown', false);
       });
@@ -417,8 +414,8 @@ export default Component.extend({
 
   actions: {
     userDidDeleteAccount() {
-      this.get('login').deleteUser();
-      this.get('didDelete')(this.get('login.currentUserObj'));
+      this.login.deleteUser();
+      this.didDelete(this.login.currentUserObj);
     }
   }
 });
@@ -463,7 +460,7 @@ export default Component.extend({
   login: service(),
   actions: {
     deleteUser(idStr) {
-      return this.get('login').deleteUserAccount(idStr);
+      return this.login.deleteUserAccount(idStr);
     }
   }
 });

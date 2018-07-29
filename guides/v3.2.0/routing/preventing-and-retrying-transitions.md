@@ -94,7 +94,7 @@ export default Controller.extend({
   actions: {
     login() {
       // Log the user in, then reattempt previous transition if it exists.
-      let previousTransition = this.get('previousTransition');
+      let previousTransition = this.previousTransition;
       if (previousTransition) {
         this.set('previousTransition', null);
         previousTransition.retry();

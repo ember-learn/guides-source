@@ -24,7 +24,7 @@ import Route from '@ember/routing/route';
 
 export default Route.extend({
   model() {
-    return this.get('store').findAll('slow-model');
+    return this.store.findAll('slow-model');
   }
 });
 ```
@@ -95,7 +95,7 @@ import Route from '@ember/routing/route';
 
 export default Route.extend({
   model() {
-    return this.get('store').findAll('slow-model');
+    return this.store.findAll('slow-model');
   },
 
   actions: {
@@ -145,7 +145,7 @@ export default Route.extend({
     loading(transition) {
       let start = new Date();
       transition.promise.finally(() => {
-        this.get('notifier').notify(`Took ${new Date() - start}ms to load`);
+        this.notifier.notify(`Took ${new Date() - start}ms to load`);
       });
 
       return true;
@@ -212,7 +212,7 @@ import Route from '@ember/routing/route';
 
 export default Route.extend({
   model(params) {
-    return this.get('store').findAll('privileged-model');
+    return this.store.findAll('privileged-model');
   },
 
   actions: {
@@ -239,11 +239,11 @@ import Route from '@ember/routing/route';
 
 export default Route.extend({
   model(params) {
-    return this.get('store').findAll('privileged-model');
+    return this.store.findAll('privileged-model');
   },
   actions: {
     error(error) {
-      this.get('notifier').error(error);
+      this.notifier.error(error);
 
       return true;
     }

@@ -238,7 +238,7 @@ have a `Person` model. An individual record in your app might
 have a type of `person` and an ID of `1` or `steve-buscemi`.
 
 ```javascript
-this.get('store').findRecord('person', 1); // => { id: 1, name: 'steve-buscemi' }
+this.store.findRecord('person', 1); // => { id: 1, name: 'steve-buscemi' }
 ```
 
 An ID is usually assigned to a record by the server when you save it for

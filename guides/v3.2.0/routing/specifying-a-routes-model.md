@@ -17,7 +17,7 @@ import Route from '@ember/routing/route';
 
 export default Route.extend({
   model() {
-    return this.get('store').query('post', { favorite: true });
+    return this.store.query('post', { favorite: true });
   }
 });
 ```
@@ -73,7 +73,7 @@ import Route from '@ember/routing/route';
 
 export default Route.extend({
   model(params) {
-    return this.get('store').findRecord('photo', params.photo_id);
+    return this.store.findRecord('photo', params.photo_id);
   }
 });
 ```
@@ -133,8 +133,8 @@ import RSVP from 'rsvp';
 export default Route.extend({
   model() {
     return RSVP.hash({
-      songs: this.get('store').findAll('song'),
-      albums: this.get('store').findAll('album')
+      songs: this.store.findAll('song'),
+      albums: this.store.findAll('album')
     });
   }
 });
