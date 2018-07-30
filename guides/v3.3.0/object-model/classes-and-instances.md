@@ -226,11 +226,27 @@ Person.create({
 
 ### Accessing Object Properties
 
-When accessing the properties of an object, use the [`get()`][7]
-and [`set()`][8] accessor methods:
+When reading a property value of an object, you can in most cases use the common Javascript dot notation, e.g. `myObject.myProperty`. 
 
-[7]: https://www.emberjs.com/api/ember/release/classes/@ember%2Fobject/methods/get?anchor=get
-[8]: https://www.emberjs.com/api/ember/release/classes/@ember%2Fobject/methods/set?anchor=set
+[Ember proxy objects][9] are the one big exception to this rule. If you're working with Ember proxy objects, including promise proxies for async relationships in Ember Data, you have to use Ember's [`get()`][7] accessor method to read values.
+
+Let's look at the following `blogPost` Ember Data model:
+
+```javascript {data-filename=app/models/blog-post.js}
+import Model from 'ember-data/model';
+import attr from 'ember-data/attr';
+import { hasMany } from 'ember-data/relationships';
+
+export default Model.extend({
+  title: attr('string'),
+  body: attr('string'),
+  comments: hasMany('comment', { async: true }),
+});
+```
+
+To access the blog post's title you can simply write `blogPost.title`, whereas only the syntax `blogPost.get('comments')` will return the post's comments.
+
+Always use Ember's [`set()`][8] method to update property values. It will propagate the value change to computed properties, observers, templates, etc. If you "just" use Javascript's dot notation to update a property value, computed properties won't recalculate, observers won't fire and templates won't update.
 
 ```javascript
 import EmberObject from '@ember/object';
@@ -241,10 +257,11 @@ const Person = EmberObject.extend({
 
 let person = Person.create();
 
-person.get('name'); // 'Robert Jackson'
+person.name; // 'Robert Jackson'
 person.set('name', 'Tobias Fünke');
-person.get('name'); // 'Tobias Fünke'
+person.name; // 'Tobias Fünke'
 ```
 
-Make sure to use these accessor methods; otherwise, computed properties won't
-recalculate, observers won't fire, and templates won't update.
+[7]: https://www.emberjs.com/api/ember/release/classes/@ember%2Fobject/methods/get?anchor=get
+[8]: https://www.emberjs.com/api/ember/release/classes/@ember%2Fobject/methods/set?anchor=set
+[9]: https://emberjs.com/api/ember/3.3/classes/ObjectProxy

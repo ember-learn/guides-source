@@ -29,7 +29,7 @@ let ironMan = Person.create({
   lastName:  'Stark'
 });
 
-ironMan.get('fullName'); // "Tony Stark"
+ironMan.fullName; // "Tony Stark"
 ```
 
 This declares `fullName` to be a computed property, with `firstName` and `lastName` as the properties it depends on.
@@ -41,7 +41,7 @@ Changing any of the dependent properties causes the cache to invalidate, so that
 
 A computed property will only recompute its value when it is _consumed._ Properties are consumed in two ways:
 
-1. By a `get`, for example `ironMan.get('fullName')`
+1. By being accessed, for example `ironMan.fullName`
 2. By being referenced in a handlebars template that is currently being rendered, for example `{{ironMan.fullName}}`
 
 Outside of those two circumstances the code in the property will not run, even if one of the property's dependencies are changed.
@@ -59,7 +59,7 @@ import Ember from 'ember':
 …
 ```
 
-Using the new property, it will only log after a `get`, and then only if either the `firstName` or `lastName` has been previously changed:
+Using the new property, it will only log after a `fullName` is accessed, and then only if either the `firstName` or `lastName` has been previously changed:
 
 ```javascript
 
@@ -68,11 +68,11 @@ let ironMan = Person.create({
   lastName:  'Stark'
 });
 
-ironMan.get('fullName'); // 'compute fullName'
+ironMan.fullName; // 'compute fullName'
 ironMan.set('firstName', 'Bruce') // no console output
 
-ironMan.get('fullName'); // 'compute fullName'
-ironMan.get('fullName'); // no console output since dependencies have not changed
+ironMan.fullName; // 'compute fullName'
+ironMan.fullName; // no console output since dependencies have not changed
 ```
 
 
@@ -151,7 +151,7 @@ Let's use computed properties to dynamically update.
 ```javascript
 captainAmerica.set('firstName', 'William');
 
-captainAmerica.get('description'); // "William Rogers; Age: 80; Country: USA"
+captainAmerica.description; // "William Rogers; Age: 80; Country: USA"
 ```
 
 So this change to `firstName` was observed by `fullName` computed property, which was itself observed by the `description` property.
@@ -187,8 +187,8 @@ Person = EmberObject.extend({
 
 let captainAmerica = Person.create();
 captainAmerica.set('fullName', 'William Burnside');
-captainAmerica.get('firstName'); // William
-captainAmerica.get('lastName'); // Burnside
+captainAmerica.firstName; // William
+captainAmerica.lastName; // Burnside
 ```
 
 ### Computed property macros
