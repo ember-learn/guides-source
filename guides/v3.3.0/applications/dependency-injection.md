@@ -146,7 +146,7 @@ import Route from '@ember/routing/route';
 export default Route.extend({
   activate() {
     // The logger property is injected into all routes
-    this.get('logger').log('Entered the index route!');
+    this.logger.log('Entered the index route!');
   }
 });
 ```
@@ -244,14 +244,17 @@ import { getOwner } from '@ember/application';
 //
 export default Component.extend({
   audioService: computed('song.audioType', function() {
+    if (!this.song) {
+      return null;
+    }
     let applicationInstance = getOwner(this);
-    let audioType = this.get('song.audioType');
+    let audioType = this.song.audioType;
     return applicationInstance.lookup(`service:audio-${audioType}`);
   }),
 
   click() {
-    let player = this.get('audioService');
-    player.play(this.get('song.file'));
+    let player = this.audioService;
+    player.play(this.song.file);
   }
 });
 ```

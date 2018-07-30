@@ -20,10 +20,7 @@ Person = EmberObject.extend({
   lastName: null,
 
   fullName: computed('firstName', 'lastName', function() {
-    let firstName = this.get('firstName');
-    let lastName = this.get('lastName');
-
-    return `${firstName} ${lastName}`;
+    return `${this.firstName} ${this.lastName}`;
   })
 });
 
@@ -57,10 +54,7 @@ import Ember from 'ember':
 …
   fullName: computed('firstName', 'lastName', function() {
     console.log('compute fullName'); // track when the property recomputes
-    let firstName = this.get('firstName');
-    let lastName = this.get('lastName');
-
-    return `${firstName} ${lastName}`;
+    return `${this.firstName} ${this.lastName}`;
   })
 …
 ```
@@ -95,7 +89,7 @@ let obj = EmberObject.extend({
   baz: { foo: 'BLAMMO', bar: 'BLAZORZ' },
 
   something: computed('baz.foo', 'baz.bar', function() {
-    return `${this.get('baz.foo')} ${this.get('baz.bar')}`;
+    return `${this.baz.foo} ${this.baz.bar}`;
   })
 });
 ```
@@ -110,7 +104,7 @@ let obj = EmberObject.extend({
   baz: { foo: 'BLAMMO', bar: 'BLAZORZ' },
 
   something: computed('baz.{foo,bar}', function() {
-    return `${this.get('baz.foo')} ${this.get('baz.bar')}`;
+    return `${this.baz.foo} ${this.baz.bar}`;
   })
 });
 ```
@@ -131,11 +125,11 @@ Person = EmberObject.extend({
   country: null,
 
   fullName: computed('firstName', 'lastName', function() {
-    return `${this.get('firstName')} ${this.get('lastName')}`;
+    return `${this.firstName} ${this.lastName}`;
   }),
 
   description: computed('fullName', 'age', 'country', function() {
-    return `${this.get('fullName')}; Age: ${this.get('age')}; Country: ${this.get('country')}`;
+    return `${this.fullName}; Age: ${this.age}; Country: ${this.country}`;
   })
 });
 
@@ -179,7 +173,7 @@ Person = EmberObject.extend({
 
   fullName: computed('firstName', 'lastName', {
     get(key) {
-      return `${this.get('firstName')} ${this.get('lastName')}`;
+      return `${this.firstName} ${this.lastName}`;
     },
     set(key, value) {
       let [firstName, lastName] = value.split(/\s+/);
@@ -212,7 +206,7 @@ Person = EmberObject.extend({
   fullName: 'Tony Stark',
 
   isIronManLongWay: computed('fullName', function() {
-    return this.get('fullName') === 'Tony Stark';
+    return this.fullName === 'Tony Stark';
   }),
 
   isIronManShortWay: equal('fullName', 'Tony Stark')
