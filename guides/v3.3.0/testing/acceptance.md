@@ -145,12 +145,12 @@ Synchronous helpers are performed immediately when triggered.
     elements.
 
 
-[1]: http://emberjs.com/api/classes/Ember.Test.html#method_click
-[2]: http://emberjs.com/api/classes/Ember.Test.html#method_fillIn
-[3]: https://github.com/emberjs/ember-test-helpers/blob/master/API.md
-[4]: http://emberjs.com/api/classes/Ember.Test.html#method_triggerEvent
-[5]: http://emberjs.com/api/classes/Ember.Test.html#method_visit
-[6]: http://emberjs.com/api/classes/Ember.Test.html#method_currentRouteName
-[7]: http://emberjs.com/api/classes/Ember.Test.html#method_currentURL
-[8]: http://emberjs.com/api/classes/Ember.Test.html#method_find
+[1]: https://github.com/emberjs/ember-test-helpers/blob/master/API.md#click
+[2]: https://github.com/emberjs/ember-test-helpers/blob/master/API.md#fillin
+[3]: https://github.com/emberjs/ember-test-helpers/blob/master/API.md#triggerkeyevent
+[4]: https://github.com/emberjs/ember-test-helpers/blob/master/API.md#triggerevent
+[5]: https://github.com/emberjs/ember-test-helpers/blob/master/API.md#visit
+[6]: https://github.com/emberjs/ember-test-helpers/blob/master/API.md#currentroutename
+[7]: https://github.com/emberjs/ember-test-helpers/blob/master/API.md#currenturl
+[8]: https://github.com/emberjs/ember-test-helpers/blob/master/API.md#find
 [9]: https://github.com/emberjs/ember-test-helpers/blob/master/API.md#findall
