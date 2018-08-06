@@ -49,7 +49,7 @@ Outside of those two circumstances the code in the property will not run, even i
 We'll modify the `fullName` property from the previous example to log to the console:
 
 ```javascript
-import Ember from 'ember':
+import Ember from 'ember';
 
 …
   fullName: computed('firstName', 'lastName', function() {
