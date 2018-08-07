@@ -58,12 +58,12 @@ project happens in this folder.
 **config**: The config directory contains the `environment.js` where you can
 configure settings for your app.
 
-**node_modules / package.json**: This directory and file are from npm.
+**node\_modules / package.json**: This directory and file are from npm.
 npm is the package manager for Node.js. Ember is built with Node and uses a
 variety of Node.js modules for operation. The `package.json` file maintains the
 list of current npm dependencies for the app.  Any Ember CLI
 addons you install will also show up here. Packages listed in `package.json`
-are installed in the node_modules directory.
+are installed in the node\_modules directory.
 
 **public**: This directory contains assets such as images and fonts.
 
