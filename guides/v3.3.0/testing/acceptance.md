@@ -134,15 +134,14 @@ Synchronous helpers are performed immediately when triggered.
   - Returns the currently active route name.
 * [`currentURL()`][7]
   - Returns the current URL.
-* [`find(selector, context)`][8]
-  - Finds an element within the app's root element and within the context
-    (optional). Scoping to the root element is especially useful to avoid
-    conflicts with the test framework's reporter, and this is done by default
-    if the context is not specified.
+* [`find(selector)`][8]
+  - Finds one element within the app's root element that matches the given
+    selector. Scoping to the root element is useful to avoid
+    conflicts with the test framework's reporter.
 * [`findAll(selector)`][9]
-  - Find all elements matched by the given selector. Equivalent to calling
-    querySelectorAll() on the test root element.  Returns an array of matched
-    elements.
+  - Like `find(selector)`, but finds all elements that match the given selector.
+    Equivalent to calling querySelectorAll() on the test root element.
+    Returns an array of matched elements.
 
 
 [1]: https://github.com/emberjs/ember-test-helpers/blob/master/API.md#click
