@@ -80,31 +80,68 @@ ironMan.fullName; // no console output since dependencies have not changed
 
 In the previous example, the `fullName` computed property depends on two other properties of the same object.  
 However, you may find that you have to observe the properties of a different object.
+
 For example, look at this computed property:
 
 ```javascript
 import EmberObject, { computed } from '@ember/object';
 
-let obj = EmberObject.extend({
-  baz: { foo: 'BLAMMO', bar: 'BLAZORZ' },
+let home = EmberObject.extend({
+  location: {
+    streetName: 'Evergreen Terrace',
+    streetNumber: 742
+  }
 
-  something: computed('baz.foo', 'baz.bar', function() {
-    return `${this.baz.foo} ${this.baz.bar}`;
+  address: computed('location.streetName', 'location.streetNumber', function() {
+    return `${this.location.streetNumber} ${this.location.streetName}`;
   })
 });
+
+home.address // 742 Evergreen Terrace
+home.set('location.streetNumber', 744)
+home.address // 744 Evergreen Terrace
 ```
 
-Since both `foo` and `bar` are properties on the `baz` object, we can use a short-hand syntax called _brace expansion_ to declare the dependents keys.
+It is important to observe an object's properties, not the object itself that has properties nested inside. If the object reference `location` is used as a dependent key, the computed property will not recalculate when the `streetName` or `streetNumber` properties change.
+
+```javascript
+import EmberObject, { computed } from '@ember/object';
+
+let home = EmberObject.extend({
+  location: {
+    streetName: 'Evergreen Terrace',
+    streetNumber: 742
+  }
+
+  address: computed('location', function() {
+    return `${this.location.streetNumber} ${this.location.streetName}`;
+  })
+});
+
+home.address // 742 Evergreen Terrace
+home.set('location.streetNumber', 744)
+home.address // 742 Evergreen Terrace
+home.set('location', {
+  streetName: 'Evergreen Terrace',
+  streetNumber: 744
+})
+home.address // 744 Evergreen Terrace
+```
+
+Since both `streetName` and `streetNumber` are properties on the `location` object, we can use a short-hand syntax called _brace expansion_ to declare the dependents keys.
 You surround the dependent properties with braces (`{}`), and separate with commas, like so:
 
 ```javascript
 import EmberObject, { computed } from '@ember/object';
 
-let obj = EmberObject.extend({
-  baz: { foo: 'BLAMMO', bar: 'BLAZORZ' },
+let home = EmberObject.extend({
+  location: {
+    streetName: 'Evergreen Terrace',
+    streetNumber: 742
+  }
 
-  something: computed('baz.{foo,bar}', function() {
-    return `${this.baz.foo} ${this.baz.bar}`;
+  address: computed('location.{streetName,streetNumber}', function() {
+    return `${this.location.streetNumber} ${this.location.streetName}`;
   })
 });
 ```
