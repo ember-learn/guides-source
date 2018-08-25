@@ -494,7 +494,8 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render, settled } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-module('Integration | Component | delayed typeahead', {
+module('Integration | Component | delayed typeahead', function(hooks) {
+  setupRenderingTest(hooks);
 
   const stubResults = [
     { name: 'result 1' },
