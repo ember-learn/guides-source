@@ -26,7 +26,7 @@ When you have all those permissions set up:
 4. Commit the change.
 5. If you don't have it already, install `np` with `npm install -g np`
 6. `npm login`
-7. The following command will begin the build when executed from the content of guides-source: `np`
+7. The following command will begin the build when executed from the root of the guides-source repo: `np`
 8. When prompted, choose `minor`
 9. In about 5 minutes, you will see a PR from dependabot on guides-app. Here is an [example](https://github.com/ember-learn/guides-app/pull/186). After the tests pass, merge it. If content has changed significantly, Percy visual CI may indicate changes, so use the dashboard to review. Follow the link in the CI notifications.
 10. Next, open the [heroku pipeline](https://dashboard.heroku.com/pipelines/34336875-328f-42c8-ab5c-44a8182f6a5c). Do not click promote to production! In the production column, click on the arrows icon, choose deploy a branch, and master. 
