@@ -21,7 +21,7 @@
   url: 'tutorial'
   pages:
     - title: "Creating Your App"
-      url: "ember-cli"
+      url: "index"
     - title: "Planning Your App"
       url: 'acceptance-test'
     - title: "Routes and Templates"
