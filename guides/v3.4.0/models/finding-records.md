@@ -32,7 +32,7 @@ this.store.findAll('blog-post') // => GET /blog-posts
   });
 ```
 
-Use [`store.peekAll()`](http://emberjs.com/api/data/classes/DS.Store.html#method_peekAll) to retrieve all of the records for a given type that are already loaded into the store, without making a network request:
+Use [`store.peekAll()`](https://www.emberjs.com/api/ember-data/release/classes/DS.Store/methods/findAll?anchor=peekAll) to retrieve all of the records for a given type that are already loaded into the store, without making a network request:
 
 ```javascript
 let blogPosts = this.store.peekAll('blog-post'); // => no network request
