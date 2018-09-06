@@ -113,14 +113,6 @@ To find the elements that have a class called `listing`, we'll use the method [`
 The `querySelectorAll` method returns the elements that match the given [CSS selector](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors).
 In this case it will return an array of all the elements with a class called `listing`.
 
-```javascript {data-filename="tests/acceptance/list-rentals-test.js" data-diff="+4"}
-import {
-  click,
-  currentURL,
-  visit
-} from '@ember/test-helpers'
-```
-
 ```javascript {data-filename="tests/acceptance/list-rentals-test.js" data-diff="+2,+3"}
 test('should list available rentals.', async function(assert) {
   await visit('/');

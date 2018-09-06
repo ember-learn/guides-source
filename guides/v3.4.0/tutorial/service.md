@@ -115,7 +115,7 @@ Now implement the service as follows.
 Note that we check if a map already exists for the given location and use that one,
 otherwise we call a Google Maps utility to create one.
 
-```javascript {data-filename="app/services/maps.js" data-diff="+2,+3,+5,+9,+10,+11,+12,+13,+14,+15,+16,+17,+19+,+20,+21,+22,+23,+24,+25,+26,+27,+28,+30,+31,+32,+33,+34"}
+```javascript {data-filename="app/services/maps.js" data-diff="+2,+3,+5,+9,+10,+11,+12,+13,+14,+15,+16,+17,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+30,+31,+32,+33,+34"}
 import Service from '@ember/service';
 import { camelize } from '@ember/string';
 import EmberObject from '@ember/object';
