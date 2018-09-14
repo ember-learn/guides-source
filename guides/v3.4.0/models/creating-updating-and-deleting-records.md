@@ -107,10 +107,10 @@ be available on the `errors` property of your model. Here's how you might displa
 the errors from saving a blog post in your template:
 
 ```handlebars
-{{#each post.errors.title as |error|}}
+{{#each this.post.errors.title as |error|}}
   <div class="error">{{error.message}}</div>
 {{/each}}
-{{#each post.errors.body as |error|}}
+{{#each this.post.errors.body as |error|}}
   <div class="error">{{error.message}}</div>
 {{/each}}
 ```

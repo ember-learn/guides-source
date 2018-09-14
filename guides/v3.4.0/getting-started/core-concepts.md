@@ -36,10 +36,10 @@ templates. Anything that is valid Handlebars syntax is valid Ember syntax.
 Templates can also display properties provided to them from their context, which is either a component or a route's controller. For example:
 
 ```handlebars
-<div>Hi {{name}}, this is a valid Ember template!</div>
+<div>Hi {{this.name}}, this is a valid Ember template!</div>
 ```
 
-Here, `{{name}}` is a property provided by the template's context.
+Here, `{{this.name}}` is a property provided by the template's context.
 
 Besides properties, double curly braces (`{{}}`) may also contain
 helpers and components, which we'll discuss later.

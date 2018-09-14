@@ -11,7 +11,7 @@ Handlebars expressions read their properties. In Ember this is often a component
 For example, this `application.hbs` template will render a first and last name:
 
 ```handlebars {data-filename=app/templates/application.hbs}
-Hello, <strong>{{firstName}} {{lastName}}</strong>!
+Hello, <strong>{{this.firstName}} {{this.lastName}}</strong>!
 ```
 
 The `firstName` and `lastName` properties are read from the

@@ -21,7 +21,7 @@ export default Component.extend({
 ```
 
 ```handlebars {data-filename="app/templates/components/pretty-color.hbs"}
-Pretty Color: {{name}}
+Pretty Color: {{this.name}}
 ```
 
 The `module` from QUnit will scope your tests into groups of tests which can be configured and run independently.
@@ -170,7 +170,7 @@ export default Component.extend({
 ```
 
 ```handlebars {data-filename="app/templates/components/magic-title.hbs"}
-<h2>{{title}}</h2>
+<h2>{{this.title}}</h2>
 
 <button class="title-button" {{action "updateTitle"}}>
   Update Title
@@ -234,7 +234,7 @@ export default Component.extend({
 ```handlebars {data-filename="app/templates/components/comment-form.hbs"}
 <form {{action "submitComment" on="submit"}}>
   <label>Comment:</label>
-  {{textarea value=comment}}
+  {{textarea value=this.comment}}
 
   <input class="comment-input" type="submit" value="Submit"/>
 </form>
@@ -304,7 +304,7 @@ export default Component.extend({
 ```
 
 ```handlebars {data-filename="app/templates/components/location-indicator.hbs"}
-You currently are located in {{city}}, {{country}}
+You currently are located in {{this.city}}, {{this.country}}
 ```
 
 To stub the location service in your test, create a local stub object that extends `Ember.Service`,
@@ -444,7 +444,7 @@ module('Integration | Component | location indicator', function(hooks) {
 ### Waiting on Asynchronous Behavior
 
 Often, interacting with a component will cause asynchronous behavior to occur, such as HTTP requests, or timers.
-The module `@ember/test-helpers` provides you with several [useful helpers](https://github.com/emberjs/ember-test-helpers/blob/master/API.md) that will allow you to wait for any asynchronous behavior to complete that is triggered by a DOM interaction induced by those.  
+The module `@ember/test-helpers` provides you with several [useful helpers](https://github.com/emberjs/ember-test-helpers/blob/master/API.md) that will allow you to wait for any asynchronous behavior to complete that is triggered by a DOM interaction induced by those.
 To use them in your tests, you can `await` any of them to make sure that subsequent assertions are executed once the asynchronous behavior has fully settled:
 
 ```javascript
@@ -478,9 +478,9 @@ export default Component.extend({
 ```
 
 ```handlebars {data-filename="app/templates/components/delayed-typeahead.hbs"}
-{{input value=searchValue key-up=(action 'handleTyping')}}
+{{input value=this.searchValue key-up=(action 'handleTyping')}}
 <ul>
-{{#each results as |result|}}
+{{#each this.results as |result|}}
   <li class="result">{{result.name}}</li>
 {{/each}}
 </ul>

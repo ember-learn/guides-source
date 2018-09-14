@@ -16,7 +16,7 @@ This can be useful if you want
 to output one of several values based on the result of a computed property.
 
 ```handlebars
-{{get address part}}
+{{get this.address this.part}}
 ```
 
 if the `part` computed property returns "zip", this will display the result of
@@ -31,7 +31,7 @@ a number of parameters to a component or helper as a single parameter in the
 format of a concatenated string.
 
 ```handlebars
-{{get "foo" (concat "item" index)}}
+{{get "foo" (concat "item" this.index)}}
 ```
 
 This will display the result of `this.foo.item1` when index is 1,
@@ -43,7 +43,7 @@ Now let's say your template is starting to get a bit cluttered and you now want 
 Say your template now looks like this:
 
 ```handlebars
-Welcome back {{concat (capitalize person.firstName) ' ' (capitalize person.lastName)}}
+Welcome back {{concat (capitalize this.person.firstName) ' ' (capitalize this.person.lastName)}}
 
 Account Details:
 First Name: {{capitalize person.firstName}}
@@ -53,7 +53,7 @@ Last Name: {{capitalize person.lastName}}
 As mentioned in the previous section we use the `concat` helper to render both `person.firstName` and `person.lastName` in one go. But we also want to make sure that the names are capitalized. It gets a bit repetitive to keep writing `capitalize` and honestly, we might just forget it at some point. Thankfully, we can use the `{{let}}` helper to fix this:
 
 ```handlebars
-{{#let (capitalize person.firstName) (capitalize person.lastName)
+{{#let (capitalize this.person.firstName) (capitalize this.person.lastName)
   as |firstName lastName|
 }}
   Welcome back {{concat firstName ' ' lastName}}
@@ -64,4 +64,4 @@ As mentioned in the previous section we use the `concat` helper to render both `
 {{/let}}
 ```
 
-Now, as long as your template is wrapped in the `let` helper you can access the capitalized first name and last name as `firstName` and `lastName` instead of `(capitalize person.firstName)`. 
+Now, as long as your template is wrapped in the `let` helper you can access the capitalized first name and last name as `firstName` and `lastName` instead of `(capitalize person.firstName)`.

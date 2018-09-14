@@ -49,7 +49,7 @@ you can use `didUpdateAttrs` to clear any error state that was built up from edi
 
 ```handlebars {data-filename=app/templates/components/profile-editor.hbs}
 <ul class="errors">
-  {{#each errors as |error|}}
+  {{#each this.errors as |error|}}
     <li>{{error.message}}</li>
   {{/each}}
 </ul>
@@ -222,7 +222,7 @@ When rendered the component will iterate through the given list and apply a clas
 
 
 ```handlebars {data-filename=app/templates/components/selected-item-list.hbs}
-{{#each items as |item|}}
+{{#each this.items as |item|}}
   <div class="list-item {{if item.isSelected 'selected-item'}}">{{item.label}}</div>
 {{/each}}
 ```
@@ -241,7 +241,7 @@ export default Component.extend({
       if (item.id === this.selectedItem.id) {
         item.isSelected = true;
       }
-    }); 
+    });
   },
 
   didRender() {
@@ -260,7 +260,7 @@ Component teardown can be triggered by a number of different conditions.
 For instance, the user may navigate to a different route, or a conditional Handlebars block surrounding your component may change:
 
 ```handlebars {data-filename=app/templates/application.hbs}
-{{#if falseBool}}
+{{#if this.falseBool}}
   {{my-component}}
 {{/if}}
 ```

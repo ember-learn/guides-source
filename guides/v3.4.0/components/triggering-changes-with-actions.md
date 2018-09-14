@@ -126,7 +126,7 @@ The component template will have a button and a div that shows the confirmation 
 based on the value of `confirmShown`.
 
 ```handlebars {data-filename=app/templates/components/button-with-confirmation.hbs}
-<button {{action "launchConfirmDialog"}}>{{text}}</button>
+<button {{action "launchConfirmDialog"}}>{{this.text}}</button>
 {{#if confirmShown}}
   <div class="confirm-dialog">
     <button class="confirm-submit" {{action "submitConfirm"}}>OK</button>
@@ -331,7 +331,7 @@ we'll first modify the component so that it can be used in block form and we wil
 <button {{action "launchConfirmDialog"}}>{{text}}</button>
 {{#if confirmShown}}
   <div class="confirm-dialog">
-    {{yield confirmValue}}
+    {{yield this.confirmValue}}
     <button class="confirm-submit" {{action "submitConfirm"}}>OK</button>
     <button class="confirm-cancel" {{action "cancelConfirm"}}>Cancel</button>
   </div>
@@ -376,7 +376,7 @@ We can tell the action to invoke the `sendMessage` action directly on the messag
 ```handlebars {data-filename=app/templates/components/send-message.hbs}
 {{#button-with-confirmation
     text="Click to send your message."
-    onConfirm=(action "sendMessage" "info" target=messaging)
+    onConfirm=(action "sendMessage" "info" target=this.messaging)
     as |confirmValue| }}
   {{input value=confirmValue}}
 {{/button-with-confirmation}}
@@ -445,7 +445,7 @@ export default Component.extend({
 
 ## Calling Actions Up Multiple Component Layers
 
-When your components go multiple template layers deep, it is common to need to handle an action several layers up the tree. 
+When your components go multiple template layers deep, it is common to need to handle an action several layers up the tree.
 Using the action helper, parent components can pass actions to child components through templates alone without adding JavaScript code to those child components.
 
 For example, say we want to move account deletion from the `user-profile` component to its parent `system-preferences-editor`.
@@ -471,7 +471,7 @@ component's `deleteCurrentUser` property.
 
 ```handlebars {data-filename=app/templates/components/system-preferences-editor.hbs}
 {{user-profile
-  deleteCurrentUser=(action 'deleteUser' login.currentUser.id)
+  deleteCurrentUser=(action 'deleteUser' this.login.currentUser.id)
 }}
 ```
 
@@ -481,7 +481,7 @@ In our `user-profile.hbs` template we change our action to call `deleteCurrentUs
 
 ```handlebars {data-filename=app/templates/components/user-profile.hbs}
 {{button-with-confirmation
-  onConfirm=(action deleteCurrentUser)
+  onConfirm=(action this.deleteCurrentUser)
   text="Click OK to delete your account."
 }}
 ```

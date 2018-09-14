@@ -45,7 +45,7 @@ In this case we are passing, or "yielding", our filter data to the inner markup 
     {{/each}}
   </ul>
 {{/list-filter}}
-{{#each model as |rentalUnit|}}
+{{#each this.model as |rentalUnit|}}
   {{rental-listing rental=rentalUnit}}
 {{/each}}
 ```
@@ -55,11 +55,11 @@ In this case we are passing, or "yielding", our filter data to the inner markup 
 We want the component to simply provide an input field and yield the results list to its block, so our template will be simple:
 
 ```handlebars {data-filename=app/templates/components/list-filter.hbs}
-{{input value=value
+{{input value=this.value
         key-up=(action 'handleFilterEntry')
         class="light"
         placeholder="Filter By City"}}
-{{yield results}}
+{{yield this.results}}
 ```
 
 The template contains an [`{{input}}`](../../templates/input-helpers/) helper that renders as a text field, in which the user can type a pattern to filter the list of cities used in a search.

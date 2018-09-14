@@ -90,7 +90,7 @@ this:
 
 ```handlebars {data-filename=app/templates/components/list-of-drafts.hbs}
 <ul>
-  {{#each drafts key="id" as |draft|}}
+  {{#each this.drafts key="id" as |draft|}}
     <li>{{draft.title}}</li>
   {{/each}}
 </ul>
@@ -116,7 +116,7 @@ export default Component.extend({
 
 ```handlebars {data-filename=app/templates/components/drafts-button.hbs}
 {{#link-to "drafts" tagName="button"}}
-  Drafts ({{drafts.length}})
+  Drafts ({{this.drafts.length}})
 {{/link-to}}
 ```
 

@@ -310,23 +310,23 @@ Next, we can update the template for our show route (`app/templates/rentals/show
 
 ```handlebars {data-filename="app/templates/rentals/show.hbs" data-diff="+1,+2,+3,+4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19,-20"}
 <div class="jumbo show-listing">
-  <h2 class="title">{{model.title}}</h2>
+  <h2 class="title">{{this.model.title}}</h2>
   <div class="right detail-section">
     <div class="detail owner">
-      <strong>Owner:</strong> {{model.owner}}
+      <strong>Owner:</strong> {{this.model.owner}}
     </div>
     <div class="detail">
-      <strong>Type:</strong> {{rental-property-type model.category}} - {{model.category}}
+      <strong>Type:</strong> {{rental-property-type model.category}} - {{this.model.category}}
     </div>
     <div class="detail">
-      <strong>Location:</strong> {{model.city}}
+      <strong>Location:</strong> {{this.model.city}}
     </div>
     <div class="detail">
-      <strong>Number of bedrooms:</strong> {{model.bedrooms}}
+      <strong>Number of bedrooms:</strong> {{this.model.bedrooms}}
     </div>
-    <p class="description">{{model.description}}</p>
+    <p class="description">{{this.model.description}}</p>
   </div>
-  <img src="{{model.image}}" class="rental-pic">
+  <img src="{{this.model.image}}" class="rental-pic">
 </div>
 {{outlet}}
 ```
@@ -348,26 +348,26 @@ Clicking on the title will load the detail page for that rental.
 
 ```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="-6,+7"}
 <article class="listing">
-  <a {{action 'toggleImageSize'}} class="image {{if isWide "wide"}}">
-    <img src="{{rental.image}}" alt="">
+  <a {{action 'toggleImageSize'}} class="image {{if this.isWide "wide"}}">
+    <img src="{{this.rental.image}}" alt="">
     <small>View Larger</small>
   </a>
-  <h3>{{rental.title}}</h3>
-  <h3>{{#link-to "rentals.show" rental class=rental.id}}{{rental.title}}{{/link-to}}</h3>
+  <h3>{{this.rental.title}}</h3>
+  <h3>{{#link-to "rentals.show" this.rental class=rental.id}}{{this.rental.title}}{{/link-to}}</h3>
   <div class="detail owner">
-    <span>Owner:</span> {{rental.owner}}
+    <span>Owner:</span> {{this.rental.owner}}
   </div>
   <div class="detail type">
-    <span>Type:</span> {{rental-property-type rental.category}}
-      - {{rental.category}}
+    <span>Type:</span> {{rental-property-type this.rental.category}}
+      - {{this.rental.category}}
   </div>
   <div class="detail location">
-    <span>Location:</span> {{rental.city}}
+    <span>Location:</span> {{this.rental.city}}
   </div>
   <div class="detail bedrooms">
-    <span>Number of bedrooms:</span> {{rental.bedrooms}}
+    <span>Number of bedrooms:</span> {{this.rental.bedrooms}}
   </div>
-  {{location-map location=rental.city}}
+  {{location-map location=this.rental.city}}
 </article>
 ```
 ![Rental Page Nested Index Route](/images/subroutes/subroutes-super-rentals-index.png)

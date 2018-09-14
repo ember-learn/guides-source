@@ -32,19 +32,19 @@ To start, let's move the rental display details for a single rental from the `re
 ```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="-1,+2,+3,+4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17"}
 {{yield}}
 <article class="listing">
-  <img src="{{rental.image}}" alt="">
-  <h3>{{rental.title}}</h3>
+  <img src="{{this.rental.image}}" alt="">
+  <h3>{{this.rental.title}}</h3>
   <div class="detail owner">
-    <span>Owner:</span> {{rental.owner}}
+    <span>Owner:</span> {{this.rental.owner}}
   </div>
   <div class="detail type">
-    <span>Type:</span> {{rental.category}}
+    <span>Type:</span> {{this.rental.category}}
   </div>
   <div class="detail location">
-    <span>Location:</span> {{rental.city}}
+    <span>Location:</span> {{this.rental.city}}
   </div>
   <div class="detail bedrooms">
-    <span>Number of bedrooms:</span> {{rental.bedrooms}}
+    <span>Number of bedrooms:</span> {{this.rental.bedrooms}}
   </div>
 </article>
 ```
@@ -64,9 +64,9 @@ with our new `rental-listing` component:
   {{/link-to}}
 </div>
 
-{{#each model as |rentalUnit|}}
+{{#each this.model as |rentalUnit|}}
   {{rental-listing rental=rentalUnit}}
-{{#each model as |rental|}}
+{{#each this.model as |rental|}}
   <article class="listing">
     <h3>{{rental.title}}</h3>
     <div class="detail owner">
@@ -101,22 +101,22 @@ giving it the `image` class name so that our test can find it.
 
 ```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="+2,+4,+5"}
 <article class="listing">
-  <a class="image {{if isWide "wide"}}">
-    <img src="{{rental.image}}" alt="">
+  <a class="image {{if this.isWide "wide"}}">
+    <img src="{{this.rental.image}}" alt="">
     <small>View Larger</small>
   </a>
-  <h3>{{rental.title}}</h3>
+  <h3>{{this.rental.title}}</h3>
   <div class="detail owner">
-    <span>Owner:</span> {{rental.owner}}
+    <span>Owner:</span> {{this.rental.owner}}
   </div>
   <div class="detail type">
-    <span>Type:</span> {{rental.category}}
+    <span>Type:</span> {{this.rental.category}}
   </div>
   <div class="detail location">
-    <span>Location:</span> {{rental.city}}
+    <span>Location:</span> {{this.rental.city}}
   </div>
   <div class="detail bedrooms">
-    <span>Number of bedrooms:</span> {{rental.bedrooms}}
+    <span>Number of bedrooms:</span> {{this.rental.bedrooms}}
   </div>
 </article>
 ```
@@ -137,23 +137,23 @@ Let's call this action `toggleImageSize`
 
 ```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="-2,+3"}
 <article class="listing">
-  <a class="image {{if isWide "wide"}}">
-  <a {{action 'toggleImageSize'}} class="image {{if isWide "wide"}}">
-    <img src="{{rental.image}}" alt="">
+  <a class="image {{if this.isWide "wide"}}">
+  <a {{action 'toggleImageSize'}} class="image {{if this.isWide "wide"}}">
+    <img src="{{this.rental.image}}" alt="">
     <small>View Larger</small>
   </a>
-  <h3>{{rental.title}}</h3>
+  <h3>{{this.rental.title}}</h3>
   <div class="detail owner">
-    <span>Owner:</span> {{rental.owner}}
+    <span>Owner:</span> {{this.rental.owner}}
   </div>
   <div class="detail type">
-    <span>Type:</span> {{rental.category}}
+    <span>Type:</span> {{this.rental.category}}
   </div>
   <div class="detail location">
-    <span>Location:</span> {{rental.city}}
+    <span>Location:</span> {{this.rental.city}}
   </div>
   <div class="detail bedrooms">
-    <span>Number of bedrooms:</span> {{rental.bedrooms}}
+    <span>Number of bedrooms:</span> {{this.rental.bedrooms}}
   </div>
 </article>
 ```

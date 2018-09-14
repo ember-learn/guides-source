@@ -209,25 +209,25 @@ Finally open the template file for our `rental-listing` component and add the ne
 
 ```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="+20"}
 <article class="listing">
-  <a {{action 'toggleImageSize'}} class="image {{if isWide "wide"}}">
-    <img src="{{rental.image}}" alt="">
+  <a {{action 'toggleImageSize'}} class="image {{if this.isWide "wide"}}">
+    <img src="{{this.rental.image}}" alt="">
     <small>View Larger</small>
   </a>
-  <h3>{{rental.title}}</h3>
+  <h3>{{this.rental.title}}</h3>
   <div class="detail owner">
-    <span>Owner:</span> {{rental.owner}}
+    <span>Owner:</span> {{this.rental.owner}}
   </div>
   <div class="detail type">
     <span>Type:</span> {{rental-property-type rental.category}}
-      - {{rental.category}}
+      - {{this.rental.category}}
   </div>
   <div class="detail location">
-    <span>Location:</span> {{rental.city}}
+    <span>Location:</span> {{this.rental.city}}
   </div>
   <div class="detail bedrooms">
-    <span>Number of bedrooms:</span> {{rental.bedrooms}}
+    <span>Number of bedrooms:</span> {{this.rental.bedrooms}}
   </div>
-  {{location-map location=rental.city}}
+  {{location-map location=this.rental.city}}
 </article>
 ```
 
