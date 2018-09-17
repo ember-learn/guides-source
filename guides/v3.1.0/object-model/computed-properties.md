@@ -32,7 +32,7 @@ let ironMan = Person.create({
   lastName:  'Stark'
 });
 
-ironMan.get('fullName'); // "Tony Stark"
+ironMan.fullName; // "Tony Stark"
 ```
 
 This declares `fullName` to be a computed property, with `firstName` and `lastName` as the properties it depends on.
