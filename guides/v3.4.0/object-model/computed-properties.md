@@ -90,7 +90,7 @@ let home = EmberObject.extend({
   location: {
     streetName: 'Evergreen Terrace',
     streetNumber: 742
-  }
+  },
 
   address: computed('location.streetName', 'location.streetNumber', function() {
     return `${this.location.streetNumber} ${this.location.streetName}`;
@@ -111,7 +111,7 @@ let home = EmberObject.extend({
   location: {
     streetName: 'Evergreen Terrace',
     streetNumber: 742
-  }
+  },
 
   address: computed('location', function() {
     return `${this.location.streetNumber} ${this.location.streetName}`;
@@ -138,7 +138,7 @@ let home = EmberObject.extend({
   location: {
     streetName: 'Evergreen Terrace',
     streetNumber: 742
-  }
+  },
 
   address: computed('location.{streetName,streetNumber}', function() {
     return `${this.location.streetNumber} ${this.location.streetName}`;
