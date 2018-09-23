@@ -182,7 +182,7 @@ the model name to generate the path name. If this convention does not
 conform to your backend you can override the `pathForType` method.
 
 For example, if you did not want to pluralize model names and needed
-underscore_case instead of camelCase you could override the
+underscore_case instead of dash-case you could override the
 `pathForType` method like this:
 
 ```javascript {data-filename=app/adapters/application.js}
