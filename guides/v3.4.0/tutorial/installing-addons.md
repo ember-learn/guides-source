@@ -56,7 +56,7 @@ Our primary focus with mirage will be in the `config.js` file, which is where we
 We will be following the [JSON-API specification](http://jsonapi.org/) which requires our data to be formatted a certain way.
 Let's configure Mirage to send back our rentals that we had defined above by updating `mirage/config.js`:
 
-```javascript {data-filename="mirage/config.js" data-diff="+1,+2,+3,+4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33,+34,+35,+36,+37,+38,+39,+40,+41,+42,-43,-44,-45,-46,-47,-48,-49,-50,-51,-52,-53,-54,-55,-56,-57,-58,-59,-60,-61,-62,-63,-64,-65,-66,-67"}
+```javascript {data-filename="mirage/config.js" data-diff="+1,+2,+3,+4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33,+34,+35,+36,+37,+38,+39,+40,+41,+42,+43,+44,+45,-46,-47,-48,-49,-50,-51,-52,-53,-54,-55,-56,-57,-58,-59,-60,-61,-62,-63,-64,-65,-66,-67,-68,-69,-70"}
 export default function() {
   this.namespace = '/api';
 
@@ -71,7 +71,8 @@ export default function() {
           city: 'San Francisco',
           category: 'Estate',
           bedrooms: 15,
-          image: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg'
+          image: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg',
+          description: "This grand old mansion sits on over 100 acres of rolling hills and dense redwood forests."
         }
       }, {
         type: 'rentals',
@@ -82,7 +83,8 @@ export default function() {
           city: 'Seattle',
           category: 'Condo',
           bedrooms: 1,
-          image: 'https://upload.wikimedia.org/wikipedia/commons/0/0e/Alfonso_13_Highrise_Tegucigalpa.jpg'
+          image: 'https://upload.wikimedia.org/wikipedia/commons/0/0e/Alfonso_13_Highrise_Tegucigalpa.jpg',
+          description: "A commuters dream. This rental is within walking distance of 2 bus stops and the Metro."
         }
       }, {
         type: 'rentals',
@@ -93,9 +95,10 @@ export default function() {
           city: 'Portland',
           category: 'Apartment',
           bedrooms: 3,
-          image: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Wheeldon_Apartment_Building_-_Portland_Oregon.jpg'
+          image: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Wheeldon_Apartment_Building_-_Portland_Oregon.jpg',
+          description: "Convenience is at your doorstep with this charming downtown rental. Great restaurants and active night life are within a few feet."
         }
-      }]
+      }];
     };
   });
 }

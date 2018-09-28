@@ -335,7 +335,9 @@ Some of the helpers we'll use commonly are:
 
 Let's import these helpers into our application test:
 
-```javascript {data-filename=/tests/acceptance/list-rentals-test.js}
+```javascript {data-filename="tests/acceptance/list-rentals-test.js" data-diff="-1,+3,+4,+5,+6,+7"}
+import { visit, currentURL } from '@ember/test-helpers';
+import { setupApplicationTest } from 'ember-qunit';
 import {
   click,
   currentURL,

@@ -45,8 +45,8 @@ To do that, replace occurrences of `/list-rentals` in the generated test with `/
 
 ```javascript {data-filename="tests/acceptance/list-rentals-test.js" data-diff="-8,+9,-10,+11,-12,+13"}
 import { module, test } from 'qunit';
-import { setupApplicationTest } from 'ember-qunit';
 import { visit, currentURL } from '@ember/test-helpers';
+import { setupApplicationTest } from 'ember-qunit';
 
 module('Acceptance | my acceptance test', function(hooks) {
   setupApplicationTest(hooks);
