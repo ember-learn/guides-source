@@ -230,8 +230,6 @@
   pages:
     - title: "Managing Dependencies"
       url: "managing-dependencies"
-    - title: "Removing jQuery"
-      url: "removing-jquery"
 
 - title: "Configuring Ember.js"
   url: 'configuring-ember'
@@ -254,6 +252,12 @@
       url: "build-targets"
     - title: "Debugging"
       url: "debugging"
+
+- title: "Optional Features"
+  url: "optional-features"
+  pages:
+    - title: "Removing jQuery"
+      url: "removing-jquery"
 
 - title: "Contributing to Ember.js"
   url: 'contributing'
