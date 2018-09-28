@@ -265,7 +265,8 @@ Router.map(function() {
 In the above example we have successfully used a wildcard route to handle all routes not managed by our application
 so that when a user navigates to `/a/non-existent/path` they will be shown a message that says the page they're looking for wasn't found.
 
-Note that if you want to manually transition to this wildcard route, you need to pass an arbitrary (not empty) argument, ie
+Note that if you want to manually transition to this wildcard route, you need to pass an arbitrary (not empty) argument. For example:
+
 ```javascript {data-filename=app/route/some-route.js}
 this.transitionTo('not-found', 404);
 ```
