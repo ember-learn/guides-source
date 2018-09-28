@@ -267,7 +267,7 @@ so that when a user navigates to `/a/non-existent/path` they will be shown a mes
 
 Note that if you want to manually transition to this wildcard route, you need to pass an arbitrary (not empty) argument. For example:
 
-```javascript {data-filename=app/route/some-route.js}
+```javascript {data-filename=app/routes/some-route.js}
 this.transitionTo('not-found', 404);
 ```
 
