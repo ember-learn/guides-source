@@ -1,5 +1,18 @@
-Models are objects that represent the underlying data that your
-application presents to the user. Different apps will have very
+Ember developers have great options for how they handle data from back end APIs. Ember itself works with almost any back end, whether it follows general REST, JSONAPI, GraphQL, ElasticSearch, or none of the above.  
+
+Many developers choose to use Ember Data, a powerful set of tools for formatting requests, serializing responses, and efficiently managing a local cache of data. 
+The Ember Data library is included by default in Ember apps. 
+Alternately, some developers write all their own code to handle API requests, using native JavaScript methods like [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) or third party libraries.
+Of course, many apps use a combination of approaches.
+
+This section of the Guides describes the essential features of Ember Data. To learn about other ways to handle data in an app, check out [Ember Observer](https://www.emberobserver.com/) for addons or search for community-made tutorials.
+
+## What are Ember Data Models?
+
+In Ember Data, Models are objects that represent the underlying data that your
+application presents to the user. 
+(Note that Ember Data Models are a different concept than the `model` hook method on Routes, although they share the same name.)
+Different apps will have very
 different models, depending on what problems they're trying to solve.
 
 For example, a photo sharing application might have a `Photo`
