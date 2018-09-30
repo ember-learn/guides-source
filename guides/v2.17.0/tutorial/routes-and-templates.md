@@ -98,8 +98,10 @@ In the route template `/app/templates/contact.hbs`, let's add our contact detail
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>Contact Us</h2>
-  <p>Super Rentals Representatives would love to help you<br>choose a destination or answer
-    any questions you may have.</p>
+  <p>
+    Super Rentals Representatives would love to help you<br>
+    choose a destination or answer any questions you may have.
+  </p>
   <p>
     Super Rentals HQ
     <address>
@@ -150,8 +152,10 @@ Now, we'll add our corresponding link to the contact page so we can move back an
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>Contact Us</h2>
-  <p>Super Rentals Representatives would love to help you<br>choose a destination or answer
-    any questions you may have.</p>
+  <p>
+    Super Rentals Representatives would love to help you<br>
+    choose a destination or answer any questions you may have.
+  </p>
   <p>
     Super Rentals HQ
     <address>
