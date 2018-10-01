@@ -46,7 +46,7 @@ controllers and components.
 
 ### Helpers
 
-Ember Helpers are functions that can compute values, and can be used in any template.
+Ember Helpers are functions that can compute values and can be used in any template.
 
 Ember gives you the ability to [write your own helpers](../writing-helpers/), to bring a minimum of logic into Ember templating.
 
