@@ -54,11 +54,9 @@ Element](./customizing-a-components-element/).
 
 ## Defining a Component Subclass
 
-Often times, your components will just encapsulate certain snippets of
-Handlebars templates that you find yourself using over and over. In
-those cases, you do not need to write any JavaScript at all. Define
-the Handlebars template as described above and use the component that is
-created.
+Often times, your components will contain reused Handlebar templates. In
+those cases, you do not need to write any JavaScript at all. Handlebars 
+allows you to you to define templates and reuse them as components.
 
 If you need to customize the behavior of the component you'll
 need to define a subclass of [`Component`](https://www.emberjs.com/api/ember/release/classes/Component). For example, you would
