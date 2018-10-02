@@ -224,8 +224,8 @@ The [`beforeModel`](https://www.emberjs.com/api/ember/release/classes/Route/meth
 hook gets executed before the data gets fetched from the model hook, and before the page is rendered.
 See [the next section](../model-hook/) for an explanation of the model hook.
 
-In our index route handler, we'll call the [`replaceWith`](https://www.emberjs.com/api/ember/release/classes/Route/methods/beforeModel?anchor=replaceWith/) function.
-The `replaceWith` function is similar to the route's [`transitionTo()`](https://www.emberjs.com/api/ember/release/classes/Route/methods/transitionTo?anchor=transitionTo/) function,
+In our index route handler, we'll call the [`replaceWith`](https://www.emberjs.com/api/ember/release/classes/Route/methods/beforeModel?anchor=replaceWith) function.
+The `replaceWith` function is similar to the route's [`transitionTo()`](https://www.emberjs.com/api/ember/release/classes/Route/methods/transitionTo?anchor=transitionTo) function,
 the difference being that `replaceWith` will replace the current URL in the browser's history,
 while `transitionTo` will add to the history.
 Since we want our `rentals` route to serve as our home page, we will use the `replaceWith` function.
