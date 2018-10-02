@@ -5,11 +5,6 @@ to solve these problems.
 Additionally, you may want to make use of front-end dependencies like a CSS framework
 or a JavaScript datepicker that aren't specific to Ember apps.
 
-While dependencies can be managed in several ways, 
-It's worth noting that the process can be greatly simplified for new developers by using ember-auto-import which offers zero config imports from npm packages. 
-It's easily installed using `ember install ember-auto-import` 
-For further usage instructions please follow the [guide](https://github.com/ef4/ember-auto-import).
-
 ## Addons
 
 Ember Addons can be installed using [Ember CLI](http://ember-cli.com/extending/#developing-addons-and-blueprints)
@@ -17,6 +12,14 @@ Ember Addons can be installed using [Ember CLI](http://ember-cli.com/extending/#
 Addons may bring in other dependencies by modifying your project's `package.json` file automatically.
 
 You can find listings of addons on [Ember Observer](http://emberobserver.com).
+
+## Regular npm packages
+
+While dependencies can be managed in several ways, 
+it's worth noting that the process can be greatly simplified for new developers by using ember-auto-import, 
+which offers zero config imports from npm packages. 
+It's easily installed using `ember install ember-auto-import`. 
+For further usage instructions, please follow the [project README](https://github.com/ef4/ember-auto-import).
 
 ## Other assets
 
