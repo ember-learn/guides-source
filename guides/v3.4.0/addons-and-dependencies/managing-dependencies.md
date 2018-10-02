@@ -13,6 +13,14 @@ Addons may bring in other dependencies by modifying your project's `package.json
 
 You can find listings of addons on [Ember Observer](http://emberobserver.com).
 
+## Regular npm packages
+
+While dependencies can be managed in several ways, 
+it's worth noting that the process can be greatly simplified for new developers by using ember-auto-import, 
+which offers zero config imports from npm packages. 
+It's easily installed using `ember install ember-auto-import`. 
+For further usage instructions, please follow the [project README](https://github.com/ef4/ember-auto-import).
+
 ## Other assets
 
 Third-party JavaScript not available as an addon or npm package should be placed in the `vendor/` folder in your project.
