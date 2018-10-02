@@ -6,7 +6,7 @@ The model is passed from the Route to the Controller by default using the [`setu
 
 A Controller is usually paired with an individual Route of the same name.
 
-[Routing Query Parameters](https://guides.emberjs.com/release/routing/query-params/) should be defined within a controller.
+[Routing Query Parameters](../routing/query-params/) should be defined within a controller.
 
 ### Defining a Controller
 
