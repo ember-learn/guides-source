@@ -61,7 +61,7 @@ like this.
 ```handlebars {data-filename=app/templates/index.hbs}
   {{button-with-confirmation
     text="Click here to unsubscribe."
-    onConfirm=(action 'unsubscribe')
+    onConfirm=(action "unsubscribe")
   }}
 ```
 
