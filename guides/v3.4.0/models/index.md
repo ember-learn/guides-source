@@ -11,11 +11,11 @@ This section of the Guides describes the essential features of Ember Data. To le
 ## What are Ember Data models?
 
 In Ember Data, models are objects that represent the underlying data that your
-application presents to the user. 
-(Note that Ember Data models are a different concept than the `model` hook method on Routes, although they share the same name.)
+application presents to the user.
+Note that Ember Data models are a different concept than the [`model`](../routing/specifying-a-routes-model/) method on Routes, although they share the same name. 
+
 Different apps will have very
 different models, depending on what problems they're trying to solve.
-
 For example, a photo sharing application might have a `Photo`
 model to represent a particular photo, and a `PhotoAlbum` that
 represents a group of photos. In contrast, an online shopping app would
