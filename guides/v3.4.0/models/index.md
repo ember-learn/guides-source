@@ -6,7 +6,9 @@ The Ember Data library is included by default in Ember apps.
 Alternately, some developers write all their own code to handle API requests, using native JavaScript methods like [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) or third-party libraries.
 Many apps use a combination of approaches.
 
-This section of the Guides describes the essential features of Ember Data. To learn about other ways to handle data in an app, check out [Ember Observer](https://www.emberobserver.com/) for addons or search for community-made tutorials.
+This section of the Guides describes the essential features of Ember Data.
+Since it is a widely-used, officially supported library, Ember Data is considered best practice for most applications.
+To learn about other ways to handle data and to find extensions, check out [Ember Observer](https://www.emberobserver.com/) or search for community-made tutorials.
 
 ## What are Ember Data models?
 
