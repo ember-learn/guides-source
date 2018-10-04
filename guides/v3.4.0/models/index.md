@@ -44,11 +44,6 @@ more information about how components get model data, see the
 [Specifying a Route's Model](../routing/specifying-a-routes-model/)
 guide.
 
-Ember Data, included by default when you create a new application, is a
-library that integrates tightly with Ember to make it easy to retrieve
-models from your server as JSON, save updates back to the server, and
-create new models in the browser.
-
 Thanks to its use of the _adapter pattern_, Ember Data can be configured
 to work with many different kinds of backends. There is [an entire
 ecosystem of adapters][adapters] that allow your Ember app to talk to different
