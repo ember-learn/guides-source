@@ -192,7 +192,8 @@ to trigger behavior.
 
 That makes it easy to remember how to add an action to a component. It's
 like passing an attribute, but you use the `action` helper to pass
-a function instead.
+a function instead. Actions can only be passed from a controller or 
+component, they cannot be passed from a route.
 
 Actions in components allow you to decouple an event happening from how it's handled, leading to modular,
 more reusable components.
