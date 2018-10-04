@@ -35,7 +35,7 @@ Ember.js has created a controller for us and set the controller's `model` proper
 Reload your web browser to ensure that all files have been referenced correctly and no errors occur.
 
 ### Live Preview
-<a class="jsbin-embed" href="http://jsbin.com/simixi/1/embed?output">Ember.js • TodoMVC</a><script src="http://static.jsbin.com/js/embed.js"></script>
+<a class="jsbin-embed" href="http://jsbin.com/simixi/1/embed?output">Ember.js • TodoMVC</a><script src="https://static.jsbin.com/js/embed.js"></script>
 
 ### Additional Resources
 

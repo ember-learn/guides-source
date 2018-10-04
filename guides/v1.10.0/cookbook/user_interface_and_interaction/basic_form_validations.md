@@ -64,4 +64,4 @@ the validation fails and the field has been focused at.
 
 #### Example
 
-<a class="jsbin-embed" href="http://jsbin.com/UpaXeta/3/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+<a class="jsbin-embed" href="http://jsbin.com/UpaXeta/3/embed?live">JS Bin</a><script src="https://static.jsbin.com/js/embed.js"></script>

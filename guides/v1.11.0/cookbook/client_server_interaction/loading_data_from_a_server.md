@@ -83,4 +83,4 @@ App.User.reopenClass({
 
 #### Example
 
-<a class="jsbin-embed" href="http://jsbin.com/UGuciwo/3/embed?js,output">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+<a class="jsbin-embed" href="http://jsbin.com/UGuciwo/3/embed?js,output">JS Bin</a><script src="https://static.jsbin.com/js/embed.js"></script>

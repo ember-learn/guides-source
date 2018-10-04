@@ -65,4 +65,4 @@ For safety and sanity of the component, one can add a settimeout of however much
 Also note that the component does not let multiple clicks get in the way of loading status.
 
 #### Example
-<a class="jsbin-embed" href="http://emberjs.jsbin.com/EXaxEfE/14/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+<a class="jsbin-embed" href="http://emberjs.jsbin.com/EXaxEfE/14/embed?live">JS Bin</a><script src="https://static.jsbin.com/js/embed.js"></script>

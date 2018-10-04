@@ -82,7 +82,7 @@ test('profile relationship', function() {
 
 <a class="jsbin-embed" href="http://jsbin.com/jadoyo/1/embed?output">Unit Testing Models (Relationships : One-to-One)</a>
 
-<script src="http://static.jsbin.com/js/embed.js"></script>
+<script src="https://static.jsbin.com/js/embed.js"></script>
 
 _Ember Data contains extensive tests around the functionality of
 relationships, so you probably don't need to duplicate those tests.  You could

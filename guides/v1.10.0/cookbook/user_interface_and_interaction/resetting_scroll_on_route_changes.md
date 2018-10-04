@@ -29,4 +29,4 @@ App.IndexRoute = Ember.Route.extend(App.ResetScroll, {
 
 #### Example
 
-<a class="jsbin-embed" href="http://emberjs.jsbin.com/kixowati/1/embed?html,js,output">Ember Starter Kit</a><script src="http://static.jsbin.com/js/embed.js"></script>
+<a class="jsbin-embed" href="http://emberjs.jsbin.com/kixowati/1/embed?html,js,output">Ember Starter Kit</a><script src="https://static.jsbin.com/js/embed.js"></script>

@@ -138,4 +138,4 @@ test('doSomething observer sets other prop', function() {
 
 <a class="jsbin-embed" href="http://jsbin.com/yajejicopu/1/embed?output">Unit Testing Basics: Observers</a>
 
-<script src="http://static.jsbin.com/js/embed.js"></script>
+<script src="https://static.jsbin.com/js/embed.js"></script>

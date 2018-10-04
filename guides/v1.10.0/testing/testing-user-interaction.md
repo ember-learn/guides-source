@@ -82,4 +82,4 @@ test('redirect to login if not authenticated', function() {
 
 <a class="jsbin-embed" href="http://jsbin.com/fituji/1/embed?output">Testing Transitions</a>
 
-<script src="http://static.jsbin.com/js/embed.js"></script>
+<script src="https://static.jsbin.com/js/embed.js"></script>

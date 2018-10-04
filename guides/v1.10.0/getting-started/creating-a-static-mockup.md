@@ -70,7 +70,7 @@ The associated [stylesheet](http://emberjs.com.s3.amazonaws.com/getting-started/
 Open `index.html` in your web browser to ensure that all assets are loading correctly. You should see the TodoMVC application with three hard-coded `<li>` elements where the text of each todo will appear.
 
 ### Live Preview
-<a class="jsbin-embed" href="http://jsbin.com/uduyip/2/embed?live">Ember.js • TodoMVC</a><script src="http://static.jsbin.com/js/embed.js"></script> 
+<a class="jsbin-embed" href="http://jsbin.com/uduyip/2/embed?live">Ember.js • TodoMVC</a><script src="https://static.jsbin.com/js/embed.js"></script> 
 
 ### Additional Resources
 
