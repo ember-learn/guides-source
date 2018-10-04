@@ -66,7 +66,7 @@ like this.
 ```
 
 It is important to note that actions can only be passed from a controller or another
-component. They cannot be passed from a route. See [passing an action to the component](/triggering-changes-with-actions/#toc_passing-the-action-to-the-component)
+component. They cannot be passed from a route. See [passing an action to the component](../triggering-changes-with-actions/#toc_passing-the-action-to-the-component)
 for more details on how to pass actions.
 
 ## Positional Params
