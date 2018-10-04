@@ -69,7 +69,7 @@ test('Alert is called on displayAlert', function() {
 
 <a class="jsbin-embed" href="http://jsbin.com/takeho/1/embed?output">Custom Test Helpers</a>
 
-<script src="http://static.jsbin.com/js/embed.js"></script>
+<script src="https://static.jsbin.com/js/embed.js"></script>
 
 [Unit Testing Basics]: /guides/testing/unit-testing-basics
 [separated our concerns]: http://en.wikipedia.org/wiki/Separation_of_concerns

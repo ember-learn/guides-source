@@ -47,7 +47,7 @@ This will make the `title` property in the outer template scope
 available inside the component's template using the same name, `title`.
 
 <!---<a class="jsbin-embed" href="http://jsbin.com/reyazoseru/2/embed?live">JS Bin</a>
-<script src="http://static.jsbin.com/js/embed.js"></script>-->
+<script src="https://static.jsbin.com/js/embed.js"></script>-->
 
 If, in the above example, the model's `title` property was instead
 called `name`, we would change the component usage to:
@@ -57,7 +57,7 @@ called `name`, we would change the component usage to:
 ```
 
 <!---<a class="jsbin-embed" href="http://jsbin.com/wesuvozifo/2/embed?live">JS Bin</a>
-<script src="http://static.jsbin.com/js/embed.js"></script>-->
+<script src="https://static.jsbin.com/js/embed.js"></script>-->
 
 In other words, you are binding a named property from the outer scope to
 a named property in the component scope, with the syntax
@@ -70,7 +70,7 @@ text field either in the outer template or inside the component and note
 how they stay in sync.
 
 <!---<a class="jsbin-embed" href="http://jsbin.com/cajarokava/1/embed?live">JS Bin</a>
-<script src="http://static.jsbin.com/js/embed.js"></script>-->
+<script src="https://static.jsbin.com/js/embed.js"></script>-->
 
 You can also bind properties from inside an `{{#each}}` loop. This will
 create a component for each item and bind it to each model in the loop.
@@ -81,7 +81,7 @@ create a component for each item and bind it to each model in the loop.
 {{/each}}
 ```
 <!---<a class="jsbin-embed" href="http://jsbin.com/kobakujejo/1//embed?live">JS Bin</a>
-<script src="http://static.jsbin.com/js/embed.js"></script>-->
+<script src="https://static.jsbin.com/js/embed.js"></script>-->
 
 If you are using the `{{component}}` helper to render your component, you can
 pass properties to the chosen component the same manner:

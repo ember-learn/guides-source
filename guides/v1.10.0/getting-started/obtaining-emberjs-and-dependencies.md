@@ -22,7 +22,7 @@ Reload your web browser to ensure that all files have been referenced correctly 
 If you are using a package manager, such as [bower](http://bower.io), make sure to checkout the [Getting Ember](../../getting-ember/) guide for info on other ways to get Ember.js (this guide is dependant on ember-data v1.0 or greater so please be sure to use the latest beta/).
 
 ### Live Preview
-<a class="jsbin-embed" href="http://jsbin.com/ijefig/2/embed?live">Ember.js • TodoMVC</a><script src="http://static.jsbin.com/js/embed.js"></script>
+<a class="jsbin-embed" href="http://jsbin.com/ijefig/2/embed?live">Ember.js • TodoMVC</a><script src="https://static.jsbin.com/js/embed.js"></script>
 
 ### Additional Resources
 

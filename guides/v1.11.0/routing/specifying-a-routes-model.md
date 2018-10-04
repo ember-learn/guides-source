@@ -25,7 +25,7 @@ export default Ember.Route.extend({
 });
 ```
 
-<a class="jsbin-embed" href="http://jsbin.com/lihenu/embed?js,output">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+<a class="jsbin-embed" href="http://jsbin.com/lihenu/embed?js,output">JS Bin</a><script src="https://static.jsbin.com/js/embed.js"></script>
 
 ### Asynchronously Loading Models
 
@@ -204,7 +204,7 @@ will always execute the model hook.
 If your data represented by your model is being updated frequently, you may
 want to refresh it periodically:
 
-<a class="jsbin-embed" href="http://jsbin.com/sefuv/2/embed?js">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+<a class="jsbin-embed" href="http://jsbin.com/sefuv/2/embed?js">JS Bin</a><script src="https://static.jsbin.com/js/embed.js"></script>
 
 The controller can send an action to the Route; in this example above, the
 IndexController exposes an action `getLatest` which sends the route an

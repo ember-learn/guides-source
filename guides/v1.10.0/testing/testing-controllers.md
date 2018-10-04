@@ -128,7 +128,7 @@ test('modify the post', function() {
 
 <a class="jsbin-embed" href="http://jsbin.com/hidajezuyi/1/embed?output">Unit Testing Controllers "Needs"</a>
 
-<script src="http://static.jsbin.com/js/embed.js"></script>
+<script src="https://static.jsbin.com/js/embed.js"></script>
 
 [Unit Testing Basics]: /guides/testing/unit-testing-basics
 [needs]: /guides/controllers/dependencies-between-controllers

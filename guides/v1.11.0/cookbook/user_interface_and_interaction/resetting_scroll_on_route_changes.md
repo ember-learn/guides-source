@@ -31,4 +31,4 @@ export default Ember.Route.extend(ResetScroll, {
 
 <!---#### Example
 
-<a class="jsbin-embed" href="http://jsbin.com/yiqijopilo/1/embed?live">Ember Starter Kit</a><script src="http://static.jsbin.com/js/embed.js"></script>-->
+<a class="jsbin-embed" href="http://jsbin.com/yiqijopilo/1/embed?live">Ember Starter Kit</a><script src="https://static.jsbin.com/js/embed.js"></script>-->

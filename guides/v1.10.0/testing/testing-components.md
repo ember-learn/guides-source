@@ -364,7 +364,7 @@ test('renders kittens', function() {
 <a class="jsbin-embed" href="http://jsbin.com/rizosajupo/1/embed?output">Components
 with Embedded Components</a>
 
-<script src="http://static.jsbin.com/js/embed.js"></script>
+<script src="https://static.jsbin.com/js/embed.js"></script>
 
 [Unit Testing Basics]: /guides/testing/unit-testing-basics
 [Integration Test Helpers]: /guides/testing/test-helpers
