@@ -1,11 +1,12 @@
+**Note:** 
+  * _For basic Ember app development scenarios, you don't need to understand the run loop or use it directly. All common paths are paved nicely for you and don't require working with the run loop._
+  * _However, the run loop will be helpful to understand the internals of Ember and to assist in customized performance tuning by manually batching costly work._
+
 Ember's internals and most of the code you will write in your applications takes place in a run loop.
 The run loop is used to batch, and order (or reorder) work in a way that is most effective and efficient.
 
 It does so by scheduling work on specific queues.
 These queues have a priority, and are processed to completion in priority order.
-
-For basic Ember app development scenarios, you don't need to understand the run loop or use it directly.
-All common paths are paved nicely for you and don't require working with the run loop directly.
 
 The most common case for using the run loop is integrating with a non-Ember API
 that includes some sort of asynchronous callback.
@@ -122,12 +123,13 @@ and these queues are processed to completion in priority order.
 
 What are the queues, and what is their priority order?
 
-```javascript
-Ember.run.queues
-// => ["actions", "routerTransitions", "render", "afterRender", "destroy"]
-```
+1. `actions`
+2. `routerTransitions`
+3. `render`
+4. `afterRender`
+5. `destroy`
 
-Because the priority is first to last, the "actions" queue has higher priority than the "render" or "destroy" queue.
+Here, in this list, the "actions" queue has a higher priority than the "render" or "destroy" queue.
 
 ## What happens in these queues?
 
