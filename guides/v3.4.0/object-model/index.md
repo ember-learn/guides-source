@@ -8,7 +8,7 @@ Most objects in Ember, including Routes, Models, Services, Mixins, Controllers, 
 
 ### Why Ember Objects?
 
-The most important reason is that an Ember Object can be watched for changes – or _observed_. Ember Objects, being [observable](https://www.emberjs.com/api/ember/release/classes/Observable), supports observing any of its properties including [computed properties](https://guides.emberjs.com/release/object-model/computed-properties/). It is one of the fundamental ways that models, controllers and views communicate with each other in an Ember application.
+The most important reason is that an Ember Object can be watched for changes – or _observed_. For example, being [observable](https://www.emberjs.com/api/ember/release/classes/Observable) is important for [computed properties](https://guides.emberjs.com/release/object-model/computed-properties/). It is one of the fundamental ways that models, controllers and views communicate with each other in an Ember application.
 
 ### More on Ember Objects
 
