@@ -2,7 +2,7 @@ One of the first things you'll notice when you generate JavaScript files in Embe
 
 ### Introducing: Ember Objects
 
-The [Ember Object](https://www.emberjs.com/api/ember/release/classes/EmberObject) class extends plain JavaScript objects to provide core framework functions such as participating in Ember's binding system.
+The [Ember Object](https://www.emberjs.com/api/ember/release/classes/EmberObject) class extends plain JavaScript objects to provide core framework functions such as participating in Ember's [binding system](https://guides.emberjs.com/release/object-model/bindings/) or how changes to an object automatically trigger updates to the user interface.
 
 Most objects in Ember, including Routes, Models, Services, Mixins, Controllers, and Components extend the `EmberObject` class.
 
