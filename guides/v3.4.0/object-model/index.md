@@ -2,13 +2,13 @@ One of the first things you'll notice when you generate JavaScript files in Embe
 
 ### Introducing: Ember Objects
 
-The [Ember Object](https://www.emberjs.com/api/ember/release/classes/EmberObject) class extends plain JavaScript objects to provide core framework functions such as participating in Ember's [binding system](../bindings/) or how changes to an object automatically trigger updates to the user interface.
+The [Ember Object](https://www.emberjs.com/api/ember/release/classes/EmberObject) class extends plain JavaScript objects to provide core framework functions such as participating in Ember's [binding system](../object-model/bindings/) or how changes to an object automatically trigger updates to the user interface.
 
 Most objects in Ember, including Routes, Models, Services, Mixins, Controllers, and Components extend the `EmberObject` class.
 
 ### Why Ember Objects?
 
-The most important reason is that an Ember Object can be watched for changes – or _observed_. For example, being [observable](https://www.emberjs.com/api/ember/release/classes/Observable) is important for [computed properties](../computed-properties/). It is one of the fundamental ways that models, controllers and views communicate with each other in an Ember application.
+The most important reason is that an Ember Object can be watched for changes – or _observed_. For example, being [observable](https://www.emberjs.com/api/ember/release/classes/Observable) is important for [computed properties](../object-model/computed-properties/). It is one of the fundamental ways that models, controllers and views communicate with each other in an Ember application.
 
 ### More on Ember Objects
 
