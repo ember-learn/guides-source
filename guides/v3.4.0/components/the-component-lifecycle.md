@@ -127,7 +127,7 @@ import Component from '@ember/component';
 export default Component.extend({
   didInsertElement() {
     this._super(...arguments);
-    this.element.('contenteditable', true);
+    this.element.setAttribute('contenteditable', true);
   }
 });
 ```
@@ -193,9 +193,6 @@ There are a few things to note about the `didInsertElement()` hook:
 
 [did-insert-element]: https://www.emberjs.com/api/ember/release/classes/Component/events/didInsertElement?anchor=didInsertElement
 
-Please note that the component's element is accessible via the component's [`$()`][dollar] method if JQuery is needed. A component's [`$()`][dollar] method allows you to access the component's DOM element by returning a JQuery element. For example, you can set an attribute using jQuery's `attr()` method. However, the code below shows the manipulation performed with native DOM methods.
-
-[dollar]: https://www.emberjs.com/api/ember/release/classes/Component/methods/$?anchor=%24
 ### Making Updates to the Rendered DOM with `didRender`
 
 The `didRender` hook is called during both render and re-render after the template has rendered and the DOM updated.
@@ -240,8 +237,8 @@ export default Component.extend({
 
   didRender() {
     this._super(...arguments);
-    this.element.querySelector('.item-list').scrollTop = Math.abs(this.element.getBoundingClientRect().top - this.element.querySelector('.selected-item').getBoundingClientRect().top);
-  }
+    const scrollTarget = Math.abs(this.element.getBoundingClientRect().top - this.element.querySelector('.selected-item').getBoundingClientRect().top);
+    this.element.querySelector('.item-list').scrollTop = scrollTarget;   
 });
 ```
 
@@ -271,10 +268,14 @@ export default Component.extend({
   }
 });
 ```
-Note, that if we also wanted to remove the event listener we previously added to this.element using in the didInsertElement method cannot be removed during
-teardown, as we used an anonymous function to remove it. If we want to remove the event listener, we would need to use a named function we can reference in the
-teardown. We would presumably achieve this by have the event listener be a method on our component, so we could do something like this:
+Note, that if we also wanted to remove the event listener we added to this.element above using the didInsertElement lifecycle method, we would not be able to,
+as we used an anonymous function. If we wanted to remove the event listener, we would need to use a named function we can reference in the
+teardown cycle. We could presumably achieve this by have the event listener be a method on our component, so we could do something like this:
 
 ```
 this.element.removeEventListener('animationend', this.toggleSliding);
 ```
+
+Please note that the component's element is accessible via the component's [`$()`][dollar] method if JQuery is being used. A component's [`$()`][dollar] method allows you to access the component's DOM element by returning a JQuery element. For example, you can set an attribute using jQuery's `attr()` method. However, the code above shows the manipulation performed with native DOM methods.
+
+[dollar]: https://www.emberjs.com/api/ember/release/classes/Component/methods/$?anchor=%24
