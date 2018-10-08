@@ -273,8 +273,8 @@ import Component from '@ember/component';
 
 export default Component.extend({
   willDestroyElement() {
-    this.$().off('animationend');
-    this.$('input.date').myDatepickerLib().destroy();
+    this.element.removeEventListener('animationend');
+    this.element.querySelectorAll('input.date').myDatepickerLib().destroy();
     this._super(...arguments);
   }
 });
