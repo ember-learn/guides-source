@@ -278,3 +278,11 @@ need to create a route handler. The following guides will explore the different
 features of route handlers. For more information on routes, see the API documentation
 for [the router](https://www.emberjs.com/api/ember/release/classes/EmberRouter) and for [route
 handlers](https://www.emberjs.com/api/ember/release/classes/Route).
+
+## Transitioning Between Routes
+Once the routes are defined, how do we go about transitioning between them within our application? It depends on where the transition needs to take place:
+
+- From a template, use [`{{link-to}}`](https://emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/link-to?anchor=link-to) as mentioned above
+- From a route, use the [`transitionTo()`](https://emberjs.com/api/ember/release/classes/Route/methods/transitionTo?anchor=transitionTo) method
+- From a controller, use the [`transitionToRoute()`](https://emberjs.com/api/ember/release/classes/Controller/methods/transitionToRoute?anchor=transitionToRoute) method
+- From anywhere else in your application, such as a component, inject the [Router Service](https://emberjs.com/api/ember/release/classes/RouterService) and use the [`transitionTo()`](https://emberjs.com/api/ember/release/classes/RouterService/methods/transitionTo?anchor=transitionTo) method
