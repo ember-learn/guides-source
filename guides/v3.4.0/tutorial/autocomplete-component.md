@@ -562,7 +562,7 @@ Our test fills out "Seattle" as the search criteria in the search field,
 and then sends a `keyup` event to the same field with a code of `69` (the `e` key) to simulate a user typing, which is the event our code is looking for.
 
 In the case of our code the key code sent can be anything, since we read the value of the input field, and not the key events coming in.
-We only use the key event to let our code know that its time to make a search.
+We only use the key event to let our code know that it's time to make a search.
 
 The test locates the results of the search by finding elements with a class of `listing`,
 which we gave to our `rental-listing` component in the ["Building a Simple Component"](../simple-component/) section of the tutorial.
