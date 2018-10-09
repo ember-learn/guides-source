@@ -4,9 +4,7 @@ JSON API, GraphQL, or anything else.
 
 Many developers choose to use Ember Data, a powerful set of tools 
 for formatting requests, normalizing responses, and efficiently 
-managing a local cache of data. Since it is a widely-used, 
-officially supported library, Ember Data is considered best 
-practice for most applications. The Ember Data library is included
+managing a local cache of data. The Ember Data library is included
 by default for applications generated with the Ember CLI; however,
 if you do not wish to use it, it can easily be removed by
 removing the `ember-data` entry from `package.json`.
