@@ -201,7 +201,7 @@ There are a few things to note about the `didInsertElement()` hook:
   particularly when order of execution is important.
 
 [did-insert-element]: https://www.emberjs.com/api/ember/release/classes/Component/events/didInsertElement?anchor=didInsertElement
-[element]: https://emberjs.com/api/ember/3.4/classes/Component/properties/element?anchor=element
+[element]: https://emberjs.com/api/ember/release/classes/Component/properties/element?anchor=element
 
 ### Making Updates to the Rendered DOM with `didRender`
 
