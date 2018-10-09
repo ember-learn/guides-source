@@ -114,21 +114,12 @@ export default Component.extend({
 ### Integrating with Third-Party Libraries with `didInsertElement`
 
 Suppose you want to integrate your favorite date picker library into an Ember project.
-Typically, 3rd party JS/jQuery libraries require a DOM element to bind to.
+Typically, 3rd party JS libraries require a DOM element to bind to.
 So, where is the best place to initialize and attach the library?
 
 After a component successfully renders its backing HTML element into the DOM, it will trigger its [`didInsertElement()`][did-insert-element] hook.
 
-Ember guarantees that, by the time `didInsertElement()` is called:
-
-1. The component's element has been both created and inserted into the
-   DOM.
-2. The component's element is accessible via the component's
-   [`$()`][dollar]
-   method.
-
-A component's [`$()`][dollar] method allows you to access the component's DOM element by returning a JQuery element.
-For example, you can set an attribute using jQuery's `attr()` method:
+Ember guarantees that, by the time `didInsertElement()` is called the component's element has been both created and inserted into the DOM.
 
 ```javascript {data-filename=app/components/profile-editor.js}
 import Component from '@ember/component';
@@ -136,12 +127,12 @@ import Component from '@ember/component';
 export default Component.extend({
   didInsertElement() {
     this._super(...arguments);
-    this.$().attr('contenteditable', true);
+    this.element.setAttribute('contenteditable', true);
   }
 });
 ```
 
-[`$()`][dollar] will, by default, return a jQuery object for the component's root element, but you can also target child elements within the component's template by passing a selector:
+If you instead needed to target child elements within the component's template, you could do so by passing a selector:
 
 ```javascript {data-filename=app/components/profile-editor.js}
 import Component from '@ember/component';
@@ -149,14 +140,14 @@ import Component from '@ember/component';
 export default Component.extend({
   didInsertElement() {
     this._super(...arguments);
-    this.$('div p button').addClass('enabled');
+    this.element.querySelector('div p button').classList.add('enabled');
   }
 });
 ```
 
 Let's initialize our date picker by overriding the [`didInsertElement()`][did-insert-element] method.
 
-Date picker libraries usually attach to an `<input>` element, so we will use jQuery to find an appropriate input within our component's template.
+Date picker libraries usually attach to an `<input>` element, so we will use DOM methods to find an appropriate input within our component's template.
 
 ```javascript {data-filename=app/components/profile-editor.js}
 import Component from '@ember/component';
@@ -164,7 +155,7 @@ import Component from '@ember/component';
 export default Component.extend({
   didInsertElement() {
     this._super(...arguments);
-    this.$('input.date').myDatePickerLib();
+    this.element.querySelector('input.date').myDatePickerLib();
   }
 });
 ```
@@ -183,8 +174,9 @@ import Component from '@ember/component';
 export default Component.extend({
   didInsertElement() {
     this._super(...arguments);
-    this.$().on('animationend', () => {
-      $(this).removeClass('sliding-anim');
+
+    this.addEventListener('animationend', () => {
+      this.element.classList.remove('sliding-anim');
     });
   }
 });
@@ -196,11 +188,10 @@ There are a few things to note about the `didInsertElement()` hook:
 - In cases where you have components nested inside other components, the child component will always receive the `didInsertElement()` call before its parent does.
 - Setting properties on the component in [`didInsertElement()`][did-insert-element] triggers a re-render, and for performance reasons,
   is not allowed.
-- While [`didInsertElement()`][did-insert-element] is technically an event that can be listened for using `on()`, it is encouraged to override the default method itself,
+- While [`didInsertElement()`][did-insert-element] is technically an event that can be listened for using `addEventListener`, it is encouraged to override the default method itself,
   particularly when order of execution is important.
 
 [did-insert-element]: https://www.emberjs.com/api/ember/release/classes/Component/events/didInsertElement?anchor=didInsertElement
-[dollar]: https://www.emberjs.com/api/ember/release/classes/Component/methods/$?anchor=%24
 
 ### Making Updates to the Rendered DOM with `didRender`
 
@@ -246,8 +237,8 @@ export default Component.extend({
 
   didRender() {
     this._super(...arguments);
-    this.$('.item-list').scrollTop(this.$('.selected-item').position().top);
-  }
+    const scrollTarget = Math.abs(this.element.getBoundingClientRect().top - this.element.querySelector('.selected-item').getBoundingClientRect().top);
+    this.element.querySelector('.item-list').scrollTop = scrollTarget;   
 });
 ```
 
@@ -272,9 +263,19 @@ import Component from '@ember/component';
 
 export default Component.extend({
   willDestroyElement() {
-    this.$().off('animationend');
-    this.$('input.date').myDatepickerLib().destroy();
+    this.querySelector('input.date').myDatepickerLib().destroy();
     this._super(...arguments);
   }
 });
 ```
+Note, that if we also wanted to remove the event listener we added to this.element above using the didInsertElement lifecycle method, we would not be able to,
+as we used an anonymous function. If we wanted to remove the event listener, we would need to use a named function we can reference in the
+teardown cycle. We could presumably achieve this by have the event listener be a method on our component, so we could do something like this:
+
+```
+this.element.removeEventListener('animationend', this.toggleSliding);
+```
+
+Please note that the component's element is accessible via the component's [`$()`][dollar] method if JQuery is being used. A component's [`$()`][dollar] method allows you to access the component's DOM element by returning a JQuery element. For example, you can set an attribute using jQuery's `attr()` method. However, the code above shows the manipulation performed with native DOM methods.
+
+[dollar]: https://www.emberjs.com/api/ember/release/classes/Component/methods/$?anchor=%24
