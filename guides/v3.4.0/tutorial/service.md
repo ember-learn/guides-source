@@ -197,9 +197,7 @@ export default Component.extend({
   didInsertElement() {
     this._super(...arguments);
     let mapElement = this.maps.getMapElement(this.location);
-    
-    let componentElement = document.getElementById(this.elementId);
-    let mapContainerElement = componentElement.getElementsByClassName('map-container').item(0);
+    let mapContainerElement = this.element.getElementsByClassName('map-container').item(0);
     
     mapContainerElement.appendChild(mapElement);
   }
