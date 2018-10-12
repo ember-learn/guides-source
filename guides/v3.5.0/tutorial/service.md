@@ -197,7 +197,8 @@ export default Component.extend({
   didInsertElement() {
     this._super(...arguments);
     let mapElement = this.maps.getMapElement(this.location);
-    this.$('.map-container').append(mapElement);
+    let mapContainerElement = this.element.querySelector('.map-container');
+    mapContainerElement.appendChild(mapElement);
   }
 });
 ```
