@@ -26,7 +26,7 @@ This property will be `true` if the controller has any todos and every todo's `i
 Reload your web browser to ensure that there are no errors and the behavior described above occurs. 
 
 ### Live Preview
-<a class="jsbin-embed" href="http://jsbin.com/IcItARE/1/embed?live">Ember.js • TodoMVC</a><script src="http://static.jsbin.com/js/embed.js"></script>
+<a class="jsbin-embed" href="http://jsbin.com/IcItARE/1/embed?live">Ember.js • TodoMVC</a><script src="https://static.jsbin.com/js/embed.js"></script>
 
 ### Additional Resources
 

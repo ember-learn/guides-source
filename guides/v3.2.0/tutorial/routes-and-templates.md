@@ -98,8 +98,10 @@ In the route template `/app/templates/contact.hbs`, let's add our contact detail
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>Contact Us</h2>
-  <p>Super Rentals Representatives would love to help you<br>choose a destination or answer
-    any questions you may have.</p>
+  <p>
+    Super Rentals Representatives would love to help you<br>
+    choose a destination or answer any questions you may have.
+  </p>
   <address>
     Super Rentals HQ
     <p>
@@ -150,8 +152,10 @@ Now, we'll add our corresponding link to the contact page so we can move back an
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>Contact Us</h2>
-  <p>Super Rentals Representatives would love to help you<br>choose a destination or answer
-    any questions you may have.</p>
+  <p>
+    Super Rentals Representatives would love to help you<br>
+    choose a destination or answer any questions you may have.
+  </p>
   <address>
     Super Rentals HQ
     <p>
@@ -224,8 +228,8 @@ The [`beforeModel`](https://www.emberjs.com/api/ember/release/classes/Route/meth
 hook gets executed before the data gets fetched from the model hook, and before the page is rendered.
 See [the next section](../model-hook/) for an explanation of the model hook.
 
-In our index route handler, we'll call the [`replaceWith`](https://www.emberjs.com/api/ember/release/classes/Route/methods/beforeModel?anchor=replaceWith/) function.
-The `replaceWith` function is similar to the route's [`transitionTo()`](https://www.emberjs.com/api/ember/release/classes/Route/methods/transitionTo?anchor=transitionTo/) function,
+In our index route handler, we'll call the [`replaceWith`](https://www.emberjs.com/api/ember/release/classes/Route/methods/beforeModel?anchor=replaceWith) function.
+The `replaceWith` function is similar to the route's [`transitionTo()`](https://www.emberjs.com/api/ember/release/classes/Route/methods/transitionTo?anchor=transitionTo) function,
 the difference being that `replaceWith` will replace the current URL in the browser's history,
 while `transitionTo` will add to the history.
 Since we want our `rentals` route to serve as our home page, we will use the `replaceWith` function.

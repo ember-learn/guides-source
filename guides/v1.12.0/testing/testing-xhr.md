@@ -175,7 +175,7 @@ Ember.run(function(){
 
 If you're using a promise, but it resolves immediately then you can simply follow the pattern above of wrapping the resolve and observer/chained promises in a run call without harm.  In this example we wrap the resolve and the observer (due to the promise resolving immediately) in a run call.
 
-<script src="http://static.jsbin.com/js/embed.js"></script>
+<script src="https://static.jsbin.com/js/embed.js"></script>
 <a class="jsbin-embed" href="http://jsbin.com/qoyinucu/45/embed?js,output">Simple promise example</a>
 
 ####Asynchronous Example using promises

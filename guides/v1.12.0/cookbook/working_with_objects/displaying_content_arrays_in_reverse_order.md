@@ -31,4 +31,4 @@ And in your template you will be able to consume a reversed array, like this: `{
 
 ### Example
 
-<a class="jsbin-embed" href="http://jsbin.com/opid/3/embed?html,js,output">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+<a class="jsbin-embed" href="http://jsbin.com/opid/3/embed?html,js,output">JS Bin</a><script src="https://static.jsbin.com/js/embed.js"></script>

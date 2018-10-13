@@ -22,4 +22,4 @@ Ember.Handlebars.helper('truncate', function(str, len) {
 
 <!--- #### Example
 
-<a class="jsbin-embed" href="http://jsbin.com/APoDiLA/1/embed?js,output">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>-->
+<a class="jsbin-embed" href="http://jsbin.com/APoDiLA/1/embed?js,output">JS Bin</a><script src="https://static.jsbin.com/js/embed.js"></script>-->

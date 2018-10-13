@@ -98,6 +98,26 @@ In code samples:
   * css
   * handlebars
 
+When linking to topics from guide md files:
+
+* use relative links when referencing a topic.
+  * Incorrect: `https://guides.emberjs.com/release/routing/query-params/`
+  * Correct: `../routing/query-params`
+
+* to reference a topic when you are in `index.md`, you only have to go up one level to reference another topics md file, `../main-topic/sub-topic`.
+  * example from `index.md` to `routing/query-params.md`:
+    * `../routing/query-params`
+
+* to reference a md file in a different main topic to the one you are in, you need to go two levels up, `../../main-topic/sub-topic`.
+  * example from `routing/query-params.md` to `components/block-params.md`:
+    * `../../components/block-params`
+
+* to reference a md file within the topic you are currently in, you need to go up one level, `../sub-topic`.
+  * example from `routing/query-params.md` to `routing/redirection.md`:
+    * `../redirection`
+
+* always use `/release/` when linking API docs.
+
 When linking to API pages:
 
 * use code backticks as part of the link text, i.e., \[<code>&#96;store.push()&#96;</code>]

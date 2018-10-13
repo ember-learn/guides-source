@@ -40,7 +40,7 @@ Above we defined an initial `isEditing` value of `false` for controllers of this
 Reload your web browser to ensure that no errors occur. You can now double-click a todo to edit it.
 
 ### Live Preview
-<a class="jsbin-embed" href="http://jsbin.com/tucapa/1/embed?output">Ember.js • TodoMVC</a><script src="http://static.jsbin.com/js/embed.js"></script>
+<a class="jsbin-embed" href="http://jsbin.com/tucapa/1/embed?output">Ember.js • TodoMVC</a><script src="https://static.jsbin.com/js/embed.js"></script>
 
 ### Additional Resources
 

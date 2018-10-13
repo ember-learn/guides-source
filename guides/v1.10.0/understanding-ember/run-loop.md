@@ -145,7 +145,7 @@ Working with this API directly is not common in most Ember apps, but understandi
 help you to understand the run-loops algorithm, which will make you a better Ember developer.
 
 
-<iframe src="http://emberjs.com.s3.amazonaws.com/run-loop-guide/index.html" width="678" height="410" style="border:1px solid rgb(170, 170, 170);margin-bottom:1.5em;"></iframe>
+<iframe src="https://s3.amazonaws.com/emberjs.com/run-loop-guide/index.html" width="678" height="410" style="border:1px solid rgb(170, 170, 170);margin-bottom:1.5em;"></iframe>
 
 ## FAQs
 
@@ -270,4 +270,3 @@ before resolving. If your application has code that runs _outside_ a runloop,
 these will resolve too early and give erroneous test failures which are
 difficult to find. Disabling autoruns help you identify these scenarios and
 helps both your testing and your application!
-

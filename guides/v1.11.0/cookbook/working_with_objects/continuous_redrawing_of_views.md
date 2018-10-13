@@ -14,7 +14,7 @@ generated within the application, like a list of comments.
 
 <a class="jsbin-embed" href="http://jsbin.com/jihivevafo/1/edit?output">
 Cookbook: Continuous Redrawing of Views
-</a><script src="http://static.jsbin.com/js/embed.js"></script>-->
+</a><script src="https://static.jsbin.com/js/embed.js"></script>-->
 
 ### ClockService object
 

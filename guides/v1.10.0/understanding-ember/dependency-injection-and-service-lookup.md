@@ -126,7 +126,7 @@ When the index controller calls `this.get('controllers.audio')`, the audio servi
 
 A functional version of this example is provided below:
 
-<a class="jsbin-embed" href="http://emberjs.jsbin.com/depar/1/embed?js,output">Ember Starter Kit</a><script src="http://static.jsbin.com/js/embed.js"></script>
+<a class="jsbin-embed" href="http://emberjs.jsbin.com/depar/1/embed?js,output">Ember Starter Kit</a><script src="https://static.jsbin.com/js/embed.js"></script>
 
 Services are a simple way to share behavior between controllers and isolate responsibilities in an application. `needs` is an easy and quick way to create services and share them between an application's controllers.
 
@@ -267,6 +267,6 @@ var App = Ember.Application.create({
 
 What follows is a full implementation of the above logger service:
 
-<a class="jsbin-embed" href="http://emberjs.jsbin.com/fajeriwu/1/embed?html,js,console,output">Ember Starter Kit</a><script src="http://static.jsbin.com/js/embed.js"></script>
+<a class="jsbin-embed" href="http://emberjs.jsbin.com/fajeriwu/1/embed?html,js,console,output">Ember Starter Kit</a><script src="https://static.jsbin.com/js/embed.js"></script>
 
 Dependency injection and service lookup are two powerful tools in your Ember.js toolset, and every mature Ember application will require their use.
