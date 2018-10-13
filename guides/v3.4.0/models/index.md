@@ -26,7 +26,7 @@ Note that Ember Data models are a different concept than the
 [`model`](../routing/specifying-a-routes-model/) method on Routes, 
 although they share the same name. 
 
-Different apps will have very
+Different apps may have very
 different models, depending on what problems they're trying to solve.
 For example, a photo sharing application might have a `Photo`
 model to represent a particular photo, and a `PhotoAlbum` that
