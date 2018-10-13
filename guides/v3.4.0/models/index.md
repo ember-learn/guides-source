@@ -1,7 +1,33 @@
-Models are objects that represent the underlying data that your
-application presents to the user. Different apps will have very
-different models, depending on what problems they're trying to solve.
+Ember developers have great options for how they handle data from
+back end APIs. Ember itself works with any type of back end: REST,
+JSON API, GraphQL, or anything else.
 
+Many developers choose to use Ember Data, a powerful set of tools 
+for formatting requests, normalizing responses, and efficiently 
+managing a local cache of data. The Ember Data library is included
+by default for applications generated with the Ember CLI; however,
+if you do not wish to use it, it can easily be removed by
+removing the `ember-data` entry from `package.json`.
+Some developers write all their own code to handle API requests, 
+using native JavaScript methods like 
+[fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) 
+or third-party libraries. Many apps use a combination of approaches.
+
+This section of the Guides describes the essential features of Ember 
+Data. To learn about other ways to handle data and to find extensions,
+check out [Ember Observer](https://www.emberobserver.com/) 
+or search for community-made tutorials.
+
+## What are Ember Data models?
+
+In Ember Data, models are objects that represent the underlying data 
+that your application presents to the user.
+Note that Ember Data models are a different concept than the 
+[`model`](../routing/specifying-a-routes-model/) method on Routes, 
+although they share the same name. 
+
+Different apps may have very
+different models, depending on what problems they're trying to solve.
 For example, a photo sharing application might have a `Photo`
 model to represent a particular photo, and a `PhotoAlbum` that
 represents a group of photos. In contrast, an online shopping app would
@@ -27,11 +53,6 @@ translate model data into a UI that your user can interact with.  For
 more information about how components get model data, see the
 [Specifying a Route's Model](../routing/specifying-a-routes-model/)
 guide.
-
-Ember Data, included by default when you create a new application, is a
-library that integrates tightly with Ember to make it easy to retrieve
-models from your server as JSON, save updates back to the server, and
-create new models in the browser.
 
 Thanks to its use of the _adapter pattern_, Ember Data can be configured
 to work with many different kinds of backends. There is [an entire
