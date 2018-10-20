@@ -48,7 +48,7 @@ current context.
 To dispatch an action on specific events, such as `enter` or `key-press`, use the following
 
 ```handlebars
-{{input value=firstName key-press="updateFirstName"}}
+{{input value=firstName key-press=(action "updateFirstName")}}
 ```
 
 [Event Names](https://www.emberjs.com/api/ember/release/classes/Component) must be dasherized.
