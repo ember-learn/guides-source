@@ -195,6 +195,40 @@ If the user then navigates to `/posts/favorites`, Ember will
 replace the `{{outlet}}` in the `posts` template with the
 `posts/favorites` template.
 
+The following are the examples to understand more about index route:
+
+ - Index route is analogous to index.html. When user visits https://emberjs.com url, the contents of the of `template/index.hbs` file will be rendered. There is no need to add an entry `this.route('index', { path: '/' });` in router.js file. The router.js file can be as below:
+   
+```javascript {data-filename=app/router.js}
+Router.map(function() {
+});
+```
+ - When user navigates to /posts, the contents of index.hbs will be rendered in a way similar to when user navigates to child route of /posts. /posts/index route is child route similar to /posts/comments or /posts/likes.
+ 
+ - Index route is handy to render a view when the route has [dynamic segments](https://guides.emberjs.com/release/routing/defining-your-routes/#toc_dynamic-segments) defined in it. 
+   
+For example if the following is the code in templates/posts.hbs file
+```handlebars {data-filename=templates/posts.hbs}
+<h1>This is posts file</h1>
+{{outlet}}
+```   
+The following is the entry in templates/posts/index.hbs file
+`<p>This is the index file which gets invoked when we enter /posts/:id route</p>`
+   
+This is equivalent to having the following entry in router.js file
+```javascript {data-filename=app/router.js}
+Router.map(function() {
+  this.route('post', { path: 'posts/:id' }, function () {
+  this.route('index', { path: '' });
+});
+```
+When the user navigates to `/posts/123`, the following markup will be seen in the page  
+```handlebars {data-filename=templates/posts/index.hbs} 
+<h1>This is posts file</h1>
+<p>This is the index file which gets invoked when we enter /posts/:id route</p>
+```
+index route is implicitly given for free by Ember.
+    
 ## Dynamic Segments
 
 One of the responsibilities of a route is to load a model.
