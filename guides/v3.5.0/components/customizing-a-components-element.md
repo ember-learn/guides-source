@@ -49,7 +49,7 @@ element by setting its `classNames` property to an array of strings:
 import Component from '@ember/component';
 
 export default Component.extend({
-  classNames: ['primary']
+  classNames: Object.freeze(['primary'])
 });
 ```
 
@@ -81,7 +81,7 @@ applied by delimiting it with a colon:
 import Component from '@ember/component';
 
 export default Component.extend({
-  classNameBindings: ['isUrgent:urgent'],
+  classNameBindings: Object.freeze(['isUrgent:urgent']),
   isUrgent: true
 });
 ```
@@ -98,7 +98,7 @@ Besides the custom class name for the value being `true`, you can also specify a
 import Component from '@ember/component';
 
 export default Component.extend({
-  classNameBindings: ['isEnabled:enabled:disabled'],
+  classNameBindings: Object.freeze(['isEnabled:enabled:disabled']),
   isEnabled: false
 });
 ```
@@ -116,7 +116,7 @@ You can also specify a class which should only be added when the property is
 import Component from '@ember/component';
 
 export default Component.extend({
-  classNameBindings: ['isEnabled::disabled'],
+  classNameBindings: Object.freeze(['isEnabled::disabled']),
   isEnabled: false
 });
 ```
@@ -140,7 +140,7 @@ modification:
 import Component from '@ember/component';
 
 export default Component.extend({
-  classNameBindings: ['priority'],
+  classNameBindings: Object.freeze(['priority']),
   priority: 'highestPriority'
 });
 ```
@@ -161,7 +161,7 @@ import Component from '@ember/component';
 
 export default Component.extend({
   tagName: 'a',
-  attributeBindings: ['href'],
+  attributeBindings: Object.freeze(['href']),
 
   href: 'http://emberjs.com'
 });
@@ -174,7 +174,7 @@ import Component from '@ember/component';
 
 export default Component.extend({
   tagName: 'a',
-  attributeBindings: ['customHref:href'],
+  attributeBindings: Object.freeze(['customHref:href']),
 
   customHref: 'http://emberjs.com'
 });
@@ -187,7 +187,7 @@ import Component from '@ember/component';
 
 export default Component.extend({
   tagName: 'span',
-  attributeBindings: ['title'],
+  attributeBindings: Object.freeze(['title']),
 
   title: null,
 });
