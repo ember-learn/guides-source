@@ -22,7 +22,7 @@ the canary and future beta branches, and the feature becomes part of the framewo
 
 ## Flagging Details
 The flag status in the generated build is controlled by the [`@ember/canary-features`](https://github.com/emberjs/ember.js/blob/master/packages/@ember/canary-features/index.ts)
-file in the root of the Ember.js project. This file lists all new features and their current status.
+package. This package exports a list of all available features and their current status.
 
 A feature can have one of a three flags:
 
