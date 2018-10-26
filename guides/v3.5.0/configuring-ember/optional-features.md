@@ -46,11 +46,11 @@ Available features:
 
 Once you see a feature that you would like to toggle for your project you can run one of two commands, `ember feature:enable <feature>` and `ember feature:disable <feature>`.
 
-Let us disable `template-only-glimmer-components` to see what happens:
+Let us disable `jquery-integration` to see what happens:
 
 ```bash
-$ ember feature:disable template-only-glimmer-components
-Disabled template-only-glimmer-components. Be sure to commit config/optional-features.json to source control!
+$ ember feature:disable jquery-integration
+Disabled jquery-integration. Be sure to commit config/optional-features.json to source control!
 ```
 
 As we can see from the warning, `@ember/optional-features` has created a file in `config/optional-features.json` to store the configuration for your project.
@@ -61,7 +61,7 @@ We commit it to our repository and we are off to the races!
 The Ember framework comes by default with jQuery integration.
 It is used for event handling, and to provide some APIs like `this.$()` in components.
 
-With the release of ember-source v3.0.0, an optional feature flag was introduced that allows users to opt out of jQuery.
+With the release of ember-source v3.4.0, an optional feature flag was introduced that allows users to opt out of jQuery.
 To enable it, run the following command after setting up `@ember/optional-features`:
 
 ```shell
