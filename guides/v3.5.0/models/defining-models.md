@@ -158,3 +158,23 @@ export default DS.Model.extend({
   })
 });
 ```
+
+### Read-only Attributes
+
+When the API returns a deeply nested, read-only object or array,
+there is no need to create multiple models with `DS.attr('hasMany')` or `DS.attr('belongsTo')`
+relationships. This could result in a potentially large amount of unnecessary
+code. You can access these objects in the template without transforming them. This can be
+done with `DS.attr()` (No attribute type).
+
+The following example shows how to define these attributes without transforming them
+and accessing them within a template:
+
+```javascript
+location: DS.attr() // a read-only object
+tags: DS.attr() // a read-only array
+```
+
+```handlebars
+{{model.location.latitude}}
+```
