@@ -248,6 +248,8 @@
       url: "embedding-applications"
     - title: "Feature Flags"
       url: "feature-flags"
+    - title: "Optional Features"
+      url: "optional-features"
     - title: "Build targets"
       url: "build-targets"
     - title: "Debugging"
