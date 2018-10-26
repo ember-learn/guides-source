@@ -180,7 +180,7 @@ Router.map(function() {
 
 ```javascript {data-filename=app/routes/photo.js}
 export default Ember.Route.extend({
-  model(params/) {
+  model(params) {
     return Ember.$.getJSON('/photos/'+params.photo_id/);
   }
 });
