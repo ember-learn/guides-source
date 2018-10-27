@@ -63,6 +63,8 @@ Router.map(function() {
 });
 ```
 
+Each of the following assumes a transition from the application or index route.
+
 When accessing `foo.bar.slow-model` route then Ember will alternate trying to
 find a `routeName-loading` or `loading` template in the hierarchy starting with
 `foo.bar.slow-model-loading`:
@@ -84,6 +86,18 @@ When accessing `foo.bar` route then Ember will search for:
 3. `loading` or `application-loading`
 
 It's important to note that `foo.bar.loading` is not considered now.
+
+Ember will *not* look above the common parent in a transition between child
+routes. For example, if the user transitions from `foo.bar.index` to
+`foo.bar.slow-model` the following search will happen:
+
+1. `foo.bar.slow-model-loading`
+2. `foo.bar.loading` or `foo.bar-loading`
+
+Notice that `foo.loading`, `foo-loading`, `loading`, and `application-loading`
+are not included here. This means we'll need to handle loading at every level
+within the route hierarchy where loading feedback is important.
+
 
 ### The `loading` event
 
