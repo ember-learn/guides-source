@@ -93,7 +93,7 @@ There are a few things to note about the `didInsertElement()` hook:
 
 [did-insert-element]: http://emberjs.com/api/classes/Ember.Component.html#event_didInsertElement
 [dollar]: http://emberjs.com/api/classes/Ember.Component.html#method__
-[event-names]: http://guides.emberjs.com/v2.1.0/components/handling-events/#toc_event-names
+[event-names]: ../handling-events/#toc_event-names
 [on]: http://emberjs.com/api/classes/Ember.Component.html#method_on
 
 ## Detaching and Tearing Down Component Elements
