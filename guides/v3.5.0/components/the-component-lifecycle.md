@@ -223,9 +223,11 @@ When rendered the component will iterate through the given list and apply a clas
 
 
 ```handlebars {data-filename=app/templates/components/selected-item-list.hbs}
-{{#each items as |item|}}
-  <div class="list-item {{if item.isSelected 'selected-item'}}">{{item.label}}</div>
-{{/each}}
+<div class="item-list">
+  {{#each items as |item|}}
+    <div class="list-item {{if item.isSelected 'selected-item'}}">{{item.label}}</div>
+  {{/each}}
+</div>
 ```
 
 The scroll happens on `didRender`, where it will scroll the component's container to the element with the selected class name.
@@ -234,8 +236,6 @@ The scroll happens on `didRender`, where it will scroll the component's containe
 import Component from '@ember/component';
 
 export default Component.extend({
-  classNames: ['item-list'],
-
   didReceiveAttrs() {
     this._super(...arguments);
     this.items.forEach((item) => {
@@ -247,7 +247,8 @@ export default Component.extend({
 
   didRender() {
     this._super(...arguments);
-    this.element.querySelector('.item-list').scrollTop = this.element.querySelector('.selected-item').offsetTop);
+    const scrollTarget = Math.abs(this.element.getBoundingClientRect().top - this.element.querySelector('.selected-item').getBoundingClientRect().top);
+    this.element.querySelector('.item-list').scrollTop = scrollTarget;
   }
 });
 ```
