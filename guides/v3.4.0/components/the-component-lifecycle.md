@@ -165,7 +165,7 @@ import Component from '@ember/component';
 export default Component.extend({
   didInsertElement() {
     this._super(...arguments);
-    this.element.querySelectorAll('input.date').myDatePickerLib();
+    this.datePicker = myDatePickerLib(this.element.querySelectorAll('input.date'));
   }
 });
 ```
@@ -274,7 +274,7 @@ import Component from '@ember/component';
 export default Component.extend({
   willDestroyElement() {
     this.element.removeEventListener('animationend');
-    this.element.querySelectorAll('input.date').myDatepickerLib().destroy();
+    this.datePicker.destroy();	
     this._super(...arguments);
   }
 });
