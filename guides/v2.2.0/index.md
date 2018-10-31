@@ -58,8 +58,7 @@ addressed. If you don't find an active issue, open a new one.
 
 If you have any styling questions, or about the contributing process you
 can check out our [contributing guide][gh-guides-contributing]. If your
-question persists, reach us at `#documentation` on the [Slack
-group][slackin].
+question persists, reach us in the `#dev-ember-learning` channel on the [Ember Community Discord][discord].
 
 Good luck!
 
@@ -73,4 +72,4 @@ Good luck!
 [gh-guides-issues]: https://github.com/ember-learn/guides-source/issues
 [gh-guides-contributing]: https://github.com/ember-learn/guides-source/blob/master/CONTRIBUTING.md
 
-[slackin]: https://ember-community-slackin.herokuapp.com/
+[discord]: https://discordapp.com/invite/zT3asNS
