@@ -138,7 +138,7 @@ Let's call this action `toggleImageSize`
 ```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="-2,+3"}
 <article class="listing">
   <a class="image {{if isWide "wide"}}">
-  <a {{action 'toggleImageSize'}} class="image {{if isWide "wide"}}">
+  <a href="#" {{action "toggleImageSize"}} class="image {{if isWide "wide"}}">
     <img src="{{rental.image}}" alt="">
     <small>View Larger</small>
   </a>
