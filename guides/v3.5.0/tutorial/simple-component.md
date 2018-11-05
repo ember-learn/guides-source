@@ -99,24 +99,27 @@ We'll also add some text to indicate that the image can be clicked on,
 and wrap both with an anchor element,
 giving it the `image` class name so that our test can find it.
 
-```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="+2,+4,+5"}
+```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="+2,+3,+5,+6"}
 <article class="listing">
-  <a class="image {{if isWide "wide"}}">
+  <a class="image {{if isWide "wide"}}"
+    role="button">
     <img src="{{rental.image}}" alt="">
     <small>View Larger</small>
   </a>
-  <h3>{{rental.title}}</h3>
-  <div class="detail owner">
-    <span>Owner:</span> {{rental.owner}}
-  </div>
-  <div class="detail type">
-    <span>Type:</span> {{rental.category}}
-  </div>
-  <div class="detail location">
-    <span>Location:</span> {{rental.city}}
-  </div>
-  <div class="detail bedrooms">
-    <span>Number of bedrooms:</span> {{rental.bedrooms}}
+  <div class="details">
+    <h3>{{rental.title}}</h3>
+    <div class="detail owner">
+      <span>Owner:</span> {{rental.owner}}
+    </div>
+    <div class="detail type">
+      <span>Type:</span> {{rental.category}}
+    </div>
+    <div class="detail location">
+      <span>Location:</span> {{rental.city}}
+    </div>
+    <div class="detail bedrooms">
+      <span>Number of bedrooms:</span> {{rental.bedrooms}}
+    </div>
   </div>
 </article>
 ```
@@ -135,25 +138,27 @@ export default Component.extend({
 To allow the user to widen the image, we will need to add an action that toggles the value of `isWide`.
 Let's call this action `toggleImageSize`
 
-```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="-2,+3"}
+```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="+3"}
 <article class="listing">
   <a class="image {{if isWide "wide"}}">
   <a href="#" {{action "toggleImageSize"}} class="image {{if isWide "wide"}}">
     <img src="{{rental.image}}" alt="">
     <small>View Larger</small>
   </a>
-  <h3>{{rental.title}}</h3>
-  <div class="detail owner">
-    <span>Owner:</span> {{rental.owner}}
-  </div>
-  <div class="detail type">
-    <span>Type:</span> {{rental.category}}
-  </div>
-  <div class="detail location">
-    <span>Location:</span> {{rental.city}}
-  </div>
-  <div class="detail bedrooms">
-    <span>Number of bedrooms:</span> {{rental.bedrooms}}
+  <div class="details">
+    <h3>{{rental.title}}</h3>
+    <div class="detail owner">
+      <span>Owner:</span> {{rental.owner}}
+    </div>
+    <div class="detail type">
+      <span>Type:</span> {{rental.category}}
+    </div>
+    <div class="detail location">
+      <span>Location:</span> {{rental.city}}
+    </div>
+    <div class="detail bedrooms">
+      <span>Number of bedrooms:</span> {{rental.bedrooms}}
+    </div>
   </div>
 </article>
 ```

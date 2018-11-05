@@ -37,7 +37,7 @@ In this case we are passing, or "yielding", our filter data to the inner markup 
 </div>
 
 {{#list-filter
-   filter=(action 'filterByCity')
+   filter=(action "filterByCity")
    as |filteredResults|}}
   <ul class="results">
     {{#each filteredResults as |rentalUnit|}}
@@ -57,7 +57,7 @@ We want the component to simply provide an input field and yield the results lis
 
 ```handlebars {data-filename=app/templates/components/list-filter.hbs}
 {{input value=value
-        key-up=(action 'handleFilterEntry')
+        key-up=(action "handleFilterEntry")
         class="light"
         placeholder="Filter By City"}}
 {{yield results}}
@@ -339,7 +339,7 @@ module('Integration | Component | list-filter', function(hooks) {
 
 Our list-filter component takes a function as an argument, used to find the list of matching rentals based on the filter string provided by the user.
 
-```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="+5,+7,+8,+14,+15,+16,+17,+18"}
+```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="+5,+7,+8,+14,+15,+16"}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';

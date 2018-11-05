@@ -78,18 +78,20 @@ This helper will let us loop through each of the rental objects in our model:
 
 {{#each model as |rental|}}
   <article class="listing">
-    <h3>{{rental.title}}</h3>
-    <div class="detail owner">
-      <span>Owner:</span> {{rental.owner}}
-    </div>
-    <div class="detail type">
-      <span>Type:</span> {{rental.category}}
-    </div>
-    <div class="detail location">
-      <span>Location:</span> {{rental.city}}
-    </div>
-    <div class="detail bedrooms">
-      <span>Number of bedrooms:</span> {{rental.bedrooms}}
+    <div class="details">
+      <h3>{{rental.title}}</h3>
+      <div class="detail owner">
+        <span>Owner:</span> {{rental.owner}}
+      </div>
+      <div class="detail type">
+        <span>Type:</span> {{rental.category}}
+      </div>
+      <div class="detail location">
+        <span>Location:</span> {{rental.city}}
+      </div>
+      <div class="detail bedrooms">
+        <span>Number of bedrooms:</span> {{rental.bedrooms}}
+      </div>
     </div>
   </article>
 {{/each}}

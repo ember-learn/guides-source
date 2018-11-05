@@ -346,26 +346,27 @@ Notice also that we are providing `rental.id` as the class attribute on the `lin
 
 Clicking on the title will load the detail page for that rental.
 
-```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="-6,+7"}
+```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="-7,+8"}
 <article class="listing">
   <a {{action 'toggleImageSize'}} class="image {{if isWide "wide"}}">
     <img src="{{rental.image}}" alt="">
     <small>View Larger</small>
   </a>
-  <h3>{{rental.title}}</h3>
-  <h3>{{#link-to "rentals.show" rental class=rental.id}}{{rental.title}}{{/link-to}}</h3>
-  <div class="detail owner">
-    <span>Owner:</span> {{rental.owner}}
-  </div>
-  <div class="detail type">
-    <span>Type:</span> {{rental-property-type rental.category}}
-      - {{rental.category}}
-  </div>
-  <div class="detail location">
-    <span>Location:</span> {{rental.city}}
-  </div>
-  <div class="detail bedrooms">
-    <span>Number of bedrooms:</span> {{rental.bedrooms}}
+  <div class="details">
+    <h3>{{rental.title}}</h3>
+    <h3>{{#link-to "rentals.show" rental class=rental.id}}{{rental.title}}{{/link-to}}</h3>
+    <div class="detail owner">
+      <span>Owner:</span> {{rental.owner}}
+    </div>
+    <div class="detail type">
+      <span>Type:</span> {{rental-property-type rental.category}} - {{rental.category}}
+    </div>
+    <div class="detail location">
+      <span>Location:</span> {{rental.city}}
+    </div>
+    <div class="detail bedrooms">
+      <span>Number of bedrooms:</span> {{rental.bedrooms}}
+    </div>
   </div>
   {{location-map location=rental.city}}
 </article>

@@ -32,26 +32,27 @@ export default helper(rentalPropertyType);
 
 Let's update our `rental-listing` component template to use our new helper and pass in `rental.category`:
 
-```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="-11,+12,+13"}
+```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="-12,+13"}
 <article class="listing">
   <a {{action 'toggleImageSize'}} class="image {{if isWide "wide"}}">
     <img src="{{rental.image}}" alt="">
     <small>View Larger</small>
   </a>
-  <h3>{{rental.title}}</h3>
-  <div class="detail owner">
-    <span>Owner:</span> {{rental.owner}}
-  </div>
-  <div class="detail type">
-    <span>Type:</span> {{rental.category}}
-    <span>Type:</span> {{rental-property-type rental.category}}
-      - {{rental.category}}
-  </div>
-  <div class="detail location">
-    <span>Location:</span> {{rental.city}}
-  </div>
-  <div class="detail bedrooms">
-    <span>Number of bedrooms:</span> {{rental.bedrooms}}
+  <div class="details">
+    <h3>{{rental.title}}</h3>
+    <div class="detail owner">
+      <span>Owner:</span> {{rental.owner}}
+    </div>
+    <div class="detail type">
+      <span>Type:</span> {{rental.category}}
+      <span>Type:</span> {{rental-property-type rental.category}} - {{rental.category}}
+    </div>
+    <div class="detail location">
+      <span>Location:</span> {{rental.city}}
+    </div>
+    <div class="detail bedrooms">
+      <span>Number of bedrooms:</span> {{rental.bedrooms}}
+    </div>
   </div>
 </article>
 ```
