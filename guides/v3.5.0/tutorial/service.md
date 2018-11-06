@@ -156,7 +156,7 @@ export default Component.extend({
   didInsertElement() {
     this._super(...arguments);
     this.mapElement.getMapElement(this.location).then((mapElement) => {
-      this.$().append(mapElement);
+      this.element.append(mapElement);
     });
 
   }
