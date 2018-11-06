@@ -32,9 +32,12 @@ export default helper(rentalPropertyType);
 
 Let's update our `rental-listing` component template to use our new helper and pass in `rental.category`:
 
-```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="-12,+13"}
+```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="-15,+16"}
 <article class="listing">
-  <a {{action 'toggleImageSize'}} class="image {{if isWide "wide"}}">
+  <a
+    onclick={{action 'toggleImageSize'}}
+    class="image {{if isWide "wide"}}"
+  >
     <img src="{{rental.image}}" alt="">
     <small>View Larger</small>
   </a>

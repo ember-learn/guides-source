@@ -168,11 +168,13 @@ This property will be passed in to the component by its parent template below.
 
 Finally open the template file for our `rental-listing` component and add the new `location-map` component.
 
-```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="+23"}
+```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="+25"}
 <article class="listing">
-  <a onclick={{action "toggleImageSize"}}
+  <a
+    class="image {{if isWide "wide"}}"
+    onclick={{action "toggleImageSize"}}
     role="button"
-    class="image {{if isWide "wide"}}">
+  >
     <img src={{rental.image}} alt="">
     <small>View Larger</small>
   </a>

@@ -346,10 +346,14 @@ Notice also that we are providing `rental.id` as the class attribute on the `lin
 
 Clicking on the title will load the detail page for that rental.
 
-```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="-7,+8"}
+```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="-11,+12"}
 <article class="listing">
-  <a {{action 'toggleImageSize'}} class="image {{if isWide "wide"}}">
-    <img src="{{rental.image}}" alt="">
+  <a
+    class="image {{if isWide "wide"}}">
+    onclick={{action 'toggleImageSize'}}
+    role="button"
+  >
+    <img src="{{rental.image}}" alt=""
     <small>View Larger</small>
   </a>
   <div class="details">

@@ -138,10 +138,14 @@ export default Component.extend({
 To allow the user to widen the image, we will need to add an action that toggles the value of `isWide`.
 Let's call this action `toggleImageSize`
 
-```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="+3"}
+```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="-2,+3,+4,+4,+6,+7"}
 <article class="listing">
   <a class="image {{if isWide "wide"}}">
-  <a href="#" {{action "toggleImageSize"}} class="image {{if isWide "wide"}}">
+  <a
+    onclick={{action "toggleImageSize"}}
+    class="image {{if isWide "wide"}}"
+    role="button"
+  >
     <img src="{{rental.image}}" alt="">
     <small>View Larger</small>
   </a>
