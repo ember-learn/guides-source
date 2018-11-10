@@ -65,7 +65,7 @@ simpler _and_ easier.
 
 Once you have an understanding of Ember Data, you will have a much
 better way to manage the complexity of data loading in your application.
-This will allow your code to evolve without becoming a mess.
+This will allow your code to evolve and grow, with better maintainability.
 
 ## Ember Data flexibility
 
