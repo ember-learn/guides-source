@@ -233,7 +233,7 @@ This is equivalent to having the following entry in `app/router.js` file
 ```javascript {data-filename=app/router.js}
 Router.map(function() {
   this.route('posts', function() {
-    this.route('post', { path: 'posts/:id' });
+    this.route('post', { path: '/:post_id' });
     this.route('index', { path: '/' });
   })
 });
