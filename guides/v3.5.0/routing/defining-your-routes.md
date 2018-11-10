@@ -187,56 +187,71 @@ Router.map(function() {
 });
 ```
 
-If the user navigates to `/posts`, the current route will be
-`posts.index` and `posts/index` template
-will be rendered into `{{outlet}}` in `posts` template.
+Likewise, if the user navigates to `/posts`, the current route will be
+`posts.index`, and the `posts/index` template
+will be rendered into the `{{outlet}}` of the `posts` template.
 
 If the user then navigates to `/posts/favorites`, Ember will
 replace the `{{outlet}}` in the `posts` template with the
 `posts/favorites` template.
 
-The following scenarios can help understand more about `index` route:
+The following scenarios may help with understanding the `index` route:
 
- - Index route is analogous to `index.html`. When user visits https://emberjs.com url, the contents of `template/index.hbs` file will be rendered. There is no need to add an entry `this.route('index', { path: '/' });` in `app/router.js` file. The `app/router.js` file can be as below:
+ - The top-level index route is analogous to `index.html`. For example, when someone visits `https://some-ember-app.com`, the contents of the `template/index.hbs` file will be rendered. There is no need to add an entry `this.route('index', { path: '/' });` in `app/router.js` file. The `index` route is implicitly given for by Ember, in order to help reduce verbose declarations in `app/router.js` The `app/router.js` file could be empty, and the `index` would still be shown:
    
 ```javascript {data-filename=app/router.js}
 Router.map(function() {
 });
 ```
- - When user navigates to `/posts`, the contents of `index.hbs` will be rendered. This is same user navigating to child route of `/posts`. `/posts/index` route is child route like `/posts/comments` or `/posts/likes`.
+ - When a user navigates to `/posts`, the contents of `index.hbs` will be rendered. This is similar to a user navigating to child route of `/posts`. `/posts/index` route is child route like `/posts/comments` or `/posts/likes`.
  
- - Index route is handy to render a view when the route has [dynamic segments](#toc_dynamic-segments) defined in it. 
+### When to use an index route
+
+The index route is most helpful for rendering a view when the route has [dynamic segments](#toc_dynamic-segments) defined in it or there are nested routes. In other words, an `index` template is used to show content that should not be present on sibling and child routes. For example, a blog app might have an `index` route that shows a list of all posts, but if a user clicks on an post, they should see only the content for the individual post. Here is how that looks in practice:
    
-Assume `templates/posts.hbs` file has the following code
+A `templates/posts.hbs` file has the following:
 
 ```handlebars {data-filename=templates/posts.hbs}
-<h1>This is posts file</h1>
+<h1>This the posts template, containing headers to show on all child routes</h1>
 {{outlet}}
 ```   
 
-Assume `templates/posts/index.hbs` file has the following code
+The `templates/posts/index.hbs` file has the following:
 
 ```handlebars {data-filename=templates/posts/index.hbs}
-`<p>This is the index file which gets invoked when we enter /posts/:id route</p>`
+<p>This is the posts/index template with a list of posts</p>
+```
+
+The `templates/posts/post.hbs` file has the following:
+
+```handlebars {data-filename=templates/posts/post.hbs}
+<p>This is an individual post, from the posts/post template, used when we enter /posts/:id route</p>
 ```
    
 This is equivalent to having the following entry in `app/router.js` file
 
 ```javascript {data-filename=app/router.js}
 Router.map(function() {
-  this.route('post', { path: 'posts/:id' }, function () {
-  this.route('index', { path: '' });
+  this.route('posts', function() {
+    this.route('post', { path: 'posts/:id' }, function () {
+    this.route('index', { path: '' });
+  })
 });
 ```
 
-When the user navigates to `/posts/123`, the following markup will be seen in the page  
+When the user navigates to `/posts/123`, the following markup will be seen:  
 
 ```handlebars {data-filename=templates/posts/index.hbs} 
-<h1>This is posts file</h1>
-<p>This is the index file which gets invoked when we enter /posts/:id route</p>
+<h1>This the posts template, containing headers to show on all child routes</h1>
+<p>This is an individual post, from the posts/post template, used when we enter /posts/:id route</p>
 ```
 
-`index` route is implicitly given for by Ember.It helps reduce having verbose declarations in `app/router.js`
+When the user navigates to `/posts/`, the following markup will be seen:  
+
+```handlebars {data-filename=templates/posts/index.hbs} 
+<h1>This the posts template, containing headers to show on all child routes</h1>
+<p>This is the posts/index template with a list of posts</p>
+```
     
 ## Dynamic Segments
 
