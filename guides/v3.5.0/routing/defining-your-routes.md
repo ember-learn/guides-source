@@ -225,7 +225,7 @@ The `templates/posts/index.hbs` file has the following:
 The `templates/posts/post.hbs` file has the following:
 
 ```handlebars {data-filename=templates/posts/post.hbs}
-<p>This is an individual post, from the posts/post template, used when we enter /posts/:id route</p>
+<p>This is an individual post, from the posts/post template, used when we enter the /posts/:post_id route</p>
 ```
    
 This is equivalent to having the following entry in `app/router.js` file
@@ -243,7 +243,7 @@ When the user navigates to `/posts/123`, the following markup will be seen:
 
 ```handlebars {data-filename=templates/posts/index.hbs} 
 <h1>This the posts template, containing headers to show on all child routes</h1>
-<p>This is an individual post, from the posts/post template, used when we enter /posts/:id route</p>
+<p>This is an individual post, from the posts/post template, used when we enter the /posts/:post_id route</p>
 ```
 
 When the user navigates to `/posts/`, the following markup will be seen:  
