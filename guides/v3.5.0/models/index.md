@@ -61,7 +61,7 @@ easy at first. Over time, however, complexity leaks out into your
 application code, making it hard to maintain.
 
 With Ember Data, managing models as your application grows becomes both
-simple _and_ easy.
+simpler _and_ easier.
 
 Once you have an understanding of Ember Data, you will have a much
 better way to manage the complexity of data loading in your application.
