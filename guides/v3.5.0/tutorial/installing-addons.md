@@ -15,7 +15,7 @@ The [`vendor` directory](../../addons-and-dependencies/managing-dependencies/#to
 As Ember CLI runs, it takes the `ember-tutorial` CSS file and puts it in a file called `vendor.css`.
 The `vendor.css` file is referenced in `app/index.html`, making the styles available at runtime.
 
-We can make additional style tweaks to `vendor/ember-tutorial.css`, and the changes will take effect whenever we restart the app.
+We can make additional style tweaks to `vendor/ember-tutorial.css`, and the changes will take effect immediately.
 
 Run the following command to install the addon:
 
@@ -54,7 +54,11 @@ ember install ember-cli-mirage
 
 Our primary focus with mirage will be in the `config.js` file, which is where we can define our API endpoints and our data.
 We will be following the [JSON-API specification](http://jsonapi.org/) which requires our data to be formatted a certain way.
-Let's configure Mirage to send back our rentals that we had defined above by updating `mirage/config.js`:
+Let's configure Mirage to send back our rentals that we had defined above by updating `mirage/config.js`.
+
+Notice that in the first line of the function we set `this.namespace` to `/api`.
+Setting namespace lets mirage know to only provide data for URL requests that start with `api`.
+For example, the data we are providing below will be substituted when a request comes in at `/api/rentals`.
 
 ```javascript {data-filename="mirage/config.js" data-diff="+1,+2,+3,+4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33,+34,+35,+36,+37,+38,+39,+40,+41,+42,+43,+44,+45,-46,-47,-48,-49,-50,-51,-52,-53,-54,-55,-56,-57,-58,-59,-60,-61,-62,-63,-64,-65,-66,-67,-68,-69,-70"}
 export default function() {

@@ -38,7 +38,7 @@ Let's update our `rental-listing` component template to use our new helper and p
     onclick={{action 'toggleImageSize'}}
     class="image {{if isWide "wide"}}"
   >
-    <img src="{{rental.image}}" alt="">
+    <img src={{rental.image}} alt="">
     <small>View Larger</small>
   </a>
   <div class="details">
@@ -99,7 +99,7 @@ while the other two are listed as "Community".
 
 Update the content of the integration test to the following to fix it:
 
-```javascript {data-filename="tests/integration/helpers/rental-property-type-test.js" data-diff="-10,-11,-17,+12,+13,+18,+21,+22,+23,+24,+25,+26,+27"}
+```javascript {data-filename="tests/integration/helpers/rental-property-type-test.js" data-diff="-9,-10,-11,-17,+12,+13,+18,+21,+22,+23,+24,+25,+26,+27"}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
