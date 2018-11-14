@@ -179,7 +179,7 @@ Finally open the template file for our `rental-listing` component and add the ne
     <small>View Larger</small>
   </a>
   <div class="details">
-    <h3>{{link-to rental.title "rentals.show" rental class=rental.id}}</h3>
+    <h3>{{rental.title}}</h3>
     <div class="detail owner">
       <span>Owner:</span> {{rental.owner}}
     </div>
