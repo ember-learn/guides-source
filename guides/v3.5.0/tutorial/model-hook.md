@@ -64,7 +64,7 @@ We can use the model attribute to display our list of rentals.
 Here, we'll use another common Handlebars helper called [`{{each}}`](../../templates/displaying-a-list-of-items/).
 This helper will let us loop through each of the rental objects in our model:
 
-```handlebars {data-filename="app/templates/rentals.hbs" data-diff="+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28"}
+```handlebars {data-filename="app/templates/rentals.hbs" data-diff="+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30"}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>Welcome!</h2>
@@ -78,18 +78,20 @@ This helper will let us loop through each of the rental objects in our model:
 
 {{#each model as |rental|}}
   <article class="listing">
-    <h3>{{rental.title}}</h3>
-    <div class="detail owner">
-      <span>Owner:</span> {{rental.owner}}
-    </div>
-    <div class="detail type">
-      <span>Type:</span> {{rental.category}}
-    </div>
-    <div class="detail location">
-      <span>Location:</span> {{rental.city}}
-    </div>
-    <div class="detail bedrooms">
-      <span>Number of bedrooms:</span> {{rental.bedrooms}}
+    <div class="details">
+      <h3>{{rental.title}}</h3>
+      <div class="detail owner">
+        <span>Owner:</span> {{rental.owner}}
+      </div>
+      <div class="detail type">
+        <span>Type:</span> {{rental.category}}
+      </div>
+      <div class="detail location">
+        <span>Location:</span> {{rental.city}}
+      </div>
+      <div class="detail bedrooms">
+        <span>Number of bedrooms:</span> {{rental.bedrooms}}
+      </div>
     </div>
   </article>
 {{/each}}
