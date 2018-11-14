@@ -85,8 +85,8 @@ otherwise we will create a new HTML element and call our Leaflet map service to 
 
 ```javascript {data-filename="app/services/map-element.js" data-diff="+1,+2,+3,+4,+6,+8,+9,+11,+12,+13,+14,+15,+16,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+30,+31,+32,+33,+34,+35"}
 import { camelize } from '@ember/string';
-import { get, set } from '@ember/object';
 import Service from '@ember/service';
+import { set } from '@ember/object';
 import { inject as service } from '@ember/service';
 
 export default Service.extend({
@@ -103,12 +103,12 @@ export default Service.extend({
 
   async getMapElement(location) {
     let camelizedLocation = camelize(location);
-    let element = get(this, `cachedMaps.${camelizedLocation}`);
+    let element = this.cachedMaps[camelizedLocation];
     if (!element) {
       element = this._createMapElement();
       let geocodedLocation = await this.geocode.fetchCoordinates(location);
       this.map.createMap(element, geocodedLocation);
-      set(this, `cachedMaps.${camelizedLocation}`, element);
+      this.cachedMaps[camelizedLocation] = element;
     }
     return element;
   },
@@ -368,7 +368,7 @@ To stub these services we simply have to register a stub service that implements
 
 Add the following code to your application test
 
-```javascript {data-filename="tests/acceptance/list-rentals-test.js" data-diff="+1,+13,+14,+15,+16,+17,+23,+24,+25"}
+```javascript {data-filename="tests/acceptance/list-rentals-test.js" data-diff="+1,+12,+14,+15,+16,+17,+18,+24,+25,+26"}
 import Service from '@ember/service';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
@@ -380,10 +380,11 @@ import {
   fillIn,
   triggerKeyEvent
 } from '@ember/test-helpers'
+import { resolve } from 'rsvp';
 
 let StubMapsService = Service.extend({
   getMapElement() {
-    return document.createElement('div');
+    return resolve(document.createElement('div'));
   }
 });
 

@@ -308,25 +308,31 @@ When we call `this.store.findRecord('rental', params.rental_id)`, Ember Data que
 
 Next, we can update the template for our show route (`app/templates/rentals/show.hbs`) and list the information for our rental.
 
-```handlebars {data-filename="app/templates/rentals/show.hbs" data-diff="+1,+2,+3,+4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19,-20"}
+```handlebars {data-filename="app/templates/rentals/show.hbs" data-diff="+1,+2,+3,+4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,-26"}
 <div class="jumbo show-listing">
   <h2 class="title">{{model.title}}</h2>
-  <div class="right detail-section">
-    <div class="detail owner">
-      <strong>Owner:</strong> {{model.owner}}
+  <div class="content">
+    <div>
+      <img src={{model.image}} class="rental-pic" alt="Picture of {{model.title}}">
     </div>
-    <div class="detail">
-      <strong>Type:</strong> {{rental-property-type model.category}} - {{model.category}}
+    <div class="detail-section">
+      <div class="detail owner">
+        <strong>Owner:</strong> {{model.owner}}
+      </div>
+      <div class="detail">
+        <strong>Type:</strong> {{rental-property-type model.category}} - {{model.category}}
+      </div>
+      <div class="detail">
+        <strong>Location:</strong> {{model.city}}
+      </div>
+      <div class="detail">
+        <strong>Number of bedrooms:</strong> {{model.bedrooms}}
+      </div>
+      <div class="description">
+        <p>{{model.description}}</p>
+      </div>
     </div>
-    <div class="detail">
-      <strong>Location:</strong> {{model.city}}
-    </div>
-    <div class="detail">
-      <strong>Number of bedrooms:</strong> {{model.bedrooms}}
-    </div>
-    <p class="description">{{model.description}}</p>
   </div>
-  <img src="{{model.image}}" class="rental-pic">
 </div>
 {{outlet}}
 ```
