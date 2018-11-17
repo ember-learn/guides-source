@@ -27,7 +27,7 @@ When we open the model file, we can see a blank class extending [`DS.Model`](htt
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-
+  namespace: 'api'
 });
 ```
 
