@@ -219,22 +219,11 @@ Unlike the other route handlers we've made so far, the `index` route is special:
 it does NOT require an entry in the router's mapping.
 We'll learn more about why the entry isn't required later on when we look at [nested routes](../subroutes/) in Ember.
 
-All we want to do when a user visits the root (`/`) URL is transition to `/rentals`.
-To do this we will add code to our index route handler by implementing a route lifecycle hook,
-called `beforeModel`.
-
-Each route handler has a set of "lifecycle hooks", which are functions that are invoked at specific times during the loading of a page.
-The [`beforeModel`](https://www.emberjs.com/api/ember/release/classes/Route/methods/beforeModel?anchor=beforeModel)
-hook gets executed before the data gets fetched from the model hook, and before the page is rendered.
-See [the next section](../model-hook/) for an explanation of the model hook.
-
-In our index route handler, we'll call the [`replaceWith`](https://www.emberjs.com/api/ember/release/classes/Route/methods/beforeModel?anchor=replaceWith) function.
-The `replaceWith` function is similar to the route's [`transitionTo()`](https://www.emberjs.com/api/ember/release/classes/Route/methods/transitionTo?anchor=transitionTo) function,
-the difference being that `replaceWith` will replace the current URL in the browser's history,
-while `transitionTo` will add to the history.
-Since we want our `rentals` route to serve as our home page, we will use the `replaceWith` function.
-
-In our index route handler, we add the `replaceWith` invocation to `beforeModel`.
+All we want to do when a user visits the root (`/`) URL is transition to
+`/rentals`. To do this we will add code to our index route handler by
+implementing a route lifecycle hook called `beforeModel`. Inside, we'll call the
+[`replaceWith`](https://www.emberjs.com/api/ember/release/classes/Route/methods/beforeModel?anchor=replaceWith)
+function:
 
 ```javascript {data-filename="app/routes/index.js" data-diff="+4,+5,+6"}
 import Route from '@ember/routing/route';
@@ -245,6 +234,13 @@ export default Route.extend({
   }
 });
 ```
+
+ The `replaceWith` function is similar to the route's
+[`transitionTo()`](https://www.emberjs.com/api/ember/release/classes/Route/methods/transitionTo?anchor=transitionTo)
+function, the difference being that `replaceWith` will replace the current URL
+in the browser's history, while `transitionTo` will add to the history. Since we
+want our `rentals` route to serve as our home page, we will use the
+`replaceWith` function.
 
 Now visiting the root route at `/` will result in the `/rentals` URL loading.
 
