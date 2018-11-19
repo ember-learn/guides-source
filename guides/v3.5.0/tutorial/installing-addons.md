@@ -33,9 +33,12 @@ installing ember-cli-tutorial-style
 Installed addon package.
 ```
 
-Since Ember addons are npm packages, `ember install` installs them in the `node_modules` directory, and makes an entry
-in `package.json`. Be sure to restart your server after the addon has installed successfully. Restarting the server will
-incorporate the new CSS and refreshing the browser window will give you this:
+Since Ember addons are npm packages, `ember install` installs them in the
+`node_modules` directory, and makes an entry in `package.json`. Be sure to
+restart your server after the addon has installed successfully; first, press
+`Ctrl+C` to stop the server, then, restart the server by running `ember server`
+again. Restarting the server will incorporate the new CSS and refreshing the
+browser window will give you this:
 
 ![super rentals styled homepage](/images/installing-addons/styled-super-rentals-basic.png)
 
