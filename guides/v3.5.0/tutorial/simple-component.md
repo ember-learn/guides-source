@@ -1,10 +1,15 @@
-As a user looks through our list of rentals, they may want to have some interactive options to help them make a decision.
-Let's add the ability to toggle the size of the image for each rental.
-To do this, we'll use a component.
+As a user looks through our list of rentals, they may want to have some
+interactive options to help them make a decision. Let's add the ability to
+toggle the size of the image for each rental. To do this, we'll use a component.
 
-Let's generate a `rental-listing` component that will manage the behavior for each of our rentals.
-A dash is required in every component name to avoid conflicting with a possible HTML element,
-so `rental-listing` is acceptable but `rental` isn't.
+Ember components are used to turn markup text and styles into reusable content.
+Components can be included in any routes' template, even multiple times, saving
+you from copy-and-pasting the same code around your application.
+
+Let's generate a `rental-listing` component that will manage the behavior for
+each of our rentals. A dash is required in every component name to avoid
+conflicting with a possible HTML element, so `rental-listing` is acceptable but
+`rental` isn't.
 
 ```bash
 ember g component rental-listing
