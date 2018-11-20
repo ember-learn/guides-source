@@ -86,7 +86,10 @@ with our new `rental-listing` component:
   </article>
 {{/each}}
 ```
-Here we invoke the `rental-listing` component by name, and assign each `rentalUnit` as the `rental` attribute of the component.
+
+For each `rentalUnit` in the `model` list, we are creating a new instance of our
+`rental-listing` component and passing in the `rentalUnit` by assigning it to
+the component's `rental` attribute.
 
 Our app should behave now as before, with the addition of an image for each rental item.
 
