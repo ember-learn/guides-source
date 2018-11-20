@@ -3,7 +3,7 @@ interactive options to help them make a decision. Let's add the ability to
 toggle the size of the image for each rental. To do this, we'll use a component.
 
 Ember components are used to turn markup text and styles into reusable content.
-Components can be included in any routes' template, even multiple times, saving
+Components can be included in any route's template, even multiple times, saving
 you from copy-and-pasting the same code around your application.
 
 Let's generate a `rental-listing` component that will manage the behavior for
