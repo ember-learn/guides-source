@@ -134,7 +134,7 @@ the default welcome screen.
 The first thing we want to do in our new project is to remove the welcome
 screen. We do this by editing the application template file located at
 `app/templates/application.hbs`. As the name implies, this template is for the
-appliction itself, and changes to it will be reflected throughout the entire
+application itself, and changes to it will be reflected throughout the entire
 application. This template is most often used to house the application's layout,
 usually containing the header, footer, navigation bar, and so on.
 
