@@ -197,7 +197,7 @@ replace the `{{outlet}}` in the `posts` template with the
 
 The following scenarios may help with understanding the `index` route:
 
- - The top-level index route is analogous to `index.html`. For example, when someone visits `https://some-ember-app.com`, the contents of the `template/index.hbs` file will be rendered. There is no need to add an entry `this.route('index', { path: '/' });` in `app/router.js` file. The `index` route is implicitly given for by Ember, in order to help reduce verbose declarations in `app/router.js` The `app/router.js` file could be empty, and the `index` would still be shown:
+ - The top-level index route is analogous to `index.html`. For example, when someone visits `https://some-ember-app.com`, the contents of the `template/index.hbs` file will be rendered. There is no need to add an entry `this.route('index', { path: '/' });` in `app/router.js` file. The `index` route is implicitly included in order to help reduce verbose declarations in the `app/router.js`. The `app/router.js` file could be empty, and the `index` would still be shown:
    
 ```javascript {data-filename=app/router.js}
 Router.map(function() {
