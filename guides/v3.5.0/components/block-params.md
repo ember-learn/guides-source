@@ -33,9 +33,9 @@ but any event handling behavior implemented in the component is retained such as
 
 The names are bound in the order that they are passed to `yield` in the component template.
 
-### Supporting both block and non-block component usage in one template
+### Supporting both block and inline component usage in one template
 
-It is possible to support both block and non-block usage of a component from a single component template
+It is possible to support both block and inline usage of a component from a single component template
 using the `has-block` helper.
 
 ```handlebars {data-filename=app/templates/components/blog-post.hbs}
@@ -48,5 +48,5 @@ using the `has-block` helper.
 {{/if}}
 ```
 
-This has the effect of providing a default template when using a component in the non-block form
+This has the effect of providing a default template when using a component in the inline form
 but providing yielded values for use with block params when using a block expression.
