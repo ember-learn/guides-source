@@ -203,11 +203,11 @@ The following scenarios may help with understanding the `index` route:
 Router.map(function() {
 });
 ```
- - When a user navigates to `/posts`, the contents of `index.hbs` will be rendered. This is similar to a user navigating to child route of `/posts`. `/posts/index` route is child route like `/posts/comments` or `/posts/likes`.
+ - When a user navigates to `/posts`, the contents of `index.hbs` will be rendered. This is similar to a user navigating to the child route of `/posts`. `/posts/index` is child route like `/posts/comments` or `/posts/likes`.
  
 ### When to use an index route
 
-The index route is most helpful for rendering a view when the route has [dynamic segments](#toc_dynamic-segments) defined in it or there are nested routes. In other words, an `index` template is used to show content that should not be present on sibling and child routes. For example, a blog app might have an `index` route that shows a list of all posts, but if a user clicks on an post, they should see only the content for the individual post. Here is how that looks in practice:
+The index route is most helpful for rendering a view when the route has [dynamic segments](#toc_dynamic-segments) defined in it or there are nested routes. In other words, an `index` template is used to show content that should not be present on sibling and child routes. For example, a blog app might have an `index` route that shows a list of all posts, but if a user clicks on a post, they should only see the content for the individual post. Here is how that looks in practice:
    
 A `templates/posts.hbs` file has the following:
 
@@ -242,14 +242,14 @@ Router.map(function() {
 When the user navigates to `/posts/123`, the following markup will be seen:  
 
 ```handlebars {data-filename=templates/posts/index.hbs} 
-<h1>This the posts template, containing headers to show on all child routes</h1>
+<h1>This is the posts template, containing headers to show on all child routes</h1>
 <p>This is an individual post, from the posts/post template, used when we enter the /posts/:post_id route</p>
 ```
 
 When the user navigates to `/posts/`, the following markup will be seen:  
 
 ```handlebars {data-filename=templates/posts/index.hbs} 
-<h1>This the posts template, containing headers to show on all child routes</h1>
+<h1>This is the posts template, containing headers to show on all child routes</h1>
 <p>This is the posts/index template with a list of posts</p>
 ```
     
