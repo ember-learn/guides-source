@@ -67,6 +67,7 @@ Now, as long as your template is wrapped in the `let` helper you can access the 
 `firstName` and `lastName` instead of `(capitalize person.firstName)`.
 
 ### Array helper
+
 Using the [`{{array}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/array?anchor=array) helper,
 you can pass arrays directly from the template as an argument to your components.
 
