@@ -1,12 +1,12 @@
 - title: "Guides and Tutorials"
-  url: 'index'
+  url: "index"
   skip_toc: true
   pages:
     - title: "Ember.js Guides"
       url: ""
 
 - title: "Getting Started"
-  url: 'getting-started'
+  url: "getting-started"
   pages:
     - title: "Quick Start"
       url: "quick-start"
@@ -18,12 +18,12 @@
       url: "js-primer"
 
 - title: "Tutorial"
-  url: 'tutorial'
+  url: "tutorial"
   pages:
     - title: "Creating Your App"
       url: "ember-cli"
     - title: "Planning Your App"
-      url: 'acceptance-test'
+      url: "acceptance-test"
     - title: "Routes and Templates"
       url: "routes-and-templates"
     - title: "The Model Hook"
@@ -46,7 +46,7 @@
       url: "deploying"
 
 - title: "The Object Model"
-  url: 'object-model'
+  url: "object-model"
   pages:
     - title: "Objects in Ember"
       url: "index"
@@ -63,10 +63,10 @@
     - title: "Bindings"
       url: "bindings"
     - title: "Enumerables"
-      url: 'enumerables'
+      url: "enumerables"
 
 - title: "Routing"
-  url: 'routing'
+  url: "routing"
   pages:
     - title: "Introduction"
       url: "index"
@@ -88,7 +88,7 @@
       url: "asynchronous-routing"
 
 - title: "Templates"
-  url: 'templates'
+  url: "templates"
   pages:
     - title: "Handlebars Basics"
       url: "handlebars-basics"
@@ -114,7 +114,7 @@
       url: "writing-helpers"
 
 - title: "Components"
-  url: 'components'
+  url: "components"
   pages:
     - title: "Defining a Component"
       url: "defining-a-component"
@@ -134,13 +134,13 @@
       url: "triggering-changes-with-actions"
 
 - title: "Controllers"
-  url: 'controllers'
+  url: "controllers"
   pages:
     - title: "Introduction"
       url: "index"
 
 - title: "Models"
-  url: 'models'
+  url: "models"
   pages:
     - title: "Introduction"
       url: "index"
@@ -162,7 +162,7 @@
       url: "customizing-serializers"
 
 - title: "Application Concerns"
-  url: 'applications'
+  url: "applications"
   pages:
     - title: "Applications and Instances"
       url: "applications-and-instances"
@@ -176,7 +176,7 @@
       url: "run-loop"
 
 - title: "Testing"
-  url: 'testing'
+  url: "testing"
   pages:
     - title: "Introduction"
       url: "index"
@@ -232,7 +232,7 @@
       url: "managing-dependencies"
 
 - title: "Configuring Ember.js"
-  url: 'configuring-ember'
+  url: "configuring-ember"
   pages:
     - title: "Configuring Your App"
       url: "configuring-your-app"
@@ -248,13 +248,15 @@
       url: "embedding-applications"
     - title: "Feature Flags"
       url: "feature-flags"
+    - title: "Optional Features"
+      url: "optional-features"
     - title: "Build targets"
       url: "build-targets"
     - title: "Debugging"
       url: "debugging"
 
 - title: "Contributing to Ember.js"
-  url: 'contributing'
+  url: "contributing"
   pages:
     - title: "Adding New Features"
       url: "adding-new-features"

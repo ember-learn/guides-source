@@ -57,7 +57,7 @@ destination routes to abort attempted transitions.
 import Route from '@ember/routing/route';
 
 export default Route.extend({
-  beforeModel(transition/) {
+  beforeModel(transition) {
     if (new Date() > new Date('January 1, 1980')) {
       alert('Sorry, you need a time machine to enter this route.');
       transition.abort();

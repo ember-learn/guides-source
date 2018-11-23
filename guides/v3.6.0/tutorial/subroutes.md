@@ -308,25 +308,31 @@ When we call `this.store.findRecord('rental', params.rental_id)`, Ember Data que
 
 Next, we can update the template for our show route (`app/templates/rentals/show.hbs`) and list the information for our rental.
 
-```handlebars {data-filename="app/templates/rentals/show.hbs" data-diff="+1,+2,+3,+4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19,-20"}
+```handlebars {data-filename="app/templates/rentals/show.hbs" data-diff="+1,+2,+3,+4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,-26"}
 <div class="jumbo show-listing">
   <h2 class="title">{{model.title}}</h2>
-  <div class="right detail-section">
-    <div class="detail owner">
-      <strong>Owner:</strong> {{model.owner}}
+  <div class="content">
+    <div>
+      <img src={{model.image}} class="rental-pic" alt="Picture of {{model.title}}">
     </div>
-    <div class="detail">
-      <strong>Type:</strong> {{rental-property-type model.category}} - {{model.category}}
+    <div class="detail-section">
+      <div class="detail owner">
+        <strong>Owner:</strong> {{model.owner}}
+      </div>
+      <div class="detail">
+        <strong>Type:</strong> {{rental-property-type model.category}} - {{model.category}}
+      </div>
+      <div class="detail">
+        <strong>Location:</strong> {{model.city}}
+      </div>
+      <div class="detail">
+        <strong>Number of bedrooms:</strong> {{model.bedrooms}}
+      </div>
+      <div class="description">
+        <p>{{model.description}}</p>
+      </div>
     </div>
-    <div class="detail">
-      <strong>Location:</strong> {{model.city}}
-    </div>
-    <div class="detail">
-      <strong>Number of bedrooms:</strong> {{model.bedrooms}}
-    </div>
-    <p class="description">{{model.description}}</p>
   </div>
-  <img src="{{model.image}}" class="rental-pic">
 </div>
 {{outlet}}
 ```
@@ -346,26 +352,31 @@ Notice also that we are providing `rental.id` as the class attribute on the `lin
 
 Clicking on the title will load the detail page for that rental.
 
-```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="-6,+7"}
+```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="-11,+12"}
 <article class="listing">
-  <a {{action 'toggleImageSize'}} class="image {{if isWide "wide"}}">
-    <img src="{{rental.image}}" alt="">
+  <a
+    class="image {{if isWide "wide"}}">
+    onclick={{action 'toggleImageSize'}}
+    role="button"
+  >
+    <img src="{{rental.image}}" alt=""
     <small>View Larger</small>
   </a>
-  <h3>{{rental.title}}</h3>
-  <h3>{{#link-to "rentals.show" rental class=rental.id}}{{rental.title}}{{/link-to}}</h3>
-  <div class="detail owner">
-    <span>Owner:</span> {{rental.owner}}
-  </div>
-  <div class="detail type">
-    <span>Type:</span> {{rental-property-type rental.category}}
-      - {{rental.category}}
-  </div>
-  <div class="detail location">
-    <span>Location:</span> {{rental.city}}
-  </div>
-  <div class="detail bedrooms">
-    <span>Number of bedrooms:</span> {{rental.bedrooms}}
+  <div class="details">
+    <h3>{{rental.title}}</h3>
+    <h3>{{#link-to "rentals.show" rental class=rental.id}}{{rental.title}}{{/link-to}}</h3>
+    <div class="detail owner">
+      <span>Owner:</span> {{rental.owner}}
+    </div>
+    <div class="detail type">
+      <span>Type:</span> {{rental-property-type rental.category}} - {{rental.category}}
+    </div>
+    <div class="detail location">
+      <span>Location:</span> {{rental.city}}
+    </div>
+    <div class="detail bedrooms">
+      <span>Number of bedrooms:</span> {{rental.bedrooms}}
+    </div>
   </div>
   {{location-map location=rental.city}}
 </article>

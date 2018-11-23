@@ -54,9 +54,25 @@ more information about how components get model data, see the
 [Specifying a Route's Model](../routing/specifying-a-routes-model/)
 guide.
 
+At first, using Ember Data may feel different than the way you're used
+to writing JavaScript applications. Many developers are familiar with
+using AJAX to fetch raw JSON data from an endpoint, which may appear
+easy at first. Over time, however, complexity leaks out into your
+application code, making it hard to maintain.
+
+With Ember Data, managing models as your application grows becomes both
+simpler _and_ easier.
+
+Once you have an understanding of Ember Data, you will have a much
+better way to manage the complexity of data loading in your application.
+This will allow your code to evolve and grow, with better maintainability.
+
+## Ember Data flexibility
+
 Thanks to its use of the _adapter pattern_, Ember Data can be configured
-to work with many different kinds of backends. There is [an entire
-ecosystem of adapters][adapters] that allow your Ember app to talk to different
+to work with many different kinds of backends. There is [an entire ecosystem of adapters][adapters]
+and several [built-in adapters](./customizing-adapters/)
+that allow your Ember app to talk to different
 types of servers without you writing any networking code.
 
 [adapters]: http://emberobserver.com/categories/ember-data-adapters
@@ -71,18 +87,6 @@ powered by WebSockets. You can open a socket to your server and push
 changes into Ember Data whenever they occur, giving your app a real-time
 user interface that is always up-to-date.
 
-At first, using Ember Data may feel different than the way you're used
-to writing JavaScript applications. Many developers are familiar with
-using AJAX to fetch raw JSON data from an endpoint, which may appear
-easy at first. Over time, however, complexity leaks out into your
-application code, making it hard to maintain.
-
-With Ember Data, managing models as your application grows becomes both
-simple _and_ easy.
-
-Once you have an understanding of Ember Data, you will have a much
-better way to manage the complexity of data loading in your application.
-This will allow your code to evolve without becoming a mess.
 
 ## The Store and a Single Source of Truth
 

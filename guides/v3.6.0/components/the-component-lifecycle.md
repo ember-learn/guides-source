@@ -123,12 +123,10 @@ Ember guarantees that, by the time `didInsertElement()` is called:
 
 1. The component's element has been both created and inserted into the
    DOM.
-2. The component's element is accessible via the component's
-   [`$()`][dollar]
-   method.
+2. The component's element is accessible via the component's [`this.element`][element] property.
 
-A component's [`$()`][dollar] method allows you to access the component's DOM element by returning a JQuery element.
-For example, you can set an attribute using jQuery's `attr()` method:
+The [`element`][element] property allows you to access the component's DOM element.
+For example, you can set an attribute using the `Element.setAttribute()` method:
 
 ```javascript {data-filename=app/components/profile-editor.js}
 import Component from '@ember/component';
@@ -136,12 +134,12 @@ import Component from '@ember/component';
 export default Component.extend({
   didInsertElement() {
     this._super(...arguments);
-    this.$().attr('contenteditable', true);
+    this.element.setAttribute('contenteditable', true);
   }
 });
 ```
 
-[`$()`][dollar] will, by default, return a jQuery object for the component's root element, but you can also target child elements within the component's template by passing a selector:
+The [`element`][element] property will, by default, return a DOM object for the component's root element, but you can also target child elements within the component's template by passing a selector to `querySelector` or `querySelectorAll`:
 
 ```javascript {data-filename=app/components/profile-editor.js}
 import Component from '@ember/component';
@@ -149,14 +147,17 @@ import Component from '@ember/component';
 export default Component.extend({
   didInsertElement() {
     this._super(...arguments);
-    this.$('div p button').addClass('enabled');
+    let buttons = this.element.querySelectorAll('div p button');
+    buttons.forEach(function(button) {
+      button.classList.add('enabled');
+    });
   }
 });
 ```
 
 Let's initialize our date picker by overriding the [`didInsertElement()`][did-insert-element] method.
 
-Date picker libraries usually attach to an `<input>` element, so we will use jQuery to find an appropriate input within our component's template.
+Date picker libraries usually attach to an `<input>` element, so we will use `this.element.querySelector` to find an appropriate input within our component's template.
 
 ```javascript {data-filename=app/components/profile-editor.js}
 import Component from '@ember/component';
@@ -164,7 +165,7 @@ import Component from '@ember/component';
 export default Component.extend({
   didInsertElement() {
     this._super(...arguments);
-    this.$('input.date').myDatePickerLib();
+    this.datePicker = myDatePickerLib(this.element.querySelectorAll('input.date'));
   }
 });
 ```
@@ -183,8 +184,8 @@ import Component from '@ember/component';
 export default Component.extend({
   didInsertElement() {
     this._super(...arguments);
-    this.$().on('animationend', () => {
-      $(this).removeClass('sliding-anim');
+    this.element.addEventListener('animationend', () => {
+      this.element.classList.remove('sliding-anim');
     });
   }
 });
@@ -200,7 +201,7 @@ There are a few things to note about the `didInsertElement()` hook:
   particularly when order of execution is important.
 
 [did-insert-element]: https://www.emberjs.com/api/ember/release/classes/Component/events/didInsertElement?anchor=didInsertElement
-[dollar]: https://www.emberjs.com/api/ember/release/classes/Component/methods/$?anchor=%24
+[element]: https://emberjs.com/api/ember/release/classes/Component/properties/element?anchor=element
 
 ### Making Updates to the Rendered DOM with `didRender`
 
@@ -222,9 +223,11 @@ When rendered the component will iterate through the given list and apply a clas
 
 
 ```handlebars {data-filename=app/templates/components/selected-item-list.hbs}
-{{#each items as |item|}}
-  <div class="list-item {{if item.isSelected 'selected-item'}}">{{item.label}}</div>
-{{/each}}
+<div class="item-list">
+  {{#each items as |item|}}
+    <div class="list-item {{if item.isSelected 'selected-item'}}">{{item.label}}</div>
+  {{/each}}
+</div>
 ```
 
 The scroll happens on `didRender`, where it will scroll the component's container to the element with the selected class name.
@@ -233,8 +236,6 @@ The scroll happens on `didRender`, where it will scroll the component's containe
 import Component from '@ember/component';
 
 export default Component.extend({
-  classNames: ['item-list'],
-
   didReceiveAttrs() {
     this._super(...arguments);
     this.items.forEach((item) => {
@@ -246,7 +247,8 @@ export default Component.extend({
 
   didRender() {
     this._super(...arguments);
-    this.$('.item-list').scrollTop(this.$('.selected-item').position().top);
+    const scrollTarget = Math.abs(this.element.getBoundingClientRect().top - this.element.querySelector('.selected-item').getBoundingClientRect().top);
+    this.element.querySelector('.item-list').scrollTop = scrollTarget;
   }
 });
 ```
@@ -272,8 +274,8 @@ import Component from '@ember/component';
 
 export default Component.extend({
   willDestroyElement() {
-    this.$().off('animationend');
-    this.$('input.date').myDatepickerLib().destroy();
+    this.element.removeEventListener('animationend');
+    this.datePicker.destroy();	
     this._super(...arguments);
   }
 });

@@ -24,7 +24,7 @@ which allows a Handlebars template to be rendered _inside_ the component's templ
 
 In this case we are passing, or "yielding", our filter data to the inner markup as a variable called `filteredResults` (line 14/).
 
-```handlebars {data-filename="app/templates/rentals.hbs" data-diff="+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,-22,-23,-24"}
+```handlebars {data-filename="app/templates/rentals.hbs" data-diff="+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,-23,-24,-25"}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>Welcome!</h2>
@@ -37,8 +37,9 @@ In this case we are passing, or "yielding", our filter data to the inner markup 
 </div>
 
 {{#list-filter
-   filter=(action 'filterByCity')
-   as |filteredResults|}}
+ filter=(action "filterByCity")
+as |filteredResults|
+}}
   <ul class="results">
     {{#each filteredResults as |rentalUnit|}}
       <li>{{rental-listing rental=rentalUnit}}</li>
@@ -56,10 +57,12 @@ In this case we are passing, or "yielding", our filter data to the inner markup 
 We want the component to simply provide an input field and yield the results list to its block, so our template will be simple:
 
 ```handlebars {data-filename=app/templates/components/list-filter.hbs}
-{{input value=value
-        key-up=(action 'handleFilterEntry')
-        class="light"
-        placeholder="Filter By City"}}
+{{input
+  value=value
+  key-up=(action "handleFilterEntry")
+  class="light"
+  placeholder="Filter By City"
+}}
 {{yield results}}
 ```
 
@@ -339,7 +342,7 @@ module('Integration | Component | list-filter', function(hooks) {
 
 Our list-filter component takes a function as an argument, used to find the list of matching rentals based on the filter string provided by the user.
 
-```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="+5,+7,+8,+14,+15,+16,+17,+18"}
+```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="+5,+7,+8,+14,+15,+16"}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';

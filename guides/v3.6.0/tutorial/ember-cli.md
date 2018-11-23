@@ -1,8 +1,12 @@
-Welcome to the Ember Tutorial!
-This tutorial is meant to introduce basic Ember concepts while creating a professional looking application.
-If you get stuck at any point during the tutorial, feel free to download [https://github.com/ember-learn/super-rentals](https://github.com/ember-learn/super-rentals) for a working example of the completed app.
+Welcome to the Ember Tutorial! This tutorial is meant to introduce basic Ember
+concepts while creating a professional looking application. If you get stuck at
+any point during the tutorial, feel free to download
+[https://github.com/ember-learn/super-rentals](https://github.com/ember-learn/super-rentals)
+for a working example of the completed app.
 
-You can install the latest version of `ember-cli` by following the [Quick Start](../../getting-started/quick-start/#toc_install-ember) guide "Installing Ember" section.
+You can install the latest version of `ember-cli` by following the
+[Quick Start](../../getting-started/quick-start/#toc_install-ember) guide
+"Installing Ember" section.
 
 Ember CLI, Ember's command line interface, provides a standard project
 structure, a set of development tools, and an addon system.
@@ -15,7 +19,8 @@ type `ember help <command-name>`.
 ## Creating a New App
 
 To create a new project using Ember CLI, use the `new` command. In preparation
-for the tutorial in the next section, you can make an app called `super-rentals`.
+for the tutorial in the next section, you can make an app called
+`super-rentals`.
 
 ```bash
 ember new super-rentals
@@ -95,15 +100,15 @@ Router.map(function() {
 export default Router;
 ```
 
-Ember CLI uses ECMAScript 2015 (ES2015 for short or previously known as ES6) modules to organize application
-code.
-For example, the line `import EmberRouter from '@ember/routing/router';` gives us access to
-Ember's Router class as the variable `EmberRouter`. And the `import config from
-'./config/environment';` line gives us access to our app's configuration data
-as the variable `config`. `const` is a way to declare a read-only variable to make
-sure it is not accidentally reassigned elsewhere. At the end of the file,
-`export default Router;` makes the `Router` variable defined in this file available 
-to other parts of the app.
+Ember CLI uses ECMAScript 2015 (ES2015 for short or previously known as ES6)
+modules to organize application code. For example, the line `import EmberRouter
+from '@ember/routing/router';` gives us access to Ember's Router class as the
+variable `EmberRouter`. And the `import config from './config/environment';`
+line gives us access to our app's configuration data as the variable `config`.
+`const` is a way to declare a read-only variable to make sure it is not
+accidentally reassigned elsewhere. At the end of the file, `export default
+Router;` makes the `Router` variable defined in this file available to other
+parts of the app.
 
 
 ## The Development Server
@@ -121,16 +126,20 @@ or, for short:
 ember s
 ```
 
-If we navigate to [`http://localhost:4200`](http://localhost:4200), we'll see the default welcome screen.
-When we edit the `app/templates/application.hbs` file, we'll replace that content with our own.
+If we navigate to [`http://localhost:4200`](http://localhost:4200), we'll see
+the default welcome screen.
 
 ![default welcome screen](/images/ember-cli/default-welcome-page.png)
 
-The first thing we want to do in our new project is to remove the welcome screen.
-We do this by simply opening up the application template file located at `app/templates/application.hbs`.
+The first thing we want to do in our new project is to remove the welcome
+screen. We do this by editing the application template file located at
+`app/templates/application.hbs`. As the name implies, this template is for the
+application itself, and changes to it will be reflected throughout the entire
+application. This template is most often used to house the application's layout,
+usually containing the header, footer, navigation bar, and so on.
 
-Once open, remove the component labeled `{{welcome-page}}`.
-The application should now be a completely blank canvas to build our application on.
+When we edit the `app/templates/application.hbs` file, we'll remove the
+component labeled `{{welcome-page}}`:
 
 ```handlebars {data-filename="app/templates/application.hbs" data-diff="-1,-2,-3"}
 {{!-- The following component displays Ember's default welcome message. --}}
@@ -140,3 +149,6 @@ The application should now be a completely blank canvas to build our application
 {{outlet}}
 
 ```
+
+The application should now be a completely blank canvas to build our application
+on.

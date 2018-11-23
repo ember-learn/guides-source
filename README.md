@@ -23,8 +23,9 @@ Welcome and thanks for your help! Please see [CONTRIBUTING.md](CONTRIBUTING.md)
 for detailed instructions on how to format your work and submit a Pull Request.
 First-time contributors are encouraged to choose issues that are labeled 
 "help wanted" or "good for new contributors." If you have questions or
-want a buddy to pair with, you can join the #-team-learning channel
-in the [Ember Community Slack](https://ember-community-slackin.herokuapp.com/).
+want a buddy to pair with, you can join the 
+[dev-ember-learning channel](https://discordapp.com/channels/480462759797063690/480777444203429888)
+in the [Ember Community Discord](https://discordapp.com/invite/zT3asNS).
 
 ## Project layout
 

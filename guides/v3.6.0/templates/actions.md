@@ -10,7 +10,7 @@ will be sent to the template's corresponding component or controller.
 ```handlebars {data-filename=app/templates/components/single-post.hbs}
 <h3><button {{action "toggleBody"}}>{{title}}</button></h3>
 {{#if isShowingBody}}
-  <p>{{{body}}}</p>
+  <p>{{body}}</p>
 {{/if}}
 ```
 

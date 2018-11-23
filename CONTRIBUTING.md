@@ -16,7 +16,7 @@ First-time contributors are encouraged to choose issues that are labeled
 "help wanted" or "good for new contributors." If you have questions, want a
 suggestion of what to work on, or would like a buddy to pair with, you can 
 join the #-team-learning channel in the 
-[Ember Community Slack](https://ember-community-slackin.herokuapp.com/).
+[Ember Community Discord](https://discordapp.com/invite/zT3asNS).
 
 Fork this repository (click "fork" on the repository's home page in GitHub)
 

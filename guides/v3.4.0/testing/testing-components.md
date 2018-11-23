@@ -388,7 +388,7 @@ module('Integration | Component | location indicator', function(hooks) {
 
 In the next example, we'll add another test that validates that the display changes when we modify the values on the service.
 
-```javascript {data-filename="tests/integration/components/location-indicator-test.js" data-diff="+36,+37,+38,+39,+40,+41,+42,+43,+44,+45,+46,+47,+48,+49"}
+```javascript {data-filename="tests/integration/components/location-indicator-test.js" data-diff="+36,+37,+38,+39,+40,+41,+42,+43,+44,+45,+46,+47,+48,+49,+50"}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
@@ -431,6 +431,7 @@ module('Integration | Component | location indicator', function(hooks) {
     assert.equal(this.element.textContent.trim(),
      'You currently are located in New York, USA', 'origin location should display');
 
+    this.locationService = this.owner.lookup('service:location-service');
     this.set('locationService.city', 'Beijing');
     this.set('locationService.country', 'China');
     this.set('locationService.currentLocation', { x: 11111, y: 222222 });

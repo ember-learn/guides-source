@@ -20,7 +20,7 @@ Notice that below we "wrap" our rentals markup inside the open and closing menti
 This is an example of the [**block form**](../../components/wrapping-content-in-a-component/) of a component,
 which allows a Handlebars template to be rendered _inside_ the component's template wherever the `{{yield}}` expression appears.
 
-In this case we are passing, or "yielding", our filter data to the inner markup as a variable called `rentals` (line 14/).
+In this case we are passing, or "yielding", our filter data to the inner markup as a variable called `rentals` (line 14).
 
 ```handlebars {data-filename=app/templates/rentals.hbs data-diff="+12,+13,+14,+15,+16,+17,+18,+19,+20,-21,-22,-23"}
 <div class="jumbo">
@@ -78,15 +78,15 @@ export default Ember.Component.extend({
   value: '',
 
   init() {
-    this._super(...arguments/);
-    this.get('filter')('').then((results/) => this.set('results', results/));
+    this._super(...arguments);
+    this.get('filter')('').then((results) => this.set('results', results));
   },
 
   actions: {
     handleFilterEntry() {
       let filterInputValue = this.get('value');
       let filterAction = this.get('filter');
-      filterAction(filterInputValue/).then((filterResults/) => this.set('results', filterResults/));
+      filterAction(filterInputValue).then((filterResults) => this.set('results', filterResults));
     }
   }
 
@@ -123,7 +123,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   actions: {
-    filterByCity(param/) {
+    filterByCity(param) {
       if (param !== '') {
         return this.get('store').query('rental', { city: param });
       } else {
@@ -154,7 +154,7 @@ export default function() {
         city: 'San Francisco',
         "property-type": 'Estate',
         bedrooms: 15,
-        image: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5/).jpg',
+        image: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg',
         description: "This grand old mansion sits on over 100 acres of rolling hills and dense redwood forests."
       }
     }, {
@@ -183,9 +183,9 @@ export default function() {
       }
     }];
 
-  this.get('/rentals', function(db, request/) {
-    if(request.queryParams.city !== undefined/) {
-      let filteredRentals = rentals.filter(function(i/) {
+  this.get('/rentals', function(db, request) {
+    if(request.queryParams.city !== undefined) {
+      let filteredRentals = rentals.filter(function(i) {
         return i.attributes.city.toLowerCase().indexOf(request.queryParams.city.toLowerCase()) !== -1;
       });
       return { data: filteredRentals };

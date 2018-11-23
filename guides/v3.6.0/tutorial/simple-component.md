@@ -1,10 +1,15 @@
-As a user looks through our list of rentals, they may want to have some interactive options to help them make a decision.
-Let's add the ability to toggle the size of the image for each rental.
-To do this, we'll use a component.
+As a user looks through our list of rentals, they may want to have some
+interactive options to help them make a decision. Let's add the ability to
+toggle the size of the image for each rental. To do this, we'll use a component.
 
-Let's generate a `rental-listing` component that will manage the behavior for each of our rentals.
-A dash is required in every component name to avoid conflicting with a possible HTML element,
-so `rental-listing` is acceptable but `rental` isn't.
+Ember components are used to turn markup text and styles into reusable content.
+Components can be included in any route's template, even multiple times, saving
+you from copy-and-pasting the same code around your application.
+
+Let's generate a `rental-listing` component that will manage the behavior for
+each of our rentals. A dash is required in every component name to avoid
+conflicting with a possible HTML element, so `rental-listing` is acceptable but
+`rental` isn't.
 
 ```bash
 ember g component rental-listing
@@ -29,22 +34,24 @@ A component consists of two parts:
 Our new `rental-listing` component will manage how a user sees and interacts with a rental.
 To start, let's move the rental display details for a single rental from the `rentals.hbs` template into `rental-listing.hbs` and add the image field:
 
-```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="-1,+2,+3,+4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17"}
+```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="-1,+2,+3,+4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19"}
 {{yield}}
 <article class="listing">
-  <img src="{{rental.image}}" alt="">
-  <h3>{{rental.title}}</h3>
-  <div class="detail owner">
-    <span>Owner:</span> {{rental.owner}}
-  </div>
-  <div class="detail type">
-    <span>Type:</span> {{rental.category}}
-  </div>
-  <div class="detail location">
-    <span>Location:</span> {{rental.city}}
-  </div>
-  <div class="detail bedrooms">
-    <span>Number of bedrooms:</span> {{rental.bedrooms}}
+  <img src={{rental.image}} alt="">
+  <div class="details">
+    <h3>{{rental.title}}</h3>
+    <div class="detail owner">
+      <span>Owner:</span> {{rental.owner}}
+    </div>
+    <div class="detail type">
+      <span>Type:</span> {{rental.category}}
+    </div>
+    <div class="detail location">
+      <span>Location:</span> {{rental.city}}
+    </div>
+    <div class="detail bedrooms">
+      <span>Number of bedrooms:</span> {{rental.bedrooms}}
+    </div>
   </div>
 </article>
 ```
@@ -84,7 +91,10 @@ with our new `rental-listing` component:
   </article>
 {{/each}}
 ```
-Here we invoke the `rental-listing` component by name, and assign each `rentalUnit` as the `rental` attribute of the component.
+
+For each `rentalUnit` in the `model` list, we are creating a new instance of our
+`rental-listing` component and passing in the `rentalUnit` by assigning it to
+the component's `rental` attribute.
 
 Our app should behave now as before, with the addition of an image for each rental item.
 
@@ -99,24 +109,27 @@ We'll also add some text to indicate that the image can be clicked on,
 and wrap both with an anchor element,
 giving it the `image` class name so that our test can find it.
 
-```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="+2,+4,+5"}
+```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="+2,+3,+5,+6"}
 <article class="listing">
-  <a class="image {{if isWide "wide"}}">
+  <a class="image {{if isWide "wide"}}"
+    role="button">
     <img src="{{rental.image}}" alt="">
     <small>View Larger</small>
   </a>
-  <h3>{{rental.title}}</h3>
-  <div class="detail owner">
-    <span>Owner:</span> {{rental.owner}}
-  </div>
-  <div class="detail type">
-    <span>Type:</span> {{rental.category}}
-  </div>
-  <div class="detail location">
-    <span>Location:</span> {{rental.city}}
-  </div>
-  <div class="detail bedrooms">
-    <span>Number of bedrooms:</span> {{rental.bedrooms}}
+  <div class="details">
+    <h3>{{rental.title}}</h3>
+    <div class="detail owner">
+      <span>Owner:</span> {{rental.owner}}
+    </div>
+    <div class="detail type">
+      <span>Type:</span> {{rental.category}}
+    </div>
+    <div class="detail location">
+      <span>Location:</span> {{rental.city}}
+    </div>
+    <div class="detail bedrooms">
+      <span>Number of bedrooms:</span> {{rental.bedrooms}}
+    </div>
   </div>
 </article>
 ```
@@ -135,25 +148,31 @@ export default Component.extend({
 To allow the user to widen the image, we will need to add an action that toggles the value of `isWide`.
 Let's call this action `toggleImageSize`
 
-```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="-2,+3"}
+```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="-2,+3,+4,+4,+6,+7"}
 <article class="listing">
   <a class="image {{if isWide "wide"}}">
-  <a {{action 'toggleImageSize'}} class="image {{if isWide "wide"}}">
-    <img src="{{rental.image}}" alt="">
+  <a
+    onclick={{action "toggleImageSize"}}
+    class="image {{if isWide "wide"}}"
+    role="button"
+  >
+    <img src={{rental.image}} alt="">
     <small>View Larger</small>
   </a>
-  <h3>{{rental.title}}</h3>
-  <div class="detail owner">
-    <span>Owner:</span> {{rental.owner}}
-  </div>
-  <div class="detail type">
-    <span>Type:</span> {{rental.category}}
-  </div>
-  <div class="detail location">
-    <span>Location:</span> {{rental.city}}
-  </div>
-  <div class="detail bedrooms">
-    <span>Number of bedrooms:</span> {{rental.bedrooms}}
+  <div class="details">
+    <h3>{{rental.title}}</h3>
+    <div class="detail owner">
+      <span>Owner:</span> {{rental.owner}}
+    </div>
+    <div class="detail type">
+      <span>Type:</span> {{rental.category}}
+    </div>
+    <div class="detail location">
+      <span>Location:</span> {{rental.city}}
+    </div>
+    <div class="detail bedrooms">
+      <span>Number of bedrooms:</span> {{rental.bedrooms}}
+    </div>
   </div>
 </article>
 ```
@@ -223,7 +242,7 @@ module('Integration | Component | rental listing', function (hooks) {
 });
   test('it renders', async function(assert) {
     // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val/) { ... });
+    // Handle any actions with this.set('myAction', function(val) { ... });
 
     await render(hbs`{{rental-listing}}`);
 
@@ -245,26 +264,24 @@ For the test we'll pass the component a fake object that has all the properties 
 We'll give the variable the name `rental`, and in each test we'll set `rental` to our local scope, represented by the `this` object.
 The render template can access values in local scope.
 
-```javascript {data-filename="tests/integration/components/rental-listing-test.js" data-diff="+5,+11,+12,+13,+14,+15,+16,+17,+18,+19,+20"}
+```javascript {data-filename="tests/integration/components/rental-listing-test.js" data-diff="+9,+10,+11,+12,+13,+14,+15,+16,+17,+18"}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
-import EmberObject from '@ember/object';
-
 
 module('Integration | Component | rental listing', function (hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(function () {
-    this.rental = EmberObject.create({
+    this.rental = {
       image: 'fake.png',
       title: 'test-title',
       owner: 'test-owner',
       type: 'test-type',
       city: 'test-city',
       bedrooms: 3
-    });
+    };
   });
 
   test('should display rental details', async function(assert) {
@@ -281,26 +298,24 @@ Now let's render our component using the `render` function.
 The `render` function allows us to pass a template string, so that we can declare the component in the same way we do in our templates.
 Since we set the `rental` variable to our local scope in the `beforeEach` hook, we can access it as part of our render string.
 
-```javascript {data-filename="tests/integration/components/rental-listing-test.js" data-diff="+23,+27"}
+```javascript {data-filename="tests/integration/components/rental-listing-test.js" data-diff="+21,+25"}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
-import EmberObject from '@ember/object';
-
 
 module('Integration | Component | rental listing', function (hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(function () {
-    this.rental = EmberObject.create({
+    this.rental = {
       image: 'fake.png',
       title: 'test-title',
       owner: 'test-owner',
       type: 'test-type',
       city: 'test-city',
       bedrooms: 3
-    });
+    };
   });
 
   test('should display rental details', async function(assert) {

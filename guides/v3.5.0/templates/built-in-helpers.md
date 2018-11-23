@@ -31,6 +31,7 @@ format of a concatenated string.
 This will display the result of `this.foo.item1` when index is 1, and `this.foo.item2` when index is 2, etc.
 
 ### Built-in block helpers
+
 Now let's say your template is starting to get a bit cluttered and you now want to clean up the logic in your templates.
 This can be achieved with the `let` block helper.
 The [`{{let}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/let?anchor=let) helper lets you create new bindings in your template.
@@ -64,25 +65,3 @@ Thankfully, we can use the `{{let}}` helper to fix this:
 
 Now, as long as your template is wrapped in the `let` helper you can access the capitalized first name and last name as
 `firstName` and `lastName` instead of `(capitalize person.firstName)`.
-
-### Array helper
-Using the [`{{array}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/array?anchor=array) helper,
-you can pass arrays directly from the template as an argument to your components.
-
-```handlebars
-{{my-component people=(array
-    'Tom Dade'
-    'Yehuda Katz'
-    myOtherPerson)
- }}
-```
-
-In the component's template, you can then use the `people` argument as an array:
-
-```handlebars {data-filename=app/templates/components/my-component.hbs}
-<ul>
-  {{#each people as |person|}}
-    <li>{{person}}</li>
-  {{/each}}
-</ul>
-```

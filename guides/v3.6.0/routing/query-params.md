@@ -256,6 +256,14 @@ This affects query param behavior in two ways:
 
 ### Sticky Query Param Values
 
+The query params are defined per route/controller. They are not global to the app. 
+For example, if a route `first-route` has a query param `firstParam` associated with it and we try to navigate to `first-route` by using `link-to` helper from a different route `second-route`, like in the following handlebar template, the `firstParam` will be omitted. 
+
+```handlebars
+{{#link-to "first-route" (query-params secondParam="asc")}}Sort{{/link-to}}
+```
+
+
 By default, query param values in Ember are "sticky",
 in that if you make changes to a query param and then leave and re-enter the route,
 the new value of that query param will be preserved (rather than reset to its default).

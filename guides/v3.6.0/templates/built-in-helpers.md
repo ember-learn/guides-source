@@ -31,6 +31,7 @@ format of a concatenated string.
 This will display the result of `this.foo.item1` when index is 1, and `this.foo.item2` when index is 2, etc.
 
 ### Built-in block helpers
+
 Now let's say your template is starting to get a bit cluttered and you now want to clean up the logic in your templates.
 This can be achieved with the `let` block helper.
 The [`{{let}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/let?anchor=let) helper lets you create new bindings in your template.
