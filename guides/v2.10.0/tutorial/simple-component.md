@@ -159,8 +159,25 @@ export default Ember.Component.extend({
 });
 ```
 
-To allow the user to widen the image, we will need to add an action that toggles the value of `isWide`.
-Let's call this action `toggleImageSize`
+To allow the user to widen the image, we will need to add an action that toggles
+the value of `isWide`. Let's create the `toggleImageSize` function to toggle the
+`isWide` property on our component:
+
+```javascript {data-filename=app/components/rental-listing.js data-diff="+5,+6,+7,+8,+9"}
+import Ember from 'ember';
+
+export default Ember.Component.extend({
+  isWide: false,
+  actions: {
+    toggleImageSize() {
+      this.toggleProperty('isWide');
+    }
+  }
+});
+```
+
+In order to trigger this action, we need use the `{{action}}` helper in our
+template:
 
 ```handlebars {data-filename=app/templates/components/rental-listing.hbs data-diff="+2"}
 <article class="listing">
@@ -184,24 +201,10 @@ Let's call this action `toggleImageSize`
 </article>
 ```
 
-Clicking the anchor element will send the action to the component.
-Ember will then go into the `actions` hash and call the `toggleImageSize` function.
-Let's create the `toggleImageSize` function and toggle the `isWide` property on our component:
+Now when we click on the anchor element, Ember will go into the `actions` hash
+and call the `toggleImageSize` function.
 
-```javascript {data-filename=app/components/rental-listing.js data-diff="+5,+6,+7,+8,+9"}
-import Ember from 'ember';
-
-export default Ember.Component.extend({
-  isWide: false,
-  actions: {
-    toggleImageSize() {
-      this.toggleProperty('isWide');
-    }
-  }
-});
-```
-
-Now when we click the image or the `View Larger` link in our browser, we  see our image show larger.
-When we click the enlarged image we again see it smaller.
+So, when we click the image or the `View Larger` link in our browser, we see our
+image show larger. When we click the enlarged image we again see it smaller.
 
 ![rental listing with expand](/images/simple-component/styled-rental-listings.png)
