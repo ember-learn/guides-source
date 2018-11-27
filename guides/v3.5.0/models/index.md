@@ -76,16 +76,21 @@ that allow your Ember app to talk to different types of servers.
 
 [adapters]: http://emberobserver.com/categories/ember-data-adapters
 
+By default, Ember Data is designed to work out of the box with [JSON API][json-api].
+JSON API is a formal specification for building conventional, robust, and performant
+APIs that allow clients and servers to communicate model data.
+
+[json-api]: http://jsonapi.org
+
 If you need to integrate your Ember.js app with a server that does not
-have an adapter available (for example, you hand-rolled an API server
-that does not adhere to any JSON specification/), Ember Data is designed
-to be configurable to work with whatever data your server returns.
+have an [adapter][adapters] available (for example, you hand-rolled an API server
+that does not adhere to any JSON specification), Ember Data is designed
+to **be configurable** to work with whatever data your server returns.
 
 Ember Data is also designed to work with streaming servers, like those
 powered by WebSockets. You can open a socket to your server and push
 changes into Ember Data whenever they occur, giving your app a real-time
 user interface that is always up-to-date.
-
 
 ## The Store and a Single Source of Truth
 
@@ -172,39 +177,6 @@ from the server once. You can think of the store as a read-through cache
 for your app's models. Both routes and their corresponding controllers have access to
 this shared store; when they need to display or modify a model, they
 first ask the store for it.
-
-## Convention Over Configuration with JSON API
-
-You can significantly reduce the amount of code you need to write and
-maintain by relying on Ember's conventions. Since these conventions
-will be shared among developers on your team, following them leads
-to code that is easier to maintain and understand.
-
-Rather than creating an arbitrary set of conventions, Ember Data is
-designed to work out of the box with [JSON API][json-api]. JSON API is a
-formal specification for building conventional, robust, and performant
-APIs that allow clients and servers to communicate model data.
-
-[json-api]: http://jsonapi.org
-
-JSON API standardizes how JavaScript applications talk to servers, so
-you decrease the coupling between your frontend and backend, and have
-more freedom to change pieces of your stack.
-
-As an analogy, JSON API is to JavaScript apps and API servers what SQL is
-to server-side frameworks and databases. Popular frameworks like Ruby on
-Rails, Laravel, Django, Spring and more work out of the box with many
-different databases, like MySQL, PostgreSQL, SQL Server, and more.
-
-Frameworks (or apps built on those frameworks) don't need to write
-lots of custom code to add support for a new database; as long as that
-database supports SQL, adding support for it is relatively easy.
-
-So too with JSON API. By using JSON API to interop between your Ember
-app and your server, you can entirely change your backend stack without
-breaking your frontend. And as you add apps for other platforms, such as
-iOS and Android, you will be able to leverage JSON API libraries for
-those platforms to easily consume the same API your Ember app uses.
 
 ## Models
 
