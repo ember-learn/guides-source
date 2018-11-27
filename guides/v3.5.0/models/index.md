@@ -72,8 +72,7 @@ This will allow your code to evolve and grow, with better maintainability.
 Thanks to its use of the _adapter pattern_, Ember Data can be configured
 to work with many different kinds of backends. There is [an entire ecosystem of adapters][adapters]
 and several [built-in adapters](./customizing-adapters/)
-that allow your Ember app to talk to different
-types of servers without you writing any networking code.
+that allow your Ember app to talk to different types of servers.
 
 [adapters]: http://emberobserver.com/categories/ember-data-adapters
 
