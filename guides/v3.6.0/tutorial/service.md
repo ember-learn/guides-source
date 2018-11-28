@@ -193,7 +193,7 @@ Finally open the template file for our `rental-listing` component and add the ne
       <span>Number of bedrooms:</span> {{rental.bedrooms}}
     </div>
   </div>
-  {{location-map location=rental.city}}
+  <LocationMap @location={{rental.city}} />
 </article>
 ```
 
@@ -321,7 +321,7 @@ module('Integration | Component | location map', function(hooks) {
 
   test('should append map element to container element', async function(assert) {
     this.set('myLocation', 'New York');
-    await render(hbs`{{location-map location=myLocation}}`);
+    await render(hbs`<LocationMap @location={{myLocation}} />`);
     assert.ok(this.element.querySelector('.map-container > .map'), 'container should have map child');
     assert.equal(this.get('mapsService.calledWithLocation'), 'New York', 'should call service with New York');
   });

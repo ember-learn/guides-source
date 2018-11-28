@@ -72,7 +72,7 @@ with our new `rental-listing` component:
 </div>
 
 {{#each model as |rentalUnit|}}
-  {{rental-listing rental=rentalUnit}}
+  <RentalListing @rental={{rentalUnit}} />
 {{#each model as |rental|}}
   <article class="listing">
     <h3>{{rental.title}}</h3>
@@ -148,7 +148,7 @@ export default Component.extend({
 To allow the user to widen the image, we will need to add an action that toggles the value of `isWide`.
 Let's call this action `toggleImageSize`
 
-```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="-2,+3,+4,+4,+6,+7"}
+```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="-2,+3,+4,+5,+6,+7"}
 <article class="listing">
   <a class="image {{if isWide "wide"}}">
   <a
@@ -221,7 +221,7 @@ Our component integration test will test two different behaviors:
 
 Let's update the default test to contain the scenarios we want to verify:
 
-```javascript {data-filename="tests/integration/components/rental-listing-test.js" data-diff="+11,+12,+13,+14,+15,+16,+17,+18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,-33,-34,-35"}
+```javascript {data-filename="tests/integration/components/rental-listing-test.js" data-diff="+11,+12,+13,+14,+15,+16,+17,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,-33,-34,-35"}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
@@ -319,11 +319,11 @@ module('Integration | Component | rental listing', function (hooks) {
   });
 
   test('should display rental details', async function(assert) {
-    await render(hbs`{{rental-listing rental=rental}}`);
+    await render(hbs`<RentalListing @rental={{rental}} />`);
   });
 
   test('should toggle wide class on click', async function(assert) {
-    await render(hbs`{{rental-listing rental=rental}}`);
+    await render(hbs`<RentalListing @rental={{rental}} />`);
   });
 });
 ```
@@ -334,7 +334,7 @@ In the first test, we just want to verify the output of the component, so we jus
 
 ```javascript {data-filename="tests/integration/components/rental-listing-test.js" data-diff="+3,+4"}
 test('should display rental details', async function(assert) {
-  await render(hbs`{{rental-listing rental=rental}}`);
+  await render(hbs`<RentalListing @rental={{rental}} />`);
   assert.equal(this.element.querySelector('.listing h3').textContent.trim(), 'test-title', 'Title: test-title');
   assert.equal(this.element.querySelector('.listing .owner').textContent.trim(), 'Owner: test-owner', 'Owner: test-owner');
 });
@@ -347,7 +347,7 @@ Note that we find the image element using the CSS selector `.image`.
 
 ```javascript {data-filename="tests/integration/components/rental-listing-test.js" data-diff="+3,+4,+5,+6,+7"}
   test('should toggle wide class on click', async function(assert) {
-    await render(hbs`{{rental-listing rental=rental}}`);
+    await render(hbs`<RentalListing @rental={{rental}} />`);
     assert.notOk(this.element.querySelector('.image.wide'), 'initially rendered small');
     await click('.image');
     assert.ok(this.element.querySelector('.image.wide'), 'rendered wide after click');
@@ -388,13 +388,13 @@ module('Integration | Component | rental listing', function (hooks) {
   });
 
   test('should display rental details', async function(assert) {
-    await render(hbs`{{rental-listing rental=rental}}`);
+    await render(hbs`<RentalListing @rental={{rental}} />`);
     assert.equal(this.element.querySelector('.listing h3').textContent.trim(), 'test-title', 'Title: test-title');
     assert.equal(this.element.querySelector('.listing .owner').textContent.trim(), 'Owner: test-owner', 'Owner: test-owner');
   });
 
   test('should toggle wide class on click', async function(assert) {
-    await render(hbs`{{rental-listing rental=rental}}`);
+    await render(hbs`<RentalListing @rental={{rental}} />`);
     assert.notOk(this.element.querySelector('.image.wide'), 'initially rendered small');
     await click('.image');
     assert.ok(this.element.querySelector('.image.wide'), 'rendered wide after click');

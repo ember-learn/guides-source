@@ -23,13 +23,13 @@ A sample component template could look like this:
 </article>
 ```
 
-Given the above template, you can now use the `{{blog-post}}` component:
+Given the above template, you can now use the `<BlogPost>` component:
 
 ```handlebars {data-filename=app/templates/index.hbs}
 {{#each model as |post|}}
-  {{#blog-post title=post.title}}
-    {{post.body}}
-  {{/blog-post}}
+  <BlogPost @title={{post.title}}>
+    <post.body />
+  </BlogPost>
 {{/each}}
 ```
 
@@ -73,14 +73,14 @@ file at `app/components/blog-post.js`. If your component was called
 ## Dynamically rendering a component
 
 The [`{{component}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/component?anchor=component) helper can be used to defer the selection of a component to
-run time. The `{{my-component}}` syntax always renders the same component,
+run time. The `<MyComponent />` syntax always renders the same component,
 while using the `{{component}}` helper allows choosing a component to render on
 the fly. This is useful in cases where you want to interact with different
 external libraries depending on the data. Using the `{{component}}` helper would
 allow you to keep different logic well separated.
 
 The first parameter of the helper is the name of a component to render, as a
-string. So `{{component 'blog-post'}}` is the same as using `{{blog-post}}`.
+string. So `{{component 'blog-post'}}` is the same as using `<BlogPost />`.
 
 The real value of [`{{component}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/component?anchor=component) comes from being able to dynamically pick
 the component being rendered. Below is an example of using the helper as a

@@ -33,7 +33,7 @@ You will then be able to access the controller's `model` property in your templa
 ```handlebars {data-filename=app/templates/favorite-posts.hbs}
 <h1>Favorite Posts</h1>
 {{#each model as |post|}}
-  <p>{{post.body}}</p>
+  <p><post.body /></p>
 {{/each}}
 ```
 

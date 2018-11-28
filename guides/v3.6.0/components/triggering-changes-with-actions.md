@@ -31,17 +31,17 @@ ember generate component button-with-confirmation
 We'll plan to use the component in a template something like this:
 
 ```handlebars {data-filename=app/templates/components/user-profile.hbs}
-{{button-with-confirmation
-  text="Click OK to delete your account."
-}}
+<ButtonWithConfirmation
+  @text={{"Click OK to delete your account."}}
+/>
 ```
 
 We'll also want to use the component elsewhere, perhaps like this:
 
 ```handlebars {data-filename=app/templates/components/send-message.hbs}
-{{button-with-confirmation
-  text="Click OK to send your message."
-}}
+<ButtonWithConfirmation
+  @text={{"Click OK to send your message."}}
+/>
 ```
 
 ## Designing the Action
@@ -143,10 +143,10 @@ This is possible since actions are simply functions, just like any other method 
 and they can therefore be passed from one component to another like this:
 
 ```handlebars {data-filename=app/templates/components/user-profile.hbs}
-{{button-with-confirmation
-  text="Click here to delete your account."
-  onConfirm=(action "userDidDeleteAccount")
-}}
+<ButtonWithConfirmation
+  @text={{"Click here to delete your account."}}
+  @onConfirm={{action "userDidDeleteAccount"}}
+/>
 ```
 
 This snippet says "take the `userDidDeleteAccount` action from the parent and make it available on the child component as the property `onConfirm`."
@@ -156,10 +156,10 @@ which serves to return the function named `"userDidDeleteAccount"` that we are p
 We can do a similar thing for our `send-message` component:
 
 ```handlebars {data-filename=app/templates/components/send-message.hbs}
-{{button-with-confirmation
-  text="Click to send your message."
-  onConfirm=(action "sendMessage")
-}}
+<ButtonWithConfirmation
+  @text={{"Click to send your message."}}
+  @onConfirm={{action "sendMessage"}}
+/>
 ```
 
 Now, we can use `onConfirm` in the child component to invoke the action on the
@@ -259,10 +259,10 @@ In cases like this, the parent template can provide the required parameter when 
 For example, if we want to use the button to send a message of type `"info"`:
 
 ```handlebars {data-filename=app/templates/components/send-message.hbs}
-{{button-with-confirmation
-  text="Click to send your message."
-  onConfirm=(action "sendMessage" "info")
-}}
+<ButtonWithConfirmation
+  @text={{"Click to send your message."}}
+  @onConfirm={{action "sendMessage" "info"}}
+/>
 ```
 
 Within `button-with-confirmation`, the code in the `submitConfirm` action does not change.
@@ -271,7 +271,7 @@ It will still invoke `onConfirm` without explicit arguments:
 ```javascript {data-filename=app/components/button-with-confirmation.js}
 const promise = this.onConfirm();
 ```
-However the expression `(action "sendMessage" "info")` used in passing the action to the component creates a closure,
+However the expression `{{action "sendMessage" "info"}}` used in passing the action to the component creates a closure,
 i.e. an object that binds the parameter we've provided to the function specified.
 So now when the action is invoked, that parameter will automatically be passed as its argument, effectively calling `sendMessage("info")`,
 despite the argument not appearing in the calling code.
@@ -343,12 +343,12 @@ With this modification,
 we can now use the component in `send-message` to wrap a text input element whose `value` attribute is set to `confirmValue`:
 
 ```handlebars {data-filename=app/templates/components/send-message.hbs}
-{{#button-with-confirmation
-    text="Click to send your message."
-    onConfirm=(action "sendMessage" "info")
-    as |confirmValue|}}
+<ButtonWithConfirmation
+    @text={{"Click to send your message."}}
+    @onConfirm={{action "sendMessage" "info"}}
+    as |confirmValue|>
   {{input value=confirmValue}}
-{{/button-with-confirmation}}
+</ButtonWithConfirmation>
 ```
 
 When the user enters their message into the input field,
@@ -375,12 +375,12 @@ export default Component.extend({
 We can tell the action to invoke the `sendMessage` action directly on the messaging service with the `target` attribute.
 
 ```handlebars {data-filename=app/templates/components/send-message.hbs}
-{{#button-with-confirmation
-    text="Click to send your message."
-    onConfirm=(action "sendMessage" "info" target=messaging)
-    as |confirmValue| }}
+<ButtonWithConfirmation
+    @text={{"Click to send your message."}}
+    @onConfirm={{action "sendMessage" "info" target=messaging}}
+    as |confirmValue| >
   {{input value=confirmValue}}
-{{/button-with-confirmation}}
+</ButtonWithConfirmation>
 ```
 
 By supplying the `target` attribute, the action helper will look to invoke the `sendMessage` action directly on the messaging
@@ -427,7 +427,7 @@ For this case, the action helper provides the `value` attribute to allow a paren
 object to pull out only what it needs.
 
 ```handlebars {data-filename=app/templates/components/system-preferences-editor.hbs}
-{{user-profile didDelete=(action "userDeleted" value="account.id")}}
+<UserProfile @didDelete={{action "userDeleted" value="account.id"}} />
 ```
 
 Now when the `system-preferences-editor` handles the delete action, it receives only the user's account `id` string.
@@ -471,9 +471,9 @@ Then our `system-preferences-editor` template passes its local `deleteUser` acti
 component's `deleteCurrentUser` property.
 
 ```handlebars {data-filename=app/templates/components/system-preferences-editor.hbs}
-{{user-profile
-  deleteCurrentUser=(action 'deleteUser' login.currentUser.id)
-}}
+<UserProfile
+  @deleteCurrentUser={{action 'deleteUser' login.currentUser.id}}
+/>
 ```
 
 The action `deleteUser` is in quotes, since `system-preferences-editor` is where the action is defined now. Quotes indicate that the action should be looked for in `actions` local to that component, rather than in those that have been passed from a parent.
@@ -481,10 +481,10 @@ The action `deleteUser` is in quotes, since `system-preferences-editor` is where
 In our `user-profile.hbs` template we change our action to call `deleteCurrentUser` as passed above.
 
 ```handlebars {data-filename=app/templates/components/user-profile.hbs}
-{{button-with-confirmation
-  onConfirm=(action deleteCurrentUser)
-  text="Click OK to delete your account."
-}}
+<ButtonWithConfirmation
+  @onConfirm={{action deleteCurrentUser}}
+  @text={{"Click OK to delete your account."}}
+/>
 ```
 
 Note that `deleteCurrentUser` is no longer in quotes here as opposed to [previously](#toc_passing-the-action-to-the-component). Quotes are used to initially pass the action down the component tree, but at every subsequent level you are instead passing the actual function reference (without quotes) in the action helper.

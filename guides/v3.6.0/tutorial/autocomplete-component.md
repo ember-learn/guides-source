@@ -22,9 +22,9 @@ Notice that below we "wrap" our rentals markup inside the open and closing menti
 This is an example of the [**block form**](../../components/wrapping-content-in-a-component/) of a component,
 which allows a Handlebars template to be rendered _inside_ the component's template wherever the `{{yield}}` expression appears.
 
-In this case we are passing, or "yielding", our filter data to the inner markup as a variable called `filteredResults` (line 14/).
+In this case we are passing, or "yielding", our filter data to the inner markup as a variable called `filteredResults` (line 14).
 
-```handlebars {data-filename="app/templates/rentals.hbs" data-diff="+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,-23,-24,-25"}
+```handlebars {data-filename="app/templates/rentals.hbs" data-diff="+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,-22,-23,-24"}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>Welcome!</h2>
@@ -36,19 +36,18 @@ In this case we are passing, or "yielding", our filter data to the inner markup 
   {{/link-to}}
 </div>
 
-{{#list-filter
- filter=(action "filterByCity")
-as |filteredResults|
-}}
+<ListFilter
+   @filter={{action "filterByCity"}} as |filteredResults|
+>
   <ul class="results">
     {{#each filteredResults as |rentalUnit|}}
-      <li>{{rental-listing rental=rentalUnit}}</li>
+      <li><RentalListing @rental={{rentalUnit}} /></li>
     {{/each}}
   </ul>
-{{/list-filter}}
+</ListFilter>
 {{outlet}}
 {{#each model as |rentalUnit|}}
-  {{rental-listing rental=rentalUnit}}
+  <RentalListing @rental={{rentalUnit}} />
 {{/each}}
 ```
 
@@ -397,7 +396,7 @@ module('Integration | Component | list-filter', function(hooks) {
     // you can set up and use your component in the same way your application
     // will use it.
     await render(hbs`
-      {{#list-filter filter=(action filterByCity) as |results|}}
+      <ListFilter @filter={{action filterByCity}} as |results|>
         <ul>
         {{#each results as |item|}}
           <li class="city">
@@ -405,7 +404,7 @@ module('Integration | Component | list-filter', function(hooks) {
           </li>
         {{/each}}
         </ul>
-      {{/list-filter}}
+      </ListFilter>
     `);
 
   });
@@ -443,7 +442,7 @@ module('Integration | Component | list-filter', function(hooks) {
     // with an integration test,
     // you can set up and use your component in the same way your application will use it.
     await render(hbs`
-      {{#list-filter filter=(action filterByCity) as |results|}}
+      <ListFilter @filter={{action filterByCity}} as |results|>
         <ul>
         {{#each results as |item|}}
           <li class="city">
@@ -451,7 +450,7 @@ module('Integration | Component | list-filter', function(hooks) {
           </li>
         {{/each}}
         </ul>
-      {{/list-filter}}
+      </ListFilter>
     `);
 
     return settled().then(() => {
@@ -497,7 +496,7 @@ test('should update with matching listings', async function (assert) {
   });
 
   await render(hbs`
-    {{#list-filter filter=(action filterByCity) as |results|}}
+    <ListFilter @filter={{action filterByCity}} as |results|>
       <ul>
       {{#each results as |item|}}
         <li class="city">
@@ -505,7 +504,7 @@ test('should update with matching listings', async function (assert) {
         </li>
       {{/each}}
       </ul>
-    {{/list-filter}}
+    </ListFilter>
   `);
 
   // fill in the input field with 's'
