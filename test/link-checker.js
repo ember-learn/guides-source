@@ -1,11 +1,5 @@
 const { expect } = require('chai');
 
-const {
-  findMarkdownLinks,
-  getBadRelativeUrlsForFile,
-  getBadLineBreaks,
-  getBadImageUrls,
-} = require('./helpers');
 
 /**
  * Autogenerate some mocha tests
@@ -14,6 +8,13 @@ const {
 const walkSync = require('walk-sync');
 const { extname } = require('path');
 const { inspect } = require('util');
+const {
+  findMarkdownLinks,
+  getBadRelativeUrlsForFile,
+  getBadLineBreaks,
+  getBadImageUrls,
+  getNonRelativeGuidesLinks,
+} = require('./helpers');
 
 const paths = walkSync('guides')
   .filter(filePath => extname(filePath) === '.md')
@@ -31,6 +32,8 @@ describe('check all links in markdown files', function () {
         filepath,
         links,
       });
+      const nonRelativeGuidesLinks = getNonRelativeGuidesLinks(filepath, links);
+      expect(nonRelativeGuidesLinks, printBadLinks(nonRelativeGuidesLinks)).to.be.empty;
 
       expect(badLinks, printBadLinks(badLinks)).to.be.empty;
 
@@ -46,3 +49,4 @@ describe('check all links in markdown files', function () {
     });
   });
 });
+

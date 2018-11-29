@@ -200,7 +200,7 @@ There are a few things to note about the `didInsertElement()` hook:
 
 [did-insert-element]: https://www.emberjs.com/api/ember/2.16/classes/Component/events/didInsertElement?anchor=didInsertElement
 [dollar]: https://www.emberjs.com/api/ember/2.16/classes/Component/methods/$?anchor=%24
-[event-names]: http://guides.emberjs.com/v2.1.0/components/handling-events/#toc_event-names
+[event-names]: ../handling-events/#toc_event-names
 
 ### Making Updates to the Rendered DOM with `didRender`
 
