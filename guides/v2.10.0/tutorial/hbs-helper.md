@@ -9,7 +9,7 @@ want to display whether that property is "Standalone" or part of a "Community"
 based on its `type`. Instead of trying to include this presentation logic
 directly in our component, let's create a template helper to deal with it. This
 way our template remains declarative, meaning that it only declares what data to
-display, while our helper will contain the particulars about how that data
+use, while our helper will handle how that data should be displayed.
 should be displayed.
 
 To get started, let's generate a helper for `rental-property-type`:
