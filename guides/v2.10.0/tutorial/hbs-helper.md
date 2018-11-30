@@ -10,7 +10,6 @@ based on its `type`. Instead of trying to include this presentation logic
 directly in our component, let's create a template helper to deal with it. This
 way our template remains declarative, meaning that it only declares what data to
 use, while our helper will handle how that data should be displayed.
-should be displayed.
 
 To get started, let's generate a helper for `rental-property-type`:
 
