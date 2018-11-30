@@ -1,7 +1,7 @@
 So far, our app is directly showing the user data from our Ember Data models.
 As our app grows, we will need to manipulate this data further before presenting
 it to our users. For this purpose, Ember offers Handlebars template helpers.
-Template helpers allow you to encapsulate complex presentation logic in reusable
+Template helpers allow you to isolate presentation logic in reusable
 code snippets.
 
 For our app, in addition to displaying the rental property's `type`, we also
