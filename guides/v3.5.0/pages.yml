@@ -97,7 +97,7 @@
   url: 'templates'
   pages:
     - title: "Handlebars Basics"
-      url: "handlebars-basics"
+      url: "index"
     - title: "Built-in Helpers"
       url: "built-in-helpers"
     - title: "Conditionals"
