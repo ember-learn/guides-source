@@ -239,30 +239,6 @@ $('a').click(() => {
 });
 ```
 
-Although autoruns are convenient, they are suboptimal.
-The current JS frame is allowed to end before the run loop is flushed,
-which sometimes means the browser will take the opportunity to do other things, like garbage collection.
-GC running in between data changing and DOM rerendering can cause visual lag and should be minimized.
-
-Relying on autoruns is not a rigorous or efficient way to use the run loop.
-Wrapping event handlers manually are preferred.
-
-## How is run loop behaviour different when testing?
-
-When your application is in _testing mode_ then Ember will throw an error if you try to schedule work
-without an available run loop.
-
-Autoruns are disabled in testing for several reasons:
-
-1. Autoruns are Embers way of not punishing you in production if you forget to open a run loop
-before you schedule callbacks on it.
-While this is useful in production, these are still situations that should be revealed in testing
-to help you find and fix them.
-2. Some of Ember's test helpers are promises that wait for the run loop to empty before resolving.
-If your application has code that runs _outside_ a run loop,
-these will resolve too early and give erroneous test failures which are difficult to find.
-Disabling autoruns help you identify these scenarios and helps both your testing and your application!
-
 ## Where can I find more information?
 
 Check out the [Ember.run](https://www.emberjs.com/api/ember/release/classes/@ember%2Frunloop) API documentation,
