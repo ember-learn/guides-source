@@ -148,8 +148,9 @@ Let's use the `{{#if}}` helper to show our current rental image larger only when
 </article>
 ```
 
-The value of `isWide` comes from our component's JavaScript file, in this case `rental-listing.js`.
-Since we want the image to be smaller at first, we will set the property to start as `false`:
+The properties of our component are available to us in the template, so the
+value of `isWide` comes from `rental-listing.js`. Since we want the image to be
+smaller at first, we will set the property to start as `false`:
 
 ```javascript {data-filename=app/components/rental-listing.js data-diff="+4"}
 import Ember from 'ember';
