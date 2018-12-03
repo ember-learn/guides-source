@@ -77,7 +77,7 @@ Super Rentals:
 </div>
 ```
 
-Now run `ember serve` (or `ember server`, or even `ember s` for short/) on your command line to start
+Now run `ember serve` (or `ember server`, or even `ember s` for short) on your command line to start
 the Ember development server and then go to [`http://localhost:4200/about`](http://localhost:4200/about/) to
 see our new page in action!
 
@@ -221,7 +221,7 @@ We'll learn more about why the entry isn't required later on when we look at [ne
 
 All we want to do when a user visits the root (`/`) URL is transition to
 `/rentals`. To do this we will add code to our index route handler by
-implementing a route lifecycle hook called `beforeModel`. 
+implementing a route lifecycle hook called `beforeModel`.
 Route lifecycle hooks are special methods that are called automatically when a route renders or data changes.
 Inside, we'll call the
 [`replaceWith`](https://www.emberjs.com/api/ember/release/classes/Route/methods/beforeModel?anchor=replaceWith)
