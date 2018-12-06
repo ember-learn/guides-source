@@ -80,6 +80,10 @@ By default, Ember Data is designed to work out of the box with [JSON API][json-a
 JSON API is a formal specification for building conventional, robust, and performant
 APIs that allow clients and servers to communicate model data.
 
+JSON API standardizes how JavaScript applications talk to servers, so
+you decrease the coupling between your frontend and backend, and have
+more freedom to change pieces of your stack.
+
 [json-api]: http://jsonapi.org
 
 If you need to integrate your Ember.js app with a server that does not
