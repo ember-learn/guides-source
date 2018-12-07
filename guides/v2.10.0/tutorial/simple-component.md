@@ -160,7 +160,7 @@ export default Ember.Component.extend({
 ```
 
 To allow the user to widen the image, we will need to add an action that toggles
-the value of `isWide`. Let's create the `toggleImageSize` function to toggle the
+the value of `isWide`. Let's create the `toggleImageSize` action to toggle the
 `isWide` property on our component:
 
 ```javascript {data-filename=app/components/rental-listing.js data-diff="+5,+6,+7,+8,+9"}
@@ -176,7 +176,7 @@ export default Ember.Component.extend({
 });
 ```
 
-In order to trigger this action, we need use the `{{action}}` helper in our
+In order to trigger this action, we need to use the `{{action}}` helper in our
 template:
 
 ```handlebars {data-filename=app/templates/components/rental-listing.hbs data-diff="+2"}
@@ -201,10 +201,10 @@ template:
 </article>
 ```
 
-Now when we click on the anchor element, Ember will go into the `actions` hash
+So, when we click on the anchor element, Ember will go into the `actions` hash
 and call the `toggleImageSize` function.
 
 So, when we click the image or the `View Larger` link in our browser, we see our
-image show larger. When we click the enlarged image we again see it smaller.
+image shown larger. When we click the enlarged image we again see it smaller.
 
 ![rental listing with expand](/images/simple-component/styled-rental-listings.png)
