@@ -61,12 +61,19 @@ A component consists of two parts:
 * A template that defines how it will look (`app/templates/components/rental-listing.hbs`)
 * A JavaScript source file (`app/components/rental-listing.js`) that defines how it will behave.
 
+Our template files (with the `.hbs` file extension) are written using the
+[Handlebars](../../templates/handlebars-basics) syntax, which consists of
+regular HTML elements mixed with dynamic content in double curly braces:
+`{{ }}`. The variables inside the curly braces represent properties from our
+Javascript source file. If the value of a property in our source file changes,
+the corresponding value in the template will change as well.
+
 Our new `rental-listing` component will manage how a user sees and interacts with a rental.
 To start, let's move the rental display details for a single rental from the `rentals.hbs` template into `rental-listing.hbs` and add the image field:
 
 ```handlebars {data-filename=app/templates/components/rental-listing.hbs data-diff="+2"}
 <article class="listing">
-  <img src="{{rental.image}}" alt="">
+  <img src={{rental.image}} alt="">
   <h3>{{rental.title}}</h3>
   <div class="detail owner">
     <span>Owner:</span> {{rental.owner}}
@@ -129,7 +136,7 @@ Let's use the `{{#if}}` helper to show our current rental image larger only when
 ```handlebars {data-filename=app/templates/components/rental-listing.hbs data-diff="+2,+4,+5"}
 <article class="listing">
   <a class="image {{if isWide "wide"}}">
-    <img src="{{rental.image}}" alt="">
+    <img src={{rental.image}} alt="">
     <small>View Larger</small>
   </a>
   <h3>{{rental.title}}</h3>
@@ -148,8 +155,9 @@ Let's use the `{{#if}}` helper to show our current rental image larger only when
 </article>
 ```
 
-The value of `isWide` comes from our component's JavaScript file, in this case `rental-listing.js`.
-Since we want the image to be smaller at first, we will set the property to start as `false`:
+The properties of our component are available to us in the template, so the
+value of `isWide` comes from `rental-listing.js`. Since we want the image to be
+smaller at first, we will set the property to start as `false`:
 
 ```javascript {data-filename=app/components/rental-listing.js data-diff="+4"}
 import Ember from 'ember';
@@ -182,7 +190,7 @@ template:
 ```handlebars {data-filename=app/templates/components/rental-listing.hbs data-diff="+2"}
 <article class="listing">
   <a {{action 'toggleImageSize'}} class="image {{if isWide "wide"}}">
-    <img src="{{rental.image}}" alt="">
+    <img src={{rental.image}} alt="">
     <small>View Larger</small>
   </a>
   <h3>{{rental.title}}</h3>
