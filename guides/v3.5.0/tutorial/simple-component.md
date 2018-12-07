@@ -113,7 +113,7 @@ giving it the `image` class name so that our test can find it.
 <article class="listing">
   <a class="image {{if isWide "wide"}}"
     role="button">
-    <img src="{{rental.image}}" alt="">
+    <img src={{rental.image}} alt="">
     <small>View Larger</small>
   </a>
   <div class="details">

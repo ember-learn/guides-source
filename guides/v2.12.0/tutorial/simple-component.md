@@ -31,7 +31,7 @@ To start, let's move the rental display details for a single rental from the `re
 
 ```handlebars {data-filename=app/templates/components/rental-listing.hbs data-diff="+2"}
 <article class="listing">
-  <img src="{{rental.image}}" alt="">
+  <img src={{rental.image}} alt="">
   <h3>{{rental.title}}</h3>
   <div class="detail owner">
     <span>Owner:</span> {{rental.owner}}
@@ -101,7 +101,7 @@ giving it the `image` class name so that our test can find it.
 ```handlebars {data-filename=app/templates/components/rental-listing.hbs data-diff="+2,+4,+5"}
 <article class="listing">
   <a class="image {{if isWide "wide"}}">
-    <img src="{{rental.image}}" alt="">
+    <img src={{rental.image}} alt="">
     <small>View Larger</small>
   </a>
   <h3>{{rental.title}}</h3>
@@ -137,7 +137,7 @@ Let's call this action `toggleImageSize`
 ```handlebars {data-filename=app/templates/components/rental-listing.hbs data-diff="+2"}
 <article class="listing">
   <a {{action 'toggleImageSize'}} class="image {{if isWide "wide"}}">
-    <img src="{{rental.image}}" alt="">
+    <img src={{rental.image}} alt="">
     <small>View Larger</small>
   </a>
   <h3>{{rental.title}}</h3>
