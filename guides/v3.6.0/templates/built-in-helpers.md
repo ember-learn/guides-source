@@ -68,10 +68,10 @@ Now, as long as your template is wrapped in the `let` helper you can access the 
 
 ### Array helper
 
- Using the [`{{array}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/array?anchor=array) helper,
+Using the [`{{array}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/array?anchor=array) helper,
 you can pass arrays directly from the template as an argument to your components.
 
- ```handlebars
+```handlebars
 {{my-component people=(array
     'Tom Dade'
     'Yehuda Katz'
@@ -79,9 +79,9 @@ you can pass arrays directly from the template as an argument to your components
  }}
 ```
 
- In the component's template, you can then use the `people` argument as an array:
+In the component's template, you can then use the `people` argument as an array:
 
- ```handlebars {data-filename=app/templates/components/my-component.hbs}
+```handlebars {data-filename=app/templates/components/my-component.hbs}
 <ul>
   {{#each people as |person|}}
     <li>{{person}}</li>
