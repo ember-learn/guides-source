@@ -14,7 +14,9 @@ You can tell the application to append the application template to a
 different element by specifying its `rootElement` property:
 
 ```javascript {data-filename="app/app.js" data-diff="+4"}
-…
+import Application from '@ember/application';
+
+// …
 
 App = Ember.Application.extend({
   rootElement: '#app',
@@ -23,7 +25,7 @@ App = Ember.Application.extend({
   Resolver
 });
 
-…
+// …
 ```
 
 This property can be specified as either an element or a
