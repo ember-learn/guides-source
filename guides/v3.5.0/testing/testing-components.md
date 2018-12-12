@@ -247,7 +247,7 @@ external action is called:
 ```javascript {data-filename="tests/integration/components/comment-form-test.js"}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { fillIn, render } from '@ember/test-helpers';
+import { click, fillIn, render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
 module('Integration | Component | comment form', function(hooks) {
