@@ -274,15 +274,6 @@
     - title: "Debugging"
       url: "debugging"
 
-- title: "Contributing to Ember.js"
-  url: 'contributing'
-  isAdvanced: true
-  pages:
-    - title: "Adding New Features"
-      url: "adding-new-features"
-    - title: "Repositories"
-      url: "repositories"
-
 - title: "Glossary"
   url: "glossary"
   pages:
