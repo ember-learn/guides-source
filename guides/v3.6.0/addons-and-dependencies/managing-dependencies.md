@@ -1,17 +1,36 @@
-As you're developing your Ember app, you'll likely run into common scenarios that aren't addressed by Ember itself,
-such as authentication or using SASS for your stylesheets.
-Ember CLI provides a common format called [Ember Addons](#toc_addons) for distributing reusable libraries
-to solve these problems.
-Additionally, you may want to make use of front-end dependencies like a CSS framework
-or a JavaScript datepicker that aren't specific to Ember apps.
+As you're developing your Ember app, you are likely to run into common scenarios that aren't addressed by Ember itself.
+Perhaps you want to use a CSS preprocessor to write your stylesheets, or you want to use a popular JS library, or maybe
+you want to import components written by a different department within your organisation.
+
+Ember CLI provides a common format called [Ember Addons](#toc_addons) for distributing reusable libraries to solve some
+of these problems.  Additionally, you may want to make use of front-end dependencies like a CSS framework or a JavaScript
+datepicker that aren't specific to Ember apps.
 
 ## Addons
 
-Ember Addons can be installed using [Ember CLI](http://ember-cli.com/extending/#developing-addons-and-blueprints)
-(e.g. `ember install ember-cli-sass`).
-Addons may bring in other dependencies by modifying your project's `package.json` file automatically.
+Addons are JavaScript packages that integrate with Ember. For example, [`ember-cli-sass`](https://github.com/aexmachina/ember-cli-sass)
+is an addon that allows you to use SASS/SCSS in your applications. You can install it using the Ember CLI with the following command:
 
-You can find listings of addons on [Ember Observer](http://emberobserver.com).
+```bash
+ember install ember-cli-sass
+```
+
+This will modify your `package.json` (and `package-lock.json`), typically bringing in other dependencies. Some addons will also add
+additional files to your projects when relevant.
+
+There are many addons that cover all kinds of use cases. These are some popular examples:
+
+* [Ember Power Select](https://ember-power-select.com/): an extensible, customisable, selector component with many features.
+* [Ember CLI Mirage](http://www.ember-cli-mirage.com/): a mock API server to use for prototyping and testing your application.
+* [ember-ajax](https://github.com/ember-cli/ember-ajax): a simple service for making AJAX requests.
+* [Ember Simple Auth](https://github.com/simplabs/ember-simple-auth): authentication/authorization for your Ember app, supporting
+  all possible mechanism via pluggable strategies.
+* [ember-changeset](https://emberobserver.com/addons/ember-changeset): encapsulation for object changes, inspired by Ecto.
+* And of course, Ember Data is itself an addon!
+
+The Ember community publishes and maintains many addons, and it can be difficult to know if one (or many!) exists that covers your needs.
+The website [Ember Observer](https://www.emberobserver.com/) keeps an up-to-date index of Ember Addons, sorted by categories, and rated
+according to objective metrics. If you are looking for an addon, we recommend that you start there!
 
 ## Regular npm packages
 
