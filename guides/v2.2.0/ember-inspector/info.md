@@ -10,7 +10,7 @@ If you would like to add your own application or library to the list, you can re
 Ember.libraries.register(libraryName, libraryVersion);
 ```
 
-#### Ember Cli
+#### Ember CLI
 
 If you're using the [ember-cli-app-version] addon, your application's name and version will be added to the list automatically.
 

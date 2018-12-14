@@ -223,7 +223,7 @@ If the user navigates to `/post/5`, the route will then have the `post_id` of
 Ember follows the convention of `:model-name_id` for two reasons.
 The first reason is that Routes know how to fetch the right model by default, if you follow the convention.
 The second is that `params` is an object, and can only have one value associated with a key.
-To put it in code, the following will *not* work properly:
+To put it in code, the following will _not_ work properly:
 
 ```javascript {data-filename=app/router.js}
 Router.map(function() {

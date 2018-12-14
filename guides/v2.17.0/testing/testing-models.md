@@ -1,7 +1,7 @@
 _Unit testing methods and computed properties follows previous patterns shown
-in [Unit Testing Basics] because DS.Model extends Ember.Object._
+in [Unit Testing Basics][] because DS.Model extends Ember.Object._
 
-[Ember Data] Models can be tested using the `moduleForModel` helper.
+[Ember Data][] Models can be tested using the `moduleForModel` helper.
 
 Let's assume we have a `Player` model that has `level` and `levelName`
 attributes. We want to call `levelUp()` to increment the `level` and assign a
@@ -100,7 +100,7 @@ test('should own a profile', function(assert) {
 
 _Ember Data contains extensive tests around the functionality of
 relationships, so you probably don't need to duplicate those tests.  You could
-look at the [Ember Data tests] for examples of deeper relationship testing if you
+look at the [Ember Data tests][] for examples of deeper relationship testing if you
 feel the need to do it._
 
 [Ember Data]: https://github.com/emberjs/data

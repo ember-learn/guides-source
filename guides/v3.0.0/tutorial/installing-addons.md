@@ -26,7 +26,7 @@ ember install ember-cli-tutorial-style
 Here is the output:
 
 ```bash
-npm: Installed ember-cli-tutorial-style
+NPM: Installed ember-cli-tutorial-style
 installing ember-cli-tutorial-style
   create public/assets/images/teaching.png
   create vendor/ember-tutorial.css

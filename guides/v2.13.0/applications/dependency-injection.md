@@ -115,7 +115,7 @@ export default {
 
 Once a factory is registered, it can be "injected" where it is needed.
 
-Factories can be injected into whole "types" of factories with *type injections*. For example:
+Factories can be injected into whole "types" of factories with _type injections_. For example:
 
 ```javascript {data-filename=app/initializers/logger.js}
 import Ember from 'ember';

@@ -43,7 +43,7 @@ test('computedFoo correctly concats foo', function(assert) {
 ```
 
 See that we have used `moduleFor` one of the several [unit-test helpers](../unit-test-helpers/) provided
-by Ember-Qunit.
+by Ember-QUnit.
 
 ### Testing Object Methods
 

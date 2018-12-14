@@ -88,4 +88,4 @@ module('Unit | Route | application', function(hooks) {
 ```
 
 [Testing Basics]: ../unit-testing-basics/
-<!-- separated our concerns]: http://en.wikipedia.org/wiki/Separation_of_concerns -->
+<!-- [separated our concerns]: http://en.wikipedia.org/wiki/Separation_of_concerns -->

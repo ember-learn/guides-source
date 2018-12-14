@@ -37,7 +37,7 @@ Next, update your `index.html` to wrap the inner contents of `<body>` in a Handl
 
   </script>
 
-  <!-- ... Ember.js and other javascript dependencies ... -->
+  <!-- ... Ember.js and other JavaScript dependencies ... -->
   <script src="js/application.js"></script>
   <script src="js/router.js"></script>
 </body>

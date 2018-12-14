@@ -144,7 +144,7 @@ those actions required). Note `andThen` has a single argument of the function
 that contains the code to execute after the other test helpers have finished.
 
 In the `andThen` helper, we finally make our call to `assert.equal` which makes an
-assertion that the text found in the first li of the ul whose class is "posts"
+assertion that the text found in the first `li` of the `ul` whose class is "posts"
 is equal to "My new post".
 
 [1]: http://emberjs.com/api/classes/Ember.Test.html#method_click
@@ -183,7 +183,7 @@ for it to finish before running.
 
 The helper method will always be called with the current Application as the
 first parameter. Other parameters, such as assert, need to be provided when calling the helper. Helpers need to be registered prior to calling
-`startApp`, but ember-cli will take care of it for you.
+`startApp`, but Ember CLI will take care of it for you.
 
 Here is an example of a non-async helper:
 

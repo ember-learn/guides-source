@@ -64,7 +64,7 @@ npm install -g --save-dev testem
 That's it. Everything you need is installed and configured. Let's go over the configuration in more detail.
 
 * `framework`
- - This represents the testing framework that you are going to be using. Qunit is what we are using in this example. `Testem` takes care of getting the qunit library loaded up so you don't have to worry about it.
+ - This represents the testing framework that you are going to be using. QUnit is what we are using in this example. `Testem` takes care of getting the QUnit library loaded up so you don't have to worry about it.
 * `src_files`
  - This represents which of your source files (including both production and test code) that you want `testem` to load when running tests.
 * `launch_in_dev`
