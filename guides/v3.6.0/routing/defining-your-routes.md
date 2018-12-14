@@ -197,13 +197,13 @@ replace the `{{outlet}}` in the `posts` template with the
 
 The following scenarios may help with understanding the `index` route:
 
- - The top-level index route is analogous to `index.html`. For example, when someone visits `https://some-ember-app.com`, the contents of the `template/index.hbs` file will be rendered. There is no need to add an entry `this.route('index', { path: '/' });` in `app/router.js` file. The `index` route is implicitly included in order to help reduce verbose declarations in the `app/router.js`. The `app/router.js` file could be empty, and the `index` would still be shown:
+- The top-level index route is analogous to `index.html`. For example, when someone visits `https://some-ember-app.com`, the contents of the `template/index.hbs` file will be rendered. There is no need to add an entry `this.route('index', { path: '/' });` in `app/router.js` file. The `index` route is implicitly included in order to help reduce verbose declarations in the `app/router.js`. The `app/router.js` file could be empty, and the `index` would still be shown:
    
 ```javascript {data-filename=app/router.js}
 Router.map(function() {
 });
 ```
- - When a user navigates to `/posts`, the contents of `index.hbs` will be rendered. This is similar to a user navigating to the child route of `/posts`. `/posts/index` is child route like `/posts/comments` or `/posts/likes`.
+- When a user navigates to `/posts`, the contents of `index.hbs` will be rendered. This is similar to a user navigating to the child route of `/posts`. `/posts/index` is child route like `/posts/comments` or `/posts/likes`.
  
 ### When to use an index route
 
@@ -281,7 +281,7 @@ If the user navigates to `/post/5`, the route will then have the `post_id` of
 Ember follows the convention of `:model-name_id` for two reasons.
 The first reason is that Routes know how to fetch the right model by default, if you follow the convention.
 The second is that `params` is an object, and can only have one value associated with a key.
-To put it in code, the following will *not* work properly:
+To put it in code, the following will _not_ work properly:
 
 ```javascript {data-filename=app/router.js}
 // This won't work! The dynamic segments will collide.

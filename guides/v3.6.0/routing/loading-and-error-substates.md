@@ -147,7 +147,7 @@ export default Route.extend({
 });
 ```
 
-In case we want both custom logic and the default behaviour for the loading substate,
+In case we want both custom logic and the default behavior for the loading substate,
 we can implement the `loading` action and let it bubble by returning `true`.
 
 ```javascript {data-filename=app/routes/foo-slow-model.js}
@@ -245,7 +245,7 @@ export default Route.extend({
 Analogous to the `loading` event, you could manage the `error` event
 at the application level to avoid writing the same code for multiple routes.
 
-In case we want to run some custom logic and have the default behaviour of rendering the error template,
+In case we want to run some custom logic and have the default behavior of rendering the error template,
 we can handle the `error` event and let it bubble by returning `true`.
 
 ```javascript {data-filename=app/routes/articles-overview.js}

@@ -4,7 +4,7 @@ any point during the tutorial, feel free to download
 [https://github.com/ember-learn/super-rentals](https://github.com/ember-learn/super-rentals)
 for a working example of the completed app.
 
-You can install the latest version of `ember-cli` by following the
+You can install the latest version of `Ember CLI` by following the
 [Quick Start](../../getting-started/quick-start/#toc_install-ember) guide
 "Installing Ember" section.
 
@@ -73,10 +73,10 @@ are installed in the node\_modules directory.
 **public**: This directory contains assets such as images and fonts.
 
 **vendor**: This directory is where front-end dependencies (such as JavaScript
-or CSS) that are not managed by NPM go.
+or CSS) that are not managed by npm go.
 
 **tests / testem.js**: Automated tests for our app go in the `tests` folder,
-and Ember CLI's test runner **testem** is configured in `testem.js`.
+and Ember CLI's test runner **Testem** is configured in `testem.js`.
 
 **ember-cli-build.js**: This file describes how Ember CLI should build our app.
 

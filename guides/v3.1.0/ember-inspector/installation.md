@@ -36,7 +36,7 @@ Make sure the "Display the Tomster" checkbox is checked.
 
 ### Firefox
 
-Visit the Add-on page on the [Mozilla Add-ons
+Visit the Add-on page on the [Mozilla Addons
 site][ember-inspector-mozilla].
 
 Click on "Add to Firefox".

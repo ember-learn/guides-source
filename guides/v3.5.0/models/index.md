@@ -162,7 +162,7 @@ of sync with the counter in a toolbar, leading to a frustrating and
 inconsistent experience.
 
 There is also a _tight coupling_ between your application's UI and the
-network code. If the url or the format of the JSON payload changes, it
+network code. If the URL or the format of the JSON payload changes, it
 is likely to break all of your UI components in ways that are hard to
 track down.
 

@@ -139,7 +139,7 @@ When an Ember application starts running, it will create and use a single instan
 
 Factory names have two parts segmented by a `:`. The first segment is the framework component type, and the second is the name of the component requested. Hence, an application view would be named `view:application`.
 
-If the container does not already have a requested factory, it uses a resolver to discover that factory. The resolver is responsible for mapping the factory name of `view:application` to the global variable of `App.ApplicationView`. Tools like ember-cli may use alternative rules for resolving factories. After optionally adding dependencies to the requested factory, that factory is cached and returned.
+If the container does not already have a requested factory, it uses a resolver to discover that factory. The resolver is responsible for mapping the factory name of `view:application` to the global variable of `App.ApplicationView`. Tools like Ember CLI may use alternative rules for resolving factories. After optionally adding dependencies to the requested factory, that factory is cached and returned.
 
 Ember's container should be viewed as an implementation detail, and is not part of the supported public API.
 
@@ -161,7 +161,7 @@ App.register('logger:main', {
 App.inject('route', 'logger', 'logger:main');
 ```
 
-But ember-cli applications (and libraries) will need to use a more flexible hook, an initializer:
+But Ember CLI applications (and libraries) will need to use a more flexible hook, an initializer:
 
 ```javascript
 Ember.Application.initializer({
@@ -254,7 +254,7 @@ application.inject('route:index', 'logger', 'logger:main');
 
 Injections can be made onto all of Ember's major framework classes, including views, helpers, components, controllers, routes, and the router.
 
-**Note:** For injections into models (if not using ember-cli), you need to enable the `MODEL_FACTORY_INJECTIONS` 
+**Note:** For injections into models (if not using Ember CLI), you need to enable the `MODEL_FACTORY_INJECTIONS` 
 flag before you initialize your application. You can do this like so:
 
 ```javascript

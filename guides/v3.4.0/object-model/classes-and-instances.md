@@ -226,7 +226,7 @@ Person.create({
 
 ### Accessing Object Properties
 
-When reading a property value of an object, you can in most cases use the common Javascript dot notation, e.g. `myObject.myProperty`. 
+When reading a property value of an object, you can in most cases use the common JavaScript dot notation, e.g. `myObject.myProperty`. 
 
 [Ember proxy objects][9] are the one big exception to this rule. If you're working with Ember proxy objects, including promise proxies for async relationships in Ember Data, you have to use Ember's [`get()`][7] accessor method to read values.
 
@@ -246,7 +246,7 @@ export default Model.extend({
 
 To access the blog post's title you can simply write `blogPost.title`, whereas only the syntax `blogPost.get('comments')` will return the post's comments.
 
-Always use Ember's [`set()`][8] method to update property values. It will propagate the value change to computed properties, observers, templates, etc. If you "just" use Javascript's dot notation to update a property value, computed properties won't recalculate, observers won't fire and templates won't update.
+Always use Ember's [`set()`][8] method to update property values. It will propagate the value change to computed properties, observers, templates, etc. If you "just" use JavaScript's dot notation to update a property value, computed properties won't recalculate, observers won't fire and templates won't update.
 
 ```javascript
 import EmberObject from '@ember/object';

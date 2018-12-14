@@ -9,7 +9,7 @@ makes it easy to change its functionality by swapping out or extending
 the default Adapter.
 
 Some reasons for customizing an Adapter include using
-`underscores_case` in your urls, using a medium other than REST to
+`underscores_case` in your URLs, using a medium other than REST to
 communicate with your backend API or even using a
 [local storage backend](https://github.com/locks/ember-localstorage-adapter).
 
@@ -102,7 +102,7 @@ JSON API adapter:
 
 #### Pluralization Customization
 
-To facilitate pluralizing model names when generating route urls Ember
+To facilitate pluralizing model names when generating route URLs Ember
 Data comes bundled with
 [Ember Inflector](https://github.com/stefanpenner/ember-inflector), an
 ActiveSupport::Inflector compatible library for inflecting words
@@ -140,7 +140,7 @@ inflector.irregular('cow', 'kine');
 #### Endpoint Path Customization
 
 The `namespace` property can be used to prefix requests with a
-specific url namespace.
+specific URL namespace.
 
 ```javascript {data-filename="app/adapters/application.js"}
 import DS from 'ember-data';

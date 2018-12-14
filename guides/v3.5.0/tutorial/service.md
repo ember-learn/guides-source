@@ -52,7 +52,7 @@ We will now have the APIs available we need to be able to display maps for our p
 ### Fetching Maps With a Service
 
 Now that we have Map APIs,
-we will implement a map element service that will create a HTML `div` element and generate a map to it based on the location we provide.
+we will implement a map element service that will create an HTML `div` element and generate a map to it based on the location we provide.
 The service will also keep a reference to the element we create,
 so that a map for a given location will only have to be generated once.
 
@@ -76,7 +76,7 @@ ember g service map-element
 
 Now implement the service as follows.
 The main API will be an [async function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) called `getMapElement`,
-that returns a HTML element containing a rendered map for the given location.
+that returns an HTML element containing a rendered map for the given location.
 We want the function to be async so we can call the remote geocode API and wait for its result.
 Notice the `await` keyword in the code below when we call `geocode.fetCoordinates`.
 
@@ -205,7 +205,7 @@ You may now either move onto the [next feature](../subroutes/), or continue here
 
 ## Tests
 
-###  Unit testing a Service
+### Unit testing a Service
 
 We'll use a unit test to validate the service.
 Unit tests are more isolated than integration tests and application tests,
@@ -214,7 +214,7 @@ and are intended for testing specific logic within a class.
 
 For our service unit test, we'll want to verify that locations that have been previously loaded are fetched from cache, while new locations are created the third party map service.
 We will isolate our tests from actually calling Leaflet Maps by stubbing the map service.
-On line 19 of `map-element-test.js` below we create a Javascript object to simulate the behavior of the utility, but instead of creating a google map, we return an empty JavaScript object.
+On line 19 of `map-element-test.js` below we create a JavaScript object to simulate the behavior of the utility, but instead of creating a Google map, we return an empty JavaScript object.
 
 To instantiate the service, we can instantiate it through ember's resolver using the [`factoryFor`](https://emberjs.com/api/ember/release/classes/ApplicationInstance/methods/factoryFor?anchor=factoryFor) method.
 `factoryFor` allows us to have control over the creation of the service in Ember, to pass arguments to the constructor that can override parts of the service for our tests.

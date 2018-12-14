@@ -102,7 +102,7 @@ JSON API adapter:
 
 #### Pluralization Customization
 
-To facilitate pluralizing model names when generating route urls Ember
+To facilitate pluralizing model names when generating route URLs Ember
 Data comes bundled with
 [Ember Inflector](https://github.com/stefanpenner/ember-inflector), an
 ActiveSupport::Inflector compatible library for inflecting words
@@ -145,7 +145,7 @@ inflector.irregular('cow', 'kine');
 #### Endpoint Path Customization
 
 The `namespace` property can be used to prefix requests with a
-specific url namespace.
+specific URL namespace.
 
 ```javascript {data-filename=app/adapters/application.js}
 import DS from 'ember-data';

@@ -88,7 +88,7 @@ module('Integration | Component | pretty color', function(hooks) {
 Each test can use the `render()` function imported from the `@ember/test-helpers` package to create a new instance of the component by declaring the component in template syntax,
 as we would in our application.
 Also notice, the keyword `await` in front of the call to `render`.
-It allows the test which we marked as `async` earlier to wait for any asynchronous behaviour to complete before executing the rest of the code below.
+It allows the test which we marked as `async` earlier to wait for any asynchronous behavior to complete before executing the rest of the code below.
 In this case our first assertion will correctly execute after the component has fully rendered.
 
 Next we can test that changing the component's `name` property updates the
