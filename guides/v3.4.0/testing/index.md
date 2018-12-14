@@ -201,6 +201,7 @@ When using QUnit it is possible to exclude tests by adding an exclamation point 
 You can also run a group of tests which you have scoped with a `module` before; e.g. for testing the module called `Unit | Service | location` only,
 run `ember test --module='Unit | Service | location'`.
 
+<!-- Some definitions are flagged as not used - should they be deleted? -->
 <!-- [QUnit]: http://qunitjs.com/ -->
 [Testem]: https://github.com/airportyh/testem
 [Application tests]: ./acceptance

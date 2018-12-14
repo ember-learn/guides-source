@@ -147,4 +147,5 @@ module('Unit | Controller | comments', function(hooks) {
 ```
 
 [Testing Basics]: ../unit-testing-basics/
+<!-- This definition flagged as not used - should be deleted? -->
 <!-- [needs]: ../../controllers/dependencies-between-controllers/ -->
