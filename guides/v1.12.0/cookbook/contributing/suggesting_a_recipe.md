@@ -18,7 +18,7 @@ it blank. These sections will be created in a later phase of the Cookbook projec
 The filename of your suggested recipe should be the lowercase, underscored version of your recipe's name. The
 filename name for this recipe &nash; "Suggesting a Recipe" &ndash; would be `suggesting_a_recipe.mdown`.
 
-When you are ready to submit your recipe, push your local branch to the remote branch on your Github fork and
+When you are ready to submit your recipe, push your local branch to the remote branch on your GitHub fork and
 submit a pull request. Before submitting a pull request, make sure someone hasn't already submitted a similar
 recipe and that your recipe is a good fit for the Cookbook (see _Deciding If A Recipe Is A Good Fit_).
 
