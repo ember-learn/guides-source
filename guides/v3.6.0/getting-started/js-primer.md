@@ -197,17 +197,17 @@ store.findRecord('person', 1).then(function(person) {
 
   return person.get('post'); //get all the posts linked with person.
 
-}).then(function(posts){
+}).then(function(posts) {
 
   myFirstPost = posts.get('firstObject'); //get the first post from collection.
   return myFirstPost.get('comment'); //get all the comments linked with myFirstPost.
 
-}).then(function(comments){
+}).then(function(comments) {
 
   // do something with comments
   return store.findRecord('book', 1); //query for another record
 
-}).catch(function(err){
+}).catch(function(err) {
 
   //handle errors
 
@@ -223,4 +223,4 @@ For further reference you can consult Developer Network articles:
 * [`var`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var)
 * [`const`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const)
 * [`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let).
-* [`promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
+* [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
