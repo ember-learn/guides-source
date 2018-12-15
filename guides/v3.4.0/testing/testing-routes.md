@@ -34,7 +34,7 @@ export default Route.extend({
 });
 ```
 
-In this route we've [separated our concerns](http://en.wikipedia.org/wiki/Separation_of_concerns):
+In this route we've [separated our concerns][]:
 The action `displayAlert` contains the code that is called when the action is
 received, and the private function `_displayAlert` performs the work. While not
 necessarily obvious here because of the small size of the functions, separating
@@ -88,5 +88,4 @@ module('Unit | Route | application', function(hooks) {
 ```
 
 [Testing Basics]: ../unit-testing-basics/
-<!-- This definition flagged as not used - should be deleted? -->
-<!-- [separated our concerns]: http://en.wikipedia.org/wiki/Separation_of_concerns -->
+[separated our concerns]: http://en.wikipedia.org/wiki/Separation_of_concerns

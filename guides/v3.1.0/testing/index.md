@@ -1,6 +1,6 @@
 Testing is a core part of the Ember framework and its development cycle.
 
-[QUnit](http://qunitjs.com/) is the default testing framework for this guide, but others are supported too, through addons such as [ember-mocha](https://github.com/emberjs/ember-mocha).
+[QUnit][] is the default testing framework for this guide, but others are supported too, through addons such as [ember-mocha](https://github.com/emberjs/ember-mocha).
 
 The testing pattern presented below is consistent across different testing frameworks. Only the setup test functions from [ember-qunit](https://github.com/emberjs/ember-qunit) needs to be replaced with the respective setup functions in the testing addon used in order to use other testing frameworks.
 
@@ -201,11 +201,9 @@ When using QUnit it is possible to exclude tests by adding an exclamation point 
 You can also run a group of tests which you have scoped with a `module` before; e.g. for testing the module called `Unit | Service | location` only,
 run `ember test --module='Unit | Service | location'`.
 
-<!-- Some definitions are flagged as not used - should they be deleted? -->
-<!-- [QUnit]: http://qunitjs.com/ -->
+[QUnit]: http://qunitjs.com/
 [Testem]: https://github.com/airportyh/testem
 [Application tests]: ./acceptance
-<!-- [Testing Basics]: ./unit-testing-basics -->
 [Testing Components]: ./testing-components
 [Testing Controllers]: ./testing-controllers
 [Testing Routes]: ./testing-routes

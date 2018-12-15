@@ -10,9 +10,9 @@ An [`ApplicationInstance`](https://emberjs.com/api/ember/2.16/classes/Applicatio
 Application instances provide a means to "look up" (i.e. instantiate and / or retrieve) objects.
 
 > _Note: Although an `Application` serves as the primary registry for an app,
-each `ApplicationInstance` can also serve as a registry.
-Instance-level registrations are useful for providing instance-level customizations,
-such as A/B testing of a feature._
+> each `ApplicationInstance` can also serve as a registry.
+> Instance-level registrations are useful for providing instance-level customizations,
+> such as A/B testing of a feature._
 
 ## Factory Registrations
 

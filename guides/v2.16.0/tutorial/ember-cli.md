@@ -71,7 +71,7 @@ are installed in the node_modules directory.
 or CSS) that are not managed by Bower go.
 
 **tests / testem.js**: Automated tests for our app go in the `tests` folder,
-and Ember CLI's test runner **testem** is configured in `testem.js`.
+and Ember CLI's test runner **Testem** is configured in `testem.js`.
 
 **ember-cli-build.js**: This file describes how Ember CLI should build our app.
 
