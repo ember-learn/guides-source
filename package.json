@@ -34,6 +34,6 @@
     "mocha": "^5.0.0",
     "np": "*",
     "require-directory": "^2.1.1",
-    "walk-sync": "^0.3.2"
+    "walk-sync": "^1.0.0"
   }
 }
