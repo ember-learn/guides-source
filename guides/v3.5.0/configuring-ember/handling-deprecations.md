@@ -9,45 +9,42 @@ Fortunately, Ember provides a way for projects to deal with deprecations in an o
 
 ## Filtering Deprecations
 
-When your project has a lot of deprecations, you can start by filtering out deprecations that do not have to be addressed right away.  You
-can use the [deprecation handlers](https://emberjs.com/api/ember/2.15/classes/Ember.Debug/methods/registerDeprecationHandler?anchor=registerDeprecationHandler) API to check for what
-release a deprecated feature will be removed.  An example handler is shown below that filters out all deprecations that are not going away
-in release 2.0.0.
-
+When your project has a lot of deprecations, you can start by filtering out deprecations that do not have to be addressed right away.
+You can use the [deprecation handlers](https://www.emberjs.com/api/ember/release/functions/@ember%2Fdebug/registerDeprecationHandler) API to check for what release a deprecated feature will be removed.
+An example handler is shown below that filters out all deprecations that are not going away in release 2.0.0.
 
 ```javascript {data-filename= app/initializers/main.js}
 import Ember from 'ember';
+import { registerDeprecationHandler } from '@ember/debug';
 
 export function initialize() {
-  if (Ember.Debug && typeof Ember.Debug.registerDeprecationHandler === 'function') {
-    Ember.Debug.registerDeprecationHandler((message, options, next) => {
-      if (options && options.until && options.until !== '2.0.0') {
-        return;
-      } else {
-        next(message, options);
-      }
-    });
-  }
+  registerDeprecationHandler((message, options, next) => {
+    if (options && options.until && options.until !== '2.0.0') {
+      return;
+    } else {
+      next(message, options);
+    }
+  });
 }
 
 export default { initialize };
 ```
 
-The deprecation handler API was released in Ember 2.1.  If you would like to leverage this API in a prior release of Ember you can install
-the [ember-debug-handlers-polyfill](http://emberobserver.com/addons/ember-debug-handlers-polyfill) addon into your project.
+The deprecation handler API was released in Ember 2.1.
+If you would like to leverage this API in a prior release of Ember you can install the [ember-debug-handlers-polyfill](http://emberobserver.com/addons/ember-debug-handlers-polyfill) addon into your project.
 
 ## Deprecation Workflow
 
-Once you've removed deprecations that you may not need to immediately address, you may still be left with many deprecations.  Also, your remaining
-deprecations may only occur in very specific scenarios that are not obvious.  How then should you go about finding and fixing these?  This
-is where the [ember-cli-deprecation-workflow](http://emberobserver.com/addons/ember-cli-deprecation-workflow) addon can be extremely helpful.
+Once you've removed deprecations that you may not need to immediately address, you may still be left with many deprecations. 
+Also, your remaining deprecations may only occur in very specific scenarios that are not obvious.
+How then should you go about finding and fixing these?
+This is where the [ember-cli-deprecation-workflow](http://emberobserver.com/addons/ember-cli-deprecation-workflow) addon can be extremely helpful.
 
 Once installed, the addon works in 3 steps:
 
 ### 1. Gather deprecations into one source
 
-The ember-cli-deprecation-workflow addon provides a command that will collect deprecations from your console and generate JavaScript code listing
-its findings.
+The `ember-cli-deprecation-workflow` addon provides a command that will collect deprecations from your console and generate JavaScript code listing its findings.
 
 To collect deprecations, first run your in-browser test suite by starting your development server and navigating to [`http://localhost:4200/tests`](http://localhost:4200/tests).  If your test suite isn't fully covering your app's functionality, you may also
 manually exercise functionality within your app where needed.  Once you've exercised the app to your satisfaction, run the following command within

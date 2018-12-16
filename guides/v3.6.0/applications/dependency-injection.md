@@ -247,8 +247,10 @@ export default Component.extend({
     if (!this.song) {
       return null;
     }
+
     let applicationInstance = getOwner(this);
     let audioType = this.song.audioType;
+
     return applicationInstance.lookup(`service:audio-${audioType}`);
   }),
 

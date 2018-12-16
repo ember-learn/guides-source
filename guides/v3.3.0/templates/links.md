@@ -112,6 +112,7 @@ The `query-params` helper can be used to set query params on a link:
 // Binding is also supported
 {{#link-to "posts" (query-params direction=otherDirection)}}Sort{{/link-to}}
 ```
+For more information on how to use query parameters see the [query parameters](../../routing/query-params/) section in Routing.
 
 ### Using link-to as an inline component
 

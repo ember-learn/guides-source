@@ -96,7 +96,7 @@
 - title: "Templates"
   url: 'templates'
   pages:
-    - title: "Handlebars Basics"
+    - title: "Templating Basics"
       url: "handlebars-basics"
     - title: "Built-in Helpers"
       url: "built-in-helpers"
