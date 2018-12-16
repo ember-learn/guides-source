@@ -25,7 +25,7 @@ import Route from '@ember/routing/route';
 export default Route.extend({
   actions: {
     willTransition(transition) {
-      if (this.controller.get('userHasEnteredData') &&
+      if (this.controller.userHasEnteredData &&
           !confirm('Are you sure you want to abandon progress?')) {
         transition.abort();
       } else {
@@ -78,7 +78,7 @@ import Route from '@ember/routing/route';
 
 export default Route.extend({
   beforeModel(transition) {
-    if (!this.controllerFor('auth').get('userIsLoggedIn')) {
+    if (!this.controllerFor('auth').userIsLoggedIn) {
       let loginController = this.controllerFor('login');
       loginController.set('previousTransition', transition);
       this.transitionTo('login');
