@@ -23,6 +23,7 @@ before_install:
 script:
   - set -o errexit
   - npm run lint:md
+  - npm run test
   
 # deploy:
   # provider: script
