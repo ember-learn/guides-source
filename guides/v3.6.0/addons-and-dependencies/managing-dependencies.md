@@ -18,26 +18,19 @@ ember install ember-cli-sass
 This will modify your `package.json` (and `package-lock.json`), typically bringing in other dependencies. Some addons will also add
 additional files to your projects when relevant.
 
-There are many addons that cover all kinds of use cases. These are some popular examples:
+There are many addons that cover all kinds of use cases. For more detail, as well as examples of what addons can do,
+we invite you to have a look at the [Ember CLI documentation](https://cli.emberjs.com/release/basic-use/using-addons/).
 
-* [Ember Power Select](https://ember-power-select.com/): an extensible, customisable, selector component with many features.
-* [Ember CLI Mirage](http://www.ember-cli-mirage.com/): a mock API server to use for prototyping and testing your application.
-* [ember-ajax](https://github.com/ember-cli/ember-ajax): a simple service for making AJAX requests.
-* [Ember Simple Auth](https://github.com/simplabs/ember-simple-auth): authentication/authorization for your Ember app, supporting
-  all possible mechanism via pluggable strategies.
-* [ember-changeset](https://emberobserver.com/addons/ember-changeset): encapsulation for object changes, inspired by Ecto.
-* And of course, Ember Data is itself an addon!
-
-The Ember community publishes and maintains many addons, and it can be difficult to know if one (or many!) exists that covers your needs.
-The website [Ember Observer](https://www.emberobserver.com/) keeps an up-to-date index of Ember Addons, sorted by categories, and rated
-according to objective metrics. If you are looking for an addon, we recommend that you start there!
+The Ember community publishes and maintains many addons, and it can be difficult to know if one (or many!) exists that covers
+your needs. The website [Ember Observer](https://www.emberobserver.com/) keeps an up-to-date index of Ember Addons, sorted by
+categories, and rated according to objective metrics. If you are looking for an addon, we recommend that you start there!
 
 ## Regular npm packages
 
-While dependencies can be managed in several ways, 
-it's worth noting that the process can be greatly simplified for new developers by using ember-auto-import, 
-which offers zero config imports from npm packages. 
-It's easily installed using `ember install ember-auto-import`. 
+While dependencies can be managed in several ways,
+it's worth noting that the process can be greatly simplified for new developers by using ember-auto-import,
+which offers zero config imports from npm packages.
+It's easily installed using `ember install ember-auto-import`.
 For further usage instructions, please follow the [project README](https://github.com/ef4/ember-auto-import).
 
 ## Other assets
