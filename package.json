@@ -20,7 +20,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "lint:md": "remark .",
+    "lint:md": "remark . --frail",
     "release": "np",
     "test": "mocha",
     "test-watch": "npm test -- -w"
