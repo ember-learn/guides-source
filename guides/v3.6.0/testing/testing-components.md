@@ -247,7 +247,7 @@ external action is called:
 ```javascript {data-filename="tests/integration/components/comment-form-test.js"}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { fillIn, render } from '@ember/test-helpers';
+import { click, fillIn, render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
 module('Integration | Component | comment form', function(hooks) {
@@ -445,7 +445,7 @@ module('Integration | Component | location indicator', function(hooks) {
 ### Waiting on Asynchronous Behavior
 
 Often, interacting with a component will cause asynchronous behavior to occur, such as HTTP requests, or timers.
-The module `@ember/test-helpers` provides you with several [useful helpers](https://github.com/emberjs/ember-test-helpers/blob/master/API.md) that will allow you to wait for any asynchronous behavior to complete that is triggered by a DOM interaction induced by those.  
+The module `@ember/test-helpers` provides you with several [useful helpers](https://github.com/emberjs/ember-test-helpers/blob/master/API.md) that will allow you to wait for any asynchronous behavior to complete that is triggered by a DOM interaction induced by those.
 To use them in your tests, you can `await` any of them to make sure that subsequent assertions are executed once the asynchronous behavior has fully settled:
 
 ```javascript
