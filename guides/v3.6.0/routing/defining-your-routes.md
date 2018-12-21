@@ -212,7 +212,7 @@ The index route is most helpful for rendering a view when the route has [dynamic
 A `templates/posts.hbs` file has the following:
 
 ```handlebars {data-filename=templates/posts.hbs}
-<h1>This the posts template, containing headers to show on all child routes</h1>
+<h1>This is the posts template, containing headers to show on all child routes</h1>
 {{outlet}}
 ```   
 
