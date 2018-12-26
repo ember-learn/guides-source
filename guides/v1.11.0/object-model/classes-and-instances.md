@@ -1,0 +1,3 @@
+---
+redirect: object-model/index
+---
