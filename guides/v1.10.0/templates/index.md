@@ -27,7 +27,7 @@ contents of the `<div>` will change depending on if the user is
 currently at `/posts` or `/posts/15`, for example.
 
 For more information about how outlets are filled in by the router, see
-[Routing](../../routing/).
+[Routing](../routing/).
 
 If you are keeping your templates in HTML, create a `<script>` tag
 without a template name. Ember will use the template without a name as the application template and it will automatically be compiled and appended
