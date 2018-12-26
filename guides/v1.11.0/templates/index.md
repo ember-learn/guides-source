@@ -27,6 +27,6 @@ contents of the `<div>` will change depending on if the user is
 currently at `/posts` or `/posts/15`, for example.
 
 For more information about how outlets are filled in by the router, see
-[Routing](../../routing/).
+[Routing](../routing/).
 
 Ember CLI will create `application.hbs` for you by default in `app/templates/application.hbs`.
