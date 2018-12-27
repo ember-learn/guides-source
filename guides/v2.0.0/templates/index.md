@@ -54,4 +54,4 @@ controllers and components.
 
 Helpers bring a minimum of logic into Ember templating. Ember ships with several
 built-in helpers, which are explained in the following guides, and also allows
-you to [write your own helpers](../writing-helpers/).
+you to [write your own helpers](./writing-helpers/).
