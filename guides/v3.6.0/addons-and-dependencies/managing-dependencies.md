@@ -1,6 +1,6 @@
 As you're developing your Ember app, you are likely to run into common scenarios that aren't addressed by Ember itself.
 Perhaps you want to use a CSS preprocessor to write your stylesheets, or you want to use a popular JS library, or maybe
-you want to import components written by a different department within your organisation.
+you want to import components written by a different department within your organization.
 
 Ember CLI provides a common format called [Ember Addons](#toc_addons) for distributing reusable libraries to solve some
 of these problems.  Additionally, you may want to make use of front-end dependencies like a CSS framework or a JavaScript
