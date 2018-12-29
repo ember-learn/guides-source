@@ -3,7 +3,7 @@ Testing is a core part of the Ember framework and its development cycle.
 Let's assume you are writing an Ember application which will serve as a blog.
 This application would likely include models such as `user` and `post`.
 It would also include interactions such as _login_ and _create post_.
-Let's finally assume that you would like to have [automated tests] in place for your application.
+Let's finally assume that you would like to have [automated tests][] in place for your application.
 
 There are four different types of test setups you can choose from:
 
@@ -21,7 +21,7 @@ In the example scenario above, some of the tests you might write are:
 * A visitor does not have access to the admin panel.
 
 For tests that require a full application setup we can use the `setupApplicationTest` helper.
-You can read more about how to create these kinds of tests in the [Application tests] section.
+You can read more about how to create these kinds of tests in the [Application tests][] section.
 
 ### Rendering Tests
 
@@ -43,7 +43,7 @@ Examples of these kinds of tests are:
 * The blog post list scrolls to position a new post at the top of the viewport.
 
 We can create an isolated rendering test with the `setupRenderingTest` helper.
-You can read more about it in the [Testing Components] or the [Testing Helpers] section.
+You can read more about it in the [Testing Components][] or the [Testing Helpers][] section.
 
 ### Container Tests
 
@@ -59,7 +59,7 @@ Some specific examples of these type of tests are:
 * Blog dates are properly formatted through a `time` service.
 
 We can create these isolated container tests with the `setupTest` helper.
-You can read more about these type of tests in the [Testing Routes] and [Testing Controllers] section.
+You can read more about these type of tests in the [Testing Routes][] and [Testing Controllers][] section.
 
 ### Simple Unit Tests
 
@@ -77,7 +77,7 @@ as they neither require the application's container to be setup nor any user int
 
 ### Testing Frameworks
 
-[QUnit] is the default testing framework for this guide, but others are supported, too through addons, e.g. [ember-mocha](https://github.com/emberjs/ember-mocha).
+[QUnit][] is the default testing framework for this guide, but others are supported, too through addons, e.g. [ember-mocha](https://github.com/emberjs/ember-mocha).
 
 ### Testing Blueprints
 
@@ -123,7 +123,7 @@ whereas tests executed under `ember test --server` are run with the configuratio
 This could cause differences in execution, such as which libraries are loaded and available.
 Therefore it's recommended that you use `ember test --server` for test execution.
 
-These commands run your tests using [Testem] to make testing multiple browsers very easy.
+These commands run your tests using [Testem][] to make testing multiple browsers very easy.
 You can configure Testem using the `testem.js` file in your application root.
 
 #### Choosing the Tests to Run
@@ -139,6 +139,7 @@ run `ember test --module='Unit | Service | location'`.
 [QUnit]: http://qunitjs.com/
 [Testem]: https://github.com/airportyh/testem
 [Application tests]: ./acceptance/
-[Testing Basics]: ./unit-testing-basics/
 [Testing Components]: ./testing-components/
+[Testing Controllers]: ./testing-controllers
+[Testing Routes]: ./testing-routes
 [Testing Helpers]: ./testing-helpers/

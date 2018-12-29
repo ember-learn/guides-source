@@ -1,5 +1,5 @@
 _Unit testing methods and computed properties follows previous patterns shown 
-in [Unit Testing Basics] because Ember.Route extends Ember.Object._
+in [Unit Testing Basics][] because Ember.Route extends Ember.Object._
 
 Testing routes can be done both via acceptance or unit tests. Acceptance tests 
 will likely provide better coverage for routes because routes are typically used 
@@ -85,4 +85,5 @@ test('should display an alert', function(assert) {
 ```
 
 [Unit Testing Basics]: ../unit-testing-basics/
-[separated our concerns]: http://en.wikipedia.org/wiki/Separation_of_concerns
+<!-- This definition flagged as not used - should be deleted? -->
+<!-- [separated our concerns]: http://en.wikipedia.org/wiki/Separation_of_concerns -->

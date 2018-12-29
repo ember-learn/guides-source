@@ -68,10 +68,10 @@ are installed in the node\_modules directory.
 **public**: This directory contains assets such as images and fonts.
 
 **vendor**: This directory is where front-end dependencies (such as JavaScript
-or CSS) that are not managed by NPM go.
+or CSS) that are not managed by npm go.
 
 **tests / testem.js**: Automated tests for our app go in the `tests` folder,
-and Ember CLI's test runner **testem** is configured in `testem.js`.
+and Ember CLI's test runner **Testem** is configured in `testem.js`.
 
 **ember-cli-build.js**: This file describes how Ember CLI should build our app.
 

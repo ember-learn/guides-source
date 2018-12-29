@@ -140,7 +140,7 @@ When an Ember application starts running, it will create and use a single instan
 
 Factory names have two parts segmented by a `:`. The first segment is the framework component type, and the second is the name of the component requested. Hence, an application view would be named `view:application`.
 
-If the container does not already have a requested factory, it uses a resolver to discover that factory. The resolver is responsible for mapping the factory name of `view:application` to the global variable of `App.ApplicationView`. Tools like ember-cli may use alternative rules for resolving factories. After optionally adding dependencies to the requested factory, that factory is cached and returned.
+If the container does not already have a requested factory, it uses a resolver to discover that factory. The resolver is responsible for mapping the factory name of `view:application` to the global variable of `App.ApplicationView`. Tools like Ember CLI may use alternative rules for resolving factories. After optionally adding dependencies to the requested factory, that factory is cached and returned.
 
 Ember's container should be viewed as an implementation detail, and is not part of the supported public API.
 

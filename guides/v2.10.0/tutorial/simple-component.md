@@ -65,7 +65,7 @@ Our template files (with the `.hbs` file extension) are written using the
 [Handlebars](../../templates/handlebars-basics) syntax, which consists of
 regular HTML elements mixed with dynamic content in double curly braces:
 `{{ }}`. The variables inside the curly braces represent properties from our
-Javascript source file. If the value of a property in our source file changes,
+JavaScript source file. If the value of a property in our source file changes,
 the corresponding value in the template will change as well.
 
 Our new `rental-listing` component will manage how a user sees and interacts with a rental.

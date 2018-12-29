@@ -1,6 +1,6 @@
 Testing is a core part of the Ember framework and its development cycle.
 
-[QUnit](http://qunitjs.com/) is the default testing framework for this guide, but others are supported too, through addons such as [ember-mocha](https://github.com/emberjs/ember-mocha).
+[QUnit][] is the default testing framework for this guide, but others are supported too, through addons such as [ember-mocha](https://github.com/emberjs/ember-mocha).
 
 The testing pattern presented below is consistent across different testing frameworks. Only the setup test functions from [ember-qunit](https://github.com/emberjs/ember-qunit) needs to be replaced with the respective setup functions in the testing addon used in order to use other testing frameworks.
 
@@ -68,13 +68,13 @@ Examples of Container Tests are:
 * A serializer properly converts the blog request payload into a blog post model object.
 * Blog dates are properly formatted through a `time` service.
 
-You can read more about these type of tests in the [Testing Routes] and [Testing Controllers] section.
+You can read more about these type of tests in the [Testing Routes][] and [Testing Controllers][] section.
 
 ### Rendering Tests
 
-If we need to test the interactions between various parts of the application, such as behaviour between UI controls we can utilize Rendering Tests. 
+If we need to test the interactions between various parts of the application, such as behavior between UI controls we can utilize Rendering Tests. 
 
-Rendering Tests are, as the name suggests, rendering components and helpers by verifying the correct behaviour when the component or helper interacts with the system in the same way that it will within the context of the application, including being rendered from a template and receiving Ember's lifecycle hooks.
+Rendering Tests are, as the name suggests, rendering components and helpers by verifying the correct behavior when the component or helper interacts with the system in the same way that it will within the context of the application, including being rendered from a template and receiving Ember's lifecycle hooks.
 
 In terms of setting up the test – Rendering Tests are roughly similar to Container Tests but instead of using `setupTest` from ember-qunit, we import and invoke `setupRenderingTest` to render arbitrary templates, including components and helpers (`setupRenderingTest` is actually using `setupTest` underneath so everything we had from Container Tests are still applicable.)
 
@@ -112,13 +112,13 @@ Examples of Rendering Tests are:
 
 Rendering Tests are used to test Components and Helpers where we need to render a layout and assert some interaction byproduct occurs.
 
-You can read more about it in the [Testing Components] or the [Testing Helpers] section.
+You can read more about it in the [Testing Components][] or the [Testing Helpers][] section.
 
 ### Application Tests
 
 Finally if we are looking to test user interaction and application flow in order to verify user stories or a feature from an end-user perspective, we can use Application Tests. In these kinds of tests, we interact with the application in the same ways that a user would, such as filling out form fields and clicking buttons. Application tests ensure that the interactions within a project are basically functional, the core features of a project have not regressed, and the project's goals are being met.
 
-Similar to how Rendering Tests builds on top of Container Tests, to setup Application Tests, we import a setup method called `setupApplicationTest` from `ember-qunit` (this also uses `setupTest` underneath.) Unlike Rendering Tests, however, we import the `visit` helper from ember-test-helpers instead of the `render` helper. The visit helper is used to visit a route in the application where we need to assert some end-user behaviour.
+Similar to how Rendering Tests builds on top of Container Tests, to setup Application Tests, we import a setup method called `setupApplicationTest` from `ember-qunit` (this also uses `setupTest` underneath.) Unlike Rendering Tests, however, we import the `visit` helper from ember-test-helpers instead of the `render` helper. The visit helper is used to visit a route in the application where we need to assert some end-user behavior.
 
 ```javascript {data-filename=tests/acceptance/post-creation-test.js}
 import { module, test } from 'qunit';
@@ -148,7 +148,7 @@ Examples of Application Tests are:
 * After saving a new post successfully, a user is then shown the list of prior posts.
 * A visitor does not have access to the admin panel.
 
-You can read more about how to create these kinds of tests in the [Application tests] section.
+You can read more about how to create these kinds of tests in the [Application tests][] section.
 
 ### Testing Blueprints
 
@@ -189,7 +189,7 @@ Run your tests with `ember test` on the command-line. You can re-run your tests 
 Tests can also be executed when you are running a local development server (started by running `ember server`),
 at the `/tests` URI which renders the `tests/index.html` template.
 
-These commands run your tests using [Testem] to make testing multiple browsers very easy.
+These commands run your tests using [Testem][] to make testing multiple browsers very easy.
 You can configure Testem using the `testem.js` file in your application root.
 
 #### Choosing the Tests to Run
@@ -204,7 +204,6 @@ run `ember test --module='Unit | Service | location'`.
 [QUnit]: http://qunitjs.com/
 [Testem]: https://github.com/airportyh/testem
 [Application tests]: ./acceptance
-[Testing Basics]: ./unit-testing-basics
 [Testing Components]: ./testing-components
 [Testing Controllers]: ./testing-controllers
 [Testing Routes]: ./testing-routes

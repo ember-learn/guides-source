@@ -123,7 +123,7 @@ for it to finish before running.
 
 The helper method will always be called with the current Application as the
 first parameter. Other parameters need to be provided when calling the helper. Helpers need to be registered prior to calling
-`startApp`, but ember-cli will take care of it for you.
+`startApp`, but Ember CLI will take care of it for you.
 
 Here is an example of a non-async helper:
 

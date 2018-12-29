@@ -8,7 +8,7 @@ Ember Data ships with 3 serializers. The
 [`JSONAPISerializer`](https://www.emberjs.com/api/ember-data/release/classes/DS.JSONAPISerializer)
 is the default serializer and works with JSON API backends. The
 [`JSONSerializer`](https://www.emberjs.com/api/ember-data/release/classes/DS.JSONSerializer)
-is a simple serializer for working with single json object or arrays of records. The
+is a simple serializer for working with single JSON object or arrays of records. The
 [`RESTSerializer`](https://www.emberjs.com/api/ember-data/release/classes/DS.RESTSerializer)
 is a more complex serializer that supports sideloading and was the default
 serializer before 2.0.
@@ -640,8 +640,8 @@ export default DS.JSONSerializer.extend(DS.EmbeddedRecordsMixin, {
 If you do not overwrite `attrs` for a specific relationship, the
 `EmbeddedRecordsMixin` will behave in the following way:
 
-BelongsTo: `{ serialize: 'id', deserialize: 'id' }`
-HasMany:   `{ serialize: false, deserialize: 'ids' }`
+belongsTo: `{ serialize: 'id', deserialize: 'id' }`
+hasMany:   `{ serialize: false, deserialize: 'ids' }`
 
 
 There is an option of not embedding JSON in the serialized payload by

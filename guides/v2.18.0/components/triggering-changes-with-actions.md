@@ -304,7 +304,7 @@ that argument will be passed to `sendMessage` as its second argument
 
 In our case, the explicit argument that we pass to `onConfirm` will be the required `messageText`.
 However, remember that internally our `button-with-confirmation` component does not know or care that it is being used in a messaging application.
-Therefore within the component's javascript file,
+Therefore within the component's JavaScript file,
 we will use a property `confirmValue` to represent that argument and pass it to `onConfirm` as shown here:
 
 ```javascript {data-filename="app/components/button-with-confirmation.js"}

@@ -40,7 +40,8 @@ Opening that file will reveal some initial code that will try to go to the `list
 
 Since we haven't added any functionality to our application yet, we'll use this first test to get started on running tests in our app.
 
-To do that, replace occurrences of `/list-rentals` in the generated test with `/`. The test will start our app at the base url, `http://localhost:4200/`, and then do a basic check that the page has finished loading and that the url is what we want it to be.
+To do that, replace occurrences of `/list-rentals` in the generated test with `/`. The test will start our app at the base URL, `http://localhost:4200/`, and then do a basic check that the page has finished loading and that the 
+URL is what we want it to be.
 
 ```javascript {data-filename="tests/acceptance/list-rentals-test.js" data-diff="-6,+7,-8,+9,-12,+13"}
 import { test } from 'qunit';
@@ -68,7 +69,7 @@ A few of things to note in this simple test:
 
 Now run your test suite with the CLI command, `ember test --server`.
 
-By default, when you run `ember test --server`, Ember CLI runs the [Testem test runner](https://github.com/testem/testem), which runs Qunit in Chrome and [PhantomJS](http://phantomjs.org/).
+By default, when you run `ember test --server`, Ember CLI runs the [Testem test runner](https://github.com/testem/testem), which runs QUnit in Chrome and [PhantomJS](http://phantomjs.org/).
 
 Our launched Chrome web browser now shows 9 successful tests. If you toggle the box labeled "Hide passed tests", you should see our successful acceptance test, along with 8 passing ESLint tests. Ember tests each file you create for syntax issues (known as "linting") using [ESLint](http://eslint.org/).
 

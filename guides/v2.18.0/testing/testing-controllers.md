@@ -1,5 +1,5 @@
 _Unit testing methods and computed properties follows previous patterns shown
-in [Unit Testing Basics] because Ember.Controller extends Ember.Object._
+in [Unit Testing Basics][] because Ember.Controller extends Ember.Object._
 
 Unit testing controllers is very simple using the unit test helper which is part
 of the ember-qunit framework.
@@ -33,7 +33,7 @@ export default Controller.extend({
 ```
 
 The `setProps` action directly sets one property, and calls the method to set the other.
-In our generated test, ember-cli already uses the `moduleFor` helper to set up a test
+In our generated test, Ember CLI already uses the `moduleFor` helper to set up a test
 container:
 
 ```javascript {data-filename=tests/unit/controllers/posts-test.js}
@@ -152,4 +152,5 @@ test('should modify the post model', function(assert) {
 ```
 
 [Unit Testing Basics]: ../unit-testing-basics/
-[needs]: ../../controllers/dependencies-between-controllers/
+<!-- This definition flagged as not used - should be deleted? -->
+<!-- [needs]: ../../controllers/dependencies-between-controllers/ -->

@@ -20,12 +20,14 @@
   },
   "main": "index.js",
   "scripts": {
+    "lint:md": "remark . --frail",
     "release": "np",
     "test": "mocha",
     "test-watch": "npm test -- -w"
   },
   "devDependencies": {
     "chai": "^4.1.2",
+    "ember-dictionary": "^0.1.13",
     "eslint": "^5.0.1",
     "eslint-config-airbnb-base": "^13.0.0",
     "eslint-plugin-import": "^2.8.0",
@@ -33,7 +35,19 @@
     "markdown-link-extractor": "^1.1.1",
     "mocha": "^5.0.0",
     "np": "*",
+    "remark-cli": "^6.0.1",
+    "remark-lint": "^6.0.4",
+    "remark-preset-lint-consistent": "^2.0.2",
+    "remark-preset-lint-recommended": "^3.0.2",
+    "remark-retext": "^3.1.2",
     "require-directory": "^2.1.1",
+    "retext-contractions": "^2.1.3",
+    "retext-english": "^3.0.2",
+    "retext-indefinite-article": "^1.1.5",
+    "retext-repeated-words": "^1.2.2",
+    "retext-spell": "^2.4.0",
+    "retext-syntax-urls": "^1.0.1",
+    "unified": "^7.0.2",
     "walk-sync": "^1.0.0"
   }
 }

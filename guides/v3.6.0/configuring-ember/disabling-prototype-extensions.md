@@ -17,7 +17,7 @@ objects in the following ways:
   is now discouraged and not covered in recent versions of the Guides.
 
 This is the extent to which Ember.js enhances native prototypes. We have
-carefully weighed the tradeoffs involved with changing these prototypes,
+carefully weighed the trade-offs involved with changing these prototypes,
 and recommend that most Ember.js developers use them. These extensions
 significantly reduce the amount of boilerplate code that must be typed.
 

@@ -1,6 +1,6 @@
 **Note:** 
-  * _For basic Ember app development scenarios, you don't need to understand the run loop or use it directly. All common paths are paved nicely for you and don't require working with the run loop._
-  * _However, the run loop will be helpful to understand the internals of Ember and to assist in customized performance tuning by manually batching costly work._
+* _For basic Ember app development scenarios, you don't need to understand the run loop or use it directly. All common paths are paved nicely for you and don't require working with the run loop._
+* _However, the run loop will be helpful to understand the internals of Ember and to assist in customized performance tuning by manually batching costly work._
 
 Ember's internals and most of the code you will write in your applications takes place in a run loop.
 The run loop is used to batch, and order (or reorder) work in a way that is most effective and efficient.
@@ -16,7 +16,7 @@ For example:
 - `setTimeout` and `setInterval` callbacks
 - `postMessage` and `messageChannel` event handlers
 - AJAX callbacks
-- Websocket callbacks
+- WebSocket callbacks
 
 ## Why is the run loop useful?
 
