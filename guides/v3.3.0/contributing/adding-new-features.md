@@ -17,19 +17,18 @@ possible.
 
 Urgent bugfixes are bugfixes that need to be applied to the existing
 release branch. If possible, they should be made on master and prefixed
-with [BUGFIX release].
+with `[BUGFIX release]`.
 
 #### Beta Bug Fixes
 
 Beta bugfixes are bugfixes that need to be applied to the beta branch.
-If possible, they should be made on master and tagged with [BUGFIX
-beta].
+If possible, they should be made on master and tagged with `[BUGFIX beta]`.
 
 #### Security Fixes
 
 Security fixes need to be applied to the beta branch, the current
 release branch, and the previous tag. If possible, they should be made
-on master and tagged with [SECURITY].
+on master and tagged with `[SECURITY]`.
 
 ### Features
 
@@ -53,7 +52,7 @@ for the feature are passing against the current state of the feature.
 #### Commits
 
 Commits related to a specific feature should include  a prefix like
-[FEATURE htmlbars]. This will allow us to quickly identify all commits
+`[FEATURE htmlbars]`. This will allow us to quickly identify all commits
 for a specific feature in the future. Features will never be applied to
 beta or release branches. Once a beta or release branch has been cut, it
 contains all of the new features it will ever have.
@@ -112,11 +111,11 @@ remove the conditionals for features in the list.
 For a new PR:
 
 1. Travis will test against master with all feature flags on.
-2. If a commit is tagged with [BUGFIX beta], Travis will also
+2. If a commit is tagged with `[BUGFIX beta]`, Travis will also
    cherry-pick the commit into beta, and run the tests on that
    branch. If the commit doesn't apply cleanly or the tests fail, the
    tests will fail.
-3. If a commit is tagged with [BUGFIX release], Travis will also cherry-pick
+3. If a commit is tagged with `[BUGFIX release]`, Travis will also cherry-pick
    the commit into release, and run the test on that branch. If the commit
    doesn't apply cleanly or the tests fail, the tests will fail.
 

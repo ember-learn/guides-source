@@ -38,7 +38,7 @@ handled by [`defeatureify`](https://github.com/thomasboyt/defeatureify).
 
 ## Feature Listing ([`FEATURES.md`](https://github.com/emberjs/ember.js/blob/master/FEATURES.md))
 
-When a developer adds a new feature to the `canary` channel (i.e. the `master` branch on github), they
+When a developer adds a new feature to the `canary` channel (i.e. the `master` branch on GitHub), they
 also add an entry to [`FEATURES.md`](https://github.com/emberjs/ember.js/blob/master/FEATURES.md)
 explaining what the feature does, and linking to their originating pull request.
 This list is kept current, and reflects what is available in each channel

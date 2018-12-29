@@ -44,7 +44,7 @@ A validation tool which checks for common issues in your JavaScript. You'd usual
 
 An example of some of the options you can configure:
 [ESLint](http://eslint.org/docs/rules/)
-[JSlint](http://jshint.com/docs/options/)
+[JSLint](http://jshint.com/docs/options/)
 
 
 ## Polyfill

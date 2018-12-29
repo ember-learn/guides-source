@@ -1,4 +1,4 @@
-_Testing helpers follows previous patterns shown in [Testing Components],
+_Testing helpers follows previous patterns shown in [Testing Components][],
 because helpers are rendered to templates just like components._
 
 Helpers are best tested with integration tests, but can also be tested with unit
@@ -6,7 +6,7 @@ tests. Integration tests will provide better coverage for helpers, as it more
 closely simulates the lifecycle of a helper than in isolation.
 
 We're going to demonstrate how to test helpers by testing the `format-currency`
-helper from [Writing Helpers].
+helper from [Writing Helpers][].
 
 > You can follow along by generating your own helper with `ember generate helper
 > format-currency`.
@@ -43,12 +43,12 @@ test('formats 199 with $ as currency sign', function(assert) {
 });
 ```
 
-As seen in the [Writing Helpers] guide. The helper function expects the unnamed
+As seen in the [Writing Helpers][] guide. The helper function expects the unnamed
 arguments as an array as the first argument. It expects the named arguments as
 an object as the second argument.
 
 Now we can move on to an integration test. Integration testing helpers is done
-with the `moduleForComponent` helpers, as shown in [Testing Components].
+with the `moduleForComponent` helpers, as shown in [Testing Components][].
 
 ```javascript {data-filename=tests/integration/helpers/format-currency-test.js}
 import { moduleForComponent, test } from 'ember-qunit';

@@ -15,7 +15,7 @@ These guides are written in Markdown and are
 [available on GitHub](https://github.com/ember-learn/guides-source/).
 If there is something missing, or you find a typo or
 mistake, please help us by filing an issue or submitting a pull
-request. You can easily jump to Github's editor for any page by
+request. You can easily jump to GitHub's editor for any page by
 clicking the pencil icon in the upper right corner.
 
 Good luck!

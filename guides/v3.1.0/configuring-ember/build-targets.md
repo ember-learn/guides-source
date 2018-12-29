@@ -3,7 +3,7 @@ Ember CLI by default uses [Babel.js](https://babeljs.io/) to allow you to use to
 It will ensure that you can use the newest features in the language and know that they will be transformed to JavaScript that can run in every browser you support.
 That usually means generating ES5-compatible code that can work on any modern browser, back to Internet Explorer 11.
 
-But ES5 code is usually more verbose than the original Javascript, and over time, as browsers gain the ability to execute the new features in JavaScript and older browsers lose users, many users won't really want this verbose code as it increases their app's size and load times.
+But ES5 code is usually more verbose than the original JavaScript, and over time, as browsers gain the ability to execute the new features in JavaScript and older browsers lose users, many users won't really want this verbose code as it increases their app's size and load times.
 
 That is why Ember CLI exposes a way of configuring what browsers your app targets.
 It can figure out automatically what features are supported by the browsers you are targeting,

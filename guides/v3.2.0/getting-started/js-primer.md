@@ -119,7 +119,7 @@ console.log(myObject); // {name: "Leah Silber"}
 
 ### `for` loops
 
-Something that might be confusing is the behaviour of `let` in `for` loops.
+Something that might be confusing is the behavior of `let` in `for` loops.
 
 As we saw before, `let` declarations are scoped to the block they belong to.
 In `for` loops, any variable declared in the `for` syntax belongs to the loop's block.

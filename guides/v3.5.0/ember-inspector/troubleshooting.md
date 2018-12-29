@@ -14,7 +14,7 @@ Some of the reasons this may happen:
 
 - This is not an Ember application
 - You are using an old Ember version ( < 1.0 ).
-- You are using a protocol other than http or https. For file:// protocol,
+- You are using a protocol other than HTTP or HTTPS. For file:// protocol,
 follow [these steps](../installation/#toc_file-protocol).
 - The Ember application is inside a sandboxed iframe with no URL (if you
   are using JS Bin, follow [these steps](#toc_using-the-inspector-with-js-bin).

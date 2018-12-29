@@ -15,7 +15,7 @@ For example:
 - `setTimeout` and `setInterval` callbacks
 - `postMessage` and `messageChannel` event handlers
 - AJAX callbacks
-- Websocket callbacks
+- WebSocket callbacks
 
 ## Why is the run loop useful?
 
@@ -241,12 +241,12 @@ $('a').click(() => {
 Although autoruns are convenient, they are suboptimal.
 The current JS frame is allowed to end before the run loop is flushed,
 which sometimes means the browser will take the opportunity to do other things, like garbage collection.
-GC running in between data changing and DOM rerendering can cause visual lag and should be minimized.
+Garbage collection running in between data changing and DOM rerendering can cause visual lag and should be minimized.
 
 Relying on autoruns is not a rigorous or efficient way to use the run loop.
 Wrapping event handlers manually are preferred.
 
-## How is run loop behaviour different when testing?
+## How is run loop behavior different when testing?
 
 When your application is in _testing mode_ then Ember will throw an error if you try to schedule work
 without an available run loop.

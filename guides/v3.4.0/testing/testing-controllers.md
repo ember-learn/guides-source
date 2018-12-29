@@ -1,5 +1,5 @@
 _Container testing methods and computed properties follow previous patterns shown
-in [Testing Basics] because Ember.Controller extends Ember.Object._
+in [Testing Basics][] because Ember.Controller extends Ember.Object._
 
 Controllers can be tested using the `setupTest` helper which is part
 of the ember-qunit framework. The tests written for instances like `Ember.Controller` are
@@ -34,7 +34,7 @@ export default Controller.extend({
 ```
 
 The `setProps` action directly sets one property, and calls the method to set the other.
-In our generated test file, ember-cli already uses the `module` and the `setupTest` helpers to set up a test
+In our generated test file, Ember CLI already uses the `module` and the `setupTest` helpers to set up a test
 container:
 
 ```javascript {data-filename=tests/unit/controllers/posts-test.js}

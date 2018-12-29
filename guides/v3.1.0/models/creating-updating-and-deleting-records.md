@@ -43,7 +43,7 @@ Ember Data takes care of tracking the state of each record for
 you. This allows Ember Data to treat newly created records differently
 from existing records when saving.
 
-By default, Ember Data will `POST` newly created records to their type url.
+By default, Ember Data will `POST` newly created records to their type URL.
 
 ```javascript
 let post = store.createRecord('post', {

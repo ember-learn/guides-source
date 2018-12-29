@@ -237,7 +237,7 @@ After starting the server we should now see some end to end maps functionality s
 
 You may now either move onto the [next feature](../subroutes/), or continue here to test the maps feature we just added.
 
-###  Unit testing a Service
+### Unit testing a Service
 
 We'll use a unit test to validate the service.
 Unit tests are more isolated than integration tests and acceptance tests,
@@ -245,7 +245,7 @@ and are intended for testing specific logic within a class.
 
 For our service unit test, we'll want to verify that locations that have been previously loaded are fetched from cache, while new locations are created using the utility.
 We will isolate our tests from actually calling Google Maps by stubbing our map utility.
-On line 6 of `maps-test.js` below we create an Ember object to simulate the behavior of the utility, but instead of creating a google map, we return an empty JavaScript object.
+On line 6 of `maps-test.js` below we create an Ember object to simulate the behavior of the utility, but instead of creating a Google map, we return an empty JavaScript object.
 
 To instantiate the object under test, use the `this.subject` function, passing in initial values as arguments.
 In our case we are passing in our fake map utility object in the first test, and passing a cache object for the second test.

@@ -186,7 +186,7 @@ export default Route.extend({
 });
 ```
 
-This behaviour is similar to `link-to`,
+This behavior is similar to `link-to`,
 which also lets you opt into a `replaceState` transition via `replace=true`.
 
 ### Map a controller's property to a different query param key

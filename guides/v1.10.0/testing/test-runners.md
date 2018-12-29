@@ -64,7 +64,7 @@ npm install -g --save-dev testem
 That's it. Everything you need is installed and configured. Let's go over the configuration in more detail.
 
 * `framework`
- - This represents the testing framework that you are going to be using. Qunit is what we are using in this example. `Testem` takes care of getting the qunit library loaded up so you don't have to worry about it.
+ - This represents the testing framework that you are going to be using. QUnit is what we are using in this example. `Testem` takes care of getting the QUnit library loaded up so you don't have to worry about it.
 * `src_files`
  - This represents which of your source files (including both production and test code) that you want `testem` to load when running tests.
 * `launch_in_dev`
@@ -111,7 +111,7 @@ To get started using `karma` you will need to install a few node modules. Here i
 }
 ```
 
-The three dependencies are `karma` itself, `karma-qunit` which includes everything that you will need to run qunit tests and `karma-phantomjs-launcher` which is what `karma` will use to fire up an instance of the headless PhantomJS browser to run your tests in. There are a number of different launchers that you can plug into the `karma` test runner including but not limited to Google Chrome, FireFox, Safari, IE, and even [Sauce Labs][sauce_labs]. To see a complete list of all of the available launchers check out [Karma's Github][karma_github].
+The three dependencies are `karma` itself, `karma-qunit` which includes everything that you will need to run qunit tests and `karma-phantomjs-launcher` which is what `karma` will use to fire up an instance of the headless PhantomJS browser to run your tests in. There are a number of different launchers that you can plug into the `karma` test runner including but not limited to Google Chrome, FireFox, Safari, IE, and even [Sauce Labs][sauce_labs]. To see a complete list of all of the available launchers check out [Karma's GitHub][karma_github].
 
 Now that you've got a `package.json` containing everything that you will need to get started with `karma` run the following command (in the same directory as your `package.json` file) to download and install everything.
 

@@ -244,7 +244,7 @@ After starting the server we should now see some end to end maps functionality s
 
 You may now either move onto the [next feature](../subroutes/), or continue here to test the maps feature we just added.
 
-###  Unit testing a Service
+### Unit testing a Service
 
 We'll use a unit test to validate the service.
 Unit tests are more isolated than integration tests and acceptance tests,

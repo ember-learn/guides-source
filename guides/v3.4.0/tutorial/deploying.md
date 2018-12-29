@@ -37,7 +37,7 @@ scp -r dist/* myserver.com:/var/www/public/
 [Surge.sh](http://surge.sh/) allows you to publish any folder to the web for free.
 To deploy an Ember application you can simply deploy the folder produced by `ember build`.
 
-You will need to have the surge cli tool installed:
+You will need to have the Surge CLI tool installed:
 
 ```bash
 npm install -g surge
@@ -65,7 +65,7 @@ mv dist/index.html dist/200.html
 surge dist funny-name.surge.sh
 ```
 
-Note we are building with the google maps api key as shown above for UNIX platforms.
+Note we are building with the Google maps API key as shown above for UNIX platforms.
 For windows you will need to set the variable according the example in the previous section.
 
 ## Servers

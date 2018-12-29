@@ -27,7 +27,7 @@ These libraries are part of the Ember asset output, but development of them take
 * [https://github.com/ebryn/backburner.js](https://github.com/ebryn/backburner.js)
 
 ## `DAG Map`
-* **dag-map** - A directed acyclic graph data structure for javascript
+* **dag-map** - A directed acyclic graph data structure for JavaScript
 * [https://github.com/krisselden/dag-map](https://github.com/krisselden/dag-map)
 
 ## `Glimmer 2`
@@ -50,7 +50,7 @@ These libraries are part of the Ember asset output, but development of them take
 
 ## `router.js`
 
-* **router.js** - A lightweight JavaScript library that builds on route-recognizer and rsvp to provide an API for handling routes.
+* **router.js** - A lightweight JavaScript library that builds on route-recognizer and RSVP to provide an API for handling routes.
 * [https://github.com/tildeio/router.js](https://github.com/tildeio/router.js)
 
 ## `RSVP`

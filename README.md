@@ -27,6 +27,10 @@ want a buddy to pair with, you can join the
 [dev-ember-learning channel](https://discordapp.com/channels/480462759797063690/480777444203429888)
 in the [Ember Community Discord](https://discordapp.com/invite/zT3asNS).
 
+## Linting/spellchecking
+
+The guides are spellchecked and linted for markdown consistency. You can test your contributions by running `npm run lint::md`. Linting and spellchecking must pass or they will fail in Travis-CI.  See [CONTRIBUTING.md](CONTRIBUTING.md) for more information on linting and spellchecking.
+
 ## Project layout
 
 The Guides content takes the form of Markdown files (just like most READMEs).

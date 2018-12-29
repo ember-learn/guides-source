@@ -12,7 +12,7 @@ are a library author yourself, you can register it using:
 Ember.libraries.register(libraryName, libraryVersion);
 ```
 
-#### Ember Cli
+#### Ember CLI
 
 Ember CLI automatically adds your application's name and version to the list
 thanks to the [ember-cli-app-version] addon.

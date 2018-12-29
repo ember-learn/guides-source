@@ -1,5 +1,5 @@
 _Container testing methods and computed properties follow previous patterns shown
-in [Testing Basics] because Ember.Route extends Ember.Object._
+in [Testing Basics][] because Ember.Route extends Ember.Object._
 
 Testing routes can be done both via application tests or container tests. Application tests
 will likely provide better coverage for routes because routes are typically used
@@ -34,7 +34,7 @@ export default Route.extend({
 });
 ```
 
-In this route we've [separated our concerns](http://en.wikipedia.org/wiki/Separation_of_concerns):
+In this route we've [separated our concerns][]:
 The action `displayAlert` contains the code that is called when the action is
 received, and the private function `_displayAlert` performs the work. While not
 necessarily obvious here because of the small size of the functions, separating

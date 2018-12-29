@@ -105,7 +105,7 @@ without hardcoding your paths throughout your config file.
 
 
 The second two objects are configuration objects for the ```emberTemplates``` and ```watch``` tasks.
-details on the options and configuration of these tasks is found in their respective github
+details on the options and configuration of these tasks is found in their respective GitHub
 repositories.  Grunt tasks typically have easily read README.md files that explain the options 
 and configurations for that package.
 
@@ -138,4 +138,4 @@ tutorial is based on is found at http://www.github.com/stevekane/precompiled-tem
 As a bonus, if you are interested in using ```Emblem.js``` which has a HAML-like syntax to 
 build your templates, there is a grunt task for precompiling emblem.js templates called 
 ```grunt-emblem```.  The steps needed to configure this task are similar to the ones shown
-but be sure to refer to the projects github repository for details.
+but be sure to refer to the projects GitHub repository for details.

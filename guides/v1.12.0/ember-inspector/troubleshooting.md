@@ -1,6 +1,6 @@
 Below are some common issues you may encounter, along with the necessary
 steps to solve them. If your issue is not listed below, please submit an
-issue to the inspector's [Github repo][ember-inspector-github].
+issue to the inspector's [GitHub repo][ember-inspector-github].
 
 ### Ember Application Not Detected
 
@@ -76,7 +76,7 @@ behind.
 
 Unfortunately we don't have control over this process, so if you need
 the latest inspector version, you will have to download and install the inspector
-manually from [Github][ember-inspector-github].
+manually from [GitHub][ember-inspector-github].
 
 
 [ember-inspector-github]: https://github.com/emberjs/ember-inspector

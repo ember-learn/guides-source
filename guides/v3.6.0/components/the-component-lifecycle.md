@@ -92,7 +92,7 @@ It does not run when the re-render has been initiated internally.
 Since the `didReceiveAttrs` hook is called every time a component's attributes are updated whether on render or re-render,
 you can use the hook to effectively act as an observer, ensuring code is executed every time an attribute changes.
 
-For example, if you have a component that renders based on a json configuration, but you want to provide your component with the option of taking the config as a string,
+For example, if you have a component that renders based on a JSON configuration, but you want to provide your component with the option of taking the config as a string,
 you can leverage `didReceiveAttrs` to ensure the incoming config is always parsed.
 
 ```javascript {data-filename=app/components/profile-editor.js}
