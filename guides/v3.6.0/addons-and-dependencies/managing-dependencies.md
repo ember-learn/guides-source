@@ -1,24 +1,36 @@
-As you're developing your Ember app, you'll likely run into common scenarios that aren't addressed by Ember itself,
-such as authentication or using SASS for your stylesheets.
-Ember CLI provides a common format called [Ember Addons](#toc_addons) for distributing reusable libraries
-to solve these problems.
-Additionally, you may want to make use of front-end dependencies like a CSS framework
-or a JavaScript datepicker that aren't specific to Ember apps.
+As you're developing your Ember app, you are likely to run into common scenarios that aren't addressed by Ember itself.
+Perhaps you want to use a CSS preprocessor to write your stylesheets, or you want to use a popular JS library, or maybe
+you want to import components written by a different department within your organisation.
+
+Ember CLI provides a common format called [Ember Addons](#toc_addons) for distributing reusable libraries to solve some
+of these problems.  Additionally, you may want to make use of front-end dependencies like a CSS framework or a JavaScript
+datepicker that aren't specific to Ember apps.
 
 ## Addons
 
-Ember Addons can be installed using [Ember CLI](http://ember-cli.com/extending/#developing-addons-and-blueprints)
-(e.g. `ember install ember-cli-sass`).
-Addons may bring in other dependencies by modifying your project's `package.json` file automatically.
+Addons are JavaScript packages that integrate with Ember. For example, [`ember-cli-sass`](https://github.com/aexmachina/ember-cli-sass)
+is an addon that allows you to use SASS/SCSS in your applications. You can install it using the Ember CLI with the following command:
 
-You can find listings of addons on [Ember Observer](http://emberobserver.com).
+```bash
+ember install ember-cli-sass
+```
+
+This will modify your `package.json` (and `package-lock.json`), typically bringing in other dependencies. Some addons will also add
+additional files to your projects when relevant.
+
+There are many addons that cover all kinds of use cases. For more detail, as well as examples of what addons can do,
+we invite you to have a look at the [Ember CLI documentation](https://cli.emberjs.com/release/basic-use/using-addons/).
+
+The Ember community publishes and maintains many addons, and it can be difficult to know if one (or many!) exists that covers
+your needs. The website [Ember Observer](https://www.emberobserver.com/) keeps an up-to-date index of Ember Addons, sorted by
+categories, and rated according to objective metrics. If you are looking for an addon, we recommend that you start there!
 
 ## Regular npm packages
 
-While dependencies can be managed in several ways, 
-it's worth noting that the process can be greatly simplified for new developers by using ember-auto-import, 
-which offers zero config imports from npm packages. 
-It's easily installed using `ember install ember-auto-import`. 
+While dependencies can be managed in several ways,
+it's worth noting that the process can be greatly simplified for new developers by using ember-auto-import,
+which offers zero config imports from npm packages.
+It's easily installed using `ember install ember-auto-import`.
 For further usage instructions, please follow the [project README](https://github.com/ef4/ember-auto-import).
 
 ## Other assets
