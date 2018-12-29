@@ -1,0 +1,3 @@
+---
+redirect: understanding-ember/index
+---
