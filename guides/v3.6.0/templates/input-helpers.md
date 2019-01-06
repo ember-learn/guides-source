@@ -37,7 +37,7 @@ unquoted, these values will be bound to a property on the template's current
 rendering context. For example:
 
 ```handlebars
-{{input type="text" value=firstName disabled=entryNotAllowed size="50"}}
+{{input type="text" value=this.firstName disabled=this.entryNotAllowed size="50"}}
 ```
 
 Will bind the `disabled` attribute to the value of `entryNotAllowed` in the
@@ -48,7 +48,7 @@ current context.
 To dispatch an action on specific events, such as `enter` or `key-press`, use the following
 
 ```handlebars
-{{input value=firstName key-press=(action "updateFirstName")}}
+{{input value=this.firstName key-press=(action "updateFirstName")}}
 ```
 
 [Event Names](https://www.emberjs.com/api/ember/release/classes/Component) must be dasherized.
@@ -60,7 +60,7 @@ You can also use the
 helper to create a checkbox by setting its `type`:
 
 ```handlebars
-{{input type="checkbox" name="isAdmin" checked=isAdmin}}
+{{input type="checkbox" name="isAdmin" checked=this.isAdmin}}
 ```
 
 Checkboxes support the following properties:
@@ -79,7 +79,7 @@ Which can be bound or set as described in the previous section.
 ## Text Areas
 
 ```handlebars
-{{textarea value=name cols="80" rows="6"}}
+{{textarea value=this.name cols="80" rows="6"}}
 ```
 
 Will bind the value of the text area to `name` on the current context.
@@ -109,7 +109,7 @@ Will bind the value of the text area to `name` on the current context.
 You might need to bind a property dynamically to an input if you're building a flexible form, for example. To achieve this you need to use the [`{{get}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/get?anchor=get) and [`{{mut}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/mut?anchor=mut) in conjunction like shown in the following example:
 
 ```handlebars
-{{input value=(mut (get person field))}}
+{{input value=(mut (get this.person this.field))}}
 ```
 
 The `{{get}}` helper allows you to dynamically specify which property to bind, while the `{{mut}}` helper allows the binding to be updated from the input. See the respective helper documentation for more detail.

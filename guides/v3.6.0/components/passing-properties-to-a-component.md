@@ -6,8 +6,8 @@ display a blog post:
 
 ```handlebars {data-filename=app/templates/components/blog-post.hbs}
 <article class="blog-post">
-  <h1>{{title}}</h1>
-  <p>{{body}}</p>
+  <h1>{{this.title}}</h1>
+  <p>{{this.body}}</p>
 </article>
 ```
 
@@ -26,7 +26,7 @@ export default Route.extend({
 If we tried to use the component like this:
 
 ```handlebars {data-filename=app/templates/index.hbs}
-{{#each model as |post|}}
+{{#each this.model as |post|}}
   {{blog-post}}
 {{/each}}
 ```
@@ -44,7 +44,7 @@ In order to make a property available to a component, you must pass it
 in like this:
 
 ```handlebars {data-filename=app/templates/index.hbs}
-{{#each model as |post|}}
+{{#each this.model as |post|}}
   {{blog-post title=post.title body=post.body}}
 {{/each}}
 ```
@@ -75,7 +75,7 @@ In addition to passing parameters in by name, you can pass them in by position.
 In other words, you can invoke the above component example like this:
 
 ```handlebars {data-filename=app/templates/index.hbs}
-{{#each model as |post|}}
+{{#each this.model as |post|}}
   {{blog-post post.title post.body}}
 {{/each}}
 ```

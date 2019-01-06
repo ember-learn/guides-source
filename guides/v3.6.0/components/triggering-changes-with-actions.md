@@ -126,8 +126,8 @@ The component template will have a button and a div that shows the confirmation 
 based on the value of `confirmShown`.
 
 ```handlebars {data-filename=app/templates/components/button-with-confirmation.hbs}
-<button {{action "launchConfirmDialog"}}>{{text}}</button>
-{{#if confirmShown}}
+<button {{action "launchConfirmDialog"}}>{{this.text}}</button>
+{{#if this.confirmShown}}
   <div class="confirm-dialog">
     <button class="confirm-submit" {{action "submitConfirm"}}>OK</button>
     <button class="confirm-cancel" {{action "cancelConfirm"}}>Cancel</button>
@@ -329,10 +329,10 @@ To accomplish this,
 we'll first modify the component so that it can be used in block form and we will [yield](../wrapping-content-in-a-component/) `confirmValue` to the block within the `"confirmDialog"` element:
 
 ```handlebars {data-filename=app/templates/components/button-with-confirmation.hbs}
-<button {{action "launchConfirmDialog"}}>{{text}}</button>
-{{#if confirmShown}}
+<button {{action "launchConfirmDialog"}}>{{this.text}}</button>
+{{#if this.confirmShown}}
   <div class="confirm-dialog">
-    {{yield confirmValue}}
+    {{yield this.confirmValue}}
     <button class="confirm-submit" {{action "submitConfirm"}}>OK</button>
     <button class="confirm-cancel" {{action "cancelConfirm"}}>Cancel</button>
   </div>
@@ -377,7 +377,7 @@ We can tell the action to invoke the `sendMessage` action directly on the messag
 ```handlebars {data-filename=app/templates/components/send-message.hbs}
 {{#button-with-confirmation
     text="Click to send your message."
-    onConfirm=(action "sendMessage" "info" target=messaging)
+    onConfirm=(action "sendMessage" "info" target=this.messaging)
     as |confirmValue| }}
   {{input value=confirmValue}}
 {{/button-with-confirmation}}
@@ -472,7 +472,7 @@ component's `deleteCurrentUser` property.
 
 ```handlebars {data-filename=app/templates/components/system-preferences-editor.hbs}
 {{user-profile
-  deleteCurrentUser=(action 'deleteUser' login.currentUser.id)
+  deleteCurrentUser=(action 'deleteUser' this.login.currentUser.id)
 }}
 ```
 
@@ -482,7 +482,7 @@ In our `user-profile.hbs` template we change our action to call `deleteCurrentUs
 
 ```handlebars {data-filename=app/templates/components/user-profile.hbs}
 {{button-with-confirmation
-  onConfirm=(action deleteCurrentUser)
+  onConfirm=(action this.deleteCurrentUser)
   text="Click OK to delete your account."
 }}
 ```

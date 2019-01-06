@@ -36,25 +36,25 @@ Let's update our `rental-listing` component template to use our new helper and p
 <article class="listing">
   <a
     onclick={{action 'toggleImageSize'}}
-    class="image {{if isWide "wide"}}"
+    class="image {{if this.isWide "wide"}}"
   >
-    <img src={{rental.image}} alt="">
+    <img src={{this.rental.image}} alt="">
     <small>View Larger</small>
   </a>
   <div class="details">
-    <h3>{{rental.title}}</h3>
+    <h3>{{this.rental.title}}</h3>
     <div class="detail owner">
-      <span>Owner:</span> {{rental.owner}}
+      <span>Owner:</span> {{this.rental.owner}}
     </div>
     <div class="detail type">
-      <span>Type:</span> {{rental.category}}
-      <span>Type:</span> {{rental-property-type rental.category}} - {{rental.category}}
+      <span>Type:</span> {{this.rental.category}}
+      <span>Type:</span> {{rental-property-type this.rental.category}} - {{this.rental.category}}
     </div>
     <div class="detail location">
-      <span>Location:</span> {{rental.city}}
+      <span>Location:</span> {{this.rental.city}}
     </div>
     <div class="detail bedrooms">
-      <span>Number of bedrooms:</span> {{rental.bedrooms}}
+      <span>Number of bedrooms:</span> {{this.rental.bedrooms}}
     </div>
   </div>
 </article>

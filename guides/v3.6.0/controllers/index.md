@@ -43,15 +43,15 @@ The `BlogPost` model would have properties like:
 In the example below, we can see how the template is using the model properties to display some data.
 
 ```handlebars {data-filename=app/templates/blog-post.hbs}
-<h1>{{model.title}}</h1>
-<h2>by {{model.author}}</h2>
+<h1>{{this.model.title}}</h1>
+<h2>by {{this.model.author}}</h2>
 
 <div class="intro">
-  {{model.intro}}
+  {{this.model.intro}}
 </div>
 <hr>
 <div class="body">
-  {{model.body}}
+  {{this.model.body}}
 </div>
 ```
 
@@ -74,18 +74,18 @@ export default Controller.extend({
 The property `isExpanded` keeps track if the user has expanded the body or not. The action `toggleBody()` provides a way for the user to provide their setting. Both of the them are used in the updated template below.
 
 ```handlebars {data-filename=app/templates/blog-post.hbs}
-<h1>{{model.title}}</h1>
-<h2>by {{model.author}}</h2>
+<h1>{{this.model.title}}</h1>
+<h2>by {{this.model.author}}</h2>
 
 <div class='intro'>
-  {{model.intro}}
+  {{this.model.intro}}
 </div>
 <hr>
 
-{{#if isExpanded}}
+{{#if this.isExpanded}}
   <button {{action "toggleBody"}}>Hide Body</button>
   <div class="body">
-    {{model.body}}
+    {{this.model.body}}
   </div>
 {{else}}
   <button {{action "toggleBody"}}>Show Body</button>

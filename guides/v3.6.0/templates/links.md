@@ -14,7 +14,7 @@ Router.map(function() {
 
 ```handlebars {data-filename=app/templates/photos.hbs}
 <ul>
-  {{#each photos as |photo|}}
+  {{#each this.photos as |photo|}}
     <li>{{#link-to "photos.edit" photo}}{{photo.title}}{{/link-to}}</li>
   {{/each}}
 </ul>
@@ -78,10 +78,10 @@ Router.map(function() {
 
 ```handlebars {data-filename=app/templates/photo/index.hbs}
 <div class="photo">
-  {{body}}
+  {{this.body}}
 </div>
 
-<p>{{#link-to "photos.photo.comment" primaryComment}}Main Comment{{/link-to}}</p>
+<p>{{#link-to "photos.photo.comment" this.primaryComment}}Main Comment{{/link-to}}</p>
 ```
 
 If you specify only one model, it will represent the innermost dynamic segment `:comment_id`.
@@ -91,7 +91,7 @@ Alternatively, you could pass both a photo's ID and a comment to the component:
 
 ```handlebars {data-filename=app/templates/photo/index.hbs}
 <p>
-  {{#link-to 'photo.comment' 5 primaryComment}}
+  {{#link-to 'photo.comment' 5 this.primaryComment}}
     Main Comment for the Next Photo
   {{/link-to}}
 </p>
@@ -110,7 +110,7 @@ The `query-params` helper can be used to set query params on a link:
 {{#link-to "posts" (query-params direction="asc")}}Sort{{/link-to}}
 
 // Binding is also supported
-{{#link-to "posts" (query-params direction=otherDirection)}}Sort{{/link-to}}
+{{#link-to "posts" (query-params direction=this.otherDirection)}}Sort{{/link-to}}
 ```
 
 For more information on how to use query parameters see the [query parameters](../../routing/query-params/) section in Routing.
@@ -141,7 +141,7 @@ arguments to the `link-to` component:
 
 ```handlebars
 <p>
-  {{link-to "Edit this photo" "photo.edit" photo class="btn btn-primary"}}
+  {{link-to "Edit this photo" "photo.edit" this.photo class="btn btn-primary"}}
 </p>
 ```
 
@@ -158,7 +158,7 @@ can use the `replace=true` option:
 
 ```handlebars
 <p>
-  {{#link-to "photo.comment" 5 primaryComment replace=true}}
+  {{#link-to "photo.comment" 5 this.primaryComment replace=true}}
     Main Comment for the Next Photo
   {{/link-to}}
 </p>

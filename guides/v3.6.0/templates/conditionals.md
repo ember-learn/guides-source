@@ -8,7 +8,7 @@ displaying a property, but helpers accept arguments. For example:
 
 ```handlebars
 <div>
-  {{if isFast "zoooom" "putt-putt-putt"}}
+  {{if this.isFast "zoooom" "putt-putt-putt"}}
 </div>
 ```
 
@@ -21,7 +21,7 @@ Inline helpers don't need to be used inside HTML tags. They can also be used
 inside attribute values:
 
 ```handlebars
-<div class="is-car {{if isFast "zoooom" "putt-putt-putt"}}">
+<div class="is-car {{if this.isFast "zoooom" "putt-putt-putt"}}">
 </div>
 ```
 
@@ -31,7 +31,7 @@ only renders `"zoooom"` if both `isFast` and `isFueled` are true:
 
 ```handlebars
 <div>
-  {{if isFast (if isFueled "zoooom")}}
+  {{if isFast (if this.isFueled "zoooom")}}
 </div>
 ```
 
@@ -48,8 +48,8 @@ For example, this template conditionally shows
 properties on `person` only if that it is present:
 
 ```handlebars
-{{#if person}}
-  Welcome back, <b>{{person.firstName}} {{person.lastName}}</b>!
+{{#if this.person}}
+  Welcome back, <b>{{this.person.firstName}} {{this.person.lastName}}</b>!
 {{/if}}
 ```
 
@@ -62,8 +62,8 @@ If a value passed to `{{#if}}` evaluates to falsy, the `{{else}}` block
 of that invocation is rendered:
 
 ```handlebars
-{{#if person}}
-  Welcome back, <b>{{person.firstName}} {{person.lastName}}</b>!
+{{#if this.person}}
+  Welcome back, <b>{{this.person.firstName}} {{this.person.lastName}}</b>!
 {{else}}
   Please log in.
 {{/if}}
@@ -73,9 +73,9 @@ of that invocation is rendered:
 `{{else if}}`:
 
 ```handlebars
-{{#if isAtWork}}
+{{#if this.isAtWork}}
   Ship that code!
-{{else if isReading}}
+{{else if this.isReading}}
   You can finish War and Peace eventually...
 {{/if}}
 ```
@@ -86,7 +86,7 @@ which can be used in the same three styles of invocation. For example, this
 template only shows an amount due when the user has not paid:
 
 ```handlebars
-{{#unless hasPaid}}
-  You owe: ${{total}}
+{{#unless this.hasPaid}}
+  You owe: ${{this.total}}
 {{/unless}}
 ```

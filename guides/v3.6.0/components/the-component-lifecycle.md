@@ -49,14 +49,14 @@ you can use `didUpdateAttrs` to clear any error state that was built up from edi
 
 ```handlebars {data-filename=app/templates/components/profile-editor.hbs}
 <ul class="errors">
-  {{#each errors as |error|}}
+  {{#each this.errors as |error|}}
     <li>{{error.message}}</li>
   {{/each}}
 </ul>
 <fieldset>
-  {{input name="user.name" value=name change=(action "required")}}
-  {{input name="user.department" value=department change=(action "required")}}
-  {{input name="user.email" value=email change=(action "required")}}
+  {{input name="user.name" value=this.name change=(action "required")}}
+  {{input name="user.department" value=this.department change=(action "required")}}
+  {{input name="user.email" value=this.email change=(action "required")}}
 </fieldset>
 ```
 
@@ -216,7 +216,7 @@ The component below takes a list of items and displays them on the screen.
 Additionally, it takes an object representing which item is selected and will select and set the scroll top to that item.
 
 ```handlebars {data-filename=app/templates/application.hbs}
-{{selected-item-list items=items selectedItem=selection}}
+{{selected-item-list items=this.items selectedItem=this.selection}}
 ```
 
 When rendered the component will iterate through the given list and apply a class to the one that is selected.
@@ -224,7 +224,7 @@ When rendered the component will iterate through the given list and apply a clas
 
 ```handlebars {data-filename=app/templates/components/selected-item-list.hbs}
 <div class="item-list">
-  {{#each items as |item|}}
+  {{#each this.items as |item|}}
     <div class="list-item {{if item.isSelected 'selected-item'}}">{{item.label}}</div>
   {{/each}}
 </div>
@@ -262,7 +262,7 @@ Component teardown can be triggered by a number of different conditions.
 For instance, the user may navigate to a different route, or a conditional Handlebars block surrounding your component may change:
 
 ```handlebars {data-filename=app/templates/application.hbs}
-{{#if falseBool}}
+{{#if this.falseBool}}
   {{my-component}}
 {{/if}}
 ```

@@ -473,7 +473,7 @@ Handlebars templates will automatically be updated to reflect a resolved promise
 
 ```handlebars
 <ul>
-  {{#each blogPost.comments as |comment|}}
+  {{#each this.blogPost.comments as |comment|}}
     <li>{{comment.id}}</li>
   {{/each}}
 </ul>
