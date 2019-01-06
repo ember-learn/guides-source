@@ -132,7 +132,7 @@ Note `cart` being used below to get data from the cart.
 
 ```handlebars {data-filename=app/templates/components/cart-contents.hbs}
 <ul>
-  {{#each cart.items as |item|}}
+  {{#each this.cart.items as |item|}}
     <li>
       {{item.name}}
       <button {{action "remove" item}}>Remove</button>

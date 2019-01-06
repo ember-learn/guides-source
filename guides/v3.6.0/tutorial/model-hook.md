@@ -76,7 +76,7 @@ This helper will let us loop through each of the rental objects in our model:
   {{/link-to}}
 </div>
 
-{{#each model as |rental|}}
+{{#each this.model as |rental|}}
   <article class="listing">
     <div class="details">
       <h3>{{rental.title}}</h3>

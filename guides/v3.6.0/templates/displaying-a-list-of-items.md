@@ -9,7 +9,7 @@ objects. Each item in the array is provided as the block param `person`.
 
 ```handlebars
 <ul>
-  {{#each people as |person|}}
+  {{#each this.people as |person|}}
     <li>Hello, {{person.name}}!</li>
   {{/each}}
 </ul>
@@ -58,7 +58,7 @@ block param. Block params are space-separated, without commas. For example:
 
 ```handlebars
 <ul>
-  {{#each people as |person index|}}
+  {{#each this.people as |person index|}}
     <li>Hello, {{person.name}}! You're number {{index}} in line</li>
   {{/each}}
 </ul>
@@ -71,7 +71,7 @@ helper can have a corresponding `{{else}}`. The contents of this block will
 render if the array passed to `{{#each}}` is empty:
 
 ```handlebars
-{{#each people as |person|}}
+{{#each this.people as |person|}}
   Hello, {{person.name}}!
 {{else}}
   Sorry, nobody is here.

@@ -8,9 +8,9 @@ helper to any HTML DOM element, when a user clicks the element, the named event
 will be sent to the template's corresponding component or controller.
 
 ```handlebars {data-filename=app/templates/components/single-post.hbs}
-<h3><button {{action "toggleBody"}}>{{title}}</button></h3>
-{{#if isShowingBody}}
-  <p>{{body}}</p>
+<h3><button {{action "toggleBody"}}>{{this.title}}</button></h3>
+{{#if this.isShowingBody}}
+  <p>{{this.body}}</p>
 {{/if}}
 ```
 
@@ -41,7 +41,7 @@ the handler as arguments.
 For example, if the `post` argument was passed:
 
 ```handlebars
-<p><button {{action "select" post}}>✓</button> {{post.title}}</p>
+<p><button {{action "select" this.post}}>✓</button> {{this.post.title}}</p>
 ```
 
 The `select` action handler would be called with a single argument
@@ -70,8 +70,8 @@ You can specify an alternative event by using the `on` option.
 
 ```handlebars
 <p>
-  <button {{action "select" post on="mouseUp"}}>✓</button>
-  {{post.title}}
+  <button {{action "select" this.post on="mouseUp"}}>✓</button>
+  {{this.post.title}}
 </p>
 ```
 
@@ -123,7 +123,7 @@ event listeners and enables to work with one-way bindings.
 
 ```handlebars
 <label>What's your favorite band?</label>
-<input type="text" value={{favoriteBand}} onblur={{action "bandDidChange"}} />
+<input type="text" value={{this.favoriteBand}} onblur={{action "bandDidChange"}} />
 ```
 
 Let's assume we have an action handler that prints its first parameter:
@@ -145,7 +145,7 @@ the event object:
 
 ```handlebars
 <label>What's your favorite band?</label>
-<input type="text" value={{favoriteBand}} onblur={{action "bandDidChange" value="target.value"}} />
+<input type="text" value={{this.favoriteBand}} onblur={{action "bandDidChange" value="target.value"}} />
 ```
 
 The `newValue` parameter thus becomes the `target.value` property of the event

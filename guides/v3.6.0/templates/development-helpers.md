@@ -11,7 +11,7 @@ The [`{{log}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Template
 current rendering context into your browser's console:
 
 ```handlebars
-{{log 'Name is:' name}}
+{{log 'Name is:' this.name}}
 ```
 
 The `{{log}}` helper also accepts primitive types such as strings or numbers.
@@ -40,7 +40,7 @@ when the `debugger;` breakpoint is hit, you can attempt to retrieve this value:
 `get` is also aware of keywords. So in this situation:
 
 ```handlebars
-{{#each items as |item|}}
+{{#each this.items as |item|}}
   {{debugger}}
 {{/each}}
 ```
@@ -48,7 +48,7 @@ when the `debugger;` breakpoint is hit, you can attempt to retrieve this value:
 You'll be able to get values from the current item:
 
 ```javascript
-> get('item.name')
+> get('this.item.name')
 ```
 
 You can also access the context of the view to make sure it is the object that

@@ -10,7 +10,7 @@ makes it easy to dynamically send the value of a variable to another helper or c
 This can be useful if you want to output one of several values based on the result of a computed property.
 
 ```handlebars
-{{get address part}}
+{{get this.address this.part}}
 ```
 
 if the `part` computed property returns "zip", this will display the result of `this.address.zip`.
@@ -25,7 +25,7 @@ helper makes it easy to dynamically send a number of parameters to a component o
 format of a concatenated string.
 
 ```handlebars
-{{get "foo" (concat "item" index)}}
+{{get "foo" (concat "item" this.index)}}
 ```
 
 This will display the result of `this.foo.item1` when index is 1, and `this.foo.item2` when index is 2, etc.
@@ -39,11 +39,11 @@ The [`{{let}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Template
 Say your template now looks like this:
 
 ```handlebars
-Welcome back {{concat (capitalize person.firstName) ' ' (capitalize person.lastName)}}
+Welcome back {{concat (capitalize this.person.firstName) ' ' (capitalize this.person.lastName)}}
 
 Account Details:
-First Name: {{capitalize person.firstName}}
-Last Name: {{capitalize person.lastName}}
+First Name: {{capitalize this.person.firstName}}
+Last Name: {{capitalize this.person.lastName}}
 ```
 
 As mentioned in the previous section we use the `concat` helper to render both `person.firstName` and `person.lastName` in one go.
@@ -52,7 +52,7 @@ It gets a bit repetitive to keep writing `capitalize` and honestly, we might jus
 Thankfully, we can use the `{{let}}` helper to fix this:
 
 ```handlebars
-{{#let (capitalize person.firstName) (capitalize person.lastName)
+{{#let (capitalize this.person.firstName) (capitalize this.person.lastName)
   as |firstName lastName|
 }}
   Welcome back {{concat firstName ' ' lastName}}
@@ -64,7 +64,7 @@ Thankfully, we can use the `{{let}}` helper to fix this:
 ```
 
 Now, as long as your template is wrapped in the `let` helper you can access the capitalized first name and last name as
-`firstName` and `lastName` instead of `(capitalize person.firstName)`.
+`firstName` and `lastName` instead of `(capitalize this.person.firstName)`.
 
 ### Array helper
 
@@ -75,7 +75,7 @@ you can pass arrays directly from the template as an argument to your components
 {{my-component people=(array
     'Tom Dade'
     'Yehuda Katz'
-    myOtherPerson)
+    this.myOtherPerson)
  }}
 ```
 
@@ -83,7 +83,7 @@ In the component's template, you can then use the `people` argument as an array:
 
 ```handlebars {data-filename=app/templates/components/my-component.hbs}
 <ul>
-  {{#each people as |person|}}
+  {{#each this.people as |person|}}
     <li>{{person}}</li>
   {{/each}}
 </ul>

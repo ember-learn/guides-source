@@ -32,7 +32,7 @@ You will then be able to access the controller's `model` property in your templa
 
 ```handlebars {data-filename=app/templates/favorite-posts.hbs}
 <h1>Favorite Posts</h1>
-{{#each model as |post|}}
+{{#each this.model as |post|}}
   <p>{{post.body}}</p>
 {{/each}}
 ```
@@ -94,7 +94,7 @@ was passed a model/):
 
 ```handlebars {data-filename=app/templates/photos.hbs}
 <h1>Photos</h1>
-{{#each model as |photo|}}
+{{#each this.model as |photo|}}
   <p>
     {{#link-to "photo" photo}}
       <img src="{{photo.thumbnailUrl}}" alt="{{photo.title}}" />
@@ -108,7 +108,7 @@ identifier, instead):
 
 ```handlebars {data-filename=app/templates/photos.hbs}
 <h1>Photos</h1>
-{{#each model as |photo|}}
+{{#each this.model as |photo|}}
   <p>
     {{#link-to "photo" photo.id}}
       <img src="{{photo.thumbnailUrl}}" alt="{{photo.title}}" />
@@ -147,7 +147,7 @@ each record in the song model and album model:
 <h1>Playlist</h1>
 
 <ul>
-  {{#each model.songs as |song|}}
+  {{#each this.model.songs as |song|}}
     <li>{{song.name}} by {{song.artist}}</li>
   {{/each}}
 </ul>
@@ -155,7 +155,7 @@ each record in the song model and album model:
 <h1>Albums</h1>
 
 <ul>
-  {{#each model.albums as |album|}}
+  {{#each this.model.albums as |album|}}
     <li>{{album.title}} by {{album.artist}}</li>
   {{/each}}
 </ul>

@@ -19,7 +19,7 @@ export default Component.extend({
 
 ```handlebars {data-filename=/app/templates/components/store-categories.hbs}
 <ul>
-  {{#each-in categories as |category products|}}
+  {{#each-in this.categories as |category products|}}
     <li>{{category}}
       <ol>
         {{#each products as |product|}}
@@ -68,7 +68,7 @@ helper can have a matching `{{else}}`.
 The contents of this block will render if the object is empty, null, or undefined:
 
 ```handlebars
-{{#each-in people as |name person|}}
+{{#each-in this.people as |name person|}}
   Hello, {{name}}! You are {{person.age}} years old.
 {{else}}
   Sorry, nobody is here.

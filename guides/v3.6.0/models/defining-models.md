@@ -176,5 +176,5 @@ tags: DS.attr() // a read-only array
 ```
 
 ```handlebars
-{{model.location.latitude}}
+{{this.model.location.latitude}}
 ```

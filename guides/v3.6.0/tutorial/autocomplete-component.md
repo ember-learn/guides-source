@@ -47,7 +47,7 @@ as |filteredResults|
   </ul>
 {{/list-filter}}
 {{outlet}}
-{{#each model as |rentalUnit|}}
+{{#each this.model as |rentalUnit|}}
   {{rental-listing rental=rentalUnit}}
 {{/each}}
 ```
@@ -58,12 +58,12 @@ We want the component to simply provide an input field and yield the results lis
 
 ```handlebars {data-filename=app/templates/components/list-filter.hbs}
 {{input
-  value=value
+  value=this.value
   key-up=(action "handleFilterEntry")
   class="light"
   placeholder="Filter By City"
 }}
-{{yield results}}
+{{yield this.results}}
 ```
 
 The template contains an [`{{input}}`](../../templates/input-helpers/) helper that renders as a text field, in which the user can type a pattern to filter the list of cities used in a search.
