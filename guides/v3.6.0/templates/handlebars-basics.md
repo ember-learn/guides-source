@@ -11,7 +11,7 @@ Handlebars expressions read their properties. In Ember this is often a component
 For example, this `application.hbs` template will render a first and last name:
 
 ```handlebars {data-filename=app/templates/application.hbs}
-Hello, <strong>{{firstName}} {{lastName}}</strong>!
+Hello, <strong>{{this.firstName}} {{this.lastName}}</strong>!
 ```
 
 The `firstName` and `lastName` properties are read from the
@@ -66,7 +66,7 @@ export default helper(sum);
 
 The above code will allow you invoke the `sum()` function as a `{{sum}}` handlebars "helper" in your templates:
 
-```html
+```handlebars {data-filename=app/templates/application.hbs}
 <p>Total: {{sum 1 2 3}}</p>
 ```
 
@@ -82,7 +82,7 @@ This gives you the flexibility to compute a value _before_ it is passed in as an
 
 It is not possible to nest curly braces `{{}}`, so the correct way to nest a helper is by using parentheses `()`:
 
-```html
+```handlebars {data-filename=app/templates/application.hbs}
 {{sum (multiply 2 4) 2}}
 ```
 

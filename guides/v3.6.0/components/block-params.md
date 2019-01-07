@@ -4,11 +4,11 @@ but they can also return output to be used in a block expression.
 ### Return values from a component with `yield`
 
 ```handlebars {data-filename=app/templates/index.hbs}
-{{blog-post post=model}}
+{{blog-post post=this.model}}
 ```
 
 ```handlebars {data-filename=app/templates/components/blog-post.hbs}
-{{yield post.title post.body post.author}}
+{{yield this.post.title this.post.body this.post.author}}
 ```
 
 Here an entire blog post model is being passed to the component as a single component property.
@@ -24,7 +24,7 @@ where the markup is provided by the consuming template,
 but any event handling behavior implemented in the component is retained such as `click()` handlers.
 
 ```handlebars {data-filename=app/templates/index.hbs}
-{{#blog-post post=model as |title body author|}}
+{{#blog-post post=this.model as |title body author|}}
   <h2>{{title}}</h2>
   <p class="author">by {{author}}</p>
   <p class="post-body">{{body}}</p>
@@ -40,11 +40,11 @@ using the `has-block` helper.
 
 ```handlebars {data-filename=app/templates/components/blog-post.hbs}
 {{#if (has-block)}}
-  {{yield post.title post.body post.author}}  
+  {{yield this.post.title this.post.body this.post.author}}  
 {{else}}
-  <h1>{{post.title}}</h1>
-  <p class="author">Authored by {{post.author}}</p>
-  <p>{{post.body}}</p>
+  <h1>{{this.post.title}}</h1>
+  <p class="author">Authored by {{this.post.author}}</p>
+  <p>{{this.post.body}}</p>
 {{/if}}
 ```
 

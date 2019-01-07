@@ -81,8 +81,8 @@ let User = EmberObject.extend({
 and a template to display its attributes:
 
 ```handlebars
-{{firstName}}
-{{fullName}}
+{{this.firstName}}
+{{this.fullName}}
 ```
 
 If we execute the following code without the run loop:

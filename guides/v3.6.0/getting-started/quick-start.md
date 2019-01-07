@@ -153,7 +153,7 @@ Open the `scientists` template and add the following code to loop through the ar
 <h2>List of Scientists</h2>
 
 <ul>
-  {{#each model as |scientist|}}
+  {{#each this.model as |scientist|}}
     <li>{{scientist}}</li>
   {{/each}}
 </ul>
@@ -179,10 +179,10 @@ ember generate component people-list
 Copy and paste the `scientists` template into the `people-list` component's template and edit it to look as follows:
 
 ```handlebars {data-filename=app/templates/components/people-list.hbs}
-<h2>{{title}}</h2>
+<h2>{{this.title}}</h2>
 
 <ul>
-  {{#each people as |person|}}
+  {{#each this.people as |person|}}
     <li>{{person}}</li>
   {{/each}}
 </ul>
@@ -206,11 +206,11 @@ We're going to tell our component:
 <h2>List of Scientists</h2>
 
 <ul>
-  {{#each model as |scientist|}}
+  {{#each this.model as |scientist|}}
     <li>{{scientist}}</li>
   {{/each}}
 </ul>
-{{people-list title="List of Scientists" people=model}}
+{{people-list title="List of Scientists" people=this.model}}
 ```
 
 Go back to your browser and you should see that the UI looks identical.
@@ -230,10 +230,10 @@ Ember makes this easy to do.
 First add an `action` helper to the `li` in your `people-list` component.
 
 ```handlebars {data-filename="app/templates/components/people-list.hbs" data-diff="-5,+6"}
-<h2>{{title}}</h2>
+<h2>{{this.title}}</h2>
 
 <ul>
-  {{#each people as |person|}}
+  {{#each this.people as |person|}}
     <li>{{person}}</li>
     <li {{action "showPerson" person}}>{{person}}</li>
   {{/each}}

@@ -17,16 +17,16 @@ A sample component template could look like this:
 
 ```handlebars {data-filename=app/templates/components/blog-post.hbs}
 <article class="blog-post">
-  <h1>{{title}}</h1>
+  <h1>{{this.title}}</h1>
   <p>{{yield}}</p>
-  <p>Edit title: {{input type="text" value=title}}</p>
+  <p>Edit title: {{input type="text" value=this.title}}</p>
 </article>
 ```
 
 Given the above template, you can now use the `{{blog-post}}` component:
 
 ```handlebars {data-filename=app/templates/index.hbs}
-{{#each model as |post|}}
+{{#each this.model as |post|}}
   {{#blog-post title=post.title}}
     {{post.body}}
   {{/blog-post}}
@@ -88,12 +88,12 @@ means of choosing different components for displaying different kinds of posts:
 
 ```handlebars {data-filename=app/templates/components/foo-component.hbs}
 <h3>Hello from foo!</h3>
-<p>{{post.body}}</p>
+<p>{{this.post.body}}</p>
 ```
 
 ```handlebars {data-filename=app/templates/components/bar-component.hbs}
 <h3>Hello from bar!</h3>
-<div>{{post.author}}</div>
+<div>{{this.post.author}}</div>
 ```
 
 ```javascript {data-filename=app/routes/index.js}
@@ -107,7 +107,7 @@ export default Route.extend({
 ```
 
 ```handlebars {data-filename=app/templates/index.hbs}
-{{#each model as |post|}}
+{{#each this.model as |post|}}
   {{!-- either foo-component or bar-component --}}
   {{component post.componentName post=post}}
 {{/each}}

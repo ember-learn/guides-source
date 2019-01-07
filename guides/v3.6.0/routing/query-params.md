@@ -90,7 +90,7 @@ The `link-to` helper supports specifying query params using the
 {{#link-to "posts" (query-params direction="asc")}}Sort{{/link-to}}
 
 // Binding is also supported
-{{#link-to "posts" (query-params direction=otherDirection)}}Sort{{/link-to}}
+{{#link-to "posts" (query-params direction=this.otherDirection)}}Sort{{/link-to}}
 ```
 
 In the above examples, `direction` is presumably a query param property

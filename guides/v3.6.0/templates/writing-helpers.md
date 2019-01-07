@@ -22,7 +22,7 @@ To use the `format-currency` helper, you call it using curly braces in
 your template:
 
 ```handlebars
-Your total is {{format-currency model.totalDue}}.
+Your total is {{format-currency this.model.totalDue}}.
 ```
 
 Let's now implement the helper. Helpers are functions that take
@@ -69,7 +69,7 @@ Your total is {{format-currency 250}}.
 
 And Ember makes use of our new helper function to replace the content inside the ```{{ }}``` with the formatted amount.
 
-```handlebars
+```html
 Your total is $2.50.
 ```
 
@@ -150,7 +150,7 @@ helper:
 
 We'd like our helper to print pounds sterling rather than US dollars:
 
-```handlebars
+```html
 £3.50
 ```
 
@@ -210,7 +210,7 @@ export default helper(myHelper);
 In sum, arguments are good for passing values:
 
 ```handlebars
-{{format-date currentDate}}
+{{format-date this.currentDate}}
 ```
 
 Hashes are useful for configuring the behavior of a helper:
@@ -223,7 +223,7 @@ You can have as many of both as you want, so long as the parameters come
 first:
 
 ```handlebars
-{{format-date-and-time date time format="YYYY MM DD h:mm" locale="en"}}
+{{format-date-and-time this.date this.time format="YYYY MM DD h:mm" locale="en"}}
 ```
 
 The above example contains two arguments:
@@ -325,7 +325,7 @@ You can invoke it like this:
 
 Ember will escape the HTML tags, like this:
 
-```handlebars
+```html
 &lt;b&gt;Hello world&lt;/b&gt;
 ```
 
@@ -358,7 +358,7 @@ For example, imagine that we have a chat app  and use our `make-bold`
 helper to welcome the new users into the channel:
 
 ```handlebars
-Welcome back! {{make-bold model.firstName}} has joined the channel.
+Welcome back! {{make-bold this.model.firstName}} has joined the channel.
 ```
 
 Now a malicious user simply needs to set their `firstName` to a string
@@ -390,7 +390,7 @@ Now the value passed into the helper has its HTML escaped, but the trusted
 malicious user setting their `firstName` to something containing HTML
 would see this:
 
-```handlebars
+```html
 Welcome back! <b>&lt;script
 type="javascript"&gt;alert('pwned!');&lt;/script&gt;</b> has joined the channel.
 ```
