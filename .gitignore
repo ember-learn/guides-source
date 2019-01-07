@@ -25,3 +25,5 @@
 
 # Deployment credentials
 config/credentials.json
+
+/code
