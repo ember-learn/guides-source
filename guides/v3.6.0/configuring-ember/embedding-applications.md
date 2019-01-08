@@ -13,19 +13,22 @@ and attach it to the document's `body` element.
 You can tell the application to append the application template to a
 different element by specifying its `rootElement` property:
 
-```javascript {data-filename="app/app.js" data-diff="+4"}
+```javascript {data-filename="app/app.js" data-diff="+7"}
 import Application from '@ember/application';
+import Resolver from './resolver';
+import loadInitializers from 'ember-load-initializers';
+import config from './config/environment';
 
-// …
-
-App = Ember.Application.extend({
+const App = Application.extend({
   rootElement: '#app',
   modulePrefix: config.modulePrefix,
   podModulePrefix: config.podModulePrefix,
   Resolver
 });
 
-// …
+loadInitializers(App, config.modulePrefix);
+
+export default App;
 ```
 
 This property can be specified as either an element or a
