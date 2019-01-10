@@ -92,7 +92,7 @@ module('Component | counter', function(hooks) {
   test('it should count clicks', async function(assert) {
     this.set('value', 0);
 
-    await render(hbs`{{x-counter value=value onUpdate=( … )}}`);
+    await render(hbs`<XCounter @value={{this.value}} @onUpdate={{( … )}}/>`);
     assert.equal(this.element.textContent, '0 clicks');
 
     await click('.counter');
