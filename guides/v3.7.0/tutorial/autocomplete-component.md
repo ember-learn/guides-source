@@ -340,7 +340,7 @@ module('Integration | Component | list-filter', function(hooks) {
 });
 ```
 
-Our ListFilter component takes a function as an argument, used to find the list of matching rentals based on the filter string provided by the user.
+Our `ListFilter` component takes a function as an argument, used to find the list of matching rentals based on the filter string provided by the user.
 
 ```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="+5,+7,+8,+14,+15,+16"}
 import { module, test } from 'qunit';
@@ -559,7 +559,7 @@ import {
 
 In `app/components/list-filter.js`, we have as the top-level element rendered by the component a class called `list-filter`.
 We locate the search input within the component using the selector `.list-filter input`,
-since we know that there is only one input element located in the ListFilter component.
+since we know that there is only one input element located in the `ListFilter` component.
 
 Our test fills out "Seattle" as the search criteria in the search field,
 and then sends a `keyup` event to the same field with a code of `69` (the `e` key) to simulate a user typing, which is the event our code is looking for.
