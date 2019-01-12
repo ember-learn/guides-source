@@ -427,7 +427,7 @@ For this case, the action helper provides the `value` attribute to allow a paren
 object to pull out only what it needs.
 
 ```handlebars {data-filename=app/templates/components/system-preferences-editor.hbs}
-<UserProfile @didDelete={{action "userDeleted" value="account.id"}}/>
+<UserProfile @didDelete={{action "userDeleted" value="account.id"}} />
 ```
 
 Now when the `system-preferences-editor` handles the delete action, it receives only the user's account `id` string.

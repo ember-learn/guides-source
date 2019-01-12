@@ -70,7 +70,7 @@ with our new `RentalListing` component:
 </div>
 
 {{#each this.model as |rentalUnit|}}
-  <RentalListing @rental={{rentalUnit}}/>
+  <RentalListing @rental={{rentalUnit}} />
 {{#each this.model as |rental|}}
   <article class="listing">
     <h3>{{rental.title}}</h3>
@@ -243,7 +243,7 @@ module('Integration | Component | rental listing', function (hooks) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
 
-    await render(hbs`<RentalListing/>`);
+    await render(hbs`<RentalListing />`);
 
     assert.equal(this.element.textContent.trim(), '');
 
@@ -318,11 +318,11 @@ module('Integration | Component | rental listing', function (hooks) {
   });
 
   test('should display rental details', async function(assert) {
-    await render(hbs`<RentalListing @rental={{this.rental}}/>`);
+    await render(hbs`<RentalListing @rental={{this.rental}} />`);
   });
 
   test('should toggle wide class on click', async function(assert) {
-    await render(hbs`<RentalListing @rental={{this.rental}}/>`);
+    await render(hbs`<RentalListing @rental={{this.rental}} />`);
   });
 });
 ```
@@ -333,7 +333,7 @@ In the first test, we just want to verify the output of the component, so we jus
 
 ```javascript {data-filename="tests/integration/components/rental-listing-test.js" data-diff="+3,+4"}
 test('should display rental details', async function(assert) {
-  await render(hbs`<RentalListing @rental={{this.rental}}/>`);
+  await render(hbs`<RentalListing @rental={{this.rental}} />`);
   assert.equal(this.element.querySelector('.listing h3').textContent.trim(), 'test-title', 'Title: test-title');
   assert.equal(this.element.querySelector('.listing .owner').textContent.trim(), 'Owner: test-owner', 'Owner: test-owner');
 });
@@ -346,7 +346,7 @@ Note that we find the image element using the CSS selector `.image`.
 
 ```javascript {data-filename="tests/integration/components/rental-listing-test.js" data-diff="+3,+4,+5,+6,+7"}
   test('should toggle wide class on click', async function(assert) {
-    await render(hbs`<RentalListing @rental={{this.rental}}/>`);
+    await render(hbs`<RentalListing @rental={{this.rental}} />`);
     assert.notOk(this.element.querySelector('.image.wide'), 'initially rendered small');
     await click('.image');
     assert.ok(this.element.querySelector('.image.wide'), 'rendered wide after click');
@@ -387,13 +387,13 @@ module('Integration | Component | rental listing', function (hooks) {
   });
 
   test('should display rental details', async function(assert) {
-    await render(hbs`<RentalListing @rental={{this.rental}}/>`);
+    await render(hbs`<RentalListing @rental={{this.rental}} />`);
     assert.equal(this.element.querySelector('.listing h3').textContent.trim(), 'test-title', 'Title: test-title');
     assert.equal(this.element.querySelector('.listing .owner').textContent.trim(), 'Owner: test-owner', 'Owner: test-owner');
   });
 
   test('should toggle wide class on click', async function(assert) {
-    await render(hbs`<RentalListing @rental={{this.rental}}/>`);
+    await render(hbs`<RentalListing @rental={{this.rental}} />`);
     assert.notOk(this.element.querySelector('.image.wide'), 'initially rendered small');
     await click('.image');
     assert.ok(this.element.querySelector('.image.wide'), 'rendered wide after click');

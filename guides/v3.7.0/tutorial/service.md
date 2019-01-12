@@ -193,7 +193,7 @@ Finally open the template file for our `rental-listing` component and add the ne
       <span>Number of bedrooms:</span> {{this.rental.bedrooms}}
     </div>
   </div>
-  <LocationMap @location={{this.rental.city}}/>
+  <LocationMap @location={{this.rental.city}} />
 </article>
 ```
 
@@ -321,7 +321,7 @@ module('Integration | Component | location map', function(hooks) {
 
   test('should append map element to container element', async function(assert) {
     this.set('myLocation', 'New York');
-    await render(hbs`<LocationMap @location={{myLocation}}/>`);
+    await render(hbs`<LocationMap @location={{myLocation}} />`);
     assert.ok(this.element.querySelector('.map-container > .map'), 'container should have map child');
     assert.equal(this.get('mapsService.calledWithLocation'), 'New York', 'should call service with New York');
   });
@@ -330,7 +330,7 @@ module('Integration | Component | location map', function(hooks) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
 
-    await render(hbs`<LocationMap/>`);
+    await render(hbs`<LocationMap />`);
 
     assert.equal(this.element.textContent.trim(), '');
 

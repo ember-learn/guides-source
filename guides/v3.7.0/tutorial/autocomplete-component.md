@@ -42,13 +42,13 @@ as |filteredResults|
 >
   <ul class="results">
     {{#each filteredResults as |rentalUnit|}}
-      <li><RentalListing @rental={{rentalUnit}}/></li>
+      <li><RentalListing @rental={{rentalUnit}} /></li>
     {{/each}}
   </ul>
 </ListFilter>
 {{outlet}}
 {{#each this.model as |rentalUnit|}}
-  <RentalListing @rental={{rentalUnit}}/>
+  <RentalListing @rental={{rentalUnit}} />
 {{/each}}
 ```
 
@@ -323,7 +323,7 @@ module('Integration | Component | list-filter', function(hooks) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
 
-    await render(hbs`<RentalListing/>`);
+    await render(hbs`<RentalListing />`);
 
     assert.equal(this.element.textContent.trim(), '');
 
@@ -397,7 +397,7 @@ module('Integration | Component | list-filter', function(hooks) {
     // you can set up and use your component in the same way your application
     // will use it.
     await render(hbs`
-      <ListFilter @filter={{action "filterByCity"}} as |results|>
+      <ListFilter @filter={{action filterByCity}} as |results|>
         <ul>
         {{#each results as |item|}}
           <li class="city">
@@ -443,7 +443,7 @@ module('Integration | Component | list-filter', function(hooks) {
     // with an integration test,
     // you can set up and use your component in the same way your application will use it.
     await render(hbs`
-      <ListFilter @filter={{action "filterByCity"}} as |results|>
+      <ListFilter @filter={{action filterByCity}} as |results|>
         <ul>
         {{#each results as |item|}}
           <li class="city">
@@ -497,7 +497,7 @@ test('should update with matching listings', async function (assert) {
   });
 
   await render(hbs`
-    <ListFilter @filter={{action "filterByCity"}} as |results|>
+    <ListFilter @filter={{action filterByCity}} as |results|>
       <ul>
       {{#each results as |item|}}
         <li class="city">

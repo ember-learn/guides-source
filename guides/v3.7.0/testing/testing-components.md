@@ -77,7 +77,7 @@ module('Integration | Component | pretty color', function(hooks) {
     // set the outer context to red
     this.set('colorValue', 'red');
 
-    await render(hbs`<PrettyColor @name={{this.colorValue}}/>`);
+    await render(hbs`<PrettyColor @name={{this.colorValue}} />`);
 
     assert.equal(this.element.querySelector('div').getAttribute('style'), 'color: red', 'starts as red');
   });
@@ -108,7 +108,7 @@ module('Integration | Component | pretty color', function(hooks) {
     // set the outer context to red
     this.set('colorValue', 'red');
 
-    await render(hbs`<PrettyColor @name={{this.colorValue}}/>`);
+    await render(hbs`<PrettyColor @name={{this.colorValue}} />`);
 
     assert.equal(this.element.querySelector('div').getAttribute('style'), 'color: red', 'starts as red');
 
@@ -134,7 +134,7 @@ module('Integration | Component | pretty color', function(hooks) {
 
     this.set('colorValue', 'orange');
 
-    await render(hbs`<PrettyColor @name={{this.colorValue}}/>`);
+    await render(hbs`<PrettyColor @name={{this.colorValue}} />`);
 
     assert.equal(this.element.textContent.trim(), 'Pretty Color: orange', 'text starts as orange');
 
@@ -191,7 +191,7 @@ module('Integration | Component | magic title', function(hooks) {
   test('should update title on button click', async function(assert) {
     assert.expect(2);
 
-    await render(hbs`<MagicTitle/>`);
+    await render(hbs`<MagicTitle />`);
 
     assert.equal(this.element.querySelector('h2').textContent.trim(), 'Hello World', 'initial text is hello world');
 
@@ -379,7 +379,7 @@ module('Integration | Component | location indicator', function(hooks) {
   });
 
   test('should reveal current location', async function(assert) {
-    await render(hbs`<LocationIndicator/>`);
+    await render(hbs`<LocationIndicator />`);
     assert.equal(this.element.textContent.trim(),
      'You currently are located in New York, USA');
   });
@@ -420,13 +420,13 @@ module('Integration | Component | location indicator', function(hooks) {
   });
 
   test('should reveal current location', async function(assert) {
-    await render(hbs`<LocationIndicator/>`);
+    await render(hbs`<LocationIndicator />`);
     assert.equal(this.element.textContent.trim(),
      'You currently are located in New York, USA');
   });
 
   test('should change displayed location when current location changes', async function (assert) {
-    await render(hbs`<LocationIndicator/>`);
+    await render(hbs`<LocationIndicator />`);
 
     assert.equal(this.element.textContent.trim(),
      'You currently are located in New York, USA', 'origin location should display');
@@ -512,7 +512,7 @@ module('Integration | Component | delayed typeahead', function(hooks) {
       this.set('results', stubResults);
     });
 
-    await render(hbs`<DelayedTypeahead @fetchResults={{this.fetchResults}} @results={{this.results}}/>`);
+    await render(hbs`<DelayedTypeahead @fetchResults={{this.fetchResults}} @results={{this.results}} />`);
     this.element.querySelector('input').value = 'test';
     this.element.querySelector('input').dispatchEvent(new Event('keyup'));
 

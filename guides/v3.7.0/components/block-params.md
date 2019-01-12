@@ -4,7 +4,7 @@ but they can also return output to be used in a block expression.
 ### Return values from a component with `yield`
 
 ```handlebars {data-filename=app/templates/index.hbs}
-<BlogPost @post={{this.model}}/>
+<BlogPost @post={{this.model}} />
 ```
 
 ```handlebars {data-filename=app/templates/components/blog-post.hbs}

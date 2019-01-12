@@ -7,10 +7,10 @@ For example, imagine we are building a `BlogPost` component that we can use in o
 <div class="body">{{this.body}}</div>
 ```
 
-Now, we can use the `<BlogPost/>` component and pass it properties in another template:
+Now, we can use the `<BlogPost />` component and pass it properties in another template:
 
 ```handlebars
-<BlogPost @title={{this.title}} @body={{this.body}}/>
+<BlogPost @title={{this.title}} @body={{this.body}} />
 ```
 
 See [Passing Properties to a Component](../passing-properties-to-a-component/) for more.
@@ -27,7 +27,7 @@ then make sure to add a closing tag.
 
 See the Handlebars documentation on [block expressions](http://handlebarsjs.com/#block-expressions) for more.
 
-In that case, we can use the `<BlogPost/>` component in **block form** and tell Ember where the block content should be rendered using the `{{yield}}` helper.
+In that case, we can use the `<BlogPost />` component in **block form** and tell Ember where the block content should be rendered using the `{{yield}}` helper.
 To update the example above, we'll first change the component's template:
 
 ```handlebars {data-filename=app/templates/components/blog-post.hbs}

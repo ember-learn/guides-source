@@ -49,7 +49,7 @@ various draggable behaviors. For example, a component may need to send an `id`
 when it receives a drop event:
 
 ```handlebars
-<DropTarget @dropAction={{action "didDrop"}}/>
+<DropTarget @dropAction={{action "didDrop"}} />
 ```
 
 You can define the component's event handlers to manage the drop event.

@@ -38,7 +38,7 @@ This is where the active nested route will be rendered.
    as |filteredResults|>
   <ul class="results">
     {{#each filteredResults as |rentalUnit|}}
-      <li><RentalListing @rental={{rentalUnit}}/></li>
+      <li><RentalListing @rental={{rentalUnit}} /></li>
     {{/each}}
   </ul>
 </ListFilter>
@@ -115,7 +115,7 @@ Now that we are returning all of our rentals to the nested route's model, we wil
    as |filteredResults|}}
   <ul class="results">
     {{#each filteredResults as |rentalUnit|}}
-      <li><RentalListing @rental={{rentalUnit}}/></li>
+      <li><RentalListing @rental={{rentalUnit}} /></li>
     {{/each}}
   </ul>
 </ListFilter>
@@ -128,7 +128,7 @@ Now that we are returning all of our rentals to the nested route's model, we wil
    as |filteredResults|}}
   <ul class="results">
     {{#each filteredResults as |rentalUnit|}}
-      <li><RentalListing @rental={{rentalUnit}}/></li>
+      <li><RentalListing @rental={{rentalUnit}} /></li>
     {{/each}}
   </ul>
 </ListFilter>
@@ -378,7 +378,7 @@ Clicking on the title will load the detail page for that rental.
       <span>Number of bedrooms:</span> {{this.rental.bedrooms}}
     </div>
   </div>
-  <LocationMap @location={{this.rental.city}}/>
+  <LocationMap @location={{this.rental.city}} />
 </article>
 ```
 ![Rental Page Nested Index Route](/images/subroutes/subroutes-super-rentals-index.png)
