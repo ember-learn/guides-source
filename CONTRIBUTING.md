@@ -78,7 +78,6 @@ In code samples:
 
 * Follow the [Ember Style Guide](https://github.com/emberjs/ember.js/blob/master/STYLEGUIDE.md).
 * Use double-quotes in templates, i.e., `<div class="awesome">{{foo-bar title="Tomster"}}</div>`.
-* Omit the boilerplate that Ember CLI generates, especially the `import Ember from 'ember'` at the top of every file.
 * In [fenced code blocks](https://help.github.com/articles/creating-and-highlighting-code-blocks/), write paths relative to the project root. e.g., `app/router.js`, `config/environment.js`
 * When writing a fenced code block with a filename, do so by writing the language name first followed by the file name within a data-filename block as shown below,
 
