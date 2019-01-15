@@ -107,6 +107,17 @@ export default Route.extend({
 {{/each}}
 ```
 
+or 
+
+```handlebars {data-filename=app/templates/index.hbs}
+{{#each this.model as |post|}}
+  {{!-- either foo-component or bar-component --}}
+  {{#let (component (concat this.componentName)) as |Post|}}
+    <Post @post={{post}} />
+  {{/let}}
+{{/each}}
+```
+
 When the parameter passed to `{{component}}` evaluates to `null` or `undefined`,
 the helper renders nothing. When the parameter changes, the currently rendered
 component is destroyed and the new component is created and brought in.
