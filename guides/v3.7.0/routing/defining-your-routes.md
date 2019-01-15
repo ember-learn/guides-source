@@ -198,23 +198,23 @@ replace the `{{outlet}}` in the `posts` template with the
 The following scenarios may help with understanding the `index` route:
 
 - The top-level index route is analogous to `index.html`. For example, when someone visits `https://some-ember-app.com`, the contents of the `template/index.hbs` file will be rendered. There is no need to add an entry `this.route('index', { path: '/' });` in `app/router.js` file. The `index` route is implicitly included in order to help reduce verbose declarations in the `app/router.js`. The `app/router.js` file could be empty, and the `index` would still be shown:
-   
+
 ```javascript {data-filename=app/router.js}
 Router.map(function() {
 });
 ```
 - When a user navigates to `/posts`, the contents of `index.hbs` will be rendered. This is similar to a user navigating to the child route of `/posts`. `/posts/index` is child route like `/posts/comments` or `/posts/likes`.
- 
+
 ### When to use an index route
 
 The index route is most helpful for rendering a view when the route has [dynamic segments](#toc_dynamic-segments) defined in it or there are nested routes. In other words, an `index` template is used to show content that should not be present on sibling and child routes. For example, a blog app might have an `index` route that shows a list of all posts, but if a user clicks on a post, they should only see the content for the individual post. Here is how that looks in practice:
-   
+
 A `templates/posts.hbs` file has the following:
 
 ```handlebars {data-filename=templates/posts.hbs}
 <h1>This is the posts template, containing headers to show on all child routes</h1>
 {{outlet}}
-```   
+```
 
 The `templates/posts/index.hbs` file has the following:
 
@@ -227,7 +227,7 @@ The `templates/posts/post.hbs` file has the following:
 ```handlebars {data-filename=templates/posts/post.hbs}
 <p>This is an individual post, from the posts/post template, used when we enter the /posts/:post_id route</p>
 ```
-   
+
 This is equivalent to having the following entry in `app/router.js` file
 
 ```javascript {data-filename=app/router.js}
@@ -239,20 +239,20 @@ Router.map(function() {
 });
 ```
 
-When the user navigates to `/posts/123`, the following markup will be seen:  
+When the user navigates to `/posts/123`, the following markup will be seen:
 
-```handlebars {data-filename=templates/posts/index.hbs} 
+```handlebars {data-filename=templates/posts/index.hbs}
 <h1>This is the posts template, containing headers to show on all child routes</h1>
 <p>This is an individual post, from the posts/post template, used when we enter the /posts/:post_id route</p>
 ```
 
-When the user navigates to `/posts/`, the following markup will be seen:  
+When the user navigates to `/posts/`, the following markup will be seen:
 
-```handlebars {data-filename=templates/posts/index.hbs} 
+```handlebars {data-filename=templates/posts/index.hbs}
 <h1>This is the posts template, containing headers to show on all child routes</h1>
 <p>This is the posts/index template with a list of posts</p>
 ```
-    
+
 ## Dynamic Segments
 
 One of the responsibilities of a route is to load a model.
@@ -326,7 +326,23 @@ so that when a user navigates to `/a/non-existent/path` they will be shown a mes
 Note that if you want to manually transition to this wildcard route, you need to pass an arbitrary (not empty) argument. For example:
 
 ```javascript {data-filename=app/routes/some-route.js}
-this.transitionTo('not-found', 404);
+import Route from '@ember/routing/route';
+
+export default Route.extend({
+  // …
+
+  actions: {
+    visitUserProfile(id) {
+      this.store.findRecord('user', id).then(function (user) {
+        // Success callback
+        this.transitionTo('user.profile', user);
+      }).then(function () {
+        // Error callback
+        this.transitionTo('not-found', 404);
+      }
+    }
+  }
+});
 ```
 
 ## Route Handlers
