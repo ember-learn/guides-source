@@ -66,25 +66,3 @@ Thankfully, we can use the `{{let}}` helper to fix this:
 Now, as long as your template is wrapped in the `let` helper you can access the capitalized first name and last name as
 `firstName` and `lastName` instead of `(capitalize this.person.firstName)`.
 
-### Array helper
-
-Using the [`{{array}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/array?anchor=array) helper,
-you can pass arrays directly from the template as an argument to your components.
-
-```handlebars
-{{my-component people=(array
-    'Tom Dade'
-    'Yehuda Katz'
-    this.myOtherPerson)
- }}
-```
-
-In the component's template, you can then use the `people` argument as an array:
-
-```handlebars {data-filename=app/templates/components/my-component.hbs}
-<ul>
-  {{#each this.people as |person|}}
-    <li>{{person}}</li>
-  {{/each}}
-</ul>
-```
