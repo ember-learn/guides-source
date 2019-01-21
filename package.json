@@ -1,7 +1,8 @@
 {
-  "name": "@ember-learn/guides-source",
+  "name": "ember-guides",
   "version": "3.7.0",
-  "description": "Markdown files for Ember-Guides",
+  "private": true,
+  "description": "Markdown files and Guidemaker for Ember-Guides",
   "homepage": "https://github.com/ember-learn/guides-source#readme",
   "bugs": {
     "url": "https://github.com/ember-learn/guides-source/issues"
@@ -15,26 +16,53 @@
     "Chris Manson <chris@stonecircle.io>",
     "Ember.JS Learning team"
   ],
-  "publishConfig": {
-    "access": "public"
+  "directories": {
+    "doc": "doc",
+    "test": "tests"
   },
-  "main": "index.js",
   "scripts": {
+    "build": "ember build",
+    "lint:hbs": "ember-template-lint .",
+    "lint:js": "eslint .",
     "lint:md": "remark . --frail",
-    "release": "np",
-    "test": "mocha",
-    "test-watch": "npm test -- -w"
+    "start": "ember serve",
+    "test": "ember test"
   },
   "devDependencies": {
+    "@ember/jquery": "^0.5.2",
+    "@ember/optional-features": "^0.6.3",
+    "broccoli-asset-rev": "^2.7.0",
     "chai": "^4.1.2",
+    "ember-ajax": "^3.1.0",
+    "ember-cli": "~3.7.1",
+    "ember-cli-app-version": "^3.2.0",
+    "ember-cli-babel": "^7.1.2",
+    "ember-cli-dependency-checker": "^3.0.0",
+    "ember-cli-eslint": "^4.2.3",
+    "ember-cli-htmlbars": "^3.0.0",
+    "ember-cli-htmlbars-inline-precompile": "^1.0.3",
+    "ember-cli-inject-live-reload": "^1.8.2",
+    "ember-cli-sri": "^2.1.1",
+    "ember-cli-template-lint": "^1.0.0-beta.1",
+    "ember-cli-uglify": "^2.1.0",
+    "ember-data": "~3.7.0",
     "ember-dictionary": "^0.1.13",
+    "ember-export-application-global": "^2.0.0",
+    "ember-load-initializers": "^1.1.0",
+    "ember-maybe-import-regenerator": "^0.1.6",
+    "ember-qunit": "^3.4.1",
+    "ember-resolver": "^5.0.1",
+    "ember-source": "~3.7.0",
+    "ember-welcome-page": "^3.2.0",
     "eslint": "^5.0.1",
     "eslint-config-airbnb-base": "^13.0.0",
+    "eslint-plugin-ember": "^5.2.0",
     "eslint-plugin-import": "^2.8.0",
+    "loader.js": "^4.7.0",
     "lodash": "^4.17.4",
     "markdown-link-extractor": "^1.1.1",
     "mocha": "^5.0.0",
-    "np": "*",
+    "qunit-dom": "^0.8.0",
     "remark-cli": "^6.0.1",
     "remark-lint": "^6.0.4",
     "remark-preset-lint-consistent": "^2.0.2",
@@ -49,5 +77,8 @@
     "retext-syntax-urls": "^1.0.1",
     "unified": "^7.0.2",
     "walk-sync": "^1.0.0"
+  },
+  "engines": {
+    "node": "8.* || >= 10.*"
   }
 }

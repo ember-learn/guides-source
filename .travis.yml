@@ -1,6 +1,7 @@
+---
 language: node_js
 node_js:
-- '8'
+  - "8"
 
 sudo: false
 dist: trusty
@@ -18,16 +19,8 @@ env:
 
 before_install:
   - npm config set spin false
-  - npm i -g npm@6
 
 script:
-  - set -o errexit
-  - npm run lint:md
-  - npm run test
-  
-# deploy:
-  # provider: script
-  # script: notify-guides-app.sh
-  # on:
-  #   branch: master
-
+  - npm run lint:hbs
+  - npm run lint:js
+  - npm test
