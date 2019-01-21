@@ -5,7 +5,9 @@ module.exports = function(environment) {
     modulePrefix: 'ember-guides',
     environment,
     rootURL: '/',
-    locationType: 'auto',
+    locationType: 'trailing-history',
+    historySupportMiddleware: true,
+
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -20,6 +22,14 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+    },
+
+    'ember-meta': {
+      description: 'Ember.js helps developers be more productive out of the box. Designed with developer ergonomics in mind, its friendly APIs help you get your job done—fast.'
+    },
+
+    guidemaker: {
+      title: 'Ember Guides'
     }
   };
 
