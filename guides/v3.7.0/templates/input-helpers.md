@@ -45,13 +45,24 @@ current context.
 
 ## Actions
 
-To dispatch an action on specific events, such as `enter` or `key-press`, use the following
+To dispatch an action on specific events such as `key-press`, use the following
 
 ```handlebars
 {{input value=this.firstName key-press=(action "updateFirstName")}}
 ```
 
-[Event Names](https://www.emberjs.com/api/ember/release/classes/Component) must be dasherized.
+The following event types are supported (dasherized format):
+
+* `enter`
+* `insert-newline`
+* `escape-press`
+* `focus-in`
+* `focus-out`
+* `key-press`
+* `key-up`
+
+
+More [events types](https://www.emberjs.com/api/ember/release/classes/Component) are also supported but these events need to be written in camelCase format, such `mouseEnter`. Note, there are events of the same type in both the list above and linked. Event names listed above must be dasherized. Additional work is performed on these events.
 
 ## Checkboxes
 
@@ -75,6 +86,14 @@ Checkboxes support the following properties:
 
 
 Which can be bound or set as described in the previous section.
+
+
+Checkboxes are a special input type. If you want to dispatch an action on a certain [event](https://www.emberjs.com/api/ember/release/classes/Component), you will always need to define the event name in camelCase format:
+
+```handlebars
+{{input type="checkbox" keyPress=(action "updateName")}}
+```
+
 
 ## Text Areas
 
