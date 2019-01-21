@@ -98,6 +98,8 @@
   pages:
     - title: "Templating Basics"
       url: "handlebars-basics"
+    - title: "Angle Bracket Syntax"
+      url: "angle-bracket-syntax"
     - title: "Built-in Helpers"
       url: "built-in-helpers"
     - title: "Conditionals"
