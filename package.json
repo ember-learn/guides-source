@@ -60,7 +60,7 @@
     "eslint-plugin-ember": "^5.2.0",
     "eslint-plugin-import": "^2.8.0",
     "guidemaker": "^0.7.0",
-    "guidemaker-ember-template": "^0.5.1",
+    "guidemaker-ember-template": "^0.5.2",
     "loader.js": "^4.7.0",
     "lodash": "^4.17.4",
     "markdown-link-extractor": "^1.1.1",
