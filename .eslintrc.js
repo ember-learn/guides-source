@@ -36,6 +36,24 @@ module.exports = {
         browser: false,
         node: true
       }
+    },
+    // node tests
+    {
+      files: [
+        'node-tests/**/*.js'
+      ],
+      env: {
+        node: true,
+        mocha: true
+      },
+      parserOptions: {
+        ecmaVersion: 6
+      },
+      rules: {
+        "func-names": 0,
+        "prefer-arrow-callback": 0,
+        "no-unused-expressions": 0
+      },
     }
   ]
 };
