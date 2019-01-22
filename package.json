@@ -26,7 +26,9 @@
     "lint:js": "eslint .",
     "lint:md": "remark . --frail",
     "start": "ember serve",
-    "test": "ember test"
+    "test": "npm run test:node && npm run test:ember",
+    "test:ember": "ember test",
+    "test:node": "mocha node-tests"
   },
   "devDependencies": {
     "@ember/jquery": "^0.5.2",
