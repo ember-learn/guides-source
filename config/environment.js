@@ -29,8 +29,20 @@ module.exports = function(environment) {
     },
 
     guidemaker: {
-      title: 'Ember Guides'
-    }
+      title: 'Ember Guides',
+      sourceRepo: 'https://github.com/ember-learn/guides-source'
+    },
+
+    algolia: {
+      algoliaId: 'Y1OMR4C7MF',
+      algoliaKey: '5d01c83734dc36754d9e94cbf6f8964d',
+      indexName: 'ember-guides'
+    },
+
+    showdown: {
+      ghCompatibleHeaderId: true,
+      prefixHeaderId: 'toc_'
+    },
   };
 
   if (environment === 'development') {
