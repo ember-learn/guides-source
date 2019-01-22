@@ -43,6 +43,8 @@ module.exports = function(environment) {
       ghCompatibleHeaderId: true,
       prefixHeaderId: 'toc_'
     },
+
+    deprecationsGuideURL: 'https://www.emberjs.com/deprecations/',
   };
 
   if (environment === 'development') {
