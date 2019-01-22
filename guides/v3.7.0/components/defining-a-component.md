@@ -112,7 +112,7 @@ or
 ```handlebars {data-filename=app/templates/index.hbs}
 {{#each this.model as |post|}}
   {{!-- either foo-component or bar-component --}}
-  {{#let (component (concat this.componentName)) as |Post|}}
+  {{#let (component this.componentName) as |Post|}}
     <Post @post={{post}} />
   {{/let}}
 {{/each}}
