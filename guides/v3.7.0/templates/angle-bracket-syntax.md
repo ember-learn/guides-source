@@ -10,7 +10,7 @@ The [Angle Bracket Syntax](https://github.com/emberjs/rfcs/blob/master/text/0311
 <SiteHeader @user={{this.user}} class={{if this.user.isAdmin "admin"}} />
 ```
 
-Consider the example above, the `site-header` component is represented in both the Classical Invocation and Angle Bracket syntaxes to illustrate the differences between them.
+Consider the example above, the `site-header` component is represented in both the Classical Invocation and Angle Bracket syntax to illustrate the differences between them.
 
 As the syntax name suggests, the Angle Bracket Syntax replaces the outside curly braces `{{}}` with angle brackets `<>` and capitalizes the component name instead of having it be lowercase dash delimited.
 
@@ -52,7 +52,7 @@ You can apply regular HTML attributes like `class`, `id`, `aria-role`, etc. when
 
 ### Determining the Argument Scope
 
-The fundamental change is that the scope of args passed in and properties local to the component are no longer mashed together. There is a clear boundary between arguments passed down from the parent and arguments that is tracked in the local component.
+The fundamental change is that the scope of arguments passed in and properties local to the component are no longer mashed together. There is a clear boundary between arguments passed down from the parent and arguments that is tracked in the local component.
 
 ```handlebars
 {{@name}} {{!-- this is the arg passed down from the parent --}}
