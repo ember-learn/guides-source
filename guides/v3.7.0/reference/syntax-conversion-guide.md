@@ -1,3 +1,5 @@
+## Angle Bracket Syntax
+
 The [Angle Bracket Syntax](https://github.com/emberjs/rfcs/blob/master/text/0311-angle-bracket-invocation.md) is an alternative style of invoking components in templates. The difference between the Angle Bracket Syntax and the Classic Invocation Syntax is purely syntactical and does not affect the semantics of invoking a component.
 
 **Classical Invocation Syntax:**
