@@ -5,12 +5,12 @@ you want to respond to as a method on your component.
 For example, imagine we have a template like this:
 
 ```handlebars
-{{#double-clickable}}
+<DoubleClickable>
   This is a double clickable area!
-{{/double-clickable}}
+</DoubleClickable>
 ```
 
-Let's implement `double-clickable` such that when it is
+Let's implement `DoubleClickable` such that when it is
 clicked, an alert is displayed:
 
 ```javascript {data-filename=app/components/double-clickable.js}
@@ -49,7 +49,7 @@ various draggable behaviors. For example, a component may need to send an `id`
 when it receives a drop event:
 
 ```handlebars
-{{drop-target dropAction=(action "didDrop")}}
+<DropTarget @dropAction={{action "didDrop"}} />
 ```
 
 You can define the component's event handlers to manage the drop event.

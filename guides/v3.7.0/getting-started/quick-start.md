@@ -194,7 +194,6 @@ decreasing the coupling of our component to where it's used.
 
 Save this template and switch back to the `scientists` template.
 Replace all our old code with our new componentized version.
-Components look like HTML tags but instead of using angle brackets (`<tag>`) they use double curly braces (`{{component}}`).
 
 We're going to tell our component:
 
@@ -210,7 +209,7 @@ We're going to tell our component:
     <li>{{scientist}}</li>
   {{/each}}
 </ul>
-{{people-list title="List of Scientists" people=this.model}}
+<PeopleList @title="List of Scientists" @people={{this.model}} />
 ```
 
 Go back to your browser and you should see that the UI looks identical.

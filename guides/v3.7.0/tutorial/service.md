@@ -166,7 +166,7 @@ export default Component.extend({
 You may have noticed that `this.location` refers to a property location we haven't defined.
 This property will be passed in to the component by its parent template below.
 
-Finally open the template file for our `rental-listing` component and add the new `location-map` component.
+Finally open the template file for our `rental-listing` component and add the new `LocationMap` component.
 
 ```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="+25"}
 <article class="listing">
@@ -193,7 +193,7 @@ Finally open the template file for our `rental-listing` component and add the ne
       <span>Number of bedrooms:</span> {{this.rental.bedrooms}}
     </div>
   </div>
-  {{location-map location=this.rental.city}}
+  <LocationMap @location={{this.rental.city}} />
 </article>
 ```
 
@@ -321,7 +321,7 @@ module('Integration | Component | location map', function(hooks) {
 
   test('should append map element to container element', async function(assert) {
     this.set('myLocation', 'New York');
-    await render(hbs`{{location-map location=myLocation}}`);
+    await render(hbs`<LocationMap @location={{myLocation}} />`);
     assert.ok(this.element.querySelector('.map-container > .map'), 'container should have map child');
     assert.equal(this.get('mapsService.calledWithLocation'), 'New York', 'should call service with New York');
   });
@@ -330,15 +330,15 @@ module('Integration | Component | location map', function(hooks) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
 
-    await render(hbs`{{rental-listing}}`);
+    await render(hbs`<LocationMap />`);
 
     assert.equal(this.element.textContent.trim(), '');
 
     // Template block usage:
     await render(hbs`
-      {{#location-map}}
+      <LocationMap>
         template block text
-      {{/location-map}}
+      </LocationMap>
     `);
 
     assert.equal(this.element.textContent.trim(), 'template block text');

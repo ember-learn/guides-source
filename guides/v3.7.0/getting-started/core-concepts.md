@@ -42,7 +42,7 @@ Templates can also display properties provided to them from their context, which
 Here, `{{this.name}}` is a property provided by the template's context.
 
 Besides properties, double curly braces (`{{}}`) may also contain
-helpers and components, which we'll discuss later.
+helpers, which we'll discuss later.
 
 ## Models
 

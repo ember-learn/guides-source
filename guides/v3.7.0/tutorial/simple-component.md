@@ -7,9 +7,7 @@ Components can be included in any route's template, even multiple times, saving
 you from copy-and-pasting the same code around your application.
 
 Let's generate a `rental-listing` component that will manage the behavior for
-each of our rentals. A dash is required in every component name to avoid
-conflicting with a possible HTML element, so `rental-listing` is acceptable but
-`rental` isn't.
+each of our rentals. 
 
 ```bash
 ember g component rental-listing
@@ -31,7 +29,7 @@ A component consists of two parts:
 * A template that defines how it will look (`app/templates/components/rental-listing.hbs`)
 * A JavaScript source file (`app/components/rental-listing.js`) that defines how it will behave.
 
-Our new `rental-listing` component will manage how a user sees and interacts with a rental.
+Our new `RentalListing` component will manage how a user sees and interacts with a rental.
 To start, let's move the rental display details for a single rental from the `rentals.hbs` template into `rental-listing.hbs` and add the image field:
 
 ```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="-1,+2,+3,+4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19"}
@@ -57,7 +55,7 @@ To start, let's move the rental display details for a single rental from the `re
 ```
 
 Now in our `rentals.hbs` template, let's replace the old HTML markup within our `{{#each}}` loop
-with our new `rental-listing` component:
+with our new `RentalListing` component:
 
 ```handlebars {data-filename="app/templates/rentals.hbs" data-diff="+12,+13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29"}
 <div class="jumbo">
@@ -72,7 +70,7 @@ with our new `rental-listing` component:
 </div>
 
 {{#each this.model as |rentalUnit|}}
-  {{rental-listing rental=rentalUnit}}
+  <RentalListing @rental={{rentalUnit}} />
 {{#each this.model as |rental|}}
   <article class="listing">
     <h3>{{rental.title}}</h3>
@@ -93,7 +91,7 @@ with our new `rental-listing` component:
 ```
 
 For each `rentalUnit` in the `model` list, we are creating a new instance of our
-`rental-listing` component and passing in the `rentalUnit` by assigning it to
+`RentalListing` component and passing in the `rentalUnit` by assigning it to
 the component's `rental` attribute.
 
 Our app should behave now as before, with the addition of an image for each rental item.
@@ -166,7 +164,7 @@ export default Component.extend({
 In order to trigger this action, we need to use the `{{action}}` helper in our
 template:
 
-```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="-2,+3,+4,+4,+6,+7"}
+```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="-2,+3,+4,+5,+6,+7"}
 <article class="listing">
   <a class="image {{if this.isWide "wide"}}">
   <a
@@ -245,15 +243,15 @@ module('Integration | Component | rental listing', function (hooks) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
 
-    await render(hbs`{{rental-listing}}`);
+    await render(hbs`<RentalListing />`);
 
     assert.equal(this.element.textContent.trim(), '');
 
     // Template block usage:
     await render(hbs`
-      {{#rental-listing}}
+      <RentalListing>
         template block text
-      {{/rental-listing}}
+      </RentalListing>
     `);
 
     assert.equal(this.element.textContent.trim(), 'template block text');
@@ -320,11 +318,11 @@ module('Integration | Component | rental listing', function (hooks) {
   });
 
   test('should display rental details', async function(assert) {
-    await render(hbs`{{rental-listing rental=rental}}`);
+    await render(hbs`<RentalListing @rental={{this.rental}} />`);
   });
 
   test('should toggle wide class on click', async function(assert) {
-    await render(hbs`{{rental-listing rental=rental}}`);
+    await render(hbs`<RentalListing @rental={{this.rental}} />`);
   });
 });
 ```
@@ -335,7 +333,7 @@ In the first test, we just want to verify the output of the component, so we jus
 
 ```javascript {data-filename="tests/integration/components/rental-listing-test.js" data-diff="+3,+4"}
 test('should display rental details', async function(assert) {
-  await render(hbs`{{rental-listing rental=rental}}`);
+  await render(hbs`<RentalListing @rental={{this.rental}} />`);
   assert.equal(this.element.querySelector('.listing h3').textContent.trim(), 'test-title', 'Title: test-title');
   assert.equal(this.element.querySelector('.listing .owner').textContent.trim(), 'Owner: test-owner', 'Owner: test-owner');
 });
@@ -348,7 +346,7 @@ Note that we find the image element using the CSS selector `.image`.
 
 ```javascript {data-filename="tests/integration/components/rental-listing-test.js" data-diff="+3,+4,+5,+6,+7"}
   test('should toggle wide class on click', async function(assert) {
-    await render(hbs`{{rental-listing rental=rental}}`);
+    await render(hbs`<RentalListing @rental={{this.rental}} />`);
     assert.notOk(this.element.querySelector('.image.wide'), 'initially rendered small');
     await click('.image');
     assert.ok(this.element.querySelector('.image.wide'), 'rendered wide after click');
@@ -389,13 +387,13 @@ module('Integration | Component | rental listing', function (hooks) {
   });
 
   test('should display rental details', async function(assert) {
-    await render(hbs`{{rental-listing rental=rental}}`);
+    await render(hbs`<RentalListing @rental={{this.rental}} />`);
     assert.equal(this.element.querySelector('.listing h3').textContent.trim(), 'test-title', 'Title: test-title');
     assert.equal(this.element.querySelector('.listing .owner').textContent.trim(), 'Owner: test-owner', 'Owner: test-owner');
   });
 
   test('should toggle wide class on click', async function(assert) {
-    await render(hbs`{{rental-listing rental=rental}}`);
+    await render(hbs`<RentalListing @rental={{this.rental}} />`);
     assert.notOk(this.element.querySelector('.image.wide'), 'initially rendered small');
     await click('.image');
     assert.ok(this.element.querySelector('.image.wide'), 'rendered wide after click');

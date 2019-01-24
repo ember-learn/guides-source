@@ -33,15 +33,15 @@ This is where the active nested route will be rendered.
     About Us
   {{/link-to}}
 </div>
-{{#list-filter
-   filter=(action 'filterByCity')
-   as |filteredResults|}}
+<ListFilter
+   @filter={{action "filterByCity"}}
+   as |filteredResults|>
   <ul class="results">
     {{#each filteredResults as |rentalUnit|}}
-      <li>{{rental-listing rental=rentalUnit}}</li>
+      <li><RentalListing @rental={{rentalUnit}} /></li>
     {{/each}}
   </ul>
-{{/list-filter}}
+</ListFilter>
 {{outlet}}
 ```
 
@@ -110,28 +110,28 @@ Now that we are returning all of our rentals to the nested route's model, we wil
     About Us
   {{/link-to}}
 </div>
-{{#list-filter
-   filter=(action 'filterByCity')
+<ListFilter
+   @filter={{action "filterByCity"}}
    as |filteredResults|}}
   <ul class="results">
     {{#each filteredResults as |rentalUnit|}}
-      <li>{{rental-listing rental=rentalUnit}}</li>
+      <li><RentalListing @rental={{rentalUnit}} /></li>
     {{/each}}
   </ul>
-{{/list-filter}}
+</ListFilter>
 {{outlet}}
 ```
 
 ```handlebars {data-filename="app/templates/rentals/index.hbs" data-diff="+1,+2,+3,+4,+5,+6,+7,+8,+9"}
-{{#list-filter
-   filter=(action 'filterByCity')
+<ListFilter
+   @filter={{action "filterByCity"}}
    as |filteredResults|}}
   <ul class="results">
     {{#each filteredResults as |rentalUnit|}}
-      <li>{{rental-listing rental=rentalUnit}}</li>
+      <li><RentalListing @rental={{rentalUnit}} /></li>
     {{/each}}
   </ul>
-{{/list-filter}}
+</ListFilter>
 {{outlet}}
 ```
 
@@ -343,7 +343,7 @@ Now browse to `localhost:4200/rentals/grand-old-mansion` and you should see the 
 
 ## Linking to a Specific Rental
 
-Now that we can load pages for individual rentals, we'll add a link (using the `link-to` helper) within our `rental-listing` component to navigate to individual pages.
+Now that we can load pages for individual rentals, we'll add a link (using the `link-to` helper) within our `RentalListing` component to navigate to individual pages.
 Here, the `link-to` helper takes the route name and the rental model object as arguments.
 When you pass an object as second argument into the `link-to` block helper, it will by default [serialize](https://www.emberjs.com/api/ember/release/classes/Route/methods/beforeModel?anchor=serialize) the object to the ID of the model into the URL.
 Alternately, you may just pass `rental.id` for clarity.
@@ -378,7 +378,7 @@ Clicking on the title will load the detail page for that rental.
       <span>Number of bedrooms:</span> {{this.rental.bedrooms}}
     </div>
   </div>
-  {{location-map location=this.rental.city}}
+  <LocationMap @location={{this.rental.city}} />
 </article>
 ```
 ![Rental Page Nested Index Route](/images/subroutes/subroutes-super-rentals-index.png)

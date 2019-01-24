@@ -80,7 +80,7 @@ In terms of setting up the test – Rendering Tests are roughly similar to Conta
 
 For the example below, we also import the `render` and `click` functions from ember-test-helpers to show and interact with the component being tested as well as `hbs` from [htmlbars-inline-precompile](https://github.com/ember-cli/ember-cli-htmlbars-inline-precompile) to help with inline template definitions. With these APIs, we can test clicking on this component and check if the text is successfully updated with each click.
 
-```javascript {data-filename=components/tests/x-counter-test.js}
+```javascript {data-filename=components/tests/counter-test.js}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render, click } from '@ember/test-helpers';
@@ -92,7 +92,7 @@ module('Component | counter', function(hooks) {
   test('it should count clicks', async function(assert) {
     this.set('value', 0);
 
-    await render(hbs`{{x-counter value=value onUpdate=( … )}}`);
+    await render(hbs`<Counter @value={{this.value}} @onUpdate={{( … )}} />`);
     assert.equal(this.element.textContent, '0 clicks');
 
     await click('.counter');
