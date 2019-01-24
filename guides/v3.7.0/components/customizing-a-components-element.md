@@ -39,7 +39,7 @@ You can specify the class of a component's element at invocation time the same
 way you would for a regular HTML element:
 
 ```handlebars
-{{navigation-bar class="primary"}}
+<NavigationBar class="primary" />
 ```
 
 You can also specify which class names are applied to the component's

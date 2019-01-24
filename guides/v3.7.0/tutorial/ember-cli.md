@@ -139,11 +139,11 @@ application. This template is most often used to house the application's layout,
 usually containing the header, footer, navigation bar, and so on.
 
 When we edit the `app/templates/application.hbs` file, we'll remove the
-component labeled `{{welcome-page}}`:
+component labeled `<WelcomePage />`:
 
 ```handlebars {data-filename="app/templates/application.hbs" data-diff="-1,-2,-3"}
 {{!-- The following component displays Ember's default welcome message. --}}
-{{welcome-page}}
+<WelcomePage />
 {{!-- Feel free to remove this! --}}
 
 {{outlet}}

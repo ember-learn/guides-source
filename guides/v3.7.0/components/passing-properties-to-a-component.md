@@ -1,7 +1,7 @@
 Components are isolated from their surroundings, so any data that the component
 needs has to be passed in.
 
-For example, imagine you have a `blog-post` component that is used to
+For example, imagine you have a `BlogPost` component that is used to
 display a blog post:
 
 ```handlebars {data-filename=app/templates/components/blog-post.hbs}
@@ -27,7 +27,7 @@ If we tried to use the component like this:
 
 ```handlebars {data-filename=app/templates/index.hbs}
 {{#each this.model as |post|}}
-  {{blog-post}}
+  <BlogPost />
 {{/each}}
 ```
 
@@ -45,7 +45,7 @@ in like this:
 
 ```handlebars {data-filename=app/templates/index.hbs}
 {{#each this.model as |post|}}
-  {{blog-post title=post.title body=post.body}}
+  <BlogPost @title={{post.title}} @body={{post.body}} />
 {{/each}}
 ```
 
@@ -59,10 +59,10 @@ to components. This allows data to flow back up to its parent. You pass actions
 like this.
 
 ```handlebars {data-filename=app/templates/index.hbs}
-  {{button-with-confirmation
-    text="Click here to unsubscribe."
-    onConfirm=(action "unsubscribe")
-  }}
+  <ButtonWithConfirmation
+    @text="Click here to unsubscribe."
+    @onConfirm={{action "unsubscribe"}}
+  />
 ```
 
 It is important to note that actions can only be passed from a controller or another
@@ -92,7 +92,7 @@ export default Component.extend({}).reopenClass({
 ```
 
 Then you can use the attributes in the component exactly as if they had been
-passed in like `{{blog-post title=post.title body=post.body}}`.
+passed in like `<BlogPost @title={{post.title}} @body={{post.body}} />`.
 
 Notice that the `positionalParams` property is added to the class as a
 static variable via `reopenClass`. Positional params are always declared on

@@ -216,7 +216,7 @@ The component below takes a list of items and displays them on the screen.
 Additionally, it takes an object representing which item is selected and will select and set the scroll top to that item.
 
 ```handlebars {data-filename=app/templates/application.hbs}
-{{selected-item-list items=this.items selectedItem=this.selection}}
+<SelectedItemList @items={{this.items}} @selectedItem={{this.selection}} />
 ```
 
 When rendered the component will iterate through the given list and apply a class to the one that is selected.
@@ -263,7 +263,7 @@ For instance, the user may navigate to a different route, or a conditional Handl
 
 ```handlebars {data-filename=app/templates/application.hbs}
 {{#if this.falseBool}}
-  {{my-component}}
+  <MyComponent />
 {{/if}}
 ```
 

@@ -7,12 +7,6 @@ ember generate component my-component-name
 Ember components are used to turn markup text and styles into reusable content. 
 Components consist of two parts: a JavaScript component file that defines behavior, and its accompanying Handlebars template that defines the markup for the component's UI.
 
-Components must have at least one dash in their name. So `blog-post` is an acceptable
-name, and so is `audio-player-controls`, but `post` is not. This prevents clashes with
-current or future HTML element names, aligns Ember components with the W3C [Custom
-Elements](https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/custom/index.html)
-spec, and ensures Ember detects the components automatically.
-
 A sample component template could look like this:
 
 ```handlebars {data-filename=app/templates/components/blog-post.hbs}
@@ -23,13 +17,13 @@ A sample component template could look like this:
 </article>
 ```
 
-Given the above template, you can now use the `{{blog-post}}` component:
+Given the above template, you can now use the `<BlogPost />` component:
 
 ```handlebars {data-filename=app/templates/index.hbs}
 {{#each this.model as |post|}}
-  {{#blog-post title=post.title}}
+  <BlogPost @title={{post.title}}>
     {{post.body}}
-  {{/blog-post}}
+  </BlogPost>
 {{/each}}
 ```
 
@@ -73,14 +67,14 @@ file at `app/components/blog-post.js`. If your component was called
 ## Dynamically rendering a component
 
 The [`{{component}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/component?anchor=component) helper can be used to defer the selection of a component to
-run time. The `{{my-component}}` syntax always renders the same component,
+run time. The `<MyComponent />` syntax always renders the same component,
 while using the `{{component}}` helper allows choosing a component to render on
 the fly. This is useful in cases where you want to interact with different
 external libraries depending on the data. Using the `{{component}}` helper would
 allow you to keep different logic well separated.
 
 The first parameter of the helper is the name of a component to render, as a
-string. So `{{component 'blog-post'}}` is the same as using `{{blog-post}}`.
+string. So `{{component 'blog-post'}}` is the same as using `<BlogPost />`.
 
 The real value of [`{{component}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/component?anchor=component) comes from being able to dynamically pick
 the component being rendered. Below is an example of using the helper as a
@@ -110,6 +104,17 @@ export default Route.extend({
 {{#each this.model as |post|}}
   {{!-- either foo-component or bar-component --}}
   {{component post.componentName post=post}}
+{{/each}}
+```
+
+or 
+
+```handlebars {data-filename=app/templates/index.hbs}
+{{#each this.model as |post|}}
+  {{!-- either foo-component or bar-component --}}
+  {{#let (component this.componentName) as |Post|}}
+    <Post @post={{post}} />
+  {{/let}}
 {{/each}}
 ```
 

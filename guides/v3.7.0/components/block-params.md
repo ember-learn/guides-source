@@ -4,7 +4,7 @@ but they can also return output to be used in a block expression.
 ### Return values from a component with `yield`
 
 ```handlebars {data-filename=app/templates/index.hbs}
-{{blog-post post=this.model}}
+<BlogPost @post={{this.model}} />
 ```
 
 ```handlebars {data-filename=app/templates/components/blog-post.hbs}
@@ -24,11 +24,11 @@ where the markup is provided by the consuming template,
 but any event handling behavior implemented in the component is retained such as `click()` handlers.
 
 ```handlebars {data-filename=app/templates/index.hbs}
-{{#blog-post post=this.model as |title body author|}}
+<BlogPost @post={{this.model}} as |title body author|>
   <h2>{{title}}</h2>
   <p class="author">by {{author}}</p>
   <p class="post-body">{{body}}</p>
-{{/blog-post}}
+</BlogPost>
 ```
 
 The names are bound in the order that they are passed to `yield` in the component template.

@@ -72,11 +72,11 @@ Using the [`{{array}}`](https://www.emberjs.com/api/ember/release/classes/Ember.
 you can pass arrays directly from the template as an argument to your components.
 
 ```handlebars
-{{my-component people=(array
+<MyComponent @people={{array
     'Tom Dade'
     'Yehuda Katz'
-    this.myOtherPerson)
- }}
+    this.myOtherPerson}}
+ />
 ```
 
 In the component's template, you can then use the `people` argument as an array:

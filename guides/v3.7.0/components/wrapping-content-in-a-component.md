@@ -1,16 +1,16 @@
 Sometimes, you may want to define a component that wraps content provided by other templates.
 
-For example, imagine we are building a `blog-post` component that we can use in our application to display a blog post:
+For example, imagine we are building a `BlogPost` component that we can use in our application to display a blog post:
 
 ```handlebars {data-filename=app/templates/components/blog-post.hbs}
 <h1>{{this.title}}</h1>
 <div class="body">{{this.body}}</div>
 ```
 
-Now, we can use the `{{blog-post}}` component and pass it properties in another template:
+Now, we can use the `<BlogPost />` component and pass it properties in another template:
 
 ```handlebars
-{{blog-post title=this.title body=this.body}}
+<BlogPost @title={{this.title}} @body={{this.body}} />
 ```
 
 See [Passing Properties to a Component](../passing-properties-to-a-component/) for more.
@@ -27,7 +27,7 @@ then make sure to add a closing tag.
 
 See the Handlebars documentation on [block expressions](http://handlebarsjs.com/#block-expressions) for more.
 
-In that case, we can use the `{{blog-post}}` component in **block form** and tell Ember where the block content should be rendered using the `{{yield}}` helper.
+In that case, we can use the `<BlogPost />` component in **block form** and tell Ember where the block content should be rendered using the `{{yield}}` helper.
 To update the example above, we'll first change the component's template:
 
 ```handlebars {data-filename=app/templates/components/blog-post.hbs}
@@ -41,10 +41,10 @@ This tells Ember that this content will be provided when the component is used.
 Next, we'll update the template using the component to use the block form:
 
 ```handlebars {data-filename=app/templates/index.hbs}
-{{#blog-post title=this.title}}
+<BlogPost @title={{post.title}}>
   <p class="author">by {{this.author}}</p>
   {{this.body}}
-{{/blog-post}}
+</BlogPost>
 ```
 
 It's important to note that the template scope inside the component block is the same as outside.
@@ -57,10 +57,10 @@ In our blog post component we want to provide a way for the user to configure wh
 We will give them the option to specify either `markdown-style` or `html-style`.
 
 ```handlebars {data-filename=app/templates/index.hbs}
-{{#blog-post editStyle="markdown-style"}}
+<BlogPost @editStyle="markdown-style">
   <p class="author">by {{this.author}}</p>
   {{this.body}}
-{{/blog-post}}
+</BlogPost>
 ```
 
 Supporting different editing styles will require different body components to provide special validation and highlighting.
@@ -78,10 +78,10 @@ Once yielded, the data can be accessed by the wrapped content by referencing the
 Now a component called `markdown-style` will be rendered in `{{post.body}}`.
 
 ```handlebars {data-filename=app/templates/index.hbs}
-{{#blog-post editStyle="markdown-style" postData=this.myText as |post|}}
+<BlogPost @editStyle="markdown-style" @postData={{this.myText}} as |post|>
   <p class="author">by {{this.author}}</p>
   {{post.body}}
-{{/blog-post}}
+</BlogPost>
 ```
 
 Finally, we need to share `myText` with the body in order to have it display.
@@ -106,10 +106,10 @@ When `{{post.body}}` is instantiated, it will have both the `editStyle` and `pos
 as well as the `bodyStyle` declared in the template.
 
 ```handlebars {data-filename=app/templates/index.hbs}
-{{#blog-post editStyle="markdown-style" postData=this.myText as |post|}}
+<BlogPost @editStyle="markdown-style" @postData={{this.myText}} as |post|>
   <p class="author">by {{this.author}}</p>
   {{post.body bodyStyle="compact-style"}}
-{{/blog-post}}
+</BlogPost>
 ```
 
 Components built this way are commonly referred to as "Contextual Components",

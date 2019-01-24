@@ -16,9 +16,9 @@ As before when we created the [`rental-listing` component](../simple-component/)
 
 #### Providing Markup to a Component
 
-In our `app/templates/rentals.hbs` template file, we'll add a reference to our new `list-filter` component.
+In our `app/templates/rentals.hbs` template file, we'll add a reference to our new `ListFilter` component.
 
-Notice that below we "wrap" our rentals markup inside the open and closing mentions of `list-filter` on lines 12 and 21.
+Notice that below we "wrap" our rentals markup inside the open and closing mentions of `ListFilter` on lines 12 and 20.
 This is an example of the [**block form**](../../components/wrapping-content-in-a-component/) of a component,
 which allows a Handlebars template to be rendered _inside_ the component's template wherever the `{{yield}}` expression appears.
 
@@ -36,19 +36,19 @@ In this case we are passing, or "yielding", our filter data to the inner markup 
   {{/link-to}}
 </div>
 
-{{#list-filter
- filter=(action "filterByCity")
+<ListFilter
+ @filter={{action "filterByCity"}}
 as |filteredResults|
-}}
+>
   <ul class="results">
     {{#each filteredResults as |rentalUnit|}}
-      <li>{{rental-listing rental=rentalUnit}}</li>
+      <li><RentalListing @rental={{rentalUnit}} /></li>
     {{/each}}
   </ul>
-{{/list-filter}}
+</ListFilter>
 {{outlet}}
 {{#each this.model as |rentalUnit|}}
-  {{rental-listing rental=rentalUnit}}
+  <RentalListing @rental={{rentalUnit}} />
 {{/each}}
 ```
 
@@ -304,7 +304,7 @@ Let's use a [component integration test](../../testing/testing-components/)
 to verify our component behavior,
 similar to [how we tested our rental listing component earlier](../simple-component/#toc_an-integration-test).
 
-Lets begin by opening the component integration test created when we generated our `list-filter` component, `tests/integration/components/list-filter-test.js`.
+Lets begin by opening the component integration test created when we generated our `ListFilter` component, `tests/integration/components/list-filter-test.js`.
 Remove the default test, and create a new test that verifies that by default, the component will list all items.
 
 ```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="+9,+10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28"}
@@ -323,15 +323,15 @@ module('Integration | Component | list-filter', function(hooks) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
 
-    await render(hbs`{{rental-listing}}`);
+    await render(hbs`<RentalListing />`);
 
     assert.equal(this.element.textContent.trim(), '');
 
     // Template block usage:
     await render(hbs`
-      {{#rental-listing}}
+      <RentalListing>
         template block text
-      {{/rental-listing}}
+      </RentalListing>
     `);
 
     assert.equal(this.element.textContent.trim(), 'template block text');
@@ -340,7 +340,7 @@ module('Integration | Component | list-filter', function(hooks) {
 });
 ```
 
-Our list-filter component takes a function as an argument, used to find the list of matching rentals based on the filter string provided by the user.
+Our `ListFilter` component takes a function as an argument, used to find the list of matching rentals based on the filter string provided by the user.
 
 ```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="+5,+7,+8,+14,+15,+16"}
 import { module, test } from 'qunit';
@@ -397,7 +397,7 @@ module('Integration | Component | list-filter', function(hooks) {
     // you can set up and use your component in the same way your application
     // will use it.
     await render(hbs`
-      {{#list-filter filter=(action filterByCity) as |results|}}
+      <ListFilter @filter={{action filterByCity}} as |results|>
         <ul>
         {{#each results as |item|}}
           <li class="city">
@@ -405,7 +405,7 @@ module('Integration | Component | list-filter', function(hooks) {
           </li>
         {{/each}}
         </ul>
-      {{/list-filter}}
+      </ListFilter>
     `);
 
   });
@@ -443,7 +443,7 @@ module('Integration | Component | list-filter', function(hooks) {
     // with an integration test,
     // you can set up and use your component in the same way your application will use it.
     await render(hbs`
-      {{#list-filter filter=(action filterByCity) as |results|}}
+      <ListFilter @filter={{action filterByCity}} as |results|>
         <ul>
         {{#each results as |item|}}
           <li class="city">
@@ -451,7 +451,7 @@ module('Integration | Component | list-filter', function(hooks) {
           </li>
         {{/each}}
         </ul>
-      {{/list-filter}}
+      </ListFilter>
     `);
 
     return settled().then(() => {
@@ -497,7 +497,7 @@ test('should update with matching listings', async function (assert) {
   });
 
   await render(hbs`
-    {{#list-filter filter=(action filterByCity) as |results|}}
+    <ListFilter @filter={{action filterByCity}} as |results|>
       <ul>
       {{#each results as |item|}}
         <li class="city">
@@ -505,7 +505,7 @@ test('should update with matching listings', async function (assert) {
         </li>
       {{/each}}
       </ul>
-    {{/list-filter}}
+    </ListFilter>
   `);
 
   // fill in the input field with 's'
@@ -525,7 +525,7 @@ You can verify this by starting up our test suite by typing `ember t -s` at the 
 
 ### Application Tests
 
-Now that we've tested that the `list-filter` component behaves as expected, let's test that the page itself also behaves properly with an application test.
+Now that we've tested that the `ListFilter` component behaves as expected, let's test that the page itself also behaves properly with an application test.
 We'll verify that a user visiting the rentals page can enter text into the search field and narrow the list of rentals by city.
 
 Open our existing application test, `tests/acceptance/list-rentals-test.js`, and implement the test labeled "should filter the list of rentals by city".
@@ -559,7 +559,7 @@ import {
 
 In `app/components/list-filter.js`, we have as the top-level element rendered by the component a class called `list-filter`.
 We locate the search input within the component using the selector `.list-filter input`,
-since we know that there is only one input element located in the list-filter component.
+since we know that there is only one input element located in the `ListFilter` component.
 
 Our test fills out "Seattle" as the search criteria in the search field,
 and then sends a `keyup` event to the same field with a code of `69` (the `e` key) to simulate a user typing, which is the event our code is looking for.
@@ -568,7 +568,7 @@ In the case of our code the key code sent can be anything, since we read the val
 We only use the key event to let our code know that it's time to make a search.
 
 The test locates the results of the search by finding elements with a class of `listing`,
-which we gave to our `rental-listing` component in the ["Building a Simple Component"](../simple-component/) section of the tutorial.
+which we gave to our `RentalListing` component in the ["Building a Simple Component"](../simple-component/) section of the tutorial.
 
 Since our data is hard-coded in Mirage, we know that there is only one rental with a city name of "Seattle",
 so we assert that the number of listings is one and that the location it displays is named, "Seattle".
