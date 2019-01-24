@@ -36,7 +36,7 @@ The above template and controller render as the following HTML:
 Hello, <strong>Trek Glowacki</strong>!
 ```
 
-Remember that `{{firstName}}` and `{{lastName}}` are bound data. That means
+Remember that `{{this.firstName}}` and `{{this.lastName}}` are bound data. That means
 if the value of one of those properties changes, the DOM will be updated
 automatically.
 
