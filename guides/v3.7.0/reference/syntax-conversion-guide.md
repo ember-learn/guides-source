@@ -9,7 +9,7 @@ The [Angle Bracket Syntax](https://github.com/emberjs/rfcs/blob/master/text/0311
 
 **Angle Bracket Syntax:**
 ```handlebars
-<SiteHeader @user={{this.user}} class={{if this.user.isAdmin "admin"}} />
+<SiteHeader @user={{this.user}} @class={{if this.user.isAdmin "admin"}} />
 ```
 
 Consider the example above, the `site-header` component is represented in both the Classical Invocation and Angle Bracket syntax to illustrate the differences between them.
@@ -45,9 +45,9 @@ You can apply regular HTML attributes like `class`, `id`, `aria-role`, etc. when
 
 **Angle Bracket Syntax:**
 ```handlebars
-<SuperSelect @selected={{this.user.country}} as |Option|>
+<SuperSelect @selected={{this.user.country}} as |s|>
   {{#each this.availableCountries as |country|}}
-    <Option @value={{country}}>{{country.name}}</Option>
+    <s.option @value={{country}}>{{country.name}}</s.option>
   {{/each}}
 </SuperSelect>
 ```
