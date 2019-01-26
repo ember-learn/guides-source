@@ -31,7 +31,7 @@ only renders `"zoooom"` if both `isFast` and `isFueled` are true:
 
 ```handlebars
 <div>
-  {{if isFast (if this.isFueled "zoooom")}}
+  {{if this.isFast (if this.isFueled "zoooom")}}
 </div>
 ```
 
