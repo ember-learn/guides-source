@@ -63,7 +63,7 @@
     "eslint-config-airbnb-base": "^13.0.0",
     "eslint-plugin-ember": "^5.2.0",
     "eslint-plugin-import": "^2.8.0",
-    "guidemaker": "^0.7.0",
+    "guidemaker": "^0.7.1",
     "guidemaker-ember-template": "^0.6.0",
     "loader.js": "^4.7.0",
     "lodash": "^4.17.4",
