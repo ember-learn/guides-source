@@ -273,14 +273,14 @@ module('Unit | Service | maps', function(hooks) {
 ```
 
 When the service calls `createMap` on our fake utility `stubMapUtil`, we will run asserts to validate that it is called.
-In our first test notice that we expect four asserts to be run in line 18. Two of the asserts run in the test function, while the other two are run when `createMap` is called.
+In our first test notice that we expect five asserts to be run in line 17. Two of the asserts run in the test function, while the other two are run when `createMap` is called.
 
-In the second test, only one assert is expected (line 33), since the map element is fetched from cache and does not use the utility.
+In the second test, only one assert is expected (line 38), since the map element is fetched from cache and does not use the utility.
 
 Also, note that the second test uses a dummy object as the returned map element (defined on line 5).
-Our map element can be substituted with any object because we are only asserting that the cache has been accessed (see line 39).
+Our map element can be substituted with any object because we are only asserting that the cache has been accessed (see line 44).
 
-The location in the cache has been [`camelized`](https://www.emberjs.com/api/ember/release/classes/String/methods/camelize?anchor=camelize) (line 30),
+The location in the cache has been [`camelized`](https://www.emberjs.com/api/ember/release/classes/String/methods/camelize?anchor=camelize) (line 40),
 so that it may be used as a key to look up our element.
 This matches the behavior in `getMapElement` when city has not yet been cached.
 
