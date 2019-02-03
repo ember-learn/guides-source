@@ -2,7 +2,7 @@ In the last section you learned how to write a helper.
 A helper is usually a simple function that can be used in any template.
 Ember comes with a few helpers that can make developing your templates a bit easier.
 These helpers can allow you to be more dynamic in passing data to another helper or component.
-For a full list of built-in Helpers, see the [Ember.Templates.helpers](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/)
+For a full list of built-in Helpers, see the [Ember.Templates.helpers](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/)
 API documentation.
 
 ### Using a helper to get a property dynamically
