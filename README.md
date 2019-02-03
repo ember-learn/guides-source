@@ -5,8 +5,6 @@ This repository contains the written content
 for the [Ember.js Guides](https://guides.emberjs.com). 
 Here, contributors can file issues and submit PRs to 
 help improve the learning experience of other developers.
-The markdown files in this repository are fetched and
-displayed by the [guides-app](https://github.com/ember-learn/guides-app). 
 
 Looking for repositories for the other parts of [emberjs.com](https://emberjs.com)? 
 Check out
@@ -27,9 +25,6 @@ want a buddy to pair with, you can join the
 [dev-ember-learning channel](https://discordapp.com/channels/480462759797063690/480777444203429888)
 in the [Ember Community Discord](https://discordapp.com/invite/zT3asNS).
 
-## Linting/spellchecking
-
-The guides are spellchecked and linted for markdown consistency. You can test your contributions by running `npm run lint::md`. Linting and spellchecking must pass or they will fail in Travis-CI.  See [CONTRIBUTING.md](CONTRIBUTING.md) for more information on linting and spellchecking.
 
 ## Project layout
 
@@ -37,28 +32,34 @@ The Guides content takes the form of Markdown files (just like most READMEs).
 Each minor version of Ember has its own directory within `/guides/`.
 Pull requests should make edits to only the latest version of Ember,
 except in the case of bug reports for broken links.
+On `ember serve`, the Markdown files are turned into HTML
+to create an app. Most of the functionality comes from 
+[guidemaker](https://github.com/empress/guidemaker) and 
+[guidemaker-ember-template](https://github.com/ember-learn/guidemaker-ember-template).
+The styles come from [ember-styleguide](https://github.com/ember-learn/ember-styleguide),
+the shared home of components and stylesheets used throughout the family of 
+Ember sites.
 
 ## Local Development
-To see your changes locally, you need two repositories on your
-computer. This repository, `guides-source` contains only written content
-as markdown files, which are fetched and displayed by
-[guides-app](https://github.com/ember-learn/guides-app).
-
-Before following the below instructions and making any changes, first-time
-contributors should see [CONTRIBUTING.md](CONTRIBUTING.md) for
-instructions on forking the `guides-source` and `guides-app`
-repositories and making a first pull
-request.
 
 ```sh
-git clone git://github.com/ember-learn/guides-app.git
 git clone git://github.com/ember-learn/guides-source.git
 
-cd guides-source
-npm link
-
-cd ../guides-app/
-npm i
-npm link @ember-learn/guides-source
-npm start
+cd ../guides-source/
+npm install
+ember serve
 ```
+
+## Running tests
+
+Use `npm` to run tests instead of `ember`, since we have additional
+tests like spellchecking that are not part of The Ember app's tests.
+
+```
+npm install
+npm test
+```
+
+### Linting and spellchecking
+
+The guides are spellchecked and linted for Markdown consistency. You can test your contributions by running `npm run lint::md`. Linting and spellchecking must pass or they will fail in Travis-CI.  See [CONTRIBUTING.md](CONTRIBUTING.md) for more information on linting and spellchecking.
