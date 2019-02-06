@@ -69,15 +69,15 @@ This section will become more detailed over time, but to start, here is a checkl
   - Do not use role="presentation" or aria-hidden="true" on a focusable element.
   - All interactive elements must have an accessible name.
 - The values for the role attribute are pre-defined by the ARIA specification. This is not something an author can define a custom value for (that is not listed in the spec). [Learn more about roles in the specification.](https://www.w3.org/TR/wai-aria/#roles_categorization)
-- In general, don't make your own keyboard shortcuts. [All screen readers already provide their own.](https://dequeuniversity.com/screenreaders/) There is some nuance here, so proceed with caution should you choose to do so. 
+- In general, don't make your own keyboard shortcuts. [Screen readers already provide quite a few.](https://dequeuniversity.com/screenreaders/) There is some nuance here, so proceed with caution should you choose to do so. 
 - "Completely accessible" may be somewhat of a misnomer. Practical accessibility looks more like 90% coding to the spec and 10% filing browser bugs (or keeping track of existing browser bugs). Keep in mind that if you choose to implement a workaround for a browser bug, you will need to to put an issue in your product backlog to follow up on browser bugs at a later date. 
 
 ### Focus
-Focus management is a large part of how your application's code coordinates with the code that runs screen readers (If you peek through the source code for [NVDA](xxURL), you'll see what I mean).
+Focus management is a large part of how your application's code coordinates with the code that runs screen readers (If you peek through the source code for [NVDA](https://github.com/nvaccess/nvda), you'll see what I mean).
 
 Again, we intend for this section to have more information but to get you started, here are some focus basics: 
-- There's a difference between browse mode and focus mode in screen readers- see ["Focus Please"](xxURLxx).
-- While we have an [RFC](xxURLxx) to address accessible routing in Ember more permanently, in the meantime there are a few addons to help address the primary focus flaw that affects screen reader users. Evaluate [ember-a11y](xxURLxx) and [ember-self-focused](xxURLxx) to see which approach might fit your application best. 
+- There's a difference between browse mode and focus mode in screen readers- see ["Focus Please"](https://codepen.io/melsumner/live/ZJeYoP).
+- While we have an [RFC](https://github.com/emberjs/rfcs/pull/433) to address accessible routing in Ember more permanently, in the meantime there are a few addons to help address the primary focus flaw that affects screen reader users. Evaluate [ember-a11y](https://github.com/ember-a11y/ember-a11y) and [ember-self-focused](https://github.com/linkedin/self-focused/tree/master/packages/ember-self-focused) to see which approach might fit your application best. 
 - If you have an element in your application that opens a modal (like, say, a button element), focus should return to that same element once that modal is closed. 
 
 ## Ember Addon Support
