@@ -1,4 +1,4 @@
-The purpose of this guide is to give every Ember developer a guide for making your Ember app minimally accessible. As accessibility can be a complex issue, it should be noted that this guide only covers a few basics to help you easily avoid certain accessibility issues, and should not be considered a comprehensive guide. 
+The purpose of this guide is to give every Ember developer a starting point for making your Ember application minimally accessible. As accessibility can be a complex issue, it should be noted that this guide only covers a some of the basics, and should not be considered a comprehensive guide. 
 
 ## Screen Reader and Browser Combinations
 
@@ -25,7 +25,7 @@ The absolute best method for learning how a screen reader works is using one you
 
 The first thing that should be discussed in this section is this: "application" in Ember development and "application" in landmark roles have two _very_ different meanings. 
 
-The TL;DR? Don't use role="application" until you have done your research and know exactly how it is to be used correctly (if at all). There are very few use cases where the role of application is appropriate. 
+The TL;DR? Don't use `role="application"` until you have done your research and know exactly how it is to be used correctly (if at all). There are very few use cases where the role of application is appropriate. 
 
 Read more about it: [https://a11yproject.com/posts/how-to-use-application-role/](https://a11yproject.com/posts/how-to-use-application-role/)
 
@@ -66,10 +66,10 @@ This section will become more detailed over time, but to start, here is a checkl
   - Use native HTML elements whenever possible; the built-in benefits of native browser keyboard navigation support and accessibility features mean you have less to add into your app. There are a lot of examples that demonstrate why, the most famous of which is ["Just use a button"](https://developer.paciellogroup.com/blog/2011/04/html5-accessibility-chops-just-use-a-button/).
   - Don't change semantics unless you _really_ have to (you probably don't).
   - All interactive elements must be usable with only a keyboard. A helpful development tip- make sure you can use your own app just using your keyboard.
-  - Do not use role="presentation" or aria-hidden="true" on a focusable element.
+  - Do not use `role="presentation"` or `aria-hidden="true"` on a focusable element.
   - All interactive elements must have an accessible name.
 - The values for the role attribute are pre-defined by the ARIA specification. This is not something an author can define a custom value for (that is not listed in the spec). [Learn more about roles in the specification.](https://www.w3.org/TR/wai-aria/#roles_categorization)
-- In general, don't make your own keyboard shortcuts. [Screen readers already provide quite a few.](https://dequeuniversity.com/screenreaders/) There is some nuance here, so proceed with caution should you choose to do so. 
+- In general, avoid making your own keyboard shortcuts. [Screen readers already provide quite a few.](https://dequeuniversity.com/screenreaders/) There is some nuance here, so proceed with caution should you choose to do so. 
 - "Completely accessible" may be somewhat of a misnomer. Practical accessibility looks more like 90% coding to the spec and 10% filing browser bugs (or keeping track of existing browser bugs). Keep in mind that if you choose to implement a workaround for a browser bug, you will need to to put an issue in your product backlog to follow up on browser bugs at a later date. 
 
 ### Focus
