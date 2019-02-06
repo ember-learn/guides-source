@@ -17,6 +17,8 @@ While developing and testing for conformance, keep in mind that there are well-k
 - IE & JAWS (Windows)
 - Safari & VoiceOver (MacOS)
 
+The absolute best method for learning how a screen reader works is using one yourself! It might feel a little awkward at first, but understanding how to use a screen reader (and other assistive technology) will help you become a more skilled developer. 
+
 ## Ember Application Configuration
 
 ### Ember Application vs role="application"
@@ -25,7 +27,7 @@ The first thing that should be discussed in this section is this: "application" 
 
 The TL;DR? Don't use role="application" until you have done your research and know exactly how it is to be used correctly (if at all). There are very few use cases where the role of application is appropriate. 
 
-Read more: [https://a11yproject.com/posts/how-to-use-application-role/](https://a11yproject.com/posts/how-to-use-application-role/)
+Read more about it: [https://a11yproject.com/posts/how-to-use-application-role/](https://a11yproject.com/posts/how-to-use-application-role/)
 
 
 ### Optional Feature: Application Template Wrapper
@@ -68,8 +70,15 @@ This section will become more detailed over time, but to start, here is a checkl
   - All interactive elements must have an accessible name.
 - The values for the role attribute are pre-defined by the ARIA specification. This is not something an author can define a custom value for (that is not listed in the spec). [Learn more about roles in the specification.](https://www.w3.org/TR/wai-aria/#roles_categorization)
 - In general, don't make your own keyboard shortcuts. [All screen readers already provide their own.](https://dequeuniversity.com/screenreaders/) There is some nuance here, so proceed with caution should you choose to do so. 
-- There is no such thing as 100% accessibility. Practical accessibility looks more like 90% coding to the spec and 10% filing browser bugs (or keeping track of browser bugs). 
+- "Completely accessible" may be somewhat of a misnomer. Practical accessibility looks more like 90% coding to the spec and 10% filing browser bugs (or keeping track of existing browser bugs). Keep in mind that if you choose to implement a workaround for a browser bug, you will need to to put an issue in your product backlog to follow up on browser bugs at a later date. 
 
+### Focus
+Focus management is a large part of how your application's code coordinates with the code that runs screen readers (If you peek through the source code for [NVDA](xxURL), you'll see what I mean).
+
+Again, we intend for this section to have more information but to get you started, here are some focus basics: 
+- There's a difference between browse mode and focus mode in screen readers- see ["Focus Please"](xxURLxx).
+- While we have an [RFC](xxURLxx) to address accessible routing in Ember more permanently, in the meantime there are a few addons to help address the primary focus flaw that affects screen reader users. Evaluate [ember-a11y](xxURLxx) and [ember-self-focused](xxURLxx) to see which approach might fit your application best. 
+- If you have an element in your application that opens a modal (like, say, a button element), focus should return to that same element once that modal is closed. 
 
 ## Ember Addon Support
 
