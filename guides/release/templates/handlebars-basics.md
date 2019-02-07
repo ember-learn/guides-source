@@ -40,8 +40,17 @@ Hello World!
 * `{{@namedArgument}}`
 * `{{local-variable}}`
 * `{{helper}}}`
-* `{{component-name}}`
+* `{{component-name}}` or `{{#component-name}}{{/component-name}}`
+* `<ComponentName />` or `<ComponentName></ComponentName>`
 * `{{element-modifier}}`
+
+No argument: `{{this.property}}`
+Arguments: `{{if true "Hello World!" "Goodbye World!"}}`
+
+Inline syntax: `{{if true "Hello World!"}}`
+Block syntax: `{{#if true}}Hello World!{{/if}}`
+Block params: `{{#let "Hello World!" as |greeting|}}{{greeting}}!{{/let}}`
+Nested: `{{#let (if true "Hello World!" "Goodbye World!") as |greeting|}}{{greeting}}{{/let}}`
 
 ### Properties, named arguments, and local variables
 
@@ -76,17 +85,7 @@ These arguments can be used directly in the component template and are prefixed 
 When you see `{{@namedArgument}}` in a template,
 that means that `namedArgument` was passed to that component.
 
-<div class="cta">
-  <div class="cta-note">
-    <div class="cta-note-body">
-      <div class="cta-note-heading">Zoey says...</div>
-      <div class="cta-note-message">
-        Using <code>{{@namedArgument}}</code> guarantees that the value is exactly what was passed into the component and hasn't been modified!
-      </div>
-    </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
-  </div>
-</div>
+Using <code>{{@namedArgument}}</code> gives you the guarantee that the value is exactly what was passed into the component and hasn't been modified!
 
 ```handlebars
 <HelloWorld @name="Zoey" />
