@@ -175,6 +175,8 @@ Good Ember apps take a different approach. Ember Data gives you a single
 Routes and their corresponding controllers can ask the store for models, and the store is
 responsible for knowing how to fetch them.
 
+Note: The Ember Data store is automatically injected on every Route instance as `this.store`.
+
 It also means that the store can detect that two different components
 are asking for the same model, allowing your app to only fetch the data
 from the server once. You can think of the store as a read-through cache
