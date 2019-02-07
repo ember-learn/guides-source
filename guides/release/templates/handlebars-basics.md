@@ -1,10 +1,177 @@
-Ember uses a templating language based on [Handlebars templating library](http://www.handlebarsjs.com) to power your app's user interface.
-Ember templates contain static HTML and dynamic content inside Handlebars expressions, which are invoked with double curly braces: `{{}}`.
+Ember uses a templating language based on the [Handlebars templating library](http://www.handlebarsjs.com) to power your application's user interface.
+
+Ember templates contain HTML and dynamic content inside Handlebars expressions, which are invoked with double curly braces: `{{}}`.
+In JavaScript, a similar concept is template strings. For example, if you have the following JavaScript:
+
+```javascript
+let name = "Zoey";
+console.log(`Hello ${name}!}`);
+```
+
+Which prints:
+
+```text
+Hello Zoey!
+```
+
+Then the equivalent Ember template would be something like the following:
+
+```javascript {data-filename=app/components/hello-world.js}
+import Component from '@ember/component';
+
+export default Component.extend({
+  name: "World"
+});
+```
+
+```handlebars {data-filename=app/templates/components/hello-world.hbs}
+Hello {{this.name}}!
+```
+
+Which renders:
+
+```html
+Hello World!
+```
+
+### What can be inside curly expressions?
+
+* `{{this.property}}`
+* `{{@namedArgument}}`
+* `{{local-variable}}`
+* `{{helper}}}`
+* `{{component-name}}`
+* `{{element-modifier}}`
+
+### Properties, named arguments, and local variables
+
+#### Properties
+
+As seen in the example at the beginning of this document, properties are prefixed by `this.`.
+When you see `{{this.propertyName}}`,
+that means that `propertyName` is being looked up directly in the object that is backing that template.
+
+In the "Hello World" example, we are using a component template,
+so the property is looked up in the respective component.
+If it were a route template, then the backing object would be the respective controller:
+
+```javascript
+export default class extends Controller {
+  name = "World";
+}
+```
+
+```handlebars
+Hello {{this.name}}!
+```
+
+```html
+Hello World!
+```
+
+#### Named arguments
+
+When you use a component in your template, you can pass it arguments.
+These arguments can be used directly in the component template and are prefixed by `@`.
+When you see `{{@namedArgument}}` in a template,
+that means that `namedArgument` was passed to that component.
+
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+        Using <code>{{@namedArgument}}</code> guarantees that the value is exactly what was passed into the component and hasn't been modified!
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
+  </div>
+</div>
+
+```handlebars
+<HelloWorld @name="Zoey" />
+```
+
+```handlebars
+// component
+<p>Hello {{@name}}</p>
+```
+
+```html
+<p>Hello Zoey!</p>
+```
+
+
+#### Local variables
+
+Local variables are variables that are "created" inside the template.
+A common example would be when iterating an array using [`each`](https://emberjs.com/api/ember/3.7/classes/Ember.Templates.helpers/methods/let?anchor=each),
+a local variable is created for the current element being iterated:
+
+```javascript
+// my-component.js
+export default Component.extend({
+  names: null,
+
+  init() {
+    this.names = ["Tomster", "Zoey"]
+  }
+})
+```
+
+```handlebars
+{{{#each names as |name|}}
+  <p>Hello {{name}}!</p>
+{{/each}}
+```
+
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+        The <code>as |name|</code> syntax is called block arguments. They will be mentioned in more detail further ahead!
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
+  </div>
+</div>
+
+In this situation, `name` is a local variable created by the template that only exists inside of the `{{#each}}{{/each}}` block.
+If you tried to do the following:
+
+```handlebars
+{{{#each names as |name|}}
+  <p>Hello {{name}}!</p>
+{{/each}}
+{{name}}
+```
+
+Then `{{name}}` outside of the block would render nothing:
+
+```html
+<p>Hello Tomster!<p>
+<p>Hello Zoey!<p>
+```
+
+You can also introduce local variables yourself by using [`let`](https://emberjs.com/api/ember/3.7/classes/Ember.Templates.helpers/methods/let?anchor=let):
+
+```handlebars
+{{#let "Zoey" as |name|}}
+  <p>Hello {{name}}!</p>
+{{/let}}
+```
+
+Which renders:
+
+```html
+<p>Hello Zoey!</p>
+```
 
 
 ### Displaying Properties
 
-Templates are backed with a context. A context is an object from which
+Templates are backed by a context. A context is an object from which
 Handlebars expressions read their properties. In Ember this is often a component. For templates rendered by a route (like `application.hbs`), the context is a controller.
 
 For example, this `application.hbs` template will render a first and last name:
