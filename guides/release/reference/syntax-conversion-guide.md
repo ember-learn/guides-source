@@ -65,11 +65,7 @@ The fundamental change is that the scope of arguments passed in and properties l
 
 Variables passed into a component have an `@` before them, also known as [named arguments](https://github.com/emberjs/rfcs/blob/master/text/0276-named-args.md). While variables created by the current component will have `this` in front of it.
 
-### Limitations
 
-- Positional arguments like `{{foo-bar "first" "second"}}` cannot be used with Angle Brackets.
-- Angle Bracket syntax requires using the `@myvariablename` notation when passing a variable into a component, with the variable name being lowercase
-- User defined components must be capitalized such as `<FooBar></FooBar>` or `<FooBar />`
 
 ### What is happening with the Classic Invocation Syntax?
 
