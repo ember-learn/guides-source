@@ -182,6 +182,20 @@ for your app's models. Both routes and their corresponding controllers have acce
 this shared store; when they need to display or modify a model, they
 first ask the store for it.
 
+
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+        Ember Data injects the store service in every route and controller,
+        so you can access it as `this.store`!
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
+  </div>
+</div>
+
 ## Models
 
 In Ember Data, each model is represented by a subclass of `Model` that
