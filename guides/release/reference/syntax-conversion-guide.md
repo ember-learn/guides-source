@@ -14,7 +14,8 @@ Classic invocation syntax may also be referred to as curly invocation syntax.
 <SiteHeader @user={{this.user}} @class={{if this.user.isAdmin "admin"}} />
 ```
 
-Consider the example above, the `site-header` component is represented in both the Classical Invocation and Angle Bracket syntax to illustrate the differences between them.
+Consider the example above.
+The `site-header` component is represented in both invocation syntaxes to illustrate the differences between the two.
 
 As the name suggests, ABIS replaces the outside curly braces `{{}}` with angle brackets `<>` and capitalizes the component name instead of having it be lowercase dash delimited.
 
