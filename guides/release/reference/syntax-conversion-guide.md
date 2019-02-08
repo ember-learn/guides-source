@@ -21,7 +21,7 @@ As the name suggests, ABIS replaces the outside curly braces `{{}}` with angle b
 
 While the Angle Bracket Syntax may remind you of HTML elements, it comes with differentiating features such as using the `@` syntax for passing in arguments which sets it apart from traditional HTML elements easily.
 
-### Why Use the Angle Bracket Syntax?
+### When to use angle bracket invocation syntax?
 
 The main motivation for using the Angle Bracket Syntax is for clarity.
 
