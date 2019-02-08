@@ -1,7 +1,7 @@
 ## Angle Bracket Syntax
 
-The [angle bracket invocation syntax (ABIS)](https://github.com/emberjs/rfcs/blob/master/text/0311-angle-bracket-invocation.md) is an alternative style of invoking components in templates.
-The difference between ABIS and classic invocation syntax (CIS) is syntactical and does not affect the semantics of invoking a component.
+There are two ways to invoke a component in a template: classic invocation syntax (`{{my-component}}`), and [angle bracket invocation syntax]((https://github.com/emberjs/rfcs/blob/master/text/0311-angle-bracket-invocation.md)) (`<My Component />`).
+The difference between them is syntactical and does not affect the semantics of invoking a component.
 Classic invocation syntax may also be referred to as curly invocation syntax.
 
 **Classic invocation syntax:**
@@ -17,19 +17,15 @@ Classic invocation syntax may also be referred to as curly invocation syntax.
 Consider the example above.
 The `site-header` component is represented in both invocation syntaxes to illustrate the differences between the two.
 
-As the name suggests, ABIS replaces the outside curly braces `{{}}` with angle brackets `<>` and capitalizes the component name instead of having it be lowercase dash delimited.
+As the name suggests, angle bracket invocation syntax replaces the outside curly braces `{{}}` with angle brackets `<>` and capitalizes the component name instead of having it be lowercase dash delimited.
 
 While the Angle Bracket Syntax may remind you of HTML elements, it comes with differentiating features such as using the `@` syntax for passing in arguments which sets it apart from traditional HTML elements easily.
 
 ### When to use angle bracket invocation syntax?
 
-The main motivation for using the Angle Bracket Syntax is for clarity.
-
-Having a dedicated syntax for distinguishing between UI components enables developers to identify each piece of information. With the Angle Bracket Syntax, it is easier to tell apart helpers and components from variables, or see where the variables are defined.
-
-For example, `{{display-button}}` looks a lot like `{{displayButton}}`, but one is a component and one is a variable! The Angle Bracket Syntax would eliminate this confusion by clearly defining components with angle brackets `<>`.
-
-You could also never know whether an attribute was local to the component or passed in from a parent. Now, all these things are clear since parent variables are passed down and accessed using the `{{@name}}` syntax whereas local variables are accessed using the `{{this.name}}` syntax.
+The angle bracket invocation syntax is useful when you wish to pass arbitrary HTML attributes to the component.
+This is possible because in angle bracket invocation syntax there is a distinction between passing a named argument and an HTML attribute,
+while in classic invocation syntax everything is an argument to the component, either named or positional.
 
 ### Leverage Existing Knowledge
 
@@ -105,7 +101,8 @@ export default Component.extend({
 <MyGreeting @params={{array "Hello" "World"}}>
 ```
 
-### What is happening with the Classic Invocation Syntax?
+### When to use classic invocation syntax?
 
-Classic invocation syntax—which uses “curlies” `{{}}` instead of angle brackets `<>`–is here to stay.
-The ability to accept positional arguments and "else" blocks makes them ideal for control-flow like components such as `{{liquid-if}}`.
+Classic invocation syntax is here to stay!
+The direct support for positional arguments, and the fact that classic invocation syntax can have an `else` block,
+or when you want to conditionally render one of two interfaces depending on the arguments passed to the component.
