@@ -1,20 +1,22 @@
 ## Angle Bracket Syntax
 
-The [Angle Bracket Syntax](https://github.com/emberjs/rfcs/blob/master/text/0311-angle-bracket-invocation.md) is an alternative style of invoking components in templates. The difference between the Angle Bracket Syntax and the Classic Invocation Syntax is purely syntactical and does not affect the semantics of invoking a component.
+The [angle bracket invocation syntax (ABIS)](https://github.com/emberjs/rfcs/blob/master/text/0311-angle-bracket-invocation.md) is an alternative style of invoking components in templates.
+The difference between ABIS and classic invocation syntax (CIS) is syntactical and does not affect the semantics of invoking a component.
+Classic invocation syntax may also be referred to as curly invocation syntax.
 
-**Classical Invocation Syntax:**
+**Classic invocation syntax:**
 ```handlebars
 {{site-header user=this.user class=(if this.user.isAdmin "admin")}}
 ```
 
-**Angle Bracket Syntax:**
+**Angle bracket invocation syntax:**
 ```handlebars
 <SiteHeader @user={{this.user}} @class={{if this.user.isAdmin "admin"}} />
 ```
 
 Consider the example above, the `site-header` component is represented in both the Classical Invocation and Angle Bracket syntax to illustrate the differences between them.
 
-As the syntax name suggests, the Angle Bracket Syntax replaces the outside curly braces `{{}}` with angle brackets `<>` and capitalizes the component name instead of having it be lowercase dash delimited.
+As the name suggests, ABIS replaces the outside curly braces `{{}}` with angle brackets `<>` and capitalizes the component name instead of having it be lowercase dash delimited.
 
 While the Angle Bracket Syntax may remind you of HTML elements, it comes with differentiating features such as using the `@` syntax for passing in arguments which sets it apart from traditional HTML elements easily.
 
@@ -34,7 +36,7 @@ Since Angle Bracket notation is closely resembles the syntax for HTML elements, 
 
 You can apply regular HTML attributes like `class`, `id`, `aria-role`, etc. when you use the component. Block form components also follow the same pattern as HTML elements where an HTML-like closing tag denotes where a component starts and ends.
 
-**Classical Invocation Syntax:**
+**Classic invocation syntax:**
 ```handlebars
 {{#super-select selected=this.user.country as |s|}}
   {{#each this.availableCountries as |country|}}
@@ -43,7 +45,7 @@ You can apply regular HTML attributes like `class`, `id`, `aria-role`, etc. when
 {{/super-select}}
 ```
 
-**Angle Bracket Syntax:**
+**Angle bracket invocation syntax:**
 ```handlebars
 <SuperSelect @selected={{this.user.country}} as |s|>
   {{#each this.availableCountries as |country|}}
@@ -69,6 +71,7 @@ Variables passed into a component have an `@` before them, also known as [named 
 - Angle Bracket syntax requires using the `@myvariablename` notation when passing a variable into a component, with the variable name being lowercase
 - User defined components must be capitalized such as `<FooBar></FooBar>` or `<FooBar />`
 
-### What is happening with the Classical Invocation Syntax?
+### What is happening with the Classic Invocation Syntax?
 
-The Classical Invocation Syntax – which uses “curlies” `{{}}` instead of angle brackets `<>` – is here to stay, the ability to accept positional arguments and "else" blocks makes them ideal for control-flow like components such as `{{liquid-if}}`.
+Classic invocation syntax—which uses “curlies” `{{}}` instead of angle brackets `<>`–is here to stay.
+The ability to accept positional arguments and "else" blocks makes them ideal for control-flow like components such as `{{liquid-if}}`.
