@@ -54,16 +54,11 @@ You can apply regular HTML attributes like `class`, `id`, `aria-role`, etc. when
 </SuperSelect>
 ```
 
-### Determining the Argument Scope
 
-The fundamental change is that the scope of arguments passed in and properties local to the component are no longer mashed together. There is a clear boundary between arguments passed down from the parent and arguments that is tracked in the local component.
 
 ```handlebars
-{{@name}} {{!-- this is the arg passed down from the parent --}}
-{{this.name}} {{!-- this is the property that is tracked in the local component js --}}
 ```
 
-Variables passed into a component have an `@` before them, also known as [named arguments](https://github.com/emberjs/rfcs/blob/master/text/0276-named-args.md). While variables created by the current component will have `this` in front of it.
 
 
 
