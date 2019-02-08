@@ -55,13 +55,55 @@ You can apply regular HTML attributes like `class`, `id`, `aria-role`, etc. when
 </SuperSelect>
 ```
 
+### Positional parameters
 
+The classic invocation syntax supports passing arguments to the component by their position.
+In the following example, `"first"` and `"second"` are positional parameters:
 
 ```handlebars
+{{my-greeting "Hello" "World"}}
 ```
 
+As shown in the relevant ["Position Params"](https://guides.emberjs.com/release/components/passing-properties-to-a-component/#toc_positional-params) part of the Guides,
+there are two ways to handle them inside the component.
+One way is to individually specify what component property the positional parameter should map to.
+The other way is to map all positional parameters to the `params` property and refer to them by their index.
 
+#### Individual names
 
+If `my-greeting` had the following implementation:
+
+```javascript {data-filename="app/components/my-greeting.js"}
+import Component from '@ember/component';
+
+export default Component.extend({
+}).reopenClass({
+  positionalParams: ['greeting', 'name']
+});
+```
+
+To invoke it using the angle bracket syntax, you would do the following:
+
+```handlebars
+<MyGreeting @greeting="Hello" @name="World" />
+```
+
+#### `params` array
+
+If `my-greeting` has the following implementation:
+
+```javascript {data-filename="app/components/my-greeting.js"}
+import Component from '@ember/component';
+
+export default Component.extend({
+}).reopenClass({
+  positionalParams: 'params'
+});
+```
+
+```handlebars
+<MyGreeting @params={{array "Hello" "World"}}>
+```
 
 ### What is happening with the Classic Invocation Syntax?
 
