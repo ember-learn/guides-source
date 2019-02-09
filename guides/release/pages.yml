@@ -288,9 +288,3 @@
   pages:
     - title: "Web Development"
       url: "web-development"
-
-- title: 'Reference'
-  url: 'reference'
-  pages:
-    - title: "Syntax Conversion Guide"
-      url: "syntax-conversion-guide"
