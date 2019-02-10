@@ -1,5 +1,5 @@
-/* resetting SVG rule that crept in from bootstrap */
-svg {
+/* resetting image rules that crept in from bootstrap */
+svg, img {
   vertical-align: inherit !important;
 }
 
