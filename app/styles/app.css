@@ -1,3 +1,10 @@
+/* resetting SVG rule that crept in from bootstrap */
 svg {
   vertical-align: inherit !important;
+}
+
+@media only percy {
+  .sidebar nav.toc-container {
+    margin-top: 0 !important;
+  }
 }
