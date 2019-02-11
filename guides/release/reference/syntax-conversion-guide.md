@@ -31,7 +31,8 @@ while in classic invocation syntax everything is an argument to the component, e
 
 Since Angle Bracket notation is closely resembles the syntax for HTML elements, we enable developers to reuse their existing knowledge in creating templates for Ember components. This is especially useful for newer Ember developers as it provides syntactic sugar for creating component templates, reducing the learning curve.
 
-You can apply regular HTML attributes like `class`, `id`, `aria-role`, etc. when you use the component. Block form components also follow the same pattern as HTML elements where an HTML-like closing tag denotes where a component starts and ends.
+You can apply regular HTML attributes like `class`, `id`, `aria-role`, etc. when you use the component.
+Block form components also follow the same pattern as HTML elements where an HTML-like closing tag denotes where a component starts and ends.
 
 **Classic invocation syntax:**
 ```handlebars
@@ -54,7 +55,7 @@ You can apply regular HTML attributes like `class`, `id`, `aria-role`, etc. when
 ### Positional parameters
 
 The classic invocation syntax supports passing arguments to the component by their position.
-In the following example, `"first"` and `"second"` are positional parameters:
+In the following example, `"greeting"` and `"name"` are positional parameters:
 
 ```handlebars
 {{my-greeting "Hello" "World"}}
