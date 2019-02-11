@@ -13,6 +13,12 @@ cache:
   directories:
     - $HOME/.npm
 
+branches:
+  only:
+    - master
+    # npm version tags
+    - /^v\d+\.\d+\.\d+/
+
 env:
   global:
     - secure: "uh/i3/82ECzpG2ozoEpRsvdMO9o2WG8KSR4csIIDNB9kIxsvacB1xfrOStj6HM1XCTwZgcGa6zLG0rjvdZqNTFZOGT75u7mVJ7hJsReGi6rCncSNmxdWC6KUZw5LxO4Sm+G10F+ysUcdBhiW8UdeLrNTNw75DOCC3U28HWtO84/DsIzZNRgZjzLzOMGEr3E28VJvEZx6znRJyDujb57y3QCER5AE83dQ+t+Wmn0L+vG78q5waO6qSFK2Aib3bpNw57duRwALwaErRAWfi3pBzFf/WjnRGoAXnXBjKI7GRoNOxSTq0MgzE0SZHfF4jb3uplxtAL9T0I1QSp4wkjBU21OzKcYI8sznQq9sUwPyyB98ASvLYpfZEkxBsC1IAvhHBFXIqP8CcLef8nfNdEuHW11KpDdjc0X+zSzH5bj2Ske0Ip2OHmARsLQawQELneNNelYoUmMMuJTy7HtPcX925S0Z2YWjIWja1xQjfWR8Be1ReUYVEYoYyCkttMe6Qa9hobdf+Yy3dwAwIpZUZX+ZPw68TzkQdjNWSC9Nn8Su1yGnyzgOwd4kBNmiluvjcYhKU82x0I025e3zEsHR3jVbuu/KrnVOtSfqFimPbtL1oUeR5e1Yg6fFF8sbnSXeR3lCXpQFXrv9OowvbWqD4lhCUwE3Jovx5QOVZwubL1EScyo="
