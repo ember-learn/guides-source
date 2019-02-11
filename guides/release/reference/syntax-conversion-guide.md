@@ -1,40 +1,40 @@
 ## Angle Bracket Syntax
 
-The [Angle Bracket Syntax](https://github.com/emberjs/rfcs/blob/master/text/0311-angle-bracket-invocation.md) is an alternative style of invoking components in templates. The difference between the Angle Bracket Syntax and the Classic Invocation Syntax is purely syntactical and does not affect the semantics of invoking a component.
+There are two ways to invoke a component in a template: classic invocation syntax (`{{my-component}}`), and [angle bracket invocation syntax]((https://github.com/emberjs/rfcs/blob/master/text/0311-angle-bracket-invocation.md)) (`<My Component />`).
+The difference between them is syntactical and does not affect the semantics of invoking a component.
+Classic invocation syntax may also be referred to as curly invocation syntax.
 
-**Classical Invocation Syntax:**
+**Classic invocation syntax:**
 ```handlebars
 {{site-header user=this.user class=(if this.user.isAdmin "admin")}}
 ```
 
-**Angle Bracket Syntax:**
+**Angle bracket invocation syntax:**
 ```handlebars
 <SiteHeader @user={{this.user}} @class={{if this.user.isAdmin "admin"}} />
 ```
 
-Consider the example above, the `site-header` component is represented in both the Classical Invocation and Angle Bracket syntax to illustrate the differences between them.
+Consider the example above.
+The `site-header` component is represented in both invocation syntaxes to illustrate the differences between the two.
 
-As the syntax name suggests, the Angle Bracket Syntax replaces the outside curly braces `{{}}` with angle brackets `<>` and capitalizes the component name instead of having it be lowercase dash delimited.
+As the name suggests, angle bracket invocation syntax replaces the outside curly braces `{{}}` with angle brackets `<>` and capitalizes the component name instead of having it be lowercase dash delimited.
 
 While the Angle Bracket Syntax may remind you of HTML elements, it comes with differentiating features such as using the `@` syntax for passing in arguments which sets it apart from traditional HTML elements easily.
 
-### Why Use the Angle Bracket Syntax?
+### When to use angle bracket invocation syntax?
 
-The main motivation for using the Angle Bracket Syntax is for clarity.
-
-Having a dedicated syntax for distinguishing between UI components enables developers to identify each piece of information. With the Angle Bracket Syntax, it is easier to tell apart helpers and components from variables, or see where the variables are defined.
-
-For example, `{{display-button}}` looks a lot like `{{displayButton}}`, but one is a component and one is a variable! The Angle Bracket Syntax would eliminate this confusion by clearly defining components with angle brackets `<>`.
-
-You could also never know whether an attribute was local to the component or passed in from a parent. Now, all these things are clear since parent variables are passed down and accessed using the `{{@name}}` syntax whereas local variables are accessed using the `{{this.name}}` syntax.
+The angle bracket invocation syntax is useful when you wish to pass arbitrary HTML attributes to the component.
+This is possible because in angle bracket invocation syntax there is a distinction between passing a named argument and an HTML attribute,
+while in classic invocation syntax everything is an argument to the component, either named or positional.
 
 ### Leverage Existing Knowledge
 
 Since Angle Bracket notation is closely resembles the syntax for HTML elements, we enable developers to reuse their existing knowledge in creating templates for Ember components. This is especially useful for newer Ember developers as it provides syntactic sugar for creating component templates, reducing the learning curve.
 
-You can apply regular HTML attributes like `class`, `id`, `aria-role`, etc. when you use the component. Block form components also follow the same pattern as HTML elements where an HTML-like closing tag denotes where a component starts and ends.
+You can apply regular HTML attributes like `class`, `id`, `aria-role`, etc. when you use the component.
+Block form components also follow the same pattern as HTML elements where an HTML-like closing tag denotes where a component starts and ends.
 
-**Classical Invocation Syntax:**
+**Classic invocation syntax:**
 ```handlebars
 {{#super-select selected=this.user.country as |s|}}
   {{#each this.availableCountries as |country|}}
@@ -43,7 +43,7 @@ You can apply regular HTML attributes like `class`, `id`, `aria-role`, etc. when
 {{/super-select}}
 ```
 
-**Angle Bracket Syntax:**
+**Angle bracket invocation syntax:**
 ```handlebars
 <SuperSelect @selected={{this.user.country}} as |s|>
   {{#each this.availableCountries as |country|}}
@@ -52,23 +52,58 @@ You can apply regular HTML attributes like `class`, `id`, `aria-role`, etc. when
 </SuperSelect>
 ```
 
-### Determining the Argument Scope
+### Positional parameters
 
-The fundamental change is that the scope of arguments passed in and properties local to the component are no longer mashed together. There is a clear boundary between arguments passed down from the parent and arguments that is tracked in the local component.
+The classic invocation syntax supports passing arguments to the component by their position.
+In the following example, `"greeting"` and `"name"` are positional parameters:
 
 ```handlebars
-{{@name}} {{!-- this is the arg passed down from the parent --}}
-{{this.name}} {{!-- this is the property that is tracked in the local component js --}}
+{{my-greeting "Hello" "World"}}
 ```
 
-Variables passed into a component have an `@` before them, also known as [named arguments](https://github.com/emberjs/rfcs/blob/master/text/0276-named-args.md). While variables created by the current component will have `this` in front of it.
+As shown in the relevant ["Position Params"](../../components/passing-properties-to-a-component/#toc_positional-params) part of the Guides,
+there are two ways to handle them inside the component.
+One way is to individually specify what component property the positional parameter should map to.
+The other way is to map all positional parameters to the `params` property and refer to them by their index.
 
-### Limitations
+#### Individual names
 
-- Positional arguments like `{{foo-bar "first" "second"}}` cannot be used with Angle Brackets.
-- Angle Bracket syntax requires using the `@myvariablename` notation when passing a variable into a component, with the variable name being lowercase
-- User defined components must be capitalized such as `<FooBar></FooBar>` or `<FooBar />`
+If `my-greeting` had the following implementation:
 
-### What is happening with the Classical Invocation Syntax?
+```javascript {data-filename="app/components/my-greeting.js"}
+import Component from '@ember/component';
 
-The Classical Invocation Syntax – which uses “curlies” `{{}}` instead of angle brackets `<>` – is here to stay, the ability to accept positional arguments and "else" blocks makes them ideal for control-flow like components such as `{{liquid-if}}`.
+export default Component.extend({
+}).reopenClass({
+  positionalParams: ['greeting', 'name']
+});
+```
+
+To invoke it using the angle bracket syntax, you would do the following:
+
+```handlebars
+<MyGreeting @greeting="Hello" @name="World" />
+```
+
+#### `params` array
+
+If `my-greeting` has the following implementation:
+
+```javascript {data-filename="app/components/my-greeting.js"}
+import Component from '@ember/component';
+
+export default Component.extend({
+}).reopenClass({
+  positionalParams: 'params'
+});
+```
+
+```handlebars
+<MyGreeting @params={{array "Hello" "World"}}>
+```
+
+### When to use classic invocation syntax?
+
+Classic invocation syntax is here to stay!
+The direct support for positional arguments, and the fact that classic invocation syntax can have an `else` block,
+or when you want to conditionally render one of two interfaces depending on the arguments passed to the component.
