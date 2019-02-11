@@ -1,0 +1,16 @@
+/* resetting image rules that crept in from bootstrap */
+svg, img {
+  vertical-align: inherit !important;
+}
+
+/* resetting code rules that came from bootstrap */
+code {
+    color: inherit !important;
+    word-break: inherit !important;
+}
+
+@media only percy {
+  .sidebar nav.toc-container {
+    margin-top: 0 !important;
+  }
+}
