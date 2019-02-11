@@ -90,6 +90,18 @@ with our new `RentalListing` component:
 {{/each}}
 ```
 
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+In Ember templates there are different ways to invoke a Component. The syntax above is referred to as angle bracket invocation syntax, and it might not look familiar if you are looking at older code samples that use the classic invocation syntax. For more examples of ways to use Components in a template, see the <a href="../../reference/syntax-conversion-guide">Syntax Conversion Guide</a>, a <a href="https://guides.emberjs.com/v3.6.0/components/defining-a-component/">previous version of the Guides</a> or <a href="https://emberjs.com/api/ember/3.6/classes/Component">Ember.js API documentation</a>.
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
+  </div>
+</div>
+
 For each `rentalUnit` in the `model` list, we are creating a new instance of our
 `RentalListing` component and passing in the `rentalUnit` by assigning it to
 the component's `rental` attribute.
