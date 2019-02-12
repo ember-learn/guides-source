@@ -311,20 +311,20 @@ we will use a property `confirmValue` to represent that argument and pass it to 
 
 ```javascript {data-filename=app/components/button-with-confirmation.js}
 import Component from '@ember/component';
+import { action } from '@ember/object';
 
-export default Component.extend({
-  actions: {
-    //...
-    submitConfirm() {
-      // call onConfirm with a second argument
-      let promise = this.onConfirm(this.confirmValue);
-      promise.then(() => {
-        this.set('confirmShown', false);
-      });
-    },
-    //...
+export default class ButtonWithConfirmation extends Component {
+  @action
+  submitConfirm() {
+    // call `onConfirm` with a second argument
+    let promise = this.onConfirm(this.confirmValue);
+    promise.then(() => {
+      this.set('confirmShown', false);
+    });
   }
-});
+  
+  //...
+}
 ```
 
 In order for `confirmValue` to take on the value of the message text,
@@ -333,12 +333,13 @@ To accomplish this,
 we'll first modify the component so that it can be used in block form and we will [yield](../wrapping-content-in-a-component/) `confirmValue` to the block within the `"confirmDialog"` element:
 
 ```handlebars {data-filename=app/templates/components/button-with-confirmation.hbs}
-<button {{action "launchConfirmDialog"}}>{{this.text}}</button>
+<button {{action this.launchConfirmDialog}}>{{this.text}}</button>
+
 {{#if this.confirmShown}}
   <div class="confirm-dialog">
     {{yield this.confirmValue}}
-    <button class="confirm-submit" {{action "submitConfirm"}}>OK</button>
-    <button class="confirm-cancel" {{action "cancelConfirm"}}>Cancel</button>
+    <button class="confirm-submit" {{action this.submitConfirm}}>OK</button>
+    <button class="confirm-cancel" {{action this.cancelConfirm}}>Cancel</button>
   </div>
 {{/if}}
 ```
@@ -348,9 +349,9 @@ we can now use the component in `SendMessage` to wrap a text input element whose
 
 ```handlebars {data-filename=app/templates/components/send-message.hbs}
 <ButtonWithConfirmation
-    @text="Click to send your message."
-    @onConfirm={{action "sendMessage" "info"}}
-    as |confirmValue|>
+  @text="Click to send your message."
+  @onConfirm={{action this.sendMessage "info"}}
+as |confirmValue|>
   {{input value=confirmValue}}
 </ButtonWithConfirmation>
 ```
@@ -369,37 +370,37 @@ Actions can be invoked on objects other than the component directly from the tem
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 
-export default Component.extend({
-  messaging: service(),
+export default class SendMessage extends Component {
+  @service
+  messaging;
 
   // component implementation
-});
+}
 ```
 
 We can tell the action to invoke the `sendMessage` action directly on the messaging service with the `target` attribute.
 
 ```handlebars {data-filename=app/templates/components/send-message.hbs}
 <ButtonWithConfirmation
-    @text="Click to send your message."
-    @onConfirm={{action "sendMessage" "info" target=this.messaging}}
-    as |confirmValue|>
+  @text="Click to send your message."
+  @onConfirm={{action this.messaging.sendMessage "info"}}
+as |confirmValue|>
   {{input value=confirmValue}}
 </ButtonWithConfirmation>
 ```
 
-By supplying the `target` attribute, the action helper will look to invoke the `sendMessage` action directly on the messaging
-service, saving us from writing code on the component that just passes the action along to the service.
+The interesting part is that the action from the service just works, because it's auto-bound to that service.
 
 ```javascript {data-filename=app/services/messaging.js}
 import Service from '@ember/service';
+import { action } from '@ember/object';
 
-export default Ember.Service.extend({
-  actions: {
-    sendMessage(messageType, text) {
-      //handle message send and return a promise
-    }
+export default class Messaging extends Service {
+  @action
+  sendMessage(messageType, text) {
+    // handle message send and return a promise
   }
-});
+}
 ```
 
 ## Destructuring Objects Passed as Action Arguments
@@ -413,17 +414,18 @@ user's account was deleted, and passes along with it the full user profile objec
 ```javascript {data-filename=app/components/user-profile.js}
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
+import { action } from '@ember/object';
 
-export default Component.extend({
-  login: service(),
+export default class UserProfile extends Component {
+  @service
+  login;
 
-  actions: {
-    userDidDeleteAccount() {
-      this.login.deleteUser();
-      this.didDelete(this.login.currentUserObj);
-    }
+  @action
+  userDidDeleteAccount() {
+    this.login.deleteUser();
+    this.didDelete(this.login.currentUserObj);
   }
-});
+}
 ```
 
 All our `system-preferences-editor` component really needs to process a user deletion is an account ID.
@@ -431,21 +433,21 @@ For this case, the action helper provides the `value` attribute to allow a paren
 object to pull out only what it needs.
 
 ```handlebars {data-filename=app/templates/components/system-preferences-editor.hbs}
-<UserProfile @didDelete={{action "userDeleted" value="account.id"}} />
+<UserProfile @didDelete={{action this.userDeleted value="account.id"}} />
 ```
 
 Now when the `system-preferences-editor` handles the delete action, it receives only the user's account `id` string.
 
 ```javascript {data-filename=app/components/system-preferences-editor.js}
 import Component from '@ember/component';
+import { action } from '@ember/object';
 
-export default Component.extend({
-  actions: {
-    userDeleted(idStr) {
-      //respond to deletion
-    }
+export default class SystemPreferencesEditor extends Component {
+  @action
+  userDeleted(idStr) {
+    // respond to deletion
   }
-});
+}
 ```
 
 ## Calling Actions Up Multiple Component Layers
@@ -460,15 +462,17 @@ First we would move the `deleteUser` action from `user-profile.js` to the action
 ```javascript {data-filename=app/components/system-preferences-editor.js}
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
+import { action } from '@ember/object';
 
-export default Component.extend({
-  login: service(),
-  actions: {
-    deleteUser(idStr) {
-      return this.login.deleteUserAccount(idStr);
-    }
+export default class SystemPreferencesEditor extends Component {
+  @service
+  login;
+  
+  @action
+  deleteUser(idStr) {
+    return this.login.deleteUserAccount(idStr);
   }
-});
+}
 ```
 
 Then our `system-preferences-editor` template passes its local `deleteUser` action into the `UserProfile` as that
@@ -476,21 +480,21 @@ component's `deleteCurrentUser` property.
 
 ```handlebars {data-filename=app/templates/components/system-preferences-editor.hbs}
 <UserProfile
-  @deleteCurrentUser={{action 'deleteUser' this.login.currentUser.id}}
+  @deleteCurrentUser={{action this.deleteUser this.login.currentUser.id}}
 />
 ```
 
-The action `deleteUser` is in quotes, since `system-preferences-editor` is where the action is defined now. Quotes indicate that the action should be looked for in `actions` local to that component, rather than in those that have been passed from a parent.
+The `deleteUser` action is prepended with `this.`, since `system-preferences-editor` is where the action is defined now. If the action was passed from a parent, then it might have looked like `@deleteUser` instead.
 
 In our `user-profile.hbs` template we change our action to call `deleteCurrentUser` as passed above.
 
 ```handlebars {data-filename=app/templates/components/user-profile.hbs}
 <ButtonWithConfirmation
   @text="Click OK to delete your account."
-  @onConfirm={{action this.deleteCurrentUser}}
+  @onConfirm={{@deleteCurrentUser}}
 />
 ```
 
-Note that `deleteCurrentUser` is no longer in quotes here as opposed to [previously](#toc_passing-the-action-to-the-component). Quotes are used to initially pass the action down the component tree, but at every subsequent level you are instead passing the actual function reference (without quotes) in the action helper.
+Note that `deleteCurrentUser` is now prepended with `@` as opposed to `this.` [previously](#toc_passing-the-action-to-the-component).
 
-Now when you confirm deletion, the action goes straight to the `system-preferences-editor` to be handled in its local context.
+Now when you confirm deletion, the action goes straight to the `SystemPreferencesEditor` to be handled in its local context.
