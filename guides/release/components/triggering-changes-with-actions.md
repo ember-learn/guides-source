@@ -64,9 +64,8 @@ In the parent component, let's first define what we want to happen when the
 user clicks the button and then confirms. In the first case, we'll find the user's
 account and delete it.
 
-In Ember, each component can
-have a property called `actions`, where you put functions that can be
-[invoked by the user interacting with the component
+In Ember, each component can define it's own actions by using the `@action`
+decorator, which can be [invoked by the user interacting with the component
 itself](../../templates/actions/), or by child components.
 
 Let's look at the parent component's JavaScript file. In this example,
@@ -81,16 +80,17 @@ We'll implement an action on the parent component called
 ```javascript {data-filename=app/components/user-profile.js}
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
+import { action } from '@ember/object';
 
-export default Component.extend({
-  login: service(),
+export default class UserProfile extends Component {
+  @service
+  login;
 
-  actions: {
-    userDidDeleteAccount() {
-      this.login.deleteUser();
-    }
+  @action
+  userDidDeleteAccount() {
+    this.login.deleteUser();
   }
-});
+}
 ```
 
 Now we've implemented our action, but we have not told Ember when we
@@ -103,34 +103,37 @@ in the child component we will implement the logic to confirm that the user want
 
 ```javascript {data-filename=app/components/button-with-confirmation.js}
 import Component from '@ember/component';
+import { action } from '@ember/object';
 
-export default Component.extend({
-  actions: {
-    launchConfirmDialog() {
-      this.set('confirmShown', true);
-    },
-
-    submitConfirm() {
-      // trigger action on parent component
-      this.set('confirmShown', false);
-    },
-
-    cancelConfirm() {
-      this.set('confirmShown', false);
-    }
+export default class ButtonWithConfirmation extends Component {
+  @action
+  launchConfirmDialog() {
+    this.set('confirmShown', true);
   }
-});
+
+  @action
+  submitConfirm() {
+    // trigger action on parent component
+    this.set('confirmShown', false);
+  }
+
+  @action
+  cancelConfirm() {
+    this.set('confirmShown', false);
+  }
+}
 ```
 
 The component template will have a button and a div that shows the confirmation dialog
 based on the value of `confirmShown`.
 
 ```handlebars {data-filename=app/templates/components/button-with-confirmation.hbs}
-<button {{action "launchConfirmDialog"}}>{{this.text}}</button>
+<button {{action this.launchConfirmDialog}}>{{this.text}}</button>
+
 {{#if this.confirmShown}}
   <div class="confirm-dialog">
-    <button class="confirm-submit" {{action "submitConfirm"}}>OK</button>
-    <button class="confirm-cancel" {{action "cancelConfirm"}}>Cancel</button>
+    <button class="confirm-submit" {{action this.submitConfirm}}>OK</button>
+    <button class="confirm-cancel" {{action this.cancelConfirm}}>Cancel</button>
   </div>
 {{/if}}
 ```
@@ -145,20 +148,18 @@ and they can therefore be passed from one component to another like this:
 ```handlebars {data-filename=app/templates/components/user-profile.hbs}
 <ButtonWithConfirmation
   @text="Click here to delete your account."
-  @onConfirm={{action "userDidDeleteAccount"}}
+  @onConfirm={{this.userDidDeleteAccount}}
 />
 ```
 
 This snippet says "take the `userDidDeleteAccount` action from the parent and make it available on the child component as the property `onConfirm`."
-Note the use here of the `action` helper,
-which serves to return the function named `"userDidDeleteAccount"` that we are passing to the component.
 
 We can do a similar thing for our `SendMessage` component:
 
 ```handlebars {data-filename=app/templates/components/send-message.hbs}
 <ButtonWithConfirmation
   @text="Click to send your message."
-  @onConfirm={{action "sendMessage"}}
+  @onConfirm={{this.sendMessage}}
 />
 ```
 
@@ -167,32 +168,33 @@ parent:
 
 ```javascript {data-filename=app/components/button-with-confirmation.js}
 import Component from '@ember/component';
+import { action } from '@ember/object';
 
-export default Component.extend({
-  actions: {
-    launchConfirmDialog() {
-      this.set('confirmShown', true);
-    },
-
-    submitConfirm() {
-      //call the onConfirm property to invoke the passed in action
-      this.onConfirm();
-    },
-
-    cancelConfirm() {
-      this.set('confirmShown', false);
-    }
+export default class ButtonWithConfirmation extends Component {
+  @action
+  launchConfirmDialog() {
+    this.set('confirmShown', true);
   }
-});
+
+  @action
+  submitConfirm() {
+    // call the `onConfirm` property to invoke the passed in action
+    this.onConfirm();
+  }
+
+  @action
+  cancelConfirm() {
+    this.set('confirmShown', false);
+  }
+}
 ```
 
 Like normal attributes, actions can be a property on the component; the
 only difference is that the property is set to a function that knows how
-to trigger behavior.
+to trigger behavior and is bound to the context of the component.
 
 That makes it easy to remember how to add an action to a component. It's
-like passing an attribute, but you use the `action` helper to pass
-a function instead. Actions can only be passed from a controller or 
+like passing an attribute. Actions can only be passed from a controller or 
 component, they cannot be passed from a route.
 
 Actions in components allow you to decouple an event happening from how it's handled, leading to modular,
@@ -211,26 +213,28 @@ Upon resolution of the promise, we set a property used to indicate the visibilit
 
 ```javascript {data-filename=app/components/button-with-confirmation.js}
 import Component from '@ember/component';
+import { action } rom '@ember/object';
 
-export default Component.extend({
-  actions: {
-    launchConfirmDialog() {
-      this.set('confirmShown', true);
-    },
-
-    submitConfirm() {
-      // call onConfirm with the value of the input field as an argument
-      let promise = this.onConfirm();
-      promise.then(() => {
-        this.set('confirmShown', false);
-      });
-    },
-
-    cancelConfirm() {
-      this.set('confirmShown', false);
-    }
+export default class ButtonWithConfirmation extends Component {
+  @action
+  launchConfirmDialog() {
+    this.set('confirmShown', true);
   }
-});
+
+  @action
+  submitConfirm() {
+    // call `onConfirm` with the value of the input field as an argument
+    let promise = this.onConfirm();
+    promise.then(() => {
+      this.set('confirmShown', false);
+    });
+  }
+
+  @action
+  cancelConfirm() {
+    this.set('confirmShown', false);
+  }
+}
 ```
 
 ## Passing Arguments
@@ -243,14 +247,14 @@ The `sendMessage` action that we pass to the child component may expect a messag
 
 ```javascript {data-filename=app/components/send-message.js}
 import Component from '@ember/component';
+import { action } rom '@ember/object';
 
-export default Component.extend({
-  actions: {
-    sendMessage(messageType) {
-      //send message here and return a promise
-    }
+export default class SendMessage extends Component {
+  @action
+  sendMessage(messageType) {
+    // send message here and return a promise
   }
-});
+}
 ```
 
 However,
@@ -261,7 +265,7 @@ For example, if we want to use the button to send a message of type `"info"`:
 ```handlebars {data-filename=app/templates/components/send-message.hbs}
 <ButtonWithConfirmation
   @text="Click to send your message."
-  @onConfirm={{action "sendMessage" "info"}}
+  @onConfirm={{action this.sendMessage "info"}}
 />
 ```
 
@@ -271,7 +275,7 @@ It will still invoke `onConfirm` without explicit arguments:
 ```javascript {data-filename=app/components/button-with-confirmation.js}
 const promise = this.onConfirm();
 ```
-However the expression `(action "sendMessage" "info")` used in passing the action to the component creates a closure,
+However the expression `(action this.sendMessage "info")` used in passing the action to the component creates a closure,
 i.e. an object that binds the parameter we've provided to the function specified.
 So now when the action is invoked, that parameter will automatically be passed as its argument, effectively calling `sendMessage("info")`,
 despite the argument not appearing in the calling code.
@@ -283,14 +287,14 @@ the actual text of the message the user is sending:
 
 ```javascript {data-filename=app/components/send-message.js}
 import Component from '@ember/component';
+import { action } rom '@ember/object';
 
-export default Component.extend({
-  actions: {
-    sendMessage(messageType, messageText) {
-      //send message here and return a promise
-    }
+export default class SendMessage extends Component {
+  @action
+  sendMessage(messageType, messageText) {
+    // send message here and return a promise
   }
-});
+}
 ```
 
 We want to arrange for the action to be invoked from within `ButtonWithConfirmation` with both arguments.
