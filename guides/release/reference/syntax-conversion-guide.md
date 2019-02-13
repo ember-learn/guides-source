@@ -105,5 +105,11 @@ export default Component.extend({
 ### When to use classic invocation syntax?
 
 Classic invocation syntax is fine to keep using.
-It's especially helpful when you need direct support for positional arguments, things like an `else` block,
-or to conditionally render one of two interfaces depending on the arguments passed to the component.
+It is required when you need direct support for positional arguments or if your components are nested within the file tree.
+
+For example, there is no Angle Bracket option for eiher of the following:
+
+```handlebars
+{{some-component param1 param2}}
+{{ui/foo-bar}}
+```
