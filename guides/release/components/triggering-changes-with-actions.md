@@ -503,3 +503,29 @@ In our `user-profile.hbs` template we change our action to call `deleteCurrentUs
 Note that `deleteCurrentUser` is now prepended with `@` as opposed to `this.` [previously](#toc_passing-the-action-to-the-component).
 
 Now when you confirm deletion, the action goes straight to the `SystemPreferencesEditor` to be handled in its local context.
+
+## Legacy String Actions
+
+Historically the `{{action}}` helper (`<button onclick={{action 'clickedButton'}}>`) and element modifier (`<button {{action 'clickedButton'}}>`) have accepted a string as the first argument. This form is no longer recommended, but might be seen in the wild when working on older Ember apps or addons.
+
+When you encounter a string based action it should be refactored to use the `@action` decorator (refactor away from the `actions` hash).
+
+It is then recommended to use HTML's [on...](https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Event_handlers) attributes in the template.
+
+```hbs
+<button onclick={{this.confirmDelete}}>Confirm Delete</button>
+```
+
+If you need to add additional arguments, you can use the `{{action}}` helper.
+
+```hbs
+<button onclick={{action this.confirmDelete this.user}}>Confirm Delete</button>
+```
+
+If you use the action as an element modifier, you need to use the `{{action}}` element modifier
+in all cases. This works the same even if you don't need additional arguments.
+
+```hbs
+<button {{action this.confirmDelete}}>Confirm Delete</button>
+```
+
