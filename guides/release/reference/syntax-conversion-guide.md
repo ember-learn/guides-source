@@ -104,10 +104,9 @@ export default Component.extend({
 
 ### When to use classic invocation syntax?
 
-Classic invocation syntax is fine to keep using.
-It is required when you need direct support for positional arguments or if your components are nested within the file tree.
-
-For example, there is no Angle Bracket option for eiher of the following:
+Although Angle Bracket syntax is considered to be the best approach, classic invocation syntax is fine to keep using.
+In some cases, classic invocation is still required. 
+When you need direct support for positional arguments or if your components are nested within the file tree, you should still reach for those curly brackets:
 
 ```handlebars
 {{some-component param1 param2}}
