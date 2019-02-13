@@ -78,7 +78,7 @@ We'll implement an action on the parent component called
 `deleteUser()` method.
 
 ```javascript {data-filename=app/components/user-profile.js}
-import Component from '@ember/component';
+import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
@@ -102,24 +102,25 @@ Next,
 in the child component we will implement the logic to confirm that the user wants to take the action they indicated by clicking the button:
 
 ```javascript {data-filename=app/components/button-with-confirmation.js}
-import Component from '@ember/component';
+import Component, { tracked } from '@glimmer/component';
 import { action } from '@ember/object';
 
 export default class ButtonWithConfirmation extends Component {
+  @tracked confirmShown = false;
+
   @action
   launchConfirmDialog() {
-    this.set('confirmShown', true);
+    this.confirmShown = true;
   }
 
   @action
   submitConfirm() {
-    // trigger action on parent component
-    this.set('confirmShown', false);
+    this.confirmShown = false;
   }
 
   @action
   cancelConfirm() {
-    this.set('confirmShown', false);
+    this.confirmShown = false;
   }
 }
 ```
@@ -128,12 +129,12 @@ The component template will have a button and a div that shows the confirmation 
 based on the value of `confirmShown`.
 
 ```handlebars {data-filename=app/templates/components/button-with-confirmation.hbs}
-<button {{action this.launchConfirmDialog}}>{{this.text}}</button>
+<button type="button" onclick={{this.launchConfirmDialog}}>{{this.text}}</button>
 
 {{#if this.confirmShown}}
   <div class="confirm-dialog">
-    <button class="confirm-submit" {{action this.submitConfirm}}>OK</button>
-    <button class="confirm-cancel" {{action this.cancelConfirm}}>Cancel</button>
+    <button class="confirm-submit" type="button" onclick={{this.submitConfirm}}>OK</button>
+    <button class="confirm-cancel" type="button" onclick={{this.cancelConfirm}}>Cancel</button>
   </div>
 {{/if}}
 ```
@@ -167,13 +168,15 @@ Now, we can use `onConfirm` in the child component to invoke the action on the
 parent:
 
 ```javascript {data-filename=app/components/button-with-confirmation.js}
-import Component from '@ember/component';
+import Component, { tracked } from '@glimmer/component';
 import { action } from '@ember/object';
 
 export default class ButtonWithConfirmation extends Component {
+  @tracked confirmShown = false;
+
   @action
   launchConfirmDialog() {
-    this.set('confirmShown', true);
+    this.confirmShown = true;
   }
 
   @action
@@ -184,7 +187,7 @@ export default class ButtonWithConfirmation extends Component {
 
   @action
   cancelConfirm() {
-    this.set('confirmShown', false);
+    this.confirmShown = false;
   }
 }
 ```
@@ -212,13 +215,15 @@ This is accomplished by expecting a promise to be returned from `onConfirm`.
 Upon resolution of the promise, we set a property used to indicate the visibility of the confirmation modal.
 
 ```javascript {data-filename=app/components/button-with-confirmation.js}
-import Component from '@ember/component';
+import Component, { tracked } from '@glimmer/component';
 import { action } rom '@ember/object';
 
 export default class ButtonWithConfirmation extends Component {
+  @tracked confirmShown = false;
+
   @action
   launchConfirmDialog() {
-    this.set('confirmShown', true);
+    this.confirmShown = true;
   }
 
   @action
@@ -226,13 +231,13 @@ export default class ButtonWithConfirmation extends Component {
     // call `onConfirm` with the value of the input field as an argument
     let promise = this.onConfirm();
     promise.then(() => {
-      this.set('confirmShown', false);
+      this.confirmShown = false;
     });
   }
 
   @action
   cancelConfirm() {
-    this.set('confirmShown', false);
+    this.confirmShown = false;
   }
 }
 ```
@@ -246,7 +251,7 @@ the case where the `ButtonWithConfirmation` component we've defined is used with
 The `sendMessage` action that we pass to the child component may expect a message type parameter to be provided as an argument:
 
 ```javascript {data-filename=app/components/send-message.js}
-import Component from '@ember/component';
+import Component from '@glimmer/component';
 import { action } rom '@ember/object';
 
 export default class SendMessage extends Component {
@@ -286,7 +291,7 @@ Suppose we want to extend this by allowing `sendMessage` to take a second argume
 the actual text of the message the user is sending:
 
 ```javascript {data-filename=app/components/send-message.js}
-import Component from '@ember/component';
+import Component from '@glimmer/component';
 import { action } rom '@ember/object';
 
 export default class SendMessage extends Component {
@@ -310,7 +315,7 @@ Therefore within the component's JavaScript file,
 we will use a property `confirmValue` to represent that argument and pass it to `onConfirm` as shown here:
 
 ```javascript {data-filename=app/components/button-with-confirmation.js}
-import Component from '@ember/component';
+import Component from '@glimmer/component';
 import { action } from '@ember/object';
 
 export default class ButtonWithConfirmation extends Component {
@@ -333,13 +338,13 @@ To accomplish this,
 we'll first modify the component so that it can be used in block form and we will [yield](../wrapping-content-in-a-component/) `confirmValue` to the block within the `"confirmDialog"` element:
 
 ```handlebars {data-filename=app/templates/components/button-with-confirmation.hbs}
-<button {{action this.launchConfirmDialog}}>{{this.text}}</button>
+<button type="button" onclick={{this.launchConfirmDialog}}>{{this.text}}</button>
 
 {{#if this.confirmShown}}
   <div class="confirm-dialog">
     {{yield this.confirmValue}}
-    <button class="confirm-submit" {{action this.submitConfirm}}>OK</button>
-    <button class="confirm-cancel" {{action this.cancelConfirm}}>Cancel</button>
+    <button class="confirm-submit" type="button" onclick={{this.submitConfirm}}>OK</button>
+    <button class="confirm-cancel" type="button" onclick={{this.cancelConfirm}}>Cancel</button>
   </div>
 {{/if}}
 ```
@@ -367,7 +372,7 @@ Actions can be invoked on objects other than the component directly from the tem
 `SendMessage` component we might include a service that processes the `sendMessage` logic.
 
 ```javascript {data-filename=app/components/send-message.js}
-import Component from '@ember/component';
+import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 
 export default class SendMessage extends Component {
@@ -439,7 +444,7 @@ object to pull out only what it needs.
 Now when the `system-preferences-editor` handles the delete action, it receives only the user's account `id` string.
 
 ```javascript {data-filename=app/components/system-preferences-editor.js}
-import Component from '@ember/component';
+import Component from '@glimmer/component';
 import { action } from '@ember/object';
 
 export default class SystemPreferencesEditor extends Component {
@@ -460,7 +465,7 @@ For example, say we want to move account deletion from the `UserProfile` compone
 First we would move the `deleteUser` action from `user-profile.js` to the actions object on `system-preferences-editor`.
 
 ```javascript {data-filename=app/components/system-preferences-editor.js}
-import Component from '@ember/component';
+import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
