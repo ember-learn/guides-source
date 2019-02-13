@@ -15,6 +15,7 @@ While developing and testing for conformance, keep in mind that there are well-k
 
 - Firefox & NVDA (Windows)
 - IE & JAWS (Windows)
+- Edge & Narrator (Windows)
 - Safari & VoiceOver (MacOS)
 
 The absolute best method for learning how a screen reader works is using one yourself! It might feel a little awkward at first, but understanding how to use a screen reader (and other assistive technology) will help you become a more skilled developer. 
