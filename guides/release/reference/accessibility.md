@@ -9,7 +9,7 @@ There are assistive technologies (known as screen readers) available for all com
 - Orca, available for integration in Ubuntu, otherwise available as a download
 - JAWS, proprietary software by Freedom Scientific, available for Windows
 - NVDA, open source software, available for Windows
-- Talkback, integrated in Android products
+- TalkBack, integrated in Android products
 
 While developing and testing for conformance, keep in mind that there are well-known screen reader and browser combinations that were developed in a way that work well together; using combinations different than these may produce false-positive results. It should be noted that these may change over time, so periodic review of this list is recommended. 
 
