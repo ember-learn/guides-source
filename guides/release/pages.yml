@@ -96,6 +96,18 @@
       url: "writing-helpers"
       isAdvanced: true
 
+- title: "Working with JavaScript"
+  url: 'working-with-javascript'
+  pages:
+    - title: "Learning JavaScript"
+      url: "learning-javascript"
+    - title: "Native Classes"
+      url: "native-classes"
+    - title: "Classic Classes"
+      url: "classic-classes"
+    - title: "Native vs. Classic Class Cheatsheet"
+      url: "native-vs-classic-class-cheatsheet"
+
 - title: "Components"
   url: 'components'
   pages:
