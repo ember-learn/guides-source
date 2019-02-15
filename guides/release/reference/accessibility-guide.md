@@ -15,6 +15,17 @@ Read more about it: [https://a11yproject.com/posts/how-to-use-application-role/]
 
 If you are using the [application template wrapper](#toc_optional-features) enabled (default state), then you will need to add certain aria roles to your [landmark regions](https://www.w3.org/WAI/PF/aria/roles#landmark_roles), even if you are using native HTML elements, because those regions are not the direct child descendant of the body element (they are the children of the div that wraps the Ember app).
 
+If you disable the [application template wrapper](#toc_optional-features), you will not need to add role attributes to your landmark regions when they are the direct descendant of the body element, and they are using native HTML elements. This is the preferred approach for accessible applications. 
+
+**Application Template Wrapper Disabled** _(preferred)_
+```html
+<body>
+  <header></header>
+  <main></main>
+  <footer></footer>
+</body>
+```
+
 **Application Template Wrapper Enabled**
 ```html
 <body>
@@ -26,22 +37,12 @@ If you are using the [application template wrapper](#toc_optional-features) enab
 </body>
 ```
 
-However, if you disable the [application template wrapper](#toc_optional-features), you will not need to add role attributes to your landmark regions when they are the direct descendant of the body element, and they are using native HTML elements. 
-
-**Application Template Wrapper Disabled**
-```html
-<body>
-  <header></header>
-  <main></main>
-  <footer></footer>
-</body>
-```
 
 > Note: To learn more about landmark roles and how to use them: [https://www.w3.org/WAI/PF/aria/roles#landmark_roles](https://www.w3.org/WAI/PF/aria/roles#landmark_roles). Still need more help? Visit the #topic-a11y channel in [Ember chat](https://emberjs.com/community/). 
 
 ## Basic Guidelines for Accessibility
 
-This section will become more detailed over time, but to start, here is a checklist of some things to keep in mind when developing your application:
+Here is a checklist of some things to keep in mind when developing your application:
 
 - Familiarize yourself with [the five rules of ARIA](https://www.w3.org/TR/using-aria/#NOTES)
   - Use native HTML elements whenever possible; the built-in benefits of native browser keyboard navigation support and accessibility features mean you have less to add into your app. There are a lot of examples that demonstrate why, the most famous of which is ["Just use a button"](https://developer.paciellogroup.com/blog/2011/04/html5-accessibility-chops-just-use-a-button/).
@@ -56,7 +57,8 @@ This section will become more detailed over time, but to start, here is a checkl
 ### Focus
 Focus management is a large part of how your application's code coordinates with the code that runs screen readers (If you peek through the source code for [NVDA](https://github.com/nvaccess/nvda), you'll see what I mean).
 
-Again, we intend for this section to have more information but to get you started, here are some focus basics: 
+To get you started, here are some focus basics:
+
 - There's a difference between browse mode and focus mode in screen readers- see ["Focus Please"](https://codepen.io/melsumner/live/ZJeYoP).
 - While we have an [RFC](https://github.com/emberjs/rfcs/pull/433) to address accessible routing in Ember more permanently, in the meantime there are a few addons to help address the primary focus flaw that affects screen reader users. Evaluate [ember-a11y](https://github.com/ember-a11y/ember-a11y) and [ember-self-focused](https://github.com/linkedin/self-focused/tree/master/packages/ember-self-focused) to see which approach might fit your application best. 
 - If you have an element in your application that opens a modal (like, say, a button element), focus should return to that same element once that modal is closed. 
