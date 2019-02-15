@@ -46,7 +46,7 @@ If you disable the [application template wrapper](#toc_optional-features), you w
 
 An important thing to note in this section is this: "application" in Ember development and "application" in landmark roles have two _very_ different meanings. 
 
-The <abbr title="\'too long didn't read\', colloquially used as \'to say it briefly for those of you who won\'t read all the details\'">TL;DR</abbr>? Don't use `role="application"` until you have done your research and know exactly how it is to be used correctly (if at all). There are very few use cases where the role of application is appropriate. 
+The <abbr title="\'too long didn't read\', colloquially used as \'to say it briefly for those who won\'t read all the details\'">TL;DR</abbr>? Don't use `role="application"` until you have done your research and know exactly how it is to be used correctly (if at all). There are very few use cases where the role of application is appropriate. 
 
 Read more about it: [https://a11yproject.com/posts/how-to-use-application-role/](https://a11yproject.com/posts/how-to-use-application-role/)
 
