@@ -28,7 +28,17 @@ If you disable the [application template wrapper](#toc_optional-features), you w
 </body>
 ```
 
-> Note: To learn more about landmark roles and how to use them: [https://www.w3.org/WAI/PF/aria/roles#landmark_roles](https://www.w3.org/WAI/PF/aria/roles#landmark_roles). Still need more help? Visit the #topic-a11y channel in [Ember chat](https://emberjs.com/community/). 
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+        To learn more about landmark roles and how to use them: <a href="https://www.w3.org/WAI/PF/aria/roles#landmark_roles">https://www.w3.org/WAI/PF/aria/roles#landmark_roles</a>. Still need more help? Visit the #topic-a11y channel in <a href="https://emberjs.com/community/">the community chat</a>. 
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
+  </div>
+</div>
 
 ### Ember Application vs role="application"
 
