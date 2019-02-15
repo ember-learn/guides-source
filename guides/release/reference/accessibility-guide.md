@@ -1,23 +1,4 @@
-The purpose of this guide is to give every Ember developer a starting point for making your Ember application minimally accessible. As accessibility can be a complex issue, it should be noted that this guide only covers a some of the basics, and should not be considered a comprehensive guide. 
-
-## Screen Reader and Browser Combinations
-
-There are assistive technologies (known as screen readers) available for all common desktop platforms and mobile devices. 
-
-- VoiceOver, integrated in Apple products
-- Narrator, integrated in Windows products
-- Orca, available for integration in Ubuntu, otherwise available as a download
-- JAWS, proprietary software by Freedom Scientific, available for Windows
-- NVDA, open source software, available for Windows
-- TalkBack, integrated in Android products
-
-While developing and testing for conformance, keep in mind that there are well-known screen reader and browser combinations that were developed in a way that work well together; using combinations different than these may produce false-positive results. It should be noted that these may change over time, so periodic review of this list is recommended. 
-
-- Firefox & NVDA (Windows)
-- IE & JAWS (Windows)
-- Safari & VoiceOver (MacOS)
-
-The absolute best method for learning how a screen reader works is using one yourself! It might feel a little awkward at first, but understanding how to use a screen reader (and other assistive technology) will help you become a more skilled developer. 
+The purpose of this guide is to give every Ember developer a starting point for making your Ember application minimally accessible. As accessibility can be a complex issue, it should be noted that this guide only covers a some of the basics, and should not be considered a comprehensive guide. More comprehensive reference materials will be listed in an appendix at the end of this guide.
 
 ## Ember Application Configuration
 
@@ -94,3 +75,30 @@ There are some existing Ember addons that may help you make your app more access
 - [ember-a11y-testing](https://github.com/ember-a11y/ember-a11y-testing) - A suite of accessibility tests that can be run within the Ember testing framework
 - [a11y-announcer](https://github.com/ember-a11y/a11y-announcer) - An accessible ember route change announcer
 - [ember-template-lint](https://github.com/ember-template-lint/ember-template-lint) - linter for Ember templates
+
+## Testing
+
+### Screen Reader and Browser Combinations
+
+It is important to use a screen reader when checking to make sure your application is accessible. 
+
+There are assistive technologies (known as screen readers) available for all common desktop platforms and mobile devices. 
+
+- VoiceOver, integrated in Apple products
+- Narrator, integrated in Windows products
+- Orca, available for integration in Ubuntu, otherwise available as a download
+- JAWS, proprietary software by Freedom Scientific, available for Windows
+- NVDA, open source software, available for Windows
+- TalkBack, integrated in Android products
+
+While developing and testing for conformance, keep in mind that there are well-known screen reader and browser combinations that were developed in a way that work well together; using combinations different than these may produce false-positive results. It should be noted that these may change over time, so periodic review of this list is recommended. 
+
+- Firefox & NVDA (Windows)
+- IE & JAWS (Windows)
+- Edge & Narrator (Windows)
+- Safari & VoiceOver (MacOS)
+
+The absolute best method for learning how a screen reader works is using one yourself! It might feel a little awkward at first, but understanding how to use a screen reader (and other assistive technology) will help you become a more skilled developer. 
+
+
+## Other Accessibility Reference Materials
