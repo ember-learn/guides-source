@@ -42,7 +42,7 @@ If you disable the [application template wrapper](#toc_optional-features), you w
   </div>
 </div>
 
-### Ember Application vs role="application"
+### Ember Application vs role=''application''
 
 An important thing to note in this section is this: "application" in Ember development and "application" in landmark roles have two _very_ different meanings. 
 
