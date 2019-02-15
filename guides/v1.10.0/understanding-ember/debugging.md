@@ -9,12 +9,12 @@ to inspect Ember objects in your application.
 
 ## Routing
 
-#### Log router transitions
+### Log router transitions
 
 ```javascript
 window.App = Ember.Application.create({
   // Basic logging, e.g. "Transitioned into 'post'"
-  LOG_TRANSITIONS: true, 
+  LOG_TRANSITIONS: true,
 
   // Extremely detailed logging, highlighting every internal
   // step made while transitioning into a route, including
@@ -24,19 +24,19 @@ window.App = Ember.Application.create({
 });
 ```
 
-#### View all registered routes
+### View all registered routes
 
 ```javascript
 Ember.keys(App.Router.router.recognizer.names)
 ```
 
-####  Get current route name / path
+###  Get current route name / path
 
 Ember installs the current route name and path on your
 app's `ApplicationController` as the properties
 `currentRouteName` and `currentPath`. `currentRouteName`'s
-value (e.g. `"comments.edit"`) can be used as the destination parameter of 
-`transitionTo` and the `{{linkTo}}` Handlebars helper, while 
+value (e.g. `"comments.edit"`) can be used as the destination parameter of
+`transitionTo` and the `{{linkTo}}` Handlebars helper, while
 `currentPath` serves as a full descriptor of each
 parent route that has been entered (e.g.
 `"admin.posts.show.comments.edit"`).
@@ -57,7 +57,7 @@ App.__container__.lookup("controller:application").get("currentPath")
 
 ## Views / Templates
 
-#### Log view lookups
+### Log view lookups
 
 ```javascript
 window.App = Ember.Application.create({
@@ -65,19 +65,19 @@ window.App = Ember.Application.create({
 });
 ```
 
-#### Get the View object from its DOM Element's ID
+### Get the View object from its DOM Element's ID
 
 ```javascript
 Ember.View.views['ember605']
 ```
 
-#### View all registered templates
+### View all registered templates
 
 ```javascript
 Ember.keys(Ember.TEMPLATES)
 ```
 
-#### Handlebars Debugging Helpers
+### Handlebars Debugging Helpers
 
 ```handlebars
 {{debugger}}
@@ -86,7 +86,7 @@ Ember.keys(Ember.TEMPLATES)
 
 ## Controllers
 
-#### Log generated controller 
+### Log generated controller
 
 ```javascript
 window.App = Ember.Application.create({
@@ -96,11 +96,11 @@ window.App = Ember.Application.create({
 
 ## Ember Data
 
-#### View ember-data's type maps
+### View ember-data's type maps
 
 ```javascript
 // all type maps in memory
-App.__container__.lookup('store:main').typeMaps 
+App.__container__.lookup('store:main').typeMaps
 
 // specific type map in memory
 App.__container__.lookup('store:main').typeMapFor(App.Color)
@@ -117,13 +117,13 @@ App.__container__.lookup('store:main').typeMapFor(App.Color).idToRecord["33"].ge
 
 ## Observers / Binding
 
-#### See all observers for a object, key
+### See all observers for a object, key
 
 ```javascript
 Ember.observersFor(comments, keyName);
 ```
 
-#### Log object bindings
+### Log object bindings
 
 ```javascript
 Ember.LOG_BINDINGS = true
@@ -131,7 +131,7 @@ Ember.LOG_BINDINGS = true
 
 ## Miscellaneous
 
-#### Turn on resolver resolution logging
+### Turn on resolver resolution logging
 
 This option logs all the lookups that are done to the console. Custom objects
 you've created yourself have a tick, and Ember generated ones don't.
@@ -145,14 +145,14 @@ App = Ember.Application.create({
 });
 ```
 
-#### View an instance of something from the container
+### View an instance of something from the container
 
 ```javascript
 App.__container__.lookup("controller:posts")
 App.__container__.lookup("route:application")
 ```
 
-#### Dealing with deprecations
+### Dealing with deprecations
 
 ```javascript
 Ember.ENV.RAISE_ON_DEPRECATION = true
@@ -160,7 +160,7 @@ Ember.LOG_STACKTRACE_ON_DEPRECATION = true
 ```
 
 
-#### Implement an Ember.onerror hook to log all errors in production
+### Implement an Ember.onerror hook to log all errors in production
 
 ```javascript
 Ember.onerror = function(error) {
@@ -174,7 +174,7 @@ Ember.onerror = function(error) {
 }
 ```
 
-#### Import the console
+### Import the console
 
 If you are using imports with Ember, be sure to import the console:
 
@@ -188,7 +188,7 @@ Ember = {
 };
 ```
 
-#### Errors within an `RSVP.Promise`
+### Errors within an `RSVP.Promise`
 
 There are times when dealing with promises that it seems like any errors
 are being 'swallowed', and not properly raised. This makes it extremely
@@ -206,7 +206,7 @@ Ember.RSVP.on('error', function(error) {
 });
 ```
 
-#### Errors within `Ember.run.later` ([Backburner.js](https://github.com/ebryn/backburner.js))
+### Errors within `Ember.run.later` ([Backburner.js](https://github.com/ebryn/backburner.js))
 
 Backburner has support for stitching the stacktraces together so that you can
 track down where an erroring `Ember.run.later` is being initiated from. Unfortunately,
