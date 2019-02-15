@@ -46,7 +46,7 @@ If you disable the [application template wrapper](#toc_optional-features), you w
 
 An important thing to note in this section is this: "application" in Ember development and "application" in landmark roles have two _very_ different meanings. 
 
-The <abbr title="\'too long didn't read\', colloquially used as \'to say it briefly for those who won\'t read all the details\'">TL;DR</abbr>? Don't use `role="application"` until you have done your research and know exactly how it is to be used correctly (if at all). There are very few use cases where the role of application is appropriate. 
+The <abbr title="too long; didn't read">TL;DR</abbr>? Don't use `role="application"` until you have done your research and know exactly how it is to be used correctly (if at all). There are **very** few use cases where the role of application is appropriate. 
 
 Read more about it: [https://a11yproject.com/posts/how-to-use-application-role/](https://a11yproject.com/posts/how-to-use-application-role/)
 
@@ -72,7 +72,7 @@ Focus management is a large part of how your application's code coordinates with
 To get you started, here are some focus basics:
 
 - There's a difference between browse mode and focus mode in screen readers- see ["Focus Please"](https://codepen.io/melsumner/live/ZJeYoP).
-- While we have an [RFC](https://github.com/emberjs/rfcs/pull/433) to address accessible routing in Ember more permanently, in the meantime there are a few addons to help address the primary focus flaw that affects screen reader users. Evaluate [ember-a11y](https://github.com/ember-a11y/ember-a11y) and [ember-self-focused](https://github.com/linkedin/self-focused/tree/master/packages/ember-self-focused) to see which approach might fit your application best. 
+- While we have [RFC 433](https://github.com/emberjs/rfcs/pull/433) to address accessible routing in Ember more permanently, in the meantime there are a few addons to help address the primary focus flaw that affects screen reader users. Evaluate [ember-a11y](https://github.com/ember-a11y/ember-a11y) and [ember-self-focused](https://github.com/linkedin/self-focused/tree/master/packages/ember-self-focused) to see which approach might fit your application best. 
 - If you have an element in your application that opens a modal (like, say, a button element), focus should return to that same element once that modal is closed. 
 
 ## Ember Addon Support
