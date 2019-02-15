@@ -1,10 +1,5 @@
-- title: "Guides and Tutorials"
-  url: 'index'
-  skip_toc: true
-  pages:
-    - title: "Ember.js Guides"
-      url: ""
-
+- title: "What Is Ember"
+  url: "what-is-ember"
 - title: "Getting Started"
   url: 'getting-started'
   pages:
@@ -14,54 +9,8 @@
       url: "index"
     - title: "Core Concepts"
       url: "core-concepts"
-
-- title: "Tutorial"
-  url: 'tutorial'
-  pages:
-    - title: "Creating Your App"
-      url: "ember-cli"
-    - title: "Planning Your App"
-      url: 'acceptance-test'
-    - title: "Routes and Templates"
-      url: "routes-and-templates"
-    - title: "The Model Hook"
-      url: "model-hook"
-    - title: "Installing Addons"
-      url: "installing-addons"
-    - title: "Building a Simple Component"
-      url: "simple-component"
-    - title: "Creating a Handlebars Helper"
-      url: "hbs-helper"
-    - title: "Using Ember Data"
-      url: "ember-data"
-    - title: "Building a Complex Component"
-      url: "autocomplete-component"
-    - title: "Services"
-      url: "service"
-    - title: "Adding Nested Routes"
-      url: "subroutes"
-    - title: "Deploying"
-      url: "deploying"
-
-- title: "The Object Model"
-  url: 'object-model'
-  pages:
-    - title: "Objects in Ember"
-      url: "index"
-      isAdvanced: true
-    - title: "Computed Properties"
-      url: "computed-properties"
-    - title: "Computed Properties and Aggregate Data"
-      url: "computed-properties-and-aggregate-data"
-    - title: "Observers"
-      url: "observers"
-      isAdvanced: true
-    - title: "Bindings"
-      url: "bindings"
-      isAdvanced: true
-    - title: "Enumerables"
-      url: 'enumerables'
-
+- title: "Anatomy of an App"
+  url: "anatomy-of-an-app"
 - title: "Templating"
   url: 'templates'
   pages:
@@ -89,7 +38,6 @@
     - title: "Writing Helpers"
       url: "writing-helpers"
       isAdvanced: true
-
 - title: "Working with JavaScript"
   url: 'working-with-javascript'
   pages:
@@ -101,7 +49,6 @@
       url: "classic-classes"
     - title: "Native vs. Classic Class Cheatsheet"
       url: "native-vs-classic-class-cheatsheet"
-
 - title: "Components"
   url: 'components'
   pages:
@@ -122,13 +69,6 @@
       url: "handling-events"
     - title: "Triggering Changes with Actions"
       url: "triggering-changes-with-actions"
-
-- title: "Controllers"
-  url: 'controllers'
-  pages:
-    - title: "Introduction"
-      url: "index"
-
 - title: "Routing"
   url: 'routing'
   pages:
@@ -152,8 +92,15 @@
       url: "query-params"
     - title: "Asynchronous Routing"
       url: "asynchronous-routing"
-      isAdvanced: true
-
+      isAdvanced: true     
+    - title: "Controllers"
+      url: 'controllers'    
+- title: "State Management"
+  url: 'state-management'
+- title: "Services"
+  url: 'services'      
+- title: 'Data Management'
+  url: 'data-management'
 - title: "Ember Data"
   url: 'models'
   pages:
@@ -179,13 +126,11 @@
     - title: "Customizing Serializers"
       url: "customizing-serializers"
       isAdvanced: true
-
 - title: "Addons and Dependencies"
   url: "addons-and-dependencies"
   pages:
     - title: "Managing Dependencies"
       url: "managing-dependencies"
-
 - title: "Testing"
   url: 'testing'
   pages:
@@ -205,7 +150,6 @@
       url: "testing-routes"
     - title: "Testing Models"
       url: "testing-models"
-
 - title: "Configuration"
   url: 'configuring-ember'
   pages:
@@ -230,27 +174,17 @@
     - title: "Build targets"
       url: "build-targets"
     - title: "Debugging"
-      url: "debugging"
-
-- title: "Application Concerns"
-  url: 'applications'
-  pages:
-    - title: "Applications and Instances"
-      url: "applications-and-instances"
-      isAdvanced: true
-    - title: "Dependency Injection"
-      url: "dependency-injection"
-      isAdvanced: true
-    - title: "Initializers"
-      url: "initializers"
-      isAdvanced: true
-    - title: "Services"
-      url: "services"
-    - title: "The Run Loop"
-      url: "run-loop"
-      isAdvanced: true
-
-- title: "Ember Inspector"
+      url: "debugging"      
+- title: "Deploying"
+  url: 'deploying'
+- title: "Upgrading"
+  url: 'upgrading'
+  pages: 
+    - title: "Editions"
+    - url: 'editions'
+    - title: "Deprecations"
+    - url: 'deprecations'
+- title: "Developer Tools"
   url: "ember-inspector"
   pages:
     - title: "Introduction"
@@ -278,25 +212,16 @@
     - title: "Rendering Performance"
       url: "render-performance"
     - title: "Troubleshooting"
-      url: "troubleshooting"
-
-- title: "Contributing to Ember.js"
-  url: 'contributing'
-  isAdvanced: true
-  pages:
-    - title: "Adding New Features"
-      url: "adding-new-features"
-    - title: "Repositories"
-      url: "repositories"
-
-- title: "Glossary"
-  url: "glossary"
-  pages:
-    - title: "Web Development"
-      url: "web-development"
-
+      url: "troubleshooting"    
 - title: 'Reference'
   url: 'reference'
   pages:
     - title: "Syntax Conversion Guide"
       url: "syntax-conversion-guide"
+    - title: "Accessibility"
+      url: 'accessibility'
+    - title: "Web Development Glossary"
+      url: "web-development"
+    - title: "Contributing to Ember.js"
+      url: 'contributing'
+      
