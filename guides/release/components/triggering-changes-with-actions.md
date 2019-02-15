@@ -504,7 +504,7 @@ Note that `deleteCurrentUser` is now prepended with `@` as opposed to `this.` [p
 
 Now when you confirm deletion, the action goes straight to the `SystemPreferencesEditor` to be handled in its local context.
 
-## Legacy String Actions
+## String Action Syntax
 
 Historically the `{{action}}` helper (`<button onclick={{action 'clickedButton'}}>`) and element modifier (`<button {{action 'clickedButton'}}>`) have accepted a string as the first argument. This form is no longer recommended, but might be seen in the wild when working on older Ember apps or addons.
 
