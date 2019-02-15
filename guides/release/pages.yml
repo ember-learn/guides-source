@@ -7,18 +7,15 @@
 - title: Getting Started
   url: getting-started
   pages:
-    - title: How To Use The Guides
-      url: intro
-    - title: Quick Start
-      url: quick-start
-    - title: Installing Ember
-      url: index
-    - title: Core Concepts
-      url: core-concepts
-    - title: JavaScript Primer
-      url: js-primer
-- title: Tutorial
-  url: tutorial
+    - title: "Quick Start"
+      url: "quick-start"
+    - title: "Installing Ember"
+      url: "index"
+    - title: "Core Concepts"
+      url: "core-concepts"
+
+- title: "Tutorial"
+  url: 'tutorial'
   pages:
     - title: Creating Your App
       url: index
@@ -47,12 +44,8 @@
 - title: The Object Model
   url: object-model
   pages:
-    - title: Objects in Ember
-      url: index
-    - title: Classes and Instances
-      url: classes-and-instances
-    - title: Reopening Classes and Instances
-      url: reopening-classes-and-instances
+    - title: "Objects in Ember"
+      url: "index"
       isAdvanced: true
     - title: Computed Properties
       url: computed-properties
