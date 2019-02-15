@@ -14,8 +14,6 @@
       url: "index"
     - title: "Core Concepts"
       url: "core-concepts"
-    - title: "JavaScript Primer"
-      url: "js-primer"
 
 - title: "Tutorial"
   url: 'tutorial'
@@ -50,10 +48,6 @@
   pages:
     - title: "Objects in Ember"
       url: "index"
-    - title: "Classes and Instances"
-      url: "classes-and-instances"
-    - title: "Reopening Classes and Instances"
-      url: "reopening-classes-and-instances"
       isAdvanced: true
     - title: "Computed Properties"
       url: "computed-properties"
@@ -95,6 +89,18 @@
     - title: "Writing Helpers"
       url: "writing-helpers"
       isAdvanced: true
+
+- title: "Working with JavaScript"
+  url: 'working-with-javascript'
+  pages:
+    - title: "Learning JavaScript"
+      url: "learning-javascript"
+    - title: "Native Classes"
+      url: "native-classes"
+    - title: "Classic Classes"
+      url: "classic-classes"
+    - title: "Native vs. Classic Class Cheatsheet"
+      url: "native-vs-classic-class-cheatsheet"
 
 - title: "Components"
   url: 'components'
