@@ -14,6 +14,8 @@
       url: "index"
     - title: "Core Concepts"
       url: "core-concepts"
+    - title: "JavaScript Primer"
+      url: "js-primer"
 
 - title: "Tutorial"
   url: 'tutorial'
@@ -48,6 +50,10 @@
   pages:
     - title: "Objects in Ember"
       url: "index"
+    - title: "Classes and Instances"
+      url: "classes-and-instances"
+    - title: "Reopening Classes and Instances"
+      url: "reopening-classes-and-instances"
       isAdvanced: true
     - title: "Computed Properties"
       url: "computed-properties"
