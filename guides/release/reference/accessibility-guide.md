@@ -2,15 +2,6 @@ The purpose of this guide is to give every Ember developer a starting point for 
 
 ## Ember Application Configuration
 
-### Ember Application vs role="application"
-
-The first thing that should be discussed in this section is this: "application" in Ember development and "application" in landmark roles have two _very_ different meanings. 
-
-The TL;DR? Don't use `role="application"` until you have done your research and know exactly how it is to be used correctly (if at all). There are very few use cases where the role of application is appropriate. 
-
-Read more about it: [https://a11yproject.com/posts/how-to-use-application-role/](https://a11yproject.com/posts/how-to-use-application-role/)
-
-
 ### Optional Feature: Application Template Wrapper
 
 If you are using the [application template wrapper](#toc_optional-features) enabled (default state), then you will need to add certain aria roles to your [landmark regions](https://www.w3.org/WAI/PF/aria/roles#landmark_roles), even if you are using native HTML elements, because those regions are not the direct child descendant of the body element (they are the children of the div that wraps the Ember app).
@@ -37,8 +28,16 @@ If you disable the [application template wrapper](#toc_optional-features), you w
 </body>
 ```
 
-
 > Note: To learn more about landmark roles and how to use them: [https://www.w3.org/WAI/PF/aria/roles#landmark_roles](https://www.w3.org/WAI/PF/aria/roles#landmark_roles). Still need more help? Visit the #topic-a11y channel in [Ember chat](https://emberjs.com/community/). 
+
+### Ember Application vs role="application"
+
+An important thing to note in this section is this: "application" in Ember development and "application" in landmark roles have two _very_ different meanings. 
+
+The TL;DR? Don't use `role="application"` until you have done your research and know exactly how it is to be used correctly (if at all). There are very few use cases where the role of application is appropriate. 
+
+Read more about it: [https://a11yproject.com/posts/how-to-use-application-role/](https://a11yproject.com/posts/how-to-use-application-role/)
+
 
 ## Basic Guidelines for Accessibility
 
