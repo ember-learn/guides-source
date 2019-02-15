@@ -9,7 +9,8 @@ If you are using the [application template wrapper](#toc_optional-features) enab
 If you disable the [application template wrapper](#toc_optional-features), you will not need to add role attributes to your landmark regions when they are the direct descendant of the body element, and they are using native HTML elements. This is the preferred approach for accessible applications. 
 
 **Application Template Wrapper Disabled** _(preferred)_
-```html
+
+```hbs
 <body>
   <header></header>
   <main></main>
@@ -18,7 +19,8 @@ If you disable the [application template wrapper](#toc_optional-features), you w
 ```
 
 **Application Template Wrapper Enabled**
-```html
+
+```hbs
 <body>
   <div class="ember-view">
     <header role="banner"></header>
@@ -44,7 +46,7 @@ If you disable the [application template wrapper](#toc_optional-features), you w
 
 An important thing to note in this section is this: "application" in Ember development and "application" in landmark roles have two _very_ different meanings. 
 
-The TL;DR? Don't use `role="application"` until you have done your research and know exactly how it is to be used correctly (if at all). There are very few use cases where the role of application is appropriate. 
+The <abbr title="\'too long didn't read\', colloquially used as \'to say it briefly for those of you who won\'t read all the details\'">TL;DR</abbr>? Don't use `role="application"` until you have done your research and know exactly how it is to be used correctly (if at all). There are very few use cases where the role of application is appropriate. 
 
 Read more about it: [https://a11yproject.com/posts/how-to-use-application-role/](https://a11yproject.com/posts/how-to-use-application-role/)
 
@@ -64,6 +66,7 @@ Here is a checklist of some things to keep in mind when developing your applicat
 - "Completely accessible" may be somewhat of a misnomer. Practical accessibility looks more like 90% coding to the spec and 10% filing browser bugs (or keeping track of existing browser bugs). Keep in mind that if you choose to implement a workaround for a browser bug, you will need to to put an issue in your product backlog to follow up on browser bugs at a later date. 
 
 ### Focus
+
 Focus management is a large part of how your application's code coordinates with the code that runs screen readers (If you peek through the source code for [NVDA](https://github.com/nvaccess/nvda), you'll see what I mean).
 
 To get you started, here are some focus basics:
