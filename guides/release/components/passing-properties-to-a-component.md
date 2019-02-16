@@ -71,6 +71,8 @@ for more details on how to pass actions.
 
 ## Positional Params
 
+*__Note:__ Positional params are only supported with the classic invocation syntax. To learn more, see the [Syntax Conversion Guide](../../reference/syntax-conversion-guide/).*
+
 In addition to passing parameters in by name, you can pass them in by position.
 In other words, you can invoke the above component example like this:
 
