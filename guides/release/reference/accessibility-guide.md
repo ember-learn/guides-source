@@ -10,8 +10,8 @@ If you disable the [application template wrapper](https://emberjs.com/blog/2018/
 
 To disable this feature:
 
-```
-$ ember feature:disable application-template-wrapper
+```bash
+ember feature:disable application-template-wrapper
 ```
 
 **Application Template Wrapper Disabled** _(preferred)_
