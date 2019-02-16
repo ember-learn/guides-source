@@ -457,7 +457,7 @@ module('Integration | Component | list-filter', function(hooks) {
     await settled();
 
     assert.equal(this.element.querySelectorAll('.city').length, 3);
-    assert.equal(this.element.querySelector('.city').textContent.trim(), 'San Francisco');
+    assert.dom(this.element.querySelector('.city')).hasText('San Francisco');
   });
 
 });
@@ -515,7 +515,7 @@ test('should update with matching listings', async function (assert) {
   await settled();
 
   assert.equal(this.element.querySelectorAll('.city').length, 1, 'One result returned');
-  assert.equal(this.element.querySelector('.city').textContent.trim(), 'San Francisco');  
+  assert.dom(this.element.querySelector('.city')).hasText('San Francisco');
 });
 
 ```
