@@ -48,7 +48,6 @@
   pages:
     - title: "Objects in Ember"
       url: "index"
-      isAdvanced: true
     - title: "Computed Properties"
       url: "computed-properties"
     - title: "Computed Properties and Aggregate Data"
