@@ -294,3 +294,5 @@
   pages:
     - title: "Syntax Conversion Guide"
       url: "syntax-conversion-guide"
+    - title: "Accessibility Guide"
+      url: "accessibility-guide"
