@@ -1,7 +1,5 @@
 For Super Rentals, we want to be able to display a map showing where each rental is.
-To implement this feature, we plan to make use of Ember services.
-
-An [Ember Service](../../applications/services/) is an object that can be made available for different parts of an application.
+We will use an [Ember service](../../applications/services/) to implement this feature.
 
 We plan to use the following services to provide maps.
 

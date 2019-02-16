@@ -45,6 +45,17 @@ module.exports = function(environment) {
     },
 
     deprecationsGuideURL: 'https://www.emberjs.com/deprecations/',
+
+    metricsAdapters: [
+      {
+        name: 'GoogleAnalytics',
+        environments: ['production'],
+        config: {
+          id: 'UA-27675533-1',
+          require: ['linkid']
+        }
+      },
+    ],
   };
 
   if (environment === 'development') {
