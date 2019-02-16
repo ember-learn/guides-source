@@ -413,10 +413,15 @@ module('Integration | Component | list-filter', function(hooks) {
 });
 ```
 
-Finally we add a `settled` call at the end of our test to assert the results. Ember's [settled helper](https://github.com/emberjs/ember-test-helpers/blob/master/API.md#settled)
-waits for all asynchronous tasks to complete.
+Finally we add a `settled` call at the end of our test to assert the results.
 
-In this case our assertions will not be made until the `settled` helper decides that processing is finished.
+Ember's [settled helper](https://github.com/emberjs/ember-test-helpers/blob/master/API.md#settled)
+waits for all asynchronous tasks to complete before running the given function callback.
+It returns a promise that we also return from the test.
+
+If you return a promise from a QUnit test, the test will wait to finish until that promise is resolved.
+In this case our test completes when the `settled` helper decides that processing is finished,
+and the function we provide that asserts the resulting state is completed.
 
 ```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="+3,+31,+32,+33,+34"}
 import { module, test } from 'qunit';
