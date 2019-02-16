@@ -4,9 +4,15 @@ The purpose of this guide is to give every Ember developer a starting point for 
 
 ### Optional Feature: Application Template Wrapper
 
-If you are using the [application template wrapper](#toc_optional-features) enabled (default state), then you will need to add certain aria roles to your [landmark regions](https://www.w3.org/WAI/PF/aria/roles#landmark_roles), even if you are using native HTML elements, because those regions are not the direct child descendant of the body element (they are the children of the div that wraps the Ember app).
+If you are using the [application template wrapper](https://emberjs.com/blog/2018/02/16/ember-3-1-beta-released.html#toc_new-optional-feature-application-template-wrapper) enabled (default state), then you will need to add certain aria roles to your [landmark regions](https://www.w3.org/WAI/PF/aria/roles#landmark_roles), even if you are using native HTML elements, because those regions are not the direct child descendant of the body element (they are the children of the div that wraps the Ember app).
 
-If you disable the [application template wrapper](#toc_optional-features), you will not need to add role attributes to your landmark regions when they are the direct descendant of the body element, and they are using native HTML elements. This is the preferred approach for accessible applications. 
+If you disable the [application template wrapper](https://emberjs.com/blog/2018/02/16/ember-3-1-beta-released.html#toc_new-optional-feature-application-template-wrapper), you will not need to add role attributes to your landmark regions when they are the direct descendant of the body element, and they are using native HTML elements. This is the preferred approach for accessible applications. 
+
+To disable this feature:
+
+```bash
+ember feature:disable application-template-wrapper
+```
 
 **Application Template Wrapper Disabled** _(preferred)_
 
