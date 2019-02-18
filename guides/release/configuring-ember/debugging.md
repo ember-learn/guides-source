@@ -26,10 +26,6 @@ export default Application.extend({
 ```javascript {data-filename=config/environment.js}
 ENV.APP.LOG_VIEW_LOOKUPS = true;
 ```
-### View all registered templates
-```javascript
-Ember.keys(Ember.TEMPLATES)
-```
 
 ## Controllers
 
@@ -77,7 +73,6 @@ Ember.ENV.RAISE_ON_DEPRECATION = true;
 Ember.ENV.LOG_STACKTRACE_ON_DEPRECATION = true;
 ```
 
-
 ### Implement an Ember.onerror hook to log all errors in production
 
 ```javascript
@@ -104,27 +99,6 @@ Ember = {
     console: window.console
   }
 };
-```
-
-### Errors within an `RSVP.Promise`
-
-There are times when dealing with promises that it seems like any errors
-are being 'swallowed', and not properly raised. This makes it extremely
-difficult to track down where a given issue is coming from. Thankfully,
-`RSVP` has a solution for this problem built in.
-
-You can provide an `onerror` function that will be called with the error
-details if any errors occur within your promise. This function can be anything,
-but a common practice is to call `console.assert` to dump the error to the
-console.
-
-```javascript {data-filename=app/app.js}
-import { assert } from '@ember/debug';
-import RSVP from 'rsvp';
-
-RSVP.on('error', function(error) {
-  assert(error, false);
-});
 ```
 
 ### Errors within `Ember.run.later` Backburner
