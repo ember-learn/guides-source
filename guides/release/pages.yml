@@ -11,6 +11,7 @@
       url: "core-concepts"
 - title: "Anatomy of an App"
   url: "anatomy-of-an-app"
+
 - title: "Templating"
   url: 'templates'
   pages:
