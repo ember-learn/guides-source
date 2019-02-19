@@ -1,68 +1,54 @@
-To define a component, run:
+Components are an essential building block in Ember applications.
+They allow developers to package presentation and behaviour into a single unit and give it a name.
+
+A component's presentation is defined by its template file,
+which uses the Ember template mentioned in [the Template chapter](../../templates/).
+The behaviour is defined by its JavaScript file, which we will be covering in this guide.
+
+It is possible to have an Ember component with only a JavaScript file, or with only a template file.
+Components with only a JavaScript file are also known as container components,
+because their goal is to provide state for other components to use.
+You can read more about this in the [nesting components guide]().
+
+Components with only a template file are also known as template-only components,
+as well as presentational or functional components.
+This is because they do not have state of their own,
+and only use values passed to them.
+You can read more about passing values to components at the [passing arguments guide]().
+
+Let us create a component to render a blog post using the `ember` command line tool:
 
 ```bash
-ember generate component my-component-name
+ember generate component blog-post
 ```
 
-Ember components are used to turn markup text and styles into reusable content. 
-Components consist of two parts: a JavaScript component file that defines behavior, and its accompanying Handlebars template that defines the markup for the component's UI.
+This generates a JavaScript file:
 
-A sample component template could look like this:
+```javascript {data-file=src/ui/components/blog-post/component.js}
+import Component from '@glimmer/component';
 
-```handlebars {data-filename=app/templates/components/blog-post.hbs}
-<article class="blog-post">
-  <h1>{{this.title}}</h1>
-  <p>{{yield}}</p>
-  <p>Edit title: {{input type="text" value=this.title}}</p>
-</article>
+export default class BlogPostComponent extends Component {
+}
 ```
 
-Given the above template, you can now use the `<BlogPost />` component:
+And a template file:
 
-```handlebars {data-filename=app/templates/index.hbs}
-{{#each this.model as |post|}}
-  <BlogPost @title={{post.title}}>
-    {{post.body}}
-  </BlogPost>
-{{/each}}
+```handlebars {data-filename=src/ui/components/blog-post/template.hbs}
+{{yield}}
 ```
 
-Its model is populated in `model` hook in the route handler:
+We will update the template to greet the user:
 
-```javascript {data-filename=app/routes/index.js}
-import Route from '@ember/routing/route';
-
-export default Route.extend({
-  model() {
-    return this.store.findAll('post');
-  }
-});
+```handlebars {data-filename=src/ui/components/blog-post/template.hbs}
+<p>Hi user!</p>
 ```
 
-Each component is backed by an element under the hood. By default,
-Ember will use a `<div>` element to contain your component's template.
-To learn how to change the element Ember uses for your component, see
-[Customizing a Component's
-Element](./customizing-a-components-element/).
+If you call this component from a route template,
+you will see `<p>Hi user!</p>` being rendered when you visit that route:
 
-
-## Defining a Component Subclass
-
-Often times, your components will contain reused Handlebar templates. In
-those cases, you do not need to write any JavaScript at all. Handlebars 
-allows you to define templates and reuse them as components.
-
-If you need to customize the behavior of the component you'll
-need to define a subclass of [`Component`](https://www.emberjs.com/api/ember/release/classes/Component). For example, you would
-need a custom subclass if you wanted to change a component's element,
-respond to actions from the component's template, or manually make
-changes to the component's element using JavaScript.
-
-Ember knows which subclass powers a component based on its filename. For
-example, if you have a component called `blog-post`, you would create a
-file at `app/components/blog-post.js`. If your component was called
-`audio-player-controls`, the file name would be at
-`app/components/audio-player-controls.js`.
+```handlebars {data-filename=src/ui/routes/application/template.hbs}
+<BlogPost />
+```
 
 ## Dynamically rendering a component
 
@@ -80,48 +66,66 @@ The real value of [`{{component}}`](https://www.emberjs.com/api/ember/release/cl
 the component being rendered. Below is an example of using the helper as a
 means of choosing different components for displaying different kinds of posts:
 
-```handlebars {data-filename=app/templates/components/foo-component.hbs}
+```handlebars {data-filename=src/ui/components/foo-component/template.hbs}
 <h3>Hello from foo!</h3>
 <p>{{this.post.body}}</p>
 ```
 
-```handlebars {data-filename=app/templates/components/bar-component.hbs}
+```handlebars {data-filename=src/ui/components/bar-component/template.hbs}
 <h3>Hello from bar!</h3>
 <div>{{this.post.author}}</div>
 ```
 
-```javascript {data-filename=app/routes/index.js}
-import Route from '@ember/routing/route';
-
-export default Route.extend({
-  model() {
-    return this.store.findAll('post');
-  }
-});
-```
-
-```handlebars {data-filename=app/templates/index.hbs}
-{{#each this.model as |post|}}
+```handlebars {data-filename=src/ui/routes/index/template.hbs}
+{{#each this.myPosts as |post|}}
   {{!-- either foo-component or bar-component --}}
-  {{component post.componentName post=post}}
+  {{component post.postType post=post}}
 {{/each}}
 ```
 
-or 
+or
 
-```handlebars {data-filename=app/templates/index.hbs}
-{{#each this.model as |post|}}
+```handlebars {data-filename=src/ui/routes/index/template.hbs}
+{{#each this.myPosts as |post|}}
   {{!-- either foo-component or bar-component --}}
-  {{#let (component this.componentName) as |Post|}}
+  {{#let (component post.postType) as |Post|}}
     <Post @post={{post}} />
   {{/let}}
 {{/each}}
 ```
 
 When the parameter passed to `{{component}}` evaluates to `null` or `undefined`,
-the helper renders nothing. When the parameter changes, the currently rendered
-component is destroyed and the new component is created and brought in.
+the helper renders nothing.
+When the parameter changes, the currently rendered component is destroyed and the new component is created and brought in.
 
 Picking different components to render in response to the data allows you to
-have different template and behavior for each case. The `{{component}}` helper
+have different template and behavior for each case.
+The `{{component}}` helper
 is a powerful tool for improving code modularity.
+
+## Template-only components
+
+Template-only components, sometimes known as functional components,
+are components that do not have a JavaScript file associated with them.
+
+What this means in practice is that using properties in the template (`{{this.myProperty}}`) will result in an error.
+In a template-only component you can only use values that were passed to the component, called named arguments (`{{@myArgument}}`).
+
+A small example would be a greeting component that receives the name of a friend and greets them:
+
+```handlebars {data-filename=src/ui/components/greeting/template.hbs}
+<p>Hello {{@friend}}</p>
+```
+
+```handlebars {data-filename=src/ui/routes/application/template.hbs}
+<Greeting />
+```
+
+We will learn more about properties and named arguments in the [displaying data guide]().
+
+## Container component
+
+<!-- TBK -->
+
+Useful when you want a provider-type component, something that does calculations and yields them out as block params.
+To make one, delete `component.hbs`.
