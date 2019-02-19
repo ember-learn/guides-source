@@ -3,12 +3,12 @@ but they can also return output to be used in a block expression.
 
 ### Return values from a component with `yield`
 
-```handlebars {data-filename=app/templates/index.hbs}
+```handlebars {data-filename=src/ui/routes/index/template.hbs}
 <BlogPost @post={{this.model}} />
 ```
 
-```handlebars {data-filename=app/templates/components/blog-post.hbs}
-{{yield @post.title @post.body @post.author}}
+```handlebars {data-filename=src/ui/components/blog-post/template.hbs}
+{{yield this.post.title this.post.body this.post.author}}
 ```
 
 Here an entire blog post model is being passed to the component as a single component property.
@@ -23,7 +23,7 @@ This allows for template customization when using a component,
 where the markup is provided by the consuming template,
 but any event handling behavior implemented in the component is retained such as `click()` handlers.
 
-```handlebars {data-filename=app/templates/index.hbs}
+```handlebars {data-filename=src/ui/routes/index/template.hbs}
 <BlogPost @post={{this.model}} as |title body author|>
   <h2>{{title}}</h2>
   <p class="author">by {{author}}</p>
@@ -38,9 +38,9 @@ The names are bound in the order that they are passed to `yield` in the componen
 It is possible to support both block and inline usage of a component from a single component template
 using the `has-block` helper.
 
-```handlebars {data-filename=app/templates/components/blog-post.hbs}
+```handlebars {data-filename=src/ui/components/blog-post/template.hbs}
 {{#if (has-block)}}
-  {{yield @post.title @post.body @post.author}}  
+  {{yield this.post.title this.post.body this.post.author}}
 {{else}}
   <h1>{{@post.title}}</h1>
   <p class="author">Authored by {{@post.author}}</p>
