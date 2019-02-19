@@ -30,7 +30,7 @@ ember generate component button-with-confirmation
 
 We'll plan to use the component in a template something like this:
 
-```handlebars {data-filename=app/templates/components/user-profile.hbs}
+```handlebars {data-filename=src/ui/components/user-profile/template.hbs}
 <ButtonWithConfirmation
   @text="Click OK to delete your account."
 />
@@ -38,7 +38,7 @@ We'll plan to use the component in a template something like this:
 
 We'll also want to use the component elsewhere, perhaps like this:
 
-```handlebars {data-filename=app/templates/components/send-message.hbs}
+```handlebars {data-filename=src/ui/components/send-message/template.hbs}
 <ButtonWithConfirmation
   @text="Click OK to send your message."
 />
@@ -157,7 +157,7 @@ This snippet says "take the `userDidDeleteAccount` action from the parent and ma
 
 We can do a similar thing for our `SendMessage` component:
 
-```handlebars {data-filename=app/templates/components/send-message.hbs}
+```handlebars {data-filename=src/ui/components/send-message/component.hbs}
 <ButtonWithConfirmation
   @text="Click to send your message."
   @onConfirm={{this.sendMessage}}
@@ -197,7 +197,7 @@ only difference is that the property is set to a function that knows how
 to trigger behavior and is bound to the context of the component.
 
 That makes it easy to remember how to add an action to a component. It's
-like passing an attribute. Actions can only be passed from a controller or 
+like passing an attribute. Actions can only be passed from a controller or
 component, they cannot be passed from a route.
 
 Actions in components allow you to decouple an event happening from how it's handled, leading to modular,
@@ -327,7 +327,7 @@ export default class ButtonWithConfirmation extends Component {
       this.set('confirmShown', false);
     });
   }
-  
+
   //...
 }
 ```
@@ -457,7 +457,7 @@ export default class SystemPreferencesEditor extends Component {
 
 ## Calling Actions Up Multiple Component Layers
 
-When your components go multiple template layers deep, it is common to need to handle an action several layers up the tree. 
+When your components go multiple template layers deep, it is common to need to handle an action several layers up the tree.
 Using the action helper, parent components can pass actions to child components through templates alone without adding JavaScript code to those child components.
 
 For example, say we want to move account deletion from the `UserProfile` component to its parent `system-preferences-editor`.
@@ -472,7 +472,7 @@ import { action } from '@ember/object';
 export default class SystemPreferencesEditor extends Component {
   @service
   login;
-  
+
   @action
   deleteUser(idStr) {
     return this.login.deleteUserAccount(idStr);
