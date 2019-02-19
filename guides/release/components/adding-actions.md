@@ -30,7 +30,7 @@ ember generate component button-with-confirmation
 
 We'll plan to use the component in a template something like this:
 
-```handlebars {data-filename=app/templates/components/user-profile.hbs}
+```handlebars {data-filename=src/ui/components/user-profile/template.hbs}
 <ButtonWithConfirmation
   @text="Click OK to delete your account."
 />
@@ -38,7 +38,7 @@ We'll plan to use the component in a template something like this:
 
 We'll also want to use the component elsewhere, perhaps like this:
 
-```handlebars {data-filename=app/templates/components/send-message.hbs}
+```handlebars {data-filename=src/ui/components/send-message/template.hbs}
 <ButtonWithConfirmation
   @text="Click OK to send your message."
 />
@@ -157,7 +157,7 @@ This snippet says "take the `userDidDeleteAccount` action from the parent and ma
 
 We can do a similar thing for our `SendMessage` component:
 
-```handlebars {data-filename=app/templates/components/send-message.hbs}
+```handlebars {data-filename=src/ui/components/send-message/component.hbs}
 <ButtonWithConfirmation
   @text="Click to send your message."
   @onConfirm={{this.sendMessage}}
