@@ -155,9 +155,213 @@ There are three major changes to templates in Octane:
 
 #### Angle Bracket Syntax
 
+Angle bracket syntax is a new way to invoke components that is much easier to
+read, helps distinguish between helper logic and components, and has other
+benefits:
+
+```hbs
+<!-- Before -->
+{{#todo-list as |item|}}
+  {{to-do item=item}}
+{{/todo-list}}
+
+<!-- After -->
+<TodoList as |item|>
+  <Todo @item={{item}}/>
+</TodoList>
+```
+
+As you can see, they use angle brackets instead of double curly brackets when
+invoked, thus the name. This allows them to match up much more closely with
+HTML - as you can see from looking at the "after" example above, components open
+and close in the same way as HTML elements, and self closing components require
+a trailing slash just like `<img/>` or other tags.
+
+They also have a number of other differences and benefits:
+
+- Must use the `CapitalCase` form of the component name, instead of the
+  `kebab-case` form.
+- Single word component names are completely OK in angle bracket form!
+
+  ```hbs
+  <!-- throws an error 🛑 -->
+  {{todo}}
+
+  <!-- works! ✅ -->
+  <Todo/>
+  ```
+
+- Standard attribute values applied to the component are treated like _plain-old
+  HTML attributes_. This means you can assign any valid HTML attribute, and it
+  will be reflected onto the component directly:
+
+  ```hbs
+    <Todo
+      role="list-item"
+      data-test-todo-item
+      data-test-id={{this.todo.id}}
+      class="todo {{this.todoClass}}"
+    />
+  ```
+
+  As you can see, both literal and bound values can be set on attributes, and
+  attributes can be used _without_ setting a value at all, just like HTML
+  attributes. The component decides where to put these attributes with the
+  special `...attributes` syntax. This will be discussed later in the section on
+  Glimmer components. For classic components, attributes are placed on the
+  component's wrapper element.
+
+- _Arguments_ are passed by adding `@` to the front of the argument name:
+
+  ```hbs
+  <!-- Before -->
+  {{todo item=item}}
+
+  <!-- After -->
+  <Todo @item={{item}}/>
+  ```
+
+  Like with attributes, both literal values and bound values can be passed to an
+  argument. It's important to note that if you want to pass a primitive literal
+  value to an argument, it must be wrapped in double curlies:
+
+  ```hbs
+  <Todo @done={{false}}/>
+  ```
+
+  This is necessary because, like HTML, all values that are passed to attributes
+  and arguments which are not wrapped as strings are coerced into strings.
+
+  In classic components, arguments passed this way will still be assigned to the
+  instance just like normal. The behavior of arguments in Glimmer components
+  will be discussed later one.
+
+- Yielded values work the same as in curly invocation:
+
+  ```hbs
+  <TodoList as |item|>
+    <Todo @item={{item}}/>
+  </TodoList>
+  ```
+
+- Yielded components can also be invoked with angle bracket syntax:
+
+  ```hbs
+  <TodoList as |Item|>
+    <Item/>
+  </TodoList>
+  ```
+
+- Positional arguments are _not_ available in angle bracket invocation, since
+  there is some abiguity between their behavior and the behavior of standard
+  HTML attributes (HTML attributes without `=` default to truthy). If you still
+  need positional arguments, you _must_ use the component with curly bracket
+  syntax.
+
+Angle bracket syntax works with both classic components and Glimmer components,
+so you can update your templates incrementally, independently from updating the
+components themselves. It is also not a _requirement_, curly invocation
+continues to work with classic components and Glimmer components, but it is
+highly recommended in general.
+
 #### Named Arguments
 
+Named arguments are a new syntax that allows you to refer to the arguments of a
+component _directly_ within your template:
+
+```hbs {data-filename=application.hbs}
+<BlogPost @title="Hello, world!"/>
+```
+
+```hbs {data-filename=blog-post.hbs}
+<h1>{{@title}}</h1>
+```
+
+As you can see, named arguments are prefixed with the `@` symbol, which mirrors
+the argument being passed into a component via angle bracket invocation, making
+it easier to remember and connect the two! However, you can still refer to
+argument values if the component was invoked using curly bracket syntax:
+
+```hbs {data-filename=application.hbs}
+{{blog-post title="Hello, world!"}}
+```
+
+```hbs {data-filename=blog-post.hbs}
+<!-- This still works -->
+<h1>{{@title}}</h1>
+```
+
+This means you can safely refactor your components to use named argument syntax
+without having to worry about every single _use_ of your component being updated
+to angle bracket syntax.
+
+Another very important thing to know about named argument syntax is that it
+_always_ refers to the _original_ value of the argument. If you change that
+value in a classic component, it will _not_ update:
+
+```js {data-filename=blog-post.js}
+export default Component.extend({
+  init() {
+    this.set('title', this.title.toUpperCase());
+  },
+});
+```
+
+```hbs {data-filename=blog-post.hbs}
+<!-- This is the original title, "Hello, world!" -->
+<h1>{{this.title}}</h1>
+
+<!-- This is the uppercased title, "HELLO, WORLD!" -->
+<h1>{{@title}}</h1>
+```
+
+This means that you can know by looking at the template whether or not a value
+was ever mutated by the component's class, if it even exists, or if it is
+directly from the external context. If you need to provide a default value,
+you'll have to do it via a getter or by using a helper in the template:
+
+```hbs {data-filename=blog-post.hbs}
+<!-- using {{or}} from ember-truth-helpers -->
+<h1>{{or @title "Untitled"}}</h1>
+```
+
 #### Required `this`
+
+Finally, one thing you may have noticed in the above examples is a lot more
+references to `this` in the template. This is a new requirement for any values
+that are rendered from the local context (e.g. the component or controller
+instance that backs the template).
+
+```hbs
+<!-- Before -->
+{{title}}
+
+<!-- After -->
+{{this.title}}
+```
+
+Template fallback behavior, where a name without `this` would fallback to
+looking up the value on that context, has been deprecated, and will be removed
+in future versions.
+
+The reason for this change is to provide extra clarity to both users reading
+templates, and the compiler. Without explicitly referring to `this`, a lot of
+handlebars statements are pretty ambiguous - for instance, `{{title}}` could be
+a helper, a local variable, or a component property.
+
+Note that this only applies to component/controller properties. Local variables,
+introduced via a yield, can still be refered to directly since they're
+unambiguous:
+
+```hbs
+{{#let "Title" as |title|}}
+  <!-- This works, because it's a local variable and unambiguous -->
+  {{title}}
+{{/let}}
+```
+
+And that wraps up the major template changes! Now, let's move on to native class
+syntax!
 
 ### Native Classes
 
@@ -549,4 +753,20 @@ The `static` keyword can be applied to all class elements.
 
 ### Tracked Properties
 
+#### POJOs
+
+#### Arrays
+
+#### Backwards Compatibility
+
 ### Glimmer Components
+
+#### Outer HTML
+
+#### `...attributes`
+
+#### Arguments
+
+#### One-way Data Flow
+
+#### Modifiers
