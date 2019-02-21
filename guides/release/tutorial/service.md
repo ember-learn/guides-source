@@ -354,6 +354,56 @@ Registration makes an object available to your Ember application for things like
 The call to the function `this.owner.lookup` looks up the service we just registered and returns the instance that the test will use.
 In the example we assert that `calledWithLocation` in our stub is set to the location we passed to the component.
 
+We'll want to also stub the maps service for our `RentalListing` rendering test,
+since it uses `LocationMap` in its template.
+
+```javascript {data-filename="tests/integration/components/rental-listing-test.js" data-diff="+6,+7,+9,+10,+11,+12,+13,+19"}
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render, click } from '@ember/test-helpers';
+import hbs from 'htmlbars-inline-precompile';
+import EmberObject from '@ember/object';
+import Service from '@ember/service';
+import { resolve } from 'rsvp';
+
+let StubMapsService = Service.extend({
+  getMapElement() {
+    return resolve(document.createElement('div'));
+  }
+});
+
+module('Integration | Component | rental listing', function (hooks) {
+  setupRenderingTest(hooks);
+
+  hooks.beforeEach(function () {
+    this.owner.register('service:map-element', StubMapsService);
+    this.rental = EmberObject.create({
+      image: 'fake.png',
+      title: 'test-title',
+      owner: 'test-owner',
+      type: 'test-type',
+      city: 'test-city',
+      bedrooms: 3
+    });
+  });
+
+  test('should display rental details', async function(assert) {
+    await render(hbs`<RentalListing @rental={{this.rental}} />`);
+    assert.equal(this.element.querySelector('.listing h3').textContent.trim(), 'test-title', 'Title: test-title');
+    assert.equal(this.element.querySelector('.listing .owner').textContent.trim(), 'Owner: test-owner', 'Owner: test-owner');
+  });
+
+  test('should toggle wide class on click', async function(assert) {
+    await render(hbs`<RentalListing @rental={{this.rental}} />`);
+    assert.notOk(this.element.querySelector('.image.wide'), 'initially rendered small');
+    await click('.image');
+    assert.ok(this.element.querySelector('.image.wide'), 'rendered wide after click');
+    await click('.image');
+    assert.notOk(this.element.querySelector('.image.wide'), 'rendered small after second click');
+  });
+});
+```
+
 ### Stubbing Services in Application Tests
 
 Finally, we want to update our application tests to account for our new service.
