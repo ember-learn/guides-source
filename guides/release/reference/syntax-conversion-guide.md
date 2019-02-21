@@ -29,7 +29,7 @@ while in classic invocation syntax everything is an argument to the component, e
 
 ### Leverage Existing Knowledge
 
-Since Angle Bracket notation is closely resembles the syntax for HTML elements, we enable developers to reuse their existing knowledge in creating templates for Ember components. This is especially useful for newer Ember developers as it provides syntactic sugar for creating component templates, reducing the learning curve.
+Since Angle Bracket notation closely resembles the syntax for HTML elements, we enable developers to reuse their existing knowledge in creating templates for Ember components. This is especially useful for newer Ember developers as it provides syntactic sugar for creating component templates, reducing the learning curve.
 
 You can apply regular HTML attributes like `class`, `id`, `aria-role`, etc. when you use the component.
 Block form components also follow the same pattern as HTML elements where an HTML-like closing tag denotes where a component starts and ends.
