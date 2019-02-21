@@ -80,7 +80,7 @@ and Ember CLI's test runner **Testem** is configured in `testem.js`.
 
 **ember-cli-build.js**: This file describes how Ember CLI should build our app.
 
-## ES6 Modules
+## Modules
 
 If you take a look at `app/router.js`, you'll notice some syntax that may be
 unfamiliar to you.
@@ -100,7 +100,7 @@ Router.map(function() {
 export default Router;
 ```
 
-Ember CLI uses ECMAScript 2015 (ES2015 for short or previously known as ES6)
+Ember CLI uses ECMAScript 2015 (ES2015 for short or popularly known as ES6)
 modules to organize application code. For example, the line `import EmberRouter
 from '@ember/routing/router';` gives us access to Ember's Router class as the
 variable `EmberRouter`. And the `import config from './config/environment';`
