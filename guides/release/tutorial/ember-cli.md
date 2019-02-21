@@ -80,7 +80,7 @@ and Ember CLI's test runner **Testem** is configured in `testem.js`.
 
 **ember-cli-build.js**: This file describes how Ember CLI should build our app.
 
-## ES6 Modules
+## Modules
 
 If you take a look at `app/router.js`, you'll notice some syntax that may be
 unfamiliar to you.
