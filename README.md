@@ -30,8 +30,9 @@ in the [Ember Community Discord](https://discordapp.com/invite/zT3asNS).
 
 The Guides content takes the form of Markdown files (just like most READMEs).
 Each minor version of Ember has its own directory within `/guides/`.
-Pull requests should make edits to only the latest version of Ember,
-except in the case of bug reports for broken links.
+Pull requests should make edits to only the contents of the `guides/release` directory,
+which is the latest deployed version of the guides.
+The exception is that PRs to fix broken links in older versions of the guides are ok.
 On `ember serve`, the Markdown files are turned into HTML
 to create an app. Most of the functionality comes from 
 [guidemaker](https://github.com/empress/guidemaker) and 
@@ -49,6 +50,8 @@ cd guides-source
 npm install
 ember serve
 ```
+
+Visit [http://localhost:4200](http://localhost:4200)
 
 ## Running tests
 
