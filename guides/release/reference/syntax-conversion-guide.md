@@ -1,6 +1,6 @@
 ## Angle Bracket Syntax
 
-There are two ways to invoke a component in a template: classic invocation syntax (`{{my-component}}`), and [angle bracket invocation syntax](https://github.com/emberjs/rfcs/blob/master/text/0311-angle-bracket-invocation.md) (`<My Component />`).
+There are two ways to invoke a component in a template: classic invocation syntax (`{{my-component}}`), and [angle bracket invocation syntax](https://github.com/emberjs/rfcs/blob/master/text/0311-angle-bracket-invocation.md) (`<MyComponent />`).
 The difference between them is syntactical.
 Classic invocation syntax may also be referred to as curly invocation syntax.
 
