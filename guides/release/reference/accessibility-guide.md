@@ -1,4 +1,4 @@
-The purpose of this guide is to give every Ember developer a starting point for making your Ember application minimally accessible. As accessibility can be a complex issue, it should be noted that this guide only covers a some of the basics, and should not be considered a comprehensive guide. A good place to start is [Introduction to Web Accessibility](https://www.w3.org/WAI/fundamentals/accessibility-intro/) provided by the Web Accessibility Initiative (WAI).
+The purpose of this guide is to give every Ember developer a starting point for making your Ember application minimally accessible. As accessibility can be a complex issue, it should be noted that this guide only covers some of the basics, and should not be considered a comprehensive guide. A good place to start is [Introduction to Web Accessibility](https://www.w3.org/WAI/fundamentals/accessibility-intro/) provided by the Web Accessibility Initiative (WAI).
 
 ## Ember Application Configuration
 
