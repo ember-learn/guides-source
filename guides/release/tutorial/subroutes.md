@@ -33,15 +33,15 @@ This is where the active nested route will be rendered.
     About Us
   {{/link-to}}
 </div>
-<ListFilter
-   @filter={{action "filterByCity"}}
-   as |filteredResults|>
+{{#list-filter
+ filter=(action "filterByCity") as |filteredResults|
+}}
   <ul class="results">
     {{#each filteredResults as |rentalUnit|}}
-      <li><RentalListing @rental={{rentalUnit}} /></li>
+      <li>{{rental-listing rental=rentalUnit}}</li>
     {{/each}}
   </ul>
-</ListFilter>
+{{/list-filter}}
 {{outlet}}
 ```
 
@@ -110,28 +110,28 @@ Now that we are returning all of our rentals to the nested route's model, we wil
     About Us
   {{/link-to}}
 </div>
-<ListFilter
-   @filter={{action "filterByCity"}}
-   as |filteredResults|}}
+{{#list-filter
+ filter=(action "filterByCity") as |filteredResults|
+}}
   <ul class="results">
     {{#each filteredResults as |rentalUnit|}}
-      <li><RentalListing @rental={{rentalUnit}} /></li>
+      <li>{{rental-listing rental=rentalUnit}}</li>
     {{/each}}
   </ul>
-</ListFilter>
+{{/list-filter}}
 {{outlet}}
 ```
 
 ```handlebars {data-filename="app/templates/rentals/index.hbs" data-diff="+1,+2,+3,+4,+5,+6,+7,+8,+9"}
-<ListFilter
-   @filter={{action "filterByCity"}}
-   as |filteredResults|}}
+{{#list-filter
+ filter=(action "filterByCity") as |filteredResults|
+}}
   <ul class="results">
     {{#each filteredResults as |rentalUnit|}}
-      <li><RentalListing @rental={{rentalUnit}} /></li>
+      <li>{{rental-listing rental=rentalUnit}}</li>
     {{/each}}
   </ul>
-</ListFilter>
+{{/list-filter}}
 {{outlet}}
 ```
 
