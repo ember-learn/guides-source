@@ -16,6 +16,7 @@ cache:
 branches:
   only:
     - master
+    - octane
     # npm version tags
     - /^v\d+\.\d+\.\d+/
 
