@@ -270,7 +270,7 @@ module('Unit | Service | maps', function(hooks) {
 
 ```
 
-When the service calls `createMap` on our fake utility `stubMapUtil`, we will run asserts to validate that it is called.
+When the service calls `createMap` on our fake utility `stubMapService`, we will run asserts to validate that it is called.
 In our first test notice that we expect five asserts to be run in line 17. Two of the asserts run in the test function, while the other two are run when `createMap` is called.
 
 In the second test, only one assert is expected (line 38), since the map element is fetched from cache and does not use the utility.
