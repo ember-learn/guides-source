@@ -336,7 +336,7 @@ export default Route.extend({
       this.store.findRecord('user', id).then(function (user) {
         // Success callback
         this.transitionTo('user.profile', user);
-      }).then(function () {
+      }).catch(function () {
         // Error callback
         this.transitionTo('not-found', 404);
       }
