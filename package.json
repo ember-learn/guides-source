@@ -56,7 +56,7 @@
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-metrics": "^0.13.0",
     "ember-percy": "^1.5.0",
-    "ember-qunit": "^4.3.0",
+    "ember-qunit": "^4.4.0",
     "ember-resolver": "^5.1.1",
     "ember-source": "~3.7.3",
     "ember-test-selectors": "^2.0.0",
