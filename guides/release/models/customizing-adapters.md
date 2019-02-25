@@ -55,7 +55,7 @@ want to create an adapter that is radically different from the other
 Ember adapters.
 
 - [DS.JSONAPIAdapter](https://www.emberjs.com/api/ember-data/release/classes/DS.JSONAPIAdapter)
-The `JSONAPIAdapter` is the default adapter and follows JSON API
+The `JSONAPIAdapter` is the default adapter and follows JSON:API
 conventions to communicate with an HTTP server by transmitting JSON
 via XHR.
 
@@ -82,10 +82,10 @@ store.findRecord('post', 1).then(function(post) {
 });
 ```
 
-The JSON API adapter will automatically send a `GET` request to `/posts/1`.
+The JSON:API adapter will automatically send a `GET` request to `/posts/1`.
 
 The actions you can take on a record map onto the following URLs in the
-JSON API adapter:
+JSON:API adapter:
 
 <table>
   <thead>
@@ -131,7 +131,7 @@ inflector.uncountable('advice');
 export default {};
 ```
 
-The JSON API adapter will now make requests for `Campus` models to
+The JSON:API adapter will now make requests for `Campus` models to
 `/campuses` and `/campuses/1` (instead of `/campus/` and `/campus/1`),
 and requests for `advice` to `/advice` and `/advice/1` (instead of
 `/advices/` and `/advices/1`).

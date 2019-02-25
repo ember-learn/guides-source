@@ -1,12 +1,12 @@
 In Ember Data, serializers format the data sent to and received from
 the backend store. By default, Ember Data serializes data using the
-[JSON API](http://jsonapi.org/) format. If your backend uses a different
+[JSON:API](http://jsonapi.org/) format. If your backend uses a different
 format, Ember Data allows you to customize the serializer or use a
 different serializer entirely.
 
 Ember Data ships with 3 serializers. The
 [`JSONAPISerializer`](https://www.emberjs.com/api/ember-data/release/classes/DS.JSONAPISerializer)
-is the default serializer and works with JSON API backends. The
+is the default serializer and works with JSON:API backends. The
 [`JSONSerializer`](https://www.emberjs.com/api/ember-data/release/classes/DS.JSONSerializer)
 is a simple serializer for working with single JSON object or arrays of records. The
 [`RESTSerializer`](https://www.emberjs.com/api/ember-data/release/classes/DS.RESTSerializer)
@@ -20,10 +20,10 @@ to return a JSON representation of the record that conforms to the
 following conventions.
 
 
-### JSON API Document
+### JSON:API Document
 
-The `JSONAPISerializer` expects the backend to return a JSON API
-Document that follows the JSON API specification and the conventions
+The `JSONAPISerializer` expects the backend to return a JSON:API
+Document that follows the JSON:API specification and the conventions
 of the examples found on [http://jsonapi.org/format](http://jsonapi.org/format/). This means all
 type names should be pluralized and attribute and relationship names
 should be dash-cased. For example, if you request a record from
@@ -79,7 +79,7 @@ should look like this:
     "type": "articles",
     "id": "1",
     "attributes": {
-      "title": "JSON API paints my bikeshed!"
+      "title": "JSON:API paints my bikeshed!"
     },
     "links": {
       "self": "http://example.com/articles/1"
@@ -140,7 +140,7 @@ export default DS.JSONAPISerializer.extend({});
 
 To change the format of the data that is sent to the backend store, you can use
 the [`serialize()`](https://www.emberjs.com/api/ember-data/release/classes/DS.JSONAPISerializer/methods/serialize?anchor=serialize)
-hook. Let's say that we have this JSON API response from Ember Data:
+hook. Let's say that we have this JSON:API response from Ember Data:
 
 ```json
 {
@@ -196,7 +196,7 @@ export default DS.JSONAPISerializer.extend({
 });
 ```
 
-Similarly, if your backend store provides data in a format other than JSON API,
+Similarly, if your backend store provides data in a format other than JSON:API,
 you can use the
 [`normalizeResponse()`](https://www.emberjs.com/api/ember-data/release/classes/DS.JSONAPISerializer/methods/serialize?anchor=normalizeResponse)
 hook. Using the same example as above, if the server provides data that looks
@@ -389,7 +389,7 @@ The JSON should encode the relationship as an array of IDs and types:
 ```
 
 `Comments` for a `post` can be loaded by `post.get('comments')`. The
-JSON API adapter will send 3 `GET` requests to `/comments/1/`,
+JSON:API adapter will send 3 `GET` requests to `/comments/1/`,
 `/comments/2/` and `/comments/3/`.
 
 Any `belongsTo` relationships in the JSON representation should be the
@@ -668,7 +668,7 @@ record.
 #### Ember Data's Normalized JSON Format
 
 The normalized JSON format that Ember Data expects is a
-[JSON API](http://jsonapi.org/) document with a couple of additional
+[JSON:API](http://jsonapi.org/) document with a couple of additional
 restrictions.
 
 First, it is important to make sure that the `type` name of a record
@@ -676,12 +676,12 @@ in the normalized JSON object exactly matches the filename of the
 model defined for this record type.
 By convention Model names are singular in Ember Data, however, the
 example type names shown in the
-[JSON API spec](http://jsonapi.org/format/) are pluralized.
-The JSON API spec itself is agnostic about inflection rules, however,
+[JSON:API spec](http://jsonapi.org/format/) are pluralized.
+The JSON:API spec itself is agnostic about inflection rules, however,
 Ember Data's own `JSONAPISerializer` assumes types are plural and it
 will automatically singularize the types.
 
-Second, attribute and relationship names in the JSON API document
+Second, attribute and relationship names in the JSON:API document
 should exactly match the name and casing of the `DS.attr()`,
 `DS.belongsTo()` and `DS.hasMany()`, properties defined on the
 Model.
@@ -689,7 +689,7 @@ Model.
 By convention these property names are camelCase in Ember Data models.
 As with the `type` names, this is different from the example attribute
 and relationship names shown in the
-[JSON API spec](http://jsonapi.org/format/).
+[JSON:API spec](http://jsonapi.org/format/).
 The examples in the spec use dash-case for attribute and relationship
 names. However, the spec does not require attribute or relationship
 names to follow any specific casing convention.
@@ -699,7 +699,7 @@ automatically transform them to camelCase when it creates the
 normalized JSON object.
 
 Other than these two restrictions, Ember Data's normalized JSON object
-follows the [JSON API](http://jsonapi.org/) specification.
+follows the [JSON:API](http://jsonapi.org/) specification.
 
 Example: given this `post` model.
 
