@@ -69,7 +69,7 @@ export default Route.extend({
 ```
 
 The store's `push()` method is a low level API which accepts a JSON
-API document with a few important differences from the JSON API
+API document with a few important differences from the JSON:API
 document that the JSONAPISerializer accepts. The type name in the JSON
 API document must match the type name of the model exactly (In the
 example above the type is `album` because the model is defined in
@@ -147,6 +147,6 @@ export default Route.extend({
 ```
 
 Properties that are defined on the model but are omitted in the
-normalized JSON API document object will not be updated. Properties
-that are included in the normalized JSON API document object but not
+normalized JSON:API document object will not be updated. Properties
+that are included in the normalized JSON:API document object but not
 defined on the Model will be ignored.

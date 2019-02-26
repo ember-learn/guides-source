@@ -342,13 +342,13 @@ When you request data from the server for a model that has relationships with on
 you may want to retrieve records corresponding to those related models at the same time.
 For example, when retrieving a blog post, you may need to access the comments associated
 with the post as well.
-The [JSON API specification allows](http://jsonapi.org/format/#fetching-includes)
+The [JSON:API specification allows](http://jsonapi.org/format/#fetching-includes)
 servers to accept a query parameter with the key `include` as a request to
 include those related records in the response returned to the client.
 The value of the parameter should be a comma-separated list of names of the
 relationships required.
 
-If you are using an adapter that supports JSON API, such as Ember's default [`JSONAPIAdapter`](https://www.emberjs.com/api/ember-data/release/classes/DS.JSONAPIAdapter),
+If you are using an adapter that supports JSON:API, such as Ember's default [`JSONAPIAdapter`](https://www.emberjs.com/api/ember-data/release/classes/DS.JSONAPIAdapter),
 you can easily add the `include` parameter to the server requests created by
 the `findRecord()`, `findAll()`,
 `query()` and `queryRecord()` methods.

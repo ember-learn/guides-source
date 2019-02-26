@@ -1,6 +1,6 @@
 Ember developers have great options for how they handle data from
 back end APIs. Ember itself works with any type of back end: REST,
-JSON API, GraphQL, or anything else.
+JSON:API, GraphQL, or anything else.
 
 Many developers choose to use Ember Data, a powerful set of tools 
 for formatting requests, normalizing responses, and efficiently 
@@ -76,11 +76,11 @@ that allow your Ember app to talk to different types of servers.
 
 [adapters]: http://emberobserver.com/categories/ember-data-adapters
 
-By default, Ember Data is designed to work out of the box with [JSON API][json-api].
-JSON API is a formal specification for building conventional, robust, and performant
+By default, Ember Data is designed to work out of the box with [JSON:API][json-api].
+JSON:API is a formal specification for building conventional, robust, and performant
 APIs that allow clients and servers to communicate model data.
 
-JSON API standardizes how JavaScript applications talk to servers, so
+JSON:API standardizes how JavaScript applications talk to servers, so
 you decrease the coupling between your frontend and backend, and have
 more freedom to change pieces of your stack.
 
