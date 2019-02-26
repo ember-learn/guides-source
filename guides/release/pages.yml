@@ -11,7 +11,9 @@
       url: "core-concepts"
 - title: "Anatomy of an App"
   url: "anatomy-of-an-app"
-
+  pages:
+    - title: "Overview"
+      url: "index"
 - title: "Templating"
   url: 'templates'
   pages:
@@ -98,6 +100,9 @@
       url: 'controllers'    
 - title: "State Management"
   url: 'state-management'
+  pages:
+    - title: "Overview"
+      url: "index"
 - title: "Services"
   url: 'services'      
 - title: 'Data Management'
@@ -178,13 +183,18 @@
       url: "debugging"      
 - title: "Deploying"
   url: 'deploying'
+  pages:
+    - title: "Overview"
+      url: "index"
 - title: "Upgrading"
   url: 'upgrading'
-  pages: 
+  pages:
+    - title: "Overview"
+      url: 'index'
     - title: "Editions"
-    - url: 'editions'
+      url: 'editions'
     - title: "Deprecations"
-    - url: 'deprecations'
+      url: 'deprecations'
 - title: "Developer Tools"
   url: "ember-inspector"
   pages:
