@@ -897,7 +897,7 @@ class SimpleCache {
   @tracked _cache = {};
 
   set(key, value) {
-    this._cache[cacheKey] = cacheValue;
+    this._cache[key] = value;
 
     // trigger an update
     this._cache = this._cache;
@@ -929,7 +929,7 @@ class ShoppingList {
     this.items.push(item);
 
     // trigger an update
-    this.items = items;
+    this.items = this.items;
   }
 }
 ```
@@ -1829,3 +1829,63 @@ These three modifiers are basic modifiers that allow you to cover most of the
 functionality that lifecycle hooks contained. APIs for writing your _own_
 modifiers are currently being stabilized, and these will allow you to make
 specific modifiers that target your use cases.
+
+##### Template-Only Glimmer Components
+
+In Octane, template-only components are _Glimmer_ components instead of classic
+components. The three major differences with Glimmer components are:
+
+1. As discussed before, they have outer HTML semantics, so they don't have a
+   wrapping element.
+2. Bindings are one-way, as mentioned above.
+3. They don't have a backing _instance_, and can only access arguments values.
+   They are effectively _stateless_ in this way.
+
+Before:
+
+```hbs
+Hello, {{this.name}}!
+```
+
+After:
+
+```hbs
+<div>
+  Hello, {{@name}}!
+</div>
+```
+
+One consequence of this is that attempting to change a component's state through
+bindings will not work:
+
+```hbs
+<!--
+  This does not work, since @value is
+  an argument and is immutable
+-->
+{{input value=@value}}
+
+<!--
+  Instead, we should update the value
+  by passing an _action_ to the component
+-->
+{{input value=@value key-up=@updateValue}}
+```
+
+Additionally, the `mut` helper generally can't be used for the same reason:
+
+```hbs
+<!-- This does not work -->
+<input
+  value={{@value}}
+  onkeyup={{action (mut @value) target="value"}}
+/>
+
+<!-- Do this instead -->
+<input value={{@value}} onkeyup={{@updateValue}}/>
+```
+
+Template-only Glimmer components can be thought of as _functional_ components,
+in the sense that their output (the rendered template) is a pure function of
+their inputs (their arguments). The fact that they can't have state makes them
+much easier to reason about in general, and less prone to errors.
