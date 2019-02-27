@@ -135,12 +135,6 @@ ember new octane-app -b @ember/octane
 Once Octane is released, the default blueprint will be updated to reflect the
 Octane defaults and specifying this blueprint will no longer be necessary.
 
-## Migrating an Existing App
-
-TODO: Getting started section. List of addons/codemods/configuration needed to
-use features described above Quick description of codemods(?) and a link to
-them. Note options for “partial migration”Reminder that linters will help too
-
 ### File Layout
 
 TODO
