@@ -34,7 +34,7 @@ Much of the power of promises comes from the fact that they can be
 chained together to perform sequential asynchronous operations:
 
 ```javascript
-// Note: jQuery AJAX methods return promises
+// Note: jQuery Ajax methods return promises
 let usernamesPromise = Ember.$.getJSON('/usernames.json');
 
 usernamesPromise.then(fetchPhotosOfUsers)
