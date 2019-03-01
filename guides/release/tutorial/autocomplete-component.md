@@ -80,16 +80,16 @@ The `handleFilterEntry` action will apply the search term filter to the list of 
 ```javascript {data-filename=app/components/list-filter.js}
 import Component from '@ember/component';
 
-export default Component.extend({
-  classNames: ['list-filter'],
-  value: '',
+export default class ListFilterComponent extends Component {
+  classNames = ['list-filter'];
+  value = '';
 
-  init() {
-    this._super(...arguments);
+  constructor() {
+    super();
     this.filter('').then((results) => this.set('results', results));
-  },
+  }
 
-  actions: {
+  actions = {
     handleFilterEntry() {
       let filterInputValue = this.value;
       let filterAction = this.filter;
@@ -97,7 +97,7 @@ export default Component.extend({
     }
   }
 
-});
+}
 ```
 
 #### Filtering Data Based on Input
@@ -130,8 +130,8 @@ Now, define your new controller like so:
 ```javascript {data-filename=app/controllers/rentals.js}
 import Controller from '@ember/controller';
 
-export default Controller.extend({
-  actions: {
+export default class RentalsController extends Controller {
+  actions = {
     filterByCity(param) {
       if (param !== '') {
         return this.store.query('rental', { city: param });
@@ -140,7 +140,7 @@ export default Controller.extend({
       }
     }
   }
-});
+}
 ```
 
 When the user types in the text field in our component, the `filterByCity` action in the controller is called.
@@ -229,8 +229,8 @@ We will update the results on screen only if the original filter value and the c
 ```javascript {data-filename="app/controllers/rentals.js" data-diff="-7,+8,+9,+10,+11,-13,+14,+15,+16,+17"}
 import Controller from '@ember/controller';
 
-export default Controller.extend({
-  actions: {
+export default class RentalsController extends Controller {
+  actions = {
     filterByCity(param) {
       if (param !== '') {
         return this.store.query('rental', { city: param });
@@ -247,7 +247,7 @@ export default Controller.extend({
       }
     }
   }
-});
+}
 ```
 
 In the `filterByCity` function in the rentals controller above,
@@ -256,19 +256,19 @@ we've added a new property called `query` to the filter results instead of just 
 ```javascript {data-filename="app/components/list-filter.js" data-diff="-19,-9,+10,+11,+12,+20,+21,+22,+23,+24"}
 import Component from '@ember/component';
 
-export default Component.extend({
-  classNames: ['list-filter'],
-  value: '',
+export default class ListFilterComponent extends Component {
+  classNames = ['list-filter'];
+  value = '';
 
-  init() {
-    this._super(...arguments);
+  constructor() {
+    super();
     this.filter('').then((results) => this.set('results', results));
     this.filter('').then((allResults) => {
       this.set('results', allResults.results);
     });
-  },
+  }
 
-  actions: {
+  actions = {
     handleFilterEntry() {
       let filterInputValue = this.value;
       let filterAction = this.filter;
@@ -281,7 +281,7 @@ export default Component.extend({
     }
   }
 
-});
+}
 ```
 
 In our list filter component JavaScript, we use the `query` property to compare to the `value` property of the component.

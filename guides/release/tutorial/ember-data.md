@@ -26,9 +26,9 @@ When we open the model file, we can see a blank class extending [`DS.Model`](htt
 ```javascript {data-filename=app/models/rental.js}
 import DS from 'ember-data';
 
-export default DS.Model.extend({
+export default class RentalModel extends DS.Model {
 
-});
+}
 ```
 
 Let's define the structure of a rental object using the same attributes for our rental that we [previously used](../model-hook/) in our hard-coded array of JavaScript objects -
@@ -39,15 +39,15 @@ For more information on Ember Data Attributes, read the section called [Defining
 ```javascript {data-filename="app/models/rental.js" data-diff="+4,+5,+6,+7,+8,+9,+10"}
 import DS from 'ember-data';
 
-export default DS.Model.extend({
-  title: DS.attr(),
-  owner: DS.attr(),
-  city: DS.attr(),
-  category: DS.attr(),
-  image: DS.attr(),
-  bedrooms: DS.attr(),
-  description: DS.attr()
-});
+export default class RentalModel extends DS.Model {
+  title = DS.attr();
+  owner = DS.attr();
+  city = DS.attr();
+  category = DS.attr();
+  image = DS.attr();
+  bedrooms = DS.attr();
+  description = DS.attr();
+}
 ```
 
 We now have a model object that we can use for our Ember Data implementation.
@@ -63,7 +63,7 @@ In this case, call the [`findAll`](https://www.emberjs.com/api/ember-data/releas
 ```javascript {data-filename="app/routes/rentals.js" data-diff="+5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,-33"}
 import Route from '@ember/routing/route';
 
-export default Route.extend({
+export default class RentalsRoute extends Route {
   model() {
     return this.store.findAll('rental');
     return [{
@@ -95,7 +95,7 @@ export default Route.extend({
       description: "Convenience is at your doorstep with this charming downtown rental. Great restaurants and active night life are within a few feet."
     }];
   }
-});
+}
 ```
 
 When we call `findAll`, Ember Data will attempt to fetch rentals from `/api/rentals`.
