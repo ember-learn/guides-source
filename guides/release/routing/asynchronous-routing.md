@@ -52,11 +52,6 @@ asynchronous form of try-catch statements that prevent the rightward
 flow of nested callback after nested callback and facilitate a saner
 approach to managing complex asynchronous logic in your applications.
 
-This guide doesn't intend to fully delve into all the different ways
-promises can be used, but if you'd like a more thorough introduction,
-take a look at the readme for [RSVP](https://github.com/tildeio/rsvp.js),
-the promise library that Ember uses.
-
 ### The Router Pauses for Promises
 
 When transitioning between routes, the Ember router collects all of the
