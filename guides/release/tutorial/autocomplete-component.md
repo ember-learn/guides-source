@@ -86,7 +86,7 @@ export default class ListFilterComponent extends Component {
   value = '';
 
   constructor() {
-    super();
+    super(...arguments);
     this.filter('').then((results) => this.set('results', results));
   }
 
