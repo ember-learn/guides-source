@@ -60,7 +60,7 @@
     - title: "The Component Lifecycle"
       url: "the-component-lifecycle"
     - title: "Passing Properties to a Component"
-      url: "passing-properties-to-a-component"
+      url: "passing-arguments-and-html-attributes"
     - title: "Wrapping Content in a Component"
       url: "wrapping-content-in-a-component"
     - title: "Customizing a Component's Element"
