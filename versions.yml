@@ -32,3 +32,6 @@ allVersions:
   - "v3.7.0"
   - "v3.8.0"
 currentVersion: "v3.8.0"
+ltsVersions:
+  - "v2.18.0"
+  - "v3.4.0"
