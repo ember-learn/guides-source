@@ -87,12 +87,12 @@ otherwise we will create a new HTML element and call our Leaflet map service to 
 import { camelize } from '@ember/string';
 import Service from '@ember/service';
 import { set } from '@ember/object';
-import { inject as service } from '@ember/service';
+import { inject as service } from '@ember-decorators/service';
 
 export default class MapElementService extends Service {
 
-  geocode = service();
-  map = service();
+  @service geocode;
+  @service map;
 
   constructor() {
     if (!this.cachedMaps) {
@@ -146,11 +146,11 @@ This function runs during the component render, after the component's markup get
 
 ```javascript {data-filename="app/components/location-map.js" data-diff="+2,+5,+6,+8,+9,+10,+11,+12"}
 import Component from '@ember/component';
-import { inject as service } from '@ember/service';
+import { inject as service } from '@ember-decorators/service';
 
 export default class LocationMapComponent extends Component {
   classNames = ['map-container'];
-  mapElement = service();
+  @service mapElement;
 
   didInsertElement() {
     super();
