@@ -87,17 +87,17 @@ import Service from '@ember/service';
 import { set } from '@ember/object';
 import { inject as service } from '@ember/service';
 
-export default Service.extend({
+export default class MapElementService extends Service {
 
-  geocode: service(),
-  map: service(),
+  geocode = service();
+  map = service();
 
-  init() {
+  constructor() {
     if (!this.cachedMaps) {
       set(this, 'cachedMaps', {});
     }
-    this._super(...arguments);
-  },
+    super();
+  }
 
   async getMapElement(location) {
     let camelizedLocation = camelize(location);
@@ -109,15 +109,14 @@ export default Service.extend({
       this.cachedMaps[camelizedLocation] = element;
     }
     return element;
-  },
+  }
 
   _createMapElement() {
     let element = document.createElement('div');
     element.className = 'map';
     return element;
-  },
-});
-
+  }
+}
 ```
 
 ### Display Maps With a Component
@@ -147,18 +146,18 @@ This function runs during the component render, after the component's markup get
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 
-export default Component.extend({
-  classNames: ['map-container'],
-  mapElement: service(),
+export default class LocationMapComponent extends Component {
+  classNames = ['map-container'];
+  mapElement = service();
 
   didInsertElement() {
-    this._super(...arguments);
+    super();
     this.mapElement.getMapElement(this.location).then((mapElement) => {
       this.element.append(mapElement);
     });
 
   }
-});
+}
 ```
 
 You may have noticed that `this.location` refers to a property location we haven't defined.

@@ -230,11 +230,11 @@ function:
 ```javascript {data-filename="app/routes/index.js" data-diff="+4,+5,+6"}
 import Route from '@ember/routing/route';
 
-export default Route.extend({
-  redirect() {
-    this.transitionTo('rentals');
+export default class IndexRoute extends Route {
+  beforeModel() {
+    this.replaceWith('rentals');
   }
-});
+}
 ```
 
 Now visiting the root route at `/` will result in the `/rentals` URL loading.

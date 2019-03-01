@@ -27,9 +27,9 @@ When we open the model file, we can see a blank class extending [`DS.Model`](htt
 import DS from 'ember-data';
 const { Model } = DS;
 
-export default Model.extend({
+export default class RentalModel extends DS.Model {
 
-});
+}
 ```
 
 Let's define the structure of a rental object using the same attributes for our rental that we [previously used](../model-hook/) in our hard-coded array of JavaScript objects -
@@ -41,15 +41,15 @@ For more information on Ember Data Attributes, read the section called [Defining
 import DS from 'ember-data';
 const { Model } = DS;
 
-export default Model.extend({
-  title: DS.attr(),
-  owner: DS.attr(),
-  city: DS.attr(),
-  category: DS.attr(),
-  image: DS.attr(),
-  bedrooms: DS.attr(),
-  description: DS.attr()
-});
+export default class RentalModel extends DS.Model {
+  title = DS.attr();
+  owner = DS.attr();
+  city = DS.attr();
+  category = DS.attr();
+  image = DS.attr();
+  bedrooms = DS.attr();
+  description = DS.attr();
+}
 ```
 
 If you are curious about the `const { Model } = DS;` syntax above, it is called [destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Object_destructuring) and it is a feature of JavaScript.
@@ -65,7 +65,7 @@ In this case, call the [`findAll`](https://api.emberjs.com/ember-data/3.10/class
 ```javascript {data-filename="app/routes/rentals.js" data-diff="+5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,-33"}
 import Route from '@ember/routing/route';
 
-export default Route.extend({
+export default class RentalsRoute extends Route {
   model() {
     return this.store.findAll('rental');
     return [{
@@ -97,7 +97,7 @@ export default Route.extend({
       description: "Convenience is at your doorstep with this charming downtown rental. Great restaurants and active night life are within a few feet."
     }];
   }
-});
+}
 ```
 
 When we call `findAll`, Ember Data will attempt to fetch rentals from `/api/rentals`.
