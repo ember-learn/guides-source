@@ -88,11 +88,11 @@ and the adapter for the `User` model defines a `queryRecord()` method that targe
 import DS from 'ember-data';
 import $ from 'jquery';
 
-export default DS.Adapter.extend({
+export default class UserAdapter extends DS.Adapter {
   queryRecord(store, type, query) {
     return $.getJSON('/api/current_user');
   }
-});
+}
 ```
 
 then calling [`store.queryRecord()`](https://www.emberjs.com/api/ember-data/release/classes/DS.Store/methods/query?anchor=queryRecord) will retrieve that object from the server:

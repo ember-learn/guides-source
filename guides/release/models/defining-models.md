@@ -17,8 +17,8 @@ This will generate the following file:
 ```javascript {data-filename=app/models/person.js}
 import DS from 'ember-data';
 
-export default DS.Model.extend({
-});
+export default class Person extends DS.Model {
+}
 ```
 
 After you have defined a model class, you can start [finding](../finding-records/)
@@ -32,12 +32,13 @@ add first and last name, as well as the birthday, using [`DS.attr`](https://www.
 
 ```javascript {data-filename=app/models/person.js}
 import DS from 'ember-data';
+const { Model, attr } = DS;
 
-export default DS.Model.extend({
-  firstName: DS.attr(),
-  lastName: DS.attr(),
-  birthday: DS.attr()
-});
+export default class Person extends Model {
+  @attr() firstName;
+  @attr() lastName;
+  @attr() birthday;
+}
 ```
 
 Attributes are used when turning the JSON payload returned from your
@@ -51,15 +52,16 @@ properties that combine or transform primitive attributes.
 ```javascript {data-filename=app/models/person.js}
 import DS from 'ember-data';
 import { computed } from '@ember/object';
+const { Model, attr } = DS;
 
-export default DS.Model.extend({
-  firstName: DS.attr(),
-  lastName: DS.attr(),
+export default class Person extends Model {
+  @attr() firstName;
+  @attr() lastName;
 
   fullName: computed('firstName', 'lastName', function() {
     return `${this.firstName} ${this.lastName}`;
   })
-});
+}
 ```
 
 For more about adding computed properties to your classes, see [Computed
@@ -78,13 +80,14 @@ which coerce the value to the JavaScript type that matches its name.
 
 ```javascript {data-filename=app/models/person.js}
 import DS from 'ember-data';
+const { Model, attr } = DS;
 
-export default DS.Model.extend({
-  name: DS.attr('string'),
-  age: DS.attr('number'),
-  admin: DS.attr('boolean'),
-  birthday: DS.attr('date')
-});
+export default class Person extends Model {
+  @attr('string') name;
+  @attr('number') age;
+  @attr('boolean') admin;
+  @attr('date') birthday;
+}
 ```
 
 The `date` transform will transform an
@@ -111,7 +114,7 @@ Here is a simple transform that converts values between cents and US dollars.
 ```javascript {data-filename=app/transforms/dollars.js}
 import DS from 'ember-data';
 
-export default DS.Transform.extend({
+export default class DollarTransform extends DS.Transform {
   deserialize(serialized) {
     return serialized / 100; // returns dollars
   },
@@ -119,7 +122,7 @@ export default DS.Transform.extend({
   serialize(deserialized) {
     return deserialized * 100; // returns cents
   }
-});
+}
 ```
 
 A transform has two functions: `serialize` and `deserialize`. Deserialization
@@ -130,10 +133,11 @@ You would use the custom `dollars` transform like this:
 
 ```javascript {data-filename=app/models/product.js}
 import DS from 'ember-data';
+const { Model, attr } = DS;
 
-export default DS.Model.extend({
-  spent: DS.attr('dollars')
-});
+export default class Product extends Model {
+  @attr('dollars') spent;
+}
 ```
 
 ### Options
@@ -148,15 +152,16 @@ creation:
 
 ```javascript {data-filename=app/models/user.js}
 import DS from 'ember-data';
+const { Model, attr } = DS;
 
-export default DS.Model.extend({
-  username: DS.attr('string'),
-  email: DS.attr('string'),
-  verified: DS.attr('boolean', { defaultValue: false }),
-  createdAt: DS.attr('date', {
+export default class User extends DS.Model {
+  @attr('string') username;
+  @attr('string') email;
+  @attr('boolean', { defaultValue: false }) verified;
+  @attr('date', {
     defaultValue() { return new Date(); }
-  })
-});
+  }) createdAt;
+}
 ```
 
 ### Read-only Attributes
@@ -171,8 +176,8 @@ The following example shows how to define these attributes without transforming 
 and accessing them within a template:
 
 ```javascript
-location: DS.attr() // a read-only object
-tags: DS.attr() // a read-only array
+@attr() location;  // a read-only object
+@attr() tags; // a read-only array
 ```
 
 ```handlebars
