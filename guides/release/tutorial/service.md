@@ -96,7 +96,7 @@ export default class MapElementService extends Service {
     if (!this.cachedMaps) {
       set(this, 'cachedMaps', {});
     }
-    super();
+    super(...arguments);
   }
 
   async getMapElement(location) {
