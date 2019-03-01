@@ -74,10 +74,10 @@ In the following example, the [`didRender()`](https://api.emberjs.com/ember/3.11
 ```javascript {data-filename=/app/components/foo-did-render-example.js}
 import Component from '@ember/component';
 
-export default Component.extend({
+export default class FooDidRenderExample extends Component {
   didRender() {
-    this._super(...arguments);
+    super(...arguments);
     console.log('I rendered!');
   }
-});
+}
 ```

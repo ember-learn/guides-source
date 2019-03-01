@@ -131,11 +131,11 @@ We'll take the code created for us by the generator and add a `model()` method t
 ```javascript {data-filename="app/routes/scientists.js"}
 import Route from '@ember/routing/route';
 
-export default Route.extend({
+export default class ScientistsRoute extends Route {
   model() {
     return ['Marie Curie', 'Mae Jemison', 'Albert Hofmann'];
   }
-});
+}
 ```
 
 This code example uses the latest features in JavaScript,
@@ -246,13 +246,12 @@ In the component, add an `actions` object with a `showPerson` function that aler
 ```javascript {data-filename="app/components/people-list.js"}
 import Component from '@ember/component';
 
-export default Component.extend({
-  actions: {
-    showPerson(person) {
-      alert(person);
-    }
+export default class PeopleList extends Component {
+  @action
+  showPerson(person) {
+    alert(person);
   }
-});
+}
 ```
 
 Now in the browser when a scientist's name is clicked,
