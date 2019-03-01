@@ -103,6 +103,12 @@
   pages:
     - title: "Overview"
       url: "index"
+    - title: "Tracked Properties"
+      url: "tracked-properties"
+    - title: "Patterns for State"
+      url: "patterns-for-state"
+    - title: "Computed Properties"
+      url: "computed-properties"
 - title: "Services"
   url: 'services'
 - title: 'Data Management'
