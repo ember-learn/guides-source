@@ -104,7 +104,7 @@ export default class ListFilterComponent extends Component {
 In the above example we use the `init` hook to seed our initial listings by calling the `filter` action with an empty value.
 Our `handleFilterEntry` action calls a function called `filter` based on the `value` attribute set by the input helper.
 
-The `filter` function is passed in by the calling object. This is a pattern known as [closure actions](../../components/triggering-changes-with-actions/#toc_passing-the-action-to-the-component).
+The `filter` function is passed in by the calling object. This is a pattern known as [closure actions](../../components/adding-actions/#toc_passing-the-action-to-the-component).
 
 Notice the `then` function called on the result of calling the `filter` function.
 The code expects the `filter` function to return a promise.

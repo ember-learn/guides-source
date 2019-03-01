@@ -13,7 +13,7 @@ Now, we can use the `<BlogPost />` component and pass its properties in another 
 <BlogPost @title={{this.title}} @body={{this.body}} />
 ```
 
-See [Passing Properties to a Component](../passing-properties-to-a-component/) for more.
+See [Passing Properties to a Component](../passing-arguments-and-html-attributes/) for more.
 
 In this case, the content we wanted to display came from the model.
 But what if we want the developer using our component to be able to provide custom HTML content?

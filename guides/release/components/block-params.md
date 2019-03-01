@@ -1,4 +1,4 @@
-Components can have properties passed in ([Passing Properties to a Component](../passing-properties-to-a-component/)),
+Components can have properties passed in ([Passing Properties to a Component](../passing-arguments-and-html-attributes/)),
 but they can also return output to be used in a block expression.
 
 ### Return values from a component with `yield`

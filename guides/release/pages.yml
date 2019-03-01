@@ -55,16 +55,16 @@
 - title: "Components"
   url: 'components'
   pages:
-    - title: Defining a Component
-      url: index
-    - title: The Component Lifecycle
-      url: the-component-lifecycle
-    - title: Passing Properties to a Component
-      url: passing-properties-to-a-component
-    - title: Wrapping Content in a Component
-      url: wrapping-content-in-a-component
-    - title: Customizing a Component's Element
-      url: customizing-a-components-element
+    - title: "Defining a Component"
+      url: "defining-a-component"
+    - title: "The Component Lifecycle"
+      url: "the-component-lifecycle"
+    - title: "Passing Properties to a Component"
+      url: "passing-arguments-and-html-attributes"
+    - title: "Wrapping Content in a Component"
+      url: "wrapping-content-in-a-component"
+    - title: "Customizing a Component's Element"
+      url: "customizing-a-components-element"
       isAdvanced: true
     - title: "Using Block Params"
       url: "block-params"
