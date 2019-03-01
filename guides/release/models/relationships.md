@@ -8,17 +8,19 @@ To declare a one-to-one relationship between two models, use
 
 ```javascript {data-filename=app/models/user.js}
 import DS from 'ember-data';
+const { Model, belongsTo } = DS;
 
-export default class User extends DS.model {
-  profile: DS.belongsTo('profile')
+export default class User extends Model {
+  @belongsTo('profile') profile;
 }
 ```
 
 ```javascript {data-filename=app/models/profile.js}
 import DS from 'ember-data';
+const { Model, belongsTo } = DS;
 
-export default class Profile extends DS.model {
-  user: DS.belongsTo('user')
+export default class Profile extends Model {
+  @belongsTo('user') user;
 }
 ```
 
@@ -29,17 +31,19 @@ To declare a one-to-many relationship between two models, use
 
 ```javascript {data-filename=app/models/blog-post.js}
 import DS from 'ember-data';
+const { Model, hasMany } = DS;
 
-export default class BlogPost extends DS.model {
-  comments: DS.hasMany('comment')
+export default class BlogPost extends Model {
+  @hasMany('comment') comments;
 }
 ```
 
 ```javascript {data-filename=app/models/comment.js}
 import DS from 'ember-data';
+const { Model, belongsTo } = DS;
 
-export default class Comment extends DS.model {
-  blogPost: DS.belongsTo('blog-post')
+export default class Comment extends Model {
+  @belongsTo('blog-post') blogPost;
 }
 ```
 
@@ -50,17 +54,19 @@ To declare a many-to-many relationship between two models, use
 
 ```javascript {data-filename=app/models/blog-post.js}
 import DS from 'ember-data';
+const { Model, hasMany } = DS;
 
-export default class BlogPost extends DS.model {
-  tags: DS.hasMany('tag')
+export default class BlogPost extends Model {
+  @hasMany('tag') tags;
 }
 ```
 
 ```javascript {data-filename=app/models/tag.js}
 import DS from 'ember-data';
+const { Model, hasMany } = DS;
 
-export default class Tag extends DS.model {
-  blogPosts: DS.hasMany('blog-post')
+export default class Tag extends Model {
+  @hasMany('blog-post') blogPosts;
 }
 ```
 
@@ -81,22 +87,24 @@ including `{ inverse: null }`.
 
 ```javascript {data-filename=app/models/comment.js}
 import DS from 'ember-data';
+const { Model, belongsTo } = DS;
 
-export default class Comment extends DS.model {
-  onePost: DS.belongsTo('blog-post', { inverse: null }),
-  twoPost: DS.belongsTo('blog-post'),
-  redPost: DS.belongsTo('blog-post'),
-  bluePost: DS.belongsTo('blog-post')
+export default class Comment extends Model {
+  @belongsTo('blog-post', { inverse; null }) onePost;
+  @belongsTo('blog-post') twoPost;
+  @belongsTo('blog-post') redPost;
+  @belongsTo('blog-post') bluePost;
 }
 ```
 
 ```javascript {data-filename=app/models/blog-post.js}
 import DS from 'ember-data';
+const { Model, hasMany } = DS;
 
-export default class BlogPost extends DS.model {
-  comments: DS.hasMany('comment', {
+export default class BlogPost extends Model {
+  @hasMany('comment', {
     inverse: 'redPost'
-  })
+  }) comments;
 }
 ```
 
@@ -110,10 +118,11 @@ Here's an example of a one-to-many reflexive relationship:
 
 ```javascript {data-filename=app/models/folder.js}
 import DS from 'ember-data';
+const { Model, belongsTo, hasMany } = DS;
 
-export default class Folder extends DS.model {
-  children: DS.hasMany('folder', { inverse: 'parent' }),
-  parent: DS.belongsTo('folder', { inverse: 'children' })
+export default class Folder extends Model {
+  @hasMany('folder', { inverse: 'parent' }) children;
+  @belongsTo('folder', { inverse: 'children' }) parent;
 }
 ```
 
@@ -121,10 +130,11 @@ Here's an example of a one-to-one reflexive relationship:
 
 ```javascript {data-filename=app/models/user.js}
 import DS from 'ember-data';
+const { Model, attr, belongsTo } = DS;
 
-export default class User extends DS.model {
-  name: DS.attr('string'),
-  bestFriend: DS.belongsTo('user', { inverse: 'bestFriend' }),
+export default class User extends Model {
+  @attr('string') name;
+  @belongsTo('user', { inverse: 'bestFriend' }) bestFriend;
 }
 ```
 
@@ -132,9 +142,10 @@ You can also define a reflexive relationship that doesn't have an inverse:
 
 ```javascript {data-filename=app/models/folder.js}
 import DS from 'ember-data';
+const { Model, belongsTo } = DS;
 
-export default class Folder extends DS.model {
-  parent: DS.belongsTo('folder', { inverse: null })
+export default class Folder extends Model {
+  @belongsTo('folder', { inverse: null }) parent;
 }
 ```
 
@@ -154,26 +165,29 @@ First, let's look at the model definitions:
 
 ```javascript {data-filename=app/models/user.js}
 import DS from 'ember-data';
+const { Model, hasMany } = DS;
 
-export default class User extends DS.model {
-  paymentMethods: DS.hasMany('payment-method', { polymorphic: true })
+export default class User extends Model {
+  @hasMany('payment-method', { polymorphic: true }) paymentMethods;
 }
 ```
 
 ```javascript {data-filename=app/models/payment-method.js}
 import DS from 'ember-data';
+const { Model, belongsTo } = DS;
 
-export default class PaymentMethod extends DS.model {
-  user: DS.belongsTo('user', { inverse: 'paymentMethods' }),
+export default class PaymentMethod extends Model {
+  @belongsTo('user', { inverse: 'paymentMethods' }) user;
 }
 ```
 
 ```javascript {data-filename=app/models/payment-method-cc.js}
 import { computed } from '@ember/object';
 import PaymentMethod from './payment-method';
+const { attr } = DS;
 
 export default class PaymentMethodCc extends PaymentMethod {
-  last4: DS.attr(),
+  @attr() last4;
 
   obfuscatedIdentifier: computed('last4', function () {
     return `**** **** **** ${this.last4}`;
@@ -185,9 +199,10 @@ export default class PaymentMethodCc extends PaymentMethod {
 import { computed } from '@ember/object';
 import DS from 'ember-data';
 import PaymentMethod from './payment-method'
+const { attr } = DS;
 
 export default class PaymentMethodPaypal extends PaymentMethod {
-  linkedEmail: DS.attr(),
+  @attr() linkedEmail;
 
   obfuscatedIdentifier: computed('linkedEmail', function () {
     let last5 = this.linkedEmail.split('').reverse().slice(0, 5).reverse().join('');
@@ -263,17 +278,19 @@ Let's assume that we have a `blog-post` and a `comment` model. A single blog pos
 
 ```javascript {data-filename=app/models/blog-post.js}
 import DS from 'ember-data';
+const { Model, hasMany } = DS;
 
-export default class BlogPost extends DS.model {
-  comments: DS.hasMany('comment')
+export default class BlogPost extends Model {
+  @hasMany('comment') comments;
 }
 ```
 
 ```javascript {data-filename=app/models/comment.js}
 import DS from 'ember-data';
+const { Model, belongsTo } = DS;
 
-export default class Comment extends DS.model {
-  blogPost: DS.belongsTo('blog-post')
+export default class Comment extends Model {
+  @belongsTo('blog-post') blogPost;
 }
 ```
 
