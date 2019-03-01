@@ -142,12 +142,13 @@ We append the map element we get back from the service by implementing `didInser
 which is a [component lifecycle hook](../../components/the-component-lifecycle/#toc_integrating-with-third-party-libraries-with-didinsertelement).
 This function runs during the component render, after the component's markup gets inserted into the page.
 
-```javascript {data-filename="app/components/location-map.js" data-diff="+2,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14"}
+```javascript {data-filename="app/components/location-map.js" data-diff="+2,+3,+5,+7,+9,+10,+11,+12,+13"}
 import Component from '@ember/component';
+import { classNames } from '@ember-decorators/component';
 import { inject as service } from '@ember-decorators/service';
 
+@classNames('map-container')
 export default class LocationMapComponent extends Component {
-  classNames = ['map-container'];
   @service mapElement;
 
   didInsertElement() {

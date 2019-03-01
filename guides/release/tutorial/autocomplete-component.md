@@ -80,9 +80,10 @@ The `handleFilterEntry` action will apply the search term filter to the list of 
 ```javascript {data-filename=app/components/list-filter.js}
 import Component from '@ember/component';
 import { action } from '@ember-decorators/object';
+import { classNames } from '@ember-decorators/component';
 
+@classNames('list-filter')
 export default class ListFilterComponent extends Component {
-  classNames = ['list-filter'];
   value = '';
 
   constructor() {
@@ -252,12 +253,13 @@ export default class RentalsController extends Controller {
 In the `filterByCity` function in the rentals controller above,
 we've added a new property called `query` to the filter results instead of just returning an array of rentals as before.
 
-```javascript {data-filename="app/components/list-filter.js" data-diff="-19,-9,+10,+11,+12,+20,+21,+22,+23,+24"}
+```javascript {data-filename="app/components/list-filter.js" data-diff="-20,-10,+11,+12,+13,+21,+22,+23,+24,+25"}
 import Component from '@ember/component';
 import { action } from '@ember-decorators/object';
+import { classNames } from '@ember-decorators/component';
 
+@classNames('list-filter')
 export default class ListFilterComponent extends Component {
-  classNames = ['list-filter'];
   value = '';
 
   constructor() {
