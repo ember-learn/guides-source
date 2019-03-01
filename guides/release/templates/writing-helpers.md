@@ -261,7 +261,7 @@ into a class-based helper:
 ```javascript {data-filename=app/helpers/format-currency.js}
 import Helper from '@ember/component/helper';
 
-export default Helper.extend({
+export default class FormatCurrency extends Helper {
   compute([value, ...rest], hash) {
     let dollars = Math.floor(value / 100);
     let cents = value % 100;
@@ -270,7 +270,7 @@ export default Helper.extend({
     if (cents.toString().length === 1) { cents = '0' + cents; }
     return `${sign}${dollars}.${cents}`;
   }
-});
+}
 ```
 
 This is exactly equivalent to the `format-currency` example above. You
@@ -284,8 +284,8 @@ service that welcomes users by their name if they're logged in:
 import Helper from '@ember/component/helper';
 import { inject as service } from '@ember/service';
 
-export default Helper.extend({
-  authentication: service(),
+export default class IsAuthenticated extends Helper {
+  @service authentication;
 
   compute() {
     let authentication = this.authentication;
@@ -296,7 +296,7 @@ export default Helper.extend({
       return 'Not logged in';
     }
   }
-});
+}
 ```
 
 ### Escaping HTML Content
