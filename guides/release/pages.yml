@@ -111,6 +111,9 @@
       url: "computed-properties"
 - title: "Services"
   url: 'services'
+  pages:
+    - title: Introduction
+      url: "services"
 - title: 'Data Management'
   url: 'data-management'
 - title: "Ember Data"
