@@ -95,16 +95,22 @@
       url: "query-params"
     - title: "Asynchronous Routing"
       url: "asynchronous-routing"
-      isAdvanced: true     
+      isAdvanced: true
     - title: "Controllers"
-      url: 'controllers'    
+      url: 'controllers'
 - title: "State Management"
   url: 'state-management'
   pages:
     - title: "Overview"
       url: "index"
+    - title: "Tracked Properties"
+      url: "tracked-properties"
+    - title: "Patterns for State"
+      url: "patterns-for-state"
+    - title: "Computed Properties"
+      url: "computed-properties"
 - title: "Services"
-  url: 'services'      
+  url: 'services'
 - title: 'Data Management'
   url: 'data-management'
 - title: "Ember Data"
@@ -180,7 +186,7 @@
     - title: "Build targets"
       url: "build-targets"
     - title: "Debugging"
-      url: "debugging"      
+      url: "debugging"
 - title: "Deploying"
   url: 'deploying'
   pages:
@@ -223,7 +229,7 @@
     - title: "Rendering Performance"
       url: "render-performance"
     - title: "Troubleshooting"
-      url: "troubleshooting"    
+      url: "troubleshooting"
 - title: 'Reference'
   url: 'reference'
   pages:
@@ -235,4 +241,4 @@
       url: "web-development"
     - title: "Contributing to Ember.js"
       url: 'contributing'
-      
+
