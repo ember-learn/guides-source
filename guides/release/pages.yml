@@ -11,7 +11,9 @@
       url: "core-concepts"
 - title: "Anatomy of an App"
   url: "anatomy-of-an-app"
-
+  pages:
+    - title: "Overview"
+      url: "index"
 - title: "Templating"
   url: 'templates'
   pages:
@@ -93,11 +95,20 @@
       url: "query-params"
     - title: "Asynchronous Routing"
       url: "asynchronous-routing"
-      isAdvanced: true     
+      isAdvanced: true
     - title: "Controllers"
-      url: 'controllers'    
+      url: 'controllers'
 - title: "State Management"
   url: 'state-management'
+  pages:
+    - title: "Overview"
+      url: "index"
+    - title: "Tracked Properties"
+      url: "tracked-properties"
+    - title: "Patterns for State"
+      url: "patterns-for-state"
+    - title: "Computed Properties"
+      url: "computed-properties"
 - title: "Services"
   url: 'services'      
   pages:
@@ -179,16 +190,21 @@
     - title: "Build targets"
       url: "build-targets"
     - title: "Debugging"
-      url: "debugging"      
+      url: "debugging"
 - title: "Deploying"
   url: 'deploying'
+  pages:
+    - title: "Overview"
+      url: "index"
 - title: "Upgrading"
   url: 'upgrading'
-  pages: 
+  pages:
+    - title: "Overview"
+      url: 'index'
     - title: "Editions"
-    - url: 'editions'
+      url: 'editions'
     - title: "Deprecations"
-    - url: 'deprecations'
+      url: 'deprecations'
 - title: "Developer Tools"
   url: "ember-inspector"
   pages:
@@ -217,7 +233,7 @@
     - title: "Rendering Performance"
       url: "render-performance"
     - title: "Troubleshooting"
-      url: "troubleshooting"    
+      url: "troubleshooting"
 - title: 'Reference'
   url: 'reference'
   pages:
@@ -229,4 +245,4 @@
       url: "web-development"
     - title: "Contributing to Ember.js"
       url: 'contributing'
-      
+
