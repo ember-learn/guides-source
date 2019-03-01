@@ -79,6 +79,7 @@ The `handleFilterEntry` action will apply the search term filter to the list of 
 
 ```javascript {data-filename=app/components/list-filter.js}
 import Component from '@ember/component';
+import { action } from '@ember-decorators/object';
 
 export default class ListFilterComponent extends Component {
   classNames = ['list-filter'];
@@ -89,14 +90,12 @@ export default class ListFilterComponent extends Component {
     this.filter('').then((results) => this.set('results', results));
   }
 
-  actions = {
-    handleFilterEntry() {
-      let filterInputValue = this.value;
-      let filterAction = this.filter;
-      filterAction(filterInputValue).then((filterResults) => this.set('results', filterResults));
-    }
+  @action
+  handleFilterEntry() {
+    let filterInputValue = this.value;
+    let filterAction = this.filter;
+    filterAction(filterInputValue).then((filterResults) => this.set('results', filterResults));
   }
-
 }
 ```
 
@@ -129,15 +128,15 @@ Now, define your new controller like so:
 
 ```javascript {data-filename=app/controllers/rentals.js}
 import Controller from '@ember/controller';
+import { action } from '@ember-decorators/object';
 
 export default class RentalsController extends Controller {
-  actions = {
-    filterByCity(param) {
-      if (param !== '') {
-        return this.store.query('rental', { city: param });
-      } else {
-        return this.store.findAll('rental');
-      }
+  @action
+  filterByCity(param) {
+    if (param !== '') {
+      return this.store.query('rental', { city: param });
+    } else {
+      return this.store.findAll('rental');
     }
   }
 }
@@ -228,23 +227,23 @@ We will update the results on screen only if the original filter value and the c
 
 ```javascript {data-filename="app/controllers/rentals.js" data-diff="-7,+8,+9,+10,+11,-13,+14,+15,+16,+17"}
 import Controller from '@ember/controller';
+import { action } from '@ember-decorators/object';
 
 export default class RentalsController extends Controller {
-  actions = {
-    filterByCity(param) {
-      if (param !== '') {
-        return this.store.query('rental', { city: param });
-        return this.store
-          .query('rental', { city: param }).then((results) => {
-            return { query: param, results: results };
-          });
-      } else {
-        return this.store.findAll('rental');
-        return this.store
-          .findAll('rental').then((results) => {
-            return { query: param, results: results };
-          });
-      }
+  @action
+  filterByCity(param) {
+    if (param !== '') {
+      return this.store.query('rental', { city: param });
+      return this.store
+        .query('rental', { city: param }).then((results) => {
+          return { query: param, results: results };
+        });
+    } else {
+      return this.store.findAll('rental');
+      return this.store
+        .findAll('rental').then((results) => {
+          return { query: param, results: results };
+        });
     }
   }
 }
@@ -255,6 +254,7 @@ we've added a new property called `query` to the filter results instead of just 
 
 ```javascript {data-filename="app/components/list-filter.js" data-diff="-19,-9,+10,+11,+12,+20,+21,+22,+23,+24"}
 import Component from '@ember/component';
+import { action } from '@ember-decorators/object';
 
 export default class ListFilterComponent extends Component {
   classNames = ['list-filter'];
@@ -268,19 +268,17 @@ export default class ListFilterComponent extends Component {
     });
   }
 
-  actions = {
-    handleFilterEntry() {
-      let filterInputValue = this.value;
-      let filterAction = this.filter;
-      filterAction(filterInputValue).then((filterResults) => this.set('results', filterResults));
-      filterAction(filterInputValue).then((filterResults) => {
-        if (filterResults.query === this.value) {
-          this.set('results', filterResults.results);
-        }
-      });
-    }
+  @action
+  handleFilterEntry() {
+    let filterInputValue = this.value;
+    let filterAction = this.filter;
+    filterAction(filterInputValue).then((filterResults) => this.set('results', filterResults));
+    filterAction(filterInputValue).then((filterResults) => {
+      if (filterResults.query === this.value) {
+        this.set('results', filterResults.results);
+      }
+    });
   }
-
 }
 ```
 

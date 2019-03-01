@@ -159,17 +159,18 @@ To allow the user to widen the image, we will need to add an action that toggles
 the value of `isWide`. Let's create the `toggleImageSize` action to toggle the
 `isWide` property on our component:
 
-```javascript {data-filename="app/components/rental-listing.js" data-diff="+5,+6,+7,+8,+9,+10"}
+```javascript {data-filename="app/components/rental-listing.js" data-diff="+2,+6,+7,+8,+9,+10,+11"}
 import Component from '@ember/component';
+import { action } from "@ember-decorators/object";
 
 export default class RentalListingComponent extends Component {
   isWide = false;
 
-  actions = {
-    toggleImageSize() {
-      this.toggleProperty('isWide');
-    }
+  @action
+  toggleImageSize() {
+    this.toggleProperty('isWide');
   }
+
 }
 ```
 
