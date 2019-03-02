@@ -2,11 +2,11 @@
 ## Ember Guides Source [![Build Status](https://travis-ci.org/ember-learn/guides-source.svg?branch=master)](https://travis-ci.org/ember-learn/guides-source)
 
 This repository contains the written content
-for the [Ember.js Guides](https://guides.emberjs.com). 
-Here, contributors can file issues and submit PRs to 
+for the [Ember.js Guides](https://guides.emberjs.com).
+Here, contributors can file issues and submit PRs to
 help improve the learning experience of other developers.
 
-Looking for repositories for the other parts of [emberjs.com](https://emberjs.com)? 
+Looking for repositories for the other parts of [emberjs.com](https://emberjs.com)?
 Check out
 [website](https://github.com/emberjs/website),
 [ember-api-docs](https://github.com/ember-learn/ember-api-docs),
@@ -19,9 +19,9 @@ and [styleguide](https://github.com/ember-learn/ember-styleguide).
 
 Welcome and thanks for your help! Please see [CONTRIBUTING.md](CONTRIBUTING.md)
 for detailed instructions on how to format your work and submit a Pull Request.
-First-time contributors are encouraged to choose issues that are labeled 
+First-time contributors are encouraged to choose issues that are labeled
 "help wanted" or "good for new contributors." If you have questions or
-want a buddy to pair with, you can join the 
+want a buddy to pair with, you can join the
 [dev-ember-learning channel](https://discordapp.com/channels/480462759797063690/480777444203429888)
 in the [Ember Community Discord](https://discordapp.com/invite/zT3asNS).
 
@@ -34,11 +34,11 @@ Pull requests should make edits to only the contents of the `guides/release` dir
 which is the latest deployed version of the guides.
 The exception is that PRs to fix broken links in older versions of the guides are ok.
 On `ember serve`, the Markdown files are turned into HTML
-to create an app. Most of the functionality comes from 
-[guidemaker](https://github.com/empress/guidemaker) and 
+to create an app. Most of the functionality comes from
+[guidemaker](https://github.com/empress/guidemaker) and
 [guidemaker-ember-template](https://github.com/ember-learn/guidemaker-ember-template).
 The styles come from [ember-styleguide](https://github.com/ember-learn/ember-styleguide),
-the shared home of components and stylesheets used throughout the family of 
+the shared home of components and stylesheets used throughout the family of
 Ember sites.
 
 ## Local Development
@@ -65,4 +65,4 @@ npm test
 
 ### Linting and spellchecking
 
-The guides are spellchecked and linted for Markdown consistency. You can test your contributions by running `npm run lint::md`. Linting and spellchecking must pass or they will fail in Travis-CI.  See [CONTRIBUTING.md](CONTRIBUTING.md) for more information on linting and spellchecking.
+The guides are spellchecked and linted for Markdown consistency. You can test your contributions by running `npm run lint:md`. Linting and spellchecking must pass or they will fail in Travis-CI.  See [CONTRIBUTING.md](CONTRIBUTING.md) for more information on linting and spellchecking.
