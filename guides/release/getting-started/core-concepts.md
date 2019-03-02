@@ -76,7 +76,7 @@ import Component from '@ember/component';
 
 export default class FooDidRenderExample extends Component {
   didRender() {
-    super(...arguments);
+    super.didRender(...arguments);
     console.log('I rendered!');
   }
 }
