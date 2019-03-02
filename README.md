@@ -65,4 +65,4 @@ npm test
 
 ### Linting and spellchecking
 
-The guides are spellchecked and linted for Markdown consistency. You can test your contributions by running `npm run lint::md`. Linting and spellchecking must pass or they will fail in Travis-CI.  See [CONTRIBUTING.md](CONTRIBUTING.md) for more information on linting and spellchecking.
+The guides are spellchecked and linted for Markdown consistency. You can test your contributions by running `npm run lint:md`. Linting and spellchecking must pass or they will fail in Travis-CI.  See [CONTRIBUTING.md](CONTRIBUTING.md) for more information on linting and spellchecking.
