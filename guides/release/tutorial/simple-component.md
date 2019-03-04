@@ -161,7 +161,7 @@ the value of `isWide`. Let's create the `toggleImageSize` action to toggle the
 
 ```javascript {data-filename="app/components/rental-listing.js" data-diff="+2,+6,+7,+8,+9,+10,+11"}
 import Component from '@ember/component';
-import { action } from "@ember-decorators/object";
+import { action } from "@ember/object";
 
 export default class RentalListingComponent extends Component {
   isWide = false;
