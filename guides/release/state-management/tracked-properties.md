@@ -86,7 +86,7 @@ are used somewhere in your component, the component will update accordingly.
 
 Tracked properties can be updated like any other property, using standard
 JavaScript syntax. The primary way that state gets updated in an Ember
-application is via _actions_, [as discussed earlier][1]:
+application is via _actions_, [as discussed earlier](../../templates/actions/):
 
 ```hbs {data-filename=src/ui/components/hello/template.hbs}
 {{this.greeting}}, {{@name}}!
