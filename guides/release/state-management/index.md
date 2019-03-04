@@ -37,7 +37,7 @@ In Ember, we care mostly about _object_ state in the form of:
 - **Controller state**
 - **Service state**
 
-In the [Patterns for State][2] section, we discuss how you can store your
+In the [Patterns for State](./patterns-for-state) section, we discuss how you can store your
 application's state in these different types of objects, and how to think about
 state in general in Ember apps.
 
