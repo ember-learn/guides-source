@@ -143,7 +143,7 @@ which is a [component lifecycle hook](../../components/the-component-lifecycle/#
 This function runs during the component render, after the component's markup gets inserted into the page.
 
 ```javascript {data-filename="app/components/location-map.js" data-diff="+2,+5,+7,+9,+10,+11,+12,+13"}
-import Component from '@ember/component';
+import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 
 export default class LocationMapComponent extends Component {

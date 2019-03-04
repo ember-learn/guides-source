@@ -27,9 +27,9 @@ When we open the model file, we can see a blank class extending [`DS.Model`](htt
 import DS from 'ember-data';
 const { Model } = DS;
 
-export default class RentalModel extends DS.Model {
+export default DS.Model({
 
-}
+});
 ```
 
 Let's define the structure of a rental object using the same attributes for our rental that we [previously used](../model-hook/) in our hard-coded array of JavaScript objects -
@@ -40,15 +40,15 @@ For more information on Ember Data Attributes, read the section called [Defining
 ```javascript {data-filename="app/models/rental.js" data-diff="+4,+5,+6,+7,+8,+9,+10"}
 import DS from 'ember-data';
 
-export default class RentalModel extends DS.Model {
-  title = DS.attr();
-  owner = DS.attr();
-  city = DS.attr();
-  category = DS.attr();
-  image = DS.attr();
-  bedrooms = DS.attr();
-  description = DS.attr()
-}
+export default DS.Model({
+  title: DS.attr(),
+  owner: DS.attr(),
+  city: DS.attr(),
+  category: DS.attr(),
+  image: DS.attr(),
+  bedrooms: DS.attr(),
+  description: DS.attr()
+});
 ```
 
 If you are curious about the `const { Model } = DS;` syntax above, it is called [destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Object_destructuring) and it is a feature of JavaScript.
