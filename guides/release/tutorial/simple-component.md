@@ -136,7 +136,7 @@ The value of `isWide` comes from our component's JavaScript file, in this case `
 Since we want the image to be smaller at first, we will set the property to start as `false`:
 
 ```javascript {data-filename="app/components/rental-listing.js" data-diff="+4"}
-import Component from '@ember/component';
+import Component from '@glimmer/component';
 
 export default class RentalListingComponent extends Component {
   isWide = false;
@@ -148,7 +148,7 @@ the value of `isWide`. Let's create the `toggleImageSize` action to toggle the
 `isWide` property on our component:
 
 ```javascript {data-filename="app/components/rental-listing.js" data-diff="+2,+6,+7,+8,+9,+10,+11"}
-import Component from '@ember/component';
+import Component from '@glimmer/component';
 import { action } from "@ember/object";
 
 export default class RentalListingComponent extends Component {

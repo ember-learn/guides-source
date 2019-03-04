@@ -78,7 +78,7 @@ The `key-up` property will be bound to the `handleFilterEntry` action.
 The `handleFilterEntry` action will apply the search term filter to the list of rentals, and set a component attribute called `results`. The `results` are passed to the `{{yield}}` helper in the template. In the yielded block component, those same `results` are referred to as `|filteredResults|`. Let's apply the filter to our rentals:
 
 ```javascript {data-filename=app/components/list-filter.js}
-import Component from '@ember/component';
+import Component from '@glimmer/component';
 import { action } from '@ember/object';
 
 export default class ListFilterComponent extends Component {
@@ -253,7 +253,7 @@ In the `filterByCity` function in the rentals controller above,
 we've added a new property called `query` to the filter results instead of just returning an array of rentals as before.
 
 ```javascript {data-filename="app/components/list-filter.js" data-diff="-20,-10,+11,+12,+13,+21,+22,+23,+24,+25"}
-import Component from '@ember/component';
+import Component from '@glimmer/component';
 import { action } from '@ember/object';
 
 export default class ListFilterComponent extends Component {
