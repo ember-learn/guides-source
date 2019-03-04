@@ -79,11 +79,10 @@ The `handleFilterEntry` action will apply the search term filter to the list of 
 
 ```javascript {data-filename=app/components/list-filter.js}
 import Component from '@ember/component';
-import { action } from '@ember-decorators/object';
-import { classNames } from '@ember-decorators/component';
+import { action } from '@ember/object';
 
-@classNames('list-filter')
 export default class ListFilterComponent extends Component {
+  classNames = 'list-filter';
   value = '';
 
   constructor() {
@@ -129,7 +128,7 @@ Now, define your new controller like so:
 
 ```javascript {data-filename=app/controllers/rentals.js}
 import Controller from '@ember/controller';
-import { action } from '@ember-decorators/object';
+import { action } from '@ember/object';
 
 export default class RentalsController extends Controller {
   @action
@@ -228,7 +227,7 @@ We will update the results on screen only if the original filter value and the c
 
 ```javascript {data-filename="app/controllers/rentals.js" data-diff="-7,+8,+9,+10,+11,-13,+14,+15,+16,+17"}
 import Controller from '@ember/controller';
-import { action } from '@ember-decorators/object';
+import { action } from '@ember/object';
 
 export default class RentalsController extends Controller {
   @action
@@ -255,11 +254,10 @@ we've added a new property called `query` to the filter results instead of just 
 
 ```javascript {data-filename="app/components/list-filter.js" data-diff="-20,-10,+11,+12,+13,+21,+22,+23,+24,+25"}
 import Component from '@ember/component';
-import { action } from '@ember-decorators/object';
-import { classNames } from '@ember-decorators/component';
+import { action } from '@ember/object';
 
-@classNames('list-filter')
 export default class ListFilterComponent extends Component {
+  classNames = 'list-filter';
   value = '';
 
   constructor() {

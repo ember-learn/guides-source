@@ -86,8 +86,8 @@ otherwise we will create a new HTML element and call our Leaflet map service to 
 ```javascript {data-filename="app/services/map-element.js" data-diff="+1,+2,+3,+4,+6,+8,+9,+11,+12,+13,+14,+15,+16,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+30,+31,+32,+33,+34,+35"}
 import { camelize } from '@ember/string';
 import Service from '@ember/service';
+import { inject as service } from '@ember/service';
 import { set } from '@ember/object';
-import { inject as service } from '@ember-decorators/service';
 
 export default class MapElementService extends Service {
 
@@ -144,13 +144,13 @@ We append the map element we get back from the service by implementing `didInser
 which is a [component lifecycle hook](../../components/the-component-lifecycle/#toc_integrating-with-third-party-libraries-with-didinsertelement).
 This function runs during the component render, after the component's markup gets inserted into the page.
 
-```javascript {data-filename="app/components/location-map.js" data-diff="+2,+3,+5,+7,+9,+10,+11,+12,+13"}
+```javascript {data-filename="app/components/location-map.js" data-diff="+2,+5,+7,+9,+10,+11,+12,+13"}
 import Component from '@ember/component';
-import { classNames } from '@ember-decorators/component';
-import { inject as service } from '@ember-decorators/service';
+import { inject as service } from '@ember/service';
 
-@classNames('map-container')
 export default class LocationMapComponent extends Component {
+  classNames = 'map-container';
+
   @service mapElement;
 
   didInsertElement() {
