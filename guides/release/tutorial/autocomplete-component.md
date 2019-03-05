@@ -79,22 +79,23 @@ The `handleFilterEntry` action will apply the search term filter to the list of 
 
 ```javascript {data-filename=app/components/list-filter.js}
 import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
 export default class ListFilterComponent extends Component {
-  classNames = 'list-filter';
-  value = '';
+  @tracked value = '';
+  @tracked results;
 
   constructor() {
     super(...arguments);
-    this.filter('').then((results) => this.set('results', results));
+    this.args.filter('').then((results) => this.results = results);
   }
 
   @action
   handleFilterEntry() {
     let filterInputValue = this.value;
-    let filterAction = this.filter;
-    filterAction(filterInputValue).then((filterResults) => this.set('results', filterResults));
+    let filterAction = this.args.filter;
+    filterAction(filterInputValue).then((filterResults) => this.results = filterResults);
   }
 }
 ```
@@ -254,28 +255,29 @@ we've added a new property called `query` to the filter results instead of just 
 
 ```javascript {data-filename="app/components/list-filter.js" data-diff="-20,-10,+11,+12,+13,+21,+22,+23,+24,+25"}
 import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
 export default class ListFilterComponent extends Component {
-  classNames = 'list-filter';
-  value = '';
+  @tracked value = '';
+  @tracked results;
 
   constructor() {
     super(...arguments);
-    this.filter('').then((results) => this.set('results', results));
-    this.filter('').then((allResults) => {
-      this.set('results', allResults.results);
+    this.args.filter('').then((results) => this.results = results);
+    this.args.filter('').then((allResults) => {
+      this.results = allResults.results;
     });
   }
 
   @action
   handleFilterEntry() {
     let filterInputValue = this.value;
-    let filterAction = this.filter;
-    filterAction(filterInputValue).then((filterResults) => this.set('results', filterResults));
+    let filterAction = this.args.filter;
+    filterAction(filterInputValue).then((filterResults) => this.results = filterResults);
     filterAction(filterInputValue).then((filterResults) => {
       if (filterResults.query === this.value) {
-        this.set('results', filterResults.results);
+        this.results  = filterResults.results;
       }
     });
   }
