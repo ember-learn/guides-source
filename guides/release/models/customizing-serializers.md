@@ -595,15 +595,17 @@ You would define your relationship like this:
 
 ```javascript {data-filename=app/serializers/post.js}
 import DS from 'ember-data';
+const { EmbeddedRecordsMixin, JSONSerializer } = DS;
 
-export default DS.JSONSerializer.extend(DS.EmbeddedRecordsMixin, {
-  attrs: {
+export default class PostSerializer extends
+JSONSerializer.extend(EmbeddedRecordsMixin) {
+  attrs = {
     authors: {
       serialize: 'records',
       deserialize: 'records'
     }
-  }
-});
+  };
+}
 ```
 
 If you find yourself needing to both serialize and deserialize the
@@ -612,12 +614,14 @@ embedded relationship you can use the shorthand option of `{ embedded:
 
 ```javascript {data-filename=app/serializers/post.js}
 import DS from 'ember-data';
+const { EmbeddedRecordsMixin, JSONSerializer } = DS;
 
-export default DS.JSONSerializer.extend(DS.EmbeddedRecordsMixin, {
-  attrs: {
+export default class PostSerializer extends
+JSONSerializer.extend(EmbeddedRecordsMixin) {
+  attrs = {
     authors: { embedded: 'always' }
-  }
-});
+  };
+}
 ```
 
 
@@ -635,9 +639,11 @@ setting `serialize: false`.
 
 ```javascript {data-filename=app/serializers/post.js}
 import DS from 'ember-data';
+const { EmbeddedRecordsMixin, JSONSerializer } = DS;
 
-export default DS.JSONSerializer.extend(DS.EmbeddedRecordsMixin, {
-  attrs: {
+export default class PostSerializer extends
+JSONSerializer.extend(EmbeddedRecordsMixin) {
+  attrs = {
     author: {
       serialize: false,
       deserialize: 'records'
@@ -646,8 +652,8 @@ export default DS.JSONSerializer.extend(DS.EmbeddedRecordsMixin, {
       deserialize: 'records',
       serialize: 'ids'
     }
-  }
-});
+  };
+}
 ```
 
 ### EmbeddedRecordsMixin Defaults
