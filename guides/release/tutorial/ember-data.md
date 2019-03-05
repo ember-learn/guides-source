@@ -26,7 +26,7 @@ When we open the model file, we can see a blank class extending [`DS.Model`](htt
 ```javascript {data-filename=app/models/rental.js}
 import DS from 'ember-data';
 
-export default DS.Model({
+export default DS.Model.extend({
 
 });
 ```
@@ -39,7 +39,7 @@ For more information on Ember Data Attributes, read the section called [Defining
 ```javascript {data-filename="app/models/rental.js" data-diff="+4,+5,+6,+7,+8,+9,+10"}
 import DS from 'ember-data';
 
-export default DS.Model({
+export default DS.Model.extend({
   title: DS.attr(),
   owner: DS.attr(),
   city: DS.attr(),
