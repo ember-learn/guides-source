@@ -125,8 +125,9 @@ serializer.
 
 ```javascript {data-filename=app/serializers/application.js}
 import DS from 'ember-data';
+const { JSONAPISerializer } = DS;
 
-export default class ApplicationSerializer extends DS.JSONAPISerializer {
+export default class ApplicationSerializer extends JSONAPISerializer {
 }
 ```
 
@@ -135,8 +136,9 @@ you had a `post` model you could also define a `post` serializer:
 
 ```javascript {data-filename=app/serializers/post.js}
 import DS from 'ember-data';
+const { JSONAPISerializer } = DS;
 
-export default class PostSerializer extends DS.JSONAPISerializer {
+export default class PostSerializer extends JSONAPISerializer {
 }
 ```
 
@@ -180,8 +182,9 @@ Here's how you can change the data:
 
 ```javascript {data-filename=app/serializers/application.js}
 import DS from 'ember-data';
+const { JSONAPISerializer } = DS;
 
-export default class ApplicationSerializer extends DS.JSONAPISerializer {
+export default class ApplicationSerializer extends JSONAPISerializer {
   serialize(snapshot, options) {
     let json = this._super(...arguments);
 
@@ -240,8 +243,9 @@ Here's how we could do it:
 
 ```javascript {data-filename=app/serializers/application.js}
 import DS from 'ember-data';
+const { JSONAPISerializer } = DS;
 
-export default class ApplicationSerializer extends DS.JSONAPISerializer {
+export default class ApplicationSerializer extends JSONAPISerializer {
   normalizeResponse(store, primaryModelClass, payload, id, requestType) {
     payload.data.attributes.amount = payload.data.attributes.cost.amount;
     payload.data.attributes.currency = payload.data.attributes.cost.currency;
@@ -270,7 +274,10 @@ serializer's `primaryKey` property to correctly transform the id
 property to `id` when serializing and deserializing data.
 
 ```javascript {data-filename=app/serializers/application.js}
-export default class ApplicationSerializer extends DS.JSONAPISerializer {
+import DS from 'ember-data';
+const { JSONAPISerializer } = DS;
+
+export default class ApplicationSerializer extends JSONAPISerializer {
   primaryKey = '_id';
 }
 ```
@@ -319,8 +326,9 @@ method like this.
 ```javascript {data-filename=app/serializers/application.js}
 import { underscore } from '@ember/string';
 import DS from 'ember-data';
+const { JSONAPISerializer } = DS;
 
-export default class ApplicationSerializer extends DS.JSONAPISerializer {
+export default class ApplicationSerializer extends JSONAPISerializer {
   keyForAttribute(attr) {
     return underscore(attr);
   }
@@ -349,8 +357,9 @@ export default class Person extends Model {
 
 ```javascript {data-filename=app/serializers/person.js}
 import DS from 'ember-data';
+const { JSONAPISerializer } = DS;
 
-export default class PersonSerializer extends DS.JSONAPISerializer {
+export default class PersonSerializer extends JSONAPISerializer {
   attrs = {
     lastName: 'lastNameOfPerson'
   };
@@ -508,8 +517,9 @@ To use it in your application you will need to define a
 
 ```javascript {data-filename=app/serializers/application.js}
 import DS from 'ember-data';
+const { JSONSerializer } = DS;
 
-export default class ApplicationSerializer extends DS.JSONSerializer {
+export default class ApplicationSerializer extends JSONSerializer {
   // ...
 }
 ```

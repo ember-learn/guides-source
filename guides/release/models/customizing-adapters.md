@@ -1,9 +1,9 @@
 In Ember Data, an Adapter determines how data is persisted to a
 backend data store. Things such as the backend host, URL format
- and headers used to talk to a REST API can all be configured 
+ and headers used to talk to a REST API can all be configured
  in an adapter. You can even switch to storing data in local storage
- using a [local storage adapter](https://github.com/locks/ember-localstorage-adapter). 
-  
+ using a [local storage adapter](https://github.com/locks/ember-localstorage-adapter).
+
 Ember Data's default Adapter has some built-in assumptions about
 how a [REST API should look](http://jsonapi.org/). If your backend conventions
 differ from those assumptions, Ember Data allows either slight adjustments
@@ -26,10 +26,11 @@ specific Adapters.
 
 ```javascript {data-filename=app/adapters/application.js}
 import DS from 'ember-data';
+const { JSONAPIAdapter } = DS;
 
-export default DS.JSONAPIAdapter.extend({
+export default class ApplicationAdapter extends JSONAPIAdapter {
   // Application specific overrides go here
-});
+}
 ```
 
 If you have one model that has exceptional rules for communicating
@@ -40,10 +41,11 @@ following file:
 
 ```javascript {data-filename=app/adapters/post.js}
 import DS from 'ember-data';
+const { JSONAPIAdapter } = DS;
 
-export default DS.JSONAPIAdapter.extend({
-  namespace: 'api/v1'
-});
+export default class ApplicationAdapter extends JSONAPIAdapter {
+  namespace = 'api/v1';
+}
 ```
 
 Ember Data comes with several built-in adapters.
@@ -150,9 +152,9 @@ specific URL namespace.
 ```javascript {data-filename=app/adapters/application.js}
 import DS from 'ember-data';
 
-export default DS.JSONAPIAdapter.extend({
-  namespace: 'api/1'
-});
+export default class ApplicationAdapter extends DS.JSONAPIAdapter {
+  namespace = 'api/1';
+}
 ```
 
 Requests for `person` would now target `http://emberjs.com/api/1/people/1`.
@@ -166,10 +168,11 @@ property on the adapter.
 
 ```javascript {data-filename=app/adapters/application.js}
 import DS from 'ember-data';
+const { JSONAPIAdapter } = DS;
 
-export default DS.JSONAPIAdapter.extend({
-  host: 'https://api.example.com'
-});
+export default class ApplicationAdapter extends JSONAPIAdapter {
+  host = 'https://api.example.com';
+}
 ```
 
 Requests for `person` would now target `https://api.example.com/people/1`.
@@ -188,12 +191,13 @@ underscore_case instead of dash-case you could override the
 ```javascript {data-filename=app/adapters/application.js}
 import DS from 'ember-data';
 import { underscore } from '@ember/string';
+const { JSONAPIAdapter } = DS;
 
-export default DS.JSONAPIAdapter.extend({
+export default class ApplicationAdapter extends JSONAPIAdapter {
   pathForType(type) {
     return underscore(type);
   }
-});
+}
 ```
 
 Requests for `person` would now target `/person/1`.
@@ -204,22 +208,23 @@ Requests for `user-profile` would now target `/user_profile/1`.
 Some APIs require HTTP headers, e.g. to provide an API key. Arbitrary
 headers can be set as key/value pairs on the `JSONAPIAdapter`'s `headers`
 object and Ember Data will send them along with each ajax request.
-(Note that we set headers in `init()` because default property values
+(Note that we set headers in `constructor()` because default property values
 should not be arrays or objects.)
 
 ```javascript {data-filename=app/adapters/application.js}
 import DS from 'ember-data';
+const { JSONAPIAdapter } = DS;
 
-export default DS.JSONAPIAdapter.extend({
-  init() {
-    this._super(...arguments);
+export default class ApplicationAdapter extends JSONAPIAdapter {
+  constructor() {
+    super(...arguments);
 
-    this.set('headers', {
+    this.headers = {
       'API_KEY': 'secret key',
       'ANOTHER_HEADER': 'Some header value'
-    });
+    };
   }
-});
+}
 ```
 
 `headers` can also be used as a computed property to support dynamic
@@ -230,17 +235,18 @@ property dependent on the `session` service.
 import DS from 'ember-data';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
+const { JSONAPIAdapter } = DS;
 
-
-export default DS.JSONAPIAdapter.extend({
-  session: service('session'),
-  headers: computed('session.authToken', function() {
+export default class ApplicationAdapter extends JSONAPIAdapter {
+  @service session;
+  @computed('session.authToken')
+  get headers() {
     return {
       'API_KEY': this.session.authToken,
       'ANOTHER_HEADER': 'Some header value'
     };
-  })
-});
+  }
+}
 ```
 
 In some cases, your dynamic headers may require data from some
@@ -279,10 +285,11 @@ does not specify an `serializer:application`.
 
 ```javascript {data-filename=app/adapters/my-custom-adapter.js}
 import DS from 'ember-data';
+const { JSONAPIAdapter } = DS;
 
-export default DS.JSONAPIAdapter.extend({
-  defaultSerializer: '-default'
-});
+export default class MyCustomAdapter extends JSONAPIAdapter {
+  defaultSerializer = '-default';
+}
 ```
 
 ## Community Adapters
