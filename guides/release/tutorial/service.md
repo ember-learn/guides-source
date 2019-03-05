@@ -86,20 +86,20 @@ otherwise we will create a new HTML element and call our Leaflet map service to 
 ```javascript {data-filename="app/services/map-element.js" data-diff="+1,+2,+3,+4,+6,+8,+9,+11,+12,+13,+14,+15,+16,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+30,+31,+32,+33,+34,+35"}
 import { camelize } from '@ember/string';
 import Service from '@ember/service';
-import { set } from '@ember/object';
 import { inject as service } from '@ember/service';
+import { set } from '@ember/object';
 
-export default Service.extend({
+export default class MapElementService extends Service {
 
-  geocode: service(),
-  map: service(),
+  @service geocode;
+  @service map;
 
-  init() {
+  constructor() {
     if (!this.cachedMaps) {
       set(this, 'cachedMaps', {});
     }
-    this._super(...arguments);
-  },
+    super(...arguments);
+  }
 
   async getMapElement(location) {
     let camelizedLocation = camelize(location);
@@ -111,15 +111,14 @@ export default Service.extend({
       this.cachedMaps[camelizedLocation] = element;
     }
     return element;
-  },
+  }
 
   _createMapElement() {
     let element = document.createElement('div');
     element.className = 'map';
     return element;
-  },
-});
-
+  }
+}
 ```
 
 ### Display Maps With a Component
@@ -145,22 +144,22 @@ We append the map element we get back from the service by implementing `didInser
 which is a [component lifecycle hook](../../components/the-component-lifecycle/#toc_integrating-with-third-party-libraries-with-didinsertelement).
 This function runs during the component render, after the component's markup gets inserted into the page.
 
-```javascript {data-filename="app/components/location-map.js" data-diff="+2,+5,+6,+8,+9,+10,+11,+12"}
-import Component from '@ember/component';
+```javascript {data-filename="app/components/location-map.js" data-diff="+2,+5,+6,+7,+9,+10,+11,+12,+13,+14"}
+import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 
-export default Component.extend({
-  classNames: ['map-container'],
-  mapElement: service(),
+export default class LocationMapComponent extends Component {
+
+  @service mapElement;
 
   didInsertElement() {
-    this._super(...arguments);
-    this.mapElement.getMapElement(this.location).then((mapElement) => {
+    super(...arguments);
+    this.mapElement.getMapElement(this.args.location).then((mapElement) => {
       this.element.append(mapElement);
     });
 
   }
-});
+}
 ```
 
 You may have noticed that `this.location` refers to a property location we haven't defined.

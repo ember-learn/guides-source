@@ -230,11 +230,11 @@ function:
 ```javascript {data-filename="app/routes/index.js" data-diff="+4,+5,+6"}
 import Route from '@ember/routing/route';
 
-export default Route.extend({
+export default class IndexRoute extends Route {
   beforeModel() {
     this.replaceWith('rentals');
   }
-});
+}
 ```
 
  The `replaceWith` function is similar to the route's
