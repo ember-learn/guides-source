@@ -277,7 +277,7 @@ export default class ListFilterComponent extends Component {
     filterAction(filterInputValue).then((filterResults) => this.results = filterResults);
     filterAction(filterInputValue).then((filterResults) => {
       if (filterResults.query === this.value) {
-        this.results  = filterResults.results;
+        this.results = filterResults.results;
       }
     });
   }
