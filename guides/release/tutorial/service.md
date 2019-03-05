@@ -142,18 +142,17 @@ We append the map element we get back from the service by implementing `didInser
 which is a [component lifecycle hook](../../components/the-component-lifecycle/#toc_integrating-with-third-party-libraries-with-didinsertelement).
 This function runs during the component render, after the component's markup gets inserted into the page.
 
-```javascript {data-filename="app/components/location-map.js" data-diff="+2,+5,+7,+9,+10,+11,+12,+13"}
+```javascript {data-filename="app/components/location-map.js" data-diff="+2,+5,+6,+7,+9,+10,+11,+12,+13,+14"}
 import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 
 export default class LocationMapComponent extends Component {
-  classNames = 'map-container';
 
   @service mapElement;
 
   didInsertElement() {
-    super();
-    this.mapElement.getMapElement(this.location).then((mapElement) => {
+    super(...arguments);
+    this.mapElement.getMapElement(this.args.location).then((mapElement) => {
       this.element.append(mapElement);
     });
 
