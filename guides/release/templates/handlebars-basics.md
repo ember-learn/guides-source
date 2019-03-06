@@ -23,7 +23,7 @@ There are two main types of templates: Route templates and Component templates.
 
 A Route template determines what is shown when someone visits a particular url, like `https://guides.emberjs.com/some-route`. A Component template has bits of content that can be reused in multiple places throughout the app, like buttons or forms.
 
-The best way to tell if a template is part of a Route or Component is to look at the filepath. If you look at an existing app, you will see templates in many different places in the app folder structure! This is to help the app stay organized as it grows from one to one hundred templates.
+The best way to tell if a template is part of a Route or Component is to look at the filepath. If you look at an existing app, you will see templates in many different places in the app folder structure! This is to help the app stay organized as it grows from one template to _one hundred_ templates.
 
 ## Making new templates
 
