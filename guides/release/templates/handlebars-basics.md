@@ -15,7 +15,7 @@ For example, every Ember app has a file called `application.hbs`. You can write 
 </p>
 ```
 
-If you make a mistake like forgetting to close a tag or missing a quotation mark, you will see some errors when you run the app with `ember serve`. However, reading the error message on the page or in your browser's developer console will get you going again right away.
+The compiler will help you catch some errors, such as forgetting to close a tag or missing a quotation mark. You might see these errors when you run the app with `ember serve`. Reading the error message on the page or in your browser's developer console will get you going again.
 
 ## Types of templates
 
