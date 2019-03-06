@@ -17,19 +17,19 @@ For example, every Ember app has a file called `application.hbs`. You can write 
 
 If you make a mistake like forgetting to close a tag or missing a quotation mark, you will see some errors when you run the app with `ember serve`. However, reading the error message on the page or in your browser's developer console will get you going again right away.
 
-## Types of Templates
+## Types of templates
 
-There are two main types of Templates: Route Templates and Component Templates.
+There are two main types of templates: Route templates and Component templates.
 
-A Route Template determines what is shown when someone visits a particular url, like `https://guides.emberjs.com/some-route`. A Component Template has bits of content that can be reused in multiple places throughout the app, like buttons or forms.
+A Route template determines what is shown when someone visits a particular url, like `https://guides.emberjs.com/some-route`. A Component template has bits of content that can be reused in multiple places throughout the app, like buttons or forms.
 
-The best way to tell if a Template is part of a Route or Component is to look at the filepath. If you look at an existing app, you will see Templates in many different places in the app folder structure! This is to help the app stay organized as it grows from one to one hundred Templates.
+The best way to tell if a template is part of a Route or Component is to look at the filepath. If you look at an existing app, you will see templates in many different places in the app folder structure! This is to help the app stay organized as it grows from one to one hundred templates.
 
-## Making new Templates
+## Making new templates
 
 New templates should be made using the [Ember CLI](https://cli.emberjs.com). It helps ensure that the files go in the right place in the app folder structure, and that they follow the right file naming conventions. If you have never used the Ember CLI before, it is recommended to do the [Tutorial]().
 
-For example, either of these commands will generate `.hbs` Template files (and other things!) in your app:
+For example, either of these commands will generate `.hbs` template files (and other things!) in your app:
 
 ```sh
 ember generate component my-component-name
@@ -46,9 +46,9 @@ Similarly, you should not add links to CSS Stylesheets within the `hbs` file. St
 
 ## What is `index.html` for?
 
-If HTML markup goes in `hbs` Templates, what is `index.html` for?
+If HTML markup goes in `hbs` templates, what is `index.html` for?
 
-The `index.html` file is the entry point for an app. It is not a Template, but rather it is where all the Templates, stylesheets, and JavaScript come together into something the browser can understand.
+The `index.html` file is the entry point for an app. It is not a template, but rather it is where all the templates, stylesheets, and JavaScript come together into something the browser can understand.
 
 When you are first getting started in Ember, you will not need to make any changes to `index.html`. There's no need to add any links to other Ember app pages, stylesheets, or scripts in here by hand, since Ember's built-in tools do the work for you.
 
@@ -114,7 +114,7 @@ Hello, <strong>Jessica Jordan</strong>!
 
 ## Things you might see in a Template
 
-A lot more than just HTML markup can go in Templates. In the other pages of this guide, we will cover the features one at a time. In general, special Ember functionality will appear inside curly braces, like this: `{{example}}`. Here are a few examples of Ember Handlebars in action:
+A lot more than just HTML markup can go in templates. In the other pages of this guide, we will cover the features one at a time. In general, special Ember functionality will appear inside curly braces, like this: `{{example}}`. Here are a few examples of Ember Handlebars in action:
 
 Route example:
 ```hbs {data-filename=app/templates/application.hbs data-update=true}
@@ -153,14 +153,14 @@ Component example:
 ```
 
 Lastly, it's important to know that data can be passed from
-one Template to another. Here's what it looks like
-to pass data from a Route Template to a Component Template.
+one template to another. Here's what it looks like
+to pass data from a Route template to a Component template.
 
 ```handlebars {data-filename=app/templates/application.hbs}
 <MyComponent @favoriteFramework=this.favoriteFramework />
 ```
 
-Learn more about passing data between Templates in [../../components/passing-properties-to-a-component].
+Learn more about passing data between templates in [../../components/passing-properties-to-a-component].
 
 ## Helper functions
 
