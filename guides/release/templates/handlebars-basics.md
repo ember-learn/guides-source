@@ -27,7 +27,7 @@ The best way to tell if a template is part of a Route or Component is to look at
 
 ## Making new templates
 
-New templates should be made using the [Ember CLI](https://cli.emberjs.com). It helps ensure that the files go in the right place in the app folder structure, and that they follow the right file naming conventions. If you have never used the Ember CLI before, it is recommended to do the [Tutorial]().
+New templates should be made using [Ember CLI](https://cli.emberjs.com) commands such as `ember generate route`, `ember generate component`. The CLI helps ensure that the files go in the right place in the app folder structure, and that they follow the right file naming conventions. If you have never used the Ember CLI before, it is recommended to do the [Tutorial](../../tutorial/ember-cli).
 
 For example, either of these commands will generate `.hbs` template files (and other things!) in your app:
 
@@ -40,7 +40,7 @@ ember generate route my-route-name
 
 A typical, modern web app is made of dozens of files that have to all be combined together into something the browser can understand. Ember does this work for you with zero configuration, but as a result, there are some rules to follow when it comes to adding assets into your HTML.
 
-You cannot use script tags directly within a template, and should use [actions](../actions) or [Route Lifecycle Hooks](../../routing/specifying-a-routes-model) to make your app responsive to user interactions and new data. If you are working with a non-Ember JavaScript library and need to use a `js` file from it, see the Guide section [Addons and Dependencies]().
+You cannot use script tags directly within a template, and should use [actions](../actions) or [Component Lifecycle Hooks](../../components/the-component-lifecycle/specifying-a-routes-model) to make your app responsive to user interactions and new data. If you are working with a non-Ember JavaScript library and need to use a `js` file from it, see the Guide section [Addons and Dependencies]().
 
 Similarly, you should not add links to CSS Stylesheets within the `hbs` file. Style rules should go in the `app/styles` directory instead. `app/styles/app.css` is included in your app's build by default. For CSS files within the styles directory, you can create multiple stylesheets and use regular CSS APIs like `import` to link them together. If you want to incorporate CSS from an npm package or similar, see [Addons and Dependencies]() for instructions.
 
