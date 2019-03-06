@@ -1,12 +1,17 @@
 Templates are the home for what the user sees, like forms, buttons, links, and headings.
 
-In this section of the Guides, you will learn about where to write HTML markup, plus how to add interaction, dynamically changing content, styling, and more. If you want to learn in a step-by-step way, you should begin your journey in the [Tutorial](../../tutorial/ember-cli) instead.
+In this section of the Guides, you will learn about where to write HTML markup, plus how to add interaction, dynamically changing content, styling, and more.
+If you want to learn in a step-by-step way, you should begin your journey in the [Tutorial](../../tutorial/ember-cli) instead.
 
 ## Writing plain HTML
 
-Ember templates have some superpowers, but let's start with regular HTML. For any file in an Ember app that has an extension ending in `.hbs`, you can write HTML markup in it as if it was an `.html` file. HTML is the language that browsers understand for laying out content on a web page. `.hbs` stands for Handlebars, the name of a tool that lets you write more than just HTML in your templates.
+Ember templates have some superpowers, but let's start with regular HTML.
+For any file in an Ember app that has an extension ending in `.hbs`, you can write HTML markup in it as if it was an `.html` file.
+HTML is the language that browsers understand for laying out content on a web page.
+`.hbs` stands for Handlebars, the name of a tool that lets you write more than just HTML in your templates.
 
-For example, every Ember app has a file called `application.hbs`. You can write regular HTML markup there or in any other `hbs` file:
+For example, every Ember app has a file called `application.hbs`.
+You can write regular HTML markup there or in any other `hbs` file:
 
 ```hbs {data-filename=app/templates/application.hbs data-update=false}
 <h1>Starting simple</h1>
@@ -15,19 +20,24 @@ For example, every Ember app has a file called `application.hbs`. You can write 
 </p>
 ```
 
-The compiler will help you catch some errors, such as forgetting to close a tag or missing a quotation mark. You might see these errors when you run the app with `ember serve`. Reading the error message on the page or in your browser's developer console will get you going again.
+When you start an app with `ember serve`, the compiler may help you catch some errors, such as forgetting to close a tag or missing a quotation mark.
+Reading the error message on the page or in your browser's developer console will get you back on track.
 
 ## Types of templates
 
 There are two main types of templates: Route templates and Component templates.
 
-A Route template determines what is shown when someone visits a particular url, like `https://guides.emberjs.com/some-route`. A Component template has bits of content that can be reused in multiple places throughout the app, like buttons or forms.
+A Route template determines what is shown when someone visits a particular url, like `https://guides.emberjs.com/some-route`.
+A Component template has bits of content that can be reused in multiple places throughout the app, like buttons or forms.
 
-The best way to tell if a template is part of a Route or Component is to look at the filepath. If you look at an existing app, you will see templates in many different places in the app folder structure! This is to help the app stay organized as it grows from one template to _one hundred_ templates.
+If you look at an existing app, you will see templates in many different places in the app folder structure! 
+This is to help the app stay organized as it grows from one template to _one hundred_ templates.
+The best way to tell if a template is part of a Route or Component is to look at the filepath.
 
 ## Making new templates
 
-New templates should be made using [Ember CLI](https://cli.emberjs.com) commands such as `ember generate route`, `ember generate component`. The CLI helps ensure that the files go in the right place in the app folder structure, and that they follow the right file naming conventions. If you have never used the Ember CLI before, it is recommended to do the [Tutorial](../../tutorial/ember-cli).
+New templates should be made using [Ember CLI](https://cli.emberjs.com) commands.
+The CLI helps ensure that the new files go in the right place in the app folder structure, and that they follow the essential file naming conventions.
 
 For example, either of these commands will generate `.hbs` template files (and other things!) in your app:
 
@@ -38,21 +48,31 @@ ember generate route my-route-name
 
 ## Template restrictions
 
-A typical, modern web app is made of dozens of files that have to all be combined together into something the browser can understand. Ember does this work for you with zero configuration, but as a result, there are some rules to follow when it comes to adding assets into your HTML.
+A typical, modern web app is made of dozens of files that have to all be combined together into something the browser can understand.
+Ember does this work for you with zero configuration, but as a result, there are some rules to follow when it comes to adding assets into your HTML.
 
-You cannot use script tags directly within a template, and should use [actions](../actions) or [Component Lifecycle Hooks](../../components/the-component-lifecycle/specifying-a-routes-model) to make your app responsive to user interactions and new data. If you are working with a non-Ember JavaScript library and need to use a `js` file from it, see the Guide section [Addons and Dependencies]().
+You cannot use script tags directly within a template, and should use [actions](../actions) or [Component Lifecycle Hooks](../../components/the-component-lifecycle/specifying-a-routes-model) to make your app responsive to user interactions and new data.
+If you are working with a non-Ember JavaScript library and need to use a `js` file from it, see the Guide section [Addons and Dependencies](../../addons-and-dependencies).
 
-Similarly, you should not add links to CSS Stylesheets within the `hbs` file. Style rules should go in the `app/styles` directory instead. `app/styles/app.css` is included in your app's build by default. For CSS files within the styles directory, you can create multiple stylesheets and use regular CSS APIs like `import` to link them together. If you want to incorporate CSS from an npm package or similar, see [Addons and Dependencies]() for instructions.
+You should not add links to your own local CSS files within the `hbs` file.
+Style rules should go in the `app/styles` directory instead.
+`app/styles/app.css` is included in your app's build by default.
+For CSS files within the styles directory, you can create multiple stylesheets and use regular CSS APIs like `import` to link them together.
+If you want to incorporate CSS from an npm package or similar, see [Addons and Dependencies](../../addons-and-dependencies) for instructions.
+To load styles through a CDN, read the next section below.
 
 ## What is `index.html` for?
 
 If HTML markup goes in `hbs` templates, what is `index.html` for?
 
-The `index.html` file is the entry point for an app. It is not a template, but rather it is where all the templates, stylesheets, and JavaScript come together into something the browser can understand.
+The `index.html` file is the entry point for an app.
+It is not a template, but rather it is where all the templates, stylesheets, and JavaScript come together into something the browser can understand.
 
-When you are first getting started in Ember, you will not need to make any changes to `index.html`. There's no need to add any links to other Ember app pages, stylesheets, or scripts in here by hand, since Ember's built-in tools do the work for you.
+When you are first getting started in Ember, you will not need to make any changes to `index.html`.
+There's no need to add any links to other Ember app pages, stylesheets, or scripts in here by hand, since Ember's built-in tools do the work for you.
 
-The most common customizations developers make to `index.html` are when they use a CDN to load assets like fonts or stylesheets. Here's an example:
+A common customization developers make to `index.html` is adding a link to a CDN that loads assets like fonts and stylesheets.
+Here's an example:
 
 ```html {data-filename=app/index.html}
   <link integrity="" rel="stylesheet" href="https://my-font-cdn/something.css">
@@ -60,7 +80,9 @@ The most common customizations developers make to `index.html` are when they use
 
 ## Understanding a Template's context
 
-A Template only has access to the data it has been given. This is referred to as the Template's "context." For example, to display a property inside a Route's Template, it should be defined in a Controller:
+A Template only has access to the data it has been given.
+This is referred to as the Template's "context."
+For example, to display a property inside a Route's Template, it should be defined in a Controller:
 
 ```javascript {data-filename=app/controllers/application.js}
 import Controller from '@ember/controller';
@@ -86,12 +108,13 @@ The above template and controller render as the following HTML:
 Hello, <strong>Trek Glowacki</strong>!
 ```
 
-If you use JavaScript to change the values of `firstName` or `lastName` in the Controller, what the user sees will be automatically updated! In Ember, this is referred to as "data binding."
+If you use JavaScript to change the values of `firstName` or `lastName` in the Controller, what the user sees will be automatically updated!
+In Ember, this is referred to as "data binding."
 
 Here's another example using a Component.
 Components are usually made of two files, a JavaScript file `my-component.js` and a
-template file with the same name, `my-component.js`. Whatever attributes are defined
-in the Component's JavaScript are available for use in the Template:
+template file with the same name, `my-component.js`.
+Whatever attributes are defined in the Component's JavaScript are available for use in the Template:
 
 ```javascript {data-filename=app/components/my-component.js}
 import Component from '@ember/component';
@@ -114,7 +137,10 @@ Hello, <strong>Jessica Jordan</strong>!
 
 ## Things you might see in a Template
 
-A lot more than just HTML markup can go in templates. In the other pages of this guide, we will cover the features one at a time. In general, special Ember functionality will appear inside curly braces, like this: `{{example}}`. Here are a few examples of Ember Handlebars in action:
+A lot more than just HTML markup can go in templates.
+In the other pages of this guide, we will cover the features one at a time.
+In general, special Ember functionality will appear inside curly braces, like this: `{{example}}`.
+Here are a few examples of Ember Handlebars in action:
 
 Route example:
 ```hbs {data-filename=app/templates/application.hbs data-update=true}
@@ -138,7 +164,7 @@ Component example:
 {{!-- Some data passed down from a parent component or controller --}}
 {{weatherStatus}}
 
-{{!-- This button uses Ember Actions to make it interactive. A method named `plantATree` is called when the button is clicked --}}
+{{!-- This button uses Ember Actions to make it interactive. A method named `plantATree` is called when the button is clicked. `plantATree` comes from the JavaScript file associated with the template, like a Component or Controller --}}
 <button onclick={{action 'plantATree'}}>
   More trees!
 <button>
@@ -152,8 +178,8 @@ Component example:
 {{yield}}
 ```
 
-Lastly, it's important to know that data can be passed from
-one template to another. Here's what it looks like
+Lastly, it's important to know that data can be passed from one template to another.
+Here's what it looks like
 to pass data from a Route template to a Component template.
 
 ```handlebars {data-filename=app/templates/application.hbs}
@@ -164,9 +190,10 @@ Learn more about passing data between templates in [../../components/passing-pro
 
 ## Helper functions
 
-Ember Helpers are pure functions that can be used in any template to change how data is displayed. For example, you could write a Helper function that capitalizes a word, does some math, converts a currency, or more.
+Ember Helpers are pure functions that can be used in any template to change how data is displayed.
+For example, you could write a Helper function that capitalizes a word, does some math, converts a currency, or more.
 A Helper takes in `parameters`, which is an array of the values passed into the function, and should return a value.
-Ember gives you the ability to [write your own helpers](../writing-helpers/), and comes with some [helpers built-in]().
+Ember gives you the ability to [write your own helpers](../writing-helpers/), and comes with some [helpers built-in](../built-in-helpers).
 
 For example, let's say you would like the ability to add two numbers together.
 Define a function in `app/helpers/sum.js` to create a `sum` helper:
@@ -196,7 +223,7 @@ Ember ships with several built-in helpers, which you will learn more about in th
 
 Sometimes, you might see helpers used inside of some parentheses, `()`.
 It means that a Helper is being used inside of another Helper or Component.
-This is referred to as a "nested" Helper. 
+This is referred to as a "nested" Helper.
 Parentheses must be used because curly braces `{{}}` cannot be nested.
 
 ```handlebars {data-filename=app/templates/application.hbs}
