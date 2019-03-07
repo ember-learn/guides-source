@@ -13,7 +13,7 @@ HTML is the language that browsers understand for laying out content on a web pa
 For example, every Ember app has a file called `application.hbs`.
 You can write regular HTML markup there or in any other `hbs` file:
 
-```hbs {data-filename=app/templates/application.hbs data-update=false}
+```handlebars {data-filename=app/templates/application.hbs data-update=false}
 <h1>Starting simple</h1>
 <p>
   This is regular html markup inside an hbs file
@@ -116,7 +116,7 @@ In general, special Ember functionality will appear inside curly braces, like th
 Here are a few examples of Ember Handlebars in action:
 
 Route example:
-```hbs {data-filename=app/templates/application.hbs data-update=true}
+```handlebars {data-filename=app/templates/application.hbs data-update=true}
 
 <!-- outlet determines where a child route's content should render. Don't delete it until you know more about it! -->
 <div>
@@ -131,7 +131,8 @@ Route example:
 ```
 
 Component example:
-```hbs {data-filename=app/components/templates/my-component.hbs data-update=true}
+
+```handlebars {data-filename=app/components/templates/my-component.hbs data-update=true}
 <!-- A property that is defined in a component's JavaScript file -->
 {{this.numberOfSquirrels}}
 
