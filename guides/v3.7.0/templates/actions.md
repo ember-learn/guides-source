@@ -95,7 +95,7 @@ pressed down.
 
 ## Allowing Default Browser Action
 
-By default, the `{{action}}` helper prevents the default browser action of the DOM event. So the following standard link:
+By default, the `{{action}}` helper prevents the default browser action of the DOM event (i.e. going to `newPage.htm`). So, for example see the following standard `a` tag with an `action`:
 
 ```handlebars
 <a href="newPage.htm" {{action "logClick"}}>Go</a>
