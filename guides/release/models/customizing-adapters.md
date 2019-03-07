@@ -151,8 +151,9 @@ specific URL namespace.
 
 ```javascript {data-filename=app/adapters/application.js}
 import DS from 'ember-data';
+const { JSONAPIAdapter } = DS;
 
-export default class ApplicationAdapter extends DS.JSONAPIAdapter {
+export default class ApplicationAdapter extends JSONAPIAdapter {
   namespace = 'api/1';
 }
 ```

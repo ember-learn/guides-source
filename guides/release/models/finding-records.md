@@ -86,9 +86,10 @@ and the adapter for the `User` model defines a `queryRecord()` method that targe
 
 ```javascript {data-filename=app/adapters/user.js}
 import DS from 'ember-data';
+const { Adapter } = DS;
 import $ from 'jquery';
 
-export default class UserAdapter extends DS.Adapter {
+export default class UserAdapter extends Adapter {
   queryRecord(store, type, query) {
     return $.getJSON('/api/current_user');
   }

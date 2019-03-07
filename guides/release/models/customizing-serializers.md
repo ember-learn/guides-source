@@ -439,8 +439,9 @@ method.
 
 ```javascript {data-filename=app/serializers/application.js}
 import DS from 'ember-data';
+const { JSONAPISerializer } = DS;
 
-export default class ApplicationSerializer extends DS.JSONAPISerializer {
+export default class ApplicationSerializer extends JSONAPISerializer {
   keyForRelationship(key, relationship) {
     return key + 'Ids';
   }
@@ -459,9 +460,10 @@ registered for use as attributes:
 
 ```javascript {data-filename=app/transforms/coordinate-point.js}
 import DS from 'ember-data';
+const { Transform } = DS;
 import EmberObject from '@ember/object';
 
-export default class CoordinatePointTransform extends DS.Transform {
+export default class CoordinatePointTransform extends Transform {
   serialize(value) {
     return [value.get('x'), value.get('y')];
   },

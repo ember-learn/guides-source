@@ -16,8 +16,9 @@ This will generate the following file:
 
 ```javascript {data-filename=app/models/person.js}
 import DS from 'ember-data';
+const { Model } = DS;
 
-export default class Person extends DS.Model {
+export default class Person extends Model {
 }
 ```
 
@@ -107,8 +108,9 @@ Here is a simple transform that converts values between cents and US dollars.
 
 ```javascript {data-filename=app/transforms/dollars.js}
 import DS from 'ember-data';
+const { Transform } = DS;
 
-export default class DollarTransform extends DS.Transform {
+export default class DollarsTransform extends Transform {
   deserialize(serialized) {
     return serialized / 100; // returns dollars
   },
@@ -148,7 +150,7 @@ creation:
 import DS from 'ember-data';
 const { Model, attr } = DS;
 
-export default class User extends DS.Model {
+export default class User extends Model {
   @attr('string') username;
   @attr('string') email;
   @attr('boolean', { defaultValue: false }) verified;
