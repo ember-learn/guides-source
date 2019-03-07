@@ -227,19 +227,19 @@ export default class ApplicationAdapter extends JSONAPIAdapter {
 }
 ```
 
-`headers` can also be used as a computed property to support dynamic
-headers. In the example below, the headers are generated with a computed
-property dependent on the `session` service.
+You can combine tracked properties with ES6 getters to make `headers` dynamic.
+In the example below, the headers are generated dynamically using a
+property from the `session` service.
 
 ```javascript {data-filename=app/adapters/application.js}
 import DS from 'ember-data';
-import { computed } from '@ember/object';
+import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
 const { JSONAPIAdapter } = DS;
 
 export default class ApplicationAdapter extends JSONAPIAdapter {
   @service session;
-  @computed('session.authToken')
+  @tracked session.authToken;
   get headers() {
     return {
       'API_KEY': this.session.authToken,

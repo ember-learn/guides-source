@@ -45,27 +45,21 @@ Attributes are used when turning the JSON payload returned from your
 server into a record, and when serializing a record to save back to the
 server after it has been modified.
 
-You can use attributes like any other property, including as part of a
-computed property. Frequently, you will want to define computed
-properties that combine or transform primitive attributes.
+You can use attributes like any other property, including from within [getter functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get).
 
 ```javascript {data-filename=app/models/person.js}
 import DS from 'ember-data';
-import { computed } from '@ember/object';
 const { Model, attr } = DS;
 
 export default class Person extends Model {
   @attr() firstName;
   @attr() lastName;
 
-  fullName: computed('firstName', 'lastName', function() {
+  get fullName() {
     return `${this.firstName} ${this.lastName}`;
-  })
+  }
 }
 ```
-
-For more about adding computed properties to your classes, see [Computed
-Properties](../../object-model/computed-properties/).
 
 ### Transforms
 
