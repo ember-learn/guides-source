@@ -80,21 +80,21 @@ Here's an example:
 
 ## Understanding a Template's context
 
-A Template only has access to the data it has been given.
-This is referred to as the Template's "context."
-For example, to display a property inside a Route's Template, it should be defined in a Controller:
+A template only has access to the data it has been given.
+This is referred to as the template's "context."
+For example, to display a property inside a Component's template, it should be defined in the Component's JavaScript file:
 
-```javascript {data-filename=app/controllers/application.js}
-import Controller from '@ember/controller';
+```javascript {data-filename=app/components/my-component.js}
+import Component from '@ember/component';
 
-export default Controller.extend({
+export default Component.extend({
   firstName: 'Trek',
   lastName: 'Glowacki',
   favoriteFramework: 'Ember'
 });
 ```
 
-The attributes like `firstName` can be used in the template
+Properties like `firstName` can be used in the template
 by putting them inside of curly braces, plus the word
 `this`:
 
@@ -102,40 +102,13 @@ by putting them inside of curly braces, plus the word
 Hello, <strong>{{this.firstName}} {{this.lastName}}</strong>!
 ```
 
-The above template and controller render as the following HTML:
+Together, these render with the following HTML:
 
 ```html
 Hello, <strong>Trek Glowacki</strong>!
 ```
 
-If you use JavaScript to change the values of `firstName` or `lastName` in the Controller, what the user sees will be automatically updated!
-In Ember, this is referred to as "data binding."
-
-Here's another example using a Component.
-Components are usually made of two files, a JavaScript file `my-component.js` and a
-template file with the same name, `my-component.js`.
-Whatever attributes are defined in the Component's JavaScript are available for use in the Template:
-
-```javascript {data-filename=app/components/my-component.js}
-import Component from '@ember/component';
-
-export default Component.extend({
-  firstName: 'Jessica',
-  lastName: 'Jordan'
-});
-```
-
-```handlebars {data-filename=app/templates/components/my-component.hbs}
-Hello, <strong>{{this.firstName}} {{this.lastName}}</strong>!
-```
-
-This would render:
-
-```html
-Hello, <strong>Jessica Jordan</strong>!
-```
-
-## Things you might see in a Template
+## Things you might see in a template
 
 A lot more than just HTML markup can go in templates.
 In the other pages of this guide, we will cover the features one at a time.
@@ -144,53 +117,52 @@ Here are a few examples of Ember Handlebars in action:
 
 Route example:
 ```hbs {data-filename=app/templates/application.hbs data-update=true}
-{{!-- Example of a comment that will be invisible --}}
 
-{{!-- outlet determines where a child route's content should render. Don't delete it until you know more about it! --}}
+<!-- outlet determines where a child route's content should render. Don't delete it until you know more about it! -->
 <div>
   {{outlet}}
 </div>
 
-{{!-- One way to use a component within a template. This is called "Angle Bracket Component syntax." --}}
+<!-- One way to use a component within a template -->
 <MyComponent />
+
+{{! Example of a comment that will be invisible, even if it contains things in {{curlyBraces}} }}
 
 ```
 
 Component example:
 ```hbs {data-filename=app/components/templates/my-component.hbs data-update=true}
-{{!-- An attribute that is defined in a component's JavaScript file --}}
+<!-- A property that is defined in a component's JavaScript file -->
 {{this.numberOfSquirrels}}
 
-{{!-- Some data passed down from a parent component or controller --}}
+<!-- Some data passed down from a parent component or controller -->
 {{weatherStatus}}
 
-{{!-- This button uses Ember Actions to make it interactive. A method named `plantATree` is called when the button is clicked. `plantATree` comes from the JavaScript file associated with the template, like a Component or Controller --}}
+<!-- This button uses Ember Actions to make it interactive. A method named `plantATree` is called when the button is clicked. `plantATree` comes from the JavaScript file associated with the template, like a Component or Controller -->
 <button onclick={{action 'plantATree'}}>
   More trees!
 <button>
 
-{{!-- Here's an example of template logic in action. If the `this.skyIsBlue` attribute is `true`, the text inside will be shown --}}
+<!-- Here's an example of template logic in action. If the `this.skyIsBlue` property is `true`, the text inside will be shown -->
 {{#if this.skyIsBlue}}
-  If the skyIsBlue attribute is true, show this message
+  If the skyIsBlue property is true, show this message
 {{/if}}
 
-{{!-- You can pass a whole block of markup and handlebars content from one component to another. yield is where the block shows up when the page is rendered --}}
+<!-- You can pass a whole block of markup and handlebars content from one component to another. yield is where the block shows up when the page is rendered -->
 {{yield}}
 ```
 
-Lastly, it's important to know that data can be passed from one template to another.
-Here's what it looks like
-to pass data from a Route template to a Component template.
+Lastly, it's important to know that arguments can be passed from one Component to another through templates:
 
-```handlebars {data-filename=app/templates/application.hbs}
+```handlebars {data-filename=app/templates/some-other-component.hbs}
 <MyComponent @favoriteFramework=this.favoriteFramework />
 ```
 
-Learn more about passing data between templates in [../../components/passing-properties-to-a-component].
+To pass in arguments associated with a Route, define the property from within a Controller. Learn more about passing data between templates in [../../components/passing-properties-to-a-component].
 
 ## Helper functions
 
-Ember Helpers are pure functions that can be used in any template to change how data is displayed.
+Ember Helpers are a way to use JavaScript logic in your templates.
 For example, you could write a Helper function that capitalizes a word, does some math, converts a currency, or more.
 A Helper takes in `parameters`, which is an array of the values passed into the function, and should return a value.
 Ember gives you the ability to [write your own helpers](../writing-helpers/), and comes with some [helpers built-in](../built-in-helpers).
