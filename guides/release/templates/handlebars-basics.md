@@ -204,7 +204,7 @@ The user will see a value of `3` rendered in the template!
 
 Ember ships with several built-in helpers, which you will learn more about in the following guides.
 
-### Nested Helper Invocations
+### Nested Helpers
 
 Sometimes, you might see helpers invoked by placing them inside parentheses, `()`.
 This means that a Helper is being used inside of another Helper or Component.
