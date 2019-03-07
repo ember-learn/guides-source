@@ -20,7 +20,7 @@ You can write regular HTML markup there or in any other `hbs` file:
 </p>
 ```
 
-When you start an app with `ember serve`, your templates are compiled down to something that Embers rendering engine can process more easily. The compiler helps you catch some errors, such as forgetting to close a tag or missing a quotation mark.
+When you start an app with `ember serve`, your templates are compiled down to something that Ember's rendering engine can process more easily. The compiler helps you catch some errors, such as forgetting to close a tag or missing a quotation mark.
 Reading the error message on the page or in your browser's developer console will get you back on track.
 
 ## Types of templates
