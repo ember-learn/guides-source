@@ -32,7 +32,7 @@ A Component template has bits of content that can be reused in multiple places t
 
 If you look at an existing app, you will see templates in many different places in the app folder structure! 
 This is to help the app stay organized as it grows from one template to _one hundred_ templates.
-The best way to tell if a template is part of a Route or Component is to look at the filepath.
+The best way to tell if a template is part of a Route or Component is to look at the file path.
 
 ## Making new templates
 
@@ -158,7 +158,7 @@ Lastly, it's important to know that arguments can be passed from one Component t
 <MyComponent @favoriteFramework=this.favoriteFramework />
 ```
 
-To pass in arguments associated with a Route, define the property from within a Controller. Learn more about passing data between templates in [../../components/passing-properties-to-a-component].
+To pass in arguments associated with a Route, define the property from within a Controller. Learn more about passing data between templates (here)[../../components/passing-properties-to-a-component].
 
 ## Helper functions
 
