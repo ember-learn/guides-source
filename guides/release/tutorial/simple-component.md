@@ -135,30 +135,33 @@ giving it the `image` class name so that our test can find it.
 The value of `isWide` comes from our component's JavaScript file, in this case `rental-listing.js`.
 Since we want the image to be smaller at first, we will set the property to start as `false`:
 
-```javascript {data-filename="app/components/rental-listing.js" data-diff="+4"}
-import Component from '@ember/component';
+```javascript {data-filename="app/components/rental-listing.js" data-diff="+2,+5"}
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
 
-export default Component.extend({
-  isWide: false
-});
+export default class RentalListingComponent extends Component {
+  @tracked isWide = false;
+}
 ```
 
 To allow the user to widen the image, we will need to add an action that toggles
 the value of `isWide`. Let's create the `toggleImageSize` action to toggle the
 `isWide` property on our component:
 
-```javascript {data-filename="app/components/rental-listing.js" data-diff="-4,+5,+6,+7,+8,+9,+10"}
-import Component from '@ember/component';
+```javascript {data-filename="app/components/rental-listing.js" data-diff="+3,+7,+8,+9,+10,+11,+12"}
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
+import { action } from "@ember/object";
 
-export default Component.extend({
-  isWide: false
-  isWide: false,
-  actions: {
-    toggleImageSize() {
-      this.toggleProperty('isWide');
-    }
+export default class RentalListingComponent extends Component {
+  @tracked isWide = false;
+
+  @action
+  toggleImageSize() {
+    this.toggleProperty('isWide');
   }
-});
+
+}
 ```
 
 In order to trigger this action, we need to use the `{{action}}` helper in our

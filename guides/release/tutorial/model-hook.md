@@ -20,7 +20,7 @@ Let's open `app/routes/rentals.js` and return an array of rental objects from th
 ```javascript {data-filename="app/routes/rentals.js" data-diff="+4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33"}
 import Route from '@ember/routing/route';
 
-export default Route.extend({
+export default class RentalsRoute extends Route {
   model() {
     return [{
       id: 'grand-old-mansion',
@@ -51,7 +51,7 @@ export default Route.extend({
       description: 'Convenience is at your doorstep with this charming downtown rental. Great restaurants and active night life are within a few feet.'
     }];
   }
-});
+}
 ```
 
 Note that here, we are using the ES6 shorthand method definition syntax: `model()` is the same as writing `model: function()`.

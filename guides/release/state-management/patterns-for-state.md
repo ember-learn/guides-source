@@ -118,7 +118,7 @@ a change. In Ember applications, state can change in three main ways:
 
 ### Actions
 
-As we discussed in the section on [Actions], they are methods on a component or
+As we discussed in the section on [Actions](../../templates/actions/), they are methods on a component or
 controller that can be used to update its state. Actions are passed down with
 the rest of a component's data when Ember renders:
 

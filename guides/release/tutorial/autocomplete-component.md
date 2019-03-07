@@ -78,26 +78,26 @@ The `key-up` property will be bound to the `handleFilterEntry` action.
 The `handleFilterEntry` action will apply the search term filter to the list of rentals, and set a component attribute called `results`. The `results` are passed to the `{{yield}}` helper in the template. In the yielded block component, those same `results` are referred to as `|filteredResults|`. Let's apply the filter to our rentals:
 
 ```javascript {data-filename=app/components/list-filter.js}
-import Component from '@ember/component';
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
 
-export default Component.extend({
-  classNames: ['list-filter'],
-  value: '',
+export default class ListFilterComponent extends Component {
+  @tracked value = '';
+  @tracked results;
 
-  init() {
-    this._super(...arguments);
-    this.filter('').then((results) => this.set('results', results));
-  },
-
-  actions: {
-    handleFilterEntry() {
-      let filterInputValue = this.value;
-      let filterAction = this.filter;
-      filterAction(filterInputValue).then((filterResults) => this.set('results', filterResults));
-    }
+  constructor() {
+    super(...arguments);
+    this.args.filter('').then((results) => this.results = results);
   }
 
-});
+  @action
+  handleFilterEntry() {
+    let filterInputValue = this.value;
+    let filterAction = this.args.filter;
+    filterAction(filterInputValue).then((filterResults) => this.results = filterResults);
+  }
+}
 ```
 
 #### Filtering Data Based on Input
@@ -105,7 +105,7 @@ export default Component.extend({
 In the above example we use the `init` hook to seed our initial listings by calling the `filter` action with an empty value.
 Our `handleFilterEntry` action calls a function called `filter` based on the `value` attribute set by the input helper.
 
-The `filter` function is passed in by the calling object. This is a pattern known as [closure actions](../../components/triggering-changes-with-actions/#toc_passing-the-action-to-the-component).
+The `filter` function is passed in by the calling object. This is a pattern known as [closure actions](../../components/adding-actions/#toc_passing-the-action-to-the-component).
 
 Notice the `then` function called on the result of calling the `filter` function.
 The code expects the `filter` function to return a promise.
@@ -129,18 +129,18 @@ Now, define your new controller like so:
 
 ```javascript {data-filename=app/controllers/rentals.js}
 import Controller from '@ember/controller';
+import { action } from '@ember/object';
 
-export default Controller.extend({
-  actions: {
-    filterByCity(param) {
-      if (param !== '') {
-        return this.store.query('rental', { city: param });
-      } else {
-        return this.store.findAll('rental');
-      }
+export default class RentalsController extends Controller {
+  @action
+  filterByCity(param) {
+    if (param !== '') {
+      return this.store.query('rental', { city: param });
+    } else {
+      return this.store.findAll('rental');
     }
   }
-});
+}
 ```
 
 When the user types in the text field in our component, the `filterByCity` action in the controller is called.
@@ -228,60 +228,60 @@ We will update the results on screen only if the original filter value and the c
 
 ```javascript {data-filename="app/controllers/rentals.js" data-diff="-7,+8,+9,+10,+11,-13,+14,+15,+16,+17"}
 import Controller from '@ember/controller';
+import { action } from '@ember/object';
 
-export default Controller.extend({
-  actions: {
-    filterByCity(param) {
-      if (param !== '') {
-        return this.store.query('rental', { city: param });
-        return this.store
-          .query('rental', { city: param }).then((results) => {
-            return { query: param, results: results };
-          });
-      } else {
-        return this.store.findAll('rental');
-        return this.store
-          .findAll('rental').then((results) => {
-            return { query: param, results: results };
-          });
-      }
+export default class RentalsController extends Controller {
+  @action
+  filterByCity(param) {
+    if (param !== '') {
+      return this.store.query('rental', { city: param });
+      return this.store
+        .query('rental', { city: param }).then((results) => {
+          return { query: param, results: results };
+        });
+    } else {
+      return this.store.findAll('rental');
+      return this.store
+        .findAll('rental').then((results) => {
+          return { query: param, results: results };
+        });
     }
   }
-});
+}
 ```
 
 In the `filterByCity` function in the rentals controller above,
 we've added a new property called `query` to the filter results instead of just returning an array of rentals as before.
 
-```javascript {data-filename="app/components/list-filter.js" data-diff="-19,-9,+10,+11,+12,+20,+21,+22,+23,+24"}
-import Component from '@ember/component';
+```javascript {data-filename="app/components/list-filter.js" data-diff="-20,-10,+11,+12,+13,+21,+22,+23,+24,+25"}
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
 
-export default Component.extend({
-  classNames: ['list-filter'],
-  value: '',
+export default class ListFilterComponent extends Component {
+  @tracked value = '';
+  @tracked results;
 
-  init() {
-    this._super(...arguments);
-    this.filter('').then((results) => this.set('results', results));
-    this.filter('').then((allResults) => {
-      this.set('results', allResults.results);
+  constructor() {
+    super(...arguments);
+    this.args.filter('').then((results) => this.results = results);
+    this.args.filter('').then((allResults) => {
+      this.results = allResults.results;
     });
-  },
-
-  actions: {
-    handleFilterEntry() {
-      let filterInputValue = this.value;
-      let filterAction = this.filter;
-      filterAction(filterInputValue).then((filterResults) => this.set('results', filterResults));
-      filterAction(filterInputValue).then((filterResults) => {
-        if (filterResults.query === this.value) {
-          this.set('results', filterResults.results);
-        }
-      });
-    }
   }
 
-});
+  @action
+  handleFilterEntry() {
+    let filterInputValue = this.value;
+    let filterAction = this.args.filter;
+    filterAction(filterInputValue).then((filterResults) => this.results = filterResults);
+    filterAction(filterInputValue).then((filterResults) => {
+      if (filterResults.query === this.value) {
+        this.results = filterResults.results;
+      }
+    });
+  }
+}
 ```
 
 In our list filter component JavaScript, we use the `query` property to compare to the `value` property of the component.

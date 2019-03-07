@@ -82,21 +82,21 @@ Let's implement our newly generated `rentals/index` route by moving this `findAl
 ```javascript {data-filename="app/routes/rentals.js" data-diff="-4,-5,-6"}
 import Route from '@ember/routing/route';
 
-export default Route.extend({
+export default class RentalsRoute extends Route {
   model() {
     return this.store.findAll('rental');
   }
-});
+}
 ```
 
 ```javascript {data-filename="app/routes/rentals/index.js" data-diff="+4,+5,+6"}
 import Route from '@ember/routing/route';
 
-export default Route.extend({
+export default class RentalsIndexRoute extends Route {
   model() {
     return this.store.findAll('rental');
   }
-});
+}
 ```
 
 Now that we are returning all of our rentals to the nested route's model, we will also move the rental list markup from our main route template to our nested route index template.
@@ -149,9 +149,9 @@ Instead of copying the whole controller file over to `app/controllers/rentals/in
 import Controller from '@ember/controller';
 import RentalsController from '../rentals';
 
-export default Controller.extend({
-});
-export default RentalsController;
+export default class RentalsIndexController extends Controller {
+}
+export default class RentalsIndexController;
 ```
 
 ## Setting up Data for the Nested Detail Route
@@ -294,11 +294,11 @@ Next, we want to edit our `show` route to retrieve the requested rental:
 ```javascript {data-filename="app/routes/rentals/show.js" data-diff="+4,+5,+6"}
 import Route from '@ember/routing/route';
 
-export default Route.extend({
+export default class RentalsShowRoute extends Route {
   model(params) {
     return this.store.findRecord('rental', params.rental_id);
   }
-});
+}
 ```
 
 Since we added `:rental_id` to the `show` path in our router, `rental_id` is now available in our `model` hook.
