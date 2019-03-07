@@ -118,7 +118,9 @@ Here are a few examples of Ember Handlebars in action:
 Route example:
 ```handlebars {data-filename=app/templates/application.hbs data-update=true}
 
-<!-- outlet determines where a child route's content should render. Don't delete it until you know more about it! -->
+<!-- outlet determines where a child route's content 
+should render. Don't delete it until you know more 
+about it! -->
 <div>
   {{outlet}}
 </div>
@@ -126,30 +128,41 @@ Route example:
 <!-- One way to use a component within a template -->
 <MyComponent />
 
-{{! Example of a comment that will be invisible, even if it contains things in {{curlyBraces}} }}
+{{! Example of a comment that will be invisible, even
+if it contains things in {{curlyBraces}} }}
 
 ```
 
 Component example:
 
 ```handlebars {data-filename=app/components/templates/my-component.hbs data-update=true}
-<!-- A property that is defined in a component's JavaScript file -->
+<!-- A property that is defined in a component's
+JavaScript file -->
 {{this.numberOfSquirrels}}
 
-<!-- Some data passed down from a parent component or controller -->
+<!-- Some data passed down from a parent component 
+or controller -->
 {{weatherStatus}}
 
-<!-- This button uses Ember Actions to make it interactive. A method named `plantATree` is called when the button is clicked. `plantATree` comes from the JavaScript file associated with the template, like a Component or Controller -->
+<!-- This button uses Ember Actions to make it interactive. 
+A method named `plantATree` is called when the button is
+clicked. `plantATree` comes from the JavaScript file
+associated with the template, like a Component or 
+Controller -->
 <button onclick={{action 'plantATree'}}>
   More trees!
 <button>
 
-<!-- Here's an example of template logic in action. If the `this.skyIsBlue` property is `true`, the text inside will be shown -->
+<!-- Here's an example of template logic in action. 
+If the `this.skyIsBlue` property is `true`, the text
+inside will be shown -->
 {{#if this.skyIsBlue}}
   If the skyIsBlue property is true, show this message
 {{/if}}
 
-<!-- You can pass a whole block of markup and handlebars content from one component to another. yield is where the block shows up when the page is rendered -->
+<!-- You can pass a whole block of markup and handlebars
+content from one component to another. yield is where
+the block shows up when the page is rendered -->
 {{yield}}
 ```
 
@@ -170,7 +183,6 @@ Ember gives you the ability to [write your own helpers](../writing-helpers/), an
 
 For example, let's say you would like the ability to add two numbers together.
 Define a function in `app/helpers/sum.js` to create a `sum` helper:
-
 
 ```javascript {data-filename=app/helpers/sum.js}
 import { helper as buildHelper } from '@ember/component/helper';
