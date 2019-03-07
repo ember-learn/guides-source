@@ -5,10 +5,10 @@ If you want to learn in a step-by-step way, you should begin your journey in the
 
 ## Writing plain HTML
 
-Ember templates have some superpowers, but let's start with regular HTML.
+Templates in Ember have some superpowers, but let's start with regular HTML.
 For any file in an Ember app that has an extension ending in `.hbs`, you can write HTML markup in it as if it was an `.html` file.
 HTML is the language that browsers understand for laying out content on a web page.
-`.hbs` stands for Handlebars, the name of a tool that lets you write more than just HTML in your templates.
+`.hbs` stands for Handlebars, the name of a tool that lets you write more than just HTML.
 
 For example, every Ember app has a file called `application.hbs`.
 You can write regular HTML markup there or in any other `hbs` file:
