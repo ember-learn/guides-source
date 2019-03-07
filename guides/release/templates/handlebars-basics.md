@@ -204,11 +204,11 @@ The user will see a value of `3` rendered in the template!
 
 Ember ships with several built-in helpers, which you will learn more about in the following guides.
 
-### Nested Helper
+### Nested Helper Invocations
 
-Sometimes, you might see helpers used inside of some parentheses, `()`.
-It means that a Helper is being used inside of another Helper or Component.
-This is referred to as a "nested" Helper.
+Sometimes, you might see helpers invoked by placing them inside parentheses, `()`.
+This means that a Helper is being used inside of another Helper or Component.
+This is referred to as a "nested" Helper Invocation.
 Parentheses must be used because curly braces `{{}}` cannot be nested.
 
 ```handlebars {data-filename=app/templates/application.hbs}
