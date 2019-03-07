@@ -95,23 +95,23 @@ pressed down.
 
 ## Allowing Default Browser Action
 
-By default, the `{{action}}` helper prevents the default browser action of the
-DOM event. If you want to allow the browser action, you can stop Ember from
-preventing it.
+By default, the `{{action}}` helper prevents the default browser action of the DOM event. So the following standard link:
 
-For example, if you have a normal link tag and want the link to bring the user
-to another page in addition to triggering an ember action when clicked, you can
-use `preventDefault=false`:
+```handlebars
+<a href="newPage.htm" {{action "logClick"}}>Go</a>
+```
+
+**Clicking on this link does not go to `newPage.htm`** because the `action` has overridden this functionality. This is the default behaviour for Ember.
+
+You can override this behaviour and make this work more like a standard, non-ember, anchor tag by using the `preventDefault=false` overload of the action on a a tag. For example:
 
 ```handlebars
 <a href="newPage.htm" {{action "logClick" preventDefault=false}}>Go</a>
 ```
 
-With `preventDefault=false` omitted, if the user clicked on the link, Ember.js
-will trigger the action, but the user will remain on the current page.
+This still triggers the `logClick` action but then **we also go to `newPage.htm`.**
 
-With `preventDefault=false` present, if the user clicked on the link, Ember.js
-will trigger the action *and* the user will be directed to the new page.
+You can specify `preventDefault=true` and this reverts to the standard Ember functionality (see previous example).
 
 ## Modifying the action's first parameter
 
