@@ -168,8 +168,8 @@ the block shows up when the page is rendered -->
 
 Lastly, it's important to know that arguments can be passed from one Component to another through templates:
 
-```handlebars {data-filename=app/templates/some-other-component.hbs}
-<MyComponent @favoriteFramework=this.favoriteFramework />
+```handlebars {data-filename=app/templates/components/some-other-component.hbs}
+<MyComponent @favoriteFramework={{this.favoriteFramework}} />
 ```
 
 To pass in arguments associated with a Route, define the property from within a Controller. Learn more about passing data between templates [here](../../components/passing-properties-to-a-component).
