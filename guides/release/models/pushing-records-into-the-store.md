@@ -83,7 +83,7 @@ serializer before pushing it into the store, you can use the
 ```javascript {data-filename=app/serializers/album.js}
 import DS from 'ember-data';
 
-export default DS.RestSerializer.extend({
+export default DS.RESTSerializer.extend({
   normalize(typeHash, hash) {
     hash['songCount'] = hash['song_count']
     delete hash['song_count']
