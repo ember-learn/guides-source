@@ -233,15 +233,26 @@
       url: "render-performance"
     - title: "Troubleshooting"
       url: "troubleshooting"
+
+- title: "Contributing to Ember.js"
+  url: 'contributing'
+  isAdvanced: true
+  pages:
+    - title: "Adding New Features"
+      url: "adding-new-features"
+    - title: "Repositories"
+      url: "repositories"
+
+- title: "Glossary"
+  url: "glossary"
+  pages:
+    - title: "Web Development"
+      url: "web-development"
+
 - title: 'Reference'
   url: 'reference'
   pages:
     - title: "Syntax Conversion Guide"
       url: "syntax-conversion-guide"
-    - title: "Accessibility"
-      url: 'accessibility'
-    - title: "Web Development Glossary"
-      url: "web-development"
-    - title: "Contributing to Ember.js"
-      url: 'contributing'
-
+    - title: "Accessibility Guide"
+      url: "accessibility-guide"

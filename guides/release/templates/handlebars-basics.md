@@ -1,251 +1,216 @@
-Ember uses a templating language based on the [Handlebars templating library](http://www.handlebarsjs.com) to power your application's user interface.
+Templates are the home for what the user sees, like forms, buttons, links, and headings.
 
-Ember templates contain HTML and dynamic content inside Handlebars expressions, which are invoked with double curly braces: `{{}}`.
-In JavaScript, a similar concept is template strings. For example, if you have the following JavaScript:
+In this section of the Guides, you will learn about where to write HTML markup, plus how to add interaction, dynamically changing content, styling, and more.
+If you want to learn in a step-by-step way, you should begin your journey in the [Tutorial](../../tutorial/ember-cli/) instead.
 
-```javascript
-let name = "Zoey";
-console.log(`Hello ${name}!}`);
+## Writing plain HTML
+
+Ember templates have some superpowers, but let's start with regular HTML.
+For any file in an Ember app that has an extension ending in `.hbs`, you can write HTML markup in it as if it was an `.html` file.
+HTML is the language that browsers understand for laying out content on a web page.
+`.hbs` stands for Handlebars, the name of a tool that lets you write more than just HTML in your templates.
+
+For example, every Ember app has a file called `application.hbs`.
+You can write regular HTML markup there or in any other `hbs` file:
+
+```handlebars {data-filename=app/templates/application.hbs data-update=false}
+<h1>Starting simple</h1>
+<p>
+  This is regular html markup inside an hbs file
+</p>
 ```
 
-Which prints:
+When you start an app with `ember serve`, the compiler may help you catch some errors, such as forgetting to close a tag or missing a quotation mark.
+Reading the error message on the page or in your browser's developer console will get you back on track.
 
-```text
-Hello Zoey!
+## Types of templates
+
+There are two main types of templates: Route templates and Component templates.
+
+A Route template determines what is shown when someone visits a particular URL, like `https://guides.emberjs.com/some-route`.
+A Component template has bits of content that can be reused in multiple places throughout the app, like buttons or forms.
+
+If you look at an existing app, you will see templates in many different places in the app folder structure!
+This is to help the app stay organized as it grows from one template to _one hundred_ templates.
+The best way to tell if a template is part of a Route or Component is to look at the file path.
+
+## Making new templates
+
+New templates should be made using [Ember CLI](https://cli.emberjs.com) commands.
+The CLI helps ensure that the new files go in the right place in the app folder structure, and that they follow the essential file naming conventions.
+
+For example, either of these commands will generate `.hbs` template files (and other things!) in your app:
+
+```sh
+ember generate component my-component-name
+ember generate route my-route-name
 ```
 
-Then the equivalent Ember template would be something like the following:
+## Template restrictions
 
-```javascript {data-filename=app/components/hello-world.js}
+A typical, modern web app is made of dozens of files that have to all be combined together into something the browser can understand.
+Ember does this work for you with zero configuration, but as a result, there are some rules to follow when it comes to adding assets into your HTML.
+
+You cannot use script tags directly within a template, and should use [actions](../actions/) or [Component Lifecycle Hooks](../../components/the-component-lifecycle/) to make your app responsive to user interactions and new data.
+If you are working with a non-Ember JavaScript library and need to use a `js` file from it, see the Guide section [Addons and Dependencies](../../addons-and-dependencies/managing-dependencies/).
+
+You should not add links to your own local CSS files within the `hbs` file.
+Style rules should go in the `app/styles` directory instead.
+`app/styles/app.css` is included in your app's build by default.
+For CSS files within the styles directory, you can create multiple stylesheets and use regular CSS APIs like `import` to link them together.
+If you want to incorporate CSS from an npm package or similar, see [Addons and Dependencies](../../addons-and-dependencies/managing-dependencies/) for instructions.
+To load styles through a CDN, read the next section below.
+
+## What is `index.html` for?
+
+If HTML markup goes in `hbs` templates, what is `index.html` for?
+
+The `index.html` file is the entry point for an app.
+It is not a template, but rather it is where all the templates, stylesheets, and JavaScript come together into something the browser can understand.
+
+When you are first getting started in Ember, you will not need to make any changes to `index.html`.
+There's no need to add any links to other Ember app pages, stylesheets, or scripts in here by hand, since Ember's built-in tools do the work for you.
+
+A common customization developers make to `index.html` is adding a link to a CDN that loads assets like fonts and stylesheets.
+Here's an example:
+
+```html {data-filename=app/index.html}
+<link integrity="" rel="stylesheet" href="https://my-font-cdn/something.css" />
+```
+
+## Understanding a Template's context
+
+A template only has access to the data it has been given.
+This is referred to as the template's "context."
+For example, to display a property inside a Component's template, it should be defined in the Component's JavaScript file:
+
+```javascript {data-filename=app/components/my-component.js}
 import Component from '@ember/component';
 
 export default Component.extend({
-  name: "World"
+  firstName: 'Trek',
+  lastName: 'Glowacki',
+  favoriteFramework: 'Ember',
 });
 ```
 
-```handlebars {data-filename=app/templates/components/hello-world.hbs}
-Hello {{this.name}}!
-```
-
-Which renders:
-
-```html
-Hello World!
-```
-
-### What can be inside curly expressions?
-
-* `{{this.property}}`
-* `{{@namedArgument}}`
-* `{{local-variable}}`
-* `{{helper}}}`
-* `{{component-name}}` or `{{#component-name}}{{/component-name}}`
-* `<ComponentName />` or `<ComponentName></ComponentName>`
-* `{{element-modifier}}`
-
-No argument: `{{this.property}}`
-Arguments: `{{if true "Hello World!" "Goodbye World!"}}`
-
-Inline syntax: `{{if true "Hello World!"}}`
-Block syntax: `{{#if true}}Hello World!{{/if}}`
-Block params: `{{#let "Hello World!" as |greeting|}}{{greeting}}!{{/let}}`
-Nested: `{{#let (if true "Hello World!" "Goodbye World!") as |greeting|}}{{greeting}}{{/let}}`
-
-### Properties, named arguments, and local variables
-
-#### Properties
-
-As seen in the example at the beginning of this document, properties are prefixed by `this.`.
-When you see `{{this.propertyName}}`,
-that means that `propertyName` is being looked up directly in the object that is backing that template.
-
-In the "Hello World" example, we are using a component template,
-so the property is looked up in the respective component.
-If it were a route template, then the backing object would be the respective controller:
-
-```javascript
-export default class extends Controller {
-  name = "World";
-}
-```
-
-```handlebars
-Hello {{this.name}}!
-```
-
-```html
-Hello World!
-```
-
-#### Named arguments
-
-When you use a component in your template, you can pass it arguments.
-These arguments can be used directly in the component template and are prefixed by `@`.
-When you see `{{@namedArgument}}` in a template,
-that means that `namedArgument` was passed to that component.
-
-Using <code>{{@namedArgument}}</code> gives you the guarantee that the value is exactly what was passed into the component and hasn't been modified!
-
-```handlebars
-<HelloWorld @name="Zoey" />
-```
-
-```handlebars
-// component
-<p>Hello {{@name}}</p>
-```
-
-```html
-<p>Hello Zoey!</p>
-```
-
-
-#### Local variables
-
-Local variables are variables that are "created" inside the template.
-A common example would be when iterating an array using [`each`](https://emberjs.com/api/ember/3.7/classes/Ember.Templates.helpers/methods/let?anchor=each),
-a local variable is created for the current element being iterated:
-
-```javascript
-// my-component.js
-export default Component.extend({
-  names: null,
-
-  init() {
-    this.names = ["Tomster", "Zoey"]
-  }
-})
-```
-
-```handlebars
-{{{#each names as |name|}}
-  <p>Hello {{name}}!</p>
-{{/each}}
-```
-
-<div class="cta">
-  <div class="cta-note">
-    <div class="cta-note-body">
-      <div class="cta-note-heading">Zoey says...</div>
-      <div class="cta-note-message">
-        The <code>as |name|</code> syntax is called block arguments. They will be mentioned in more detail further ahead!
-      </div>
-    </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
-  </div>
-</div>
-
-In this situation, `name` is a local variable created by the template that only exists inside of the `{{#each}}{{/each}}` block.
-If you tried to do the following:
-
-```handlebars
-{{{#each names as |name|}}
-  <p>Hello {{name}}!</p>
-{{/each}}
-{{name}}
-```
-
-Then `{{name}}` outside of the block would render nothing:
-
-```html
-<p>Hello Tomster!<p>
-<p>Hello Zoey!<p>
-```
-
-You can also introduce local variables yourself by using [`let`](https://emberjs.com/api/ember/3.7/classes/Ember.Templates.helpers/methods/let?anchor=let):
-
-```handlebars
-{{#let "Zoey" as |name|}}
-  <p>Hello {{name}}!</p>
-{{/let}}
-```
-
-Which renders:
-
-```html
-<p>Hello Zoey!</p>
-```
-
-
-### Displaying Properties
-
-Templates are backed by a context. A context is an object from which
-Handlebars expressions read their properties. In Ember this is often a component. For templates rendered by a route (like `application.hbs`), the context is a controller.
-
-For example, this `application.hbs` template will render a first and last name:
+Properties like `firstName` can be used in the template
+by putting them inside of curly braces, plus the word
+`this`:
 
 ```handlebars {data-filename=app/templates/application.hbs}
 Hello, <strong>{{this.firstName}} {{this.lastName}}</strong>!
 ```
 
-The `firstName` and `lastName` properties are read from the
-context (the application controller in this case), and rendered inside the
-`<strong>` HTML tag.
-
-To provide a `firstName` and `lastName` to the above template, properties
-must be added to the application controller. If you are following along with
-an Ember CLI application, you may need to create this file:
-
-```javascript {data-filename=app/controllers/application.js}
-import Controller from '@ember/controller';
-
-export default Controller.extend({
-  firstName: 'Trek',
-  lastName: 'Glowacki'
-});
-```
-
-The above template and controller render as the following HTML:
+Together, these render with the following HTML:
 
 ```html
 Hello, <strong>Trek Glowacki</strong>!
 ```
 
-Remember that `{{this.firstName}}` and `{{this.lastName}}` are bound data. That means
-if the value of one of those properties changes, the DOM will be updated
-automatically.
+## Things you might see in a template
 
-As an application grows in size, it will have many templates backed by
-controllers and components.
+A lot more than just HTML markup can go in templates.
+In the other pages of this guide, we will cover the features one at a time.
+In general, special Ember functionality will appear inside curly braces, like this: `{{example}}`.
+Here are a few examples of Ember Handlebars in action:
 
-### Helpers
+Route example:
 
-Ember Helpers are functions that can compute values and can be used in any template.
+```handlebars {data-filename=app/templates/application.hbs data-update=true}
 
-Ember gives you the ability to [write your own helpers](../writing-helpers/), to bring a minimum of logic into Ember templating.
+<!-- outlet determines where a child route's content
+should render. Don't delete it until you know more
+about it! -->
+<div>
+  {{outlet}}
+</div>
 
-For example, let's say you would like the ability to add a few numbers together, without needing to define a computed property everywhere you would like to do so.
+<!-- One way to use a component within a template -->
+<MyComponent />
+
+{{! Example of a comment that will be invisible, even
+if it contains things in {{curlyBraces}} }}
+
+```
+
+Component example:
+
+```handlebars {data-filename=app/components/templates/my-component.hbs data-update=true}
+<!-- A property that is defined in a component's
+JavaScript file -->
+{{this.numberOfSquirrels}}
+
+<!-- Some data passed down from a parent component
+or controller -->
+{{weatherStatus}}
+
+<!-- This button uses Ember Actions to make it interactive.
+A method named `plantATree` is called when the button is
+clicked. `plantATree` comes from the JavaScript file
+associated with the template, like a Component or
+Controller -->
+<button onclick={{action 'plantATree'}}>
+  More trees!
+<button>
+
+<!-- Here's an example of template logic in action.
+If the `this.skyIsBlue` property is `true`, the text
+inside will be shown -->
+{{#if this.skyIsBlue}}
+  If the skyIsBlue property is true, show this message
+{{/if}}
+
+<!-- You can pass a whole block of markup and handlebars
+content from one component to another. yield is where
+the block shows up when the page is rendered -->
+{{yield}}
+```
+
+Lastly, it's important to know that arguments can be passed from one Component to another through templates:
+
+```handlebars {data-filename=app/templates/components/some-other-component.hbs}
+<MyComponent @favoriteFramework={{this.favoriteFramework}} />
+```
+
+To pass in arguments associated with a Route, define the property from within a Controller. Learn more about passing data between templates [here](../../components/passing-properties-to-a-component).
+
+## Helper functions
+
+Ember Helpers are a way to use JavaScript logic in your templates.
+For example, you could write a Helper function that capitalizes a word, does some math, converts a currency, or more.
+A Helper takes in `parameters`, which is an array of the values passed into the function, and should return a value.
+Ember gives you the ability to [write your own helpers](../writing-helpers/), and comes with some [helpers built-in](../built-in-helpers).
+
+For example, let's say you would like the ability to add two numbers together.
+Define a function in `app/helpers/sum.js` to create a `sum` helper:
 
 ```javascript {data-filename=app/helpers/sum.js}
-import { helper } from '@ember/component/helper';
+import { helper as buildHelper } from '@ember/component/helper';
 
 export function sum(params) {
-  return params.reduce((a, b) => {
-    return a + b;
-  });
-};
+  return params[0] + params[1];
+}
 
-export default helper(sum);
+export const helper = buildHelper(sum);
 ```
 
-The above code will allow you invoke the `sum()` function as a `{{sum}}` handlebars "helper" in your templates:
+Now you can use the `sum()` function as `{{sum}}` in your templates:
 
 ```handlebars {data-filename=app/templates/application.hbs}
-<p>Total: {{sum 1 2 3}}</p>
+<p>Total: {{sum 1 2}}</p>
 ```
 
-This helper will output a value of `6`.
+The user will see a value of `3` rendered in the template!
 
 Ember ships with several built-in helpers, which you will learn more about in the following guides.
 
-#### Nested Helpers
+### Nested Helpers
 
-Helpers have the ability to be nested within other helper invocations and also component invocations.
-
-This gives you the flexibility to compute a value _before_ it is passed in as an argument or an attribute of another.
-
-It is not possible to nest curly braces `{{}}`, so the correct way to nest a helper is by using parentheses `()`:
+Sometimes, you might see helpers used inside of some parentheses, `()`.
+It means that a Helper is being used inside of another Helper or Component.
+This is referred to as a "nested" Helper.
+Parentheses must be used because curly braces `{{}}` cannot be nested.
 
 ```handlebars {data-filename=app/templates/application.hbs}
 {{sum (multiply 2 4) 2}}
@@ -257,4 +222,4 @@ Thus, the output of these combined helpers is `10`.
 
 As you move forward with these template guides, keep in mind that a helper can be used anywhere a normal value can be used.
 
-Thus, many of Ember's built-in helpers (as well as your custom helpers) can be used in nested form.
+Many of Ember's built-in helpers (as well as your custom helpers) can be used in nested form.
