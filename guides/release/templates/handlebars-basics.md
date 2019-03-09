@@ -103,19 +103,14 @@ Using <code>{{@namedArgument}}</code> gives you the guarantee that the value is 
 
 #### Local variables
 
-Local variables are variables that are "created" inside the template.
-A common example would be when iterating an array using [`each`](https://emberjs.com/api/ember/3.7/classes/Ember.Templates.helpers/methods/let?anchor=each),
-a local variable is created for the current element being iterated:
+```javascript {data-filename=app/components/my-component.js}
+import Component from '@glimmer/component';
 
-```javascript
-// my-component.js
-export default Component.extend({
-  names: null,
-
-  init() {
-    this.names = ["Tomster", "Zoey"]
-  }
-})
+export default class Profile extends Component {
+  firstName = 'Trek';
+  lastName = 'Glowacki';
+  favoriteFramework = 'Ember';
+}
 ```
 
 ```handlebars
