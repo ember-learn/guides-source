@@ -178,7 +178,7 @@ To pass in arguments associated with a Route, define the property from within a 
 
 Ember Helpers are a way to use JavaScript logic in your templates.
 For example, you could write a Helper function that capitalizes a word, does some math, converts a currency, or more.
-A Helper takes in two types of arguments `positional` (an array of the positional values passed in the template) or `named` (an object of the named values passed in the template), which are passed into the function, and should return a value.
+A Helper takes in two types of arguments, `positional` (an array of the positional values passed in the template) or `named` (an object of the named values passed in the template), which are passed into the function, and should return a value.
 Ember gives you the ability to [write your own helpers](../writing-helpers/), and comes with some [helpers built-in](../built-in-helpers).
 
 For example, let's say you would like the ability to add two numbers together.
