@@ -67,9 +67,9 @@ Here is a checklist of some things to keep in mind when developing your applicat
   - All interactive elements must be usable with only a keyboard. A helpful development tip- make sure you can use your own app just using your keyboard.
   - Do not use `role="presentation"` or `aria-hidden="true"` on a focusable element.
   - All interactive elements must have an accessible name.
-- The values for the role attribute are pre-defined by the ARIA specification. This is not something an author can define a custom value for (that is not listed in the spec). [Learn more about roles in the specification.](https://www.w3.org/TR/wai-aria/#roles_categorization)
+- The values for the role attribute are predefined by the ARIA specification. This is not something an author can define a custom value for (that is not listed in the spec). [Learn more about roles in the specification.](https://www.w3.org/TR/wai-aria/#roles_categorization)
 - In general, avoid making your own keyboard shortcuts. [Screen readers already provide quite a few.](https://dequeuniversity.com/screenreaders/) There is some nuance here, so proceed with caution should you choose to do so. 
-- "Completely accessible" may be somewhat of a misnomer. Practical accessibility looks more like 90% coding to the spec and 10% filing browser bugs (or keeping track of existing browser bugs). Keep in mind that if you choose to implement a workaround for a browser bug, you will need to to put an issue in your product backlog to follow up on browser bugs at a later date. 
+- "Completely accessible" may be somewhat of a misnomer. Practical accessibility looks more like 90% coding to the spec and 10% filing browser bugs (or keeping track of existing browser bugs). Keep in mind that if you choose to implement a workaround for a browser bug, you will need to put an issue in your product backlog to follow up on browser bugs at a later date.
 
 ### Focus
 
