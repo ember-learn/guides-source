@@ -85,13 +85,13 @@ This is referred to as the template's "context."
 For example, to display a property inside a Component's template, it should be defined in the Component's JavaScript file:
 
 ```javascript {data-filename=app/components/my-component.js}
-import Component from '@ember/component';
+import Component from '@glimmer/component';
 
-export default Component.extend({
-  firstName: 'Trek',
-  lastName: 'Glowacki',
-  favoriteFramework: 'Ember',
-});
+export default class Profile extends Component {
+  firstName = 'Trek';
+  lastName = 'Glowacki';
+  favoriteFramework = 'Ember';
+}
 ```
 
 Properties like `firstName` can be used in the template
