@@ -22,10 +22,7 @@ In addition to the simple form you've learned so far,
 components also support being used in **block form**.
 In block form, components can be passed a Handlebars template that is rendered inside the component's template wherever the `{{yield}}` expression appears.
 
-To use the block form, add a `#` character to the beginning of the component name,
-then make sure to add a closing tag.
-
-See the Handlebars documentation on [block expressions](http://handlebarsjs.com/#block-expressions) for more.
+To use the block form, change the self-closing tag to a separate opening and closing tag: `<BlogPost></BlogPost>`
 
 In that case, we can use the `<BlogPost />` component in **block form** and tell Ember where the block content should be rendered using the `{{yield}}` helper.
 To update the example above, we'll first change the component's template:

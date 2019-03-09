@@ -1,7 +1,5 @@
 For Super Rentals, we want to be able to display a map showing where each rental is.
-To implement this feature, we plan to make use of Ember services.
-
-An [Ember Service](../../applications/services/) is an object that can be made available for different parts of an application.
+We will use an [Ember service](../../applications/services/) to implement this feature.
 
 We plan to use the following services to provide maps.
 
@@ -224,7 +222,6 @@ In our test below we are passing in our fake map utility object in the first tes
 ```javascript {data-filename="tests/unit/services/map-element-test.js" data-diff="+3,+5,-10,-11,-12,-13,-14,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33,+34,+35,+37,+38,+39,+40,+41,+42,+43,+44,+45"}
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
-import { resolve } from 'rsvp';
 
 const DUMMY_ELEMENT = {};
 
@@ -249,7 +246,7 @@ module('Unit | Service | maps', function(hooks) {
     let stubGeocodeService = {
       fetchCoordinates(location) {
         assert.equal(location, 'San Francisco', 'fetchCoordinates called with location');
-        return resolve([0, 0]);
+        return Promise.resolve([0, 0]);
       }
     }
     let mapService = this.owner.factoryFor('service:map-element').create({map: stubMapService, geocode: stubGeocodeService});
@@ -271,7 +268,7 @@ module('Unit | Service | maps', function(hooks) {
 
 ```
 
-When the service calls `createMap` on our fake utility `stubMapUtil`, we will run asserts to validate that it is called.
+When the service calls `createMap` on our fake utility `stubMapService`, we will run asserts to validate that it is called.
 In our first test notice that we expect five asserts to be run in line 17. Two of the asserts run in the test function, while the other two are run when `createMap` is called.
 
 In the second test, only one assert is expected (line 38), since the map element is fetched from cache and does not use the utility.
@@ -299,14 +296,13 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
-import { resolve } from 'rsvp';
 
 let StubMapsService = Service.extend({
   getMapElement(location) {
     this.set('calledWithLocation', location);
     let element = document.createElement('div');
     element.className = 'map';
-    return resolve(element);
+    return Promise.resolve(element);
   }
 });
 
@@ -355,6 +351,55 @@ Registration makes an object available to your Ember application for things like
 The call to the function `this.owner.lookup` looks up the service we just registered and returns the instance that the test will use.
 In the example we assert that `calledWithLocation` in our stub is set to the location we passed to the component.
 
+We'll want to also stub the maps service for our `RentalListing` rendering test,
+since it uses `LocationMap` in its template.
+
+```javascript {data-filename="tests/integration/components/rental-listing-test.js" data-diff="+6,+7,+9,+10,+11,+12,+13,+19"}
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render, click } from '@ember/test-helpers';
+import hbs from 'htmlbars-inline-precompile';
+import EmberObject from '@ember/object';
+import Service from '@ember/service';
+
+let StubMapsService = Service.extend({
+  getMapElement() {
+    return Promise.resolve(document.createElement('div'));
+  }
+});
+
+module('Integration | Component | rental listing', function (hooks) {
+  setupRenderingTest(hooks);
+
+  hooks.beforeEach(function () {
+    this.owner.register('service:map-element', StubMapsService);
+    this.rental = EmberObject.create({
+      image: 'fake.png',
+      title: 'test-title',
+      owner: 'test-owner',
+      type: 'test-type',
+      city: 'test-city',
+      bedrooms: 3
+    });
+  });
+
+  test('should display rental details', async function(assert) {
+    await render(hbs`<RentalListing @rental={{this.rental}} />`);
+    assert.equal(this.element.querySelector('.listing h3').textContent.trim(), 'test-title', 'Title: test-title');
+    assert.equal(this.element.querySelector('.listing .owner').textContent.trim(), 'Owner: test-owner', 'Owner: test-owner');
+  });
+
+  test('should toggle wide class on click', async function(assert) {
+    await render(hbs`<RentalListing @rental={{this.rental}} />`);
+    assert.notOk(this.element.querySelector('.image.wide'), 'initially rendered small');
+    await click('.image');
+    assert.ok(this.element.querySelector('.image.wide'), 'rendered wide after click');
+    await click('.image');
+    assert.notOk(this.element.querySelector('.image.wide'), 'rendered small after second click');
+  });
+});
+```
+
 ### Stubbing Services in Application Tests
 
 Finally, we want to update our application tests to account for our new service.
@@ -379,11 +424,10 @@ import {
   fillIn,
   triggerKeyEvent
 } from '@ember/test-helpers'
-import { resolve } from 'rsvp';
 
 let StubMapsService = Service.extend({
   getMapElement() {
-    return resolve(document.createElement('div'));
+    return Promise.resolve(document.createElement('div'));
   }
 });
 
