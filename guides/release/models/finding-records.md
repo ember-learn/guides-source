@@ -86,13 +86,14 @@ and the adapter for the `User` model defines a `queryRecord()` method that targe
 
 ```javascript {data-filename=app/adapters/user.js}
 import DS from 'ember-data';
-import fetch from 'fetch';
+const { Adapter } = DS;
+import $ from 'jquery';
 
-export default DS.Adapter.extend({
+export default class UserAdapter extends Adapter {
   queryRecord(store, type, query) {
     return fetch('/api/current_user');
   }
-});
+}
 ```
 
 then calling [`store.queryRecord()`](https://api.emberjs.com/ember-data/3.10/classes/DS.Store/methods/query?anchor=queryRecord) will retrieve that object from the server:
