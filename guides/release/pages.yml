@@ -19,8 +19,6 @@
   pages:
     - title: "Templating Basics"
       url: "handlebars-basics"
-    - title: "Built-in Helpers"
-      url: "built-in-helpers"
     - title: "Conditionals"
       url: "conditionals"
     - title: "Displaying a List of Items"
@@ -29,15 +27,10 @@
       url: "displaying-the-keys-in-an-object"
     - title: "Binding Element Attributes"
       url: "binding-element-attributes"
-    - title: "Links"
-      url: "links"
     - title: "Actions"
       url: "actions"
-    - title: "Input Helpers"
-      url: "input-helpers"
-    - title: "Development Helpers"
-      url: "development-helpers"
-      isAdvanced: true
+    - title: "Built-in Helpers"
+      url: "built-in-helpers"
     - title: "Writing Helpers"
       url: "writing-helpers"
       isAdvanced: true
@@ -233,15 +226,26 @@
       url: "render-performance"
     - title: "Troubleshooting"
       url: "troubleshooting"
+
+- title: "Contributing to Ember.js"
+  url: 'contributing'
+  isAdvanced: true
+  pages:
+    - title: "Adding New Features"
+      url: "adding-new-features"
+    - title: "Repositories"
+      url: "repositories"
+
+- title: "Glossary"
+  url: "glossary"
+  pages:
+    - title: "Web Development"
+      url: "web-development"
+
 - title: 'Reference'
   url: 'reference'
   pages:
     - title: "Syntax Conversion Guide"
       url: "syntax-conversion-guide"
-    - title: "Accessibility"
-      url: 'accessibility'
-    - title: "Web Development Glossary"
-      url: "web-development"
-    - title: "Contributing to Ember.js"
-      url: 'contributing'
-
+    - title: "Accessibility Guide"
+      url: "accessibility-guide"

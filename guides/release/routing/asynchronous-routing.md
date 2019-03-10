@@ -8,7 +8,7 @@ heavy use of the concept of Promises. In short, promises are objects that
 represent an eventual value. A promise can either _fulfill_
 (successfully resolve the value) or _reject_ (fail to resolve the
 value). The way to retrieve this eventual value, or handle the cases
-when the promise rejects, is via the promise's [`then()`](https://www.emberjs.com/api/ember/release/classes/Promise/methods/then?anchor=then) method, which
+when the promise rejects, is via the promise's [`then()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then) method, which
 accepts two optional callbacks, one for fulfillment and one for
 rejection. If the promise fulfills, the fulfillment handler gets called
 with the fulfilled value as its sole argument, and if the promise rejects,
@@ -19,13 +19,13 @@ sole argument. For example:
 ```javascript
 let promise = fetchTheAnswer();
 
-promise.then(fulfill, reject);
+promise.then(fulfillCallback, rejectCallback);
 
-function fulfill(answer) {
+function fulfillCallback(answer) {
   console.log(`The answer is ${answer}`);
 }
 
-function reject(reason) {
+function rejectCallback(reason) {
   console.log(`Couldn't get the answer! Reason: ${reason}`);
 }
 ```
@@ -34,7 +34,7 @@ Much of the power of promises comes from the fact that they can be
 chained together to perform sequential asynchronous operations:
 
 ```javascript
-// Note: jQuery AJAX methods return promises
+// Note: jQuery Ajax methods return promises
 let usernamesPromise = Ember.$.getJSON('/usernames.json');
 
 usernamesPromise.then(fetchPhotosOfUsers)
@@ -51,11 +51,6 @@ the reason for the failure. In this manner, promises approximate an
 asynchronous form of try-catch statements that prevent the rightward
 flow of nested callback after nested callback and facilitate a saner
 approach to managing complex asynchronous logic in your applications.
-
-This guide doesn't intend to fully delve into all the different ways
-promises can be used, but if you'd like a more thorough introduction,
-take a look at the readme for [RSVP](https://github.com/tildeio/rsvp.js),
-the promise library that Ember uses.
 
 ### The Router Pauses for Promises
 
@@ -82,12 +77,11 @@ A basic example:
 
 ```javascript {data-filename=app/routes/tardy.js}
 import Route from '@ember/routing/route';
-import RSVP from 'rsvp';
 import { later } from '@ember/runloop';
 
 export default Route.extend({
   model() {
-    return new RSVP.Promise(function(resolve) {
+    return new Promise(function(resolve) {
       later(function() {
         resolve({ msg: 'Hold Your Horses' });
       }, 3000);
@@ -126,11 +120,10 @@ along the way, e.g.:
 
 ```javascript {data-filename=app/routes/good-for-nothing.js}
 import Route from '@ember/routing/route';
-import RSVP from 'rsvp';
 
 export default Route.extend({
   model() {
-    return RSVP.reject("FAIL");
+    return Promise.reject("FAIL");
   },
 
   actions: {

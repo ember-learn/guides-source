@@ -27,6 +27,7 @@ Ctrl-C
 customizations
 D3
 dasherize
+DataAdapter
 datepicker
 de
 debounce
@@ -36,6 +37,7 @@ deserializing
 draggable
 durations
 enumerables
+ember-a11y
 ember-cli-deprecation-workflow
 ember-cli-cjs-transform
 ember-cli-mirage.
@@ -46,6 +48,7 @@ erroring
 Evented
 facto
 falsy
+focusable
 frontend
 fullname
 geocode
@@ -53,6 +56,7 @@ geocoding
 Geolocation
 globbing
 *google
+HammerJS
 hardcode
 hashchange
 Hoc
@@ -74,6 +78,8 @@ modularity
 naïve
 nav
 *NPM
+NVDA
+Orca
 Param
 param
 params
@@ -88,6 +94,7 @@ prepend
 pre-transition
 readme
 readonly
+recognizers
 relayout
 repo
 rerender
@@ -108,12 +115,18 @@ subexpression
 suboptimal
 substate
 substates
+syntaxes
+TalkBack
 teardown
 templating
 todo
 todos
 typeahead
+UIs
 unsilence
 untrusted
 usecase
 viewport
+VoiceOver
+WAI-ARIA
+WCAG

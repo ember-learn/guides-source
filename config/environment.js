@@ -45,6 +45,21 @@ module.exports = function(environment) {
     },
 
     deprecationsGuideURL: 'https://www.emberjs.com/deprecations/',
+
+    metricsAdapters: [
+      {
+        name: 'GoogleAnalytics',
+        environments: ['production'],
+        config: {
+          id: 'UA-27675533-1',
+          require: ['linkid']
+        }
+      },
+    ],
+    survey: {
+      link: 'https://emberjs.com/ember-community-survey-2019/',
+      title: '2019 Ember Community Survey'
+    },
   };
 
   if (environment === 'development') {

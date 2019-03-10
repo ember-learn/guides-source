@@ -1,7 +1,9 @@
-Statements like [`if`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/if?anchor=if)
+Oftentimes, you'll want to conditionally show different templates based on a
+value in your JavaScript. Ember's templates have statements like
+[`if`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/if?anchor=if)
 and [`unless`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/if?anchor=unless)
-are implemented as built-in helpers. Helpers can be invoked three ways, each
-of which is illustrated below with conditionals.
+built in exactly for this. These helpers can be invoked three ways, each of
+which is illustrated below with conditionals.
 
 The first style of invocation is **inline invocation**. This looks similar to
 displaying a property, but helpers accept arguments. For example:
@@ -13,9 +15,9 @@ displaying a property, but helpers accept arguments. For example:
 ```
 
 [`{{if}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/if?anchor=if)
-in this case returns `"zoooom"` when `isFast` is true and
-`"putt-putt-putt"` when `isFast` is false. Helpers invoked as inline expressions
-render a single value, the same way that properties are a single value.
+in this case returns `"zoooom"` when `isFast` is true and `"putt-putt-putt"`
+when `isFast` is false. Helpers invoked as inline expressions render a single
+value, the same way that properties are a single value.
 
 Inline helpers don't need to be used inside HTML tags. They can also be used
 inside attribute values:
@@ -54,12 +56,11 @@ properties on `person` only if that it is present:
 ```
 
 [`{{if}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/if?anchor=if)
-checks for truthiness, which means all values except `false`,
-`undefined`, `null`, `''`, `0`  or `[]` (i.e., any JavaScript falsy value or an
-empty array).
+checks for truthiness, which means all values except `false`, `undefined`,
+`null`, `''`, `0` or `[]` (i.e., any JavaScript falsy value or an empty array).
 
-If a value passed to `{{#if}}` evaluates to falsy, the `{{else}}` block
-of that invocation is rendered:
+If a value passed to `{{#if}}` evaluates to falsy, the `{{else}}` block of that
+invocation is rendered:
 
 ```handlebars
 {{#if this.person}}

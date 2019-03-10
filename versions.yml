@@ -30,4 +30,5 @@ allVersions:
   - "v3.5.0"
   - "v3.6.0"
   - "v3.7.0"
-currentVersion: "v3.7.0"
+  - "v3.8.0"
+currentVersion: "v3.8.0"
