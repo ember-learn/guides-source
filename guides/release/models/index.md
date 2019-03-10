@@ -2,29 +2,29 @@ Ember developers have great options for how they handle data from
 back end APIs. Ember itself works with any type of back end: REST,
 JSON:API, GraphQL, or anything else.
 
-Many developers choose to use Ember Data, a powerful set of tools 
-for formatting requests, normalizing responses, and efficiently 
+Many developers choose to use Ember Data, a powerful set of tools
+for formatting requests, normalizing responses, and efficiently
 managing a local cache of data. The Ember Data library is included
 by default for applications generated with the Ember CLI; however,
 if you do not wish to use it, it can easily be removed by
 removing the `ember-data` entry from `package.json`.
-Some developers write all their own code to handle API requests, 
-using native JavaScript methods like 
-[fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) 
+Some developers write all their own code to handle API requests,
+using native JavaScript methods like
+[fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
 or third-party libraries. Many apps use a combination of approaches.
 
-This section of the Guides describes the essential features of Ember 
+This section of the Guides describes the essential features of Ember
 Data. To learn about other ways to handle data and to find extensions,
-check out [Ember Observer](https://www.emberobserver.com/) 
+check out [Ember Observer](https://www.emberobserver.com/)
 or search for community-made tutorials.
 
 ## What are Ember Data models?
 
-In Ember Data, models are objects that represent the underlying data 
+In Ember Data, models are objects that represent the underlying data
 that your application presents to the user.
-Note that Ember Data models are a different concept than the 
-[`model`](../routing/specifying-a-routes-model/) method on Routes, 
-although they share the same name. 
+Note that Ember Data models are a different concept than the
+[`model`](../routing/specifying-a-routes-model/) method on Routes,
+although they share the same name.
 
 Different apps may have very
 different models, depending on what problems they're trying to solve.
@@ -208,11 +208,12 @@ string, and a `birthday` attribute that is a date:
 
 ```javascript {data-filename=app/models/person.js}
 import DS from 'ember-data';
+const { Model, attr } = DS;
 
-export default DS.Model.extend({
-  firstName: DS.attr('string'),
-  birthday:  DS.attr('date')
-});
+export default class Person extends Model {
+  @attr('string') firstName;
+  @attr('date') birthday;
+}
 ```
 
 A model also describes its relationships with other objects. For
@@ -221,18 +222,20 @@ example, an `order` may have many `line-items`, and a
 
 ```javascript {data-filename=app/models/order.js}
 import DS from 'ember-data';
+const { Model, hasMany } = DS;
 
-export default DS.Model.extend({
-  lineItems: DS.hasMany('line-item')
-});
+export default class Order extends Model {
+  @hasMany('line-item') lineItems;
+}
 ```
 
 ```javascript {data-filename=app/models/line-item.js}
 import DS from 'ember-data';
+const { Model, belongsTo } = DS;
 
-export default DS.Model.extend({
-  order: DS.belongsTo('order')
-});
+export default class LineItem extends Model {
+  @belongsTo('order') order;
+}
 ```
 
 Models don't have any data themselves, they define the attributes,
