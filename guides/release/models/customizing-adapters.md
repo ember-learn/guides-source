@@ -250,26 +250,22 @@ export default class ApplicationAdapter extends JSONAPIAdapter {
 }
 ```
 
-In some cases, your dynamic headers may require data from some
-object outside of Ember's observer system (for example
-`document.cookie`). You can use the
-[volatile](https://www.emberjs.com/api/ember/release/classes/@ember%2Fobject%2Fcomputed/methods/property?anchor=volatile)
-function to set the property into a non-cached mode causing the headers to
-be recomputed with every request.
+[Getters](../../upgrading/editions/#toc_getters-and-setters) recompute with each access, so you could just as easily rely upon another dynamic value such as
+`document.cookie`.
 
 ```javascript {data-filename=app/adapters/application.js}
 import DS from 'ember-data';
-import { computed } from '@ember/object';
 import { get } from '@ember/object';
+const { JSONAPIAdapter } = DS;
 
-export default DS.JSONAPIAdapter.extend({
-  headers: computed(function() {
+export default class ApplicationAdapter extends JSONAPIAdapter {
+  get headers() {
     return {
       'API_KEY': get(document.cookie.match(/apiKey\=([^;]*)/), '1'),
       'ANOTHER_HEADER': 'Some header value'
     };
-  }).volatile()
-});
+  }
+}
 ```
 
 #### Authoring Adapters
