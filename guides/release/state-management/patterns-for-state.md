@@ -210,7 +210,7 @@ Once the data loads, it updates the state, and data flows downward like normal
 
 Background events are similar to data loading. Something is scheduled to happen
 in the background, like a `setTimeout` or `setInterval`, a callback scheduled in
-the [runloop][2], or connection is opened to something that communicates
+the [run loop][2], or connection is opened to something that communicates
 directly with the app, like a websocket or a web worker. When these events occur
 and update state, they trigger a rerender just like data loading.
 
