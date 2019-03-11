@@ -114,8 +114,8 @@ want to:
   object model.
 - **Curly component invocation**, eliminating the ambiguity in templates between
   values and DOM creation.
-- **The runloop**. App developers should never have to write code that interacts
-  with the Ember runloop, even in tests.
+- **The run loop**. App developers should never have to write code that interacts
+  with the Ember run loop, even in tests.
 - **Ember "inner HTML" components**, and the confusing JavaScript API used to
   configure a component’s root element, like `tagName`, `classNameBindings`,
   etc.
