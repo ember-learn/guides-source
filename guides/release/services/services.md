@@ -84,7 +84,7 @@ import { inject as service } from '@ember/service';
 
 export default class CartContentsComponent extends Component {
   //will load the service in file /app/services/shopping-cart.js
-  cart: service('shopping-cart')
+  @service('shopping-cart') cart;
 };
 ```
 
@@ -119,7 +119,7 @@ import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
 export default class CartContentsComponent extends Component {
-  cart: service('shopping-cart'),
+  @service('shopping-cart') cart;
 
 	@action
 	remove(item) {
