@@ -172,7 +172,7 @@ export default class MagicTitleComponent extends Component {
 ```handlebars {data-filename="app/templates/components/magic-title.hbs"}
 <h2>{{this.title}}</h2>
 
-<button class="title-button" {{action "updateTitle"}}>
+<button class="title-button" onclick={{action this.updateTitle}}>
   Update Title
 </button>
 ```
@@ -232,7 +232,7 @@ export default class CommentFormComponent extends Component {
 ```
 
 ```handlebars {data-filename="app/templates/components/comment-form.hbs"}
-<form {{action "submitComment" on="submit"}}>
+<form onsubmit={{action this.submitComment}}>
   <label>Comment:</label>
   {{textarea value=this.comment}}
 
