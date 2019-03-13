@@ -17,13 +17,14 @@ based on a `foo` property.
 import Service from '@ember/service';
 import { computed } from '@ember/object';
 
-export default Service.extend({
-  foo: 'bar',
+export default class SomeThingService extends Service {
+  foo = 'bar';
 
-  computedFoo: computed('foo', function() {
-    return `computed ${this.foo}`;
+  @computed('foo')
+  get computedFoo() {
+    return `${this.foo}`;
   })
-});
+};
 ```
 
 Within the test for this object, we'll lookup the service instance, update the `foo` property (which
@@ -65,13 +66,13 @@ the `foo` property).
 ```javascript {data-filename=app/services/some-thing.js}
 import Service from '@ember/service';
 
-export default Service.extend({
-  foo: 'bar',
+export default class SomeThingService extends Service {
+  foo = 'bar';
 
   testMethod() {
     this.set('foo', 'baz');
   }
-});
+};
 ```
 
 To test it, we create an instance of our class `SomeThing` as defined above,
@@ -102,14 +103,14 @@ that returns a value based on some internal state.
 ```javascript {data-filename=app/services/some-thing.js}
 import Service from '@ember/service';
 
-export default Service.extend({
-  count: 0,
+export default class SomeThingService extends Service {
+  count = 0;
 
   calc() {
     this.incrementProperty('count');
     return `count: ${this.count}`;
   }
-});
+};
 ```
 
 The test would call the `calc` method and assert it gets back the correct value.
@@ -138,14 +139,15 @@ Suppose we have an object that has a property and a method observing that proper
 import Service from '@ember/service';
 import { observer } from "@ember/object";
 
-export default Service.extend({
-  foo: 'bar',
-  other: 'no',
+export default class SomeThingService extends Service {
+  foo = 'bar';
 
-  doSomething: observer('foo', function() {
+  other = 'no';
+
+  doSomething = observer('foo', function() {
     this.set('other', 'yes');
-  })
-});
+  });
+};
 ```
 
 In order to test the `doSomething` method we create an instance of `SomeThing`,
