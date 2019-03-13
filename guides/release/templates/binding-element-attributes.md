@@ -38,39 +38,41 @@ If `isAdministrator` is `false`, Handlebars will produce the following:
 <input type="checkbox">
 ```
 
-### Adding Other Attributes (Including Data Attributes)
+### Adding Attributes to Component Invocations
 
-By default, components only accept a limited number of HTML attributes.
-This means that some uncommon but perfectly valid attributes, such as `lang` or
-custom `data-*` attributes must be specifically enabled. For example, this template:
+Components in Ember can also accept attributes to be placed on an element
+which they render. A common use for this might be `lang` or `data-*`
+attributes. For example, this template passes those two attributes to
+a link component:
 
 ```handlebars
-{{#link-to "photos" data-toggle="dropdown" lang="es"}}Fotos{{/link-to}}
+<LinkTo @route="photos" data-toggle="dropdown" lang="es">
+  Fotos
+</LinkTo>
 ```
 
-Will render the following HTML:
+Which will render render the following HTML:
 
 ```html
-<a id="ember239" class="ember-view" href="#/photos">Fotos</a>
+<a href="/photos" data-toggle="dropdown" lang="es" id="ember239" class="ember-view">
+  Fotos
+</a>
 ```
 
-To enable support for these attributes, an attribute binding must be
-added for each specific attribute on the component.
-To do this, you can extend the appropriate components
-in your application. For example, for `link-to` you would create your own version
-of this component by extending
-[`Ember.LinkComponent`](https://www.emberjs.com/api/ember/release/classes/LinkComponent)
+Components can control which of their elements receive attributes.
+[Read more about how to customize a component's element](../../components/customizing-a-components-element/).
 
-```javascript {data-filename="app/components/link-to/component.js"}
-import LinkComponent from '@ember/routing/link-component';
-
-export default LinkComponent.extend({
-  attributeBindings: ['data-toggle', 'lang']
-});
-```
-
-Now the same template above renders the following HTML:
-
-```html
-<a id="ember239" class="ember-view" href="#/photos" data-toggle="dropdown" lang="es">Fotos</a>
-```
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+This API uses a recent and new feature in Ember: Angle bracket invocation
+syntax of an Ember component. If this doesn't look familiar you may be
+working with classic component invocation syntax (for example <code>{{link-to}}</code>).
+For more examples of ways to use components in a template, see the <a href="../../reference/syntax-conversion-guide">Syntax Conversion Guide</a> or the <a href="https://guides.emberjs.com/v3.6.0/templates/binding-element-attributes/">previous version of this Guide entry</a>.
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
+  </div>
+</div>
