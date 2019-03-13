@@ -60,7 +60,7 @@ You can create a new _instance_ of the class using the `new` keyword:
 let tom = new Person();
 ```
 
-Instances are like Plain Old Javascript Objects (POJOs) in many ways. You can
+Instances are like Plain Old JavaScript Objects (POJOs) in many ways. You can
 assign values to them however you like, and generally treat them the same:
 
 ```js
@@ -329,7 +329,7 @@ mel.name = 'Melanie Sumner';
 ```
 
 We need to add a _setter_ in order to be able to set it. Generally, the setter
-function stores the value somewher, and the getter function retrieves it:
+function stores the value somewhere, and the getter function retrieves it:
 
 ```js
 class Person {
@@ -615,7 +615,7 @@ class Vehicle {
 class Aircraft extends Vehicle {
   move() {
     super.move();
-    console.log('flying');
+    console.log('flying!');
   }
 }
 
