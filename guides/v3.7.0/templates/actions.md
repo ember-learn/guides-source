@@ -101,7 +101,7 @@ By default, the `{{action}}` helper prevents the default browser action of the D
 <a href="newPage.htm" {{action "logClick"}}>Go</a>
 ```
 
-**Clicking on this link does not go to `newPage.htm`** because the `action` has overridden this functionality. This is the default behaviour for Ember.
+**Clicking on this link does not go to `newPage.htm`** because the `action` has overridden this functionality. This is the default behavior for Ember.
 
 You can override this behavior and make this work more like a standard, non-ember, anchor tag by using the `preventDefault=false` overload of the action on an `a` tag. For example:
 
