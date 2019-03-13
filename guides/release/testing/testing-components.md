@@ -156,17 +156,17 @@ Imagine you have the following component that changes its title when a button is
 > component magic-title`.
 
 ```javascript {data-filename="app/components/magic-title.js"}
-import Component from '@ember/component';
+import Component from '@glimmer/component';
+import { action } from '@ember/object';
 
-export default Component.extend({
-  title: 'Hello World',
+export default class MagicTitleComponent extends Component {
+  title = 'Hello World';
 
-  actions: {
-    updateTitle() {
-      this.set('title', 'This is Magic');
-    }
-  }
-});
+  @action
+  updateTitle() {
+    this.set('title', 'This is Magic');
+  };
+};
 ```
 
 ```handlebars {data-filename="app/templates/components/magic-title.hbs"}
@@ -218,16 +218,16 @@ passing along the form's data:
 > component comment-form`.
 
 ```javascript {data-filename="app/components/comment-form.js"}
-import Component from '@ember/component';
+import Component from '@glimmer/component';
+import { action } from '@ember/object';
 
-export default Component.extend({
-  comment: '',
+export default class CommentFormComponent extends Component {
+  comment = '';
 
-  actions: {
-    submitComment() {
-      this.submitComment({ comment: this.comment });
-    }
-  }
+  @action
+  submitComment() {
+    this.submitComment({ comment: this.comment });;
+  };
 });
 ```
 
@@ -285,22 +285,24 @@ Imagine you have the following component that uses a location service to display
 > component location-indicator`.
 
 ```javascript {data-filename="app/components/location-indicator.js"}
-import Component from '@ember/component';
+import Component from '@glimmer/component';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 
-export default Component.extend({
-  locationService: service('location-service'),
+export default class LocationIndicatorComponent extends Component {
+  @service locationService;
 
   // when the coordinates change, call the location service to get the current city and country
-  city: computed('locationService.currentLocation', function () {
+  @computed('locationService.currentLocation')
+  get city() {
     return this.locationService.getCurrentCity();
-  }),
+  });
 
-  country: computed('locationService.currentLocation', function () {
+  @computed('locationService.currentLocation')
+  get country() {
     return this.locationService.getCurrentCountry();
-  })
-});
+  });
+};
 ```
 
 ```handlebars {data-filename="app/templates/components/location-indicator.hbs"}
@@ -465,17 +467,17 @@ Imagine you have a typeahead component that uses [`Ember.run.debounce`](https://
 > component delayed-typeahead`.
 
 ```javascript {data-filename="app/components/delayed-typeahead.js"}
-import Component from '@ember/component';
+import Component from '@glimmer/component';
+import { action } from '@ember/object';
 import { debounce } from '@ember/runloop';
 
-export default Component.extend({
-  actions: {
-    handleTyping() {
-      //the fetchResults function is passed into the component from its parent
-      debounce(this, this.fetchResults, this.searchValue, 250);
-    }
-  }
-});
+export default class DelayedTypeaheadComponent extends Component {
+  @action
+  handleTyping() {
+    //the fetchResults function is passed into the component from its parent
+    debounce(this, this.fetchResults, this.searchValue, 250);
+  };
+};
 ```
 
 ```handlebars {data-filename="app/templates/components/delayed-typeahead.hbs"}
