@@ -1,4 +1,4 @@
-In the last section you learned how to write a helper. A helper is usually a
+A helper is usually a
 simple function that can be used in any template. Ember comes with a few helpers
 that can make developing your templates a bit easier. These helpers can allow
 you to be more dynamic in passing data to another helper or component.
@@ -168,10 +168,10 @@ when the `debugger;` breakpoint is hit, you can attempt to retrieve this value:
 {{/each}}
 ```
 
-You'll be able to get values from the current item:
+You'll be able to get the value of the current item:
 
 ```javascript
-> get('this.item.name')
+> get('item.name')
 ```
 
 You can also access the context of the view to make sure it is the object that

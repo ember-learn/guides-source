@@ -36,76 +36,41 @@ If `isAdministrator` is `false`, the rendered HTML will be:
 <input type="checkbox">
 ```
 
-### Passing HTML attributes to components
+### Adding Attributes to Component Invocations
 
-There are two kinds of things you can pass to components, named arguments and HTML attributes.
-For named arguments, you can consult [Passing Properties to a Component](../../components/passing-properties-to-a-component/).
-Let's discuss HTML attributes.
+Components in Ember can also accept attributes to be placed on an element
+which they render. A common use for this might be `lang` or `data-*`
+attributes. For example, this template passes those two attributes to
+a link component:
 
-If you want your component to be able to receive HTML attributes when it is being used in a template,
-you have two ways to do it: you can specify it in `attributeBindings`,
-or you can use `...attributes` in the component's template.
-
-#### `attributeBindings`
-
-By default, components that you have created will not apply HTML attributes you pass to them when using them in templates.
-This means that the following:
-
-```handlebars {data-filename="app/templates/application.hbs"}
-<NameEditor data-test-my-custom-attribute />
+```handlebars
+<LinkTo @route="photos" data-toggle="dropdown" lang="es">
+  Fotos
+</LinkTo>
 ```
 
-Will not apply `data-test-my-custom-attribute` unless you have specified an attribute binding for it in the component class:
+Which will render render the following HTML:
 
-```javascript {data-filename="app/components/name-editor.js"}
-import Component from '@ember/component';
-
-export default Component.extend({
-  attributeBindings: ['data-test-my-custom-attribute']
-});
+```html
+<a href="/photos" data-toggle="dropdown" lang="es" id="ember239" class="ember-view">
+  Fotos
+</a>
 ```
 
-After specifying the attribute binding, Ember will apply it to the wrapper element of the component.
-There is another way, in case you want to apply the attributes to an element _inside_ your template.
+Components can control which of their elements receive attributes.
+[Read more about how to customize a component's element](../../components/customizing-a-components-element/).
 
-#### `...attributes`
-
-You can apply arbitrary HTML attributes to an element inside your template via a special syntax, `...attributes`.
-Building on top of the previous example, let us say we have the following `NameEditor` class and template:
-
-```javascript {data-filename="app/components/name-editor.js"}
-import Component from '@ember/component';
-
-export default Component.extend({
-  enteredName: null
-});
-```
-
-```handlebars {data-filename="app/components/templates/name-editor.hbs"}
-<p>Hello User, please enter your name:</p>
-
-<label for="name-editor">
-<Input @value={{this.enteredName}} id="name-editor" />
-```
-
-Now we want to be able to pass HTML attributes to `NameEditor` so that it auto-focuses,
-as well as passing a custom data attribute so we can easily get to it when testing.
-To do that, we update the template to the following:
-
-```handlebars {data-filename="app/components/templates/name-editor.hbs"}
-<p>Hello User, please enter your name:</p>
-
-<label for="name-editor">
-<Input @value={{this.enteredName}} id="name-editor" ...attributes />
-```
-
-And now we can call our `NameEditor` component with our desired HTML attributes:
-
-```handlebars {data-filename="app/templates/application.hbs"}
-<NameEditor autofocus data-test-name-editor />
-```
-
-We can see that `autofocus` and `data-test-name-editor` were applied to the rendered output.
-This will work for any HTML attribute that you try to pass to the component.
-
-You can read more about attributes and which are available at MDN's [HTML attribute reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes).
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+This API uses a recent and new feature in Ember: Angle bracket invocation
+syntax of an Ember component. If this doesn't look familiar you may be
+working with classic component invocation syntax (for example <code>{{link-to}}</code>).
+For more examples of ways to use components in a template, see the <a href="../../reference/syntax-conversion-guide">Syntax Conversion Guide</a> or the <a href="https://guides.emberjs.com/v3.6.0/templates/binding-element-attributes/">previous version of this Guide entry</a>.
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
+  </div>
+</div>

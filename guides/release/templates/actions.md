@@ -8,64 +8,70 @@ the context of the template:
 
 ```javascript {data-filename=app/components/post/component.js}
 import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
 export default class Post extends Component {
+  @tracked isShowingBody;
+
   @action
   toggleBody() {
-    this.toggleProperty('isShowingBody');
+    this.isShowingBody = !this.isShowingBody;
   }
 }
 ```
 
-You can then add this action directly to an [_event handler
-property_](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers)
-on an element, like `onclick` or `onmouseenter`:
+You can then add this action to an element using the
+[`{{action}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/action?anchor=action)
+helper:
 
 ```handlebars {data-filename=app/components/post/template.hbs}
 <h3>
-  <button onclick={{this.toggleBody}}>{{this.title}}</button>
+  <button {{action this.toggleBody}}>{{@title}}</button>
 </h3>
 
 {{#if this.isShowingBody}}
-  <p>{{this.body}}</p>
+  <p>{{@body}}</p>
 {{/if}}
 ```
 
-This assigns the action to the standard browser event handler for that function.
-It'll receive the event as its first parameter, and you can handle it like any
-standard JavaScript event:
-
-```javascript {data-filename=app/components/post/component.js}
-import Component from '@glimmer/component';
-import { action } from '@ember/object';
-
-export default class Post extends Component {
-  @action
-  toggleBody(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    this.toggleProperty('isShowingBody');
-  }
-}
-```
-
+The `{{action}}` helper calls your action function when the element is
+clicked.
 You will learn about more advanced usages in the Component's [Actions and
 Events](../../components/actions-and-events/) guide, but you should familiarize
-yourself with the following basics first.
+yourself with the basics on this page first.
+
+Templates rendered for your application's routes are backed by controllers, so
+you may also see actions defined on a controller using the same `@action`
+decorator.
+
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+If this doesn't seem familiar you might be looking for documentation
+about Ember components and controller that use the older <code>.extend({</code> syntax.
+In those files you define actions in an object on the class then reference
+the action name with a string in the template.
+For more examples of that syntax see <a href="https://guides.emberjs.com/v3.6.0/templates/actions/">previous version of this Guide entry</a>.
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
+  </div>
+</div>
 
 ## Action Parameters
 
-You can optionally pass arguments to the action with the
-[`{{action}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/action?anchor=action)
+You can optionally pass arguments to the action
 helper. For example, if the `post` argument was passed:
 
 ```handlebars {data-filename=app/components/post/template.hbs}
 <p>
-  <button onclick={{action this.select this.post}}>
+  <button {{action this.select @post}}>
     ✓
   </button>
-  {{this.post.title}}
+  {{this.selectedPost.title}}
 </p>
 ```
 
@@ -87,8 +93,18 @@ export default class Post extends Component {
 }
 ```
 
-If you pass arguments like this, the event will be the _last_ argument that is
-passed to the handler:
+## Attaching Actions to Other Events
+
+Actions don't need to be triggered on click, in fact they can be attached
+to any event Ember is already listening to. For example this form will
+call the `updateText` action when submitted, but prevent the default
+form submission logic in the browser from running:
+
+```handlebars {data-filename=app/components/post/template.hbs}
+<form {{action this.createPost on="submit" preventDefault=true}}>
+  Post title: <Input @value={{this.title}} />
+</form>
+```
 
 ```javascript {data-filename=app/components/post/component.js}
 import Component from '@glimmer/component';
@@ -96,62 +112,18 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
 export default class Post extends Component {
-  @tracked selectedPost;
+  @tracked title;
 
   @action
-  select(post, event) {
-    event.preventDefault();
-    event.stopPropagation();
-    this.selectedPost = post;
+  createPost() {
+    // Do something with `this.title`
   }
 }
 ```
 
-## Modifying the action's first parameter
-
-If a `value` option for the `{{action}}` helper is specified, its value will be
-considered a property path that will be read off of the first parameter of the
-action. This comes very handy with event listeners and enables to work with
-one-way bindings.
-
-```handlebars
-<label>What's your favorite band?</label>
-<input
-  type="text"
-  value={{this.favoriteBand}}
-  onblur={{this.bandDidChange}}
-/>
-```
-
-Let's assume we have an action handler that prints its first parameter:
-
-```javascript
-actions: {
-  bandDidChange(newValue) {
-    console.log(newValue);
-  }
-}
-```
-
-By default, the action handler receives the first parameter of the event
-listener, the event object the browser passes to the handler, so `bandDidChange`
-prints `Event {}`.
-
-Using the `value` option modifies that behavior by extracting that property from
-the event object:
-
-```handlebars
-<label>What's your favorite band?</label>
-<input
-  type="text"
-  value={{this.favoriteBand}}
-  onblur={{action this.bandDidChange value="target.value"}}
-/>
-```
-
-The `newValue` parameter thus becomes the `target.value` property of the event
-object, which is the value of the input field the user typed. (e.g 'Foo
-Fighters')
+Read about which events Ember is already listening to in
+[Handling Events: Event
+Names](../../components/handling-events/#toc_event-names).
 
 ## Attaching Actions to Non-Clickable Elements
 

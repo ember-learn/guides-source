@@ -168,10 +168,9 @@ Which renders:
 Templates are backed by a context. A context is an object from which
 Handlebars expressions read their properties. In Ember this is often a component. For templates rendered by a route (like `application.hbs`), the context is a controller.
 
-For example, this `application.hbs` template will render a first and last name:
-
-```handlebars {data-filename=app/templates/application.hbs}
-Hello, <strong>{{this.firstName}} {{this.lastName}}</strong>!
+{{! A Handlebars comment. These comments, unlike, HTML
+    comments, are not rendered in the DOM. They are
+    removed when the template is compiled. }}
 ```
 
 The `firstName` and `lastName` properties are read from the
@@ -185,11 +184,14 @@ an Ember CLI application, you may need to create this file:
 ```javascript {data-filename=app/controllers/application.js}
 import Controller from '@ember/controller';
 
-export default Controller.extend({
-  firstName: 'Trek',
-  lastName: 'Glowacki'
-});
-```
+<!-- This button uses Ember Actions to make it interactive.
+A method named `plantATree` is called when the button is
+clicked. `plantATree` comes from the JavaScript file
+associated with the template, like a Component or
+Controller -->
+<button {{action 'plantATree'}}>
+  More trees!
+<button>
 
 The above template and controller render as the following HTML:
 
