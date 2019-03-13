@@ -114,7 +114,7 @@ Once loaded, a service will persist until the application exits.
 Below we add a remove action to the `cart-contents` component.
 
 ```javascript {data-filename=app/components/cart-contents.js}
-import Component from '@ember/component';
+import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
