@@ -243,8 +243,9 @@ Think of this like calling `this.actions.showPerson(person)` from our template.
 To handle this function call you need to modify the `PeopleList` component file to add the function to be called.
 In the component, add an `actions` object with a `showPerson` function that alerts the first argument.
 
-```javascript {data-filename="app/components/people-list.js"}
-import Component from '@ember/component';
+```javascript {data-filename="app/components/people-list.js" data-diff="+4,+5,+6,+7,+8"}
+import Component from '@glimmer/component';
+import { action } from '@ember/object';
 
 export default class PeopleList extends Component {
   @action
