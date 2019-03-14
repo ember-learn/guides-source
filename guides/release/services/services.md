@@ -41,7 +41,7 @@ export default class ShoppingCartService extends Service {
 
   add(item) {
     this.items.pushObject(item);
-  };
+  }
 
   remove(item) {
     this.items.removeObject(item);
