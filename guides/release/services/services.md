@@ -45,7 +45,7 @@ export default class ShoppingCartService extends Service {
 
   remove(item) {
     this.items.removeObject(item);
-  };
+  }
 
   empty() {
     this.items.clear();
