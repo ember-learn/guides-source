@@ -227,7 +227,7 @@ export default class CommentFormComponent extends Component {
   @action
   submitComment() {
     this.args.submitComment({ comment: this.comment });;
-  };
+  }
 });
 ```
 
