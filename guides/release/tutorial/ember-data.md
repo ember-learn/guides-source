@@ -27,9 +27,9 @@ When we open the model file, we can see a blank class extending [`DS.Model`](htt
 import DS from 'ember-data';
 const { Model } = DS;
 
-export default DS.Model.extend({
+export default class RentalModel extends Model {
 
-});
+}
 ```
 
 Let's define the structure of a rental object using the same attributes for our rental that we [previously used](../model-hook/) in our hard-coded array of JavaScript objects -
@@ -37,18 +37,19 @@ _title_, _owner_, _city_, _category_, _image_, _bedrooms_ and _description_.
 Define attributes by giving them the result of the function [`DS.attr()`](https://api.emberjs.com/ember-data/3.10/classes/DS/methods/attr?anchor=attr).
 For more information on Ember Data Attributes, read the section called [Defining Attributes](../../models/defining-models/#toc_defining-attributes) in the guides.
 
-```javascript {data-filename="app/models/rental.js" data-diff="+4,+5,+6,+7,+8,+9,+10"}
+```javascript {data-filename="app/models/rental.js" data-diff="+2,+5,+6,+7,+8,+9,+10,+11"}
 import DS from 'ember-data';
+const { Model, attr } = DS;
 
-export default DS.Model.extend({
-  title: DS.attr(),
-  owner: DS.attr(),
-  city: DS.attr(),
-  category: DS.attr(),
-  image: DS.attr(),
-  bedrooms: DS.attr(),
-  description: DS.attr()
-});
+export default class RentalModel extends Model {
+  @attr title;
+  @attr owner;
+  @attr city;
+  @attr category;
+  @attr image;
+  @attr bedrooms;
+  @attr description;
+}
 ```
 
 If you are curious about the `const { Model } = DS;` syntax above, it is called [destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Object_destructuring) and it is a feature of JavaScript.
