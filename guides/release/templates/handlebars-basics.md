@@ -129,9 +129,9 @@ about it! -->
 <!-- One way to use a component within a template -->
 <MyComponent />
 
-{{! Example of a comment that will be invisible, even
-if it contains things in {{curlyBraces}} }}
-
+{{! A Handlebars comment. These comments, unlike, HTML
+    comments, are not rendered in the DOM. They are
+    removed when the template is compiled. }}
 ```
 
 Component example:
@@ -150,7 +150,7 @@ A method named `plantATree` is called when the button is
 clicked. `plantATree` comes from the JavaScript file
 associated with the template, like a Component or
 Controller -->
-<button onclick={{action 'plantATree'}}>
+<button {{action 'plantATree'}}>
   More trees!
 <button>
 

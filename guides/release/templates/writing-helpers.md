@@ -5,7 +5,7 @@ a format more appropriate for your users.
 
 For example, imagine we have an `Invoice` model that contains a
 `totalDue` attribute, which represents the total amount due for that
-invoice.  Because we do not want our company to go out of business due
+invoice. Because we do not want our company to go out of business due
 to strange JavaScript rounding errors, [we store this value in cents
 instead of a floating point dollar value][currency-stackoverflow].
 
@@ -67,7 +67,7 @@ So, if we want to display a purchase total we can pass the value into the templa
 Your total is {{format-currency 250}}.
 ```
 
-And Ember makes use of our new helper function to replace the content inside the ```{{ }}``` with the formatted amount.
+And Ember makes use of our new helper function to replace the content inside the `{{ }}` with the formatted amount.
 
 ```html
 Your total is $2.50.
@@ -238,15 +238,17 @@ And two named arguments:
 
 ### Class-based Helpers
 
-By default, helpers are _stateless_. They are passed inputs (parameters
-and a hash), they perform an operation on those inputs, and return a
+Generated helpers are simply functions. They are passed arguments (positional
+and named), they perform an operation on those inputs, and return a
 single output. They have no side-effects and don't save any information
 that is used on subsequent runs of the function.
 
 In some situations, however, you may need to write a helper that interacts with
-the rest of your application. You can create class-based helpers that have
-access to services in your application, and can optionally save state as well,
-although this is usually unnecessary and error-prone.
+other parts of your application. You can create class-based helpers that have
+access to services. Because class based helpers have an object they could
+potentially keep track of state, but since the lifecycle of a component is
+based on the implementation of Ember's rendering engine (and this may
+change from time to time) helpers make a poor home for state.
 
 To create a class-based helper, rather than exporting a simple function, you
 should export a subclass of [`Helper`][1]. Helper classes must contain a
@@ -275,7 +277,7 @@ export default class FormatCurrency extends Helper {
 
 This is exactly equivalent to the `format-currency` example above. You
 can think of the function version as a shorthand for the longer class
-form if it does not require dependency injection.
+form.
 
 As another example, let's make a helper utilizing an authentication
 service that welcomes users by their name if they're logged in:
@@ -290,14 +292,17 @@ export default class IsAuthenticated extends Helper {
   compute() {
     let authentication = this.authentication;
 
-    if (authentication.get('isAuthenticated')) {
-      return 'Welcome back, ' + authentication.get('username');
+    if (authentication.isAuthenticated) {
+      return `Welcome back, ${authentication.username}`;
     } else {
       return 'Not logged in';
     }
   }
 }
 ```
+
+Because this helper is not passed `isAuthenticated` or `username` as an
+argument its output will never change.
 
 ### Escaping HTML Content
 
@@ -394,6 +399,7 @@ would see this:
 Welcome back! <b>&lt;script
 type="javascript"&gt;alert('pwned!');&lt;/script&gt;</b> has joined the channel.
 ```
+
 [1]: https://www.emberjs.com/api/ember/release/classes/Helper
 [2]: https://www.emberjs.com/api/ember/release/classes/Helper/methods/compute?anchor=compute
 [3]: https://api.emberjs.com/ember/release/functions/@ember%2Fcomponent%2Fhelper/helper

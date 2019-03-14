@@ -247,7 +247,7 @@ They also have a number of other differences and benefits:
   ```
 
 - Positional arguments are _not_ available in angle bracket invocation, since
-  there is some abiguity between their behavior and the behavior of standard
+  there is some ambiguity between their behavior and the behavior of standard
   HTML attributes (HTML attributes without `=` default to truthy). If you still
   need positional arguments, you _must_ use the component with curly bracket
   syntax.
@@ -344,7 +344,7 @@ handlebars statements are pretty ambiguous - for instance, `{{title}}` could be
 a helper, a local variable, or a component property.
 
 Note that this only applies to component/controller properties. Local variables,
-introduced via a yield, can still be refered to directly since they're
+introduced via a yield, can still be referred to directly since they're
 unambiguous:
 
 ```hbs
@@ -510,7 +510,7 @@ export default class Person {
 
 It's important to note that these are _not_ the same as computed properties,
 they don't have caching by default or have dependencies, and they rerun
-everytime they are used. In order to have getters and setters _rerender_ when
+every time they are used. In order to have getters and setters _rerender_ when
 values have changed, you must either decorate them with the `@computed`
 decorator, or use _tracked properties_.
 
@@ -624,6 +624,7 @@ export default Controller.extend({
 ```js
 // After
 import Controller from '@ember/controller';
+import { action } from '@ember/object';
 
 export default class ApplicationController extends Controller {
   @action
@@ -1580,7 +1581,7 @@ template-only component at this point.
 This pattern is known as _Data-Down, Actions Up_, or _unidirectional data flow_.
 With Glimmer components, this pattern is enforced - all mutations must occur
 through actions. This clarifies the data flow, because it's immediately possible
-to see where all of the mutations are occuring.
+to see where all of the mutations are occurring.
 
 #### Lifecycle Hooks & Modifiers
 
@@ -1661,7 +1662,7 @@ export default class Text extends Component {
 }
 ```
 
-You'll notice that this getter is _mutating_ the value when the Text copmonent
+You'll notice that this getter is _mutating_ the value when the Text component
 is disabled. If this feels like a code smell to you, it probably is, and is a
 sign that we're managing state at the wrong level. In this case, for instance,
 we should instead consider converting the text component to be a stateless
