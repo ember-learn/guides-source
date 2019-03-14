@@ -238,8 +238,8 @@ And two named arguments:
 
 ### Class-based Helpers
 
-Generated helpers are simply functions. They are passed inputs (parameters
-and a hash), they perform an operation on those inputs, and return a
+Generated helpers are simply functions. They are passed arguments (positional
+and named), they perform an operation on those inputs, and return a
 single output. They have no side-effects and don't save any information
 that is used on subsequent runs of the function.
 
