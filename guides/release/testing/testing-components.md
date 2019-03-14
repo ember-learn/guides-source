@@ -8,20 +8,19 @@ The `style` attribute of the component is bound to its `style` property.
 > component pretty-color`.
 
 ```javascript {data-filename="app/components/pretty-color.js"}
-import Component from '@ember/component';
-import { computed } from '@ember/object';
+import Component from '@glimmer/component';
 
-export default Component.extend({
-  attributeBindings: ['style'],
-
-  style: computed('name', function() {
-    return `color: ${this.name}`;
-  })
-});
+export default class PrettyColorComponent extends Component {
+  get style() {
+    return `color: ${this.args.name}`;
+  }
+};
 ```
 
 ```handlebars {data-filename="app/templates/components/pretty-color.hbs"}
-Pretty Color: {{this.name}}
+<div style={{this.style}}>
+  Pretty Color: {{@name}}
+</div>
 ```
 
 The `module` from QUnit will scope your tests into groups of tests which can be configured and run independently.
