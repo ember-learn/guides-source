@@ -154,12 +154,13 @@ ember generate adapter application
 
 This adapter will extend the [`JSONAPIAdapter`](https://www.emberjs.com/api/ember-data/release/classes/DS.JSONAPIAdapter/) base class from Ember Data:
 
-```javascript {data-filename="app/adapters/application.js" data-diff="+4"}
+```javascript {data-filename="app/adapters/application.js" data-diff="+5"}
 import DS from 'ember-data';
+const { JSONAPIAdapter } = DS;
 
-export default DS.JSONAPIAdapter.extend({
-  namespace: 'api'
-});
+export default class ApplicationAdapter extends JSONAPIAdapter {
+  namespace = 'api';
+}
 ```
 
 If you were running `ember serve` or `ember test --serve` in another shell, restart each of those servers to include Mirage in your build.
