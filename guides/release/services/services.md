@@ -97,7 +97,8 @@ import { getOwner } from '@ember/application';
 
 export default class CartContentsComponent extends Component {
   //will load the service in file /app/services/shopping-cart.js
-  cart: computed(function() {
+  @computed
+  get cart() {
     return getOwner(this).lookup('service:shopping-cart');
   })
 };
