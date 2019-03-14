@@ -301,7 +301,7 @@ export default class LocationIndicatorComponent extends Component {
   @computed('locationService.currentLocation')
   get country() {
     return this.locationService.getCurrentCountry();
-  });
+  }
 };
 ```
 
