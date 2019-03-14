@@ -67,7 +67,7 @@ let tom = Person.create();
 Unlike native classes, you _cannot_ use the `new` keyword to create instances of
 classic classes. Attempting to do so will throw an error. Otherwise, instances
 are very similar, they can be assigned values like you would on Plain Old
-Javascript Objects (POJOs):
+JavaScript Objects (POJOs):
 
 ```js
 let tom = Person.create();
@@ -293,7 +293,7 @@ mel.name = 'Melanie Sumner'; // Cannot set property name of #<Class> which has o
 ```
 
 We need to add a _setter_ in order to be able to set it. Generally, the setter
-function stores the value somewher, and the getter function retrieves it:
+function stores the value somewhere, and the getter function retrieves it:
 
 ```js
 const Person = EmberObject.extend({
@@ -486,7 +486,7 @@ _overriden_, and their values will be fully replaced on the child:
 ```js
 const Vehicle = EmberObject.extend({
   move() {
-    console.log('moving');
+    console.log('moving!');
   },
 });
 
@@ -518,7 +518,7 @@ const Vehicle = EmberObject.extend({
 const Aircraft = Vehicle.extend({
   move() {
     this._super();
-    console.log('flying');
+    console.log('flying!');
   },
 });
 
@@ -587,6 +587,7 @@ When doing this, you should keep the following in mind:
    ```js
    class Person extends EmberObject {
      constructor() {
+       super(...arguments);
        console.log('constructor: ', this.name);
      }
 

@@ -347,7 +347,7 @@ const Person = EmberObject.extend({
   const Aircraft = Vehicle.extend({
     move() {
       this._super();
-      console.log('flying');
+      console.log('flying!');
     },
   });
 
