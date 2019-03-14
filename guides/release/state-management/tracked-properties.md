@@ -38,8 +38,8 @@ Hello, Jen Weber!
 By default, Ember assumes that none of the values that are rendered will ever
 change. In some cases this is clearly true - for instance, the punctuation in
 the template will always be the same, so Ember doesn't need to do anything to
-update it. These or static, state-less parts of the template. In other cases,
-like `this.greeting` or `@name` argument, that's less clear. It seems like
+update it. These are static, state-less parts of the template. In other cases,
+like `this.greeting` or `@name` argument, that's less clear. It appears
 `language` might be something we want to update, and if we do, then `greeting`
 should probably change, right? At the least, we should _check_ to see if it
 should change.
@@ -203,7 +203,7 @@ export default class Hello extends Component {
 }
 ```
 
-if `supportedLanguages` changes here, it `greeting` will update as well! This
+if `supportedLanguages` changes here, `greeting` will update as well! This
 code could likely be refactored to use getters, but in cases where a function or
 method makes more sense, tracked properties will still work.
 
