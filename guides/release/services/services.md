@@ -36,7 +36,7 @@ Below, the shopping cart service manages an items array that represents the item
 import Service from '@ember/service';
 
 export default class ShoppingCartService extends Service {
-  items = null;
+  items = [];
 
   constructor(...arguments) {
     super(...arguments);
