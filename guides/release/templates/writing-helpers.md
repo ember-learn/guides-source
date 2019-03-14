@@ -37,7 +37,7 @@ You can also have Ember generate the file for you from the command line:
 ember generate helper format-currency
 ```
 
-That file should export a function wrapped with [`Ember.Helper.helper()`](https://emberjs.com/api/ember/2.15/classes/Ember.Helper/methods/helper?anchor=helper):
+That file should export a function wrapped with [`helper()`](https://api.emberjs.com/ember/release/functions/@ember%2Fcomponent%2Fhelper/helper):
 
 ```javascript {data-filename=app/helpers/format-currency.js}
 import { helper } from '@ember/component/helper';
@@ -79,7 +79,7 @@ helper again with the new values and keep the page up-to-date.
 
 ### Helper Names
 
-Unlike [components](../../components/defining-a-component/), which require a dash in the name to follow the Custom Element spec, helper names can be single or multi-word. If your helper's name is multi-word, it should be dasherized as the examples on this page.
+Helper names can be single or multi-word. If your helper's name is multi-word, it should be dasherized as the examples on this page.
 
 ### Helper Arguments
 
@@ -251,10 +251,10 @@ based on the implementation of Ember's rendering engine (and this may
 change from time to time) helpers make a poor home for state.
 
 To create a class-based helper, rather than exporting a simple function, you
-should export a subclass of [`Ember.Helper`][1]. Helper classes must contain a
-[`compute`][2] method that behaves the same as the function passed to the
-[`helper`][3] function. In order to access a service, you must first inject it
-into the class-based helper. Once added, you can call the service's methods or
+should export a subclass of [`Helper`][1]. Helper classes must contain a
+[`compute`][2] method that behaves the same as the function passed to
+[`helper`][3].  In order to access a service, you must first inject it
+into the class-based helper.  Once added, you can call the service's methods or
 access its properties from within the `compute()` method.
 
 As an exercise, here is the above `format-currency` helper re-factored
@@ -402,5 +402,5 @@ type="javascript"&gt;alert('pwned!');&lt;/script&gt;</b> has joined the channel.
 
 [1]: https://www.emberjs.com/api/ember/release/classes/Helper
 [2]: https://www.emberjs.com/api/ember/release/classes/Helper/methods/compute?anchor=compute
-[3]: https://www.emberjs.com/api/ember/release/classes/Helper/methods/compute?anchor=helper
+[3]: https://api.emberjs.com/ember/release/functions/@ember%2Fcomponent%2Fhelper/helper
 [4]: https://www.emberjs.com/api/ember/release/functions/@ember%2Ftemplate/htmlSafe
