@@ -15,22 +15,22 @@ sets one of those properties, and an action named `setProps`.
 
 ```javascript {data-filename=app/controllers/posts.js}
 import Controller from '@ember/controller';
+import { action } from '@ember/object';
 
-export default Controller.extend({
-  propA: 'You need to write tests',
-  propB: 'And write one for me too',
+export default class PostsController extends Controller {
+  propA = 'You need to write tests';
+  propB = 'And write one for me too';
 
   setPropB(str) {
     this.set('propB', str);
-  },
-
-  actions: {
-    setProps(str) {
-      this.set('propA', 'Testing is cool');
-      this.setPropB(str);
-    }
   }
-});
+
+  @action
+  setProps(str) {
+    this.set('propA', 'Testing is cool');
+    this.setPropB(str);
+  }
+};
 ```
 
 The `setProps` action directly sets one property, and calls the method to set the other.
