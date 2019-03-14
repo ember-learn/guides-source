@@ -1,5 +1,8 @@
-- title: "What Is Ember"
-  url: "what-is-ember"
+- title: "Introduction"
+  url: 'index'
+  pages:
+    - title: "What Is Ember"
+      url: ""
 - title: "Getting Started"
   url: 'getting-started'
   pages:
