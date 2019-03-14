@@ -39,7 +39,6 @@ import Service from '@ember/service';
 export default class ShoppingCartService extends Service {
   items = [];
 
-    super(...arguments);
     this.set('items', []);
   };
 
