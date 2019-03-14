@@ -476,7 +476,7 @@ export default class DelayedTypeaheadComponent extends Component {
   handleTyping() {
     //the fetchResults function is passed into the component from its parent
     debounce(this, this.fetchResults, this.searchValue, 250);
-  };
+  }
 };
 ```
 
