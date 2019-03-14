@@ -203,8 +203,7 @@ the application does. However, they are _more_ controlled than globals like
 `window` because:
 
 1. They can _only_ be injected into other Ember objects, not custom classes.
-2. They can _only_ be used in places where they are injected. Random functions
-   can't access a service for a one of change.
+2. They can _only_ be used in places where they are injected.
 
 This means that you can narrow down changes to state in services to a number of
 locations, and generally control the data flow more easily.
