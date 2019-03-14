@@ -57,8 +57,8 @@ module.exports = function(environment) {
       },
     ],
     infoBanner: {
-      link: 'https://emberjs.com/',
-      title: 'here'
+      link: 'https://emberjs.com/octane',
+      title: 'emberjs.com/octane'
     },
   };
 
