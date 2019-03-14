@@ -50,7 +50,7 @@ export default class ShoppingCartService extends Service {
 
   empty() {
     this.items.clear();
-  };
+  }
 };
 ```
 
