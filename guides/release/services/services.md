@@ -100,7 +100,7 @@ export default class CartContentsComponent extends Component {
   @computed
   get cart() {
     return getOwner(this).lookup('service:shopping-cart');
-  })
+  }
 };
 ```
 
