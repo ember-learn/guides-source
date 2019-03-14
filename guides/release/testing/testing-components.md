@@ -172,7 +172,7 @@ export default class MagicTitleComponent extends Component {
 ```handlebars {data-filename="app/templates/components/magic-title.hbs"}
 <h2>{{this.title}}</h2>
 
-<button class="title-button" onclick={{action this.updateTitle}}>
+<button class="title-button" {{action this.updateTitle}}>
   Update Title
 </button>
 ```
