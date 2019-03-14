@@ -47,9 +47,9 @@ shouldn't do anything at all. But, if something _should_ change, like the text
 in a popup, the page you're on, or the color of a button, Ember needs to respond
 to that change!
 
-Ember primary system for detecting changes to state are _tracked properties_.
-If you read the section on Glimmer components, you'll probably recognize these,
-they're properties that are decorated with the `@tracked` decorator:
+Ember's primary system for detecting changes to state is _tracked properties_.
+If you read the section on Glimmer components, you'll probably recognize these.
+They're properties that are decorated with the `@tracked` decorator:
 
 ```js
 export default class Person extends Component {
