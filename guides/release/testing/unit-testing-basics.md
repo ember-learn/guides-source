@@ -23,7 +23,7 @@ export default class SomeThingService extends Service {
   @computed('foo')
   get computedFoo() {
     return `${this.foo}`;
-  })
+  }
 };
 ```
 
