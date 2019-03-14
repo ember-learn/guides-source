@@ -2,18 +2,16 @@ If you need to display all of the keys or values of a JavaScript object in your 
 you can use the [`{{#each-in}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/if?anchor=each-in) helper:
 
 ```javascript {data-filename=/app/components/store-categories.js}
-import Component from '@ember/component';
+import Component from '@glimmer/component';
 
-export default Component.extend({
-  willRender() {
-    // Set the "categories" property to a JavaScript object
-    // with the category name as the key and the value a list
-    // of products.
-    this.set('categories', {
-      'Bourbons': ['Bulleit', 'Four Roses', 'Woodford Reserve'],
-      'Ryes': ['WhistlePig', 'High West']
-    });
-  }
+export default class extends Component {
+  // Set the "categories" property to a JavaScript object
+  // with the category name as the key and the value a list
+  // of products.
+  categories = {
+    'Bourbons': ['Bulleit', 'Four Roses', 'Woodford Reserve'],
+    'Ryes': ['WhistlePig', 'High West']
+  };
 });
 ```
 
