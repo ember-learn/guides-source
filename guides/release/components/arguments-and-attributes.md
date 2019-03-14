@@ -224,6 +224,7 @@ can be overriden, but attributes that come _after_ cannot:
   ...attributes
   data-non-overridable="but you can't override me!"
 >
+  ...
 </p>
 ```
 
