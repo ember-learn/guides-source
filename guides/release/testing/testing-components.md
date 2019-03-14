@@ -232,7 +232,7 @@ export default class CommentFormComponent extends Component {
 ```
 
 ```handlebars {data-filename="app/templates/components/comment-form.hbs"}
-<form onsubmit={{action this.submitComment}}>
+<form {{action this.submitComment on="submit"}}>
   <label>Comment:</label>
   {{textarea value=this.comment}}
 
