@@ -131,44 +131,6 @@ module('Unit | Service | some thing', function(hooks) {
 });
 ```
 
-### Testing Observers
-
-Suppose we have an object that has a property and a method observing that property.
-
-```javascript {data-filename=app/services/some-thing.js}
-import Service from '@ember/service';
-import { observer } from '@ember/object';
-
-export default class SomeThingService extends Service {
-  foo = 'bar';
-
-  other = 'no';
-
-  doSomething = observer('foo', function() {
-    this.set('other', 'yes');
-  });
-};
-```
-
-In order to test the `doSomething` method we create an instance of `SomeThing`,
-update the observed property (`foo`), and assert that the expected effects are present.
-
-```javascript {data-filename=tests/unit/services/some-thing-test.js}
-import { module, test } from 'qunit';
-import { setupTest } from 'ember-qunit';
-
-module('Unit | Service | some thing', function(hooks) {
-  setupTest(hooks);
-
-  test('should set other prop to yes when foo changes', function(assert) {
-    const someThing = this.owner.lookup('service:some-thing');
-
-    someThing.set('foo', 'baz');
-    assert.equal(someThing.get('other'), 'yes');
-  });
-});
-```
-
 ### Skipping tests
 
 Some times you might be working on a feature, but know that a certain test will fail so you might want to skip it.
