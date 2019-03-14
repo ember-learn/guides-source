@@ -91,16 +91,11 @@ Here’s are some of the core features in Octane:
 - **Tracked properties**, a type of decorator that simplifies keeping the DOM
   up-to-date with JavaScript changes.
 - **Async functions** (`async`/`await`) for authoring asynchronous code.
-- **Native JavaScript modules**, including
-  - **Distributing Ember as npm packages**.
-  - **Importing npm packages** with zero additional configuration.
-  - **Treeshaking** to eliminate unused dependencies from the final output.
 - **Octane-style components**, including
   - **"Outer HTML" templates** that support fragments and easily customizing the
     root element.
   - **Customizable DOM attributes** with `...attributes`.
   - **`<AngleBracket>` syntax** for better readability.
-- **Modernized file system layout** based on the Module Unification design.
 
 Just as important is what we’re removing from the Ember experience. These
 features below will keep working, but you won’t have to use them if you don’t
