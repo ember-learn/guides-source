@@ -18,7 +18,7 @@ compose components just like you would HTML elements:
 Users can pass a block to your component, but by default your component doesn't
 know where to put it. You have to decide this by using the `{{yield}}` helper:
 
-```handlebars {data-filename=app/components/modal-dialog/template.hbs}
+```handlebars {data-filename=app/templates/components/modal-dialog.hbs}
 <dialog>
   {{yield}}
 </dialog>
@@ -63,9 +63,9 @@ then nothing will be done with the block.
 You can check whether or not a user passed a block to the component with the
 `hasBlock` helper:
 
-```handlebars {data-filename=app/components/modal-dialog/template.hbs}
+```handlebars {data-filename=app/templates/components/modal-dialog.hbs}
 <dialog>
-  {{#if hasBlock}}
+  {{#if (has-block)}}
     {{yield}}
   {{else}}
     Default Message
@@ -95,7 +95,7 @@ function in JavaScript. Consider for instance the `ModalDialog` component -
 let's say we want to make the dialog show _conditionally_ when we click a
 button:
 
-```handlebars {data-filename=app/components/modal-dialog/template.hbs}
+```handlebars {data-filename=app/templates/components/modal-dialog.hbs}
 {{#if this.showModal}}
   <dialog>
     {{yield}}
@@ -107,7 +107,7 @@ button:
 </button>
 ```
 
-```js {data-filename=app/components/modal-dialog/component.js}
+```js {data-filename=app/components/modal-dialog.js}
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
@@ -128,7 +128,7 @@ those buttons are going to be!
 
 What we can do here is _yield_ the `toggleModal` action:
 
-```handlebars {data-filename=app/components/modal-dialog/template.hbs}
+```handlebars {data-filename=app/templates/components/modal-dialog.hbs}
 {{#if this.showModal}}
   <dialog>
     {{yield this.toggleModal}}
