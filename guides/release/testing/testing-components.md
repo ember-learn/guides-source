@@ -164,7 +164,7 @@ export default class MagicTitleComponent extends Component {
   @action
   updateTitle() {
     this.set('title', 'This is Magic');
-  };
+  }
 };
 ```
 
