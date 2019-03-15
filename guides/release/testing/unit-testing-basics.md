@@ -21,7 +21,6 @@ import { tracked } from '@glimmer/tracking';
 export default class SomeThingService extends Service {
   @tracked foo = 'bar';
 
-  @computed('foo')
   get computedFoo() {
     return `${this.foo}`;
   }
