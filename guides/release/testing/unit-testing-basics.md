@@ -22,7 +22,7 @@ export default class SomeThingService extends Service {
   @tracked foo = 'bar';
 
   get computedFoo() {
-    return `${this.foo}`;
+    return `computed ${this.foo}`;
   }
 };
 ```
