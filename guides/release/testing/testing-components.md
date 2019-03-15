@@ -14,7 +14,7 @@ export default class PrettyColorComponent extends Component {
   get style() {
     return `color: ${this.args.name}`;
   }
-};
+}
 ```
 
 ```handlebars {data-filename="app/templates/components/pretty-color.hbs"}
