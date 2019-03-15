@@ -186,11 +186,13 @@ Setting properties on an HTML element, on the other hand, is a different story, 
 
 For example, let's say you want to create an `<audio>` element, but pass it a blob as its [`srcObject`](https://www.w3.org/TR/html52/semantics-embedded-content.html#dom-htmlmediaelement-srcobject).
 
-Since `srcObject` is a property and not an HTML attribute, you can use the `prop` element modifier like this (TODO: needs to be written):
+Since `srcObject` is a property and not an HTML attribute, you can use the [`prop` element modifier][prop-modifier] like this:
 
 ```handlebars
 <audio {{prop srcObject=this.blob}} />
 ```
+
+[prop-modifier]: https://github.com/pzuraq/ember-prop-modifier
 
 If the value changes, Ember will automatically update the element's property for you.
 

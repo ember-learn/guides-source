@@ -1,5 +1,5 @@
 - title: "Introduction"
-  url: 'index'
+  url: "index"
   pages:
     - title: "What Is Ember"
       url: ""
@@ -111,18 +111,13 @@
   pages:
     - title: Introduction
       url: "services"
-<<<<<<< HEAD
 
-- title: 'Data Management'
-  url: 'data-management'
+- title: "Data Management"
+  url: "data-management"
   pages:
     - title: "Overview"
       url: "index"
 
-=======
-- title: "Data Management"
-  url: "data-management"
->>>>>>> Added props and event handlers
 - title: "Ember Data"
   url: "models"
   pages:
