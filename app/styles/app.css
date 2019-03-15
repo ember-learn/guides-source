@@ -14,3 +14,10 @@ code {
     margin-top: 0 !important;
   }
 }
+
+/* HACK: quick hack as per: https://github.com/ember-learn/guides-source/issues/611
+   to hide edit page pencil link and the search bar globally. */
+a.edit-page, #search-input {
+  display: none;
+}
+
