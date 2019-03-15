@@ -292,7 +292,6 @@ export default class LocationIndicatorComponent extends Component {
   @service location;
 
   // when the coordinates change, call the location service to get the current city and country
-  @computed('locationService.currentLocation')
   get city() {
     return this.locationService.getCurrentCity();
   }
