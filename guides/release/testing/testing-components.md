@@ -289,7 +289,7 @@ import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 
 export default class LocationIndicatorComponent extends Component {
-  @service locationService;
+  @service location;
 
   // when the coordinates change, call the location service to get the current city and country
   @computed('locationService.currentLocation')
