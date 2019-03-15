@@ -116,7 +116,7 @@ rendered in the button:
 </HelloButton>
 ```
 
-This is the same as our first example, with the `HelloWorld` button component
+This is the same as our first example, with the `HelloButton` button component
 _yielding_ to the block that was passed to it instead of being passed an
 argument. We can put anything inside of that block, including text, HTML, and
 other components. This is part of what makes components so powerful and
