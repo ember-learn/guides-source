@@ -225,7 +225,7 @@ export default class CommentFormComponent extends Component {
 
   @action
   submitComment() {
-    this.args.submitComment({ comment: this.comment });;
+    this.args.submitComment({ comment: this.comment });
   }
 }
 ```
@@ -298,7 +298,7 @@ export default class LocationIndicatorComponent extends Component {
   get country() {
     return this.location.getCurrentCountry();
   }
-};
+}
 ```
 
 ```handlebars {data-filename="app/templates/components/location-indicator.hbs"}
@@ -468,7 +468,7 @@ import { action } from '@ember/object';
 import { debounce } from '@ember/runloop';
 
 export default class DelayedTypeaheadComponent extends Component {
-  @action 
+  @action
   handleTyping() {
     //the fetchResults function is passed into the component from its parent
     debounce(this, this.fetchResults, this.searchValue, 250);
