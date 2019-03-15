@@ -70,7 +70,7 @@ export default class SomeThingService extends Service {
   foo = 'bar';
 
   testMethod() {
-    this.set('foo', 'baz');
+    this.foo = 'baz';
   }
 }
 ```
