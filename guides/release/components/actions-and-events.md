@@ -435,8 +435,7 @@ import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 
 export default class SendMessage extends Component {
-  @service
-  messaging;
+  @service messaging;
 
   // component implementation
 }
@@ -483,8 +482,7 @@ import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
 export default class UserProfile extends Component {
-  @service
-  login;
+  @service login;
 
   @action
   userDidDeleteAccount() {
@@ -528,8 +526,8 @@ adding JavaScript code to those child components.
 For example, say we want to move account deletion from the `UserProfile`
 component to its parent `system-preferences-editor`.
 
-First we would move the `deleteUser` action from `user-profile.js` to the
-actions object on `system-preferences-editor`.
+First we would move the `deleteUser` action from `user-profile.js` to 
+the parent `system-preferences-editor.js`.
 
 ```javascript {data-filename=app/components/system-preferences-editor.js}
 import Component from '@glimmer/component';
@@ -537,8 +535,7 @@ import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
 export default class SystemPreferencesEditor extends Component {
-  @service
-  login;
+  @service login;
 
   @action
   deleteUser(idStr) {
@@ -548,7 +545,7 @@ export default class SystemPreferencesEditor extends Component {
 ```
 
 Then our `system-preferences-editor` template passes its local `deleteUser`
-action into the `UserProfile` as that component's `deleteCurrentUser` property.
+action into the `UserProfile` as that component's `deleteCurrentUser` argument.
 
 ```handlebars {data-filename=app/templates/components/system-preferences-editor.hbs}
 <UserProfile
