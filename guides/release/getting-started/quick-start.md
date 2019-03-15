@@ -249,7 +249,8 @@ To handle this function call you need to modify the `people-list` component file
 In the component, add an `actions` object with a `showPerson` function that alerts the first argument.
 
 ```javascript {data-filename="app/components/people-list.js" data-diff="+4,+5,+6,+7,+8"}
-import Component from '@ember/component';
+import Component from '@glimmer/component';
+import { action } from '@ember/object';
 
 export default class PeopleList extends Component {
   @action

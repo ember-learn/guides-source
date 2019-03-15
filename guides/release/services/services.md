@@ -25,8 +25,8 @@ Services must extend the [`Service`](https://www.emberjs.com/api/ember/release/m
 ```javascript {data-filename=app/services/shopping-cart.js}
 import Service from '@ember/service';
 
-export default Service.extend({
-});
+export default class ShoppingCartService extends Service {
+};
 ```
 
 Like any Ember object, a service is initialized and can have properties and methods of its own.
@@ -35,26 +35,22 @@ Below, the shopping cart service manages an items array that represents the item
 ```javascript {data-filename=app/services/shopping-cart.js}
 import Service from '@ember/service';
 
-export default Service.extend({
-  items: null,
+export default class ShoppingCartService extends Service {
+  items = [];
 
-  init() {
-    this._super(...arguments);
-    this.set('items', []);
-  },
 
   add(item) {
     this.items.pushObject(item);
-  },
+  }
 
   remove(item) {
     this.items.removeObject(item);
-  },
+  }
 
   empty() {
     this.items.clear();
   }
-});
+};
 ```
 
 ### Accessing Services
@@ -67,25 +63,25 @@ When no arguments are passed, the service is loaded based on the name of the var
 You can load the shopping cart service with no arguments like below.
 
 ```javascript {data-filename=app/components/cart-contents.js}
-import Component from '@ember/component';
+import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 
-export default Component.extend({
+export default class CartContentsComponent extends Component {
   //will load the service in file /app/services/shopping-cart.js
-  shoppingCart: service()
-});
+  @service shoppingCart;
+};
 ```
 
 Another way to inject a service is to provide the name of the service as the argument.
 
 ```javascript {data-filename=app/components/cart-contents.js}
-import Component from '@ember/component';
+import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 
-export default Component.extend({
+export default class CartContentsComponent extends Component {
   //will load the service in file /app/services/shopping-cart.js
-  cart: service('shopping-cart')
-});
+  @service('shopping-cart') cart;
+};
 ```
 
 This injects the shopping cart service into the component and makes it available as the `cart` property.
@@ -95,16 +91,17 @@ Since normal injection will throw an error if the service doesn't exist,
 you must look up the service using Ember's [`getOwner`](https://emberjs.com/api/ember/release/classes/@ember%2Fapplication/methods/getOwner?anchor=getOwner) instead.
 
 ```javascript {data-filename=app/components/cart-contents.js}
-import Component from '@ember/component';
+import Component from '@glimmer/component';
 import { computed } from '@ember/object';
 import { getOwner } from '@ember/application';
 
-export default Component.extend({
+export default class CartContentsComponent extends Component {
   //will load the service in file /app/services/shopping-cart.js
-  cart: computed(function() {
+  @computed
+  get cart() {
     return getOwner(this).lookup('service:shopping-cart');
-  })
-});
+  }
+};
 ```
 
 Injected properties are lazy loaded; meaning the service will not be instantiated until the property is explicitly called.
@@ -114,18 +111,18 @@ Once loaded, a service will persist until the application exits.
 Below we add a remove action to the `cart-contents` component.
 
 ```javascript {data-filename=app/components/cart-contents.js}
-import Component from '@ember/component';
+import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
+import { action } from '@ember/object';
 
-export default Component.extend({
-  cart: service('shopping-cart'),
+export default class CartContentsComponent extends Component {
+  @service('shopping-cart') cart;
 
-  actions: {
-    remove(item) {
-      this.cart.remove(item);
-    }
-  }
-});
+	@action
+	remove(item) {
+		this.cart.remove(item);
+	}
+};
 ```
 Once injected into a component, a service can also be used in the template.
 Note `cart` being used below to get data from the cart.
@@ -135,7 +132,7 @@ Note `cart` being used below to get data from the cart.
   {{#each this.cart.items as |item|}}
     <li>
       {{item.name}}
-      <button {{action "remove" item}}>Remove</button>
+      <button {{action this.remove item}}>Remove</button>
     </li>
   {{/each}}
 </ul>
