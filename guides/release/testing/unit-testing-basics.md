@@ -105,7 +105,7 @@ import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 
 export default class SomeThingService extends Service {
-  count = 0;
+  @tracked count = 0;
 
   calc() {
     this.count += 1;
