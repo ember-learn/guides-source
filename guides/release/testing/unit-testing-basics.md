@@ -18,7 +18,7 @@ import Service from '@ember/service';
 import { computed } from '@ember/object';
 
 export default class SomeThingService extends Service {
-  foo = 'bar';
+  @tracked foo = 'bar';
 
   @computed('foo')
   get computedFoo() {
