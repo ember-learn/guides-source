@@ -2,7 +2,7 @@ Like we mentioned at the beginning of this section, components are like custom,
 user-defined HTML elements. So far we've seen how to pass argument values
 into components, which is similar to passing attributes into HTML elements like
 `input`s, `select`s, or `dialog`s and how components can use these argument values
-for both their JavaScript and template. We've also seen how you can pass 
+in both their JavaScript and template. We've also seen how you can pass 
 actual HTML attributes forward, allowing you to customize the elements that 
 components produce.
 
