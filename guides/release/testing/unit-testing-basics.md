@@ -102,6 +102,7 @@ that returns a value based on some internal state.
 
 ```javascript {data-filename=app/services/some-thing.js}
 import Service from '@ember/service';
+import { tracked } from '@glimmer/tracking';
 
 export default class SomeThingService extends Service {
   count = 0;
