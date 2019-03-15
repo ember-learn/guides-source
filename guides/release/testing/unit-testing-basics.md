@@ -66,6 +66,7 @@ the `foo` property).
 
 ```javascript {data-filename=app/services/some-thing.js}
 import Service from '@ember/service';
+import { tracked } from '@glimmer/tracking';
 
 export default class SomeThingService extends Service {
   @tracked foo = 'bar';
