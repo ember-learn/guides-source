@@ -297,7 +297,7 @@ export default class LocationIndicatorComponent extends Component {
   }
 
   get country() {
-    return this.locationService.getCurrentCountry();
+    return this.location.getCurrentCountry();
   }
 };
 ```
