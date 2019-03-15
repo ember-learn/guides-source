@@ -61,7 +61,7 @@ then nothing will be done with the block.
 ### Conditionally Yielding
 
 You can check whether or not a user passed a block to the component with the
-`hasBlock` helper:
+`(has-block)` helper:
 
 ```handlebars {data-filename=app/templates/components/modal-dialog.hbs}
 <dialog>
