@@ -67,7 +67,7 @@ the `foo` property).
 import Service from '@ember/service';
 
 export default class SomeThingService extends Service {
-  foo = 'bar';
+  @tracked foo = 'bar';
 
   testMethod() {
     this.foo = 'baz';
