@@ -11,12 +11,12 @@ new `levelName` when the player reaches level 5.
 > model player`.
 
 ```javascript {data-filename=app/models/player.js}
-import Model from 'ember-data/model';
-import attr from 'ember-data/attr';
+import DS from 'ember-data';
+const { Model, attr } = DS;
 
-export default Model.extend({
-  level: attr('number', { defaultValue: 0 }),
-  levelName: attr('string', { defaultValue: 'Noob' }),
+export default class Player extends Model {
+  @attr('number', { defaultValue: 0 }) level;
+  @attr('string', { defaultValue: 'Noob' }) levelName;
 
   levelUp() {
     let newLevel = this.incrementProperty('level');
@@ -24,7 +24,7 @@ export default Model.extend({
       this.set('levelName', 'Professional');
     }
   }
-});
+};
 ```
 
 Now let's create a test which will call `levelUp` on the player when they are
@@ -65,19 +65,20 @@ Assume that a `User` can own a `Profile`.
 > generate model user` and `ember generate model profile`.
 
 ```javascript {data-filename=app/models/profile.js}
-import Model from 'ember-data/model';
+import DS from 'ember-data';
+const { Model } = DS;
 
-export default Model.extend({
-});
+export default class Profile extends Model {
+};
 ```
 
 ```javascript {data-filename=app/models/user.js}
-import Model from 'ember-data/model';
-import { belongsTo } from 'ember-data/relationships';
+import DS from 'ember-data';
+const { Model, belongsTo } = DS;
 
-export default Model.extend({
-  profile: belongsTo('profile')
-});
+export default class User extends Model {
+  @belongsTo('profile') profile;
+};
 ```
 
 Then you could test that the relationship by looking it up on the `user` model which it is part of.
