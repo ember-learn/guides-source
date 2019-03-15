@@ -225,7 +225,7 @@ export default class CommentFormComponent extends Component {
 
   @action
   submitComment() {
-    this.args.submitComment({ comment: this.comment });;
+    this.args.submitComment({ comment: this.comment });
   }
 }
 ```
@@ -298,7 +298,7 @@ export default class LocationIndicatorComponent extends Component {
   get country() {
     return this.location.getCurrentCountry();
   }
-};
+}
 ```
 
 ```handlebars {data-filename="app/templates/components/location-indicator.hbs"}
