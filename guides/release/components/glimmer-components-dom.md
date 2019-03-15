@@ -202,4 +202,210 @@ On the other hand, if you're looking at JavaScript documentation that tells you 
 
 If you want to set a property, you can use the `prop` element modifier.
 
-For example
+## Calling Methods On First Render
+
+So far, we've talked about web APIs that work by setting attributes as well as web APIs that work by setting properties. But what about web APIs that work by calling methods, like setting focus on an element.
+
+For example, let's say we want to focus the an `<input>` in a form as soon as the form is rendered. The web API for focusing an element is:
+
+```js
+inputElement.focus();
+```
+
+and we will want to execute that code once the element is rendered.
+
+The simplest way to accomplish this is by using the `did-insert` modifier from [@ember/render-modifiers][render-modifiers].
+
+[render-modifiers]: https://github.com/emberjs/ember-render-modifiers
+
+```handlebars {app/templates/components/edit-form.hbs}
+<form>
+  <input {{did-insert this.focus}}>
+</form>
+```
+
+```js {app/components/edit-form.js}
+export default class EditForm {
+  focus(element) {
+    element.focus();
+  }
+}
+```
+
+The `did-insert` modifier will call a function after its element is added to the DOM. That function receives the element as a parameter.
+
+### Abstracting the Logic Into a Custom Modifier
+
+Using the `did-insert` modifier works well for one-off cases, but if you want to pull this logic into reusable functionality that you can use throughout your app, you can make your _own_ modifier.
+
+The modifier that we're going to build will allow us to say:
+
+```handlebars {data-filename="app/templates/components/edit-form.hbs"}
+<form>
+  <input {{autofocus}}>
+</form>
+```
+
+Pretty nice, right?
+
+To accomplish that, we'll create a modifier in `app/modifiers/autofocus.js`. There are a few different convenience libraries for building a custom modifier. For this example, we'll use `ember-functional-modifiers`.
+
+```js {data-filename="app/modifiers/autofocus.js"}
+import modifier from "ember-functional-modifiers";
+
+export default modifier(element => element.focus());
+```
+
+And that's it!
+
+Now we can use our custom `{{autofocus}}` modifier throughout our application.
+
+## Communicating Between Elements in a Component
+
+What if you want to handle an event in one part of your component by calling a DOM method on another part. For example, let's say you're creating an audio component, and you want a click on the play button to call the audio tag's play method.
+
+Let's start with the HTML we're working with:
+
+```handlebars {data-filename="app/templates/components/audio-player.hbs"}
+<audio src={{@srcURL}} />
+
+<button>Play</button>
+<button>Pause</button>
+```
+
+Next, let's add an event handler to the `Play` button:
+
+```handlebars {data-filename="app/templates/components/audio-player.hbs" data-diff="-3,+4"}
+<audio src={{@srcURL}} />
+
+<button>Play</button>
+<button {{on "click" this.play}}>Play</button>
+<button>Pause</button>
+```
+
+```js {data-filename="app/components/audio-player.js"}
+import Component from "@glimmer/component";
+import action from "@ember/object";
+
+export default class AudioPlayer extends Component {
+  @action
+  play() {
+    // TODO
+  }
+}
+```
+
+We'd like to call the `play` method on our `<audio>` element, but how do we get access to that element?
+
+We can give our component access to elements inside of it by using `ember-ref-modifier`.
+
+> The `{{ref}}` modifier takes a property name and an object, and assigns the modifier's element to that property on the object.
+
+In this case, we'll assign the `<audio>` element to the `audioElement` property in our component:
+
+```handlebars {data-filename="app/templates/components/audio-player.hbs" data-diff="-1,+2"}
+<audio src={{@srcURL}} />
+<audio src={{@srcURL}} {{ref "audioElement" this}} />
+
+<button {{on "click" this.play}}>Play</button>
+<button>Pause</button>
+```
+
+Now, the component can access the audio element in the `play` method:
+
+```js {data-filename="app/components/audio-player.js" data-diff="-7,+8"}
+import Component from "@glimmer/component";
+import action from "@ember/object";
+
+export default class AudioPlayer extends Component {
+  @action
+  play() {
+    this.audioElement.play();
+  }
+}
+```
+
+## Out-of-Component Modifications
+
+In most cases, your component should restrict its behavior to its own elements. However, there are cases where a component needs to do something outside of itself. One simple example of this would be an element that wants to handle clicks outside of its DOM, which requires registering a handler on the whole document, and then hit-testing the element.
+
+Let's start with the DOM structure of a super-simple component that would remove its contents when a click occurs outside of the element.
+
+```handlebars {data-filename="app/templates/components/modal.hbs"}
+<div class="modal">
+  {{yield}}
+</div>
+```
+
+We don't want to use `{{on "click"}}` here because we want the opposite behavior: do something whenever the user clicks _outside_ of the `<div>`. To accomplish that, we'll register a `click` handler on the entire document and then hit-test it, looking something like this:
+
+```js
+document.addEventListener("click", event => {
+  if (!element.contains(event.target)) {
+    // do something
+  }
+});
+```
+
+The most important difference between this example and the cases we've seen so far is that we need to remove the `click` event handler from the document when this element is destroyed.
+
+To accomplish this, we can use `ember-functional-modifiers` to create a `click-outside` modifier that sets up the event listener after the element is first inserted and removes the event listener when the element is removed. In the `ember-functional-modifiers` addon, a modifier function returns _another function_ that should be run when Ember removes the element the modifier is attached to.
+
+```js {data-filename="app/modifiers/on-click-outside.js"}
+import modifier from "ember-functional-modifiers";
+
+export default modifier((element, [callback]) => {
+  function handleClick(event) {
+    if (!element.contains(event.target)) {
+      callback();
+    }
+  }
+
+  document.addEventListener("click", handleClick);
+
+  return function onDestroy() {
+    document.removeEventListener("click", handleClick);
+  };
+});
+```
+
+Now that we've created this modifier, we can use it in our `modal` component, and add some logic to invoke a passed-in action whenever the user clicks outside the modal.
+
+```handlebars {data-filename="app/templates/components/modal.hbs" data-diff="-1,+2"}
+{{#if this.isShowing}}
+  <div class="modal" {{on-click-outside @clickedOutside}}>
+    {{yield}}
+  </div>
+{{/if}}
+```
+
+We could then use the `modal` component this way:
+
+```handlebars {data-filename="app/templates/components/sidebar.hbs"}
+<p class="help-icon" {{on "click" this.showHelp}}>?</p>
+
+{{#if this.showingHelp}}
+  <Modal @clickedOutside={{this.hideHelp}}>
+    Here's some interesting facts about the sidebar that you can learn.
+  </Modal>
+{{/if}}
+```
+
+```js {data-filename="app/components/sidebar.js"}
+import Component from "@glimmer/component";
+import action from "@ember/object";
+
+export default class Sidebar extends Component {
+  @tracked showingHelp = false;
+
+  @action
+  showHelp() {
+    this.showingHelp = true;
+  }
+
+  @action
+  hideHelp() {
+    this.showingHelp = false;
+  }
+}
+```
