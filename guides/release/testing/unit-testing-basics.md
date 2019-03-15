@@ -107,7 +107,7 @@ export default class SomeThingService extends Service {
   count = 0;
 
   calc() {
-    this.incrementProperty('count');
+    this.count += 1;
     return `count: ${this.count}`;
   }
 };
