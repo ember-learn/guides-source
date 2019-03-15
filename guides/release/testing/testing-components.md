@@ -165,7 +165,7 @@ export default class MagicTitleComponent extends Component {
   updateTitle() {
     this.set('title', 'This is Magic');
   }
-};
+}
 ```
 
 ```handlebars {data-filename="app/templates/components/magic-title.hbs"}
