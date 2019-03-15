@@ -227,7 +227,7 @@ export default class CommentFormComponent extends Component {
   submitComment() {
     this.args.submitComment({ comment: this.comment });;
   }
-});
+}
 ```
 
 ```handlebars {data-filename="app/templates/components/comment-form.hbs"}
