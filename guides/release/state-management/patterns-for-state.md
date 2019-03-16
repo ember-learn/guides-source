@@ -31,7 +31,7 @@ In Ember, there are 3 primary types of state:
 - **Component state**. When a component is rendered, a new _instance_ of the
   component's class is created (unless it's a template-only component). This
   instance exists as long as the component is rendered. When the component is
-  removed, it's instance is torndown, and all the values on the instance are
+  removed, it's instance is torn down, and all the values on the instance are
   cleaned up (via JavaScript's built-in [garbage collection][1]).
 
 - **Controller state**. When a route is rendered, its controller is created and
@@ -134,7 +134,7 @@ there:
 TODO: Diagram showing the flow back upwards from the action
 ```
 
-Ember then rerenders any parts of that component that changed, including child
+Ember then re-renders any parts of that component that changed, including child
 components. Data flows _back_ downward in this way, toward the children of the
 modified component:
 
@@ -218,7 +218,7 @@ and update state, they trigger a rerender just like data loading.
 
 Background events and data fetching can both trigger actions as well when they
 occur in components, in which case they may interact with other components in
-the copmonent tree:
+the component tree:
 
 ```
 TODO: Diagram showing a cycle within a single route/component, triggering a
@@ -240,7 +240,7 @@ piece of state. For example:
 - The Router owns the state of the URL and the current page in an Ember app
 - Controllers own the state of anything local to a given page
 - In Ember Data, the Store service owns all of the instances of the data models.
-- In a Session service, such as the one provided by [ember-simple-auth][3], the
+- In a Session service, such as the one provided by [`ember-simple-auth`][3], the
   service owns the state of whether or not the user is logged in, and their
   session data.
 
@@ -265,7 +265,7 @@ time.
   ```
 
 * **Object-Oriented** services like [Ember Data][4] or [Apollo][5] (used in
-  Ember with [ember-apollo-client][6]) allow you to load and query data as
+  Ember with [`ember-apollo-client`][6]) allow you to load and query data as
   objects, and mutate them where you see fit:
 
   ```
@@ -281,7 +281,7 @@ time.
   so-on.
 
 * **Centralized** data-stores like [Redux][7] (used in Ember with
-  [ember-redux][8]) seek to capture _all_ application state in a single place, the
+  [`ember-redux`][8]) seek to capture _all_ application state in a single place, the
   centralized store, which owns all state:
 
   ```

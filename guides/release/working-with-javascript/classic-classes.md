@@ -1,4 +1,4 @@
-If you are working in older Ember codebases, or you are exploring addons in the
+If you are working in older Ember projects, or you are exploring addons in the
 Ember ecosystem, you may see code that looks something like this:
 
 ```js
@@ -26,8 +26,7 @@ since they leverage the platform and standards of the language. In addition, you
 should _avoid_ extending `EmberObject` with native class syntax, and prefer
 writing classes that don't extend _any_ base class instead.
 
-However, this primer covers their usage in case you need to interoperate with
-them or maintain them in older codebases.
+However, this primer covers their usage in case you need to continue working with them.
 
 ## Defining Classic Classes
 
@@ -115,7 +114,7 @@ There are 4 major types of elements that can be defined in a classic class:
 Along with the ability to add static class fields and methods using
 `reopenClass`.
 
-### Init
+### `Init`
 
 Unlike native classes, classes defined with classic class syntax have no way to
 define a `constructor` function. Instead, when a new instance is created, its
@@ -391,7 +390,7 @@ will be described in greater detail later on in the guides.
 ### Static Elements with `reopenClass`
 
 There is no equivalent to the `static` modifier in native classes for classic
-classes. Instead, you must call the [reopenClass][5] method on the class _after_
+classes. Instead, you must call the [`reopenClass`][5] method on the class _after_
 it has been defined:
 
 [5]: https://emberjs.com/api/ember/3.7/functions/@ember%2Fobject/reopenClass
@@ -481,7 +480,7 @@ console.log(Aircraft.id); // 1
 
 Defining subclasses is otherwise exactly the same as extending from
 `EmberObject`. Class elements that are redefined by the child class will be
-_overriden_, and their values will be fully replaced on the child:
+_overridden_, and their values will be fully replaced on the child:
 
 ```js
 const Vehicle = EmberObject.extend({
@@ -580,7 +579,7 @@ let blackHawk = Helicopter.create();
 When doing this, you should keep the following in mind:
 
 1. It's recommended that you use `init` instead of `constructor` even in native
-   class definitions, since it interoperates better with any classic class
+   class definitions, since it works better with any classic class
    definitions, and because the properties passed to `create()` will not be
    available in the `constructor`:
 

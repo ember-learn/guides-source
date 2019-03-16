@@ -1,5 +1,5 @@
 Components are an essential building block in Ember applications. They allow
-developers to package presentation and behaviour into a single unit and give it
+developers to package presentation and behavior into a single unit and give it
 a name. You can think of them like defining your own custom HTML elements, like
 a custom `<input>` or `<select>` tag that has its own behavior, values, and
 events that you can hook into in your templates. However, they shouldn't be

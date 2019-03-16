@@ -64,7 +64,7 @@ standard identifier can:
 ```
 
 You can pass strings as arguments to components, or you can pass literal values
-using double curlies:
+using double curly brackets:
 
 ```handlebars
 <Tooltip
@@ -74,7 +74,7 @@ using double curlies:
 />
 ```
 
-Note that if you do _not_ wrap literal values in double curlies, they are
+Note that if you do _not_ wrap literal values in double curly brackets, they are
 treated as strings, like standard HTML attributes:
 
 ```handlebars
@@ -216,7 +216,7 @@ not be applied.
 
 The positioning of `...attributes` matters, with respect to the other attributes
 in the element it is applied to. Attributes that come _before_ `...attributes`
-can be overriden, but attributes that come _after_ cannot:
+can be overridden, but attributes that come _after_ cannot:
 
 ```handlebars
 <p
