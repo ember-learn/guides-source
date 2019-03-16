@@ -111,8 +111,13 @@
   pages:
     - title: Introduction
       url: "services"
-- title: "Data Management"
-  url: "data-management"
+
+- title: 'Data Management'
+  url: 'data-management'
+  pages:
+    - title: "Overview"
+      url: "index"
+
 - title: "Ember Data"
   url: "models"
   pages:
