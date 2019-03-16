@@ -156,10 +156,9 @@ Person.create({ name: 'Stefan Penner' }); // Stefan Penner, reporting for duty!
 
 ### Methods
 
-Methods are functions that are defined on the class using [object method
-syntax][4], and that usable by instances:
-
-[4]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Method_definitions
+Methods are functions that are defined on the class using 
+[object method syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Method_definitions),
+and that usable by instances:
 
 ```js
 const Person = EmberObject.extend({
@@ -532,12 +531,11 @@ In certain cases, you will want to pass arguments to the super method before or
 after overriding. This allows the super class method to continue operating as it
 normally would.
 
-One common example is when overriding the [`normalizeResponse()`][4] hook in one
-of Ember-Data's serializers.
+One common example is when overriding the 
+[`normalizeResponse()`](https://www.emberjs.com/api/ember-data/release/classes/DS.JSONAPISerializer/methods/normalizeResponse?anchor=normalizeResponse)
+hook in one of Ember-Data's serializers.
 
 A handy shortcut for this is to use a "spread operator", like `...arguments`:
-
-[4]: https://www.emberjs.com/api/ember-data/release/classes/DS.JSONAPISerializer/methods/normalizeResponse?anchor=normalizeResponse
 
 ```javascript
 normalizeResponse(store, primaryModelClass, payload, id, requestType)  {
