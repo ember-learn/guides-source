@@ -1,14 +1,14 @@
 The
 [`{{component}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/component?anchor=component)
 helper can be used to defer the selection of a component to run time. The
-`<MyComponent/>` syntax always renders the same component, while using the
+`<MyComponent />` syntax always renders the same component, while using the
 `{{component}}` helper allows choosing a component to render on the fly. This is
 useful in cases where you want to interact with different external libraries
 depending on the data. Using the `{{component}}` helper would allow you to keep
 different logic well separated.
 
 The first parameter of the helper is the name of a component to render, as a
-string. So `{{component 'blog-post'}}` is the same as using `<BlogPost/>`.
+string. So `{{component 'blog-post'}}` is the same as using `<BlogPost />`.
 
 The real value of
 [`{{component}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/component?anchor=component)
