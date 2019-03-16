@@ -152,7 +152,7 @@ export default class DraftsButton extends Component {
 ```
 
 ```handlebars {data-filename=app/templates/components/drafts-button.hbs}
-<LinkTo "drafts" @tagName="button">
+<LinkTo @route="drafts" @tagName="button">
   Drafts ({{this.drafts.length}})
 </LinkTo>
 ```
