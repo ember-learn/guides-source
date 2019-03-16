@@ -111,7 +111,6 @@
   pages:
     - title: Introduction
       url: "services"
-<<<<<<< HEAD
 
 - title: 'Data Management'
   url: 'data-management'
@@ -119,10 +118,6 @@
     - title: "Overview"
       url: "index"
 
-=======
-- title: "Data Management"
-  url: "data-management"
->>>>>>> Added props and event handlers
 - title: "Ember Data"
   url: "models"
   pages:
