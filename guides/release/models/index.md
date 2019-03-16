@@ -100,23 +100,27 @@ lists the drafts for the currently logged in user.
 You might be tempted to make the component responsible for fetching that
 data and storing it:
 
-```javascript {data-filename=app/components/list-of-drafts.js}
-import Component from '@ember/component';
-import fetch from 'fetch';
+```javascript {data-file=src/ui/components/list-of-drafts/component.js}
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
 
-export default Component.extend({
-  willRender() {
-    fetch('/drafts').then(data => {
-      this.set('drafts', data);
+export default class ListOfDrafts extends Component {
+  @tracked drafts;
+
+  constructor() {
+    super(...arguments);
+
+    $.getJSON('/drafts').then(data => {
+      this.drafts = data;
     });
   }
-});
+}
 ```
 
 You could then show the list of drafts in your component's template like
 this:
 
-```handlebars {data-filename=app/templates/components/list-of-drafts.hbs}
+```handlebars {data-filename=src/ui/components/list-of-drafts/template.hbs}
 <ul>
   {{#each this.drafts key="id" as |draft|}}
     <li>{{draft.title}}</li>
@@ -130,21 +134,25 @@ may want a component to display the number of drafts. You may be
 tempted to copy and paste your existing `willRender` code into the new
 component.
 
-```javascript {data-filename=app/components/drafts-button.js}
-import Component from '@ember/component';
-import fetch from 'fetch';
+```javascript {data-file=src/ui/components/drafts-button/component.js}
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
 
-export default Component.extend({
-  willRender() {
-    fetch('/drafts').then(data => {
-      this.set('drafts', data);
+export default class DraftsButton extends Component {
+  @tracked drafts;
+
+  constructor() {
+    super(...arguments);
+
+    $.getJSON('/drafts').then(data => {
+      this.drafts = data;
     });
   }
-});
+}
 ```
 
-```handlebars {data-filename=app/templates/components/drafts-button.hbs}
-<LinkTo @route="drafts" @tagName="button">
+```handlebars {data-filename=src/ui/components/drafts-button/template.hbs}
+<LinkTo "drafts" @tagName="button">
   Drafts ({{this.drafts.length}})
 </LinkTo>
 ```
@@ -202,7 +210,7 @@ Models define the type of data that will be provided by your server. For
 example, a `Person` model might have a `firstName` attribute that is a
 string, and a `birthday` attribute that is a date:
 
-```javascript {data-filename=app/models/person.js}
+```javascript {data-file=src/models/person.js}
 import DS from 'ember-data';
 const { Model, attr } = DS;
 
@@ -216,7 +224,7 @@ A model also describes its relationships with other objects. For
 example, an `order` may have many `line-items`, and a
 `line-item` may belong to a particular `order`.
 
-```javascript {data-filename=app/models/order.js}
+```javascript {data-file=src/models/order.js}
 import DS from 'ember-data';
 const { Model, hasMany } = DS;
 
@@ -225,7 +233,7 @@ export default class Order extends Model {
 }
 ```
 
-```javascript {data-filename=app/models/line-item.js}
+```javascript {data-filename=src/models/line-item.js}
 import DS from 'ember-data';
 const { Model, belongsTo } = DS;
 
