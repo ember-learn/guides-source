@@ -210,11 +210,9 @@ Once the data loads, it updates the state, and data flows downward like normal
 
 Background events are similar to data loading. Something is scheduled to happen
 in the background, like a `setTimeout` or `setInterval`, a callback scheduled in
-the [run loop][2], or connection is opened to something that communicates
+the [run loop](../../applications/run-loop/), or connection is opened to something that communicates
 directly with the app, like a websocket or a web worker. When these events occur
 and update state, they trigger a rerender just like data loading.
-
-[2]:
 
 Background events and data fetching can both trigger actions as well when they
 occur in components, in which case they may interact with other components in

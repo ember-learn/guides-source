@@ -92,9 +92,9 @@ component template:
 This allows you to have some logic in your templates, and to nest components
 within each other, building up a component _tree_. The component tree in Ember
 applications is similar to the DOM tree in the HTML - in fact, you can even
-inspect it using the Ember Inspector:
+inspect it using the [Ember Inspector](../../ember-inspector/).
 
-[TODO: Screenshot of the Component tree in the Ember Inspector]
+<!-- [TODO: Screenshot of the Component tree in the Ember Inspector] -->
 
 Components can also have blocks and children, just like standard HTML elements.
 We could update the `HelloButton` component to render its button text from its

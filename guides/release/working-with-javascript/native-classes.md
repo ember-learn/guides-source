@@ -674,12 +674,11 @@ In certain cases, you will want to pass arguments to the super method before or
 after overriding. This allows the super class method to continue operating as it
 normally would.
 
-One common example is when overriding the [`normalizeResponse()`][5] hook in one
-of Ember Data's serializers.
+One common example is when overriding the 
+[`normalizeResponse()`](https://www.emberjs.com/api/ember-data/release/classes/DS.JSONAPISerializer/methods/normalizeResponse?anchor=normalizeResponse)
+hook in one of Ember Data's serializers.
 
 A handy shortcut for this is to use a "spread operator", like `...arguments`:
-
-[5]: https://www.emberjs.com/api/ember-data/release/classes/DS.JSONAPISerializer/methods/normalizeResponse?anchor=normalizeResponse
 
 ```javascript
 normalizeResponse(store, primaryModelClass, payload, id, requestType)  {
