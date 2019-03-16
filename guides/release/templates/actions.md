@@ -23,7 +23,7 @@ export default class Post extends Component {
 
 You can then add this action to an element using the
 [`{{action}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/action?anchor=action)
-helper:
+modifier:
 
 ```handlebars {data-filename=app/components/post/template.hbs}
 <h3>
@@ -35,11 +35,10 @@ helper:
 {{/if}}
 ```
 
-The `{{action}}` helper calls your action function when the element is
-clicked.
-You will learn about more advanced usages in the Component's [Actions and
-Events](../../components/actions-and-events/) guide, but you should familiarize
-yourself with the basics on this page first.
+The `{{action}}` modifier calls your action function when the element is
+clicked. You will learn about more advanced usages in the Component's [Actions
+and Events](../../components/actions-and-events/) guide, but you should
+familiarize yourself with the basics on this page first.
 
 Templates rendered for your application's routes are backed by controllers, so
 you may also see actions defined on a controller using the same `@action`

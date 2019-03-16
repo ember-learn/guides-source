@@ -2,8 +2,8 @@ Like we mentioned at the beginning of this section, components are like custom,
 user-defined HTML elements. So far we've seen how to pass argument values
 into components, which is similar to passing attributes into HTML elements like
 `input`s, `select`s, or `dialog`s and how components can use these argument values
-in both their JavaScript and template. We've also seen how you can pass 
-actual HTML attributes forward, allowing you to customize the elements that 
+in both their JavaScript and template. We've also seen how you can pass
+actual HTML attributes forward, allowing you to customize the elements that
 components produce.
 
 But how do we make these components interactive? How do we respond to user
@@ -76,14 +76,11 @@ export default class ButtonWithConfirmation extends Component {
 
 Like we discussed [Templating](../../templates/actions/), actions are methods
 that are decorated with the `@action` decorator, and which can be used in
-templates. We can assign the action to our button's
-[`onclick`](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onclick)
-event:
+templates. We can assign the action to our button using the `{{action}}`
+modifier:
 
 ```handlebars
-<button
-  onclick={{this.launchConfirmationDialog}}
->
+<button {{action this.launchConfirmationDialog}}>
   {{@text}}
 </button>
 
@@ -129,9 +126,7 @@ export default class ButtonWithConfirmation extends Component {
 ```
 
 ```handlebars
-<button
-  onclick={{this.launchConfirmationDialog}}
->
+<button {{action this.launchConfirmationDialog}}>
   {{@text}}
 </button>
 
@@ -139,13 +134,13 @@ export default class ButtonWithConfirmation extends Component {
   <div class="confirm-dialog">
     <button
       class="confirm-submit"
-      onclick={{this.submitConfirm}}
+      {{action this.submitConfirm}}
     >
       OK
     </button>
     <button
       class="confirm-cancel"
-      onclick={{this.cancelConfirm}}
+      {{action this.cancelConfirm}}
     >
       Cancel
     </button>
@@ -395,13 +390,13 @@ be used in block form and we will [yield](../yields/) `confirmValue` to the
 block within the `"confirmDialog"` element:
 
 ```handlebars {data-filename=app/templates/components/button-with-confirmation.hbs}
-<button type="button" onclick={{this.launchConfirmDialog}}>{{this.text}}</button>
+<button type="button" {{action this.launchConfirmDialog}}>{{this.text}}</button>
 
 {{#if this.confirmShown}}
   <div class="confirm-dialog">
     {{yield this.confirmValue}}
-    <button class="confirm-submit" type="button" onclick={{this.submitConfirm}}>OK</button>
-    <button class="confirm-cancel" type="button" onclick={{this.cancelConfirm}}>Cancel</button>
+    <button class="confirm-submit" type="button" {{action this.submitConfirm}}>OK</button>
+    <button class="confirm-cancel" type="button" {{action this.cancelConfirm}}>Cancel</button>
   </div>
 {{/if}}
 ```
@@ -526,7 +521,7 @@ adding JavaScript code to those child components.
 For example, say we want to move account deletion from the `UserProfile`
 component to its parent `system-preferences-editor`.
 
-First we would move the `deleteUser` action from `user-profile.js` to 
+First we would move the `deleteUser` action from `user-profile.js` to
 the parent `system-preferences-editor.js`.
 
 ```javascript {data-filename=app/components/system-preferences-editor.js}
@@ -575,7 +570,7 @@ Now when you confirm deletion, the action goes straight to the
 
 ## String Action Syntax
 
-Historically the `{{action}}` helper (`<button onclick={{action 'clickedButton'}}>`)
+Historically the `{{action}}` helper (`<MyComponent @onClick=(action 'clickedButton')>`)
 and element modifier (`<button {{action 'clickedButton'}}>`) have accepted a
 string as the first argument. This form is no longer recommended, but might be
 seen in the wild when working on older Ember apps or addons.
@@ -583,24 +578,9 @@ seen in the wild when working on older Ember apps or addons.
 When you encounter a string based action it should be refactored to use the
 `@action` decorator (refactor away from the `actions` hash).
 
-It is then recommended to use HTML's
-[on...](https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Event_handlers)
-attributes in the template.
+It is then recommended to use the action modifier directly with decorated
+functions.
 
 ```hbs
-<button onclick={{this.confirmDelete}}>Confirm Delete</button>
-```
-
-If you need to add additional arguments, you can use the `{{action}}` helper.
-
-```hbs
-<button onclick={{action this.confirmDelete this.user}}>Confirm Delete</button>
-```
-
-If you use the action as an element modifier, you need to use the `{{action}}`
-element modifier in all cases. This works the same even if you don't need
-additional arguments.
-
-```hbs
-<button {{action this.confirmDelete}}>Confirm Delete</button>
+<button {{action this.confirmDelete this.user}}>Confirm Delete</button>
 ```
