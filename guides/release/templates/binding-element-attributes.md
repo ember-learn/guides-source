@@ -49,7 +49,7 @@ a link component:
 </LinkTo>
 ```
 
-Which will render render the following HTML:
+Which will render the following HTML:
 
 ```html
 <a href="/photos" data-toggle="dropdown" lang="es" id="ember239" class="ember-view">

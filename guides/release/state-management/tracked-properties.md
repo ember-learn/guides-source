@@ -127,7 +127,7 @@ export default class Hello extends Component {
 Now, whenever we change the value of the `select`, it'll call the action method,
 which will set the value of `language`. Since `language` is marked as tracked,
 and was used in rendering `greeting`, Ember will know that `greeting` needs to
-be rerendered in the template, and will update.
+be re-rendered in the template, and will update.
 
 Another way that a tracked property could be updated is asynchronously, if
 you're sending a request to the server. For instance, maybe we would want to
