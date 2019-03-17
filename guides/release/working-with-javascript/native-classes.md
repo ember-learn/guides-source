@@ -316,15 +316,15 @@ class Person {
   }
 }
 
-let mel = new Person();
-console.log(mel.name); // 'Melanie Sumner'
+let melanie = new Person();
+console.log(melanie.name); // 'Melanie Sumner'
 ```
 
 Even though `get name` is a method, we can treat it like a normal property.
 However, if we try to set the name property to a new value, we get an error:
 
 ```js
-mel.name = 'Melanie Sumner';
+melanie.name = 'Melanie Sumner';
 // Cannot set property name of #<Person> which has only a getter
 ```
 
@@ -344,13 +344,13 @@ class Person {
   }
 }
 
-let mel = new Person();
-console.log(mel.name); // 'Melanie Sumner'
-console.log(mel._name); // 'Melanie Sumner'
+let melanie = new Person();
+console.log(melanie.name); // 'Melanie Sumner'
+console.log(melanie._name); // 'Melanie Sumner'
 
-mel.name = 'Melanie Sumner';
-console.log(mel.name); // 'Melanie Sumner'
-console.log(mel._name); // 'Melanie Sumner'
+melanie.name = 'Melanie Sumner';
+console.log(melanie.name); // 'Melanie Sumner'
+console.log(melanie._name); // 'Melanie Sumner'
 ```
 
 Getters can also be used on their own to calculate values dynamically:
