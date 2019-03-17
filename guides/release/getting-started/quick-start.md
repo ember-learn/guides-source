@@ -14,7 +14,6 @@ You can install Ember with a single command using npm,
 the Node.js package manager.
 Type this into your terminal:
 
-<!-- needs-octane-release-update -->
 ```bash
 npm install -g ember-cli
 ```
@@ -29,6 +28,7 @@ Once you've installed Ember CLI via npm,
 you will have access to a new `ember` command in your terminal.
 You can use the `ember new` command to create a new application.
 
+<!-- needs-octane-release-update -->
 ```bash
 ember new ember-quickstart -b @ember/octane-app-blueprint
 ```
