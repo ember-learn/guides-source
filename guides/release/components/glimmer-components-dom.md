@@ -192,7 +192,7 @@ Since `srcObject` is a property and not an HTML attribute, you can use the [`pro
 <audio {{prop srcObject=this.blob}} />
 ```
 
-[prop-modifier]: https://github.com/pzuraq/ember-prop-modifier
+[prop-modifier]: https://www.npmjs.com/package/ember-prop-modifier
 
 If the value changes, Ember will automatically update the element's property for you.
 
@@ -322,6 +322,7 @@ import action from "@ember/object";
 export default class AudioPlayer extends Component {
   @action
   play() {
+    // TODO
     this.audioElement.play();
   }
 }
