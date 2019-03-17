@@ -63,7 +63,7 @@ export default class DiscoRoute extends Route {
       transition.abort();
     }
   }
-};
+}
 ```
 
 ### Storing and Retrying a Transition
