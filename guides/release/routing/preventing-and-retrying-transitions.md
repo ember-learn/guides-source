@@ -91,7 +91,7 @@ export default class SomeAuthenticatedRoute extends Route {
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
 
-export default class SomethingController extends Controller {
+export default class LoginController extends Controller {
   @action
   login() {
     // Log the user in, then reattempt previous transition if it exists.

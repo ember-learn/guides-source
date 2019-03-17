@@ -223,7 +223,7 @@ redirect to a login page, etc.
 import Route from '@ember/routing/route';
 import { action } from '@ember/object';
 
-export default class FooSlowModelRoute extends Route {
+export default class ArticlesOverviewRoute extends Route {
   model(params) {
     return this.store.findAll('privileged-model');
   }
@@ -250,7 +250,7 @@ we can handle the `error` event and let it bubble by returning `true`.
 import Route from '@ember/routing/route';
 import { action } from '@ember/object';
 
-export default class FooSlowModelRoute extends Route {
+export default class ArticlesOverviewRoute extends Route {
   model(params) {
     return this.get('store').findAll('privileged-model');
   }
