@@ -162,5 +162,5 @@ export default class FunkyRoute extends Route {
       return { msg: 'Recovered from rejected promise' };
     });
   }
-};
+}
 ```
