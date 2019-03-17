@@ -8,10 +8,8 @@ If you want to learn in a step-by-step way, you should begin your journey in the
 Ember templates have some superpowers, but let's start with regular HTML.
 For any file in an Ember app that has an extension ending in `.hbs`, you can write HTML markup in it as if it was an `.html` file.
 HTML is the language that browsers understand for laying out content on a web page.
-`.hbs` stands for Handlebars, the name of a tool that lets you write more than just HTML in your templates.
 
-For example, every Ember app has a file called `application.hbs`.
-You can write regular HTML markup there or in any other `hbs` file:
+Every Ember app has a file called `application.hbs`, and you can write regular HTML markup there or in any other `hbs` file:
 
 ```handlebars {data-filename=app/templates/application.hbs data-update=false}
 <h1>Starting simple</h1>
@@ -173,7 +171,7 @@ Lastly, it's important to know that arguments can be passed from one Component t
 <MyComponent @favoriteFramework={{this.favoriteFramework}} />
 ```
 
-To pass in arguments associated with a Route, define the property from within a Controller. Learn more about passing data between templates [here](../../components/passing-properties-to-a-component).
+To pass in arguments associated with a Route, define the property from within a [Controller](../../controllers/). Learn more about passing data between Component templates [here](../../components/arguments-and-attributes/).
 
 ## Helper functions
 

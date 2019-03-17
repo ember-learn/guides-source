@@ -165,7 +165,7 @@ benefits:
 </TodoList>
 ```
 
-As you can see, they use angle brackets instead of double curly brackets when
+As you can see, they use angle brackets instead of double curly braces when
 invoked, thus the name. This allows them to match up much more closely with
 HTML - as you can see from looking at the "after" example above, components open
 and close in the same way as HTML elements, and self closing components require
@@ -217,7 +217,7 @@ They also have a number of other differences and benefits:
 
   Like with attributes, both literal values and bound values can be passed to an
   argument. It's important to note that if you want to pass a primitive literal
-  value to an argument, it must be wrapped in double curly brackets:
+  value to an argument, it must be wrapped in double curly braces:
 
   ```hbs
   <Todo @done={{false}}/>
