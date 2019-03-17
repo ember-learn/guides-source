@@ -137,7 +137,7 @@ export default class SongsRoute extends Route {
       albums: this.store.findAll('album')
     });
   }
-};
+}
 ```
 
 In the `songs` template, we can specify both models and use the `{{#each}}` helper to display
