@@ -49,7 +49,7 @@ See [Storing and Retrying a Transition](../preventing-and-retrying-transitions/#
 for how to do that.
 
 If you need to examine some application state to figure out where to redirect,
-you might use a [service](../../applications/services/).
+you might use a [service](../../services/).
 
 ## Transitioning After the Model is Known
 
