@@ -14,8 +14,9 @@ You can install Ember with a single command using npm,
 the Node.js package manager.
 Type this into your terminal:
 
+<!-- needs-octane-release-update -->
 ```bash
-npm install -g ember-cli
+ember new octane-app -b @ember/octane
 ```
 
 Don't have npm? [Learn how to install Node.js and npm here](https://docs.npmjs.com/getting-started/installing-node).
@@ -29,7 +30,7 @@ you will have access to a new `ember` command in your terminal.
 You can use the `ember new` command to create a new application.
 
 ```bash
-ember new ember-quickstart
+ember new ember-quickstart -b @ember/octane
 ```
 
 This one command will create a new directory called `ember-quickstart` and set up a new Ember application inside of it.
@@ -138,9 +139,8 @@ export default class ScientistsRoute extends Route {
 }
 ```
 
-This code example uses the latest features in JavaScript,
-some of which you may not be familiar with.
-Learn more with this [overview of the newest JavaScript features](https://ponyfoo.com/articles/es6).
+This code example uses a feature of JavaScript called Classes.
+Learn more with this [overview of the latest JavaScript features](https://ponyfoo.com/articles/es6).
 
 In a route's `model()` method, you return whatever data you want to make available to the template.
 If you need to fetch data asynchronously,
@@ -242,11 +242,9 @@ First add an `action` helper to the `li` in your `people-list` component.
 The `action` helper allows you to add event listeners to elements and call named functions.
 By default, the `action` helper adds a `click` event listener,
 but it can be used to listen for any element event.
-Now, when the `li` element is clicked a `showPerson` function will be called from the `actions` object in the `people-list` component.
-Think of this like calling `this.actions.showPerson(person)` from our template.
+Now, when the `li` element is clicked, a `showPerson` method will be called in the `people-list` component.
 
-To handle this function call you need to modify the `people-list` component file to add the function to be called.
-In the component, add an `actions` object with a `showPerson` function that alerts the first argument.
+Add the action to the `people-list.js` file:
 
 ```javascript {data-filename="app/components/people-list.js" data-diff="+4,+5,+6,+7,+8"}
 import Component from '@glimmer/component';
@@ -259,6 +257,8 @@ export default class PeopleList extends Component {
   }
 }
 ```
+
+The `@action` is something called a decorator, and it lets your Ember app know that the `showPerson` method should be available for the template to use.
 
 Now in the browser when a scientist's name is clicked,
 this function is called and the person's name is alerted.
