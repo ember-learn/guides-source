@@ -1,4 +1,4 @@
-For the most part, you should be be able to build Ember applications without directly manipulating the DOM. Before considering directly accessing the DOM, it's always best to first consider whether there's an Ember-native way to accomplish your goal.
+For the most part, you should be able to build Ember applications without directly manipulating the DOM. Before considering directly accessing the DOM, it's always best to first consider whether there's an Ember-native way to accomplish your goal.
 
 ## Thinking About Updates
 
@@ -159,7 +159,7 @@ export default class Counter extends Component {
     <div class="cta-note-body">
       <div class="cta-note-heading">Tomster says...</div>
       <div class="cta-note-message">
-        "Element modifiers" appear inside free-floating curlies inside of an opening
+        "Element modifiers" appear inside free-floating curly brackets inside of an opening
         tag. Unlike <strong>attribute syntax</strong>, which works by substitution
         (and therefore affects the HTML output of your page), element modifiers work
         by passing the element to a function that can do anything with it.

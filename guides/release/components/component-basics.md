@@ -1,12 +1,12 @@
 Components are an essential building block in Ember applications. They allow
-developers to package presentation and behaviour into a single unit and give it
+developers to package presentation and behavior into a single unit and give it
 a name. You can think of them like defining your own custom HTML elements, like
 a custom `<input>` or `<select>` tag that has its own behavior, values, and
 events that you can hook into in your templates. However, they shouldn't be
 confused with [_web components_](https://www.webcomponents.org/), which are a
 browser based API that is similar, but not as powerful as Ember components.
 
-Like we mentioned in the section on [Templates](../../templates/), components
+Like we mentioned in the section on [Templates](../../templates/handlebars-basics/), components
 can have both a template and a class definition, like so:
 
 ```handlebars {data-filename=app/templates/components/hello-button.hbs}
@@ -92,9 +92,9 @@ component template:
 This allows you to have some logic in your templates, and to nest components
 within each other, building up a component _tree_. The component tree in Ember
 applications is similar to the DOM tree in the HTML - in fact, you can even
-inspect it using the Ember Inspector:
+inspect it using the [Ember Inspector](../../ember-inspector/).
 
-[TODO: Screenshot of the Component tree in the Ember Inspector]
+<!-- [TODO: Screenshot of the Component tree in the Ember Inspector] -->
 
 Components can also have blocks and children, just like standard HTML elements.
 We could update the `HelloButton` component to render its button text from its

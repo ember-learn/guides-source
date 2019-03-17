@@ -117,7 +117,7 @@ const Person = EmberObject.extend({
   }
   ```
 
-- It is OK to assign objects and arrays in class fields:
+- It is okay to assign objects and arrays in class fields:
 
   ```js
   // ok ✅
@@ -162,7 +162,7 @@ const Person = EmberObject.extend({
   });
   ```
 
-- It is _not_ ok to assign objects or arrays as properties, because they are
+- It is _not_ okay to assign objects or arrays as properties, because they are
   shared between instances:
 
   ```js
