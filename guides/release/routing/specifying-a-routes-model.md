@@ -75,7 +75,7 @@ export default class PhotoRoute extends Route {
   model(params) {
     return this.store.findRecord('photo', params.photo_id);
   }
-};
+}
 ```
 
 In the `model` hook for routes with dynamic segments, it's your job to
