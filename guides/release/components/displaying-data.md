@@ -29,7 +29,7 @@ like you would in JavaScript.
 For the example, we will build a `Greeting` component with a hard-coded name.
 Then, we will use that property in the component template:
 
-```javascript {data-filename=src/ui/components/greeting/component.js}
+```javascript {data-filename=app/components/greeting.js}
 import Component from '@glimmer/component';
 
 export default class Greeting extends Component {
@@ -41,7 +41,7 @@ export default class Greeting extends Component {
 }
 ```
 
-```handlebars {data-filename=src/ui/components/greeting/template.hbs}
+```handlebars {data-filename=app/templates/components/greeting.hbs}
 <p>Hello World, I'm {{this.name}}!</p>
 ```
 
