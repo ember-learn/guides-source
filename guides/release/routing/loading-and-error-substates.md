@@ -22,11 +22,11 @@ Router.map(function() {
 ```javascript {data-filename=app/routes/slow-model.js}
 import Route from '@ember/routing/route';
 
-export default Route.extend({
+export default class SlowModelRoute extends Route {
   model() {
     return this.store.findAll('slow-model');
   }
-});
+};
 ```
 
 If you navigate to `slow-model`, in the `model` hook,
@@ -106,21 +106,20 @@ don't immediately resolve, a [`loading`](https://www.emberjs.com/api/ember/relea
 
 ```javascript {data-filename=app/routes/foo-slow-model.js}
 import Route from '@ember/routing/route';
+import { action } from '@ember/object';
 
-export default Route.extend({
+export default class FooSlowModelRoute extends Route {
   model() {
     return this.store.findAll('slow-model');
-  },
+  };
 
-  actions: {
-    loading(transition, originRoute) {
-      let controller = this.controllerFor('foo');
-      controller.set('currentlyLoading', true);
-
-      return true; // allows the loading template to be shown
-    }
+  @action
+  loading(transition, originRoute) {
+    let controller = this.controllerFor('foo');
+    controller.set('currentlyLoading', true);
+    return true; // allows the loading template to be shown
   }
-});
+};
 ```
 
 If the `loading` handler is not defined at the specific route,
@@ -131,20 +130,19 @@ When using the `loading` handler, we can make use of the transition promise to k
 
 ```javascript {data-filename=app/routes/foo-slow-model.js}
 import Route from '@ember/routing/route';
+import { action } from '@ember/object';
 
-export default Route.extend({
-  …
-
-  actions: {
-    loading(transition, originRoute) {
-      let controller = this.controllerFor('foo');
-      controller.set('currentlyLoading', true);
-      transition.promise.finally(function() {
-          controller.set('currentlyLoading', false);
-      });
-    }
+export default class FooSlowModelRoute extends Route {
+  // ...
+  @action
+  loading(transition, originRoute) {
+    let controller = this.controllerFor('foo');
+    controller.set('currentlyLoading', true);
+    transition.promise.finally(function() {
+        controller.set('currentlyLoading', false);
+    });
   }
-});
+};
 ```
 
 In case we want both custom logic and the default behavior for the loading substate,
@@ -152,20 +150,20 @@ we can implement the `loading` action and let it bubble by returning `true`.
 
 ```javascript {data-filename=app/routes/foo-slow-model.js}
 import Route from '@ember/routing/route';
+import { action } from '@ember/object';
 
-export default Route.extend({
-  ...
-  actions: {
-    loading(transition) {
-      let start = new Date();
-      transition.promise.finally(() => {
-        this.notifier.notify(`Took ${new Date() - start}ms to load`);
-      });
+export default class FooSlowModelRoute extends Route {
+  // ...
+  @action
+  loading(transition) {
+    let start = new Date();
+    transition.promise.finally(() => {
+      this.notifier.notify(`Took ${new Date() - start}ms to load`);
+    });
 
-      return true;
-    }
+    return true;
   }
-});
+};
 ```
 
 ## `error` substates
@@ -206,7 +204,7 @@ called with the `error` as the model. See example below:
 ```javascript
 setupController(controller, error) {
   console.log(error.message);
-  this._super(...arguments);
+  super(...arguments);
 }
 ```
 
@@ -223,23 +221,23 @@ redirect to a login page, etc.
 
 ```javascript {data-filename=app/routes/articles-overview.js}
 import Route from '@ember/routing/route';
+import { action } from '@ember/object';
 
-export default Route.extend({
+export default class FooSlowModelRoute extends Route {
   model(params) {
     return this.store.findAll('privileged-model');
-  },
+  }
 
-  actions: {
-    error(error, transition) {
-      if (error.status === '403') {
-        this.replaceWith('login');
-      } else {
-        // Let the route above this handle the error.
-        return true;
-      }
+  @action
+  error(error, transition) {
+    if (error.status === '403') {
+      this.replaceWith('login');
+    } else {
+      // Let the route above this handle the error.
+      return true;
     }
   }
-});
+};
 ```
 
 Analogous to the `loading` event, you could manage the `error` event
@@ -250,17 +248,17 @@ we can handle the `error` event and let it bubble by returning `true`.
 
 ```javascript {data-filename=app/routes/articles-overview.js}
 import Route from '@ember/routing/route';
+import { action } from '@ember/object';
 
-export default Route.extend({
+export default class FooSlowModelRoute extends Route {
   model(params) {
     return this.get('store').findAll('privileged-model');
-  },
-  actions: {
-    error(error) {
-      this.notifier.error(error);
-
-      return true;
-    }
   }
-});
+
+  @action
+  error(error) {
+    this.notifier.error(error);
+    return true;
+  }
+};
 ```
