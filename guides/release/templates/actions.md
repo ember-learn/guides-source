@@ -126,11 +126,7 @@ Names](../../components/handling-events/#toc_event-names).
 
 ## Attaching Actions to Non-Clickable Elements
 
-Note that actions may be attached to any element of the DOM, but not all respond
-to the `click` event. For example, if an action is attached to an `a` link
-without an `href` attribute, or to a `div`, some browsers won't execute the
-associated function. If it's really needed to define actions over such elements,
-a CSS workaround exists to make them clickable, `cursor: pointer`. For example:
+Note that while Ember currently permits you to add an action to any DOM element, not all DOM elements are eligible to receive focus, according to HTML standards.
 
 For example, if an action is attached to an `a` link
 without an `href` attribute, or to a `div`, some browsers won't execute the
@@ -140,9 +136,5 @@ Always check to see that the element you are adding an action to is interactive,
 [web accessibility and browser standards](https://developer.mozilla.org/en-US/docs/Web/HTML/Element#Interactive_elements).
 As a rule of thumb, if you find yourself adding an action an `<a>` tag, you should turn it into a `<button>` instead.
 
-Keep in mind that even with this workaround in place, the `click` event will not
-automatically trigger via keyboard driven `click` equivalents (such as the
-`enter` key when focused). Browsers will trigger this on clickable elements only
-by default. This also doesn't make an element accessible to users of assistive
-technology. You will need to add additional things like `role` and/or `tabindex`
-to make this accessible for your users.
+For more information about building accessible apps in Ember, see the
+[Accessibility Guide](../../reference/accessibility-guide/).
