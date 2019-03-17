@@ -61,8 +61,6 @@
       url: "actions-and-events"
     - title: "Yields"
       url: "yields"
-    - title: "Interacting with the DOM"
-      url: "interacting-with-the-dom"
     - title: "Contextual Components"
       url: "contextual-components"
     - title: "Classic Components"
