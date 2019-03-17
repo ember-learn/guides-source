@@ -12,11 +12,11 @@
       url: "index"
     - title: "Core Concepts"
       url: "core-concepts"
-- title: "Anatomy of an App"
-  url: "anatomy-of-an-app"
-  pages:
-    - title: "Overview"
-      url: "index"
+# - title: "Anatomy of an App"
+#   url: "anatomy-of-an-app"
+#   pages:
+#     - title: "Overview"
+#       url: "index"
 - title: "Templating"
   url: "templates"
   pages:
