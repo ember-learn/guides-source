@@ -258,7 +258,7 @@ export default class PeopleList extends Component {
 }
 ```
 
-The `@action` is something called a decorator, and it lets your Ember app know that the `showPerson` method should be available for the template to use.
+The `@action` is something called a decorator, and it lets your Ember app know that the `showPerson` method should be invocable by name in the component's template via `{{action "showPerson"}}`
 
 Now in the browser when a scientist's name is clicked,
 this function is called and the person's name is alerted.
