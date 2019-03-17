@@ -26,7 +26,7 @@ export default class SlowModelRoute extends Route {
   model() {
     return this.store.findAll('slow-model');
   }
-};
+}
 ```
 
 If you navigate to `slow-model`, in the `model` hook,
