@@ -91,7 +91,7 @@ export default class TardyRoute extends Route {
   setupController(controller, model) {
     console.log(model.msg); // "Hold Your Horses"
   }
-};
+}
 ```
 
 When transitioning into `route:tardy`, the `model()` hook will be called and
