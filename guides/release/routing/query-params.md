@@ -66,7 +66,7 @@ export default class ArticlesController extends Controller {
       return articles;
     }
   }
-};
+}
 ```
 
 With this code, we have established the following behaviors:
