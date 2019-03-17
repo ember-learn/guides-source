@@ -63,8 +63,6 @@
       url: "yields"
     - title: "Contextual Components"
       url: "contextual-components"
-    - title: "Classic Components"
-      url: "classsic-components"
     - title: "Working with the DOM"
       url: "glimmer-components-dom"
 - title: "Routing"
