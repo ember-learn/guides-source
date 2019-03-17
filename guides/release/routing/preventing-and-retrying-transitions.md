@@ -84,7 +84,7 @@ export default class SomeAuthenticatedRoute extends Route {
       this.transitionTo('login');
     }
   }
-};
+}
 ```
 
 ```javascript {data-filename=app/controllers/login.js}
