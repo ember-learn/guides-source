@@ -1,4 +1,4 @@
-For the most part, you should be be able to build Ember applications without directly manipulating the DOM. Before considering directly accessing the DOM, it's always best to first consider whether there's an Ember-native way to accomplish your goal.
+For the most part, you should be able to build Ember applications without directly manipulating the DOM. Before considering directly accessing the DOM, it's always best to first consider whether there's an Ember-native way to accomplish your goal.
 
 ## Thinking About Updates
 
@@ -37,7 +37,7 @@ The first time the `Article` component is rendered, it would produce this output
 </article>
 ```
 
-You can think of this as working through substitution: references to `@title` in the component's template are replaced by the value passed in from the outside.
+In a way, this is like substitution: references to `@title` in the component's template are replaced by the value passed in from the outside.
 
 If the model changes to:
 
@@ -57,7 +57,7 @@ the output will be updated to:
 </article>
 ```
 
-You can think of this as working by evaluating the template from scratch, substituting in the new values, and updating the output with the new contents.
+Think of this as evaluating the template from scratch, substituting in the new values, and updating the output with the new contents.
 
 <div class="cta">
   <div class="cta-note">
@@ -77,7 +77,7 @@ In general, before reaching for direct DOM manipulation, you should see whether 
 
 ## Manipulating Attributes
 
-The same philosophy that applies to manipulating text also applies to manipulating attributes.
+The same philosophy that applies to changing text also applies to changing attributes.
 
 For example, let's say we want to enhance our `Article` component to include a `title` attribute on the `<article>` tag.
 
@@ -106,7 +106,7 @@ the output will be:
 </article>
 ```
 
-Again, you can think of attributes as working through substitution. If the model changes to:
+Just like in previous examples, you can think of attribute changes as substitution. If the model changes to:
 
 ```json {data-filename="input" data-diff="-2,+3"}
 {
@@ -132,7 +132,7 @@ the output will be updated to:
 
 ## Event Handlers
 
-If you want to add an event handler to an HTML element, you can use the `{{on` element modifier to do so.
+If you want to add an event handler to an HTML element, you can use the `{{on` element modifier.
 
 ```js {data-filename="app/components/counter.js"}
 import Component from "@glimmer/component";
@@ -159,7 +159,7 @@ export default class Counter extends Component {
     <div class="cta-note-body">
       <div class="cta-note-heading">Tomster says...</div>
       <div class="cta-note-message">
-        "Element modifiers" appear inside free-floating curlies inside of an opening
+        "Element modifiers" appear inside free-floating curly brackets inside of an opening
         tag. Unlike <strong>attribute syntax</strong>, which works by substitution
         (and therefore affects the HTML output of your page), element modifiers work
         by passing the element to a function that can do anything with it.
@@ -180,13 +180,13 @@ export default class Counter extends Component {
 
 ## Manipulating Properties
 
-Manipulating attributes is straight-forward: since you're writing an HTML template, you can use dynamic substitution inside of an attribute's value, and the principle of substitution means that whenever the value changes, the attribute will change.
+Since you're writing an HTML template, you can use dynamic substitution inside of an attribute's value; whenever the value changes, the attribute will change.
 
 Setting properties on an HTML element, on the other hand, is a different story, because there's no way to set a property using HTML syntax.
 
 For example, let's say you want to create an `<audio>` element, but pass it a blob as its [`srcObject`](https://www.w3.org/TR/html52/semantics-embedded-content.html#dom-htmlmediaelement-srcobject).
 
-Since `srcObject` is a property and not an HTML attribute, you can use the [`prop` element modifier][prop-modifier] like this:
+Since `srcObject` is a property and not an HTML attribute, you can use the `prop` element modifier from [ember-prop-modifier][prop-modifier] like this:
 
 ```handlebars
 <audio {{prop srcObject=this.blob}} />
@@ -206,7 +206,7 @@ If you want to set a property, you can use the `prop` element modifier.
 
 ## Calling Methods On First Render
 
-So far, we've talked about web APIs that work by setting attributes as well as web APIs that work by setting properties. But what about web APIs that work by calling methods, like setting focus on an element.
+So far, we've talked about web APIs that work by setting attributes as well as web APIs that work by setting properties. But what about web APIs that work by calling methods, like setting focus on an element?
 
 For example, let's say we want to focus the an `<input>` in a form as soon as the form is rendered. The web API for focusing an element is:
 
@@ -214,7 +214,7 @@ For example, let's say we want to focus the an `<input>` in a form as soon as th
 inputElement.focus();
 ```
 
-and we will want to execute that code once the element is rendered.
+This code needs to run after the element is rendered.
 
 The simplest way to accomplish this is by using the `did-insert` modifier from [@ember/render-modifiers][render-modifiers].
 
@@ -264,7 +264,7 @@ Now we can use our custom `{{autofocus}}` modifier throughout our application.
 
 ## Communicating Between Elements in a Component
 
-What if you want to handle an event in one part of your component by calling a DOM method on another part. For example, let's say you're creating an audio component, and you want a click on the play button to call the audio tag's play method.
+What if you want to handle an event in one part of your component by calling a DOM method on another part? For example, let's say you're creating an audio component, and you want clicking the "Play" button to call the audio tag's `play` method.
 
 Let's start with the HTML we're working with:
 

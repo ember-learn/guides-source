@@ -17,7 +17,7 @@ And to use a named argument you prefix it with `@`, like so:
 Since properties and named arguments are visually different,
 this syntax allows you to know where a value comes from when you are reading the template.
 If you encounter the `{{this.name}}` syntax,
-you know you should check the the JavaScript file of the component.
+you know you should check the JavaScript file of the component.
 If you encounter the `{{@friend}}` syntax,
 you know that the value is passed to the component when it is used in another template.
 
@@ -26,10 +26,10 @@ you know that the value is passed to the component when it is used in another te
 To display a component property in the template, you prefix it with `this`,
 like you would in JavaScript.
 
-For the example, we will build a `Greeting` component with an hard-coded name.
+For the example, we will build a `Greeting` component with a hard-coded name.
 Then, we will use that property in the component template:
 
-```javascript {data-filename=src/ui/components/greeting/component.js}
+```javascript {data-filename=app/components/greeting.js}
 import Component from '@glimmer/component';
 
 export default class Greeting extends Component {
@@ -41,7 +41,7 @@ export default class Greeting extends Component {
 }
 ```
 
-```handlebars {data-filename=src/ui/components/greeting/template.hbs}
+```handlebars {data-filename=app/templates/components/greeting.hbs}
 <p>Hello World, I'm {{this.name}}!</p>
 ```
 
@@ -96,4 +96,4 @@ The output will be:
 <p>Hello Zoey, I'm Tomster!</p>
 ```
 
-For more detailed information see [Passing arguments and HTML attributes](./passing-arguments-and-html-attributes).
+For more detailed information see [Passing arguments and HTML attributes](./arguments-and-attributes).

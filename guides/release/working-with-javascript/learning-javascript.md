@@ -8,7 +8,7 @@ If you're new to JavaScript, here are some excellent introductory materials:
 - [Mozilla's JavaScript Tutorial][1] is pretty comprehensive, and the MDN
   documentation is the go-to source for looking JavaScript and web APIs.
 - [javascript.info][2] is a detailed interactive guide that takes you through
-  from the basics to nitty gritty. This one is pretty good for beginners with no
+  from the basics to the details. This one is pretty good for beginners with no
   programming experience, since it starts from scratch and ramps up.
 - [ES6 for humans][3] is a great resource if you're already familiar with
   JavaScript in general, but haven't had a chance to get to know some of its

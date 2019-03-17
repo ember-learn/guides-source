@@ -65,25 +65,25 @@ everything needed to fully adopt the new programming model has landed yet.
 
 ![Coherence example chart](/images/upgrading/editions/coherence-chart.png)
 
-Over time, we land more and more related APIs while deprecating APIs that aren’t
+Over time, we land more and more related APIs while deprecating APIs that aren't
 aligned with the new model. As this happens, we say the framework becomes more
 coherent.
 
 Editions, then, are regular snapshots of the framework at its most coherent,
 when everything needed to adopt the new programming model is in place.
 
-We’ll be ironing out this process with our first edition, Ember Octane.
-Hopefully this edition serves to tie together the many initiatives that we’ve
+We'll be ironing out this process with our first edition, Ember Octane.
+Hopefully this edition serves to tie together the many initiatives that we've
 worked on over the past few years, and helps show the world that Ember remains a
 modern, competitive framework for getting things done.
 
 ## Features overview
 
 The emphasis of Ember Octane is modern performance and productivity. To
-accomplish that, we’re cutting away cruft that is no longer needed while
+accomplish that, we're cutting away cruft that is no longer needed while
 introducing new features that make app development simpler and faster.
 
-Here’s are some of the core features in Octane:
+Here's are some of the core features in Octane:
 
 - **Native JavaScript classes**, unlocking simpler syntax, faster performance,
   and better interop with the wider ecosystem.
@@ -102,8 +102,8 @@ Here’s are some of the core features in Octane:
   - **`<AngleBracket>` syntax** for better readability.
 - **Modernized file system layout** based on the Module Unification design.
 
-Just as important is what we’re removing from the Ember experience. These
-features below will keep working, but you won’t have to use them if you don’t
+Just as important is what we're removing from the Ember experience. These
+features below will keep working, but you won't have to use them if you don't
 want to:
 
 - **jQuery**. For DOM interaction, developers should use templates or native DOM
@@ -117,7 +117,7 @@ want to:
 - **The run loop**. App developers should never have to write code that interacts
   with the Ember run loop, even in tests.
 - **Ember "inner HTML" components**, and the confusing JavaScript API used to
-  configure a component’s root element, like `tagName`, `classNameBindings`,
+  configure a component's root element, like `tagName`, `classNameBindings`,
   etc.
 
 Note that these features will continue to work for apps that need them. An
@@ -217,7 +217,7 @@ They also have a number of other differences and benefits:
 
   Like with attributes, both literal values and bound values can be passed to an
   argument. It's important to note that if you want to pass a primitive literal
-  value to an argument, it must be wrapped in double curlies:
+  value to an argument, it must be wrapped in double curly brackets:
 
   ```hbs
   <Todo @done={{false}}/>
@@ -749,7 +749,7 @@ The `static` keyword can be applied to all class elements.
 ### Tracked Properties
 
 Tracked properties are a new way to track changes to state in Ember Octane,
-replacing computed properties (CPs). Unlike CPs, which require you to annotate
+replacing computed properties . Unlike computed properties, which require you to annotate
 every getter with the values it depends on, tracked properties only require to
 annotate the values that are _trackable_, that is values that:
 
@@ -814,9 +814,9 @@ Tracked properties have subtler benefits as well:
   to have properties be "implicit" in a class definition, like in the example
   above; the classic class version of `Person` doesn't have `firstName` and
   `lastName` properties defined, but they are _implied_ by their existence as
-  dependencies in the `fullName` CP.
+  dependencies in the `fullName` computed property.
 - They enforce a "public API" of all values that are trackable in your class.
-  With CPs, it was possible to watch _any_ value in a class for changes, and
+  With computed properties, it was possible to watch _any_ value in a class for changes, and
   there was nothing you as the class author could do about it. With tracked
   properties, only the values you _want_ to be trackable will trigger updates
   to anything external to your class.
@@ -834,7 +834,7 @@ It's not uncommon to use POJOs in Ember code for storing state, representing
 some models, etc. This works because `get` and `set` can be used for any path,
 on any object, whether or not its an `EmberObject`, and whether or not the
 property was declared in advance. This is part of what lead to the "implicit"
-property problem - you `set` any property you wanted on a existing object and it
+property problem - you `set` any property you wanted on an existing object and it
 would work.
 
 With tracked properties this is _not_ possible, since each property must be
@@ -984,7 +984,7 @@ location, which prevents your code from becoming a twisted tangled mess!
 
 #### Backwards Compatibility
 
-Tracked properties are fully backwards compatible with CPs and `get`/`set`. CPs
+Tracked properties are fully backwards compatible with computed properties and `get`/`set`. computed properties
 that use tracked properties will automatically update without any need to add
 them to the dependencies:
 
@@ -1359,7 +1359,7 @@ This allows you to maintain control over the component if you want:
 <UncustomizableButton class="customized-button-class"/>
 ```
 
-Attributes are also available to classic components, but they pre-apply it to
+Attributes are also available to classic components, but they apply it to
 the wrapper element. If you're converting a component from classic components
 to Glimmer components, you should be sure to add `...attributes` to the wrapper
 element.
@@ -1534,7 +1534,7 @@ occur seemingly randomly. It was hard to figure out what was causing changes,
 and to debug them.
 
 In Glimmer components, arguments are _one-way bound_. There is no way to
-directly mutate an value on a parent component from the child component, even if
+directly mutate a value on a parent component from the child component, even if
 it is passed as an argument. Instead, you must send an _action_ upward to mutate
 the value:
 

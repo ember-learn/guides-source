@@ -107,15 +107,20 @@ You might be tempted to make the component responsible for fetching that
 data and storing it:
 
 ```javascript {data-filename=app/components/list-of-drafts.js}
-import Component from '@ember/component';
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
 
-export default Component.extend({
-  willRender() {
+export default class ListOfDrafts extends Component {
+  @tracked drafts;
+  
+  constructor() {
+    super(...arguments);
+
     $.getJSON('/drafts').then(data => {
-      this.set('drafts', data);
+      this.drafts = data;
     });
   }
-});
+}
 ```
 
 You could then show the list of drafts in your component's template like
@@ -136,21 +141,26 @@ tempted to copy and paste your existing `willRender` code into the new
 component.
 
 ```javascript {data-filename=app/components/drafts-button.js}
-import Component from '@ember/component';
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
 
-export default Component.extend({
-  willRender() {
+export default class DraftsButton extends Component {
+  @tracked drafts;
+  
+  constructor() {
+    super(...arguments);
+
     $.getJSON('/drafts').then(data => {
-      this.set('drafts', data);
+      this.drafts = data;
     });
   }
-});
+}
 ```
 
 ```handlebars {data-filename=app/templates/components/drafts-button.hbs}
-{{#link-to "drafts" tagName="button"}}
+<LinkTo @route="drafts" @tagName="button">
   Drafts ({{this.drafts.length}})
-{{/link-to}}
+</LinkTo>
 ```
 
 Unfortunately, the app will now make two separate requests for the
