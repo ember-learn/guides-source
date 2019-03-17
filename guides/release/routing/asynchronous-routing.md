@@ -137,7 +137,7 @@ export default class GoodForNothingRoute extends Route {
     // Uncomment the line below to bubble this error event:
     // return true;
   }
-};
+}
 ```
 
 In the above example, the error event would stop right at
