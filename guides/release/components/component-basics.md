@@ -6,7 +6,7 @@ events that you can hook into in your templates. However, they shouldn't be
 confused with [_web components_](https://www.webcomponents.org/), which are a
 browser based API that is similar, but not as powerful as Ember components.
 
-Like we mentioned in the section on [Templates](../../templates/), components
+Like we mentioned in the section on [Templates](../../templates/handlebars-basics/), components
 can have both a template and a class definition, like so:
 
 ```handlebars {data-filename=app/templates/components/hello-button.hbs}

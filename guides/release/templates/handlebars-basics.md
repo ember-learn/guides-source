@@ -64,15 +64,8 @@ In the "Hello World" example, we are using a component template,
 so the property is looked up in the respective component.
 If it were a route template, then the backing object would be the respective controller:
 
-```javascript
-export default class extends Controller {
-  name = "World";
-}
-```
-
-```handlebars
-Hello {{this.name}}!
-```
+You cannot use script tags directly within a template, and should use [actions](../actions/) or [Component Lifecycle Hooks](../../components/glimmer-components-dom/) to make your app responsive to user interactions and new data.
+If you are working with a non-Ember JavaScript library and need to use a `js` file from it, see the Guide section [Addons and Dependencies](../../addons-and-dependencies/managing-dependencies/).
 
 ```html
 Hello World!

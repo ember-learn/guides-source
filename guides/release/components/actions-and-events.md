@@ -54,7 +54,7 @@ confirmation that will show conditionally based on its `showConfirmation`
 property. You'll notice this property is decorated with the `@tracked`
 decorator - this is known as a _tracked property_, and indicates to Ember that
 the field will change in value over time. We'll discuss this more in the section
-on [State Management](../../state-management).
+on [State Management](../../state-management/).
 
 Next, we need to hook up the button to toggle that property. We'll
 do this with an _action_:
@@ -168,7 +168,7 @@ then confirms. In the first case, we'll find the user's account and delete it.
 
 We'll implement an action on the parent component called
 `userDidDeleteAccount()` that, when called, gets a hypothetical `login`
-[service](../../applications/services/) and calls the service's `deleteUser()`
+[service](../../services/) and calls the service's `deleteUser()`
 method. We'll go over services later on - for now, think of it as an API
 that manages the user's login and information.
 

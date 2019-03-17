@@ -226,7 +226,7 @@ Move on to the [next page](../hbs-helper/) for the next feature, or continue on 
 
 Ember components are commonly tested with [component integration tests](../../testing/testing-components/).
 Component integration tests verify the behavior of a component within the context of Ember's rendering engine.
-When running in an integration test, the component goes through its regular [render lifecycle](../../components/the-component-lifecycle/),
+When running in an integration test, the component goes through its regular [render lifecycle](../../components/glimmer-components-dom/),
 and has access to dependent objects, loaded through Ember's resolver.
 
 Our component integration test will test two different behaviors:

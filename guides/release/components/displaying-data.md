@@ -96,4 +96,4 @@ The output will be:
 <p>Hello Zoey, I'm Tomster!</p>
 ```
 
-For more detailed information see [Passing arguments and HTML attributes](./passing-arguments-and-html-attributes).
+For more detailed information see [Passing arguments and HTML attributes](./arguments-and-attributes).

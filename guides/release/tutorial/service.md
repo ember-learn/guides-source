@@ -1,5 +1,5 @@
 For Super Rentals, we want to be able to display a map showing where each rental is.
-We will use an [Ember service](../../applications/services/) to implement this feature.
+We will use an [Ember service](../../services/) to implement this feature.
 
 We plan to use the following services to provide maps.
 
@@ -54,7 +54,7 @@ we will implement a map element service that will create an HTML `div` element a
 The service will also keep a reference to the element we create,
 so that a map for a given location will only have to be generated once.
 
-Accessing our maps API through a [service](../../applications/services/) will give us several benefits:
+Accessing our maps API through a [service](../../services/) will give us several benefits:
 
 * It is injected with a [service locator](https://en.wikipedia.org/wiki/Service_locator_pattern),
   meaning it will abstract the maps API from the code that uses it,
@@ -133,13 +133,13 @@ ember g component location-map
 Running this command generates three files: a component JavaScript file, a template, and a test file.
 
 We provide the maps service into our component by initializing a property of our component, called `mapElement`.
-Services are commonly made available in components and other Ember objects by ["service injection"](../../applications/services/#toc_accessing-services).
+Services are commonly made available in components and other Ember objects by ["service injection"](../../services/#toc_accessing-services).
 When you initialize a property with `import { inject } from '@ember/service';`,
 Ember tries to set that property with a service matching its name.
 
 With our `mapElement` service, our component will call the `getMapElement` function with the provided location.
 We append the map element we get back from the service by implementing `didInsertElement`,
-which is a [component lifecycle hook](../../components/the-component-lifecycle/#toc_integrating-with-third-party-libraries-with-didinsertelement).
+which is a [component lifecycle hook](../../components/glimmer-components-dom/#toc_integrating-with-third-party-libraries-with-didinsertelement).
 This function runs during the component render, after the component's markup gets inserted into the page.
 
 ```javascript {data-filename="app/components/location-map.js" data-diff="+2,+5,+6,+7,+9,+10,+11,+12,+13,+14"}

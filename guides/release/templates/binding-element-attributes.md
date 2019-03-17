@@ -57,9 +57,6 @@ Which will render the following HTML:
 </a>
 ```
 
-Components can control which of their elements receive attributes.
-[Read more about how to customize a component's element](../../components/customizing-a-components-element/).
-
 <div class="cta">
   <div class="cta-note">
     <div class="cta-note-body">
