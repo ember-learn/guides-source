@@ -1,7 +1,7 @@
 Before you start writing any Ember code, it's a good idea to get an overview of how an
 Ember application works.
 
-![ember core concepts](/images/ember-core-concepts/ember-core-concepts.png)
+![ember core concepts](/images/ember-core-concepts/ember-core-concepts.svg)
 
 ## Router and Route Handlers
 Imagine we are writing a web app for a site that lets users list their properties to rent. At any given time, we should be able to answer questions about the current state like _What rental are they looking at?_ and _Are they editing it?_ In Ember, the answer to these questions is determined by the URL.
