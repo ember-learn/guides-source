@@ -246,7 +246,7 @@ Now, when the `li` element is clicked, a `showPerson` method will be called in t
 
 Add the action to the `people-list.js` file:
 
-```javascript {data-filename="app/components/people-list.js" data-diff="+4,+5,+6,+7,+8"}
+```javascript {data-filename="app/components/people-list.js" data-diff="+2,+5,+6,+7,+8"}
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 
