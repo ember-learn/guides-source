@@ -19,7 +19,7 @@ export default class FavoritePostsRoute extends Route {
   model() {
     return this.store.query('post', { favorite: true });
   }
-};
+}
 ```
 
 Typically, the `model` [hook](../../getting-started/core-concepts/#toc_hooks) should return an [Ember Data](../../models/) record,

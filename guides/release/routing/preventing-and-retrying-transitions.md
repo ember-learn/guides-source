@@ -104,5 +104,5 @@ export default class SomethingController extends Controller {
       this.transitionToRoute('index');
     }
   }
-};
+}
 ```

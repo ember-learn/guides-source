@@ -27,7 +27,7 @@ import Route from '@ember/routing/route';
 
 export default class PostsRoute extends Route {
   templateName = 'posts/favorite-posts';
-};
+}
 ```
 
 You can override the [`renderTemplate()`](https://www.emberjs.com/api/ember/release/classes/Route/methods/renderTemplate?anchor=renderTemplate) hook if you want finer control over template rendering.

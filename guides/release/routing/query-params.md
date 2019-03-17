@@ -33,7 +33,7 @@ import Controller from '@ember/controller';
 export default class ArticlesController extends Controller {
   queryParams = ['category'];
   category = null;
-};
+}
 ```
 
 This sets up a binding between the `category` query param in the URL,
@@ -155,7 +155,7 @@ export default class ArticlesRoute extends Route {
     // which we can forward to the server.
     return this.store.query('article', params);
   }
-};
+}
 ```
 
 ```javascript {data-filename=app/controllers/articles.js}
@@ -184,7 +184,7 @@ export default class ArticlesRoute extends Route {
       replace: true
     }
   }
-};
+}
 ```
 
 This behavior is similar to `link-to`,
@@ -205,7 +205,7 @@ export default class ArticlesController extends Controller {
   }
 
   category = null
-};
+}
 ```
 
 This will cause changes to the `controller:articles`'s `category`
@@ -225,7 +225,7 @@ export default class ArticlesController extends Controller {
   category = null;
   page = 1;
   filter = 'recent';
-};
+}
 ```
 
 ### Default values and deserialization
@@ -239,7 +239,7 @@ import Controller from '@ember/controller';
 export default class ArticlesController extends Controller {
   queryParams = 'page';
   page = 1;
-};
+}
 ```
 
 This affects query param behavior in two ways:
@@ -314,7 +314,7 @@ export default class ArticlesRoute extends Route {
       controller.set('page', 1);
     }
   }
-};
+}
 ```
 
 In some cases, you might not want the sticky query param value to be
@@ -332,7 +332,7 @@ export default class ArticlesController extends Controller {
       scope: 'controller'
     }
   }]
-};
+}
 ```
 
 The following demonstrates how you can override both the scope and the query param URL key of a single controller query param property:
@@ -349,5 +349,5 @@ export default class ArticlesController extends Controller {
       }
     }
   ]
-};
+}
 ```

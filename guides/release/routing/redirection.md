@@ -38,7 +38,7 @@ export default class IndexRoute extends Route {
   beforeModel(/* transition */) {
     this.transitionTo('posts'); // Implicitly aborts the on-going transition.
   }
-};
+}
 ```
 
 `beforeModel()` receives the current transition as an argument, which we can store and retry later.
@@ -73,7 +73,7 @@ export default class PostsRoute extends Route {{
       this.transitionTo('post', model.get('firstObject'));
     }
   }
-};
+}
 ```
 
 When transitioning to the `posts` route if it turns out that there is only one post,
