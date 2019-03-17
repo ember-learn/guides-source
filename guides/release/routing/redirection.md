@@ -110,5 +110,5 @@ export default class PostsRoute extends Route {
       this.transitionTo('posts.post', model.get('firstObject'));
     }
   }
-};
+}
 ```
