@@ -180,7 +180,7 @@ export default class AlbumIndexRoute extends Route {
 
     return this.store.query('song', { album: album_id });
   }
-};
+}
 ```
 
 This is guaranteed to work because the parent route is loaded. But if you tried to
