@@ -189,7 +189,8 @@ const { attr } = DS;
 export default class PaymentMethodCc extends PaymentMethod {
   @attr() last4;
 
-  obfuscatedIdentifier: computed('last4', function () {
+  @computed('last4')
+  get obfuscatedIdentifier() {
     return `**** **** **** ${this.last4}`;
   })
 }
@@ -204,7 +205,8 @@ const { attr } = DS;
 export default class PaymentMethodPaypal extends PaymentMethod {
   @attr() linkedEmail;
 
-  obfuscatedIdentifier: computed('linkedEmail', function () {
+  @computed('linkedEmail')
+  get obfuscatedIdentifier() {
     let last5 = this.linkedEmail.split('').reverse().slice(0, 5).reverse().join('');
 
     return `••••${last5}`;
