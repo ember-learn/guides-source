@@ -128,7 +128,44 @@ the output will be updated to:
 
 ## Conditional Attributes
 
+So far, we've talked about how to populate an attribute with the value of a variable. But what if we
+want the value of an attribute to differ based upon whether the variable is truthy or falsy.
+
+For example, let's say we want the `class` on a `<div>` to be `superuser` if the `@isAdmin` variable
+is true, but `standard` if the `@isAdmin` variable is false.
+
+We could accomplish this requirement by using the `if` helper inside of an attribute:
+
+```handlebars
+<div class={{if @isAdmin "superuser" "standard"}}>
+  Welcome to my app.
+</div>
+```
+
+Instead of thinking about changing the class imperatively when the `@isAdmin` variable changes, we
+can think about how to build a template that produces the right output in both cases, and leave it
+up to Ember to figure out how to update the HTML output.
+
 ## Summary: The Principle of Substitution
+
+In summary, when you're trying to update a piece of text or an attribute in your component, think
+of the Principle of Substitution, and write a template that produces the right HTML when you
+substitute all of the variables in the template with the current values of the variables.
+
+Whenever any of those variables change, Ember will automatically update the HTML efficiently without
+blowing away browser state unnecessarily.
+
+The advantage to writing components this way is that there is no way to make a mistake and forget to
+update the output correctly in some situations. As long as the template produces the right HTML for
+its inputs, the output will remain up to date.
+
+This approach works great when you're trying to produce output that can be represented in HTML. But
+what about aspects of your component that aren't represented in HTML, like event handlers? In those
+cases, Ember tries to stick to the spirit of the Principle of Substitution, and allow you to write
+templates as if they only ran one time, and then automatically keep the output up to date for you.
+
+The rest of this guide describes how to enhance your templates with event handlers, custom DOM
+properties and other kinds of custom JavaScript.
 
 ## Event Handlers
 
