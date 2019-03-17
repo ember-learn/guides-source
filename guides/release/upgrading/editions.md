@@ -153,7 +153,7 @@ Angle bracket syntax is a new way to invoke components that is much easier to
 read, helps distinguish between helper logic and components, and has other
 benefits:
 
-```hbs
+```handlebars
 <!-- Before -->
 {{#todo-list as |item|}}
   {{to-do item=item}}
@@ -177,7 +177,7 @@ They also have a number of other differences and benefits:
   `kebab-case` form.
 - Single word component names are completely OK in angle bracket form!
 
-  ```hbs
+  ```handlebars
   <!-- throws an error 🛑 -->
   {{todo}}
 
@@ -189,7 +189,7 @@ They also have a number of other differences and benefits:
   HTML attributes_. This means you can assign any valid HTML attribute, and it
   will be reflected onto the component directly:
 
-  ```hbs
+  ```handlebars
     <Todo
       role="list-item"
       data-test-todo-item
@@ -207,7 +207,7 @@ They also have a number of other differences and benefits:
 
 - _Arguments_ are passed by adding `@` to the front of the argument name:
 
-  ```hbs
+  ```handlebars
   <!-- Before -->
   {{todo item=item}}
 
@@ -219,7 +219,7 @@ They also have a number of other differences and benefits:
   argument. It's important to note that if you want to pass a primitive literal
   value to an argument, it must be wrapped in double curly braces:
 
-  ```hbs
+  ```handlebars
   <Todo @done={{false}}/>
   ```
 
@@ -232,7 +232,7 @@ They also have a number of other differences and benefits:
 
 - Yielded values work the same as in curly invocation:
 
-  ```hbs
+  ```handlebars
   <TodoList as |item|>
     <Todo @item={{item}}/>
   </TodoList>
@@ -240,7 +240,7 @@ They also have a number of other differences and benefits:
 
 - Yielded components can also be invoked with angle bracket syntax:
 
-  ```hbs
+  ```handlebars
   <TodoList as |Item|>
     <Item/>
   </TodoList>
@@ -263,11 +263,11 @@ highly recommended in general.
 Named arguments are a new syntax that allows you to refer to the arguments of a
 component _directly_ within your template:
 
-```hbs {data-filename=application.hbs}
+```handlebars {data-filename=application.hbs}
 <BlogPost @title="Hello, world!"/>
 ```
 
-```hbs {data-filename=blog-post.hbs}
+```handlebars {data-filename=blog-post.hbs}
 <h1>{{@title}}</h1>
 ```
 
@@ -276,11 +276,11 @@ the argument being passed into a component via angle bracket invocation, making
 it easier to remember and connect the two! However, you can still refer to
 argument values if the component was invoked using curly bracket syntax:
 
-```hbs {data-filename=application.hbs}
+```handlebars {data-filename=application.hbs}
 {{blog-post title="Hello, world!"}}
 ```
 
-```hbs {data-filename=blog-post.hbs}
+```handlebars {data-filename=blog-post.hbs}
 <!-- This still works -->
 <h1>{{@title}}</h1>
 ```
@@ -301,7 +301,7 @@ export default Component.extend({
 });
 ```
 
-```hbs {data-filename=blog-post.hbs}
+```handlebars {data-filename=blog-post.hbs}
 <!-- This is the original title, "Hello, world!" -->
 <h1>{{@title}}</h1>
 
@@ -314,7 +314,7 @@ was ever mutated by the component's class, if it even exists, or if it is
 directly from the external context. If you need to provide a default value,
 you'll have to do it via a getter or by using a helper in the template:
 
-```hbs {data-filename=blog-post.hbs}
+```handlebars {data-filename=blog-post.hbs}
 <!-- using {{or}} from ember-truth-helpers -->
 <h1>{{or @title "Untitled"}}</h1>
 ```
@@ -326,7 +326,7 @@ references to `this` in the template. This is a new requirement for any values
 that are rendered from the local context (e.g. the component or controller
 instance that backs the template).
 
-```hbs
+```handlebars
 <!-- Before -->
 {{title}}
 
@@ -347,7 +347,7 @@ Note that this only applies to component/controller properties. Local variables,
 introduced via a yield, can still be referred to directly since they're
 unambiguous:
 
-```hbs
+```handlebars
 {{#let "Title" as |title|}}
   <!-- This works, because it's a local variable and unambiguous -->
   {{title}}
@@ -637,12 +637,12 @@ export default class ApplicationController extends Controller {
 The action decorator also _binds_ actions, so you can refer to them directly in
 templates without the `{{action}}` helper anymore:
 
-```hbs
+```handlebars
 <!-- Before -->
 <button onclick={{action 'helloWorld'}}></button>
 ```
 
-```hbs
+```handlebars
 <!-- After -->
 <button onclick={{this.helloWorld}}></button>
 ```
@@ -650,7 +650,7 @@ templates without the `{{action}}` helper anymore:
 You should still use the `{{action}}` helper if you need to pass additional
 parameters to the action though:
 
-```hbs
+```handlebars
 <button onclick={{action this.helloWorld "some" "values"}}></button>
 ```
 
@@ -967,7 +967,7 @@ export default class ApplicationController extends Controller {
 
 And you could pass this downward into components for use:
 
-```hbs
+```handlebars
 <ul>
   {{#each this.people as |person|}}
     <li>{{person.name}}</li>
@@ -1111,7 +1111,7 @@ Glimmer components don't have a wrapping element. This is referred to as _outer
 HTML semantics_, and it means that whatever you see in the template is what you
 get in the final rendered DOM:
 
-```hbs
+```handlebars
 <!-- template.hbs -->
 <div>
   Hello, {{this.worldName}}!
@@ -1154,7 +1154,7 @@ components:
   });
   ```
 
-  ```hbs
+  ```handlebars
   {{this.text}}
   ```
 
@@ -1174,7 +1174,7 @@ components:
   }
   ```
 
-  ```hbs
+  ```handlebars
   <button onclick={{this.sayHello}}>
     {{this.text}}
   </button>
@@ -1193,7 +1193,7 @@ components:
   });
   ```
 
-  ```hbs
+  ```handlebars
   {{this.text}}
   ```
 
@@ -1207,7 +1207,7 @@ components:
   }
   ```
 
-  ```hbs
+  ```handlebars
   <div class="hello-world">
     {{this.text}}
   </div>
@@ -1227,7 +1227,7 @@ components:
   });
   ```
 
-  ```hbs
+  ```handlebars
   {{this.text}}
   ```
 
@@ -1242,7 +1242,7 @@ components:
   }
   ```
 
-  ```hbs
+  ```handlebars
   <div class="{{if this.darkMode 'dark-mode'}}">
     {{this.text}}
   </div>
@@ -1262,7 +1262,7 @@ components:
   });
   ```
 
-  ```hbs
+  ```handlebars
   {{this.text}}
   ```
 
@@ -1277,7 +1277,7 @@ components:
   }
   ```
 
-  ```hbs
+  ```handlebars
   <div role={{this.role}}>
     {{this.text}}
   </div>
@@ -1297,7 +1297,7 @@ element, with `class` being merged. In Glimmer components, there isn't
 necessarily a wrapping element to apply these attributes to! Or there may be
 _multiple_ wrapping elements:
 
-```hbs
+```handlebars
 <!--
   This template is text only, the component doesn't have
   any wrapping elements!
@@ -1305,7 +1305,7 @@ _multiple_ wrapping elements:
 Hello, world!
 ```
 
-```hbs
+```handlebars
 <!--
   This template has multiple top level elements, the h1
   and the p. Which one should we use?
@@ -1321,7 +1321,7 @@ Hello, world!
 Glimmer components allow you to use the special `...attributes` syntax to the
 elements you want to apply the attributes to:
 
-```hbs
+```handlebars
 <!--
   The paragraph gets the attributes, and not the h1
 -->
@@ -1335,7 +1335,7 @@ elements you want to apply the attributes to:
 
 Attributes can be applied to multiple elements as well:
 
-```hbs
+```handlebars
 <!-- Both elements get the attributes -->
 <h1 ...attributes>
   Hello, world!
@@ -1349,12 +1349,12 @@ Finally, if you don't apply `...attributes` to _any_ elements, then Ember will
 throw an error if someone tries to use attributes when invoking your component.
 This allows you to maintain control over the component if you want:
 
-```hbs
+```handlebars
 <!-- components/uncustomizable-button.hbs -->
 <button class="btn">Do a thing!</button>
 ```
 
-```hbs
+```handlebars
 <!-- This throws an error -->
 <UncustomizableButton class="customized-button-class"/>
 ```
@@ -1374,7 +1374,7 @@ export default Component.extend({
 });
 ```
 
-```hbs
+```handlebars
 {{this.text}}
 ```
 
@@ -1388,7 +1388,7 @@ export default class Hello extends Component {
 }
 ```
 
-```hbs
+```handlebars
 <div ...attributes>
   {{this.text}}
 </div>
@@ -1420,7 +1420,7 @@ export default Component.extend({
 });
 ```
 
-```hbs
+```handlebars
 <!-- Usage -->
 <Person @firstName="Kenneth" @lastName="Larsen" />
 ```
@@ -1437,7 +1437,7 @@ export default class Person extends Component {
 }
 ```
 
-```hbs
+```handlebars
 <!-- Usage -->
 <Person @firstName="Kenneth" @lastName="Larsen" />
 ```
@@ -1504,7 +1504,7 @@ export default Component.extend({
 });
 ```
 
-```hbs
+```handlebars
 <!-- templates/components/parent.hbs -->
 <Child @value={{this.value}} />
 ```
@@ -1520,7 +1520,7 @@ export default Component.extend({
 });
 ```
 
-```hbs
+```handlebars
 <!-- templates/components/child.hbs -->
 <button>
   Change value
@@ -1552,7 +1552,7 @@ export default class Parent extends Component {
 }
 ```
 
-```hbs
+```handlebars
 <!-- templates/components/parent.hbs -->
 <Child @value={{this.value}} @onClick={{this.updateValue}} />
 ```
@@ -1564,7 +1564,7 @@ import Component from '@ember/component';
 export default class Child extends Component {}
 ```
 
-```hbs
+```handlebars
 <!-- templates/components/child.hbs -->
 <button onclick={{action @onClick 'Hello, moon!'}}>
   Change value
@@ -1694,7 +1694,7 @@ export default class Form extends Component {
 }
 ```
 
-```hbs
+```handlebars
 <!-- templates/components/form.hbs -->
 <Text
   @value={{this.text}}
@@ -1783,7 +1783,7 @@ export default class ScrollComponent extends Component {
 }
 ```
 
-```hbs
+```handlebars
 <div
   {{did-insert this.registerListener}}
   {{will-destroy this.unregisterListener}}
@@ -1811,7 +1811,7 @@ export default class ScrollComponent extends Component {
 }
 ```
 
-```hbs
+```handlebars
 <div
   {{did-insert this.setColor @color}}
   {{did-update this.setColor @color}}
@@ -1838,13 +1838,13 @@ components. The three major differences with Glimmer components are:
 
 Before:
 
-```hbs
+```handlebars
 Hello, {{this.name}}!
 ```
 
 After:
 
-```hbs
+```handlebars
 <div>
   Hello, {{@name}}!
 </div>
@@ -1853,7 +1853,7 @@ After:
 One consequence of this is that attempting to change a component's state through
 bindings will not work:
 
-```hbs
+```handlebars
 <!--
   This does not work, since @value is
   an argument and is immutable
@@ -1869,7 +1869,7 @@ bindings will not work:
 
 Additionally, the `mut` helper generally can't be used for the same reason:
 
-```hbs
+```handlebars
 <!-- This does not work -->
 <input
   value={{@value}}
