@@ -220,7 +220,7 @@ export default class AlbumRoute extends Route {
       songs: this.store.query('songs', { album: album_id })
     });
   }
-};
+}
 ```
 
 And calling `modelFor` returned the result of the `model` hook.
