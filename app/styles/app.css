@@ -21,3 +21,19 @@ a.edit-page, #search-input {
   display: none;
 }
 
+/**
+ * HACK: Removing the version dropdown temporarily for Octane. Remove this
+ * before merging into master
+ */
+
+.sidebar nav.toc-container {
+  margin-top: 0;
+}
+
+.sidebar .ember-basic-dropdown {
+  display: none;
+}
+
+.toc-container.versions {
+  border-top: 0;
+}
