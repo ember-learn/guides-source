@@ -106,7 +106,7 @@ export default Component.extend({
 
 Although Angle Bracket syntax is considered to be the best approach, classic invocation syntax is fine to keep using.
 In some cases, classic invocation is still required. 
-When you need direct support for positional arguments or if your components are nested within the file tree, you should still reach for those curly brackets:
+When you need direct support for positional arguments or if your components are nested within the file tree, you should still reach for those curly braces:
 
 ```handlebars
 {{some-component param1 param2}}

@@ -58,7 +58,7 @@ module.exports = function(environment) {
     ],
     infoBanner: {
       content: `Thanks for taking the Octane preview for a test drive! Visit
-<a href="https://emberjs.com" target="_blank" rel="noopener">emberjs.com/octane</a>
+<a href="https://emberjs.com/editions/octane" target="_blank" rel="noopener">emberjs.com/editions/octane</a>
 for more info and ways you can help out.
 These preview guides URLs are subject to change, so point your bookmarks at that landing page.
 If you are looking for the latest stable release of Ember, please instead visit

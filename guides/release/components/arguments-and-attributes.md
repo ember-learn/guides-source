@@ -64,7 +64,7 @@ standard identifier can:
 ```
 
 You can pass strings as arguments to components, or you can pass literal values
-using double curly brackets:
+using double curly braces:
 
 ```handlebars
 <Tooltip
@@ -74,7 +74,7 @@ using double curly brackets:
 />
 ```
 
-Note that if you do _not_ wrap literal values in double curly brackets, they are
+Note that if you do _not_ wrap literal values in double curly braces, they are
 treated as strings, like standard HTML attributes:
 
 ```handlebars

@@ -581,6 +581,6 @@ When you encounter a string based action it should be refactored to use the
 It is then recommended to use the action modifier directly with decorated
 functions.
 
-```hbs
+```handlebars
 <button {{action this.confirmDelete this.user}}>Confirm Delete</button>
 ```
