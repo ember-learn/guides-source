@@ -173,10 +173,10 @@ When working with a collection of Ember objects, you will often want to filter a
 import { A } from '@ember/array';
 import EmberObject from '@ember/object';
 
-Todo = EmberObject.extend({
-  title: null,
-  isDone: false
-});
+class Todo extends EmberObject {
+  title = null;
+  isDone = false;
+}
 
 let todos = A([
   Todo.create({ title: 'Write code', isDone: true }),
@@ -203,10 +203,10 @@ use the [`every()`](https://api.emberjs.com/ember/3.11/classes/MutableArray/meth
 import { A } from '@ember/array';
 import EmberObject from '@ember/object';
 
-Person = EmberObject.extend({
-  name: null,
-  isHappy: false
-});
+class Person extends EmberObject {
+  name = null;
+  isHappy = false;
+}
 
 let people = A([
   Person.create({ name: 'Yehuda', isHappy: true }),
