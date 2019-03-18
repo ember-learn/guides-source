@@ -4,7 +4,7 @@ define how your models relate to each other.
 ### One-to-One
 
 To declare a one-to-one relationship between two models, use
-`DS.belongsTo`:
+`belongsTo`:
 
 ```javascript {data-filename=app/models/user.js}
 import DS from 'ember-data';
@@ -27,7 +27,7 @@ export default class Profile extends Model {
 ### One-to-Many
 
 To declare a one-to-many relationship between two models, use
-`DS.belongsTo` in combination with `DS.hasMany`, like this:
+`belongsTo` in combination with `hasMany`, like this:
 
 ```javascript {data-filename=app/models/blog-post.js}
 import DS from 'ember-data';
@@ -50,7 +50,7 @@ export default class Comment extends Model {
 ### Many-to-Many
 
 To declare a many-to-many relationship between two models, use
-`DS.hasMany`:
+`hasMany`:
 
 ```javascript {data-filename=app/models/blog-post.js}
 import DS from 'ember-data';
@@ -80,7 +80,7 @@ that model.
 
 However, sometimes you may have multiple `belongsTo`/`hasMany`s for
 the same type. You can specify which property on the related model is
-the inverse using `DS.belongsTo` or `DS.hasMany`'s `inverse`
+the inverse using `belongsTo` or `hasMany`'s `inverse`
 option. Relationships without an inverse can be indicated as such by
 including `{ inverse: null }`.
 
@@ -268,7 +268,7 @@ relationship. However, since readonly data will never need to be
 updated and saved this often results in the creation of a great deal
 of code for very little benefit. An alternate approach is to define
 these relationships using an attribute with no transform
-(`DS.attr()`). This makes it easy to access readonly values in
+(`attr()`). This makes it easy to access readonly values in
 computed properties and templates without the overhead of defining
 extraneous models.
 
