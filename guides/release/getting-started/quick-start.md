@@ -192,8 +192,6 @@ Note that we've changed the title from a hard-coded string ("List of Scientists"
 We've also renamed `scientist` to the more-generic `person`,
 decreasing the coupling of our component to where it's used.
 
-_Note: While the button element will ensure that your code is accessible, you may require an extra style or two if you wish to have it look like regular text. You might be tempted to use a regular link here, but that will cause your accessibility tests to fail._
-
 Save this template and switch back to the `scientists` template.
 Replace all our old code with our new componentized version.
 
@@ -247,6 +245,8 @@ The `action` helper allows you to add event listeners to elements and call named
 By default, the `action` helper adds a `click` event listener,
 but it can be used to listen for any element event.
 Now, when the `button` inside the `li` element is clicked, a `showPerson` method will be called in the `people-list` component.
+
+_Note: While the button element will ensure that your code is accessible, you may require an extra style or two if you wish to have it look like regular text. You might be tempted to use a regular link here, but that will cause your accessibility tests to fail._
 
 Add the action to the `people-list.js` file:
 
