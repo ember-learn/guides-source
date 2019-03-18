@@ -91,7 +91,8 @@ window.deprecationWorkflow.config = {
 Rerun your test suite as you make updates to your workflow file and you should validate that your deprecations are gone. Once that is completed,
 you can proceed with enhancing your application without the sea of deprecation warnings clouding your log.
 
-### 2. "Turn on" a deprecation
+### 2. Turn on a deprecation
+
 Once you have built your `deprecation-workflow.js` file and your deprecations are silenced, you can begin to work on deprecations one by one
 at your own leisure.  To find deprecations, you can change the handler value of that message to either `throw` or `log`.  Throw will
 throw an actual exception when the deprecation is encountered, so that tests that use the deprecated feature will fail.  Choosing to log will
