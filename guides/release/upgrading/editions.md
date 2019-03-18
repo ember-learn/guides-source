@@ -135,9 +135,9 @@ ember new octane-app -b @ember/octane
 Once Octane is released, the default blueprint will be updated to reflect the
 Octane defaults and specifying this blueprint will no longer be necessary.
 
-### File Layout
+<!-- ### File Layout
 
-TODO
+TODO -->
 
 ### Templates
 
