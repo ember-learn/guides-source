@@ -183,7 +183,7 @@ A method named `plantATree` is called when the button is
 clicked. `plantATree` comes from the JavaScript file
 associated with the template, like a Component or
 Controller -->
-<button {{action 'plantATree'}}>
+<button {{action this.plantATree}}>
   More trees!
 <button>
 
@@ -204,7 +204,9 @@ To pass in arguments associated with a Route, define the property from within a 
 
 Ember Helpers are functions that can compute values and can be used in any template.
 
-Ember gives you the ability to [write your own helpers](../writing-helpers/), to bring a minimum of logic into Ember templating.
+Ember Helpers are a way to use JavaScript logic in your templates.
+For example, you could write a Helper function that capitalizes a word, does some math, converts a currency, or more.
+A Helper takes in `parameters`, which is an array of the values passed into the function, and should return a value.
 
 For example, let's say you would like the ability to add a few numbers together, without needing to define a computed property everywhere you would like to do so.
 
@@ -228,7 +230,9 @@ The above code will allow you invoke the `sum()` function as a `{{sum}}` handleb
 
 This helper will output a value of `6`.
 
-Ember ships with several built-in helpers, which you will learn more about in the following guides.
+Ember gives you the ability to [write your own helpers](../writing-helpers/),
+and comes with some [helpers built-in](../built-in-helpers), which you will
+learn more about in the following guides.
 
 #### Nested Helpers
 

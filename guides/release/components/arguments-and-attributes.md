@@ -234,25 +234,33 @@ a class than completely override the existing ones. For `class`, the order of
 `...attributes` will determine the order of merging. Putting it before:
 
 ```handlebars
-<p ...attributes class="friend-greeting">Hello {{@friend}}, I'm {{this.name}}!</p>
+<p ...attributes class="friend-greeting">
+  Hello {{@friend}}, I'm {{this.name}}!
+</p>
 ```
 
 Results in:
 
 ```html
-<p class="red-alert friend-greeting">Hello {{@friend}}, I'm {{this.name}}!</p>
+<p class="red-alert friend-greeting">
+  Hello {{@friend}}, I'm {{this.name}}!
+</p>
 ```
 
 And putting it after:
 
 ```handlebars
-<p class="friend-greeting" ...attributes>Hello {{@friend}}, I'm {{this.name}}!</p>
+<p class="friend-greeting" ...attributes>
+  Hello {{@friend}}, I'm {{this.name}}!
+</p>
 ```
 
 Results in:
 
 ```html
-<p class="friend-greeting red-alert">Hello {{@friend}}, I'm {{this.name}}!</p>
+<p class="friend-greeting red-alert">
+  Hello {{@friend}}, I'm {{this.name}}!
+</p>
 ```
 
 #### Attributes and Modifiers

@@ -15,7 +15,7 @@ syntax and _not_ extending from `EmberObject` at all in your apps.
   class Actress extends Person {}
   ```
 
-- Always give your class a name, e.g. `✅ class MyClass {}` and not `🛑 class {}`
+- Always give your class a name, e.g. ✅ `class MyClass {}` and not 🛑 `class {}`
 
 **Classic**
 
@@ -178,7 +178,7 @@ const Person = EmberObject.extend({
 
 ### Accessors
 
-**Native**
+These are also mostly the same between native and classic classes.
 
 - Accessors can be defined with the `get` and `set` keywords:
 
@@ -200,28 +200,6 @@ const Person = EmberObject.extend({
   property is set.
 - Getters should not mutate state, and should be idempotent (they return the
   same value every time if nothing else has changed).
-
-**Classic**
-
-- Accessors can be defined using the `descriptor` decorator:
-
-  ```js
-  const Person = EmberObject.extend({
-    _name: 'Mel Sumner',
-
-    name: descriptor({
-      get() {
-        return this._name;
-      },
-
-      set(newName) {
-        this._name = newName;
-      },
-    }),
-  });
-  ```
-
-- Otherwise, they are the same as native accessors.
 
 ### Decorators
 

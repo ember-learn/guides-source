@@ -176,9 +176,6 @@ Make a new component by typing:
 ember generate component people-list
 ```
 
-Notice that while the file generate is dasherized, `people-list`, when you try to use it in a template,
-you should use capital case, `PeopleList`.
-
 Copy and paste the `scientists` template into the `PeopleList` component's template and edit it to look as follows:
 
 ```handlebars {data-filename=app/templates/components/people-list.hbs}
@@ -222,7 +219,7 @@ So far, your application is listing data,
 but there is no way for the user to interact with the information.
 In web applications you often want to listen for user events like clicks or hovers.
 Ember makes this easy to do.
-First, create a button insiide the `li` in your `people-list` component, and add an `action` helper to it.
+First add an `action` helper to the `li` in your `PeopleList` component.
 
 ```handlebars {data-filename="app/templates/components/people-list.hbs" data-diff="-5,+6,+7,+8"}
 <h2>{{this.title}}</h2>
@@ -230,9 +227,7 @@ First, create a button insiide the `li` in your `people-list` component, and add
 <ul>
   {{#each this.people as |person|}}
     <li>{{person}}</li>
-    <li>
-      <button {{action "showPerson" person}}>{{person}}</button>
-    </li>
+    <li {{action this.showPerson person}}>{{person}}</li>
   {{/each}}
 </ul>
 ```
@@ -240,9 +235,7 @@ First, create a button insiide the `li` in your `people-list` component, and add
 The `action` helper allows you to add event listeners to elements and call named functions.
 By default, the `action` helper adds a `click` event listener,
 but it can be used to listen for any element event.
-Now, when the `button` inside the `li` element is clicked, a `showPerson` method will be called in the `people-list` component.
-
-_Note: While the button element will ensure that your code is accessible, you may require an extra style or two if you wish to have it look like regular text. You might be tempted to use a regular link here, but that will cause your accessibility tests to fail._
+Now, when the `li` element is clicked, a `showPerson` method will be called in the `PeopleList` component.
 
 Add the action to the `people-list.js` file:
 
@@ -258,7 +251,7 @@ export default class PeopleList extends Component {
 }
 ```
 
-The `@action` is something called a decorator, and it lets your Ember app know that the `showPerson` method should be invocable by name in the component's template via `{{action "showPerson"}}`
+The `@action` is something called a decorator, and it lets your Ember app know that the `showPerson` method should be invocable by name in the component's template via `{{action this.showPerson}}`
 
 Now in the browser when a scientist's name is clicked,
 this function is called and the person's name is alerted.
