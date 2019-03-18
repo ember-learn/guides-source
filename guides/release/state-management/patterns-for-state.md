@@ -232,13 +232,13 @@ time.
   their parents only, and if they trigger actions, they are actions that were
   passed down to them. _Container_ components are components that own state or
   load data, possibly from a data store or service.
- 
+
 <!-- TODO: Diagram showing a container component that owns some state passing it
 down to several children, and their action cycles mutating it. -->
 
-* **Object-Oriented** services like [Ember Data][4] or [Apollo][5] (used in
-  Ember with [`ember-apollo-client`][6]) allow you to load and query data as
-  objects, and mutate them where you see fit:
+* **Object-Oriented** services like [Ember Data](../models/) or Apollo (used in
+  Ember with [`ember-apollo-client`](https://github.com/bgentry/ember-apollo-client))
+  allow you to load and query data as objects, and mutate them where you see fit:
 
 <!-- TODO: Diagram showing state being loaded by the store, flowing down to
 components, and then individual components updating state on the models. Also,
@@ -250,9 +250,10 @@ faded out, but other data cycles in the app to demonstrate that these aren't
   interactions, asynchronous effects (loading, saving, deleting, etc), and
   so-on.
 
-* **Centralized** data-stores like [Redux][7] (used in Ember with
-  [`ember-redux`][8]) seek to capture _all_ application state in a single place, the
-  centralized store, which owns all state:
+* **Centralized** data-stores like Redux (used in Ember with
+  [`ember-redux`](https://github.com/ember-redux/ember-redux)) seek to capture
+  _all_ application state in a single place, the centralized store, which owns
+  all state:
 
 <!-- TODO: Diagram showing actions all flowing to the Redux store/service, and data
 flowing out of it. -->
