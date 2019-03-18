@@ -167,7 +167,7 @@ As your application grows, you will notice you are sharing UI elements between m
 or using them multiple times on the same page.
 Ember makes it easy to refactor your templates into reusable components.
 
-Let's create a `people-list` component that we can use in multiple places to show a list of people.
+Let's create a `PeopleList` component that we can use in multiple places to show a list of people.
 
 As usual, there's a generator that makes this easy for us.
 Make a new component by typing:
@@ -176,7 +176,7 @@ Make a new component by typing:
 ember generate component people-list
 ```
 
-Copy and paste the `scientists` template into the `people-list` component's template and edit it to look as follows:
+Copy and paste the `scientists` template into the `PeopleList` component's template and edit it to look as follows:
 
 ```handlebars {data-filename=app/templates/components/people-list.hbs}
 <h2>{{this.title}}</h2>
@@ -218,7 +218,7 @@ The only difference is that now we've componentized our list into a version that
 You can see this in action if you create a new route that shows a different list of people.
 As an exercise for the reader,
 you may try to create a `programmers` route that shows a list of famous programmers.
-By re-using the `people-list` component, you can do it in almost no code at all.
+By re-using the `PeopleList` component, you can do it in almost no code at all.
 
 ## Click Events
 
@@ -226,7 +226,7 @@ So far, your application is listing data,
 but there is no way for the user to interact with the information.
 In web applications you often want to listen for user events like clicks or hovers.
 Ember makes this easy to do.
-First add an `action` helper to the `li` in your `people-list` component.
+First add an `action` helper to the `li` in your `PeopleList` component.
 
 ```handlebars {data-filename="app/templates/components/people-list.hbs" data-diff="-5,+6"}
 <h2>{{this.title}}</h2>
@@ -234,7 +234,7 @@ First add an `action` helper to the `li` in your `people-list` component.
 <ul>
   {{#each this.people as |person|}}
     <li>{{person}}</li>
-    <li {{action "showPerson" person}}>{{person}}</li>
+    <li {{action this.showPerson person}}>{{person}}</li>
   {{/each}}
 </ul>
 ```
@@ -242,7 +242,7 @@ First add an `action` helper to the `li` in your `people-list` component.
 The `action` helper allows you to add event listeners to elements and call named functions.
 By default, the `action` helper adds a `click` event listener,
 but it can be used to listen for any element event.
-Now, when the `li` element is clicked, a `showPerson` method will be called in the `people-list` component.
+Now, when the `li` element is clicked, a `showPerson` method will be called in the `PeopleList` component.
 
 Add the action to the `people-list.js` file:
 
@@ -258,7 +258,7 @@ export default class PeopleList extends Component {
 }
 ```
 
-The `@action` is something called a decorator, and it lets your Ember app know that the `showPerson` method should be invocable by name in the component's template via `{{action "showPerson"}}`
+The `@action` is something called a decorator, and it lets your Ember app know that the `showPerson` method should be invocable by name in the component's template via `{{action this.showPerson}}`
 
 Now in the browser when a scientist's name is clicked,
 this function is called and the person's name is alerted.

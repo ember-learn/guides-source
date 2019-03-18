@@ -32,7 +32,7 @@ helper makes it easy to dynamically send a number of parameters to a component
 or helper as a single parameter in the format of a concatenated string.
 
 ```handlebars
-{{get "foo" (concat "item" this.index)}}
+{{get this.foo (concat "item" this.index)}}
 ```
 
 This will display the result of `this.foo.item1` when index is 1, and
@@ -84,11 +84,13 @@ Using the [`{{array}}`](https://www.emberjs.com/api/ember/release/classes/Ember.
 you can pass arrays directly from the template as an argument to your components.
 
 ```handlebars
-<MyComponent @people={{array
+<MyComponent 
+  @people={{array
     'Tom Dale'
     'Yehuda Katz'
-    this.myOtherPerson}}
- />
+    this.myOtherPerson
+  }}
+/>
 ```
 
 In the component's template, you can then use the `people` argument as an array:
