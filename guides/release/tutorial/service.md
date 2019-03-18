@@ -297,14 +297,14 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-let StubMapsService = Service.extend({
+class StubMapsService extends Service {
   getMapElement(location) {
     this.set('calledWithLocation', location);
     let element = document.createElement('div');
     element.className = 'map';
     return Promise.resolve(element);
   }
-});
+}
 
 module('Integration | Component | location map', function(hooks) {
   setupRenderingTest(hooks);
@@ -362,11 +362,11 @@ import hbs from 'htmlbars-inline-precompile';
 import EmberObject from '@ember/object';
 import Service from '@ember/service';
 
-let StubMapsService = Service.extend({
+class StubMapsService extends Service {
   getMapElement() {
     return Promise.resolve(document.createElement('div'));
   }
-});
+}
 
 module('Integration | Component | rental listing', function (hooks) {
   setupRenderingTest(hooks);
@@ -425,11 +425,11 @@ import {
   triggerKeyEvent
 } from '@ember/test-helpers'
 
-let StubMapsService = Service.extend({
+class StubMapsService extends Service {
   getMapElement() {
     return Promise.resolve(document.createElement('div'));
   }
-});
+}
 
 module('Acceptance | list rentals', function(hooks) {
   setupApplicationTest(hooks);
