@@ -65,25 +65,25 @@ everything needed to fully adopt the new programming model has landed yet.
 
 ![Coherence example chart](/images/upgrading/editions/coherence-chart.png)
 
-Over time, we land more and more related APIs while deprecating APIs that aren’t
+Over time, we land more and more related APIs while deprecating APIs that aren't
 aligned with the new model. As this happens, we say the framework becomes more
 coherent.
 
 Editions, then, are regular snapshots of the framework at its most coherent,
 when everything needed to adopt the new programming model is in place.
 
-We’ll be ironing out this process with our first edition, Ember Octane.
-Hopefully this edition serves to tie together the many initiatives that we’ve
+We'll be ironing out this process with our first edition, Ember Octane.
+Hopefully this edition serves to tie together the many initiatives that we've
 worked on over the past few years, and helps show the world that Ember remains a
 modern, competitive framework for getting things done.
 
 ## Features overview
 
 The emphasis of Ember Octane is modern performance and productivity. To
-accomplish that, we’re cutting away cruft that is no longer needed while
+accomplish that, we're cutting away cruft that is no longer needed while
 introducing new features that make app development simpler and faster.
 
-Here’s are some of the core features in Octane:
+Here's are some of the core features in Octane:
 
 - **Native JavaScript classes**, unlocking simpler syntax, faster performance,
   and better interop with the wider ecosystem.
@@ -91,19 +91,15 @@ Here’s are some of the core features in Octane:
 - **Tracked properties**, a type of decorator that simplifies keeping the DOM
   up-to-date with JavaScript changes.
 - **Async functions** (`async`/`await`) for authoring asynchronous code.
-- **Native JavaScript modules**, including
-  - **Distributing Ember as npm packages**.
-  - **Importing npm packages** with zero additional configuration.
-  - **Treeshaking** to eliminate unused dependencies from the final output.
+- **Importing npm packages** with zero additional configuration.
 - **Octane-style components**, including
   - **"Outer HTML" templates** that support fragments and easily customizing the
     root element.
   - **Customizable DOM attributes** with `...attributes`.
   - **`<AngleBracket>` syntax** for better readability.
-- **Modernized file system layout** based on the Module Unification design.
 
-Just as important is what we’re removing from the Ember experience. These
-features below will keep working, but you won’t have to use them if you don’t
+Just as important is what we're removing from the Ember experience. These
+features below will keep working, but you won't have to use them if you don't
 want to:
 
 - **jQuery**. For DOM interaction, developers should use templates or native DOM
@@ -117,7 +113,7 @@ want to:
 - **The run loop**. App developers should never have to write code that interacts
   with the Ember run loop, even in tests.
 - **Ember "inner HTML" components**, and the confusing JavaScript API used to
-  configure a component’s root element, like `tagName`, `classNameBindings`,
+  configure a component's root element, like `tagName`, `classNameBindings`,
   etc.
 
 Note that these features will continue to work for apps that need them. An
@@ -135,9 +131,9 @@ ember new octane-app -b @ember/octane
 Once Octane is released, the default blueprint will be updated to reflect the
 Octane defaults and specifying this blueprint will no longer be necessary.
 
-### File Layout
+<!-- ### File Layout
 
-TODO
+TODO -->
 
 ### Templates
 
@@ -153,7 +149,7 @@ Angle bracket syntax is a new way to invoke components that is much easier to
 read, helps distinguish between helper logic and components, and has other
 benefits:
 
-```hbs
+```handlebars
 <!-- Before -->
 {{#todo-list as |item|}}
   {{to-do item=item}}
@@ -165,7 +161,7 @@ benefits:
 </TodoList>
 ```
 
-As you can see, they use angle brackets instead of double curly brackets when
+As you can see, they use angle brackets instead of double curly braces when
 invoked, thus the name. This allows them to match up much more closely with
 HTML - as you can see from looking at the "after" example above, components open
 and close in the same way as HTML elements, and self closing components require
@@ -177,7 +173,7 @@ They also have a number of other differences and benefits:
   `kebab-case` form.
 - Single word component names are completely OK in angle bracket form!
 
-  ```hbs
+  ```handlebars
   <!-- throws an error 🛑 -->
   {{todo}}
 
@@ -189,7 +185,7 @@ They also have a number of other differences and benefits:
   HTML attributes_. This means you can assign any valid HTML attribute, and it
   will be reflected onto the component directly:
 
-  ```hbs
+  ```handlebars
     <Todo
       role="list-item"
       data-test-todo-item
@@ -207,7 +203,7 @@ They also have a number of other differences and benefits:
 
 - _Arguments_ are passed by adding `@` to the front of the argument name:
 
-  ```hbs
+  ```handlebars
   <!-- Before -->
   {{todo item=item}}
 
@@ -217,9 +213,9 @@ They also have a number of other differences and benefits:
 
   Like with attributes, both literal values and bound values can be passed to an
   argument. It's important to note that if you want to pass a primitive literal
-  value to an argument, it must be wrapped in double curlies:
+  value to an argument, it must be wrapped in double curly braces:
 
-  ```hbs
+  ```handlebars
   <Todo @done={{false}}/>
   ```
 
@@ -232,7 +228,7 @@ They also have a number of other differences and benefits:
 
 - Yielded values work the same as in curly invocation:
 
-  ```hbs
+  ```handlebars
   <TodoList as |item|>
     <Todo @item={{item}}/>
   </TodoList>
@@ -240,7 +236,7 @@ They also have a number of other differences and benefits:
 
 - Yielded components can also be invoked with angle bracket syntax:
 
-  ```hbs
+  ```handlebars
   <TodoList as |Item|>
     <Item/>
   </TodoList>
@@ -263,11 +259,11 @@ highly recommended in general.
 Named arguments are a new syntax that allows you to refer to the arguments of a
 component _directly_ within your template:
 
-```hbs {data-filename=application.hbs}
+```handlebars {data-filename=application.hbs}
 <BlogPost @title="Hello, world!"/>
 ```
 
-```hbs {data-filename=blog-post.hbs}
+```handlebars {data-filename=blog-post.hbs}
 <h1>{{@title}}</h1>
 ```
 
@@ -276,11 +272,11 @@ the argument being passed into a component via angle bracket invocation, making
 it easier to remember and connect the two! However, you can still refer to
 argument values if the component was invoked using curly bracket syntax:
 
-```hbs {data-filename=application.hbs}
+```handlebars {data-filename=application.hbs}
 {{blog-post title="Hello, world!"}}
 ```
 
-```hbs {data-filename=blog-post.hbs}
+```handlebars {data-filename=blog-post.hbs}
 <!-- This still works -->
 <h1>{{@title}}</h1>
 ```
@@ -301,7 +297,7 @@ export default Component.extend({
 });
 ```
 
-```hbs {data-filename=blog-post.hbs}
+```handlebars {data-filename=blog-post.hbs}
 <!-- This is the original title, "Hello, world!" -->
 <h1>{{@title}}</h1>
 
@@ -314,7 +310,7 @@ was ever mutated by the component's class, if it even exists, or if it is
 directly from the external context. If you need to provide a default value,
 you'll have to do it via a getter or by using a helper in the template:
 
-```hbs {data-filename=blog-post.hbs}
+```handlebars {data-filename=blog-post.hbs}
 <!-- using {{or}} from ember-truth-helpers -->
 <h1>{{or @title "Untitled"}}</h1>
 ```
@@ -326,7 +322,7 @@ references to `this` in the template. This is a new requirement for any values
 that are rendered from the local context (e.g. the component or controller
 instance that backs the template).
 
-```hbs
+```handlebars
 <!-- Before -->
 {{title}}
 
@@ -347,7 +343,7 @@ Note that this only applies to component/controller properties. Local variables,
 introduced via a yield, can still be referred to directly since they're
 unambiguous:
 
-```hbs
+```handlebars
 {{#let "Title" as |title|}}
   <!-- This works, because it's a local variable and unambiguous -->
   {{title}}
@@ -637,12 +633,12 @@ export default class ApplicationController extends Controller {
 The action decorator also _binds_ actions, so you can refer to them directly in
 templates without the `{{action}}` helper anymore:
 
-```hbs
+```handlebars
 <!-- Before -->
 <button onclick={{action 'helloWorld'}}></button>
 ```
 
-```hbs
+```handlebars
 <!-- After -->
 <button onclick={{this.helloWorld}}></button>
 ```
@@ -650,7 +646,7 @@ templates without the `{{action}}` helper anymore:
 You should still use the `{{action}}` helper if you need to pass additional
 parameters to the action though:
 
-```hbs
+```handlebars
 <button onclick={{action this.helloWorld "some" "values"}}></button>
 ```
 
@@ -749,7 +745,7 @@ The `static` keyword can be applied to all class elements.
 ### Tracked Properties
 
 Tracked properties are a new way to track changes to state in Ember Octane,
-replacing computed properties (CPs). Unlike CPs, which require you to annotate
+replacing computed properties . Unlike computed properties, which require you to annotate
 every getter with the values it depends on, tracked properties only require to
 annotate the values that are _trackable_, that is values that:
 
@@ -814,9 +810,9 @@ Tracked properties have subtler benefits as well:
   to have properties be "implicit" in a class definition, like in the example
   above; the classic class version of `Person` doesn't have `firstName` and
   `lastName` properties defined, but they are _implied_ by their existence as
-  dependencies in the `fullName` CP.
+  dependencies in the `fullName` computed property.
 - They enforce a "public API" of all values that are trackable in your class.
-  With CPs, it was possible to watch _any_ value in a class for changes, and
+  With computed properties, it was possible to watch _any_ value in a class for changes, and
   there was nothing you as the class author could do about it. With tracked
   properties, only the values you _want_ to be trackable will trigger updates
   to anything external to your class.
@@ -834,7 +830,7 @@ It's not uncommon to use POJOs in Ember code for storing state, representing
 some models, etc. This works because `get` and `set` can be used for any path,
 on any object, whether or not its an `EmberObject`, and whether or not the
 property was declared in advance. This is part of what lead to the "implicit"
-property problem - you `set` any property you wanted on a existing object and it
+property problem - you `set` any property you wanted on an existing object and it
 would work.
 
 With tracked properties this is _not_ possible, since each property must be
@@ -967,7 +963,7 @@ export default class ApplicationController extends Controller {
 
 And you could pass this downward into components for use:
 
-```hbs
+```handlebars
 <ul>
   {{#each this.people as |person|}}
     <li>{{person.name}}</li>
@@ -984,7 +980,7 @@ location, which prevents your code from becoming a twisted tangled mess!
 
 #### Backwards Compatibility
 
-Tracked properties are fully backwards compatible with CPs and `get`/`set`. CPs
+Tracked properties are fully backwards compatible with computed properties and `get`/`set`. computed properties
 that use tracked properties will automatically update without any need to add
 them to the dependencies:
 
@@ -1111,7 +1107,7 @@ Glimmer components don't have a wrapping element. This is referred to as _outer
 HTML semantics_, and it means that whatever you see in the template is what you
 get in the final rendered DOM:
 
-```hbs
+```handlebars
 <!-- template.hbs -->
 <div>
   Hello, {{this.worldName}}!
@@ -1154,7 +1150,7 @@ components:
   });
   ```
 
-  ```hbs
+  ```handlebars
   {{this.text}}
   ```
 
@@ -1174,7 +1170,7 @@ components:
   }
   ```
 
-  ```hbs
+  ```handlebars
   <button onclick={{this.sayHello}}>
     {{this.text}}
   </button>
@@ -1193,7 +1189,7 @@ components:
   });
   ```
 
-  ```hbs
+  ```handlebars
   {{this.text}}
   ```
 
@@ -1207,7 +1203,7 @@ components:
   }
   ```
 
-  ```hbs
+  ```handlebars
   <div class="hello-world">
     {{this.text}}
   </div>
@@ -1227,7 +1223,7 @@ components:
   });
   ```
 
-  ```hbs
+  ```handlebars
   {{this.text}}
   ```
 
@@ -1242,7 +1238,7 @@ components:
   }
   ```
 
-  ```hbs
+  ```handlebars
   <div class="{{if this.darkMode 'dark-mode'}}">
     {{this.text}}
   </div>
@@ -1262,7 +1258,7 @@ components:
   });
   ```
 
-  ```hbs
+  ```handlebars
   {{this.text}}
   ```
 
@@ -1277,7 +1273,7 @@ components:
   }
   ```
 
-  ```hbs
+  ```handlebars
   <div role={{this.role}}>
     {{this.text}}
   </div>
@@ -1297,7 +1293,7 @@ element, with `class` being merged. In Glimmer components, there isn't
 necessarily a wrapping element to apply these attributes to! Or there may be
 _multiple_ wrapping elements:
 
-```hbs
+```handlebars
 <!--
   This template is text only, the component doesn't have
   any wrapping elements!
@@ -1305,7 +1301,7 @@ _multiple_ wrapping elements:
 Hello, world!
 ```
 
-```hbs
+```handlebars
 <!--
   This template has multiple top level elements, the h1
   and the p. Which one should we use?
@@ -1321,7 +1317,7 @@ Hello, world!
 Glimmer components allow you to use the special `...attributes` syntax to the
 elements you want to apply the attributes to:
 
-```hbs
+```handlebars
 <!--
   The paragraph gets the attributes, and not the h1
 -->
@@ -1335,7 +1331,7 @@ elements you want to apply the attributes to:
 
 Attributes can be applied to multiple elements as well:
 
-```hbs
+```handlebars
 <!-- Both elements get the attributes -->
 <h1 ...attributes>
   Hello, world!
@@ -1349,17 +1345,17 @@ Finally, if you don't apply `...attributes` to _any_ elements, then Ember will
 throw an error if someone tries to use attributes when invoking your component.
 This allows you to maintain control over the component if you want:
 
-```hbs
+```handlebars
 <!-- components/uncustomizable-button.hbs -->
 <button class="btn">Do a thing!</button>
 ```
 
-```hbs
+```handlebars
 <!-- This throws an error -->
 <UncustomizableButton class="customized-button-class"/>
 ```
 
-Attributes are also available to classic components, but they pre-apply it to
+Attributes are also available to classic components, but they apply it to
 the wrapper element. If you're converting a component from classic components
 to Glimmer components, you should be sure to add `...attributes` to the wrapper
 element.
@@ -1374,7 +1370,7 @@ export default Component.extend({
 });
 ```
 
-```hbs
+```handlebars
 {{this.text}}
 ```
 
@@ -1388,7 +1384,7 @@ export default class Hello extends Component {
 }
 ```
 
-```hbs
+```handlebars
 <div ...attributes>
   {{this.text}}
 </div>
@@ -1420,7 +1416,7 @@ export default Component.extend({
 });
 ```
 
-```hbs
+```handlebars
 <!-- Usage -->
 <Person @firstName="Kenneth" @lastName="Larsen" />
 ```
@@ -1437,7 +1433,7 @@ export default class Person extends Component {
 }
 ```
 
-```hbs
+```handlebars
 <!-- Usage -->
 <Person @firstName="Kenneth" @lastName="Larsen" />
 ```
@@ -1504,7 +1500,7 @@ export default Component.extend({
 });
 ```
 
-```hbs
+```handlebars
 <!-- templates/components/parent.hbs -->
 <Child @value={{this.value}} />
 ```
@@ -1520,7 +1516,7 @@ export default Component.extend({
 });
 ```
 
-```hbs
+```handlebars
 <!-- templates/components/child.hbs -->
 <button>
   Change value
@@ -1534,7 +1530,7 @@ occur seemingly randomly. It was hard to figure out what was causing changes,
 and to debug them.
 
 In Glimmer components, arguments are _one-way bound_. There is no way to
-directly mutate an value on a parent component from the child component, even if
+directly mutate a value on a parent component from the child component, even if
 it is passed as an argument. Instead, you must send an _action_ upward to mutate
 the value:
 
@@ -1552,7 +1548,7 @@ export default class Parent extends Component {
 }
 ```
 
-```hbs
+```handlebars
 <!-- templates/components/parent.hbs -->
 <Child @value={{this.value}} @onClick={{this.updateValue}} />
 ```
@@ -1564,7 +1560,7 @@ import Component from '@ember/component';
 export default class Child extends Component {}
 ```
 
-```hbs
+```handlebars
 <!-- templates/components/child.hbs -->
 <button onclick={{action @onClick 'Hello, moon!'}}>
   Change value
@@ -1694,7 +1690,7 @@ export default class Form extends Component {
 }
 ```
 
-```hbs
+```handlebars
 <!-- templates/components/form.hbs -->
 <Text
   @value={{this.text}}
@@ -1783,7 +1779,7 @@ export default class ScrollComponent extends Component {
 }
 ```
 
-```hbs
+```handlebars
 <div
   {{did-insert this.registerListener}}
   {{will-destroy this.unregisterListener}}
@@ -1811,7 +1807,7 @@ export default class ScrollComponent extends Component {
 }
 ```
 
-```hbs
+```handlebars
 <div
   {{did-insert this.setColor @color}}
   {{did-update this.setColor @color}}
@@ -1838,13 +1834,13 @@ components. The three major differences with Glimmer components are:
 
 Before:
 
-```hbs
+```handlebars
 Hello, {{this.name}}!
 ```
 
 After:
 
-```hbs
+```handlebars
 <div>
   Hello, {{@name}}!
 </div>
@@ -1853,7 +1849,7 @@ After:
 One consequence of this is that attempting to change a component's state through
 bindings will not work:
 
-```hbs
+```handlebars
 <!--
   This does not work, since @value is
   an argument and is immutable
@@ -1869,7 +1865,7 @@ bindings will not work:
 
 Additionally, the `mut` helper generally can't be used for the same reason:
 
-```hbs
+```handlebars
 <!-- This does not work -->
 <input
   value={{@value}}

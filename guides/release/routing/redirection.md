@@ -34,11 +34,11 @@ Router.map(function() {
 ```javascript {data-filename=app/routes/index.js}
 import Route from '@ember/routing/route';
 
-export default Route.extend({
+export default class IndexRoute extends Route {
   beforeModel(/* transition */) {
     this.transitionTo('posts'); // Implicitly aborts the on-going transition.
   }
-});
+}
 ```
 
 `beforeModel()` receives the current transition as an argument, which we can store and retry later.
@@ -49,7 +49,7 @@ See [Storing and Retrying a Transition](../preventing-and-retrying-transitions/#
 for how to do that.
 
 If you need to examine some application state to figure out where to redirect,
-you might use a [service](../../applications/services/).
+you might use a [service](../../services/).
 
 ## Transitioning After the Model is Known
 
@@ -67,13 +67,13 @@ Router.map(function() {
 ```javascript {data-filename=app/routes/posts.js}
 import Route from '@ember/routing/route';
 
-export default Route.extend({
+export default class PostsRoute extends Route {
   afterModel(model, transition) {
     if (model.get('length') === 1) {
       this.transitionTo('post', model.get('firstObject'));
     }
   }
-});
+}
 ```
 
 When transitioning to the `posts` route if it turns out that there is only one post,
@@ -104,11 +104,11 @@ transition validated, and not cause the parent route's hooks to fire again:
 ```javascript {data-filename=app/routes/posts.js}
 import Route from '@ember/routing/route';
 
-export default Route.extend({
+export default class PostsRoute extends Route {
   redirect(model, transition) {
     if (model.get('length') === 1) {
       this.transitionTo('posts.post', model.get('firstObject'));
     }
   }
-});
+}
 ```

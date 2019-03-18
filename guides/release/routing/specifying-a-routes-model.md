@@ -15,11 +15,11 @@ hook in the `favorite-posts` route handler:
 ```javascript {data-filename=app/routes/favorite-posts.js}
 import Route from '@ember/routing/route';
 
-export default Route.extend({
+export default class FavoritePostsRoute extends Route {
   model() {
     return this.store.query('post', { favorite: true });
   }
-});
+}
 ```
 
 Typically, the `model` [hook](../../getting-started/core-concepts/#toc_hooks) should return an [Ember Data](../../models/) record,
@@ -71,11 +71,11 @@ Router.map(function() {
 ```javascript {data-filename=app/routes/photo.js}
 import Route from '@ember/routing/route';
 
-export default Route.extend({
+export default class PhotoRoute extends Route {
   model(params) {
     return this.store.findRecord('photo', params.photo_id);
   }
-});
+}
 ```
 
 In the `model` hook for routes with dynamic segments, it's your job to
@@ -130,14 +130,14 @@ When all of the promises in the object resolve, the returned promise will resolv
 import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
 
-export default Route.extend({
+export default class SongsRoute extends Route {
   model() {
     return RSVP.hash({
       songs: this.store.findAll('song'),
       albums: this.store.findAll('album')
     });
   }
-});
+}
 ```
 
 In the `songs` template, we can specify both models and use the `{{#each}}` helper to display
@@ -174,13 +174,13 @@ In this scenario, you can use the `paramsFor` method to get the parameters of a 
 ```javascript {data-filename=app/routes/album/index.js}
 import Route from '@ember/routing/route';
 
-export default Route.extend({
+export default class AlbumIndexRoute extends Route {
   model() {
     let { album_id } = this.paramsFor('album');
 
     return this.store.query('song', { album: album_id });
   }
-});
+}
 ```
 
 This is guaranteed to work because the parent route is loaded. But if you tried to
@@ -213,14 +213,14 @@ In the case above, the parent route looked something like this:
 import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
 
-export default Route.extend({
+export default class AlbumRoute extends Route {
   model({ album_id }) {
     return RSVP.hash({
       album: this.store.findRecord('album', album_id),
       songs: this.store.query('songs', { album: album_id })
     });
   }
-});
+}
 ```
 
 And calling `modelFor` returned the result of the `model` hook.

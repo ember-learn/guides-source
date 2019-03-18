@@ -1,10 +1,10 @@
 - title: "Introduction"
-  url: 'index'
+  url: "index"
   pages:
     - title: "What Is Ember"
       url: ""
 - title: "Getting Started"
-  url: 'getting-started'
+  url: "getting-started"
   pages:
     - title: "Quick Start"
       url: "quick-start"
@@ -12,13 +12,13 @@
       url: "index"
     - title: "Core Concepts"
       url: "core-concepts"
-- title: "Anatomy of an App"
-  url: "anatomy-of-an-app"
-  pages:
-    - title: "Overview"
-      url: "index"
+# - title: "Anatomy of an App"
+#   url: "anatomy-of-an-app"
+#   pages:
+#     - title: "Overview"
+#       url: "index"
 - title: "Templating"
-  url: 'templates'
+  url: "templates"
   pages:
     - title: "Templating Basics"
       url: "handlebars-basics"
@@ -38,7 +38,7 @@
       url: "writing-helpers"
       isAdvanced: true
 - title: "Working with JavaScript"
-  url: 'working-with-javascript'
+  url: "working-with-javascript"
   pages:
     - title: "Learning JavaScript"
       url: "learning-javascript"
@@ -49,7 +49,7 @@
     - title: "Native vs. Classic Class Cheatsheet"
       url: "native-vs-classic-class-cheatsheet"
 - title: "Components"
-  url: 'components'
+  url: "components"
   pages:
     - title: "Component Basics"
       url: "component-basics"
@@ -57,18 +57,16 @@
       url: "defining-a-component"
     - title: "Arguments and Attributes"
       url: "arguments-and-attributes"
-    - title: "Actions"
-      url: "actions"
+    - title: "Actions and Events"
+      url: "actions-and-events"
     - title: "Yields"
       url: "yields"
-    - title: "Interacting with the DOM"
-      url: "interacting-with-the-dom"
     - title: "Contextual Components"
       url: "contextual-components"
-    - title: "Classic Components"
-      url: "classsic-components"
+    - title: "Working with the DOM"
+      url: "glimmer-components-dom"
 - title: "Routing"
-  url: 'routing'
+  url: "routing"
   pages:
     - title: "Introduction"
       url: "index"
@@ -92,9 +90,9 @@
       url: "asynchronous-routing"
       isAdvanced: true
     - title: "Controllers"
-      url: 'controllers'
+      url: "controllers"
 - title: "State Management"
-  url: 'state-management'
+  url: "state-management"
   pages:
     - title: "Overview"
       url: "index"
@@ -102,17 +100,21 @@
       url: "tracked-properties"
     - title: "Patterns for State"
       url: "patterns-for-state"
-    - title: "Computed Properties"
-      url: "computed-properties"
+    # - title: "Computed Properties"
+    #   url: "computed-properties"
 - title: "Services"
-  url: 'services'
+  url: "services"
   pages:
-    - title: Introduction
-      url: "services"
-- title: 'Data Management'
-  url: 'data-management'
+    - title: Overview
+      url: "index"    
+# - title: "Data Management"
+#   url: "data-management"
+#   pages:
+#     - title: "Overview"
+#       url: "index"
+
 - title: "Ember Data"
-  url: 'models'
+  url: "models"
   pages:
     - title: "Introduction"
       url: "index"
@@ -142,7 +144,7 @@
     - title: "Managing Dependencies"
       url: "managing-dependencies"
 - title: "Testing"
-  url: 'testing'
+  url: "testing"
   pages:
     - title: "Introduction"
       url: "index"
@@ -161,7 +163,7 @@
     - title: "Testing Models"
       url: "testing-models"
 - title: "Configuration"
-  url: 'configuring-ember'
+  url: "configuring-ember"
   pages:
     - title: "Configuring Your App"
       url: "configuring-your-app"
@@ -186,19 +188,19 @@
     - title: "Debugging"
       url: "debugging"
 - title: "Deploying"
-  url: 'deploying'
+  url: "deploying"
   pages:
     - title: "Overview"
       url: "index"
 - title: "Upgrading"
-  url: 'upgrading'
+  url: "upgrading"
   pages:
-    - title: "Overview"
-      url: 'index'
+    # - title: "Overview"
+    #   url: "index"
     - title: "Editions"
-      url: 'editions'
-    - title: "Deprecations"
-      url: 'deprecations'
+      url: "editions"
+    # - title: "Deprecations"
+    #   url: "deprecations"
 - title: "Developer Tools"
   url: "ember-inspector"
   pages:
@@ -230,7 +232,7 @@
       url: "troubleshooting"
 
 - title: "Contributing to Ember.js"
-  url: 'contributing'
+  url: "contributing"
   isAdvanced: true
   pages:
     - title: "Adding New Features"
@@ -244,8 +246,8 @@
     - title: "Web Development"
       url: "web-development"
 
-- title: 'Reference'
-  url: 'reference'
+- title: "Reference"
+  url: "reference"
   pages:
     - title: "Syntax Conversion Guide"
       url: "syntax-conversion-guide"

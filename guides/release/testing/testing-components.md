@@ -8,20 +8,19 @@ The `style` attribute of the component is bound to its `style` property.
 > component pretty-color`.
 
 ```javascript {data-filename="app/components/pretty-color.js"}
-import Component from '@ember/component';
-import { computed } from '@ember/object';
+import Component from '@glimmer/component';
 
-export default Component.extend({
-  attributeBindings: ['style'],
-
-  style: computed('name', function() {
-    return `color: ${this.name}`;
-  })
-});
+export default class PrettyColorComponent extends Component {
+  get style() {
+    return `color: ${this.args.name}`;
+  }
+}
 ```
 
 ```handlebars {data-filename="app/templates/components/pretty-color.hbs"}
-Pretty Color: {{this.name}}
+<div style={{this.style}}>
+  Pretty Color: {{@name}}
+</div>
 ```
 
 The `module` from QUnit will scope your tests into groups of tests which can be configured and run independently.
@@ -156,23 +155,23 @@ Imagine you have the following component that changes its title when a button is
 > component magic-title`.
 
 ```javascript {data-filename="app/components/magic-title.js"}
-import Component from '@ember/component';
+import Component from '@glimmer/component';
+import { action } from '@ember/object';
 
-export default Component.extend({
-  title: 'Hello World',
+export default class MagicTitleComponent extends Component {
+  title = 'Hello World';
 
-  actions: {
-    updateTitle() {
-      this.set('title', 'This is Magic');
-    }
+  @action
+  updateTitle() {
+    this.set('title', 'This is Magic');
   }
-});
+}
 ```
 
 ```handlebars {data-filename="app/templates/components/magic-title.hbs"}
 <h2>{{this.title}}</h2>
 
-<button class="title-button" {{action "updateTitle"}}>
+<button class="title-button" {{action this.updateTitle}}>
   Update Title
 </button>
 ```
@@ -218,21 +217,21 @@ passing along the form's data:
 > component comment-form`.
 
 ```javascript {data-filename="app/components/comment-form.js"}
-import Component from '@ember/component';
+import Component from '@glimmer/component';
+import { action } from '@ember/object';
 
-export default Component.extend({
-  comment: '',
+export default class CommentFormComponent extends Component {
+  comment = '';
 
-  actions: {
-    submitComment() {
-      this.submitComment({ comment: this.comment });;
-    }
+  @action
+  submitComment() {
+    this.args.submitComment({ comment: this.comment });
   }
-});
+}
 ```
 
 ```handlebars {data-filename="app/templates/components/comment-form.hbs"}
-<form {{action "submitComment" on="submit"}}>
+<form {{action this.submitComment on="submit"}}>
   <label>Comment:</label>
   {{textarea value=this.comment}}
 
@@ -285,22 +284,21 @@ Imagine you have the following component that uses a location service to display
 > component location-indicator`.
 
 ```javascript {data-filename="app/components/location-indicator.js"}
-import Component from '@ember/component';
-import { computed } from '@ember/object';
+import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 
-export default Component.extend({
-  locationService: service('location-service'),
+export default class LocationIndicatorComponent extends Component {
+  @service location;
 
   // when the coordinates change, call the location service to get the current city and country
-  city: computed('locationService.currentLocation', function () {
-    return this.locationService.getCurrentCity();
-  }),
+  get city() {
+    return this.location.getCurrentCity();
+  }
 
-  country: computed('locationService.currentLocation', function () {
-    return this.locationService.getCurrentCountry();
-  })
-});
+  get country() {
+    return this.location.getCurrentCountry();
+  }
+}
 ```
 
 ```handlebars {data-filename="app/templates/components/location-indicator.hbs"}
@@ -465,17 +463,17 @@ Imagine you have a typeahead component that uses [`Ember.run.debounce`](https://
 > component delayed-typeahead`.
 
 ```javascript {data-filename="app/components/delayed-typeahead.js"}
-import Component from '@ember/component';
+import Component from '@glimmer/component';
+import { action } from '@ember/object';
 import { debounce } from '@ember/runloop';
 
-export default Component.extend({
-  actions: {
-    handleTyping() {
-      //the fetchResults function is passed into the component from its parent
-      debounce(this, this.fetchResults, this.searchValue, 250);
-    }
+export default class DelayedTypeaheadComponent extends Component {
+  @action
+  handleTyping() {
+    //the fetchResults function is passed into the component from its parent
+    debounce(this, this.fetchResults, this.searchValue, 250);
   }
-});
+};
 ```
 
 ```handlebars {data-filename="app/templates/components/delayed-typeahead.hbs"}

@@ -32,7 +32,7 @@ component, we can pass a `@content` argument to it like so:
 
 And then we can access it in the template for the `Tooltip` component like this:
 
-```handlebars {data-filename=src/ui/components/tooltip/template.hbs}
+```handlebars {data-filename=app/templates/components/tooltip.hbs}
 {{@content}}
 ```
 
@@ -41,7 +41,7 @@ an argument coming from the caller whenever you're looking at the template. In
 the component class you can access the arguments on the `args` property of the
 class, since `@` is special character in JavaScript reserved for decorators:
 
-```js {data-filename=src/ui/components/tooltip/component.js}
+```js {data-filename=app/components/tooltip.js}
 export default class Tooltip extends Component {
   get upperCased() {
     return this.args.content.toUpperCase();
@@ -64,7 +64,7 @@ standard identifier can:
 ```
 
 You can pass strings as arguments to components, or you can pass literal values
-using double curlies:
+using double curly braces:
 
 ```handlebars
 <Tooltip
@@ -74,7 +74,7 @@ using double curlies:
 />
 ```
 
-Note that if you do _not_ wrap literal values in double curlies, they are
+Note that if you do _not_ wrap literal values in double curly braces, they are
 treated as strings, like standard HTML attributes:
 
 ```handlebars
@@ -112,7 +112,7 @@ provided.
 For instance, if you wanted to create a tooltip icon that had a standard icon
 and class, you could do it like so:
 
-```javascript {data-filename=src/ui/components/tooltip/component.js}
+```javascript {data-filename=app/components/tooltip.js}
 import Component from '@glimmer/component';
 
 export default class Tooltip extends Component {
@@ -126,7 +126,7 @@ export default class Tooltip extends Component {
 }
 ```
 
-```handlebars {data-filename=src/ui/components/tooltip/template.hbs}
+```handlebars {data-filename=app/templates/components/tooltip.hbs}
 <div class="{{this.tooltipClass}}">
   <i class="{{this.icon}}"></i>
   {{@content}}
@@ -167,7 +167,7 @@ customization logic to every single component.
 For instance, in our `<Tooltip>` component from above, instead of adding the
 `@tooltipClass` argument, we could use attributes:
 
-```handlebars {data-filename=src/ui/components/tooltip/template.hbs}
+```handlebars {data-filename=app/templates/components/tooltip.hbs}
 <div class="tooltip" ...attributes>
   <i class="{{this.icon}}"></i>
   {{@content}}
@@ -216,7 +216,7 @@ not be applied.
 
 The positioning of `...attributes` matters, with respect to the other attributes
 in the element it is applied to. Attributes that come _before_ `...attributes`
-can be overriden, but attributes that come _after_ cannot:
+can be overridden, but attributes that come _after_ cannot:
 
 ```handlebars
 <p
@@ -224,6 +224,7 @@ can be overriden, but attributes that come _after_ cannot:
   ...attributes
   data-non-overridable="but you can't override me!"
 >
+  ...
 </p>
 ```
 

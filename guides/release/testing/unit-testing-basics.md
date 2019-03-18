@@ -16,14 +16,15 @@ based on a `foo` property.
 ```javascript {data-filename=app/services/some-thing.js}
 import Service from '@ember/service';
 import { computed } from '@ember/object';
+import { tracked } from '@glimmer/tracking';
 
-export default Service.extend({
-  foo: 'bar',
+export default class SomeThingService extends Service {
+  @tracked foo = 'bar';
 
-  computedFoo: computed('foo', function() {
+  get computedFoo() {
     return `computed ${this.foo}`;
-  })
-});
+  }
+};
 ```
 
 Within the test for this object, we'll lookup the service instance, update the `foo` property (which
@@ -64,14 +65,15 @@ the `foo` property).
 
 ```javascript {data-filename=app/services/some-thing.js}
 import Service from '@ember/service';
+import { tracked } from '@glimmer/tracking';
 
-export default Service.extend({
-  foo: 'bar',
+export default class SomeThingService extends Service {
+  @tracked foo = 'bar';
 
   testMethod() {
-    this.set('foo', 'baz');
+    this.foo = 'baz';
   }
-});
+}
 ```
 
 To test it, we create an instance of our class `SomeThing` as defined above,
@@ -101,15 +103,16 @@ that returns a value based on some internal state.
 
 ```javascript {data-filename=app/services/some-thing.js}
 import Service from '@ember/service';
+import { tracked } from '@glimmer/tracking';
 
-export default Service.extend({
-  count: 0,
+export default class SomeThingService extends Service {
+  @tracked count = 0;
 
   calc() {
-    this.incrementProperty('count');
+    this.count += 1;
     return `count: ${this.count}`;
   }
-});
+};
 ```
 
 The test would call the `calc` method and assert it gets back the correct value.
@@ -126,43 +129,6 @@ module('Unit | Service | some thing', function(hooks) {
 
     assert.equal(someThing.calc(), 'count: 1');
     assert.equal(someThing.calc(), 'count: 2');
-  });
-});
-```
-
-### Testing Observers
-
-Suppose we have an object that has a property and a method observing that property.
-
-```javascript {data-filename=app/services/some-thing.js}
-import Service from '@ember/service';
-import { observer } from "@ember/object";
-
-export default Service.extend({
-  foo: 'bar',
-  other: 'no',
-
-  doSomething: observer('foo', function() {
-    this.set('other', 'yes');
-  })
-});
-```
-
-In order to test the `doSomething` method we create an instance of `SomeThing`,
-update the observed property (`foo`), and assert that the expected effects are present.
-
-```javascript {data-filename=tests/unit/services/some-thing-test.js}
-import { module, test } from 'qunit';
-import { setupTest } from 'ember-qunit';
-
-module('Unit | Service | some thing', function(hooks) {
-  setupTest(hooks);
-
-  test('should set other prop to yes when foo changes', function(assert) {
-    const someThing = this.owner.lookup('service:some-thing');
-
-    someThing.set('foo', 'baz');
-    assert.equal(someThing.get('other'), 'yes');
   });
 });
 ```

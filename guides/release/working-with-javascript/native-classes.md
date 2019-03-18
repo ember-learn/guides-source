@@ -50,7 +50,7 @@ export default class {}
 The reasons being:
 
 1. Giving your class a name makes it easier to search for in general, and is
-   better for tooling like editors and documenters.
+   better for code editors and documentation tools.
 2. Giving your class a name gives it a name in the debugger, making your life
    easier later on.
 
@@ -92,12 +92,12 @@ tom.helloWorld(); // Tom Dale says: Hello, world!
 
 This allows you to define different _kinds_ of objects, which have their own
 methods, properties, fields, and more. This is essentially Object Oriented
-Programming (OOP) - you define different types of objects that handle different
+Programming - you define different types of objects that handle different
 problems and concerns, keeping your code organized.
 
-> _Note: OOP is a fundamental part of JavaScript, but it's not the only part -
-> JavaScript is a multi-paradigm language, and supports OOP patterns along with
-> Functional Programming (FP), Event Driven programming, and imperative
+> _Note: Object Oriented Programming is a fundamental part of JavaScript, but it's not the only part -
+> JavaScript is a multi-paradigm language, and supports Object Oriented Programming patterns along with
+> Functional Programming, Event Driven programming, and imperative
 > programming. You may see strong adherents to different styles both inside and
 > outside of the Ember ecosystem, and that's OK! JavaScript is flexible, and
 > allows you to choose the patterns that work well for you, so don't feel like
@@ -202,7 +202,7 @@ keyword, which is described in more detail below.
 > _Note: if you don't know what a "prototype" is, don't worry - it's how
 > JavaScript does inheritance. Most of the details of prototypes are made
 > simpler by native class syntax, and while it's useful to know, you don't need
-> to dig into them to continue learning Ember or to be productive. If you *are*
+> to dig into them to continue learning Ember or to be productive. If you are
 > curious about them, you can check out the [MDN docs for more details][4]._
 
 [4]: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object_prototypes
@@ -312,19 +312,19 @@ that is _accessed_ like a property. For example:
 ```js
 class Person {
   get name() {
-    return 'Mel Sumner';
+    return 'Melanie Sumner';
   }
 }
 
-let mel = new Person();
-console.log(mel.name); // 'Mel Sumner'
+let melanie = new Person();
+console.log(melanie.name); // 'Melanie Sumner'
 ```
 
 Even though `get name` is a method, we can treat it like a normal property.
 However, if we try to set the name property to a new value, we get an error:
 
 ```js
-mel.name = 'Melanie Sumner';
+melanie.name = 'Melanie Sumner';
 // Cannot set property name of #<Person> which has only a getter
 ```
 
@@ -333,7 +333,7 @@ function stores the value somewhere, and the getter function retrieves it:
 
 ```js
 class Person {
-  _name = 'Mel Sumner';
+  _name = 'Melanie Sumner';
 
   get name() {
     return this._name;
@@ -344,13 +344,13 @@ class Person {
   }
 }
 
-let mel = new Person();
-console.log(mel.name); // 'Mel Sumner'
-console.log(mel._name); // 'Mel Sumner'
+let melanie = new Person();
+console.log(melanie.name); // 'Melanie Sumner'
+console.log(melanie._name); // 'Melanie Sumner'
 
-mel.name = 'Melanie Sumner';
-console.log(mel.name); // 'Melanie Sumner'
-console.log(mel._name); // 'Melanie Sumner'
+melanie.name = 'Melanie Sumner';
+console.log(melanie.name); // 'Melanie Sumner'
+console.log(melanie._name); // 'Melanie Sumner'
 ```
 
 Getters can also be used on their own to calculate values dynamically:
@@ -535,7 +535,7 @@ console.log(Aircraft.id); // 1
 Defining subclasses is otherwise the same as defining a base class in most ways,
 with the exception of the `constructor` function where you _must_ use the
 `super` keyword (discussed in more detail below). Class elements that are
-redefined by the child class will be _overriden_, and their values will be fully
+redefined by the child class will be _overridden_, and their values will be fully
 replaced on the child:
 
 ```js
@@ -674,12 +674,11 @@ In certain cases, you will want to pass arguments to the super method before or
 after overriding. This allows the super class method to continue operating as it
 normally would.
 
-One common example is when overriding the [`normalizeResponse()`][5] hook in one
-of Ember Data's serializers.
+One common example is when overriding the 
+[`normalizeResponse()`](https://www.emberjs.com/api/ember-data/release/classes/DS.JSONAPISerializer/methods/normalizeResponse?anchor=normalizeResponse)
+hook in one of Ember Data's serializers.
 
 A handy shortcut for this is to use a "spread operator", like `...arguments`:
-
-[5]: https://www.emberjs.com/api/ember-data/release/classes/DS.JSONAPISerializer/methods/normalizeResponse?anchor=normalizeResponse
 
 ```javascript
 normalizeResponse(store, primaryModelClass, payload, id, requestType)  {

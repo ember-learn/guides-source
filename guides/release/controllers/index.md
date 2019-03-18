@@ -59,19 +59,19 @@ Consider the example where we want to have a controller for a `blog-post` route.
 
 ```javascript {data-filename=app/controllers/blog-post.js}
 import Controller from '@ember/controller';
+import { action } from '@ember/object';
 
-export default Controller.extend({
-  isExpanded: false,
+export default class BlogPostController extends Controller {
+  isExpanded = false
 
-  actions: {
-    toggleBody() {
-      this.toggleProperty('isExpanded');
-    }
+  @action
+  toggleBody() {
+    this.toggleProperty('isExpanded');
   }
-});
+}
 ```
 
-The property `isExpanded` keeps track if the user has expanded the body or not. The action `toggleBody()` provides a way for the user to provide their setting. Both of the them are used in the updated template below.
+The property `isExpanded` keeps track if the user has expanded the body or not. The action `toggleBody()` provides a way for the user to provide their setting. Both of them are used in the updated template below.
 
 ```handlebars {data-filename=app/templates/blog-post.hbs}
 <h1>{{this.model.title}}</h1>

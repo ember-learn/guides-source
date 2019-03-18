@@ -61,7 +61,7 @@ In the following example, `"greeting"` and `"name"` are positional parameters:
 {{my-greeting "Hello" "World"}}
 ```
 
-As shown in the relevant ["Position Params"](../../components/passing-arguments-and-html-attributes/#toc_positional-params) part of the Guides,
+As shown in the relevant ["Position Params"](../../components/arguments-and-attributes/#toc_positional-params) part of the Guides,
 there are two ways to handle them inside the component.
 One way is to individually specify what component property the positional parameter should map to.
 The other way is to map all positional parameters to the `params` property and refer to them by their index.
@@ -106,7 +106,7 @@ export default Component.extend({
 
 Although Angle Bracket syntax is considered to be the best approach, classic invocation syntax is fine to keep using.
 In some cases, classic invocation is still required. 
-When you need direct support for positional arguments or if your components are nested within the file tree, you should still reach for those curly brackets:
+When you need direct support for positional arguments or if your components are nested within the file tree, you should still reach for those curly braces:
 
 ```handlebars
 {{some-component param1 param2}}

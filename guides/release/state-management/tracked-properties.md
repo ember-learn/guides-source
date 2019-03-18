@@ -2,11 +2,11 @@ When Ember first renders a component, it renders the initial _state_ of that
 component - the state of the instance, and state of the arguments that are
 passed to it:
 
-```hbs {data-filename=src/ui/components/hello/template.hbs}
+```handlebars {data-filename=app/templates/components/hello.hbs}
 {{this.greeting}}, {{@name}}!
 ```
 
-```js {data-filename=src/ui/components/hello/component.js}
+```js {data-filename=app/components/hello.js}
 import Component from '@glimmer/component';
 
 export default class Hello extends Component {
@@ -25,7 +25,7 @@ export default class Hello extends Component {
 }
 ```
 
-```hbs {data-filename=src/ui/routes/application/template.hbs}
+```handlebars {data-filename=app/templates/application.hbs}
 <Hello @name="Jen Weber">
 ```
 
@@ -38,8 +38,8 @@ Hello, Jen Weber!
 By default, Ember assumes that none of the values that are rendered will ever
 change. In some cases this is clearly true - for instance, the punctuation in
 the template will always be the same, so Ember doesn't need to do anything to
-update it. These or static, state-less parts of the template. In other cases,
-like `this.greeting` or `@name` argument, that's less clear. It seems like
+update it. These are static, state-less parts of the template. In other cases,
+like `this.greeting` or `@name` argument, that's less clear. It appears
 `language` might be something we want to update, and if we do, then `greeting`
 should probably change, right? At the least, we should _check_ to see if it
 should change.
@@ -52,7 +52,7 @@ Trackable values are values that:
 
 We can do this by marking the field with the `@tracked` decorator:
 
-```js {data-filename=src/ui/components/hello/component.js}
+```js {data-filename=app/components/hello.js}
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
@@ -88,7 +88,7 @@ Tracked properties can be updated like any other property, using standard
 JavaScript syntax. The primary way that state gets updated in an Ember
 application is via _actions_, [as discussed earlier](../../templates/actions/):
 
-```hbs {data-filename=src/ui/components/hello/template.hbs}
+```handlebars {data-filename=app/templates/components/hello.hbs}
 {{this.greeting}}, {{@name}}!
 
 <select onchange={{this.updateLanguage}}>
@@ -98,7 +98,7 @@ application is via _actions_, [as discussed earlier](../../templates/actions/):
 </select>
 ```
 
-```js {data-filename=src/ui/components/hello/component.js}
+```js {data-filename=app/components/hello.js}
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
@@ -127,7 +127,7 @@ export default class Hello extends Component {
 Now, whenever we change the value of the `select`, it'll call the action method,
 which will set the value of `language`. Since `language` is marked as tracked,
 and was used in rendering `greeting`, Ember will know that `greeting` needs to
-be rerendered in the template, and will update.
+be re-rendered in the template, and will update.
 
 Another way that a tracked property could be updated is asynchronously, if
 you're sending a request to the server. For instance, maybe we would want to
@@ -203,7 +203,7 @@ export default class Hello extends Component {
 }
 ```
 
-if `supportedLanguages` changes here, it `greeting` will update as well! This
+if `supportedLanguages` changes here, `greeting` will update as well! This
 code could likely be refactored to use getters, but in cases where a function or
 method makes more sense, tracked properties will still work.
 
@@ -228,7 +228,7 @@ export default class Person {
 }
 ```
 
-```js {data-filename=src/ui/routes/application/route.js}
+```js {data-filename=app/routes/application.js}
 import Route from '@ember/routing/route';
 import Person from '../../../../utils/person';
 
@@ -239,7 +239,7 @@ export default class ApplicationRoute extends Route {
 }
 ```
 
-```js {data-filename=src/ui/routes/application/controller.js}
+```js {data-filename=app/controllers/application.js}
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
 
@@ -252,7 +252,7 @@ export default class ApplicationController extends Controller {
 }
 ```
 
-```js {data-filename=src/ui/routes/application/template.hbs}
+```js {data-filename=app/templates/application.hbs}
 {{this.model.fullName}}
 
 <button onclick={{action this.updateName 'Krati' 'Ahuja'}}>
@@ -329,6 +329,6 @@ class ShoppingList {
 }
 ```
 
-### Tracking Helpers/Modifiers
+<!-- ### Tracking Helpers/Modifiers
 
-Coming Soon!
+TODO -->

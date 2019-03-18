@@ -83,22 +83,22 @@ your application, making it much easier to write deterministic tests.
 
 Some of these handy helpers are:
 
-* [`click(selector)`][1]
-  - Clicks an element and triggers any actions triggered by the element's `click`
-    event and returns a promise that fulfills when all resulting async behavior
-    is complete.
-* [`fillIn(selector, value)`][2]
-  - Fills in the selected input with the given value and returns a promise that
-     fulfills when all resulting async behavior is complete. Works with `<select>` elements as well as `<input>` elements. Keep in mind that with `<select>` elements, `value` must be set to the _value_ of the `<option>` tag, rather than its _content_ (for example, `true` rather than `"Yes"`).
-* [`triggerKeyEvent(selector, type, keyCode)`][3]
-  - Simulates a key event type, e.g. `keypress`, `keydown`, `keyup` with the
-    desired keyCode on element found by the selector.
-* [`triggerEvent(selector, type, options)`][4]
-  - Triggers the given event, e.g. `blur`, `dblclick` on the element identified
-    by the provided selector.
-* [`visit(url)`][5]
-  - Visits the given route and returns a promise that fulfills when all resulting
-     async behavior is complete.
+* [`click(selector)`][1]: clicks an element and triggers any actions triggered
+by the element's `click` event and returns a promise that fulfills when all
+resulting async behavior is complete.
+* [`fillIn(selector, value)`][2]: fills in the selected input with the given
+value and returns a promise that fulfills when all resulting async behavior is
+complete. Works with `<select>` elements as well as `<input>` elements. Keep
+in mind that with `<select>` elements, `value` must be set to the _value_ of
+the `<option>` tag, rather than its _content_ (for example, `true` rather than
+`"Yes"`).
+* [`triggerKeyEvent(selector, type, keyCode)`][3]: simulates a key event type,
+e.g. `keypress`, `keydown`, `keyup` with the desired keyCode on element found
+by the selector.
+* [`triggerEvent(selector, type, options)`][4]: triggers the given event, e.g.
+`blur`, `dblclick` on the element identified by the provided selector.
+* [`visit(url)`][5]: visits the given route and returns a promise that
+fulfills when all resulting async behavior is complete.
 
 You can find the full list of helpers in the [API Documentation of ember-test-helpers](https://github.com/emberjs/ember-test-helpers/blob/master/API.md).
 

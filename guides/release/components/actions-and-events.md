@@ -1,13 +1,13 @@
-Like we mentioned in the beginning of this section, components are like custom,
-user defined HTML elements. So far we've seen how to to pass argument values
+Like we mentioned at the beginning of this section, components are like custom,
+user-defined HTML elements. So far we've seen how to pass argument values
 into components, which is similar to passing attributes into HTML elements like
-`input`s, `select`s, or `dialog`s, and how you can use those values child
-component, and how that component can use those arguments from both JavaScript
-and its template. We've also seen how you can pass actual HTML attributes
-forward, allowing you to customize the elements that components produce.
+`input`s, `select`s, or `dialog`s and how components can use these argument values
+in both their JavaScript and template. We've also seen how you can pass
+actual HTML attributes forward, allowing you to customize the elements that
+components produce.
 
 But how do we make these components interactive? How do we respond to user
-actions like clicks, scrolls, touch events, etc. And how do we add our own
+actions like clicks, scrolls, touch events, etc? And how do we add our own
 events to our components, to send back in the opposite direction? How does data
 flow back out of the component to the parent?
 
@@ -25,7 +25,7 @@ to confirm in order to trigger some action.
 We'll call this the `ButtonWithConfirmation` component. We can start off with a
 normal component definition, like we've seen before:
 
-```handlebars {data-filename=src/ui/components/button-with-confirmation/template.hbs}
+```handlebars {data-filename=app/templates/components/button-with-confirmation.hbs}
 <button type="button">{{@text}}</button>
 
 {{#if this.showConfirmation}}
@@ -40,7 +40,7 @@ normal component definition, like we've seen before:
 {{/if}}
 ```
 
-```js {data-filename=src/ui/components/button-with-confirmation/component.js}
+```js {data-filename=app/components/button-with-confirmation.js}
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
@@ -54,12 +54,12 @@ confirmation that will show conditionally based on its `showConfirmation`
 property. You'll notice this property is decorated with the `@tracked`
 decorator - this is known as a _tracked property_, and indicates to Ember that
 the field will change in value over time. We'll discuss this more in the section
-on [State Management](../../state-management).
+on [State Management](../../state-management/).
 
 Next, we need to hook up the button to toggle that property. We'll
 do this with an _action_:
 
-```js {data-filename=src/ui/components/button-with-confirmation/component.js}
+```js {data-filename=app/components/button-with-confirmation.js}
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
@@ -76,14 +76,11 @@ export default class ButtonWithConfirmation extends Component {
 
 Like we discussed [Templating](../../templates/actions/), actions are methods
 that are decorated with the `@action` decorator, and which can be used in
-templates. We can assign the action to our button's
-[`onclick`](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onclick)
-event:
+templates. We can assign the action to our button using the `{{action}}`
+modifier:
 
 ```handlebars
-<button
-  onclick={{this.launchConfirmationDialog}}
->
+<button {{action this.launchConfirmationDialog}}>
   {{@text}}
 </button>
 
@@ -103,7 +100,7 @@ Now if we click on the button, it will show the confirmation dialog - our first
 interactive component! We'll also want the modal to close when we click either
 of the modal buttons, so we can add a couple more actions to handle that:
 
-```js {data-filename=src/ui/components/button-with-confirmation/component.js}
+```js {data-filename=app/components/button-with-confirmation.js}
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
@@ -129,9 +126,7 @@ export default class ButtonWithConfirmation extends Component {
 ```
 
 ```handlebars
-<button
-  onclick={{this.launchConfirmationDialog}}
->
+<button {{action this.launchConfirmationDialog}}>
   {{@text}}
 </button>
 
@@ -139,13 +134,13 @@ export default class ButtonWithConfirmation extends Component {
   <div class="confirm-dialog">
     <button
       class="confirm-submit"
-      onclick={{this.submitConfirm}}
+      {{action this.submitConfirm}}
     >
       OK
     </button>
     <button
       class="confirm-cancel"
-      onclick={{this.cancelConfirm}}
+      {{action this.cancelConfirm}}
     >
       Cancel
     </button>
@@ -162,7 +157,7 @@ buttons.
 Let's create a parent component, the `UserProfile` component, where the user can
 delete their profile:
 
-```handlebars {data-filename=src/ui/components/user-profile/template.hbs}
+```handlebars {data-filename=app/templates/components/user-profile.hbs}
 <ButtonWithConfirmation
   @text="Click OK to delete your account."
 />
@@ -173,8 +168,8 @@ then confirms. In the first case, we'll find the user's account and delete it.
 
 We'll implement an action on the parent component called
 `userDidDeleteAccount()` that, when called, gets a hypothetical `login`
-[service](../../applications/services/) and calls the service's `deleteUser()`
-method. We'll go over services more later on - for now, think of it as an API
+[service](../../services/) and calls the service's `deleteUser()`
+method. We'll go over services later on - for now, think of it as an API
 that manages the user's login and information.
 
 ```javascript {data-filename=app/components/user-profile.js}
@@ -201,7 +196,7 @@ In order to trigger the action when the user clicks "OK" in the
 `ButtonWithConfirmation` component, we'll need to pass the action _down_ to it
 as an argument:
 
-```handlebars {data-filename=src/ui/components/user-profile/template.hbs}
+```handlebars {data-filename=app/templates/components/user-profile.hbs}
 <ButtonWithConfirmation
   @text="Click OK to delete your account."
   @onConfirm={{this.userDidDeleteAccount}}
@@ -395,13 +390,13 @@ be used in block form and we will [yield](../yields/) `confirmValue` to the
 block within the `"confirmDialog"` element:
 
 ```handlebars {data-filename=app/templates/components/button-with-confirmation.hbs}
-<button type="button" onclick={{this.launchConfirmDialog}}>{{this.text}}</button>
+<button type="button" {{action this.launchConfirmDialog}}>{{this.text}}</button>
 
 {{#if this.confirmShown}}
   <div class="confirm-dialog">
     {{yield this.confirmValue}}
-    <button class="confirm-submit" type="button" onclick={{this.submitConfirm}}>OK</button>
-    <button class="confirm-cancel" type="button" onclick={{this.cancelConfirm}}>Cancel</button>
+    <button class="confirm-submit" type="button" {{action this.submitConfirm}}>OK</button>
+    <button class="confirm-cancel" type="button" {{action this.cancelConfirm}}>Cancel</button>
   </div>
 {{/if}}
 ```
@@ -435,8 +430,7 @@ import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 
 export default class SendMessage extends Component {
-  @service
-  messaging;
+  @service messaging;
 
   // component implementation
 }
@@ -483,8 +477,7 @@ import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
 export default class UserProfile extends Component {
-  @service
-  login;
+  @service login;
 
   @action
   userDidDeleteAccount() {
@@ -528,8 +521,8 @@ adding JavaScript code to those child components.
 For example, say we want to move account deletion from the `UserProfile`
 component to its parent `system-preferences-editor`.
 
-First we would move the `deleteUser` action from `user-profile.js` to the
-actions object on `system-preferences-editor`.
+First we would move the `deleteUser` action from `user-profile.js` to
+the parent `system-preferences-editor.js`.
 
 ```javascript {data-filename=app/components/system-preferences-editor.js}
 import Component from '@glimmer/component';
@@ -537,8 +530,7 @@ import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
 export default class SystemPreferencesEditor extends Component {
-  @service
-  login;
+  @service login;
 
   @action
   deleteUser(idStr) {
@@ -548,7 +540,7 @@ export default class SystemPreferencesEditor extends Component {
 ```
 
 Then our `system-preferences-editor` template passes its local `deleteUser`
-action into the `UserProfile` as that component's `deleteCurrentUser` property.
+action into the `UserProfile` as that component's `deleteCurrentUser` argument.
 
 ```handlebars {data-filename=app/templates/components/system-preferences-editor.hbs}
 <UserProfile
@@ -578,7 +570,7 @@ Now when you confirm deletion, the action goes straight to the
 
 ## String Action Syntax
 
-Historically the `{{action}}` helper (`<button onclick={{action 'clickedButton'}}>`)
+Historically the `{{action}}` helper (`<MyComponent @onClick=(action 'clickedButton')>`)
 and element modifier (`<button {{action 'clickedButton'}}>`) have accepted a
 string as the first argument. This form is no longer recommended, but might be
 seen in the wild when working on older Ember apps or addons.
@@ -586,24 +578,9 @@ seen in the wild when working on older Ember apps or addons.
 When you encounter a string based action it should be refactored to use the
 `@action` decorator (refactor away from the `actions` hash).
 
-It is then recommended to use HTML's
-[on...](https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Event_handlers)
-attributes in the template.
+It is then recommended to use the action modifier directly with decorated
+functions.
 
-```hbs
-<button onclick={{this.confirmDelete}}>Confirm Delete</button>
-```
-
-If you need to add additional arguments, you can use the `{{action}}` helper.
-
-```hbs
-<button onclick={{action this.confirmDelete this.user}}>Confirm Delete</button>
-```
-
-If you use the action as an element modifier, you need to use the `{{action}}`
-element modifier in all cases. This works the same even if you don't need
-additional arguments.
-
-```hbs
-<button {{action this.confirmDelete}}>Confirm Delete</button>
+```handlebars
+<button {{action this.confirmDelete this.user}}>Confirm Delete</button>
 ```

@@ -16,17 +16,17 @@ comes from being able to dynamically pick the component being rendered. Below is
 an example of using the helper as a means of choosing different components for
 displaying different kinds of posts:
 
-```handlebars {data-filename=src/ui/components/foo-component/template.hbs}
+```handlebars {data-filename=app/templates/components/foo-component.hbs}
 <h3>Hello from foo!</h3>
 <p>{{this.post.body}}</p>
 ```
 
-```handlebars {data-filename=src/ui/components/bar-component/template.hbs}
+```handlebars {data-filename=app/templates/components/bar-component.hbs}
 <h3>Hello from bar!</h3>
 <div>{{this.post.author}}</div>
 ```
 
-```handlebars {data-filename=src/ui/routes/index/template.hbs}
+```handlebars {data-filename=app/templates/index.hbs}
 {{#each this.myPosts as |post|}}
   {{!-- either foo-component or bar-component --}}
   {{component post.postType post=post}}
@@ -35,7 +35,7 @@ displaying different kinds of posts:
 
 or
 
-```handlebars {data-filename=src/ui/routes/index/template.hbs}
+```handlebars {data-filename=app/templates/index.hbs}
 {{#each this.myPosts as |post|}}
   {{!-- either foo-component or bar-component --}}
   {{#let (component post.postType) as |Post|}}

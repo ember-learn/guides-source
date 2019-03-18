@@ -58,7 +58,7 @@ installing component-test
 
 This generates a JavaScript file:
 
-```javascript {data-file=src/ui/components/blog-post/component.js}
+```javascript {data-filename=app/components/blog-post.js}
 import Component from '@glimmer/component';
 
 export default class BlogPost extends Component {}
@@ -66,7 +66,7 @@ export default class BlogPost extends Component {}
 
 And a template file:
 
-```handlebars {data-filename=src/ui/components/blog-post/template.hbs}
+```handlebars {data-filename=app/templates/components/blog-post.hbs}
 {{yield}}
 ```
 
@@ -76,11 +76,11 @@ will be covered later on in the guides.
 ### Component Templates
 
 Templates in components use the Handlebars templating language, as discussed in
-the [Templating](../../templating) section. A component's template is the layout
-that is used when rendering the component. If we update the `HelloButton`'s
+the [Templating](../../templates/handlebars-basics/) section. A component's template is the layout
+that is used when rendering the component. If we update the `BlogPost`'s
 template to be:
 
-```handlebars {data-filename=src/ui/components/hello-post/template.hbs}
+```handlebars {data-filename=app/templates/components/blog-post.hbs}
 <h1>Fun Facts About Tomster</h1>
 <section>
   1. He's a hamster!
@@ -90,7 +90,7 @@ template to be:
 
 And then use the component like so:
 
-```handlebars {data-filename=src/ui/routes/application/route.hbs}
+```handlebars {data-filename=app/templates/application.hbs}
 <BlogPost/>
 ```
 
@@ -107,7 +107,7 @@ This template doesn't have anything dynamic in it yet, so the output is exactly
 the same as the template. We can add dynamic values directly by using double
 curly syntax:
 
-```handlebars {data-filename=src/ui/components/blog-post/template.hbs}
+```handlebars {data-filename=app/templates/components/blog-post.hbs}
 <h1>{{@title}}</h1>
 <section class="{{this.sectionClass}}">
   {{@content}}
@@ -127,7 +127,7 @@ Here, we have two different kinds of dynamic values:
   ```
 
   We'll talk more about arguments in [the next
-  section](../arguments-and-attributes). All arguments are prefixed with the `@`
+  section](../arguments-and-attributes/). All arguments are prefixed with the `@`
   symbol, so whenever you see `{{@...` you know its referring to any argument.
 
 - `{{this.sectionClass}}` refers to a _property_ of the component _instance_.
@@ -141,16 +141,17 @@ important to note that arguments and properties can be used interchangeably, so
 we could for instance have used an argument for the `sectionClass`, and a
 class property for title or post content:
 
-```handlebars {data-filename=src/ui/components/blog-post/template.hbs}
+```handlebars {data-filename=app/templates/components/blog-post.hbs}
 <h1>{{this.title}}</h1>
 <section class="{{@sectionClass}}">
   {{this.content}}
 </section>
 ```
 
-Both arguments and properties can be used in any valid binding location (for
-more details on where and how you can bind values, read through the [section on
-templating](../../templating)). The reason you would choose an argument or
+Both arguments and properties can be used in any valid binding location. For
+more details on where and how you can bind values, read through the
+[section on templating](../../templates/handlebars-basics/).
+The reason you would choose an argument or
 property is based on how you expect to use the component, and whether or not the
 value should be based on internal logic within the component, or values passed
 to the component where it is used.
@@ -158,7 +159,7 @@ to the component where it is used.
 You can also use template helpers, modifiers, and other components within your
 component template:
 
-```handlebars {data-filename=src/ui/components/blog-post/template.hbs}
+```handlebars {data-filename=app/templates/components/blog-post.hbs}
 <h1>{{capitalize @title}}</h1>
 
 <BlogSection>
@@ -179,12 +180,12 @@ templates, and to nest components within each other, building up a component
 _tree_.
 
 Finally, component templates can use a special helper: `{{yield}}`. We'll cover
-this helper in more detail in the [Yields](../yields) section later on, but this
+this helper in more detail in the [Yields](../yields/) section later on, but this
 helper allows us to specify that users can pass the component a _block_ of
 children, and where those children should be placed. If we go back to our
 `BlogPost` component, we can add a yield like this:
 
-```handlebars {data-filename=src/ui/components/blog-post/template.hbs}
+```handlebars {data-filename=app/templates/components/blog-post.hbs}
 <h1>{{@title}}</h1>
 <section class="{{this.sectionClass}}">
   {{yield}}
@@ -225,7 +226,7 @@ statements in a component block, and these will be inserted in the yield:
 A final thing that component templates can have is `...attributes`, which can be
 placed on any HTML element or component within the component's template:
 
-```handlebars {data-filename=src/ui/components/blog-post/template.hbs}
+```handlebars {data-filename=app/templates/components/blog-post.hbs}
 <h1>{{@title}}</h1>
 <section ...attributes class="{{this.sectionClass}}">
   {{yield}}
@@ -233,7 +234,7 @@ placed on any HTML element or component within the component's template:
 ```
 
 We'll talk more about attributes in [the next
-section](../arguments-and-attributes). They are values that get applied directly
+section](../arguments-and-attributes/). They are values that get applied directly
 to elements, and can be used to customize the HTML of a component. Unlike
 arguments, they are _not_ prefixed with the `@` symbol:
 
@@ -262,11 +263,11 @@ own state, such as components that focus on presentation and formatting of data.
 For example, you could make a Template-Only greeting component that receives the
 name of a friend and greets them:
 
-```handlebars {data-filename=src/ui/components/greeting/template.hbs}
+```handlebars {data-filename=app/templates/components/greeting.hbs}
 <p>Hello {{@friend}}</p>
 ```
 
-```handlebars {data-filename=src/ui/routes/application/template.hbs}
+```handlebars {data-filename=app/templates/application.hbs}
 <Greeting @friend="Toby"/>
 ```
 
@@ -277,7 +278,7 @@ discussed in detail in the [Working With
 JavaScript](../../working-with-javascript/native-classes) section of the guides.
 You can define a component class like so:
 
-```js {data-file=src/ui/components/blog-post/component.js}
+```js {data-filename=app/components/blog-post.js}
 import Component from '@glimmer/component';
 
 export default class BlogPost extends Component {}
@@ -294,14 +295,14 @@ You can add methods and fields to the component, and then access them from the
 component's template. For instance, we could add the `sectionClass` property
 that is referenced in the template for the `BlogPost` component from earlier:
 
-```handlebars {data-filename=src/ui/components/blog-post/template.hbs}
+```handlebars {data-filename=app/templates/components/blog-post.hbs}
 <h1>{{@title}}</h1>
 <section ...attributes class="{{this.sectionClass}}">
   {{yield}}
 </section>
 ```
 
-```js {data-file=src/ui/components/blog-post/component.js}
+```js {data-filename=app/components/blog-post.js}
 import Component from '@glimmer/component';
 
 export default class HelloButton extends Component {
@@ -309,18 +310,18 @@ export default class HelloButton extends Component {
 }
 ```
 
-You can also use JavaScript accessors (_getters_ and \_setters) to derive values
+You can also use JavaScript accessors (_getters_ and _setters_) to derive values
 that need to be calculated. For instance, we could provide a default title to
 the blog post if one wasn't provided:
 
-```handlebars {data-filename=src/ui/components/blog-post/template.hbs}
+```handlebars {data-filename=app/templates/components/blog-post.hbs}
 <h1>{{this.title}}</h1>
 <section ...attributes class="{{this.sectionClass}}">
   {{yield}}
 </section>
 ```
 
-```js {data-file=src/ui/components/blog-post/component.js}
+```js {data-filename=app/components/blog-post.js}
 import Component from '@glimmer/component';
 
 export default class HelloButton extends Component {
@@ -337,7 +338,7 @@ differently in the class.
 Methods can also be defined on the class and called from the template. These are
 known as _actions_, and are decorated with the `@action` decorator.
 
-```handlebars {data-filename=src/ui/components/blog-post/template.hbs}
+```handlebars {data-filename=app/templates/components/blog-post.hbs}
 <h1>{{this.title}}</h1>
 <section ...attributes class="{{this.sectionClass}}">
   {{yield}}
@@ -348,7 +349,7 @@ known as _actions_, and are decorated with the `@action` decorator.
 </section>
 ```
 
-```js {data-file=src/ui/components/blog-post/component.js}
+```js {data-filename=app/components/blog-post.js}
 import Component from '@glimmer/component';
 
 export default class HelloButton extends Component {
