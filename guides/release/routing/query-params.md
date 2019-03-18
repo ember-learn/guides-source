@@ -55,8 +55,10 @@ export default class ArticlesController extends Controller {
   queryParams = ['category'];
   category = null;
 
-  @computed('category', 'model')
-  filteredArticles() {
+  @tracked category;
+  @tracked model;
+
+  get filteredArticles() {
     let category = this.category;
     let articles = this.model;
 

@@ -332,7 +332,7 @@ import { action } from '@ember/object';
 export default class SomeRouteRoute extends Route {
   // …
   @action
-  visitUserProfile(id) {
+  async visitUserProfile(id) {
     this.store.findRecord('user', id).then(function (user) {
       // Success callback
       this.transitionTo('user.profile', user);

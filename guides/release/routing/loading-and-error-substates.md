@@ -135,7 +135,7 @@ import { action } from '@ember/object';
 export default class FooSlowModelRoute extends Route {
   // ...
   @action
-  loading(transition, originRoute) {
+  async loading(transition, originRoute) {
     let controller = this.controllerFor('foo');
     controller.set('currentlyLoading', true);
     transition.promise.finally(function() {
@@ -204,7 +204,7 @@ called with the `error` as the model. See example below:
 ```javascript
 setupController(controller, error) {
   console.log(error.message);
-  super(...arguments);
+  super.setupController(...arguments)
 }
 ```
 

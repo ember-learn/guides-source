@@ -67,7 +67,7 @@ Router.map(function() {
 ```javascript {data-filename=app/routes/posts.js}
 import Route from '@ember/routing/route';
 
-export default class PostsRoute extends Route {{
+export default class PostsRoute extends Route {
   afterModel(model, transition) {
     if (model.get('length') === 1) {
       this.transitionTo('post', model.get('firstObject'));
