@@ -95,23 +95,23 @@ pressed down.
 
 ## Allowing Default Browser Action
 
-By default, the `{{action}}` helper prevents the default browser action of the
-DOM event. If you want to allow the browser action, you can stop Ember from
-preventing it.
+By default, the `{{action}}` helper prevents the default browser action of the DOM event (i.e. going to `newPage.htm`). So, for example see the following standard `a` tag with an `action`:
 
-For example, if you have a normal link tag and want the link to bring the user
-to another page in addition to triggering an ember action when clicked, you can
-use `preventDefault=false`:
+```handlebars
+<a href="newPage.htm" {{action "logClick"}}>Go</a>
+```
+
+**Clicking on this link does not go to `newPage.htm`** because the `action` has overridden this functionality. This is the default behavior for Ember.
+
+You can override this behavior and make this work more like a standard, non-ember, anchor tag by using the `preventDefault=false` overload of the action on an `a` tag. For example:
 
 ```handlebars
 <a href="newPage.htm" {{action "logClick" preventDefault=false}}>Go</a>
 ```
 
-With `preventDefault=false` omitted, if the user clicked on the link, Ember.js
-will trigger the action, but the user will remain on the current page.
+This still triggers the `logClick` action but then **we also go to `newPage.htm`.**
 
-With `preventDefault=false` present, if the user clicked on the link, Ember.js
-will trigger the action *and* the user will be directed to the new page.
+You can specify `preventDefault=true` and this reverts to the standard Ember functionality (see previous example).
 
 ## Modifying the action's first parameter
 
@@ -153,22 +153,15 @@ object, which is the value of the input field the user typed. (e.g 'Foo Fighters
 
 ## Attaching Actions to Non-Clickable Elements
 
-Note that actions may be attached to any element of the DOM, but not all
-respond to the `click` event. For example, if an action is attached to an `a`
-link without an `href` attribute, or to a `div`, some browsers won't execute
-the associated function. If it's really needed to define actions over such
-elements, a CSS workaround exists to make them clickable, `cursor: pointer`.
-For example:
+Note that while Ember currently permits you to add an action to any DOM element, not all DOM elements are eligible to receive focus, according to HTML standards.
 
-```css
-[data-ember-action]:not(:disabled) {
-  cursor: pointer;
-}
-```
+For example, if an action is attached to an `a` link
+without an `href` attribute, or to a `div`, some browsers won't execute the
+associated function. 
 
-Keep in mind that even with this workaround in place, the `click` event will
-not automatically trigger via keyboard driven `click` equivalents (such as
-the `enter` key when focused). Browsers will trigger this on clickable
-elements only by default. This also doesn't make an element accessible to
-users of assistive technology. You will need to add additional things like
-`role` and/or `tabindex` to make this accessible for your users.
+Always check to see that the element you are adding an action to is interactive, according to
+[web accessibility and browser standards](https://developer.mozilla.org/en-US/docs/Web/HTML/Element#Interactive_elements).
+As a rule of thumb, if you find yourself adding an action an `<a>` tag, you should turn it into a `<button>` instead.
+
+For more information about building accessible apps in Ember, see the
+[Accessibility Guide](../../reference/accessibility-guide/).

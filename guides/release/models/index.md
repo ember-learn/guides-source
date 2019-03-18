@@ -56,7 +56,7 @@ guide.
 
 At first, using Ember Data may feel different than the way you're used
 to writing JavaScript applications. Many developers are familiar with
-using AJAX to fetch raw JSON data from an endpoint, which may appear
+using Ajax to fetch raw JSON data from an endpoint, which may appear
 easy at first. Over time, however, complexity leaks out into your
 application code, making it hard to maintain.
 

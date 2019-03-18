@@ -200,7 +200,7 @@ more reusable components.
 
 ## Handling Action Completion
 
-Often actions perform asynchronous tasks, such as making an ajax request to a server.
+Often actions perform asynchronous tasks, such as making an Ajax request to a server.
 Since actions are functions that can be passed in by a parent component, they are able to return values when called.
 The most common scenario is for an action to return a promise so that the component can handle the action's completion.
 

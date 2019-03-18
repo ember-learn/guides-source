@@ -223,7 +223,6 @@ In our test below we are passing in our fake map utility object in the first tes
 ```javascript {data-filename="tests/unit/services/map-element-test.js" data-diff="+3,+5,-10,-11,-12,-13,-14,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33,+34,+35,+37,+38,+39,+40,+41,+42,+43,+44,+45"}
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
-import { resolve } from 'rsvp';
 
 const DUMMY_ELEMENT = {};
 
@@ -248,7 +247,7 @@ module('Unit | Service | maps', function(hooks) {
     let stubGeocodeService = {
       fetchCoordinates(location) {
         assert.equal(location, 'San Francisco', 'fetchCoordinates called with location');
-        return resolve([0, 0]);
+        return Promise.resolve([0, 0]);
       }
     }
     let mapService = this.owner.factoryFor('service:map-element').create({map: stubMapService, geocode: stubGeocodeService});
@@ -298,14 +297,13 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
-import { resolve } from 'rsvp';
 
 let StubMapsService = Service.extend({
   getMapElement(location) {
     this.set('calledWithLocation', location);
     let element = document.createElement('div');
     element.className = 'map';
-    return resolve(element);
+    return Promise.resolve(element);
   }
 });
 
@@ -364,11 +362,10 @@ import { render, click } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import EmberObject from '@ember/object';
 import Service from '@ember/service';
-import { resolve } from 'rsvp';
 
 let StubMapsService = Service.extend({
   getMapElement() {
-    return resolve(document.createElement('div'));
+    return Promise.resolve(document.createElement('div'));
   }
 });
 
@@ -428,11 +425,10 @@ import {
   fillIn,
   triggerKeyEvent
 } from '@ember/test-helpers'
-import { resolve } from 'rsvp';
 
 let StubMapsService = Service.extend({
   getMapElement() {
-    return resolve(document.createElement('div'));
+    return Promise.resolve(document.createElement('div'));
   }
 });
 

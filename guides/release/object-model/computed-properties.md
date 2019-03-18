@@ -86,7 +86,7 @@ For example, look at this computed property:
 ```javascript
 import EmberObject, { computed } from '@ember/object';
 
-let home = EmberObject.extend({
+const Home = EmberObject.extend({
   location: {
     streetName: 'Evergreen Terrace',
     streetNumber: 742
@@ -96,6 +96,8 @@ let home = EmberObject.extend({
     return `${this.location.streetNumber} ${this.location.streetName}`;
   })
 });
+
+let home = Home.create()
 
 home.address // 742 Evergreen Terrace
 home.set('location.streetNumber', 744)
@@ -107,7 +109,7 @@ It is important to observe an object's properties, not the object itself that ha
 ```javascript
 import EmberObject, { computed } from '@ember/object';
 
-let home = EmberObject.extend({
+const Home = EmberObject.extend({
   location: {
     streetName: 'Evergreen Terrace',
     streetNumber: 742
@@ -117,6 +119,8 @@ let home = EmberObject.extend({
     return `${this.location.streetNumber} ${this.location.streetName}`;
   })
 });
+
+let home = Home.create()
 
 home.address // 742 Evergreen Terrace
 home.set('location.streetNumber', 744)
@@ -134,7 +138,7 @@ You surround the dependent properties with braces (`{}`), and separate with comm
 ```javascript
 import EmberObject, { computed } from '@ember/object';
 
-let home = EmberObject.extend({
+const Home = EmberObject.extend({
   location: {
     streetName: 'Evergreen Terrace',
     streetNumber: 742

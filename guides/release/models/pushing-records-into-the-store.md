@@ -83,7 +83,7 @@ serializer before pushing it into the store, you can use the
 ```javascript {data-filename=app/serializers/album.js}
 import DS from 'ember-data';
 
-export default DS.RestSerializer.extend({
+export default DS.RESTSerializer.extend({
   normalize(typeHash, hash) {
     hash['songCount'] = hash['song_count']
     delete hash['song_count']
@@ -122,7 +122,7 @@ endpoints. You may find your application has an endpoint that performs
 some business logic then creates several records. This likely does not
 map cleanly to Ember Data's existing `save()` API which is structured
 around persisting a single record. Instead you should make your own
-custom AJAX request and push the resulting model data into the store
+custom Ajax request and push the resulting model data into the store
 so it can be accessed by other parts of your application.
 
 

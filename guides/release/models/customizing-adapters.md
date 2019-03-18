@@ -1,8 +1,7 @@
 In Ember Data, an Adapter determines how data is persisted to a
 backend data store. Things such as the backend host, URL format
  and headers used to talk to a REST API can all be configured 
- in an adapter. You can even switch to storing data in local storage
- using a [local storage adapter](https://github.com/locks/ember-localstorage-adapter). 
+ in an adapter.
   
 Ember Data's default Adapter has some built-in assumptions about
 how a [REST API should look](http://jsonapi.org/). If your backend conventions
@@ -203,7 +202,7 @@ Requests for `user-profile` would now target `/user_profile/1`.
 
 Some APIs require HTTP headers, e.g. to provide an API key. Arbitrary
 headers can be set as key/value pairs on the `JSONAPIAdapter`'s `headers`
-object and Ember Data will send them along with each ajax request.
+object and Ember Data will send them along with each Ajax request.
 (Note that we set headers in `init()` because default property values
 should not be arrays or objects.)
 
