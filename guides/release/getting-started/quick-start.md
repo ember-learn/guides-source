@@ -222,14 +222,17 @@ So far, your application is listing data,
 but there is no way for the user to interact with the information.
 In web applications you often want to listen for user events like clicks or hovers.
 Ember makes this easy to do.
-First, add a `<button>` with an `action` helper to the `li` in your `PeopleList` component.
+First, create a button insiide the `li` in your `people-list` component, and add an `action` helper to it.
 
-```handlebars {data-filename="app/templates/components/people-list.hbs"}
-<h2>{{@title}}</h2>
+```handlebars {data-filename="app/templates/components/people-list.hbs" data-diff="-5,+6,+7,+8"}
+<h2>{{this.title}}</h2>
 
 <ul>
-  {{#each @people as |person|}}
-    <li><button {{action "showPerson" person}}>{{person}}</button></li>
+  {{#each this.people as |person|}}
+    <li>{{person}}</li>
+    <li>
+      <button {{action "showPerson" person}}>{{person}}</button>
+    </li>
   {{/each}}
 </ul>
 ```
@@ -237,7 +240,7 @@ First, add a `<button>` with an `action` helper to the `li` in your `PeopleList`
 The `action` helper allows you to add event listeners to elements and call named functions.
 By default, the `action` helper adds a `click` event listener,
 but it can be used to listen for any element event.
-Now, when the `li` element is clicked, a `showPerson` method will be called in the `people-list` component.
+Now, when the `button` inside the `li` element is clicked, a `showPerson` method will be called in the `people-list` component.
 
 Add the action to the `people-list.js` file:
 
