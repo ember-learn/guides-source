@@ -21,17 +21,17 @@ sub-routes and controllers.
 ```javascript {data-filename=app/routes/application.js}
 import Route from '@ember/route';
 
-export default Route.extend({
+export default class ApplicationRoute extends Route {
   actions: {
     displayAlert(text) {
       this._displayAlert(text);
     }
-  },
+  }
 
   _displayAlert(text) {
     alert(text);
   }
-});
+}
 ```
 
 In this route we've [separated our concerns](http://en.wikipedia.org/wiki/Separation_of_concerns):
