@@ -132,9 +132,9 @@
     <!-- line 1 -->
     <tspan class="fill-dark-blue" x="0" y="0">&lt;</tspan><tspan class="fill-light-blue">ul</tspan><tspan class="fill-dark-blue">&gt;</tspan>
     <!-- line 2 -->
-    <tspan x="14" y="14.4">{{</tspan><tspan class="fill-maize">#each </tspan><tspan class="fill-dark-red">this.model</tspan><tspan class="fill-maize"> as </tspan>|<tspan class="fill-dark-red">rental-unit</tspan>|}}
+    <tspan x="14" y="14.4">{{</tspan><tspan class="fill-maize">#each </tspan><tspan class="fill-dark-red">this.model</tspan><tspan class="fill-maize"> as </tspan>|<tspan class="fill-dark-red">rentalUnit</tspan>|}}
     <!-- line 3 -->
-    <tspan x="28" y="28.8" class="fill-dark-blue">&lt;</tspan><tspan class="fill-light-blue">RentalTile</tspan> <tspan class="fill-maize">@rental</tspan>=<tspan class="fill-dark-red">rental-unit</tspan> /<tspan class="fill-dark-blue">&gt;</tspan>
+    <tspan x="28" y="28.8" class="fill-dark-blue">&lt;</tspan><tspan class="fill-light-blue">RentalTile</tspan> <tspan class="fill-maize">@rental</tspan>=<tspan class="fill-dark-red">rentalUnit</tspan> /<tspan class="fill-dark-blue">&gt;</tspan>
     <!-- line 4 -->
     <tspan x="14" y="43.2">{{</tspan><tspan class="fill-maize">/each</tspan>}}
     <!-- line 5 -->
