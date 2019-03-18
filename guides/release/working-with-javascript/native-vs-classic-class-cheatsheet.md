@@ -62,7 +62,7 @@ syntax and _not_ extending from `EmberObject` at all in your apps.
 
 **Classic**
 
-- Use the [`create`][3] to create instances of the class:
+- Use the [`create`][3] static method to create instances of the class:
 
   ```js
   const Person = EmberObject.extend({});
@@ -88,15 +88,19 @@ syntax and _not_ extending from `EmberObject` at all in your apps.
 
 Mostly the same between native and classic:
 
+**Native**
+
 ```js
-// Native
 class Person {
   helloWorld() {
     console.log('Hello, world!');
   }
 }
+```
 
-// Classic
+**Classic**
+
+```js
 const Person = EmberObject.extend({
   helloWorld() {
     console.log('Hello, world!');
