@@ -68,14 +68,15 @@ import EmberObject, {
   computed
 } from '@ember/object';
 
-let User = EmberObject.extend({
-  firstName: null,
-  lastName: null,
+class User extends EmberObject {
+  firstName = null
+  lastName = null
 
-  fullName: computed('firstName', 'lastName', function() {
+  @computed('firstName', 'lastName')
+  get fullName() {
     return `${this.firstName} ${this.lastName}`;
-  })
-});
+  }
+}
 ```
 
 and a template to display its attributes:
