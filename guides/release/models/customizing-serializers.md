@@ -337,7 +337,7 @@ export default class ApplicationSerializer extends JSONAPISerializer {
 
 Irregular keys can be mapped with a custom serializer. The `attrs`
 object can be used to declare a simple mapping between property names
-on DS.Model records and payload keys in the serialized JSON object
+on `Model` records and payload keys in the serialized JSON object
 representing the record. An object with the property key can also be
 used to designate the attribute's key on the response payload.
 
@@ -677,7 +677,7 @@ If you would like to create a custom serializer it's recommended that you
 start with the `JSONAPISerializer` or `JSONSerializer` and extend one of
 those to match your needs.
 However, if your payload is extremely different from one of these
-serializers you can create your own by extending the `DS.Serializer`
+serializers you can create your own by extending the `Serializer`
 base class.
 
 A serializer has two main roles in Ember Data.
@@ -705,8 +705,8 @@ Ember Data's own `JSONAPISerializer` assumes types are plural and it
 will automatically singularize the types.
 
 Second, attribute and relationship names in the JSON:API document
-should exactly match the name and casing of the `DS.attr()`,
-`DS.belongsTo()` and `DS.hasMany()`, properties defined on the
+should exactly match the name and casing of the `attr()`,
+`belongsTo()` and `hasMany()`, properties defined on the
 Model.
 
 By convention these property names are camelCase in Ember Data models.
