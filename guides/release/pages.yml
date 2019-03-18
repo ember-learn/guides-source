@@ -1,5 +1,5 @@
 - title: "Introduction"
-  url: 'index'
+  url: "index"
   pages:
     - title: "What Is Ember"
       url: ""
@@ -109,11 +109,11 @@
 - title: "Services"
   url: "services"
   pages:
-    - title: Overview
-      url: "index"
-      
-- title: 'Data Management'
-  url: 'data-management'
+    - title: Introduction
+      url: "services"
+
+- title: "Data Management"
+  url: "data-management"
   pages:
     - title: "Overview"
       url: "index"
