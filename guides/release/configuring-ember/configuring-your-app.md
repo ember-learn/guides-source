@@ -1,12 +1,13 @@
-Ember CLI ships with support for managing your application's environment. Ember CLI will setup a default environment config file at `config/environment`. Here, you can define an `ENV` object for each environment, which are currently limited to three: development, test, and production.
+Ember CLI ships with support for managing your application's environment. The runtime environment for the application is defined in `config/environment.js`. Here an object `ENV` is built for each of the three Ember CLI-supported build modes: development, test, and production.
 
-The ENV object contains three important keys:
+Three notable properties on the `ENV` object are:
 
-- `EmberENV` can be used to define Ember feature flags (see the [Feature Flags guide](../feature-flags/)).
-- `APP` can be used to pass flags/options to your application instance.
-- `environment` contains the name of the current environment (`development`,`production` or `test`).
+- `EmberENV` can be used to define Ember feature flags (see the [Feature Flags guide](../feature-flags/)) to be enabled at runtime.
+- `APP` can be used to pass flags or options to the app's `Application` instance.
+- `environment` by default contains which of the build environments was selected at build time (`development`, `test`, or `production`).
 
-You can access these environment variables in your application code by importing from `your-application-name/config/environment`.
+The `ENV` object is defined at build time, but you can access the `ENV` object
+in application code via import from `your-application-name/config/environment`.
 
 For example:
 
