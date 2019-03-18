@@ -236,7 +236,7 @@ time.
 <!-- TODO: Diagram showing a container component that owns some state passing it
 down to several children, and their action cycles mutating it. -->
 
-* **Object-Oriented** services like [Ember Data](../models/) or Apollo (used in
+* **Object-Oriented** services like [Ember Data](../../models/) or Apollo (used in
   Ember with [`ember-apollo-client`](https://github.com/bgentry/ember-apollo-client))
   allow you to load and query data as objects, and mutate them where you see fit:
 
