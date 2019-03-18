@@ -129,7 +129,7 @@ the output will be updated to:
 ## Conditional Attributes
 
 So far, we've talked about how to populate an attribute with the value of a variable. But what if we
-want the value of an attribute to differ based upon whether the variable is truthy or falsy.
+want the value of an attribute to differ based upon whether the variable is truthy or falsy?
 
 For example, let's say we want the `class` on a `<div>` to be `superuser` if the `@isAdmin` variable
 is true, but `standard` if the `@isAdmin` variable is false.
