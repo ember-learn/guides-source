@@ -100,18 +100,18 @@
       url: "tracked-properties"
     - title: "Patterns for State"
       url: "patterns-for-state"
-    - title: "Computed Properties"
-      url: "computed-properties"
+    # - title: "Computed Properties"
+    #   url: "computed-properties"
 - title: "Services"
   url: "services"
   pages:
-    - title: "Overview"
-      url: "index" 
-- title: "Data Management"
-  url: "data-management"
-  pages:
-    - title: "Overview"
-      url: "index"
+    - title: Overview
+      url: "index"    
+# - title: "Data Management"
+#   url: "data-management"
+#   pages:
+#     - title: "Overview"
+#       url: "index"
 
 - title: "Ember Data"
   url: "models"
@@ -195,12 +195,12 @@
 - title: "Upgrading"
   url: "upgrading"
   pages:
-    - title: "Overview"
-      url: "index"
+    # - title: "Overview"
+    #   url: "index"
     - title: "Editions"
       url: "editions"
-    - title: "Deprecations"
-      url: "deprecations"
+    # - title: "Deprecations"
+    #   url: "deprecations"
 - title: "Developer Tools"
   url: "ember-inspector"
   pages:
