@@ -351,6 +351,7 @@ known as _actions_, and are decorated with the `@action` decorator.
 
 ```js {data-filename=app/components/blog-post.js}
 import Component from '@glimmer/component';
+import { action } from '@ember/object';
 
 export default class HelloButton extends Component {
   get title() {
