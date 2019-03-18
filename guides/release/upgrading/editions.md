@@ -91,6 +91,7 @@ Here’s are some of the core features in Octane:
 - **Tracked properties**, a type of decorator that simplifies keeping the DOM
   up-to-date with JavaScript changes.
 - **Async functions** (`async`/`await`) for authoring asynchronous code.
+- **Importing npm packages** with zero additional configuration.
 - **Octane-style components**, including
   - **"Outer HTML" templates** that support fragments and easily customizing the
     root element.
