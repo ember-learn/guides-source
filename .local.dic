@@ -75,6 +75,7 @@ htmlbars
 htmlbars-inline-precompile
 interop
 interoperable
+invocable
 IndexedDB
 Inflector
 instantiation
