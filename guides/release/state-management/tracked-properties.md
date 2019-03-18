@@ -2,7 +2,7 @@ When Ember first renders a component, it renders the initial _state_ of that
 component - the state of the instance, and state of the arguments that are
 passed to it:
 
-```hbs {data-filename=app/templates/components/hello.hbs}
+```handlebars {data-filename=app/templates/components/hello.hbs}
 {{this.greeting}}, {{@name}}!
 ```
 
@@ -25,7 +25,7 @@ export default class Hello extends Component {
 }
 ```
 
-```hbs {data-filename=app/templates/application.hbs}
+```handlebars {data-filename=app/templates/application.hbs}
 <Hello @name="Jen Weber">
 ```
 
@@ -88,7 +88,7 @@ Tracked properties can be updated like any other property, using standard
 JavaScript syntax. The primary way that state gets updated in an Ember
 application is via _actions_, [as discussed earlier](../../templates/actions/):
 
-```hbs {data-filename=app/templates/components/hello.hbs}
+```handlebars {data-filename=app/templates/components/hello.hbs}
 {{this.greeting}}, {{@name}}!
 
 <select onchange={{this.updateLanguage}}>
@@ -329,6 +329,6 @@ class ShoppingList {
 }
 ```
 
-### Tracking Helpers/Modifiers
+<!-- ### Tracking Helpers/Modifiers
 
-Coming Soon!
+TODO -->

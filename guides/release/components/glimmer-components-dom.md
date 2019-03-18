@@ -196,7 +196,7 @@ export default class Counter extends Component {
     <div class="cta-note-body">
       <div class="cta-note-heading">Tomster says...</div>
       <div class="cta-note-message">
-        "Element modifiers" appear inside free-floating curly brackets inside of an opening
+        "Element modifiers" appear inside free-floating curly braces inside of an opening
         tag. Unlike <strong>attribute syntax</strong>, which works by substitution
         (and therefore affects the HTML output of your page), element modifiers work
         by passing the element to a function that can do anything with it.

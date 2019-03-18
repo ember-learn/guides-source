@@ -30,10 +30,10 @@ as one of `controller:articles`'s `queryParams`:
 ```javascript {data-filename=app/controllers/articles.js}
 import Controller from '@ember/controller';
 
-export default Controller.extend({
-  queryParams: ['category'],
-  category: null
-});
+export default class ArticlesController extends Controller {
+  queryParams = ['category'];
+  category = null;
+}
 ```
 
 This sets up a binding between the `category` query param in the URL,
@@ -51,11 +51,14 @@ array that the `articles` template will render:
 import Controller from '@ember/controller';
 import { computed } from '@ember/object';
 
-export default Controller.extend({
-  queryParams: ['category'],
-  category: null,
+export default class ArticlesController extends Controller {
+  queryParams = ['category'];
+  category = null;
 
-  filteredArticles: computed('category', 'model', function() {
+  @tracked category;
+  @tracked model;
+
+  get filteredArticles() {
     let category = this.category;
     let articles = this.model;
 
@@ -64,8 +67,8 @@ export default Controller.extend({
     } else {
       return articles;
     }
-  })
-});
+  }
+}
 ```
 
 With this code, we have established the following behaviors:
@@ -138,12 +141,12 @@ you can set it as follows:
 ```javascript {data-filename=app/routes/articles.js}
 import Route from '@ember/routing/route';
 
-export default Route.extend({
-  queryParams: {
+export default class ArticlesRoute extends Route {
+  queryParams = {
     category: {
       refreshModel: true
     }
-  },
+  }
 
   model(params) {
     // This gets called upon entering 'articles' route
@@ -154,15 +157,15 @@ export default Route.extend({
     // which we can forward to the server.
     return this.store.query('article', params);
   }
-});
+}
 ```
 
 ```javascript {data-filename=app/controllers/articles.js}
 import Controller from '@ember/controller';
 
-export default Controller.extend({
-  queryParams: ['category'],
-  category: null
+export default class ArticlesController extends Controller {
+  queryParams = ['category'];
+  category = null;
 });
 ```
 
@@ -177,13 +180,13 @@ you can specify this as follows:
 ```javascript {data-filename=app/routes/articles.js}
 import Route from '@ember/routing/route';
 
-export default Route.extend({
-  queryParams: {
+export default class ArticlesRoute extends Route {
+  queryParams = {
     category: {
       replace: true
     }
   }
-});
+}
 ```
 
 This behavior is similar to `link-to`,
@@ -198,13 +201,13 @@ You can also map a controller property to a different query param key using the 
 ```javascript {data-filename=app/controllers/articles.js}
 import Controller from '@ember/controller';
 
-export default Controller.extend({
-  queryParams: {
+export default class ArticlesController extends Controller {
+  queryParams = {
     category: 'articles_category'
-  },
+  }
 
-  category: null
-});
+  category = null
+}
 ```
 
 This will cause changes to the `controller:articles`'s `category`
@@ -216,15 +219,15 @@ be provided along with strings in the `queryParams` array.
 ```javascript {data-filename=app/controllers/articles.js}
 import Controller from '@ember/controller';
 
-export default Controller.extend({
-  queryParams: ['page', 'filter', {
+export default class ArticlesController extends Controller {
+  queryParams = ['page', 'filter', {
     category: 'articles_category'
-  }],
+  }]
 
-  category: null,
-  page: 1,
-  filter: 'recent'
-});
+  category = null;
+  page = 1;
+  filter = 'recent';
+}
 ```
 
 ### Default values and deserialization
@@ -235,10 +238,10 @@ the controller query param property `page` is considered to have a default value
 ```javascript {data-filename=app/controllers/articles.js}
 import Controller from '@ember/controller';
 
-export default Controller.extend({
-  queryParams: 'page',
-  page: 1
-});
+export default class ArticlesController extends Controller {
+  queryParams = 'page';
+  page = 1;
+}
 ```
 
 This affects query param behavior in two ways:
@@ -306,14 +309,14 @@ The result of this is that all links pointing back into the exited route will us
 ```javascript {data-filename=app/routes/articles.js}
 import Route from '@ember/routing/route';
 
-export default Route.extend({
+export default class ArticlesRoute extends Route {
   resetController(controller, isExiting, transition) {
     if (isExiting) {
       // isExiting would be false if only the route's model was changing
       controller.set('page', 1);
     }
   }
-});
+}
 ```
 
 In some cases, you might not want the sticky query param value to be
@@ -325,13 +328,13 @@ config hash:
 ```javascript {data-filename=app/controllers/articles.js}
 import Controller from '@ember/controller';
 
-export default Controller.extend({
-  queryParams: [{
+export default class ArticlesController extends Controller {
+  queryParams = [{
     showMagnifyingGlass: {
       scope: 'controller'
     }
   }]
-});
+}
 ```
 
 The following demonstrates how you can override both the scope and the query param URL key of a single controller query param property:
@@ -339,8 +342,8 @@ The following demonstrates how you can override both the scope and the query par
 ```javascript {data-filename=app/controllers/articles.js}
 import Controller from '@ember/controller';
 
-export default Controller.extend({
-  queryParams: ['page', 'filter',
+export default class ArticlesController extends Controller {
+  queryParams = ['page', 'filter',
     {
       showMagnifyingGlass: {
         scope: 'controller',
@@ -348,5 +351,5 @@ export default Controller.extend({
       }
     }
   ]
-});
+}
 ```
