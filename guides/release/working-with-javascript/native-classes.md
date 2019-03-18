@@ -312,19 +312,19 @@ that is _accessed_ like a property. For example:
 ```js
 class Person {
   get name() {
-    return 'Mel Sumner';
+    return 'Melanie Sumner';
   }
 }
 
-let mel = new Person();
-console.log(mel.name); // 'Mel Sumner'
+let melanie = new Person();
+console.log(melanie.name); // 'Melanie Sumner'
 ```
 
 Even though `get name` is a method, we can treat it like a normal property.
 However, if we try to set the name property to a new value, we get an error:
 
 ```js
-mel.name = 'Melanie Sumner';
+melanie.name = 'Melanie Sumner';
 // Cannot set property name of #<Person> which has only a getter
 ```
 
@@ -333,7 +333,7 @@ function stores the value somewhere, and the getter function retrieves it:
 
 ```js
 class Person {
-  _name = 'Mel Sumner';
+  _name = 'Melanie Sumner';
 
   get name() {
     return this._name;
@@ -344,13 +344,13 @@ class Person {
   }
 }
 
-let mel = new Person();
-console.log(mel.name); // 'Mel Sumner'
-console.log(mel._name); // 'Mel Sumner'
+let melanie = new Person();
+console.log(melanie.name); // 'Melanie Sumner'
+console.log(melanie._name); // 'Melanie Sumner'
 
-mel.name = 'Melanie Sumner';
-console.log(mel.name); // 'Melanie Sumner'
-console.log(mel._name); // 'Melanie Sumner'
+melanie.name = 'Melanie Sumner';
+console.log(melanie.name); // 'Melanie Sumner'
+console.log(melanie._name); // 'Melanie Sumner'
 ```
 
 Getters can also be used on their own to calculate values dynamically:

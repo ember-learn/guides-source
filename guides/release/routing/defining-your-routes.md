@@ -327,22 +327,21 @@ Note that if you want to manually transition to this wildcard route, you need to
 
 ```javascript {data-filename=app/routes/some-route.js}
 import Route from '@ember/routing/route';
+import { action } from '@ember/object';
 
-export default Route.extend({
+export default class SomeRouteRoute extends Route {
   // …
-
-  actions: {
-    visitUserProfile(id) {
-      this.store.findRecord('user', id).then(function (user) {
-        // Success callback
-        this.transitionTo('user.profile', user);
-      }).catch(function () {
-        // Error callback
-        this.transitionTo('not-found', 404);
-      })
+  @action
+  async visitUserProfile(id) {
+    this.store.findRecord('user', id).then(function (user) {
+      // Success callback
+      this.transitionTo('user.profile', user);
+    }).catch(function () {
+      // Error callback
+      this.transitionTo('not-found', 404);
     }
   }
-});
+}
 ```
 ## Route Handlers
 

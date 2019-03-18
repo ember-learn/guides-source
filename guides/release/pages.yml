@@ -12,11 +12,11 @@
       url: "index"
     - title: "Core Concepts"
       url: "core-concepts"
-- title: "Anatomy of an App"
-  url: "anatomy-of-an-app"
-  pages:
-    - title: "Overview"
-      url: "index"
+# - title: "Anatomy of an App"
+#   url: "anatomy-of-an-app"
+#   pages:
+#     - title: "Overview"
+#       url: "index"
 - title: "Templating"
   url: "templates"
   pages:
@@ -61,12 +61,8 @@
       url: "actions-and-events"
     - title: "Yields"
       url: "yields"
-    - title: "Interacting with the DOM"
-      url: "interacting-with-the-dom"
     - title: "Contextual Components"
       url: "contextual-components"
-    - title: "Classic Components"
-      url: "classsic-components"
     - title: "Working with the DOM"
       url: "glimmer-components-dom"
 - title: "Routing"
@@ -104,19 +100,18 @@
       url: "tracked-properties"
     - title: "Patterns for State"
       url: "patterns-for-state"
-    - title: "Computed Properties"
-      url: "computed-properties"
+    # - title: "Computed Properties"
+    #   url: "computed-properties"
 - title: "Services"
   url: "services"
   pages:
-    - title: Introduction
-      url: "services"
-
-- title: "Data Management"
-  url: "data-management"
-  pages:
-    - title: "Overview"
-      url: "index"
+    - title: Overview
+      url: "index"    
+# - title: "Data Management"
+#   url: "data-management"
+#   pages:
+#     - title: "Overview"
+#       url: "index"
 
 - title: "Ember Data"
   url: "models"
@@ -199,12 +194,12 @@
 - title: "Upgrading"
   url: "upgrading"
   pages:
-    - title: "Overview"
-      url: "index"
+    # - title: "Overview"
+    #   url: "index"
     - title: "Editions"
       url: "editions"
-    - title: "Deprecations"
-      url: "deprecations"
+    # - title: "Deprecations"
+    #   url: "deprecations"
 - title: "Developer Tools"
   url: "ember-inspector"
   pages:

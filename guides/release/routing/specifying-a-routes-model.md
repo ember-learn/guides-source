@@ -18,12 +18,12 @@ Here's an example of a model hook in use within a route:
 ```javascript {data-filename=app/routes/favorite-posts.js}
 import Route from '@ember/routing/route';
 
-export default Route.extend({
+export default class FavoritePostsRoute extends Route {
   model() {
     console.log('The model hook just ran!')
     return "Hello Ember!";
   }
-});
+}
 ```
 
 `model` hooks have some special powers:
@@ -80,13 +80,11 @@ Install [`ember-fetch`](https://github.com/ember-cli/ember-fetch) with the comma
 import Route from '@ember/routing/route';
 import fetch from 'fetch';
 
-export default Route.extend({
-  model() {
-    return fetch('/my-cool-end-point.json').then(function(response) {
-      return response.json();
-    });
+export default class PhotoRoute extends Route {
+  model(params) {
+    return this.store.findRecord('photo', params.photo_id);
   }
-});
+}
 ```
 
 Older browsers may not have `fetch`, but the `ember-fetch` library includes a polyfill, so we don't have to worry about backwards compatibility!
@@ -123,14 +121,14 @@ If all of the promises resolve, the returned promise will resolve to an object t
 import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
 
-export default Route.extend({
+export default class SongsRoute extends Route {
   model() {
     return RSVP.hash({
       songs: this.store.findAll('song'),
       albums: this.store.findAll('album')
     });
   }
-});
+}
 ```
 
 In the `songs` template, we can specify both models and use the `{{#each}}` helper to display
@@ -248,13 +246,13 @@ In this scenario, you can use the `paramsFor` method to get the parameters of a 
 ```javascript {data-filename=app/routes/album/index.js}
 import Route from '@ember/routing/route';
 
-export default Route.extend({
+export default class AlbumIndexRoute extends Route {
   model() {
     let { album_id } = this.paramsFor('album');
 
     return this.store.query('song', { album: album_id });
   }
-});
+}
 ```
 
 This is guaranteed to work because the parent route is loaded. But if you tried to
@@ -287,14 +285,14 @@ In the case above, the parent route looked something like this:
 import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
 
-export default Route.extend({
+export default class AlbumRoute extends Route {
   model({ album_id }) {
     return RSVP.hash({
       album: this.store.findRecord('album', album_id),
       songs: this.store.query('songs', { album: album_id })
     });
   }
-});
+}
 ```
 
 And calling `modelFor` returned the result of the `model` hook.

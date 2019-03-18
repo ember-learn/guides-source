@@ -77,7 +77,7 @@ counterpart, _actions_ - later on.
 You can also use template helpers, modifiers, and other components within your
 component template:
 
-```hbs
+```handlebars
 {{#if @useCustomButton}}
   <CustomButton @onClick={{@sayHello}}>
     {{this.buttonText}}

@@ -21,21 +21,21 @@ Here's one way this situation could be handled:
 
 ```javascript {data-filename=app/routes/form.js}
 import Route from '@ember/routing/route';
+import { action } from '@ember/object';
 
-export default Route.extend({
-  actions: {
-    willTransition(transition) {
-      if (this.controller.userHasEnteredData &&
-          !confirm('Are you sure you want to abandon progress?')) {
-        transition.abort();
-      } else {
-        // Bubble the `willTransition` action so that
-        // parent routes can decide whether or not to abort.
-        return true;
-      }
+export default class FormRoute extends Route {
+  @action
+  willTransition(transition) {
+    if (this.controller.userHasEnteredData &&
+        !confirm('Are you sure you want to abandon progress?')) {
+      transition.abort();
+    } else {
+      // Bubble the `willTransition` action so that
+      // parent routes can decide whether or not to abort.
+      return true;
     }
   }
-});
+};
 ```
 
 When the user clicks on a `<LinkTo>`, or when the app initiates a
@@ -56,14 +56,14 @@ destination routes to abort attempted transitions.
 ```javascript {data-filename=app/routes/disco.js}
 import Route from '@ember/routing/route';
 
-export default Route.extend({
+export default class DiscoRoute extends Route {
   beforeModel(transition) {
     if (new Date() > new Date('January 1, 1980')) {
       alert('Sorry, you need a time machine to enter this route.');
       transition.abort();
     }
   }
-});
+}
 ```
 
 ### Storing and Retrying a Transition
@@ -76,7 +76,7 @@ they've logged in.
 ```javascript {data-filename=app/routes/some-authenticated.js}
 import Route from '@ember/routing/route';
 
-export default Route.extend({
+export default class SomeAuthenticatedRoute extends Route {
   beforeModel(transition) {
     if (!this.controllerFor('auth').userIsLoggedIn) {
       let loginController = this.controllerFor('login');
@@ -84,25 +84,25 @@ export default Route.extend({
       this.transitionTo('login');
     }
   }
-});
+}
 ```
 
 ```javascript {data-filename=app/controllers/login.js}
 import Controller from '@ember/controller';
+import { action } from '@ember/object';
 
-export default Controller.extend({
-  actions: {
-    login() {
-      // Log the user in, then reattempt previous transition if it exists.
-      let previousTransition = this.previousTransition;
-      if (previousTransition) {
-        this.set('previousTransition', null);
-        previousTransition.retry();
-      } else {
-        // Default back to homepage
-        this.transitionToRoute('index');
-      }
+export default class LoginController extends Controller {
+  @action
+  login() {
+    // Log the user in, then reattempt previous transition if it exists.
+    let previousTransition = this.previousTransition;
+    if (previousTransition) {
+      this.set('previousTransition', null);
+      previousTransition.retry();
+    } else {
+      // Default back to homepage
+      this.transitionToRoute('index');
     }
   }
-});
+}
 ```

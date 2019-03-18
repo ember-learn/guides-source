@@ -25,9 +25,9 @@ the template you want to render instead.
 ```javascript {data-filename=app/routes/posts.js}
 import Route from '@ember/routing/route';
 
-export default Route.extend({
-  templateName: 'posts/favorite-posts'
-});
+export default class PostsRoute extends Route {
+  templateName = 'posts/favorite-posts';
+}
 ```
 
 You can override the [`renderTemplate()`](https://api.emberjs.com/ember/3.11/classes/Route/methods/renderTemplate?anchor=renderTemplate) hook if you want finer control over template rendering.

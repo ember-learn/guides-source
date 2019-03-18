@@ -14,10 +14,11 @@ Which prints:
 Hello Zoey!
 ```
 
-Then the equivalent Ember template would be something like the following:
+Ember templates have some superpowers, but let's start with regular HTML.
+For any file in an Ember app that has an extension ending in `.hbs`, you can write HTML markup in it as if it was an `.html` file.
+HTML is the language that browsers understand for laying out content on a web page.
 
-```javascript {data-filename=app/components/hello-world.js}
-import Component from '@ember/component';
+Every Ember app has a file called `application.hbs`, and you can write regular HTML markup there or in any other `hbs` file:
 
 export default Component.extend({
   name: "World"
@@ -199,7 +200,7 @@ automatically.
 As an application grows in size, it will have many templates backed by
 controllers and components.
 
-### Helpers
+To pass in arguments associated with a Route, define the property from within a [Controller](../../controllers/). Learn more about passing data between Component templates [here](../../components/arguments-and-attributes/).
 
 Ember Helpers are functions that can compute values and can be used in any template.
 

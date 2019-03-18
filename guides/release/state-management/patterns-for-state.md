@@ -48,19 +48,15 @@ In Ember, there are 3 primary types of state:
 [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Memory_Management#Garbage_collection
 
 In the section on components, we showed how Ember applications can be visualized
-as a tree of controllers and components:
+as a tree of controllers and components.
 
-```
-TODO: Diagram of components/controllers
-```
+<!-- TODO: Diagram of components/controllers -->
 
 A piece of state can exist on any one of the components or controllers in this
 tree, and be passed down to the children of that component or controller via
-component arguments:
+component arguments.
 
-```
-TODO: Diagram showing state being passed down several nodes
-```
+<!-- TODO: Diagram showing state being passed down several nodes -->
 
 Note that just because some state exists on a parent doesn't mean it exists on
 the child - it has to be passed down explicitly. Otherwise, we would come
@@ -72,19 +68,15 @@ pages and navigated away, destroying the components in that tree, any state that
 exists on the controller will stay there, and be used next time that page is
 rendered.
 
-```
-TODO: Diagram showing multiple controllers, only one with a subtree, maybe a
-transition between the two somehow, and state living on the controller.
-```
+<!-- TODO: Diagram showing multiple controllers, only one with a subtree, maybe a
+transition between the two somehow, and state living on the controller. -->
 
 Services also exist for the lifetime of a program, and can be injected into the
 any component or controller. State that is stored on a service is effectively
-available _anywhere_, which is a very powerful tool:
+available _anywhere_, which is a very powerful tool.
 
-```
-TODO: Diagram showing a service, separate from the component tree, containing
-state which is consumed by several components
-```
+<!-- TODO: Diagram showing a service, separate from the component tree, containing
+state which is consumed by several components -->
 
 Services can be used to centralize your state in one location, but if not used
 carefully and with solid conventions they can become messy quickly.
@@ -94,12 +86,10 @@ carefully and with solid conventions they can become messy quickly.
 If we're mapping the flow of state in an Ember application, we can start by
 looking at how it flows down the component tree on first render:
 
-```
-TODO: Diagram showing several components and a service. Pieces of state should
+<!-- TODO: Diagram showing several components and a service. Pieces of state should
 start in several places, one in the service, one in the root component, one in
 an arbitrary middle node, and then arrows should chart their path to rendered
-DOM
-```
+DOM -->
 
 Every piece of state starts in some component, controller, or service, and is
 passed downward into either another component, or the template, and finally the
@@ -120,27 +110,21 @@ a change. In Ember applications, state can change in three main ways:
 
 As we discussed in the section on [Actions](../../templates/actions/), they are methods on a component or
 controller that can be used to update its state. Actions are passed down with
-the rest of a component's data when Ember renders:
+the rest of a component's data when Ember renders.
 
-```
-TODO: Diagram showing the same Data Down as above, but with actions highlighted
-```
+<!-- TODO: Diagram showing the same Data Down as above, but with actions highlighted -->
 
 Eventually, the action is triggered in some child component or template. It then
 _flows_ upward to the component it originated from, and modifies some state
-there:
+there.
 
-```
-TODO: Diagram showing the flow back upwards from the action
-```
+<!-- TODO: Diagram showing the flow back upwards from the action -->
 
 Ember then re-renders any parts of that component that changed, including child
 components. Data flows _back_ downward in this way, toward the children of the
 modified component:
 
-```
-TODO: Diagram showing the data flowing downward during rerender
-```
+<!-- TODO: Diagram showing the data flowing downward during rerender -->
 
 This is what is meant by the "Data-Down, Actions-Up" flow that Ember users
 sometimes talk about, and that has been mentioned elsewhere in the guides. Data
@@ -148,18 +132,14 @@ starts in some root location, flows downward to child components, and actions
 flow back upward to mutate the data where it is "owned". We can create flow
 charts for most Ember apps that show the various cycles of state in it:
 
-```
-TODO: Diagram showing a more complex app (less detailed) with many DDAU cycles
-visible in it.
-```
+<!-- TODO: Diagram showing a more complex app (less detailed) with many DDAU cycles
+visible in it. -->
 
 We'll discuss what data/state ownership means more below. It's also important to
 note that actions can flow _outward_ to services, mutating service state:
 
-```
-TODO: Diagram showing an action flowing toward a service, and the service
-flowing back into several components.
-```
+<!-- TODO: Diagram showing an action flowing toward a service, and the service
+flowing back into several components. -->
 
 This can be done directly, by updating some state in the service, or by updating
 some state owned by the service that is shared, such as a tracked object, or a
@@ -200,11 +180,9 @@ to rerender.
 ### Data Loading & Background Events
 
 Whenever we load data, it's like we're scheduling an action to occur later and
-update some state in the current component or route:
+update some state in the current component or route.
 
-```
-TODO: Diagram showing a cycle within a single route/component
-```
+<!-- TODO: Diagram showing a cycle within a single route/component -->
 
 Once the data loads, it updates the state, and data flows downward like normal
 
@@ -218,10 +196,8 @@ Background events and data fetching can both trigger actions as well when they
 occur in components, in which case they may interact with other components in
 the component tree:
 
-```
-TODO: Diagram showing a cycle within a single route/component, triggering a
-DDAU cycle
-```
+<!-- TODO: Diagram showing a cycle within a single route/component, triggering a
+DDAU cycle -->
 
 ## State Ownership
 
@@ -256,22 +232,18 @@ time.
   their parents only, and if they trigger actions, they are actions that were
   passed down to them. _Container_ components are components that own state or
   load data, possibly from a data store or service.
-
-  ```
-  TODO: Diagram showing a container component that owns some state passing it
-  down to several children, and their action cycles mutating it.
-  ```
+ 
+<!-- TODO: Diagram showing a container component that owns some state passing it
+down to several children, and their action cycles mutating it. -->
 
 * **Object-Oriented** services like [Ember Data][4] or [Apollo][5] (used in
   Ember with [`ember-apollo-client`][6]) allow you to load and query data as
   objects, and mutate them where you see fit:
 
-  ```
-  TODO: Diagram showing state being loaded by the store, flowing down to
-  components, and then individual components updating state on the models. Also,
-  faded out, but other data cycles in the app to demonstrate that these aren't
-  "all-in" solutions.
-  ```
+<!-- TODO: Diagram showing state being loaded by the store, flowing down to
+components, and then individual components updating state on the models. Also,
+faded out, but other data cycles in the app to demonstrate that these aren't
+"all-in" solutions. -->
 
   In these solutions, each object owns its own state to degree, with the central
   store being the canonical list of _all_ objects and coordinating their
@@ -282,10 +254,8 @@ time.
   [`ember-redux`][8]) seek to capture _all_ application state in a single place, the
   centralized store, which owns all state:
 
-  ```
-  TODO: Diagram showing actions all flowing to the Redux store/service, and data
-  flowing out of it.
-  ```
+<!-- TODO: Diagram showing actions all flowing to the Redux store/service, and data
+flowing out of it. -->
 
   These solutions streamline data ownership by forcing it all to follow the same
   patterns universally, and ensure that all mutations to that data occur in the

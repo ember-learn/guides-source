@@ -124,7 +124,7 @@ Hello, {{@firstName}} {{@lastName}}
 
 ## Development Helpers
 
-Handlebars and Ember come with a few helpers that can make developing your
+Ember comes with a few helpers that can make developing your
 templates a bit easier. These helpers make it simple to output variables into
 your browser's console, or activate the debugger from your templates.
 
