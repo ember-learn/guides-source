@@ -174,11 +174,11 @@ They also have a number of other differences and benefits:
 - Single word component names are completely OK in angle bracket form!
 
   ```handlebars
-  <!-- throws an error 🛑 -->
-  {{todo}}
+    <!-- throws an error 🛑 -->
+    {{todo}}
 
-  <!-- works! ✅ -->
-  <Todo/>
+    <!-- works! ✅ -->
+    <Todo/>
   ```
 
 - Standard attribute values applied to the component are treated like _plain-old
@@ -204,11 +204,11 @@ They also have a number of other differences and benefits:
 - _Arguments_ are passed by adding `@` to the front of the argument name:
 
   ```handlebars
-  <!-- Before -->
-  {{todo item=item}}
+    <!-- Before -->
+    {{todo item=item}}
 
-  <!-- After -->
-  <Todo @item={{item}}/>
+    <!-- After -->
+    <Todo @item={{item}}/>
   ```
 
   Like with attributes, both literal values and bound values can be passed to an
@@ -216,7 +216,7 @@ They also have a number of other differences and benefits:
   value to an argument, it must be wrapped in double curly braces:
 
   ```handlebars
-  <Todo @done={{false}}/>
+    <Todo @done={{false}}/>
   ```
 
   This is necessary because, like HTML, all values that are passed to attributes
@@ -229,17 +229,17 @@ They also have a number of other differences and benefits:
 - Yielded values work the same as in curly invocation:
 
   ```handlebars
-  <TodoList as |item|>
-    <Todo @item={{item}}/>
-  </TodoList>
+    <TodoList as |item|>
+      <Todo @item={{item}}/>
+    </TodoList>
   ```
 
 - Yielded components can also be invoked with angle bracket syntax:
 
   ```handlebars
-  <TodoList as |Item|>
-    <Item/>
-  </TodoList>
+    <TodoList as |Item|>
+      <Item/>
+    </TodoList>
   ```
 
 - Positional arguments are _not_ available in angle bracket invocation, since
@@ -1138,16 +1138,16 @@ components:
   Before:
 
   ```js
-  import Component from '@ember/component';
+    import Component from '@ember/component';
 
-  export default Component.extend({
-    tagName: 'button',
-    text: 'Hello, world!',
+    export default Component.extend({
+      tagName: 'button',
+      text: 'Hello, world!',
 
-    click() {
-      console.log('Hello, world!');
-    },
-  });
+      click() {
+        console.log('Hello, world!');
+      },
+    });
   ```
 
   ```handlebars
@@ -1157,23 +1157,23 @@ components:
   After:
 
   ```js
-  import Component from '@glimmer/component';
-  import { action } from '@ember/object';
+    import Component from '@glimmer/component';
+    import { action } from '@ember/object';
 
-  export default class HelloButton extends Component {
-    text = 'Hello, world!';
+    export default class HelloButton extends Component {
+      text = 'Hello, world!';
 
-    @action
-    sayHello() {
-      console.log('Hello, world!');
+      @action
+      sayHello() {
+        console.log('Hello, world!');
+      }
     }
-  }
   ```
 
   ```handlebars
-  <button onclick={{this.sayHello}}>
-    {{this.text}}
-  </button>
+    <button onclick={{this.sayHello}}>
+      {{this.text}}
+    </button>
   ```
 
 - `classNames`
@@ -1181,12 +1181,12 @@ components:
   Before:
 
   ```js
-  import Component from '@ember/component';
+    import Component from '@ember/component';
 
-  export default Component.extend({
-    classNames: ['hello-world'],
-    text: 'Hello, world!',
-  });
+    export default Component.extend({
+      classNames: ['hello-world'],
+      text: 'Hello, world!',
+    });
   ```
 
   ```handlebars
@@ -1196,17 +1196,17 @@ components:
   After:
 
   ```js
-  import Component from '@glimmer/component';
+    import Component from '@glimmer/component';
 
-  export default class Hello extends Component {
-    text = 'Hello, world!';
-  }
+    export default class Hello extends Component {
+      text = 'Hello, world!';
+    }
   ```
 
   ```handlebars
-  <div class="hello-world">
-    {{this.text}}
-  </div>
+    <div class="hello-world">
+      {{this.text}}
+    </div>
   ```
 
 - `classNameBindings`
@@ -1214,13 +1214,13 @@ components:
   Before:
 
   ```js
-  import Component from '@ember/component';
+    import Component from '@ember/component';
 
-  export default Component.extend({
-    classNameBindings: ['darkMode:dark-mode'],
-    darkMode: false,
-    text: 'Hello, world!',
-  });
+    export default Component.extend({
+      classNameBindings: ['darkMode:dark-mode'],
+      darkMode: false,
+      text: 'Hello, world!',
+    });
   ```
 
   ```handlebars
@@ -1230,18 +1230,18 @@ components:
   After:
 
   ```js
-  import Component from '@glimmer/component';
+    import Component from '@glimmer/component';
 
-  export default class Hello extends Component {
-    text = 'Hello, world!';
-    darkMode = false;
-  }
+    export default class Hello extends Component {
+      text = 'Hello, world!';
+      darkMode = false;
+    }
   ```
 
   ```handlebars
-  <div class="{{if this.darkMode 'dark-mode'}}">
-    {{this.text}}
-  </div>
+    <div class="{{if this.darkMode 'dark-mode'}}">
+      {{this.text}}
+    </div>
   ```
 
 - `attributeBindings`
@@ -1249,13 +1249,13 @@ components:
   Before:
 
   ```js
-  import Component from '@ember/component';
+    import Component from '@ember/component';
 
-  export default Component.extend({
-    attributeBindings: ['role'],
-    role: 'button',
-    text: 'Hello, world!',
-  });
+    export default Component.extend({
+      attributeBindings: ['role'],
+      role: 'button',
+      text: 'Hello, world!',
+    });
   ```
 
   ```handlebars
@@ -1265,18 +1265,18 @@ components:
   After:
 
   ```js
-  import Component from '@glimmer/component';
+    import Component from '@glimmer/component';
 
-  export default class Hello extends Component {
-    text = 'Hello, world!';
-    role = 'button';
-  }
+    export default class Hello extends Component {
+      text = 'Hello, world!';
+      role = 'button';
+    }
   ```
 
   ```handlebars
-  <div role={{this.role}}>
-    {{this.text}}
-  </div>
+    <div role={{this.role}}>
+      {{this.text}}
+    </div>
   ```
 
 To sum it up, the new mental model is that the "wrapping" element is just like
