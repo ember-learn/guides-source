@@ -195,6 +195,8 @@ Note that we've changed the title from a hard-coded string ("List of Scientists"
 We've also renamed `scientist` to the more-generic `person`,
 decreasing the coupling of our component to where it's used.
 
+_Note: While the button element will ensure that your code is accessible, you may require an extra style or two if you wish to have it look like regular text. You might be tempted to use a regular link here, but that will cause your accessibility tests to fail._
+
 Save this template and switch back to the `scientists` template.
 Replace all our old code with our new componentized version.
 
