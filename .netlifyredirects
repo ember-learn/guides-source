@@ -1,2 +1,3 @@
 /                 /release/
 /current/*        /release/:splat
+/release/getting-started/quick-start/ http://tutorials.emberjs.com/release/quick-start/ 301!
