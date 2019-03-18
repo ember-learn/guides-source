@@ -10,14 +10,14 @@ Like we mentioned in the section on [Templates](../../templates/handlebars-basic
 can have both a template and a class definition, like so:
 
 ```handlebars {data-filename=app/templates/components/hello-button.hbs}
-<button onclick={{this.sayHello}}>
+<button {{action this.sayHello}}>
   {{@buttonText}}
 </button>
 ```
 
-```js {data-filename=app/components/hello-button.js}
+```javascript {data-filename=app/components/hello-button.js}
 import Component from '@glimmer/component';
-import action from '@ember/object';
+import { action } from '@ember/object';
 
 export default class HelloButton extends Component {
   @action
@@ -29,7 +29,7 @@ export default class HelloButton extends Component {
 
 And they can be used in other templates:
 
-```handlebars
+```handlebars {data-filename=app/templates/application.hbs}
 <HelloButton @buttonText="Say Hello!"/>
 ```
 
@@ -44,12 +44,12 @@ following HTML output wherever it was used:
 </button>
 ```
 
-And when we click on the button, it triggers its `onclick` handler, logging
+And when we click on the button, it triggers the `sayHello` action, logging
 "Hello, world!" to the console. We can reuse this component as many times as we
 like, and we can even change the text via the value that we pass to it,
 `@buttonText`, which is known as an _argument_:
 
-```handlebars
+```handlebars {data-filename=app/templates/application.hbs}
 <HelloButton @buttonText="Say Hello!"/>
 <HelloButton @buttonText="Di Hola!"/>
 <HelloButton @buttonText="Dis Bonjour!"/>
@@ -77,16 +77,13 @@ counterpart, _actions_ - later on.
 You can also use template helpers, modifiers, and other components within your
 component template:
 
-```handlebars
-{{#if @useCustomButton}}
-  <CustomButton @onClick={{@sayHello}}>
-    {{this.buttonText}}
-  </CustomButton>
-{{else}}
-  <button onclick={{@sayHello}}>
-    {{this.buttonText}}
-  </button>
-{{/if}}
+```handlebars {data-filename=app/templates/components/hello-button.hbs}
+<button {{action this.sayHello}}>
+  {{#if @iconType}}
+    <Icon @type={{@iconType}} />
+  {{/if}}
+  {{concat @buttonText "!"}}
+</button>
 ```
 
 This allows you to have some logic in your templates, and to nest components
@@ -98,11 +95,11 @@ inspect it using the [Ember Inspector](../../ember-inspector/).
 
 Components can also have blocks and children, just like standard HTML elements.
 We could update the `HelloButton` component to render its button text from its
-block instead of the `@buttonText` argument, by adding the `{{yields}}` keyword
+block instead of the `@buttonText` argument, by adding the `{{yield}}` helper
 to its template where we want to place its block:
 
 ```handlebars {data-filename=app/templates/components/hello-button.hbs}
-<button onclick={{this.sayHello}}>
+<button {{action this.sayHello}}>
   {{yield}}
 </button>
 ```
@@ -110,7 +107,7 @@ to its template where we want to place its block:
 And then invoking the component in block form, with the text we want to be
 rendered in the button:
 
-```handlebars
+```handlebars {data-filename=app/templates/application.hbs}
 <HelloButton>
   Say Hello!
 </HelloButton>
@@ -140,6 +137,9 @@ In the following guides we'll talk about:
 - **Actions**, which are how you can add interactivity to your app.
 
 - **Yields**, block invocation in components, and how to pass values to blocks.
+
+- **Interacting with the DOM**, some libraries require direct DOM manipulation,
+  which Ember fully supports
 
 - **Contextual Components**, which can be used dynamically to pass components
   around as values, and allow them to be invoked in different locations.
