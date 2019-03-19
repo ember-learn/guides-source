@@ -175,8 +175,9 @@ To provide a `firstName` and `lastName` to the above template, properties
 must be added to the application controller. If you are following along with
 an Ember CLI application, you may need to create this file:
 
-```javascript {data-filename=app/controllers/application.js}
-import Controller from '@ember/controller';
+<!-- Some data passed down from a parent component
+or controller -->
+{{@weatherStatus}}
 
 <!-- This button uses Ember Actions to make it interactive.
 A method named `plantATree` is called when the button is
