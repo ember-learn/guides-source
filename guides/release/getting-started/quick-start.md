@@ -188,7 +188,9 @@ Copy and paste the `scientists` template into the `PeopleList` component's templ
 </ul>
 ```
 
-Note that we've changed the title from a hard-coded string ("List of Scientists") to a dynamic property (`{{@title}}`).
+Note that we've changed the title from a hard-coded string ("List of Scientists") to a dynamic property (`{{@title}}`). The `@` indicates that `@title` is an argument
+that was passed to the component.
+
 We've also renamed `scientist` to the more-generic `person`,
 decreasing the coupling of our component to where it's used.
 
