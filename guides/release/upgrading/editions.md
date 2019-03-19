@@ -224,7 +224,7 @@ They also have a number of other differences and benefits:
 
   In classic components, arguments passed this way will still be assigned to the
   instance just like normal. The behavior of arguments in Glimmer components
-  will be discussed later one.
+  will be discussed later on.
 
 - Yielded values work the same as in curly invocation:
 
