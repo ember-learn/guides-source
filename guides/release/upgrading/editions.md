@@ -895,12 +895,12 @@ class SimpleCache {
   }
 
   get(key) {
-    return this._cache(key);
+    return this._cache[key];
   }
 }
 ```
 
-Triggering an update like this will cause any getters that used the `cache` to
+Triggering an update like this will cause any getters that used the `_cache` to
 recalculate. Note that we can use the `get` method to access the cache, and it
 will still push the `_cache` tracked property.
 
