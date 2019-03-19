@@ -125,7 +125,7 @@ a new Ember app today, this is complexity they can safely skip learning.
 To take Octane for a spin, you can try the preview blueprint:
 
 ```sh
-ember new octane-app -b @ember/octane
+ember new octane-app -b @ember/octane-app-blueprint
 ```
 
 Once Octane is released, the default blueprint will be updated to reflect the
