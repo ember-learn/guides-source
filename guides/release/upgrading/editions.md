@@ -1480,7 +1480,7 @@ export default class Person extends Component {
   }
 
   get fullName() {
-    return `${this.args.firstName} ${this.args.lastName}`;
+    return `${this.firstName} ${this.lastName}`;
   }
 }
 ```
