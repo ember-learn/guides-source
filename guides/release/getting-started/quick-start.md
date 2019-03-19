@@ -179,16 +179,18 @@ ember generate component people-list
 Copy and paste the `scientists` template into the `people-list` component's template and edit it to look as follows:
 
 ```handlebars {data-filename=app/templates/components/people-list.hbs}
-<h2>{{this.title}}</h2>
+<h2>{{@title}}</h2>
 
 <ul>
-  {{#each this.people as |person|}}
+  {{#each @people as |person|}}
     <li>{{person}}</li>
   {{/each}}
 </ul>
 ```
 
-Note that we've changed the title from a hard-coded string ("List of Scientists") to a dynamic property (`{{title}}`).
+Note that we've changed the title from a hard-coded string ("List of Scientists") to a dynamic property (`{{@title}}`). The `@` indicates that `@title` is an argument
+that was passed to the component.
+
 We've also renamed `scientist` to the more-generic `person`,
 decreasing the coupling of our component to where it's used.
 
