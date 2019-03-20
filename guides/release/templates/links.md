@@ -43,7 +43,7 @@ would look something like this:
 </ul>
 ```
 
-By default, Ember.js will replace each dymaic segment in the URL with the
+By default, Ember.js will replace each dynamic segment in the URL with the
 model object's `id` property. In the example above, the `@model` argument
 is the `photo` objects, and their `id` properties are used to fill in the
 dynamic segment in the URL; in this case, either `1`, `2`, or `3`. This
