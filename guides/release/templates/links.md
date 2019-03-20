@@ -189,7 +189,7 @@ For more information on how to use query parameters see the [query parameters](.
 
 When generating a link, you may want to customize its HTML attributes. For
 example, it is quite common to want to add additional CSS classes to the
-generated link tag, or specifying the appropiate ARIA attributes. You can
+generated link tag, or specifying the appropriate ARIA attributes. You can
 simply pass them along with the invocation:
 
 ```handlebars {data-filename=app/templates/photos/edit.hbs}
