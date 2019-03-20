@@ -178,7 +178,8 @@ template:
 
 ```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="-2,+3,+4,+5,+6,+7"}
 <article class="listing">
-  <a class="image {{if this.isWide "wide"}}">
+  <a class="image {{if this.isWide "wide"}}"
+    role="button">
   <a
     onclick={{action "toggleImageSize"}}
     class="image {{if this.isWide "wide"}}"
