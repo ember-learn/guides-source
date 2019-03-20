@@ -141,7 +141,7 @@ JavaScript file -->
 
 <!-- Some data passed down from a parent component
 or controller -->
-{{weatherStatus}}
+{{@weatherStatus}}
 
 <!-- This button uses Ember Actions to make it interactive.
 A method named `plantATree` is called when the button is
