@@ -140,7 +140,7 @@ Note that while `:comment_id` is populated with each comment's `id` (based on
 the `@model` argument), the `:photo_id` segment is automatically assumed to be
 the same as the corresponding segment in current URL, i.e. `2`.
 
-Ember is only able to infer the dynamic segments becuase the `photo` route is
+Ember is only able to infer the dynamic segments because the `photo` route is
 currently active. If we were to invoke the `<LinkTo />` component for the same
 `photos.photo.comment` route, but from the `photos` route's template, it will
 result in an error, as we did not pass enough model objects to populate all the
