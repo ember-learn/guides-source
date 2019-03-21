@@ -125,7 +125,8 @@ Now that we are returning all of our rentals to the nested route's model, we wil
 ```handlebars {data-filename="app/templates/rentals/index.hbs" data-diff="+1,+2,+3,+4,+5,+6,+7,+8,+9"}
 <ListFilter
    @filter={{action "filterByCity"}}
-   as |filteredResults|}}
+   as |filteredResults|
+>
   <ul class="results">
     {{#each filteredResults as |rentalUnit|}}
       <li><RentalListing @rental={{rentalUnit}} /></li>
