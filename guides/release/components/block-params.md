@@ -8,7 +8,7 @@ but they can also return output to be used in a block expression.
 ```
 
 ```handlebars {data-filename=app/templates/components/blog-post.hbs}
-{{yield this.post.title this.post.body this.post.author}}
+{{yield @post.title @post.body @post.author}}
 ```
 
 Here an entire blog post model is being passed to the component as a single component property.
@@ -40,11 +40,11 @@ using the `has-block` helper.
 
 ```handlebars {data-filename=app/templates/components/blog-post.hbs}
 {{#if (has-block)}}
-  {{yield this.post.title this.post.body this.post.author}}  
+  {{yield @post.title @post.body @post.author}}  
 {{else}}
-  <h1>{{this.post.title}}</h1>
-  <p class="author">Authored by {{this.post.author}}</p>
-  <p>{{this.post.body}}</p>
+  <h1>{{@post.title}}</h1>
+  <p class="author">Authored by {{@post.author}}</p>
+  <p>{{@post.body}}</p>
 {{/if}}
 ```
 
