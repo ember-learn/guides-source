@@ -275,7 +275,7 @@ class Person {
   fullName = `${this.firstName} ${this.lastName}`;
 }
 
-// because it breaks if you change order
+// because it breaks if you change the order
 class Person {
   fullName = `${this.firstName} ${this.lastName}`;
 
@@ -587,7 +587,8 @@ let airbus = new Aircraft();
 ```
 
 In general, it's a good idea to pass along any arguments to the parent class in
-the call `super`, since they'll probably be necessary for setting up the class.
+the call to `super`, since they'll probably be necessary for setting up the
+class.
 
 ```js
 class TodoComponent extends Component {

@@ -179,16 +179,18 @@ ember generate component people-list
 Copy and paste the `scientists` template into the `PeopleList` component's template and edit it to look as follows:
 
 ```handlebars {data-filename=app/templates/components/people-list.hbs}
-<h2>{{this.title}}</h2>
+<h2>{{@title}}</h2>
 
 <ul>
-  {{#each this.people as |person|}}
+  {{#each @people as |person|}}
     <li>{{person}}</li>
   {{/each}}
 </ul>
 ```
 
-Note that we've changed the title from a hard-coded string ("List of Scientists") to a dynamic property (`{{title}}`).
+Note that we've changed the title from a hard-coded string ("List of Scientists") to a dynamic property (`{{@title}}`). The `@` indicates that `@title` is an argument
+that was passed to the component.
+
 We've also renamed `scientist` to the more-generic `person`,
 decreasing the coupling of our component to where it's used.
 
@@ -226,15 +228,17 @@ So far, your application is listing data,
 but there is no way for the user to interact with the information.
 In web applications you often want to listen for user events like clicks or hovers.
 Ember makes this easy to do.
-First add an `action` helper to the `li` in your `PeopleList` component.
+First, create a button inside the `li` in your `people-list` component, and add an `action` helper to it.
 
-```handlebars {data-filename="app/templates/components/people-list.hbs" data-diff="-5,+6"}
+```handlebars {data-filename="app/templates/components/people-list.hbs" data-diff="-5,+6,+7,+8"}
 <h2>{{this.title}}</h2>
 
 <ul>
   {{#each this.people as |person|}}
     <li>{{person}}</li>
-    <li {{action this.showPerson person}}>{{person}}</li>
+    <li>
+      <button {{action "showPerson" person}}>{{person}}</button>
+    </li>
   {{/each}}
 </ul>
 ```
@@ -242,7 +246,9 @@ First add an `action` helper to the `li` in your `PeopleList` component.
 The `action` helper allows you to add event listeners to elements and call named functions.
 By default, the `action` helper adds a `click` event listener,
 but it can be used to listen for any element event.
-Now, when the `li` element is clicked, a `showPerson` method will be called in the `PeopleList` component.
+Now, when the `button` inside the `li` element is clicked, a `showPerson` method will be called in the `PeopleList` component.
+
+_Note: While the button element will ensure that your code is accessible, you may require an extra style or two if you wish to have it look like regular text. You might be tempted to use a regular link here, but that will cause your accessibility tests to fail._
 
 Add the action to the `people-list.js` file:
 

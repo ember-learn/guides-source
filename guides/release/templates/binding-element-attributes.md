@@ -66,7 +66,7 @@ Which will render the following HTML:
       <div class="cta-note-message">
 This API uses a recent and new feature in Ember: Angle bracket invocation
 syntax of an Ember component. If this doesn't look familiar you may be
-working with classic component invocation syntax (for example <code>{{link-to}}</code>).
+working with classic component invocation syntax (for example <code>{{my-component}}</code>).
 For more examples of ways to use components in a template, see the <a href="../../reference/syntax-conversion-guide">Syntax Conversion Guide</a> or the <a href="https://guides.emberjs.com/v3.6.0/templates/binding-element-attributes/">previous version of this Guide entry</a>.
       </div>
     </div>

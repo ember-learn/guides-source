@@ -22,7 +22,7 @@ developed in the early versions of Ember, when native JavaScript classes did not
 yet exist, and was used up until the Ember Octane edition.
 
 Native class syntax should be preferred to classic classes whenever possible,
-since they leverage the platform and standards of the language. In addition, you
+since it leverages the platform and standards of the language. In addition, you
 should _avoid_ extending `EmberObject` with native class syntax, and prefer
 writing classes that don't extend _any_ base class instead.
 
@@ -158,7 +158,7 @@ Person.create({ name: 'Stefan Penner' }); // Stefan Penner, reporting for duty!
 
 Methods are functions that are defined on the class using
 [object method syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Method_definitions),
-and that usable by instances:
+and that are usable by instances:
 
 ```js
 const Person = EmberObject.extend({
