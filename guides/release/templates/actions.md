@@ -120,17 +120,13 @@ export default class Post extends Component {
 }
 ```
 
-Read about which events Ember is already listening to in
-[Handling Events: Event
-Names](../../components/handling-events/#toc_event-names).
-
 ## Attaching Actions to Non-Clickable Elements
 
 Note that while Ember currently permits you to add an action to any DOM element, not all DOM elements are eligible to receive focus, according to HTML standards.
 
 For example, if an action is attached to an `a` link
 without an `href` attribute, or to a `div`, some browsers won't execute the
-associated function. 
+associated function.
 
 Always check to see that the element you are adding an action to is interactive, according to
 [web accessibility and browser standards](https://developer.mozilla.org/en-US/docs/Web/HTML/Element#Interactive_elements).

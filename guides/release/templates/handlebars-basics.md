@@ -201,7 +201,7 @@ Now you can use the `sum()` function as `{{sum}}` in your templates:
 The user will see a value of `3` rendered in the template!
 
 Ember gives you the ability to [write your own helpers](../writing-helpers/),
-and comes with some [helpers built-in](../built-in-helpers), which you will
+and comes with some [helpers built-in](../built-in-helpers/), which you will
 learn more about in the following guides.
 
 ### Nested Helpers
