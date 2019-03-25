@@ -232,7 +232,7 @@ The above code will allow you invoke the `sum()` function as a `{{sum}}` handleb
 This helper will output a value of `6`.
 
 Ember gives you the ability to [write your own helpers](../writing-helpers/),
-and comes with some [helpers built-in](../built-in-helpers), which you will
+and comes with some [helpers built-in](../built-in-helpers/), which you will
 learn more about in the following guides.
 
 #### Nested Helpers

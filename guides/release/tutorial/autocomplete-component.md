@@ -18,8 +18,8 @@ As before when we created the [`rental-listing` component](../simple-component/)
 
 In our `app/templates/rentals.hbs` template file, we'll add a reference to our new `ListFilter` component.
 
-Notice that below we "wrap" our rentals markup inside the open and closing mentions of `ListFilter` on lines 12 and 21.
-This is an example of the [**block form**](../../components/wrapping-content-in-a-component/) of a component,
+Notice that below we "wrap" our rentals markup inside the open and closing mentions of `ListFilter` on lines 12 and 20.
+This is an example of the [**block form**](../../components/yields/) of a component,
 which allows a Handlebars template to be rendered _inside_ the component's template wherever the `{{yield}}` expression appears.
 
 In this case we are passing, or "yielding", our filter data to the inner markup as a variable called `filteredResults` (line 14/).

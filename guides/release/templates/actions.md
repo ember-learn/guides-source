@@ -120,10 +120,6 @@ export default class Post extends Component {
 }
 ```
 
-Read about which events Ember is already listening to in
-[Handling Events: Event
-Names](../../components/handling-events/#toc_event-names).
-
 ## Attaching Actions to Non-Clickable Elements
 
 Note that while Ember currently permits you to add an action to any DOM element, not all DOM elements are eligible to receive focus, according to HTML standards.
