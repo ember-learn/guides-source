@@ -265,7 +265,7 @@ const Person = EmberObject.extend({
 
 Accessors, also known as getters/setters, allow you to define a special function
 that is _accessed_ like a property. They can be defined using directly on
-EmberObject class definitions:
+`EmberObject` class definitions:
 
 ```js
 import EmberObject from '@ember/object';
