@@ -7,7 +7,7 @@ For example, imagine we are building a `BlogPost` component that we can use in o
 <div class="body">{{this.body}}</div>
 ```
 
-Now, we can use the `<BlogPost />` component and pass it properties in another template:
+Now, we can use the `<BlogPost />` component and pass its properties in another template:
 
 ```handlebars
 <BlogPost @title={{this.title}} @body={{this.body}} />
