@@ -4,6 +4,11 @@ objects, and which allows you to work with those children using the
 enumerable in the majority of apps is the native JavaScript array, which
 Ember.js extends to conform to the enumerable interface.
 
+*Note:* Ember used to enabled prototype extensions by default. This can get messy,
+especially in FastBoot, where objects cross realms. We recommend 
+[disabling prototype extensions](https://guides.emberjs.com/release/configuring-ember/disabling-prototype-extensions/) 
+and always manually wrapping your arrays and objects, when you need these methods.
+
 By providing a standardized interface for dealing with enumerables,
 Ember.js allows you to completely change the way your underlying data is
 stored without having to modify the other parts of your application that
