@@ -62,7 +62,7 @@ Let's see these core concepts in action by building a property rental applicatio
 
 ## Lifecycle Hooks
 
-In Ember, we use the term **lifecycle hook** for methods that are automatically called within the Ember application. These are methods that can be expected to be called automatically, rather than having to call them specifically.
+In Ember, we use the term **lifecycle hook** for methods that are automatically called within the Ember application. These are methods that can be expected to be called automatically, rather than having to call them manually.
 
 Some examples of a hook are:
 
