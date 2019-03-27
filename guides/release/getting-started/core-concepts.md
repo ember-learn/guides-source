@@ -56,13 +56,13 @@ A model typically persists information to a web server, although models can be c
 
 While templates describe how a user interface looks, components control how the user interface _behaves_.
 
-Components consist of two parts: a template written in Handlebars, and a source file written in JavaScript that defines the component's behavior. For example, our property rental application might have a component for displaying all the rentals called `all-rentals`, and another component for displaying an individual rental called `rental-tile`. The `rental-tile` component might define a behavior that lets the user hide and show the image property of the rental.
+Components consist of two parts: a template written in Handlebars, and a source file written in JavaScript that defines the component's behavior. For example, our property rental application might have a component for displaying all the rentals called `AllRentals`, and another component for displaying an individual rental called `RentalTile`. The `RentalTile` component might define a behavior that lets the user hide and show the image property of the rental.
 
 Let's see these core concepts in action by building a property rental application in the next lesson.
 
-## Hooks
+## Lifecycle Hooks
 
-In Ember, we use the term **hook** for methods that are automatically called within the Ember application. These are methods that can be expected to be called automatically, rather than having to call them specifically.
+In Ember, we use the term **lifecycle hook** for methods that are automatically called within the Ember application. These are methods that can be expected to be called automatically, rather than having to call them manually.
 
 Some examples of a hook are:
 

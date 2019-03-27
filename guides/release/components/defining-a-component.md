@@ -48,7 +48,7 @@ ember generate component blog-post
 
 This will create a few different files:
 
-```
+```bash
 installing component
   create app/components/blog-post.js
   create app/templates/components/blog-post.hbs
@@ -136,10 +136,9 @@ Here, we have two different kinds of dynamic values:
   `{{this}}` always refers to that instance, and allows you to access methods,
   fields, and other properties on the class instance.
 
-We say that these values are _bound_ to the template in those locations. It's
-important to note that arguments and properties can be used interchangeably, so
-we could for instance have used an argument for the `sectionClass`, and a
-class property for title or post content:
+It's important to note that arguments and properties can be used
+interchangeably, so we could for instance have used an argument for the
+`sectionClass`, and a class property for title or post content:
 
 ```handlebars {data-filename=app/templates/components/blog-post.hbs}
 <h1>{{this.title}}</h1>
@@ -148,13 +147,11 @@ class property for title or post content:
 </section>
 ```
 
-Both arguments and properties can be used in any valid binding location. For
-more details on where and how you can bind values, read through the
+For more details on where and how you can invoke values, read through the
 [section on templating](../../templates/handlebars-basics/).
-The reason you would choose an argument or
-property is based on how you expect to use the component, and whether or not the
-value should be based on internal logic within the component, or values passed
-to the component where it is used.
+The reason you would choose an argument or property is based on how you expect
+to use the component, and whether or not the value should be based on internal
+logic within the component, or values passed to the component where it is used.
 
 You can also use template helpers, modifiers, and other components within your
 component template:
@@ -207,7 +204,8 @@ And this will place the block - the text that is in between `<BlogPost>` and
 ```html
 <h1>Fun Facts About Tomster</h1>
 <section class="blog-post-section">
-  1. He's a hamster! 2. But also a Tomster!
+  1. He's a hamster!
+  2. But also a Tomster!
 </section>
 ```
 
@@ -255,8 +253,8 @@ or functional components, and their major difference is that they do not have an
 _instance_ or any instance state.
 
 What this means in practice is that using properties in the template
-(`{{this.myProperty}}`) will result in an error. In a template-only component
-you can only use arguments (`{{@myArgument}}`).
+(e.g. `{{this.myProperty}}`) will result in an error. In a template-only component
+you can only use arguments (e.g. `{{@myArgument}}`).
 
 Template-Only components are useful for components that don't need to have their
 own state, such as components that focus on presentation and formatting of data.
@@ -343,7 +341,7 @@ known as _actions_, and are decorated with the `@action` decorator.
 <section ...attributes class="{{this.sectionClass}}">
   {{yield}}
 
-  <button onclick={{this.likePost}} class="like-button">
+  <button {{action this.likePost}} class="like-button">
     Like!
   </button>
 </section>
@@ -368,7 +366,8 @@ export default class HelloButton extends Component {
 ```
 
 Any method that you use in a template should be decorated with this decorator.
-It'll be covered in more detail in the section on [Actions](../actions).
+It'll be covered in more detail in the section on [Actions and
+Events](../actions-and-events).
 
 #### Component Hooks and Properties
 
@@ -376,8 +375,8 @@ Components have the following class signature (this given as a TypeScript class
 signature for clarity and brevity, if you don't know TypeScript, don't worry!
 We'll explain what it all means in just a minute):
 
-```ts
-declare class GlimmerComponent {
+```js
+class GlimmerComponent {
   args: object;
 
   isDestroying: boolean;

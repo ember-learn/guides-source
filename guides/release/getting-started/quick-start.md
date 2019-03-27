@@ -167,7 +167,7 @@ As your application grows, you will notice you are sharing UI elements between m
 or using them multiple times on the same page.
 Ember makes it easy to refactor your templates into reusable components.
 
-Let's create a `people-list` component that we can use in multiple places to show a list of people.
+Let's create a `PeopleList` component that we can use in multiple places to show a list of people.
 
 As usual, there's a generator that makes this easy for us.
 Make a new component by typing:
@@ -176,7 +176,7 @@ Make a new component by typing:
 ember generate component people-list
 ```
 
-Copy and paste the `scientists` template into the `people-list` component's template and edit it to look as follows:
+Copy and paste the `scientists` template into the `PeopleList` component's template and edit it to look as follows:
 
 ```handlebars {data-filename=app/templates/components/people-list.hbs}
 <h2>{{@title}}</h2>
@@ -220,7 +220,7 @@ The only difference is that now we've componentized our list into a version that
 You can see this in action if you create a new route that shows a different list of people.
 As an exercise for the reader,
 you may try to create a `programmers` route that shows a list of famous programmers.
-By re-using the `people-list` component, you can do it in almost no code at all.
+By re-using the `PeopleList` component, you can do it in almost no code at all.
 
 ## Click Events
 
@@ -246,7 +246,7 @@ First, create a button inside the `li` in your `people-list` component, and add 
 The `action` helper allows you to add event listeners to elements and call named functions.
 By default, the `action` helper adds a `click` event listener,
 but it can be used to listen for any element event.
-Now, when the `button` inside the `li` element is clicked, a `showPerson` method will be called in the `people-list` component.
+Now, when the `button` inside the `li` element is clicked, a `showPerson` method will be called in the `PeopleList` component.
 
 _Note: While the button element will ensure that your code is accessible, you may require an extra style or two if you wish to have it look like regular text. You might be tempted to use a regular link here, but that will cause your accessibility tests to fail._
 
@@ -264,7 +264,7 @@ export default class PeopleList extends Component {
 }
 ```
 
-The `@action` is something called a decorator, and it lets your Ember app know that the `showPerson` method should be invocable by name in the component's template via `{{action "showPerson"}}`
+The `@action` is something called a decorator, and it lets your Ember app know that the `showPerson` method should be invocable by name in the component's template via `{{action this.showPerson}}`
 
 Now in the browser when a scientist's name is clicked,
 this function is called and the person's name is alerted.

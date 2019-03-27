@@ -298,7 +298,7 @@ class Person {
 ```
 
 Fields are assigned before any code in the `constructor` method is run, which is
-why we rely on them being assigned correctly by the time it runs. As with
+why we can rely on them being assigned correctly by the time it runs. As with
 methods, fields do _not_ exist on the class itself, nor do they exist on the
 class's prototype, they only exist on the _instance_ of the class. However, they
 can be added to the class directly using the `static` keyword, which is

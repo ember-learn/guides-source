@@ -108,7 +108,7 @@ There are 4 major types of elements that can be defined in a classic class:
 - The `init` function
 - Methods
 - Properties
-- Accessors (via `descriptor()`)
+- Accessors
 - Classic Decorators (e.g. `tracked()`)
 
 Along with the ability to add static class fields and methods using
@@ -156,7 +156,7 @@ Person.create({ name: 'Stefan Penner' }); // Stefan Penner, reporting for duty!
 
 ### Methods
 
-Methods are functions that are defined on the class using 
+Methods are functions that are defined on the class using
 [object method syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Method_definitions),
 and that are usable by instances:
 
@@ -264,27 +264,25 @@ const Person = EmberObject.extend({
 ### Accessors
 
 Accessors, also known as getters/setters, allow you to define a special function
-that is _accessed_ like a property. They can be defined using the `descriptor`
-function, for example:
+that is _accessed_ like a property. They can be defined using directly on
+`EmberObject` class definitions:
 
 ```js
-import EmberObject, { descriptor } from '@ember/object';
+import EmberObject from '@ember/object';
 
 const Person = EmberObject.extend({
-  name: descriptor({
-    get() {
-      return 'Mel Sumner';
-    },
-  }),
+  get name() {
+    return 'Mel Sumner';
+  },
 });
 
 let mel = Person.create();
 console.log(mel.name); // 'Mel Sumner'
 ```
 
-Now, whenever we try to access the `name` property it calls the `get` method we
-provided to `descriptor`. However, if we try to set the name property to a new
-value, we get an error:
+Now, whenever we try to access the `name` property it calls the `get name()`
+method we defined. However, if we try to set the name property to a new value,
+we get an error:
 
 ```js
 mel.name = 'Melanie Sumner'; // Cannot set property name of #<Class> which has only a getter
@@ -297,15 +295,13 @@ function stores the value somewhere, and the getter function retrieves it:
 const Person = EmberObject.extend({
   _name: 'Mel Sumner',
 
-  name: descriptor({
-    get() {
-      return this._name;
-    },
+  get name() {
+    return this._name;
+  },
 
-    set(newName) {
-      this._name = newName;
-    },
-  }),
+  set name(newName) {
+    this._name = newName;
+  },
 });
 
 let mel = Person.create();
@@ -324,11 +320,9 @@ const Person = EmberObject.extend({
   firstName: 'Mel',
   lastName: 'Sumner',
 
-  fullName: descriptor({
-    get() {
-      return `${this.firstName} ${this.lastName}`;
-    },
-  }),
+  get fullName() {
+    return `${this.firstName} ${this.lastName}`;
+  },
 });
 ```
 
@@ -338,11 +332,9 @@ These values are recalculated every time the property is accessed:
 const Counter = EmberObject.extend({
   _count: 0,
 
-  count: descriptor({
-    get count() {
-      return this._count++;
-    },
-  }),
+  get count() {
+    return this._count++;
+  },
 });
 
 let counter = new Counter();
@@ -364,8 +356,7 @@ which is described in more detail below.
 
 While decorator functions cannot be applied using decorator syntax in classic
 classes, Ember's decorators have been designed so that they can still be used
-with classic classes. In fact, the `descriptor` function from the last section
-on accessors _is_ in fact such a decorator.
+with classic classes.
 
 Decorators in classic classes are assigned directly to fields, and usually are
 called like a function and passed extra values:
@@ -375,11 +366,9 @@ const Person = EmberObject.extend({
   firstName: tracked({ value: 'Ricardo' }),
   lastName: tracked({ value: 'Mendes' }),
 
-  fullName: descriptor({
-    get() {
-      return `${this.firstName} ${this.lastName}`;
-    },
-  }),
+  get fullName() {
+    return `${this.firstName} ${this.lastName}`;
+  },
 });
 ```
 
@@ -531,7 +520,7 @@ In certain cases, you will want to pass arguments to the super method before or
 after overriding. This allows the super class method to continue operating as it
 normally would.
 
-One common example is when overriding the 
+One common example is when overriding the
 [`normalizeResponse()`](https://www.emberjs.com/api/ember-data/release/classes/DS.JSONAPISerializer/methods/normalizeResponse?anchor=normalizeResponse)
 hook in one of Ember-Data's serializers.
 
