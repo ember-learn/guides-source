@@ -33,6 +33,7 @@ Like any Ember object, a service is initialized and can have properties and meth
 Below, the shopping cart service manages an items array that represents the items currently in the shopping cart.
 
 ```javascript {data-filename=app/services/shopping-cart.js}
+import { A } from '@ember/array';
 import Service from '@ember/service';
 
 export default Service.extend({
@@ -40,7 +41,7 @@ export default Service.extend({
 
   init() {
     this._super(...arguments);
-    this.set('items', []);
+    this.set('items', A([]));
   },
 
   add(item) {
