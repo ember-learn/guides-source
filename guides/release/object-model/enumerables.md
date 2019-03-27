@@ -74,7 +74,9 @@ that you can bind to.
 
 
 ```javascript
-let animals = ['rooster', 'pig'];
+import { A } from '@ember/array';
+
+let animals = A(['rooster', 'pig']);
 
 animals.get('lastObject');
 //=> "pig"
@@ -105,6 +107,7 @@ in turn and return a new array:
 
 
 ```javascript
+import { A } from '@ember/array';
 import EmberObject from '@ember/object';
 
 let hawaii = EmberObject.create({
@@ -115,7 +118,7 @@ let california = EmberObject.create({
   capital: 'Sacramento'
 });
 
-let states = [hawaii, california];
+let states = A([hawaii, california]);
 
 states.mapBy('capital');
 //=> ["Honolulu", "Sacramento"]
@@ -144,6 +147,7 @@ When working with a collection of Ember objects, you will often want to filter a
 
 
 ```javascript
+import { A } from '@ember/array';
 import EmberObject from '@ember/object';
 
 Todo = EmberObject.extend({
@@ -151,10 +155,10 @@ Todo = EmberObject.extend({
   isDone: false
 });
 
-let todos = [
+let todos = A([
   Todo.create({ title: 'Write code', isDone: true }),
   Todo.create({ title: 'Go to sleep' })
-];
+]);
 
 todos.filterBy('isDone', true);
 
@@ -173,6 +177,7 @@ use the [`every()`](https://emberjs.com/api/ember/release/classes/MutableArray/m
 
 
 ```javascript
+import { A } from '@ember/array';
 import EmberObject from '@ember/object';
 
 Person = EmberObject.extend({
@@ -180,10 +185,10 @@ Person = EmberObject.extend({
   isHappy: false
 });
 
-let people = [
+let people = A([
   Person.create({ name: 'Yehuda', isHappy: true }),
   Person.create({ name: 'Majd', isHappy: false })
-];
+]);
 
 people.every((person, index, self) => person.get('isHappy'));
 

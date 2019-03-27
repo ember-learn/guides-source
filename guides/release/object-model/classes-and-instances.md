@@ -171,10 +171,11 @@ setup work, and you'll see strange behavior in your application.
 Arrays and objects defined directly on any `Ember.Object` are shared across all instances of that class.
 
 ```javascript
+import { A } from '@ember/array';
 import EmberObject from '@ember/object';
 
 const Person = EmberObject.extend({
-  shoppingList: ['eggs', 'cheese']
+  shoppingList: A(['eggs', 'cheese'])
 });
 
 Person.create({
@@ -198,11 +199,12 @@ Person.create({
 To avoid this behavior, it is encouraged to initialize those arrays and object properties during `init()`. Doing so ensures each instance will be unique.
 
 ```javascript
+import { A } from '@ember/array';
 import EmberObject from '@ember/object';
 
 const Person = EmberObject.extend({
   init() {
-    this.set('shoppingList', ['eggs', 'cheese']);
+    this.set('shoppingList', A(['eggs', 'cheese']));
   }
 });
 

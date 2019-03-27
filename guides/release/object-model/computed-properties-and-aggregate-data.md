@@ -10,6 +10,7 @@ In those cases we can use the `[]` array key to tell the property to update at t
 We'll use the familiar todo list for our examples:
 
 ```javascript {data-filename=app/components/todo-list.js}
+import { A } from '@ember/array';
 import EmberObject, { computed } from '@ember/object';
 import Component from '@ember/component';
 
@@ -17,11 +18,11 @@ export default Component.extend({
   todos: null,
 
   init() {
-    this.set('todos', [
+    this.set('todos', A([
       EmberObject.create({ title: 'Buy food', isDone: true }),
       EmberObject.create({ title: 'Eat food', isDone: false }),
       EmberObject.create({ title: 'Catalog Tomster collection', isDone: true }),
-    ]);
+    ]));
   },
 
   titles: computed('todos.[]', function() {
@@ -108,6 +109,7 @@ Ember also provides a computed property macro
 which is a shorter way of expressing the above computed property:
 
 ```javascript {data-filename=app/components/todo-list.js}
+import { A } from '@ember/array';
 import EmberObject, { computed } from '@ember/object';
 import { filterBy } from '@ember/object/computed';
 import Component from '@ember/component';
@@ -116,11 +118,11 @@ export default Component.extend({
   todos: null,
 
   init() {
-    this.set('todos', [
+    this.set('todos', A([
       EmberObject.create({ isDone: true }),
       EmberObject.create({ isDone: false }),
       EmberObject.create({ isDone: true }),
-    ]);
+    ]));
   },
 
   incomplete: filterBy('todos', 'isDone', false)
