@@ -19,10 +19,18 @@ where available.
     <div class="cta-note-body">
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
-        Ember used to enabled prototype extensions by default. This can get messy,
-        especially in FastBoot, where objects cross realms. We recommend 
-        [disabling prototype extensions](https://guides.emberjs.com/release/configuring-ember/disabling-prototype-extensions/) 
-        and always manually wrapping your arrays and objects, when you need these methods.      
+        It is best practice to 
+        <a href="https://guides.emberjs.com/release/configuring-ember/disabling-prototype-extensions/">
+          disable prototype extensions
+        </a>
+        in your app.
+        
+        For example, with prototype extensions disabled, Ember's convenience methods like <code>firstObject</code> will only 
+        be available on <code>EmberArray</code>s and will not work on native JavaScript arrays.
+        This configuration is especially important for apps that use 
+        <a href="https://ember-fastboot.com/">
+          Ember Fastboot
+        </a>.   
       </div>
     </div>
     <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
