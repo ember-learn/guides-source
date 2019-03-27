@@ -64,7 +64,7 @@
     "ember-source": "~3.7.3",
     "ember-test-selectors": "^2.1.0",
     "ember-welcome-page": "^3.2.0",
-    "eslint": "^5.15.2",
+    "eslint": "^5.15.3",
     "eslint-config-airbnb-base": "^13.0.0",
     "eslint-plugin-ember": "^6.3.0",
     "eslint-plugin-import": "^2.16.0",
