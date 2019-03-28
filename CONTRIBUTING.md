@@ -126,26 +126,17 @@ When linking to API pages:
 
 ## Spellchecking/linting
 
-The guides are spellchecked and linted for markdown consistency. You can test your contributions by running `npm run lint:md`. Linting and spellchecking must pass or they will fail in Travis-CI. 
+The guides are spellchecked and linted for markdown consistency. You can test your contributions by running `npm run lint:md`. Linting and spellchecking must pass or testing in Travis-CI will fail. 
 
-Markdown issues that will generate errors include:
+In addition to spelling errors, the following markdown issues that will generate errors:
 - Lists and text must be left justified, otherwise the linter will generate indentation errors
-- URL references must be followed by empty brackets `[]`.  See example below
-- Unused URL reference definitions - comment them out if using them later
 - Missing URL reference definitions
 
 Most other markdown errors should be self explanatory.
 
-URL reference and definition:
-```markdown
-This is a link to [something][]
+Spellchecking uses a custom [ember-dictionary](https://github.com/maxwondercorn/ember-dictionary) with words and terms common to the Ember community, such as `SemVer`. Words and terms that are associated with a specific guide can be placed in the `.local.dic` dictionary file. 
 
-[something]: https:\\www.something.com
-```
-
-Spellchecking uses a custom [ember-dictionary][] with words and terms common to the Ember community, such as `SemVer`. Words and terms that are associated with a specific guide can be placed in the `.local.dic` dictionary file. 
-
-See the [ember-dictionary][] GitHub repo for specifics on using the local dictionary and adding words to the standard dictionary.
+See the [ember-dictionary](https://github.com/maxwondercorn/ember-dictionary) GitHub repo for specifics on using the local dictionary and adding words to the standard dictionary.
 
 ## Writing
 
@@ -157,5 +148,3 @@ Write once, edit twice (at least!) before opening a PR. When you edit your own w
 * Did I include links where appropriate?
 
 You'll be amazed at how much better your writing gets as you edit and re-edit!
-
-[ember-dictionary]: https://github.com/maxwondercorn/ember-dictionary
