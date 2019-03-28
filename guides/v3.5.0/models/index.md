@@ -43,10 +43,8 @@ Typically, most models are loaded from and saved to a server that uses a
 database to store data. Usually you will send JSON representations of
 models back and forth to an HTTP server that you have written. However,
 Ember makes it easy to use other durable storage, such as saving to the
-user's hard disk with [IndexedDB][indexeddb], or hosted storage solutions that let you
+user's hard disk with [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API), or hosted storage solutions that let you
 avoid writing and hosting your own servers.
-
-[indexeddb]: https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API
 
 Once you've loaded your models from storage, components know how to
 translate model data into a UI that your user can interact with.  For
@@ -70,13 +68,10 @@ This will allow your code to evolve and grow, with better maintainability.
 ## Ember Data flexibility
 
 Thanks to its use of the _adapter pattern_, Ember Data can be configured
-to work with many different kinds of backends. There is [an entire ecosystem of adapters][adapters]
-and several [built-in adapters](./customizing-adapters/)
+to work with many different kinds of backends. There is [an entire ecosystem of adapters](http://emberobserver.com/categories/ember-data-adapters) and several [built-in adapters](./customizing-adapters/)
 that allow your Ember app to talk to different types of servers.
 
-[adapters]: http://emberobserver.com/categories/ember-data-adapters
-
-By default, Ember Data is designed to work out of the box with [JSON API][json-api].
+By default, Ember Data is designed to work out of the box with [JSON API](http://jsonapi.org).
 JSON API is a formal specification for building conventional, robust, and performant
 APIs that allow clients and servers to communicate model data.
 
@@ -84,10 +79,8 @@ JSON API standardizes how JavaScript applications talk to servers, so
 you decrease the coupling between your frontend and backend, and have
 more freedom to change pieces of your stack.
 
-[json-api]: http://jsonapi.org
-
 If you need to integrate your Ember.js app with a server that does not
-have an [adapter][adapters] available (for example, you hand-rolled an API server
+have an [adapter](http://emberobserver.com/categories/ember-data-adapters) available (for example, you hand-rolled an API server
 that does not adhere to any JSON specification), Ember Data is designed
 to **be configurable** to work with whatever data your server returns.
 
