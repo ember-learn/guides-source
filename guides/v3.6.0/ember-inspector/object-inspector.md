@@ -15,9 +15,8 @@ The Inspector displays the parent objects and mixins that are composed into the 
 Each property value in this view is bound to your application, so if the value of a
 property updates in your app, it will be reflected in the Inspector.
 
-If a property name is preceded by a calculator icon, that means it is a [computed property][computed-property]. If the value of a computed property hasn't yet been computed, you can
+If a property name is preceded by a calculator icon, that means it is a [computed property](../../object-model/computed-properties/). If the value of a computed property hasn't yet been computed, you can
 click on the calculator to compute it.
-[computed-property]: ../../object-model/computed-properties/
 
 ### Exposing Objects to the Console
 
@@ -91,7 +90,4 @@ width="450">
 Library authors can customize how any object will display in the Inspector.
 By defining a `_debugInfo` method, an object can tell the Inspector how it should be rendered.
 For an example on how to customize an object's properties, see [Ember Data's
-customization][ember-data-debug-info].
-
-
-[ember-data-debug-info]: https://github.com/emberjs/data/blob/f1be2af71d7402d034bc034d9502733647cad295/packages/ember-data/lib/system/debug/debug_info.js
+customization](https://github.com/emberjs/data/blob/f1be2af71d7402d034bc034d9502733647cad295/packages/ember-data/lib/system/debug/debug_info.js).
