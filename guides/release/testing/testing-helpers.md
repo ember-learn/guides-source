@@ -6,8 +6,7 @@ tests. Rendering tests will provide better coverage for helpers, as it more
 closely simulates the lifecycle of a helper than in isolation.
 
 We're going to demonstrate how to test helpers by testing the `format-currency`
-helper from [Writing Helpers](../../templates/writing-helpers/
-).
+helper from [Writing Helpers](../../templates/writing-helpers/).
 
 > You can follow along by generating your own helper with `ember generate helper
 > format-currency`.
@@ -43,13 +42,14 @@ module('Unit | Helper | format currency', function(hooks) {
 });
 ```
 
-As seen in the [Writing Helpers](../../templates/writing-helpers/
-) guide. The helper function expects the unnamed
-arguments as an array as the first argument. It expects the named arguments as
+As seen in the [Writing Helpers](../../templates/writing-helpers/) guide. 
+The helper function expects the unnamed arguments as an array as the 
+first argument. It expects the named arguments as
 an object as the second argument.
 
-Now we can move on to a more complex test case that ensures our helper is rendered correctly as well. This can be done
-with the `setupRenderingTest` helper, as shown in [Testing Components](../testing-components/).
+Now we can move on to a more complex test case that ensures our helper is rendered 
+correctly as well. This can be done with the `setupRenderingTest` helper, as shown 
+in [Testing Components](../testing-components/).
 
 ```javascript {data-filename=tests/integration/helpers/format-currency-test.js}
 import { module, test } from 'qunit';
