@@ -344,9 +344,9 @@ export function makeBold([param, ...rest]) {
 export default helper(makeBold);
 ```
 
-If you return a `SafeString` (a string that has been wrapped in a call
-to [`htmlSafe`](https://www.emberjs.com/api/ember/release/functions/@ember%2Ftemplate/htmlSafe), Ember knows that you have vouched on its behalf that it
-contains no malicious HTML.
+If you return a `SafeString` (a string that has been wrapped in a call to 
+[`htmlSafe`](https://www.emberjs.com/api/ember/release/functions/@ember%2Ftemplate/htmlSafe)), 
+Ember knows that you have vouched on its behalf that it contains no malicious HTML.
 
 However, note that in the above code we may have inadvertently
 introduced an XSS vulnerability into our application! By blindly marking
