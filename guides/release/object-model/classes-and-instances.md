@@ -133,10 +133,7 @@ conventions in your Ember applications.
 
 ### Initializing Instances
 
-When a new instance is created, its [`init()`](https://www.emberjs.com/api/ember/release/classes/EmberObject/methods/init?anchor=init
-) method is invoked
-automatically. This is the ideal place to implement setup required on new
-instances:
+When a new instance is created, its [`init()`](https://www.emberjs.com/api/ember/release/classes/EmberObject/methods/init?anchor=init) method is invoked automatically. This is the ideal place to implement setup required on new instances:
 
 ```javascript
 import EmberObject from '@ember/object';
