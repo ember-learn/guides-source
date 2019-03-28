@@ -123,7 +123,7 @@ the `{{outlet}}` of the `posts` template.
 
 A nested route name includes the names of its ancestors.
 If you want to transition to a route (either
-via `transitionTo` or `{{#link-to}}`), make sure to use the full route
+via `transitionTo` or `<LinkTo />`), make sure to use the full route
 name (`posts.new`, not `new`).
 
 ## The application route
