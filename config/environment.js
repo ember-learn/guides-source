@@ -56,10 +56,6 @@ module.exports = function(environment) {
         }
       },
     ],
-    survey: {
-      link: 'https://emberjs.com/ember-community-survey-2019/',
-      title: '2019 Ember Community Survey'
-    },
   };
 
   if (environment === 'development') {

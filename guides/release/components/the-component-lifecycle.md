@@ -61,17 +61,18 @@ you can use `didUpdateAttrs` to clear any error state that was built up from edi
 ```
 
 ```javascript {data-filename=/app/components/profile-editor.js}
+import { A } from '@ember/array';
 import Component from '@ember/component';
 
 export default Component.extend({
   init() {
     this._super(...arguments);
-    this.set('errors', []);
+    this.set('errors', A([]));
   },
 
   didUpdateAttrs() {
     this._super(...arguments);
-    this.set('errors', []);
+    this.set('errors', A([]));
   },
 
   actions: {
