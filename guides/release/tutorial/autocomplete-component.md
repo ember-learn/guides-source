@@ -36,10 +36,7 @@ In this case we are passing, or "yielding", our filter data to the inner markup 
   </LinkTo>
 </div>
 
-<ListFilter
- @filter={{action "filterByCity"}}
-as |filteredResults|
->
+<ListFilter @filter={{action "filterByCity"}} as |filteredResults|>
   <ul class="results">
     {{#each filteredResults as |rentalUnit|}}
       <li><RentalListing @rental={{rentalUnit}} /></li>
@@ -102,7 +99,7 @@ export default class ListFilterComponent extends Component {
 
 #### Filtering Data Based on Input
 
-In the above example we use the `init` hook to seed our initial listings by calling the `filter` action with an empty value.
+In the above example we use the `constructor` to seed our initial listings by calling the `filter` action with an empty value.
 Our `handleFilterEntry` action calls a function called `filter` based on the `value` attribute set by the input helper.
 
 The `filter` function is passed in by the calling object. This is a pattern known as closure actions.
