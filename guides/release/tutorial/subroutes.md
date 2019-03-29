@@ -29,9 +29,9 @@ This is where the active nested route will be rendered.
   <div class="right tomster"></div>
   <h2>Welcome!</h2>
   <p>We hope you find exactly what you're looking for in a place to stay.</p>
-  {{#link-to "about" class="button"}}
+  <LinkTo @route="about" class="button">
     About Us
-  {{/link-to}}
+  </LinkTo>
 </div>
 <ListFilter
    @filter={{action "filterByCity"}}
@@ -106,9 +106,9 @@ Now that we are returning all of our rentals to the nested route's model, we wil
   <div class="right tomster"></div>
   <h2>Welcome!</h2>
   <p>We hope you find exactly what you're looking for in a place to stay.</p>
-  {{#link-to "about" class="button"}}
+  <LinkTo @route="about" class="button">
     About Us
-  {{/link-to}}
+  </LinkTo>
 </div>
 <ListFilter
    @filter={{action "filterByCity"}}
@@ -343,12 +343,12 @@ Now browse to `localhost:4200/rentals/grand-old-mansion` and you should see the 
 
 ## Linking to a Specific Rental
 
-Now that we can load pages for individual rentals, we'll add a link (using the `link-to` helper) within our `RentalListing` component to navigate to individual pages.
-Here, the `link-to` helper takes the route name and the rental model object as arguments.
-When you pass an object as second argument into the `link-to` block helper, it will by default [serialize](https://www.emberjs.com/api/ember/release/classes/Route/methods/beforeModel?anchor=serialize) the object to the ID of the model into the URL.
+Now that we can load pages for individual rentals, we'll add a link (using the `LinkTo` component) within our `RentalListing` component to navigate to individual pages.
+Here, the `LinkTo` component takes the route name and the rental model object as arguments, `@route` and `@model` respectively.
+When you pass an object as the `@model` argument into the `LinkTo` component, it will by default [serialize](https://www.emberjs.com/api/ember/release/classes/Route/methods/beforeModel?anchor=serialize) the object to the ID of the model into the URL.
 Alternately, you may just pass `rental.id` for clarity.
 
-Notice also that we are providing `rental.id` as the class attribute on the `link-to`.  The class name will help us find the link later on in testing.
+Notice also that we are providing `rental.id` as the class attribute on the `LinkTo`.  The class name will help us find the link later on in testing.
 
 Clicking on the title will load the detail page for that rental.
 
@@ -364,7 +364,7 @@ Clicking on the title will load the detail page for that rental.
   </a>
   <div class="details">
     <h3>{{this.rental.title}}</h3>
-    <h3>{{#link-to "rentals.show" rental class=rental.id}}{{this.rental.title}}{{/link-to}}</h3>
+    <h3><LinkTo @route="rentals.show" @model={{rental}} class={{rental.id}}>{{this.rental.title}}</LinkTo></h3>
     <div class="detail owner">
       <span>Owner:</span> {{this.rental.owner}}
     </div>
