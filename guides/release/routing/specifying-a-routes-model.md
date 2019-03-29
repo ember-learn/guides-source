@@ -87,12 +87,44 @@ export default class PhotoRoute extends Route {
 }
 ```
 
-Older browsers may not have `fetch`, but the `ember-fetch` library includes a polyfill, so we don't have to worry about backwards compatibility!
+In the `model` hook for routes with dynamic segments, it's your job to
+turn the ID (something like `47` or `post-slug`) into a model that can
+be rendered by the route's template. In the above example, we use the
+photo's ID (`params.photo_id`) as an argument to Ember Data's `findRecord`
+method.
 
-### Ember Data example
+Note: A route with a dynamic segment will always have its `model` hook called when it is entered via the URL.
+If the route is entered through a transition (e.g. when using the [link-to](../../templates/links/) Handlebars helper),
+and a model context is provided (by passing in `@model` to `<LinkTo />`), then the hook is not executed.
+If an identifier (such as an id or slug) is provided instead then the model hook will be executed.
 
-Ember Data is a powerful (but optional) library included by default in new Ember apps.
-In the next example, we will use Ember Data's [`findAll`](https://api.emberjs.com/ember-data/3.10/classes/DS.Store/methods/findAll?anchor=findAll) method, which returns a Promise, and resolves with an array of [Ember Data records](../../models/).
+For example, transitioning to the `photo` route this way won't cause the `model` hook to be executed (because `<LinkTo />`
+was passed a model):
+
+```handlebars {data-filename=app/templates/photos.hbs}
+<h1>Photos</h1>
+{{#each this.model as |photo|}}
+  <p>
+    <LinkTo @route="photo" @model={{photo}}>
+      <img src="{{photo.thumbnailUrl}}" alt="{{photo.title}}" />
+    </LinkTo>
+  </p>
+{{/each}}
+```
+
+while transitioning this way will cause the `model` hook to be executed (because `<LinkTo />` was passed `photo.id`, an
+identifier, instead):
+
+```handlebars {data-filename=app/templates/photos.hbs}
+<h1>Photos</h1>
+{{#each this.model as |photo|}}
+  <p>
+    <LinkTo @route="photo" @model={{photo.id}}>
+      <img src="{{photo.thumbnailUrl}}" alt="{{photo.title}}" />
+    </LinkTo>
+  </p>
+{{/each}}
+```
 
 _Note that Ember Data also has a feature called a [`Model`](https://api.emberjs.com/ember-data/3.10/classes/DS.Model), but it's a separate concept from a route's [`model`](https://api.emberjs.com/ember/3.11/classes/Route/methods/model?anchor=model) hook._
 
