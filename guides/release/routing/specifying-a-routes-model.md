@@ -86,33 +86,33 @@ method.
 
 Note: A route with a dynamic segment will always have its `model` hook called when it is entered via the URL.
 If the route is entered through a transition (e.g. when using the [link-to](../../templates/links/) Handlebars helper),
-and a model context is provided (second argument to `link-to`), then the hook is not executed.
+and a model context is provided (by passing in `@model` to `<LinkTo />`), then the hook is not executed.
 If an identifier (such as an id or slug) is provided instead then the model hook will be executed.
 
-For example, transitioning to the `photo` route this way won't cause the `model` hook to be executed (because `link-to`
-was passed a model/):
+For example, transitioning to the `photo` route this way won't cause the `model` hook to be executed (because `<LinkTo />`
+was passed a model):
 
 ```handlebars {data-filename=app/templates/photos.hbs}
 <h1>Photos</h1>
 {{#each this.model as |photo|}}
   <p>
-    {{#link-to "photo" photo}}
+    <LinkTo @route="photo" @model={{photo}}>
       <img src="{{photo.thumbnailUrl}}" alt="{{photo.title}}" />
-    {{/link-to}}
+    </LinkTo>
   </p>
 {{/each}}
 ```
 
-while transitioning this way will cause the `model` hook to be executed (because `link-to` was passed `photo.id`, an
+while transitioning this way will cause the `model` hook to be executed (because `<LinkTo />` was passed `photo.id`, an
 identifier, instead):
 
 ```handlebars {data-filename=app/templates/photos.hbs}
 <h1>Photos</h1>
 {{#each this.model as |photo|}}
   <p>
-    {{#link-to "photo" photo.id}}
+    <LinkTo @route="photo" @model={{photo.id}}>
       <img src="{{photo.thumbnailUrl}}" alt="{{photo.title}}" />
-    {{/link-to}}
+    </LinkTo>
   </p>
 {{/each}}
 ```
