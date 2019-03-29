@@ -116,13 +116,13 @@ In the route template `/app/templates/contact.hbs`, let's add our contact detail
 
 Now when we go to [`http://localhost:4200/contact`](http://localhost:4200/contact), we'll see our contact page.
 
-## Navigating with Links and the <LinkTo /> Helper
+## Navigating with Links and the <LinkTo /> Component
 
 Moving around our site is a bit of a pain right now, so let's make that easier.
 We'll put a link to the contact page on the about page, and a corresponding link to the about
 page on the contact page.
 
-To do that, we'll use a [`<LinkTo />`](../../templates/links/) helper that Ember provides
+To do that, we'll use a [`<LinkTo />`](../../templates/links/) component that Ember provides
 that makes it easy to link between our routes.  Let's adjust our `about.hbs` file:
 
 ```handlebars {data-filename="app/templates/about.hbs" data-diff="+9,+10,+11"}
@@ -140,7 +140,7 @@ that makes it easy to link between our routes.  Let's adjust our `about.hbs` fil
 </div>
 ```
 
-In this case, we're telling the `<LinkTo />` helper the name of the route we want to link to: `contact`.
+In this case, we're telling the `<LinkTo />` component the name of the route we want to link to: `contact`.
 When we look at our about page at [`http://localhost:4200/about`](http://localhost:4200/about), we now have
 a working link to our contact page:
 
@@ -188,7 +188,7 @@ We'll come back to this page in a bit to add in the actual rental properties.
   <h2>Welcome!</h2>
   <p>We hope you find exactly what you're looking for in a place to stay.</p>
   <LinkTo @route="about" class="button">
-    About
+    About Us
   </LinkTo>
 </div>
 ```
