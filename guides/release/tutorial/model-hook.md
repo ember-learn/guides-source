@@ -71,9 +71,9 @@ This helper will let us loop through each of the rental objects in our model:
   <p>
     We hope you find exactly what you're looking for in a place to stay.
   </p>
-  {{#link-to "about" class="button"}}
+  <LinkTo "about" class="button">
     About Us
-  {{/link-to}}
+  </LinkTo>
 </div>
 
 {{#each this.model as |rental|}}
