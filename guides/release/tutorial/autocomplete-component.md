@@ -63,12 +63,16 @@ We want the component to simply provide an input field and yield the results lis
 {{yield this.results}}
 ```
 
-The template contains an [`<Input>`](../../templates/input-helpers/) helper that renders as a text field, in which the user can type a pattern to filter the list of cities used in a search.
-The `value` property of the `Input` will be kept in sync with the `value` property in the component.
+The template contains an [`<Input />`](../../templates/input-helpers/) helper
+that renders as a text field, in which the user can type a pattern to filter the
+list of cities used in a search. The `@value` argument of the `<Input />` will
+be kept in sync with the `value` property in the component.
 
-Another way to say this is that the `value` property of `Input` is [**bound**](../../object-model/bindings/) to the `value` property of the component.
-If the property changes, either by the user typing in the input field, or by assigning a new value to it in our program,
-the new value of the property is present in both the rendered web page and in the code.
+Another way to say this is that the `@value` argument of `<Input />` is
+[**bound**](../../object-model/bindings/) to the `value` property of the
+component. If the property changes, either by the user typing in the input
+field, or by assigning a new value to it in our program, the new value of the
+property is present in both the rendered web page and in the code.
 
 The `key-up` property will be bound to the `handleFilterEntry` action.
 
