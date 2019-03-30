@@ -85,8 +85,8 @@ photo's ID (`params.photo_id`) as an argument to Ember Data's `findRecord`
 method.
 
 Note: A route with a dynamic segment will always have its `model` hook called when it is entered via the URL.
-If the route is entered through a transition (e.g. when using the [link-to](../../templates/links/) Handlebars helper),
-and a model context is provided (by passing in `@model` to `<LinkTo />`), then the hook is not executed.
+If the route is entered through a transition (e.g. when using the [`<LinkTo />`](../../templates/links/) component),
+and a model object is provided, then the hook is not executed.
 If an identifier (such as an id or slug) is provided instead then the model hook will be executed.
 
 For example, transitioning to the `photo` route this way won't cause the `model` hook to be executed (because `<LinkTo />`
