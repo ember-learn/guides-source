@@ -126,7 +126,7 @@ When linking to API pages:
 
 ## Spellchecking/linting
 
-The guides are spellchecked and linted for markdown consistency. You can test your contributions by running `npm run lint:md`. Linting and spellchecking must pass or testing in Travis-CI will fail. 
+The guides are spellchecked and linted for markdown consistency. You can test your contributions by running `npm run lint:md`. Linting and spellchecking must pass or they will fail in Travis-CI. 
 
 In addition to spelling errors, the following markdown issues that will generate errors:
 - Lists and text must be left justified, otherwise the linter will generate indentation errors
