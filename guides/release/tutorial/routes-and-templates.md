@@ -116,13 +116,13 @@ In the route template `/app/templates/contact.hbs`, let's add our contact detail
 
 Now when we go to [`http://localhost:4200/contact`](http://localhost:4200/contact), we'll see our contact page.
 
-## Navigating with Links and the {{link-to}} Helper
+## Navigating with Links and the <LinkTo /> Component
 
 Moving around our site is a bit of a pain right now, so let's make that easier.
 We'll put a link to the contact page on the about page, and a corresponding link to the about
 page on the contact page.
 
-To do that, we'll use a [`{{link-to}}`](../../templates/links/) helper that Ember provides
+To do that, we'll use a [`<LinkTo />`](../../templates/links/) component that Ember provides
 that makes it easy to link between our routes.  Let's adjust our `about.hbs` file:
 
 ```handlebars {data-filename="app/templates/about.hbs" data-diff="+9,+10,+11"}
@@ -134,13 +134,13 @@ that makes it easy to link between our routes.  Let's adjust our `about.hbs` fil
     By building a property rental site, we can simultaneously imagine traveling
     AND building Ember applications.
   </p>
-  {{#link-to "contact" class="button"}}
+  <LinkTo @route="contact" class="button">
     Contact Us
-  {{/link-to}}
+  </LinkTo>
 </div>
 ```
 
-In this case, we're telling the `{{link-to}}` helper the name of the route we want to link to: `contact`.
+In this case, we're telling the `<LinkTo />` component the name of the route we want to link to: `contact`.
 When we look at our about page at [`http://localhost:4200/about`](http://localhost:4200/about), we now have
 a working link to our contact page:
 
@@ -165,9 +165,9 @@ Now, we'll add our corresponding link to the contact page so we can move back an
     <a href="tel:503.555.1212">+1 (503/) 555-1212</a><br>
     <a href="mailto:superrentalsrep@emberjs.com">superrentalsrep@emberjs.com</a>
   </address>
-  {{#link-to "about" class="button"}}
+  <LinkTo @route="about" class="button">
     About
-  {{/link-to}}
+  </LinkTo>
 </div>
 ```
 
@@ -187,9 +187,9 @@ We'll come back to this page in a bit to add in the actual rental properties.
   <div class="right tomster"></div>
   <h2>Welcome!</h2>
   <p>We hope you find exactly what you're looking for in a place to stay.</p>
-  {{#link-to "about" class="button"}}
+  <LinkTo @route="about" class="button">
     About Us
-  {{/link-to}}
+  </LinkTo>
 </div>
 ```
 
@@ -257,18 +257,18 @@ Let's open it again (`/app/templates/application.hbs`) and replace its contents 
 ```handlebars {data-filename=app/templates/application.hbs}
 <div class="container">
   <div class="menu">
-    {{#link-to "index"}}
+    <LinkTo @route="index">
       <h1>
         <em>SuperRentals</em>
       </h1>
-    {{/link-to}}
+    </LinkTo>
     <div class="links">
-      {{#link-to "about" class="menu-about"}}
+      <LinkTo @route="about" class="button">
         About
-      {{/link-to}}
-      {{#link-to "contact" class="menu-contact"}}
+      </LinkTo>
+      <LinkTo @route="contact" class="button">
         Contact
-      {{/link-to}}
+      </LinkTo>
     </div>
   </div>
   <div class="body">
