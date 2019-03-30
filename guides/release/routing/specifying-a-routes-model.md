@@ -1,4 +1,4 @@
-A route's JavaScript file is one of the best places in an app to make requests to a back-end server.
+A route's JavaScript file is one of the best places in an app to make requests to an API.
 In this section of the guides, you'll learn how to use the
 [`model`](http://api.emberjs.com/ember/3.8/classes/Route/methods/model?anchor=model)
 function to fetch data and render it in a route's `hbs` template, or pass it down to a component.
@@ -35,7 +35,7 @@ export default Route.extend({
 [Ember Data](../../models/),
 [`ember-ajax`](https://github.com/ember-cli/ember-ajax),
 or a JavaScript data fetching library of your choice
-5. When you load data in a `model`, you can take advantage of other hooks, like 
+5. When you load data in the `model` hook, you can take advantage of other niceties that Ember provides, like 
 [automatic route transitions](/preventing-and-retrying-transitions)
 after the data is returned,
 [error handling](/loading-and-error-substates),
@@ -45,7 +45,7 @@ and more
 
 ## Using the `model` hook
 
-To start, here's an example of returning static sample data from a `model`. This is helpful while you are doing the initial development of a new route:
+To start, here's an example of returning static sample data from the `model` hook. This is helpful while you are doing the initial development of a new route:
 
 ```javascript {data-filename=app/routes/favorite-posts.js}
 import Route from '@ember/routing/route';
@@ -187,15 +187,15 @@ This section will focus on dynamic segments, sometimes also referred to as "dyna
 ### What does a dynamic segment look like?
 
 Here's what it would look like in the URL if a route has a dynamic segment: `http://localhost:4200/posts/42`. The number `42` is the "dynamic" part.
-A user could follow a link taking them to `http://localhost:4200/posts/3` and see post number 3 instead.
+A user can follow a link taking them to `http://localhost:4200/posts/3` and see post number 3 instead.
 What's important here is that the data that should be displayed is tied to the url.
-When you are doing routing well, a user could refresh the page, or visit a bookmarked page, and they would see the right data.
+When you are doing routing well, a user can refresh the page, or visit a bookmarked page, and they will see the right data.
 
-URLs are one of the main superpowers of browser-based apps, and your app should take advantage of them.
+URLs are one of the main superpowers of browser-based apps, and Ember makes it easy to take advantage of them.
 
 ### Creating a dynamic segment
 
-A dynamic segment can be created using the Ember CLI:
+A dynamic segment can be created using Ember CLI:
 
 ```bash
 ember generate route photo --path "photos/:id"
@@ -216,7 +216,7 @@ import Route from '@ember/routing/route';
 
 export default Route.extend({
   model(params) {
-    console.log('This came from the URL: ', params.id)
+    console.log('This came from the URL: ' + params.id)
   }
 });
 ```
