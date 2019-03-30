@@ -409,7 +409,7 @@ text input element whose `value` attribute is set to `confirmValue`:
   @text="Click to send your message."
   @onConfirm={{action this.sendMessage "info"}}
 as |confirmValue|>
-  {{input value=confirmValue}}
+  <Input @value={{confirmValue}} />
 </ButtonWithConfirmation>
 ```
 
@@ -444,7 +444,7 @@ messaging service with the `target` attribute.
   @text="Click to send your message."
   @onConfirm={{action this.messaging.sendMessage "info"}}
 as |confirmValue|>
-  {{input value=confirmValue}}
+  <Input @value={{confirmValue}} />
 </ButtonWithConfirmation>
 ```
 
