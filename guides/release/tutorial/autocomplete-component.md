@@ -59,7 +59,7 @@ We want the component to simply provide an input field and yield the results lis
   @key-up=(action "handleFilterEntry")
   class="light"
   placeholder="Filter By City"
->
+/>
 {{yield this.results}}
 ```
 
