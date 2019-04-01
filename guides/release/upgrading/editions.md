@@ -1854,13 +1854,13 @@ bindings will not work:
   This does not work, since @value is
   an argument and is immutable
 -->
-<Input value=@value />
+<Input @value={{@value}} />
 
 <!--
   Instead, we should update the value
   by passing an _action_ to the component
 -->
-<Input value=@value key-up=@updateValue />
+<Input @value={{@value}} @key-up={{@updateValue}} />
 ```
 
 Additionally, the `mut` helper generally can't be used for the same reason:
