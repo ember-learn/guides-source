@@ -16,6 +16,14 @@ These are both languages that compile to JavaScript. You're able to write your c
 [CoffeeScript vs TypeScript](http://www.stoutsystems.com/articles/coffeescript-versus-typescript/)
 
 
+## CRUD
+Create, Read, Update, and Destroy
+
+These are changes that could be made to data on a server. Ember data adapters define what these requests to a server look like.
+
+[CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete)
+
+
 ## Evergreen browsers
 Browsers that update themselves (without user intervention).
 
