@@ -437,7 +437,7 @@ export default class SendMessage extends Component {
 ```
 
 We can tell the action to invoke the `sendMessage` action directly on the
-messaging service with the `target` attribute.
+messaging service.
 
 ```handlebars {data-filename=app/templates/components/send-message.hbs}
 <ButtonWithConfirmation
