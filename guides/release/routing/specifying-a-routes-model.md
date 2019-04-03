@@ -38,7 +38,7 @@ or a JavaScript data fetching library of your choice
 5. When you load data in the `model` hook, you can take advantage of other niceties that Ember provides, like 
 [automatic route transitions](/preventing-and-retrying-transitions)
 after the data is returned,
-[error handling](/loading-and-error-substates),
+[loading screens, error handling](/loading-and-error-substates),
 and more
 6. An optional feature of routes is the ability to show a [`loading` template](/loading-and-error-substates) while the app is waiting for the `model` hook to resolve
 7. The `model` hook can be automatically re-run under certain conditions, described later in this topic.
