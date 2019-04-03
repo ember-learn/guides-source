@@ -41,7 +41,7 @@ The CLI helps ensure that the new files go in the right place in the app folder 
 
 For example, either of these commands will generate `.hbs` template files (and other things!) in your app:
 
-```sh
+```bash
 ember generate component my-component-name
 ember generate route my-route-name
 ```
