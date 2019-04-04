@@ -347,7 +347,6 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
-import { resolve } from 'rsvp';
 
 const ITEMS = [{city: 'San Francisco'}, {city: 'Portland'}, {city: 'Seattle'}];
 const FILTERED_ITEMS = [{city: 'San Francisco'}];
@@ -358,7 +357,7 @@ module('Integration | Component | list-filter', function(hooks) {
   test('should initially load all listings', async function (assert) {
     // we want our actions to return promises,
     //since they are potentially fetching data asynchronously
-    this.set('filterByCity', () => resolve({ results: ITEMS }));
+    this.set('filterByCity', () => Promise.resolve({ results: ITEMS }));
   });
 
 });
@@ -371,7 +370,7 @@ Our `filterByCity` function is going to pretend to be the action function for ou
 We are not testing the actual filtering of rentals in this test, since it is focused on only the capability of the component.
 We will test the full logic of filtering in application tests, described in the next section.
 
-Since our component is expecting the filter process to be asynchronous, we return promises from our filter, using [Ember's RSVP library](https://www.emberjs.com/api/ember/release/modules/rsvp).
+Since our component is expecting the filter process to be asynchronous, we return promises from our filter.
 
 Next, we'll add the call to render the component to show the cities we've provided above.
 
@@ -380,7 +379,6 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
-import { resolve } from 'rsvp';
 
 const ITEMS = [{city: 'San Francisco'}, {city: 'Portland'}, {city: 'Seattle'}];
 const FILTERED_ITEMS = [{city: 'San Francisco'}];
@@ -391,7 +389,7 @@ module('Integration | Component | list-filter', function(hooks) {
   test('should initially load all listings', async function (assert) {
     // we want our actions to return promises,
     //since they are potentially fetching data asynchronously
-    this.set('filterByCity', () => resolve({ results: ITEMS }));
+    this.set('filterByCity', () => Promise.resolve({ results: ITEMS }));
 
     // with an integration test,
     // you can set up and use your component in the same way your application
@@ -428,7 +426,6 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render, settled } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
-import { resolve } from 'rsvp';
 
 const ITEMS = [{city: 'San Francisco'}, {city: 'Portland'}, {city: 'Seattle'}];
 const FILTERED_ITEMS = [{city: 'San Francisco'}];
@@ -438,7 +435,7 @@ module('Integration | Component | list-filter', function(hooks) {
 
   test('should initially load all listings', async function (assert) {
     // we want our actions to return promises, since they are potentially fetching data asynchronously
-    this.set('filterByCity', () => resolve({ results: ITEMS }));
+    this.set('filterByCity', () => Promise.resolve({ results: ITEMS }));
 
     // with an integration test,
     // you can set up and use your component in the same way your application will use it.
@@ -477,7 +474,6 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render, settled, triggerKeyEvent, fillIn } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
-import { resolve } from 'rsvp';
 ```
 
 Now use it to simulate the user typing a key into the search field.
@@ -486,11 +482,11 @@ Now use it to simulate the user typing a key into the search field.
 test('should update with matching listings', async function (assert) {
   this.set('filterByCity', (val) =>  {
     if (val === '') {
-      return resolve({
+      return Promise.resolve({
         query: val,
         results: ITEMS });
     } else {
-      return resolve({
+      return Promise.resolve({
         query: val,
         results: FILTERED_ITEMS });
     }

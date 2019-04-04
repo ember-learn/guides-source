@@ -14,6 +14,29 @@ possible. This minimizes incompatibility with other libraries, and
 allows Ember.js to use the native browser implementations in arrays
 where available.
 
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+        It is best practice to 
+        <a href="https://guides.emberjs.com/release/configuring-ember/disabling-prototype-extensions/">
+          disable prototype extensions
+        </a>
+        in your app.
+        
+        For example, with prototype extensions disabled, Ember's convenience methods like <code>firstObject</code> will only 
+        be available on <code>EmberArray</code>s and will not work on native JavaScript arrays.
+        This configuration is especially important for apps that use 
+        <a href="https://ember-fastboot.com/">
+          Ember Fastboot
+        </a>.   
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
+  </div>
+</div>
+
 ## Use of Observable Methods and Properties
 
 In order for Ember to observe when you make a change to an enumerable, you need
@@ -74,7 +97,9 @@ that you can bind to.
 
 
 ```javascript
-let animals = ['rooster', 'pig'];
+import { A } from '@ember/array';
+
+let animals = A(['rooster', 'pig']);
 
 animals.get('lastObject');
 //=> "pig"
@@ -105,6 +130,7 @@ in turn and return a new array:
 
 
 ```javascript
+import { A } from '@ember/array';
 import EmberObject from '@ember/object';
 
 let hawaii = EmberObject.create({
@@ -115,7 +141,7 @@ let california = EmberObject.create({
   capital: 'Sacramento'
 });
 
-let states = [hawaii, california];
+let states = A([hawaii, california]);
 
 states.mapBy('capital');
 //=> ["Honolulu", "Sacramento"]
@@ -144,6 +170,7 @@ When working with a collection of Ember objects, you will often want to filter a
 
 
 ```javascript
+import { A } from '@ember/array';
 import EmberObject from '@ember/object';
 
 Todo = EmberObject.extend({
@@ -151,10 +178,10 @@ Todo = EmberObject.extend({
   isDone: false
 });
 
-let todos = [
+let todos = A([
   Todo.create({ title: 'Write code', isDone: true }),
   Todo.create({ title: 'Go to sleep' })
-];
+]);
 
 todos.filterBy('isDone', true);
 
@@ -173,6 +200,7 @@ use the [`every()`](https://emberjs.com/api/ember/release/classes/MutableArray/m
 
 
 ```javascript
+import { A } from '@ember/array';
 import EmberObject from '@ember/object';
 
 Person = EmberObject.extend({
@@ -180,10 +208,10 @@ Person = EmberObject.extend({
   isHappy: false
 });
 
-let people = [
+let people = A([
   Person.create({ name: 'Yehuda', isHappy: true }),
   Person.create({ name: 'Majd', isHappy: false })
-];
+]);
 
 people.every((person, index, self) => person.get('isHappy'));
 

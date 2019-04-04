@@ -344,7 +344,7 @@ import {
   click,
   currentURL,
   visit
-} from '@ember/test-helpers'
+} from '@ember/test-helpers';
 ```
 
 ### Test visiting our About and Contact pages

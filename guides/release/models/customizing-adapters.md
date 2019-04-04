@@ -1,8 +1,7 @@
 In Ember Data, an Adapter determines how data is persisted to a
 backend data store. Things such as the backend host, URL format
  and headers used to talk to a REST API can all be configured 
- in an adapter. You can even switch to storing data in local storage
- using a [local storage adapter](https://github.com/locks/ember-localstorage-adapter). 
+ in an adapter.
   
 Ember Data's default Adapter has some built-in assumptions about
 how a [REST API should look](http://jsonapi.org/). If your backend conventions
@@ -55,7 +54,7 @@ want to create an adapter that is radically different from the other
 Ember adapters.
 
 - [DS.JSONAPIAdapter](https://www.emberjs.com/api/ember-data/release/classes/DS.JSONAPIAdapter)
-The `JSONAPIAdapter` is the default adapter and follows JSON API
+The `JSONAPIAdapter` is the default adapter and follows JSON:API
 conventions to communicate with an HTTP server by transmitting JSON
 via XHR.
 
@@ -82,10 +81,10 @@ store.findRecord('post', 1).then(function(post) {
 });
 ```
 
-The JSON API adapter will automatically send a `GET` request to `/posts/1`.
+The JSON:API adapter will automatically send a `GET` request to `/posts/1`.
 
 The actions you can take on a record map onto the following URLs in the
-JSON API adapter:
+JSON:API adapter:
 
 <table>
   <thead>
@@ -108,30 +107,29 @@ Data comes bundled with
 ActiveSupport::Inflector compatible library for inflecting words
 between plural and singular forms. Irregular or uncountable
 pluralizations can be specified via `Ember.Inflector.inflector`.
-To do this, create a file containing your customizations and import it
-in `app.js`:
 
-```javascript {data-filename=app/app.js}
-// sets up Ember.Inflector
-import './models/custom-inflector-rules';
-```
+To do this, create an [Initializer](../../applications/initializers/) file containing your customizations. The Ember CLI's `initializer` generator can be used `ember generate initializer custom-inflector-rules` to create the file. Update its content as follow:
 
-```javascript {data-filename=app/models/custom-inflector-rules.js}
+```javascript {data-filename=app/initializers/custom-inflector-rules.js}
 import Inflector from 'ember-inflector';
 
-const inflector = Inflector.inflector;
+export function initialize(/* application */) {
+  const inflector = Inflector.inflector;
 
-// Tell the inflector that the plural of "campus" is "campuses"
-inflector.irregular('campus', 'campuses');
+  // Tell the inflector that the plural of "campus" is "campuses"
+  inflector.irregular('campus', 'campuses');
 
-// Tell the inflector that the plural of "advice" is "advice"
-inflector.uncountable('advice');
+  // Tell the inflector that the plural of "advice" is "advice"
+  inflector.uncountable('advice');
+}
 
-// Modules must have an export, so we just export an empty object here
-export default {};
+export default {
+  name: 'custom-inflector-rules',
+  initialize
+};
 ```
 
-The JSON API adapter will now make requests for `Campus` models to
+The JSON:API adapter will now make requests for `Campus` models to
 `/campuses` and `/campuses/1` (instead of `/campus/` and `/campus/1`),
 and requests for `advice` to `/advice` and `/advice/1` (instead of
 `/advices/` and `/advices/1`).
@@ -203,7 +201,7 @@ Requests for `user-profile` would now target `/user_profile/1`.
 
 Some APIs require HTTP headers, e.g. to provide an API key. Arbitrary
 headers can be set as key/value pairs on the `JSONAPIAdapter`'s `headers`
-object and Ember Data will send them along with each ajax request.
+object and Ember Data will send them along with each Ajax request.
 (Note that we set headers in `init()` because default property values
 should not be arrays or objects.)
 

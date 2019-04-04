@@ -15,7 +15,7 @@ For example:
 - DOM update and event callbacks
 - `setTimeout` and `setInterval` callbacks
 - `postMessage` and `messageChannel` event handlers
-- AJAX callbacks
+- Ajax callbacks
 - WebSocket callbacks
 
 ## Why is the run loop useful?
