@@ -114,7 +114,7 @@ Now let's write a test that sets a property on our `post` model in the
 ```javascript {data-filename=tests/unit/controllers/comments-test.js}
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
-import EmberObject from "@ember/object";
+import EmberObject from '@ember/object';
 import { run } from '@ember/runloop';
 
 module('Unit | Controller | comments', function(hooks) {
