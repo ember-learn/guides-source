@@ -190,7 +190,7 @@ export default class PaymentMethodCc extends PaymentMethod {
 
   get obfuscatedIdentifier() {
     return `**** **** **** ${this.last4}`;
-  })
+  }
 }
 ```
 
@@ -206,7 +206,7 @@ export default class PaymentMethodPaypal extends PaymentMethod {
     let last5 = this.linkedEmail.split('').reverse().slice(0, 5).reverse().join('');
 
     return `••••${last5}`;
-  })
+  }
 }
 ```
 
