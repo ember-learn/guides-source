@@ -182,21 +182,19 @@ export default class PaymentMethod extends Model {
 ```
 
 ```javascript {data-filename=app/models/payment-method-cc.js}
-import { computed } from '@ember/object';
 import PaymentMethod from './payment-method';
 const { attr } = DS;
 
 export default class PaymentMethodCc extends PaymentMethod {
   @attr() last4;
 
-  obfuscatedIdentifier: computed('last4', function () {
+  get obfuscatedIdentifier() {
     return `**** **** **** ${this.last4}`;
-  })
+  }
 }
 ```
 
 ```javascript {data-filename=app/models/payment-method-paypal.js}
-import { computed } from '@ember/object';
 import DS from 'ember-data';
 import PaymentMethod from './payment-method'
 const { attr } = DS;
@@ -204,11 +202,11 @@ const { attr } = DS;
 export default class PaymentMethodPaypal extends PaymentMethod {
   @attr() linkedEmail;
 
-  obfuscatedIdentifier: computed('linkedEmail', function () {
+  get obfuscatedIdentifier() {
     let last5 = this.linkedEmail.split('').reverse().slice(0, 5).reverse().join('');
 
     return `••••${last5}`;
-  })
+  }
 }
 ```
 
