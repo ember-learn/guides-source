@@ -55,8 +55,8 @@ For nested routes, like:
 
 ```javascript {data-filename=app/router.js}
 Router.map(function() {
-  this.route('foo', function() {
-    this.route('bar', function() {
+  this.route('user', function() {
+    this.route('about', function() {
       this.route('slow-model');
     });
   });
@@ -65,13 +65,13 @@ Router.map(function() {
 
 Each of the following assumes a transition from the application or index route.
 
-When accessing `foo.bar.slow-model` route then Ember will alternate trying to
+When accessing `user.about.slow-model` route then Ember will alternate trying to
 find a `routeName-loading` or `loading` template in the hierarchy starting with
-`foo.bar.slow-model-loading`:
+`user.about.slow-model-loading`:
 
-1. `foo.bar.slow-model-loading`
-2. `foo.bar.loading` or `foo.bar-loading`
-3. `foo.loading` or `foo-loading`
+1. `user.about.slow-model-loading`
+2. `user.about.loading` or `user.about-loading`
+3. `user.loading` or `user-loading`
 4. `loading` or `application-loading`
 
 It's important to note that for `slow-model` itself, Ember will not try to
@@ -79,23 +79,23 @@ find a `slow-model.loading` template but for the rest of the hierarchy either
 syntax is acceptable. This can be useful for creating a custom loading screen
 for a leaf route like `slow-model`.
 
-When accessing `foo.bar` route then Ember will search for:
+When accessing `user.about` route then Ember will search for:
 
-1. `foo.bar-loading`
-2. `foo.loading` or `foo-loading`
+1. `user.about-loading`
+2. `user.loading` or `user-loading`
 3. `loading` or `application-loading`
 
-It's important to note that `foo.bar.loading` is not considered now.
+It's important to note that `user.about.loading` template is not considered now.
 
 Ember will *not* look above the common parent in a transition between child
-routes. For example, if the user transitions from `foo.bar.index` to
-`foo.bar.slow-model` the following search will happen:
+routes. For example, if the user transitions from `user.about.index` to
+`user.about.slow-model` the following search for template will happen:
 
-1. `foo.bar.slow-model-loading`
-2. `foo.bar.loading` or `foo.bar-loading`
+1. `user.about.slow-model-loading`
+2. `user.about.loading` or `user.about-loading`
 
-Notice that `foo.loading`, `foo-loading`, `loading`, and `application-loading`
-are not included here. This means we'll need to handle loading at every level
+Notice that `user.loading`, `user-loading`, `loading`, and `application-loading`
+are not included here, Since `about` is the common parent for `index` and `slow-model`. This means we'll need to handle loading at every level
 within the route hierarchy where loading feedback is important.
 
 
@@ -104,7 +104,7 @@ within the route hierarchy where loading feedback is important.
 If the various `beforeModel`/`model`/`afterModel` hooks
 don't immediately resolve, a [`loading`](https://www.emberjs.com/api/ember/release/classes/Route/events/loading?anchor=loading) event will be fired on that route.
 
-```javascript {data-filename=app/routes/foo-slow-model.js}
+```javascript {data-filename=app/routes/user-slow-model.js}
 import Route from '@ember/routing/route';
 
 export default Route.extend({
@@ -114,7 +114,7 @@ export default Route.extend({
 
   actions: {
     loading(transition, originRoute) {
-      let controller = this.controllerFor('foo');
+      let controller = this.controllerFor('user');
       controller.set('currentlyLoading', true);
 
       return true; // allows the loading template to be shown
@@ -129,7 +129,7 @@ route, providing the `application` route the opportunity to manage it.
 
 When using the `loading` handler, we can make use of the transition promise to know when the loading event is over:
 
-```javascript {data-filename=app/routes/foo-slow-model.js}
+```javascript {data-filename=app/routes/user-slow-model.js}
 import Route from '@ember/routing/route';
 
 export default Route.extend({
@@ -137,7 +137,7 @@ export default Route.extend({
 
   actions: {
     loading(transition, originRoute) {
-      let controller = this.controllerFor('foo');
+      let controller = this.controllerFor('user');
       controller.set('currentlyLoading', true);
       transition.promise.finally(function() {
           controller.set('currentlyLoading', false);
@@ -150,7 +150,7 @@ export default Route.extend({
 In case we want both custom logic and the default behavior for the loading substate,
 we can implement the `loading` action and let it bubble by returning `true`.
 
-```javascript {data-filename=app/routes/foo-slow-model.js}
+```javascript {data-filename=app/routes/user-slow-model.js}
 import Route from '@ember/routing/route';
 
 export default Route.extend({
