@@ -61,7 +61,7 @@
   url: 'templates'
   pages:
     - title: "Handlebars Basics"
-      url: "handlebars-basics"
+      url: "index"
     - title: "Conditionals"
       url: "conditionals"
     - title: "Displaying a List of Items"
@@ -85,7 +85,7 @@
   url: 'components'
   pages:
     - title: "Defining a Component"
-      url: "defining-a-component"
+      url: "index"
     - title: "Passing Properties to a Component"
       url: "passing-properties-to-a-component"
     - title: "Wrapping Content in a Component"
@@ -131,7 +131,7 @@
   url: 'applications'
   pages:
     - title: "Applications and Instances"
-      url: "applications-and-instances"
+      url: "index"
     - title: "Dependency Injection"
       url: "dependency-injection"
     - title: "Initializers"
@@ -163,7 +163,7 @@
   url: "ember-inspector"
   pages:
     - title: "Installing the Inspector"
-      url: "installation"
+      url: "index"
     - title: "Object Inspector"
       url: "object-inspector"
     - title: "The View Tree"
@@ -189,13 +189,12 @@
   url: "addons-and-dependencies"
   pages:
     - title: "Managing Dependencies"
-      url: "managing-dependencies"
-
+      url: "index"
 - title: "Configuring Ember.js"
   url: 'configuring-ember'
   pages:
     - title: "Configuring Your App"
-      url: "configuring-your-app"
+      url: "index"
     - title: "Configuring Ember CLI"
       url: "configuring-ember-cli"
     - title: "Disabling Prototype Extensions"
@@ -213,6 +212,6 @@
   url: 'contributing'
   pages:
     - title: "Adding New Features"
-      url: "adding-new-features"
+      url: "index"
     - title: "Repositories"
       url: "repositories"
