@@ -4,32 +4,24 @@ This document contains instructions and guidelines for maintainer tasks, like pu
 
 ## Before deployment of a new version
 
-- Check briefly to see if there are any PRs that should be merged in
-- Make sure that if PRs were merged into an earlier version, they have also been included in the version you are about to release. This is a manual process at the moment.
+- Check briefly to see if there are any PRs that should be merged into the previous Guides version
 
 ## To deploy a new version
 
 It is required that all maintainers use 2FA (two factor authentication). These are the permissions needed for a deployment of the Guides:
 
-- npm admin or contributor
 - Merge permissions on the repository
 - Percy dashboard
 
-If you are lacking any permissions, post in the learning team channel on Slack.
-
-When you have all those permissions set up:
-
 1. Clone the guides-source repository to your local machine
-2. Double check that you have the latest commits on `master`
-3. Edit `versions.yml` - add the version number to _both_ the end of the list and the `currentVersion`. The last item and `currentVersion` should match.
-4. Commit the change.
-5. If you don't have it already, install `np` with `npm install -g np`
-6. `npm login`
-7. The following command will begin the build when executed from the root of the guides-source repo: `np`
-8. When prompted, choose `minor`
-9. In about 5 minutes, you will see a PR from dependabot on guides-app. Here is an [example](https://github.com/ember-learn/guides-app/pull/186). After the tests pass, merge it. If content has changed significantly, Percy visual CI may indicate changes, so use the dashboard to review. Follow the link in the CI notifications.
-10. Check to make sure the deployment was successful before you walk away. It will take some time to deploy.
-11. Party!
+2. Make sure you have a clean git history with `git status`
+3. Get the latest commits on `master` using `git pull origin master`
+4. Create a directory in `guides` for the version that is one less than the "lastest." For example, if the newest release of Ember is `3.9`, you will make a directory for `3.8` that is a copy of `release`.
+5. Copy the contents of `guides/release/` into the new directory, `cp -r release vX.Y.Z`
+6. Edit `versions.yml` - add the version number to _both_ the end of the list and the `currentVersion`. The last item and `currentVersion` should match.
+7. Commit the change.
+8. Create a PR, check the app in staging, get a review, and merge to `master`. This will trigger an auto deployment.
+9. Once it is deployed, follow the steps below to get the website search working for your new version.
 
 ## After deploying a new version
 
