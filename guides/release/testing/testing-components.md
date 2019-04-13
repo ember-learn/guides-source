@@ -454,7 +454,7 @@ assert.equal(this.element.querySelector('.form-message').textContent, 'Your deta
 ```
 
 Nearly all of the helpers for DOM interaction from `@ember/test-helpers` return a call to `settled` - a function
-that ensures that any Promises, operations in Ember's `run` loop, timers or Ajax requests have already resolved.
+that ensures that any Promises, operations in Ember's `run` loop, timers or network requests have already resolved.
 The `settled` function itself returns a Promise that resolves once all async operations have come to an end.
 
 You can use `settled` as a helper in your tests directly and `await` it for all async behavior to settle deliberately.
