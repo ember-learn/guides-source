@@ -80,10 +80,13 @@ There are two major differences between `var` and both `const` and `let`.
 Because of this they are not accessible outside of the given block scope (meaning in a `function` or in `{}`) they are declared in.
 You also cannot access them before they are declared, or you will get a [`ReferenceError`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError).
 
+Probably when running the following example in the browser, the variable [`name`](https://developer.mozilla.org/en-US/docs/Web/API/Window/name) 
+is already defined in the window object and might not get the `ReferenceError` in the first line.
+
 ```javascript
 console.log(name) // ReferenceError: name is not defined
 
-if (person) {
+if (true) {
   console.log(name) // ReferenceError: name is not defined
 
   let name = 'Gob Bluth'; // "Gob Bluth"
