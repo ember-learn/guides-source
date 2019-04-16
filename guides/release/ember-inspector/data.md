@@ -1,6 +1,4 @@
-You can inspect your models by clicking on the `Data` tab. Check out [Building a Data Custom Adapter](#toc_building-a-data-custom-adapter) below if you maintain your own persistence library. 
-
-When you open the Data tab, you will see a list of model types defined
+You can inspect your models by clicking on the `Data` tab. Check out [Building a Data Custom Adapter](#toc_building-a-data-custom-adapter) below if you maintain your own persistence library. When you open the Data tab, you will see a list of model types defined
 in your application, along with the number of loaded records.
 The Inspector displays the loaded records when you click on a model type.
 
