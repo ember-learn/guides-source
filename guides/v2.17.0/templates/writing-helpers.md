@@ -259,7 +259,7 @@ As an exercise, here is the above `format-currency` helper re-factored
 into a class-based helper:
 
 ```javascript {data-filename=app/helpers/format-currency.js}
-import Helper from "@ember/component/helper";
+import Helper from '@ember/component/helper';
 
 export default Helper.extend({
   compute([value, ...rest], hash) {
@@ -281,8 +281,8 @@ As another example, let's make a helper utilizing an authentication
 service that welcomes users by their name if they're logged in:
 
 ```javascript {data-filename=app/helpers/is-authenticated.js}
-import Helper from "@ember/component/helper";
-import { inject as service } from "@ember/service";
+import Helper from '@ember/component/helper';
+import { inject as service } from '@ember/service';
 
 export default Helper.extend({
   authentication: service(),
@@ -308,7 +308,7 @@ the browser will not interpret it as HTML.
 For example, here's a `make-bold` helper that returns a string containing HTML:
 
 ```javascript {data-filename=app/helpers/make-bold.js}
-import { helper } from "@ember/component/helper";
+import { helper } from '@ember/component/helper';
 
 export function makeBold([param, ...rest]) {
   return `<b>${param}</b>`;
@@ -335,7 +335,7 @@ escape the return value (that is, that it is _safe_) by using the
 [`htmlSafe`][4] string utility:
 
 ```javascript {data-filename=app/helpers/make-bold.js}
-import { helper } from "@ember/component/helper";
+import { helper } from '@ember/component/helper';
 import { htmlSafe } from '@ember/string';
 
 export function makeBold([param, ...rest]) {
@@ -373,9 +373,9 @@ escape anything that may have come from an untrusted user with the
 `escapeExpression` utility:
 
 ```javascript {data-filename=app/helpers/make-bold.js}
-import Ember from "ember";
-import { helper } from "@ember/component/helper";
-import { htmlSafe } from "@ember/string";
+import Ember from 'ember';
+import { helper } from '@ember/component/helper';
+import { htmlSafe } from '@ember/string';
 
 export function makeBold([param, ...rest]) {
   let value = Ember.Handlebars.Utils.escapeExpression(param);
