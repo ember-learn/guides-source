@@ -323,7 +323,7 @@ Router.map(function() {
 In the above example we have successfully used a wildcard route to handle all routes not managed by our application
 so that when a user navigates to `/a/non-existent/path` they will be shown a message that says the page they're looking for wasn't found.
 
-Note that if you want to manually transition to this wildcard route, you need to pass an arbitrary (not empty) argument. For example:
+Note that if you want to manually transition to this wildcard route, you need to pass an arbitrary (not empty) argument. For example, using Ember Data to find a record:
 
 ```javascript {data-filename=app/routes/some-route.js}
 import Route from '@ember/routing/route';
@@ -339,12 +339,11 @@ export default Route.extend({
       }).catch(function () {
         // Error callback
         this.transitionTo('not-found', 404);
-      }
+      })
     }
   }
 });
 ```
-
 ## Route Handlers
 
 To have your route do something beyond render a template with the same name, you'll
