@@ -1,6 +1,6 @@
 ## What are Engines?
 
-Engines can be considered miniature applications that provide functionality to their host applications. Engines are isolated, composable applications, they have almost all the same features as normal Ember applications, except an [Engine](https://api.emberjs.com/ember/release/classes/Engine) requires a host application to boot it and provide a Router instance.
+Engines can be considered miniature applications that provide functionality to their host applications. Engines are isolated, `composable applications`, they have almost all the same features as normal Ember applications, except an [Engine](https://api.emberjs.com/ember/release/classes/Engine) requires a host application to boot it and provide a Router instance.
 
 > Engines allow multiple logical applications to be composed together into a single application from the user's perspective. - [Engines Guides](http://ember-engines.com/)
 
