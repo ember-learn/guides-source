@@ -20,6 +20,6 @@ Engines provide an alternative to these approaches that allows for distributed d
 
 Engines are good for companies that have a large number of teams, where each team has their own area that is clearly separated from the others. If your app is developed by a small team, engines are probably not very helpful for you. The isolation is good when it matches organizational boundaries, but adds unnecessary complexity when there is not a good match.
 
-If you are considering splitting up our application into engines just to reduce the amount of data that needs to be initially downloaded and increase the performance, Engines are not the right solution. Please check out the section on tree shaking and code splitting in projects like [Embroider](https://github.com/embroider-build/embroider).
+If you are considering splitting up your application into engines just to reduce the amount of data that needs to be initially downloaded and increase the performance, Engines are not the right solution. Please check out the section on tree shaking and code splitting in projects like [Embroider](https://github.com/embroider-build/embroider).
 
 
