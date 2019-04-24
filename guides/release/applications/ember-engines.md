@@ -11,7 +11,7 @@ Large companies are increasingly adopting Ember.js to power their entire product
 These companies also have large monolithic applications, which pose the following challenges:
 
 * `Side effects` - if you change something, it may be unclear how it could affect the rest of platform.
-* `Coordination` - when you develop a new feature or make big changes, many teams may need to be in sync to approve it
+* `Coordination` - when you develop a new feature or make big changes, many teams may need to be in sync to approve it.
 * `Complexity` - with a huge dependency tree and many layers of abstraction, developers cannot iterate quickly, and features suffer as a result.
 * `Killing Innovation` - a/b testing a cutting-edge feature is hard to do without disrupting the rest of the app and the teams working on it.
 * `Slow Onboarding` - new people coming into the team are overwhelmed.
