@@ -8,7 +8,7 @@ Engines can be considered miniature applications that provide functionality to t
 
 Large companies are increasingly adopting Ember.js to power their entire product lines. Often this means separate teams (sometimes distributed around the world) working on the same app. Typically, responsibility is shared by dividing the application into one or more "sections". How this division is actually implemented varies from team to team. 
 
-These companies also have large monolithic applications, that are hard to maintain because of some points:
+These companies also have large monolithic applications, which pose the following challenges:
 
 * `Side effects` - is a bit insecure if you change something and how will this affect the rest of platform (unclear code ownership, shared code, risky refactoring in code).
 * `Coordination` - develop new feature or make big changes with many teams in a single codebase (have to be in sync with everyone).
