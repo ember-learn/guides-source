@@ -1,7 +1,7 @@
 A route's JavaScript file is one of the best places in an app to make requests to an API.
 In this section of the guides, you'll learn how to use the
-[`model`](http://api.emberjs.com/ember/3.8/classes/Route/methods/model?anchor=model)
-function to fetch data and render it in a route's `hbs` template, or pass it down to a component.
+[`model`](http://api.emberjs.com/ember/release/classes/Route/methods/model?anchor=model)
+method to fetch data by making a HTTP request, and render it in a route's `hbs` template, or pass it down to a component.
 
 For example, take this router:
 
@@ -21,7 +21,7 @@ import Route from '@ember/routing/route';
 export default Route.extend({
   model() {
     console.log('The model hook just ran!')
-    // write code to return a Promise or some static data
+    return "Hello Ember!";
   }
 });
 ```
@@ -71,7 +71,7 @@ Now that data can be used in the `favorite-posts`  template:
 {{/each}}
 ```
 
-Let's compare with examples that have outgoing, asynchronous requests to the back end.
+Let's compare with examples that make asynchronous HTTP requests to a server somewhere.
 
 This next example uses Ember Data's `findAll` method, which returns a Promise, and resolves with an array of [Ember Data records](../../models/). Ember Data is a powerful (but optional) library included by default in new Ember apps. Note that Ember Data also has a feature called a `Model`, but it's a separate concept from a route's `model` hook.
 
