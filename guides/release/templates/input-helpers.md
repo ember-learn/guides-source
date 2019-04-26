@@ -131,4 +131,4 @@ You might need to bind a property dynamically to an input if you're building a f
 {{input value=(mut (get this.person this.field))}}
 ```
 
-The `{{get}}` helper allows you to dynamically specify which property to bind, while the `{{mut}}` helper allows the binding to be updated from the input. See the respective helper documentation for more detail.
+The `{{get}}` helper allows you to dynamically specify which property to bind, while the `{{mut}}` helper allows the binding to be updated from the input. See the respective helper documentation for more detail: [`{{get}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/get?anchor=get) and [`{{mut}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/mut?anchor=mut).
