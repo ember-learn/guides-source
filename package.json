@@ -76,7 +76,7 @@
     "markdown-link-extractor": "^1.1.1",
     "mocha": "^6.1.4",
     "prember": "^1.0.2",
-    "qunit-dom": "^0.8.0",
+    "qunit-dom": "^0.8.5",
     "remark-cli": "^6.0.1",
     "remark-lint": "^6.0.4",
     "remark-preset-lint-consistent": "^2.0.2",
