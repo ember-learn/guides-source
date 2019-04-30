@@ -32,10 +32,10 @@ export default Route.extend({
 2. A `model` hook can return just about any type of data, like a string, object, or array, but the most common pattern is to return a JavaScript [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises)
 3. If you return a Promise from the model hook, your route will wait for the Promise to resolve before it renders the template
 4. Since the `model` hook is Promise-aware, it great for making API requests (using tools like [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)) and returning the results. 
-5. When use the `model` hook to load data, you can take advantage of other niceties that Ember provides, like 
-[automatic route transitions](/preventing-and-retrying-transitions)
+5. When using the `model` hook to load data, you can take advantage of other niceties that Ember provides, like 
+[automatic route transitions](./preventing-and-retrying-transitions/)
 after the data is returned,
-[loading screens, error handling](/loading-and-error-substates),
+[loading screens, error handling](./loading-and-error-substates/),
 and more
 6. The `model` hook may automatically re-run in certain conditions, as you'll read about below.
 
@@ -160,7 +160,7 @@ In the examples above, we showed a route that will always return the same data, 
 But what if you need to request different data after user interaction?
 What if a specific post should load based on the URL that the user visited, like `posts/42`?
 In Ember, this can be accomplished by defining routes with [dynamic
-segments](../defining-your-routes/#toc_dynamic-segments), or by using [query parameters](/query-params), and then using the dynamic data to make requests.
+segments](../defining-your-routes/#toc_dynamic-segments), or by using [query parameters](./query-params), and then using the dynamic data to make requests.
 
 In the previous Guides topic, we showed making a dynamic segment in the app's `router.js`:
 
