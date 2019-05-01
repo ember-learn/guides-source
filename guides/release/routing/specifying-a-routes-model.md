@@ -218,7 +218,7 @@ Here's what it looks like to pass the entire `photo` record:
 {{/each}}
 ```
 
-If you decide to pass the entire model, be sure to cover this behavior in your acceptance tests.
+If you decide to pass the entire model, be sure to cover this behavior in your [acceptance tests](../../testing/acceptance/).
 
 If a route you are trying to link to has multiple dynamic segments, like `/photos/4/comments/18`, be sure to specify all the necessary information for each segment:
 
@@ -301,6 +301,6 @@ If you are having trouble getting a model's data to show up in the template, her
 - return hard-coded sample data as a test to see if the problem is really in the model hook, or elsewhere down the line
 - study JavaScript Promises in general, to make sure you are returning data from the Promise correctly
 - make sure your `model` hook has a `return` statement
-- check to see whether the data returned from a `model` hook is an object, array, or JavaScript Primitive. For example, if the result of `model` is an array, using `{{this.model}}` in the template won't work. You will need to iterate over the array with an `{{#each}}` helper. If the result is an object, you need to access the individual attribute like `{{this.model.title}}` to render it in the template.
+- check to see whether the data returned from a `model` hook is an object, array, or JavaScript Primitive. For example, if the result of `model` is an array, using `{{this.model}}` in the template won't work. You will need to iterate over the array with an [`{{#each}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/each?anchor=each) helper. If the result is an object, you need to access the individual attribute like `{{this.model.title}}` to render it in the template.
 - use your browser's development tools to examine the outgoing and incoming API responses and see if they match what your code expects
 - If you are using Ember Data, use the [Ember Inspector](../../ember-inspector/) browser plugin to explore the View Tree/Model and Data sections.
