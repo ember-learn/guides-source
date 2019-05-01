@@ -184,6 +184,14 @@ export default Route.extend({
 });
 ```
 
+If you do not define a model hook for a route, it will default to using Ember Data to look up the record, as shown below:
+
+```js
+model(params) {
+ return this.store.find('post', params.post_id);
+}
+```
+
 ### Linking to a dynamic segment
 
 There are two ways to link to a dynamic segment from an `.hbs` template using the
