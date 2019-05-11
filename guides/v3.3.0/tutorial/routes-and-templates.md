@@ -339,7 +339,7 @@ Some of the helpers we'll use commonly are:
 
 Let's import these helpers into our application test:
 
-```javascript {data-filename=/tests/acceptance/list-rentals-test.js}
+```javascript {data-filename=/tests/acceptance/list-rentals-test.js data-diff="+2"}
 import {
   click,
   currentURL,
