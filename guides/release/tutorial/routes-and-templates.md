@@ -221,28 +221,21 @@ We'll learn more about why the entry isn't required later on when we look at [ne
 
 All we want to do when a user visits the root (`/`) URL is transition to
 `/rentals`. To do this we will add code to our index route handler by
-implementing a route lifecycle hook called `beforeModel`.
+implementing a route lifecycle hook called `redirect`.
 Route lifecycle hooks are special methods that are called automatically when a route renders or data changes.
 Inside, we'll call the
-[`replaceWith`](https://www.emberjs.com/api/ember/release/classes/Route/methods/beforeModel?anchor=replaceWith)
+[`transitionTo`](http://api.emberjs.com/ember/3.9/classes/Route/methods/redirect?anchor=transitionTo)
 function:
 
 ```javascript {data-filename="app/routes/index.js" data-diff="+4,+5,+6"}
 import Route from '@ember/routing/route';
 
 export default Route.extend({
-  beforeModel() {
-    this.replaceWith('rentals');
+  redirect() {
+    this.transitionTo('rentals');
   }
 });
 ```
-
- The `replaceWith` function is similar to the route's
-[`transitionTo()`](https://www.emberjs.com/api/ember/release/classes/Route/methods/transitionTo?anchor=transitionTo)
-function, the difference being that `replaceWith` will replace the current URL
-in the browser's history, while `transitionTo` will add to the history. Since we
-want our `rentals` route to serve as our home page, we will use the
-`replaceWith` function.
 
 Now visiting the root route at `/` will result in the `/rentals` URL loading.
 
