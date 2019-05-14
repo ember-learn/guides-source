@@ -148,7 +148,7 @@ a working link to our contact page:
 
 Now, we'll add our corresponding link to the contact page so we can move back and forth between `about` and `contact`:
 
-```handlebars {data-filename="app/templates/contact.hbs" data-diff="+15,+16,+17"}
+```handlebars {data-filename="app/templates/contact.hbs" data-diff="+17,+18,+19"}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>Contact Us</h2>
