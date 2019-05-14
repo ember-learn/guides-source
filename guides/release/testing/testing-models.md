@@ -109,4 +109,4 @@ feel the need to do it._
 
 [Ember Data]: https://github.com/emberjs/data
 [Testing Basics]: ../unit-testing-basics/
-[Ember Data tests]: https://github.com/emberjs/data/tree/master/tests
+[Ember Data tests]: https://github.com/emberjs/data/tree/master/packages/-ember-data/tests
