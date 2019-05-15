@@ -81,7 +81,7 @@ Notice the `await` keyword in the code below when we call `geocode.fetchCoordina
 Note that we check if a map already exists for the given location and use that one,
 otherwise we will create a new HTML element and call our Leaflet map service to render a map to it.
 
-```javascript {data-filename="app/services/map-element.js" data-diff="+1,+2,+3,+4,+6,+8,+9,+11,+12,+13,+14,+15,+16,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+30,+31,+32,+33,+34,+35"}
+```javascript {data-filename="app/services/map-element.js" data-diff="+1,+3,+4,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33,+34"}
 import { camelize } from '@ember/string';
 import Service from '@ember/service';
 import { set } from '@ember/object';
@@ -143,7 +143,7 @@ We append the map element we get back from the service by implementing `didInser
 which is a [component lifecycle hook](../../components/the-component-lifecycle/#toc_integrating-with-third-party-libraries-with-didinsertelement).
 This function runs during the component render, after the component's markup gets inserted into the page.
 
-```javascript {data-filename="app/components/location-map.js" data-diff="+2,+5,+6,+8,+9,+10,+11,+12"}
+```javascript {data-filename="app/components/location-map.js" data-diff="+2,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14"}
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 
