@@ -342,7 +342,7 @@ module('Integration | Component | list-filter', function(hooks) {
 
 Our `ListFilter` component takes a function as an argument, used to find the list of matching rentals based on the filter string provided by the user.
 
-```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="+5,+7,+8,+14,+15,+16"}
+```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="+6,+7,+8,+13,+14,+15"}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
