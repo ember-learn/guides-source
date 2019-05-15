@@ -355,8 +355,8 @@ module('Integration | Component | list-filter', function(hooks) {
   setupRenderingTest(hooks);
 
   test('should initially load all listings', async function (assert) {
-    // we want our actions to return promises,
-    //since they are potentially fetching data asynchronously
+    // we want our actions to return promises, since they are potentially
+    // fetching data asynchronously.
     this.set('filterByCity', () => Promise.resolve({ results: ITEMS }));
   });
 
@@ -374,7 +374,7 @@ Since our component is expecting the filter process to be asynchronous, we retur
 
 Next, we'll add the call to render the component to show the cities we've provided above.
 
-```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31"}
+```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30"}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
@@ -387,13 +387,12 @@ module('Integration | Component | list-filter', function(hooks) {
   setupRenderingTest(hooks);
 
   test('should initially load all listings', async function (assert) {
-    // we want our actions to return promises,
-    //since they are potentially fetching data asynchronously
+    // we want our actions to return promises, since they are potentially
+    // fetching data asynchronously.
     this.set('filterByCity', () => Promise.resolve({ results: ITEMS }));
 
-    // with an integration test,
-    // you can set up and use your component in the same way your application
-    // will use it.
+    // with an integration test, you can set up and use your component in the
+    // same way your application will use it.
     await render(hbs`
       <ListFilter @filter={{action filterByCity}} as |results|>
         <ul>
@@ -413,7 +412,7 @@ module('Integration | Component | list-filter', function(hooks) {
 
 Finally, we'll assert that the locations are listed upon render completion.
 
-```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="+29,+30,+31"}
+```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="+31,+32"}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
@@ -426,11 +425,12 @@ module('Integration | Component | list-filter', function(hooks) {
   setupRenderingTest(hooks);
 
   test('should initially load all listings', async function (assert) {
-    // we want our actions to return promises, since they are potentially fetching data asynchronously
+    // we want our actions to return promises, since they are potentially
+    // fetching data asynchronously.
     this.set('filterByCity', () => Promise.resolve({ results: ITEMS }));
 
-    // with an integration test,
-    // you can set up and use your component in the same way your application will use it.
+    // with an integration test, you can set up and use your component in the
+    // same way your application will use it.
     await render(hbs`
       <ListFilter @filter={{action filterByCity}} as |results|>
         <ul>
