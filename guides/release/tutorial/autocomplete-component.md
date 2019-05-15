@@ -355,8 +355,8 @@ module('Integration | Component | list-filter', function(hooks) {
   setupRenderingTest(hooks);
 
   test('should initially load all listings', async function (assert) {
-    // we want our actions to return promises,
-    //since they are potentially fetching data asynchronously
+    // we want our actions to return promises, since they are potentially
+    // fetching data asynchronously.
     this.set('filterByCity', () => Promise.resolve({ results: ITEMS }));
   });
 
@@ -374,7 +374,7 @@ Since our component is expecting the filter process to be asynchronous, we retur
 
 Next, we'll add the call to render the component to show the cities we've provided above.
 
-```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31"}
+```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30"}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
@@ -387,13 +387,12 @@ module('Integration | Component | list-filter', function(hooks) {
   setupRenderingTest(hooks);
 
   test('should initially load all listings', async function (assert) {
-    // we want our actions to return promises,
-    //since they are potentially fetching data asynchronously
+    // we want our actions to return promises, since they are potentially
+    // fetching data asynchronously.
     this.set('filterByCity', () => Promise.resolve({ results: ITEMS }));
 
-    // with an integration test,
-    // you can set up and use your component in the same way your application
-    // will use it.
+    // with an integration test, you can set up and use your component in the
+    // same way your application will use it.
     await render(hbs`
       <ListFilter @filter={{action filterByCity}} as |results|>
         <ul>
@@ -413,7 +412,7 @@ module('Integration | Component | list-filter', function(hooks) {
 
 Finally, we'll assert that the locations are listed upon render completion.
 
-```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="+29,+30,+31"}
+```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="+31,+32"}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
@@ -426,11 +425,12 @@ module('Integration | Component | list-filter', function(hooks) {
   setupRenderingTest(hooks);
 
   test('should initially load all listings', async function (assert) {
-    // we want our actions to return promises, since they are potentially fetching data asynchronously
+    // we want our actions to return promises, since they are potentially
+    // fetching data asynchronously.
     this.set('filterByCity', () => Promise.resolve({ results: ITEMS }));
 
-    // with an integration test,
-    // you can set up and use your component in the same way your application will use it.
+    // with an integration test, you can set up and use your component in the
+    // same way your application will use it.
     await render(hbs`
       <ListFilter @filter={{action filterByCity}} as |results|>
         <ul>
@@ -459,9 +459,10 @@ We force the action by generating a `keyUp` event on our input field, and then a
 
 First add `triggerKeyEvent` and `fillIn` to the list of imports.  The [`fillIn`](https://github.com/emberjs/ember-test-helpers/blob/master/API.md#fillin) helper simulates the user filling in the element. The [`triggerKeyEvent`](https://github.com/emberjs/ember-test-helpers/blob/master/API.md#triggerkeyevent) helper sends a key stroke event to the UI, simulating the user typing a key.
 
-```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="+3"}
+```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="-3,+4"}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
+import { render } from '@ember/test-helpers';
 import { render, triggerKeyEvent, fillIn } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 ```
@@ -470,7 +471,7 @@ Now use it to simulate the user typing a key into the search field.
 
 ```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="+1,+2,+3,+4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33"}
 test('should update with matching listings', async function (assert) {
-  this.set('filterByCity', (val) =>  {
+  this.set('filterByCity', (val) => {
     if (val === '') {
       return Promise.resolve({
         query: val,
@@ -515,7 +516,7 @@ We'll verify that a user visiting the rentals page can enter text into the searc
 Open our existing application test, `tests/acceptance/list-rentals-test.js`, and implement the test labeled "should filter the list of rentals by city".
 
 
-```javascript {data-filename=/tests/acceptance/list-rentals-test.js}
+```javascript {data-filename=/tests/acceptance/list-rentals-test.js data-diff="+2,+3,+4,+5,+6"}
 test('should filter the list of rentals by city', async function(assert) {
   await visit('/');
   await fillIn('.list-filter input', 'seattle');
