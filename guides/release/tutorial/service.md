@@ -76,7 +76,7 @@ Now implement the service as follows.
 The main API will be an [async function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) called `getMapElement`,
 that returns an HTML element containing a rendered map for the given location.
 We want the function to be async so we can call the remote geocode API and wait for its result.
-Notice the `await` keyword in the code below when we call `geocode.fetCoordinates`.
+Notice the `await` keyword in the code below when we call `geocode.fetchCoordinates`.
 
 Note that we check if a map already exists for the given location and use that one,
 otherwise we will create a new HTML element and call our Leaflet map service to render a map to it.
