@@ -62,7 +62,7 @@ The following event types are supported (dasherized format):
 * `key-up`
 
 
-More [events types](https://www.emberjs.com/api/ember/release/classes/Component) are also supported but these events need to be written in camelCase format, such `mouseEnter`. Note, there are events of the same type in both the list above and linked. Event names listed above must be dasherized. Additional work is performed on these events.
+More [events types](https://www.emberjs.com/api/ember/release/classes/Component#event-names) are also supported but these events need to be written in camelCase format, such `mouseEnter`. Note, there are events of the same type in both the list above and linked. Event names listed above must be dasherized. Additional work is performed on these events.
 
 ## Checkboxes
 
@@ -131,4 +131,4 @@ You might need to bind a property dynamically to an input if you're building a f
 {{input value=(mut (get this.person this.field))}}
 ```
 
-The `{{get}}` helper allows you to dynamically specify which property to bind, while the `{{mut}}` helper allows the binding to be updated from the input. See the respective helper documentation for more detail.
+The `{{get}}` helper allows you to dynamically specify which property to bind, while the `{{mut}}` helper allows the binding to be updated from the input. See the respective helper documentation for more detail: [`{{get}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/get?anchor=get) and [`{{mut}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/mut?anchor=mut).

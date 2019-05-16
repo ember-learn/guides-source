@@ -33,7 +33,7 @@ level 4 to assert that the `levelName` changes. We will use `module` together wi
 ```javascript {data-filename=tests/unit/models/player-test.js}
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
-import { run } from "@ember/runloop";
+import { run } from '@ember/runloop';
 
 module('Unit | Model | player', function(hooks) {
   setupTest(hooks);
@@ -109,4 +109,4 @@ feel the need to do it._
 
 [Ember Data]: https://github.com/emberjs/data
 [Testing Basics]: ../unit-testing-basics/
-[Ember Data tests]: https://github.com/emberjs/data/tree/master/tests
+[Ember Data tests]: https://github.com/emberjs/data/tree/master/packages/-ember-data/tests
