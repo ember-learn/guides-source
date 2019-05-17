@@ -353,7 +353,7 @@ In the example we assert that `calledWithLocation` in our stub is set to the loc
 We'll want to also stub the maps service for our `RentalListing` rendering test,
 since it uses `LocationMap` in its template.
 
-```javascript {data-filename="tests/integration/components/rental-listing-test.js" data-diff="+1,+8,+9,+10,+11,+12,+13,+18,+19,-20,+27,-28"}
+```javascript {data-filename="tests/integration/components/rental-listing-test.js" data-diff="+1,+6,+8,+9,+10,+11,+12,+13,+18,+19,-20,+27,-28"}
 import Service from '@ember/service';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
