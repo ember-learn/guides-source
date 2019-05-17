@@ -220,7 +220,7 @@ To instantiate the service, we can instantiate it through ember's resolver using
 For cases where we do not need to override parts of the service, we can use [`lookup`](https://emberjs.com/api/ember/release/classes/ApplicationInstance/methods/lookup?anchor=lookup)
 In our test below we are passing in our fake map utility object in the first test, and passing a cache object for the second test.
 
-```javascript {data-filename="tests/unit/services/map-element-test.js" data-diff="+3,+5,-10,-11,-12,-13,-14,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33,+34,+35,+37,+38,+39,+40,+41,+42,+43,+44,+45"}
+```javascript {data-filename="tests/unit/services/map-element-test.js" data-diff="+4,+5,-9,-10,-11,-12,-13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33,+34,+35,+36,+37,+38,+39,+40,+41,+42,+43"}
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 
@@ -234,7 +234,6 @@ module('Unit | Service | maps', function(hooks) {
     let service = this.owner.lookup('service:maps');
     assert.ok(service);
   });
-
   test('should create a new map if one isnt cached for location', async function (assert) {
     assert.expect(5);
     let stubMapService = {
