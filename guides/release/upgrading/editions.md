@@ -83,7 +83,7 @@ The emphasis of Ember Octane is modern performance and productivity. To
 accomplish that, we're cutting away cruft that is no longer needed while
 introducing new features that make app development simpler and faster.
 
-Here's are some of the core features in Octane:
+Here are some of the core features in Octane:
 
 - **Native JavaScript classes**, unlocking simpler syntax, faster performance,
   and better interop with the wider ecosystem.
