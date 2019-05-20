@@ -285,9 +285,7 @@ export default class BlogPost extends Component {}
 > You may notice that we're importing the component from `@glimmer` instead of
 > `@ember`. The Glimmer VM is the underlying rendering engine in Ember, and
 > Glimmer.js is a minimal component framework built on top of the Glimmer VM.
-> Ember and Glimmer.js use the same component class, which allows you to share
-> code between Ember and Glimmer.js apps. For more details on Glimmer.js, check
-> out [its documentation](https://glimmerjs.com/)
+> Althought components are imported from this outside library, you don't need worry about learning Glimmer separately from Ember.
 
 You can add methods and fields to the component, and then access them from the
 component's template. For instance, we could add the `sectionClass` property
@@ -370,22 +368,6 @@ It'll be covered in more detail in the section on [Actions and
 Events](../actions-and-events).
 
 #### Component Hooks and Properties
-
-Components have the following class signature (this given as a TypeScript class
-signature for clarity and brevity, if you don't know TypeScript, don't worry!
-We'll explain what it all means in just a minute):
-
-```js
-class GlimmerComponent {
-  args: object;
-
-  isDestroying: boolean;
-  isDestroyed: boolean;
-
-  constructor(owner: unknown, args: object);
-  willDestroy();
-}
-```
 
 The component class has 3 properties:
 
