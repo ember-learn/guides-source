@@ -766,9 +766,9 @@ Tracked properties have subtler benefits as well:
   to anything external to your class.
 
 Most computed properties should be fairly straightforward to convert to tracked
-properties. It's important to note that in _Glimmer components_, arguments are
+properties. It's important to note that in these new components, arguments are
 automatically tracked, but in classic components they are _not_. This is because
-arguments are put on the `args` hash on Glimmer components, which is tracked
+arguments are put on the `args` hash, which is tracked
 property. Since they are assigned to arbitrary properties on classic components,
 they can't be instrumented ahead of time, so you must decorate them manually.
 
@@ -1041,17 +1041,16 @@ don't need `EmberObject` APIs, such as `reopenClass`,
 
 #### Lifecycle and Properties
 
-Glimmer components have exactly 2 lifecycle hooks:
+These components have exactly 2 lifecycle hooks:
 
 - `constructor`
 - `willDestroy`
 
 These can be used to setup the class and tear it down, respectively. Other
-lifecycle hooks, like `didInsertElement` and `didUpdate` don't have equivalents
-in Glimmer components. Instead, you should use _modifiers_ to fill their use
+lifecycle hooks, like `didInsertElement` and `didUpdate` don't have equivalents. Instead, you should use _modifiers_ to fill their use
 cases. These are discussed in more detail later on.
 
-Glimmer components also have 3 properties:
+Components also have 3 properties:
 
 - `args` - the arguments that the component receives when invoked. These are
   passed to and assigned in the constructor, so they're available then for any
@@ -1062,7 +1061,7 @@ Glimmer components also have 3 properties:
 
 #### Outer HTML
 
-Glimmer components don't have a wrapping element. This is referred to as _outer
+These components don't have a wrapping element. This is referred to as _outer
 HTML semantics_, and it means that whatever you see in the template is what you
 get in the final rendered DOM:
 
@@ -1089,8 +1088,7 @@ following APIs:
 - `attributeBindings`
 
 Instead, you can do these directly in your template. Here are some before and
-after examples of each API, converted from classic components to Glimmer
-components:
+after examples of each API, converted from classic components:
 
 - `tagName`
 
@@ -1240,7 +1238,7 @@ components:
 
 To sum it up, the new mental model is that the "wrapping" element is just like
 any other element in your template, and you interact with it in exactly the same
-way. This means that when converting a classic component to a Glimmer component,
+way. This means that when converting a classic component,
 you will need to add the wrapping element that was there previously to the
 template (unless it was a tagless component, e.g. `tagName: ''`).
 
@@ -1475,7 +1473,7 @@ to many problematic data patterns in classic components, where mutations would
 occur seemingly randomly. It was hard to figure out what was causing changes,
 and to debug them.
 
-In Glimmer components, arguments are _one-way bound_. There is no way to
+For components imported from `'@glimmer/component'`, arguments are _one-way bound_. There is no way to
 directly mutate a value on a parent component from the child component, even if
 it is passed as an argument. Instead, you must send an _action_ upward to mutate
 the value:
@@ -1521,13 +1519,13 @@ additional logic in the child class itself - in fact, this could become a
 template-only component at this point.
 
 This pattern is known as _Data-Down, Actions Up_, or _unidirectional data flow_.
-With Glimmer components, this pattern is enforced - all mutations must occur
+For these new components, this pattern is enforced - all mutations must occur
 through actions. This clarifies the data flow, because it's immediately possible
 to see where all of the mutations are occurring.
 
 #### Lifecycle Hooks & Modifiers
 
-As we mentioned above, Glimmer components only have two lifecycle hooks,
+As we mentioned above, components only have two lifecycle hooks,
 `constructor` and `willDestroy`. There were a number of other lifecycle hooks
 that existed on classic components which were generally related to updating
 component state or DOM manipulation:
@@ -1696,7 +1694,7 @@ export default Component.extend({
 ```
 
 This could be rewritten using the `{{did-insert}}` and `{{will-destroy}}`
-modifiers from [ember-render-modifiers][2] in a Glimmer component:
+modifiers from [ember-render-modifiers][2]:
 
 [2]: https://github.com/emberjs/ember-render-modifiers
 
