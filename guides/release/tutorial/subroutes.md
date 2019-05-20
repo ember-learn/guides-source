@@ -101,7 +101,7 @@ export default Route.extend({
 
 Now that we are returning all of our rentals to the nested route's model, we will also move the rental list markup from our main route template to our nested route index template.
 
-```handlebars {data-filename="app/templates/rentals.hbs" data-diff="-9,-10,-11,-12,-13,-14,-15,-16,-17"}
+```handlebars {data-filename="app/templates/rentals.hbs" data-diff="-9,-10,-11,-12,-13,-14,-15,-16,-17,-18"}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>Welcome!</h2>
@@ -113,6 +113,7 @@ Now that we are returning all of our rentals to the nested route's model, we wil
 <ListFilter
    @filter={{action "filterByCity"}}
    as |filteredResults|}}
+>
   <ul class="results">
     {{#each filteredResults as |rentalUnit|}}
       <li><RentalListing @rental={{rentalUnit}} /></li>
@@ -122,7 +123,7 @@ Now that we are returning all of our rentals to the nested route's model, we wil
 {{outlet}}
 ```
 
-```handlebars {data-filename="app/templates/rentals/index.hbs" data-diff="+1,+2,+3,+4,+5,+6,+7,+8,+9"}
+```handlebars {data-filename="app/templates/rentals/index.hbs" data-diff="+1,+2,+3,+4,+5,+6,+7,+8,+9,+10"}
 <ListFilter
    @filter={{action "filterByCity"}}
    as |filteredResults|
@@ -397,8 +398,8 @@ We'll click on the title and validate that an expanded description of the rental
 test('should show details for a specific rental', async function(assert) {
   await visit('/rentals');
   await click(".grand-old-mansion");
-  assert.equal(currentURL(), '/rentals/grand-old-mansion', "should navigate to show route");
-  assert.ok(this.element.querySelector('.show-listing h2').textContent.includes("Grand Old Mansion"), 'should list rental title');
+  assert.equal(currentURL(), '/rentals/grand-old-mansion', 'should navigate to show route');
+  assert.ok(this.element.querySelector('.show-listing h2').textContent.includes('Grand Old Mansion'), 'should list rental title');
   assert.ok(this.element.querySelector('.show-listing .description'), 'should list a description of the property');
 });
 ```
