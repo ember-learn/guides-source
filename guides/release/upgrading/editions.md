@@ -1,7 +1,7 @@
 This guide is for developers who already know Ember, and who want to learn the new concepts introduced
 by Octane, Ember's first Edition.
 
-If you're new to Ember, we recommend starting with the [Quickstart and Tutorials](https://emberjs.com/learn).
+If you're new to Ember, we recommend starting with the [Quick start and Tutorials](https://emberjs.com/learn).
 
 ## What is Ember Octane?
 
@@ -321,7 +321,7 @@ Now that classes are available in JavaScript, we can do away with some of the
 The only class that is _not_ supported is the _classic Ember component_ class,
 imported from `@ember/component`. This is mainly because it requires additional
 decorators that are not available in Ember.js directly. You can instead use
-external addons like [ember-decorators][https://ember-decorators.github.io/ember-decorators] if you want to convert these to
+external addons like [ember-decorators](https://ember-decorators.github.io/ember-decorators) if you want to convert these to
 native classes, and refer to their documentation as a guide.
 
 #### `constructor` instead of `init`
@@ -1810,6 +1810,6 @@ Additionally, the `mut` helper generally can't be used for the same reason:
 ## Conclusion
 
 There's a lot to learn here, but remember, you can gradually adopt these features
-in existing apps. Everything you used to do will work all the way through the rest of Ember 3, since Ember follows semver strictly.
+in existing apps. Everything you used to do will work all the way through the rest of Ember 3, since Ember follows SemVer strictly.
 
 If you need any help, check out the [chat and forums](https://emberjs.com/community/). If you spot something to improve in this guide, you can help out by [filing an issue or a PR](https://github.com/ember-learn/guides-source). Thank you!
