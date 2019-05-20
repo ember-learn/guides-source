@@ -46,7 +46,7 @@ module('Acceptance | posts', function(hooks) {
     await visit('/posts/new');
     await fillIn('input.title', 'My new post');
     await click('button.submit');
-    assert.equal(this.element.querySelector('ul.posts li').textContent, 'My new post');
+    assert.equal(document.querySelector('ul.posts li').textContent, 'My new post');
   });
 });
 ```
