@@ -293,7 +293,7 @@ export default DS.Model.extend({
 However, the `JSONAPISerializer` expects attributes to be dasherized
 in the document payload returned by your server:
 
-```javascript
+```json
 {
   "data": {
     "id": "44",
@@ -370,7 +370,7 @@ export default DS.Model.extend({
 
 The JSON should encode the relationship as an array of IDs and types:
 
-```javascript
+```json
 {
   "data": {
     "type": "posts",
@@ -406,7 +406,7 @@ export default DS.Model.extend({
 
 The JSON should encode the relationship as an ID to another record:
 
-```javascript
+```json
 {
   "data": {
     "type": "comment",
@@ -469,7 +469,7 @@ export default DS.Model.extend({
 When `coordinatePoint` is received from the API, it is
 expected to be an array:
 
-```javascript
+```json
 {
   cursor: {
     position: [4,9]
@@ -717,7 +717,7 @@ export default DS.Model.extend({
 The normalized JSON object that Ember Data expects a serializer to
 return looks like this:
 
-```javascript
+```json
 {
   data: {
     id: "1",
@@ -728,8 +728,8 @@ return looks like this:
     },
     relationships: {
       comments: {
-        data: [{ id: "1", type: 'comment' },
-               { id: "2", type: 'comment' }],
+        data: [{ id: "1", type: "comment" },
+               { id: "2", type: "comment" }],
       },
       relatedPosts: {
         links: {
