@@ -28,17 +28,17 @@ This is called function-scoping, the existence of the `var` is scoped to the fun
 If you try to access a `var` outside of the function it is declared,
 you will get an error that the variable is not defined.
 
-For our example, we will declare a `var` named `name`.
+For our example, we will declare a `var` named `firstname`.
 We will try to access it both inside the function and outside,
 and see the results we get:
 
 ```javascript
-console.log(name); // ReferenceError: name is not defined
+console.log(firstname); // ReferenceError: firstname is not defined
 
 function myFunction() {
-  var name = "Tomster";
+  var firstname = "Tomster";
 
-  console.log(name); // "Tomster"
+  console.log(firstname); // "Tomster"
 }
 ```
 
@@ -46,29 +46,29 @@ This also means that if you have an `if` or a `for` in your code and declare a `
 you can still access the variable outside of those blocks:
 
 ```javascript
-console.log(name); // undefined
+console.log(firstname); // undefined
 
 if (true) {
-  var name = "Tomster";
+  var firstname = "Tomster";
 
-  console.log(name); // "Tomster"
+  console.log(firstname); // "Tomster"
 }
 ```
 
-In the previous example, we can see that the first `console.log(name)` prints out `undefined` instead of the value.
+In the previous example, we can see that the first `console.log(firstname)` prints out `undefined` instead of the value.
 That is because of a feature of JavaScript called *hoisting*.
 Any variable declaration is moved by the programming language to the top of the scope it belongs to.
 As we saw at the beginning, `var` is scoped to the function,
 so the previous example is the same as:
 
 ```javascript
-var name;
-console.log(name); // undefined
+var firstname;
+console.log(firstname); // undefined
 
 if (true) {
-  name = "Tomster";
+  firstname = "Tomster";
 
-  console.log(name); // "Tomster"
+  console.log(firstname); // "Tomster"
 }
 ```
 
@@ -81,14 +81,14 @@ Because of this they are not accessible outside of the given block scope (meanin
 You also cannot access them before they are declared, or you will get a [`ReferenceError`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError).
 
 ```javascript
-console.log(name) // ReferenceError: name is not defined
+console.log(firstname) // ReferenceError: firstname is not defined
 
-if (person) {
-  console.log(name) // ReferenceError: name is not defined
+if (true) {
+  console.log(firstname) // ReferenceError: firstname is not defined
 
-  let name = 'Gob Bluth'; // "Gob Bluth"
+  let firstname = 'Zoey'; // "Zoey"
 } else {
-  console.log(name) // ReferenceError: name is not defined
+  console.log(firstname) // ReferenceError: firstname is not defined
 }
 ```
 
@@ -99,8 +99,8 @@ and you cannot change what the declaration refers to:
 
 ```javascript
 const firstName; // Uncaught SyntaxError: Missing initializer in const declaration
-const firstName = 'Gob';
-firstName = 'George Michael'; // Uncaught SyntaxError: Identifier 'firstName' has already been declared
+const firstName = 'Tomster';
+firstName = 'Zoey'; // Uncaught SyntaxError: Identifier 'firstName' has already been declared
 ```
 
 Note that `const` does not mean that the value it refers to cannot change.
@@ -108,13 +108,13 @@ If you have an array or an object, you can change their properties:
 
 ```javascript
 const myArray = [];
-const myObject = { name: "Tom Dale" };
+const myObject = { firstname: "Tom" };
 
 myArray.push(1);
-myObject.name = "Leah Silber";
+myObject.firstname = "Leah";
 
 console.log(myArray); // [1]
-console.log(myObject); // {name: "Leah Silber"}
+console.log(myObject); // {firstname: "Leah"}
 ```
 
 ### `for` loops
