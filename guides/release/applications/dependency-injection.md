@@ -234,16 +234,18 @@ For example, this component plays songs with different audio services based
 on a song's `audioType`.
 
 ```javascript {data-filename=app/components/play-audio.js}
-import Component from '@ember/component';
-import { computed } from '@ember/object';
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
 import { getOwner } from '@ember/application';
 
 // Usage:
 //
-// {{play-audio song=song}}
+// <PlayAudio @song=this.song />
 //
-export default Component.extend({
-  audioService: computed('song.audioType', function() {
+export default class PlayAudioComponent extends Component {
+  @tracked song;
+
+  get audioService() {
     if (!this.song) {
       return null;
     }
@@ -252,11 +254,11 @@ export default Component.extend({
     let audioType = this.song.audioType;
 
     return applicationInstance.lookup(`service:audio-${audioType}`);
-  }),
+  };
 
   click() {
     let player = this.audioService;
     player.play(this.song.file);
-  }
-});
+  };
+};
 ```
