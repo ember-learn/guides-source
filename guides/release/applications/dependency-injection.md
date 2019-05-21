@@ -235,7 +235,6 @@ on a song's `audioType`.
 
 ```javascript {data-filename=app/components/play-audio.js}
 import Component from '@glimmer/component';
-import { tracked } from '@glimmer/tracking';
 import { getOwner } from '@ember/application';
 
 // Usage:
@@ -243,22 +242,20 @@ import { getOwner } from '@ember/application';
 // <PlayAudio @song=this.song />
 //
 export default class PlayAudioComponent extends Component {
-  @tracked song;
-
   get audioService() {
-    if (!this.song) {
+    if (!this.args.song) {
       return null;
     }
 
     let applicationInstance = getOwner(this);
-    let audioType = this.song.audioType;
+    let { audioType } = this.args.song;
 
     return applicationInstance.lookup(`service:audio-${audioType}`);
-  };
+  }
 
   click() {
     let player = this.audioService;
-    player.play(this.song.file);
-  };
-};
+    player.play(this.args.song.file);
+  }
+}
 ```
