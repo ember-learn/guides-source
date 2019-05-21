@@ -41,7 +41,7 @@ and the `category` property on `controller:articles`. In other words,
 once the `articles` route has been entered, any changes to the
 `category` query param in the URL will update the `category` property
 on `controller:articles`, and vice versa.
-Note that you can't make `queryParams` be a getter; they
+Note that you can't make `queryParams` be a dynamically generated property (neither computed property, nor property getter); they
 have to be values.
 
 Now we need to define a getter for our category-filtered
