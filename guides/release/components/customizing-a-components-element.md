@@ -18,6 +18,7 @@ To use a tag other than `div`, subclass `Component` and assign it
 a `tagName` property. This property can be any valid HTML5 tag name as a
 string.
 
+
 ```javascript {data-filename=app/components/navigation-bar.js}
 import Component from '@ember/component';
 
@@ -31,6 +32,34 @@ export default Component.extend({
   <li>{{#link-to "home"}}Home{{/link-to}}</li>
   <li>{{#link-to "about"}}About{{/link-to}}</li>
 </ul>
+```
+
+If `tagName` is null:
+
+When the `tagName` is assigned to null value, default `div` tag will be provided by ember but element bindings such as `classNameBindings` will not be available for the root element in component. 
+
+```javascript
+import Component from '@ember/component';
+
+export default Component.extend({
+  tagName: ''
+});
+```
+
+```handlebars
+<p>
+  This is my component
+</p>
+```
+
+Above javascript and handlebars code for component will generate the following markup:
+
+```html
+<div class="ember-view" id="ember173">
+  <p>
+    This is my component
+  </p>
+</div>
 ```
 
 ### Customizing the Element's Class
