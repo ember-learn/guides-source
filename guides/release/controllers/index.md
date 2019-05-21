@@ -103,5 +103,5 @@ Yes! Controllers are still an integral part of an Ember application architecture
 #### When should we create a Controller?
 
 * We want to pass down actions or variables to share with a Route’s child components
-* We have a getter that needs the results of the model hook
+* We need to compute a value based on the results of the model hook
 * We need to support query parameters
