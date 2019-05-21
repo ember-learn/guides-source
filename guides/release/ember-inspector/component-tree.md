@@ -35,7 +35,7 @@ template name and its associated objects.
 #### Hovering over the app
 
 If you want to highlight a component directly within your app, click on the icon to the left of the search bar (this is the same behavior as the [View Tree](../view-tree/))
-As your our mouse passes over it, the related component will be
+As your mouse passes over it, the related component will be
 highlighted.
 
 <img src="/images/guides/ember-inspector/component-tree-toolbar-inspect.png" width="500">
