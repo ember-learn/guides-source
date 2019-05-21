@@ -41,15 +41,14 @@ and the `category` property on `controller:articles`. In other words,
 once the `articles` route has been entered, any changes to the
 `category` query param in the URL will update the `category` property
 on `controller:articles`, and vice versa.
-Note that you can't bind `queryParams` to computed properties, they
+Note that you can't make `queryParams` be a getter; they
 have to be values.
 
-Now we need to define a computed property of our category-filtered
-array that the `articles` template will render:
+Now we need to define a getter for our category-filtered
+array, which the `articles` template will render. For the getter to recompute when values change, `category` and `model` should be marked as tracked properties:
 
 ```javascript {data-filename=app/controllers/articles.js}
 import Controller from '@ember/controller';
-import { computed } from '@ember/object';
 
 export default class ArticlesController extends Controller {
   queryParams = ['category'];

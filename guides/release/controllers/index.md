@@ -27,7 +27,7 @@ Controllers are used as an extension of the model loaded from the Route. Any att
 
 Controllers are singletons so we should avoid keeping state that does not derive from either the Model or Query Parameters since these would persist in between activations such as when a user leaves the Route and then re-enters it.
 
-Controllers can also contain actions that enable the Route's components to update the Model or Query Parameters through it using Computed Properties.
+Controllers can also contain actions, Query Parameters, Tracked Properties, and more.
 
 ### Basic Controller Example
 
@@ -103,5 +103,5 @@ Yes! Controllers are still an integral part of an Ember application architecture
 #### When should we create a Controller?
 
 * We want to pass down actions or variables to share with a Route’s child components
-* We have a computed property that depends on the results of the model hook
+* We have a getter that needs the results of the model hook
 * We need to support query parameters

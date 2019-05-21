@@ -14,13 +14,13 @@ API documentation.
 The [`{{get}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/get?anchor=get)
 helper makes it easy to dynamically send the value of a variable to another
 helper or component. This can be useful if you want to output one of several
-values based on the result of a computed property.
+values based on the result of a getter.
 
 ```handlebars
 {{get this.address this.part}}
 ```
 
-if the `part` computed property returns "zip", this will display the result of `this.address.zip`.
+If the `part` getter returns "zip", this will display the result of `this.address.zip`.
 If it returns "city", you get `this.address.city`.
 
 ### The `concat` helper
