@@ -143,7 +143,7 @@ export default Route.extend({
 In the above example, the error event would stop right at
 `route:good-for-nothing`'s error handler and not continue to bubble. To
 make the event continue bubbling up to `route:application`, you can
-return true from the error handler.
+`return true;` from the error handler.
 
 ### Recovering from Rejection
 

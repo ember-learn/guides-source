@@ -220,7 +220,7 @@ test('should trigger external action on form submit', function(assert) {
   this.$('textarea').change();
 
   // click the button to submit the form
-   Ember.run(() => document.querySelector('.comment-input').click());
+  run(() => document.querySelector('.comment-input').click());
 });
 ```
 

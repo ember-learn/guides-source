@@ -8,6 +8,8 @@
 - title: "Getting Started"
   url: 'getting-started'
   pages:
+    - title: "How To Use The Guides"
+      url: "intro"
     - title: "Quick Start"
       url: "quick-start"
     - title: "Installing Ember"
@@ -242,6 +244,9 @@
       url: "services"
     - title: "The Run Loop"
       url: "run-loop"
+      isAdvanced: true
+    - title: "Ember Engines"
+      url: "ember-engines"
       isAdvanced: true
 
 - title: "Ember Inspector"
