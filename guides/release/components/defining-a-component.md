@@ -285,7 +285,7 @@ export default class BlogPost extends Component {}
 > You may notice that we're importing the component from `@glimmer` instead of
 > `@ember`. The Glimmer VM is the underlying rendering engine in Ember, and
 > Glimmer.js is a minimal component framework built on top of the Glimmer VM.
-> Althought components are imported from this outside library, you don't need worry about learning Glimmer separately from Ember.
+> Although components are imported from this outside library, you don't need worry about learning Glimmer separately from Ember.
 
 You can add methods and fields to the component, and then access them from the
 component's template. For instance, we could add the `sectionClass` property
