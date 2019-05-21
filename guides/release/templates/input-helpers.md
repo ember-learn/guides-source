@@ -52,7 +52,7 @@ To dispatch an action on specific events such as `key-press`, use the following
 
 ```handlebars
 <label for="firstname">First Name</label>
-<input value={{this.firstName}} key-press={{action "updateFirstName" id="firstname"}} />
+<Input value={{this.firstName}} key-press={{action "updateFirstName" id="firstname"}} />
 ```
 
 The following event types are supported (dasherized format):
