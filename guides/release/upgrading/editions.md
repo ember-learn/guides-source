@@ -5,9 +5,9 @@ If you're new to Ember, we recommend starting with the [Quick start and Tutorial
 
 ## What is Ember Octane?
 
-Over the past few years, many new features have been added to Ember with the goal of finally introducing a new programming model for the framework.
-This new model brings major gains in productivity and performance, via minor (non-breaking) releases.
-This allows for new apps to have the best features enabled automatically, while teams working on big apps can migrate over time, while still keeping their apps up-to-date with the latest release.
+Over the past few years, many new features have been added to Ember with the goal of introducing a new programming model for the framework.
+This new model brings major gains in productivity and performance, incrementally via a series of minor (non-breaking) releases.
+This allows for new apps to have the best features enabled automatically, while teams working on existing apps can migrate over time, while still keeping their apps up-to-date with the latest release.
 
 Here are some of the core features in Octane:
 
@@ -40,7 +40,7 @@ These have been replaced or made optional in Octane:
   values and DOM creation. Use Angle Brackets instead.
 - **The run loop**. App developers should never have to write code that interacts
   with the Ember run loop, even in tests.
-- **Ember "inner HTML" components**, and the confusing JavaScript API used to
+- **"inner HTML" components**, and the confusing JavaScript API used to
   configure a component's root element, like `tagName`, `classNameBindings`,
   etc. Now, there's no wrapping element.
 
@@ -123,15 +123,21 @@ Angle Brackets have a number of benefits:
 
 As you can see, both literal and bound values can be set on attributes, and
 attributes can be used _without_ setting a value at all, just like HTML
-attributes. The component decides where to put these attributes with the
-special `...attributes` syntax. This will be discussed later in the section on 
-components.
-For classic components, attributes were placed on the
-component's wrapper element.
+attributes. The component you are invoking decides where to put these attributes
+by using the special `...attributes` syntax. This will be discussed later in
+the section on components.
+For classic components, only attributes that were explicitly listed by the component
+you are invoking would be placed on the component's wrapper element.
 
 #### Getting used to Angle Brackets
 
 Here is what is different about using Angle Bracket syntax.
+
+The component name is in `CapitalCase` instead of `kebab-case`. `{{my-component}}` becomes `<MyComponent />`.
+
+Components open and close in the same way as HTML elements. Components that do not accept
+a block can use the self closing syntax (a trailing slash) just like `<img />` or other
+tags.
 
 _Arguments_ are passed by adding `@` to the front of the argument name:
 
@@ -142,12 +148,6 @@ _Arguments_ are passed by adding `@` to the front of the argument name:
 <!-- After -->
 <Todo @item={{item}}/>
 ```
-
-The component name is in `CapitalCase` instead of `kebab-case`. `{{my-component}}` becomes `<MyComponent />`.
-
-Components open
-and close in the same way as HTML elements. Self closing components require
-a trailing slash just like `<img />` or other tags.
 
 When you pass a bound value to a component, remember that it needs to be wrapped in curly braces:
 
@@ -184,13 +184,13 @@ HTML attributes (HTML attributes without `=` default to truthy). If you still
 need positional arguments, you _must_ use the component with curly bracket
 syntax.
 
-You can use Angle Bracket components with curly brackets within the same app, and even within the same template. This allows for gradual migration.
+You can use either angle bracket or curly brackets invocation for a given component within the same app, and even within the same template. This allows for gradual migration.
 
 Angle bracket syntax works for invoking components of any type, whether they are classic style or not.
 
 ### Named Arguments
 
-How can you tell if an argument in a template was passed in, or if it is defined on the component itself? Arguments that were passed in should use the `@` symbol. This style is called "named arguments."
+How can you tell if a given dynamic value in a template was passed in, or if it is defined on the component itself? Arguments that were passed in should use the `@` symbol. This style is called "named arguments."
 
 ```handlebars {data-filename=application.hbs}
 <!-- Passing the argument to the child template -->
@@ -207,7 +207,7 @@ How can you tell if an argument in a template was passed in, or if it is defined
 You can know by looking at the template whether an argument came from the same component or a parent context. You can also tell whether or not a value
 was ever mutated by the component's class.
 
-Teams can gradually refactor an app to use named arguments, separately from upgrading to Angle Brackets. You don't need to worry about whether the parent used Angle Brackets. For example, this works just fine:
+Teams can gradually refactor an app to use named arguments, separately from upgrading to angle bracket invocation. You don't need to worry about whether the parent used angle brackets or curly brackets. For example, this works just fine:
 
 ```handlebars {data-filename=application.hbs}
 {{blog-post title="Hello, world!"}}
@@ -220,11 +220,13 @@ Teams can gradually refactor an app to use named arguments, separately from upgr
 
 #### Getting used to Named Arguments
 
-The most thing to know about named argument syntax is that an argument with an `@`
-_always_ refers to the _original_ value of the argument. If you change that
-value in a classic component, it will _not_ update:
+The most important thing to know about named argument syntax is that an argument with an `@`
+_always_ refers to the _original_ value that was passed when the component was invoked. If you
+change that value in a classic component, it will _not_ update:
 
 ```js {data-filename=blog-post.js}
+import Component from '@ember/component';
+
 export default Component.extend({
   init() {
     this.set('title', this.title.toUpperCase());
@@ -256,7 +258,7 @@ If you find yourself forgetting to the `@` symbol, it may be helpful to think of
 
 Finally, one thing you may have noticed in the above examples is a lot more
 references to `this` in the template.
-Values that are rendered from the local context must have a `this`.
+Values that are rendered from the local context must have a `this` specified in the path.
 The local context is the component or controller instance that backs the template.
 
 ```handlebars
@@ -277,7 +279,7 @@ a helper, a local variable, or a component property.
 
 #### Getting used to `this` in templates
 
-You can of `this` as meaning, an argument came from `this` component or controller, not a parent context.
+You can think of `this` as meaning, an argument came from `this` component or controller, not a parent context.
 
 Local variables,
 introduced via a yield, can still be referred to directly (without `this`) since they're
@@ -312,9 +314,9 @@ For developers who are not already familiar with Native Classes, it's helpful to
 
 For existing Ember users, Native Classes might seem a bit strange, but for developers coming from general JavaScript backgrounds or other frameworks, it might be hard for them to imagine Ember any other way.
 
-Before classes were available in JavaScript, Ember developers still got to use some class-like features thanks to `EmberObject`.
+Before classes were available in JavaScript, Ember developers still got to use some class-like features thanks to `@ember/object`.
 Now that classes are available in JavaScript, we can do away with some of the 
-`EmberObject` quirks.
+`@ember/object` quirks.
 
 ### Getting used to Native Classes
 
@@ -460,18 +462,16 @@ values have changed, you must either decorate them with the `@computed`
 decorator, or use _tracked properties_.
 
 Classic classes didn't have an equivalent for native getters and setters until
-recently, but you can define them now with the `descriptor` decorator:
+recently, but you can define them now with the standard JavaScript getter syntax:
 
 ```js
 export default EmberObject.extend({
   firstName: 'Katie',
   lastName: 'Gengler',
 
-  fullName: descriptor({
-    get() {
-      return `${this.firstName} ${this.lastName}`;
-    },
-  }),
+  get fullName() {
+    return `${this.firstName} ${this.lastName}`;
+  },
 });
 ```
 
@@ -514,7 +514,7 @@ export default class Person {
 ```
 
 Notice that you don't need to pass in the `get` function to the decorator
-itself. Instead, the decorator gets _applied_ to a getter function, modifying it
+itself. Instead, the decorator gets _applied_ to the getter function, modifying it
 in place. Existing computed properties and computed property macros, including
 custom ones you've defined, can be used with this new syntax:
 
@@ -580,23 +580,16 @@ export default class ApplicationController extends Controller {
 ```
 
 The action decorator also _binds_ actions, so you can refer to them directly in
-templates without the `{{action}}` helper anymore:
+templates without the `{{action}}` helper:
 
 ```handlebars
 <!-- Before -->
-<button onclick={{action 'helloWorld'}}></button>
+<OtherComponentHere @update={{action 'helloWorld'}} />
 ```
 
 ```handlebars
 <!-- After -->
-<button onclick={{this.helloWorld}}></button>
-```
-
-You should still use the `{{action}}` helper if you need to pass additional
-parameters to the action though:
-
-```handlebars
-<button onclick={{action this.helloWorld "some" "values"}}></button>
+<OtherComponentHere @update={{this.helloWorld}} />
 ```
 
 #### `super`
@@ -677,14 +670,14 @@ In native classes this can be done with the `static` keyword instead:
 
 ```js
 class Vehicle {
-  constructor() {
-    this.id = Vehicle.count;
-    Vehicle.incrementCount();
-  }
-
   static count = 0;
   static incrementCount() {
     this.count++;
+  }
+
+  constructor() {
+    this.id = Vehicle.count;
+    Vehicle.incrementCount();
   }
 }
 ```
@@ -694,7 +687,7 @@ The `static` keyword can be applied to all class elements.
 ### Tracked Properties
 
 Tracked properties replace computed properties. Unlike computed properties, which require you to annotate
-every getter with the values it depends on, tracked properties only require to
+every getter with the values it depends on, tracked properties only require you to
 annotate the values that are _trackable_, that is values that:
 
 1. Change over time and
