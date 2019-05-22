@@ -34,7 +34,9 @@ export default Component.extend({
 </ul>
 ```
 
-If `tagName` is null:
+Note: It is not recommended to use null tagName .
+
+The following example explains usecase when `tagName` is null:
 
 When the `tagName` is assigned to null value, default `div` tag will be provided by ember but element bindings such as `classNameBindings` will not be available for the root element in component. 
 
@@ -52,7 +54,7 @@ export default Component.extend({
 </p>
 ```
 
-Above javascript and handlebars code for component will generate the following markup:
+This code will generate markup that looks like this:
 
 ```html
 <div class="ember-view" id="ember173">
