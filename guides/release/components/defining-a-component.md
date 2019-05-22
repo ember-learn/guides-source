@@ -369,6 +369,21 @@ Events](../actions-and-events).
 
 #### Component Hooks and Properties
 
+Components have a very small class signature:
+
+ ```js
+class GlimmerComponent {
+  isDestroying = false;
+  isDestroyed = false;
+
+  constructor(owner, args) {
+    this.args = args;
+  }
+
+  willDestroy() {}
+}
+```
+
 The component class has 3 properties:
 
 - `args`: The arguments that were passed to the component
