@@ -70,7 +70,7 @@
     "eslint-plugin-import": "^2.17.2",
     "gfm-code-blocks": "^1.0.0",
     "guidemaker": "^1.4.0",
-    "guidemaker-ember-template": "^1.1.0",
+    "guidemaker-ember-template": "^1.2.0",
     "loader.js": "^4.7.0",
     "lodash": "^4.17.4",
     "markdown-link-extractor": "^1.1.1",
