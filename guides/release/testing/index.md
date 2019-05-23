@@ -28,7 +28,7 @@ Notice how there is nothing Ember specific about the test, it is just a straight
 Examples of Unit Tests are:
 
 * The return value of a `getFullName` utility combines its `firstName` and `lastName` parameters correctly.
-* A computed property macro formats a price depending on its `currency` and `cents` dependent keys.
+* A getter formats a price depending on tracked properties like `currency` and `cents` .
 * A utility function that adds padding on a string based on the value passed.
 
 Unit Tests are useful for testing pure functions where the return value is only determined by its input values, without any observable side effects.
@@ -65,7 +65,7 @@ Container Tests are ideal for testing Controllers, Routes, or Services where we 
 
 Examples of Container Tests are:
 
-* A `fullName` attribute on a controller is computed by combining its `firstName` and `lastName` attributes.
+* A `fullName` attribute on a controller is a getter that combines the tracked properties `firstName` and `lastName`.
 * A serializer properly converts the blog request payload into a blog post model object.
 * Blog dates are properly formatted through a `time` service.
 

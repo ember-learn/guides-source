@@ -234,29 +234,28 @@ For example, this component plays songs with different audio services based
 on a song's `audioType`.
 
 ```javascript {data-filename=app/components/play-audio.js}
-import Component from '@ember/component';
-import { computed } from '@ember/object';
+import Component from '@glimmer/component';
 import { getOwner } from '@ember/application';
 
 // Usage:
 //
-// {{play-audio song=song}}
+// <PlayAudio @song=this.song />
 //
-export default Component.extend({
-  audioService: computed('song.audioType', function() {
-    if (!this.song) {
+export default class PlayAudioComponent extends Component {
+  get audioService() {
+    if (!this.args.song) {
       return null;
     }
 
     let applicationInstance = getOwner(this);
-    let audioType = this.song.audioType;
+    let { audioType } = this.args.song;
 
     return applicationInstance.lookup(`service:audio-${audioType}`);
-  }),
+  }
 
   click() {
     let player = this.audioService;
-    player.play(this.song.file);
+    player.play(this.args.song.file);
   }
-});
+}
 ```
