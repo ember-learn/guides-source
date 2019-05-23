@@ -92,12 +92,10 @@ you must look up the service using Ember's [`getOwner`](https://emberjs.com/api/
 
 ```javascript {data-filename=app/components/cart-contents.js}
 import Component from '@glimmer/component';
-import { computed } from '@ember/object';
 import { getOwner } from '@ember/application';
 
 export default class CartContentsComponent extends Component {
   //will load the service in file /app/services/shopping-cart.js
-  @computed
   get cart() {
     return getOwner(this).lookup('service:shopping-cart');
   }
