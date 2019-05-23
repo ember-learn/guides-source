@@ -52,7 +52,7 @@ I would now recommend that you make sure that you don't have any local changes u
 2. Open versions.yml and delete everything in `allVersions` apart from the latest version (that has just been released) 
 3. Make sure `config/credentials.json` is in place as described above
   - you may have accidently deleted this since last time as it is supposed to be ignored by git
-4. Open `config/environment.js` and delete the `versionsToIgnore` line in the `prember-algolia` config
+4. Open `config/deploy.js` and delete the `versionsToIgnore` line in the `prember-algolia` config
 5. run `ember deploy production`
 6. This should now be done, you can fix your local repo by running `git reset --hard HEAD`
 7. Before you walk away, you should check the guides app in production and see if you can search for something on the latest version

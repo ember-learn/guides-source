@@ -225,7 +225,7 @@ export default Component.extend({
 
   actions: {
     submitComment() {
-      this.submitComment({ comment: this.comment });;
+      this.submitComment({ comment: this.comment });
     }
   }
 });
