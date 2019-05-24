@@ -52,7 +52,7 @@ To dispatch an action on specific events such as `key-press`, use the following
 
 ```handlebars
 <label for="firstname">First Name</label>
-<Input value={{this.firstName}} key-press={{action "updateFirstName" id="firstname"}} />
+<Input @value={{this.firstName}} @key-press={{action "updateFirstName" id="firstname"}} />
 ```
 
 The following event types are supported (dasherized format):
@@ -76,7 +76,7 @@ helper to create a checkbox by setting its `type`:
 
 ```handlebars
 <label for="is-admin">Admin: </label>
-<Input type="checkbox" name="isAdmin" checked={{this.isAdmin}} id="is-admin"/>
+<Input @type="checkbox" @name="isAdmin" @checked={{this.isAdmin}} id="is-admin"/>
 ```
 
 Checkboxes support the following properties:
@@ -97,7 +97,7 @@ Checkboxes are a special input type. If you want to dispatch an action on a cert
 
 ```handlebars
 <label for="firstname">First Name</label>
-<Input type="checkbox" key-press={{action "updateName"}} id="firstname" />
+<Input @type="checkbox" @key-press={{action "updateName"}} id="firstname" />
 ```
 
 
@@ -105,7 +105,7 @@ Checkboxes are a special input type. If you want to dispatch an action on a cert
 
 ```handlebars
 <label for="firstname">First Name</label>
-<Textarea value={{this.name}} cols="80" rows="6" id="firstname" />
+<Textarea @value={{this.name}} cols="80" rows="6" id="firstname" />
 ```
 
 Will bind the value of the text area to `name` on the current context.
@@ -136,7 +136,7 @@ You might need to bind a property dynamically to an input if you're building a f
 
 ```handlebars
 <label for="firstname">First Name</label>
-<Input value={{mut (get this.person this.field)}} id="firstname" />
+<Input @value={{mut (get this.person this.field)}} id="firstname" />
 ```
 
 The `{{get}}` helper allows you to dynamically specify which property to bind, while the `{{mut}}` helper allows the binding to be updated from the input. See the respective helper documentation for more detail.
