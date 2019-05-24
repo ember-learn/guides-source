@@ -3,7 +3,7 @@ As our application grows, we will want to persist our rental data on a server, a
 
 Ember comes with a data management library called [Ember Data](https://github.com/emberjs/data) to help deal with persistent application data.
 
-Ember Data requires you to define the structure of the data you wish to provide to your application by extending [`DS.Model`](https://www.emberjs.com/api/ember-data/release/classes/DS.Model).
+Ember Data requires you to define the structure of the data you wish to provide to your application by extending [`DS.Model`](https://www.emberjs.com/api/ember-data/release/classes/DS.Model).("D" for Data, "S" for structure).
 
 You can generate an Ember Data Model using Ember CLI.
 We'll call our model `rental` and generate it as follows:
