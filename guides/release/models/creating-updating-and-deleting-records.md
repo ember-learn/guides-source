@@ -29,7 +29,7 @@ this.store.findRecord('person', 1).then(function(tyrion) {
 
 Records in Ember Data are persisted on a per-instance basis.
 Call [`save()`](https://api.emberjs.com/ember-data/release/classes/Model/methods/save?anchor=save)
-on any instance of `DS.Model` and it will make a network request.
+on any instance of `Model` and it will make a network request.
 
 Ember Data takes care of tracking the state of each record for
 you. This allows Ember Data to treat newly created records differently
@@ -141,7 +141,7 @@ post
 ## Deleting Records
 
 Deleting records is as straightforward as creating records. Call [`deleteRecord()`](https://api.emberjs.com/ember-data/release/classes/Model/methods/rollbackAttributes?anchor=deleteRecord)
-on any instance of `DS.Model`. This flags the record as `isDeleted`. The
+on any instance of `Model`. This flags the record as `isDeleted`. The
 deletion can then be persisted using `save()`. Alternatively, you can use
 the [`destroyRecord`](https://api.emberjs.com/ember-data/release/classes/Model/methods/rollbackAttributes?anchor=destroyRecord) method to delete and persist at the same time.
 
