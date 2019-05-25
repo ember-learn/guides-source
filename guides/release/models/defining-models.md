@@ -15,10 +15,9 @@ ember generate model person
 This will generate the following file:
 
 ```javascript {data-filename=app/models/person.js}
-import DS from 'ember-data';
-const { Model } = DS;
+import Model from '@ember-data/model';
 
-export default class Person extends Model {
+export default class PersonModel extends Model {
 }
 ```
 
@@ -43,10 +42,9 @@ The `person` model we generated earlier didn't have any attributes. Let's
 add first and last name, as well as the birthday, using [`attr`](https://api.emberjs.com/ember-data/release/classes/Model/properties/attributes?anchor=attributes):
 
 ```javascript {data-filename=app/models/person.js}
-import DS from 'ember-data';
-const { Model, attr } = DS;
+import Model, { attr } from '@ember-data/model';
 
-export default class Person extends Model {
+export default class PersonModel extends Model {
   @attr firstName;
   @attr lastName;
   @attr birthday;
@@ -60,10 +58,9 @@ server after it has been modified.
 You can use attributes like any other property, including from within [getter functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get).
 
 ```javascript {data-filename=app/models/person.js}
-import DS from 'ember-data';
-const { Model, attr } = DS;
+import Model, { attr } from '@ember-data/model';
 
-export default class Person extends Model {
+export default class PersonModel extends Model {
   @attr firstName;
   @attr lastName;
 
@@ -85,8 +82,7 @@ supports attribute types of `string`, `number`, `boolean`, and `date`,
 which coerce the value to the JavaScript type that matches its name.
 
 ```javascript {data-filename=app/models/person.js}
-import DS from 'ember-data';
-const { Model, attr } = DS;
+import Model, { attr } from '@ember-data/model';
 
 export default class Person extends Model {
   @attr('string') name;
@@ -118,13 +114,12 @@ ember generate transform dollars
 Here is a simple transform that converts values between cents and US dollars.
 
 ```javascript {data-filename=app/transforms/dollars.js}
-import DS from 'ember-data';
-const { Transform } = DS;
+import Transform from '@ember-data/serializer/transform';
 
 export default class DollarsTransform extends Transform {
   deserialize(serialized) {
     return serialized / 100; // returns dollars
-  },
+  }
 
   serialize(deserialized) {
     return deserialized * 100; // returns cents
@@ -139,10 +134,9 @@ reverse and converts a value to the format expected by the persistence layer.
 You would use the custom `dollars` transform like this:
 
 ```javascript {data-filename=app/models/product.js}
-import DS from 'ember-data';
-const { Model, attr } = DS;
+import Model, { attr } from '@ember-data/model';
 
-export default class Product extends Model {
+export default class ProductModel extends Model {
   @attr('dollars') spent;
 }
 ```
@@ -158,10 +152,9 @@ In the following example we define that `verified` has a default value of
 creation:
 
 ```javascript {data-filename=app/models/user.js}
-import DS from 'ember-data';
-const { Model, attr } = DS;
+import Model, { attr } from '@ember-data/model';
 
-export default class User extends Model {
+export default class UserModel extends Model {
   @attr('string') username;
   @attr('string') email;
   @attr('boolean', { defaultValue: false }) verified;
@@ -177,14 +170,15 @@ When the API returns a deeply nested, read-only object or array,
 there is no need to create multiple models with `attr('hasMany')` or `attr('belongsTo')`
 relationships. This could result in a potentially large amount of unnecessary
 code. You can access these objects in the template without transforming them. This can be
-done with `@attr` (No attribute type).
+done by using `@attr` without specifying a transform:
 
-The following example shows how to define these attributes without transforming them
-and accessing them within a template:
+```javascript {data-filename=app/models/place.js}
+import Model, { attr } from '@ember-data/model';
 
-```javascript
-@attr location;  // a read-only object
-@attr tags; // a read-only array
+export default class PlaceModel extends Model {
+  @attr location; // a read-only object
+  @attr tags; // a read-only array
+}
 ```
 
 ```handlebars
