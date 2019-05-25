@@ -1,11 +1,12 @@
 You can think of a component as a black box of UI functionality.
 So far, you've learned how parent components can pass attributes in to a
 child component, and how that component can use those attributes from
-both JavaScript and its template.
+both JavaScript and its template. This is called **"Data-Down"** design pattern.
 
 But what about the opposite direction? How does data flow back out of
 the component to the parent? In Ember, components use **actions** to
-communicate events and changes.
+communicate events and changes. That behavior is known as
+**"Actions-Up"** design pattern.
 
 Let's look at a simple example of how a component can use an action to
 communicate with its parent.
