@@ -124,8 +124,7 @@ serializer for your entire application by defining an "application"
 serializer.
 
 ```javascript {data-filename=app/serializers/application.js}
-import DS from 'ember-data';
-const { JSONAPISerializer } = DS;
+import JSONAPISerializer from '@ember-data/serializer/json-api';
 
 export default class ApplicationSerializer extends JSONAPISerializer {
 }
@@ -135,8 +134,7 @@ You can also define a serializer for a specific model. For example, if
 you had a `post` model you could also define a `post` serializer:
 
 ```javascript {data-filename=app/serializers/post.js}
-import DS from 'ember-data';
-const { JSONAPISerializer } = DS;
+import JSONAPISerializer from '@ember-data/serializer/json-api';
 
 export default class PostSerializer extends JSONAPISerializer {
 }
@@ -181,8 +179,7 @@ But our server expects data in this format:
 Here's how you can change the data:
 
 ```javascript {data-filename=app/serializers/application.js}
-import DS from 'ember-data';
-const { JSONAPISerializer } = DS;
+import JSONAPISerializer from '@ember-data/serializer/json-api';
 
 export default class ApplicationSerializer extends JSONAPISerializer {
   serialize(snapshot, options) {
@@ -242,8 +239,7 @@ And so we need to change it to look like:
 Here's how we could do it:
 
 ```javascript {data-filename=app/serializers/application.js}
-import DS from 'ember-data';
-const { JSONAPISerializer } = DS;
+import JSONAPISerializer from '@ember-data/serializer/json-api';
 
 export default class ApplicationSerializer extends JSONAPISerializer {
   normalizeResponse(store, primaryModelClass, payload, id, requestType) {
@@ -274,8 +270,7 @@ serializer's `primaryKey` property to correctly transform the id
 property to `id` when serializing and deserializing data.
 
 ```javascript {data-filename=app/serializers/application.js}
-import DS from 'ember-data';
-const { JSONAPISerializer } = DS;
+import JSONAPISerializer from '@ember-data/serializer/json-api';
 
 export default class ApplicationSerializer extends JSONAPISerializer {
   primaryKey = '_id';
@@ -288,10 +283,9 @@ In Ember Data the convention is to camelize attribute names on a
 model. For example:
 
 ```javascript {data-filename=app/models/person.js}
-import DS from 'ember-data';
-const { Model, attr } = DS;
+import Model, { attr } from '@ember-data/model';
 
-export default class Person extends Model {
+export default class PersonModel extends Model {
   @attr('string') firstName;
   @attr('string') lastName;
   @attr('boolean') isPersonOfTheYear;
@@ -325,8 +319,7 @@ method like this.
 
 ```javascript {data-filename=app/serializers/application.js}
 import { underscore } from '@ember/string';
-import DS from 'ember-data';
-const { JSONAPISerializer } = DS;
+import JSONAPISerializer from '@ember-data/serializer/json-api';
 
 export default class ApplicationSerializer extends JSONAPISerializer {
   keyForAttribute(attr) {
@@ -347,17 +340,15 @@ desired attribute name is simply `lastName`, then create a custom
 Serializer for the model and override the `attrs` property.
 
 ```javascript {data-filename=app/models/person.js}
-import DS from 'ember-data';
-const { Model, attr } = DS;
+import Model, { attr } from '@ember-data/model';
 
-export default class Person extends Model {
+export default class PersonModel extends Model {
   @attr('string') lastName;
 }
 ```
 
 ```javascript {data-filename=app/serializers/person.js}
-import DS from 'ember-data';
-const { JSONAPISerializer } = DS;
+import JSONAPISerializer from '@ember-data/serializer/json-api';
 
 export default class PersonSerializer extends JSONAPISerializer {
   attrs = {
@@ -372,10 +363,9 @@ References to other records should be done by ID. For example, if you
 have a model with a `hasMany` relationship:
 
 ```javascript {data-filename=app/models/post.js}
-import DS from 'ember-data';
-const { Model, hasMany } = DS;
+import Model, { hasMany } from '@ember-data/model';
 
-export default class Post extends Model {
+export default class PostModel extends Model {
   @hasMany('comment', { async: true }) comments;
 }
 ```
@@ -409,10 +399,9 @@ dasherized version of the property's name. For example, if you have
 a model:
 
 ```javascript {data-filename=app/models/comment.js}
-import DS from 'ember-data';
-const { Model, belongsTo } = DS;
+import Model, { belongsTo } from '@ember-data/model';
 
-export default class Comment extends Model {
+export default class CommentModel extends Model {
   @belongsTo('post') originalPost
 }
 ```
@@ -438,8 +427,7 @@ the
 method.
 
 ```javascript {data-filename=app/serializers/application.js}
-import DS from 'ember-data';
-const { JSONAPISerializer } = DS;
+import JSONAPISerializer from '@ember-data/serializer/json-api';
 
 export default class ApplicationSerializer extends JSONAPISerializer {
   keyForRelationship(key, relationship) {
@@ -459,8 +447,7 @@ Ember Data can have new JSON transforms
 registered for use as attributes:
 
 ```javascript {data-filename=app/transforms/coordinate-point.js}
-import DS from 'ember-data';
-const { Transform } = DS;
+import Transform from '@ember-data/serializer/transform';
 import EmberObject from '@ember/object';
 
 export default class CoordinatePointTransform extends Transform {
@@ -474,8 +461,7 @@ export default class CoordinatePointTransform extends Transform {
 ```
 
 ```javascript {data-filename=app/models/cursor.js}
-import DS from 'ember-data';
-const { Model, attr } = DS;
+import Model from '@ember-data/model';
 
 export default class Cursor extends Model {
   @attr('coordinate-point') position;
@@ -518,8 +504,7 @@ To use it in your application you will need to define a
 `serializer:application` that extends the `JSONSerializer`.
 
 ```javascript {data-filename=app/serializers/application.js}
-import DS from 'ember-data';
-const { JSONSerializer } = DS;
+import JSONAPISerializer from '@ember-data/serializer/json-api';
 
 export default class ApplicationSerializer extends JSONSerializer {
   // ...
@@ -596,11 +581,10 @@ that looks similar to this:
 You would define your relationship like this:
 
 ```javascript {data-filename=app/serializers/post.js}
-import DS from 'ember-data';
-const { EmbeddedRecordsMixin, JSONSerializer } = DS;
+import JSONSerializer from '@ember-data/serializer/json';
+import { EmbeddedRecordsMixin } from '@ember-data/serializer/rest';
 
-export default class PostSerializer extends
-JSONSerializer.extend(EmbeddedRecordsMixin) {
+export default class PostSerializer extends JSONSerializer.extend(EmbeddedRecordsMixin) {
   attrs = {
     authors: {
       serialize: 'records',
@@ -615,11 +599,10 @@ embedded relationship you can use the shorthand option of `{ embedded:
 'always' }`. The example above could therefore be expressed as such:
 
 ```javascript {data-filename=app/serializers/post.js}
-import DS from 'ember-data';
-const { EmbeddedRecordsMixin, JSONSerializer } = DS;
+import JSONSerializer from '@ember-data/serializer/json';
+import { EmbeddedRecordsMixin } from '@ember-data/serializer/rest';
 
-export default class PostSerializer extends
-JSONSerializer.extend(EmbeddedRecordsMixin) {
+export default class PostSerializer extends JSONSerializer.extend(EmbeddedRecordsMixin) {
   attrs = {
     authors: { embedded: 'always' }
   };
@@ -640,11 +623,10 @@ serializing the record. This is possible by using the `serialize:
 setting `serialize: false`.
 
 ```javascript {data-filename=app/serializers/post.js}
-import DS from 'ember-data';
-const { EmbeddedRecordsMixin, JSONSerializer } = DS;
+import JSONSerializer from '@ember-data/serializer/json';
+import { EmbeddedRecordsMixin } from '@ember-data/serializer/rest';
 
-export default class PostSerializer extends
-JSONSerializer.extend(EmbeddedRecordsMixin) {
+export default class PostSerializer extends JSONSerializer.extend(EmbeddedRecordsMixin) {
   attrs = {
     author: {
       serialize: false,
@@ -727,8 +709,7 @@ follows the [JSON:API](http://jsonapi.org/) specification.
 Example: given this `post` model.
 
 ```javascript {data-filename=app/models/post.js}
-import DS from 'ember-data';
-const { Model, attr, hasMany } = DS;
+import Model, { attr, hasMany } from '@ember-data/model';
 
 export default class Post extends Model {
   @attr('string') title;
