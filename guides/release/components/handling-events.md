@@ -122,8 +122,19 @@ To utilize an `event` object as a function parameter:
 - Define the event handler in the component (which is designed to receive the
   browser event object).
 - Or, assign an action to an inline event handler in the template (which
-  creates a closure action and does receive the event object as an argument).
+  creates a closure action and does receive the event object as an argument), as in the following example:
+  
+```handlebars
+<button onclick={{action "signUp"}}>Sign Up</button>
+```
 
+```javascript
+actions: {
+  signUp(event) {
+    // here `event` object will be available for you
+  }
+}
+```
 
 ## Event Names
 
