@@ -43,7 +43,7 @@ Ember sites.
 
 ## Local Development
 
-```sh
+```bash
 git clone git://github.com/ember-learn/guides-source.git
 
 cd guides-source

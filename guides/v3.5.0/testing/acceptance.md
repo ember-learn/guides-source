@@ -83,20 +83,20 @@ your application, making it much easier to write deterministic tests.
 
 Some of these handy helpers are:
 
-* [`click(selector)`][1]
+* [`click(selector)`](https://github.com/emberjs/ember-test-helpers/blob/master/API.md#click)
   - Clicks an element and triggers any actions triggered by the element's `click`
     event and returns a promise that fulfills when all resulting async behavior
     is complete.
-* [`fillIn(selector, value)`][2]
+* [`fillIn(selector, value)`](https://github.com/emberjs/ember-test-helpers/blob/master/API.md#fillin)
   - Fills in the selected input with the given value and returns a promise that
      fulfills when all resulting async behavior is complete. Works with `<select>` elements as well as `<input>` elements. Keep in mind that with `<select>` elements, `value` must be set to the _value_ of the `<option>` tag, rather than its _content_ (for example, `true` rather than `"Yes"`).
-* [`triggerKeyEvent(selector, type, keyCode)`][3]
+* [`triggerKeyEvent(selector, type, keyCode)`](https://github.com/emberjs/ember-test-helpers/blob/master/API.md)
   - Simulates a key event type, e.g. `keypress`, `keydown`, `keyup` with the
     desired keyCode on element found by the selector.
-* [`triggerEvent(selector, type, options)`][4]
+* [`triggerEvent(selector, type, options)`](https://github.com/emberjs/ember-test-helpers/blob/master/API.md#triggerevent)
   - Triggers the given event, e.g. `blur`, `dblclick` on the element identified
     by the provided selector.
-* [`visit(url)`][5]
+* [`visit(url)`](https://github.com/emberjs/ember-test-helpers/blob/master/API.md#visit)
   - Visits the given route and returns a promise that fulfills when all resulting
      async behavior is complete.
 
@@ -130,22 +130,9 @@ previous steps in the test have completed.
 
 Synchronous helpers are performed immediately when triggered.
 
-* [`currentRouteName()`][6]: returns the currently active route name.
-* [`currentURL()`][7]: returns the current URL.
-* [`find(selector)`][8]: finds one element within the app's root element
+* [`currentRouteName()`](https://github.com/emberjs/ember-test-helpers/blob/master/API.md#currentroutename): returns the currently active route name.
+* [`currentURL()`](https://github.com/emberjs/ember-test-helpers/blob/master/API.md#currenturl): returns the current URL.
+* [`find(selector)`](https://github.com/emberjs/ember-test-helpers/blob/master/API.md#find): finds one element within the app's root element
   that matches the given selector. Scoping to the root element is useful
   to avoid conflicts with the test framework's reporter.
-* [`findAll(selector)`][9]: like `find(selector)`, but finds all elements
-  that match the given selector. Equivalent to calling querySelectorAll()
-  on the test root element. Returns an array of matched elements.
-
-
-[1]: https://github.com/emberjs/ember-test-helpers/blob/master/API.md#click
-[2]: https://github.com/emberjs/ember-test-helpers/blob/master/API.md#fillin
-[3]: https://github.com/emberjs/ember-test-helpers/blob/master/API.md#triggerkeyevent
-[4]: https://github.com/emberjs/ember-test-helpers/blob/master/API.md#triggerevent
-[5]: https://github.com/emberjs/ember-test-helpers/blob/master/API.md#visit
-[6]: https://github.com/emberjs/ember-test-helpers/blob/master/API.md#currentroutename
-[7]: https://github.com/emberjs/ember-test-helpers/blob/master/API.md#currenturl
-[8]: https://github.com/emberjs/ember-test-helpers/blob/master/API.md#find
-[9]: https://github.com/emberjs/ember-test-helpers/blob/master/API.md#findall
+* [`findAll(selector)`](https://github.com/emberjs/ember-test-helpers/blob/master/API.md#findall): Like `find(selector)`, but finds all elements that match the given selector. Equivalent to calling querySelectorAll() on the test root element. Returns an array of matched elements.
