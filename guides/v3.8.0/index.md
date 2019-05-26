@@ -40,13 +40,13 @@ We will try to link to appropriate documentation whenever a concept is introduce
 
 To make the most out of the guides, you should have a working knowledge of:
 
-* **HTML, CSS, JavaScript** - the building blocks of web pages. You can find documentation of each of these technologies at the [Mozilla Developer Network][mdn].
-* **Promises** - the native way to deal with asynchrony in your JavaScript code. See the relevant [Mozilla Developer Network][promises] section.
-* **ES2015 modules** - you will better understand [Ember CLI's][ember-cli] project structure and import paths if you are comfortable with [JavaScript Modules][js-modules].
+* **HTML, CSS, JavaScript** - the building blocks of web pages. You can find documentation of each of these technologies at the [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web).
+* **Promises** - the native way to deal with asynchrony in your JavaScript code. See the relevant [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) section.
+* **ES2015 modules** - you will better understand [Ember CLI's](https://ember-cli.com/) project structure and import paths if you are comfortable with [JavaScript Modules](http://jsmodules.io/).
 * **ES2015 syntax** - Ember CLI comes with Babel.js by default so you can
 take advantage of newer language features such as arrow functions, template
 strings, destructuring, and more. You can check the
-[Babel.js documentation][babeljs] or read [Understanding ECMAScript 6][es6]
+[Babel.js documentation](https://babeljs.io/docs/learn-es2015/) or read [Understanding ECMAScript 6](https://leanpub.com/understandinges6/read)
 online.
 
 ## A Note on Mobile Performance
@@ -85,7 +85,7 @@ the existing guides, we are happy to help you help us!
 Some of the more common ways to report a problem with the guides are:
 
 * Using the pencil icon on the top-right of each guide page
-* Opening an issue or pull request to [the GitHub repository][gh-guides]
+* Opening an issue or pull request to [the GitHub repository](https://github.com/ember-learn/guides-source/)
 
 Clicking the pencil icon will bring you to GitHub's editor for that
 guide so you can edit right away, using the Markdown markup language.
@@ -93,25 +93,9 @@ This is the fastest way to correct a typo, a missing word, or an error in
 a code sample.
 
 If you wish to make a more significant contribution be sure to check our
-[issue tracker][gh-guides-issues] to see if your issue is already being
-addressed. If you don't find an active issue, open a new one.
+[issue tracker](https://github.com/ember-learn/guides-source/issues) to see if your issue is already being addressed. If you don't find an active issue, open a new one.
 
 If you have any questions about styling or the contributing process, you
-can check out our [contributing guide][gh-guides-contributing]. If your
-question persists, reach us in the `#dev-ember-learning` channel on the [Ember Community Discord][discord].
+can check out our [contributing guide](https://github.com/ember-learn/guides-source/blob/master/CONTRIBUTING.md). If your question persists, reach us in the `#dev-ember-learning` channel on the [Ember Community Discord](https://discordapp.com/invite/zT3asNS).
 
 Good luck!
-
-[ember-cli]: https://ember-cli.com/
-
-[mdn]: https://developer.mozilla.org/en-US/docs/Web
-[promises]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
-[js-modules]: http://jsmodules.io/
-[babeljs]: https://babeljs.io/docs/learn-es2015/
-[es6]: https://leanpub.com/understandinges6/read
-
-[gh-guides]: https://github.com/ember-learn/guides-source/
-[gh-guides-issues]: https://github.com/ember-learn/guides-source/issues
-[gh-guides-contributing]: https://github.com/ember-learn/guides-source/blob/master/CONTRIBUTING.md
-
-[discord]: https://discordapp.com/invite/zT3asNS
