@@ -1,7 +1,7 @@
 _Container testing methods and computed properties follow previous patterns shown
-in [Testing Basics][] because DS.Model extends Ember.Object._
+in [Testing Basics](../unit-testing-basics/) because DS.Model extends Ember.Object._
 
-[Ember Data][] Models can be tested in a module that uses the `setupTest` helper.
+[Ember Data](https://github.com/emberjs/data) Models can be tested in a module that uses the `setupTest` helper.
 
 Let's assume we have a `Player` model that has `level` and `levelName`
 attributes. We want to call `levelUp()` to increment the `level` and assign a
@@ -104,9 +104,5 @@ module('Unit | Model | user', function(hooks) {
 
 _Ember Data contains extensive tests around the functionality of
 relationships, so you probably don't need to duplicate those tests.  You could
-look at the [Ember Data tests][] for examples of deeper relationship testing if you
+look at the [Ember Data tests](https://github.com/emberjs/data/tree/master/packages/-ember-data/tests) for examples of deeper relationship testing if you
 feel the need to do it._
-
-[Ember Data]: https://github.com/emberjs/data
-[Testing Basics]: ../unit-testing-basics/
-[Ember Data tests]: https://github.com/emberjs/data/tree/master/packages/-ember-data/tests
