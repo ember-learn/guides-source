@@ -138,7 +138,7 @@ module('Integration | Component | pretty-color', function(hooks) {
 
     assert.equal(this.element.textContent.trim(), 'Pretty Color: orange', 'text starts as orange');
 
-    this.set('colorValue', 'blue');
+    this.set('colorValue', 'green');
 
     assert.equal(this.element.textContent.trim(), 'Pretty Color: green', 'text switches to green');
   });
