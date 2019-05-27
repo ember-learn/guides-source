@@ -263,12 +263,12 @@ Results in:
 </p>
 ```
 
-#### Note About Some `aria` Attributes
+#### `aria` Attributes
 
 There are some `aria` attributes that can have multiple values **and** the order of those values matter. 
 The most frequently used of these is `aria-describedby` and `aria-labelledby`. 
 
-In these cases, make sure to declare _all_ of the relevant values, in the correct order, with the component invocation.
+In these cases, make sure to declare _all_ of the relevant values in the correct order.
 
 ```hbs
 <MyInput @input-label="Password" aria-describedby="text-help-0 text-help-1" />
