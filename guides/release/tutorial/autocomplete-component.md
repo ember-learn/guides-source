@@ -412,7 +412,7 @@ module('Integration | Component | list-filter', function(hooks) {
 
 Finally, we'll assert that the locations are listed upon render completion.
 
-```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="+31,+32"}
+```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="+31,+32,+33,+34"}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
