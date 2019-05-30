@@ -10,7 +10,7 @@ To get started writing tests, we start with a plain unit test. In the example be
 
 ```javascript {data-filename=utils/tests/relative-date-test.js}
 import { module, test } from 'qunit';
-import { relativeDate } from '<app-context>/utils/date-utils';
+import { relativeDate } from 'my-app-name/utils/date-utils';
 
 module('relativeDate', function(hooks) {
   test('format relative dates correctly', function(assert) {
