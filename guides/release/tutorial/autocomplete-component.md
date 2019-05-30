@@ -24,7 +24,7 @@ which allows a Handlebars template to be rendered _inside_ the component's templ
 
 In this case we are passing, or "yielding", our filter data to the inner markup as a variable called `filteredResults` (line 14/).
 
-```handlebars {data-filename="app/templates/rentals.hbs" data-diff="+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,-23,-24,-25"}
+```handlebars {data-filename="app/templates/rentals.hbs" data-diff="+1, +2, +3, +4, +5, +6, +7, +8, +9, +10,  +12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,-23,-24,-25"}
 <div class="jumbo">
   <div class="right tomster"></div>
   <h2>Welcome!</h2>
@@ -342,12 +342,11 @@ module('Integration | Component | list-filter', function(hooks) {
 
 Our `ListFilter` component takes a function as an argument, used to find the list of matching rentals based on the filter string provided by the user.
 
-```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="+5,+7,+8,+14,+15,+16"}
+```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="+6,+7,+8,+13,+14,+15"}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
-import { resolve } from 'rsvp';
 
 const ITEMS = [{city: 'San Francisco'}, {city: 'Portland'}, {city: 'Seattle'}];
 const FILTERED_ITEMS = [{city: 'San Francisco'}];
@@ -356,9 +355,9 @@ module('Integration | Component | list-filter', function(hooks) {
   setupRenderingTest(hooks);
 
   test('should initially load all listings', async function (assert) {
-    // we want our actions to return promises,
-    //since they are potentially fetching data asynchronously
-    this.set('filterByCity', () => resolve({ results: ITEMS }));
+    // we want our actions to return promises, since they are potentially
+    // fetching data asynchronously.
+    this.set('filterByCity', () => Promise.resolve({ results: ITEMS }));
   });
 
 });
@@ -371,16 +370,15 @@ Our `filterByCity` function is going to pretend to be the action function for ou
 We are not testing the actual filtering of rentals in this test, since it is focused on only the capability of the component.
 We will test the full logic of filtering in application tests, described in the next section.
 
-Since our component is expecting the filter process to be asynchronous, we return promises from our filter, using [Ember's RSVP library](https://www.emberjs.com/api/ember/release/modules/rsvp).
+Since our component is expecting the filter process to be asynchronous, we return promises from our filter.
 
 Next, we'll add the call to render the component to show the cities we've provided above.
 
-```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31"}
+```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30"}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
-import { resolve } from 'rsvp';
 
 const ITEMS = [{city: 'San Francisco'}, {city: 'Portland'}, {city: 'Seattle'}];
 const FILTERED_ITEMS = [{city: 'San Francisco'}];
@@ -389,13 +387,12 @@ module('Integration | Component | list-filter', function(hooks) {
   setupRenderingTest(hooks);
 
   test('should initially load all listings', async function (assert) {
-    // we want our actions to return promises,
-    //since they are potentially fetching data asynchronously
-    this.set('filterByCity', () => resolve({ results: ITEMS }));
+    // we want our actions to return promises, since they are potentially
+    // fetching data asynchronously.
+    this.set('filterByCity', () => Promise.resolve({ results: ITEMS }));
 
-    // with an integration test,
-    // you can set up and use your component in the same way your application
-    // will use it.
+    // with an integration test, you can set up and use your component in the
+    // same way your application will use it.
     await render(hbs`
       <ListFilter @filter={{action filterByCity}} as |results|>
         <ul>
@@ -413,22 +410,13 @@ module('Integration | Component | list-filter', function(hooks) {
 });
 ```
 
-Finally we add a `settled` call at the end of our test to assert the results.
+Finally, we'll assert that the locations are listed upon render completion.
 
-Ember's [settled helper](https://github.com/emberjs/ember-test-helpers/blob/master/API.md#settled)
-waits for all asynchronous tasks to complete before running the given function callback.
-It returns a promise that we also return from the test.
-
-If you return a promise from a QUnit test, the test will wait to finish until that promise is resolved.
-In this case our test completes when the `settled` helper decides that processing is finished,
-and the function we provide that asserts the resulting state is completed.
-
-```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="+3,+31,+32,+33,+34"}
+```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="+31,+32"}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, settled } from '@ember/test-helpers';
+import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
-import { resolve } from 'rsvp';
 
 const ITEMS = [{city: 'San Francisco'}, {city: 'Portland'}, {city: 'Seattle'}];
 const FILTERED_ITEMS = [{city: 'San Francisco'}];
@@ -437,11 +425,12 @@ module('Integration | Component | list-filter', function(hooks) {
   setupRenderingTest(hooks);
 
   test('should initially load all listings', async function (assert) {
-    // we want our actions to return promises, since they are potentially fetching data asynchronously
-    this.set('filterByCity', () => resolve({ results: ITEMS }));
+    // we want our actions to return promises, since they are potentially
+    // fetching data asynchronously.
+    this.set('filterByCity', () => Promise.resolve({ results: ITEMS }));
 
-    // with an integration test,
-    // you can set up and use your component in the same way your application will use it.
+    // with an integration test, you can set up and use your component in the
+    // same way your application will use it.
     await render(hbs`
       <ListFilter @filter={{action filterByCity}} as |results|>
         <ul>
@@ -472,25 +461,25 @@ We force the action by generating a `keyUp` event on our input field, and then a
 
 First add `triggerKeyEvent` and `fillIn` to the list of imports.  The [`fillIn`](https://github.com/emberjs/ember-test-helpers/blob/master/API.md#fillin) helper simulates the user filling in the element. The [`triggerKeyEvent`](https://github.com/emberjs/ember-test-helpers/blob/master/API.md#triggerkeyevent) helper sends a key stroke event to the UI, simulating the user typing a key.
 
-```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="+3"}
+```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="-3,+4"}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, settled, triggerKeyEvent, fillIn } from '@ember/test-helpers';
+import { render } from '@ember/test-helpers';
+import { render, triggerKeyEvent, fillIn } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
-import { resolve } from 'rsvp';
 ```
 
 Now use it to simulate the user typing a key into the search field.
 
-```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="+1,+2,+3,+4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33,+34,+35"}
+```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="+1,+2,+3,+4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33"}
 test('should update with matching listings', async function (assert) {
-  this.set('filterByCity', (val) =>  {
+  this.set('filterByCity', (val) => {
     if (val === '') {
-      return resolve({
+      return Promise.resolve({
         query: val,
         results: ITEMS });
     } else {
-      return resolve({
+      return Promise.resolve({
         query: val,
         results: FILTERED_ITEMS });
     }
@@ -530,7 +519,7 @@ We'll verify that a user visiting the rentals page can enter text into the searc
 Open our existing application test, `tests/acceptance/list-rentals-test.js`, and implement the test labeled "should filter the list of rentals by city".
 
 
-```javascript {data-filename=/tests/acceptance/list-rentals-test.js}
+```javascript {data-filename=/tests/acceptance/list-rentals-test.js data-diff="+2,+3,+4,+5,+6"}
 test('should filter the list of rentals by city', async function(assert) {
   await visit('/');
   await fillIn('.list-filter input', 'seattle');

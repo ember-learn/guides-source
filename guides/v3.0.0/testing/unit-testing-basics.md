@@ -139,7 +139,7 @@ Suppose we have an object that has a property and a method observing that proper
 
 ```javascript {data-filename=app/services/some-thing.js}
 import Service from '@ember/service';
-import { observer } from "@ember/object";
+import { observer } from '@ember/object';
 
 export default Service.extend({
   foo: 'bar',

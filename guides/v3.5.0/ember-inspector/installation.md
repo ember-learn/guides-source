@@ -37,7 +37,7 @@ Make sure the "Display the Tomster" checkbox is checked.
 ### Firefox
 
 Visit the Add-on page on the [Mozilla Addons
-site][ember-inspector-mozilla].
+site](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/).
 
 Click on "Add to Firefox".
 
@@ -47,9 +47,6 @@ Once installed, go to an Ember application, open the Developer Tools,
 and click on the `Ember` tab.
 
 <img src="/images/guides/ember-inspector/installation-firefox-panel.png" width="680">
-
-[ember-inspector-mozilla]: https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/
-
 
 #### Enable Tomster
 

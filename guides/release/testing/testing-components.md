@@ -34,7 +34,7 @@ and cleaning up once your tests in this module are finished.
 import { module } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 
-module('Integration | Component | pretty color', function(hooks) {
+module('Integration | Component | pretty-color', function(hooks) {
   setupRenderingTest(hooks);
 
 });
@@ -47,7 +47,7 @@ Here, we can use the `QUnit.test` helper and we can give it a descriptive name:
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 
-module('Integration | Component | pretty color', function(hooks) {
+module('Integration | Component | pretty-color', function(hooks) {
   setupRenderingTest(hooks);
 
   test('should change colors', async function(assert) {
@@ -68,7 +68,7 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-module('Integration | Component | pretty color', function(hooks) {
+module('Integration | Component | pretty-color', function(hooks) {
   setupRenderingTest(hooks);
 
   test('should change colors', async function(assert) {
@@ -99,7 +99,7 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-module('Integration | Component | pretty color', function(hooks) {
+module('Integration | Component | pretty-color', function(hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function(assert) {
@@ -126,7 +126,7 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-module('Integration | Component | pretty color', function(hooks) {
+module('Integration | Component | pretty-color', function(hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function(assert) {
@@ -138,7 +138,7 @@ module('Integration | Component | pretty color', function(hooks) {
 
     assert.equal(this.element.textContent.trim(), 'Pretty Color: orange', 'text starts as orange');
 
-    this.set('colorValue', 'blue');
+    this.set('colorValue', 'green');
 
     assert.equal(this.element.textContent.trim(), 'Pretty Color: green', 'text switches to green');
   });
@@ -185,7 +185,7 @@ import { setupRenderingTest } from 'ember-qunit';
 import { click, render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-module('Integration | Component | magic title', function(hooks) {
+module('Integration | Component | magic-title', function(hooks) {
   setupRenderingTest(hooks);
 
   test('should update title on button click', async function(assert) {
@@ -225,7 +225,7 @@ export default Component.extend({
 
   actions: {
     submitComment() {
-      this.submitComment({ comment: this.comment });;
+      this.submitComment({ comment: this.comment });
     }
   }
 });
@@ -250,7 +250,7 @@ import { setupRenderingTest } from 'ember-qunit';
 import { click, fillIn, render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-module('Integration | Component | comment form', function(hooks) {
+module('Integration | Component | comment-form', function(hooks) {
   setupRenderingTest(hooks);
 
   test('should trigger external action on form submit', async function(assert) {
@@ -335,7 +335,7 @@ const locationStub = Service.extend({
   }
 });
 
-module('Integration | Component | location indicator', function(hooks) {
+module('Integration | Component | location-indicator', function(hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(function(assert) {
@@ -371,7 +371,7 @@ const locationStub = Service.extend({
   }
 });
 
-module('Integration | Component | location indicator', function(hooks) {
+module('Integration | Component | location-indicator', function(hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(function(assert) {
@@ -412,7 +412,7 @@ const locationStub = Service.extend({
   }
 });
 
-module('Integration | Component | location indicator', function(hooks) {
+module('Integration | Component | location-indicator', function(hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(function(assert) {
@@ -454,7 +454,7 @@ assert.equal(this.element.querySelector('.form-message').textContent, 'Your deta
 ```
 
 Nearly all of the helpers for DOM interaction from `@ember/test-helpers` return a call to `settled` - a function
-that ensures that any Promises, operations in Ember's `run` loop, timers or Ajax requests have already resolved.
+that ensures that any Promises, operations in Ember's `run` loop, timers or network requests have already resolved.
 The `settled` function itself returns a Promise that resolves once all async operations have come to an end.
 
 You can use `settled` as a helper in your tests directly and `await` it for all async behavior to settle deliberately.
@@ -495,7 +495,7 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render, settled } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-module('Integration | Component | delayed typeahead', function(hooks) {
+module('Integration | Component | delayed-typeahead', function(hooks) {
   setupRenderingTest(hooks);
 
   const stubResults = [

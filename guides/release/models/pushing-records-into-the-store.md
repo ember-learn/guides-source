@@ -69,7 +69,7 @@ export default Route.extend({
 ```
 
 The store's `push()` method is a low level API which accepts a JSON
-API document with a few important differences from the JSON API
+API document with a few important differences from the JSON:API
 document that the JSONAPISerializer accepts. The type name in the JSON
 API document must match the type name of the model exactly (In the
 example above the type is `album` because the model is defined in
@@ -83,7 +83,7 @@ serializer before pushing it into the store, you can use the
 ```javascript {data-filename=app/serializers/album.js}
 import DS from 'ember-data';
 
-export default DS.RestSerializer.extend({
+export default DS.RESTSerializer.extend({
   normalize(typeHash, hash) {
     hash['songCount'] = hash['song_count']
     delete hash['song_count']
@@ -122,22 +122,23 @@ endpoints. You may find your application has an endpoint that performs
 some business logic then creates several records. This likely does not
 map cleanly to Ember Data's existing `save()` API which is structured
 around persisting a single record. Instead you should make your own
-custom AJAX request and push the resulting model data into the store
+custom network request and push the resulting model data into the store
 so it can be accessed by other parts of your application.
 
 
 ```javascript {data-filename=app/routes/confirm-payment.js}
 import Route from '@ember/routing/route';
-import $ from 'jquery';
+import fetch from 'fetch';
 
 export default Route.extend({
   actions: {
     confirm(data) {
-      $.ajax({
-        data: data,
+      fetch('process-payment', {
         method: 'POST',
-        url: 'process-payment'
-      }).then((digitalInventory) => {
+        body: JSON.stringify(data)
+      })
+      .then(response => response.json())
+      .then(digitalInventory => {
         this.store.push(digitalInventory);
         this.transitionTo('thank-you');
       });
@@ -147,6 +148,6 @@ export default Route.extend({
 ```
 
 Properties that are defined on the model but are omitted in the
-normalized JSON API document object will not be updated. Properties
-that are included in the normalized JSON API document object but not
+normalized JSON:API document object will not be updated. Properties
+that are included in the normalized JSON:API document object but not
 defined on the Model will be ignored.

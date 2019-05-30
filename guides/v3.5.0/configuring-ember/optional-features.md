@@ -64,7 +64,7 @@ It is used for event handling, and to provide some APIs like `this.$()` in compo
 With the release of ember-source v3.4.0, an optional feature flag was introduced that allows users to opt out of jQuery.
 To enable it, run the following command after setting up `@ember/optional-features`:
 
-```shell
+```bash
 ember feature:disable jquery-integration
 ```
 
