@@ -412,7 +412,7 @@ module('Integration | Component | list-filter', function(hooks) {
 
 Finally, we'll assert that the locations are listed upon render completion.
 
-```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="+31,+32"}
+```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="+31,+32,+33,+34"}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
@@ -443,8 +443,10 @@ module('Integration | Component | list-filter', function(hooks) {
       </ListFilter>
     `);
 
+    await settled();
+
     assert.equal(this.element.querySelectorAll('.city').length, 3);
-    assert.equal(this.element.querySelector('.city').textContent.trim(), 'San Francisco');
+    assert.dom(this.element.querySelector('.city')).hasText('San Francisco');
   });
 
 });
@@ -469,7 +471,7 @@ import hbs from 'htmlbars-inline-precompile';
 
 Now use it to simulate the user typing a key into the search field.
 
-```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="+1,+2,+3,+4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33"}
+```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="+1,+2,+3,+4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33,+34"}
 test('should update with matching listings', async function (assert) {
   this.set('filterByCity', (val) => {
     if (val === '') {
@@ -499,9 +501,10 @@ test('should update with matching listings', async function (assert) {
   await fillIn(this.element.querySelector('.list-filter input'),'s');
   // keyup event to invoke an action that will cause the list to be filtered
   await triggerKeyEvent(this.element.querySelector('.list-filter input'), "keyup", 83);
+  await settled();
 
   assert.equal(this.element.querySelectorAll('.city').length, 1, 'One result returned');
-  assert.equal(this.element.querySelector('.city').textContent.trim(), 'San Francisco');
+  assert.dom(this.element.querySelector('.city')).hasText('San Francisco');
 });
 
 ```
