@@ -1,4 +1,13 @@
-You can think of a component as a black box of UI functionality.
+You can think of a component as a cohesive part of your application
+or as black box of UI functionality.
+
+When we say cohesive, we mean a component should be (a) able to be
+functionally coupled with other components to form your entire
+application or part of it, and/or (b) usable as a stand-alone,
+self-contained abstraction with its own data and behavior. In other
+words, the component should be able to be used in a different
+context of your application – reusable.
+
 So far, you've learned how parent components can pass attributes in to a
 child component, and how that component can use those attributes from
 both JavaScript and its template.
@@ -6,6 +15,27 @@ both JavaScript and its template.
 But what about the opposite direction? How does data flow back out of
 the component to the parent? In Ember, components use **actions** to
 communicate events and changes.
+
+To make this easier to explain, we need to bring another design pattern
+into the scope.
+
+## Data-Down, Actions-Up
+
+A Data-Down, Actions-Up pattern allows you to abstract your
+component from your application scope and think about it as a wrapper
+with triggers, data, and UI. Think about your component as an empty
+bucket with a valve at the bottom. When you refill it with water you
+are passing Data-Down into it. When you open a valve, you initiate
+Action-Up. Now your component is driven by your actions and uses the
+data it holds. In Ember, components use actions to communicate events
+and changes within your component or up to the parent component.
+
+Now you know that the child component can be used to chain activity
+from user interactions (such as a button click) and propagate that
+action for data flow within its own **actions** or out of the child
+component to the parent component. As we previously stated, recipient
+of the action execution can be current component, parent component,
+controller, route, or injected service.
 
 Let's look at a simple example of how a component can use an action to
 communicate with its parent.
@@ -192,7 +222,7 @@ to trigger behavior.
 
 That makes it easy to remember how to add an action to a component. It's
 like passing an attribute, but you use the `action` helper to pass
-a function instead. Actions can only be passed from a controller or 
+a function instead. Actions can only be passed from a controller or
 component, they cannot be passed from a route.
 
 Actions in components allow you to decouple an event happening from how it's handled, leading to modular,
@@ -430,7 +460,8 @@ object to pull out only what it needs.
 <UserProfile @didDelete={{action "userDeleted" value="account.id"}} />
 ```
 
-Now when the `system-preferences-editor` handles the delete action, it receives only the user's account `id` string.
+Now when the `system-preferences-editor` handles the delete action, it receives
+only the user's account `id` string.
 
 ```javascript {data-filename=app/components/system-preferences-editor.js}
 import Component from '@ember/component';
@@ -446,12 +477,16 @@ export default Component.extend({
 
 ## Calling Actions Up Multiple Component Layers
 
-When your components go multiple template layers deep, it is common to need to handle an action several layers up the tree. 
-Using the action helper, parent components can pass actions to child components through templates alone without adding JavaScript code to those child components.
+When your components go multiple template layers deep, it is common to
+need to handle an action several layers up the tree. Using the action
+helper, parent components can pass actions to child components through
+templates alone without adding JavaScript code to those child components.
 
-For example, say we want to move account deletion from the `UserProfile` component to its parent `system-preferences-editor`.
+For example, say we want to move account deletion from the `UserProfile`
+component to its parent `system-preferences-editor`.
 
-First we would move the `deleteUser` action from `user-profile.js` to the actions object on `system-preferences-editor`.
+First we would move the `deleteUser` action from `user-profile.js` to the
+actions object on `system-preferences-editor`.
 
 ```javascript {data-filename=app/components/system-preferences-editor.js}
 import Component from '@ember/component';
@@ -467,8 +502,8 @@ export default Component.extend({
 });
 ```
 
-Then our `system-preferences-editor` template passes its local `deleteUser` action into the `UserProfile` as that
-component's `deleteCurrentUser` property.
+Then our `system-preferences-editor` template passes its local `deleteUser`
+action into the `UserProfile` as that component's `deleteCurrentUser` property.
 
 ```handlebars {data-filename=app/templates/components/system-preferences-editor.hbs}
 <UserProfile
@@ -476,9 +511,13 @@ component's `deleteCurrentUser` property.
 />
 ```
 
-The action `deleteUser` is in quotes, since `system-preferences-editor` is where the action is defined now. Quotes indicate that the action should be looked for in `actions` local to that component, rather than in those that have been passed from a parent.
+The action `deleteUser` is in quotes, since `system-preferences-editor` is
+where the action is defined now. Quotes indicate that the action should be
+looked for in `actions` local to that component, rather than in those that
+have been passed from a parent.
 
-In our `user-profile.hbs` template we change our action to call `deleteCurrentUser` as passed above.
+In our `user-profile.hbs` template we change our action to call
+`deleteCurrentUser` as passed above.
 
 ```handlebars {data-filename=app/templates/components/user-profile.hbs}
 <ButtonWithConfirmation
@@ -487,6 +526,11 @@ In our `user-profile.hbs` template we change our action to call `deleteCurrentUs
 />
 ```
 
-Note that `deleteCurrentUser` is no longer in quotes here as opposed to [previously](#toc_passing-the-action-to-the-component). Quotes are used to initially pass the action down the component tree, but at every subsequent level you are instead passing the actual function reference (without quotes) in the action helper.
+Note that `deleteCurrentUser` is no longer in quotes here as opposed to
+[previously](#toc_passing-the-action-to-the-component). Quotes are used to
+initially pass the action down the component tree, but at every subsequent
+level you are instead passing the actual function reference (without quotes)
+in the action helper.
 
-Now when you confirm deletion, the action goes straight to the `system-preferences-editor` to be handled in its local context.
+Now when you confirm deletion, the action goes straight to the
+`system-preferences-editor` to be handled in its local context.
