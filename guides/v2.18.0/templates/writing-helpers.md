@@ -373,7 +373,7 @@ escape anything that may have come from an untrusted user with the
 `escapeExpression` utility:
 
 ```javascript {data-filename="app/helpers/make-bold.js"}
-import Ember from "ember";
+import Ember from 'ember';
 import { helper } from '@ember/component/helper';
 import { htmlSafe } from '@ember/string';
 

@@ -96,7 +96,7 @@ export default class Post extends Component {
 
 Actions don't need to be triggered on click, in fact they can be attached
 to any event Ember is already listening to. For example this form will
-call the `updateText` action when submitted, but prevent the default
+call the `createPost` action when submitted, but prevent the default
 form submission logic in the browser from running:
 
 ```handlebars {data-filename=app/components/post/template.hbs}

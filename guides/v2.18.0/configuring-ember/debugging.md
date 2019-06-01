@@ -3,7 +3,7 @@ with your application.
 
 ## Routing
 
-#### Log router transitions
+### Log router transitions
 
 ```javascript {data-filename="app/app.js"}
 import Application from '@ember/application';
@@ -21,19 +21,19 @@ export default Application.extend({
 ```
 ## Views / Templates
 
-#### Log view lookups
+### Log view lookups
 
 ```javascript {data-filename="config/environment.js"}
 ENV.APP.LOG_VIEW_LOOKUPS = true;
 ```
-#### View all registered templates
+### View all registered templates
 ```javascript
 Ember.keys(Ember.TEMPLATES)
 ```
 
 ## Controllers
 
-#### Log generated controller
+### Log generated controller
 
 ```javascript {data-filename="config/environment.js"}
 ENV.APP.LOG_ACTIVE_GENERATION = true;
@@ -41,13 +41,13 @@ ENV.APP.LOG_ACTIVE_GENERATION = true;
 
 ## Observers / Binding
 
-#### See all observers for an object, key
+### See all observers for an object, key
 
 ```javascript
 Ember.observersFor(comments, keyName);
 ```
 
-#### Log object bindings
+### Log object bindings
 
 ```javascript {data-filename="config/environments.js"}
 ENV.APP.LOG_BINDINGS = true;
@@ -55,7 +55,7 @@ ENV.APP.LOG_BINDINGS = true;
 
 ## Miscellaneous
 
-#### Turn on resolver resolution logging
+### Turn on resolver resolution logging
 
 This option logs all the lookups that are done to the console. Custom objects
 you've created yourself have a tick, and Ember generated ones don't.
@@ -70,7 +70,7 @@ export default Application.extend({
   LOG_RESOLVER: true
 });
 ```
-#### Dealing with deprecations
+### Dealing with deprecations
 
 ```javascript
 Ember.ENV.RAISE_ON_DEPRECATION = true;
@@ -78,7 +78,7 @@ Ember.ENV.LOG_STACKTRACE_ON_DEPRECATION = true;
 ```
 
 
-#### Implement an Ember.onerror hook to log all errors in production
+### Implement an Ember.onerror hook to log all errors in production
 
 ```javascript
 Ember.onerror = function(error) {
@@ -92,7 +92,7 @@ Ember.onerror = function(error) {
 }
 ```
 
-#### Import the console
+### Import the console
 
 If you are using imports with Ember, be sure to import the console:
 
@@ -106,7 +106,7 @@ Ember = {
 };
 ```
 
-#### Errors within an `RSVP.Promise`
+### Errors within an `RSVP.Promise`
 
 There are times when dealing with promises that it seems like any errors
 are being 'swallowed', and not properly raised. This makes it extremely
@@ -127,7 +127,7 @@ RSVP.on('error', function(error) {
 });
 ```
 
-#### Errors within `Ember.run.later` ([Backburner.js](https://github.com/ebryn/backburner.js))
+### Errors within `Ember.run.later` ([Backburner.js](https://github.com/ebryn/backburner.js))
 
 Backburner has support for stitching the stacktraces together so that you can
 track down where an erroring `Ember.run.later` is being initiated from. Unfortunately,

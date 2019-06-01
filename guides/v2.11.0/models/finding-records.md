@@ -78,7 +78,7 @@ and the adapter for the `User` model defines a `queryRecord()` method that targe
 
 ```javascript {data-filename=app/adapters/user.js}
 // app/adapters/user.js
-import DS from "ember-data";
+import DS from 'ember-data';
 
 export default DS.Adapter.extend({
   queryRecord(modelName, query) {
