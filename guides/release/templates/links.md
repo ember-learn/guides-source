@@ -42,7 +42,7 @@ The `<LinkTo>` component takes one or two arguments:
   an explicit value instead:
 
 ```handlebars {data-filename=app/templates/photos.hbs}
-<LinktTo @route="photos.edit" @model={{1}}>
+<LinkTo @route="photos.edit" @model={{1}}>
   First Photo Ever
 </LinkTo>
 ```
