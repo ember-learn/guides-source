@@ -80,17 +80,17 @@ With this code, we have established the following behaviors:
    full router transition (i.e. it won't call `model` hooks and
    `setupController`, etc.); it will only update the URL.
 
-### link-to Helper
+### LinkTo component
 
-The `link-to` helper supports specifying query params using the
+The `LinkTo` component supports specifying query params using the
 `query-params` subexpression helper.
 
 ```handlebars
 // Explicitly set target query params
-{{#link-to "posts" (query-params direction="asc")}}Sort{{/link-to}}
+<LinkTo @route="posts" @query={{hash direction="asc"}}>Sort<LinkTo>
 
 // Binding is also supported
-{{#link-to "posts" (query-params direction=this.otherDirection)}}Sort{{/link-to}}
+<LinkTo @route="posts" @query={{hash direction=this.otherDirection}}>Sort<LinkTo>
 ```
 
 In the above examples, `direction` is presumably a query param property
@@ -98,7 +98,7 @@ on the `posts` controller, but it could also refer to a `direction` property
 on any of the controllers associated with the `posts` route hierarchy,
 matching the leaf-most controller with the supplied property name.
 
-The `link-to` helper takes into account query parameters when determining
+The `<Linkto>` component takes into account query parameters when determining
 its "active" state, and will set the class appropriately. The active state
 is determined by calculating whether the query params end up the same after
 clicking a link. You don't have to supply all of the current,
@@ -125,7 +125,7 @@ this.transitionTo('/posts/1?sort=date&showDetails=true');
 
 ### Opting into a full transition
 
-When you change query params through a transition (`transitionTo` and `link-to`),
+When you change query params through a transition (`transitionTo` and `<LinkTo>`),
 it is not considered a full transition.
 This means that the controller properties associated with the query params will be updated,
 as will the URL, but no `Route` method hook like `model` or `setupController` will be called.
@@ -186,7 +186,7 @@ export default Route.extend({
 });
 ```
 
-This behavior is similar to `link-to`,
+This behavior is similar to `<LinkTo>`,
 which also lets you opt into a `replaceState` transition via `replace=true`.
 
 ### Map a controller's property to a different query param key
@@ -256,12 +256,11 @@ This affects query param behavior in two ways:
 
 ### Sticky Query Param Values
 The query params are defined per route/controller. They are not global to the app. 
-For example, if a route `first-route` has a query param `firstParam` associated with it and we try to navigate to `first-route` by using `link-to` helper from a different route `second-route`, like in the following handlebar template, the `firstParam` will be omitted. 
+For example, if a route `first-route` has a query param `firstParam` associated with it and we try to navigate to `first-route` by using `<LinkTo>` from a different route `second-route`, like in the following handlebar template, the `firstParam` will be omitted. 
 
 ```handlebars
-{{#link-to "first-route" (query-params secondParam="asc")}}Sort{{/link-to}}
+<LinkTo @route="first-route" @query={{hash secondParam="asc"}}>Sort</LinkTo>
 ```
-
 
 By default, query param values in Ember are "sticky",
 in that if you make changes to a query param and then leave and re-enter the route,
@@ -276,9 +275,9 @@ and then navigate to `/potatoes` and filter by `"worst"`,
 then given the following nav bar links:
 
 ```handlebars
-{{#link-to "team" "badgers"}}Badgers{{/link-to}}
-{{#link-to "team" "bears"}}Bears{{/link-to}}
-{{#link-to "team" "potatoes"}}Potatoes{{/link-to}}
+<LinkTo @route="team" @model="badgers">Badgers</LinkTo>
+<LinkTo @route="team" @model="bears">Bears</LinkTo>
+<LinkTo @route="team" @model="potatoes">Potatoes</LinkTo>
 ```
 
 the generated links would be:
@@ -295,7 +294,7 @@ it is stored and tied to the model loaded into the route.
 If you wish to reset a query param, you have two options:
 
 1. explicitly pass in the default value for that query param into
-   `link-to` or `transitionTo`.
+   `<LinkTo` or `transitionTo`.
 2. use the `Route.resetController` hook to set query param values back to
    their defaults before exiting the route or changing the route's model.
 

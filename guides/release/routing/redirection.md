@@ -10,7 +10,7 @@ Ember allows you to control that access with a combination of hooks and methods 
 One of the methods is [`transitionTo()`](https://www.emberjs.com/api/ember/release/classes/Route/methods/transitionTo?anchor=transitionTo).
 Calling `transitionTo()` from a route or
 [`transitionToRoute()`](https://www.emberjs.com/api/ember/release/classes/Controller/methods/transitionToRoute?anchor=transitionToRoute) from a controller will stop any transitions currently in progress and start a new one, functioning as a redirect.
-`transitionTo()` behaves exactly like the [link-to](../../templates/links/) helper.
+`transitionTo()` behaves exactly like [`<LinkTo>`](../../templates/links/).
 
 The other one is [`replaceWith()`](https://www.emberjs.com/api/ember/release/classes/Route/methods/transitionTo?anchor=replaceWith/) which works the same way as `transitionTo()`.
 The only difference between them is how they manage history.

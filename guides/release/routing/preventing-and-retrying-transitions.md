@@ -7,7 +7,7 @@ later time by calling `transition.retry()`.
 
 ### Preventing Transitions via `willTransition`
 
-When a transition is attempted, whether via `{{link-to}}`, `transitionTo`,
+When a transition is attempted, whether via `<LinkTo>`, `transitionTo`,
 or a URL change, a `willTransition` action is fired on the currently
 active routes. This gives each active route, starting with the leaf-most
 route, the opportunity to decide whether or not the transition should occur.
@@ -38,7 +38,7 @@ export default Route.extend({
 });
 ```
 
-When the user clicks on a `{{link-to}}` helper, or when the app initiates a
+When the user clicks on a `<LinkTo>`, or when the app initiates a
 transition by using `transitionTo`, the transition will be aborted and the URL
 will remain unchanged. However, if the browser back button is used to
 navigate away from `route:form`, or if the user manually changes the URL, the

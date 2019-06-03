@@ -45,7 +45,7 @@ This means that some uncommon but perfectly valid attributes, such as `lang` or
 custom `data-*` attributes must be specifically enabled. For example, this template:
 
 ```handlebars
-{{#link-to "photos" data-toggle="dropdown" lang="es"}}Fotos{{/link-to}}
+<LinkTo @route="photos" data-toggle="dropdown" lang="es">Fotos</LinkTo>
 ```
 
 Will render the following HTML:
@@ -57,7 +57,7 @@ Will render the following HTML:
 To enable support for these attributes, an attribute binding must be
 added for each specific attribute on the component.
 To do this, you can extend the appropriate components
-in your application. For example, for `link-to` you would create your own version
+in your application. For example, for `<LinkTo>` you would create your own version
 of this component by extending
 [`Ember.LinkComponent`](https://www.emberjs.com/api/ember/release/classes/LinkComponent)
 

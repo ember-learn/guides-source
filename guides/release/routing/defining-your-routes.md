@@ -39,19 +39,19 @@ Router.map(function() {
 });
 ```
 
-Inside your templates, you can use [`{{link-to}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/link-to?anchor=link-to) to navigate between
+Inside your templates, you can use [`<LinkTo>`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/link-to?anchor=link-to) to navigate between
 routes, using the name that you provided to the `route` method.
 
 ```handlebars
-{{#link-to "index"}}<img class="logo">{{/link-to}}
+<LinkTo @route="index"><img class="logo"></LinkTo>
 
 <nav>
-  {{#link-to "about"}}About{{/link-to}}
-  {{#link-to "favorites"}}Favorites{{/link-to}}
+  <LinkTo @route="about">About</LinkTo>
+  <LinkTo @route="favorites">Favorites</LinkTo>
 </nav>
 ```
 
-The `{{link-to}}` helper will also add an `active` class to the link that
+The `<LinkTo>` component will also add an `active` class to the link that
 points to the currently active route.
 
 Multi-word route names are conventionally dasherized, such as:
@@ -64,7 +64,7 @@ Router.map(function() {
 
 The route defined above will by default use the `blog-post.js` route handler,
 the `blog-post.hbs` template, and be referred to as `blog-post` in any
-`{{link-to}}` helpers.
+`<LinkTo>`.
 
 Multi-word route names that break this convention, such as:
 
@@ -76,7 +76,7 @@ Router.map(function() {
 
 will still by default use the `blog-post.js` route handler and the
 `blog-post.hbs` template, but will be referred to as `blog_post` in any
-`{{link-to}}` helpers.
+`<LinkTo>` helpers.
 
 ## Nested Routes
 
@@ -121,7 +121,7 @@ the `{{outlet}}` of the `posts` template.
 
 A nested route name includes the names of its ancestors.
 If you want to transition to a route (either
-via `transitionTo` or `{{#link-to}}`), make sure to use the full route
+via `transitionTo` or `<LinkTo>`), make sure to use the full route
 name (`posts.new`, not `new`).
 
 ## The application route
@@ -355,7 +355,7 @@ handlers](https://www.emberjs.com/api/ember/release/classes/Route).
 ## Transitioning Between Routes
 Once the routes are defined, how do we go about transitioning between them within our application? It depends on where the transition needs to take place:
 
-- From a template, use [`{{link-to}}`](https://emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/link-to?anchor=link-to) as mentioned above
+- From a template, use [`<LinkTo>`](https://emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/link-to?anchor=link-to) as mentioned above
 - From a route, use the [`transitionTo()`](https://emberjs.com/api/ember/release/classes/Route/methods/transitionTo?anchor=transitionTo) method
 - From a controller, use the [`transitionToRoute()`](https://emberjs.com/api/ember/release/classes/Controller/methods/transitionToRoute?anchor=transitionToRoute) method
 - From anywhere else in your application, such as a component, inject the [Router Service](https://emberjs.com/api/ember/release/classes/RouterService) and use the [`transitionTo()`](https://emberjs.com/api/ember/release/classes/RouterService/methods/transitionTo?anchor=transitionTo) method

@@ -144,9 +144,9 @@ export default Component.extend({
 ```
 
 ```handlebars {data-filename=app/templates/components/drafts-button.hbs}
-{{#link-to "drafts" tagName="button"}}
+<LinkTo @route="drafts" @tagName="button">
   Drafts ({{this.drafts.length}})
-{{/link-to}}
+</LinkTo>
 ```
 
 Unfortunately, the app will now make two separate requests for the

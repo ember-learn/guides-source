@@ -1,7 +1,7 @@
-## The `{{link-to}}` Component
+## The `<LinkTo>` Component
 
 You create a link to a route using the
-[`{{link-to}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/get?anchor=link-to)
+[`<LinkTo>`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/get?anchor=link-to)
 component.
 
 ```javascript {data-filename=app/router.js}
@@ -15,7 +15,7 @@ Router.map(function() {
 ```handlebars {data-filename=app/templates/photos.hbs}
 <ul>
   {{#each this.photos as |photo|}}
-    <li>{{#link-to "photos.edit" photo}}{{photo.title}}{{/link-to}}</li>
+    <li><LinkTo @route="photos.edit" @model="photo">{{photo.title}}</LinkTo></li>
   {{/each}}
 </ul>
 ```
@@ -31,7 +31,7 @@ rendered HTML would look something like this:
 </ul>
 ```
 
-The `{{link-to}}` component takes one or two arguments:
+The `<LinkTo>` component takes one or two arguments:
 
 * The name of a route. In this example, it would be `index`, `photos`, or
   `photos.edit`.
@@ -42,9 +42,9 @@ The `{{link-to}}` component takes one or two arguments:
   an explicit value instead:
 
 ```handlebars {data-filename=app/templates/photos.hbs}
-{{#link-to "photos.edit" 1}}
+<LinktTo @route="photos.edit" @model={{1}}>
   First Photo Ever
-{{/link-to}}
+</LinkTo>
 ```
 
 When the rendered link matches the current route, and the same
@@ -81,7 +81,7 @@ Router.map(function() {
   {{this.body}}
 </div>
 
-<p>{{#link-to "photos.photo.comment" this.primaryComment}}Main Comment{{/link-to}}</p>
+<p><Linkto @route="photos.photo.comment" @model=this.primaryComment}}Main Comment</LinkTo></p>
 ```
 
 If you specify only one model, it will represent the innermost dynamic segment `:comment_id`.
@@ -91,9 +91,9 @@ Alternatively, you could pass both a photo's ID and a comment to the component:
 
 ```handlebars {data-filename=app/templates/photo/index.hbs}
 <p>
-  {{#link-to 'photo.comment' 5 this.primaryComment}}
+  <LinkTo @route="photo.comment" @models={{array 5 this.primaryComment}}>
     Main Comment for the Next Photo
-  {{/link-to}}
+  </LinkTo>
 </p>
 ```
 
@@ -107,41 +107,22 @@ The `query-params` helper can be used to set query params on a link:
 
 ```handlebars
 // Explicitly set target query params
-{{#link-to "posts" (query-params direction="asc")}}Sort{{/link-to}}
+<LinkTo @route="posts" @query={{hash direction="asc"}}>Sort</LinkTo>
 
 // Binding is also supported
-{{#link-to "posts" (query-params direction=this.otherDirection)}}Sort{{/link-to}}
+<LinkTo @route="posts" @query={{hash direction=this.otherDirection}}>Sort</LinkTo>
 ```
 
 For more information on how to use query parameters see the [query parameters](../../routing/query-params/) section in Routing.
 
-### Using link-to as an inline component
-
-In addition to being used as a block expression, the
-[`link-to`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/get?anchor=link-to)
-component can also be used in inline form by specifying the link text as the first
-argument to the component:
-
-```handlebars
-A link in {{#link-to "index"}}Block Expression Form{{/link-to}},
-and a link in {{link-to "Inline Form" "index"}}.
-```
-
-The output of the above would be:
-
-```html
-A link in <a href="/">Block Expression Form</a>,
-and a link in <a href="/">Inline Form</a>.
-```
-
 ### Adding additional attributes on a link
 
 When generating a link you might want to set additional attributes for it. You can do this with additional
-arguments to the `link-to` component:
+arguments to the `LinkTo` component:
 
 ```handlebars
 <p>
-  {{link-to "Edit this photo" "photo.edit" this.photo class="btn btn-primary"}}
+  <LinkTo @route="photo.edit" @model={{this.photo}} class="btn btn-primary">Edit this photo</LinkTo>
 </p>
 ```
 
@@ -151,15 +132,15 @@ adding class names, Ember will also apply the standard `ember-view` and possibly
 ### Replacing history entries
 
 The default behavior for
-[`link-to`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/get?anchor=link-to)
+[`LinkTo`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/get?anchor=link-to)
 is to add entries to the browser's history when transitioning between the
 routes. However, to replace the current entry in the browser's history you
 can use the `replace=true` option:
 
 ```handlebars
 <p>
-  {{#link-to "photo.comment" 5 this.primaryComment replace=true}}
+  <LinkTo @route="photo.comment" @models={{array 5 this.primaryComment}} @replace={{true}}>
     Main Comment for the Next Photo
-  {{/link-to}}
+  </LinkTo>
 </p>
 ```

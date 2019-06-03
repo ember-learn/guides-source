@@ -28,8 +28,8 @@ export default Component.extend({
 
 ```handlebars {data-filename=app/templates/components/navigation-bar.hbs}
 <ul>
-  <li>{{#link-to "home"}}Home{{/link-to}}</li>
-  <li>{{#link-to "about"}}About{{/link-to}}</li>
+  <li><LinkTo @route="home">Home</LinkTo></li>
+  <li><LinkTo @route="about">About</LinkTo></li>
 </ul>
 ```
 
