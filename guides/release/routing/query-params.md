@@ -98,7 +98,7 @@ on the `posts` controller, but it could also refer to a `direction` property
 on any of the controllers associated with the `posts` route hierarchy,
 matching the leaf-most controller with the supplied property name.
 
-The `<Linkto>` component takes into account query parameters when determining
+The `<LinkTo>` component takes into account query parameters when determining
 its "active" state, and will set the class appropriately. The active state
 is determined by calculating whether the query params end up the same after
 clicking a link. You don't have to supply all of the current,
