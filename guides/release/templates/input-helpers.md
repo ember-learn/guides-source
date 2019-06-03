@@ -1,13 +1,13 @@
-The [`{{input}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/if?anchor=input)
-and [`{{textarea}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/if?anchor=textarea)
-helpers in Ember.js are the easiest way to create common form controls.
+The [`<Input>`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/if?anchor=input)
+and [`<Textarea>`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/if?anchor=textarea)
+components are the easiest way to create common form controls.
 Using these helpers, you can create form controls that are almost identical to the native HTML `<input>` or `<textarea>` elements, but are aware of Ember's two-way bindings and can automatically update.
 
 ## Text fields
 
 ```handlebars
 <label for="facebook">Facebook</label>
-{{input id="facebook" value="http://www.facebook.com"}}
+<Input @id="facebook" @value="http://www.facebook.com" />
 ```
 
 Will become:
@@ -40,7 +40,7 @@ rendering context. For example:
 
 ```handlebars
 <label for="firstname">First Name</label>
-{{input id="firstname" type="text" value=this.firstName disabled=this.entryNotAllowed size="50"}}
+<Input @id="firstname" @type="text" @value={{this.firstName}} @size="50" disabled={{this.entryNotAllowed}} />
 ```
 
 Will bind the `disabled` attribute to the value of `entryNotAllowed` in the
@@ -52,7 +52,7 @@ To dispatch an action on specific events such as `key-press`, use the following
 
 ```handlebars
 <label for="firstname">First Name</label>
-{{input id="firstname" value=this.firstName key-press=(action "updateFirstName")}}
+<Input @id="firstname" @value={{this.firstName}} @key-press={{action "updateFirstName"}} />
 ```
 
 The following event types are supported (dasherized format):
@@ -71,12 +71,12 @@ More [events types](https://www.emberjs.com/api/ember/release/classes/Component#
 ## Checkboxes
 
 You can also use the
-[`{{input}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/if?anchor=input)
+[`<Input>`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/if?anchor=input)
 helper to create a checkbox by setting its `type`:
 
 ```handlebars
 <label for="admin-checkbox">Is Admin?</label>
-{{input id="admin-checkbox" type="checkbox" name="isAdmin" checked=this.isAdmin}}
+<Input @id="admin-checkbox" @type="checkbox" @name="isAdmin" @checked={{this.isAdmin}}>
 ```
 
 Checkboxes support the following properties:
@@ -96,19 +96,19 @@ Which can be bound or set as described in the previous section.
 Checkboxes are a special input type. If you want to dispatch an action on a certain [event](https://www.emberjs.com/api/ember/release/classes/Component), you will always need to define the event name in camelCase format:
 
 ```handlebars
-{{input type="checkbox" keyPress=(action "updateName")}}
+<Input @type="checkbox" @keypress={{action "updateName"}} />
 ```
 
 
 ## Text Areas
 
 ```handlebars
-{{textarea value=this.name cols="80" rows="6"}}
+<Textarea @value={{this.name}} @cols="80" @rows="6">
 ```
 
 Will bind the value of the text area to `name` on the current context.
 
-[`{{textarea}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/textarea?anchor=textarea) supports binding and/or setting the following properties:
+[`<Textarea>`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/textarea?anchor=textarea) supports binding and/or setting the following properties:
 
 * `value`
 * `name`
@@ -133,7 +133,7 @@ Will bind the value of the text area to `name` on the current context.
 You might need to bind a property dynamically to an input if you're building a flexible form, for example. To achieve this you need to use the [`{{get}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/get?anchor=get) and [`{{mut}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/mut?anchor=mut) in conjunction like shown in the following example:
 
 ```handlebars
-{{input value=(mut (get this.person this.field))}}
+<Input @value={{mut (get this.person this.field)}} />
 ```
 
 The `{{get}}` helper allows you to dynamically specify which property to bind, while the `{{mut}}` helper allows the binding to be updated from the input. See the respective helper documentation for more detail: [`{{get}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/get?anchor=get) and [`{{mut}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/mut?anchor=mut).

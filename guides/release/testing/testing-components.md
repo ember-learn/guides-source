@@ -234,7 +234,7 @@ export default Component.extend({
 ```handlebars {data-filename="app/templates/components/comment-form.hbs"}
 <form {{action "submitComment" on="submit"}}>
   <label>Comment:</label>
-  {{textarea value=this.comment}}
+  <Textarea @value={{this.comment}} />
 
   <input class="comment-input" type="submit" value="Submit"/>
 </form>
@@ -480,7 +480,8 @@ export default Component.extend({
 
 ```handlebars {data-filename="app/templates/components/delayed-typeahead.hbs"}
 <label for="search">Search</label>
-{{input id="search" value=this.searchValue key-up=(action 'handleTyping')}}
+<Input @id="search" @value={{this.searchValue}} @key-up={{action 'handleTyping'}}>
+
 <ul>
 {{#each this.results as |result|}}
   <li class="result">{{result.name}}</li>

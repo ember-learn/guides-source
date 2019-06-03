@@ -14,7 +14,7 @@ A sample component template could look like this:
   <h1>{{this.title}}</h1>
   <p>{{yield}}</p>
   <label for="title">Blog Title</label>
-  <p>Edit title: {{input id="title" type="text" value=this.title}}</p>
+  <p>Edit title: <Input @id="title" @type="text" @value={{this.title}} /></p>
 </article>
 ```
 
