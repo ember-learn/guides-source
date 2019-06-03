@@ -76,7 +76,7 @@ Router.map(function() {
 
 will still by default use the `blog-post.js` route handler and the
 `blog-post.hbs` template, but will be referred to as `blog_post` in any
-`<LinkTo>` helpers.
+`<LinkTo>`.
 
 ## Nested Routes
 
