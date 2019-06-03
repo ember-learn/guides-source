@@ -274,6 +274,8 @@ In these cases, make sure to declare _all_ of the relevant values in the correct
 <MyInput @input-label="Password" aria-describedby="text-help-0 text-help-1" />
 ```
 
+To learn more about `aria` roles and accessibility in Ember, check out the [Accessibility Guide](../../reference/accessibility-guide/).
+
 #### Attributes and Modifiers
 
 Modifiers are a concept that we haven't covered too deeply just yet, but they're
