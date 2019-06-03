@@ -6,13 +6,15 @@ Using these helpers, you can create form controls that are almost identical to t
 ## Text fields
 
 ```handlebars
-{{input value="http://www.facebook.com"}}
+<label for="facebook">Facebook</label>
+{{input id="facebook" value="http://www.facebook.com"}}
 ```
 
 Will become:
 
 ```html
-<input type="text" value="http://www.facebook.com"/>
+<label for="facebook">Facebook</label>
+<input id="facebook" type="text" value="http://www.facebook.com"/>
 ```
 
 You can pass the following standard `<input>` attributes within the input
@@ -37,7 +39,8 @@ unquoted, these values will be bound to a property on the template's current
 rendering context. For example:
 
 ```handlebars
-{{input type="text" value=this.firstName disabled=this.entryNotAllowed size="50"}}
+<label for="firstname">First Name</label>
+{{input id="firstname" type="text" value=this.firstName disabled=this.entryNotAllowed size="50"}}
 ```
 
 Will bind the `disabled` attribute to the value of `entryNotAllowed` in the
@@ -48,7 +51,8 @@ current context.
 To dispatch an action on specific events such as `key-press`, use the following
 
 ```handlebars
-{{input value=this.firstName key-press=(action "updateFirstName")}}
+<label for="firstname">First Name</label>
+{{input id="firstname" value=this.firstName key-press=(action "updateFirstName")}}
 ```
 
 The following event types are supported (dasherized format):
@@ -71,7 +75,8 @@ You can also use the
 helper to create a checkbox by setting its `type`:
 
 ```handlebars
-{{input type="checkbox" name="isAdmin" checked=this.isAdmin}}
+<label for="admin-checkbox">Is Admin?</label>
+{{input id="admin-checkbox" type="checkbox" name="isAdmin" checked=this.isAdmin}}
 ```
 
 Checkboxes support the following properties:

@@ -347,7 +347,8 @@ we can now use the component in `SendMessage` to wrap a text input element whose
     @text="Click to send your message."
     @onConfirm={{action "sendMessage" "info"}}
     as |confirmValue|>
-  {{input value=confirmValue}}
+  <label for="confirm-message">Confirm Message</label>
+  {{input id="confirm-message" value=confirmValue}}
 </ButtonWithConfirmation>
 ```
 
@@ -379,7 +380,8 @@ We can tell the action to invoke the `sendMessage` action directly on the messag
     @text="Click to send your message."
     @onConfirm={{action "sendMessage" "info" target=this.messaging}}
     as |confirmValue|>
-  {{input value=confirmValue}}
+  <label for="confirm-message">Confirm Message</label>
+  {{input id="confirm-message" value=confirmValue}}
 </ButtonWithConfirmation>
 ```
 
