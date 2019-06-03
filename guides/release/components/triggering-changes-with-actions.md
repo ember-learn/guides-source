@@ -381,7 +381,7 @@ We can tell the action to invoke the `sendMessage` action directly on the messag
     @onConfirm={{action "sendMessage" "info" target=this.messaging}}
     as |confirmValue|>
   <label for="confirm-message">Confirm Message</label>
-  <Input @id="confirm-message" @value={{confirmValue}}>
+  <Input @id="confirm-message" @value={{confirmValue}} />
 </ButtonWithConfirmation>
 ```
 
