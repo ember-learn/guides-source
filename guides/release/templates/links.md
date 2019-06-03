@@ -81,7 +81,7 @@ Router.map(function() {
   {{this.body}}
 </div>
 
-<p><Linkto @route="photos.photo.comment" @model=this.primaryComment}}Main Comment</LinkTo></p>
+<p><LinkTo @route="photos.photo.comment" @model=this.primaryComment}}>Main Comment</LinkTo></p>
 ```
 
 If you specify only one model, it will represent the innermost dynamic segment `:comment_id`.
