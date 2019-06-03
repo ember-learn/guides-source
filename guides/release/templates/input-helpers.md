@@ -103,7 +103,7 @@ Checkboxes are a special input type. If you want to dispatch an action on a cert
 ## Text Areas
 
 ```handlebars
-<Textarea @value={{this.name}} @cols="80" @rows="6">
+<Textarea @value={{this.name}} @cols="80" @rows="6" />
 ```
 
 Will bind the value of the text area to `name` on the current context.
