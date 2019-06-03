@@ -348,7 +348,7 @@ we can now use the component in `SendMessage` to wrap a text input element whose
     @onConfirm={{action "sendMessage" "info"}}
     as |confirmValue|>
   <label for="confirm-message">Confirm Message</label>
-  <Input @id="confirm-message" @value={{confirmValue}}>
+  <Input @id="confirm-message" @value={{confirmValue}} />
 </ButtonWithConfirmation>
 ```
 
