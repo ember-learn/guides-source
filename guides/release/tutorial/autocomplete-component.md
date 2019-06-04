@@ -415,7 +415,7 @@ Finally, we'll assert that the locations are listed upon render completion.
 ```javascript {data-filename="tests/integration/components/list-filter-test.js" data-diff="+31,+32,+33,+34"}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render } from '@ember/test-helpers';
+import { render, settled } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
 const ITEMS = [{city: 'San Francisco'}, {city: 'Portland'}, {city: 'Seattle'}];
@@ -465,7 +465,7 @@ First add `triggerKeyEvent` and `fillIn` to the list of imports.  The [`fillIn`]
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import { render, triggerKeyEvent, fillIn } from '@ember/test-helpers';
+import { render, settled, triggerKeyEvent, fillIn } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 ```
 
