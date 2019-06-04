@@ -12,6 +12,35 @@
       url: "index"
     - title: "Core Concepts"
       url: "core-concepts"
+
+
+- title: "Tutorial"
+  url: 'tutorial'
+  pages:
+    - title: "Creating Your App"
+      url: "ember-cli"
+    - title: "Planning Your App"
+      url: 'acceptance-test'
+    - title: "Routes and Templates"
+      url: "routes-and-templates"
+    - title: "The Model Hook"
+      url: "model-hook"
+    - title: "Installing Addons"
+      url: "installing-addons"
+    - title: "Building a Simple Component"
+      url: "simple-component"
+    - title: "Creating a Handlebars Helper"
+      url: "hbs-helper"
+    - title: "Using Ember Data"
+      url: "ember-data"
+    - title: "Building a Complex Component"
+      url: "autocomplete-component"
+    - title: "Services"
+      url: "service"
+    - title: "Adding Nested Routes"
+      url: "subroutes"
+    - title: "Deploying"
+      url: "deploying"
 # - title: "Anatomy of an App"
 #   url: "anatomy-of-an-app"
 #   pages:
@@ -106,7 +135,7 @@
   url: "services"
   pages:
     - title: Overview
-      url: "index"    
+      url: "index"
 # - title: "Data Management"
 #   url: "data-management"
 #   pages:

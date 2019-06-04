@@ -7,7 +7,7 @@ Components can be included in any route's template, even multiple times, saving
 you from copy-and-pasting the same code around your application.
 
 Let's generate a `rental-listing` component that will manage the behavior for
-each of our rentals. 
+each of our rentals.
 
 ```bash
 ember g component rental-listing
@@ -176,14 +176,14 @@ export default class RentalListingComponent extends Component {
 }
 ```
 
-In order to trigger this action, we need to use the `{{action}}` helper in our
+In order to trigger this action, we need to use the `{{on}}` modifier in our
 template:
 
 ```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="-2,+3,+4,+5,+6,+7"}
 <article class="listing">
   <a class="image {{if this.isWide "wide"}}">
   <a
-    onclick={{action "toggleImageSize"}}
+    {{on  "click" this.toggleImageSize}}
     class="image {{if this.isWide "wide"}}"
     role="button"
   >
