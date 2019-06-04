@@ -411,12 +411,10 @@ export default modifier((element, [callback]) => {
 
 Now that we've created this modifier, we can use it in our `modal` component, and add some logic to invoke a passed-in action whenever the user clicks outside the modal.
 
-```handlebars {data-filename="app/templates/components/modal.hbs" data-diff="-1,+2"}
-{{#if this.isShowing}}
-  <div class="modal" {{on-click-outside @clickedOutside}}>
-    {{yield}}
-  </div>
-{{/if}}
+```handlebars {data-filename="app/templates/components/modal.hbs"}
+<div class="modal" {{on-click-outside @clickedOutside}}>
+  {{yield}}
+</div>
 ```
 
 We could then use the `modal` component this way:
