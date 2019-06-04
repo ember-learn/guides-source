@@ -179,7 +179,8 @@ export default class RentalListingComponent extends Component {
 ```
 
 In order to trigger this action, we need to use the `{{on}}` modifier in our
-template:
+template to tell the anchor element which event to listen for,
+and what to do when that event happens:
 
 ```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="-2,+3,+4,+5,+6,+7"}
 <article class="listing">
@@ -210,11 +211,7 @@ template:
 </article>
 ```
 
-So, when we click on the anchor element, Ember will go into the `actions` hash
-and call the `toggleImageSize` function. An
-[actions hash](../../templates/actions/) is an object in the component that
-contains functions. These functions are called when the user interacts with the
-UI, such as clicking.
+Now, when we click on the anchor element, Ember will call the `toggleImageSize` function.
 
 So, when we click the image or the `View Larger` link in our browser, we see our
 image shown larger. When we click the enlarged image we again see it smaller.
