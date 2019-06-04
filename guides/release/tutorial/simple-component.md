@@ -156,6 +156,8 @@ export default class RentalListingComponent extends Component {
 }
 ```
 
+Note that because we want the UI to track changes to isWide, or _to update whetever isWide changes_, we need to mark the property is "tracked" via the `@tracked` decorator.
+
 To allow the user to widen the image, we will need to add an action that toggles
 the value of `isWide`. Let's create the `toggleImageSize` action to toggle the
 `isWide` property on our component:
