@@ -401,4 +401,3 @@ type="javascript"&gt;alert('pwned!');&lt;/script&gt;</b> has joined the channel.
 [1]: https://www.emberjs.com/api/ember/release/classes/Helper
 [2]: https://www.emberjs.com/api/ember/release/classes/Helper/methods/compute?anchor=compute
 [3]: https://api.emberjs.com/ember/release/functions/@ember%2Fcomponent%2Fhelper/helper
-[4]: https://www.emberjs.com/api/ember/release/functions/@ember%2Ftemplate/htmlSafe
