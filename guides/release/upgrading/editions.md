@@ -18,7 +18,7 @@ Here are some of the core features in Octane:
   up-to-date with JavaScript changes.
 - **Async functions** (`async`/`await`) for authoring asynchronous code.
 - [Importing npm packages](../../addons-and-dependencies/managing-dependencies/#toc_regular-npm-packages) with zero additional configuration.
- [Octane-style components](../../components/component-basics/), including
+- [Octane-style components](../../components/component-basics/), including
     - **"Outer HTML" templates** that support fragments and easily customizing the
     root element.
     - **Customizable DOM attributes** with `...attributes`.
