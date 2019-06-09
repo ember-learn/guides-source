@@ -11,18 +11,18 @@ This allows for new apps to have the best features enabled automatically, while 
 
 Here are some of the core features in Octane:
 
-- **Native JavaScript classes**, unlocking simpler syntax, faster performance,
+- [Native JavaScript classes](../../working-with-javascript/native-classes/), unlocking simpler syntax, faster performance,
   and better interop with the wider ecosystem.
-- **Decorators** for customizing the behavior of components and other classes.
-- **Tracked properties**, a type of decorator that simplifies keeping the DOM
+- [Decorators](../../working-with-javascript/native-classes/#toc_decorators) for customizing the behavior of components and other classes.
+- [Tracked properties](../../state-management/tracked-properties/), a type of decorator that simplifies keeping the DOM
   up-to-date with JavaScript changes.
 - **Async functions** (`async`/`await`) for authoring asynchronous code.
-- **Importing npm packages** with zero additional configuration.
-- **Octane-style components**, including
-  - **"Outer HTML" templates** that support fragments and easily customizing the
+- [Importing npm packages](../../addons-and-dependencies/managing-dependencies/#toc_regular-npm-packages) with zero additional configuration.
+- [Octane-style components](../../components/component-basics/), including
+    - **"Outer HTML" templates** that support fragments and easily customizing the
     root element.
-  - **Customizable DOM attributes** with `...attributes`.
-  - **`<AngleBracket>` syntax** for better readability.
+    - **Customizable DOM attributes** with `...attributes`.
+    - **`<AngleBracket>` syntax** for better readability.
 
 Just as important is what we're removing from the Ember experience. These
 features below will keep working, but you won't have to use them if you don't
