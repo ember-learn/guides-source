@@ -233,8 +233,8 @@ export default Component.extend({
 
 ```handlebars {data-filename="app/templates/components/comment-form.hbs"}
 <form {{action "submitComment" on="submit"}}>
-  <label>Comment:</label>
-  <Textarea @value={{this.comment}} />
+  <label for="comment">Comment:</label>
+  <Textarea @id="comment" @value={{this.comment}} />
 
   <input class="comment-input" type="submit" value="Submit"/>
 </form>

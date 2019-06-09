@@ -80,7 +80,7 @@ With this code, we have established the following behaviors:
    full router transition (i.e. it won't call `model` hooks and
    `setupController`, etc.); it will only update the URL.
 
-### LinkTo component
+### `LinkTo` component
 
 The `LinkTo` component supports specifying query params using the
 `query-params` subexpression helper.

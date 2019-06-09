@@ -51,7 +51,7 @@ routes, using the name that you provided to the `route` method.
 </nav>
 ```
 
-The `<LinkTo>` component will also add an `active` class to the link that
+The `<LinkTo>` component will also add an `active` CSS class to the link that
 points to the currently active route.
 
 Multi-word route names are conventionally dasherized, such as:
@@ -76,7 +76,7 @@ Router.map(function() {
 
 will still by default use the `blog-post.js` route handler and the
 `blog-post.hbs` template, but will be referred to as `blog_post` in any
-`<LinkTo>`.
+`<LinkTo>` component.
 
 ## Nested Routes
 
