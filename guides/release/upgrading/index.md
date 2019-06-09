@@ -17,7 +17,7 @@ Other features may require that you enable them specifically in your app's confi
 
 The best way to discover new features is to read the [release blog posts](https://blog.emberjs.com/tags/releases.html).
 If a new feature requires you to opt-in, it's called an optional feature.
-Follow [this guide](https://guides.emberjs.com/release/configuring-ember/optional-features/) to learn which optional features are available in your app's version and how to enable them.
+Follow [this guide](../../configuring-ember/optional-features/) to learn which optional features are available in your app's version and how to enable them.
 In many cases, codemods will be available to help you make syntax-related updates.
 
 ## Octane upgrade strategy
@@ -37,7 +37,7 @@ In summary:
 5. Install `@ember/optional-features` in your app, if it is not already in the `devDependencies` of your `package.json`
 6. Turn on optional features one by one, running tests in between to make sure things still work as expected. Read on to learn what an Octane configuration looks like.
 7. Create a new component in your app, and experiment!
-8. Try refactoring some existing code to use a new feature. Check out the [../cheat-sheet/] and [Editions deep dive](../editions/) for some pointers.
+8. Try refactoring some existing code to use a new feature. Check out the [cheat sheet](../cheat-sheet/) and [Editions deep dive](../editions/) for some pointers.
 8. Schedule a show-and-tell meeting with your coworkers to fill them in about what you learned 
 9. Review the refactoring checklist below to create a plan for handling existing code
 
@@ -51,7 +51,7 @@ If you need help along the way, visit [the Ember Community chat and forums](http
 
 ### Optional features in Octane
 
-A fully-Octaneified app has the following configuration in `config/optional-features.json`:
+A fully-Octane app has the following configuration in `config/optional-features.json`:
 
 ```json
 {
