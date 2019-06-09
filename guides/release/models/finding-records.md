@@ -86,11 +86,11 @@ and the adapter for the `User` model defines a `queryRecord()` method that targe
 
 ```javascript {data-filename=app/adapters/user.js}
 import DS from 'ember-data';
-import $ from 'jquery';
+import fetch from 'fetch';
 
 export default DS.Adapter.extend({
   queryRecord(store, type, query) {
-    return $.getJSON('/api/current_user');
+    return fetch('/api/current_user');
   }
 });
 ```

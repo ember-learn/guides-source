@@ -102,10 +102,11 @@ data and storing it:
 
 ```javascript {data-filename=app/components/list-of-drafts.js}
 import Component from '@ember/component';
+import fetch from 'fetch';
 
 export default Component.extend({
   willRender() {
-    $.getJSON('/drafts').then(data => {
+    fetch('/drafts').then(data => {
       this.set('drafts', data);
     });
   }
@@ -131,10 +132,11 @@ component.
 
 ```javascript {data-filename=app/components/drafts-button.js}
 import Component from '@ember/component';
+import fetch from 'fetch';
 
 export default Component.extend({
   willRender() {
-    $.getJSON('/drafts').then(data => {
+    fetch('/drafts').then(data => {
       this.set('drafts', data);
     });
   }
