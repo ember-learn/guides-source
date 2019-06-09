@@ -163,6 +163,4 @@ store.findRecord('post', 2, { backgroundReload: false }).then(function(post) {
 });
 ```
 
-The `backgroundReload` option is used to prevent the fetching of the destroyed record, since [`findRecord()`][findRecord] automatically schedules a fetch of the record from the adapter.
-
-[findRecord]: <https://www.emberjs.com/api/ember-data/release/classes/DS.Store/methods/findRecord?anchor=findRecord>
+The `backgroundReload` option is used to prevent the fetching of the destroyed record, since [`findRecord()`](https://www.emberjs.com/api/ember-data/release/classes/DS.Store/methods/findRecord?anchor=findRecord) automatically schedules a fetch of the record from the adapter.

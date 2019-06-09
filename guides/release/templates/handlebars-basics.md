@@ -5,9 +5,10 @@ If you want to learn in a step-by-step way, you should begin your journey in the
 
 ## Writing plain HTML
 
-Ember templates have some superpowers, but let's start with regular HTML.
+Templates in Ember have some superpowers, but let's start with regular HTML.
 For any file in an Ember app that has an extension ending in `.hbs`, you can write HTML markup in it as if it was an `.html` file.
 HTML is the language that browsers understand for laying out content on a web page.
+`.hbs` stands for Handlebars, the name of a tool that lets you write more than just HTML.
 
 Every Ember app has a file called `application.hbs`, and you can write regular HTML markup there or in any other `hbs` file:
 
@@ -18,7 +19,7 @@ Every Ember app has a file called `application.hbs`, and you can write regular H
 </p>
 ```
 
-When you start an app with `ember serve`, the compiler may help you catch some errors, such as forgetting to close a tag or missing a quotation mark.
+When you start an app with `ember serve`, your templates are compiled down to something that Ember's rendering engine can process more easily. The compiler helps you catch some errors, such as forgetting to close a tag or missing a quotation mark.
 Reading the error message on the page or in your browser's developer console will get you back on track.
 
 ## Types of templates
@@ -39,7 +40,7 @@ The CLI helps ensure that the new files go in the right place in the app folder 
 
 For example, either of these commands will generate `.hbs` template files (and other things!) in your app:
 
-```sh
+```bash
 ember generate component my-component-name
 ember generate route my-route-name
 ```
@@ -177,7 +178,8 @@ To pass in arguments associated with a Route, define the property from within a 
 
 Ember Helpers are a way to use JavaScript logic in your templates.
 For example, you could write a Helper function that capitalizes a word, does some math, converts a currency, or more.
-A Helper takes in `parameters`, which is an array of the values passed into the function, and should return a value.
+A Helper takes in two types of arguments, `positional` (an array of the positional values passed in the template) or `named` (an object of the named values passed in the template), which are passed into the function, and should return a value.
+Ember gives you the ability to [write your own helpers](../writing-helpers/), and comes with some [helpers built-in](../built-in-helpers).
 
 For example, let's say you would like the ability to add two numbers together.
 Define a function in `app/helpers/sum.js` to create a `sum` helper:
@@ -206,9 +208,9 @@ learn more about in the following guides.
 
 ### Nested Helpers
 
-Sometimes, you might see helpers used inside of some parentheses, `()`.
-It means that a Helper is being used inside of another Helper or Component.
-This is referred to as a "nested" Helper.
+Sometimes, you might see helpers invoked by placing them inside parentheses, `()`.
+This means that a Helper is being used inside of another Helper or Component.
+This is referred to as a "nested" Helper Invocation.
 Parentheses must be used because curly braces `{{}}` cannot be nested.
 
 ```handlebars {data-filename=app/templates/application.hbs}

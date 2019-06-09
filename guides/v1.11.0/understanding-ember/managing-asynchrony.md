@@ -103,7 +103,7 @@ export default Ember.View.extend({
 
 
 ```javascript {data-filename=app/routes/post.js}
-import Post from "app/models/post";
+import Post from 'app/models/post';
 
 export default Ember.Route.extend({
   model: function(){

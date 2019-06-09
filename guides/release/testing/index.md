@@ -1,6 +1,6 @@
 Testing is a core part of the Ember framework and its development cycle.
 
-[QUnit][] is the default testing framework for this guide, but others are supported too, through addons such as [ember-mocha](https://github.com/emberjs/ember-mocha).
+[QUnit](http://qunitjs.com/) is the default testing framework for this guide, but others are supported too, through addons such as [ember-mocha](https://github.com/emberjs/ember-mocha).
 
 The testing pattern presented below is consistent across different testing frameworks. Only the setup test functions from [ember-qunit](https://github.com/emberjs/ember-qunit) needs to be replaced with the respective setup functions in the testing addon used in order to use other testing frameworks.
 
@@ -10,6 +10,7 @@ To get started writing tests, we start with a plain unit test. In the example be
 
 ```javascript {data-filename=utils/tests/relative-date-test.js}
 import { module, test } from 'qunit';
+import { relativeDate } from 'my-app-name/utils/date-utils';
 
 module('relativeDate', function(hooks) {
   test('format relative dates correctly', function(assert) {
@@ -68,7 +69,7 @@ Examples of Container Tests are:
 * A serializer properly converts the blog request payload into a blog post model object.
 * Blog dates are properly formatted through a `time` service.
 
-You can read more about these type of tests in the [Testing Routes][] and [Testing Controllers][] section.
+You can read more about these type of tests in the [Testing Routes](./testing-routes) and [Testing Controllers](./testing-controllers) section.
 
 ### Rendering Tests
 
@@ -112,7 +113,7 @@ Examples of Rendering Tests are:
 
 Rendering Tests are used to test Components and Helpers where we need to render a layout and assert some interaction byproduct occurs.
 
-You can read more about it in the [Testing Components][] or the [Testing Helpers][] section.
+You can read more about it in the [Testing Components](./testing-components) or the [Testing Helpers](./testing-helpers) section.
 
 ### Application Tests
 
@@ -148,7 +149,7 @@ Examples of Application Tests are:
 * After saving a new post successfully, a user is then shown the list of prior posts.
 * A visitor does not have access to the admin panel.
 
-You can read more about how to create these kinds of tests in the [Application tests][] section.
+You can read more about how to create these kinds of tests in the [Application tests](./acceptance) section.
 
 ### Testing Blueprints
 
@@ -189,7 +190,7 @@ Run your tests with `ember test` on the command-line. You can re-run your tests 
 Tests can also be executed when you are running a local development server (started by running `ember server`),
 at the `/tests` URI which renders the `tests/index.html` template.
 
-These commands run your tests using [Testem][] to make testing multiple browsers very easy.
+These commands run your tests using [Testem](https://github.com/airportyh/testem) to make testing multiple browsers very easy.
 You can configure Testem using the `testem.js` file in your application root.
 
 #### Choosing the Tests to Run
@@ -200,11 +201,3 @@ When using QUnit it is possible to exclude tests by adding an exclamation point 
 
 You can also run a group of tests which you have scoped with a `module` before; e.g. for testing the module called `Unit | Service | location` only,
 run `ember test --module='Unit | Service | location'`.
-
-[QUnit]: http://qunitjs.com/
-[Testem]: https://github.com/airportyh/testem
-[Application tests]: ./acceptance
-[Testing Components]: ./testing-components
-[Testing Controllers]: ./testing-controllers
-[Testing Routes]: ./testing-routes
-[Testing Helpers]: ./testing-helpers

@@ -110,27 +110,26 @@ Data comes bundled with
 ActiveSupport::Inflector compatible library for inflecting words
 between plural and singular forms. Irregular or uncountable
 pluralizations can be specified via `Ember.Inflector.inflector`.
-To do this, create a file containing your customizations and import it
-in `app.js`:
 
-```javascript {data-filename=app/app.js}
-// sets up Ember.Inflector
-import './models/custom-inflector-rules';
-```
+To do this, create an [Initializer](../../applications/initializers/) file containing your customizations. The Ember CLI's `initializer` generator can be used `ember generate initializer custom-inflector-rules` to create the file. Update its content as follow:
 
-```javascript {data-filename=app/models/custom-inflector-rules.js}
+```javascript {data-filename=app/initializers/custom-inflector-rules.js}
 import Inflector from 'ember-inflector';
 
-const inflector = Inflector.inflector;
+export function initialize(/* application */) {
+  const inflector = Inflector.inflector;
 
-// Tell the inflector that the plural of "campus" is "campuses"
-inflector.irregular('campus', 'campuses');
+  // Tell the inflector that the plural of "campus" is "campuses"
+  inflector.irregular('campus', 'campuses');
 
-// Tell the inflector that the plural of "advice" is "advice"
-inflector.uncountable('advice');
+  // Tell the inflector that the plural of "advice" is "advice"
+  inflector.uncountable('advice');
+}
 
-// Modules must have an export, so we just export an empty object here
-export default {};
+export default {
+  name: 'custom-inflector-rules',
+  initialize
+};
 ```
 
 The JSON:API adapter will now make requests for `Campus` models to

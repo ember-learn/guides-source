@@ -117,17 +117,17 @@ Suppose you want to integrate your favorite date picker library into an Ember pr
 Typically, 3rd party JS/jQuery libraries require a DOM element to bind to.
 So, where is the best place to initialize and attach the library?
 
-After a component successfully renders its backing HTML element into the DOM, it will trigger its [`didInsertElement()`][did-insert-element] hook.
+After a component successfully renders its backing HTML element into the DOM, it will trigger its [`didInsertElement()`](https://www.emberjs.com/api/ember/release/classes/Component/events/didInsertElement?anchor=didInsertElement) hook.
 
 Ember guarantees that, by the time `didInsertElement()` is called:
 
 1. The component's element has been both created and inserted into the
    DOM.
 2. The component's element is accessible via the component's
-   [`$()`][dollar]
+   [`$()`](https://www.emberjs.com/api/ember/release/classes/Component/methods/$?anchor=%24)
    method.
 
-A component's [`$()`][dollar] method allows you to access the component's DOM element by returning a jQuery element.
+A component's [`$()`](https://www.emberjs.com/api/ember/release/classes/Component/methods/$?anchor=%24) method allows you to access the component's DOM element by returning a jQuery element.
 For example, you can set an attribute using jQuery's `attr()` method:
 
 ```javascript {data-filename=app/components/profile-editor.js}
@@ -141,7 +141,7 @@ export default Component.extend({
 });
 ```
 
-[`$()`][dollar] will, by default, return a jQuery object for the component's root element, but you can also target child elements within the component's template by passing a selector:
+[`$()`](https://www.emberjs.com/api/ember/release/classes/Component/methods/$?anchor=%24) will, by default, return a jQuery object for the component's root element, but you can also target child elements within the component's template by passing a selector:
 
 ```javascript {data-filename=app/components/profile-editor.js}
 import Component from '@ember/component';
@@ -154,7 +154,7 @@ export default Component.extend({
 });
 ```
 
-Let's initialize our date picker by overriding the [`didInsertElement()`][did-insert-element] method.
+Let's initialize our date picker by overriding the [`didInsertElement()`](https://www.emberjs.com/api/ember/release/classes/Component/events/didInsertElement?anchor=didInsertElement) method.
 
 Date picker libraries usually attach to an `<input>` element, so we will use jQuery to find an appropriate input within our component's template.
 
@@ -169,7 +169,7 @@ export default Component.extend({
 });
 ```
 
-[`didInsertElement()`][did-insert-element] is also a good place to
+[`didInsertElement()`](https://www.emberjs.com/api/ember/release/classes/Component/events/didInsertElement?anchor=didInsertElement) is also a good place to
 attach event listeners. This is particularly useful for custom events or
 other browser events which do not have a [built-in event
 handler](./handling-events/#toc_event-names).
@@ -194,13 +194,10 @@ There are a few things to note about the `didInsertElement()` hook:
 
 - It is only triggered once when the component element is first rendered.
 - In cases where you have components nested inside other components, the child component will always receive the `didInsertElement()` call before its parent does.
-- Setting properties on the component in [`didInsertElement()`][did-insert-element] triggers a re-render, and for performance reasons,
+- Setting properties on the component in [`didInsertElement()`](https://www.emberjs.com/api/ember/release/classes/Component/events/didInsertElement?anchor=didInsertElement) triggers a re-render, and for performance reasons,
   is not allowed.
-- While [`didInsertElement()`][did-insert-element] is technically an event that can be listened for using `on()`, it is encouraged to override the default method itself,
+- While [`didInsertElement()`](https://www.emberjs.com/api/ember/release/classes/Component/events/didInsertElement?anchor=didInsertElement) is technically an event that can be listened for using `on()`, it is encouraged to override the default method itself,
   particularly when order of execution is important.
-
-[did-insert-element]: https://www.emberjs.com/api/ember/release/classes/Component/events/didInsertElement?anchor=didInsertElement
-[dollar]: https://www.emberjs.com/api/ember/release/classes/Component/methods/$?anchor=%24
 
 ### Making Updates to the Rendered DOM with `didRender`
 

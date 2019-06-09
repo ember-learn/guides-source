@@ -128,24 +128,23 @@ endpoints. You may find your application has an endpoint that performs
 some business logic then creates several records. This likely does not
 map cleanly to Ember Data's existing `save()` API which is structured
 around persisting a single record. Instead you should make your own
-custom Ajax request and push the resulting model data into the store
+custom network request and push the resulting model data into the store
 so it can be accessed by other parts of your application.
 
 
 ```javascript {data-filename=app/routes/confirm-payment.js}
 import Route from '@ember/routing/route';
-import { inject as service } from '@ember/service';
-import $ from 'jquery';
+import fetch from 'fetch';
 
 export default class ConfirmPaymentRoute extends Route {
-  @service store;
   actions: {
     confirm(data) {
-      $.ajax({
-        data,
+      fetch('process-payment', {
         method: 'POST',
-        url: 'process-payment'
-      }).then(digitalInventory => {
+        body: JSON.stringify(data)
+      })
+      .then(response => response.json())
+      .then(digitalInventory => {
         this.store.push(digitalInventory);
         this.transitionTo('thank-you');
       });

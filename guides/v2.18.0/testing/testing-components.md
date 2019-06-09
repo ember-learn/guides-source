@@ -220,7 +220,7 @@ test('should trigger external action on form submit', function(assert) {
   this.$('textarea').change();
 
   // click the button to submit the form
-   Ember.run(() => document.querySelector('.comment-input').click());
+  run(() => document.querySelector('.comment-input').click());
 });
 ```
 
@@ -403,7 +403,7 @@ to limit requests to the server, and you want to verify that results are display
 
 ```javascript {data-filename=app/components/delayed-typeahead.js}
 import Component from '@ember/component';
-import { debounce } from "@ember/runloop";
+import { debounce } from '@ember/runloop';
 
 export default Component.extend({
   actions: {

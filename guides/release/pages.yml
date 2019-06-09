@@ -6,6 +6,8 @@
 - title: "Getting Started"
   url: "getting-started"
   pages:
+    - title: "How To Use The Guides"
+      url: "intro"
     - title: "Quick Start"
       url: "quick-start"
     - title: "Installing Ember"
@@ -106,7 +108,7 @@
   url: "services"
   pages:
     - title: Overview
-      url: "index"    
+      url: "index"
 # - title: "Data Management"
 #   url: "data-management"
 #   pages:

@@ -1,5 +1,5 @@
 _Container testing methods and computed properties follows previous patterns shown
-in [Testing Basics][] because Ember.Controller extends Ember.Object._
+in [Testing Basics](../unit-testing-basics/) because Ember.Controller extends Ember.Object._
 
 Controllers can be tested using the `setupTest` helper which is part
 of the ember-qunit framework. The tests written for instances like `Ember.Controller` are
@@ -114,7 +114,7 @@ Now let's write a test that sets a property on our `post` model in the
 ```javascript {data-filename=tests/unit/controllers/comments-test.js}
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
-import EmberObject from "@ember/object";
+import EmberObject from '@ember/object';
 import { run } from '@ember/runloop';
 
 module('Unit | Controller | comments', function(hooks) {
@@ -145,7 +145,3 @@ module('Unit | Controller | comments', function(hooks) {
   });
 });
 ```
-
-[Testing Basics]: ../unit-testing-basics/
-<!-- This definition flagged as not used - should be deleted? -->
-<!-- [needs]: ../../controllers/dependencies-between-controllers/ -->

@@ -43,10 +43,8 @@ Typically, most models are loaded from and saved to a server that uses a
 database to store data. Usually you will send JSON representations of
 models back and forth to an HTTP server that you have written. However,
 Ember makes it easy to use other durable storage, such as saving to the
-user's hard disk with [IndexedDB][indexeddb], or hosted storage solutions that let you
+user's hard disk with [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API), or hosted storage solutions that let you
 avoid writing and hosting your own servers.
-
-[indexeddb]: https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API
 
 Once you've loaded your models from storage, components know how to
 translate model data into a UI that your user can interact with.  For
@@ -56,10 +54,8 @@ guide.
 
 Thanks to its use of the _adapter pattern_, Ember Data can be configured
 to work with many different kinds of backends. There is [an entire
-ecosystem of adapters][adapters] that allow your Ember app to talk to different
+ecosystem of adapters](http://emberobserver.com/categories/ember-data-adapters) that allow your Ember app to talk to different
 types of servers without you writing any networking code.
-
-[adapters]: http://emberobserver.com/categories/ember-data-adapters
 
 If you need to integrate your Ember.js app with a server that does not
 have an adapter available (for example, you hand-rolled an API server
@@ -178,11 +174,9 @@ will be shared among developers on your team, following them leads
 to code that is easier to maintain and understand.
 
 Rather than creating an arbitrary set of conventions, Ember Data is
-designed to work out of the box with [JSON API][json-api]. JSON API is a
+designed to work out of the box with [JSON API](http://jsonapi.org). JSON API is a
 formal specification for building conventional, robust, and performant
 APIs that allow clients and servers to communicate model data.
-
-[json-api]: http://jsonapi.org
 
 JSON API standardizes how JavaScript applications talk to servers, so
 you decrease the coupling between your frontend and backend, and have

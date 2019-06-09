@@ -76,12 +76,12 @@ Now implement the service as follows.
 The main API will be an [async function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) called `getMapElement`,
 that returns an HTML element containing a rendered map for the given location.
 We want the function to be async so we can call the remote geocode API and wait for its result.
-Notice the `await` keyword in the code below when we call `geocode.fetCoordinates`.
+Notice the `await` keyword in the code below when we call `geocode.fetchCoordinates`.
 
 Note that we check if a map already exists for the given location and use that one,
 otherwise we will create a new HTML element and call our Leaflet map service to render a map to it.
 
-```javascript {data-filename="app/services/map-element.js" data-diff="+1,+2,+3,+4,+6,+8,+9,+11,+12,+13,+14,+15,+16,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+30,+31,+32,+33,+34,+35"}
+```javascript {data-filename="app/services/map-element.js" data-diff="+1,+3,+4,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33,+34"}
 import { camelize } from '@ember/string';
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
@@ -211,7 +211,7 @@ and are intended for testing specific logic within a class.
 
 For our service unit test, we'll want to verify that locations that have been previously loaded are fetched from cache, while new locations are created the third party map service.
 We will isolate our tests from actually calling Leaflet Maps by stubbing the map service.
-On line 19 of `map-element-test.js` below we create a JavaScript object to simulate the behavior of the utility, but instead of creating a Google map, we return an empty JavaScript object.
+On line 20 of `map-element-test.js` below we create a JavaScript object to simulate the behavior of the utility, but instead of creating a Google map, we return an empty JavaScript object.
 
 To instantiate the service, we can instantiate it through ember's resolver using the [`factoryFor`](https://emberjs.com/api/ember/release/classes/ApplicationInstance/methods/factoryFor?anchor=factoryFor) method.
 `factoryFor` allows us to have control over the creation of the service in Ember, to pass arguments to the constructor that can override parts of the service for our tests.
@@ -219,7 +219,7 @@ To instantiate the service, we can instantiate it through ember's resolver using
 For cases where we do not need to override parts of the service, we can use [`lookup`](https://emberjs.com/api/ember/release/classes/ApplicationInstance/methods/lookup?anchor=lookup)
 In our test below we are passing in our fake map utility object in the first test, and passing a cache object for the second test.
 
-```javascript {data-filename="tests/unit/services/map-element-test.js" data-diff="+3,+5,-10,-11,-12,-13,-14,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33,+34,+35,+37,+38,+39,+40,+41,+42,+43,+44,+45"}
+```javascript {data-filename="tests/unit/services/map-element-test.js" data-diff="+4,+5,-9,-10,-11,-12,-13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33,+34,+35,+36,+37,+38,+39,+40,+41,+42,+43"}
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 
@@ -233,13 +233,12 @@ module('Unit | Service | maps', function(hooks) {
     let service = this.owner.lookup('service:maps');
     assert.ok(service);
   });
-
   test('should create a new map if one isnt cached for location', async function (assert) {
     assert.expect(5);
     let stubMapService = {
       createMap(element, coords) {
         assert.ok(element, 'createMap called with element');
-        assert.deepEqual(coords, [0,0], 'createMap given coordinates');
+        assert.deepEqual(coords, [0, 0], 'createMap given coordinates');
         return DUMMY_ELEMENT;
       }
     }
@@ -269,14 +268,14 @@ module('Unit | Service | maps', function(hooks) {
 ```
 
 When the service calls `createMap` on our fake utility `stubMapService`, we will run asserts to validate that it is called.
-In our first test notice that we expect five asserts to be run in line 17. Two of the asserts run in the test function, while the other two are run when `createMap` is called.
+In our first test notice that we expect five asserts to be run in line 15. Two of the asserts run in the test function, while the other two are run when `createMap` is called.
 
-In the second test, only one assert is expected (line 38), since the map element is fetched from cache and does not use the utility.
+In the second test, only one assert is expected (line 36), since the map element is fetched from cache and does not use the utility.
 
-Also, note that the second test uses a dummy object as the returned map element (defined on line 5).
-Our map element can be substituted with any object because we are only asserting that the cache has been accessed (see line 44).
+Also, note that the second test uses a dummy object as the returned map element (defined on line 4).
+Our map element can be substituted with any object because we are only asserting that the cache has been accessed (see line 42).
 
-The location in the cache has been [`camelized`](https://www.emberjs.com/api/ember/release/classes/String/methods/camelize?anchor=camelize) (line 40),
+The location in the cache has been [`camelized`](https://www.emberjs.com/api/ember/release/classes/String/methods/camelize?anchor=camelize) (line 38),
 so that it may be used as a key to look up our element.
 This matches the behavior in `getMapElement` when city has not yet been cached.
 
@@ -290,7 +289,7 @@ That way when Ember injects the map service into the component, it uses our fake
 A stub stands in place of the real object in your application and simulates its behavior.
 In the stub service, define a method that will fetch the map based on location, called `getMapElement`.
 
-```javascript {data-filename="tests/integration/components/location-map-test.js" data-diff="+1,+6,+8,+9,+10,+11,+12,+13,+14,+15,+20,+21,+22,+23,+25,+26,+27,+28,+29,+30,-32,-33,-34,-35,-36,-37,-38,-39,-40,-41,-42,-43,-44,-45,-46,-47,-48"}
+```javascript {data-filename="tests/integration/components/location-map-test.js" data-diff="+1,+7,+8,+9,+10,+11,+12,+13,+14,+15,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,-30,-31,-32,-33,-34,-35,-36,-37,-38,-39,-40,-41,-42,-43,-44,-45,-46"}
 import Service from '@ember/service';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
@@ -320,7 +319,6 @@ module('Integration | Component | location map', function(hooks) {
     assert.ok(this.element.querySelector('.map-container > .map'), 'container should have map child');
     assert.equal(this.get('mapsService.calledWithLocation'), 'New York', 'should call service with New York');
   });
-
   test('it renders', async function(assert) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
@@ -354,13 +352,13 @@ In the example we assert that `calledWithLocation` in our stub is set to the loc
 We'll want to also stub the maps service for our `RentalListing` rendering test,
 since it uses `LocationMap` in its template.
 
-```javascript {data-filename="tests/integration/components/rental-listing-test.js" data-diff="+6,+7,+9,+10,+11,+12,+13,+19"}
+```javascript {data-filename="tests/integration/components/rental-listing-test.js" data-diff="+1,+6,+8,+9,+10,+11,+12,+13,+18,+19,-20,+27,-28"}
+import Service from '@ember/service';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render, click } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import EmberObject from '@ember/object';
-import Service from '@ember/service';
 
 class StubMapsService extends Service {
   getMapElement() {
@@ -374,6 +372,7 @@ module('Integration | Component | rental listing', function (hooks) {
   hooks.beforeEach(function () {
     this.owner.register('service:map-element', StubMapsService);
     this.rental = EmberObject.create({
+    this.rental = {
       image: 'fake.png',
       title: 'test-title',
       owner: 'test-owner',
@@ -381,6 +380,7 @@ module('Integration | Component | rental listing', function (hooks) {
       city: 'test-city',
       bedrooms: 3
     });
+    }
   });
 
   test('should display rental details', async function(assert) {
@@ -412,7 +412,7 @@ To stub these services we simply have to register a stub service that implements
 
 Add the following code to your application test
 
-```javascript {data-filename="tests/acceptance/list-rentals-test.js" data-diff="+1,+12,+14,+15,+16,+17,+18,+24,+25,+26"}
+```javascript {data-filename="tests/acceptance/list-rentals-test.js" data-diff="+1,+13,+14,+15,+16,+17,+18,+23,+24,+25"}
 import Service from '@ember/service';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
