@@ -27,5 +27,5 @@ exports.plugins = [
   "remark-preset-lint-consistent",
   "remark-preset-lint-recommended",
   ["remark-lint-list-item-indent", "space"],
-  ["remark-lint-code-block-style", false]
+  ["remark-lint-list-item-bullet-indent", false]
 ];
