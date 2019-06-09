@@ -194,9 +194,9 @@
 - title: "Upgrading"
   url: "upgrading"
   pages:
-    - title: "Strategy"
+    - title: "How to upgrade"
       url: "index"
-    - title: "Editions"
+    - title: "Editions Deep Dive"
       url: "editions"
     # - title: "Deprecations"
     #   url: "deprecations"
