@@ -88,7 +88,7 @@
     "retext-indefinite-article": "^1.1.6",
     "retext-repeated-words": "^1.2.2",
     "retext-spell": "^2.4.0",
-    "retext-syntax-urls": "^1.0.1",
+    "retext-syntax-urls": "^1.0.2",
     "unified": "^7.0.2",
     "walk-sync": "^1.1.3"
   },
