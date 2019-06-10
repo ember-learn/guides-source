@@ -86,7 +86,7 @@
     "retext-contractions": "^2.1.4",
     "retext-english": "^3.0.2",
     "retext-indefinite-article": "^1.1.6",
-    "retext-repeated-words": "^1.2.2",
+    "retext-repeated-words": "^1.2.3",
     "retext-spell": "^2.4.0",
     "retext-syntax-urls": "^1.0.1",
     "unified": "^7.0.2",
