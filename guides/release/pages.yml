@@ -201,6 +201,13 @@
     #   url: "index"
     - title: "Editions"
       url: "editions"
+      pages:
+        - title: "Templates"
+          url: "templates"
+        - title: "Native Classes"
+          url: "native-classes"
+        - title: "Tracked Properties"
+          url: "tracked-properties"
     # - title: "Deprecations"
     #   url: "deprecations"
 - title: "Developer Tools"
