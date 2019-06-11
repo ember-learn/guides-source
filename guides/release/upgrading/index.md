@@ -35,7 +35,7 @@ In summary:
 1. Follow the [regular upgrade steps](https://cli.emberjs.com/release/basic-use/upgrading/) to update your app to at least version `3.x`. <!-- TODO -->
 2. Run your tests to make sure everything still works as expected
 3. Review the deprecation warnings and make any necessary refactors. Some deprecations will need to be resolved before you can use an Octane feature. Read on to learn what they are.
-4. Go through the [Quick Start Tutorial](../getting-started/quick-start) to learn the fundamentals of Octane. You might need to study up on [Native JavaScript Classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/class) too.
+4. Go through the [Quick Start Tutorial](../getting-started/quick-start/) to learn the fundamentals of Octane. You might need to study up on [Native JavaScript Classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/class) too.
 5. Install `@ember/optional-features` in your app, if it is not already in the `devDependencies` of your `package.json`
 6. Turn on optional features one by one, running tests in between to make sure things still work as expected. Read on to learn what an Octane configuration looks like.
 7. Create a new component in your app, and experiment!
@@ -74,7 +74,7 @@ Following a refactoring plan will help with onboarding new developers, and minim
 
 There's no one-size-fits-all strategy, but here is a checklist you can adapt, once you're familiar with what Octane has to offer:
 
-1. Convert curly bracket components (`{{my-component}}`) to Angle Brackets (`<MyComponent />`). They are a normal, out-of-the-box feature of Ember since [3.4](https://blog.emberjs.com/2018/10/07/ember-3-4-released.html) that does not change a component's behavior. Follow the [Angle Bracket Syntax guide](../reference/syntax-conversion-guide) for examples.
+1. Convert curly bracket components (`{{my-component}}`) to Angle Brackets (`<MyComponent />`). They are a normal, out-of-the-box feature of Ember since [3.4](https://blog.emberjs.com/2018/10/07/ember-3-4-released.html) that does not change a component's behavior. Follow the [Angle Bracket Syntax guide](../reference/syntax-conversion-guide/) for examples.
 2. Use Named Arguments and `this` in your templates. This also does not change component behavior.
 3. Refactor some small, basic components to use Native Classes. Good components to refactor first are those that do not rely on two-way bindings, computed properties, or observers. These components will serve as examples that your coworkers can refer back to.
 5. Refactor components that have computed properties to use Native Classes and `@tracked`
