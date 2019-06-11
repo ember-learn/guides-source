@@ -38,8 +38,9 @@ For more information on Ember Data Attributes, read the section called [Defining
 
 ```javascript {data-filename="app/models/rental.js" data-diff="+4,+5,+6,+7,+8,+9,+10"}
 import DS from 'ember-data';
+const { Model } = DS;
 
-export default DS.Model.extend({
+export default Model.extend({
   title: DS.attr(),
   owner: DS.attr(),
   city: DS.attr(),
@@ -50,6 +51,7 @@ export default DS.Model.extend({
 });
 ```
 
+Note that we have used ES6 [destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Object_destructuring) with const declaration.
 We now have a model object that we can use for our Ember Data implementation.
 
 ### Updating the Model Hook
