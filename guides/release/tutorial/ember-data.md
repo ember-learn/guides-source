@@ -52,7 +52,7 @@ export default Model.extend({
 });
 ```
 
-Note that we have used ES6 [destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Object_destructuring) with const declaration.
+If you are curious about that `{ Model }` syntax above, it is called ES6 [destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Object_destructuring) with `const` declaration, and it is a feature of JavaScript.
 We now have a model object that we can use for our Ember Data implementation.
 
 ### Updating the Model Hook
