@@ -15,7 +15,7 @@ const Router = EmberRouter.extend({
   init() {
     this._super(...arguments);
 
-    this.router.on('routeDidChange', function() {
+    this.router.on('routeDidChange', () => {
       if(get(this, 'fastboot.isFastBoot')) {
         return;
       }
