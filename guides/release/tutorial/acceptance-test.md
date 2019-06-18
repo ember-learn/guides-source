@@ -64,7 +64,7 @@ module('Acceptance | list rentals', function(hooks) {
 A few of things to note in this simple test:
 
 * Application tests are setup by calling the function `setupApplicationTest`. This function ensures that your Ember application is started and shut down between each test.
-* QUnit passes in an object called an [`assert`](https://api.qunitjs.com/assert/) to each test function. An `assert` has functions, such as `equal()`, that allow your test to check for conditions within the test environment. A test must have one passing assert to be successful.
+* QUnit passes in an object called an [`assert`](https://api.qunitjs.com/assert/) to each test function. An `assert` has functions, such as `equal()`, that allow your test to check for conditions within the test environment. A test must have at least one passing assert to be successful.
 * Ember application tests use a set of test helper functions, such as the `visit` and `currentURL` functions used above. We'll discuss those functions in more detail later in the tutorial.
 
 Now run your test suite with the CLI command, `ember test --server`.
