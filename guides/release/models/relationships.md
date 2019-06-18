@@ -90,7 +90,7 @@ import DS from 'ember-data';
 const { Model, belongsTo } = DS;
 
 export default class Comment extends Model {
-  @belongsTo('blog-post', { inverse; null }) onePost;
+  @belongsTo('blog-post', { inverse: null }) onePost;
   @belongsTo('blog-post') twoPost;
   @belongsTo('blog-post') redPost;
   @belongsTo('blog-post') bluePost;
