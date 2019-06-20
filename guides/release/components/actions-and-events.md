@@ -472,7 +472,7 @@ action, and will just pass all the information it has. For example, our
 with it the full user profile object.
 
 ```javascript {data-filename=app/components/user-profile.js}
-import Component from '@ember/component';
+import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
