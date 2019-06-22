@@ -137,7 +137,7 @@ module('Integration | Component | pretty-color', function(hooks) {
 
     assert.equal(this.element.textContent.trim(), 'Pretty Color: orange', 'text starts as orange');
 
-    this.set('colorValue', 'blue');
+    this.set('colorValue', 'green');
 
     assert.equal(this.element.textContent.trim(), 'Pretty Color: green', 'text switches to green');
   });
@@ -218,10 +218,11 @@ passing along the form's data:
 
 ```javascript {data-filename="app/components/comment-form.js"}
 import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
 export default class CommentFormComponent extends Component {
-  comment = '';
+  @tracked comment = '';
 
   @action
   submitComment() {
@@ -452,7 +453,7 @@ assert.equal(this.element.querySelector('.form-message').textContent, 'Your deta
 ```
 
 Nearly all of the helpers for DOM interaction from `@ember/test-helpers` return a call to `settled` - a function
-that ensures that any Promises, operations in Ember's `run` loop, timers or Ajax requests have already resolved.
+that ensures that any Promises, operations in Ember's `run` loop, timers or network requests have already resolved.
 The `settled` function itself returns a Promise that resolves once all async operations have come to an end.
 
 You can use `settled` as a helper in your tests directly and `await` it for all async behavior to settle deliberately.

@@ -6,7 +6,7 @@ The Ember Guides are maintained and updated by an all-volunteer group of Ember c
 * _Contributing requested content_: We try to make it easy for people to contribute to the Guides by tagging issues with [help wanted](https://github.com/ember-learn/guides-source/issues?q=is%3Aopen+is%3Aissue+label%3A%22help+wanted%22) when appropriate. The best way to get started contributing content is to pick up one of these issues.
 Add a comment to let the maintainers know that you're interested, and post any questions you may have.
 * _Contributing unsolicited content_: If you'd like to contribute content that you think is missing, please start by checking the issues page. There may already be a plan to add this content! If not, open an issue yourself so that you can get feedback before you start writing. Our core contributors may ask you to start off by writing a blog post on your topic instead of or before opening a pull request on the Guides. This helps us keep the Guides consistent and streamlined.
-* _Writing infrastructure code_: You can also help out with the Guides by improving the code for the app that is used to build the content. Issues related to writing infrastructure code and layout should be made on the [guides-app](https://github.com/ember-learn/guides-app) repository.
+* _Writing infrastructure code_: You can also help out with the Guides by improving the code for the app that is used to build the content. The guides are powered by [Guidemaker](https://github.com/empress/guidemaker) and the styles and templates are provided by the [Guidemaker Ember Template](https://github.com/ember-learn/guidemaker-ember-template). If you have a specific issue that you are trying to fix and you're not sure which repo to work on then it is worth opening an issue on this repo and we can help to point you in the right direction. 
 
 Please note that no attempt is made to update content for older versions of the Guides. Except for broken links, they are considered static and immutable, as it is too difficult to maintain content for every version ever released. Issues will only be fixed for future releases.
 
@@ -78,6 +78,7 @@ In code samples:
 
 * Follow the [Ember Style Guide](https://github.com/emberjs/ember.js/blob/master/STYLEGUIDE.md).
 * Use double-quotes in templates, i.e., `<div class="awesome">{{foo-bar title="Tomster"}}</div>`.
+* Use a space after the name of a self-closing angle bracket component `<FooBar />`.
 * In [fenced code blocks](https://help.github.com/articles/creating-and-highlighting-code-blocks/), write paths relative to the project root. e.g., `app/router.js`, `config/environment.js`
 * When writing a fenced code block with a filename, do so by writing the language name first followed by the file name within a data-filename block as shown below,
 
@@ -123,28 +124,38 @@ When linking to API pages:
 (api link)
 * include parenthesis when linking to an API method, i.e., <code>&#96;store.push()&#96;</code>
 
+All linking should use inline-style links as shown below, not reference-style links
+
+```markdown
+[query params](../routing/query-params)
+```
+
+The following reference-style patterns should not be used:
+
+```markdown
+[query params][]
+[query params]: ../routing/query-params
+
+[query params][arbitrary text]
+[arbitrary text]: ../routing/query-params
+
+[query params][1]
+[1]: ../routing/query-params
+```
+
 ## Spellchecking/linting
 
-The guides are spellchecked and linted for markdown consistency. You can test your contributions by running `npm run lint::md`. Linting and spellchecking must pass or they will fail in Travis-CI. 
+The guides are spellchecked and linted for markdown consistency. You can test your contributions by running `npm run lint:md`. Linting and spellchecking must pass or they will fail in Travis-CI. 
 
 Markdown issues that will generate errors include:
 - Lists and text must be left justified, otherwise the linter will generate indentation errors
-- URL references must be followed by empty brackets `[]`.  See example below
-- Unused URL reference definitions - comment them out if using them later
 - Missing URL reference definitions
 
 Most other markdown errors should be self explanatory.
 
-URL reference and definition:
-```markdown
-This is a link to [something][]
+Spellchecking uses a custom [ember-dictionary](https://github.com/maxwondercorn/ember-dictionary) with words and terms, such as `SemVer` that are common to the Ember community. Words and terms that are associated with a specific guide should be placed in the `.local.dic` dictionary file. 
 
-[something]: https:\\www.something.com
-```
-
-Spellchecking uses a custom [ember-dictionary][] with words and terms common to the Ember community, such as `SemVer`. Words and terms that are associated with a specific guide can be placed in the `.local.dic` dictionary file. 
-
-See the [ember-dictionary][] GitHub repo for specifics on using the local dictionary and adding words to the standard dictionary.
+See the [ember-dictionary](https://github.com/maxwondercorn/ember-dictionary) GitHub repo for specifics on using the local dictionary and adding words to the standard dictionary.
 
 ## Writing
 
@@ -156,5 +167,3 @@ Write once, edit twice (at least!) before opening a PR. When you edit your own w
 * Did I include links where appropriate?
 
 You'll be amazed at how much better your writing gets as you edit and re-edit!
-
-[ember-dictionary]: https://github.com/maxwondercorn/ember-dictionary

@@ -65,7 +65,7 @@
   url: 'concepts'
   pages:
     - title: "Core Concepts"
-      url: "core-concepts"
+      url: "index"
     - title: "Naming Conventions"
       url: "naming-conventions"
     #- title: "What is Ember.js?"
@@ -81,7 +81,7 @@
   url: 'object-model'
   pages:
     - title: "Classes and Instances"
-      url: "classes-and-instances"
+      url: "index"
     - title: "Computed Properties"
       url: "computed-properties"
     - title: "Computed Properties and Aggregate Data with @each"
@@ -105,7 +105,7 @@
   url: 'templates'
   pages:
     - title: "The Application Template"
-      url: "the-application-template"
+      url: "index"
     - title: "Handlebars Basics"
       url: "handlebars-basics"
     - title: "Conditionals"
@@ -293,7 +293,7 @@
   url: 'configuring-ember'
   pages:
     - title: "Disabling Prototype Extensions"
-      url: "disabling-prototype-extensions"
+      url: "index"
     - title: "Embedding Applications"
       url: "embedding-applications"
     - title: "Feature Flags"
@@ -429,7 +429,7 @@
   url: 'understanding-ember'
   pages:
     - title: "The View Layer"
-      url: "the-view-layer"
+      url: "index"
     - title: "Managing Asynchrony"
       url: "managing-asynchrony"
     - title: "Keeping Templates Up-to-Date"
@@ -445,6 +445,6 @@
   url: 'contributing'
   pages:
     - title: "Adding New Features"
-      url: "adding-new-features"
+      url: "index"
     - title: "Repositories"
       url: "repositories"

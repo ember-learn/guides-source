@@ -6,6 +6,8 @@
 - title: "Getting Started"
   url: "getting-started"
   pages:
+    - title: "How To Use The Guides"
+      url: "intro"
     - title: "Quick Start"
       url: "quick-start"
     - title: "Installing Ember"
@@ -106,7 +108,7 @@
   url: "services"
   pages:
     - title: Overview
-      url: "index"    
+      url: "index"
 # - title: "Data Management"
 #   url: "data-management"
 #   pages:
@@ -195,9 +197,11 @@
 - title: "Upgrading"
   url: "upgrading"
   pages:
-    # - title: "Overview"
-    #   url: "index"
-    - title: "Editions"
+    - title: "How to upgrade"
+      url: "index"
+    - title: "Octane cheat sheet"
+      url: "cheat-sheet"
+    - title: "Editions Deep Dive"
       url: "editions"
     # - title: "Deprecations"
     #   url: "deprecations"

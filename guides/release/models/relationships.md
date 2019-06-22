@@ -90,7 +90,7 @@ import DS from 'ember-data';
 const { Model, belongsTo } = DS;
 
 export default class Comment extends Model {
-  @belongsTo('blog-post', { inverse; null }) onePost;
+  @belongsTo('blog-post', { inverse: null }) onePost;
   @belongsTo('blog-post') twoPost;
   @belongsTo('blog-post') redPost;
   @belongsTo('blog-post') bluePost;
@@ -267,7 +267,7 @@ updated and saved this often results in the creation of a great deal
 of code for very little benefit. An alternate approach is to define
 these relationships using an attribute with no transform
 (`attr()`). This makes it easy to access readonly values in
-computed properties and templates without the overhead of defining
+other objects and templates without the overhead of defining
 extraneous models.
 
 ### Creating Records

@@ -7,9 +7,7 @@ For example, imagine we have an `Invoice` model that contains a
 `totalDue` attribute, which represents the total amount due for that
 invoice. Because we do not want our company to go out of business due
 to strange JavaScript rounding errors, [we store this value in cents
-instead of a floating point dollar value][currency-stackoverflow].
-
-[currency-stackoverflow]: http://stackoverflow.com/a/3730040
+instead of a floating point dollar value](http://stackoverflow.com/a/3730040).
 
 However, if we display dollar values to our users as "100¢" instead of
 "$1.00", they may be very confused. We can write a helper to
@@ -337,7 +335,7 @@ Ember will escape the HTML tags, like this:
 This shows the literal string `<b>Hello world</b>` to the user, rather
 than the text in bold as you probably intended. We can tell Ember not to
 escape the return value (that is, that it is _safe_) by using the
-[`htmlSafe`][4] string utility:
+[`htmlSafe`](https://www.emberjs.com/api/ember/release/functions/@ember%2Ftemplate/htmlSafe) string utility:
 
 ```javascript {data-filename=app/helpers/make-bold.js}
 import { helper } from '@ember/component/helper';
@@ -350,9 +348,9 @@ export function makeBold([param, ...rest]) {
 export default helper(makeBold);
 ```
 
-If you return a `SafeString` (a string that has been wrapped in a call
-to [`htmlSafe`][4]), Ember knows that you have vouched on its behalf that it
-contains no malicious HTML.
+If you return a `SafeString` (a string that has been wrapped in a call to
+[`htmlSafe`](https://www.emberjs.com/api/ember/release/functions/@ember%2Ftemplate/htmlSafe)),
+Ember knows that you have vouched on its behalf that it contains no malicious HTML.
 
 However, note that in the above code we may have inadvertently
 introduced an XSS vulnerability into our application! By blindly marking
@@ -378,7 +376,7 @@ escape anything that may have come from an untrusted user with the
 `escapeExpression` utility:
 
 ```javascript {data-filename=app/helpers/make-bold.js}
-import Ember from "ember";
+import Ember from 'ember';
 import { helper } from '@ember/component/helper';
 import { htmlSafe } from '@ember/string';
 
@@ -403,4 +401,3 @@ type="javascript"&gt;alert('pwned!');&lt;/script&gt;</b> has joined the channel.
 [1]: https://www.emberjs.com/api/ember/release/classes/Helper
 [2]: https://www.emberjs.com/api/ember/release/classes/Helper/methods/compute?anchor=compute
 [3]: https://api.emberjs.com/ember/release/functions/@ember%2Fcomponent%2Fhelper/helper
-[4]: https://www.emberjs.com/api/ember/release/functions/@ember%2Ftemplate/htmlSafe

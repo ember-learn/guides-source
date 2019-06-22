@@ -78,7 +78,7 @@ You might be tempted to make the component responsible for fetching that
 data and storing it:
 
 ```javascript {data-filename=app/components/list-of-drafts.js}
-import Component from "ember-component";
+import Component from 'ember-component';
 
 export default Component.extend({
   willRender() {

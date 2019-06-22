@@ -34,10 +34,12 @@ Much of the power of promises comes from the fact that they can be
 chained together to perform sequential asynchronous operations:
 
 ```javascript
-// Note: jQuery Ajax methods return promises
-let usernamesPromise = Ember.$.getJSON('/usernames.json');
+import fetch from 'fetch';
 
-usernamesPromise.then(fetchPhotosOfUsers)
+let usernamesPromise = fetch('/usernames.json');
+
+usernamesPromise.then(response => response.json())
+                .then(fetchPhotosOfUsers)
                 .then(applyInstagramFilters)
                 .then(uploadTrendyPhotoAlbum)
                 .then(displaySuccessMessage, handleErrors);
@@ -143,7 +145,7 @@ export default class GoodForNothingRoute extends Route {
 In the above example, the error event would stop right at
 `route:good-for-nothing`'s error handler and not continue to bubble. To
 make the event continue bubbling up to `route:application`, you can
-return true from the error handler.
+`return true;` from the error handler.
 
 ### Recovering from Rejection
 

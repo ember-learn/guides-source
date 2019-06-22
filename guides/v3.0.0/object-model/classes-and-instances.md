@@ -4,11 +4,8 @@ as other major features of the Ember object model.
 
 ### Defining Classes
 
-To define a new Ember _class_, call the [`extend()`][1] method on
-[`EmberObject`][2]:
-
-[1]: https://www.emberjs.com/api/ember/2.16/classes/@ember%2Fobject/methods/extend?anchor=extend
-[2]: https://www.emberjs.com/api/ember/2.16/modules/@ember%2Fobject
+To define a new Ember _class_, call the [`extend()`](https://www.emberjs.com/api/ember/2.16/classes/@ember%2Fobject/methods/extend?anchor=extend) method on
+[`EmberObject`](https://www.emberjs.com/api/ember/2.16/modules/@ember%2Fobject):
 
 ```javascript
 import EmberObject from '@ember/object';
@@ -24,9 +21,8 @@ This defines a new `Person` class with a `say()` method.
 
 You can also create a _subclass_ from any existing class by calling
 its `extend()` method. For example, you might want to create a subclass
-of Ember's built-in [`Component`][3] class:
+of Ember's built-in [`Component`](https://www.emberjs.com/api/ember/2.16/classes/Component) class:
 
-[3]: https://www.emberjs.com/api/ember/2.16/classes/Component
 
 ```javascript {data-filename=app/components/todo-item.js}
 import Component from '@ember/component';
@@ -71,11 +67,9 @@ In certain cases, you will want to pass arguments to `_super()` before or after 
 
 This allows the original method to continue operating as it normally would.
 
-One common example is when overriding the [`normalizeResponse()`][4] hook in one of Ember-Data's serializers.
+One common example is when overriding the [`normalizeResponse()`](https://www.emberjs.com/api/ember-data/2.16/classes/DS.JSONAPISerializer/methods/normalizeResponse?anchor=normalizeResponse) hook in one of Ember-Data's serializers.
 
 A handy shortcut for this is to use a "spread operator", like `...arguments`:
-
-[4]: https://www.emberjs.com/api/ember-data/2.16/classes/DS.JSONAPISerializer/methods/normalizeResponse?anchor=normalizeResponse
 
 ```javascript
 normalizeResponse(store, primaryModelClass, payload, id, requestType)  {
@@ -89,11 +83,9 @@ The above example returns the original arguments (after your customizations) bac
 ### Creating Instances
 
 Once you have defined a class, you can create new _instances_ of that
-class by calling its [`create()`][5] method. Any methods, properties and
+class by calling its [`create()`](https://www.emberjs.com/api/ember/2.16/classes/@ember%2Fobject/methods/create?anchor=create) method. Any methods, properties and
 computed properties you defined on the class will be available to
 instances:
-
-[5]: https://www.emberjs.com/api/ember/2.16/classes/@ember%2Fobject/methods/create?anchor=create
 
 ```javascript
 import EmberObject from '@ember/object';
@@ -141,11 +133,9 @@ conventions in your Ember applications.
 
 ### Initializing Instances
 
-When a new instance is created, its [`init()`][6] method is invoked
+When a new instance is created, its [`init()`](https://www.emberjs.com/api/ember/2.16/classes/EmberObject/methods/init?anchor=init) method is invoked
 automatically. This is the ideal place to implement setup required on new
 instances:
-
-[6]: https://www.emberjs.com/api/ember/2.16/classes/EmberObject/methods/init?anchor=init
 
 ```javascript
 import EmberObject from '@ember/object';
@@ -226,11 +216,9 @@ Person.create({
 
 ### Accessing Object Properties
 
-When accessing the properties of an object, use the [`get()`][7]
-and [`set()`][8] accessor methods:
+When accessing the properties of an object, use the [`get()`](https://www.emberjs.com/api/ember/2.16/classes/@ember%2Fobject/methods/get?anchor=get)
+and [`set()`](https://www.emberjs.com/api/ember/2.16/classes/@ember%2Fobject/methods/set?anchor=set) accessor methods:
 
-[7]: https://www.emberjs.com/api/ember/2.16/classes/@ember%2Fobject/methods/get?anchor=get
-[8]: https://www.emberjs.com/api/ember/2.16/classes/@ember%2Fobject/methods/set?anchor=set
 
 ```javascript
 import EmberObject from '@ember/object';

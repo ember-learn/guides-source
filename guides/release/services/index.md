@@ -33,11 +33,11 @@ Like any Ember object, a service is initialized and can have properties and meth
 Below, the shopping cart service manages an items array that represents the items currently in the shopping cart.
 
 ```javascript {data-filename=app/services/shopping-cart.js}
+import { A } from '@ember/array';
 import Service from '@ember/service';
 
 export default class ShoppingCartService extends Service {
   items = [];
-
 
   add(item) {
     this.items.pushObject(item);
@@ -92,12 +92,10 @@ you must look up the service using Ember's [`getOwner`](https://emberjs.com/api/
 
 ```javascript {data-filename=app/components/cart-contents.js}
 import Component from '@glimmer/component';
-import { computed } from '@ember/object';
 import { getOwner } from '@ember/application';
 
 export default class CartContentsComponent extends Component {
   //will load the service in file /app/services/shopping-cart.js
-  @computed
   get cart() {
     return getOwner(this).lookup('service:shopping-cart');
   }

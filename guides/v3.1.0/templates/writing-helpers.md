@@ -7,9 +7,7 @@ For example, imagine we have an `Invoice` model that contains a
 `totalDue` attribute, which represents the total amount due for that
 invoice.  Because we do not want our company to go out of business due
 to strange JavaScript rounding errors, [we store this value in cents
-instead of a floating point dollar value][currency-stackoverflow].
-
-[currency-stackoverflow]: http://stackoverflow.com/a/3730040
+instead of a floating point dollar value](http://stackoverflow.com/a/3730040).
 
 However, if we display dollar values to our users as "100¢" instead of
 "$1.00", they may be very confused. We can write a helper to
@@ -249,9 +247,9 @@ access to services in your application, and can optionally save state as well,
 although this is usually unnecessary and error-prone.
 
 To create a class-based helper, rather than exporting a simple function, you
-should export a subclass of [`Ember.Helper`][1]. Helper classes must contain a
-[`compute`][2] method that behaves the same as the function passed to
-[`Ember.Helper.helper`][3].  In order to access a service, you must first inject it
+should export a subclass of [`Ember.Helper`](https://www.emberjs.com/api/ember/release/classes/Helper). Helper classes must contain a
+[`compute`](https://www.emberjs.com/api/ember/2.16/classes/Helper/methods/compute?anchor=compute) method that behaves the same as the function passed to
+[`Ember.Helper.helper`](https://www.emberjs.com/api/ember/release/classes/Helper/methods/compute?anchor=helper).  In order to access a service, you must first inject it
 into the class-based helper.  Once added, you can call the service's methods or
 access its properties from within the `compute()` method.
 
@@ -332,7 +330,7 @@ Ember will escape the HTML tags, like this:
 This shows the literal string `<b>Hello world</b>` to the user, rather
 than the text in bold as you probably intended. We can tell Ember not to
 escape the return value (that is, that it is _safe_) by using the
-[`htmlSafe`][4] string utility:
+[`htmlSafe`](https://www.emberjs.com/api/ember/2.16/classes/@ember%2Fstring/methods/htmlSafe?anchor=htmlSafe) string utility:
 
 ```javascript {data-filename=app/helpers/make-bold.js}
 import { helper } from '@ember/component/helper';
@@ -346,7 +344,7 @@ export default helper(makeBold);
 ```
 
 If you return a `SafeString` (a string that has been wrapped in a call
-to [`htmlSafe`][4]), Ember knows that you have vouched on its behalf that it
+to [`htmlSafe`](https://www.emberjs.com/api/ember/2.16/classes/@ember%2Fstring/methods/htmlSafe?anchor=htmlSafe)), Ember knows that you have vouched on its behalf that it
 contains no malicious HTML.
 
 However, note that in the above code we may have inadvertently
@@ -373,7 +371,7 @@ escape anything that may have come from an untrusted user with the
 `escapeExpression` utility:
 
 ```javascript {data-filename=app/helpers/make-bold.js}
-import Ember from "ember";
+import Ember from 'ember';
 import { helper } from '@ember/component/helper';
 import { htmlSafe } from '@ember/string';
 
@@ -394,7 +392,3 @@ would see this:
 Welcome back! <b>&lt;script
 type="javascript"&gt;alert('pwned!');&lt;/script&gt;</b> has joined the channel.
 ```
-[1]: https://www.emberjs.com/api/ember/release/classes/Helper
-[2]: https://www.emberjs.com/api/ember/release/classes/Helper/methods/compute?anchor=compute
-[3]: https://emberjs.com/api/ember/2.15/classes/Ember.Helper/methods/helper?anchor=helper
-[4]: https://www.emberjs.com/api/ember/release/classes/@ember%2Fstring/methods/htmlSafe?anchor=htmlSafe
