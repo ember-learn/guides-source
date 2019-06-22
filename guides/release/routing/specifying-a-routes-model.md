@@ -46,7 +46,7 @@ To start, here's an example of returning a simple array from the `model` hook. E
 ```javascript {data-filename=app/routes/favorite-posts.js}
 import Route from '@ember/routing/route';
 
-export default Route.extend({
+export default class FavoritePostsRoute extends Route {
   model() {
     return [
       { title: 'Ember Roadmap' },
@@ -54,7 +54,7 @@ export default Route.extend({
       { title: 'EmberConf Recap' }
     ]
   }
-});
+}
 ```
 
 Now that data can be used in the `favorite-posts`  template:
@@ -77,7 +77,7 @@ First, here's an example using a core browser API called [`fetch`](https://devel
 Install [`ember-fetch`](https://github.com/ember-cli/ember-fetch) with the command `ember install ember-fetch`, if it is not already in the app's `package.json`.
 Older browsers may not have `fetch`, but the `ember-fetch` library includes a polyfill, so we don't have to worry about backwards compatibility!
 
-```javascript {data-filename=app/routes/favorite-posts.js}
+```javascript {data-filename=app/routes/photo.js}
 import Route from '@ember/routing/route';
 import fetch from 'fetch';
 
@@ -142,12 +142,12 @@ _Note that Ember Data also has a feature called a [`Model`](https://api.emberjs.
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
-export default Route.extend({
+export default class FavoritePostsRoute extends Route {
   store: service(),
   model() {
     return this.get('store').findAll('posts');
   }
-});
+}
 ```
 
 ## Multiple Models
@@ -216,12 +216,12 @@ Whatever shows up in the URL at the `:post_id`, the dynamic segment, will be ava
 ```javascript {data-filename=app/routes/photo.js}
 import Route from '@ember/routing/route';
 
-export default Route.extend({
+export default class PhotoRoute extends Route {
   model(params) {
     console.log('This is the dynamic segment data: ' + params.post_id)
     // make an API request that uses the id
   }
-});
+}
 ```
 
 If you do not define a model hook for a route, it will default to using Ember Data to look up the record, as shown below:
@@ -314,13 +314,13 @@ from the parent route.
 ```javascript {data-filename=app/routes/album/index.js}
 import Route from '@ember/routing/route';
 
-export default Route.extend({
+export default class AlbumRoute extends Route {
   model() {
     let { songs } = this.modelFor('album');
 
     return songs;
   }
-});
+}
 ```
 
 In the case above, the parent route looked something like this:
