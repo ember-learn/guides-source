@@ -103,6 +103,7 @@ data and storing it:
 ```javascript {data-filename=app/components/list-of-drafts.js}
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
+import fetch from 'fetch';
 
 export default class ListOfDrafts extends Component {
   @tracked drafts;
@@ -110,7 +111,7 @@ export default class ListOfDrafts extends Component {
   constructor() {
     super(...arguments);
 
-    $.getJSON('/drafts').then(data => {
+    fetch('/drafts').then(data => {
       this.drafts = data;
     });
   }
@@ -137,6 +138,7 @@ component.
 ```javascript {data-filename=app/components/drafts-button.js}
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
+import fetch from 'fetch';
 
 export default class DraftsButton extends Component {
   @tracked drafts;
@@ -144,7 +146,7 @@ export default class DraftsButton extends Component {
   constructor() {
     super(...arguments);
 
-    $.getJSON('/drafts').then(data => {
+    fetch('/drafts').then(data => {
       this.drafts = data;
     });
   }
