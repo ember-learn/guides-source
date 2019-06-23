@@ -109,11 +109,12 @@
   pages:
     - title: Overview
       url: "index"
-# - title: "Data Management"
-#   url: "data-management"
-#   pages:
-#     - title: "Overview"
-#       url: "index"
+
+- title: "Connecting to the back end"
+  url: "back-end"
+  pages:
+    - title: "Overview"
+      url: "index"
 
 - title: "Ember Data"
   url: "models"

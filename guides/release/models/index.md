@@ -1,21 +1,12 @@
-Ember developers have great options for how they handle data from
-back end APIs. Ember itself works with any type of back end: REST,
-JSON:API, GraphQL, or anything else.
-
-Many developers choose to use Ember Data, a powerful set of tools
-for formatting requests, normalizing responses, and efficiently
-managing a local cache of data. The Ember Data library is included
-by default for applications generated with the Ember CLI; however,
-if you do not wish to use it, it can easily be removed by
-removing the `ember-data` entry from `package.json`.
-Some developers write all their own code to handle API requests,
-using native JavaScript methods like
-[fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
-or third-party libraries. Many apps use a combination of approaches.
-
 This section of the Guides describes the essential features of Ember
-Data. To learn about other ways to handle data and to find extensions,
-check out [Ember Observer](https://www.emberobserver.com/)
+Data, a powerful set of tools
+for formatting requests, normalizing responses, and efficiently
+managing a local cache of data.
+
+Ember.js itself works with any type of back end: REST,
+JSON:API, GraphQL, or anything else.
+To learn about other ways to handle data and to find extensions,
+check out the guide for [connecting to a back end](../back-end/), [Ember Observer](https://www.emberobserver.com/)
 or search for community-made tutorials.
 
 ## What are Ember Data models?
