@@ -145,7 +145,7 @@ During the development of you tests or when you refactor you application's code,
 
 To try them out, do the following steps:
 
-1. Add `await pauseTest();` in you test code.
+1. Add `await pauseTest();` in your test code.
 2. Run `ember server`.
 3. Visit `http://localhost:4200/tests` in your browser
 
