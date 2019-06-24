@@ -58,15 +58,42 @@ We commit it to our repository and we are off to the races!
 
 ### jquery-integration
 
-The Ember framework comes by default with jQuery integration.
-It is used for event handling, and to provide some APIs like `this.$()` in components.
+jQuery is commonly used for event handling and many popular libraries for charting and UI components.
+With the release of [Octane](https://emberjs.com/editions), Ember does not include [jQuery](https://jquery.com/) by default.
+However, you may choose to install and use it in your app!
 
-With the release of ember-source v3.4.0, an optional feature flag was introduced that allows users to opt out of jQuery.
-To enable it, run the following command after setting up `@ember/optional-features`:
+#### Including jQuery
+
+To include jQuery in your Ember app, follow the instructions above to install `@ember/optional-features`. 
+Next, enable the feature:
+
+```bash
+ember feature:enable jquery-integration
+```
+
+Then, install the `@ember/jquery` addon:
+
+```bash
+ember install @ember/jquery
+```
+
+Now, almost anywhere in your app, you can use `this.$()` to use jQuery methods.
+
+#### Removing jQuery
+
+If you are working on an application that already has jQuery installed, and would like to remove it, follow these steps.
+
+First, refactor your own code to not depend on jQuery.
+Keep in mind that if any of your app's dependencies use jQuery,
+you will need to find an alternative for them.
+
+Next, follow the instructions above to install `@ember/optional-features`, and run the following command to change `@ember/optional-features`:
 
 ```bash
 ember feature:disable jquery-integration
 ```
+
+Then, remove `@ember/jquery` from your `package.json`.
 
 This will remove jQuery from your `vendor.js` bundle and disable any use of jQuery in Ember itself.
 Now your app will be about 30KB lighter!

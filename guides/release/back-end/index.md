@@ -52,9 +52,9 @@ of data fetching should be done in a route's `model`.
 
 ### Requests in Services
 
-If someone is connecting to a third-party API, such as a service for payment or mapping, and they need that state across many routes, a [Service](../services/) might be a good place to make requests. Functions and state in a Service can be used almost anywhere in the app.
+If someone is connecting to a third-party API, such as a service for payment or mapping, and they need that state across many routes, a [Service](../services/) might be a good place to make requests. Some common use cases include polling for data and managing websocket connections.
 
-Requests in services have the same drawbacks as Components.
+Requests in services have the same drawbacks as Components. Functions and state in a Service can be used almost anywhere in the app.
 
 ## Simulating API requests
 
