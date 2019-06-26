@@ -7,11 +7,13 @@ Classic invocation syntax may also be referred to as curly invocation syntax.
 **Classic invocation syntax:**
 ```handlebars
 {{site-header user=this.user class=(if this.user.isAdmin "admin")}}
+{{content/welcome user=this.user}}
 ```
 
 **Angle bracket invocation syntax:**
 ```handlebars
 <SiteHeader @user={{this.user}} @class={{if this.user.isAdmin "admin"}} />
+<Content::Welcome @user={{this.user}} />
 ```
 
 Consider the example above.
@@ -105,10 +107,9 @@ export default Component.extend({
 ### When to use classic invocation syntax?
 
 Although Angle Bracket syntax is considered to be the best approach, classic invocation syntax is fine to keep using.
-In some cases, classic invocation is still required. 
-When you need direct support for positional arguments or if your components are nested within the file tree, you should still reach for those curly brackets:
+In some cases, classic invocation is still required.
+When you need direct support for positional arguments, you should still reach for those curly brackets:
 
 ```handlebars
 {{some-component param1 param2}}
-{{ui/foo-bar}}
 ```
