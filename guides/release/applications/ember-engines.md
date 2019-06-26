@@ -18,6 +18,6 @@ Engines provide an antidote to these problems by allowing for distributed develo
 
 Engines are good for organizations that have multiple teams, where each team has their own area that is clearly separated from the others. The isolation is good when it matches organizational boundaries, but adds unnecessary complexity when there is not a good match.
 
-Engines are used by a number of organizations, including [LinkedIn](https://www.linkedin.com/), [Chase](https://www.chase.com/), and [Square](https://squareup.com), to power sites with million of users.
+Engines are used by a number of large organizations to power sites with million of users.
 
 If you are considering splitting up your application into engines just to reduce the amount of data that needs to be initially downloaded and increase the performance, Engines are not the right solution. Please check out the section on tree shaking and code splitting in projects like [Embroider](https://github.com/embroider-build/embroider).
