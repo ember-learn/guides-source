@@ -128,7 +128,7 @@ and we can specify a model by editing `app/routes/scientists.js`.
 
 We'll take the code created for us by the generator and add a `model()` method to the `Route`:
 
-```javascript {data-filename="app/routes/scientists.js" data-diff="+4,+5,+6"}
+```javascript {data-filename="app/routes/scientists.js"}
 import Route from '@ember/routing/route';
 
 export default Route.extend({
@@ -149,7 +149,7 @@ the `model()` method supports any library that uses [JavaScript Promises](https:
 Now let's tell Ember how to turn that array of strings into HTML.
 Open the `scientists` template and add the following code to loop through the array and print it:
 
-```handlebars {data-filename="app/templates/scientists.hbs" data-diff="+3,+4,+5,+6,+7"}
+```handlebars {data-filename="app/templates/scientists.hbs"}
 <h2>List of Scientists</h2>
 
 <ul>
@@ -167,7 +167,7 @@ As your application grows, you will notice you are sharing UI elements between m
 or using them multiple times on the same page.
 Ember makes it easy to refactor your templates into reusable components.
 
-Let's create a `people-list` component that we can use in multiple places to show a list of people.
+Let's create a `PeopleList` component that we can use in multiple places to show a list of people.
 
 As usual, there's a generator that makes this easy for us.
 Make a new component by typing:
@@ -176,19 +176,22 @@ Make a new component by typing:
 ember generate component people-list
 ```
 
-Copy and paste the `scientists` template into the `people-list` component's template and edit it to look as follows:
+Notice that while the file generate is dasherized, `people-list`, when you try to use it in a template,
+you should use capital case, `PeopleList`.
+
+Copy and paste the `scientists` template into the `PeopleList` component's template and edit it to look as follows:
 
 ```handlebars {data-filename=app/templates/components/people-list.hbs}
-<h2>{{this.title}}</h2>
+<h2>{{@title}}</h2>
 
 <ul>
-  {{#each this.people as |person|}}
+  {{#each @people as |person|}}
     <li>{{person}}</li>
   {{/each}}
 </ul>
 ```
 
-Note that we've changed the title from a hard-coded string ("List of Scientists") to a dynamic property (`{{title}}`).
+Note that we've changed the title from a hard-coded string ("List of Scientists") to a dynamic property (`{{@title}}`).
 We've also renamed `scientist` to the more-generic `person`,
 decreasing the coupling of our component to where it's used.
 
@@ -201,14 +204,7 @@ We're going to tell our component:
 2. What array of people to use, via the `people` attribute. We'll
    provide this route's `model` as the list of people.
 
-```handlebars {data-filename="app/templates/scientists.hbs" data-diff="-1,-2,-3,-4,-5,-6,-7,+8"}
-<h2>List of Scientists</h2>
-
-<ul>
-  {{#each this.model as |scientist|}}
-    <li>{{scientist}}</li>
-  {{/each}}
-</ul>
+```handlebars {data-filename="app/templates/scientists.hbs"}
 <PeopleList @title="List of Scientists" @people={{this.model}} />
 ```
 
@@ -218,7 +214,7 @@ The only difference is that now we've componentized our list into a version that
 You can see this in action if you create a new route that shows a different list of people.
 As an exercise for the reader,
 you may try to create a `programmers` route that shows a list of famous programmers.
-By re-using the `people-list` component, you can do it in almost no code at all.
+By re-using the `PeopleList` component, you can do it in almost no code at all.
 
 ## Click Events
 
@@ -226,14 +222,13 @@ So far, your application is listing data,
 but there is no way for the user to interact with the information.
 In web applications you often want to listen for user events like clicks or hovers.
 Ember makes this easy to do.
-First add an `action` helper to the `li` in your `people-list` component.
+First add an `action` helper to the `li` in your `PeopleList` component.
 
-```handlebars {data-filename="app/templates/components/people-list.hbs" data-diff="-5,+6"}
-<h2>{{this.title}}</h2>
+```handlebars {data-filename="app/templates/components/people-list.hbs"}
+<h2>{{@title}}</h2>
 
 <ul>
-  {{#each this.people as |person|}}
-    <li>{{person}}</li>
+  {{#each @people as |person|}}
     <li {{action "showPerson" person}}>{{person}}</li>
   {{/each}}
 </ul>
@@ -242,13 +237,13 @@ First add an `action` helper to the `li` in your `people-list` component.
 The `action` helper allows you to add event listeners to elements and call named functions.
 By default, the `action` helper adds a `click` event listener,
 but it can be used to listen for any element event.
-Now, when the `li` element is clicked a `showPerson` function will be called from the `actions` object in the `people-list` component.
+Now, when the `li` element is clicked a `showPerson` function will be called from the `actions` object in the `PeopleList` component.
 Think of this like calling `this.actions.showPerson(person)` from our template.
 
-To handle this function call you need to modify the `people-list` component file to add the function to be called.
+To handle this function call you need to modify the `PeopleList` component file to add the function to be called.
 In the component, add an `actions` object with a `showPerson` function that alerts the first argument.
 
-```javascript {data-filename="app/components/people-list.js" data-diff="+4,+5,+6,+7,+8"}
+```javascript {data-filename="app/components/people-list.js"}
 import Component from '@ember/component';
 
 export default Component.extend({
