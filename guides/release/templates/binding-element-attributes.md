@@ -48,7 +48,7 @@ or you can use `...attributes` in the component's template.
 
 #### `attributeBindings`
 
-By default, components that you have created will not apply HTML attributtes you pass to them when using them in templates.
+By default, components that you have created will not apply HTML attributes you pass to them when using them in templates.
 This means that the following:
 
 ```handlebars {data-filename="app/templates/application.hbs"}
