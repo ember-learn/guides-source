@@ -129,7 +129,7 @@ and we can specify a model by editing `app/routes/scientists.js`.
 
 We'll take the code created for us by the generator and add a `model()` method to the `Route`:
 
-```javascript {data-filename="app/routes/scientists.js" data-diff="+4,+5,+6"}
+```javascript {data-filename="app/routes/scientists.js"}
 import Route from '@ember/routing/route';
 
 export default class ScientistsRoute extends Route {
@@ -139,7 +139,7 @@ export default class ScientistsRoute extends Route {
 }
 ```
 
-This code example uses a feature of JavaScript called Classes.
+This code example uses a feature of JavaScript called classes.
 Learn more with this [overview of the latest JavaScript features](https://ponyfoo.com/articles/es6).
 
 In a route's `model()` method, you return whatever data you want to make available to the template.
@@ -149,7 +149,7 @@ the `model()` method supports any library that uses [JavaScript Promises](https:
 Now let's tell Ember how to turn that array of strings into HTML.
 Open the `scientists` template and add the following code to loop through the array and print it:
 
-```handlebars {data-filename="app/templates/scientists.hbs" data-diff="+3,+4,+5,+6,+7"}
+```handlebars {data-filename="app/templates/scientists.hbs"}
 <h2>List of Scientists</h2>
 
 <ul>
@@ -188,8 +188,8 @@ Copy and paste the `scientists` template into the `PeopleList` component's templ
 </ul>
 ```
 
-Note that we've changed the title from a hard-coded string ("List of Scientists") to a dynamic property (`{{@title}}`). The `@` indicates that `@title` is an argument
-that was passed to the component.
+Note that we've changed the title from a hard-coded string ("List of Scientists") to a dynamic property (`{{@title}}`).
+The `@` indicates that `@title` is an argument that was passed to the component.
 
 We've also renamed `scientist` to the more-generic `person`,
 decreasing the coupling of our component to where it's used.
@@ -228,31 +228,39 @@ So far, your application is listing data,
 but there is no way for the user to interact with the information.
 In web applications you often want to listen for user events like clicks or hovers.
 Ember makes this easy to do.
-First, create a button inside the `li` in your `people-list` component, and add an `action` helper to it.
 
-```handlebars {data-filename="app/templates/components/people-list.hbs" data-diff="-5,+6,+7,+8"}
+Create a button inside the `li` with the following syntax:
+
+```handlebars {data-filename="app/templates/components/people-list.hbs"}
 <h2>{{this.title}}</h2>
 
 <ul>
   {{#each this.people as |person|}}
-    <li>{{person}}</li>
     <li>
-      <button {{action "showPerson" person}}>{{person}}</button>
+      <button {{on 'click' (fn this.showPerson person)}}>{{person}}</button>
     </li>
   {{/each}}
 </ul>
 ```
 
-The `action` helper allows you to add event listeners to elements and call named functions.
-By default, the `action` helper adds a `click` event listener,
-but it can be used to listen for any element event.
-Now, when the `button` inside the `li` element is clicked, a `showPerson` method will be called in the `PeopleList` component.
+Let us break it down.
+
+First we have `on`.
+`one` allows you to call a function when a certain DOM event has been triggered.
+In this case, we are listening for the click event, `{{on 'click' …}}`.
+
+Next, we have `fn`.
+This allows you to create a function that wraps another function and pre-populates some of the arguments.
+In this specific case, `(fn this.showPerson person)` means that the function created by `fn` will call `this.showPerson` and pass it the argument `person`.
+
+Putting them together, we can see that whenever the button is clicked, the `showPerson` method of the component will be called, which `person` as the first argument.
+
 
 _Note: While the button element will ensure that your code is accessible, you may require an extra style or two if you wish to have it look like regular text. You might be tempted to use a regular link here, but that will cause your accessibility tests to fail._
 
 Add the action to the `people-list.js` file:
 
-```javascript {data-filename="app/components/people-list.js" data-diff="+2,+5,+6,+7,+8"}
+```javascript {data-filename="app/components/people-list.js"}
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 
@@ -264,7 +272,8 @@ export default class PeopleList extends Component {
 }
 ```
 
-The `@action` is something called a decorator, and it lets your Ember app know that the `showPerson` method should be invocable by name in the component's template via `{{action this.showPerson}}`
+The `@action` syntax is a JavaScript feature called a decorator.
+It is necessary in Ember applications so you can use it in the component's template, like shown above.
 
 Now in the browser when a scientist's name is clicked,
 this function is called and the person's name is alerted.
@@ -277,14 +286,14 @@ it's time to get it ready to deploy to our users.
 To do so, run the following command:
 
 ```bash
-ember build --env production
+ember build --environment=production
 ```
 
 The `build` command packages up all of the assets that make up your
 application&mdash;JavaScript, templates, CSS, web fonts, images, and
 more.
 
-In this case, we told Ember to build for the production environment via the `--env` flag.
+In this case, we told Ember to build for the production environment via the `--environment` flag.
 This creates an optimized bundle that's ready to upload to your web host.
 Once the build finishes,
 you'll find all of the concatenated and minified assets in your application's `dist/` directory.
