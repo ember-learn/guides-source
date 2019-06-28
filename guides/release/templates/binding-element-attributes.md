@@ -39,7 +39,7 @@ If `isAdministrator` is `false`, the rendered HTML will be:
 ### Passing HTML attributes to components
 
 There are two kinds of things you can pass to components, named arguments and HTML attributes.
-For named arguments, you can consult [Passing Properties to a Component](../components/passing-properties-to-a-component/).
+For named arguments, you can consult [Passing Properties to a Component](../../components/passing-properties-to-a-component/).
 Let's discuss HTML attributes.
 
 If you want your component to be able to receive HTML attributes when it is being used in a template,
