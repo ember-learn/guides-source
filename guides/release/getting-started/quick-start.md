@@ -246,7 +246,7 @@ Create a button inside the `li` with the following syntax:
 Let us break it down.
 
 First we have `on`.
-`one` allows you to call a function when a certain DOM event has been triggered.
+`on` allows you to call a function when a certain DOM event has been triggered.
 In this case, we are listening for the click event, `{{on 'click' …}}`.
 
 Next, we have `fn`.
