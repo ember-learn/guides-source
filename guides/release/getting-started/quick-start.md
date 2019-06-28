@@ -243,7 +243,7 @@ First we have `on`.
 In this case, we are listening for the click event, `{{on 'click' …}}`.
 
 Next, we have `fn`.
-This allows you to create a function that wraps another function and pre-populates some of the arguments.
+This allows you to create a function that wraps another function and populates some of the arguments.
 In this specific case, `(fn this.showPerson person)` means that the function created by `fn` will call `this.showPerson` and pass it the argument `person`.
 
 Putting them together, we can see that whenever the button is clicked, the `showPerson` method of the component will be called, which `person` as the first argument.
