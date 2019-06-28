@@ -88,7 +88,7 @@ export default Component.extend({
 <Input @value={{this.enteredName}} id="name-editor" />
 ```
 
-Now we want to be able to pass HTML attributes to `NameEditor` so that it autofocuses,
+Now we want to be able to pass HTML attributes to `NameEditor` so that it auto-focuses,
 as well as passing a custom data attribute so we can easily get to it when testing.
 To do that, we update the template to the following:
 
