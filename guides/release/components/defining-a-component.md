@@ -33,14 +33,14 @@ For instance, if you use the `<BlogPost />` component, Ember will look for:
 - `app/components/blog-post.js`
 - `app/templates/components/blog-post.hbs`
 
-Sub-folders are used to maintain **nested components**.
+Subfolders are used to maintain **nested components**.
 
 - `app/components/blog-post.js`
 - `app/components/blog-post/comment.js`
 - `app/templates/components/blog-post.hbs`
 - `app/templates/components/blog-post/comment.hbs`
 
-Please check out the [Ember API](https://api.emberjs.com/ember/release/classes/Component) to learn more about nested components.
+Please check out the Ember API to [learn more about nested components](https://api.emberjs.com/ember/release/classes/Component).
 
 ### Creating a Component
 
@@ -79,7 +79,7 @@ You can use the integration test to test your component. This will be covered la
 
 ### Creating a Nested Component
 
-Again, you can use Ember CLI to easily create a nested component:
+Again, you can use Ember CLI to create a nested component:
 
 ```bash
 ember generate component blog-post/comment
