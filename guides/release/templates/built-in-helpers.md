@@ -49,7 +49,7 @@ Last Name: {{this.person.lastName}}
 ```
 
 As mentioned in the previous section we use the `concat` helper to render both `person.firstName` and `person.lastName` in one go.
-We can use `let` to make a fullName variable in the template with the result of the concat:
+We can use `let` to make a `fullName` variable in the template with the result of the `concat`:
 
 ```handlebars
 {{#let (concat this.person.firstName this.person.lastName)
