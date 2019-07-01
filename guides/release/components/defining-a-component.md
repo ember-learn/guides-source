@@ -1,11 +1,9 @@
-Component definitions consist of:
+An Ember component consists of:
 
 1. A template
-2. An optional backing class definition
+2. An optional, backing class definition
 
-As we discussed before, the template is rendered wherever the component is used
-in your application. If your component has a backing class, an _instance_ of
-that class is created for every usage of the component:
+The template is rendered wherever the component is used in your application. If your component has a backing class, an _instance_ of that class is created for every use of the component:
 
 ```handlebars
 <!--
@@ -17,36 +15,42 @@ that class is created for every usage of the component:
 <BlogPost/>
 ```
 
-These class instances hold the _state_ of your component. We'll talk more about
-state later on, but for now you can think of it as variables that are _internal_
-to your component. This is different from _arguments_, which are variables that
-are _external_ to your component, and something we'll talk about in the next
-section.
+Each class instance keeps track of your component's _state_. We'll talk more about state later on, but for now you can think of it as variables that are _internal_ to your component. This is different from _arguments_, which are variables that are _external_ to your component, and something we'll talk about in the next section.
 
-### Component Folder Structure
+## Component Folder Structure
 
-Ember looks up components automatically based on the folder structure of your
-app. It expects:
+Ember can automatically find components based on the folder structure of your
+app.
 
-- Component templates to exist in `app/templates/components/`
-- Component classes to exist in `app/components/`
+By default, Ember expects the following folder structure:
+
+- Component classes exist in `app/components/`
+- Component templates exist in `app/templates/components/`
 
 Ember looks for files that are the `kebab-case` version of your component name.
-So for instance, for a `<BlogPost/>` component, Ember would look for:
+For instance, if you use the `<BlogPost/>` component, Ember will look for:
 
-- `app/templates/components/blog-post.hbs`
 - `app/components/blog-post.js`
+- `app/templates/components/blog-post.hbs`
 
-#### Generating a Component
+Sub-folders are used to maintain **nested components**.
 
-You can create these files automatically by generating a component using the
-Ember CLI:
+- `app/components/blog-post.js`
+- `app/components/blog-post/comment.js`
+- `app/templates/components/blog-post.hbs`
+- `app/templates/components/blog-post/comment.hbs`
+
+Please check out the [Ember API](https://api.emberjs.com/ember/release/classes/Component) to learn more about nested components.
+
+### Creating a Component
+
+You can use Ember CLI to easily create a component and maintain the folder structure:
 
 ```bash
 ember generate component blog-post
 ```
 
-This will create a few different files:
+This will create the default files for backing class, template, and integration test:
 
 ```bash
 installing component
@@ -56,24 +60,38 @@ installing component-test
   create tests/integration/components/blog-post-test.js
 ```
 
-This generates a JavaScript file:
+The JavaScript file (backing class) looks like:
 
 ```javascript {data-filename=app/components/blog-post.js}
 import Component from '@glimmer/component';
 
-export default class BlogPost extends Component {}
+export default class BlogPost extends Component {
+}
 ```
 
-And a template file:
+And the template file:
 
 ```handlebars {data-filename=app/templates/components/blog-post.hbs}
 {{yield}}
 ```
 
-It also generates a test file, which you can use to test your component. This
-will be covered later on in the guides.
+You can use the integration test to test your component. This will be covered later in the guides.
 
-### Component Templates
+### Creating a Nested Component
+
+Again, you can use Ember CLI to easily create a nested component:
+
+```bash
+ember generate component blog-post/comment
+
+installing component
+  create app/components/blog-post/comment.js
+  create app/templates/components/blog-post/comment.hbs
+installing component-test
+  create tests/integration/components/blog-post/comment-test.js
+```
+
+## Component Templates
 
 Templates in components use the Handlebars templating language, as discussed in
 the [Templating](../../templates/handlebars-basics/) section. A component's template is the layout
@@ -245,7 +263,7 @@ arguments, they are _not_ prefixed with the `@` symbol:
 </HelloButton>
 ```
 
-#### Template-only components
+### Template-only components
 
 Components can have a template _without_ a backing class definition. These types
 of components are known as Template-Only components, as well as presentational
@@ -269,7 +287,7 @@ name of a friend and greets them:
 <Greeting @friend="Toby"/>
 ```
 
-### Component Classes
+## Component Classes
 
 Component classes are defined using native JavaScript class syntax, which is
 discussed in detail in the [Working With
@@ -367,11 +385,11 @@ Any method that you use in a template should be decorated with this decorator.
 It'll be covered in more detail in the section on [Actions and
 Events](../actions-and-events).
 
-#### Component Hooks and Properties
+### Component Hooks and Properties
 
 Components have a very small class signature:
 
- ```js
+```js
 class GlimmerComponent {
   isDestroying = false;
   isDestroyed = false;
