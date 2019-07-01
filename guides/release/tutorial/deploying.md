@@ -52,7 +52,7 @@ surge dist funny-name.surge.sh
 ```
 
 We chose funny-name.surge.sh but you may use any unclaimed subdomain you like or
-use a custom domain that you own and have pointed the DNS to one of surges servers.
+use a custom domain that you own and have pointed the [DNS](https://hosting.review/web-hosting-glossary/#9) to one of surges servers.
 If the second argument is left blank surge will prompt you with a suggested subdomain.
 
 To deploy to the same URL after making changes, perform the same steps, reusing
