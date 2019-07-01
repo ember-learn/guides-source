@@ -11,8 +11,8 @@ The template is rendered wherever the component is used in your application. If 
   are created, one for each component
 -->
 
-<BlogPost/>
-<BlogPost/>
+<BlogPost />
+<BlogPost />
 ```
 
 Each class instance keeps track of your component's _state_. We'll talk more about state later on, but for now you can think of it as variables that are _internal_ to your component. This is different from _arguments_, which are variables that are _external_ to your component, and something we'll talk about in the next section.
@@ -28,7 +28,7 @@ By default, Ember expects the following folder structure:
 - Component templates exist in `app/templates/components/`
 
 Ember looks for files that are the `kebab-case` version of your component name.
-For instance, if you use the `<BlogPost/>` component, Ember will look for:
+For instance, if you use the `<BlogPost />` component, Ember will look for:
 
 - `app/components/blog-post.js`
 - `app/templates/components/blog-post.hbs`
@@ -109,7 +109,7 @@ template to be:
 And then use the component like so:
 
 ```handlebars {data-filename=app/templates/application.hbs}
-<BlogPost/>
+<BlogPost />
 ```
 
 Then the rendered HTML will be:
@@ -140,8 +140,8 @@ Here, we have two different kinds of dynamic values:
   component's arguments each time you use it:
 
   ```handlebars
-  <BlogPost @title="An Interview With Zoey"/>
-  <BlogPost @title="Fun Facts About Tomster"/>
+  <BlogPost @title="An Interview With Zoey" />
+  <BlogPost @title="Fun Facts About Tomster" />
   ```
 
   We'll talk more about arguments in [the next
@@ -260,7 +260,7 @@ arguments, they are _not_ prefixed with the `@` symbol:
     <li>He's a hamster!</li>
     <li>But also a Tomster!</li>
   </ol>
-</HelloButton>
+</BlogPost>
 ```
 
 ### Template-only components
@@ -284,7 +284,7 @@ name of a friend and greets them:
 ```
 
 ```handlebars {data-filename=app/templates/application.hbs}
-<Greeting @friend="Toby"/>
+<Greeting @friend="Toby" />
 ```
 
 ## Component Classes
@@ -297,7 +297,8 @@ You can define a component class like so:
 ```js {data-filename=app/components/blog-post.js}
 import Component from '@glimmer/component';
 
-export default class BlogPost extends Component {}
+export default class BlogPost extends Component {
+}
 ```
 
 > You may notice that we're importing the component from `@glimmer` instead of
@@ -319,7 +320,7 @@ that is referenced in the template for the `BlogPost` component from earlier:
 ```js {data-filename=app/components/blog-post.js}
 import Component from '@glimmer/component';
 
-export default class HelloButton extends Component {
+export default class BlogPost extends Component {
   sectionClass = 'blog-post-section';
 }
 ```
@@ -338,7 +339,7 @@ the blog post if one wasn't provided:
 ```js {data-filename=app/components/blog-post.js}
 import Component from '@glimmer/component';
 
-export default class HelloButton extends Component {
+export default class BlogPost extends Component {
   get title() {
     return this.args.title || 'Untitled';
   }
@@ -367,7 +368,7 @@ known as _actions_, and are decorated with the `@action` decorator.
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 
-export default class HelloButton extends Component {
+export default class BlogPost extends Component {
   get title() {
     return this.args.title || 'Untitled';
   }
