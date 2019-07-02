@@ -1,8 +1,7 @@
-In addition to normal text, you may also want to have your templates
-contain HTML elements whose attributes are bound to the controller.
+In addition to normal text,
+you may also want to have your templates contain HTML elements whose attributes are bound to the respective controller or component.
 
-For example, imagine your controller has a property that contains a URL
-to an image:
+For example, imagine your controller has a property that contains a URL to an image:
 
 ```handlebars
 <div id="logo">
@@ -18,59 +17,95 @@ This generates the following HTML:
 </div>
 ```
 
-If you use data binding with a Boolean value, it will add or remove
-the specified attribute. For example, given this template:
+If you use data binding with a Boolean value, it will add or remove the specified attribute.
+For example, given this template:
 
 ```handlebars
 <input type="checkbox" disabled={{this.isAdministrator}}>
 ```
 
-If `isAdministrator` is `true`, Handlebars will produce the following
-HTML element:
+If `isAdministrator` is `true`, the rendered HTML will be:
 
 ```html
 <input type="checkbox" disabled>
 ```
 
-If `isAdministrator` is `false`, Handlebars will produce the following:
+If `isAdministrator` is `false`, the rendered HTML will be:
 
 ```html
 <input type="checkbox">
 ```
 
-### Adding Other Attributes (Including Data Attributes)
+### Passing HTML attributes to components
 
-By default, components only accept a limited number of HTML attributes.
-This means that some uncommon but perfectly valid attributes, such as `lang` or
-custom `data-*` attributes must be specifically enabled. For example, this template:
+There are two kinds of things you can pass to components, named arguments and HTML attributes.
+For named arguments, you can consult [Passing Properties to a Component](../../components/passing-properties-to-a-component/).
+Let's discuss HTML attributes.
 
-```handlebars
-{{#link-to "photos" data-toggle="dropdown" lang="es"}}Fotos{{/link-to}}
+If you want your component to be able to receive HTML attributes when it is being used in a template,
+you have two ways to do it: you can specify it in `attributeBindings`,
+or you can use `...attributes` in the component's template.
+
+#### `attributeBindings`
+
+By default, components that you have created will not apply HTML attributes you pass to them when using them in templates.
+This means that the following:
+
+```handlebars {data-filename="app/templates/application.hbs"}
+<NameEditor data-test-my-custom-attribute />
 ```
 
-Will render the following HTML:
+Will not apply `data-test-my-custom-attribute` unless you have specified an attribute binding for it in the component class:
 
-```html
-<a id="ember239" class="ember-view" href="#/photos">Fotos</a>
-```
+```javascript {data-filename="app/components/name-editor.js"}
+import Component from '@ember/component';
 
-To enable support for these attributes, an attribute binding must be
-added for each specific attribute on the component.
-To do this, you can extend the appropriate components
-in your application. For example, for `link-to` you would create your own version
-of this component by extending
-[`Ember.LinkComponent`](https://www.emberjs.com/api/ember/release/classes/LinkComponent)
-
-```javascript {data-filename="app/components/link-to/component.js"}
-import LinkComponent from '@ember/routing/link-component';
-
-export default LinkComponent.extend({
-  attributeBindings: ['data-toggle', 'lang']
+export default Component.extend({
+  attributeBindings: ['data-test-my-custom-attribute']
 });
 ```
 
-Now the same template above renders the following HTML:
+After specifying the attribute binding, Ember will apply it to the wrapper element of the component.
+There is another way, in case you want to apply the attributes to an element _inside_ your template.
 
-```html
-<a id="ember239" class="ember-view" href="#/photos" data-toggle="dropdown" lang="es">Fotos</a>
+#### `...attributes`
+
+You can apply arbitrary HTML attributes to an element inside your template via a special syntax, `...attributes`.
+Building on top of the previous example, let us say we have the following `NameEditor` class and template:
+
+```javascript {data-filename="app/components/name-editor.js"}
+import Component from '@ember/component';
+
+export default Component.extend({
+  enteredName: null
+});
 ```
+
+```handlebars {data-filename="app/components/templates/name-editor.hbs"}
+<p>Hello User, please enter your name:</p>
+
+<label for="name-editor">
+<Input @value={{this.enteredName}} id="name-editor" />
+```
+
+Now we want to be able to pass HTML attributes to `NameEditor` so that it auto-focuses,
+as well as passing a custom data attribute so we can easily get to it when testing.
+To do that, we update the template to the following:
+
+```handlebars {data-filename="app/components/templates/name-editor.hbs"}
+<p>Hello User, please enter your name:</p>
+
+<label for="name-editor">
+<Input @value={{this.enteredName}} id="name-editor" ...attributes />
+```
+
+And now we can call our `NameEditor` component with our desired HTML attributes:
+
+```handlebars {data-filename="app/templates/application.hbs"}
+<NameEditor autofocus data-test-name-editor />
+```
+
+We can see that `autofocus` and `data-test-name-editor` were applied to the rendered output.
+This will work for any HTML attribute that you try to pass to the component.
+
+You can read more about attributes and which are available at MDN's [HTML attribute reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes).

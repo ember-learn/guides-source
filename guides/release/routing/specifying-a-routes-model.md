@@ -194,35 +194,33 @@ model(params) {
 
 ### Linking to a dynamic segment
 
-There are two ways to link to a dynamic segment from an `.hbs` template using the
-[link-to](../../templates/links/)
-helper.
+There are two ways to link to a dynamic segment from an `.hbs` template using [`<LinkTo>`](../../templates/links/).
 Depending on which approach you use, it will affect whether that route's `model` hook is run.
 To learn how to link to a dynamic segment from within the JavaScript file, see the API documentation on
 [`transitionTo`](https://api.emberjs.com/ember/release/classes/RouterService/methods/transitionTo?anchor=transitionTo)
 instead.
 
-When you provide a string or number to the `link-to`, the dynamic segment's `model` hook will run when the app transitions to the new route.
+When you provide a string or number to the `<LinkTo>`, the dynamic segment's `model` hook will run when the app transitions to the new route.
 In this example, `photo.id` might have an id of `4`:
 
 ```handlebars
 {{#each model as |photo|}}
-  {{#link-to "photo" photo.id}}
+  <LinkTo @route="photo" @model={{photo.id}}>
     link text to display
-  {{/link-to}}
+  </LinkTo>
 {{/each}}
 ```
 
 However, if you provide the entire model context, the model hook for that URL segment will _not_ be run.
-For this reason, many Ember developers choose to pass only ids to `{{link-to}}` so that the behavior is consistent.
+For this reason, many Ember developers choose to pass only ids to `<LinkTo>` so that the behavior is consistent.
 
 Here's what it looks like to pass the entire `photo` record:
 
 ```handlebars
 {{#each model as |photo|}}
-  {{#link-to "photo" photo}}
+  <LinkTo @route="photo" @model={{photo}}>
     link text to display
-  {{/link-to}}
+  </LinkTo>
 {{/each}}
 ```
 
@@ -231,9 +229,9 @@ If you decide to pass the entire model, be sure to cover this behavior in your [
 If a route you are trying to link to has multiple dynamic segments, like `/photos/4/comments/18`, be sure to specify all the necessary information for each segment:
 
 ```handlebars
-{{#link-to "photos.photo.comments.comment" 4 18}}
+<LinkTo @route="photos.photo.comments.comment" @models={{array 4 18}}>
   link text to display
-{{/link-to}}
+</LinkTo>
 ```
 
 Routes without dynamic segments will always execute the model hook.
