@@ -97,7 +97,7 @@ In the component's template, you can then use the `people` argument as an array:
 
 ```handlebars {data-filename=app/components/my-component/template.hbs}
 <ul>
-  {{#each this.people as |person|}}
+  {{#each @people as |person|}}
     <li>{{person}}</li>
   {{/each}}
 </ul>
@@ -121,7 +121,7 @@ components.
 In the component's template, you can then use the `person` object:
 
 ```handlebars {data-filename=app/components/greeting/template.hbs}
-Hello, {{@firstName}} {{@lastName}}
+Hello, {{@person.firstName}} {{@person.lastName}}
 ```
 
 ## Development Helpers
