@@ -44,7 +44,8 @@ Next, add your new API key to the application by stopping the server and restart
 LEAFLET_MAPS_API_KEY=<your key here> ember s
 ```
 
-NOTE - If you are working on windows machine, use the set command
+> *__Note:__*  *All commands are primarily written for `bash`*
+> *If you are on `windows` machine and using the default command prompt go with the below syntax*
 
 ```bash
 set LEAFLET_MAPS_API_KEY=<your key here>
