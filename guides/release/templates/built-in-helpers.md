@@ -41,32 +41,29 @@ The [`{{let}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Template
 Say your template now looks like this:
 
 ```handlebars
-Welcome back {{concat (capitalize this.person.firstName) ' ' (capitalize this.person.lastName)}}
+Welcome back {{concat this.person.firstName ' ' this.person.lastName}}
 
 Account Details:
-First Name: {{capitalize this.person.firstName}}
-Last Name: {{capitalize this.person.lastName}}
+First Name: {{this.person.firstName}}
+Last Name: {{this.person.lastName}}
 ```
 
 As mentioned in the previous section we use the `concat` helper to render both `person.firstName` and `person.lastName` in one go.
-But we also want to make sure that the names are capitalized.
-It gets a bit repetitive to keep writing `capitalize` and honestly, we might just forget it at some point.
-Thankfully, we can use the `{{let}}` helper to fix this:
+We can use `let` to make a `fullName` variable in the template with the result of the `concat`:
 
 ```handlebars
-{{#let (capitalize this.person.firstName) (capitalize this.person.lastName)
-  as |firstName lastName|
+{{#let (concat this.person.firstName this.person.lastName)
+  as |fullName|
 }}
-  Welcome back {{concat firstName ' ' lastName}}
+  Welcome back {{fullName}}
 
   Account Details:
-  First Name: {{firstName}}
-  Last Name: {{lastName}}
+  First Name: {{this.person.firstName}}
+  Last Name: {{this.person.lastName}}
 {{/let}}
 ```
 
-Now, as long as your template is wrapped in the `let` helper you can access the capitalized first name and last name as
-`firstName` and `lastName` instead of `(capitalize this.person.firstName)`.
+Now, as long as your template is wrapped in the `let` helper you can access the full name as `fullName`.
 
 ### Array helper
 
