@@ -650,7 +650,7 @@ all, you can use `serialize: false`.
 
 ## Authoring Serializers
 
-If you would like to create a custom serializer its recommend that you
+If you would like to create a custom serializer it’s recommended that you
 start with the `JSONAPISerializer` or `JSONSerializer` and extend one of
 those to match your needs.
 However, if your payload is extremely different from one of these
