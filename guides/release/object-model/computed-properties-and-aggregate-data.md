@@ -18,6 +18,7 @@ export default Component.extend({
   todos: null,
 
   init() {
+    this._super(...arguments);
     this.set('todos', A([
       EmberObject.create({ title: 'Buy food', isDone: true }),
       EmberObject.create({ title: 'Eat food', isDone: false }),
@@ -58,6 +59,7 @@ export default Component.extend({
   todos: null,
 
   init() {
+    this._super(...arguments);
     this.set('todos', [
       EmberObject.create({ isDone: true }),
       EmberObject.create({ isDone: false }),
@@ -118,6 +120,7 @@ export default Component.extend({
   todos: null,
 
   init() {
+    this._super(...arguments);
     this.set('todos', A([
       EmberObject.create({ isDone: true }),
       EmberObject.create({ isDone: false }),
@@ -177,6 +180,7 @@ export default Component.extend({
   todos: null,
 
   init() {
+    this._super(...arguments);
     this.set('todos', [
       EmberObject.create({ isDone: true }),
       EmberObject.create({ isDone: false }),
