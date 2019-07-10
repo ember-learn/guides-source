@@ -45,7 +45,7 @@ LEAFLET_MAPS_API_KEY=<your key here> ember s
 ```
 
 > *__Note:__*  *All commands are primarily written for `bash`*
-> *If you are on `windows` machine and using the default command prompt go with the below syntax*
+> *If you are using a terminal other than bash, your commands may be different. For example, in a Windows command prompt, you would use the following syntax:*
 
 ```bash
 set LEAFLET_MAPS_API_KEY=<your key here>
