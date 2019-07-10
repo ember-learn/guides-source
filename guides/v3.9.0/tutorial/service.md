@@ -44,6 +44,14 @@ Next, add your new API key to the application by stopping the server and restart
 LEAFLET_MAPS_API_KEY=<your key here> ember s
 ```
 
+> *__Note:__*  *All commands are written for `bash` by default.*
+> *If you are using a terminal other than bash, your commands may be different. For example, in a Windows command prompt, you would use the following syntax:*
+
+```bash
+set LEAFLET_MAPS_API_KEY=<your key here>
+ember s
+```
+
 The application should start and work as we had it before.
 We will now have the APIs available we need to be able to display maps for our properties.
 
