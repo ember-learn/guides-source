@@ -40,7 +40,7 @@ optimization and you can safely use a two-way binding (which are de facto one-wa
 Sometimes one-way bindings are useful to achieve specific behavior such as a
 default that is the same as another property but can be overridden (e.g. a
 shipping address that starts the same as a billing address but can later be
-changed)
+changed).
 
 ```javascript
 import EmberObject, { computed } from '@ember/object';

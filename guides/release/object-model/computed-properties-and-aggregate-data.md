@@ -18,6 +18,7 @@ export default Component.extend({
   todos: null,
 
   init() {
+    this._super(...arguments);
     this.set('todos', A([
       EmberObject.create({ title: 'Buy food', isDone: true }),
       EmberObject.create({ title: 'Eat food', isDone: false }),
@@ -51,6 +52,7 @@ to calculate the incomplete todo's based on their `isDone` property.
 To facilitate this, Ember provides the `@each` key illustrated below:
 
 ```javascript {data-filename=app/components/todo-list.js}
+import { A } from '@ember/array';
 import EmberObject, { computed } from '@ember/object';
 import Component from '@ember/component';
 
@@ -58,11 +60,12 @@ export default Component.extend({
   todos: null,
 
   init() {
-    this.set('todos', [
+    this._super(...arguments);
+    this.set('todos', A([
       EmberObject.create({ isDone: true }),
       EmberObject.create({ isDone: false }),
       EmberObject.create({ isDone: true }),
-    ]);
+    ]));
   },
 
   incomplete: computed('todos.@each.isDone', function() {
@@ -118,6 +121,7 @@ export default Component.extend({
   todos: null,
 
   init() {
+    this._super(...arguments);
     this.set('todos', A([
       EmberObject.create({ isDone: true }),
       EmberObject.create({ isDone: false }),
@@ -170,6 +174,7 @@ using the `[]` key will only update if items are added to or removed from the ar
 or if the array property is set to a different array. For example:
 
 ```javascript {data-filename=app/components/todo-list.js}
+import { A } from '@ember/array';
 import EmberObject, { computed } from '@ember/object';
 import Component from '@ember/component';
 
@@ -177,11 +182,12 @@ export default Component.extend({
   todos: null,
 
   init() {
-    this.set('todos', [
+    this._super(...arguments);
+    this.set('todos', A([
       EmberObject.create({ isDone: true }),
       EmberObject.create({ isDone: false }),
       EmberObject.create({ isDone: true }),
-    ]);
+    ]));
   },
 
   selectedTodo: null,

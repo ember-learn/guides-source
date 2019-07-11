@@ -71,7 +71,7 @@ export default Controller.extend({
 });
 ```
 
-The property `isExpanded` keeps track if the user has expanded the body or not. The action `toggleBody()` provides a way for the user to provide their setting. Both of the them are used in the updated template below.
+The property `isExpanded` keeps track if the user has expanded the body or not. The action `toggleBody()` provides a way for the user to provide their setting. Both of them are used in the updated template below.
 
 ```handlebars {data-filename=app/templates/blog-post.hbs}
 <h1>{{this.model.title}}</h1>
