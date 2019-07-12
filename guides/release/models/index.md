@@ -6,8 +6,8 @@ managing a local cache of data.
 Ember.js itself works with any type of back end: REST,
 JSON:API, GraphQL, or anything else.
 To learn about other ways to handle data and to find extensions,
-check out the guide for [connecting to a back end](../back-end/), [Ember Observer](https://www.emberobserver.com/)
-or search for community-made tutorials.
+check out the guide for [making API requests](../api-requests/), look for plugins on [Ember Observer](https://www.emberobserver.com/),
+and search for community-made tutorials.
 
 ## What are Ember Data models?
 
