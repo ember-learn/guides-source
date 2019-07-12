@@ -52,6 +52,7 @@ export default Model.extend({
 });
 ```
 
+If you are curious about the `const { Model } = DS;` syntax above, it is called [destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Object_destructuring) and it is a feature of JavaScript.
 We now have a model object that we can use for our Ember Data implementation.
 
 ### Updating the Model Hook
