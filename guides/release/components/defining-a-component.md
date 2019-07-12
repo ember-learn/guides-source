@@ -6,10 +6,10 @@ An Ember component consists of:
 The template is rendered wherever the component is used in your application. If your component has a backing class, an _instance_ of that class is created for every use of the component:
 
 ```handlebars
-<!--
+{{!--
   In this example, two BlogPost class instances
   are created, one for each component
--->
+--}}
 
 <BlogPost />
 <BlogPost />

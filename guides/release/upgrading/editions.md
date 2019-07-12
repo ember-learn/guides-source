@@ -91,12 +91,12 @@ When you are using a component in a template, you can invoke it using Angle Brac
 The component itself will work the same as it did before.
 
 ```handlebars
-<!-- Before -->
+{{!-- Before --}}
 {{#todo-list as |item|}}
   {{to-do item=item}}
 {{/todo-list}}
 
-<!-- After -->
+{{!-- After --}}
 <TodoList as |item|>
   <Todo @item={{item}} />
 </TodoList>
@@ -142,10 +142,10 @@ tags.
 _Arguments_ are passed by adding `@` to the front of the argument name:
 
 ```handlebars
-<!-- Before -->
+{{!-- Before --}}
 {{todo item=item}}
 
-<!-- After -->
+{{!-- After --}}
 <Todo @item={{item}}/>
 ```
 
@@ -193,12 +193,12 @@ Angle bracket syntax works for invoking components of any type, whether they are
 How can you tell if a given dynamic value in a template was passed in, or if it is defined on the component itself? Arguments that were passed in should use the `@` symbol. This style is called "named arguments."
 
 ```handlebars {data-filename=application.hbs}
-<!-- Passing the argument to the child template -->
+{{!-- Passing the argument to the child template --}}
 <BlogPost @title="Hello, world!"/>
 ```
 
 ```handlebars {data-filename=blog-post.hbs}
-<!-- inside the child template -->
+{{!-- inside the child template --}}
 <h1>{{@title}}</h1>
 ```
 
@@ -214,7 +214,7 @@ Teams can gradually refactor an app to use named arguments, separately from upgr
 ```
 
 ```handlebars {data-filename=blog-post.hbs}
-<!-- This still works -->
+{{!-- This still works --}}
 <h1>{{@title}}</h1>
 ```
 
@@ -235,10 +235,10 @@ export default Component.extend({
 ```
 
 ```handlebars {data-filename=blog-post.hbs}
-<!-- This is still the original title, "Hello, world!" -->
+{{!-- This is still the original title, "Hello, world!" --}}
 <h1>{{@title}}</h1>
 
-<!-- This is the uppercased title, "HELLO, WORLD!" -->
+{{!-- This is the uppercased title, "HELLO, WORLD!" --}}
 <h1>{{this.title}}</h1>
 ```
 
@@ -246,7 +246,7 @@ If you need to provide a default value,
 you'll have to do it via a getter or by using a helper in the template:
 
 ```handlebars {data-filename=blog-post.hbs}
-<!-- using {{or}} from ember-truth-helpers -->
+{{!-- using {{or}} from ember-truth-helpers --}}
 <h1>{{or @title "Untitled"}}</h1>
 ```
 
@@ -262,10 +262,10 @@ Values that are rendered from the local context must have a `this` specified in 
 The local context is the component or controller instance that backs the template.
 
 ```handlebars
-<!-- Before -->
+{{!-- Before --}}
 {{title}}
 
-<!-- After -->
+{{!-- After --}}
 {{this.title}}
 ```
 
@@ -287,7 +287,7 @@ unambiguous:
 
 ```handlebars
 {{#let "Title" as |title|}}
-  <!-- This works, because it's a local variable and unambiguous -->
+  {{!-- This works, because it's a local variable and unambiguous --}}
   {{title}}
 {{/let}}
 ```
@@ -583,12 +583,12 @@ The action decorator also _binds_ actions, so you can refer to them directly in
 templates without the `{{action}}` helper:
 
 ```handlebars
-<!-- Before -->
+{{!-- Before --}}
 <OtherComponentHere @update={{action 'helloWorld'}} />
 ```
 
 ```handlebars
-<!-- After -->
+{{!-- After --}}
 <OtherComponentHere @update={{this.helloWorld}} />
 ```
 
@@ -1059,7 +1059,7 @@ HTML semantics_, and it means that whatever you see in the template is what you
 get in the final rendered DOM:
 
 ```handlebars
-<!-- template.hbs -->
+{{!-- template.hbs --}}
 <div>
   Hello, {{this.worldName}}!
 </div>
@@ -1256,9 +1256,9 @@ For example, here we pass a `class` to a component:
 And in that component, we can apply the class to the paragraph using `...attributes`:
 
 ```handlebars
-<!--
+{{!--
   The paragraph gets the attributes, and not the h1
--->
+--}}
 <h1>
   Hello, world!
 </h1>
@@ -1270,7 +1270,7 @@ And in that component, we can apply the class to the paragraph using `...attribu
 Attributes can be applied to multiple elements as well:
 
 ```handlebars
-<!-- Both elements get the attributes -->
+{{!-- Both elements get the attributes --}}
 <h1 ...attributes>
   Hello, world!
 </h1>
@@ -1284,12 +1284,12 @@ throw an error if someone tries to use attributes when invoking your component.
 This allows you to maintain control over the component if you want:
 
 ```handlebars
-<!-- components/uncustomizable-button.hbs -->
+{{!-- components/uncustomizable-button.hbs --}}
 <button class="btn">Do a thing!</button>
 ```
 
 ```handlebars
-<!-- This throws an error -->
+{{!-- This throws an error --}}
 <UncustomizableButton class="customized-button-class"/>
 ```
 
@@ -1354,7 +1354,7 @@ export default Component.extend({
 ```
 
 ```handlebars
-<!-- Usage -->
+{{!-- Usage --}}
 <Person @firstName="Kenneth" @lastName="Larsen" />
 ```
 
@@ -1371,7 +1371,7 @@ export default class Person extends Component {
 ```
 
 ```handlebars
-<!-- Usage -->
+{{!-- Usage --}}
 <Person @firstName="Kenneth" @lastName="Larsen" />
 ```
 
@@ -1438,7 +1438,7 @@ export default Component.extend({
 ```
 
 ```handlebars
-<!-- templates/components/parent.hbs -->
+{{!-- templates/components/parent.hbs --}}
 <Child @value={{this.value}} />
 ```
 
@@ -1454,7 +1454,7 @@ export default Component.extend({
 ```
 
 ```handlebars
-<!-- templates/components/child.hbs -->
+{{!-- templates/components/child.hbs --}}
 <button>
   Change value
 </button>
@@ -1486,7 +1486,7 @@ export default class Parent extends Component {
 ```
 
 ```handlebars
-<!-- templates/components/parent.hbs -->
+{{!-- templates/components/parent.hbs --}}
 <Child @value={{this.value}} @onClick={{this.updateValue}} />
 ```
 
@@ -1498,7 +1498,7 @@ export default class Child extends Component {}
 ```
 
 ```handlebars
-<!-- templates/components/child.hbs -->
+{{!-- templates/components/child.hbs --}}
 <button onclick={{action @onClick 'Hello, moon!'}}>
   Change value
 </button>
@@ -1628,7 +1628,7 @@ export default class Form extends Component {
 ```
 
 ```handlebars
-<!-- templates/components/form.hbs -->
+{{!-- templates/components/form.hbs --}}
 <Text
   @value={{this.text}}
   @disabled={{this.disabled}}
@@ -1772,17 +1772,17 @@ They are stateless, so attempting to change a component's state through
 bindings will not work:
 
 ```handlebars
-<!--
+{{!--
   This does not work, since @value is
   an argument and is immutable
--->
+--}}
 <label for="title">Title</label>
 <Input @value={{@value}} id="title" />
 
-<!--
+{{!--
   Instead, we should update the value
   by passing an _action_ to the component
--->
+--}}
 <label for="title">Title</label>
 <Input @value={{@value}} @key-up={{@updateValue}} id="title" />
 ```
@@ -1790,13 +1790,13 @@ bindings will not work:
 Additionally, the `mut` helper generally can't be used for the same reason:
 
 ```handlebars
-<!-- This does not work -->
+{{!-- This does not work --}}
 <input
   value={{@value}}
   onkeyup={{action (mut @value) target="value"}}
 />
 
-<!-- Do this instead -->
+{{!-- Do this instead --}}
 <input value={{@value}} onkeyup={{@updateValue}}/>
 ```
 

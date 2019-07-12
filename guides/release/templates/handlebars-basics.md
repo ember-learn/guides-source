@@ -156,42 +156,54 @@ Which renders:
 <p>Hello Zoey!</p>
 ```
 
+{{!-- outlet determines where a child route's content
+should render. Don't delete it until you know more
+about it! --}}
+<div>
+  {{outlet}}
+</div>
 
-### Displaying Properties
+{{!-- One way to use a component within a template --}}
+<MyComponent />
 
-Templates are backed by a context. A context is an object from which
-Handlebars expressions read their properties. In Ember this is often a component. For templates rendered by a route (like `application.hbs`), the context is a controller.
-
-{{! A Handlebars comment. These comments, unlike, HTML
+{{!-- A Handlebars comment. These comments, unlike, HTML
     comments, are not rendered in the DOM. They are
-    removed when the template is compiled. }}
+    removed when the template is compiled. --}}
 ```
 
 The `firstName` and `lastName` properties are read from the
 context (the application controller in this case), and rendered inside the
 `<strong>` HTML tag.
 
-To provide a `firstName` and `lastName` to the above template, properties
-must be added to the application controller. If you are following along with
-an Ember CLI application, you may need to create this file:
+```handlebars {data-filename=app/components/templates/my-component.hbs data-update=true}
+{{!-- A property that is defined in a component's
+JavaScript file --}}
+{{this.numberOfSquirrels}}
 
-<!-- Some data passed down from a parent component
-or controller -->
+{{!-- Some data passed down from a parent component
+or controller --}}
 {{@weatherStatus}}
 
-<!-- This button uses Ember Actions to make it interactive.
+{{!-- This button uses Ember Actions to make it interactive.
 A method named `plantATree` is called when the button is
 clicked. `plantATree` comes from the JavaScript file
 associated with the template, like a Component or
-Controller -->
+Controller --}}
 <button {{action this.plantATree}}>
   More trees!
 <button>
 
-The above template and controller render as the following HTML:
+{{!-- Here's an example of template logic in action.
+If the `this.skyIsBlue` property is `true`, the text
+inside will be shown --}}
+{{#if this.skyIsBlue}}
+  If the skyIsBlue property is true, show this message
+{{/if}}
 
-```html
-Hello, <strong>Trek Glowacki</strong>!
+{{!-- You can pass a whole block of markup and handlebars
+content from one component to another. yield is where
+the block shows up when the page is rendered --}}
+{{yield}}
 ```
 
 Remember that `{{this.firstName}}` and `{{this.lastName}}` are bound data. That means

@@ -111,7 +111,7 @@ template to display:
 
 ```handlebars {data-filename=templates/posts.hbs}
 <h1>Posts</h1>
-<!-- Display posts and other content -->
+{{!-- Display posts and other content --}}
 {{outlet}}
 ```
 
