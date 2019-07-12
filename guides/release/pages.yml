@@ -110,8 +110,8 @@
     - title: Overview
       url: "index"
 
-- title: "Connecting to the back end"
-  url: "back-end"
+- title: "Making API requests"
+  url: "api-requests"
   pages:
     - title: "Overview"
       url: "index"
