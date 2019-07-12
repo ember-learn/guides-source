@@ -118,8 +118,9 @@ Just like in previous examples, you can think of attribute changes as substituti
 
 the output will be updated to:
 
-```html {data-filename="output" data-diff="-2,+3"}
+```html {data-filename="output" data-diff="-1,+2,-3,+4"}
 <article title="Hello world">
+<article title="Hello world!">
   <header><h1>Hello world</h1></header>
   <header><h1>Hello world!</h1></header>
   <section>This is the first article. [UPDATE] I am so excited!</section>
