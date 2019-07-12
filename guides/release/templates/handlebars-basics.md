@@ -118,51 +118,51 @@ Route example:
 
 ```handlebars {data-filename=app/templates/application.hbs data-update=true}
 
-<!-- outlet determines where a child route's content
+{{!-- outlet determines where a child route's content
 should render. Don't delete it until you know more
-about it! -->
+about it! --}}
 <div>
   {{outlet}}
 </div>
 
-<!-- One way to use a component within a template -->
+{{!-- One way to use a component within a template --}}
 <MyComponent />
 
-{{! A Handlebars comment. These comments, unlike, HTML
+{{!-- A Handlebars comment. These comments, unlike, HTML
     comments, are not rendered in the DOM. They are
-    removed when the template is compiled. }}
+    removed when the template is compiled. --}}
 ```
 
 Component example:
 
 ```handlebars {data-filename=app/components/templates/my-component.hbs data-update=true}
-<!-- A property that is defined in a component's
-JavaScript file -->
+{{!-- A property that is defined in a component's
+JavaScript file --}}
 {{this.numberOfSquirrels}}
 
-<!-- Some data passed down from a parent component
-or controller -->
+{{!-- Some data passed down from a parent component
+or controller --}}
 {{@weatherStatus}}
 
-<!-- This button uses Ember Actions to make it interactive.
+{{!-- This button uses Ember Actions to make it interactive.
 A method named `plantATree` is called when the button is
 clicked. `plantATree` comes from the JavaScript file
 associated with the template, like a Component or
-Controller -->
+Controller --}}
 <button {{action this.plantATree}}>
   More trees!
 <button>
 
-<!-- Here's an example of template logic in action.
+{{!-- Here's an example of template logic in action.
 If the `this.skyIsBlue` property is `true`, the text
-inside will be shown -->
+inside will be shown --}}
 {{#if this.skyIsBlue}}
   If the skyIsBlue property is true, show this message
 {{/if}}
 
-<!-- You can pass a whole block of markup and handlebars
+{{!-- You can pass a whole block of markup and handlebars
 content from one component to another. yield is where
-the block shows up when the page is rendered -->
+the block shows up when the page is rendered --}}
 {{yield}}
 ```
 
