@@ -13,7 +13,7 @@ for formatting requests, normalizing responses, and efficiently
 managing a local cache of data. Install `@ember/data` to use it.
 It is included by default in new Ember apps.
 - Native JavaScript methods like [`fetch`](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API). Install [`ember-fetch`](https://github.com/ember-cli/ember-fetch) in order to provide support for older browsers, and `import fetch from 'fetch'` to use it.
-- [jQuery Ajax](https://api.jquery.com/jquery.ajax/) requests. Install `@ember/jquery` and set `"jquery-integration": false` in your app's [`optional-features.json`](../configuring-ember/optional-features/) in order to be able to `import jQuery from 'jquery'` in your app.
+- [jQuery Ajax](https://api.jquery.com/jquery.ajax/) requests. See [the guide for optional features](../configuring-ember/optional-features/) in order to be able to `import jQuery from 'jquery'` in your app.
 - Other Ember-specific addons for data loading. Search for them on [Ember Observer](https://emberobserver.com)
 - ...and many more general JavaScript data fetching libraries, which you can install following [this guide](../addons-and-dependencies/managing-dependencies/).
 
