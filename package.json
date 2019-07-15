@@ -72,7 +72,7 @@
     "guidemaker": "^1.4.0",
     "guidemaker-ember-template": "^1.2.0",
     "loader.js": "^4.7.0",
-    "lodash": "^4.17.13",
+    "lodash": "^4.17.14",
     "markdown-link-extractor": "^1.1.1",
     "mocha": "^6.1.4",
     "prember": "^1.0.3",
