@@ -1,140 +1,145 @@
-To define a component, run:
+Components are an essential building block in Ember applications. They allow
+developers to package presentation and behavior into a single unit and give it
+a name. You can think of them like defining your own custom HTML elements, like
+a custom `<input>` or `<select>` tag that has its own behavior, values, and
+events that you can hook into in your templates. However, they shouldn't be
+confused with [_web components_](https://www.webcomponents.org/), which are a
+browser based API that is similar, but not as powerful as Ember components.
 
-```bash
-ember generate component my-component-name
+Like we mentioned in the section on [Templates](../templates/handlebars-basics/), components
+can have both a template and a class definition, like so:
+
+```handlebars {data-filename=app/templates/components/hello-button.hbs}
+<button {{action this.sayHello}}>
+  {{@buttonText}}
+</button>
 ```
 
-Ember components are used to turn markup text and styles into reusable content.
-Components consist of two parts: a JavaScript component file that defines behavior, and its accompanying Handlebars template that defines the markup for the component's UI.
+```javascript {data-filename=app/components/hello-button.js}
+import Component from '@glimmer/component';
+import { action } from '@ember/object';
 
-A sample component template could look like this:
-
-```handlebars {data-filename=app/templates/components/blog-post.hbs}
-<article class="blog-post">
-  <h1>{{this.title}}</h1>
-  <p>{{yield}}</p>
-  <label for="title">Blog Title</label>
-  <p>Edit title: <Input @id="title" @type="text" @value={{this.title}} /></p>
-</article>
-```
-
-Given the above template, you can now use the `<BlogPost />` component:
-
-```handlebars {data-filename=app/templates/index.hbs}
-{{#each this.model as |post|}}
-  <BlogPost @title={{post.title}}>
-    {{post.body}}
-  </BlogPost>
-{{/each}}
-```
-
-<div class="cta">
-  <div class="cta-note">
-    <div class="cta-note-body">
-      <div class="cta-note-heading">Zoey says...</div>
-      <div class="cta-note-message">
-In Ember templates there are different ways to invoke a Component. The syntax above is referred to as angle bracket invocation syntax, and it might not look familiar if you are looking at older code samples that use the classic invocation syntax. For more examples of ways to use Components in a template, see the <a href="../reference/syntax-conversion-guide">Syntax Conversion Guide</a>, a <a href="https://guides.emberjs.com/v3.6.0/components/defining-a-component/">previous version of the Guides</a> or <a href="https://api.emberjs.com/ember/3.6/classes/Component">Ember.js API documentation</a>.
-      </div>
-    </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
-  </div>
-</div>
-
-Its model is populated in `model` hook in the route handler:
-
-```javascript {data-filename=app/routes/index.js}
-import Route from '@ember/routing/route';
-
-export default Route.extend({
-  model() {
-    return this.store.findAll('post');
+export default class HelloButton extends Component {
+  @action
+  sayHello() {
+    console.log('Hello, world!');
   }
-});
+}
 ```
 
-Each component is backed by an element under the hood. By default,
-Ember will use a `<div>` element to contain your component's template.
-To learn how to change the element Ember uses for your component, see
-[Customizing a Component's
-Element](./customizing-a-components-element/).
+And they can be used in other templates:
 
-
-## Defining a Component Subclass
-
-Often times, your components will contain reused Handlebar templates. In
-those cases, you do not need to write any JavaScript at all. Handlebars
-allows you to define templates and reuse them as components.
-
-If you need to customize the behavior of the component you'll
-need to define a subclass of [`Component`](https://api.emberjs.com/ember/3.11/classes/Component). For example, you would
-need a custom subclass if you wanted to change a component's element,
-respond to actions from the component's template, or manually make
-changes to the component's element using JavaScript.
-
-Ember knows which subclass powers a component based on its filename. For
-example, if you have a component called `blog-post`, you would create a
-file at `app/components/blog-post.js`. If your component was called
-`audio-player-controls`, the file name would be at
-`app/components/audio-player-controls.js`.
-
-## Dynamically rendering a component
-
-The [`{{component}}`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/component?anchor=component) helper can be used to defer the selection of a component to
-run time. The `<MyComponent />` syntax always renders the same component,
-while using the `{{component}}` helper allows choosing a component to render on
-the fly. This is useful in cases where you want to interact with different
-external libraries depending on the data. Using the `{{component}}` helper would
-allow you to keep different logic well separated.
-
-The first parameter of the helper is the name of a component to render, as a
-string. So `{{component 'blog-post'}}` is the same as using `<BlogPost />`.
-
-The real value of [`{{component}}`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/component?anchor=component) comes from being able to dynamically pick
-the component being rendered. Below is an example of using the helper as a
-means of choosing different components for displaying different kinds of posts:
-
-```handlebars {data-filename=app/templates/components/foo-component.hbs}
-<h3>Hello from foo!</h3>
-<p>{{this.post.body}}</p>
+```handlebars {data-filename=app/templates/application.hbs}
+<HelloButton @buttonText="Say Hello!"/>
 ```
 
-```handlebars {data-filename=app/templates/components/bar-component.hbs}
-<h3>Hello from bar!</h3>
-<div>{{this.post.author}}</div>
+The syntax for using a component is similar to standard HTML elements, but uses
+`<CapitalCase>` for the name of the component instead of lower case. This
+_invocation_, as we call it, for the `HelloButton` component results in the
+following HTML output wherever it was used:
+
+```html
+<button>
+  Say Hello!
+</button>
 ```
 
-```javascript {data-filename=app/routes/index.js}
-import Route from '@ember/routing/route';
+And when we click on the button, it triggers the `sayHello` action, logging
+"Hello, world!" to the console. We can reuse this component as many times as we
+like, and we can even change the text via the value that we pass to it,
+`@buttonText`, which is known as an _argument_:
 
-export default Route.extend({
-  model() {
-    return this.store.findAll('post');
-  }
-});
+```handlebars {data-filename=app/templates/application.hbs}
+<HelloButton @buttonText="Say Hello!"/>
+<HelloButton @buttonText="Di Hola!"/>
+<HelloButton @buttonText="Dis Bonjour!"/>
 ```
 
-```handlebars {data-filename=app/templates/index.hbs}
-{{#each this.model as |post|}}
-  {{!-- either foo-component or bar-component --}}
-  {{component post.componentName post=post}}
-{{/each}}
+Invoking the component three times like this results in the following HTML:
+
+```html
+<button>
+  Say Hello!
+</button>
+<button>
+  Di Hola!
+</button>
+<button>
+  Dis Bonjour!
+</button>
 ```
 
-or
+However, clicking on each button will still log the same "Hello, world!"
+message, since the click handler is defined in the _class_ of the component, and
+doesn't use any arguments. We'll talk more about arguments - and their
+counterpart, _actions_ - later on.
 
-```handlebars {data-filename=app/templates/index.hbs}
-{{#each this.model as |post|}}
-  {{!-- either foo-component or bar-component --}}
-  {{#let (component this.componentName) as |Post|}}
-    <Post @post={{post}} />
-  {{/let}}
-{{/each}}
+You can also use template helpers, modifiers, and other components within your
+component template:
+
+```handlebars {data-filename=app/templates/components/hello-button.hbs}
+<button {{action this.sayHello}}>
+  {{#if @iconType}}
+    <Icon @type={{@iconType}} />
+  {{/if}}
+  {{concat @buttonText "!"}}
+</button>
 ```
 
-When the parameter passed to `{{component}}` evaluates to `null` or `undefined`,
-the helper renders nothing. When the parameter changes, the currently rendered
-component is destroyed and the new component is created and brought in.
+This allows you to have some logic in your templates, and to nest components
+within each other, building up a component _tree_. The component tree in Ember
+applications is similar to the DOM tree in the HTML - in fact, you can even
+inspect it using the [Ember Inspector](../ember-inspector/).
 
-Picking different components to render in response to the data allows you to
-have different template and behavior for each case. The `{{component}}` helper
-is a powerful tool for improving code modularity.
+<!-- [TODO: Screenshot of the Component tree in the Ember Inspector] -->
+
+Components can also have blocks and children, just like standard HTML elements.
+We could update the `HelloButton` component to render its button text from its
+block instead of the `@buttonText` argument, by adding the `{{yield}}` helper
+to its template where we want to place its block:
+
+```handlebars {data-filename=app/templates/components/hello-button.hbs}
+<button {{action this.sayHello}}>
+  {{yield}}
+</button>
+```
+
+And then invoking the component in block form, with the text we want to be
+rendered in the button:
+
+```handlebars {data-filename=app/templates/application.hbs}
+<HelloButton>
+  Say Hello!
+</HelloButton>
+```
+
+This is the same as our first example, with the `HelloButton` button component
+_yielding_ to the block that was passed to it instead of being passed an
+argument. We can put anything inside of that block, including text, HTML, and
+other components. This is part of what makes components so powerful and
+composable as a whole.
+
+Components can also consist of _just_ a template definition. Components with
+just a template are known as Template-Only components, as well as presentational
+or functional components. The major difference is that _unlike_ components with
+a class, Template-Only components are _stateless_ - they are purely based on the
+_arguments_ that they are passed. This makes them much easier to reason about,
+and very useful in many circumstances.
+
+In the following guides we'll talk about:
+
+- **Defining a component**, its file structure and its API and lifecycle hooks,
+  and how to derive state based on getters.
+
+- **Arguments and Attributes**, how to think about them as parameters to your
+  component, and how to use them effectively.
+
+- **Actions**, which are how you can add interactivity to your app.
+
+- **Yields**, block invocation in components, and how to pass values to blocks.
+
+- **Interacting with the DOM**, some libraries require direct DOM manipulation,
+  which Ember fully supports
+
+- **Contextual Components**, which can be used dynamically to pass components
+  around as values, and allow them to be invoked in different locations.
