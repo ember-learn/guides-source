@@ -5,7 +5,7 @@ any point during the tutorial, feel free to download
 for a working example of the completed app.
 
 You can install the latest version of `Ember CLI` by following the
-[Quick Start](../../getting-started/quick-start/#toc_install-ember) guide
+[Quick Start](../getting-started/quick-start/#toc_install-ember) guide
 "Installing Ember" section.
 
 Ember CLI, Ember's command line interface, provides a standard project

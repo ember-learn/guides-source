@@ -1,7 +1,7 @@
 Templates are the home for what the user sees, like forms, buttons, links, and headings.
 
 In this section of the Guides, you will learn about where to write HTML markup, plus how to add interaction, dynamically changing content, styling, and more.
-If you want to learn in a step-by-step way, you should begin your journey in the [Tutorial](../../tutorial/ember-cli/) instead.
+If you want to learn in a step-by-step way, you should begin your journey in the [Tutorial](../tutorial/) instead.
 
 ## Writing plain HTML
 
@@ -30,7 +30,7 @@ There are two main types of templates: Route templates and Component templates.
 A Route template determines what is shown when someone visits a particular URL, like `https://guides.emberjs.com/some-route`.
 A Component template has bits of content that can be reused in multiple places throughout the app, like buttons or forms.
 
-If you look at an existing app, you will see templates in many different places in the app folder structure! 
+If you look at an existing app, you will see templates in many different places in the app folder structure!
 This is to help the app stay organized as it grows from one template to _one hundred_ templates.
 The best way to tell if a template is part of a Route or Component is to look at the file path.
 
@@ -51,14 +51,14 @@ ember generate route my-route-name
 A typical, modern web app is made of dozens of files that have to all be combined together into something the browser can understand.
 Ember does this work for you with zero configuration, but as a result, there are some rules to follow when it comes to adding assets into your HTML.
 
-You cannot use script tags directly within a template, and should use [actions](../actions/) or [Component Lifecycle Hooks](../../components/the-component-lifecycle/) to make your app responsive to user interactions and new data.
-If you are working with a non-Ember JavaScript library and need to use a `js` file from it, see the Guide section [Addons and Dependencies](../../addons-and-dependencies/managing-dependencies/).
+You cannot use script tags directly within a template, and should use [actions](./actions/) or [Component Lifecycle Hooks](../components/the-component-lifecycle/) to make your app responsive to user interactions and new data.
+If you are working with a non-Ember JavaScript library and need to use a `js` file from it, see the Guide section [Addons and Dependencies](../addons-and-dependencies/managing-dependencies/).
 
 You should not add links to your own local CSS files within the `hbs` file.
 Style rules should go in the `app/styles` directory instead.
 `app/styles/app.css` is included in your app's build by default.
 For CSS files within the styles directory, you can create multiple stylesheets and use regular CSS APIs like `import` to link them together.
-If you want to incorporate CSS from an npm package or similar, see [Addons and Dependencies](../../addons-and-dependencies/managing-dependencies/) for instructions.
+If you want to incorporate CSS from an npm package or similar, see [Addons and Dependencies](../addons-and-dependencies/managing-dependencies/) for instructions.
 To load styles through a CDN, read the next section below.
 
 ## What is `index.html` for?
@@ -118,8 +118,8 @@ Here are a few examples of Ember Handlebars in action:
 Route example:
 ```handlebars {data-filename=app/templates/application.hbs data-update=true}
 
-<!-- outlet determines where a child route's content 
-should render. Don't delete it until you know more 
+<!-- outlet determines where a child route's content
+should render. Don't delete it until you know more
 about it! -->
 <div>
   {{outlet}}
@@ -140,20 +140,20 @@ Component example:
 JavaScript file -->
 {{this.numberOfSquirrels}}
 
-<!-- Some data passed down from a parent component 
+<!-- Some data passed down from a parent component
 or controller -->
 {{@weatherStatus}}
 
-<!-- This button uses Ember Actions to make it interactive. 
+<!-- This button uses Ember Actions to make it interactive.
 A method named `plantATree` is called when the button is
 clicked. `plantATree` comes from the JavaScript file
-associated with the template, like a Component or 
+associated with the template, like a Component or
 Controller -->
 <button onclick={{action 'plantATree'}}>
   More trees!
 <button>
 
-<!-- Here's an example of template logic in action. 
+<!-- Here's an example of template logic in action.
 If the `this.skyIsBlue` property is `true`, the text
 inside will be shown -->
 {{#if this.skyIsBlue}}
@@ -172,7 +172,7 @@ Lastly, it's important to know that arguments can be passed from one Component t
 <MyComponent @favoriteFramework={{this.favoriteFramework}} />
 ```
 
-To pass in arguments associated with a Route, define the property from within a Controller. Learn more about passing data between templates [here](../../components/passing-properties-to-a-component).
+To pass in arguments associated with a Route, define the property from within a Controller. Learn more about passing data between templates [here](../components/passing-properties-to-a-component).
 
 ## Helper functions
 
