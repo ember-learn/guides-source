@@ -23,7 +23,7 @@
   url: "templates"
   pages:
     - title: "Templating Basics"
-      url: "handlebars-basics"
+      url: "index"
     - title: "Conditionals"
       url: "conditionals"
     - title: "Displaying a List of Items"
@@ -43,7 +43,7 @@
   url: "working-with-javascript"
   pages:
     - title: "Learning JavaScript"
-      url: "learning-javascript"
+      url: "index"
     - title: "Native Classes"
       url: "native-classes"
     - title: "Classic Classes"
@@ -54,7 +54,7 @@
   url: "components"
   pages:
     - title: "Component Basics"
-      url: "component-basics"
+      url: "index"
     - title: "Defining a Component"
       url: "defining-a-component"
     - title: "Arguments and Attributes"
