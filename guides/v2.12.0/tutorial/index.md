@@ -2,7 +2,7 @@ Welcome to the Ember Tutorial!
 This tutorial is meant to introduce basic Ember concepts while creating a professional looking application.
 If you get stuck at any point during the tutorial, feel free to download [https://github.com/ember-learn/super-rentals](https://github.com/ember-learn/super-rentals) for a working example of the completed app.
 
-You can install the latest version of `ember-cli` by following the [Quick Start](../../getting-started/quick-start/#toc_install-ember) guide "Installing Ember" section.
+You can install the latest version of `ember-cli` by following the [Quick Start](../getting-started/quick-start/#toc_install-ember) guide "Installing Ember" section.
 
 Ember CLI, Ember's command line interface, provides a standard project
 structure, a set of development tools, and an addon system.
@@ -110,7 +110,7 @@ Ember.js library as the variable `Ember`. And the `import config from
 './config/environment';` line gives us access to our app's configuration data
 as the variable `config`. `const` is a way to declare a read-only variable to make
 sure it is not accidentally reassigned elsewhere. At the end of the file,
-`export default Router;` makes the `Router` variable defined in this file available 
+`export default Router;` makes the `Router` variable defined in this file available
 to other parts of the app.
 
 

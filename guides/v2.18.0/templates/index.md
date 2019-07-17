@@ -46,7 +46,7 @@ controllers and components.
 
 ### Helpers
 
-Ember gives you the ability to [write your own helpers](../writing-helpers/), to bring a minimum of logic into Ember templating.
+Ember gives you the ability to [write your own helpers](./writing-helpers/), to bring a minimum of logic into Ember templating.
 
 For example, let's say you would like the ability to add a few numbers together, without needing to define a computed property everywhere you would like to do so.
 
