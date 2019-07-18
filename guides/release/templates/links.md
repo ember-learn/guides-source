@@ -15,7 +15,7 @@ Router.map(function() {
 ```handlebars {data-filename=app/templates/photos.hbs}
 <ul>
   {{#each this.photos as |photo|}}
-    <li><LinkTo @route="photos.edit" @model={{this.photo}}>{{this.photo.title}}</LinkTo></li>
+    <li><LinkTo @route="photos.edit" @model={{photo}}>{{photo.title}}</LinkTo></li>
   {{/each}}
 </ul>
 ```
