@@ -151,11 +151,8 @@ Mouse events
 * `contextMenu`
 * `click`
 * `doubleClick`
-* `mouseMove`
 * `focusIn`
 * `focusOut`
-* `mouseEnter`
-* `mouseLeave`
 
 Form events:
 
