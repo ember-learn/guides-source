@@ -2,7 +2,6 @@
 
 There are two ways to invoke a component in a template: classic invocation syntax (`{{my-component}}`), and [angle bracket invocation syntax](https://github.com/emberjs/rfcs/blob/master/text/0311-angle-bracket-invocation.md) (`<MyComponent />`).
 The difference between them is syntactical.
-Classic invocation syntax may also be referred to as curly invocation syntax.
 
 **Classic invocation syntax:**
 ```handlebars
@@ -108,7 +107,7 @@ export default Component.extend({
 
 Although Angle Bracket syntax is considered to be the best approach, classic invocation syntax is fine to keep using.
 In some cases, classic invocation is still required.
-When you need direct support for positional arguments, you should still reach for those curly brackets:
+For example, when you need direct support for positional arguments, you should still reach for those curly brackets:
 
 ```handlebars
 {{some-component param1 param2}}
