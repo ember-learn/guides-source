@@ -65,7 +65,7 @@ We will give them the option to specify either `markdown-style` or `html-style`.
 
 Supporting different editing styles will require different body components to provide special validation and highlighting.
 To load a different body component based on editing style,
-you can yield the component using the [`component helper`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_component) and [`hash helper`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_hash). 
+you can yield the component using the [`component helper`](https://api.emberjs.com/classes/Ember.Templates.helpers.html#method_component) and [`hash helper`](https://api.emberjs.com/classes/Ember.Templates.helpers.html#method_hash).
 Here, the appropriate component is assigned to a hash using nested helpers and yielded to the template.
 Notice `editStyle` being used as an argument to the component helper.
 

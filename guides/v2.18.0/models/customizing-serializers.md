@@ -764,7 +764,7 @@ the possible values of: `'findRecord'`, `'queryRecord'`, `'findAll'`,
 `'createRecord'`, `'deleteRecord'`, and `'updateRecord'`) as arguments.
 
 A custom serializer will also need to define a
-[normalize](http://emberjs.com/api/data/classes/DS.Serializer.html#method_normalize)
+[normalize](https://api.emberjs.com/data/classes/DS.Serializer.html#method_normalize)
 method.
 This method is called by `store.normalize(type, payload)` and is often
 used for normalizing requests made outside of Ember Data because they

@@ -14,8 +14,8 @@ each `ApplicationInstance` can also serve as a registry.
 Instance-level registrations are useful for providing instance-level customizations,
 such as A/B testing of a feature._
 
-[1]: http://emberjs.com/api/classes/Ember.Application.html
-[2]: http://emberjs.com/api/classes/Ember.ApplicationInstance.html
+[1]: https://api.emberjs.com/classes/Ember.Application.html
+[2]: https://api.emberjs.com/classes/Ember.ApplicationInstance.html
 
 ## Factory Registrations
 
@@ -248,6 +248,6 @@ export default Component.extend({
 });
 ```
 
-[3]: http://emberjs.com/api/classes/Ember.ApplicationInstance.html#method_lookup
-[4]: http://emberjs.com/api/#method_getOwner
+[3]: https://api.emberjs.com/classes/Ember.ApplicationInstance.html#method_lookup
+[4]: https://api.emberjs.com/#method_getOwner
 

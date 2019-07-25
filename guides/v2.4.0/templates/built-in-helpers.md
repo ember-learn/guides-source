@@ -15,7 +15,7 @@ variable to another helper or component.
 This can be useful if you want
 to output one of several values based on the result of a computed property.
 
-[1]: http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_get
+[1]: https://api.emberjs.com/classes/Ember.Templates.helpers.html#method_get
 
 ```handlebars
 {{get address part}}
@@ -32,7 +32,7 @@ For example, the [`{{concat}}`][1] helper makes it easy to dynamically send
 a number of parameters to a component or helper as a single parameter in the
 format of a concatenated string.
 
-[1]: http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_concat
+[1]: https://api.emberjs.com/classes/Ember.Templates.helpers.html#method_concat
 
 ```handlebars
 {{get "foo" (concat "item" index)}}

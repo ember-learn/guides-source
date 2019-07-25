@@ -3,7 +3,7 @@ change application state. For example, imagine that you have a template
 that shows a blog title, and supports expanding the post to show the body.
 
 If you add the
-[`{{action}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_action)
+[`{{action}}`](https://api.emberjs.com/classes/Ember.Templates.helpers.html#method_action)
 helper to an HTML element, when a user clicks the element, the named event
 will be sent to the template's corresponding component or controller.
 
@@ -55,7 +55,7 @@ export default Ember.Component.extend({
 ## Specifying the Type of Event
 
 By default, the
-[`{{action}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_action)
+[`{{action}}`](https://api.emberjs.com/classes/Ember.Templates.helpers.html#method_action)
 helper listens for click events and triggers the action when the user clicks
 on the element.
 
@@ -109,7 +109,7 @@ will trigger the action *and* the user will be directed to the new page.
 ## Modifying the action's first parameter
 
 If a `value` option for the
-[`{{action}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_action)
+[`{{action}}`](https://api.emberjs.com/classes/Ember.Templates.helpers.html#method_action)
 helper is specified, its value will be considered a property path that will
 be read off of the first parameter of the action. This comes very handy with
 event listeners and enables to work with one-way bindings.

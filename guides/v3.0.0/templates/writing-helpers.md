@@ -35,7 +35,7 @@ You can also have Ember generate the file for you from the command line:
 ember generate helper format-currency
 ```
 
-That file should export a function wrapped with [`Ember.Helper.helper()`](http://emberjs.com/api/classes/Ember.Helper.html#method_helper):
+That file should export a function wrapped with [`Ember.Helper.helper()`](https://api.emberjs.com/classes/Ember.Helper.html#method_helper):
 
 ```javascript {data-filename=app/helpers/format-currency.js}
 import { helper } from '@ember/component/helper';

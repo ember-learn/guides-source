@@ -3,7 +3,7 @@ bindings in Ember.js can be used with any object. That said, bindings are most
 often used within the Ember framework itself, and for most problems Ember app
 developers face, computed properties are the appropriate solution.
 
-The easiest way to create a two-way binding is to use a [`computed.alias()`](http://emberjs.com/api/classes/Ember.computed.html#method_alias),
+The easiest way to create a two-way binding is to use a [`computed.alias()`](https://api.emberjs.com/classes/Ember.computed.html#method_alias),
 that specifies the path to another object.
 
 ```javascript
@@ -34,11 +34,11 @@ overhead of syncing bindings when values are transient.
 ## One-Way Bindings
 
 A one-way binding only propagates changes in one direction, using
-[`computed.oneWay()`](http://emberjs.com/api/classes/Ember.computed.html#method_oneWay). Often, one-way bindings are a performance 
+[`computed.oneWay()`](https://api.emberjs.com/classes/Ember.computed.html#method_oneWay). Often, one-way bindings are a performance
 optimization and you can safely use a two-way binding (which are de facto one-way bindings if you only ever change one side).
 Sometimes one-way bindings are useful to achieve specific behaviour such as a
 default that is the same as another property but can be overridden (e.g. a
-shipping address that starts the same as a billing address but can later be 
+shipping address that starts the same as a billing address but can later be
 changed)
 
 ```javascript

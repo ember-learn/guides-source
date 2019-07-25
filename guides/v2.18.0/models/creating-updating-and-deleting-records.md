@@ -27,7 +27,7 @@ this.get('store').findRecord('person', 1).then(function(tyrion) {
 
 All of the Ember.js conveniences are available for
 modifying attributes. For example, you can use `Ember.Object`'s
-[`incrementProperty`](http://emberjs.com/api/classes/Ember.Object.html#method_incrementProperty) helper:
+[`incrementProperty`](https://api.emberjs.com/classes/Ember.Object.html#method_incrementProperty) helper:
 
 ```javascript
 person.incrementProperty('age'); // Happy birthday!

@@ -1,9 +1,9 @@
 In Ember Data, an Adapter determines how data is persisted to a
 backend data store. Things such as the backend host, URL format
- and headers used to talk to a REST API can all be configured 
+ and headers used to talk to a REST API can all be configured
  in an adapter. You can even switch to storing data in local storage
- using a [local storage adapter](https://github.com/locks/ember-localstorage-adapter). 
-  
+ using a [local storage adapter](https://github.com/locks/ember-localstorage-adapter).
+
 Ember Data's default Adapter has some built-in assumptions about
 how a [REST API should look](http://jsonapi.org/). If your backend conventions
 differ from those assumptions, Ember Data allows either slight adjustments
@@ -155,7 +155,7 @@ export default DS.JSONAPIAdapter.extend({
 });
 ```
 
-Requests for `person` would now target `http://emberjs.com/api/1/people/1`.
+Requests for `person` would now target `https://api.emberjs.com/1/people/1`.
 
 
 #### Host Customization

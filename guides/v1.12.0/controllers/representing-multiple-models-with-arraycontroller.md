@@ -1,4 +1,4 @@
-You can use [Ember.ArrayController](http://emberjs.com/api/classes/Ember.ArrayController.html) to represent an array of models. To tell an
+You can use [Ember.ArrayController](https://api.emberjs.com/classes/Ember.ArrayController.html) to represent an array of models. To tell an
 `ArrayController` which models to represent, set its `model` property
 in your route's `setupController` method.
 
@@ -57,7 +57,7 @@ Now we can use this property in our template:
 
 ### Sorting
 
-The `Ember.ArrayController` uses the [Ember.SortableMixin](http://emberjs.com/api/classes/Ember.SortableMixin.html) to allow sorting
+The `Ember.ArrayController` uses the [Ember.SortableMixin](https://api.emberjs.com/classes/Ember.SortableMixin.html) to allow sorting
 of content. There are two properties that can be set in order to set up sorting:
 
 ```javascript {data-filename=app/controllers/songs.js}
@@ -72,7 +72,7 @@ export default Ember.ArrayController.extend({
 It is often useful to specify a controller to decorate individual items in
 the `ArrayController` while iterating over them. This can be done by
 creating a `Controller`:
- 
+
 ```javascript {data-filename=app/controllers/song.js}
 export default Ember.Controller.extend({
 

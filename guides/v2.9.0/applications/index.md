@@ -8,8 +8,8 @@ This instance acts as the "owner" of objects instantiated for your app.
 Essentially, the `Application` *defines your application*
 while the `ApplicationInstance` *manages its state*.
 
-[1]: http://emberjs.com/api/classes/Ember.Application.html
-[2]: http://emberjs.com/api/classes/Ember.ApplicationInstance.html
+[1]: https://api.emberjs.com/classes/Ember.Application.html
+[2]: https://api.emberjs.com/classes/Ember.ApplicationInstance.html
 
 This separation of concerns not only clarifies the architecture of your app,
 it can also improve its efficiency.

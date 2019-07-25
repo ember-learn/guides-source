@@ -327,11 +327,11 @@ such as visiting routes, filling in fields, clicking on links/buttons, and waiti
 
 Some of the helpers we'll use commonly are:
 
-* [`visit`](http://emberjs.com/api/classes/Ember.Test.html#method_visit) - loads a given URL
-* [`click`](http://emberjs.com/api/classes/Ember.Test.html#method_click) - pretends to be a user clicking on a specific part of the screen
+* [`visit`](https://api.emberjs.com/classes/Ember.Test.html#method_visit) - loads a given URL
+* [`click`](https://api.emberjs.com/classes/Ember.Test.html#method_click) - pretends to be a user clicking on a specific part of the screen
 * [`andThen`](../../testing/acceptance/#toc_wait-helpers) - waits for our previous commands to run before executing our function.
   In our test below, we want to wait for our page to load after `click` is called so that we can double-check that the new page has loaded
-* [`currentURL`](http://emberjs.com/api/classes/Ember.Test.html#method_currentURL) - returns the URL of the page we're currently on
+* [`currentURL`](https://api.emberjs.com/classes/Ember.Test.html#method_currentURL) - returns the URL of the page we're currently on
 
 ### Test visiting our About and Contact pages
 Now let's add code that simulates a visitor arriving on our homepage, clicking one of our links and then visiting a new page.
