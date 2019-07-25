@@ -1,5 +1,5 @@
-The [`{{input}}`](https://api.emberjs.com/ember/2.16/classes/Ember.Templates.helpers/methods/if?anchor=input)
-and [`{{textarea}}`](https://api.emberjs.com/ember/2.16/classes/Ember.Templates.helpers/methods/if?anchor=textarea)
+The [`{{input}}`](https://api.emberjs.com/ember/2.18/classes/Ember.Templates.helpers/methods/if?anchor=input)
+and [`{{textarea}}`](https://api.emberjs.com/ember/2.18/classes/Ember.Templates.helpers/methods/if?anchor=textarea)
 helpers in Ember.js are the easiest way to create common form controls.
 Using these helpers, you can create form controls that are almost identical to the native HTML `<input>` or `<textarea>` elements, but are aware of Ember's two-way bindings and can automatically update.
 

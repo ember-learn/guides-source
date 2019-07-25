@@ -14,7 +14,7 @@ It also adds the route to the router.
 
 ## Basic Routes
 
-The [`map()`](https://api.emberjs.com/ember/2.16/classes/Router/methods/map?anchor=map) method
+The [`map()`](https://api.emberjs.com/ember/2.18/classes/Router/methods/map?anchor=map) method
 of your Ember application's router can be invoked to define URL mappings. When
 calling `map()`, you should pass a function that will be invoked with the value
 `this` set to an object which you can use to create routes.
@@ -39,7 +39,7 @@ Router.map(function() {
 });
 ```
 
-Inside your templates, you can use [`{{link-to}}`](https://api.emberjs.com/ember/2.16/classes/Ember.Templates.helpers/methods/link-to?anchor=link-to) to navigate between
+Inside your templates, you can use [`{{link-to}}`](https://api.emberjs.com/ember/2.18/classes/Ember.Templates.helpers/methods/link-to?anchor=link-to) to navigate between
 routes, using the name that you provided to the `route` method.
 
 ```handlebars

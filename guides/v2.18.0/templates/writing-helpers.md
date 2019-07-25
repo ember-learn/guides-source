@@ -394,7 +394,7 @@ would see this:
 Welcome back! <b>&lt;script
 type="javascript"&gt;alert('pwned!');&lt;/script&gt;</b> has joined the channel.
 ```
-[1]: https://api.emberjs.com/ember/2.16/classes/Helper
-[2]: https://api.emberjs.com/ember/2.16/classes/Helper/methods/compute?anchor=compute
+[1]: https://api.emberjs.com/ember/2.18/classes/Helper
+[2]: https://api.emberjs.com/ember/2.18/classes/Helper/methods/compute?anchor=compute
 [3]: https://api.emberjs.com/classes/Ember.Helper.html#method_helper
-[4]: https://api.emberjs.com/ember/2.16/classes/@ember%2Fstring/methods/htmlSafe?anchor=htmlSafe
+[4]: https://api.emberjs.com/ember/2.18/classes/@ember%2Fstring/methods/htmlSafe?anchor=htmlSafe
