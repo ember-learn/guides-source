@@ -142,7 +142,7 @@ For now, let's generate an adapter for our application:
 ember generate adapter application
 ```
 
-This adapter will extend the [`JSONAPIAdapter`](https://www.emberjs.com/api/ember-data/release/classes/DS.JSONAPIAdapter/) base class from Ember Data:
+This adapter will extend the [`JSONAPIAdapter`](https://api.emberjs.com/ember-data/release/classes/DS.JSONAPIAdapter/) base class from Ember Data:
 
 ```javascript {data-filename="app/adapters/application.js" data-diff="+4"}
 import DS from 'ember-data';

@@ -78,7 +78,7 @@ ironMan.fullName; // no console output since dependencies have not changed
 
 ### Multiple dependents on the same object
 
-In the previous example, the `fullName` computed property depends on two other properties of the same object.  
+In the previous example, the `fullName` computed property depends on two other properties of the same object.
 However, you may find that you have to observe the properties of a different object.
 
 For example, look at this computed property:
@@ -255,4 +255,4 @@ Person = EmberObject.extend({
 ```
 
 To see the full list of computed property macros, have a look at
-[the API documentation](https://www.emberjs.com/api/ember/release/modules/@ember%2Fobject)
+[the API documentation](https://api.emberjs.com/ember/release/modules/@ember%2Fobject)

@@ -11,7 +11,7 @@ Router.map(function() {
 });
 ```
 
-In Ember, functions that automatically run during rendering or setup are commonly referred to as "hooks". 
+In Ember, functions that automatically run during rendering or setup are commonly referred to as "hooks".
 When a user first visits the `/favorite-posts` route, the `model` hook in `app/routes/favorite-posts.js` will automatically run.
 Here's an example of a model hook in use within a route:
 
@@ -93,8 +93,8 @@ Older browsers may not have `fetch`, but the `ember-fetch` library includes a po
 
 ### Ember Data example
 
-Ember Data is a powerful (but optional) library included by default in new Ember apps. 
-In the next example, we will use Ember Data's [`findAll`](https://api.emberjs.com/ember-data/release/classes/DS.Store/methods/findAll?anchor=findAll) method, which returns a Promise, and resolves with an array of [Ember Data records](../../models/). 
+Ember Data is a powerful (but optional) library included by default in new Ember apps.
+In the next example, we will use Ember Data's [`findAll`](https://api.emberjs.com/ember-data/release/classes/DS.Store/methods/findAll?anchor=findAll) method, which returns a Promise, and resolves with an array of [Ember Data records](../../models/).
 
 _Note that Ember Data also has a feature called a [`Model`](https://api.emberjs.com/ember-data/release/classes/DS.Model), but it's a separate concept from a route's [`model`](https://api.emberjs.com/ember/release/classes/Route/methods/model?anchor=model) hook._
 
@@ -115,7 +115,7 @@ export default Route.extend({
 What should you do if you need the `model` to return the results of multiple API requests?
 
 Multiple models can be returned through an
-[RSVP.hash](https://www.emberjs.com/api/ember/release/classes/rsvp/methods/hash?anchor=hash).
+[RSVP.hash](https://api.emberjs.com/ember/release/classes/rsvp/methods/hash?anchor=hash).
 The `RSVP.hash` method takes an object containing multiple promises.
 If all of the promises resolve, the returned promise will resolve to an object that contains the results of each request. For example:
 

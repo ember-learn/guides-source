@@ -10,7 +10,7 @@ passing data to another helper or component.
 
 ### Using a helper to get a property dynamically
 
-The [`{{get}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/get?anchor=get) helper makes it easy to dynamically send the value of a
+The [`{{get}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/get?anchor=get) helper makes it easy to dynamically send the value of a
 variable to another helper or component.
 This can be useful if you want
 to output one of several values based on the result of a computed property.
@@ -26,7 +26,7 @@ if the `part` computed property returns "zip", this will display the result of
 
 In the last section it was discussed that helpers can be nested.
 This can be combined with these sorts of dynamic helpers.
-For example, the [`{{concat}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/get?anchor=concat) helper makes it easy to dynamically send
+For example, the [`{{concat}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/get?anchor=concat) helper makes it easy to dynamically send
 a number of parameters to a component or helper as a single parameter in the
 format of a concatenated string.
 
@@ -38,7 +38,7 @@ This will display the result of `this.foo.item1` when index is 1,
 and `this.foo.item2` when index is 2, etc.
 
 ### Built-in block helpers
-Now let's say your template is starting to get a bit cluttered and you now want to clean up the logic in your templates. This can be achieved with the `let` block helper. The [`{{let}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/get?anchor=let) helper lets you create new bindings in your template.
+Now let's say your template is starting to get a bit cluttered and you now want to clean up the logic in your templates. This can be achieved with the `let` block helper. The [`{{let}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/get?anchor=let) helper lets you create new bindings in your template.
 
 Say your template now looks like this:
 
@@ -64,4 +64,4 @@ As mentioned in the previous section we use the `concat` helper to render both `
 {{/let}}
 ```
 
-Now, as long as your template is wrapped in the `let` helper you can access the capitalized first name and last name as `firstName` and `lastName` instead of `(capitalize person.firstName)`. 
+Now, as long as your template is wrapped in the `let` helper you can access the capitalized first name and last name as `firstName` and `lastName` instead of `(capitalize person.firstName)`.

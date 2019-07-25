@@ -224,7 +224,7 @@ All we want to do when a user visits the root (`/`) URL is transition to
 implementing a route lifecycle hook called `beforeModel`.
 Route lifecycle hooks are special methods that are called automatically when a route renders or data changes.
 Inside, we'll call the
-[`replaceWith`](https://www.emberjs.com/api/ember/release/classes/Route/methods/beforeModel?anchor=replaceWith)
+[`replaceWith`](https://api.emberjs.com/ember/release/classes/Route/methods/beforeModel?anchor=replaceWith)
 function:
 
 ```javascript {data-filename="app/routes/index.js" data-diff="+4,+5,+6"}
@@ -238,7 +238,7 @@ export default Route.extend({
 ```
 
  The `replaceWith` function is similar to the route's
-[`transitionTo()`](https://www.emberjs.com/api/ember/release/classes/Route/methods/transitionTo?anchor=transitionTo)
+[`transitionTo()`](https://api.emberjs.com/ember/release/classes/Route/methods/transitionTo?anchor=transitionTo)
 function, the difference being that `replaceWith` will replace the current URL
 in the browser's history, while `transitionTo` will add to the history. Since we
 want our `rentals` route to serve as our home page, we will use the

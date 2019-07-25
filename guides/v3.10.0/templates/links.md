@@ -1,7 +1,7 @@
 ## The `<LinkTo>` Component
 
 You create a link to a route using the
-[`<LinkTo>`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/get?anchor=link-to)
+[`<LinkTo>`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/get?anchor=link-to)
 component.
 
 ```javascript {data-filename=app/router.js}
@@ -132,7 +132,7 @@ adding class names, Ember will also apply the standard `ember-view` and possibly
 ### Replacing history entries
 
 The default behavior for
-[`LinkTo`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/get?anchor=link-to)
+[`LinkTo`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/get?anchor=link-to)
 is to add entries to the browser's history when transitioning between the
 routes. However, to replace the current entry in the browser's history you
 can use the `replace=true` option:
