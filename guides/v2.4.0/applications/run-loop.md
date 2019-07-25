@@ -196,9 +196,9 @@ The run loop API calls that _schedule_ work i.e. [`run.schedule`][1], [`run.sche
 [`run.once`][3] have the property that they will approximate a run loop for you if one does not already exist.
 These automatically created run loops we call _autoruns_.
 
-[1]: http://emberjs.com/api/classes/Ember.run.html#method_schedule
-[2]: http://emberjs.com/api/classes/Ember.run.html#method_scheduleOnce
-[3]: http://emberjs.com/api/classes/Ember.run.html#method_once
+[1]: https://api.emberjs.com/classes/Ember.run.html#method_schedule
+[2]: https://api.emberjs.com/classes/Ember.run.html#method_scheduleOnce
+[3]: https://api.emberjs.com/classes/Ember.run.html#method_once
 
 Here is some pseudocode to describe what happens using the example above:
 
@@ -262,5 +262,5 @@ Disabling autoruns help you identify these scenarios and helps both your testing
 
 ## Where can I find more information?
 
-Check out the [Ember.run](http://emberjs.com/api/classes/Ember.run.html) API documentation,
+Check out the [Ember.run](https://api.emberjs.com/classes/Ember.run.html) API documentation,
 as well as the [Backburner library](https://github.com/ebryn/backburner.js/) that powers the run loop.

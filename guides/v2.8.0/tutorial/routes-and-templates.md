@@ -220,7 +220,7 @@ it does NOT require an entry in the router's mapping.
 We'll learn more about why the entry isn't required when we look at [nested routes](../subroutes/) in Ember.
 
 We can start by implementing the unit test for index.
-Since all we want to do is transition to `rentals`, our unit test will make sure that the route's [`replaceWith`](http://emberjs.com/api/classes/Ember.Route.html#method_replaceWith) method is called with the desired route.
+Since all we want to do is transition to `rentals`, our unit test will make sure that the route's [`replaceWith`](https://api.emberjs.com/classes/Ember.Route.html#method_replaceWith) method is called with the desired route.
 `replaceWith` is similar to the route's `transitionTo` function, the difference being that `replaceWith` will replace the current URL in the browser's history, while `transitionTo` will add to the history.
 Since we want our `rentals` route to serve as our home page, we will use the `replaceWith` function.
 We'll verify that by stubbing the `replaceWith` method for the route and asserting that the `rentals` route is passed when called.
@@ -292,7 +292,7 @@ When `application.hbs` exists, anything you put in it is shown for every page in
 </div>
 ```
 
-Notice the inclusion of an `{{outlet}}` within the body `div` element.  The [`{{outlet}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_outlet) defers to the router, which will render in its place the markup for the current route, meaning the different routes we develop for our application will get rendered there.
+Notice the inclusion of an `{{outlet}}` within the body `div` element.  The [`{{outlet}}`](https://api.emberjs.com/classes/Ember.Templates.helpers.html#method_outlet) defers to the router, which will render in its place the markup for the current route, meaning the different routes we develop for our application will get rendered there.
 
 Now that we've added routes and linkages between them, the three acceptance tests we created for navigating to our routes will now pass.
 

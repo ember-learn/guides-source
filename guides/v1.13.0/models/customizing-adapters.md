@@ -43,24 +43,24 @@ By default Ember Data comes with several builtin adapters. Feel free
 to use these adapters as a starting point for creating your own custom
 adapter.
 
-- [DS.Adapter](http://emberjs.com/api/data/classes/DS.Adapter.html) is the basic adapter
+- [DS.Adapter](https://api.emberjs.com/data/classes/DS.Adapter.html) is the basic adapter
 with no functionality. It is generally a good starting point if you
 want to create an adapter that is radically different from the other
 Ember adapters.
 
-- [DS.RESTAdapter](http://emberjs.com/api/data/classes/DS.RESTAdapter.html) is the most
+- [DS.RESTAdapter](https://api.emberjs.com/data/classes/DS.RESTAdapter.html) is the most
 commonly extended adapter. The `RESTAdapter` allows your store to
 communicate with an HTTP server by transmitting JSON via XHR. Most
 Ember.js apps that consume a JSON API should use the REST adapter.
 
-- [DS.ActiveModelAdapter](http://emberjs.com/api/data/classes/DS.ActiveModelAdapter.html)
+- [DS.ActiveModelAdapter](https://api.emberjs.com/data/classes/DS.ActiveModelAdapter.html)
 is a specialized version of the `RESTAdapter` that is set up to work
 out of the box with Rails-style REST APIs.
 
 
 ## Customizing the RESTAdapter
 
-The [DS.RESTAdapter](http://emberjs.com/api/data/classes/DS.RESTAdapter.html) is the
+The [DS.RESTAdapter](https://api.emberjs.com/data/classes/DS.RESTAdapter.html) is the
 most commonly extended adapter that ships with Ember Data. It has a
 handful of hooks that are commonly used to extend it to work with
 non-standard backends.
@@ -76,7 +76,7 @@ export default DS.RESTAdapter.extend({
 });
 ```
 
-Requests for `person` would now target `http://emberjs.com/api/1/people/1`.
+Requests for `person` would now target `https://api.emberjs.com/1/people/1`.
 
 
 #### Host Customization

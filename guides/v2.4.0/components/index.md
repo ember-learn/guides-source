@@ -61,7 +61,7 @@ need a custom subclass if you wanted to change a component's element,
 respond to actions from the component's template, or manually make
 changes to the component's element using JavaScript.
 
-[1]: http://emberjs.com/api/classes/Ember.Component.html
+[1]: https://api.emberjs.com/classes/Ember.Component.html
 
 Ember knows which subclass powers a component based on its filename. For
 example, if you have a component called `blog-post`, you would create a
@@ -85,7 +85,7 @@ The real value of [`{{component}}`][2] comes from being able to dynamically pick
 the component being rendered. Below is an example of using the helper as a
 means of choosing different components for displaying different kinds of posts:
 
-[2]: http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_component
+[2]: https://api.emberjs.com/classes/Ember.Templates.helpers.html#method_component
 
 ```handlebars {data-filename=app/templates/components/foo-component.hbs}
 <h3>Hello from foo!</h3>

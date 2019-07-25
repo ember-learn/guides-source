@@ -10,7 +10,7 @@ The [`{{log}}`][1] helper makes it easy to output variables or expressions in
  the
 current rendering context into your browser's console:
 
-[1]: http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_log
+[1]: https://api.emberjs.com/classes/Ember.Templates.helpers.html#method_log
 
 ```handlebars
 {{log 'Name is:' name}}
@@ -24,7 +24,7 @@ The [``{{debugger}}``][1] helper provides a handlebars equivalent to JavaScript'
 `debugger` keyword.  It will halt execution inside the debugger helper and give
 you the ability to inspect the current rendering context:
 
-[1]: http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_debugger
+[1]: https://api.emberjs.com/classes/Ember.Templates.helpers.html#method_debugger
 
 ```handlebars
 {{debugger}}

@@ -250,7 +250,7 @@ When `application.hbs` exists, anything you put in it is shown for every page in
 </div>
 ```
 
-Notice the inclusion of an `{{outlet}}` within the body `div` element.  The [`{{outlet}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_outlet) defers to the router, which will render in its place the markup for the current route, meaning the different routes we develop for our application will get rendered there.
+Notice the inclusion of an `{{outlet}}` within the body `div` element.  The [`{{outlet}}`](https://api.emberjs.com/classes/Ember.Templates.helpers.html#method_outlet) defers to the router, which will render in its place the markup for the current route, meaning the different routes we develop for our application will get rendered there.
 
 Now that we've added routes and linkages between them, the two acceptance tests we created for navigating the about and contact links will now pass:
 

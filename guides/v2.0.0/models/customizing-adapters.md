@@ -46,17 +46,17 @@ By default Ember Data comes with several builtin adapters. Feel free
 to use these adapters as a starting point for creating your own custom
 adapter.
 
-- [DS.Adapter](http://emberjs.com/api/data/classes/DS.Adapter.html) is the basic adapter
+- [DS.Adapter](https://api.emberjs.com/data/classes/DS.Adapter.html) is the basic adapter
 with no functionality. It is generally a good starting point if you
 want to create an adapter that is radically different from the other
 Ember adapters.
 
-- [DS.JSONAPIAdapter](http://emberjs.com/api/data/classes/DS.JSONAPIAdapter.html)
+- [DS.JSONAPIAdapter](https://api.emberjs.com/data/classes/DS.JSONAPIAdapter.html)
 The `JSONAdapter` is the default adapter and follows JSON API
 conventions to communicate with an HTTP server by transmitting JSON
 via XHR.
 
-- [DS.RESTAdapter](http://emberjs.com/api/data/classes/DS.RESTAdapter.html)
+- [DS.RESTAdapter](https://api.emberjs.com/data/classes/DS.RESTAdapter.html)
 The `RESTAdapter` allows your store to communicate with an HTTP server
 by transmitting JSON via XHR. Before Ember Data 2.0 this adapter was the default.
 
@@ -64,7 +64,7 @@ by transmitting JSON via XHR. Before Ember Data 2.0 this adapter was the default
 ## Customizing the JSONAPIAdapter
 
 The
-[DS.JSONAPIAdapter](http://emberjs.com/api/data/classes/DS.JSONAdapter.html)
+[DS.JSONAPIAdapter](https://api.emberjs.com/data/classes/DS.JSONAdapter.html)
 has a handful of hooks that are commonly used to extend it to work
 with non-standard backends.
 
@@ -127,7 +127,7 @@ export default DS.JSONAPIAdapter.extend({
 });
 ```
 
-Requests for `person` would now target `http://emberjs.com/api/1/people/1`.
+Requests for `person` would now target `https://api.emberjs.com/1/people/1`.
 
 
 #### Host Customization

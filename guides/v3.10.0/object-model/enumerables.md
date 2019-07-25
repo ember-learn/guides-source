@@ -1,6 +1,6 @@
 In Ember.js, an enumerable is any object that contains a number of child
 objects, and which allows you to work with those children using the
-[`MutableArray`](https://emberjs.com/api/ember/release/classes/MutableArray) API. The most common
+[`MutableArray`](https://api.emberjs.com/ember/3.10/classes/MutableArray) API. The most common
 enumerable in the majority of apps is the native JavaScript array, which
 Ember.js extends to conform to the enumerable interface.
 
@@ -19,18 +19,18 @@ where available.
     <div class="cta-note-body">
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
-        It is best practice to 
+        It is best practice to
         <a href="https://guides.emberjs.com/release/configuring-ember/disabling-prototype-extensions/">
           disable prototype extensions
         </a>
         in your app.
-        
-        For example, with prototype extensions disabled, Ember's convenience methods like <code>firstObject</code> will only 
+
+        For example, with prototype extensions disabled, Ember's convenience methods like <code>firstObject</code> will only
         be available on <code>EmberArray</code>s and will not work on native JavaScript arrays.
-        This configuration is especially important for apps that use 
+        This configuration is especially important for apps that use
         <a href="https://ember-fastboot.com/">
           Ember Fastboot
-        </a>.   
+        </a>.
       </div>
     </div>
     <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
@@ -69,11 +69,11 @@ in an observable fashion, you should use `myArray.get('firstObject')` and
 
 In the rest of this guide, we'll explore some of the most common enumerable
 conveniences. For the full list, please see the [`MutableArray API
-reference documentation`](https://emberjs.com/api/ember/release/classes/MutableArray).
+reference documentation`](https://api.emberjs.com/ember/3.10/classes/MutableArray).
 
 ### Iterating Over an Enumerable
 
-To enumerate all the values of an enumerable object, use the [`forEach()`](https://emberjs.com/api/ember/release/classes/MutableArray/methods/forEach?anchor=forEach)
+To enumerate all the values of an enumerable object, use the [`forEach()`](https://api.emberjs.com/ember/3.10/classes/MutableArray/methods/forEach?anchor=forEach)
 method:
 
 
@@ -91,7 +91,7 @@ food.forEach((item, index) => {
 
 ### First and Last Objects
 
-All enumerables expose [`firstObject`](https://emberjs.com/api/ember/release/classes/MutableArray/properties/firstObject?anchor=firstObject) and [`lastObject`](https://emberjs.com/api/ember/release/classes/MutableArray/properties/lastObject?anchor=lastObject) properties
+All enumerables expose [`firstObject`](https://api.emberjs.com/ember/3.10/classes/MutableArray/properties/firstObject?anchor=firstObject) and [`lastObject`](https://api.emberjs.com/ember/3.10/classes/MutableArray/properties/lastObject?anchor=lastObject) properties
 that you can bind to.
 
 
@@ -113,7 +113,7 @@ animals.get('lastObject');
 ### Map
 
 You can easily transform each item in an enumerable using the
-[`map()`](https://emberjs.com/api/ember/release/classes/MutableArray/methods/map?anchor=map) method, which creates a new array with results of calling a
+[`map()`](https://api.emberjs.com/ember/3.10/classes/MutableArray/methods/map?anchor=map) method, which creates a new array with results of calling a
 function on each item in the enumerable.
 
 
@@ -124,7 +124,7 @@ let emphaticWords = words.map(item => `${item}!`);
 //=> ["goodbye!", "cruel!", "world!"]
 ```
 
-If your enumerable is composed of objects, there is a [`mapBy()`](https://emberjs.com/api/ember/release/classes/MutableArray/methods/mapBy?anchor=mapBy)
+If your enumerable is composed of objects, there is a [`mapBy()`](https://api.emberjs.com/ember/3.10/classes/MutableArray/methods/mapBy?anchor=mapBy)
 method that will extract the named property from each of those objects
 in turn and return a new array:
 
@@ -153,7 +153,7 @@ Another common task to perform on an enumerable is to take the
 enumerable as input, and return an Array after filtering it based on
 some criteria.
 
-For arbitrary filtering, use the [`filter()`](https://emberjs.com/api/ember/release/classes/MutableArray/methods/filter?anchor=filter) method.  The filter method
+For arbitrary filtering, use the [`filter()`](https://api.emberjs.com/ember/3.10/classes/MutableArray/methods/filter?anchor=filter) method.  The filter method
 expects the callback to return `true` if Ember should include it in the
 final Array, and `false` or `undefined` if Ember should not.
 
@@ -166,7 +166,7 @@ arr.filter((item, index, self) => item < 4);
 //=> [1, 2, 3]
 ```
 
-When working with a collection of Ember objects, you will often want to filter a set of objects based upon the value of some property. The [`filterBy()`](https://emberjs.com/api/ember/release/classes/MutableArray/methods/filterBy?anchor=filterBy) method provides a shortcut.
+When working with a collection of Ember objects, you will often want to filter a set of objects based upon the value of some property. The [`filterBy()`](https://api.emberjs.com/ember/3.10/classes/MutableArray/methods/filterBy?anchor=filterBy) method provides a shortcut.
 
 
 ```javascript
@@ -189,14 +189,14 @@ todos.filterBy('isDone', true);
 ```
 
 If you only want to return the first matched value, rather than an Array
-containing all of the matched values, you can use [`find()`](https://emberjs.com/api/ember/release/classes/MutableArray/methods/find?anchor=find) and [`findBy()`](https://emberjs.com/api/ember/release/classes/MutableArray/methods/findBy?anchor=findBy),
+containing all of the matched values, you can use [`find()`](https://api.emberjs.com/ember/3.10/classes/MutableArray/methods/find?anchor=find) and [`findBy()`](https://api.emberjs.com/ember/3.10/classes/MutableArray/methods/findBy?anchor=findBy),
 which work like `filter()` and `filterBy()`, but return only one item.
 
 
 ### Aggregate Information (Every or Any)
 
 To find out whether every item in an enumerable matches some condition, you can
-use the [`every()`](https://emberjs.com/api/ember/release/classes/MutableArray/methods/every?anchor=every) method:
+use the [`every()`](https://api.emberjs.com/ember/3.10/classes/MutableArray/methods/every?anchor=every) method:
 
 
 ```javascript
@@ -219,7 +219,7 @@ people.every((person, index, self) => person.get('isHappy'));
 ```
 
 To find out whether at least one item in an enumerable matches some condition,
-you can use the [`any()`](https://emberjs.com/api/ember/release/classes/MutableArray/methods/any?anchor=any) method:
+you can use the [`any()`](https://api.emberjs.com/ember/3.10/classes/MutableArray/methods/any?anchor=any) method:
 
 
 ```javascript

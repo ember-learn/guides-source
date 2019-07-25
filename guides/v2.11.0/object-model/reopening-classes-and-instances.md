@@ -1,7 +1,7 @@
 You don't need to define a class all at once. You can reopen a class and
 define new properties using the [`reopen()`][1] method.
 
-[1]: http://emberjs.com/api/classes/Ember.Object.html#method_reopen
+[1]: https://api.emberjs.com/classes/Ember.Object.html#method_reopen
 
 ```javascript
 Person.reopen({
@@ -24,14 +24,14 @@ Person.reopen({
 });
 ```
 
-`reopen()` is used to add instance methods and properties that are shared 
+`reopen()` is used to add instance methods and properties that are shared
 across all instances of a class. It does not add
 methods and properties to a particular instance of a class as in vanilla JavaScript (without using prototype).
 
 But when you need to add static methods or static properties to the class itself
 you can use [`reopenClass()`][1].
 
-[1]: http://emberjs.com/api/classes/Ember.Object.html#method_reopenClass
+[1]: https://api.emberjs.com/classes/Ember.Object.html#method_reopenClass
 
 ```javascript
 // add static property to class

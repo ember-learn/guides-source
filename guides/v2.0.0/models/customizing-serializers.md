@@ -250,7 +250,7 @@ export default DS.JSONSerializer.extend({
 To normalize only a single model, you can use the `normalize` hook similarly.
 
 For more hooks to customize the serializer with, see the [Ember Data serializer
-API documentation](http://emberjs.com/api/data/classes/DS.JSONAPISerializer.html#index).
+API documentation](https://api.emberjs.com/data/classes/DS.JSONAPISerializer.html#index).
 
 ### IDs
 
@@ -511,7 +511,7 @@ looks similar to this:
 The JSONAPISerializer is built on top of the JSONSerializer so they share
 many of the same hooks for customizing the behavior of the
 serialization process. Be sure to check out the
-[API docs](http://emberjs.com/api/data/classes/DS.JSONSerializer.html)
+[API docs](https://api.emberjs.com/data/classes/DS.JSONSerializer.html)
 for a full list of methods and properties.
 
 
@@ -617,9 +617,9 @@ different from one of these serializers you can create your own by
 extending the `DS.Serializer` base class. There are 3 methods that
 must be implemented on a serializer.
 
-- [normalizeResponse](http://emberjs.com/api/data/classes/DS.Serializer.html#method_normalizeResponse)
-- [serialize](http://emberjs.com/api/data/classes/DS.Serializer.html#method_serialize)
-- [normalize](http://emberjs.com/api/data/classes/DS.Serializer.html#method_normalize)
+- [normalizeResponse](https://api.emberjs.com/data/classes/DS.Serializer.html#method_normalizeResponse)
+- [serialize](https://api.emberjs.com/data/classes/DS.Serializer.html#method_serialize)
+- [normalize](https://api.emberjs.com/data/classes/DS.Serializer.html#method_normalize)
 
 Its also important to know about the `normalized` JSON form that Ember
 Data expects as an argument to `store.push()`.

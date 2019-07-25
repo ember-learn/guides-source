@@ -2,7 +2,7 @@ Testing with asynchronous calls and promises in Ember may seem tricky at first, 
 
 ### Promises, Ember and the Run Loop
 
-In order to fully explain testing promises & asynchronous code, it's important that you have a clear grasp of the Ember run loop. If you haven't yet done so, please read about them in the [Promises](http://emberjs.com/api/classes/Ember.RSVP.Promise.html) and [Understanding Ember run loop guide](../../understanding-ember/run-loop/).
+In order to fully explain testing promises & asynchronous code, it's important that you have a clear grasp of the Ember run loop. If you haven't yet done so, please read about them in the [Promises](https://api.emberjs.com/classes/Ember.RSVP.Promise.html) and [Understanding Ember run loop guide](../../understanding-ember/run-loop/).
 
 Now that you grasp the general concepts regarding the run loop, recall from reading about the basics of testing Ember applications that the run loop is suspended when in testing mode.  This helps ensure the procedure of your code and the tests you write around that code. Note that in testing promises and asynchronous code, you're effectively "stepping through" your application in chunks.
 
@@ -75,14 +75,14 @@ promise3.then(function(result){
 ####Promise Resolution
 
     var promise = new Ember.RSVP.Promise(function(resolve){
-      // calling resolve will schedule an action to fulfill the promise 
+      // calling resolve will schedule an action to fulfill the promise
       // and call observers/chained promises.
       resolve('hello world'); // Run loop needs to be on here
     });
 
 ####Chaining/Observing Promises
 
-    // once the above promise has been resolved it will then notify 
+    // once the above promise has been resolved it will then notify
     // the observers/chained promises to.
     promise.then(function(result){  // Run loop might* need to be on here
       alert(result);
@@ -109,7 +109,7 @@ new Ember.RSVP.Promise(function(resolve){
 });
 ```
 
- 
+
 #####Walk through example of observing/chaining after the promise has fulfilled
 
 1. Run loop is off (testing mode)
@@ -132,7 +132,7 @@ var promise = new Ember.RSVP.Promise(function(resolve){
 promise.then(function(result){
   alert(result);
 });
-  
+
 // correct, start the run loop again
 Ember.run(function(){
   promise.then(function(result){

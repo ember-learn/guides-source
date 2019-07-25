@@ -16,7 +16,7 @@ Listed below are the component lifecycle hooks in order of execution according t
 4. [`didInsertElement`](#toc_integrating-with-third-party-libraries-with-didinsertelement)
 5. [`didRender`](#toc_making-updates-to-the-rendered-dom-with-didrender)
 
-### On Re-Render 
+### On Re-Render
 
 1. [`didUpdateAttrs`](#toc_resetting-presentation-state-on-attribute-change-with-didupdateattrs)
 2. [`didReceiveAttrs`](#toc_formatting-component-attributes-with-didreceiveattrs)
@@ -186,10 +186,10 @@ There are a few things to note about the `didInsertElement()` hook:
 - While [`didInsertElement()`][did-insert-element] is technically an event that can be listened for using [`on()`][on], it is encouraged to override the default method itself,
   particularly when order of execution is important.
 
-[did-insert-element]: http://emberjs.com/api/classes/Ember.Component.html#event_didInsertElement
-[dollar]: http://emberjs.com/api/classes/Ember.Component.html#method__
+[did-insert-element]: https://api.emberjs.com/classes/Ember.Component.html#event_didInsertElement
+[dollar]: https://api.emberjs.com/classes/Ember.Component.html#method__
 [event-names]: ../handling-events/#toc_event-names
-[on]: http://emberjs.com/api/classes/Ember.Component.html#method_on
+[on]: https://api.emberjs.com/classes/Ember.Component.html#method_on
 
 ### Making Updates to the Rendered DOM with `didRender`
 
@@ -268,4 +268,4 @@ willDestroyElement() {
 }
 ```
 
-[will-destroy-element]: http://emberjs.com/api/classes/Ember.Component.html#event_willDestroyElement
+[will-destroy-element]: https://api.emberjs.com/classes/Ember.Component.html#event_willDestroyElement
