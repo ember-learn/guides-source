@@ -1,6 +1,6 @@
 A route's JavaScript file is one of the best places in an app to make requests to an API.
 In this section of the guides, you'll learn how to use the
-[`model`](http://api.emberjs.com/ember/release/classes/Route/methods/model?anchor=model)
+[`model`](https://api.emberjs.com/ember/release/classes/Route/methods/model?anchor=model)
 method to fetch data by making a HTTP request, and render it in a route's `hbs` template, or pass it down to a component.
 
 For example, take this router:
@@ -67,7 +67,7 @@ Now that data can be used in the `favorite-posts`  template:
 {{/each}}
 ```
 
-Behind the scenes, what is happening is that the [route's controller](http://api.emberjs.com/ember/release/classes/Route/methods/model?anchor=setupController) receives the results of the model hook, and makes those results available to the template. Your app may not have a controller file for the route, but the behavior is the same regardless.
+Behind the scenes, what is happening is that the [route's controller](https://api.emberjs.com/ember/release/classes/Route/methods/model?anchor=setupController) receives the results of the model hook, and makes those results available to the template. Your app may not have a controller file for the route, but the behavior is the same regardless.
 
 Let's compare some examples using the model hook to make asynchronous HTTP requests to a server somewhere.
 
