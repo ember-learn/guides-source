@@ -67,7 +67,7 @@ In certain cases, you will want to pass arguments to `_super()` before or after 
 
 This allows the original method to continue operating as it normally would.
 
-One common example is when overriding the [`normalizeResponse()`](https://api.emberjs.com/ember-data/release/classes/DS.JSONAPISerializer/methods/normalizeResponse?anchor=normalizeResponse) hook in one of Ember-Data's serializers.
+One common example is when overriding the [`normalizeResponse()`](https://api.emberjs.com/ember-data/3.3/classes/DS.JSONAPISerializer/methods/normalizeResponse?anchor=normalizeResponse) hook in one of Ember-Data's serializers.
 
 A handy shortcut for this is to use a "spread operator", like `...arguments`:
 
