@@ -39,7 +39,7 @@ If we need to test the functionality around an Ember class instance, such as a C
 
 To setup the application’s container, we import the [ember-qunit](https://github.com/emberjs/ember-qunit) addon which provides us with QUnit-specific wrappers around the helpers contained in [ember-test-helpers](https://github.com/emberjs/ember-test-helpers).
 
-In the example below, we import the `setupTest` function from `ember-qunit` and call it with the `hooks` object to setup the test context with access to the `this.owner` property. This provides us direct container access to interact with Ember's [Dependency Injection](../applications/dependency-injection/) system. Direct container access allows us to [lookup](https://api.emberjs.com/ember/release/classes/ApplicationInstance/methods/lookup?anchor=lookup) everything in the application container, like Controllers, Routes, or Services in order to have an instance of it to test in our QUnit test module.
+In the example below, we import the `setupTest` function from `ember-qunit` and call it with the `hooks` object to setup the test context with access to the `this.owner` property. This provides us direct container access to interact with Ember's [Dependency Injection](../applications/dependency-injection/) system. Direct container access allows us to [lookup](https://api.emberjs.com/ember/3.4/classes/ApplicationInstance/methods/lookup?anchor=lookup) everything in the application container, like Controllers, Routes, or Services in order to have an instance of it to test in our QUnit test module.
 
 For example, the following is a Container Test for the `flash-messages` service:
 

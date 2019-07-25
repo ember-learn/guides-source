@@ -247,9 +247,9 @@ access to services in your application, and can optionally save state as well,
 although this is usually unnecessary and error-prone.
 
 To create a class-based helper, rather than exporting a simple function, you
-should export a subclass of [`Ember.Helper`](https://api.emberjs.com/ember/release/classes/Helper). Helper classes must contain a
+should export a subclass of [`Ember.Helper`](https://api.emberjs.com/ember/3.4/classes/Helper). Helper classes must contain a
 [`compute`](https://api.emberjs.com/ember/2.16/classes/Helper/methods/compute?anchor=compute) method that behaves the same as the function passed to
-[`Ember.Helper.helper`](https://api.emberjs.com/ember/release/classes/Helper/methods/compute?anchor=helper).  In order to access a service, you must first inject it
+[`Ember.Helper.helper`](https://api.emberjs.com/ember/3.4/classes/Helper/methods/compute?anchor=helper).  In order to access a service, you must first inject it
 into the class-based helper.  Once added, you can call the service's methods or
 access its properties from within the `compute()` method.
 
