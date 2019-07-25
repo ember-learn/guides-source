@@ -79,7 +79,7 @@ person.set('firstName', 'John');
 person.set('lastName', 'Smith');
 ```
 
-To get around these problems, you should make use of [`Ember.run.once()`](https://api.emberjs.com/ember/release/classes/@ember%2Frunloop/methods/once?anchor=once).
+To get around these problems, you should make use of [`Ember.run.once()`](https://api.emberjs.com/ember/3.1/classes/@ember%2Frunloop/methods/once?anchor=once).
 This will ensure that any processing you need to do only happens once, and
 happens in the next run loop once all bindings are synchronized:
 
@@ -145,7 +145,7 @@ get it in your `init()` method.
 ### Outside of class definitions
 
 You can also add observers to an object outside of a class definition
-using [`addObserver()`](https://api.emberjs.com/ember/release/classes/@ember%2Fobject%2Fobservers/methods/addObserver?anchor=addObserver):
+using [`addObserver()`](https://api.emberjs.com/ember/3.1/classes/@ember%2Fobject%2Fobservers/methods/addObserver?anchor=addObserver):
 
 
 ```javascript

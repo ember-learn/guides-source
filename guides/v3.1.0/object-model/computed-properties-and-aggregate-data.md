@@ -105,7 +105,7 @@ changes on individual members of the array.
 ### Computed Property Macros
 
 Ember also provides a computed property macro
-[`computed.filterBy`](https://api.emberjs.com/ember/release/classes/@ember%2Fobject%2Fcomputed/methods/alias?anchor=filterBy),
+[`computed.filterBy`](https://api.emberjs.com/ember/3.1/classes/@ember%2Fobject%2Fcomputed/methods/alias?anchor=filterBy),
 which is a shorter way of expressing the above computed property:
 
 ```javascript {data-filename=app/components/todo-list.js}
@@ -193,10 +193,10 @@ export default Component.extend({
 Here, `indexOfSelectedTodo` depends on `todos.[]`, so it will update if we add an item
 to `todos`, but won't update if the value of `isDone` on a `todo` changes.
 
-Several of the [Ember.computed](https://api.emberjs.com/ember/release/classes/@ember%2Fobject%2Fcomputed) macros
+Several of the [Ember.computed](https://api.emberjs.com/ember/3.1/classes/@ember%2Fobject%2Fcomputed) macros
 utilize the `[]` key to implement common use-cases. For instance, to
 create a computed property that mapped properties from an array, you could use
-[Ember.computed.map](https://api.emberjs.com/ember/release/classes/@ember%2Fobject%2Fcomputed/methods/map?anchor=map)
+[Ember.computed.map](https://api.emberjs.com/ember/3.1/classes/@ember%2Fobject%2Fcomputed/methods/map?anchor=map)
 or build the computed property yourself:
 
 ```javascript
