@@ -129,9 +129,9 @@ Ember guarantees that, by the time `didInsertElement()` is called:
 
 1. The component's element has been both created and inserted into the
    DOM.
-2. The component's element is accessible via the component's [`this.element`](https://emberjs.com/api/ember/release/classes/Component/properties/element?anchor=element) property.
+2. The component's element is accessible via the component's [`this.element`](https://api.emberjs.com/ember/release/classes/Component/properties/element?anchor=element) property.
 
-The [`element`](https://emberjs.com/api/ember/release/classes/Component/properties/element?anchor=element) property allows you to access the component's DOM element.
+The [`element`](https://api.emberjs.com/ember/release/classes/Component/properties/element?anchor=element) property allows you to access the component's DOM element.
 For example, you can set an attribute using the `Element.setAttribute()` method:
 
 ```javascript {data-filename=app/components/profile-editor.js}
@@ -145,7 +145,7 @@ export default Component.extend({
 });
 ```
 
-The [`element`](https://emberjs.com/api/ember/release/classes/Component/properties/element?anchor=element) property will, by default, return a DOM object for the component's root element, but you can also target child elements within the component's template by passing a selector to `querySelector` or `querySelectorAll`:
+The [`element`](https://api.emberjs.com/ember/release/classes/Component/properties/element?anchor=element) property will, by default, return a DOM object for the component's root element, but you can also target child elements within the component's template by passing a selector to `querySelector` or `querySelectorAll`:
 
 ```javascript {data-filename=app/components/profile-editor.js}
 import Component from '@ember/component';
@@ -244,7 +244,7 @@ export default Component.extend({
       if (item.id === this.selectedItem.id) {
         item.isSelected = true;
       }
-    }); 
+    });
   },
 
   didRender() {
@@ -276,7 +276,7 @@ import Component from '@ember/component';
 export default Component.extend({
   willDestroyElement() {
     this.element.removeEventListener('animationend');
-    this.datePicker.destroy();	
+    this.datePicker.destroy();
     this._super(...arguments);
   }
 });

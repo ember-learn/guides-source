@@ -4,7 +4,7 @@ To define a component, run:
 ember generate component my-component-name
 ```
 
-Ember components are used to turn markup text and styles into reusable content. 
+Ember components are used to turn markup text and styles into reusable content.
 Components consist of two parts: a JavaScript component file that defines behavior, and its accompanying Handlebars template that defines the markup for the component's UI.
 
 A sample component template could look like this:
@@ -33,7 +33,7 @@ Given the above template, you can now use the `<BlogPost />` component:
     <div class="cta-note-body">
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
-In Ember templates there are different ways to invoke a Component. The syntax above is referred to as angle bracket invocation syntax, and it might not look familiar if you are looking at older code samples that use the classic invocation syntax. For more examples of ways to use Components in a template, see the <a href="../../reference/syntax-conversion-guide">Syntax Conversion Guide</a>, a <a href="https://guides.emberjs.com/v3.6.0/components/defining-a-component/">previous version of the Guides</a> or <a href="https://emberjs.com/api/ember/3.6/classes/Component">Ember.js API documentation</a>.
+In Ember templates there are different ways to invoke a Component. The syntax above is referred to as angle bracket invocation syntax, and it might not look familiar if you are looking at older code samples that use the classic invocation syntax. For more examples of ways to use Components in a template, see the <a href="../../reference/syntax-conversion-guide">Syntax Conversion Guide</a>, a <a href="https://guides.emberjs.com/v3.6.0/components/defining-a-component/">previous version of the Guides</a> or <a href="https://api.emberjs.com/ember/3.6/classes/Component">Ember.js API documentation</a>.
       </div>
     </div>
     <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
@@ -62,7 +62,7 @@ Element](../customizing-a-components-element/).
 ## Defining a Component Subclass
 
 Often times, your components will contain reused Handlebar templates. In
-those cases, you do not need to write any JavaScript at all. Handlebars 
+those cases, you do not need to write any JavaScript at all. Handlebars
 allows you to define templates and reuse them as components.
 
 If you need to customize the behavior of the component you'll
@@ -120,7 +120,7 @@ export default Route.extend({
 {{/each}}
 ```
 
-or 
+or
 
 ```handlebars {data-filename=app/templates/index.hbs}
 {{#each this.model as |post|}}

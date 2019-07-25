@@ -279,7 +279,7 @@ The `value` property represents the latest state of the input field.
 Therefore we now check that results match the input field, ensuring that results will stay in sync with the last thing the user has typed.
 
 While this approach will keep our results order consistent, there are other things to consider when dealing with multiple concurrent tasks,
-such as [limiting the number of requests made to the server](https://emberjs.com/api/classes/Ember.run.html#method_debounce).
+such as [limiting the number of requests made to the server](https://api.emberjs.com/classes/Ember.run.html#method_debounce).
 To create effective and robust autocomplete behavior for your applications,
 we recommend considering the [`ember-concurrency`](http://ember-concurrency.com/#/docs/introduction) addon project.
 
