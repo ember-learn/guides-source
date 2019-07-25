@@ -1,6 +1,6 @@
 A route's JavaScript file is one of the best places in an app to make requests to an API.
 In this section of the guides, you'll learn how to use the
-[`model`](https://api.emberjs.com/ember/release/classes/Route/methods/model?anchor=model)
+[`model`](https://api.emberjs.com/ember/3.11/classes/Route/methods/model?anchor=model)
 method to fetch data by making a HTTP request, and render it in a route's `hbs` template, or pass it down to a component.
 
 For example, take this router:
@@ -67,7 +67,7 @@ Now that data can be used in the `favorite-posts`  template:
 {{/each}}
 ```
 
-Behind the scenes, what is happening is that the [route's controller](https://api.emberjs.com/ember/release/classes/Route/methods/model?anchor=setupController) receives the results of the model hook, and makes those results available to the template. Your app may not have a controller file for the route, but the behavior is the same regardless.
+Behind the scenes, what is happening is that the [route's controller](https://api.emberjs.com/ember/3.11/classes/Route/methods/model?anchor=setupController) receives the results of the model hook, and makes those results available to the template. Your app may not have a controller file for the route, but the behavior is the same regardless.
 
 Let's compare some examples using the model hook to make asynchronous HTTP requests to a server somewhere.
 
@@ -94,9 +94,9 @@ Older browsers may not have `fetch`, but the `ember-fetch` library includes a po
 ### Ember Data example
 
 Ember Data is a powerful (but optional) library included by default in new Ember apps.
-In the next example, we will use Ember Data's [`findAll`](https://api.emberjs.com/ember-data/release/classes/DS.Store/methods/findAll?anchor=findAll) method, which returns a Promise, and resolves with an array of [Ember Data records](../../models/).
+In the next example, we will use Ember Data's [`findAll`](https://api.emberjs.com/ember-data/3.10/classes/DS.Store/methods/findAll?anchor=findAll) method, which returns a Promise, and resolves with an array of [Ember Data records](../../models/).
 
-_Note that Ember Data also has a feature called a [`Model`](https://api.emberjs.com/ember-data/release/classes/DS.Model), but it's a separate concept from a route's [`model`](https://api.emberjs.com/ember/release/classes/Route/methods/model?anchor=model) hook._
+_Note that Ember Data also has a feature called a [`Model`](https://api.emberjs.com/ember-data/3.10/classes/DS.Model), but it's a separate concept from a route's [`model`](https://api.emberjs.com/ember/3.11/classes/Route/methods/model?anchor=model) hook._
 
 ```javascript {data-filename=app/routes/favorite-posts.js}
 import Route from '@ember/routing/route';
@@ -115,7 +115,7 @@ export default Route.extend({
 What should you do if you need the `model` to return the results of multiple API requests?
 
 Multiple models can be returned through an
-[RSVP.hash](https://api.emberjs.com/ember/release/classes/rsvp/methods/hash?anchor=hash).
+[RSVP.hash](https://api.emberjs.com/ember/3.11/classes/rsvp/methods/hash?anchor=hash).
 The `RSVP.hash` method takes an object containing multiple promises.
 If all of the promises resolve, the returned promise will resolve to an object that contains the results of each request. For example:
 
@@ -197,7 +197,7 @@ model(params) {
 There are two ways to link to a dynamic segment from an `.hbs` template using [`<LinkTo>`](../../templates/links/).
 Depending on which approach you use, it will affect whether that route's `model` hook is run.
 To learn how to link to a dynamic segment from within the JavaScript file, see the API documentation on
-[`transitionTo`](https://api.emberjs.com/ember/release/classes/RouterService/methods/transitionTo?anchor=transitionTo)
+[`transitionTo`](https://api.emberjs.com/ember/3.11/classes/RouterService/methods/transitionTo?anchor=transitionTo)
 instead.
 
 When you provide a string or number to the `<LinkTo>`, the dynamic segment's `model` hook will run when the app transitions to the new route.
@@ -303,10 +303,10 @@ And calling `modelFor` returned the result of the `model` hook.
 
 If you are having trouble getting a model's data to show up in the template, here are some tips:
 
-- Use the [`{{debugger}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/debugger?anchor=debugger) or [`{{log}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/debugger?anchor=log) helper to inspect the `{{model}}` from the template
+- Use the [`{{debugger}}`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/debugger?anchor=debugger) or [`{{log}}`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/debugger?anchor=log) helper to inspect the `{{model}}` from the template
 - return hard-coded sample data as a test to see if the problem is really in the model hook, or elsewhere down the line
 - study JavaScript Promises in general, to make sure you are returning data from the Promise correctly
 - make sure your `model` hook has a `return` statement
-- check to see whether the data returned from a `model` hook is an object, array, or JavaScript Primitive. For example, if the result of `model` is an array, using `{{this.model}}` in the template won't work. You will need to iterate over the array with an [`{{#each}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/each?anchor=each) helper. If the result is an object, you need to access the individual attribute like `{{this.model.title}}` to render it in the template.
+- check to see whether the data returned from a `model` hook is an object, array, or JavaScript Primitive. For example, if the result of `model` is an array, using `{{this.model}}` in the template won't work. You will need to iterate over the array with an [`{{#each}}`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/each?anchor=each) helper. If the result is an object, you need to access the individual attribute like `{{this.model.title}}` to render it in the template.
 - use your browser's development tools to examine the outgoing and incoming API responses and see if they match what your code expects
 - If you are using Ember Data, use the [Ember Inspector](../../ember-inspector/) browser plugin to explore the View Tree/Model and Data sections.

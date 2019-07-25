@@ -102,7 +102,7 @@ within the route hierarchy where loading feedback is important.
 ### The `loading` event
 
 If the various `beforeModel`/`model`/`afterModel` hooks
-don't immediately resolve, a [`loading`](https://api.emberjs.com/ember/release/classes/Route/events/loading?anchor=loading) event will be fired on that route.
+don't immediately resolve, a [`loading`](https://api.emberjs.com/ember/3.11/classes/Route/events/loading?anchor=loading) event will be fired on that route.
 
 ```javascript {data-filename=app/routes/user-slow-model.js}
 import Route from '@ember/routing/route';
@@ -217,7 +217,7 @@ logged.
 
 If the `articles.overview` route's `model` hook returns a promise that rejects
 (for instance the server returned an error, the user isn't logged in,
-etc.), an [`error`](https://api.emberjs.com/ember/release/classes/Route/events/error?anchor=error) event will fire from that route and bubble upward.
+etc.), an [`error`](https://api.emberjs.com/ember/3.11/classes/Route/events/error?anchor=error) event will fire from that route and bubble upward.
 This `error` event can be handled and used to display an error message,
 redirect to a login page, etc.
 
