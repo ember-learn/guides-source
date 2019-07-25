@@ -109,7 +109,7 @@ The `filter` function is passed in by the calling object. This is a pattern know
 
 Notice the `then` function called on the result of calling the `filter` function.
 The code expects the `filter` function to return a promise.
-A [promise](https://api.emberjs.com/ember/release/classes/Promise) is a JavaScript object that represents the result of an asynchronous function.
+A [promise](https://api.emberjs.com/ember/3.8/classes/Promise) is a JavaScript object that represents the result of an asynchronous function.
 A promise may or may not be executed at the time you receive it.
 To account for this, it provides functions, like `then` that let you give it code it will run when it eventually does receive a result.
 
@@ -289,7 +289,7 @@ The `value` property represents the latest state of the input field.
 Therefore we now check that results match the input field, ensuring that results will stay in sync with the last thing the user has typed.
 
 While this approach will keep our results order consistent, there are other things to consider when dealing with multiple concurrent tasks,
-such as [limiting the number of requests made to the server](https://api.emberjs.com/ember/release/classes/@ember%2Frunloop/methods/debounce?anchor=debounce).
+such as [limiting the number of requests made to the server](https://api.emberjs.com/ember/3.8/classes/@ember%2Frunloop/methods/debounce?anchor=debounce).
 To create effective and robust autocomplete behavior for your applications,
 we recommend considering the [`ember-concurrency`](http://ember-concurrency.com/#/docs/introduction) addon project.
 

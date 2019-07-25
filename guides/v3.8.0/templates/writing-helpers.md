@@ -247,9 +247,9 @@ access to services in your application, and can optionally save state as well,
 although this is usually unnecessary and error-prone.
 
 To create a class-based helper, rather than exporting a simple function, you
-should export a subclass of [`Ember.Helper`](https://api.emberjs.com/ember/release/classes/Helper). Helper classes must contain a
-[`compute`](https://api.emberjs.com/ember/release/classes/Helper/methods/compute?anchor=compute) method that behaves the same as the function passed to
-[`Ember.Helper.helper`](https://api.emberjs.com/ember/release/classes/Helper/methods/compute?anchor=helper).  In order to access a service, you must first inject it
+should export a subclass of [`Ember.Helper`](https://api.emberjs.com/ember/3.8/classes/Helper). Helper classes must contain a
+[`compute`](https://api.emberjs.com/ember/3.8/classes/Helper/methods/compute?anchor=compute) method that behaves the same as the function passed to
+[`Ember.Helper.helper`](https://api.emberjs.com/ember/3.8/classes/Helper/methods/compute?anchor=helper).  In order to access a service, you must first inject it
 into the class-based helper.  Once added, you can call the service's methods or
 access its properties from within the `compute()` method.
 
@@ -330,7 +330,7 @@ Ember will escape the HTML tags, like this:
 This shows the literal string `<b>Hello world</b>` to the user, rather
 than the text in bold as you probably intended. We can tell Ember not to
 escape the return value (that is, that it is _safe_) by using the
-[`htmlSafe`](https://api.emberjs.com/ember/release/functions/@ember%2Ftemplate/htmlSafe) string utility:
+[`htmlSafe`](https://api.emberjs.com/ember/3.8/functions/@ember%2Ftemplate/htmlSafe) string utility:
 
 ```javascript {data-filename=app/helpers/make-bold.js}
 import { helper } from '@ember/component/helper';
@@ -344,7 +344,7 @@ export default helper(makeBold);
 ```
 
 If you return a `SafeString` (a string that has been wrapped in a call
-to [`htmlSafe`](https://api.emberjs.com/ember/release/functions/@ember%2Ftemplate/htmlSafe)), Ember knows that you have vouched on its behalf that it
+to [`htmlSafe`](https://api.emberjs.com/ember/3.8/functions/@ember%2Ftemplate/htmlSafe)), Ember knows that you have vouched on its behalf that it
 contains no malicious HTML.
 
 However, note that in the above code we may have inadvertently

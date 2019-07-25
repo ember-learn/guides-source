@@ -198,9 +198,9 @@ $('a').click(() => {
 });
 ```
 
-The run loop API calls that _schedule_ work, i.e. [`run.schedule`](https://api.emberjs.com/ember/release/classes/@ember%2Frunloop/methods/schedule?anchor=schedule),
-[`run.scheduleOnce`](https://api.emberjs.com/ember/release/classes/@ember%2Frunloop/methods/scheduleOnce?anchor=scheduleOnce),
-[`run.once`](https://api.emberjs.com/ember/release/classes/@ember%2Frunloop/methods/once?anchor=once) have the property that they will approximate a run loop for you if one does not already exist.
+The run loop API calls that _schedule_ work, i.e. [`run.schedule`](https://api.emberjs.com/ember/3.8/classes/@ember%2Frunloop/methods/schedule?anchor=schedule),
+[`run.scheduleOnce`](https://api.emberjs.com/ember/3.8/classes/@ember%2Frunloop/methods/scheduleOnce?anchor=scheduleOnce),
+[`run.once`](https://api.emberjs.com/ember/3.8/classes/@ember%2Frunloop/methods/once?anchor=once) have the property that they will approximate a run loop for you if one does not already exist.
 These automatically created run loops we call _autoruns_.
 
 Here is some pseudocode to describe what happens using the example above:
@@ -241,5 +241,5 @@ $('a').click(() => {
 
 ## Where can I find more information?
 
-Check out the [Ember.run](https://api.emberjs.com/ember/release/classes/@ember%2Frunloop) API documentation,
+Check out the [Ember.run](https://api.emberjs.com/ember/3.8/classes/@ember%2Frunloop) API documentation,
 as well as the [Backburner library](https://github.com/ebryn/backburner.js/) that powers the run loop.
