@@ -363,7 +363,7 @@ If they don't, our test will fail.
 The third optional argument allows us to provide a nicer message which will be shown if this test fails.
 
 In our tests, we also call two helpers (`visit` and `click`) one after another. Although Ember does a number
-of things when we make those calls, Ember hides those complexities by giving us these [asynchronous test helpers](../../testing/acceptance/#toc_asynchronous-helpers).
+of things when we make those calls, Ember hides those complexities by giving us these [asynchronous test helpers](../../testing/testing-application/#toc_asynchronous-helpers).
 
 If you left `ember test` running, it should have automatically updated to show the three tests related to
 navigating have now passed.
