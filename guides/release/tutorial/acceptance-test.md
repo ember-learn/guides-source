@@ -19,7 +19,7 @@ At this point, you can continue to the [next page](../routes-and-templates/) or 
 
 ### Testing Our Application As We Go
 
-We can represent the goals above as [Ember application tests](../../testing/acceptance/). Application tests interact with our app like an actual person would, but are automated, helping ensure that our app doesn't break as you make changes.
+We can represent the goals above as [Ember application tests](../../testing/testing-application/). Application tests interact with our app like an actual person would, but are automated, helping ensure that our app doesn't break as you make changes.
 You might hear these tests sometimes referred to as "acceptance tests" in Ember, as that's what they have been called in the past.
 
 When we create a new Ember Project using Ember CLI, it uses the [`QUnit`](https://qunitjs.com/) JavaScript test framework to define and run tests.

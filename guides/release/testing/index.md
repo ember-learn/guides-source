@@ -1,203 +1,237 @@
-Testing is a core part of the Ember framework and its development cycle.
+Ember gives you **the power to write tests and be productive from day one**. You can be confident that your app will be correct today and years from now. A question remains: *How* should you write tests?
 
-[QUnit](http://qunitjs.com/) is the default testing framework for this guide, but others are supported too, through addons such as [ember-mocha](https://github.com/emberjs/ember-mocha).
+Since tests are a core part of the Ember framework and your development cycle, we will dedicate several sections to learning how to write tests.
 
-The testing pattern presented below is consistent across different testing frameworks. Only the setup test functions from [ember-qunit](https://github.com/emberjs/ember-qunit) needs to be replaced with the respective setup functions in the testing addon used in order to use other testing frameworks.
+In this section, we will cover why testing is important, what tools can help us with testing, and how to run and debug our tests.
 
-### Unit Tests
 
-To get started writing tests, we start with a plain unit test. In the example below, we are testing the function `relativeDate()` by passing a mock value into the function and asserting if the output is what we expected.
+## Why Do We Need Tests?
 
-```javascript {data-filename=utils/tests/relative-date-test.js}
-import { module, test } from 'qunit';
-import { relativeDate } from 'my-app-name/utils/date-utils';
+Writing tests is a necessary ingredient if we want to guarantee users and stakeholders that our app, whether small or large, will function as intended at any given time. The larger our app, the more costly and error-prone manual testing becomes.
 
-module('relativeDate', function(hooks) {
-  test('format relative dates correctly', function(assert) {
-    assert.equal(relativeDate('2018/01/28 22:24:30'), 'just now');
-    assert.equal(relativeDate('2018/01/28 22:23:30'), '1 minute ago');
-    assert.equal(relativeDate('2018/01/28 21:23:30'), '1 hour ago');
-    assert.equal(relativeDate('2018/01/27 22:23:30'), 'Yesterday');
-    assert.equal(relativeDate('2018/01/26 22:23:30'), '2 days ago');
-  });
+Writing tests is also a fun activity, a nice change of pace from delivering features daily, and a way to help us refactor code and improve ourselves as a developer. Tests can also serve as a living documentation—a key element in onboarding new developers.
+
+
+## What Tools Can Help Me?
+
+### QUnit, QUnit DOM
+
+Every Ember app comes with [QUnit](http://qunitjs.com/) and [QUnit DOM](https://github.com/simplabs/qunit-dom). QUnit is a testing framework, and QUnit DOM is a library that helps us **write tests that are concise and readable**.
+
+To see the power of QUnit DOM, consider this code snippet. It checks whether our button component shows the right text and the right CSS attribute.
+
+```javascript {data-filename=tests/integration/components/simple-button/component-test.js}
+/*
+  For simplicity, we omitted the import, module, and setup
+  statements here. Our component accepts two attributes,
+  text (string) and isDisabled (boolean).
+*/
+test('We show the correct text', async function(assert) {
+  await render(hbs`<SimpleButton @text="Hello world!" />`);
+
+  // QUnit
+  assert.strictEqual(this.element.textContent.trim(), 'Hello world!');
+
+  // QUnit DOM
+  assert.dom(this.element).hasText('Hello world!');
+});
+
+test('We can disable the button', async function(assert) {
+  await render(hbs`<SimpleButton @text="Hello world!" @isDisabled={{true}} />`);
+
+  // QUnit
+  assert.ok(this.element.classList.contains('is-disabled'));
+
+  // QUnit DOM
+  assert.dom(this.element).hasClass('is-disabled');
 });
 ```
 
-Notice how there is nothing Ember specific about the test, it is just a straightforward assertion with only QUnit test code in isolation. There is no need to add any Ember specific logic since it does not require the application's container to be setup nor any user interaction.
+### Mocha, Chai DOM
 
-Examples of Unit Tests are:
+[Mocha](https://mochajs.org/) is another testing framework. If you are more familiar with Mocha, you can install [ember-mocha](https://github.com/emberjs/ember-mocha) and [Chai DOM](https://www.chaijs.com/plugins/chai-dom/) instead.
 
-* The return value of a `getFullName` utility combines its `firstName` and `lastName` parameters correctly.
-* A getter formats a price depending on tracked properties like `currency` and `cents` .
-* A utility function that adds padding on a string based on the value passed.
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+        All examples in this guide follow QUnit. Rest assured, the best practices for testing that we present in this guide are independent of your choice of testing framework. Keep in mind, the setup functions from <a href="https://github.com/emberjs/ember-qunit" target="_blank" rel="noopener noreferrer">ember-qunit</a>—<code>setupTest</code>, <code>setupRenderingTest</code>, and <code>setupApplicationTest</code>—need to be replaced with those from <a href="https://github.com/emberjs/ember-mocha" target="_blank" rel="noopener noreferrer">ember-mocha</a>.
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
+  </div>
+</div>
 
-Unit Tests are useful for testing pure functions where the return value is only determined by its input values, without any observable side effects.
+### Ember CLI
 
-### Container Tests
+When we use [Ember CLI](https://ember-cli.com/generators-and-blueprints) to generate an Ember "object" (e.g. component, model, service), it will create a test file with a setup that correctly addresses our testing framework and the [type of test that we should write](../testing/different-types-of-tests).
 
-If we need to test the functionality around an Ember class instance, such as a Controller, Service, or Route, we can use a container test to do that by setting up the application's container.
+We can also use Ember CLI to create the test file separately from the object. For example, if we enter the following lines in the terminal,
 
-To setup the application’s container, we import the [ember-qunit](https://github.com/emberjs/ember-qunit) addon which provides us with QUnit-specific wrappers around the helpers contained in [ember-test-helpers](https://github.com/emberjs/ember-test-helpers).
+```bash
+ember g model-test student
+ember g component-test student
+ember g acceptance-test students
+```
 
-In the example below, we import the `setupTest` function from `ember-qunit` and call it with the `hooks` object to setup the test context with access to the `this.owner` property. This provides us direct container access to interact with Ember's [Dependency Injection](../applications/dependency-injection/) system. Direct container access allows us to [lookup](https://emberjs.com/api/ember/release/classes/ApplicationInstance/methods/lookup?anchor=lookup) everything in the application container, like Controllers, Routes, or Services in order to have an instance of it to test in our QUnit test module.
+we get a unit test for the `student` model, a rendering test (integration test) for the `student` component, and an application test (acceptance test) that can be used to check the `students` route and its subroutes.
 
-For example, the following is a Container Test for the `flash-messages` service:
+### Ember Test Selectors
 
-```javascript {data-filename=services/tests/flash-messages-test.js}
-import { module, test } from 'qunit';
-import { setupTest } from 'ember-qunit';
+We want to be able to grab DOM elements in our tests. Since Ember is just JavaScript, we can use [`querySelector`](https://developer.mozilla.org/docs/Web/API/Element/querySelector) and [`querySelectorAll`](https://developer.mozilla.org/docs/Web/API/Element/querySelectorAll) to do so. These methods require us to pass a **selector**, a string that identifies the element(s) that we want.
 
-module('Service | flash-messages', function(hooks) {
-  setupTest(hooks);
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Tomster says...</div>
+      <div class="cta-note-message">
+        While we can use CSS classes as selectors, a best practice for testing is to <strong>separate the concerns between styling and testing</strong>. Class names and DOM structure change over time—for the better—by you, your team, and addon developers. If you rely on CSS classes, your tests will break and need a significant rewrite.
+      </div>
+    </div>
+    <img src="/images/mascots/tomster.png" role="presentation" alt="Ember Mascot">
+  </div>
+</div>
 
-  test('it buffers messages', function(assert) {
-    let service = this.owner.lookup('service:flash-messages');
+[Ember Test Selectors](https://github.com/simplabs/ember-test-selectors) is an addon that helps us **write tests that are more resilient to DOM changes**. We use `data-test-*` attributes to mark the elements that will be used in our tests. The addon works with QUnit DOM and helpers from [@ember/test-helpers](https://github.com/emberjs/ember-test-helpers/). It also removes the `data-test-*` attributes in the production build.
 
-    service.add('Hello');
-    service.add('World!');
+Consider the example of a button component again. This time, our component can display a Material icon in addition to the text.
 
-    assert.deepEqual(service.get('messages'), ['Hello', 'World!']);
-  });
+```handlebars {data-filename=app/templates/components/simple-button.hbs}
+<button type="button">
+  {{#if icon}}
+    <i data-test-icon class="material-icons">{{icon}}</i>
+  {{/if}}
+
+  <span data-test-text>{{text}}</span>
+</button>
+```
+
+```javascript {data-filename=tests/integration/components/simple-button/component-test.js}
+test('We show the correct icon and text', async function(assert) {
+  await render(hbs`<SimpleButton @icon="face" @text="Hello world!" />`);
+
+  // Bad
+  assert.strictEqual(
+    this.element.querySelector('.material-icons').textContent.trim(),
+    'face',
+    'The user sees the correct icon.'
+  );
+
+  assert.strictEqual(
+    this.element.querySelector('span').textContent.trim(),
+    'Hello world!',
+    'The user sees the correct text.'
+  );
+
+  // Good
+  assert.strictEqual(
+    this.element.querySelector('[data-test-icon]').textContent.trim(),
+    'face',
+    'The user sees the correct icon.'
+  );
+
+  assert.strictEqual(
+    this.element.querySelector('[data-test-text]').textContent.trim(),
+    'Hello world!',
+    'The user sees the correct text.'
+  );
+
+  // Great!
+  assert.dom('[data-test-icon]')
+    .hasText('face', 'The user sees the correct icon.');
+
+  assert.dom('[data-test-text]')
+    .hasText('Hello world!', 'The user sees the correct text.');
 });
 ```
 
-Container Tests are ideal for testing Controllers, Routes, or Services where we can look up the item we want to test, apply some action unto it, and test its result.
+### Ember CLI Mirage
 
-Examples of Container Tests are:
+If our application receives and sends data, we want to show that we can take these actions successfully. We also want to prove that we can handle the error states correctly.
 
-* A `fullName` attribute on a controller is a getter that combines the tracked properties `firstName` and `lastName`.
-* A serializer properly converts the blog request payload into a blog post model object.
-* Blog dates are properly formatted through a `time` service.
+[Ember CLI Mirage](https://www.ember-cli-mirage.com/) is an addon that allows us to create a mock server. We can also use it to test our app against various server states. To learn more about using Mirage in tests, we encourage you to [visit the official website](https://www.ember-cli-mirage.com/docs/testing/acceptance-tests).
 
-You can read more about these type of tests in the [Testing Routes](./testing-routes) and [Testing Controllers](./testing-controllers) section.
+### Ember Exam
 
-### Rendering Tests
+We want our tests to finish fast. A fast run means we get to try out a different solution and iterate many more times.
 
-If we need to test the interactions between various parts of the application, such as behavior between UI controls we can utilize Rendering Tests. 
+[Ember Exam](https://github.com/ember-cli/ember-exam) is an addon that allows us to parallelize the run. If we have many rendering and application tests, this can dramatically speed up our testing.
 
-Rendering Tests are, as the name suggests, rendering components and helpers by verifying the correct behavior when the component or helper interacts with the system in the same way that it will within the context of the application, including being rendered from a template and receiving Ember's lifecycle hooks.
+Ember Exam also lets us randomize how the tests are run. Why would we want to do so? When we don't properly set up and tear down a test, we can create dependencies among tests. Randomizing the order helps us catch these inadvertent bugs.
 
-In terms of setting up the test – Rendering Tests are roughly similar to Container Tests but instead of using `setupTest` from ember-qunit, we import and invoke `setupRenderingTest` to render arbitrary templates, including components and helpers (`setupRenderingTest` is actually using `setupTest` underneath so everything we had from Container Tests are still applicable.)
+### Percy
 
-For the example below, we also import the `render` and `click` functions from ember-test-helpers to show and interact with the component being tested as well as `hbs` from [htmlbars-inline-precompile](https://github.com/ember-cli/ember-cli-htmlbars-inline-precompile) to help with inline template definitions. With these APIs, we can test clicking on this component and check if the text is successfully updated with each click.
+Last but not least, [Percy](https://percy.io/) is a **visual regression testing** tool that helps us catch accidental style changes. You can try it out for free and pay for additional service.
 
-```javascript {data-filename=components/tests/counter-test.js}
-import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
-import { render, click } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+While we don't recommend this practice in general, you might also use Percy in lieu of application tests to capture complex workflows.
 
-module('Component | counter', function(hooks) {
-  setupRenderingTest(hooks);
 
-  test('it should count clicks', async function(assert) {
-    this.set('value', 0);
+## How to Run Tests
 
-    await render(hbs`<Counter @value={{this.value}} @onUpdate={{( … )}} />`);
-    assert.equal(this.element.textContent, '0 clicks');
+You have a few options for running tests.
 
-    await click('.counter');
-    assert.equal(this.element.textContent, '1 click');
-  });
-});
+First, you can run the test suite by entering the command `ember test`, or `ember t`, in your terminal. This will run the suite just once.
+
+Suppose, instead, you want the suite to run after every file change. You can enter `ember test --server`, or `ember t -s`.
+
+Lastly, if you are already running a local development server (through `ember server`), you can visit the `/tests` URI. This will render the `tests/index.html` template.
+
+```bash
+# Run all tests once
+ember test
+ember t
+
+# Run all tests after every file change
+ember test --server
+ember t -s
 ```
 
-Rendering Tests provides confidence that parts of the system will work within the application in multiple scenarios from data and actions being properly passed between different parts of the system to having the UI rendered as expected.
+### How to Filter Tests
 
-Examples of Rendering Tests are:
+When you are working on a single component or page, you will want only a small subset of tests to run after every file change. To specify which tests to run, you can add `--module` or `--filter` option to your command.
 
-* An author's full name and date are properly displayed in a blog post.
-* A user is prevented from typing more than 50 characters into post's title field.
-* Submitting a post without a title displays a red validation state on the field and gives the user text indicating that the title is required.
-* The blog post list scrolls to position a new post at the top of the viewport.
+The `--module` option allows you to select a **module**—a group of tests that you specified in `module()` in QUnit, or `describe()` in Mocha.
 
-Rendering Tests are used to test Components and Helpers where we need to render a layout and assert some interaction byproduct occurs.
+```bash
+# Button component example
+ember test --server --module="Integration | Component | simple-button"
 
-You can read more about it in the [Testing Components](./testing-components) or the [Testing Helpers](./testing-helpers) section.
-
-### Application Tests
-
-Finally if we are looking to test user interaction and application flow in order to verify user stories or a feature from an end-user perspective, we can use Application Tests. In these kinds of tests, we interact with the application in the same ways that a user would, such as filling out form fields and clicking buttons. Application tests ensure that the interactions within a project are basically functional, the core features of a project have not regressed, and the project's goals are being met.
-
-Similar to how Rendering Tests builds on top of Container Tests, to setup Application Tests, we import a setup method called `setupApplicationTest` from `ember-qunit` (this also uses `setupTest` underneath.) Unlike Rendering Tests, however, we import the `visit` helper from ember-test-helpers instead of the `render` helper. The visit helper is used to visit a route in the application where we need to assert some end-user behavior.
-
-```javascript {data-filename=tests/acceptance/post-creation-test.js}
-import { module, test } from 'qunit';
-import { setupApplicationTest } from 'ember-qunit';
-import { visit, fillIn, click } from '@ember/test-helpers';
-
-module('Acceptance | posts', function(hooks) {
-  setupApplicationTest(hooks);
-
-  test('should add new post', async function(assert) {
-    await visit('/posts/new');
-    await fillIn('input.title', 'My new post');
-    await click('button.submit');
-
-    const title = this.element.querySelector('ul.posts li:first').textContent;
-    assert.equal(title, 'My new post');
-  });
-});
+# Run tests for a location service
+ember t -s -m="Unit | Service | location"
 ```
 
-In the example above – the Application Test visits a route of the application, and then it fills in some information required, and then it clicks on a button. Afterwards, we are testing that this sequence of events in a certain route creates the desired effect that we want. In this case, our test looks to see if the text in the first element in a list matches what we filled in.
+The `--filter` option is more versatile. You can provide a phrase to match against the modules and test descriptions. A test description is what appears in `test()` in QUnit, or `it()` in Mocha.
 
-Examples of Application Tests are:
+```bash
+# Button component example
+ember test --server --filter="We show the correct text"
 
-* A user being able to log in via the login form
-* A user is able to create a blog post.
-* After saving a new post successfully, a user is then shown the list of prior posts.
-* A visitor does not have access to the admin panel.
+# Test everything related to our dashboard
+ember t -s -f="dashboard"
 
-You can read more about how to create these kinds of tests in the [Application tests](./acceptance) section.
-
-### Testing Blueprints
-
-By default whenever you are creating a new component, helper, service, or any another module in your app,
-[Ember CLI](https://ember-cli.com/generators-and-blueprints) will automatically create a QUnit-based test file
-based on the associated testing blueprint for you.
-This blueprint will contain all the basic test setup necessary for testing the module you have just created
-and help you get started writing your first test straight away.
-
-Imagine we create a new `location` service by running `ember generate service location`.
-If we have a look at the newly created blueprint under `tests/unit/services/location-test.js` we'll find the following:
-
-```javascript {data-filename=tests/unit/models/some-thing-test.js}
-import { module, test } from 'qunit';
-import { setupTest } from 'ember-qunit';
-
-module('Unit | Service | location', function(hooks) {
-  setupTest(hooks);
-
-  // Replace this with your real tests.
-  test('it exists', function(assert) {
-    let service = this.owner.lookup('service:location');
-    assert.ok(service);
-  });
-});
+# Run integration tests
+ember t -s -f="integration"
 ```
 
-Note how this test setup follows a nested structure.
-Each test case will be wrapped by a [QUnit.module](https://api.qunitjs.com/QUnit/module) function
-which allows us to scope several tests into a group.
-We can now apply the same testing setup to all tests in this test group easily,
-or we can run those tests independently from the rest of the test suite.
+With QUnit, you can also exclude tests by adding an exclamation point to the beginning of the filter, e.g. `ember test --filter="!acceptance"`.
 
-### How to Run Your Tests
+To learn more about options for testing, you can visit [Ember CLI Documentation](https://ember-cli.com/testing) or type `ember help test` in the command line.
 
-Run your tests with `ember test` on the command-line. You can re-run your tests on every file-change with `ember test --server`.
 
-Tests can also be executed when you are running a local development server (started by running `ember server`),
-at the `/tests` URI which renders the `tests/index.html` template.
+## How to Debug Tests
 
-These commands run your tests using [Testem](https://github.com/airportyh/testem) to make testing multiple browsers very easy.
-You can configure Testem using the `testem.js` file in your application root.
+When you are writing tests or application code, the execution of your tests may fail.
 
-#### Choosing the Tests to Run
+To find out the problem, you can add [`debugger`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/debugger) to your code to check the intermediate state. You can add this line to both test and application code.
 
-To run a subset of your tests by title use the `--filter` option.
-Quickly test your current work `ember test --filter="dashboard"`, or only run a certain type of test `ember test --filter="integration"`.
-When using QUnit it is possible to exclude tests by adding an exclamation point to the beginning of the filter `ember test --filter="!acceptance"`.
+Thanks to Ember's setup, you can also use [`pauseTest()`](https://github.com/emberjs/ember-test-helpers/blob/master/API.md#pausetest) and [`resumeTest()`](https://github.com/emberjs/ember-test-helpers/blob/master/API.md#resumetest) to debug your tests. `pauseTest` allows you to inspect the DOM easily, but can only be used in the test code.
 
-You can also run a group of tests which you have scoped with a `module` before; e.g. for testing the module called `Unit | Service | location` only,
-run `ember test --module='Unit | Service | location'`.
+Simply add `await pauseTest();` to your test code, then save. When the test reaches this line, it will pause, allowing you to inspect the state of your application. When you are done, type `resumeTest()` in the browser console to continue the test.
+
+
+## Summary
+
+Ember considers testing a first-class citizen. In addition to providing easy paths to integrate QUnit and Mocha, Ember supports a variety of addons and debugging tools to improve your developer experience in testing.
+
+In the next section, we will study 3 types of different tests that Ember supports—unit, rendering, and application tests. We will look at each type and when we might use one over another.

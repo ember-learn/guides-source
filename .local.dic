@@ -21,6 +21,7 @@ bookmarklet
 breakpoint
 Browserlist
 camelize
+Chai
 chainable
 cheatsheet
 Checkboxes
@@ -28,6 +29,7 @@ checkboxes
 CoffeeScript
 componentized
 composable
+cron
 Ctrl-C
 customizable
 Customizable
@@ -95,6 +97,7 @@ nav
 NVDA
 onboarding
 Orca
+parallelize
 Param
 param
 params
@@ -136,6 +139,7 @@ subdomain
 subexpression
 Subfolders
 suboptimal
+subroutes
 substate
 substates
 synergistically
