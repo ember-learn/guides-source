@@ -234,7 +234,7 @@ First add an `action` helper to the `li` in your `people-list` component.
 <ul>
   {{#each this.people as |person|}}
     <li>{{person}}</li>
-    <li {{action "showPerson" person}} role="button">{{person}}</li>
+    <li><button {{action "showPerson" person}}>{{person}}</button></li>
   {{/each}}
 </ul>
 ```
