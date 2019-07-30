@@ -229,7 +229,7 @@ First add an `action` helper to the `li` in your `PeopleList` component.
 
 <ul>
   {{#each @people as |person|}}
-    <li {{action "showPerson" person}}>{{person}}</li>
+    <li><button {{action "showPerson" person}}>{{person}}</button></li>
   {{/each}}
 </ul>
 ```
