@@ -222,7 +222,7 @@ So far, your application is listing data,
 but there is no way for the user to interact with the information.
 In web applications you often want to listen for user events like clicks or hovers.
 Ember makes this easy to do.
-First add an `action` helper to the `li` in your `PeopleList` component.
+First, add a `<button>` with an `action` helper to the `li` in your `PeopleList` component.
 
 ```handlebars {data-filename="app/templates/components/people-list.hbs"}
 <h2>{{@title}}</h2>
