@@ -53,8 +53,8 @@ Now we have a button that can receive some text as an argument, with a modal
 confirmation that will show conditionally based on its `showConfirmation`
 property. You'll notice this property is decorated with the `@tracked`
 decorator - this is known as a _tracked property_, and indicates to Ember that
-the field will change in value over time. We'll discuss this more in the section
-on [State Management](../../state-management/).
+the field will change in value over the lifetime of the component. We'll
+discuss this more in the section on [State Management](../../state-management/).
 
 Next, we need to hook up the button to toggle that property. We'll
 do this with an _action_:
