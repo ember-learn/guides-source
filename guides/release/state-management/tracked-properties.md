@@ -47,7 +47,7 @@ should change.
 In order to tell Ember a value might change, we need to mark it as _trackable_.
 Trackable values are values that:
 
-1. Can change over time and
+1. Can change over their component’s lifetime and
 2. Should cause Ember to rerender if and when they change
 
 We can do this by marking the field with the `@tracked` decorator:
