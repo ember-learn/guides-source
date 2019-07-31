@@ -56,6 +56,14 @@ const releasePaths = walkSync('guides/release')
   .filter(filePath => extname(filePath) === '.md')
   .map(filePath => `guides/release/${filePath}`);
 
+/**
+ * The do not check list is a list of known URL's that will fail, but are still
+ * considered ok.  They include links such as follow-along URL's contained in
+ * prose that allow learners to easily open their browsers to relevant local
+ * development page, or other known 'safe' links that do not need to be checked.
+ *
+ * @type {Array}
+ */
 const doNotCheckList = [
 	'http://localhost:4200/scientists', // generating routes, link to open local server route
 	'http://localhost:4200/contact', // model hook tutorial code snippet
