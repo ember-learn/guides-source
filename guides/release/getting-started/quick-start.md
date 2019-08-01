@@ -159,7 +159,15 @@ Open the `scientists` template and add the following code to loop through the ar
 </ul>
 ```
 
-Here, we use the `each` helper to loop over each item in the array we provided from the `model()` hook and print it inside an `<li>` element.
+Here, we use the `each` _helper_ to loop over each item in the array we
+provided from the `model()` hook. Ember will render the _block_ contained
+inside the `{{#each}}...{{/each}}` helper once for each item (each scientist in
+our case) in the array. The item (the scientist) that is being rendered
+currently will be made available in the `scientist` variable, as denoted by
+`as |scientist|` in the `each` helper.
+
+The end result is that there will be one `<li>` element corresponding to each
+scientist in the array inside the `<ul>` unordered list.
 
 ## Create a UI Component
 
@@ -178,7 +186,7 @@ ember generate component people-list
 
 Copy and paste the `scientists` template into the `PeopleList` component's template and edit it to look as follows:
 
-```handlebars {data-filename=app/templates/components/people-list.hbs}
+```handlebars {data-filename=app/components/people-list.hbs}
 <h2>{{@title}}</h2>
 
 <ul>
@@ -188,8 +196,10 @@ Copy and paste the `scientists` template into the `PeopleList` component's templ
 </ul>
 ```
 
-Note that we've changed the title from a hard-coded string ("List of Scientists") to a dynamic property (`{{@title}}`).
-The `@` indicates that `@title` is an argument that was passed to the component.
+Note that we've changed the title from a hard-coded string ("List of Scientists")
+to `{{@title}}`. The `@` indicates that `@title` is an argument that will be
+passed into the component, which makes it easier to reuse the same component in
+other parts of the app we are building.
 
 We've also renamed `scientist` to the more-generic `person`,
 decreasing the coupling of our component to where it's used.
@@ -199,8 +209,8 @@ Replace all our old code with our new componentized version.
 
 We're going to tell our component:
 
-1. What title to use, via the `title` attribute.
-2. What array of people to use, via the `people` attribute. We'll
+1. What title to use, via the `@title` argument.
+2. What array of people to use, via the `@people` argument. We'll
    provide this route's `model` as the list of people.
 
 ```handlebars {data-filename="app/templates/scientists.hbs"}
@@ -215,43 +225,38 @@ As an exercise for the reader,
 you may try to create a `programmers` route that shows a list of famous programmers.
 By re-using the `PeopleList` component, you can do it in almost no code at all.
 
-## Click Events
+## Responding to user interactions
 
-So far, your application is listing data,
-but there is no way for the user to interact with the information.
-In web applications you often want to listen for user events like clicks or hovers.
-Ember makes this easy to do.
+So far, your application is listing data, but there is no way for the user to
+interact with the information. In web applications you often want to respond to
+user actions like clicks or hovers. Ember makes this easy to do.
 
-Create a button inside the `li` with the following syntax:
+First, we can modify the `PeopleList` component to include a button:
 
-```handlebars {data-filename="app/templates/components/people-list.hbs"}
-<h2>{{this.title}}</h2>
+```handlebars {data-filename="app/components/people-list.hbs"}
+<h2>{{@title}}</h2>
 
 <ul>
-  {{#each this.people as |person|}}
+  {{#each @people as |person|}}
     <li>
-      <button {{on "click" (fn this.showPerson person)}}>{{person}}</button>
+      <button>{{person}}</button>
     </li>
   {{/each}}
 </ul>
 ```
 
-Let us break it down.
+Now that we have a button, we need to wire it up to do _something_ when a user
+clicks on it. For simplicity, let's say we want to show an `alert` dialog with
+the person's name when the button is clicked.
 
-First we have `on`.
-`on` allows you to call a function when a certain DOM event has been triggered.
-In this case, we are listening for the click event, `{{on "click" …}}`.
+So far, our `PeopleList` component is purely presentational – it takes some
+inputs as arguments and renders them using a template. To introduce _behavior_
+to our component – handling the button click in this case, we will need to
+attach some _code_ to the component.
 
-Next, we have `fn`.
-This allows you to create a function that wraps another function and populates some of the arguments.
-In this specific case, `(fn this.showPerson person)` means that the function created by `fn` will call `this.showPerson` and pass it the argument `person`.
-
-Putting them together, we can see that whenever the button is clicked, the `showPerson` method of the component will be called, which `person` as the first argument.
-
-
-_Note: While the button element will ensure that your code is accessible, you may require an extra style or two if you wish to have it look like regular text. You might be tempted to use a regular link here, but that will cause your accessibility tests to fail._
-
-Add the action to the `people-list.js` file:
+In addition to the template, a component can also have a JavaScript file for
+this exact purpose. Go ahead and create a `.js` file with the same name and in
+the same directory as our template, and paste in the following content:
 
 ```javascript {data-filename="app/components/people-list.js"}
 import Component from '@glimmer/component';
@@ -260,16 +265,62 @@ import { action } from '@ember/object';
 export default class PeopleList extends Component {
   @action
   showPerson(person) {
-    alert(person);
+    alert(`The person's name is ${person}!`);
   }
 }
 ```
 
-The `@action` syntax is a JavaScript feature called a decorator.
-It is necessary in Ember applications so you can use it in the component's template, like shown above.
+_Note: If you want this file created for you, you may pass the `-gc` flag when running the component generator._
 
-Now in the browser when a scientist's name is clicked,
-this function is called and the person's name is alerted.
+Here, we created a basic component class and adding a method that accepts a
+person as an argument and brings up an alert dialog with their name. The
+`@action` _decorator_ indicates the intent of using this method as an _action_
+in our template, in response to user interaction.
+
+Finally, now that we have implemented the desired behavior, we can go back to
+the component's template and wire everything up:
+
+```handlebars {data-filename="app/components/people-list.hbs" data-diff="-6,+7"}
+<h2>{{@title}}</h2>
+
+<ul>
+  {{#each @people as |person|}}
+    <li>
+      <button>{{person}}</button>
+      <button {{on 'click' this.showPerson}}>{{person}}</button>
+    </li>
+  {{/each}}
+</ul>
+```
+
+Here, we used the `on` _modifier_ to attach `this.showPerson` (the action we
+wrote earlier) to the button in the template.
+
+There is a problem with this though – if you tried this in the browser, you
+will quickly discovered that clicking on the buttons will bring up an alert
+dialog that said "The person's name is undefined!" – eek!
+
+The cause of this bug is that we wrote our action to take an argument – the
+person's name – and we forgot to pass it. The fix is easy enough:
+
+```handlebars {data-filename="app/components/people-list.hbs" data-diff="-6,+7"}
+<h2>{{@title}}</h2>
+
+<ul>
+  {{#each @people as |person|}}
+    <li>
+      <button {{on 'click' this.showPerson}}>{{person}}</button>
+      <button {{on 'click' (fn this.showPerson person)}}>{{person}}</button>
+    </li>
+  {{/each}}
+</ul>
+```
+
+Instead of passing the action to the `on` modifier directly, we used the `fn`
+helper to pass the `person` as an argument which our action expects.
+
+Feel free to try this in the browser. Finally, everything should behave exactly
+as we hoped!
 
 ## Building For Production
 
