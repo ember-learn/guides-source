@@ -102,7 +102,7 @@ export function myHelper(params) {
 
   console.log(arg1); // => "hello"
   console.log(arg2); // => "world"
-});
+};
 
 export default helper(myHelper);
 ```
@@ -116,7 +116,7 @@ import { helper } from '@ember/component/helper';
 export function myHelper([arg1, arg2]) {
   console.log(arg1); // => "hello"
   console.log(arg2); // => "world"
-});
+};
 
 export default helper(myHelper);
 ```
@@ -166,7 +166,7 @@ export function formatCurrency([value, ...rest], namedArgs) {
 
   if (cents.toString().length === 1) { cents = '0' + cents; }
   return `${sign}${dollars}.${cents}`;
-});
+};
 
 export default helper(formatCurrency);
 ```
@@ -185,7 +185,7 @@ export function myHelper(params, namedArgs) {
   console.log(namedArgs.option1); // => "hello"
   console.log(namedArgs.option2); // => "world"
   console.log(namedArgs.option3); // => "goodbye cruel world"
-});
+};
 
 export default helper(myHelper);
 ```
@@ -200,7 +200,7 @@ export function myHelper(params, { option1, option2, option3 }) {
   console.log(option1); // => "hello"
   console.log(option2); // => "world"
   console.log(option3); // => "goodbye cruel world"
-});
+};
 
 export default helper(myHelper);
 ```
@@ -311,7 +311,7 @@ import { helper } from '@ember/component/helper';
 
 export function makeBold([param, ...rest]) {
   return `<b>${param}</b>`;
-});
+};
 
 export default helper(makeBold);
 ```
@@ -339,7 +339,7 @@ import { htmlSafe } from '@ember/string';
 
 export function makeBold([param, ...rest]) {
   return htmlSafe(`<b>${param}</b>`);
-});
+};
 
 export default helper(makeBold);
 ```
@@ -379,7 +379,7 @@ import { htmlSafe } from '@ember/string';
 export function makeBold([param, ...rest]) {
   let value = Ember.Handlebars.Utils.escapeExpression(param);
   return htmlSafe(`<b>${value}</b>`);
-});
+};
 
 export default helper(makeBold);
 ```
