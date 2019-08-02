@@ -1,4 +1,4 @@
-One of the first things you'll notice when you generate JavaScript files in Ember is that most of the code you will write goes inside of an object. While an Ember Object might look a lot like an ES2015 JavaScript class, it has some special properties.
+One of the first things you'll notice when you generate JavaScript files in Ember is that most of the code you will write goes inside of an object. While an Ember Object might look a lot like a JavaScript class, it has some special properties.
 
 ### Introducing: Ember Objects
 
