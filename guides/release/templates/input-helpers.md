@@ -52,7 +52,7 @@ To dispatch an action on specific events such as `key-press`, use the following
 
 ```handlebars
 <label for="firstname">First Name</label>
-<Input @value={{this.firstName}} @key-press={{action "updateFirstName" id="firstname"}} />
+<Input @value={{this.firstName}} @key-press={{this.updateFirstName}} id="firstname" />
 ```
 
 The following event types are supported (dasherized format):
@@ -97,7 +97,7 @@ Checkboxes are a special input type. If you want to dispatch an action on a cert
 
 ```handlebars
 <label for="firstname">First Name</label>
-<Input @type="checkbox" @key-press={{action "updateName"}} id="firstname" />
+<Input @type="checkbox" @key-press={{this.updateName}} id="firstname" />
 ```
 
 

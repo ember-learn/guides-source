@@ -34,7 +34,7 @@ This is where the active nested route will be rendered.
   </LinkTo>
 </div>
 <ListFilter
-   @filter={{action "filterByCity"}}
+   @filter={{this.filterByCity}}
    as |filteredResults|>
   <ul class="results">
     {{#each filteredResults as |rentalUnit|}}
@@ -111,7 +111,7 @@ Now that we are returning all of our rentals to the nested route's model, we wil
   </LinkTo>
 </div>
 <ListFilter
-   @filter={{action "filterByCity"}}
+   @filter={{this.filterByCity}}
    as |filteredResults|}}
 >
   <ul class="results">
@@ -125,7 +125,7 @@ Now that we are returning all of our rentals to the nested route's model, we wil
 
 ```handlebars {data-filename="app/templates/rentals/index.hbs" data-diff="+1,+2,+3,+4,+5,+6,+7,+8,+9,+10"}
 <ListFilter
-   @filter={{action "filterByCity"}}
+   @filter={{this.filterByCity}}
    as |filteredResults|
 >
   <ul class="results">
@@ -358,7 +358,7 @@ Clicking on the title will load the detail page for that rental.
 <article class="listing">
   <a
     class="image {{if this.isWide "wide"}}">
-    onclick={{action 'toggleImageSize'}}
+    {{on "click" this.toggleImageSize}}
     role="button"
   >
     <img src="{{this.rental.image}}" alt=""

@@ -10,7 +10,7 @@ Like we mentioned in the section on [Templates](../templates/handlebars-basics/)
 can have both a template and a class definition, like so:
 
 ```handlebars {data-filename=app/templates/components/hello-button.hbs}
-<button {{action this.sayHello}}>
+<button {{on "click" this.sayHello}}>
   {{@buttonText}}
 </button>
 ```
@@ -78,7 +78,7 @@ You can also use template helpers, modifiers, and other components within your
 component template:
 
 ```handlebars {data-filename=app/templates/components/hello-button.hbs}
-<button {{action this.sayHello}}>
+<button {{on "click" this.sayHello}}>
   {{#if @iconType}}
     <Icon @type={{@iconType}} />
   {{/if}}
@@ -99,7 +99,7 @@ block instead of the `@buttonText` argument, by adding the `{{yield}}` helper
 to its template where we want to place its block:
 
 ```handlebars {data-filename=app/templates/components/hello-button.hbs}
-<button {{action this.sayHello}}>
+<button {{on "click" this.sayHello}}>
   {{yield}}
 </button>
 ```
