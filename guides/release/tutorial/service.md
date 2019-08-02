@@ -169,7 +169,7 @@ Finally open the template file for our `rental-listing` component and add the ne
 <article class="listing">
   <a
     class="image {{if this.isWide "wide"}}"
-    {{on "click" toggleImageSize}}
+    {{on "click" this.toggleImageSize}}
     role="button"
   >
     <img src={{this.rental.image}} alt="">
