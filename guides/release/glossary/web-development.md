@@ -97,3 +97,8 @@ Creating a re-usable "widget" or control might be a good use-case for this. Brow
 
 ## Virtual DOM
 Not to be confused with Shadow DOM. The concept of a virtual DOM means abstracting your code (or in our case, Ember) away from using the browser's DOM in favor of a "virtual" DOM that can easily be accessed for read/writes or even serialized.
+
+## Web Components
+
+[Web Components](https://www.webcomponents.org/), which are a
+browser based API to make portable components. They are not the same thing as Ember Components.

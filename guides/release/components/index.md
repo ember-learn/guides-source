@@ -1,17 +1,26 @@
-Components are an essential building block in Ember applications. They allow
-developers to package presentation and behavior into a single unit and give it
-a name. You can think of them like defining your own custom HTML elements, like
-a custom `<input>` or `<select>` tag that has its own behavior, values, and
-events that you can hook into in your templates. However, they shouldn't be
-confused with [_web components_](https://www.webcomponents.org/), which are a
-browser based API that is similar, but not as powerful as Ember components.
+Components are the building blocks of the user interface (UI) in your application, and they play two major roles. One is that they help you structure your application in a way that is easy to understand, since you can organize the UI into bite-sized pieces. Two, they make it possible to create UI elements that you can reuse multiple times throughout your application.
 
-Like we mentioned in the section on [Templates](../templates/handlebars-basics/), components
-can have both a template and a class definition, like so:
+## Creating a component
+
+To make a new component in your application, use the Ember CLI:
+
+```bash
+ember generate glimmer-component my-component-name
+```
+
+This will create a template file, a JavaScript file containing a component class, and a test.
+The template file ends in `.hbs`, and it holds HTML markup and Ember-specific template features.
+The JavaScript file holds the interactivity like click handlers and state.
+
+<!-- TODO - possibly revise this to reflect template-only component defaults, RFC 481  -->
+
+## Example
+
+Components can do a lot, but let's start with a small example.For this `HelloButton` component shows how a component's template and class work together to create a click handler for the button:
 
 ```handlebars {data-filename=app/templates/components/hello-button.hbs}
-<button {{action this.sayHello}}>
-  {{@buttonText}}
+<button {{on "click" this.sayHello}}>
+  Say Hello!
 </button>
 ```
 
@@ -27,10 +36,14 @@ export default class HelloButton extends Component {
 }
 ```
 
-And they can be used in other templates:
+<!-- TODO change filepaths when template co-location is in Octane blueprints RFC 481 -->
+
+## Using a Component
+
+Here is how a Component can be used within other templates:
 
 ```handlebars {data-filename=app/templates/application.hbs}
-<HelloButton @buttonText="Say Hello!"/>
+<HelloButton />
 ```
 
 The syntax for using a component is similar to standard HTML elements, but uses
@@ -45,8 +58,16 @@ following HTML output wherever it was used:
 ```
 
 And when we click on the button, it triggers the `sayHello` action, logging
-"Hello, world!" to the console. We can reuse this component as many times as we
-like, and we can even change the text via the value that we pass to it,
+"Hello, world!" to the console.
+
+However, this example is not reusable, because the button's label is hard-coded and it logs the same message every time.
+Next, we will show how we can render the button multiple times with different labels.
+
+## Arguments
+
+
+
+and we can even change the text via the value that we pass to it,
 `@buttonText`, which is known as an _argument_:
 
 ```handlebars {data-filename=app/templates/application.hbs}
@@ -69,10 +90,20 @@ Invoking the component three times like this results in the following HTML:
 </button>
 ```
 
-However, clicking on each button will still log the same "Hello, world!"
-message, since the click handler is defined in the _class_ of the component, and
-doesn't use any arguments. We'll talk more about arguments - and their
-counterpart, _actions_ - later on.
+## Component state
+
+<!-- computed props/tracked, static vals -->
+
+
+## Bringing it all together
+
+Now that we have introduced templates, arguments, actions, and state, let's look at an example that brings them all together.
+
+
+
+------
+
+We'll talk more about [arguments](../arguments-and-attributes/) and [actions](../actions-and-events/) later on.
 
 You can also use template helpers, modifiers, and other components within your
 component template:
@@ -143,3 +174,10 @@ In the following guides we'll talk about:
 
 - **Contextual Components**, which can be used dynamically to pass components
   around as values, and allow them to be invoked in different locations.
+
+
+<!-- 
+Rationale and scope:
+This page should introduce just enough information that someone can create a component that renders data and updates in response to interaction. It should also 
+Because people often struggle with how each individual feature fits together, the goal is to give a big picture mental model of the foundational concepts.
+-->
