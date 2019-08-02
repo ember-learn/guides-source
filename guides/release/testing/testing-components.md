@@ -171,7 +171,7 @@ export default class MagicTitleComponent extends Component {
 ```handlebars {data-filename="app/templates/components/magic-title.hbs"}
 <h2>{{this.title}}</h2>
 
-<button class="title-button" {{action this.updateTitle}}>
+<button class="title-button" {{on "click" this.updateTitle}}>
   Update Title
 </button>
 ```
@@ -231,7 +231,7 @@ export default class CommentFormComponent extends Component {
 ```
 
 ```handlebars {data-filename="app/templates/components/comment-form.hbs"}
-<form {{action this.submitComment on="submit"}}>
+<form {{on "submit" this.submitComment}}>
   <label>Comment:</label>
   <Textarea @value={{this.comment}} />
 
@@ -261,7 +261,7 @@ module('Integration | Component | comment-form', function(hooks) {
       assert.deepEqual(actual, expected, 'submitted value is passed to external action');
     });
 
-    await render(hbs`<CommentForm @submitComment={{action externalAction}}>`);
+    await render(hbs`<CommentForm @submitComment={{this.externalAction}}>`);
 
     // fill out the form and force an onchange
     await fillIn('textarea', 'You are not a wizard!');
@@ -477,7 +477,7 @@ export default class DelayedTypeaheadComponent extends Component {
 ```
 
 ```handlebars {data-filename="app/templates/components/delayed-typeahead.hbs"}
-<Input @value={{this.searchValue}} @key-up={{action 'handleTyping'}} />
+<Input @value={{this.searchValue}} @key-up={{this.handleTyping}} />
 <ul>
   {{#each this.results as |result|}}
     <li class="result">{{result.name}}</li>

@@ -20,12 +20,12 @@ sub-routes and controllers.
 
 ```javascript {data-filename=app/routes/application.js}
 import Route from '@ember/route';
+import { action } from '@ember/object';
 
 export default class ApplicationRoute extends Route {
-  actions: {
-    displayAlert(text) {
-      this._displayAlert(text);
-    }
+  @action
+  displayAlert(text) {
+    this._displayAlert(text);
   }
 
   _displayAlert(text) {

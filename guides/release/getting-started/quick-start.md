@@ -230,7 +230,7 @@ Create a button inside the `li` with the following syntax:
 <ul>
   {{#each this.people as |person|}}
     <li>
-      <button {{on 'click' (fn this.showPerson person)}}>{{person}}</button>
+      <button {{on "click" (fn this.showPerson person)}}>{{person}}</button>
     </li>
   {{/each}}
 </ul>
@@ -240,7 +240,7 @@ Let us break it down.
 
 First we have `on`.
 `on` allows you to call a function when a certain DOM event has been triggered.
-In this case, we are listening for the click event, `{{on 'click' …}}`.
+In this case, we are listening for the click event, `{{on "click" …}}`.
 
 Next, we have `fn`.
 This allows you to create a function that wraps another function and populates some of the arguments.

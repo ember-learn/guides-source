@@ -102,7 +102,7 @@ button:
   <dialog>
 {{/if}}
 
-<button {{action this.toggleModal}}>
+<button {{on "click" this.toggleModal}}>
   {{@triggerText}}
 </button>
 ```
@@ -135,7 +135,7 @@ What we can do here is _yield_ the `toggleModal` action:
   <dialog>
 {{/if}}
 
-<button {{action this.toggleModal}}>
+<button {{on "click" this.toggleModal}}>
   {{@triggerText}}
 </button>
 ```
@@ -148,13 +148,13 @@ similar to the `{{each}}` helper, and place the action on their buttons:
   You have unsaved progress, are you sure you want to quit?
 
   <button
-    {{action toggle}}
+    {{on "click" toggle}}
     class="btn-danger"
   >
     Yes
   </button>
   <button
-    {{action toggle}}
+    {{on "click" toggle}}
     class="btn"
   >
     No

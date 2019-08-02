@@ -83,12 +83,12 @@ The property `isExpanded` keeps track if the user has expanded the body or not. 
 <hr>
 
 {{#if this.isExpanded}}
-  <button {{action "toggleBody"}}>Hide Body</button>
+  <button {{on "click" this.toggleBody}}>Hide Body</button>
   <div class="body">
     {{this.model.body}}
   </div>
 {{else}}
-  <button {{action "toggleBody"}}>Show Body</button>
+  <button {{on "click" this.toggleBody}}>Show Body</button>
 {{/if}}
 ```
 
