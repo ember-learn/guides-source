@@ -103,11 +103,11 @@ To invoke it using angle bracket syntax, you would do the following:
 <MyGreeting @params={{array "Hello" "World"}}>
 ```
 
-### When to use curly invocation syntax?
+### Are curly braces gone completely?
 
-Although angle bracket syntax is considered to be the best approach, curly invocation syntax is fine to keep using.
-In some cases, curly invocation is still required.
-For example, when you need direct support for positional arguments or if your components are nested within the file tree, you should still reach for those curly braces:
+In some cases, classic invocation is still required.
+
+For example, when you need direct support for positional arguments, or if your components are nested within the file tree, curly braces are still appropriate:
 
 ```handlebars
 {{some-component param1 param2}}
