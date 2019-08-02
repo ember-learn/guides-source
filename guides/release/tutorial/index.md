@@ -100,15 +100,11 @@ Router.map(function() {
 export default Router;
 ```
 
-Ember CLI uses ECMAScript 2015 (ES2015 for short or popularly known as ES6)
-modules to organize application code. For example, the line `import EmberRouter
-from '@ember/routing/router';` gives us access to Ember's Router class as the
-variable `EmberRouter`. And the `import config from './config/environment';`
-line gives us access to our app's configuration data as the variable `config`.
-`const` is a way to declare a read-only variable to make sure it is not
-accidentally reassigned elsewhere. At the end of the file, `export default
-Router;` makes the `Router` variable defined in this file available to other
-parts of the app.
+Ember CLI uses JavaScript modules to organize application code.
+For example, the line `import EmberRouter from '@ember/routing/router';` gives us access to Ember's Router class as the variable `EmberRouter`.
+And the `import config from './config/environment';` line gives us access to our app's configuration data as the variable `config`.
+`const` is a way to declare a read-only variable to make sure it is not accidentally reassigned elsewhere.
+At the end of the file, `export default Router;` makes the `Router` variable defined in this file available to other parts of the app.
 
 
 ## The Development Server
