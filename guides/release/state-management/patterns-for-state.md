@@ -156,12 +156,12 @@ export default class ProfileComponent extends Component {
 
   @action
   updateName(name) {
-    let user = this.store.peekRecord('user', this.args.userId);
+    const user = this.store.peekRecord('user', this.args.userId);
 
     // This user model is owned by the store, so the action
     // is updating data it locally, but it'll affect everywhere
     // else as well.
-    user.set('name', newName);
+    user.name = newName;
   }
 
   @action
