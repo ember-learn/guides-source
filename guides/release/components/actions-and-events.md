@@ -74,7 +74,7 @@ export default class ButtonWithConfirmation extends Component {
 }
 ```
 
-Like we discussed [Templating](../../templates/actions/), actions are methods
+Like we discussed [Templating](../templates/actions), actions are methods
 that are decorated with the `@action` decorator, and which can be used in
 templates. We can assign the action to our button using the [`{{on}}`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/on?anchor=on)
 modifier:
@@ -397,14 +397,14 @@ block within the `"confirmDialog"` element:
   <div class="confirm-dialog">
     {{yield this.confirmValue}}
 
-    <button 
-      class="confirm-submit" 
+    <button
+      class="confirm-submit"
       {{on "click" this.submitConfirm}}
     >
       OK
     </button>
-    <button 
-      class="confirm-cancel" 
+    <button
+      class="confirm-cancel"
       {{on "click" this.cancelConfirm}}
     >
       Cancel
@@ -527,7 +527,7 @@ export default class SystemPreferencesEditor extends Component {
 ## Calling Actions Up Multiple Component Layers
 
 When your components go multiple template layers deep, it is common to need to
-handle an action several layers up the tree. 
+handle an action several layers up the tree.
 
 Note about prop drilling / anti-patterns?
 
@@ -595,7 +595,7 @@ seen in the wild when working on older Ember apps or addons.
 When you encounter a string based action it should be refactored to use the
 `@action` decorator (refactor away from the `actions` hash) along with the `fn` helper for any partial application needed.
 
-It is then recommended to use the `on` modifier directly with the 
+It is then recommended to use the `on` modifier directly with the
 `fn` helper and decorated functions.
 
 ```handlebars

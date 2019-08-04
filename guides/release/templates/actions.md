@@ -45,7 +45,7 @@ the `click` event, such that when the button is clicked, `toggleBody`
 will be invoked.
 
 You will learn about more advanced usages in the Component's [Actions
-and Events](../components/actions-and-events/) guide, but you should
+and Events](../components/actions-and-events) guide, but you should
 familiarize yourself with the basics on this page first.
 
 Templates rendered for your application's routes are backed by controllers, so
@@ -153,4 +153,4 @@ Always check to see that the element you are adding an action to is interactive,
 As a rule of thumb, if you find yourself adding an action an `<a>` tag, you should turn it into a `<button>` instead.
 
 For more information about building accessible apps in Ember, see the
-[Accessibility Guide](../reference/accessibility-guide/).
+[Accessibility Guide](../reference/accessibility-guide).
