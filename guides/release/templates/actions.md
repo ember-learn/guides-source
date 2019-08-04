@@ -4,7 +4,7 @@ blog title, and supports expanding the post to show the body. This can be done
 with _actions_.
 
 Actions are methods that have been decorated with the `@action` decorator in
-the context of the template: 
+the context of the template:
 
 ```javascript {data-filename=app/components/post/component.js}
 import Component from '@glimmer/component';
@@ -37,15 +37,15 @@ modifier:
 {{/if}}
 ```
 
-The `{{on}}` modifier binds the passed function to 
-[any event](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) -- 
-such as `click`, `mouseup`, `focusout`, etc. 
-In this case, the passed action, `toggleBody`, has been bound to 
-the `click` event, such that when the button is clicked, `toggleBody` 
+The `{{on}}` modifier binds the passed function to
+[any event](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) --
+such as `click`, `mouseup`, `focusout`, etc.
+In this case, the passed action, `toggleBody`, has been bound to
+the `click` event, such that when the button is clicked, `toggleBody`
 will be invoked.
 
 You will learn about more advanced usages in the Component's [Actions
-and Events](../../components/actions-and-events/) guide, but you should
+and Events](../components/actions-and-events/) guide, but you should
 familiarize yourself with the basics on this page first.
 
 Templates rendered for your application's routes are backed by controllers, so
@@ -70,9 +70,9 @@ For more examples of that syntax see <a href="https://guides.emberjs.com/v3.6.0/
 
 ## Action Parameters
 
-You can optionally pass arguments to the 
-[`fn`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/on?anchor=fn) 
-helper via [partial application](https://en.wikipedia.org/wiki/Partial_application). 
+You can optionally pass arguments to the
+[`fn`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/on?anchor=fn)
+helper via [partial application](https://en.wikipedia.org/wiki/Partial_application).
 For example, if the `post` argument was passed:
 
 ```handlebars {data-filename=app/components/post/template.hbs}
@@ -84,10 +84,10 @@ For example, if the `post` argument was passed:
 </p>
 ```
 
-The `select` action handler would be called with `@post` as the first 
-argument and the 
-[native JavaScript `click` event](https://developer.mozilla.org/en-US/docs/Web/API/Element/click_event) 
-as the second argument. 
+The `select` action handler would be called with `@post` as the first
+argument and the
+[native JavaScript `click` event](https://developer.mozilla.org/en-US/docs/Web/API/Element/click_event)
+as the second argument.
 
 
 ```javascript {data-filename=app/components/post/component.js}
@@ -133,15 +133,15 @@ export default class Post extends Component {
 }
 ```
 
-The native JavaScript form submission event is the sole argument to 
-`createPost`. The form submission event needs to have `preventDefault` 
-called on it in order to opt out of the browser-default behavior -- which, 
+The native JavaScript form submission event is the sole argument to
+`createPost`. The form submission event needs to have `preventDefault`
+called on it in order to opt out of the browser-default behavior -- which,
 for forms, is to POST to the current URL.
 
 ## Attaching Actions to Non-Clickable Elements
 
-Note that while Ember currently permits you to add an action to any DOM 
-element, not all DOM elements are eligible to receive focus, according to 
+Note that while Ember currently permits you to add an action to any DOM
+element, not all DOM elements are eligible to receive focus, according to
 HTML standards.
 
 For example, if an action is attached to an `a` link
@@ -153,4 +153,4 @@ Always check to see that the element you are adding an action to is interactive,
 As a rule of thumb, if you find yourself adding an action an `<a>` tag, you should turn it into a `<button>` instead.
 
 For more information about building accessible apps in Ember, see the
-[Accessibility Guide](../../reference/accessibility-guide/).
+[Accessibility Guide](../reference/accessibility-guide/).
