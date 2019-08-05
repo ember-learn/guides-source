@@ -74,7 +74,7 @@ export default class ButtonWithConfirmation extends Component {
 }
 ```
 
-Like we discussed [Templating](../templates/actions), actions are methods
+Like we discussed [Templating](../../templates/actions), actions are methods
 that are decorated with the `@action` decorator, and which can be used in
 templates. We can assign the action to our button using the [`{{on}}`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/on?anchor=on)
 modifier:
