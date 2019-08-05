@@ -32,7 +32,7 @@
       url: installing-addons
     - title: Building a Simple Component
       url: simple-component
-    - title: Creating a Handlebars Helper
+    - title: Creating a Template Helper
       url: hbs-helper
     - title: Using Ember Data
       url: ember-data
