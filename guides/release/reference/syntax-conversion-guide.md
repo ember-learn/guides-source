@@ -107,7 +107,7 @@ To invoke it using angle bracket syntax, you would do the following:
 
 In some cases, classic invocation is still required.
 
-For example, when you need direct support for positional arguments, or if your components are nested within the file tree, curly braces are still appropriate:
+For example, when direct support for positional arguments is required, curly braces are still appropriate:
 
 ```handlebars
 {{some-component param1 param2}}
