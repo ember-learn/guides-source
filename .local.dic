@@ -126,6 +126,7 @@ readonly
 recognizers
 Redux
 relayout
+renderer
 repo
 rerender
 rerendering

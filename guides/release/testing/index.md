@@ -2,31 +2,31 @@ Ember gives you **the power to write tests and be productive from day one**. You
 
 Since tests are a core part of the Ember framework and your development cycle, we will dedicate several sections to learning how to write tests.
 
-In this section, we will cover why testing is important, what tools can help us with testing, and how to run and debug our tests.
+In this section, we will cover why testing is important, what tools can help you with testing, and how to run and debug your tests.
 
 
-## Why Do We Need Tests?
+## Why Do I Need Tests?
 
-Writing tests is a necessary ingredient if we want to guarantee users and stakeholders that our app, whether small or large, will function as intended at any given time. The larger our app, the more costly and error-prone manual testing becomes.
+Writing tests is a necessary ingredient if you want to guarantee users and stakeholders that your app, whether small or large, will function as intended at any given time. The larger your app, the more costly and error-prone manual testing becomes.
 
-Writing tests is also a fun activity, a nice change of pace from delivering features daily, and a way to help us refactor code and improve ourselves as a developer. Tests can also serve as a living documentation—a key element in onboarding new developers.
+Writing tests is also a fun activity, a nice change of pace from delivering features daily, and a way to help you refactor code and improve as a developer. Tests can also serve as a living documentation—a key element in onboarding new developers.
 
 
 ## What Tools Can Help Me?
 
 ### QUnit, QUnit DOM
 
-Every Ember app comes with [QUnit](http://qunitjs.com/) and [QUnit DOM](https://github.com/simplabs/qunit-dom). QUnit is a testing framework, and QUnit DOM is a library that helps us **write tests that are concise and readable**.
+Every Ember app comes with [QUnit](http://qunitjs.com/) and [QUnit DOM](https://github.com/simplabs/qunit-dom). QUnit is a testing framework, and QUnit DOM is a library that helps you **write tests that are concise and readable**.
 
 To see the power of QUnit DOM, consider this code snippet. It checks whether our button component shows the right text and the right CSS attribute.
 
 ```javascript {data-filename=tests/integration/components/simple-button/component-test.js}
 /*
-  For simplicity, we omitted the import, module, and setup
-  statements here. Our component accepts two attributes,
+  For simplicity, the import, module, and setup statements
+  are omitted here. Our component accepts two attributes,
   text (string) and isDisabled (boolean).
 */
-test('We show the correct text', async function(assert) {
+test('should show text', async function(assert) {
   await render(hbs`<SimpleButton @text="Hello world!" />`);
 
   // QUnit
@@ -36,7 +36,7 @@ test('We show the correct text', async function(assert) {
   assert.dom(this.element).hasText('Hello world!');
 });
 
-test('We can disable the button', async function(assert) {
+test('should allow disabling the button', async function(assert) {
   await render(hbs`<SimpleButton @text="Hello world!" @isDisabled={{true}} />`);
 
   // QUnit
@@ -65,9 +65,9 @@ test('We can disable the button', async function(assert) {
 
 ### Ember CLI
 
-When we use [Ember CLI](https://ember-cli.com/generators-and-blueprints) to generate an Ember "object" (e.g. component, model, service), it will create a test file with a setup that correctly addresses our testing framework and the [type of test that we should write](../testing/different-types-of-tests).
+When you use [Ember CLI](https://ember-cli.com/generators-and-blueprints) to generate an Ember "object" (e.g. component, model, service), it will create a test file with a setup that correctly addresses your testing framework and the [type of test that you should write](../testing/different-types-of-tests).
 
-We can also use Ember CLI to create the test file separately from the object. For example, if we enter the following lines in the terminal,
+You can also use Ember CLI to create the test file separately from the object. For example, if you enter the following lines in the terminal,
 
 ```bash
 ember g model-test student
@@ -75,25 +75,25 @@ ember g component-test student
 ember g acceptance-test students
 ```
 
-we get a unit test for the `student` model, a rendering test (integration test) for the `student` component, and an application test (acceptance test) that can be used to check the `students` route and its subroutes.
+you get a unit test for the `student` model, a rendering test (integration test) for the `student` component, and an application test (acceptance test) that can be used to check the `students` route and its subroutes.
 
 ### Ember Test Selectors
 
-We want to be able to grab DOM elements in our tests. Since Ember is just JavaScript, we can use [`querySelector`](https://developer.mozilla.org/docs/Web/API/Element/querySelector) and [`querySelectorAll`](https://developer.mozilla.org/docs/Web/API/Element/querySelectorAll) to do so. These methods require us to pass a **selector**, a string that identifies the element(s) that we want.
+You want to be able to grab DOM elements in your tests. Since Ember is just JavaScript, you can use [`querySelector`](https://developer.mozilla.org/docs/Web/API/Element/querySelector) and [`querySelectorAll`](https://developer.mozilla.org/docs/Web/API/Element/querySelectorAll) to do so. These methods require you to pass a **selector**, a string that identifies the element(s) that you want.
 
 <div class="cta">
   <div class="cta-note">
     <div class="cta-note-body">
       <div class="cta-note-heading">Tomster says...</div>
       <div class="cta-note-message">
-        While we can use CSS classes as selectors, a best practice for testing is to <strong>separate the concerns between styling and testing</strong>. Class names and DOM structure change over time—for the better—by you, your team, and addon developers. If you rely on CSS classes, your tests will break and need a significant rewrite.
+        While you can use CSS classes as selectors, a best practice for testing is to <strong>separate the concerns between styling and testing</strong>. Class names and DOM structure change over time—for the better—by you, your team, and addon developers. If you rely on CSS classes, your tests will break and need a significant rewrite.
       </div>
     </div>
     <img src="/images/mascots/tomster.png" role="presentation" alt="Ember Mascot">
   </div>
 </div>
 
-[Ember Test Selectors](https://github.com/simplabs/ember-test-selectors) is an addon that helps us **write tests that are more resilient to DOM changes**. We use `data-test-*` attributes to mark the elements that will be used in our tests. The addon works with QUnit DOM and helpers from [@ember/test-helpers](https://github.com/emberjs/ember-test-helpers/). It also removes the `data-test-*` attributes in the production build.
+[Ember Test Selectors](https://github.com/simplabs/ember-test-selectors) is an addon that helps you **write tests that are more resilient to DOM changes**. You use `data-test-*` attributes to mark the elements that will be used in your tests. The addon works with QUnit DOM and helpers from [@ember/test-helpers](https://github.com/emberjs/ember-test-helpers/). It also removes the `data-test-*` attributes in the production build.
 
 Consider the example of a button component again. This time, our component can display a Material icon in addition to the text.
 
@@ -108,7 +108,7 @@ Consider the example of a button component again. This time, our component can d
 ```
 
 ```javascript {data-filename=tests/integration/components/simple-button/component-test.js}
-test('We show the correct icon and text', async function(assert) {
+test('should show icon and text', async function(assert) {
   await render(hbs`<SimpleButton @icon="face" @text="Hello world!" />`);
 
   // Bad
@@ -148,21 +148,21 @@ test('We show the correct icon and text', async function(assert) {
 
 ### Ember CLI Mirage
 
-If our application receives and sends data, we want to show that we can take these actions successfully. We also want to prove that we can handle the error states correctly.
+If your application receives and sends data, you want to show that you can take these actions successfully. You also want to prove that you can handle the error states correctly.
 
-[Ember CLI Mirage](https://www.ember-cli-mirage.com/) is an addon that allows us to create a mock server. We can also use it to test our app against various server states. To learn more about using Mirage in tests, we encourage you to [visit the official website](https://www.ember-cli-mirage.com/docs/testing/acceptance-tests).
+[Ember CLI Mirage](https://www.ember-cli-mirage.com/) is an addon that allows you to create a mock server. You can also use it to test your app against various server states. To learn more about using Mirage in tests, we encourage you to [visit the official website](https://www.ember-cli-mirage.com/docs/testing/acceptance-tests).
 
 ### Ember Exam
 
-We want our tests to finish fast. A fast run means we get to try out a different solution and iterate many more times.
+You want your tests to finish fast. A fast run means you get to try out a different solution and iterate many more times.
 
-[Ember Exam](https://github.com/ember-cli/ember-exam) is an addon that allows us to parallelize the run. If we have many rendering and application tests, this can dramatically speed up our testing.
+[Ember Exam](https://github.com/ember-cli/ember-exam) is an addon that allows you to parallelize the run. If you have many rendering and application tests, this can dramatically speed up your testing.
 
-Ember Exam also lets us randomize how the tests are run. Why would we want to do so? When we don't properly set up and tear down a test, we can create dependencies among tests. Randomizing the order helps us catch these inadvertent bugs.
+Ember Exam also lets you randomize how the tests are run. Why would you want to do so? When you don't properly set up and tear down a test, you can create dependencies among tests. Randomizing the order helps you catch these inadvertent bugs.
 
 ### Percy
 
-Last but not least, [Percy](https://percy.io/) is a **visual regression testing** tool that helps us catch accidental style changes. You can try it out for free and pay for additional service.
+Last but not least, [Percy](https://percy.io/) is a **visual regression testing** tool that helps you catch accidental style changes. You can try it out for free and pay for additional service.
 
 While we don't recommend this practice in general, you might also use Percy in lieu of application tests to capture complex workflows.
 
@@ -205,9 +205,9 @@ The `--filter` option is more versatile. You can provide a phrase to match again
 
 ```bash
 # Button component example
-ember test --server --filter="We show the correct text"
+ember test --server --filter="should show icon and text"
 
-# Test everything related to our dashboard
+# Test everything related to your dashboard
 ember t -s -f="dashboard"
 
 # Run integration tests
@@ -234,4 +234,4 @@ Simply add `await pauseTest();` to your test code, then save. When the test reac
 
 Ember considers testing a first-class citizen. In addition to providing easy paths to integrate QUnit and Mocha, Ember supports a variety of addons and debugging tools to improve your developer experience in testing.
 
-In the next section, we will study 3 types of different tests that Ember supports—unit, rendering, and application tests. We will look at each type and when we might use one over another.
+In the next section, we will study 3 types of tests that Ember supports—unit, rendering, and application tests. We will look at each type and when you might use one over another.

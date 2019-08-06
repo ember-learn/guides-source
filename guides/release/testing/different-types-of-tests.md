@@ -1,25 +1,29 @@
-In Ember, there are 3 types of tests. From the least complex to the most, we have:
+Ember provides 3 types of tests out of the box:
 
 - Unit tests
-- Rendering tests (integration tests)
-- Application tests (acceptance tests)
+- Rendering tests (previously known as integration tests)
+- Application tests (previously known as acceptance tests)
 
-Broadly speaking, these tests differ in two aspects. (1) How much of our app should they cover for correctness? In other words, we look at separation of concerns. (2) How fast can they run? After all, we want our tests to finish in a timely manner.
+Broadly speaking, these tests differ in two aspects. (1) Which parts of your app do they check for correctness? In other words, there are different types to help you separate testing concerns. (2) How fast can they run? After all, you want the tests to finish in a timely manner.
 
-In this section, we will take a look at each type and when we might use one over another.
+Let's take a look at each type and when you might use one over another.
 
 
 ## Unit Tests
 
 ### Definition
 
-We can use unit tests to check the **correctness of an individual method**. Given an input, does the method return the right output? Unit tests are **fast** and should form the **building blocks of our test suite**.
+Unit tests check the **correctness of individual methods**. Given an input, does the method return the right output? Since unit tests can check code at the method level, they can form the **foundation of your test suite**. Unit tests are also **extremely fast** by nature.
 
-When we use Ember CLI, a unit test gets created for an [adapter](../../models/customizing-adapters/), a controller, initializer, [model](../../models/defining-models/), [serializer](../../models/customizing-serializers/), [service](../../services/), and utility—pretty much everything! (Unit tests are the building blocks, remember?) We encourage you to read the rest of the documentation to learn writing tests for each.
+Unit tests gets created automatically when you use Ember CLI to create [adapters](../../models/customizing-adapters/), controllers, initializers, [models](../../models/defining-models/), [serializers](../../models/customizing-serializers/), [services](../../services/), and utilities. We encourage you to read the rest of the documentation to learn writing tests for each.
 
 ### Why Use Them?
 
-The benefits of having unit tests are twofold. If our unit tests are correct, then we can be more confident that our rendering and application tests will be also. Conversely, when a rendering or an application test fails, we can more easily identify the method that failed, because it likely hasn't been covered by a unit test.
+The benefits of having unit tests are threefold.
+
+If your unit tests are correct, then you can be more confident that your rendering and application tests will be also. Conversely, when a rendering or an application test fails, you can more easily identify the method that failed, because it likely hasn't been covered by a unit test.
+
+Finally, for large apps, how fast your test suite can finish becomes an important issue. You want the feedback loop to be short so that you can iterate many more times to find great solutions. If you can verify something in your app with unit tests, do so.
 
 ### Examples
 
@@ -30,7 +34,7 @@ import { module, test } from 'qunit';
 import util from 'our-app-name/utils/math-library';
 
 module('Unit | Utility | math-library', function() {
-  test('isPrime works correctly', function(assert) {
+  test('should check if a number is prime', function(assert) {
     assert.strictEqual(util.isPrime(1), false);
     assert.strictEqual(util.isPrime(2), true);
     assert.strictEqual(util.isPrime(3), true);
@@ -39,7 +43,7 @@ module('Unit | Utility | math-library', function() {
     assert.strictEqual(util.isPrime(6), false);
   });
 
-  test('getDivisors works correctly', function(assert) {
+  test('should get all divisors of a number', function(assert) {
     assert.deepEqual(util.getDivisors(1), [1]);
     assert.deepEqual(util.getDivisors(2), [1, 2]);
     assert.deepEqual(util.getDivisors(3), [1, 3]);
@@ -50,18 +54,18 @@ module('Unit | Utility | math-library', function() {
 });
 ```
 
-Here are more examples for which we can write unit tests:
+Here are more examples where unit tests are ideal:
 
 - Inside a controller, a computed property continues to filter `this.model` correctly after an action is taken
 - Check how [`normalize()`](https://api.emberjs.com/ember-data/release/classes/JSONAPISerializer/methods/normalize?anchor=normalize) in a serializer receives data
 - Check how [`serialize()`](https://api.emberjs.com/ember-data/release/classes/JSONAPISerializer/methods/serialize?anchor=serialize) in a serializer sends data
-- A utility, which follows a standard (e.g. cron, LDAP, encryption), correctly parses an input expression
+- A [cron](https://en.wikipedia.org/wiki/Cron) utility parses an input string into an object that can be used for UI
 
 ### What to Watch Out for
 
-When unit tests involve the Ember framework, we must import and call [`setupTest()`](https://github.com/emberjs/ember-qunit#setup-tests), then pass the `hooks` object. (Don't worry. [Ember CLI](../#toc_ember-cli) will do this for us!)
+When unit tests involve the Ember framework, you must import and call [`setupTest()`](https://github.com/emberjs/ember-qunit#setup-tests), then pass the `hooks` object. (Don't worry. [Ember CLI](../#toc_ember-cli) will do this for you!)
 
-For example, consider a service that shows messages to the user:
+For example, consider a service that keeps an array of messages, to be shown to the user at a later time:
 
 ```javascript {data-filename=tests/unit/services/flash-messages-test.js}
 import { setupTest } from 'ember-qunit';
@@ -70,7 +74,7 @@ import { module, test } from 'qunit';
 module('Unit | Service | flash-messages', function(hooks) {
   setupTest(hooks);
 
-  test('We can buffer messages', function(assert) {
+  test('should be able to buffer messages', function(assert) {
     let service = this.owner.lookup('service:flash-messages');
 
     service.add('Hello');
@@ -81,26 +85,26 @@ module('Unit | Service | flash-messages', function(hooks) {
 });
 ```
 
-By calling `setupTest()`, we gain access to a few things. First is Ember's [Dependency Injection](../../applications/dependency-injection/) system. In short, we can [look up](https://emberjs.com/api/ember/release/classes/ApplicationInstance/methods/lookup?anchor=lookup) anything in our application, with a little help from `this.owner`. Second, we can use `this.get()` and `this.set()` in our tests. Finally, we can use `pauseTest()` to [debug our tests](../#toc_how-to-debug-tests).
+By calling `setupTest()`, you gain access to a few things. First is Ember's [Dependency Injection](../../applications/dependency-injection/) system. In short, you can [look up](https://emberjs.com/api/ember/release/classes/ApplicationInstance/methods/lookup?anchor=lookup) anything in your application, with a little help from `this.owner`. Second, you gain access to some common utility functions, `this.get()` and `this.set()`, in your tests. Finally, you can use `pauseTest()` to [debug your tests](../#toc_how-to-debug-tests).
 
 
 ## Rendering Tests
 
 ### Definition
 
-We can use rendering tests (also known as integration tests) to check how a **component looks and behaves**. Ember CLI creates a rendering test for a [component](../../components/defining-a-component/) and [helper](../../templates/writing-helpers/).
+Rendering tests (previously known as integration tests) check how a **component looks and behaves**. Ember CLI creates rendering tests for [components](../../components/defining-a-component/) and [helpers](../../templates/writing-helpers/).
 
-In terms of speed, rendering tests sit in the middle, between unit and application tests.
+In terms of performance, rendering tests sit in the middle, between unit and application tests.
 
 ### Why Use Them?
 
-Since our app is made up of multiple components, we want to ensure that each is correct before testing them as a group. If a component is reusable, we want to guarantee that it works for all (if not, many) permutations of [arguments](../../components/arguments-and-attributes/) and [actions](../../components/actions-and-events/#toc_passing-down-the-action).
+Since your app is made up of multiple components, you want to ensure that each is correct before testing them as a group. If a component is reusable, you want to guarantee that it works for all (if not, many) permutations of [arguments](../../components/arguments-and-attributes/) and [actions](../../components/actions-and-events/#toc_passing-down-the-action).
 
-Rendering tests also let us test components in the context of an Ember application. When we use `render` to create a component, we know that the component will follow Ember's lifecycle hooks and will be injected with [services](../../services/). Having a good hypothesis like this helps us trace errors in our components and rendering tests.
+Rendering tests also let you test components in the context of an Ember application. When you use `render` to create a component, you are guaranteed that the component will follow Ember's lifecycle hooks. You can use the component lifecycle to trace errors in components and rendering tests.
 
 ### Examples
 
-In the example below, we consider a button component. For simplicity, we assume that the component keeps track of the number of clicks and displays it as text. (In other words, this component doesn't allow arguments or actions to be passed.)
+Consider a button component. For simplicity, assume that the component keeps track of the number of clicks and displays it as text. (In other words, this component doesn't allow arguments or actions to be passed.)
 
 ```javascript {data-filename=tests/integration/components/simple-button/component-test.js}
 import { click, render } from '@ember/test-helpers';
@@ -111,7 +115,7 @@ import { module, test } from 'qunit';
 module('Integration | Component | simple-button', function(hooks) {
   setupRenderingTest(hooks);
 
-  test('We show the correct number of clicks', async function(assert) {
+  test('should keep track of clicks', async function(assert) {
     await render(hbs`<SimpleButton />`);
     assert.dom(this.element).hasText('0 clicks');
 
@@ -126,7 +130,7 @@ module('Integration | Component | simple-button', function(hooks) {
 
 Note, we imported `render` and `click` from [@ember/test-helpers](https://github.com/emberjs/ember-test-helpers/blob/master/API.md) to show and interact with the component. We also imported `hbs` from [htmlbars-inline-precompile](https://github.com/ember-cli/ember-cli-htmlbars-inline-precompile) to help with inline template definitions. With these methods, we can check if clicking on the component correctly updates its internal state and external feedback to the user.
 
-Here are more examples for which we can write rendering tests:
+Here are more examples where rendering tests are ideal:
 
 * A blog post component allows two modes—view and edit
 * A button component satisfies accessibility for various arguments and actions
@@ -136,30 +140,32 @@ Here are more examples for which we can write rendering tests:
 
 ### What to Watch Out for
 
-In order for rendering tests to work, we must call [`setupRenderingTest()`](https://github.com/emberjs/ember-qunit#setup-rendering-tests) and pass the `hooks` object.
+In order for rendering tests to work, you must call [`setupRenderingTest()`](https://github.com/emberjs/ember-qunit#setup-rendering-tests) and pass the `hooks` object.
 
-What does `setupRenderingTest()` do? First, it uses `setupTest()` behind the scenes. Just like in [Unit Tests](../different-types-of-tests/#toc_what-to-watch-out-for), we have access to `this.owner`, `this.get()`, `this.set()`, and `pauseTest()`.
+What does `setupRenderingTest()` do? First, it uses `setupTest()` behind the scenes. Just like in [Unit Tests](../different-types-of-tests/#toc_what-to-watch-out-for), you have access to `this.owner`, `this.get()`, `this.set()`, and `pauseTest()`.
 
-In addition, `setupRenderingTest()` lets us call test helpers for rendering and DOM interaction, such as `render`, `click`, and `fillIn`. We can also use `this.element` to access the DOM element that results from `render`.
+In addition, `setupRenderingTest()` allows Ember's renderer to use helpers for rendering and DOM interaction, such as `render`, `click`, and `fillIn`. You can also use `this.element` to access the DOM element that results from `render`.
 
 
 ## Application Tests
 
 ### Definition
 
-We can use application tests (also known as acceptance tests) to **verify user stories and features from an end-user perspective**. We interact with the application in the same way as a user would—from visiting the homepage, to authenticating ourselves, to navigating to a different page, to filling out a form, etc.
+You can use application tests (previously known as acceptance tests) to **verify user stories and features from an end-user perspective**. You interact with the application in the same way as a user would—from visiting the homepage, to authenticating yourself, to navigating to a different page, to filling out a form, etc.
 
-Application tests are slow because they create an instance of our app. Use them wisely! If we can check something through a unit or rendering test, do so instead.
+Application tests are slower than unit and rendering tests because they create an instance of the Ember application.
 
 ### Why Use Them?
 
-Application tests help us see how well different components interact with each other. For nested or contextual components, we can get by with rendering tests. If components are unrelated, however, application tests may be the only way.
+Application tests help you see how well different components interact with each other. For nested or contextual components, you can get by with rendering tests. If components are unrelated, however, application tests may be the only way.
 
-If our application receives and sends data, we want to guarantee our user that we can do these successfully. We also want to prove that we can handle the error states correctly. Application tests are a great place to check these, since we have to interact with the app just like the user would.
+You can also use application tests to check routing. Can the user navigate from one page to another? Will they see the right components when the page is loaded? It's easy to check these in application tests.
+
+Finally, if your application receives and sends data, you want to guarantee that you can take these actions successfully. You also want to prove that you can handle the error states correctly. Application tests are a great place to check these, since you have to interact with the app just like the user would.
 
 ### Examples
 
-We will continue with the blog post example from [Rendering Tests](../different-types-of-tests/#toc_examples-1). Recall that our blog post component allows two modes—view and edit. The following test checks one way for creating a blog post:
+Let's continue with the blog post example from [Rendering Tests](../different-types-of-tests/#toc_examples-1). Recall that our blog post component allows two modes—view and edit. The following test checks one way for creating a blog post:
 
 ```javascript {data-filename=tests/acceptance/posts-test.js}
 import { click, currentURL, fillIn, visit } from '@ember/test-helpers';
@@ -171,30 +177,45 @@ module('Acceptance | posts', function(hooks) {
 
   test('The user can create a blog post', async function(assert) {
     await visit('/posts/new');
-    await fillIn('[data-test-title]', 'My new post');
+    await fillIn('[data-test-title]', 'My New Post');
     await fillIn('[data-test-content]', 'Lorem ipsum dolor sit amet');
     await click('[data-test-button="Save"]');
 
     // The user is redirected to their new post
     assert.strictEqual(currentURL(), '/posts/1');
-    assert.dom('[data-test-title]').hasText('My new post');
+    assert.dom('[data-test-title]').hasText('My New Post');
     assert.dom('[data-test-content]').hasText('Lorem ipsum dolor sit amet');
   });
 });
 ```
 
-What are other things that we can test for?
+What are other things that you can test for?
 
 - The user can read, update, and delete blog posts (possibly in a batch operation)
 - The user can make comments on a blog post
 - The user can share a blog post
-- The user needs to be logged in to take the actions above
+- The user should be authorized to take actions on a blog
 - The user receives feedback if there is an error
 
 ### What to Watch Out for
 
-We can use Ember CLI to create an application test. Because application tests can cover anything in our app, we should organize the files in some natural manner. This will help us quickly find tests and prevent writing duplicates.
+There are a few things to look out for.
 
-One way to organize is to mimic the folder structure of `app/routes`. In other words, for every route, we create an application test file. If this would result in too many files, we can instead create a file for each parent route.
+First is the time that application tests take to run. For small apps, its impact is minimal. However, for large apps, maintaining a short feedback loop becomes critical. If you can verify something in your app with unit or rendering tests, do so instead.
 
-In order for application tests to work, we must call [`setupApplicationTest()`](https://github.com/emberjs/ember-qunit#setup-application-tests) and pass the `hooks` object. In addition to the usual goodness of `setupTest()`, this method creates an application instance so that we can test the app from an end-user perspective. It also lets us use test helpers for routing and DOM interaction, such as `currentURL`, `visit`, `click`, and `fillIn`.
+Second, you can use Ember CLI to create an application test. Because application tests can cover anything in your app, you will want to organize the files in some natural manner. This will help you quickly find tests and prevent writing duplicates.
+
+One way to organize is to mimic the folder structure of `app/routes`. In other words, for every route, you create an application test file. If this would result in too many files, you can instead create a file for each parent route.
+
+Finally, in order for application tests to work, you must call [`setupApplicationTest()`](https://github.com/emberjs/ember-qunit#setup-application-tests) and pass the `hooks` object. In addition to the usual goodness of `setupTest()`, this method creates an application instance so that you can test the app from an end-user perspective. It also lets you use test helpers for routing and DOM interaction, such as `currentURL`, `visit`, `click`, and `fillIn`.
+
+
+## Summary
+
+We learned that, by default, Ember provides 3 types of tests: unit, rendering, and application tests.
+
+These tests differ in how many parts of your app they integrate to help you arrive at a logical conclusion. On one end, unit tests let you check a section of your code in isolation. On the other, application tests let you experience your entire application as end-user.
+
+A corollary is that these tests differ in performance. The more parts used (the closer to the real app), the slower the tests. As your app gets bigger, you will want to maintain a healthy mix of unit, rendering, and application tests so that you can enjoy both broad test coverage and short feedback loop.
+
+In the next section, we will take a look at best practices for writing tests.
