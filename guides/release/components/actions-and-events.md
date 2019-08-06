@@ -74,7 +74,7 @@ export default class ButtonWithConfirmation extends Component {
 }
 ```
 
-Like we discussed [Templating](../../templates/actions), actions are methods
+Like we discussed [Templating](../../templates/actions/), actions are methods
 that are decorated with the `@action` decorator, and which can be used in
 templates. We can assign the action to our button using the [`{{on}}`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/on?anchor=on)
 modifier:
@@ -327,7 +327,7 @@ However the expression `{{fn this.sendMessage "info"}}` used in passing the
 action to the component creates a closure and partially applies the given parameter to the new function. So now when the action is
 invoked, that parameter will automatically be passed as its argument,
 effectively calling `sendMessage("info")`, despite the argument not appearing in
-the calling code. More information on this can be found on the [template helpers page about the `fn`](../../templates/actions) helper.
+the calling code. More information on this can be found on the [template helpers page about the `fn`](../../templates/actions/) helper.
 
 So far in our example, the action we have passed to `ButtonWithConfirmation` is
 a function that accepts one argument, `messageType`. Suppose we want to extend
