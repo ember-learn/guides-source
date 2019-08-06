@@ -4,6 +4,7 @@ Ember application works.
 ![ember core concepts](/images/ember-core-concepts/ember-core-concepts.svg)
 
 ## Router and Route Handlers
+
 Imagine we are writing a web app for a site that lets users list their properties to rent. At any given time, we should be able to answer questions about the current state like _What rental are they looking at?_ and _Are they editing it?_ In Ember, the answer to these questions is determined by the URL.
 The URL can be set in a few ways:
 
@@ -16,49 +17,103 @@ No matter how the URL gets set, the first thing that happens is that the Ember r
 
 The route handler then typically does two things:
 
-* It renders a template.
-* It loads a model that is then available to the template.
-
-## Templates
-
-Ember uses templates to organize the layout of HTML in an application.
-
-Most templates in an Ember codebase are instantly familiar, and look like any
-fragment of HTML. For example:
-
-```handlebars
-<div>Hi, this is a valid Ember template!</div>
-```
-
-Ember templates use the syntax of [Handlebars](http://handlebarsjs.com)
-templates. Anything that is valid Handlebars syntax is valid Ember syntax.
-
-Templates can also display properties provided to them from their context, which is either a component or a route's controller. For example:
-
-```handlebars
-<div>Hi {{this.name}}, this is a valid Ember template!</div>
-```
-
-Here, `{{this.name}}` is a property provided by the template's context.
-
-Besides properties, double curly braces (`{{}}`) may also contain
-helpers, which we'll discuss later.
+* It loads a model.
+* It renders a template, which has access to the model.
 
 ## Models
 
 Models represent persistent state.
 
-For example, a property rentals application would want to save the details of a rental when a user publishes it, and so a rental would have a model defining its details, perhaps called the _rental_ model.
+For example, a property rentals application would want to save the details of
+a rental when a user publishes it, and so a rental would have a model defining
+its details, perhaps called the _rental_ model. You may also need a _user_
+model to keep track of who is currently logged in.
 
-A model typically persists information to a web server, although models can be configured to save to anywhere else, such as the browser's Local Storage.
+A model typically persists information to a web server, although models can be
+configured to save to anywhere else, such as the browser's Local Storage.
+
+## Templates
+
+Ember uses templates to build up the user interface in an application.
+
+If you have written HTML before, you already know how to write a basic Ember
+template. For example:
+
+```handlebars {data-filename="app/templates/welcome.hbs"}
+<div>Hi, this is a valid Ember template!</div>
+```
+
+In addition to static HTML content, Ember uses the syntax of [Handlebars](http://handlebarsjs.com)
+to describe dynamic user interface elements.
+
+For example, as mentioned before, the route handler makes the model available
+to its template:
+
+```handlebars {data-filename="app/templates/welcome.hbs"}
+{{!-- The model for this route is the current user --}}
+
+<div>
+  Hi <img src="{{this.model.profileImage}}" alt="{{this.model.name}}'s profile picture"> {{this.model.name}},
+  this is a valid Ember template!
+</div>
+
+{{#if this.model.isAdmin}}
+  <div>Remember, with great power comes great responsibility!</div>
+{{/if}}
+```
+
+This example combines several Handlebars features to create a personalized
+experience for the user, something we couldn't do with just static HTML alone.
+We used the comment syntax (`{{!-- ... --}}`) to leave a note for future
+developers, the double curly braces syntax (`{{...}}`) to include dynamic
+values, as well as using the `{{#if}}...{{/if}}` syntax to conditionally render
+some extra content.
+
+We will go into more details about each of these template features later on in
+this guide.
 
 ## Components
 
-While templates describe how a user interface looks, components control how the user interface _behaves_.
+Components allows you to break up your templates and organize them into small,
+self-contained and reusable pieces.
 
-Components consist of two parts: a template written in Handlebars, and a source file written in JavaScript that defines the component's behavior. For example, our property rental application might have a component for displaying all the rentals called `AllRentals`, and another component for displaying an individual rental called `RentalTile`. The `RentalTile` component might define a behavior that lets the user hide and show the image property of the rental.
+In its most basic form, a component is just a piece of template that can be
+referred to by name. Similar to functions in programming languages, they can
+also take _arguments_, allowing them to be customized to the specific context
+they are being rendered into.
 
-Let's see these core concepts in action by building a property rental application in the next lesson.
+For example, the example in the previous section is getting a bit long. We can
+_extract_ the snippet for rendering the user's name and profile picture into
+its own component:
+
+```handlebars {data-filename="app/components/user-profile.hbs"}
+<img src="{{@user.profileImage}}" alt="{{@user.name}}'s profile picture"> {{@user.name}}
+```
+
+This allows us to simplify the original template into this:
+
+```handlebars {data-filename="app/templates/welcome.hbs"}
+{{!-- The model for this route is the current user --}}
+
+<div>
+  Hi <UserProfile @user={{this.model}} /> this is a valid Ember template!
+</div>
+
+{{#if this.model.isAdmin}}
+  <div>Remember, with great power comes great responsibility!</div>
+{{/if}}
+```
+
+Not only did we cleaned up the original template to be more readable, we now
+have a `<UserProfile>` component that we can reuse whenever we need to render
+information about a given user.
+
+You can think of components as Ember's way for letting you create your own HTML
+tags. In addition to rendering content, components can also have JavaScript
+code associated with them, allowing you to add _behavior_, such as responding
+to a user clicking on your component.
+
+We will cover these advanced component features in a later chapter.
 
 ## Lifecycle Hooks
 
@@ -81,3 +136,5 @@ export default class FooDidRenderExample extends Component {
   }
 }
 ```
+
+Let's see these core concepts in action by building a property rental application in the next lesson.
