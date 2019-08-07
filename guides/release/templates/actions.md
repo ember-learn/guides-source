@@ -21,7 +21,7 @@ export default class Post extends Component {
 }
 ```
 
-`@action` binds the `this` of `toggleBody()` to the instance of the class, allowing access the component's other properties when invoked. Without the decorator, `this.isShowingBody` in `toggleBody()` is undefined. For more information on `this` [Understanding Javascript Function Invocation and this](https://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/)
+`@action` binds the `this` of `toggleBody()` to the instance of the class, allowing access the component's other properties when invoked. Without the decorator, `this.isShowingBody` in `toggleBody()` is undefined. For more information on `this` [Understanding JavaScript Function Invocation and this](https://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/)
 
 You can trigger the method `toggleBody()` on a DOM event using
 [`{{on}}`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/on?anchor=on)
