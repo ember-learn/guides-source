@@ -690,7 +690,7 @@ Tracked properties replace computed properties. Unlike computed properties, whic
 every getter with the values it depends on, tracked properties only require you to
 annotate the values that are _trackable_, that is values that:
 
-1. Change over time and
+1. Change over the lifetime of their owner (such as a component) and
 2. May cause the DOM to update in response to those changes
 
 For example, a computed property like this:
