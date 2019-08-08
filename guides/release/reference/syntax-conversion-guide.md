@@ -105,7 +105,7 @@ To invoke it using angle bracket syntax, you would do the following:
 
 ### When to use curly invocation syntax?
 
-Although angle bracket syntax is considered to be the best approach, curly invocation syntax is fine to keep using.
+Although angle bracket syntax is considered to be the best approach, curly braces invocation syntax is fine to keep using.
 In some cases, curly invocation is still required. 
 For example, when you need direct support for positional arguments or if your components are nested within the file tree, you should still reach for those curly braces:
 
