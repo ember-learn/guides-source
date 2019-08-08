@@ -53,7 +53,7 @@ Block form components also follow the same pattern as HTML elements where an HTM
 
 ### Positional parameters
 
-The curly invocation syntax supports passing arguments to the component by their position.
+The curly braces invocation syntax supports passing arguments to the component by their position.
 In the following example, `"Hello"` and `"World"` are positional parameters:
 
 ```handlebars
