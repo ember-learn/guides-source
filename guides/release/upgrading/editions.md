@@ -1499,15 +1499,15 @@ export default class Child extends Component {}
 
 ```handlebars
 {{!-- templates/components/child.hbs --}}
-<button onclick={{action @onClick 'Hello, moon!'}}>
+<button {{on "click" (fn @onClick 'Hello, moon!')}}>
   Change value
 </button>
 ```
 
 In our new setup, the parent component has an action which sets the new value.
 We pass this action to the child component, and the child component directly
-assigns it to the `onclick` of the button, using the `{{action}}` helper to pass
-the value we want to call the `@onClick` action with. We don't need any
+assigns it to the click of the button, using the `{{on}}` modifier. It also passes
+the value we want to call the `@onClick` using the `fn` helper. We don't need any
 additional logic in the child class itself - in fact, this could become a
 template-only component at this point.
 
@@ -1634,7 +1634,7 @@ export default class Form extends Component {
   @disabled={{this.disabled}}
   @onchange={{this.updateText}}
 />
-<button onclick={{action this.updateDisabled (not this.disabled)}}>
+<button {{on "click" (fn this.updateDisabled (not this.disabled))}}>
   Toggle Disabled
 </button>
 ```

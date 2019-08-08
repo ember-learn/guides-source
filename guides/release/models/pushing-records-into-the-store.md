@@ -134,21 +134,21 @@ so it can be accessed by other parts of your application.
 
 ```javascript {data-filename=app/routes/confirm-payment.js}
 import Route from '@ember/routing/route';
+import { action } from '@ember/object';
 import fetch from 'fetch';
 
 export default class ConfirmPaymentRoute extends Route {
-  actions: {
-    confirm(data) {
-      fetch('process-payment', {
-        method: 'POST',
-        body: JSON.stringify(data)
-      })
-      .then(response => response.json())
-      .then(digitalInventory => {
-        this.store.push(digitalInventory);
-        this.transitionTo('thank-you');
-      });
-    }
+  @action
+  confirm(data) {
+    fetch('process-payment', {
+      method: 'POST',
+      body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(digitalInventory => {
+      this.store.push(digitalInventory);
+      this.transitionTo('thank-you');
+    });
   }
 }
 ```

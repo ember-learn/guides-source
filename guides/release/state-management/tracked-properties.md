@@ -91,7 +91,7 @@ application is via _actions_, [as discussed earlier](../../templates/actions/):
 ```handlebars {data-filename=app/templates/components/hello.hbs}
 {{this.greeting}}, {{@name}}!
 
-<select {{action on="change" this.updateLanguage}}>
+<select {{on "change" this.updateLanguage}}>
   <option value="en">English</option>
   <option value="de">German</option>
   <option value="sp">Spanish</option>
@@ -255,7 +255,7 @@ export default class ApplicationController extends Controller {
 ```js {data-filename=app/templates/application.hbs}
 {{this.model.fullName}}
 
-<button {{action this.updateName 'Krati' 'Ahuja'}}>
+<button {{on "click" (fn this.updateName 'Krati' 'Ahuja')}}>
   Update Name
 </button>
 ```

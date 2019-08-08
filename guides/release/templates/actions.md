@@ -21,13 +21,15 @@ export default class Post extends Component {
 }
 ```
 
-You can then add this action to an element using the
-[`{{action}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/action?anchor=action)
+`@action` binds the `this` of `toggleBody()` to the instance of the class, allowing access the component's other properties when invoked. Without the decorator, `this.isShowingBody` in `toggleBody()` is undefined. For more information on `this` [Understanding JavaScript Function Invocation and this](https://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/)
+
+You can trigger the method `toggleBody()` on a DOM event using
+[`{{on}}`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/on?anchor=on)
 modifier:
 
 ```handlebars {data-filename=app/components/post/template.hbs}
 <h3>
-  <button {{action this.toggleBody}}>{{@title}}</button>
+  <button {{on "click" this.toggleBody}}>{{@title}}</button>
 </h3>
 
 {{#if this.isShowingBody}}
@@ -35,8 +37,14 @@ modifier:
 {{/if}}
 ```
 
-The `{{action}}` modifier calls your action function when the element is
-clicked. You will learn about more advanced usages in the Component's [Actions
+The `{{on}}` modifier binds the passed function to
+[any event](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) --
+such as `click`, `mouseup`, `focusout`, etc.
+In this case, the passed action, `toggleBody`, has been bound to
+the `click` event, such that when the button is clicked, `toggleBody`
+will be invoked.
+
+You will learn about more advanced usages in the Component's [Actions
 and Events](../../components/actions-and-events/) guide, but you should
 familiarize yourself with the basics on this page first.
 
@@ -62,20 +70,25 @@ For more examples of that syntax see <a href="https://guides.emberjs.com/v3.6.0/
 
 ## Action Parameters
 
-You can optionally pass arguments to the action
-helper. For example, if the `post` argument was passed:
+You can optionally pass arguments to the
+[`fn`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/on?anchor=fn)
+helper via [partial application](https://en.wikipedia.org/wiki/Partial_application).
+For example, if the `post` argument was passed:
 
 ```handlebars {data-filename=app/components/post/template.hbs}
 <p>
-  <button {{action this.select @post}}>
+  <button {{on "click" (fn this.select @post)}}>
     ✓
   </button>
   {{this.selectedPost.title}}
 </p>
 ```
 
-The `select` action handler would be called with a single argument
-containing the post model:
+The `select` action handler would be called with `@post` as the first
+argument and the
+[native JavaScript `click` event](https://developer.mozilla.org/en-US/docs/Web/API/Element/click_event)
+as the second argument.
+
 
 ```javascript {data-filename=app/components/post/component.js}
 import Component from '@glimmer/component';
@@ -86,7 +99,7 @@ export default class Post extends Component {
   @tracked selectedPost;
 
   @action
-  select(post) {
+  select(post /*, clickEvent */) {
     this.selectedPost = post;
   }
 }
@@ -95,12 +108,11 @@ export default class Post extends Component {
 ## Attaching Actions to Other Events
 
 Actions don't need to be triggered on click, in fact they can be attached
-to any event Ember is already listening to. For example this form will
-call the `createPost` action when submitted, but prevent the default
-form submission logic in the browser from running:
+to any event. For example this form will
+call the `createPost` action when submitted:
 
 ```handlebars {data-filename=app/components/post/template.hbs}
-<form {{action this.createPost on="submit" preventDefault=true}}>
+<form {{on "submit" this.createPost}}>
   Post title: <Input @value={{this.title}} />
 </form>
 ```
@@ -114,15 +126,23 @@ export default class Post extends Component {
   @tracked title;
 
   @action
-  createPost() {
+  createPost(event) {
+    event.preventDefault();
     // Do something with `this.title`
   }
 }
 ```
 
+The native JavaScript form submission event is the sole argument to
+`createPost`. The form submission event needs to have `preventDefault`
+called on it in order to opt out of the browser-default behavior -- which,
+for forms, is to POST to the current URL.
+
 ## Attaching Actions to Non-Clickable Elements
 
-Note that while Ember currently permits you to add an action to any DOM element, not all DOM elements are eligible to receive focus, according to HTML standards.
+Note that while Ember currently permits you to add an action to any DOM
+element, not all DOM elements are eligible to receive focus, according to
+HTML standards.
 
 For example, if an action is attached to an `a` link
 without an `href` attribute, or to a `div`, some browsers won't execute the
