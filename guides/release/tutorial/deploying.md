@@ -58,7 +58,7 @@ now
 
 That’s all!
 
-Your site will now deploy, and you will receive a link similar to the following: https://ember.now-examples.now.sh
+Your site will deploy, and you will receive a link similar to the following: https://ember.now-examples.now.sh
 
 ## Deploying to surge.sh
 
