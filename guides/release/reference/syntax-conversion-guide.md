@@ -24,7 +24,7 @@ While the angle bracket syntax may remind you of HTML elements, it comes with di
 
 The angle bracket invocation syntax is useful when you wish to pass arbitrary HTML attributes to the component.
 This is possible because in angle bracket invocation syntax there is a distinction between passing a named argument and an HTML attribute,
-while in curly invocation syntax everything is an argument to the component, either named or positional.
+while in curly braces invocation syntax everything is an argument to the component, either named or positional.
 
 ### Leverage Existing Knowledge
 
