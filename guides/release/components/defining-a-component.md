@@ -358,7 +358,7 @@ known as _actions_, and are decorated with the `@action` decorator.
 <section ...attributes class="{{this.sectionClass}}">
   {{yield}}
 
-  <button {{action this.likePost}} class="like-button">
+  <button {{on "click" this.likePost}} class="like-button">
     Like!
   </button>
 </section>

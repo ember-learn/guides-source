@@ -176,15 +176,15 @@ export default class RentalListingComponent extends Component {
 }
 ```
 
-In order to trigger this action, we need to use the `{{action}}` helper in our
-template:
+In order to trigger this action, we need to use the `{{on}}` modifier 
+to bind to an event in our template:
 
 ```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="-2,+3,+4,+5,+6,+7"}
 <article class="listing">
   <a class="image {{if this.isWide "wide"}}"
     role="button">
   <a
-    onclick={{action "toggleImageSize"}}
+    {{on "click" this.toggleImageSize}}
     class="image {{if this.isWide "wide"}}"
     role="button"
   >

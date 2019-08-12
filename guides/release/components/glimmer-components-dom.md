@@ -189,7 +189,7 @@ export default class Counter extends Component {
 ```handlebars {data-filename="app/templates/components/counter.hbs"}
 <p>{{this.count}}</p>
 
-<button {{on 'click' this.increment}}>+</button>
+<button {{on "click" this.increment}}>+</button>
 ```
 
 <div class="cta">

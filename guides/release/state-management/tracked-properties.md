@@ -47,7 +47,7 @@ should change.
 In order to tell Ember a value might change, we need to mark it as _trackable_.
 Trackable values are values that:
 
-1. Can change over time and
+1. Can change over their component’s lifetime and
 2. Should cause Ember to rerender if and when they change
 
 We can do this by marking the field with the `@tracked` decorator:
@@ -91,7 +91,7 @@ application is via _actions_, [as discussed earlier](../../templates/actions/):
 ```handlebars {data-filename=app/templates/components/hello.hbs}
 {{this.greeting}}, {{@name}}!
 
-<select {{action on="change" this.updateLanguage}}>
+<select {{on "change" this.updateLanguage}}>
   <option value="en">English</option>
   <option value="de">German</option>
   <option value="sp">Spanish</option>
@@ -255,7 +255,7 @@ export default class ApplicationController extends Controller {
 ```js {data-filename=app/templates/application.hbs}
 {{this.model.fullName}}
 
-<button {{action this.updateName 'Krati' 'Ahuja'}}>
+<button {{on "click" (fn this.updateName 'Krati' 'Ahuja')}}>
   Update Name
 </button>
 ```
