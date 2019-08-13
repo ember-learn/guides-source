@@ -495,7 +495,7 @@ export default class UserProfile extends Component {
   async deleteAccount() {
     await this.login.deleteUser();
 
-    this.didDelete(this.login.currentUserObj);
+    this.args.didDelete(this.login.currentUserObj);
   }
 }
 ```
