@@ -345,7 +345,7 @@ In this case, we'll assign the `<audio>` element to the `audioElement` property 
 
 ```handlebars {data-filename="app/templates/components/audio-player.hbs" data-diff="-1,+2"}
 <audio src={{@srcURL}} />
-<audio src={{@srcURL}} {{ref "audioElement" this}} />
+<audio src={{@srcURL}} {{ref this "audioElement"}} />
 
 <button {{on "click" this.play}}>Play</button>
 <button>Pause</button>
