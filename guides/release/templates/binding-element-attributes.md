@@ -6,7 +6,7 @@ to an image:
 
 ```handlebars
 <div id="logo">
-  <img src={{this.logoUrl}} alt="Logo">
+  <img src={{this.logoUrl}} alt="" role="presentation">
 </div>
 ```
 
@@ -14,7 +14,7 @@ This generates the following HTML:
 
 ```html
 <div id="logo">
-  <img src="http://www.example.com/images/logo.png" alt="Logo">
+  <img src="http://www.example.com/images/logo.png" alt="" role="presentation">
 </div>
 ```
 
@@ -47,7 +47,7 @@ a link component:
 
 ```handlebars
 <LinkTo @route="photos" data-toggle="dropdown" lang="es">
-  Fotos
+  Photos
 </LinkTo>
 ```
 
@@ -55,7 +55,7 @@ Which will render the following HTML:
 
 ```html
 <a href="/photos" data-toggle="dropdown" lang="es" id="ember239" class="ember-view">
-  Fotos
+  Photos
 </a>
 ```
 
@@ -70,6 +70,6 @@ working with classic component invocation syntax (for example <code>{{my-compone
 For more examples of ways to use components in a template, see the <a href="../../reference/syntax-conversion-guide">Syntax Conversion Guide</a> or the <a href="https://guides.emberjs.com/v3.6.0/templates/binding-element-attributes/">previous version of this Guide entry</a>.
       </div>
     </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
   </div>
 </div>
