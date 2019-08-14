@@ -96,7 +96,7 @@ The `LinkTo` component supports specifying query params using the
 In the above examples, `direction` is presumably a query param property
 on the `posts` controller, but it could also refer to a `direction` property
 on any of the controllers associated with the `posts` route hierarchy,
-matching the leaf-most controller with the supplied property name.
+matching the left-most controller with the supplied property name.
 
 The `<LinkTo>` component takes into account query parameters when determining
 its "active" state, and will set the class appropriately. The active state
