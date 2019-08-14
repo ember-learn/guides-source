@@ -19,6 +19,49 @@
 #   pages:
 #     - title: "Overview"
 #       url: "index"
+- title: Tutorial
+  url: tutorial
+  pages:
+    - title: One
+      url: 1
+    - title: Two
+      url: 2
+    - title: Three
+      url: 3
+    - title: Four
+      url: 4
+    - title: Five
+      url: 5
+    - title: Six
+      url: 6
+    - title: Seven
+      url: 7
+    - title: Eight
+      url: 8
+    - title: Nine
+      url: 9
+    - title: Ten
+      url: 10
+    - title: Eleven
+      url: 11
+    - title: Twelve
+      url: 12
+    - title: Thirteen
+      url: 13
+    - title: Fourteen
+      url: 14
+    - title: Fifteen
+      url: 15
+    - title: Sixteen
+      url: 16
+    - title: Seventeen
+      url: 17
+    - title: Eighteen
+      url: 18
+    - title: Nineteen
+      url: 19
+    - title: Twenty
+      url: 20
 - title: "Templating"
   url: "templates"
   pages:
