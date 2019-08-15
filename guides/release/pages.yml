@@ -22,6 +22,10 @@
 - title: Tutorial
   url: tutorial
   pages:
+    - title: Part One
+      url: part-one
+    - title: Zero
+      url: 0
     - title: One
       url: 1
     - title: Two
@@ -64,6 +68,10 @@
       url: 20
     - title: Twenty-one
       url: 21
+    - title: Part Two
+      url: part-two
+    - title: Twenty-two
+      url: 22
 - title: "Templating"
   url: "templates"
   pages:
