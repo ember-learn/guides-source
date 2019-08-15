@@ -72,6 +72,8 @@
       url: part-two
     - title: Twenty-two
       url: 22
+    - title: Twenty-three
+      url: 23
 - title: "Templating"
   url: "templates"
   pages:
