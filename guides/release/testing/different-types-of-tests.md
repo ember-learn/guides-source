@@ -4,7 +4,10 @@ Ember provides 3 types of tests out of the box:
 - Rendering tests (previously known as integration tests)
 - Application tests (previously known as acceptance tests)
 
-Broadly speaking, these tests differ in two aspects. (1) Which parts of your app do they check for correctness? In other words, there are different types to help you separate testing concerns. (2) How fast can they run? After all, you want the tests to finish in a timely manner.
+Broadly speaking, these tests differ in two aspects:
+
+- Which parts of your app they check for correctness. Having different types of tests help separate testing concerns.
+- How fast they execute.
 
 Let's take a look at each type and when you might use one over another.
 
@@ -13,7 +16,7 @@ Let's take a look at each type and when you might use one over another.
 
 ### Definition
 
-Unit tests check the **correctness of individual methods**. Given an input, does the method return the right output? Since unit tests can check code at the method level, they can form the **foundation of your test suite**. Unit tests are also **extremely fast** by nature.
+Unit tests check the **correctness of individual methods and functions**. Given an input, does the method return the right output? Since unit tests can check code at the method level, they can form the **foundation of your test suite**. Unit tests are also **extremely fast** by nature.
 
 Unit tests gets created automatically when you use Ember CLI to create [adapters](../../models/customizing-adapters/), controllers, initializers, [models](../../models/defining-models/), [serializers](../../models/customizing-serializers/), [services](../../services/), and utilities. We encourage you to read the rest of the documentation to learn writing tests for each.
 
@@ -21,9 +24,11 @@ Unit tests gets created automatically when you use Ember CLI to create [adapters
 
 The benefits of having unit tests are threefold.
 
-If your unit tests are correct, then you can be more confident that your rendering and application tests will be also. Conversely, when a rendering or an application test fails, you can more easily identify the method that failed, because it likely hasn't been covered by a unit test.
+One, unit tests are typically isolated and focus on individual methods and functions, so it is easy to debug when your tests fail.
 
-Finally, for large apps, how fast your test suite can finish becomes an important issue. You want the feedback loop to be short so that you can iterate many more times to find great solutions. If you can verify something in your app with unit tests, do so.
+Two, unit tests allow you to focus on small pieces of logic that might be difficult to exercise in higher-level tests.
+
+Finally, unit tests run extremely fast, so you can check many permutations of arguments with minimal impact on your test suite performance.
 
 ### Examples
 
@@ -92,7 +97,7 @@ By calling `setupTest()`, you gain access to a few things. First is Ember's [Dep
 
 ### Definition
 
-Rendering tests (previously known as integration tests) check how a **component looks and behaves**. Ember CLI creates rendering tests for [components](../../components/defining-a-component/) and [helpers](../../templates/writing-helpers/).
+Rendering tests (integration tests) check how a **component looks and behaves**. Ember CLI creates rendering tests for [components](../../components/defining-a-component/) and [helpers](../../templates/writing-helpers/).
 
 In terms of performance, rendering tests sit in the middle, between unit and application tests.
 
@@ -100,7 +105,7 @@ In terms of performance, rendering tests sit in the middle, between unit and app
 
 Since your app is made up of multiple components, you want to ensure that each is correct before testing them as a group. If a component is reusable, you want to guarantee that it works for all (if not, many) permutations of [arguments](../../components/arguments-and-attributes/) and [actions](../../components/actions-and-events/#toc_passing-down-the-action).
 
-Rendering tests also let you test components in the context of an Ember application. When you use `render` to create a component, you are guaranteed that the component will follow Ember's lifecycle hooks. You can use the component lifecycle to trace errors in components and rendering tests.
+Rendering tests let you test components using Ember's rendering engine. This means, a component created in your rendering test will behave as it would in the real app. You are guaranteed that the component will follow its lifecycle hooks. You can also interact with the component like an end-user would.
 
 ### Examples
 
@@ -128,7 +133,7 @@ module('Integration | Component | simple-button', function(hooks) {
 });
 ```
 
-Note, we imported `render` and `click` from [@ember/test-helpers](https://github.com/emberjs/ember-test-helpers/blob/master/API.md) to show and interact with the component. We also imported `hbs` from [htmlbars-inline-precompile](https://github.com/ember-cli/ember-cli-htmlbars-inline-precompile) to help with inline template definitions. With these methods, we can check if clicking on the component correctly updates its internal state and external feedback to the user.
+Note, we imported `render` and `click` from [@ember/test-helpers](https://github.com/emberjs/ember-test-helpers/blob/master/API.md) to show and interact with the component. We also imported `hbs` from [htmlbars-inline-precompile](https://github.com/ember-cli/ember-cli-htmlbars-inline-precompile) to help with inline template definitions. With these methods, we can check if clicking on the component correctly updates its output to the user.
 
 Here are more examples where rendering tests are ideal:
 
@@ -151,7 +156,7 @@ In addition, `setupRenderingTest()` allows Ember's renderer to use helpers for r
 
 ### Definition
 
-You can use application tests (previously known as acceptance tests) to **verify user stories and features from an end-user perspective**. You interact with the application in the same way as a user would—from visiting the homepage, to authenticating yourself, to navigating to a different page, to filling out a form, etc.
+You can use application tests (acceptance tests) to **verify user stories and features from an end-user perspective**. You interact with the application in the same way as a user would—from visiting the homepage, to authenticating oneself, to navigating to a different page, to filling out a form, etc.
 
 Application tests are slower than unit and rendering tests because they create an instance of the Ember application.
 
@@ -201,7 +206,7 @@ What are other things that you can test for?
 
 There are a few things to look out for.
 
-First is the time that application tests take to run. For small apps, its impact is minimal. However, for large apps, maintaining a short feedback loop becomes critical. If you can verify something in your app with unit or rendering tests, do so instead.
+First is the time that application tests take to run. For small apps, its impact is minimal. However, for large apps, maintaining a short feedback loop becomes critical. In these cases, if you can verify a scenario in your app using unit or rendering tests, you may want to consider them instead.
 
 Second, you can use Ember CLI to create an application test. Because application tests can cover anything in your app, you will want to organize the files in some natural manner. This will help you quickly find tests and prevent writing duplicates.
 
