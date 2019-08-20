@@ -6,6 +6,7 @@ These accessibility learning resources will provide additional support to the de
 - [Accessible Rich Internet Applications (ARIA) 1.1](https://www.w3.org/TR/wai-aria-1.1/) 
 - [How to meet WCAG (Quick Reference)](https://www.w3.org/WAI/WCAG21/quickref/)
 
+
 ## Practical Resources
 
 - [aXe extension for Chrome](https://chrome.google.com/webstore/detail/axe/lhdoppojpmngadmnindnejefpokejbdd)
@@ -18,9 +19,11 @@ These accessibility learning resources will provide additional support to the de
 - [ColorSafe](http://colorsafe.co/)- Empowering designers with beautiful and accessible color palettes based on WCAG Guidelines of text and background contrast ratios
 - [Accessible Color Palette Builder](https://toolness.github.io/accessible-color-matrix/)
 
+
 ### Writing
 
 - [Plain Language](https://plainlanguage.gov/) - Learn how to write in a way that makes it easier for people to read and understand. 
+
 
 ### Other Useful Articles
 
