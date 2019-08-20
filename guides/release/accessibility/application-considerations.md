@@ -1,4 +1,14 @@
-## Optional feature: application template wrapper
+Every application must have a primary language declaration. 
+
+To indicate the primary language, use the `lang` attribute on the `<html>` element. Until Ember provides this by default, developers should edit the `index.html` file of the generated Ember application with the default language declaration. This is inherited by all other elements, and will set a default language for the text in the document head element.
+
+If there happens to be any content on the page that is in a different language from that declared in the `<html>` element, the `lang` attribute can be used on the parent element to indicate a different language.
+
+Note: a page cannot have multiple language attribute values. 
+
+## Optional features
+
+### Application template wrapper
 
 If you are using the [application template wrapper](https://emberjs.com/blog/2018/02/16/ember-3-1-beta-released.html#toc_new-optional-feature-application-template-wrapper) enabled (default state), then you will need to add certain aria roles to your [landmark regions](https://www.w3.org/WAI/PF/aria/roles#landmark_roles), even if you are using native HTML elements, because those regions are not the direct child descendant of the body element (they are the children of the div that wraps the Ember app).
 
