@@ -1,5 +1,3 @@
-# Intro to Accessibility 
-
 Ember provides a few ways to help developers more easily produce accessible applications, and this section of the guides will more explicitly assist with that. 
 
 Accessibility should be considered at the start of a project, whether that project has named accessibility an explicit goal or not. Since no one can predict anyone else's future (including whether or not they will need assistive technology at some point), and because in many places around the world it is legally required to make websites digitally accessible, accessibility should be thought about in the same way as performance- a necessity for any web-based product. 

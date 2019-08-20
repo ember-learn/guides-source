@@ -1,5 +1,3 @@
-# Learning Resources
-
 These accessibility learning resources will provide additional support to the developer looking to improve the quality of the code they write. 
 
 - [MDN Web Docs: Accessibility](https://developer.mozilla.org/en-US/docs/Learn/Accessibility)

@@ -1,5 +1,3 @@
-# Testing Considerations
-
 ## Screen Reader and Browser Combinations
 
 It is important to use a screen reader when checking to make sure your application is accessible. 

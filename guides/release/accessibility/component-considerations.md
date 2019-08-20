@@ -1,5 +1,3 @@
-# Component Considerations
-
 When crafting an accessible component, the first and most important thing is that the component should render valid HTML. 
 
 Both the HTML and ARIA specifications have been written in a way that make them work together. Semantic HTML provides the necessary _context_ to screen readers.
@@ -45,3 +43,25 @@ Focus management is a large part of how a component's code coordinates with the 
 
 All interactive elements must have an accessible name. But what does that mean, exactly? 
 
+Because the code that is written must be readable by other machines (assistive tech like screen readers, for example), there is documentation about how this accessible name is determined: [Accessible Name and Description Computation](https://www.w3.org/TR/accname-1.1/). 
+
+However, the most common methods for providing accessible names can be reviewed here. 
+
+### Adding a label to an input element
+
+Every `<input>` element should have an associated `<label>` element. To do this, the `<input>` element's `id` attribute value should be the same as the `for` attribute value on the `<label>`, like this:
+
+```html
+<label for="input-firstName">First Name:</label>
+<input id="input-firstName" name="firstName" value="" />
+```
+
+It is also valid to wrap the `<label>` element around the `<input />` element: 
+
+```html
+<label>First Name:
+  <input id="input-firstName" name="firstName" value="" />
+</label>
+```
+
+However, this option can be a little harder to apply styles to, so both should be tested before determining which approach to use. 

@@ -1,7 +1,3 @@
-# Application Considerations
-
-There are a few application considerations 
-
 ## Optional feature: application template wrapper
 
 If you are using the [application template wrapper](https://emberjs.com/blog/2018/02/16/ember-3-1-beta-released.html#toc_new-optional-feature-application-template-wrapper) enabled (default state), then you will need to add certain aria roles to your [landmark regions](https://www.w3.org/WAI/PF/aria/roles#landmark_roles), even if you are using native HTML elements, because those regions are not the direct child descendant of the body element (they are the children of the div that wraps the Ember app).

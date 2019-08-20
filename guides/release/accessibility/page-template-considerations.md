@@ -1,5 +1,3 @@
-# Page Template Considerations
-
 When considering an application's page or view structure, there are two primary areas that should be planned for: focus management and skip links. 
 
 ## Focus Management
