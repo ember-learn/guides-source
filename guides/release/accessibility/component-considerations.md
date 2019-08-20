@@ -25,8 +25,8 @@ If the interactive element would be written another way, such as:
 The developer would need to write the following additional code: 
 
 - add the role of button (`role="button"`)
-- add the button to the tab order (`tabindex="0")
-- add the keyboard functionalty (a javascript function to activate the associated action when the `ENTER` key is pressed)
+- add the button to the tab order (`tabindex="0"`)
+- add the keyboard functionality (a javascript function to activate the associated action when the `ENTER` key is pressed)
 
 Read more: ["Just use a button"](https://developer.paciellogroup.com/blog/2011/04/html5-accessibility-chops-just-use-a-button/).
 
