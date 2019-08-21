@@ -74,6 +74,10 @@
       url: 22
     - title: Twenty-three
       url: 23
+    - title: Twenty-four
+      url: 24
+    - title: Twenty-five
+      url: 25
 - title: "Templating"
   url: "templates"
   pages:
