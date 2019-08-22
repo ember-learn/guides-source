@@ -1,0 +1,42 @@
+name: Tutorial Ingestion
+
+on:
+  push:
+    branches:
+      - super-rentals-tutorial
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Open Pull Request
+      uses: vsoch/pull-request-action@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        PULL_REQUEST_BRANCH: octane
+        PULL_REQUEST_TITLE: Octane Tutorial Updates
+        PULL_REQUEST_BODY: >
+          This is an *[automated](https://github.com/ember-learn/guides-source/blob/master/.github/workflows/tutorial-ingestion.yml)*
+          pull request to let you know there are new content available for the
+          revamped Octane tutorial!
+          
+          These files should not be edited directly – the original source lives
+          in the [super-rentals-tutorial repo](https://github.com/ember-learn/super-rentals-tutorial).
+
+          If there are any issues with the content here, feel free to hold off
+          on merging this PR. After fixing the issue on the upstream repo, this
+          branch/pull request will be updated [automatically](https://travis-ci.org/ember-learn/super-rentals-tutorial)
+          shortly after.
+          
+          It is *okay* to push changes to the `super-rentals-tutorial` branch
+          manually, just don't edit the markdown files, since any changes will
+          be wiped out by the next CI job.
+          
+          However, it's totally fine to push other changes, like TOC changes,
+          dictionary fixes, etc. You can even rebase and force-push! The CI job
+          clones the branch fresh on each build, so there shouldn't be any
+          issues with conflicts and such.
+          
+          However, do not delete the `super-rentals-tutorial` branch itself!
