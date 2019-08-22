@@ -30,8 +30,8 @@ That's it, we have created our first component! We can now _[invoke]\(TODO: link
         <p>Remember, when invoking components, we need to capitalize their names so Ember can tell them apart from regular HTML elements. The <code>jumbo.hbs</code> template corresponds to the <code>&#x3C;Jumbo></code> tag, just like <code>super-awesome.hbs</code> corresponds to <code>&#x3C;SuperAwesome></code>.</p>
       </div>
     </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
   </div>
-  <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
 </div>
 
 When invoking a component, Ember will replace the component tag with the content found in the component's template. Just like regular HTML tags, it is common to pass _[content]\(TODO: link to content)_ to components, like `<Jumbo>some content</Jumbo>`. We can enable this using the `{{yield}}` keyword, which will be replaced with the content that was passed to the component.
@@ -224,8 +224,8 @@ Voilà, we made another component!
         <p><code>&#x3C;NavBar /></code> is a shorthand for <code>&#x3C;NavBar>&#x3C;/NavBar></code>. Component tags must always be closed properly, even when you are not passing any content to them, as in this case. Since this is pretty common, Ember provides the alternative self-closing shorthand to save you some typing!</p>
       </div>
     </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
   </div>
-  <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
 </div>
 
 Everything looks great in the browser, but as we know, we can never be too sure. So let's write some tests!
