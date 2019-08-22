@@ -22,8 +22,17 @@ In this case, we generated an _[acceptance test][TODO: link to acceptance test]_
 
 Generators aren't required; we _could_ have created the file ourselves which would have accomplished the exact same thing. But, generators certainly save us a lot of typing. Go ahead and take a peek at the acceptance test file and see for yourself.
 
-> Zoey says...
-> Want to save even more typing? `ember generate ...` can be shortened into `ember g ...`. That's 7 fewer characters!
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+        <p>Want to save even more typing? <code>ember generate ...</code> can be shortened into <code>ember g ...</code>. That's 7 fewer characters!</p>
+      </div>
+    </div>
+  </div>
+  <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
+</div>
 
 Acceptance tests are one of a few types of automated testing at our disposal in Ember. We will learn about the other types later, but what makes acceptance tests unique is that they test our app from the user's perspective — they are an automated version of the "click around and see if it works" testing we did earlier, which is exactly what we need.
 
@@ -71,8 +80,17 @@ Once the existence of this element on the page was confirmed, we told the test r
 
 Finally, we asserted that clicking on the link should bring us to the `/about` URL.
 
-> Zoey says...
-> Here, we are writing the tests in a framework called QUnit, which is where the functions `module`, `test` and `assert` come from. We also have additional helpers like `click`, `visit`, and `currentURL` provided by the `@ember/test-helpers` package. You can tell what comes from which package based on the `import` paths at the top of the file. Knowing this will be helpful when you need to search for documentation on the Internet or ask for help.
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+        <p>Here, we are writing the tests in a framework called QUnit, which is where the functions <code>module</code>, <code>test</code> and <code>assert</code> come from. We also have additional helpers like <code>click</code>, <code>visit</code>, and <code>currentURL</code> provided by the <code>@ember/test-helpers</code> package. You can tell what comes from which package based on the <code>import</code> paths at the top of the file. Knowing this will be helpful when you need to search for documentation on the Internet or ask for help.</p>
+      </div>
+    </div>
+  </div>
+  <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
+</div>
 
 We can put our automated test into motion by running the _[test server]\(TODO: link to test server)_ using the `ember test --server` command, or `ember t -s` for short. This server behaves much like the development server, but it is explicitly running for our tests. It may automatically open a browser window and take you to the test UI, or you can open `http://localhost:7357/` yourself.
 
