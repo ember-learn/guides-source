@@ -265,6 +265,21 @@
       url: render-performance
     - title: Troubleshooting
       url: troubleshooting
+- title: Accessibility
+  url: accessibility
+  pages:
+    - title: Intro to Accessibility
+      url: index
+    - title: Application Considerations
+      url: application-considerations
+    - title: Page Template Considerations
+      url: page-template-considerations
+    - title: Component Considerations
+      url: component-considerations
+    - title: Testing Considerations
+      url: testing
+    - title: Learning Resources 
+      url: learning-resources      
 - title: Contributing to Ember.js
   url: contributing
   isAdvanced: true
@@ -283,18 +298,3 @@
   pages:
     - title: Syntax Conversion Guide
       url: index
-- title: Accessibility
-  url: accessibility
-  pages:
-    - title: Intro to Accessibility
-      url: index
-    - title: Application Considerations
-      url: application-considerations
-    - title: Page Template Considerations
-      url: page-template-considerations
-    - title: Component Considerations
-      url: component-considerations
-    - title: Testing Considerations
-      url: testing
-    - title: Learning Resources 
-      url: learning-resources
