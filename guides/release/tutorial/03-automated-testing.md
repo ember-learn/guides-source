@@ -68,7 +68,7 @@ First, we instruct the test robot to navigate to the `/` URL of our app by using
 
 Because the page is going to take some time to load, this is known as an _[async]\(TODO: link to async)_ (short for _asynchronous_) step, so we will need to tell the test robot to wait by using JavaScript's `await` keyword. That way, it will wait until the page completely finishes loading before moving on to the next step.
 
-This is almost always the behavior we want, so we will almost always use `await` and `visit` as a pair. This applies to other kinds of simulated interaction too, such as clicking on a button or a link, as they all take time to complete. Even though sometimes these actions may seem imperceptibly fast to us, we have to remember that our test robot has really really fast hands, as we will see in a moment.
+This is almost always the behavior we want, so we will almost always use `await` and `visit` as a pair. This applies to other kinds of simulated interaction too, such as clicking on a button or a link, as they all take time to complete. Even though sometimes these actions may seem imperceptibly fast to us, we have to remember that our test robot has really, really fast hands, as we will see in a moment.
 
 After navigating to the `/` URL and waiting for things to settle, we check that the current URL matches the URL that we expect (`/`). We can use the `currentURL` test helper here, as well as `equal` _[assertion]\(TODO: link to assertion)_. This is how we encode our "checklist" into code — by specifying, or _[asserting]\(TODO: link to asserting)_ how things _should_ behave, we will be alerted if our app does _not_ behave in the way that we expect.
 
@@ -98,7 +98,7 @@ If you watch really carefully, you can see our test robot roam around our app an
 
 <!-- TODO: animated gif -->
 
-It happens really quickly though — blink and you might miss it! In fact, I had to slow this animation down by a hundred times just so you can see it in action. I told you the robot has really really fast hands!
+It happens really quickly though — blink and you might miss it! In fact, I had to slow this animation down by a hundred times just so you can see it in action. I told you the robot has really, really fast hands!
 
 As much as I enjoy watching this robot hard at work, the important thing here is that the test we wrote has _[passed]\(TODO: link to passed)_, meaning everything is working exactly as we expect and the test UI is all green and happy. If you want, you can go to `index.hbs`, delete the `<LinkTo>` component and see what things look like when we have _[a failing test]\(TODO: link to a failing test)_.
 
