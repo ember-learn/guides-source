@@ -1,4 +1,9 @@
-Every application must have a primary language declaration. 
+In this section, you will learn about the configurations and libraries that affect an entire application's accessibility. 
+
+## Language attribute
+
+Every application must have a primary language declaration.
+This language declaration is important for assistive technology like screen readers, internationalization tools built into browsers, and search engines.
 
 To indicate the primary language, use the `lang` attribute on the `<html>` element. Until Ember provides this by default, developers should edit the `index.html` file of the generated Ember application with the default language declaration. This is inherited by all other elements, and will set a default language for the text in the document head element.
 
