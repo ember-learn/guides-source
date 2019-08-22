@@ -14,7 +14,7 @@ If you are using the [application template wrapper](https://emberjs.com/blog/201
 
 If you disable the [application template wrapper](https://emberjs.com/blog/2018/02/16/ember-3-1-beta-released.html#toc_new-optional-feature-application-template-wrapper), you will not need to add role attributes to your landmark regions when they are the direct descendant of the body element, and they are using native HTML elements. This is the preferred approach for accessible applications. 
 
-To disable this feature:
+To disable this feature and improve your app's accessibility:
 
 ```bash
 ember feature:disable application-template-wrapper
