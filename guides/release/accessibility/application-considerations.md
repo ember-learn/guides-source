@@ -56,7 +56,7 @@ ember feature:disable application-template-wrapper
   </div>
 </div>
 
-## Ember applications vs role=''application''
+## Ember applications vs role="application"
 
 An important thing to note in this section is this: "application" in Ember development and "application" in landmark roles have two _very_ different meanings. 
 
