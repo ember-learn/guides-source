@@ -28,3 +28,14 @@ jobs:
           on merging this PR. After fixing the issue on the upstream repo, this
           branch/pull request will be updated [automatically](https://travis-ci.org/ember-learn/super-rentals-tutorial)
           shortly after.
+          
+          It is *okay* to push changes to the `super-rentals-tutorial` branch
+          manually, just don't edit the markdown files, since any changes will
+          be wiped out by the next CI job.
+          
+          However, it's totally fine to push other changes, like TOC changes,
+          dictionary fixes, etc. You can even rebase and force-push! The CI job
+          clones the branch fresh on each build, so there shouldn't be any
+          issues with conflicts and such.
+          
+          However, do not delete the `super-rentals-tutorial` branch itself!
