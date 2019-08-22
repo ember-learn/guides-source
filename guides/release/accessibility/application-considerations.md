@@ -11,7 +11,7 @@ If there happens to be any content on the page that is in a different language f
 
 Note: a page cannot have multiple language attribute values. 
 
-## Optional Features
+## Configurations
 
 ### Application template wrapper
 
