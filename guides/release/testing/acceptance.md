@@ -141,7 +141,7 @@ Synchronous helpers are performed immediately when triggered.
 
 ## Debugging Your Tests
 
-During the development of you tests or when you refactor you application's code, the execution of your tests may fail. In order to help you understand why, [`pauseTest()`](https://github.com/emberjs/ember-test-helpers/blob/master/API.md#pausetest) and [`resumeTest()`](https://github.com/emberjs/ember-test-helpers/blob/master/API.md#resumetest) can help you.
+During the development of your tests or when you refactor you application's code, the execution of your tests may fail. In order to help you understand why, [`pauseTest()`](https://github.com/emberjs/ember-test-helpers/blob/master/API.md#pausetest) and [`resumeTest()`](https://github.com/emberjs/ember-test-helpers/blob/master/API.md#resumetest) can help you.
 
 To try them out, do the following steps:
 
