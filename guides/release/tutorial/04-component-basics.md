@@ -1,4 +1,4 @@
-In the last chapter, we got a light introduction to _[components]\(TODO: link to components)_ when using `<LinkTo>` to connect our pages. To recap, we said that components are Ember's way of creating _[custom tags]\(TODO: link to custom tags)_ to supplement the built-in HTML tags from the browser. Now, we are going to create our own components!
+In a [previous chapter](../02-building-pages), we got a light introduction to _[components]\(TODO: link to components)_ when using `<LinkTo>` to connect our pages. To recap, we said that components are Ember's way of creating _[custom tags]\(TODO: link to custom tags)_ to supplement the built-in HTML tags from the browser. Now, we are going to create our own components!
 
 During the course of developing an app, it is pretty common to reuse the same UI element across different parts of the app. For example, we have been using the same "jumbo" header in all three pages so far. On every page we worked to follow the same basic structure:
 
@@ -9,7 +9,7 @@ During the course of developing an app, it is pretty common to reuse the same UI
 </div>
 ```
 
-Since it is not a lot of code, it may not seem like a big deal to duplicate this structure on each page. However, if our designer wanted us to make a change to the header, we would have to find and update every single copy of this code. As our app gets bigger, this will become even more of problem.
+Since it is not a lot of code, it may not seem like a big deal to duplicate this structure on each page. However, if our designer wanted us to make a change to the header, we would have to find and update every single copy of this code. As our app gets bigger, this will become even more of a problem.
 
 Components are the perfect solution to this. In its most basic form, a component is just a piece of template that can be referred to by name. Let's start by creating a new file at `app/components/jumbo.hbs` with markup for the "jumbo" header:
 
@@ -95,7 +95,7 @@ Let's do the same for our other two pages as well.
 
 After saving, everything should look exactly the same as before, and all the tests should still pass. Very nice!
 
-While it may not save you a lot of characters in this case, [encapsulating]\(TODO: link to encapsulating)\* the implementation of the "jumbo" header into its own component makes the template slightly easier to read, and it allows the reader to focus on things that are unique to just that page. Now, if we need to make a change to the header, we can make it in a single place. Feel free to give that a try!
+While it may not save you a lot of characters in this case, [encapsulating]\(TODO: link to encapsulating)\* the implementation of the "jumbo" header into its own component makes the template slightly easier to read, as it allows the reader to focus on things that are unique to just that page. Further, if we need to make a change to the header, we can make it in a single place. Feel free to give that a try!
 
 Before we move on to the next component, let's write an automated test for our `<Jumbo>` component. Run this command in your terminal:
 
@@ -145,7 +145,7 @@ module('Integration | Component | jumbo', function(hooks) {
 
 Instead of navigating to a URL, we start the test by rendering our `<Jumbo>` component on the test page. This is useful because it may otherwise require a lot of setup and interaction just to get to a page where your component is used. Component tests allows us to skip all of that and focus exclusively on testing the component in isolation.
 
-Just like visit and click, which we used earlier, render is also an async step, so we need to pair it with the await keyword. Other than that, the rest of the test is very similar to the acceptance tests we wrote we in the previous chapter. Make sure the test is passing by checking the tests UI in the browser.
+Just like visit and click, which we used earlier, render is also an async step, so we need to pair it with the `await` keyword. Other than that, the rest of the test is very similar to the acceptance tests we wrote we in the previous chapter. Make sure the test is passing by checking the tests UI in the browser.
 
 <!-- TODO: screenshot of the tests? -->
 
@@ -306,7 +306,7 @@ We updated the existing tests to assert that a `<nav>` element exists on each pa
 
 All tests should pass at this point!
 
-Before we move on to the next feature, there is one more thing we could clean up. Since the `<NavBar>` is used for site-wide navigation, it really needs to be displayed on _every_ page in the app. So far, we have been adding the component on each page manually. This is is a bit error-prone, as we could easily forget to do this the next time that we add a new page.
+Before we move on to the next feature, there is one more thing we could clean up. Since the `<NavBar>` is used for site-wide navigation, it really needs to be displayed on _every_ page in the app. So far, we have been adding the component on each page manually. This is a bit error-prone, as we could easily forget to do this the next time that we add a new page.
 
 We can solve this problem by moving the nav-bar into a special template called `application.hbs`. You may remember that it was generated for us when we first created the app but we deleted it. Now, it's time for us to bring it back!
 
@@ -366,4 +366,6 @@ While we are at it, we will also add a container element that wraps around the w
 </Jumbo>
 ```
 
-Much nicer! We can run our test suite which confirms that everything still works after our refactor. We are ready to move on to the next feature!
+The `{{outlet}}` keyword denotes the place where our site's pages should be rendered into, similar to the `{{yield}}` keyword.
+
+This is much nicer! We can run our test suite which confirms that everything still works after our refactor. We are ready to move on to the next feature!

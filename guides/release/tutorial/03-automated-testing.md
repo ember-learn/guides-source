@@ -1,8 +1,8 @@
-We accomplished a lot in the previous chapter! Let's recap — we started with a blank canvas, added a few pages of content, styled everything to look pretty, dropped in a picture of Tomster, added links between our pages and amazingly, everything worked together flawlessly!
+We accomplished a lot in the last few chapters! Let's recap — we started with a blank canvas, added a few pages of content, styled everything to look pretty, dropped in a picture of Tomster, added links between our pages and amazingly, everything worked together flawlessly!
 
 But do we _really_ know that everything is actually working? Sure, we clicked around a bit to confirm that things look as expected. But do we feel confident that we checked _every_ page after the most recent change that we made?
 
-After all, most of us have experienced (or heard horror stories about) making a Small Tweak™ in one area of the app that inadvertently breaks _everything else_ when we aren't looking.
+After all, most of us have experienced (or heard horror stories about) making a Small Tweak™ in one area of the app that inadvertently broke _everything else_ when we weren't looking.
 
 Maybe we can write a checklist somewhere of all the things to check after making changes to our site. But surely, this will get out of hand as we add more features to our app. It is also going to get old really quickly — repetitive tasks like that are best left to robots.
 
@@ -16,7 +16,7 @@ installing acceptance-test
   create tests/acceptance/super-rentals-test.js
 ```
 
-This is called a "generator" command in Ember CLI. Generator commands automatically create files for us based on Ember's conventions and populate them with the appropriate boilerplate content, similar to how `ember new` initially created a skeleton app for us. It typically follows the pattern `ember generate <type> <name>`, where `<type>` is the kind of thing we are generating, and `<name>` is what we want to call it.
+This is called a _[generator]\(TODO: link to generators)_ command in Ember CLI. Generators automatically create files for us based on Ember's conventions and populate them with the appropriate boilerplate content, similar to how `ember new` initially created a skeleton app for us. It typically follows the pattern `ember generate <type> <name>`, where `<type>` is the kind of thing we are generating, and `<name>` is what we want to call it.
 
 In this case, we generated an _[acceptance test][TODO: link to acceptance test]_ located at `tests/acceptance/super-rentals-test.js`.
 
@@ -93,8 +93,6 @@ Finally, we asserted that clicking on the link should bring us to the `/about` U
 </div>
 
 We can put our automated test into motion by running the _[test server]\(TODO: link to test server)_ using the `ember test --server` command, or `ember t -s` for short. This server behaves much like the development server, but it is explicitly running for our tests. It may automatically open a browser window and take you to the test UI, or you can open `http://localhost:7357/` yourself.
-
-<!-- TODO: screenshot? -->
 
 If you watch really carefully, you can see our test robot roam around our app and clicking links:
 
