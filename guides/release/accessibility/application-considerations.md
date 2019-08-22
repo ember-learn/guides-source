@@ -75,6 +75,8 @@ Any addon that will provide UI elements to the application should be evaluated f
 
 There are some existing Ember addons that may help you make your app more accessible. Each addon should be evaluated for its own usefulness and merit- you may find in some instances, that it would be better to implement the ideas presented in the addon in your own application. 
 
+Here are some examples of accessibility-focused addons created by many people throughout the Ember community:
+
 - [ember-a11y-landmarks](https://github.com/ember-a11y/ember-a11y-landmarks) - Ember addon to help with landmark roles for better accessibility
 - [ember-component-focus](https://github.com/ember-a11y/ember-component-focus) - A mixin for adding methods to your Ember components that help you manage the currently focused element.
 - [ember-gestures](https://github.com/html-next/ember-gestures) - Ember Gestures provides an easy way to use gestures by making it simple to define and use HammerJS managers and recognizers throughout your app.
