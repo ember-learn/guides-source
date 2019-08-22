@@ -32,7 +32,15 @@ This is just one example of how developers can use HTML's built in features to i
 
 ## Focus management in components
 
-Focus management is a large part of how a component's code coordinates with the code that runs screen readers. 
+Focus is one of the main ways a component can communicate with screen readers.
+
+For example, when you hit tab on a page or click on a form field, a blue border usually appears around the element. This kind of behavior is part of focus.
+Developers can use JavaScript to control the focus in their apps, enabling keyboard navigation and usability by screen readers.
+For example, if there is a button that launches a modal with interactive elements in it, that button's click handler needs to contain code that brings focus to the new content.
+
+This article is a good launching point for learning more about focus: [Keyboard accessibility](https://webaim.org/techniques/keyboard/)
+
+Here are some other tips to get you started:
 
 - There is a difference between browse mode and focus mode in screen readers- see ["Focus Please"](https://codepen.io/melsumner/live/ZJeYoP).
 - Focus should return from whence it came- for example, if a `<button>` element opens a modal, the focus should then be returned to that same trigger button once the modal is closed. 
