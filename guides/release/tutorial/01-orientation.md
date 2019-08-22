@@ -12,7 +12,7 @@ To verify that your installation was successful, run:
 $ ember --version
 ember-cli: 3.12.0
 node: 12.8.1
-os: darwin x64
+os: linux x64
 ```
 
 If a version number is shown, you're ready to go.
@@ -47,6 +47,7 @@ installing octane-app-blueprint
   create testem.js
   create tests/index.html
   create tests/test-helper.js
+npm: Installing dependencies ...
 npm: Installed dependencies
 Successfully initialized git.
 ```
