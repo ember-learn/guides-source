@@ -28,7 +28,7 @@ The developer would need to write the following additional code:
 - add the button to the tab order (`tabindex="0"`)
 - add the keyboard functionality (a JavaScript function to activate the associated action when the `ENTER` key is pressed)
 
-Read more: ["Just use a button"](https://developer.paciellogroup.com/blog/2011/04/html5-accessibility-chops-just-use-a-button/).
+This is just one example of how developers can use HTML's built in features to improve accessibility and reduce the need for custom code. Read more here: ["Just use a button"](https://developer.paciellogroup.com/blog/2011/04/html5-accessibility-chops-just-use-a-button/).
 
 ## Focus management in components
 
