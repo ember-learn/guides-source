@@ -6,7 +6,7 @@ After all, most of us have experienced (or heard horror stories about) making a 
 
 Maybe we can write a checklist somewhere of all the things to check after making changes to our site. But surely, this will get out of hand as we add more features to our app. It is also going to get old really quickly — repetitive tasks like that are best left to robots.
 
-Hmm, robots. That's an idea. What if we can write this checklist and just get the computer to check everything for us? I think we just invented the idea of _[automated testing]\(TODO: link to automated testing)_!
+Hmm, robots. That's an idea. What if we can write this checklist and just get the computer to check everything for us? I think we just invented the idea of _automated testing_!
 
 Okay, maybe we were not the first to come up with the concept, but we independently discovered it so we still deserve some credit. Once we are done patting ourselves on the back, go ahead and run the following command in the terminal:
 
@@ -16,9 +16,9 @@ installing acceptance-test
   create tests/acceptance/super-rentals-test.js
 ```
 
-This is called a _[generator]\(TODO: link to generators)_ command in Ember CLI. Generators automatically create files for us based on Ember's conventions and populate them with the appropriate boilerplate content, similar to how `ember new` initially created a skeleton app for us. It typically follows the pattern `ember generate <type> <name>`, where `<type>` is the kind of thing we are generating, and `<name>` is what we want to call it.
+This is called a _generator_ command in Ember CLI. Generators automatically create files for us based on Ember's conventions and populate them with the appropriate boilerplate content, similar to how `ember new` initially created a skeleton app for us. It typically follows the pattern `ember generate <type> <name>`, where `<type>` is the kind of thing we are generating, and `<name>` is what we want to call it.
 
-In this case, we generated an _[acceptance test][TODO: link to acceptance test]_ located at `tests/acceptance/super-rentals-test.js`.
+In this case, we generated an _acceptance test_ located at `tests/acceptance/super-rentals-test.js`.
 
 Generators aren't required; we _could_ have created the file ourselves which would have accomplished the exact same thing. But, generators certainly save us a lot of typing. Go ahead and take a peek at the acceptance test file and see for yourself.
 
@@ -66,15 +66,15 @@ module('Acceptance | super rentals', function(hooks) {
 
 First, we instruct the test robot to navigate to the `/` URL of our app by using the `visit` _test helper_ provided by Ember. This is akin to us typing `http://localhost:4200/` in the browser's address bar and hitting the `enter` key.
 
-Because the page is going to take some time to load, this is known as an _[async]\(TODO: link to async)_ (short for _asynchronous_) step, so we will need to tell the test robot to wait by using JavaScript's `await` keyword. That way, it will wait until the page completely finishes loading before moving on to the next step.
+Because the page is going to take some time to load, this is known as an _async_ (short for _asynchronous_) step, so we will need to tell the test robot to wait by using JavaScript's `await` keyword. That way, it will wait until the page completely finishes loading before moving on to the next step.
 
 This is almost always the behavior we want, so we will almost always use `await` and `visit` as a pair. This applies to other kinds of simulated interaction too, such as clicking on a button or a link, as they all take time to complete. Even though sometimes these actions may seem imperceptibly fast to us, we have to remember that our test robot has really, really fast hands, as we will see in a moment.
 
-After navigating to the `/` URL and waiting for things to settle, we check that the current URL matches the URL that we expect (`/`). We can use the `currentURL` test helper here, as well as `equal` _[assertion]\(TODO: link to assertion)_. This is how we encode our "checklist" into code — by specifying, or _[asserting]\(TODO: link to asserting)_ how things _should_ behave, we will be alerted if our app does _not_ behave in the way that we expect.
+After navigating to the `/` URL and waiting for things to settle, we check that the current URL matches the URL that we expect (`/`). We can use the `currentURL` test helper here, as well as `equal` _assertion_. This is how we encode our "checklist" into code — by specifying, or _asserting_ how things _should_ behave, we will be alerted if our app does _not_ behave in the way that we expect.
 
 Next, we confirmed that the page has an `<h1>` tag that contains the text "Welcome to Super Rentals!". Knowing this is true means that we can be quite certain that the correct template has been rendered, without errors.
 
-Then, we looked for a link with the text `About Us`, located using the _[CSS selector]\(TODO: link to CSS selector)_ `.jumbo a.button`. This is the same syntax we used in our stylesheet, which means "look inside the tag with the `jumbo` class for an `<a>` tag with the `button` class". This matches up with the HTML structure in our template.
+Then, we looked for a link with the text `About Us`, located using the _CSS selector_ `.jumbo a.button`. This is the same syntax we used in our stylesheet, which means "look inside the tag with the `jumbo` class for an `<a>` tag with the `button` class". This matches up with the HTML structure in our template.
 
 Once the existence of this element on the page was confirmed, we told the test robot to click on this link. As mentioned above, this is a user interaction, so it needs to be `await`-ed.
 
@@ -92,7 +92,7 @@ Finally, we asserted that clicking on the link should bring us to the `/about` U
   </div>
 </div>
 
-We can put our automated test into motion by running the _[test server]\(TODO: link to test server)_ using the `ember test --server` command, or `ember t -s` for short. This server behaves much like the development server, but it is explicitly running for our tests. It may automatically open a browser window and take you to the test UI, or you can open `http://localhost:7357/` yourself.
+We can put our automated test into motion by running the _test server_ using the `ember test --server` command, or `ember t -s` for short. This server behaves much like the development server, but it is explicitly running for our tests. It may automatically open a browser window and take you to the test UI, or you can open `http://localhost:7357/` yourself.
 
 If you watch really carefully, you can see our test robot roam around our app and clicking links:
 
@@ -100,7 +100,7 @@ If you watch really carefully, you can see our test robot roam around our app an
 
 It happens really quickly though — blink and you might miss it! In fact, I had to slow this animation down by a hundred times just so you can see it in action. I told you the robot has really, really fast hands!
 
-As much as I enjoy watching this robot hard at work, the important thing here is that the test we wrote has _[passed]\(TODO: link to passed)_, meaning everything is working exactly as we expect and the test UI is all green and happy. If you want, you can go to `index.hbs`, delete the `<LinkTo>` component and see what things look like when we have _[a failing test]\(TODO: link to a failing test)_.
+As much as I enjoy watching this robot hard at work, the important thing here is that the test we wrote has _passed_, meaning everything is working exactly as we expect and the test UI is all green and happy. If you want, you can go to `index.hbs`, delete the `<LinkTo>` component and see what things look like when we have _a failing test_.
 
 <!-- TODO: animated gif -->
 
@@ -156,6 +156,6 @@ module('Acceptance | super rentals', function(hooks) {
 
 As with the development server, the test UI should automatically reload and rerun the entire test suite as you save the files. It is recommended that you keep this page open as you develop your app. That way, you will get immediate feedback if you accidentally break something.
 
-For the rest of the tutorial, we will continue to add more automated tests as we develop new features. Testing is optional; tests don't affect the functionality your app, they just protect it from _[regressions]\(TODO: link to regressions)_, which is just a fancy way of saying "accidental breakages."
+For the rest of the tutorial, we will continue to add more automated tests as we develop new features. Testing is optional; tests don't affect the functionality your app, they just protect it from _regressions_, which is just a fancy way of saying "accidental breakages."
 
 If you are in a hurry, you can skip over the testing sections in this tutorial and still be able to follow along with everything else. But don't you find it super satisfying — _oddly satisfying_ — to watch a robot click on things really, really fast?
