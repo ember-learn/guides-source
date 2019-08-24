@@ -1,4 +1,4 @@
-<!-- Headsup! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/src/chapters/02-building-pages.md -->
+<!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/src/chapters/02-building-pages.md -->
 
 With our [first page](../01-orientation) down, let's add another one!
 

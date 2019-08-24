@@ -1,4 +1,4 @@
-<!-- Headsup! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/src/chapters/04-component-basics.md -->
+<!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/src/chapters/04-component-basics.md -->
 
 In a [previous chapter](../02-building-pages), we got a light introduction to _components_ when using `<LinkTo>` to connect our pages. To recap, we said that components are Ember's way of creating _custom tags_ to supplement the built-in HTML tags from the browser. Now, we are going to create our own components!
 
