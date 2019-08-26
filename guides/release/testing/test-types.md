@@ -147,7 +147,7 @@ Here are more examples where rendering tests are ideal:
 
 In order for rendering tests to work, you must call [`setupRenderingTest()`](https://github.com/emberjs/ember-qunit#setup-rendering-tests) and pass the `hooks` object.
 
-What does `setupRenderingTest()` do? First, it uses `setupTest()` behind the scenes. Just like in [Unit Tests](../different-types-of-tests/#toc_what-to-watch-out-for), you have access to `this.owner`, `this.get()`, `this.set()`, and `pauseTest()`.
+What does `setupRenderingTest()` do? First, it uses `setupTest()` behind the scenes. Just like in [Unit Tests](../test-types/#toc_what-to-watch-out-for), you have access to `this.owner`, `this.get()`, `this.set()`, and `pauseTest()`.
 
 In addition, `setupRenderingTest()` allows Ember's renderer to use helpers for rendering and DOM interaction, such as `render`, `click`, and `fillIn`. You can also use `this.element` to access the DOM element that results from `render`.
 
@@ -170,7 +170,7 @@ Finally, if your application receives and sends data, you want to guarantee that
 
 ### Examples
 
-Let's continue with the blog post example from [Rendering Tests](../different-types-of-tests/#toc_examples-1). Recall that our blog post component allows two modes—view and edit. The following test checks one way for creating a blog post:
+Let's continue with the blog post example from [Rendering Tests](../test-types/#toc_examples-1). Recall that our blog post component allows two modes—view and edit. The following test checks one way for creating a blog post:
 
 ```javascript {data-filename=tests/acceptance/posts-test.js}
 import { click, currentURL, fillIn, visit } from '@ember/test-helpers';
