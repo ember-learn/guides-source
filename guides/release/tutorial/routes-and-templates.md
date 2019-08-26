@@ -313,7 +313,7 @@ You can also run our specific test by selecting the entry called "Acceptance | l
 in the drop down input labeled "Module" on the test UI.
 
 You can also toggle "Hide passed tests" to show your passing test case along with the tests that are still
-failing (because we haven't yet built them/).
+failing (because we haven't built them yet).
 
 ![6_fail](/images/routes-and-templates/routes-and-templates.gif)
 
