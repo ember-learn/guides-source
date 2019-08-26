@@ -148,8 +148,8 @@
   pages:
     - title: "Introduction"
       url: "index"
-    - title: "Different Types of Tests"
-      url: "different-types-of-tests"
+    - title: "Test Types"
+      url: "test-types"
     - title: "Testing Application"
       url: "testing-application"
     - title: "Testing Basics"
