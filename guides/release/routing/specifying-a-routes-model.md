@@ -266,7 +266,7 @@ Here's what it looks like to pass the entire `photo` record:
 {{/each}}
 ```
 
-If you decide to pass the entire model, be sure to cover this behavior in your [acceptance tests](../../testing/acceptance/).
+If you decide to pass the entire model, be sure to cover this behavior in your [application tests](../../testing/testing-application/).
 
 If a route you are trying to link to has multiple dynamic segments, like `/photos/4/comments/18`, be sure to specify all the necessary information for each segment:
 

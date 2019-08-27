@@ -151,8 +151,10 @@
   pages:
     - title: "Introduction"
       url: "index"
-    - title: "Application Tests"
-      url: "acceptance"
+    - title: "Test Types"
+      url: "test-types"
+    - title: "Testing Application"
+      url: "testing-application"
     - title: "Testing Basics"
       url: "unit-testing-basics"
     - title: "Testing Components"

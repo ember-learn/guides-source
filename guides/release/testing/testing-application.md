@@ -138,17 +138,3 @@ Synchronous helpers are performed immediately when triggered.
 * [`findAll(selector)`](https://github.com/emberjs/ember-test-helpers/blob/master/API.md#findall): like `find(selector)`, but finds all elements
   that match the given selector. Equivalent to calling querySelectorAll()
   on the test root element. Returns an array of matched elements.
-
-## Debugging Your Tests
-
-During the development of you tests or when you refactor you application's code, the execution of your tests may fail. In order to help you understand why, [`pauseTest()`](https://github.com/emberjs/ember-test-helpers/blob/master/API.md#pausetest) and [`resumeTest()`](https://github.com/emberjs/ember-test-helpers/blob/master/API.md#resumetest) can help you.
-
-To try them out, do the following steps:
-
-1. Add `await pauseTest();` in you test code.
-2. Run `ember server`.
-3. Visit `http://localhost:4200/tests` in your browser
-
-When the execution of the test come upon `await pauseTest()`, the test will be paused, allowing you to inspect the state of your application.
-
-You can now type `resumeTest()` in the console of your browser to continue the test execution.
