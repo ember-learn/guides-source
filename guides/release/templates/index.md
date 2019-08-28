@@ -1,7 +1,7 @@
 Templates are the home for what the user sees, like forms, buttons, links, and headings.
 
 In this section of the Guides, you will learn about where to write HTML markup, plus how to add interaction, dynamically changing content, styling, and more.
-If you want to learn in a step-by-step way, you should begin your journey in the [Tutorial](../tutorial/ember-cli/) instead.
+If you want to learn in a step-by-step way, you should begin your journey in the [Tutorial](../tutorial/00-part-1/) instead.
 
 ## Writing plain HTML
 
@@ -224,4 +224,3 @@ Thus, the output of these combined helpers is `10`.
 As you move forward with these template guides, keep in mind that a helper can be used anywhere a normal value can be used.
 
 Many of Ember's built-in helpers (as well as your custom helpers) can be used in nested form.
-

@@ -83,6 +83,7 @@ htmlbars
 htmlbars-inline-precompile
 interop
 interoperable
+interoperability
 invocable
 IndexedDB
 Inflector
@@ -96,6 +97,7 @@ Mapbox
 MDN
 mixin
 mixins
+mockup
 modularity
 naïve
 nav
@@ -103,6 +105,7 @@ nav
 NVDA
 onboarding
 Orca
+page-crafter
 parallelize
 Param
 param
@@ -167,11 +170,14 @@ typeahead
 UIs
 unordered
 unsilence
+unstyled
 untrusted
 usecase
 viewport
 VM
 VoiceOver
+Voilà
+voilà
 WAI-ARIA
 WCAG
 websocket

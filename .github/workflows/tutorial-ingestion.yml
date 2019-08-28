@@ -1,0 +1,53 @@
+name: Tutorial Ingestion
+
+on:
+  push:
+    branches:
+      - super-rentals-tutorial
+
+jobs:
+  pull-request:
+    name: Open Pull Request
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Open Pull Request
+        uses: chancancode/pull-request-action@quote-json-strings
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PULL_REQUEST_BRANCH: octane
+          PULL_REQUEST_TITLE: Octane Tutorial Updates
+          PULL_REQUEST_BODY: >
+            This is an *[automated](https://github.com/ember-learn/guides-source/blob/super-rentals-tutorial/.github/workflows/tutorial-ingestion.yml)*
+            pull request to let you know there are new content available for
+            the revamped Octane tutorial!
+
+
+            If these changes look good to you, it is recommended that you merge
+            the PR using the *Squash and merge* feature. After merging, *do not
+            click the button to delete the branch*!
+
+
+            If there are any issues with the content here, *do not edit these
+            files directly* – the original source lives in the
+            [super-rentals-tutorial repo](https://github.com/ember-learn/super-rentals-tutorial).
+
+
+            Feel free to hold off on merging this PR and file an issue/PR in
+            the upstream repo. After fixing the issues there, the [upstream CI
+            job](https://travis-ci.org/ember-learn/super-rentals-tutorial) will
+            push the changes to [this pull request branch](https://github.com/ember-learn/guides-source/commits/super-rentals-tutorial),
+            automatically, so you should see the changes relected in this PR
+            shortly after.
+
+
+            That being said, it's totally *okay* to push *other* changes to the
+            `super-rentals-tutorial` branch manually, like making changes to
+            the TOC or adding words to the dictionary. Just don't edit the
+            markdown files themselves, since any changes you make will be wiped
+            out by the next upstream CI job.
+
+
+            You can even rebase the branch and force-push! The CI job clones
+            the branch fresh on each build, so there shouldn't be any issues
+            with conflicts and such. Just *don't delete the branch*!
