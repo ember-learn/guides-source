@@ -52,9 +52,8 @@ import Controller from '@ember/controller';
 
 export default class ArticlesController extends Controller {
   queryParams = ['category'];
-  category = null;
+  @tracked category = null;
 
-  @tracked category;
   @tracked model;
 
   get filteredArticles() {
