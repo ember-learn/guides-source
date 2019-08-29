@@ -9,6 +9,7 @@ These accessibility learning resources will provide additional support to the de
 
 ## Practical Resources
 
+- [Accessibility Insights](https://accessibilityinsights.io/)- Use FastPass to find common, high-impact issues 
 - [aXe extension for Chrome](https://chrome.google.com/webstore/detail/axe/lhdoppojpmngadmnindnejefpokejbdd)
 - [Accessibility Support](https://a11ysupport.io/)- Find out if your code will work with assistive tech
 - [How and where to report accessibility bugs](https://www.digitala11y.com/how-where-to-report-accessibility-bugs/)
