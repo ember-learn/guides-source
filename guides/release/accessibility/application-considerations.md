@@ -87,5 +87,6 @@ Here are some examples of accessibility-focused addons created by many people th
 - [ember-a11y-testing](https://github.com/ember-a11y/ember-a11y-testing) - A suite of accessibility tests that can be run within the Ember testing framework
 - [a11y-announcer](https://github.com/ember-a11y/a11y-announcer) - An accessible ember route change announcer
 - [ember-template-lint](https://github.com/ember-template-lint/ember-template-lint) - linter for Ember templates
+- [ember-accessibility](https://github.com/coyote-labs/ember-accessibility) - An Ember.js addon to find and address accessibility violations during development. 
 
 While there are quite a few moving parts, here's a cheat sheet to get you started: [Accessibility Cheat Sheet](https://moritzgiessmann.de/accessibility-cheatsheet/)
