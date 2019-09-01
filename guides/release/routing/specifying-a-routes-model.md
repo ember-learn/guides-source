@@ -173,7 +173,7 @@ Router.map(function() {
 
 Whatever shows up in the URL at the `:post_id`, the dynamic segment, will be available in the params for the route's `model` hook:
 
-```javascript {data-filename=app/routes/photo.js}
+```javascript {data-filename=app/routes/post.js}
 import Route from '@ember/routing/route';
 
 export default Route.extend({
