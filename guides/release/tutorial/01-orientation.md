@@ -54,6 +54,15 @@ npm: Installed dependencies
 Successfully initialized git.
 ```
 
+```shell
+$ ember server
+Could not start watchman
+Visit https://ember-cli.com/user-guide/#watchman for more info.
+building... 
+
+Build successful (30678ms) – Serving on http://localhost:4200/
+```
+
 <!-- TODO: explain ember server, etc. -->
 
 When you are done experimenting, go ahead and delete the `app/templates/application.hbs` file. We won't be needing this for a while, so let's start afresh. We can add it back later when we have a need for it.
