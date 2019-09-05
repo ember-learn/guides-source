@@ -92,7 +92,7 @@ Good luck!
 
 [mdn]: https://developer.mozilla.org/en-US/docs/Web
 [promises]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
-[js-modules]: http://jsmodules.io/
+[js-modules]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules
 [babeljs]: https://babeljs.io/docs/learn-es2015/
 [es6]: https://leanpub.com/understandinges6/read
 
