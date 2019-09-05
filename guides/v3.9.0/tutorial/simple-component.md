@@ -293,7 +293,7 @@ module('Integration | Component | rental listing', function (hooks) {
       type: 'test-type',
       city: 'test-city',
       bedrooms: 3
-    };
+    });
   });
 
   test('should display rental details', async function(assert) {
