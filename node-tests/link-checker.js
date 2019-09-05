@@ -15,7 +15,9 @@ const {
   getNonRelativeGuidesLinks,
 	checkExternalLink,
 	mapToLocalUrl,
-	removeTrailingApostrophe
+	removeTrailingApostrophe,
+	randomizeFetchDelays,
+	sleep
 } = require('./helpers');
 
 const paths = walkSync('guides')
@@ -65,23 +67,33 @@ const releasePaths = walkSync('guides/release')
  * @type {Array}
  */
 const doNotCheckList = [
+	'http://localhost:4200', // getting-started/quick-start
 	'http://localhost:4200/scientists', // generating routes, link to open local server route
 	'http://localhost:4200/contact', // model hook tutorial code snippet
 	'http://localhost:4200/about', // model hook tutorial code snippet
+	'http://localhost:4200/about/', // routes and tempaltes
+	'https://codepen.io/melsumner/live/ZJeYoP' // ...codepen does not play with fetch api.
 ]
 
 describe('check all external links in markdown files', function () {
   releasePaths.forEach((filepath) => {
     it(`processing ${filepath}`, async function () {
-			this.timeout(10000); // high for slow networks
+			this.timeout(20000); // high for slow networks and pages with a lot of external links
 
 			const externalLinks = findMarkdownLinks(filepath)
 				.filter((link) => link.startsWith("http")) // should have more robust regex
 				.filter((link) => !doNotCheckList.includes(link))
 				.map(mapToLocalUrl)
-				.map(removeTrailingApostrophe);
+				.map(removeTrailingApostrophe)
+				.map(randomizeFetchDelays);
 
-			const responses = await Promise.all(externalLinks.map(checkExternalLink));
+			let responses = [];
+
+			for (let i = 0; i < externalLinks.length; i++) {
+				await sleep(externalLinks[i].delay);
+				responses.push(await checkExternalLink(externalLinks[i].url));
+			}
+
 			const errors = responses.filter((result) => result != null);
 
 			expect(errors, printBadLinks(errors)).to.be.an('array').to.be.empty;
