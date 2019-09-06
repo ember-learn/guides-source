@@ -38,7 +38,7 @@ With that in place, we can create a new `app/templates/about.hbs` template with 
 
 To see this in action, navigate to `http://localhost:4200/about`.
 
-<!-- TODO: screenshot? -->
+<img src="screenshots/02-building-pages/about@2x.png" alt="About page" width="1024" height="512">
 
 With that, our second page is done!
 
@@ -89,7 +89,7 @@ Ember comes with strong _conventions_ and sensible defaults — if we were start
 
 Once you have added the route and the template above, we should have the new page available to us at `http://localhost:4200/getting-in-touch`.
 
-<!-- TODO: screenshot? -->
+<img src="screenshots/02-building-pages/contact@2x.png" alt="Contact page" width="1024" height="512">
 
 We just put so much effort into making these pages, we need to make sure people can find them! The way we do that on the web is by using _hyperlinks_, or _links_ for short.
 
@@ -153,6 +153,14 @@ In addition to arguments, components can also take the usual HTML attributes as 
 Under the hood, the `<LinkTo>` component generates a regular `<a>` tag for us with the appropriate `href` for the specific route. This allows for perfect interoperability for all _screen readers_, as well as the ability for our users to bookmark the link or open it in a new tab.
 
 However, when clicking on one of these special links, Ember will intercept the click, render the content for the new page, and update the URL — all performed locally without having to wait for the server, thus avoiding a full page refresh.
+
+<!-- TODO: make this a gif instead -->
+
+<img src="screenshots/02-building-pages/index-with-link@2x.png" alt="Index page after adding the link" width="1024" height="512">
+
+<img src="screenshots/02-building-pages/about-with-link@2x.png" alt="About page after adding the link" width="1024" height="512">
+
+<img src="screenshots/02-building-pages/contact-with-link@2x.png" alt="Contact page after adding the link" width="1024" height="512">
 
 We will learn more about how all of this works soon. In the meantime, go ahead and click on the link in the browser. Did you notice how snappy that was?
 
