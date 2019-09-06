@@ -60,8 +60,10 @@ Could not start watchman
 Visit https://ember-cli.com/user-guide/#watchman for more info.
 building... 
 
-Build successful (30678ms) – Serving on http://localhost:4200/
+Build successful (29070ms) – Serving on http://localhost:4200/
 ```
+
+<img src="screenshots/01-orientation/welcome@2x.png" alt="Welcome to Ember!" width="1024" height="620">
 
 <!-- TODO: explain ember server, etc. -->
 
@@ -84,6 +86,8 @@ If you are thinking, "Hey, that looks like HTML!", then you would be right! In t
 Of course, unlike HTML, Ember templates can do a lot more than just displaying static content. We will see that in action soon.
 
 After saving the file, your browser tab should automatically refresh, showing us the welcome message we just worked on.
+
+<img src="screenshots/01-orientation/unstyled@2x.png" alt="Welcome to Super Rentals! (unstyled)" width="1024" height="256">
 
 Before we do anything else, let's add some styling to our app. We spend enough time staring at the computer screen as it is, we must protect our eyesight against unstyled markup!
 
@@ -128,7 +132,7 @@ If you are familiar with CSS, feel free to customize them to your liking! Just k
 
 When you are ready, save the CSS file; our trusty development server should pick it up and refresh our page right away. No more unstyled content!
 
-<!-- TODO: screenshot -->
+<img src="screenshots/01-orientation/styled@2x.png" alt="Welcome to Super Rentals! (styled)" width="1024" height="256">
 
 To match mockup from our designer, we will also need to download the `teaching-tomster.png` image, which was referenced from our CSS file:
 
@@ -146,4 +150,4 @@ Both Ember CLI and the development server understand these folder conventions an
 You can confirm this by navigating to
 `http://localhost:4200/assets/images/teaching-tomster.png`. The image should also show up in the welcome page we have been working on. You may need to do a manual refresh for the browser to pick up the new file.
 
-<!-- TODO: screenshot? -->
+<img src="screenshots/01-orientation/styled-with-tomster@2x.png" alt="Welcome to Super Rentals! (with Tomster)" width="1024" height="256">
