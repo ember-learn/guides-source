@@ -177,5 +177,5 @@ and accessing them within a template:
 ```
 
 ```handlebars
-{{this.model.location.latitude}}
+{{@model.location.latitude}}
 ```
