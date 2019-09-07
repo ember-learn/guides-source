@@ -53,11 +53,11 @@ to its template:
 {{!-- The model for this route is the current user --}}
 
 <div>
-  Hi <img src="{{this.model.profileImage}}" alt="{{this.model.name}}'s profile picture"> {{this.model.name}},
+  Hi <img src="{{@model.profileImage}}" alt="{{@model.name}}'s profile picture"> {{@model.name}},
   this is a valid Ember template!
 </div>
 
-{{#if this.model.isAdmin}}
+{{#if @model.isAdmin}}
   <div>Remember, with great power comes great responsibility!</div>
 {{/if}}
 ```
@@ -96,10 +96,10 @@ This allows us to simplify the original template into this:
 {{!-- The model for this route is the current user --}}
 
 <div>
-  Hi <UserProfile @user={{this.model}} /> this is a valid Ember template!
+  Hi <UserProfile @user={{@model}} /> this is a valid Ember template!
 </div>
 
-{{#if this.model.isAdmin}}
+{{#if @model.isAdmin}}
   <div>Remember, with great power comes great responsibility!</div>
 {{/if}}
 ```

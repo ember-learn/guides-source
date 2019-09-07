@@ -20,7 +20,7 @@ To use the `format-currency` helper, you call it using curly braces in
 your template:
 
 ```handlebars
-Your total is {{format-currency this.model.totalDue}}.
+Your total is {{format-currency @model.totalDue}}.
 ```
 
 Let's now implement the helper. Helpers are functions that take
@@ -361,7 +361,7 @@ For example, imagine that we have a chat app  and use our `make-bold`
 helper to welcome the new users into the channel:
 
 ```handlebars
-Welcome back! {{make-bold this.model.firstName}} has joined the channel.
+Welcome back! {{make-bold @model.firstName}} has joined the channel.
 ```
 
 Now a malicious user simply needs to set their `firstName` to a string

@@ -28,15 +28,11 @@ export default class FavoritePostsRoute extends Route {
 
 `model` hooks have some special powers:
 
-1. When you return data from this model, it becomes automatically available in the route's `.hbs` file as `this.model`
-2. A `model` hook can return just about any type of data, like a string, object, or array, but the most common pattern is to return a JavaScript [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises)
-3. If you return a Promise from the model hook, your route will wait for the Promise to resolve before it renders the template
+1. When you return data from this model, it becomes automatically available in the route's `.hbs` file as `@model` and in the route's controller as `this.model`.
+2. A `model` hook can return just about any type of data, like a string, object, or array, but the most common pattern is to return a JavaScript [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises).
+3. If you return a Promise from the model hook, your route will wait for the Promise to resolve before it renders the template.
 4. Since the `model` hook is Promise-aware, it is great for making API requests (using tools like [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)) and returning the results.
-5. When using the `model` hook to load data, you can take advantage of other niceties that Ember provides, like
-[automatic route transitions](../preventing-and-retrying-transitions/)
-after the data is returned,
-[loading screens, error handling](../loading-and-error-substates/),
-and more
+5. When using the `model` hook to load data, you can take advantage of other niceties that Ember provides, like [automatic route transitions](../preventing-and-retrying-transitions/) after the data is returned, [loading screens, error handling](../loading-and-error-substates/), and more.
 6. The `model` hook may automatically re-run in certain conditions, as you'll read about below.
 
 ## Using the `model` hook
@@ -57,17 +53,15 @@ export default class FavoritePostsRoute extends Route {
 }
 ```
 
-Now that data can be used in the `favorite-posts`  template:
+Now that data can be used in the `favorite-posts` template:
 
 ```handlebars {data-filename=app/templates/favorite-posts.hbs}
-{{#each this.model as |post|}}
+{{#each @model as |post|}}
   <div>
     {{post.title}}
   </div>
 {{/each}}
 ```
-
-Behind the scenes, what is happening is that the [route's controller](http://api.emberjs.com/ember/release/classes/Route/methods/model?anchor=setupController) receives the results of the model hook, and makes those results available to the template. Your app may not have a controller file for the route, but the behavior is the same regardless.
 
 Let's compare some examples using the model hook to make asynchronous HTTP requests to a server somewhere.
 
@@ -107,7 +101,7 @@ was passed a model):
 
 ```handlebars {data-filename=app/templates/photos.hbs}
 <h1>Photos</h1>
-{{#each this.model.photos as |photo|}}
+{{#each @model.photos as |photo|}}
   <p>
     <LinkTo @route="photo" @model={{photo}}>
       <img src="{{photo.thumbnailUrl}}" alt="{{photo.title}}" />
@@ -121,7 +115,7 @@ identifier, instead):
 
 ```handlebars {data-filename=app/templates/photos.hbs}
 <h1>Photos</h1>
-{{#each this.model.photos as |photo|}}
+{{#each @model.photos as |photo|}}
   <p>
     <LinkTo @route="photo" @model={{photo.id}}>
       <img src="{{photo.thumbnailUrl}}" alt="{{photo.title}}" />
@@ -180,7 +174,7 @@ each record in the song model and album model:
 <h1>Playlist</h1>
 
 <ul>
-  {{#each this.model.songs as |song|}}
+  {{#each @model.songs as |song|}}
     <li>{{song.name}} by {{song.artist}}</li>
   {{/each}}
 </ul>
@@ -188,7 +182,7 @@ each record in the song model and album model:
 <h1>Albums</h1>
 
 <ul>
-  {{#each this.model.albums as |album|}}
+  {{#each @model.albums as |album|}}
     <li>{{album.title}} by {{album.artist}}</li>
   {{/each}}
 </ul>
@@ -246,7 +240,7 @@ When you provide a string or number to the `link-to`, the dynamic segment's `mod
 In this example, `photo.id` might have an id of `4`:
 
 ```handlebars
-{{#each model as |photo|}}
+{{#each @model as |photo|}}
   {{#link-to "photo" photo.id}}
     link text to display
   {{/link-to}}
@@ -259,7 +253,7 @@ For this reason, many Ember developers choose to pass only ids to `{{link-to}}` 
 Here's what it looks like to pass the entire `photo` record:
 
 ```handlebars
-{{#each model as |photo|}}
+{{#each @model as |photo|}}
   {{#link-to "photo" photo}}
     link text to display
   {{/link-to}}
@@ -345,10 +339,10 @@ And calling `modelFor` returned the result of the `model` hook.
 
 If you are having trouble getting a model's data to show up in the template, here are some tips:
 
-- Use the [`{{debugger}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/debugger?anchor=debugger) or [`{{log}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/debugger?anchor=log) helper to inspect the `{{model}}` from the template
+- Use the [`{{debugger}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/debugger?anchor=debugger) or [`{{log}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/debugger?anchor=log) helper to inspect the `{{@model}}` from the template
 - return hard-coded sample data as a test to see if the problem is really in the model hook, or elsewhere down the line
 - study JavaScript Promises in general, to make sure you are returning data from the Promise correctly
 - make sure your `model` hook has a `return` statement
-- check to see whether the data returned from a `model` hook is an object, array, or JavaScript Primitive. For example, if the result of `model` is an array, using `{{this.model}}` in the template won't work. You will need to iterate over the array with an [`{{#each}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/each?anchor=each) helper. If the result is an object, you need to access the individual attribute like `{{this.model.title}}` to render it in the template.
+- check to see whether the data returned from a `model` hook is an object, array, or JavaScript Primitive. For example, if the result of `model` is an array, using `{{@model}}` in the template won't work. You will need to iterate over the array with an [`{{#each}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/each?anchor=each) helper. If the result is an object, you need to access the individual attribute like `{{@model.title}}` to render it in the template.
 - use your browser's development tools to examine the outgoing and incoming API responses and see if they match what your code expects
 - If you are using Ember Data, use the [Ember Inspector](../../ember-inspector/) browser plugin to explore the View Tree/Model and Data sections.
