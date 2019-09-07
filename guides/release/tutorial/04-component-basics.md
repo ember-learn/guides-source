@@ -53,7 +53,9 @@ Let's try it out by editing the index template:
 
 After saving the changes, your page should automatically reload, and, _voilà_... nothing changed? Well, that's exactly what we wanted to happen this time! We successfully _refactored_ our index template to use the `<Jumbo>` component, and everything still works as expected. And the tests still pass!
 
-<!-- TODO: screenshot of running tests? -->
+<img src="/screenshots/04-component-basics/index@2x.png" alt="Index page – nothing changed" width="1024" height="512">
+
+<img src="/screenshots/04-component-basics/pass@2x.png" alt="Tests still passing after the refactor" width="1024" height="512">
 
 Let's do the same for our other two pages as well.
 
@@ -96,6 +98,12 @@ Let's do the same for our other two pages as well.
 ```
 
 After saving, everything should look exactly the same as before, and all the tests should still pass. Very nice!
+
+<img src="/screenshots/04-component-basics/about@2x.png" alt="About page – nothing changed" width="1024" height="512">
+
+<img src="/screenshots/04-component-basics/contact@2x.png" alt="Contact page – nothing changed" width="1024" height="512">
+
+<img src="/screenshots/04-component-basics/pass-2@2x.png" alt="Tests still passing another round of refactor" width="1024" height="512">
 
 While it may not save you a lot of characters in this case, encapsulating\* the implementation of the "jumbo" header into its own component makes the template slightly easier to read, as it allows the reader to focus on things that are unique to just that page. Further, if we need to make a change to the header, we can make it in a single place. Feel free to give that a try!
 
@@ -149,7 +157,7 @@ Instead of navigating to a URL, we start the test by rendering our `<Jumbo>` com
 
 Just like visit and click, which we used earlier, render is also an async step, so we need to pair it with the `await` keyword. Other than that, the rest of the test is very similar to the acceptance tests we wrote we in the previous chapter. Make sure the test is passing by checking the tests UI in the browser.
 
-<!-- TODO: screenshot of the tests? -->
+<img src="/screenshots/04-component-basics/pass-3@2x.png" alt="Tests still passing with our component test" width="1024" height="512">
 
 We've been refactoring our existing code for a while, so let's change gears and implement a new feature: the site-wide navigation bar.
 
@@ -217,6 +225,8 @@ Next, we will add our `<NavBar>` component to the top of each page:
 ```
 
 Voilà, we made another component!
+
+<img src="/screenshots/04-component-basics/index-with-nav@2x.png" alt="Index page with nav" width="1024" height="512">
 
 <div class="cta">
   <div class="cta-note">
@@ -308,6 +318,8 @@ We updated the existing tests to assert that a `<nav>` element exists on each pa
 
 All tests should pass at this point!
 
+<img src="/screenshots/04-component-basics/pass-4@2x.png" alt="Tests still passing with our <NavBar> tests" width="1024" height="512">
+
 Before we move on to the next feature, there is one more thing we could clean up. Since the `<NavBar>` is used for site-wide navigation, it really needs to be displayed on _every_ page in the app. So far, we have been adding the component on each page manually. This is a bit error-prone, as we could easily forget to do this the next time that we add a new page.
 
 We can solve this problem by moving the nav-bar into a special template called `application.hbs`. You may remember that it was generated for us when we first created the app but we deleted it. Now, it's time for us to bring it back!
@@ -371,3 +383,5 @@ While we are at it, we will also add a container element that wraps around the w
 The `{{outlet}}` keyword denotes the place where our site's pages should be rendered into, similar to the `{{yield}}` keyword.
 
 This is much nicer! We can run our test suite which confirms that everything still works after our refactor. We are ready to move on to the next feature!
+
+<img src="/screenshots/04-component-basics/pass-5@2x.png" alt="Tests still passing with {{outlet}}" width="1024" height="512">

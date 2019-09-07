@@ -1,6 +1,7 @@
 /* resetting image rules that crept in from bootstrap */
 svg, img {
   vertical-align: inherit !important;
+  height: auto;
 }
 
 /* resetting code rules that came from bootstrap */
