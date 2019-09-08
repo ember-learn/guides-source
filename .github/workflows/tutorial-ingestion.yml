@@ -24,8 +24,7 @@ jobs:
 
 
             If these changes look good to you, it is recommended that you merge
-            the PR using the *Squash and merge* feature. After merging, *do not
-            click the button to delete the branch*!
+            the PR using the *Squash and merge* feature.
 
 
             If there are any issues with the content here, *do not edit these
@@ -48,6 +47,7 @@ jobs:
             out by the next upstream CI job.
 
 
-            You can even rebase the branch and force-push! The CI job clones
-            the branch fresh on each build, so there shouldn't be any issues
-            with conflicts and such. Just *don't delete the branch*!
+            You can rebase the branch and force-push, or even delete it! The CI
+            job clones the branch fresh on each build, and re-creates it from
+            the octane branch if needed, so there shouldn't be any issues with
+            conflicts and such.
