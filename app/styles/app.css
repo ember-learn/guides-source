@@ -144,3 +144,22 @@ code[data-diff] .diff-insertion::before {
   margin-left: -1ch;
   background-color: rgba(93,125,93,.5)
 }
+
+/* Widens Zoey says... */
+
+.chapter .cta {
+  max-width: 95%;
+}
+.chapter .cta .cta-note {
+  width: 100%;
+}
+.chapter .cta .cta-note .cta-note-body .cta-note-message p {
+  font-size: 95%;
+  line-height: 1.75em;
+  margin: 0.5em 0;
+}
+@media screen and (min-width: 768px) {
+  .chapter .cta .cta-note img {
+    padding-bottom: 10px;
+  }
+}
