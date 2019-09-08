@@ -127,3 +127,21 @@ a.edit-page, #search-input {
   position: relative;
   z-index: 10;
 }
+
+/* Fix diff formatting */
+
+code[data-diff] > .diff-deletion,
+code[data-diff] > .diff-insertion {
+  position: relative;
+  left: -1ch;
+}
+code[data-diff] .diff-deletion > .diff-operator,
+code[data-diff] .diff-insertion > .diff-operator {
+  display: none;
+}
+code[data-diff] .diff-deletion::before {
+  content: "-";
+}
+code[data-diff] .diff-insertion::before {
+  content: "+";
+}
