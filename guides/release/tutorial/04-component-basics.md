@@ -53,7 +53,7 @@ Let's try it out by editing the index template:
 
 After saving the changes, your page should automatically reload, and, _voilà_... nothing changed? Well, that's exactly what we wanted to happen this time! We successfully _refactored_ our index template to use the `<Jumbo>` component, and everything still works as expected. And the tests still pass!
 
-<img src="/screenshots/04-component-basics/index@2x.png" alt="Index page – nothing changed" width="1024" height="512">
+<img src="/screenshots/04-component-basics/index@2x.png" alt="Index page – nothing changed" width="1024" height="250">
 
 <img src="/screenshots/04-component-basics/pass@2x.png" alt="Tests still passing after the refactor" width="1024" height="512">
 
@@ -99,9 +99,9 @@ Let's do the same for our other two pages as well.
 
 After saving, everything should look exactly the same as before, and all the tests should still pass. Very nice!
 
-<img src="/screenshots/04-component-basics/about@2x.png" alt="About page – nothing changed" width="1024" height="512">
+<img src="/screenshots/04-component-basics/about@2x.png" alt="About page – nothing changed" width="1024" height="274">
 
-<img src="/screenshots/04-component-basics/contact@2x.png" alt="Contact page – nothing changed" width="1024" height="512">
+<img src="/screenshots/04-component-basics/contact@2x.png" alt="Contact page – nothing changed" width="1024" height="444">
 
 <img src="/screenshots/04-component-basics/pass-2@2x.png" alt="Tests still passing another round of refactor" width="1024" height="512">
 
@@ -226,7 +226,7 @@ Next, we will add our `<NavBar>` component to the top of each page:
 
 Voilà, we made another component!
 
-<img src="/screenshots/04-component-basics/index-with-nav@2x.png" alt="Index page with nav" width="1024" height="512">
+<img src="/screenshots/04-component-basics/index-with-nav@2x.png" alt="Index page with nav" width="1024" height="314">
 
 <div class="cta">
   <div class="cta-note">
