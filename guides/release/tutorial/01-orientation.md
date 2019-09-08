@@ -60,7 +60,7 @@ Could not start watchman
 Visit https://ember-cli.com/user-guide/#watchman for more info.
 building... 
 
-Build successful (28108ms) – Serving on http://localhost:4200/
+Build successful (29116ms) – Serving on http://localhost:4200/
 ```
 
 <img src="/screenshots/01-orientation/welcome@2x.png" alt="Welcome to Ember!" width="1024" height="596">

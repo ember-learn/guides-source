@@ -103,7 +103,7 @@ After saving, everything should look exactly the same as before, and all the tes
 
 <img src="/screenshots/04-component-basics/contact@2x.png" alt="Contact page – nothing changed" width="1024" height="444">
 
-<img src="/screenshots/04-component-basics/pass-2@2x.png" alt="Tests still passing another round of refactor" width="1024" height="737">
+<img src="/screenshots/04-component-basics/pass-2@2x.png" alt="Tests still passing another round of refactor" width="1024" height="512">
 
 While it may not save you a lot of characters in this case, encapsulating\* the implementation of the "jumbo" header into its own component makes the template slightly easier to read, as it allows the reader to focus on things that are unique to just that page. Further, if we need to make a change to the header, we can make it in a single place. Feel free to give that a try!
 
