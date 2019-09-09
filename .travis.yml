@@ -46,11 +46,11 @@ jobs:
       name: 'Ember test suite'
     - stage: deploy preview app
       script:
-        - npm run build --prod
+        - npm run build -- --prod
         - netlify deploy
       if: type = pull_request
     - stage: deploy to prod
       script:
-        - npm run build --prod
+        - npm run build -- --prod
         - netlify deploy --prod
       if: type IN (push) AND branch = master
