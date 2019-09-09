@@ -130,18 +130,17 @@ a.edit-page, #search-input {
 
 /* Fix diff formatting */
 
-code[data-diff] > .diff-deletion,
-code[data-diff] > .diff-insertion {
-  position: relative;
-  left: -1ch;
-}
 code[data-diff] .diff-deletion > .diff-operator,
 code[data-diff] .diff-insertion > .diff-operator {
   display: none;
 }
 code[data-diff] .diff-deletion::before {
   content: "-";
+  margin-left: -1ch;
+  background-color: rgba(144,84,84,.7);
 }
 code[data-diff] .diff-insertion::before {
   content: "+";
+  margin-left: -1ch;
+  background-color: rgba(93,125,93,.5)
 }
