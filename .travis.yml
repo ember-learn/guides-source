@@ -16,6 +16,7 @@ cache:
 branches:
   only:
     - master
+    - octane
     # npm version tags
     - /^v\d+\.\d+\.\d+/
 
@@ -27,10 +28,30 @@ before_install:
   - npm config set spin false
   - npm install -g netlify-cli
 
-script:
-  - npm run lint:hbs
-  - npm run lint:js
-  - npm run lint:md
-  - npm test
-  - npm run build --prod
-  - netlify deploy
+stages:
+  - lint
+  - tests
+  - deploy preview
+  - deploy prod
+
+jobs:
+  include:
+    - stage: lint
+      name: 'Lint templates'
+      script: npm run lint:hbs
+    - script: npm run lint:js
+      name: 'Lint javascript'
+    - script: npm run lint:md
+      name: 'Lint markdown'
+    - stage: tests
+      script: npm test
+    - stage: deploy prod
+      script:
+        - npm run build --prod
+        - netlify deploy --prod
+      if: branch = master
+    - stage: deploy preview
+      script:
+        - npm run build --prod
+        - netlify deploy
+      if: branch != master
