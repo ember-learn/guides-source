@@ -31,8 +31,8 @@ before_install:
 stages:
   - lint
   - tests
-  - deploy preview
-  - deploy prod
+  - deploy preview app
+  - deploy to prod
 
 jobs:
   include:
@@ -45,12 +45,12 @@ jobs:
       name: 'Lint markdown'
     - stage: tests
       script: npm test
-    - stage: deploy prod
+    - stage: deploy to prod
       script:
         - npm run build --prod
         - netlify deploy --prod
-      if: branch = master
-    - stage: deploy preview
+      if: type IN (push) AND branch = master
+    - stage: deploy preview app
       script:
         - npm run build --prod
         - netlify deploy
