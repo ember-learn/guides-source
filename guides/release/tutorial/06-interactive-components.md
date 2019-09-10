@@ -73,7 +73,7 @@ Let's update our template to use this state we just added:
 {{/if}}
 ```
 
-In the template, we have access to the component's instance variables. The `{{#if ...}}...{{else}}...{{/if}}` _conditionals_ syntax allows us to render different content based on a condion (in this case, the value of the instance variable `this.isLarge`). Combining these two features, we can render either the small or the large version of the image accordingly.
+In the template, we have access to the component's instance variables. The `{{#if ...}}...{{else}}...{{/if}}` _conditionals_ syntax allows us to render different content based on a condition (in this case, the value of the instance variable `this.isLarge`). Combining these two features, we can render either the small or the large version of the image accordingly.
 
 We can verify this works by temporarily changing the initial value in our JavaScript file. If we change `app/components/rental/image.js` to initialize `this.isLarge = true;` in the constructor, we should see the large version of the property image in the browser. Cool!
 
