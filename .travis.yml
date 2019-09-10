@@ -30,7 +30,6 @@ before_install:
 
 stages:
   - lint n test
-  - deploy preview app
   - deploy to prod
 
 jobs:
@@ -44,8 +43,7 @@ jobs:
       name: 'Lint markdown'
     - script: npm test
       name: 'Ember test suite'
-    - stage: deploy preview app
-      script:
+    - script:
         - npm run build -- --prod
         - netlify deploy
       if: type = pull_request
