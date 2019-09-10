@@ -49,8 +49,8 @@ installing octane-app-blueprint
   create testem.js
   create tests/index.html
   create tests/test-helper.js
-Yarn: Installing dependencies ...
-Yarn: Installed dependencies
+npm: Installing dependencies ...
+npm: Installed dependencies
 Successfully initialized git.
 ```
 
