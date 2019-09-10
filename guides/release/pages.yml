@@ -32,6 +32,10 @@
       url: "03-automated-testing"
     - title: "Component Basics"
       url: "04-component-basics"
+    - title: "More About Components"
+      url: "05-more-about-components"
+    - title: "Interactive Components"
+      url: "06-interactive-components"
 - title: "Templating"
   url: "templates"
   pages:
