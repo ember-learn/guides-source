@@ -98,6 +98,7 @@ modularity
 naïve
 nav
 namespaced
+namespacing
 *NPM
 NVDA
 onboarding
@@ -107,8 +108,10 @@ parallelize
 Param
 param
 params
+parameterizing
 PascalCased
 pipelining
+PNG
 POJO
 POJOs
 Polymorphism
@@ -149,6 +152,7 @@ suboptimal
 subroutes
 substate
 substates
+superclass
 synergistically
 syntaxes
 tagless
@@ -164,6 +168,7 @@ Treeshaking
 truthy
 typeahead
 UIs
+URL-escaped
 unordered
 unsilence
 unstyled
