@@ -115,7 +115,7 @@ installing component-test
 
 This time, we had a `/` in the component's name. This resulted in the component being created at `app/components/rental/image.hbs`, which can be invoked as `<Rental::Image>`.
 
-Components like these are known as _[namespaced](https://en.wikipedia.org/wiki/Namespace)_ components. They allow us to organize our components by folders according to their purpose. This is completely optional – namespaced components are not special in any way.
+Components like these are known as _[namespaced](https://en.wikipedia.org/wiki/Namespace)_ components. Namespacing allows us to organize our components by folders according to their purpose. This is completely optional — namespaced components are not special in any way.
 
 Let's edit the component's template:
 
@@ -152,13 +152,13 @@ Instead of hard-coding specific values for the `src` and `alt` attributes on the
 </article>
 ```
 
-We specified a `src` and an `alt` HTML attribute here, which will be passed along to the component and attached to the element where `...attributes` is specified. You can think of this as being similar to `{{yield}}`, but for HTML attributes specifically, instead of HTML content. In fact, we have already used this feature [earlier](../02-building-pages/) when we passed a `class` attribute to `<LinkTo>`.
+We specified a `src` and an `alt` HTML attribute here, which will be passed along to the component and attached to the element where `...attributes` is applied in the component template. You can think of this as being similar to `{{yield}}`, but for HTML attributes specifically, rather than displayed content. In fact, we have already used this feature [earlier](../02-building-pages/) when we passed a `class` attribute to `<LinkTo>`.
 
 <img src="/screenshots/05-more-about-components/rental-image@2x.png" alt="The <Rental::Image> component in action" width="1024" height="1129">
 
-This way, our `<Rental::Image>` component is not coupled to any specific rental property on the site. Of course, the problem still exists, we simply moved it to the `<Rental>` component, but we will deal with that soon. We will limit all the hard-coding to the `<Rental>` component, so that we will have an easier time cleaning it up when we switch to fetching real data.
+This way, our `<Rental::Image>` component is not coupled to any specific rental property on the site. Of course, hard-coding problem still exists (we simply moved it to the `<Rental>` component), but we will deal with that soon. We will limit all the hard-coding to the `<Rental>` component, so that we will have an easier time cleaning it up when we switch to fetching real data.
 
-In general, it is a good idea to add `...attributes` to the primary element in your component. This will allow for maximum flexibility as the invoker may need to pass along classes for styling, or ARIA attributes to improve accessibility.
+In general, it is a good idea to add `...attributes` to the primary element in your component. This will allow for maximum flexibility, as the invoker may need to pass along classes for styling, or ARIA attributes to improve accessibility.
 
 Let's write a test for our new component!
 
@@ -226,6 +226,6 @@ module('Integration | Component | rental', function(hooks) {
 });
 ```
 
-Because we already tested `<Rental::Image>` extensively on its own, we can omit the details here and keep our assertion to the bare minimum. That way, we won't have to _also_ update the `<Rental>` tests whenever we make any changes to `<Rental::Image>`.
+Because we already tested `<Rental::Image>` extensively on its own, we can omit the details here and keep our assertion to the bare minimum. That way, we won't  _also_ have to update the `<Rental>` tests whenever we make changes to `<Rental::Image>`.
 
 <img src="/screenshots/05-more-about-components/pass-2@2x.png" alt="Tests passing with the new <Rental::Image> test" width="1024" height="512">

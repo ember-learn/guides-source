@@ -4,11 +4,11 @@ So far, all the components we have written are purely _presentational_ — they 
 
 Sometimes, you want to associate some _behavior_ with your components so that they can do more interesting things. For example, `<LinkTo>` can respond to clicks by changing the URL and navigating us to a different page.
 
-Here, we are going to do just that! We are going to implementing the "View Larger" and "View Smaller" functionality. Specifically, we want to give our users the ability to view a larger version of the property's image by clicking on it, and when they are done, they can click on it again to go back to the smaller version.
+Here, we are going to do just that! We are going to implement the "View Larger" and "View Smaller" functionality, which will allow our users to click on a property's image to view a larger version, and click on it again to return to the smaller version.
 
-In other words, we want a way to _toggle_ the image between one of the two _states_. In order to do that, we need a way for the component to store two potential states, and to also be aware which of the two possible states it is currently in.
+In other words, we want a way to _toggle_ the image between one of the two _states_. In order to do that, we need a way for the component to store two possible states, and to be aware which states it is currently in.
 
-Ember allows us to optionally associate JavaScript code with a component for exactly this purpose. We can add a JavaScript file for our `<Rental::Image>` component by [~~running the `component-class` generator~~](https://github.com/emberjs/ember.js/pull/18359) running the `component` generator again with the `-gc` flag:
+Ember optionally allows us to associate JavaScript code with a component for exactly this purpose. We can add a JavaScript file for our `<Rental::Image>` component by [~~running the `component-class` generator~~](https://github.com/emberjs/ember.js/pull/18359) running the `component` generator again with the `-gc` flag:
 
 <!-- TODO: https://github.com/emberjs/ember.js/pull/18359 -->
 
@@ -24,7 +24,7 @@ installing component-test
 ? Overwrite tests/integration/components/rental/image-test.js? (yndH) [70D[70C
 ```
 
-This generated a JavaScript file with the same name as our component's template at `app/components/rentals/image.js`. It contains a _JavaScript class_, subclassing from `@glimmer/component`.
+This generated a JavaScript file with the same name as our component's template at `app/components/rentals/image.js`. It contains a _JavaScript class_, _inheriting_ from `@glimmer/component`.
 
 <div class="cta">
   <div class="cta-note">
@@ -32,14 +32,14 @@ This generated a JavaScript file with the same name as our component's template 
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
         <p><code>@glimmer/component</code>, or <em>Glimmer component</em>, is one of the several component classes available to use. They are a great starting point whenever you want to add behavior to your components. In this tutorial, we will be using Glimmer components exclusively.</p>        
-<p>In general, Glimmer components should be used whenever possible. However, you may also see <code>@ember/components</code>, or <em>classic components</em>, being used in older apps. You can tell them apart from looking at their import path, which is helpful for looking up the respective documentation, as they have different and incompatible APIs.</p>
+<p>In general, Glimmer components should be used whenever possible. However, you may also see <code>@ember/components</code>, or <em>classic components</em>, used in older apps. You can tell them apart by looking at their import path (which is helpful for looking up the respective documentation, as they have different and incompatible APIs).</p>
       </div>
     </div>
     <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
   </div>
 </div>
 
-Ember will create an _instance_ of the class whenever our component is invoked. We can use that to store our state:
+Ember will create an _instance_ of the class whenever our component is invoked. We can use that instance to store our state:
 
 ```js { data-filename="app/components/rental/image.js" data-diff="+4,+5,+6,+7" }
 import Component from '@glimmer/component';
@@ -52,7 +52,7 @@ export default class RentalImageComponent extends Component {
 }
 ```
 
-Here, in the _component's constructor_, we _initialized_ the _instance variable_ `this.isLarge` to the value `false`, since this is the default state that we want for our component.
+Here, in the _component's constructor_, we _initialized_ the _instance variable_ `this.isLarge` with the value `false`, since this is the default state that we want for our component.
 
 Let's update our template to use this state we just added:
 
@@ -73,15 +73,15 @@ Let's update our template to use this state we just added:
 {{/if}}
 ```
 
-The `{{#if ...}}...{{else}}...{{/if}}` _conditionals_ syntax allows us to render different content. We also have access to the component's instance variables from the template. Combining these two features, we can render either the small or the large version of the image accordingly.
+In the template, we have access to the component's instance variables. The `{{#if ...}}...{{else}}...{{/if}}` _conditionals_ syntax allows us to render different content based on a condion (in this case, the value of the instance variable `this.isLarge`). Combining these two features, we can render either the small or the large version of the image accordingly.
 
-We can verify this is working by temporarily changing the initial value in our JavaScript file. If we change `app/components/rental/image.js` to initialize `this.isLarge = true;` in the constructor, we should see the large version of the property image in the browser. Cool!
+We can verify this works by temporarily changing the initial value in our JavaScript file. If we change `app/components/rental/image.js` to initialize `this.isLarge = true;` in the constructor, we should see the large version of the property image in the browser. Cool!
 
 <img src="/screenshots/06-interactive-components/is-large-true@2x.png" alt="<Rental::Image> with this.isLarge set to true" width="1024" height="1500">
 
 Once we've tested this out, we can change `this.isLarge` back to `false`.
 
-Since this pattern of initializing instance variables from the constructor is pretty common, there happens to be a much more concise syntax for it:
+Since this pattern of initializing instance variables in the constructor is pretty common, there happens to be a much more concise syntax for it:
 
 ```js { data-filename="app/components/rental/image.js" data-diff="-4,-5,-6,-7,+8" }
 import Component from '@glimmer/component';
@@ -118,23 +118,23 @@ export default class RentalImageComponent extends Component {
 
 We did a few things here, so let's break it down.
 
-First, we added the `@tracked` _decorator_ to the `isLarge` instance variable. This annotation tells Ember to monitor this variable for changes. Whenever this variable's value is updated, Ember will automatically re-render any templates that depends on its value.
+First, we added the `@tracked` _decorator_ to the `isLarge` instance variable. This annotation tells Ember to monitor this variable for updates. Whenever this variable's value changes, Ember will automatically re-render any templates that depend on its value.
 
-In our case, whenever we assign a new value to `this.isLarge`, this annotation will cause Ember to re-evaluate the `{{#if this.isLarge}}` conditional in our template and will switch between the two blocks accordingly.
+In our case, whenever we assign a new value to `this.isLarge`, the `@tracked` annotation will cause Ember to re-evaluate the `{{#if this.isLarge}}` conditional in our template, and will switch between the two blocks accordingly.
 
 <div class="cta">
   <div class="cta-note">
     <div class="cta-note-body">
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
-        <p>Don't worry! If you referenced a variable in the template but forgot to add the <code>@tracked</code> decorator, you will get a helpful development mode error when you change its value!</p>
+        <p>Don't worry! If you reference a variable in the template but forget to add the <code>@tracked</code> decorator, you will get a helpful development mode error when you change its value!</p>
       </div>
     </div>
     <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
   </div>
 </div>
 
-Next, we added a `toogleSize` method to our class that toggles `this.isLarge` between `true` and `false`.
+Next, we added a `toggleSize` method to our class that switches `this.isLarge` to the opposite of its current state (`false` becomes `true`, or `true` becomes `false`).
 
 Finally, we added the `@action` decorator to our method. This indicates to Ember that we intend to use this method from our template. Without this, the method will not function properly as a callback function (in this case, a click handler).
 
@@ -143,7 +143,7 @@ Finally, we added the `@action` decorator to our method. This indicates to Ember
     <div class="cta-note-body">
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
-        <p>If you forget to do add the <code>@action</code> decorator, you will also get a helpful error when clicking on the button in development mode! I've got your back!</p>
+        <p>If you forget to do add the <code>@action</code> decorator, you will also get a helpful error when clicking on the button in development mode!</p>
       </div>
     </div>
     <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
@@ -172,11 +172,11 @@ With that, it's time to wire this up in the template:
 
 We changed two things here.
 
-First, since we wanted to make our component interactive, we switched the containing tag from `<div>` to `<button>`. This is important for accessibility reasons. Plus, by using the correct semantic tag, we will also get focusability and keyboard navigation handling "for free".
+First, since we wanted to make our component interactive, we switched the containing tag from `<div>` to `<button>` (this is important for accessibility reasons). By using the correct semantic tag, we will also get focusability and keyboard interaction handling "for free".
 
 Next, we used the `{{on}}` _modifier_ to attach `this.toggleSize` as a click handler on the button.
 
-With that, we have created our first _interactive_ component. Go ahead and try it out in the browser!
+With that, we have created our first _interactive_ component. Go ahead and try it in the browser!
 
 <!-- TODO: add a gif here -->
 
@@ -233,12 +233,12 @@ module('Integration | Component | rental/image', function(hooks) {
 
 <img src="/screenshots/06-interactive-components/pass@2x.png" alt="Tests passing with the new <Rental::Image> test" width="1024" height="512">
 
-Let's clean up our template before moving on. We introduced a lot of duplication when we added the conditional in the template. If we look closely, the only thing that is different between the two blocks are:
+Let's clean up our template before moving on. We introduced a lot of duplication when we added the conditional in the template. If we look closely, the only things that are different between the two blocks are:
 
-1.  The presence of the `"large"` CSS class on the `<button>` tag.
-2.  The "View Larger" and "View Smaller" text.
+1. The presence of the `"large"` CSS class on the `<button>` tag.
+2. The "View Larger" and "View Smaller" text.
 
-These changes are buried deep within the large amount of duplicated code. We can reduce the duplication by using `{{if}}` _expression_ instead:
+These changes are buried deep within the large amount of duplicated code. We can reduce the duplication by using an `{{if}}` _expression_ instead:
 
 ```handlebars { data-filename="app/components/rental/image.hbs" data-diff="-1,-2,-3,+4,+5,+6,-8,-9,-10,-11,+12,-14,-15,+16,+17" }
 {{#if this.isLarge}}
@@ -262,7 +262,7 @@ These changes are buried deep within the large amount of duplicated code. We can
 
 The expression version of `{{if}}` takes two arguments. The first argument is the _condition_. The second argument is the expression that should be evaluated if the condition is true.
 
-Optionally, `{{if}}` can also take a third argument for what the expression should evaluate into if the condition is false. This means we could also rewrite the button label like so:
+Optionally, `{{if}}` can take a third argument for what the expression should evaluate into if the condition is false. This means we could rewrite the button label like so:
 
 ```handlebars { data-filename="app/components/rental/image.hbs" data-diff="-3,-4,-5,-6,-7,+8" }
 <button type="button" class="image {{if this.isLarge "large"}}" {{on "click" this.toggleSize}}>
