@@ -36,6 +36,8 @@
       url: "05-more-about-components"
     - title: "Interactive Components"
       url: "06-interactive-components"
+    - title: "Reuable Components"
+      url: "07-reusable-components"
 - title: "Templating"
   url: "templates"
   pages:
