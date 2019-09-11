@@ -18,11 +18,11 @@ Here are some of the core features in Octane:
   up-to-date with JavaScript changes.
 - **Async functions** (`async`/`await`) for authoring asynchronous code.
 - [Importing npm packages](../../addons-and-dependencies/managing-dependencies/#toc_regular-npm-packages) with zero additional configuration.
-- [Octane-style components](../../components/component-basics/), including
-    - **"Outer HTML" templates** that support fragments and easily customizing the
+- [Glimmer components](../../components/component-basics/), including
+  - **"Outer HTML" templates** that support fragments and easily customizing the
     root element.
-    - **Customizable DOM attributes** with `...attributes`.
-    - **`<AngleBracket>` syntax** for better readability.
+  - **Customizable DOM attributes** with `...attributes`.
+  - **`<AngleBracket>` syntax** for better readability.
 
 Just as important is what we're removing from the Ember experience. These
 features below will keep working, but you won't have to use them if you don't
@@ -106,8 +106,10 @@ The component itself will work the same as it did before.
 
 Angle Brackets have a number of benefits:
 
-- Single word component names are completely OK in angle bracket form
-- It is clear to your collaborators you are using a component and not a helper in a template
+- Single word component names are completely OK in angle bracket form.
+
+- It is clear to your collaborators you are using a component and not a helper in a template.
+
 - Standard attribute values applied to the component are treated like _plain-old
   HTML attributes_. This means you can assign any valid HTML attribute, and it
   will be reflected onto the component directly:
@@ -126,103 +128,148 @@ attributes can be used _without_ setting a value at all, just like HTML
 attributes. The component you are invoking decides where to put these attributes
 by using the special `...attributes` syntax. This will be discussed later in
 the section on components.
+
 For classic components, only attributes that were explicitly listed by the component
 you are invoking would be placed on the component's wrapper element.
 
-#### Getting used to Angle Brackets
-
-Here is what is different about using Angle Bracket syntax.
-
-The component name is in `CapitalCase` instead of `kebab-case`. `{{my-component}}` becomes `<MyComponent />`.
-
-Components open and close in the same way as HTML elements. Components that do not accept
-a block can use the self closing syntax (a trailing slash) just like `<img />` or other
-tags.
-
-_Arguments_ are passed by adding `@` to the front of the argument name:
-
-```handlebars
-{{!-- Before --}}
-{{todo item=item}}
-
-{{!-- After --}}
-<Todo @item={{item}}/>
-```
-
-When you pass a bound value to a component, remember that it needs to be wrapped in curly braces:
-
-```handlebars
-  <Todo @done={{isDone}}/>
-```
-
-Like HTML, all values for attributes that are not wrapped in strings are coerced to strings.
-If you want to pass a boolean or number to a component and _not_ have it coerced to a string, wrap it in curly braces:
-
-```handlebars
-  <Todo @done={{false}} maxItems={{10}} />
-```
-
-Yielded values work the same as in curly invocation:
-
-```handlebars
-  <TodoList as |item|>
-    <Todo @item={{item}} />
-  </TodoList>
-```
-
-Yielded components can also be invoked with angle bracket syntax:
+- _Arguments_ and _attributes_ are distinguished from each other when using a
+  component. With curly brace style components, every value you pass to the
+  component is an _argument_ - a JS value that is passed to the component class
+  so it can be used in the component's template:
 
   ```handlebars
-    <TodoList as |Item|>
-      <Item />
+  {{!-- In this example, `value` is an argument --}}
+  {{custom-input value=this.text}}
+  ```
+
+  With angle brackets, since you can pass standard HTML attributes to the
+  component directly, we need a way to distinguish between those and the
+  component's arguments. To do this, we use the `@` symbol:
+
+  ```handlebars
+  <CustomInput @value={{this.text}}>
+  ```
+
+  This allows you to see at a glance whether a value is an argument, which will
+  likely affect the JS of a component, or an attribute, which will likely affect
+  the HTML of a component.
+
+#### Getting used to Angle Brackets
+
+Here are the main differences between angle bracket and curly syntax:
+
+- The component name is in `CapitalCase` instead of `kebab-case`.
+  `{{my-component}}` becomes `<MyComponent />`.
+
+- Components open and close in the same way as HTML elements. Components that do
+  not accept a block can use the self closing syntax (a trailing slash) just
+  like `<img />` or other tags.
+
+- _Arguments_ are passed by adding `@` to the front of the argument name:
+
+  ```handlebars
+    {{!-- Before --}}
+    {{todo item=item}}
+
+    {{!-- After --}}
+    <Todo @item={{item}}/>
+  ```
+
+- When you pass a bound value to a component, remember that it needs to be
+  wrapped in curly braces:
+
+  ```handlebars
+    <Todo @done={{isDone}}/>
+  ```
+
+  Like HTML, all values for attributes that are not wrapped in strings are
+  coerced to strings. If you want to pass a boolean or number to a component and
+  _not_ have it coerced to a string, wrap it in curly braces:
+
+  ```handlebars
+    <Todo @done={{false}} maxItems={{10}} />
+  ```
+
+- Yielded values work the same as in curly invocation:
+
+  ```handlebars
+    <TodoList as |item|>
+      <Todo @item={{item}} />
     </TodoList>
   ```
 
-Positional arguments are _not_ available in angle bracket invocation, since
-there is some ambiguity between their behavior and the behavior of standard
-HTML attributes (HTML attributes without `=` default to truthy). If you still
-need positional arguments, you _must_ use the component with curly bracket
-syntax.
+- Yielded components can also be invoked with angle bracket syntax:
 
-You can use either angle bracket or curly brackets invocation for a given component within the same app, and even within the same template. This allows for gradual migration.
+  ```handlebars
+  <TodoList as |Item|>
+    <Item />
+  </TodoList>
+  ```
 
-Angle bracket syntax works for invoking components of any type, whether they are classic style or not.
+- Positional arguments (e.g. `{{my-component this.someValue}}`) are _not_
+  available in angle bracket invocation, since there is some ambiguity between
+  their behavior and the behavior of standard HTML attributes (HTML attributes
+  without `=` default to truthy). If you still need positional arguments, you
+  _must_ use the component with curly bracket syntax.
+
+- You can use either angle bracket or curly brackets invocation for a given
+  component within the same app, and even within the same template. This allows
+  for gradual migration.
+
+- Angle bracket syntax works for invoking components of any type, whether they
+  are classic components, Glimmer components, or any other type of component.
 
 ### Named Arguments
 
-How can you tell if a given dynamic value in a template was passed in, or if it is defined on the component itself? Arguments that were passed in should use the `@` symbol. This style is called "named arguments."
+With angle brackets, there is a new syntax for passing arguments to a component:
 
 ```handlebars {data-filename=application.hbs}
-{{!-- Passing the argument to the child template --}}
+{{!-- Passing the argument to the BlogPost component --}}
 <BlogPost @title="Hello, world!"/>
 ```
 
+Within the component, you can now access these arguments _directly_ with the
+same syntax:
+
 ```handlebars {data-filename=blog-post.hbs}
-{{!-- inside the child template --}}
+{{!-- inside the BlogPost component --}}
 <h1>{{@title}}</h1>
 ```
 
-#### Benefits of named arguments
+Collectively, this is referred to as _named arguments_.
 
-You can know by looking at the template whether an argument came from the same component or a parent context. You can also tell whether or not a value
-was ever mutated by the component's class.
+#### Benefits of Named Arguments
 
-Teams can gradually refactor an app to use named arguments, separately from upgrading to angle bracket invocation. You don't need to worry about whether the parent used angle brackets or curly brackets. For example, this works just fine:
+Named Arguments have a number of benefits:
 
-```handlebars {data-filename=application.hbs}
-{{blog-post title="Hello, world!"}}
-```
+- When you see a named argument used in a component's template, you can tell
+  immediately that it is a value that was passed to the component, without
+  looking at the component's class.
 
-```handlebars {data-filename=blog-post.hbs}
-{{!-- This still works --}}
-<h1>{{@title}}</h1>
-```
+- Named arguments always refer to the original value that was passed to the
+  component, so you can also be sure that the value was never mutated by the
+  component's class.
+
+- Teams can gradually refactor an app to use named arguments, separately from
+  upgrading to angle bracket invocation. You don't need to worry about whether
+  the parent used angle brackets or curly brackets. For example, this works just
+  fine:
+
+  ```handlebars {data-filename=application.hbs}
+    {{blog-post title="Hello, world!"}}
+  ```
+
+  ```handlebars {data-filename=blog-post.hbs}
+    {{!-- This still works --}}
+    <h1>{{@title}}</h1>
+  ```
 
 #### Getting used to Named Arguments
 
-The most important thing to know about named argument syntax is that an argument with an `@`
-_always_ refers to the _original_ value that was passed when the component was invoked. If you
-change that value in a classic component, it will _not_ update:
+The most important thing to know about named argument syntax is that an argument
+with an `@` _always_ refers to the _original_ value that was passed when the
+component was invoked. If you change that value in a classic component, it will
+_not_ update:
 
 ```js {data-filename=blog-post.js}
 import Component from '@ember/component';
@@ -242,24 +289,42 @@ export default Component.extend({
 <h1>{{this.title}}</h1>
 ```
 
-If you need to provide a default value,
-you'll have to do it via a getter or by using a helper in the template:
+If you need to provide a default value, you'll have to do it via a getter:
+
+```js {data-filename=blog-post.js}
+import Component from '@glimmer/component';
+
+export default class BlogPost extends Component {
+  get title() {
+    return this.args.title || 'Untitled';
+  }
+}
+```
+
+```handlebars {data-filename=blog-post.hbs}
+<h1>{{this.title}}</h1>
+```
+
+> Note: The above sample uses Glimmer components - we'll be covering these in
+> detail later on.
+
+Or by using a helper in the template:
 
 ```handlebars {data-filename=blog-post.hbs}
 {{!-- using {{or}} from ember-truth-helpers --}}
 <h1>{{or @title "Untitled"}}</h1>
 ```
 
-<!-- TODO show getter example -->
-
-If you find yourself forgetting to the `@` symbol, it may be helpful to think of how the child template mirrors argument being passed into a component via angle bracket invocation.
+If you find yourself forgetting to add the `@` symbol before named arguments, it
+may be helpful to think of how the child template mirrors argument being passed
+into a component via angle bracket invocation.
 
 ### Required `this` in templates
 
 Finally, one thing you may have noticed in the above examples is a lot more
-references to `this` in the template.
-Values that are rendered from the local context must have a `this` specified in the path.
-The local context is the component or controller instance that backs the template.
+references to `this` in the template. Values that are rendered from the local
+component or controller instance that backs the template must now have `this`
+prepended at the beginning of the path:
 
 ```handlebars
 {{!-- Before --}}
@@ -276,14 +341,13 @@ templates, and the compiler. Without explicitly referring to `this`, a lot of
 handlebars statements are pretty ambiguous - for instance, `{{title}}` could be
 a helper, a local variable, or a component property.
 
-
 #### Getting used to `this` in templates
 
-You can think of `this` as meaning, an argument came from `this` component or controller, not a parent context.
+You can think of `this` as meaning, an argument came from `this` component or
+controller, not a parent context.
 
-Local variables,
-introduced via a yield, can still be referred to directly (without `this`) since they're
-unambiguous:
+Local variables, introduced via a yield, can still be referred to directly
+(without `this`) since they're unambiguous:
 
 ```handlebars
 {{#let "Title" as |title|}}
@@ -292,13 +356,15 @@ unambiguous:
 {{/let}}
 ```
 
-If you forget to use `this` when you are supposed to, it will fall back to the context of the component or controller context that backs the template. However, the fallback behavior is deprecated and will be removed
-in future major versions of Ember (4+).
+If you forget to use `this` when you are supposed to, it will fall back to the
+context of the component or controller context that backs the template. However,
+the fallback behavior is deprecated and will be removed in future major versions
+of Ember (4+).
 
 ## Native Classes
 
-Native classes are a feature of JavaScript.
-They are officially supported in Ember Octane for use with:
+Native classes are a feature of JavaScript. They are officially supported in
+Ember Octane for use with:
 
 - Components (except classic components)
 - Ember Data Models
@@ -308,23 +374,32 @@ They are officially supported in Ember Octane for use with:
 - Helpers
 - General utility classes
 
-For developers who are not already familiar with Native Classes, it's helpful to read and experiment a little outside of Ember first. You can see some examples and try interactive code [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/class).
+For developers who are not already familiar with native classes, check out
+[Ember's native class guide](../../working-with-javascript/native-classes/),
+which provides a thorough breakdown of native class functionality and usage.
+This section of the upgrade guide will focus on the differences between classic
+Ember classes and native classes. You can also reference the [Native vs. Classic
+Cheatsheet](../../working-with-javascript/native-vs-classic-class-cheatsheet/)
+as a quick reference for these differences.
 
 ### Benefits of Native Classes
 
-For existing Ember users, Native Classes might seem a bit strange, but for developers coming from general JavaScript backgrounds or other frameworks, it might be hard for them to imagine Ember any other way.
+For existing Ember users, Native Classes might seem a bit strange, but for
+developers coming from general JavaScript backgrounds or other frameworks, it
+might be hard for them to imagine Ember any other way.
 
-Before classes were available in JavaScript, Ember developers still got to use some class-like features thanks to `@ember/object`.
-Now that classes are available in JavaScript, we can do away with some of the 
-`@ember/object` quirks.
+Before classes were available in JavaScript, Ember developers still got to use
+some class-like features thanks to `@ember/object`. Now that classes are
+available in JavaScript, we can do away with some of the `@ember/object` quirks.
 
 ### Getting used to Native Classes
 
 The only class that is _not_ supported is the _classic Ember component_ class,
 imported from `@ember/component`. This is mainly because it requires additional
 decorators that are not available in Ember.js directly. You can instead use
-external addons like [ember-decorators](https://ember-decorators.github.io/ember-decorators) if you want to convert these to
-native classes, and refer to their documentation as a guide.
+external addons like [ember-decorators](https://ember-decorators.github.io/ember-decorators)
+if you want to convert these to native classes, and refer to their documentation
+as a guide.
 
 #### `constructor` instead of `init`
 
@@ -363,6 +438,11 @@ export default class ApplicationController extends Controller {
 }
 ```
 
+The `init` hook still exists on many existing classes, and runs _after_
+`constructor`, so you can generally convert to native class syntax without
+rewriting your `init` methods. However, in the future `init` will be removed,
+so you should eventually transition to `constructor`.
+
 It's important to note that only _explicit_ injections are available during
 class construction (e.g. injections added using `@service`). If you still rely
 on _implicit_ injections, like Ember Data automatically injecting the `store`
@@ -370,7 +450,6 @@ service, you will need to add it explicitly instead:
 
 ```js
 import Controller from '@ember/controller';
-import { inject as service } from '@ember/service';
 
 export default class ApplicationController extends Controller {
   constructor() {
@@ -420,7 +499,7 @@ export default class ApplicationController extends Controller {
 ```
 
 This means that the field created is assigned for every _instance_, instead of
-once on the prototype like properties. This has two important implications:
+once on the prototype like properties. This has a few important implications:
 
 1. It is now _safe_ to assign objects to fields! You can assign an array or an
    object to your field, and it won't be shared between instances of the class:
@@ -438,7 +517,24 @@ once on the prototype like properties. This has two important implications:
    values for _every_ instance of the component. This is generally not a
    problem, but is something to be aware of.
 
-Other than that, fields can generally replace properties in every case.
+3. If you are mixing native and classic class definitions, then class fields
+   from a parent class can override class properties:
+
+   ```js
+   import Controller from '@ember/controller';
+
+   class BaseController extends Controller {
+     title = 'default';
+   }
+
+   export default BaseController.extend({
+     // this title property will be overridden by the
+     // class field in the parent class
+     title: 'My Title',
+   });
+   ```
+
+Other than that, fields can generally safely replace properties.
 
 #### Getters and Setters
 
@@ -606,7 +702,7 @@ const Firefighter = Person.extend({
     this._super(...arguments);
     this.firstName = 'Rob';
     this.lastName = 'Jackson';
-  }
+  },
 
   saveKitten() {
     this._super(...arguments);
@@ -776,7 +872,7 @@ would work.
 
 With tracked properties this is _not_ possible, since each property must be
 instrumented ahead of time, and decorators can only be applied in classes. In
-general, the recommendation here to convert usages of POJOs to native classes
+general, the recommendation here is to convert usages of POJOs to native classes
 wherever possible:
 
 ```js
@@ -921,9 +1017,9 @@ location, which prevents your code from becoming a twisted tangled mess!
 
 #### Backwards Compatibility
 
-Tracked properties are fully backwards compatible with computed properties and `get`/`set`. computed properties
-that use tracked properties will automatically update without any need to add
-them to the dependencies:
+Tracked properties are fully backwards compatible with computed properties and
+`get`/`set`. Computed properties can depend on tracked properties like any other
+dependency:
 
 ```js
 import { tracked } from '@glimmer/tracking';
@@ -932,15 +1028,20 @@ import { computed } from '@ember/object';
 class Person {
   @tracked firstName;
 
-  @computed('lastName')
+  @computed('firstName', 'lastName')
   get fullName() {
     return `${this.firstName} ${this.lastName}`;
   }
 }
+
+let person = new Person();
+
+// This will correctly invalidate `fullName`
+person.firstName = 'Tom';
 ```
 
-And vice-versa, computed properties used in native getters will update
-correctly:
+And vice-versa, computed properties used in native getters will autotrack and
+cause the getter to update correctly:
 
 ```js
 class Person {
@@ -955,8 +1056,9 @@ class Person {
 }
 ```
 
-Likewise, properties that you get using `get` will update later on when you use
-`set` to update them:
+Likewise, properties that are not decorated with `@tracked` that you get using
+`get` will also autotrack, and update later on when you use `set` to update
+them:
 
 ```js
 class Person {
@@ -975,12 +1077,25 @@ set(kris, 'lastName', 'Selden');
 
 However, you _must_ use `get` for these properties, since they are not tracked
 and there is no way to know in advance that they might be changed with `set`.
+For instance, this will not work:
+
+```js
+class Person {
+  get fullName() {
+    return `${this.firstName} ${this.lastName}`;
+  }
+}
+
+let kris = new Person();
+set(kris, 'firstName', 'Kris');
+set(kris, 'lastName', 'Selden');
+```
 
 Additionally, certain Ember objects still require the use of `get` and `set`,
 such as `ObjectProxy` and `ArrayProxy`. These will continue to function with
-tracked, but you _must_ use `get` and `set`. Likewise, KVO functions on Ember's
-`Enumerable` class and the various implementations of it will _generally_
-continue to be tracked.
+tracked, but you _must_ use `get` and `set`. Likewise, KVO methods on Ember's
+`Enumerable` class, such as `objectAt` and `pushObject`, and the various
+implementations of it will _generally_ continue to be tracked.
 
 If you have implemented your own version of an Ember `Enumerable`, or the
 `EmberArray` mixin, in general, you will need to add an additional step to your
@@ -997,14 +1112,15 @@ objectAt() {
 This will push the tag for the `[]` property onto the autotrack stack, and that
 property is what is invalidated when the array is updated with KVO methods.
 
-## Components in Octane
+## Glimmer Componentts
 
-There's a new component API in Octane! 
-For this section, we'll
-be focusing on the differences between the new style and classic components, and how to upgrade.
-"Classic" components refer to older-style components that do not use native classes.
+There's a new component API in Octane! For this section, we'll be focusing on
+the differences between the new style, known as Glimmer components, and classic
+components, and how to upgrade. "Classic" components refer to older-style
+components that do not use native classes.
 
-These new types of Components _require_ native class syntax. You can define one like this:
+These new types of Components _require_ native class syntax. You can define one
+like this:
 
 ```js
 import Component from '@glimmer/component';
@@ -1015,33 +1131,48 @@ export default class Todo extends Component {
 }
 ```
 
-You might notice that the import comes from a package named `@glimmer`, not `@ember`.
-Behind the scenes, Ember's rendering engine comes from Glimmer, and now the Components do too, however, you don't need to worry about learning Glimmer separately.
+You might notice that the import comes from a package named `@glimmer`, not
+`@ember`. Behind the scenes, Ember's rendering engine comes from Glimmer, and
+now the components do too. However, Glimmer is a low-level integration with
+Ember, and you don't need to worry about learning it separately.
 
-### Benefits of Components in Octane
+### Benefits of Glimmer Components
 
-Components imported from `'@glimmer/component'` have a some huge benefits
+Glimmer components have a some huge benefits
 
-- These new components give you all the benefits described in Native Classes above
-- They don't extend from `EmberObject` at all, which means that they
-don't need `EmberObject` APIs, such as `reopenClass`,
-`extend`. You can safely use `constructor` for all setup code.
+- These new components give you all the benefits described in Native Classes
+  above
+- They don't extend from `EmberObject` at all, which means that they don't need
+  `EmberObject` APIs, such as `reopenClass`, `extend`. You can safely use
+  `constructor` for all setup code.
 - Lifecycle hooks are greatly simplified and easier to use
-- They don't have that wrapping HTML element that got in the way of CSS styling and layout
-- Bindings are one-way, so there can be no unintended side effects of changing an argument's value
+- They don't have that wrapping HTML element that got in the way of CSS styling
+  and layout
 
-### Getting used to Components in Octane
+Arguments are also namespaced on `this.args` within Glimmer components, which is
+an immutable object. This means that:
+
+- It's clear when you are accessing arguments passed to the component, and
+  when you are accessing fields and properties of the component itself.
+- Arguments always refer to the original value that was passed in, so you
+  don't have to track down confusing code in hooks or computed property
+  definitions that modifies the value of the argument.
+- There is no confusing 2-way-databinding for arguments via the component
+  class, data can only flow in one direction.
+
+### Getting used to Glimmer Components
 
 #### Lifecycle and Properties
 
-These components have exactly 2 lifecycle hooks:
+These components have 2 lifecycle hooks:
 
 - `constructor`
 - `willDestroy`
 
 These can be used to setup the class and tear it down, respectively. Other
-lifecycle hooks, like `didInsertElement` and `didUpdate` don't have equivalents. Instead, you should use _modifiers_ to fill their use
-cases. These are discussed in more detail later on.
+lifecycle hooks, like `didInsertElement` and `didUpdate` don't have equivalents.
+Instead, you should use _modifiers_ to fill their use cases. These are discussed
+in more detail later on.
 
 Components also have 3 properties:
 
@@ -1088,16 +1219,16 @@ after examples of each API, converted from classic components:
   Before:
 
   ```js
-    import Component from '@ember/component';
+  import Component from '@ember/component';
 
-    export default Component.extend({
-      tagName: 'button',
-      text: 'Hello, world!',
+  export default Component.extend({
+    tagName: 'button',
+    text: 'Hello, world!',
 
-      click() {
-        console.log('Hello, world!');
-      },
-    });
+    click() {
+      console.log('Hello, world!');
+    },
+  });
   ```
 
   ```handlebars
@@ -1107,17 +1238,17 @@ after examples of each API, converted from classic components:
   After:
 
   ```js
-    import Component from '@glimmer/component';
-    import { action } from '@ember/object';
+  import Component from '@glimmer/component';
+  import { action } from '@ember/object';
 
-    export default class HelloButton extends Component {
-      text = 'Hello, world!';
+  export default class HelloButton extends Component {
+    text = 'Hello, world!';
 
-      @action
-      sayHello() {
-        console.log('Hello, world!');
-      }
+    @action
+    sayHello() {
+      console.log('Hello, world!');
     }
+  }
   ```
 
   ```handlebars
@@ -1174,7 +1305,7 @@ after examples of each API, converted from classic components:
   ```
 
   ```handlebars
-  {{this.text}}
+    {{this.text}}
   ```
 
   After:
@@ -1209,7 +1340,7 @@ after examples of each API, converted from classic components:
   ```
 
   ```handlebars
-  {{this.text}}
+    {{this.text}}
   ```
 
   After:
@@ -1231,21 +1362,24 @@ after examples of each API, converted from classic components:
 
 To sum it up, the new mental model is that the "wrapping" element is just like
 any other element in your template, and you interact with it in exactly the same
-way. This means that when converting a classic component,
-you will need to add the wrapping element that was there previously to the
-template (unless it was a tagless component, e.g. `tagName: ''`).
+way. This means that when converting a classic component, you will need to add
+the wrapping element that was there previously to the template (unless it was a
+tagless component, e.g. `tagName: ''`).
 
 #### Mixins
 
-These components do _not_ support Ember mixins.
-Before Native Classes were available in JavaScript, Mixins gave Ember developers some powers that are similar to class inheritance.
-For apps that use Mixins, the recommended path is to refactor the Mixins to be native classes instead, which the other parts of your app can inherit from.
+These components do _not_ support Ember mixins. Before native classes were
+available in JavaScript, mixins gave Ember developers some powers that are
+similar to class inheritance. For apps that use mixins, the recommended path is
+to refactor the ixins to be native classes instead, which the other parts of
+your app can inherit from.
 
 #### `...attributes`
 
-When you pass standard HTML attributes to a component (like `class`, `alt`, `role`, etc), you need to tell the template where to put them.
-Remember, there's no wrapping element anymore!
-The way you show where to apply the attributes is by using `...attributes` in the template.
+When you pass standard HTML attributes to a component (like `class`, `alt`,
+`role`, etc), you need to tell the template where to put them. Remember, there's
+no wrapping element anymore! The way you show where to apply the attributes is
+by using `...attributes` in the template.
 
 For example, here we pass a `class` to a component:
 
@@ -1253,7 +1387,8 @@ For example, here we pass a `class` to a component:
 <MyComponent class="my-class" />
 ```
 
-And in that component, we can apply the class to the paragraph using `...attributes`:
+And in that component, we can apply the class to the paragraph using
+`...attributes`:
 
 ```handlebars
 {{!--
@@ -1279,9 +1414,22 @@ Attributes can be applied to multiple elements as well:
 </p>
 ```
 
+You can apply `...attributes` to elements that have explicit attributes as well.
+If `...attributes` comes _after_ another attribute, then it'll be possible for
+the user to override them:
+
+```handlebars
+<p
+  data-overridable="you can override me"
+  ...attributes
+  data-non-overridable="but you can't override me!"
+>
+  ...
+</p>
+```
+
 Finally, if you don't apply `...attributes` to _any_ elements, then Ember will
-throw an error if someone tries to use attributes when invoking your component.
-This allows you to maintain control over the component if you want:
+throw an error if someone tries to use attributes when invoking your component:
 
 ```handlebars
 {{!-- components/uncustomizable-button.hbs --}}
@@ -1293,9 +1441,10 @@ This allows you to maintain control over the component if you want:
 <UncustomizableButton class="customized-button-class"/>
 ```
 
-Attributes are also available to classic components, but they apply it to
-the wrapper element. If you're converting a component from classic components, you should be sure to add `...attributes` to the wrapper
-element.
+Attributes are also available to classic components, and `...attributes` is
+applied automatically to the wrapping element. If you're converting a component
+from classic components, you should be sure to add `...attributes` to the
+wrapper element.
 
 Before:
 
@@ -1466,7 +1615,7 @@ to many problematic data patterns in classic components, where mutations would
 occur seemingly randomly. It was hard to figure out what was causing changes,
 and to debug them.
 
-For components imported from `'@glimmer/component'`, arguments are _one-way bound_. There is no way to
+For Glimmer components, arguments are _one-way bound_. There is no way to
 directly mutate a value on a parent component from the child component, even if
 it is passed as an argument. Instead, you must send an _action_ upward to mutate
 the value:
@@ -1691,7 +1840,7 @@ modifiers from [ember-render-modifiers][2]:
 
 [2]: https://github.com/emberjs/ember-render-modifiers
 
-```js
+```js {data-filename=app/components/scroll-component.js}
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
@@ -1716,7 +1865,7 @@ export default class ScrollComponent extends Component {
 }
 ```
 
-```handlebars
+```handlebars {data-filename=app/components/scroll-component.hbs}
 <div
   {{did-insert this.registerListener}}
   {{will-destroy this.unregisterListener}}
@@ -1754,37 +1903,83 @@ export default class ScrollComponent extends Component {
 ```
 
 These three modifiers are basic modifiers that allow you to cover most of the
-functionality that lifecycle hooks contained. APIs for writing your _own_
-modifiers are currently being stabilized, and these will allow you to make
-specific modifiers that target your use cases.
+functionality that lifecycle hooks contained.
+
+##### Writing your own modifiers
+
+There are also community APIs available for writing your own modifiers, such as
+[ember-functional-modifiers](https://github.com/spencer516/ember-functional-modifiers).
+Ember itself has low level APIs known as _modifier managers_ which can be used
+to write these higher level APIs. In general, it's recommended to use a
+community addon to write modifiers, and _not_ to write your own modifier
+manager.
+
+Let's see what our first example would look like if we were to write it as a
+modifier using `ember-functional-modifiers`:
+
+```js {data-filename=app/modifiers/add-event-listener.js}
+import modifier from 'ember-functional-modifiers';
+
+export default modifier((element, [listener]) => {
+  element.addEventListener(event, listener);
+
+  return () => element.removeEventListener(event, listener);
+});
+```
+
+```js {data-filename=app/modifiers/scroll-component.js}
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
+
+export default class ScrollComponent extends Component {
+  @tracked scrollOffset;
+
+  @action
+  listener(e) {
+    this.scrollOffset = e.clientY;
+  }
+}
+```
+
+```handlebars {data-filename=app/components/scroll-component.hbs}
+<div {{add-event-listener "scroll" this.listener}}>
+  ...
+</div>
+```
+
+This modifier generalizes the functionality that the component implemented using
+lifecycle hooks before, so we can use this modifier whenever we need to in _any_
+component. This is a much better solution than manually managing event listeners
+every time we need one! At this point, the modifier is effectively the same as
+the `{{on}}` modifier as well, so we could get rid of it altogether and replace
+it with `on`:
+
+```handlebars {data-filename=app/components/scroll-component.hbs}
+<div {{on "scroll" this.listener}}>
+  ...
+</div>
+```
 
 ### Template-Only Components
 
 In Octane, template-only components have only an `hbs` file and no `JavaScript` file.
 Behind the scenes, template-only components inherit from `'@glimmer/component'`.
 
-They can be thought of as _functional_ components,
-in the sense that their output (the rendered template) is a pure function of
-their inputs (their arguments). The fact that they can't have state makes them
-much easier to reason about in general, and less prone to errors.
+They can be thought of as _functional_ components, in the sense that their
+output (the rendered template) is a pure function of their inputs (their
+arguments). The fact that they can't have state makes them much easier to reason
+about in general, and less prone to errors.
 
 They are stateless, so attempting to change a component's state through
 bindings will not work:
 
 ```handlebars
 {{!--
-  This does not work, since @value is
-  an argument and is immutable
+  This does not work, since `this` does not exist
 --}}
 <label for="title">Title</label>
-<Input @value={{@value}} id="title" />
-
-{{!--
-  Instead, we should update the value
-  by passing an _action_ to the component
---}}
-<label for="title">Title</label>
-<Input @value={{@value}} @key-up={{@updateValue}} id="title" />
+<Input @value={{this.value}} id="title" />
 ```
 
 Additionally, the `mut` helper generally can't be used for the same reason:
@@ -1792,12 +1987,9 @@ Additionally, the `mut` helper generally can't be used for the same reason:
 ```handlebars
 {{!-- This does not work --}}
 <input
-  value={{@value}}
-  onkeyup={{action (mut @value) target="value"}}
+  value={{this.value}}
+  onkeyup={{action (mut this.value) target="value"}}
 />
-
-{{!-- Do this instead --}}
-<input value={{@value}} onkeyup={{@updateValue}}/>
 ```
 
 ## Conclusion
