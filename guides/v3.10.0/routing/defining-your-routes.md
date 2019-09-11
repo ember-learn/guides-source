@@ -241,7 +241,7 @@ Router.map(function() {
 
 When the user navigates to `/posts/123`, the following markup will be seen:
 
-```handlebars {data-filename=templates/posts/index.hbs}
+```handlebars {data-filename=templates/posts/post.hbs}
 <h1>This is the posts template, containing headers to show on all child routes</h1>
 <p>This is an individual post, from the posts/post template, used when we enter the /posts/:post_id route</p>
 ```

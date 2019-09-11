@@ -103,3 +103,7 @@ code {
   position: relative;
   z-index: 10;
 }
+
+.cta {
+  max-width: 100% !important;
+}
