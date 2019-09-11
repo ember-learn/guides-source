@@ -76,6 +76,8 @@ const doNotCheckList = [
 ]
 
 describe('check all external links in markdown files', function () {
+	const skipApiUrls = "FOLLOW_API_URLS" in process.env && process.env.FOLLOW_API_URLS === "false";
+
   releasePaths.forEach((filepath) => {
     it(`processing ${filepath}`, async function () {
 			this.timeout(20000); // high for slow networks and pages with a lot of external links
@@ -83,6 +85,7 @@ describe('check all external links in markdown files', function () {
 			const externalLinks = findMarkdownLinks(filepath)
 				.filter((link) => link.startsWith("http")) // should have more robust regex
 				.filter((link) => !doNotCheckList.includes(link))
+				.filter((link) => !(!skipApiUrls && link.toLowerCase().includes('api.emberjs.com')))
 				.map(mapToLocalUrl)
 				.map(removeTrailingApostrophe)
 				.map(randomizeFetchDelays);

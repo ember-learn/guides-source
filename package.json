@@ -28,7 +28,8 @@
     "start": "ember serve",
     "test": "npm run test:node && npm run test:ember",
     "test:ember": "ember test",
-    "test:node": "mocha node-tests"
+    "test:node": "mocha node-tests",
+		"test:node-followapiurls": "FOLLOW_API_URLS=false npm run test:node"
   },
   "devDependencies": {
     "@ember/jquery": "^0.6.1",
