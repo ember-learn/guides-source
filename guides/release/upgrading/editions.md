@@ -147,7 +147,7 @@ you are invoking would be placed on the component's wrapper element.
   component's arguments. To do this, we use the `@` symbol:
 
   ```handlebars
-  <CustomInput @value={{this.text}}>
+  <CustomInput @value={{this.text}}/>
   ```
 
   This allows you to see at a glance whether a value is an argument, which will
