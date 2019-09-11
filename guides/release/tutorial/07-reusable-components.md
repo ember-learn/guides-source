@@ -10,6 +10,63 @@ If you're curious, you can explore the options available on Mapbox by using the 
 
 Once you have signed up for the service, grab your _[default public token](https://account.mapbox.com/access-tokens/)_ and paste it into `config/environment.js`:
 
+```js { data-filename="config/environment.js" data-diff="+51,+52" }
+'use strict';
+
+module.exports = function(environment) {
+  let ENV = {
+    modulePrefix: 'super-rentals',
+    environment,
+    rootURL: '/',
+    locationType: 'auto',
+    EmberENV: {
+      FEATURES: {
+        // Here you can enable experimental features on an ember canary build
+        // e.g. EMBER_MODULE_UNIFICATION: true
+        EMBER_METAL_TRACKED_PROPERTIES: true
+      },
+      EXTEND_PROTOTYPES: {
+        // Prevent Ember Data from overriding Date.parse.
+        Date: false
+      }
+    },
+
+    APP: {
+      // Here you can pass flags/options to your application instance
+      // when it is created
+    }
+  };
+
+  if (environment === 'development') {
+    // ENV.APP.LOG_RESOLVER = true;
+    // ENV.APP.LOG_ACTIVE_GENERATION = true;
+    // ENV.APP.LOG_TRANSITIONS = true;
+    // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
+    // ENV.APP.LOG_VIEW_LOOKUPS = true;
+  }
+
+  if (environment === 'test') {
+    // Testem prefers this...
+    ENV.locationType = 'none';
+
+    // keep test console output quieter
+    ENV.APP.LOG_ACTIVE_GENERATION = false;
+    ENV.APP.LOG_VIEW_LOOKUPS = false;
+
+    ENV.APP.rootElement = '#ember-testing';
+    ENV.APP.autoboot = false;
+  }
+
+  if (environment === 'production') {
+    // here you can enable a production-specific feature
+  }
+
+  ENV.MAPBOX_ACCESS_TOKEN = 'paste your Mapbox access token here';
+
+  return ENV;
+};
+```
+
 As its name implies, `config/environment.js` is used to _configure_ our app and store API keys like these. These values can be accessed from other parts of our app, and they can have different values depending on the current environment (which might be development, test, or production).
 
 <div class="cta">
