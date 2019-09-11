@@ -80,7 +80,7 @@ describe('check all external links in markdown files', function () {
 
   releasePaths.forEach((filepath) => {
     it(`processing ${filepath}`, async function () {
-			this.timeout(20000); // high for slow networks and pages with a lot of external links
+			this.timeout(30000); // high for slow networks and pages with a lot of external links
 
 			const externalLinks = findMarkdownLinks(filepath)
 				.filter((link) => link.startsWith("http")) // should have more robust regex
