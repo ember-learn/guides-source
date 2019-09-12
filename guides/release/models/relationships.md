@@ -186,7 +186,7 @@ import PaymentMethod from './payment-method';
 const { attr } = DS;
 
 export default class PaymentMethodCc extends PaymentMethod {
-  @attr() last4;
+  @attr last4;
 
   get obfuscatedIdentifier() {
     return `**** **** **** ${this.last4}`;
@@ -200,7 +200,7 @@ import PaymentMethod from './payment-method'
 const { attr } = DS;
 
 export default class PaymentMethodPaypal extends PaymentMethod {
-  @attr() linkedEmail;
+  @attr linkedEmail;
 
   get obfuscatedIdentifier() {
     let last5 = this.linkedEmail.split('').reverse().slice(0, 5).reverse().join('');
@@ -266,7 +266,7 @@ relationship. However, since readonly data will never need to be
 updated and saved this often results in the creation of a great deal
 of code for very little benefit. An alternate approach is to define
 these relationships using an attribute with no transform
-(`attr()`). This makes it easy to access readonly values in
+(`@attr`). This makes it easy to access readonly values in
 other objects and templates without the overhead of defining
 extraneous models.
 

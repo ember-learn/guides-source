@@ -36,9 +36,9 @@ import DS from 'ember-data';
 const { Model, attr } = DS;
 
 export default class Person extends Model {
-  @attr() firstName;
-  @attr() lastName;
-  @attr() birthday;
+  @attr firstName;
+  @attr lastName;
+  @attr birthday;
 }
 ```
 
@@ -53,8 +53,8 @@ import DS from 'ember-data';
 const { Model, attr } = DS;
 
 export default class Person extends Model {
-  @attr() firstName;
-  @attr() lastName;
+  @attr firstName;
+  @attr lastName;
 
   get fullName() {
     return `${this.firstName} ${this.lastName}`;
@@ -166,14 +166,14 @@ When the API returns a deeply nested, read-only object or array,
 there is no need to create multiple models with `attr('hasMany')` or `attr('belongsTo')`
 relationships. This could result in a potentially large amount of unnecessary
 code. You can access these objects in the template without transforming them. This can be
-done with `attr()` (No attribute type).
+done with `@attr` (No attribute type).
 
 The following example shows how to define these attributes without transforming them
 and accessing them within a template:
 
 ```javascript
-@attr() location;  // a read-only object
-@attr() tags; // a read-only array
+@attr location;  // a read-only object
+@attr tags; // a read-only array
 ```
 
 ```handlebars
