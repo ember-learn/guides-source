@@ -284,13 +284,13 @@ Hey, all the tests passed! But does that mean it actually works in practice? Let
     </div>
   </div>
   <Map
-     @lat="37.7749"
-     @lng="-122.4194"
-     @zoom="9"
-     @width="150"
-     @height="150"
-     alt="A map of Grand Old Mansion"
-   />
+    @lat="37.7749"
+    @lng="-122.4194"
+    @zoom="9"
+    @width="150"
+    @height="150"
+    alt="A map of Grand Old Mansion"
+  />
 </article>
 ```
 

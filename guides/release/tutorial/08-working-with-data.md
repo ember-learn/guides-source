@@ -73,7 +73,7 @@ If we look at our page in the browser, we should see our model data reflected as
 
 Awesome!
 
-Ok, now that we know that we have a model to use at our disposal, let's remove some of the hard-coding that we did earlier! Instead of explicitly hard-coding the rental information into our `<Rental>` component, we can pass the model object to our component instead.
+Okay, now that we know that we have a model to use at our disposal, let's remove some of the hard-coding that we did earlier! Instead of explicitly hard-coding the rental information into our `<Rental>` component, we can pass the model object to our component instead.
 
 Let's try it out.
 
@@ -102,7 +102,7 @@ First, let's pass in our model to our `<Rental>` component as the `@rental` argu
 
 By passing in `this.model` into the `<Rental>` component as the `@rental` argument, we will have access to our "Grand Old Mansion" model object in the `<Rental>` component's template! Now, we can replace our hard-coded values in this component by using the values that live on our `@rental` model.
 
-```handlebars { data-filename="app/components/rental.hbs" data-diff="-3,-4,+5,+6,-9,+10,-12,+13,-16,+17,-20,+21,-24,+25,-29,-30,-31,-32,-33,-34,+35,+36,+37,+38,+39,+40" }
+```handlebars { data-filename="app/components/rental.hbs" data-diff="-3,-4,+5,+6,-9,+10,-12,+13,-16,+17,-20,+21,-24,+25,-29,-30,+31,+32,-36,+37" }
 <article class="rental">
   <Rental::Image
     src="https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg"
@@ -131,19 +131,16 @@ By passing in `this.model` into the `<Rental>` component as the `@rental` argume
     </div>
   </div>
   <Map
-     @lat="37.7749"
-     @lng="-122.4194"
-     @zoom="9"
-     @width="150"
-     @height="150"
-     alt="A map of Grand Old Mansion"
+    @lat="37.7749"
+    @lng="-122.4194"
     @lat={{@rental.location.lat}}
     @lng={{@rental.location.lng}}
     @zoom="9"
     @width="150"
     @height="150"
+    alt="A map of Grand Old Mansion"
     alt="A map of {{@rental.title}}"
-   />
+  />
 </article>
 ```
 
@@ -207,7 +204,7 @@ Now that we have things in place, let's do the fun part of removing _all_ our ha
 
 In a production app, the data that we'd fetch would most likely come from a remote API server. To avoid setting up an API server just for this tutorial, we will put some JSON data into the `public` folder instead. That way, we can still request these JSON data with regular HTTP requests — just like we would with a real API server  — but without having to write any server logic.
 
-But where will the data come from? You can <a href="/downloads/data.zip" download="data.zip">download this data file</a>, where we have prepared some JSON data and bunlded them into a `.zip` file format. Extract its content into the `public` folder.
+But where will the data come from? You can <a href="/downloads/data.zip" download="data.zip">download this data file</a>, where we have prepared some JSON data and bundled them into a `.zip` file format. Extract its content into the `public` folder.
 
 When you are done, your `public` folder should now have the following content:
 
@@ -229,7 +226,7 @@ public
 
 You can verify that everything is working correctly by navigating to `http://localhost:4200/api/rentals.json`.
 
-<img src="/screenshots/08-working-with-data/data@2x.png" alt="Our \"server\" in serving up our rental properties as JSON data" width="1024" height="512">
+<img src="/screenshots/08-working-with-data/data@2x.png" alt="Our server serving up our rental properties as JSON data" width="1024" height="512">
 
 Awesome! Our "server" is now up and running, serving up our rental properties as JSON data.
 
