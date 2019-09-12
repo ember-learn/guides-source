@@ -10,7 +10,6 @@ asynchrony
 autocomplete
 auto-rollup
 autoruns
-aXe
 backend
 backends
 beforeEach
@@ -23,7 +22,6 @@ chainable
 Checkboxes
 checkboxes
 CoffeeScript
-ColorSafe
 componentized
 Ctrl-C
 customizations
@@ -40,12 +38,8 @@ draggable
 durations
 enumerables
 ember-a11y
-ember-a11y-refocus
-ember-a11y-testing
 ember-cli-deprecation-workflow
 ember-cli-cjs-transform
-ember-cli-document-title
-ember-cli-head
 ember-cli-mirage.
 ember-cli-tutorial-style
 ember-debug-handlers-polyfill
@@ -54,7 +48,6 @@ erroring
 Evented
 facto
 falsy
-FastPass
 focusable
 frontend
 fullname
@@ -112,7 +105,6 @@ runtime
 sandboxed
 scp
 selectable
-SEO
 serializer
 serializers
 singularize

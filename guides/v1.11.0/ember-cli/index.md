@@ -3,7 +3,7 @@ Installing Ember is *easy*! And our new install process includes *Ember CLI*, Em
 * State of the art asset management (including combining, minifying, and versioning)
 * Built-in generators can help you create components, routes, and more (and their test cases!)
 * A standard project layout. Working on other Ember apps is easy, they're organized similarly
-* Native [JavaScript modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) to keep your project organized
+* Native [JavaScript modules](http://jsmodules.io/) to keep your project organized
 * A complete testing framework (unit tests, integration tests)
 * Access to a growing ecosystem of [Ember Addons](http://www.emberaddons.com/). Add functionality to your app without writing a single line of code! They're already packaged up and ready to add to your app
 

@@ -276,25 +276,24 @@ For the test we'll pass the component a fake object that has all the properties 
 We'll give the variable the name `rental`, and in each test we'll set `rental` to our local scope, represented by the `this` object.
 The render template can access values in local scope.
 
-```javascript {data-filename="tests/integration/components/rental-listing-test.js" data-diff="+5,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19"}
+```javascript {data-filename="tests/integration/components/rental-listing-test.js" data-diff="+9,+10,+11,+12,+13,+14,+15,+16,+17,+18"}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
-import EmberObject from '@ember/object';
 
 module('Integration | Component | rental listing', function (hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(function () {
-    this.rental = EmberObject.create({
+    this.rental = {
       image: 'fake.png',
       title: 'test-title',
       owner: 'test-owner',
       type: 'test-type',
       city: 'test-city',
       bedrooms: 3
-    });
+    };
   });
 
   test('should display rental details', async function(assert) {
@@ -311,25 +310,24 @@ Now let's render our component using the `render` function.
 The `render` function allows us to pass a template string, so that we can declare the component in the same way we do in our templates.
 Since we set the `rental` variable to our local scope in the `beforeEach` hook, we can access it as part of our render string.
 
-```javascript {data-filename="tests/integration/components/rental-listing-test.js" data-diff="+22,+26"}
+```javascript {data-filename="tests/integration/components/rental-listing-test.js" data-diff="+21,+25"}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
-import EmberObject from '@ember/object';
 
 module('Integration | Component | rental listing', function (hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(function () {
-    this.rental = EmberObject.create({
+    this.rental = {
       image: 'fake.png',
       title: 'test-title',
       owner: 'test-owner',
       type: 'test-type',
       city: 'test-city',
       bedrooms: 3
-    });
+    };
   });
 
   test('should display rental details', async function(assert) {
@@ -376,7 +374,6 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render, click } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
-import EmberObject from '@ember/object';
 ```
 The final test should look as follows:
 

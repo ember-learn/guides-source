@@ -4,7 +4,7 @@ through our [command line build tool Ember CLI](http://www.ember-cli.com/). The 
 * Modern application asset management (including combining, minifying, and versioning).
 * Built-in generators to help you create components, routes, and more.
 * A conventional project layout so approaching other developers' Ember.js applications is easy.
-* Official [JavaScript modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) to keep your project organized.
+* Official [JavaScript modules](http://jsmodules.io/) to keep your project organized.
 * A complete testing framework.
 * Access to a growing ecosystem of [Ember Addons](http://www.emberaddons.com/).
 

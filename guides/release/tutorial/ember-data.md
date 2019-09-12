@@ -37,7 +37,7 @@ _title_, _owner_, _city_, _category_, _image_, _bedrooms_ and _description_.
 Define attributes by giving them the result of the function [`DS.attr()`](https://api.emberjs.com/ember-data/3.10/classes/DS/methods/attr?anchor=attr).
 For more information on Ember Data Attributes, read the section called [Defining Attributes](../../models/defining-models/#toc_defining-attributes) in the guides.
 
-```javascript {data-filename="app/models/rental.js" data-diff="+5,+6,+7,+8,+9,+10,+11"}
+```javascript {data-filename="app/models/rental.js" data-diff="+4,+5,+6,+7,+8,+9,+10"}
 import DS from 'ember-data';
 const { Model } = DS;
 
@@ -128,7 +128,7 @@ import {
   click,
   currentURL,
   visit
-} from '@ember/test-helpers';
+} from '@ember/test-helpers'
 
 ```
 

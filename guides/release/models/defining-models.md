@@ -24,17 +24,6 @@ export default DS.Model.extend({
 After you have defined a model class, you can start [finding](../finding-records/)
 and [working with records](../creating-updating-and-deleting-records/) of that type.
 
-<div class="cta">
-  <div class="cta-note">
-    <div class="cta-note-body">
-      <div class="cta-note-heading">Zoey says...</div>
-      <div class="cta-note-message">
-        Ember Data models are normally setup using the singular form (which is why we use `person` instead of `people` here)
-      </div>
-    </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
-  </div>
-</div>
 
 ## Defining Attributes
 

@@ -480,12 +480,12 @@ export default Component.extend({
 
 ```handlebars {data-filename="app/templates/components/delayed-typeahead.hbs"}
 <label for="search">Search</label>
-<Input @id="search" @value={{this.searchValue}} @key-up={{action "handleTyping"}} />
+<Input @id="search" @value={{this.searchValue}} @key-up={{action 'handleTyping'}}>
 
 <ul>
-  {{#each this.results as |result|}}
-    <li class="result">{{result.name}}</li>
-  {{/each}}
+{{#each this.results as |result|}}
+  <li class="result">{{result.name}}</li>
+{{/each}}
 </ul>
 ```
 
