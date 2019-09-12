@@ -705,8 +705,8 @@ Ember Data's own `JSONAPISerializer` assumes types are plural and it
 will automatically singularize the types.
 
 Second, attribute and relationship names in the JSON:API document
-should exactly match the name and casing of the `attr()`,
-`belongsTo()` and `hasMany()`, properties defined on the
+should exactly match the name and casing of the `@attr`,
+`@belongsTo` and `@hasMany`, properties defined on the
 Model.
 
 By convention these property names are camelCase in Ember Data models.

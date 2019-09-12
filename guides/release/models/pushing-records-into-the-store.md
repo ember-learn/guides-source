@@ -33,9 +33,9 @@ import DS from 'ember-data';
 const { Model, attr } = DS;
 
 export default class Album extends Model {
-  @attr() title;
-  @attr() artist;
-  @attr() songCount;
+  @attr title;
+  @attr artist;
+  @attr songCount;
 }
 ```
 
