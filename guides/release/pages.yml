@@ -115,8 +115,10 @@
       url: "tracked-properties"
     - title: "Patterns for State"
       url: "patterns-for-state"
-    # - title: "Computed Properties"
-    #   url: "computed-properties"
+    - title: "Computed Properties"
+      url: "computed-properties"
+    - title: "When to Use `get` and `set`"
+      url: "when-to-use-get-and-set"
 - title: "Services"
   url: "services"
   pages:
