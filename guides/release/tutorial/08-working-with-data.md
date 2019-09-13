@@ -208,7 +208,7 @@ But where will the data come from? You can <a href="/downloads/data.zip" downloa
 
 When you are done, your `public` folder should now have the following content:
 
-```shell
+```plain
 public
 ├── api
 │   ├── rentals
