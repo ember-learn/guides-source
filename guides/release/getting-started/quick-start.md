@@ -153,7 +153,7 @@ Open the `scientists` template and add the following code to loop through the ar
 <h2>List of Scientists</h2>
 
 <ul>
-  {{#each @model as |scientist|}}
+  {{#each this.model as |scientist|}}
     <li>{{scientist}}</li>
   {{/each}}
 </ul>
@@ -211,17 +211,17 @@ We're going to tell our component:
 
 1. What title to use, via the `@title` argument.
 2. What array of people to use, via the `@people` argument. We'll
-   provide this route's `@model` as the list of people.
+   provide this route's `this.model` as the list of people.
 
 ```handlebars {data-filename="app/templates/scientists.hbs" data-diff="-1,-2,-3,-4,-5,-6,-7,+8"}
 <h2>List of Scientists</h2>
 
 <ul>
-  {{#each @model as |scientist|}}
+  {{#each this.model as |scientist|}}
     <li>{{scientist}}</li>
   {{/each}}
 </ul>
-<PeopleList @title="List of Scientists" @people={{@model}} />
+<PeopleList @title="List of Scientists" @people={{this.model}} />
 ```
 
 Go back to your browser and you should see that the UI looks identical.
