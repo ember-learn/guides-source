@@ -179,7 +179,7 @@ Here are the main differences between angle bracket and curly syntax:
   wrapped in curly braces:
 
   ```handlebars
-    <Todo @done={{isDone}}/>
+    <Todo @done={{this.isDone}}/>
   ```
 
   Like HTML, all values for attributes that are not wrapped in strings are
@@ -1371,7 +1371,7 @@ tagless component, e.g. `tagName: ''`).
 These components do _not_ support Ember mixins. Before native classes were
 available in JavaScript, mixins gave Ember developers some powers that are
 similar to class inheritance. For apps that use mixins, the recommended path is
-to refactor the ixins to be native classes instead, which the other parts of
+to refactor the mixins to be native classes instead, which the other parts of
 your app can inherit from.
 
 #### `...attributes`
