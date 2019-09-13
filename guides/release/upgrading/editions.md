@@ -3,6 +3,15 @@ by Octane, Ember's first Edition.
 
 If you're new to Ember, we recommend starting with the [Quick start and Tutorials](https://emberjs.com/learn).
 
+## Table of Contents
+
+- [What is Ember Octane](#toc_creating-a-new-app)
+- [Creating a New App](#toc_creating-a-new-app)
+- [Templates](#toc_templates)
+- [Native Classes](#toc_native-classes)
+- [Tracked Properties](#toc_tracked-properties)
+- [Glimmer Components](#toc_glimmer-components)
+
 ## What is Ember Octane?
 
 Over the past few years, many new features have been added to Ember with the goal of introducing a new programming model for the framework.
@@ -23,6 +32,7 @@ Here are some of the core features in Octane:
     root element.
   - **Customizable DOM attributes** with `...attributes`.
   - **`<AngleBracket>` syntax** for better readability.
+- [Modifiers](../../components/glimmer-components-dom/), which unify the experience of writing code that interacts with the DOM.
 
 Just as important is what we're removing from the Ember experience. These
 features below will keep working, but you won't have to use them if you don't
@@ -802,7 +812,7 @@ recommended path is to refactor the mixins to other patterns, including:
 * Services which can be injected into multiple classes, sharing functionality
   and state between them.
 
-### Tracked Properties
+## Tracked Properties
 
 Tracked properties replace computed properties. Unlike computed properties, which require you to annotate
 every getter with the values it depends on, tracked properties only require you to
@@ -1037,7 +1047,7 @@ can be sure that everywhere that the value is used will be updated as well. It
 _also_ means that you centralize all mutations to your state in a single
 location, which prevents your code from becoming a twisted tangled mess!
 
-#### Backwards Compatibility
+### Backwards Compatibility
 
 Tracked properties are fully backwards compatible with computed properties and
 `get`/`set`. Computed properties can depend on tracked properties like any other
