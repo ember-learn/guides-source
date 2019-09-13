@@ -780,6 +780,28 @@ class Vehicle {
 
 The `static` keyword can be applied to all class elements.
 
+#### Mixins
+
+Native class syntax does not directly have an equivalent for the Ember mixin
+system. If you want to continue using mixins as you convert, you can do so by
+mixing classic class extension syntax with native class syntax:
+
+```js
+export default class Vehicle extends EmberObject.extend(MotorMixin) {
+  // ...
+}
+```
+
+In addition, some new framework classes, such as Glimmer components, do _not_
+support Ember mixins at all. In the future, mixins will be removed from the
+framework, and will not be replaced directly. For apps that use mixins, the
+recommended path is to refactor the mixins to other patterns, including:
+
+* Pure native classes, sharing functionality via class inheritance.
+* Utility functions which can be imported and used in multiple classes.
+* Services which can be injected into multiple classes, sharing functionality
+  and state between them.
+
 ### Tracked Properties
 
 Tracked properties replace computed properties. Unlike computed properties, which require you to annotate
@@ -1365,14 +1387,6 @@ any other element in your template, and you interact with it in exactly the same
 way. This means that when converting a classic component, you will need to add
 the wrapping element that was there previously to the template (unless it was a
 tagless component, e.g. `tagName: ''`).
-
-#### Mixins
-
-These components do _not_ support Ember mixins. Before native classes were
-available in JavaScript, mixins gave Ember developers some powers that are
-similar to class inheritance. For apps that use mixins, the recommended path is
-to refactor the mixins to be native classes instead, which the other parts of
-your app can inherit from.
 
 #### `...attributes`
 
@@ -1971,8 +1985,9 @@ output (the rendered template) is a pure function of their inputs (their
 arguments). The fact that they can't have state makes them much easier to reason
 about in general, and less prone to errors.
 
-They are stateless, so attempting to change a component's state through
-bindings will not work:
+Template-only components have no backing class instance, so `this` in their
+templates is `null`. This means that you can only reference passed in arguments
+via named argument syntax (e.g. `{{@arg}}`):
 
 ```handlebars
 {{!--
