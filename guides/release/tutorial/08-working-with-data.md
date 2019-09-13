@@ -211,14 +211,14 @@ When you are done, your `public` folder should now have the following content:
 ```plain
 public
 ├── api
-│   ├── rentals
-│   │   ├── downtown-charm.json
-│   │   ├── grand-old-mansion.json
-│   │   └── urban-living.json
-│   └── rentals.json
+│   ├── rentals
+│   │   ├── downtown-charm.json
+│   │   ├── grand-old-mansion.json
+│   │   └── urban-living.json
+│   └── rentals.json
 ├── assets
-│   └── images
-│       └── teaching-tomster.png
+│   └── images
+│       └── teaching-tomster.png
 └── robots.txt
 
 4 directories, 6 files
