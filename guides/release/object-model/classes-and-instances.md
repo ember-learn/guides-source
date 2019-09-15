@@ -71,7 +71,7 @@ In certain cases, you will want to pass arguments to `_super()` before or after 
 
 This allows the original method to continue operating as it normally would.
 
-One common example is when overriding the [`normalizeResponse()`][4] hook in one of Ember-Data's serializers.
+One common example is when overriding the [`normalizeResponse()`](https://api.emberjs.com/ember-data/release/classes/JSONAPISerializer/methods/normalizeResponse?anchor=normalizeResponse) hook in one of Ember-Data's serializers.
 
 A handy shortcut for this is to use a "spread operator", like `...arguments`:
 
@@ -226,7 +226,7 @@ Person.create({
 
 ### Accessing Object Properties
 
-When reading a property value of an object, you can in most cases use the common JavaScript dot notation, e.g. `myObject.myProperty`. 
+When reading a property value of an object, you can in most cases use the common JavaScript dot notation, e.g. `myObject.myProperty`.
 
 [Ember proxy objects][9] are the one big exception to this rule. If you're working with Ember proxy objects, including promise proxies for async relationships in Ember Data, you have to use Ember's [`get()`][7] accessor method to read values.
 

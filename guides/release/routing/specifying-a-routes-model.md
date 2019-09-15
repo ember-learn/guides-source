@@ -106,21 +106,10 @@ was passed a model):
 {{/each}}
 ```
 
-while transitioning this way will cause the `model` hook to be executed (because `<LinkTo />` was passed `photo.id`, an
-identifier, instead):
+Ember Data is a powerful (but optional) library included by default in new Ember apps.
+In the next example, we will use Ember Data's [`findAll`](https://api.emberjs.com/ember-data/release/classes/Store/methods/findAll?anchor=findAll) method, which returns a Promise, and resolves with an array of [Ember Data records](../../models/).
 
-```handlebars {data-filename=app/templates/photos.hbs}
-<h1>Photos</h1>
-{{#each @model.photos as |photo|}}
-  <p>
-    <LinkTo @route="photo" @model={{photo.id}}>
-      <img src="{{photo.thumbnailUrl}}" alt="{{photo.title}}" />
-    </LinkTo>
-  </p>
-{{/each}}
-```
-
-_Note that Ember Data also has a feature called a [`Model`](https://api.emberjs.com/ember-data/3.10/classes/DS.Model), but it's a separate concept from a route's [`model`](https://api.emberjs.com/ember/3.11/classes/Route/methods/model?anchor=model) hook._
+_Note that Ember Data also has a feature called a [`Model`](https://api.emberjs.com/ember-data/release/classes/Model), but it's a separate concept from a route's [`model`](https://api.emberjs.com/ember/3.11/classes/Route/methods/model?anchor=model) hook._
 
 ```javascript {data-filename=app/routes/favorite-posts.js}
 import Route from '@ember/routing/route';
