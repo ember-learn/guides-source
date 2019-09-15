@@ -27,7 +27,44 @@ export default class HelloButton extends Component {
 }
 ```
 
-And they can be used in other templates:
+And the template file:
+
+```handlebars {data-filename=app/templates/components/blog-post.hbs}
+{{yield}}
+```
+
+You can use the integration test to test your component. This will be covered later in the guides.
+
+### Creating a Nested Component
+
+Again, you can use Ember CLI to create a nested component:
+
+```bash
+ember generate component blog-post/comment
+
+installing component
+  create app/components/blog-post/comment.js
+  create app/templates/components/blog-post/comment.hbs
+installing component-test
+  create tests/integration/components/blog-post/comment-test.js
+```
+
+## Component Templates
+
+Templates in components use the Handlebars templating language, as discussed in
+the [Templates](../templates/handlebars-basics/) section. A component's template is the layout
+that is used when rendering the component. If we update the `BlogPost`'s
+template to be:
+
+```handlebars {data-filename=app/templates/components/blog-post.hbs}
+<h1>Fun Facts About Tomster</h1>
+<section>
+  1. He's a hamster!
+  2. But also a Tomster!
+</section>
+```
+
+And then use the component like so:
 
 ```handlebars {data-filename=app/templates/application.hbs}
 <HelloButton @buttonText="Say Hello!"/>
@@ -57,33 +94,92 @@ like, and we can even change the text via the value that we pass to it,
 
 Invoking the component three times like this results in the following HTML:
 
-```html
-<button>
-  Say Hello!
-</button>
-<button>
-  Di Hola!
-</button>
-<button>
-  Dis Bonjour!
-</button>
+  ```handlebars
+  <BlogPost @title="An Interview With Zoey" />
+  <BlogPost @title="Fun Facts About Tomster" />
+  ```
+
+  We'll talk more about arguments in [the next
+  section](./arguments-and-attributes/). All arguments are prefixed with the `@`
+  symbol, so whenever you see `{{@...` you know its referring to any argument.
+
+- `{{this.sectionClass}}` refers to a _property_ of the component _instance_.
+  Like we mentioned before, components that have class definitions also get a
+  class instance every time they are created. In a component template,
+  `{{this}}` always refers to that instance, and allows you to access methods,
+  fields, and other properties on the class instance.
+
+It's important to note that arguments and properties can be used
+interchangeably, so we could for instance have used an argument for the
+`sectionClass`, and a class property for title or post content:
+
+```handlebars {data-filename=app/templates/components/blog-post.hbs}
+<h1>{{this.title}}</h1>
+<section class="{{@sectionClass}}">
+  {{this.content}}
+</section>
 ```
 
-However, clicking on each button will still log the same "Hello, world!"
-message, since the click handler is defined in the _class_ of the component, and
-doesn't use any arguments. We'll talk more about arguments - and their
-counterpart, _actions_ - later on.
+For more details on where and how you can invoke values, read through the
+[section on templating](../templates/handlebars-basics/).
+The reason you would choose an argument or property is based on how you expect
+to use the component, and whether or not the value should be based on internal
+logic within the component, or values passed to the component where it is used.
 
 You can also use template helpers, modifiers, and other components within your
 component template:
 
-```handlebars {data-filename=app/templates/components/hello-button.hbs}
-<button {{on "click" this.sayHello}}>
-  {{#if @iconType}}
-    <Icon @type={{@iconType}} />
-  {{/if}}
-  {{concat @buttonText "!"}}
-</button>
+```handlebars {data-filename=app/templates/components/blog-post.hbs}
+<h1>{{capitalize @title}}</h1>
+
+<BlogSection>
+  {{@content}}
+</BlogSection>
+```
+
+We now have:
+
+- The `{{capitalize}}` helper, which we're using to format the `@title`
+  argument.
+- The `<BlogSection>` component, replaces the `<section>` element and presumably
+  has similar semantics, and some custom functionality (the implementation of
+  this component is not included).
+
+Using helpers, modifiers, and components allows you to have some logic in your
+templates, and to nest components within each other, building up a component
+_tree_.
+
+Finally, component templates can use a special helper: `{{yield}}`. We'll cover
+this helper in more detail in the [Yields](./yields/) section later on, but this
+helper allows us to specify that users can pass the component a _block_ of
+children, and where those children should be placed. If we go back to our
+`BlogPost` component, we can add a yield like this:
+
+```handlebars {data-filename=app/templates/components/blog-post.hbs}
+<h1>{{@title}}</h1>
+<section class="{{this.sectionClass}}">
+  {{yield}}
+</section>
+```
+
+We can then invoke this component with a block, like this:
+
+```handlebars
+<BlogPost @title="Fun Facts About Tomster">
+  1. He's a hamster!
+  2. But also a Tomster!
+</BlogPost>
+```
+
+And this will place the block - the text that is in between `<BlogPost>` and
+`</BlogPost>` - where the yield was in the original component when rendered:
+
+```html
+<h1>Fun Facts About Tomster</h1>
+<section class="blog-post-section">
+  1. He's a hamster!
+  2. But also a Tomster!
+</section>
 ```
 
 This allows you to have some logic in your templates, and to nest components
@@ -101,7 +197,21 @@ to its template where we want to place its block:
 ```handlebars {data-filename=app/templates/components/hello-button.hbs}
 <button {{on "click" this.sayHello}}>
   {{yield}}
-</button>
+</section>
+```
+
+We'll talk more about attributes in [the next
+section](./arguments-and-attributes/). They are values that get applied directly
+to elements, and can be used to customize the HTML of a component. Unlike
+arguments, they are _not_ prefixed with the `@` symbol:
+
+```handlebars
+<BlogPost @title="Fun Facts About Tomster" class="featured">
+  <ol>
+    <li>He's a hamster!</li>
+    <li>But also a Tomster!</li>
+  </ol>
+</BlogPost>
 ```
 
 And then invoking the component in block form, with the text we want to be
@@ -144,3 +254,5 @@ In the following guides we'll talk about:
 - **Contextual Components**, which can be used dynamically to pass components
   around as values, and allow them to be invoked in different locations.
 
+These are the only hooks and properties that exist on the component, and the
+only ones you need to worry about! Now, onto Arguments and Attributes.
