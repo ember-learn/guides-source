@@ -1258,7 +1258,7 @@ can reference it later on.
 
 #### The `{{on}}` Modifier
 
-The API for `{{on}}` is the same as JavaScript's native [addEventListener](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener). It receives the event name as the first argument, and a
+The API for `{{on}}` is the same as JavaScript's native [`addEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener). It receives the event name as the first argument, and a
 callback function as the second argument:
 
 ```handlebars
