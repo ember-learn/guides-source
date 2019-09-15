@@ -273,8 +273,7 @@
   url: "glossary"
   pages:
     - title: "Web Development"
-      url: "web-development"
-
+      url: "index"
 - title: "Reference"
   url: "reference"
   pages:
