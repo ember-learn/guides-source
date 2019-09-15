@@ -1369,7 +1369,7 @@ helper:
 <MyComponent @onClick={{fn this.handleClick 123}} />
 ```
 
-## Glimmer Componentts
+## Glimmer Components
 
 There's a new component API in Octane! For this section, we'll be focusing on
 the differences between the new style, known as Glimmer components, and classic
@@ -1414,7 +1414,7 @@ an immutable object. This means that:
 - Arguments always refer to the original value that was passed in, so you
   don't have to track down confusing code in hooks or computed property
   definitions that modifies the value of the argument.
-- There is no confusing 2-way-databinding for arguments via the component
+- There is no confusing two-way data binding for arguments via the component
   class, data can only flow in one direction.
 
 ### Getting used to Glimmer Components

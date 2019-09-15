@@ -130,6 +130,18 @@ a.edit-page, #search-input {
 
 /* Fix diff formatting */
 
+code[data-diff] .diff-deletion {
+  background-color: rgba(144,84,84,.7);
+}
+code[data-diff] .diff-insertion {
+  background-color: rgba(93,125,93,.5);
+}
+code[data-diff] .diff-deletion .diff-deletion,
+code[data-diff] .diff-deletion .diff-insertion,
+code[data-diff] .diff-insertion .diff-deletion,
+code[data-diff] .diff-insertion .diff-insertion {
+  background-color: transparent;
+}
 code[data-diff] .diff-deletion > .diff-operator,
 code[data-diff] .diff-insertion > .diff-operator {
   display: none;
@@ -138,9 +150,17 @@ code[data-diff] .diff-deletion::before {
   content: "-";
   margin-left: -1ch;
   background-color: rgba(144,84,84,.7);
+  color: #f8f8f2;
 }
 code[data-diff] .diff-insertion::before {
   content: "+";
   margin-left: -1ch;
-  background-color: rgba(93,125,93,.5)
+  background-color: rgba(93,125,93,.5);
+  color: #f8f8f2;
+}
+
+/* Fix <Foo::Bar> */
+
+.language-handlebars .namespace {
+  opacity: 1;
 }
