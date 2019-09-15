@@ -1,13 +1,17 @@
 Computed properties are a concept in Ember prior to Octane. They serve the same
 purpose as tracked properties and native getters, allowing users to respond to
-changes, derive state, and ultimately update the DOM. They also have built-in
+changes, derive state, and ultimately update the DOM. 
+In a nutshell, computed properties let you declare functions as properties.
+You create one by defining a computed property as a function, which Ember will automatically call when you ask for the property. 
+They also have built-in
 caching to prevent having to perform expensive calculations more than once.
 
-While computed properties are no longer the recommended default, it's likely
+While computed properties are no longer the recommended default, it is likely
 that you may encounter them in code that hasn't been updated to tracked
 properties just yet, either in existing applications or in the wider Ember
 ecosystem, so this guide exists both to describe how they work and can be used,
 and how they work with tracked properties.
+If you are just learning Ember for the first time, you can skip this section.
 
 ## Computed Property Usage
 
@@ -61,6 +65,7 @@ differences:
 2. It will notify other "watchers", such as other computed properties and
    templates, if any of its dependencies has updated and it needs to be
    recalculated.
+3. A computed property will only recompute its value when it is consumed. Properties are consumed in two ways: by being accessed, like `ironMan.fullName`, or by being referenced in a handlebars template that is currently being rendered, like `{{this.ironMan.fullName}}`.
 
 ### Specifying Dependencies
 
@@ -135,11 +140,11 @@ _local_ to the object, but you can specify a few other types of dependencies:
   ```
 
   However, you cannot _chain_ on these properties, as it is a performance
-  pitfall. You can only do 1 level of `@each` watching.
+  pitfall. You can only do one level of `@each` watching.
 
 ### Defining Setters
 
-If you define a setter for your computed property, it'll work just like a normal
+If you define a setter for your computed property, it will work just like a normal
 setter:
 
 ```javascript
