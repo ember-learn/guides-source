@@ -9,4 +9,4 @@ For example, a common desire is to change the port that Ember CLI serves the app
 }
 ```
 
-For a full list of command line options, run `ember help`.
+For a full list of command line options, run `ember help`.  More information on configuring the Ember CLI can be found in the [CLI Guides](https://cli.emberjs.com/release/appendix/configuration/).
