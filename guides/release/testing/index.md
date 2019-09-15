@@ -67,7 +67,7 @@ test('should allow disabling the button', async function(assert) {
 
 When you use [Ember CLI](https://ember-cli.com/generators-and-blueprints) to generate an Ember "object" (e.g. component, model, service), it will create a test file with a setup that correctly addresses your testing framework and the [type of test that you should write](../testing/test-types).
 
-You can also use Ember CLI to create the test file separately from the object. For example, if you enter the following lines in the terminal,
+You can also use Ember CLI to create the test file separately from the object. For example, if you enter the following lines in the terminal:
 
 ```bash
 ember g model-test student

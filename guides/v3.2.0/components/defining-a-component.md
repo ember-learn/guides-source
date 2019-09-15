@@ -4,7 +4,7 @@ To define a component, run:
 ember generate component my-component-name
 ```
 
-Ember components are used to turn markup text and styles into reusable content. 
+Ember components are used to turn markup text and styles into reusable content.
 Components consist of two parts: a JavaScript component file that defines behavior, and its accompanying Handlebars template that defines the markup for the component's UI.
 
 Components must have at least one dash in their name. So `blog-post` is an acceptable
@@ -61,7 +61,7 @@ the Handlebars template as described above and use the component that is
 created.
 
 If you need to customize the behavior of the component you'll
-need to define a subclass of [`Component`](https://www.emberjs.com/api/ember/release/classes/Component). For example, you would
+need to define a subclass of [`Component`](https://api.emberjs.com/ember/3.2/classes/Component). For example, you would
 need a custom subclass if you wanted to change a component's element,
 respond to actions from the component's template, or manually make
 changes to the component's element using JavaScript.
@@ -74,7 +74,7 @@ file at `app/components/blog-post.js`. If your component was called
 
 ## Dynamically rendering a component
 
-The [`{{component}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/component?anchor=component) helper can be used to defer the selection of a component to
+The [`{{component}}`](https://api.emberjs.com/ember/3.2/classes/Ember.Templates.helpers/methods/component?anchor=component) helper can be used to defer the selection of a component to
 run time. The `{{my-component}}` syntax always renders the same component,
 while using the `{{component}}` helper allows choosing a component to render on
 the fly. This is useful in cases where you want to interact with different
@@ -84,7 +84,7 @@ allow you to keep different logic well separated.
 The first parameter of the helper is the name of a component to render, as a
 string. So `{{component 'blog-post'}}` is the same as using `{{blog-post}}`.
 
-The real value of [`{{component}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/component?anchor=component) comes from being able to dynamically pick
+The real value of [`{{component}}`](https://api.emberjs.com/ember/3.2/classes/Ember.Templates.helpers/methods/component?anchor=component) comes from being able to dynamically pick
 the component being rendered. Below is an example of using the helper as a
 means of choosing different components for displaying different kinds of posts:
 

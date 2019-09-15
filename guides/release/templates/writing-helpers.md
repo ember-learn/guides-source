@@ -102,7 +102,7 @@ export function myHelper(params) {
 
   console.log(arg1); // => "hello"
   console.log(arg2); // => "world"
-});
+};
 
 export default helper(myHelper);
 ```
@@ -116,7 +116,7 @@ import { helper } from '@ember/component/helper';
 export function myHelper([arg1, arg2]) {
   console.log(arg1); // => "hello"
   console.log(arg2); // => "world"
-});
+};
 
 export default helper(myHelper);
 ```
@@ -166,7 +166,7 @@ export function formatCurrency([value, ...rest], namedArgs) {
 
   if (cents.toString().length === 1) { cents = '0' + cents; }
   return `${sign}${dollars}.${cents}`;
-});
+};
 
 export default helper(formatCurrency);
 ```
@@ -185,7 +185,7 @@ export function myHelper(params, namedArgs) {
   console.log(namedArgs.option1); // => "hello"
   console.log(namedArgs.option2); // => "world"
   console.log(namedArgs.option3); // => "goodbye cruel world"
-});
+};
 
 export default helper(myHelper);
 ```
@@ -200,7 +200,7 @@ export function myHelper(params, { option1, option2, option3 }) {
   console.log(option1); // => "hello"
   console.log(option2); // => "world"
   console.log(option3); // => "goodbye cruel world"
-});
+};
 
 export default helper(myHelper);
 ```
@@ -249,9 +249,10 @@ based on the implementation of Ember's rendering engine (and this may
 change from time to time) helpers make a poor home for state.
 
 To create a class-based helper, rather than exporting a simple function, you
-should export a subclass of [`Helper`][1]. Helper classes must contain a
-[`compute`][2] method that behaves the same as the function passed to
-[`helper`][3].  In order to access a service, you must first inject it
+should export a subclass of [`Ember.Helper`](https://api.emberjs.com/ember/release/classes/Helper).
+Helper classes must contain a
+[`compute`](https://api.emberjs.com/ember/release/classes/Helper/methods/compute?anchor=compute) method that behaves the same as the function passed to
+[`Ember.Helper.helper`](https://api.emberjs.com/ember/release/functions/@ember%2Fcomponent%2Fhelper/helper).  In order to access a service, you must first inject it
 into the class-based helper.  Once added, you can call the service's methods or
 access its properties from within the `compute()` method.
 
@@ -315,7 +316,7 @@ import { helper } from '@ember/component/helper';
 
 export function makeBold([param, ...rest]) {
   return `<b>${param}</b>`;
-});
+};
 
 export default helper(makeBold);
 ```
@@ -335,7 +336,7 @@ Ember will escape the HTML tags, like this:
 This shows the literal string `<b>Hello world</b>` to the user, rather
 than the text in bold as you probably intended. We can tell Ember not to
 escape the return value (that is, that it is _safe_) by using the
-[`htmlSafe`](https://www.emberjs.com/api/ember/release/functions/@ember%2Ftemplate/htmlSafe) string utility:
+[`htmlSafe`](https://api.emberjs.com/ember/3.11/functions/@ember%2Ftemplate/htmlSafe) string utility:
 
 ```javascript {data-filename=app/helpers/make-bold.js}
 import { helper } from '@ember/component/helper';
@@ -343,13 +344,13 @@ import { htmlSafe } from '@ember/string';
 
 export function makeBold([param, ...rest]) {
   return htmlSafe(`<b>${param}</b>`);
-});
+};
 
 export default helper(makeBold);
 ```
 
 If you return a `SafeString` (a string that has been wrapped in a call to
-[`htmlSafe`](https://www.emberjs.com/api/ember/release/functions/@ember%2Ftemplate/htmlSafe)),
+[`htmlSafe`](https://www.emberjs.com/api/ember/release/functions/@ember%2Ftemplate/htmlSafe),
 Ember knows that you have vouched on its behalf that it contains no malicious HTML.
 
 However, note that in the above code we may have inadvertently
@@ -383,7 +384,7 @@ import { htmlSafe } from '@ember/string';
 export function makeBold([param, ...rest]) {
   let value = Ember.Handlebars.Utils.escapeExpression(param);
   return htmlSafe(`<b>${value}</b>`);
-});
+};
 
 export default helper(makeBold);
 ```

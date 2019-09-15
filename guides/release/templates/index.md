@@ -10,7 +10,8 @@ For any file in an Ember app that has an extension ending in `.hbs`, you can wri
 HTML is the language that browsers understand for laying out content on a web page.
 `.hbs` stands for Handlebars, the name of a tool that lets you write more than just HTML.
 
-Every Ember app has a file called `application.hbs`, and you can write regular HTML markup there or in any other `hbs` file:
+Every new Ember app has a file called `application.hbs`.
+You can write regular HTML markup there or in any other `hbs` file:
 
 ```handlebars {data-filename=app/templates/application.hbs data-update=false}
 <h1>Starting simple</h1>
@@ -74,7 +75,7 @@ A common customization developers make to `index.html` is adding a link to a CDN
 Here's an example:
 
 ```html {data-filename=app/index.html}
-<link integrity="" rel="stylesheet" href="https://my-font-cdn/something.css" />
+<link integrity="" rel="stylesheet" href="https://my-font-cdn/something.css" >
 ```
 
 ## Understanding a Template's context
@@ -118,14 +119,14 @@ Route example:
 
 ```handlebars {data-filename=app/templates/application.hbs data-update=true}
 
-{{! outlet determines where a child route's content
+<!-- outlet determines where a child route's content
 should render. Don't delete it until you know more
-about it! }}
+about it! -->
 <div>
   {{outlet}}
 </div>
 
-{{! One way to use a component within a template }}
+<!-- One way to use a component within a template -->
 <MyComponent />
 
 {{! A Handlebars comment. These comments, unlike, HTML
@@ -136,33 +137,33 @@ about it! }}
 Component example:
 
 ```handlebars {data-filename=app/components/templates/my-component.hbs data-update=true}
-{{! A property that is defined in a component's
-JavaScript file }}
+<!-- A property that is defined in a component's
+JavaScript file -->
 {{this.numberOfSquirrels}}
 
-{{! Some data passed down from a parent component
-or controller }}
+<!-- Some data passed down from a parent component
+or controller -->
 {{@weatherStatus}}
 
-{{! This button uses an event handler to make it interactive.
+<!-- This button uses an event handler to make it interactive.
 A method named `plantATree` is called when the button is
 clicked. `plantATree` comes from the JavaScript file
 associated with the template, like a Component or
-Controller }}
+Controller -->
 <button {{on "click" this.plantATree}}>
   More trees!
 <button>
 
-{{! Here's an example of template logic in action.
+<!-- Here's an example of template logic in action.
 If the `this.skyIsBlue` property is `true`, the text
-inside will be shown }}
+inside will be shown -->
 {{#if this.skyIsBlue}}
   If the skyIsBlue property is true, show this message
 {{/if}}
 
-{{! You can pass a whole block of markup and handlebars
+<!-- You can pass a whole block of markup and handlebars
 content from one component to another. yield is where
-the block shows up when the page is rendered }}
+the block shows up when the page is rendered -->
 {{yield}}
 ```
 
@@ -172,7 +173,7 @@ Lastly, it's important to know that arguments can be passed from one Component t
 <MyComponent @favoriteFramework={{this.favoriteFramework}} />
 ```
 
-To pass in arguments associated with a Route, define the property from within a [Controller](../controllers/). Learn more about passing data between Component templates [here](../components/arguments-and-attributes/).
+To pass in arguments associated with a Route, define the property from within a Controller. Learn more about passing data between Component templates [here](../components/arguments-and-attributes/).
 
 ## Helper functions
 
@@ -188,8 +189,8 @@ Define a function in `app/helpers/sum.js` to create a `sum` helper:
 import { helper as buildHelper } from '@ember/component/helper';
 
 export function sum(params) {
-  return params[0] + params[1];
-}
+  return params[0] + params[1]
+};
 
 export const helper = buildHelper(sum);
 ```

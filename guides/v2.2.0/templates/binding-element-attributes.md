@@ -59,8 +59,8 @@ renders the following HTML:
 
 To enable support for data attributes an attribute binding must be
 added to the component, e.g.
-[`Ember.LinkComponent`](http://emberjs.com/api/classes/Ember.LinkComponent.html)
-or [`Ember.TextField`](http://emberjs.com/api/classes/Ember.TextField.html)
+[`Ember.LinkComponent`](https://api.emberjs.com/classes/Ember.LinkComponent.html)
+or [`Ember.TextField`](https://api.emberjs.com/classes/Ember.TextField.html)
 for the specific attribute:
 
 ```javascript

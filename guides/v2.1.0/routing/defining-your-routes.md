@@ -4,7 +4,7 @@ templates, loading data, and otherwise setting up application state.
 
 ## Basic Routes
 
-The [map](http://emberjs.com/api/classes/Ember.Router.html#method_map) method
+The [map](https://api.emberjs.com/classes/Ember.Router.html#method_map) method
 of your Ember application's router can be invoked to define URL mappings. When
 calling `map`, you should pass a function that will be invoked with the value
 `this` set to an object which you can use to create routes.
@@ -222,5 +222,5 @@ rather than the `post/comments.hbs` template.
 To have your route do something beyond render a template with the same name, you'll
 need to create a route handler. The following guides will explore the different
 features of route handlers. For more information on routes, see the API documentation
-for [the router](http://emberjs.com/api/classes/Ember.Router.html) and for [route
-handlers](http://emberjs.com/api/classes/Ember.Route.html).
+for [the router](https://api.emberjs.com/classes/Ember.Router.html) and for [route
+handlers](https://api.emberjs.com/classes/Ember.Route.html).

@@ -224,11 +224,11 @@ To do this we will add code to our index route handler by implementing a route l
 called `beforeModel`.
 
 Each route handler has a set of "lifecycle hooks", which are functions that are invoked at specific times during the loading of a page.
-The [`beforeModel`](http://emberjs.com/api/classes/Ember.Route.html#method_beforeModel)
+The [`beforeModel`](https://api.emberjs.com/classes/Ember.Route.html#method_beforeModel)
 hook gets executed before the data gets fetched from the model hook, and before the page is rendered.
 See [the next section](../model-hook/) for an explanation of the model hook.
 
-In our index route handler, we'll call the [`replaceWith`](http://emberjs.com/api/classes/Ember.Route.html#method_replaceWith) function.
+In our index route handler, we'll call the [`replaceWith`](https://api.emberjs.com/classes/Ember.Route.html#method_replaceWith) function.
 The `replaceWith` function is similar to the route's `transitionTo` function,
 the difference being that `replaceWith` will replace the current URL in the browser's history,
 while `transitionTo` will add to the history.
@@ -325,11 +325,11 @@ such as visiting routes, filling in fields, clicking on links/buttons, and waiti
 
 Some of the helpers we'll use commonly are:
 
-* [`visit`](http://emberjs.com/api/classes/Ember.Test.html#method_visit) - loads a given URL
-* [`click`](http://emberjs.com/api/classes/Ember.Test.html#method_click) - pretends to be a user clicking on a specific part of the screen
+* [`visit`](https://api.emberjs.com/classes/Ember.Test.html#method_visit) - loads a given URL
+* [`click`](https://api.emberjs.com/classes/Ember.Test.html#method_click) - pretends to be a user clicking on a specific part of the screen
 * [`andThen`](../../testing/acceptance/#toc_wait-helpers) - waits for our previous commands to run before executing our function.
   In our test below, we want to wait for our page to load after `click` is called so that we can double-check that the new page has loaded
-* [`currentURL`](http://emberjs.com/api/classes/Ember.Test.html#method_currentURL) - returns the URL of the page we're currently on
+* [`currentURL`](https://api.emberjs.com/classes/Ember.Test.html#method_currentURL) - returns the URL of the page we're currently on
 
 ### Test visiting our About and Contact pages
 Now let's add code that simulates a visitor arriving on our homepage, clicking one of our links and then visiting a new page.

@@ -23,7 +23,7 @@ the `application.hbs`'s `{{outlet}}`.
 If you want to render a template other than the default one, implement the
 [`renderTemplate()`][1] hook:
 
-[1]: http://emberjs.com/api/classes/Ember.Route.html#method_renderTemplate
+[1]: https://api.emberjs.com/classes/Ember.Route.html#method_renderTemplate
 
 ```javascript {data-filename=app/routes/posts.js}
 export default Ember.Route.extend({

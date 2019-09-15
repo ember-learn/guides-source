@@ -13,6 +13,7 @@ autocomplete
 autotrack
 auto-rollup
 autoruns
+aXe
 backend
 backends
 beforeEach
@@ -27,6 +28,7 @@ cheatsheet
 Checkboxes
 checkboxes
 CoffeeScript
+ColorSafe
 componentized
 composable
 cron
@@ -47,8 +49,12 @@ draggable
 durations
 enumerables
 ember-a11y
+ember-a11y-refocus
+ember-a11y-testing
 ember-cli-deprecation-workflow
 ember-cli-cjs-transform
+ember-cli-document-title
+ember-cli-head
 ember-cli-mirage.
 ember-cli-tutorial-style
 ember-debug-handlers-polyfill
@@ -58,6 +64,7 @@ Evented
 facto
 falsy
 focusability
+FastPass
 focusable
 foundational
 frontend
@@ -138,6 +145,7 @@ runtime
 sandboxed
 scp
 selectable
+SEO
 serializer
 serializers
 singularize

@@ -118,15 +118,15 @@ Suppose you want to integrate your favorite date picker library into an Ember pr
 Typically, 3rd party JS/jQuery libraries require a DOM element to bind to.
 So, where is the best place to initialize and attach the library?
 
-After a component successfully renders its backing HTML element into the DOM, it will trigger its [`didInsertElement()`](https://www.emberjs.com/api/ember/release/classes/Component/events/didInsertElement?anchor=didInsertElement) hook.
+After a component successfully renders its backing HTML element into the DOM, it will trigger its [`didInsertElement()`](https://api.emberjs.com/ember/3.8/classes/Component/events/didInsertElement?anchor=didInsertElement) hook.
 
 Ember guarantees that, by the time `didInsertElement()` is called:
 
 1. The component's element has been both created and inserted into the
    DOM.
-2. The component's element is accessible via the component's [`this.element`](https://emberjs.com/api/ember/release/classes/Component/properties/element?anchor=element) property.
+2. The component's element is accessible via the component's [`this.element`](https://api.emberjs.com/ember/3.8/classes/Component/properties/element?anchor=element) property.
 
-The [`element`](https://emberjs.com/api/ember/release/classes/Component/properties/element?anchor=element) property allows you to access the component's DOM element.
+The [`element`](https://api.emberjs.com/ember/3.8/classes/Component/properties/element?anchor=element) property allows you to access the component's DOM element.
 For example, you can set an attribute using the `Element.setAttribute()` method:
 
 ```javascript {data-filename=app/components/profile-editor.js}
@@ -140,7 +140,7 @@ export default Component.extend({
 });
 ```
 
-The [`element`](https://emberjs.com/api/ember/release/classes/Component/properties/element?anchor=element) property will, by default, return a DOM object for the component's root element, but you can also target child elements within the component's template by passing a selector to `querySelector` or `querySelectorAll`:
+The [`element`](https://api.emberjs.com/ember/3.8/classes/Component/properties/element?anchor=element) property will, by default, return a DOM object for the component's root element, but you can also target child elements within the component's template by passing a selector to `querySelector` or `querySelectorAll`:
 
 ```javascript {data-filename=app/components/profile-editor.js}
 import Component from '@ember/component';
@@ -156,7 +156,7 @@ export default Component.extend({
 });
 ```
 
-Let's initialize our date picker by overriding the [`didInsertElement()`](https://www.emberjs.com/api/ember/release/classes/Component/events/didInsertElement?anchor=didInsertElement) method.
+Let's initialize our date picker by overriding the [`didInsertElement()`](https://api.emberjs.com/ember/3.8/classes/Component/events/didInsertElement?anchor=didInsertElement) method.
 
 Date picker libraries usually attach to an `<input>` element, so we will use `this.element.querySelector` to find an appropriate input within our component's template.
 
@@ -171,7 +171,7 @@ export default Component.extend({
 });
 ```
 
-[`didInsertElement()`](https://www.emberjs.com/api/ember/release/classes/Component/events/didInsertElement?anchor=didInsertElement) is also a good place to
+[`didInsertElement()`](https://api.emberjs.com/ember/3.8/classes/Component/events/didInsertElement?anchor=didInsertElement) is also a good place to
 attach event listeners. This is particularly useful for custom events or
 other browser events which do not have a [built-in event
 handler](./handling-events/#toc_event-names).
@@ -196,9 +196,9 @@ There are a few things to note about the `didInsertElement()` hook:
 
 - It is only triggered once when the component element is first rendered.
 - In cases where you have components nested inside other components, the child component will always receive the `didInsertElement()` call before its parent does.
-- Setting properties on the component in [`didInsertElement()`](https://www.emberjs.com/api/ember/release/classes/Component/events/didInsertElement?anchor=didInsertElement) triggers a re-render, and for performance reasons,
+- Setting properties on the component in [`didInsertElement()`](https://api.emberjs.com/ember/3.8/classes/Component/events/didInsertElement?anchor=didInsertElement) triggers a re-render, and for performance reasons,
   is not allowed.
-- While [`didInsertElement()`](https://www.emberjs.com/api/ember/release/classes/Component/events/didInsertElement?anchor=didInsertElement) is technically an event that can be listened for using `on()`, it is encouraged to override the default method itself,
+- While [`didInsertElement()`](https://api.emberjs.com/ember/3.8/classes/Component/events/didInsertElement?anchor=didInsertElement) is technically an event that can be listened for using `on()`, it is encouraged to override the default method itself,
   particularly when order of execution is important.
 
 
@@ -241,7 +241,7 @@ export default Component.extend({
       if (item.id === this.selectedItem.id) {
         item.isSelected = true;
       }
-    }); 
+    });
   },
 
   didRender() {
@@ -254,7 +254,7 @@ export default Component.extend({
 
 ### Detaching and Tearing Down Component Elements with `willDestroyElement`
 
-When a component detects that it is time to remove itself from the DOM, Ember will trigger the [`willDestroyElement()`](https://www.emberjs.com/api/ember/release/classes/Component/events/willDestroyElement?anchor=willDestroyElement) method,
+When a component detects that it is time to remove itself from the DOM, Ember will trigger the [`willDestroyElement()`](https://api.emberjs.com/ember/3.8/classes/Component/events/willDestroyElement?anchor=willDestroyElement) method,
 allowing for any teardown logic to be performed.
 
 Component teardown can be triggered by a number of different conditions.
@@ -274,7 +274,7 @@ import Component from '@ember/component';
 export default Component.extend({
   willDestroyElement() {
     this.element.removeEventListener('animationend');
-    this.datePicker.destroy();	
+    this.datePicker.destroy();
     this._super(...arguments);
   }
 });

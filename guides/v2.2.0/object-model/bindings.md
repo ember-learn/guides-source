@@ -6,7 +6,7 @@ developers face, computed properties are the appropriate solution.
 The easiest way to create a two-way binding is to use a [`computed.alias()`][1],
 that specifies the path to another object.
 
-[1]: http://emberjs.com/api/classes/Ember.computed.html#method_alias
+[1]: https://api.emberjs.com/classes/Ember.computed.html#method_alias
 
 ```javascript
 wife = Ember.Object.create({
@@ -36,14 +36,14 @@ overhead of syncing bindings when values are transient.
 ## One-Way Bindings
 
 A one-way binding only propagates changes in one direction, using
-[`computed.oneWay()`][1]. Often, one-way bindings are a performance 
+[`computed.oneWay()`][1]. Often, one-way bindings are a performance
 optimization and you can safely use a two-way binding (which are de facto one-way bindings if you only ever change one side).
 Sometimes one-way bindings are useful to achieve specific behaviour such as a
 default that is the same as another property but can be overridden (e.g. a
-shipping address that starts the same as a billing address but can later be 
+shipping address that starts the same as a billing address but can later be
 changed)
 
-[1]: http://emberjs.com/api/classes/Ember.computed.html#method_oneWay
+[1]: https://api.emberjs.com/classes/Ember.computed.html#method_oneWay
 
 ```javascript
 user = Ember.Object.create({

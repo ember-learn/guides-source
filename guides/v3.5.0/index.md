@@ -25,7 +25,7 @@ ordered from basic to advanced concepts.
 The Guides are intended to contain practical explanations of how to
 build Ember apps, focusing on the most widely-used features of Ember.js.
 For comprehensive documentation of every Ember feature and API, see the
-[Ember.js API documentation](http://emberjs.com/api/).
+[Ember.js API documentation](https://api.emberjs.com/).
 
 The Guides begin with an explanation of how to get started with Ember,
 followed by a tutorial on how to build your first Ember app.
@@ -42,7 +42,7 @@ To make the most out of the guides, you should have a working knowledge of:
 
 * **HTML, CSS, JavaScript** - the building blocks of web pages. You can find documentation of each of these technologies at the [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web).
 * **Promises** - the native way to deal with asynchrony in your JavaScript code. See the relevant [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) section.
-* **ES2015 modules** - you will better understand [Ember CLI's](https://ember-cli.com/) project structure and import paths if you are comfortable with [JavaScript Modules](http://jsmodules.io/).
+* **ES2015 modules** - you will better understand [Ember CLI's](https://ember-cli.com/) project structure and import paths if you are comfortable with [JavaScript Modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules).
 * **ES2015 syntax** - Ember CLI comes with Babel.js by default so you can
 take advantage of newer language features such as arrow functions, template
 strings, destructuring, and more. You can check the

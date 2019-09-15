@@ -259,6 +259,6 @@ helps both your testing and your application!
 
 ## Where can I find more information?
 
-Check out the [Ember.run](http://emberjs.com/api/classes/Ember.run.html) API
+Check out the [Ember.run](https://api.emberjs.com/classes/Ember.run.html) API
 documentation, as well as the [Backburner library](https://github.com/ebryn/backburner.js/)
 that powers the run loop.

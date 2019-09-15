@@ -32,7 +32,7 @@ and fire observers when any of the following events occurs:
 4. The `todos` property of the component is changed to a different array.
 
 Ember also provides a computed property macro
-[`computed.filterBy`](http://emberjs.com/api/classes/Ember.computed.html#method_filterBy),
+[`computed.filterBy`](https://api.emberjs.com/classes/Ember.computed.html#method_filterBy),
 which is a shorter way of expressing the above computed property:
 
 ```javascript {data-filename=app/components/todo-list.js}
@@ -109,10 +109,10 @@ export default Ember.Component.extend({
 Here, `indexOfSelectedTodo` depends on `todos.[]`, so it will update if we add an item
 to `todos`, but won't update if the value of `isDone` on a `todo` changes.
 
-Several of the [Ember.computed](http://emberjs.com/api/classes/Ember.computed.html) macros
+Several of the [Ember.computed](https://api.emberjs.com/classes/Ember.computed.html) macros
 utilize the `[]` key to implement common use-cases. For instance, to
 create a computed property that mapped properties from an array, you could use
-[Ember.computed.map](http://emberjs.com/api/classes/Ember.computed.html#method_map)
+[Ember.computed.map](https://api.emberjs.com/classes/Ember.computed.html#method_map)
 or build the computed property yourself:
 
 ```javascript

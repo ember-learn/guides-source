@@ -1,8 +1,7 @@
 In Ember Data, an Adapter determines how data is persisted to a
 backend data store. Things such as the backend host, URL format
- and headers used to talk to a REST API can all be configured
- in an adapter. You can even switch to storing data in local storage
- using a [local storage adapter](https://github.com/locks/ember-localstorage-adapter).
+and headers used to talk to a REST API can all be configured
+in an adapter.
 
 Ember Data's default Adapter has some built-in assumptions about
 how a [REST API should look](http://jsonapi.org/). If your backend conventions
@@ -51,17 +50,17 @@ export default class ApplicationAdapter extends JSONAPIAdapter {
 Ember Data comes with several built-in adapters.
 Feel free to use these adapters as a starting point for creating your own custom adapter.
 
-- [DS.Adapter](https://www.emberjs.com/api/ember-data/release/classes/DS.Adapter) is the basic adapter
+- [DS.Adapter](https://api.emberjs.com/ember-data/release/classes/Adapter) is the basic adapter
 with no functionality. It is generally a good starting point if you
 want to create an adapter that is radically different from the other
 Ember adapters.
 
-- [DS.JSONAPIAdapter](https://www.emberjs.com/api/ember-data/release/classes/DS.JSONAPIAdapter)
+- [DS.JSONAPIAdapter](https://api.emberjs.com/ember-data/release/classes/JSONAPIAdapter)
 The `JSONAPIAdapter` is the default adapter and follows JSON:API
 conventions to communicate with an HTTP server by transmitting JSON
 via XHR.
 
-- [DS.RESTAdapter](https://www.emberjs.com/api/ember-data/release/classes/DS.RESTAdapter)
+- [DS.RESTAdapter](https://api.emberjs.com/ember-data/release/classes/RESTAdapter)
 The `RESTAdapter` allows your store to communicate with an HTTP server
 by transmitting JSON via XHR. Before Ember Data 2.0 this adapter was the default.
 
@@ -69,7 +68,7 @@ by transmitting JSON via XHR. Before Ember Data 2.0 this adapter was the default
 ## Customizing the JSONAPIAdapter
 
 The
-[DS.JSONAPIAdapter](https://www.emberjs.com/api/ember-data/release/classes/DS.JSONAPIAdapter)
+[DS.JSONAPIAdapter](https://api.emberjs.com/ember-data/release/classes/JSONAPIAdapter)
 has a handful of hooks that are commonly used to extend it to work
 with non-standard backends.
 
@@ -157,7 +156,7 @@ export default class ApplicationAdapter extends JSONAPIAdapter {
 }
 ```
 
-Requests for `person` would now target `http://emberjs.com/api/1/people/1`.
+Requests for `person` would now target `https://api.emberjs.com/1/people/1`.
 
 
 #### Host Customization

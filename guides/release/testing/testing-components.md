@@ -232,10 +232,9 @@ export default class CommentFormComponent extends Component {
 ```
 
 ```handlebars {data-filename="app/templates/components/comment-form.hbs"}
-<form {{on "submit" this.submitComment}}>
-  <label>Comment:</label>
-  <Textarea @value={{this.comment}} />
-
+<form {{action "submitComment" on="submit"}}>
+  <label for="comment">Comment:</label>
+  <Textarea @id="comment" @value={{this.comment}} />
   <input class="comment-input" type="submit" value="Submit"/>
 </form>
 ```
@@ -458,7 +457,7 @@ The `settled` function itself returns a Promise that resolves once all async ope
 
 You can use `settled` as a helper in your tests directly and `await` it for all async behavior to settle deliberately.
 
-Imagine you have a typeahead component that uses [`Ember.run.debounce`](https://www.emberjs.com/api/ember/release/classes/@ember%2Frunloop/methods/debounce?anchor=debounce) to limit requests to the server, and you want to verify that results are displayed after typing a character.
+Imagine you have a typeahead component that uses [`Ember.run.debounce`](https://api.emberjs.com/ember/3.11/classes/@ember%2Frunloop/methods/debounce?anchor=debounce) to limit requests to the server, and you want to verify that results are displayed after typing a character.
 
 > You can follow along by generating your own component with `ember generate
 > component delayed-typeahead`.
@@ -478,11 +477,12 @@ export default class DelayedTypeaheadComponent extends Component {
 ```
 
 ```handlebars {data-filename="app/templates/components/delayed-typeahead.hbs"}
-<Input @value={{this.searchValue}} @key-up={{this.handleTyping}} />
+<label for="search">Search</label>
+<Input @id="search" @value={{this.searchValue}} @key-up={{this.handleTyping}} />
 <ul>
-{{#each this.results as |result|}}
-  <li class="result">{{result.name}}</li>
-{{/each}}
+  {{#each this.results as |result|}}
+    <li class="result">{{result.name}}</li>
+  {{/each}}
 </ul>
 ```
 

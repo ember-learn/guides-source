@@ -1,146 +1,438 @@
-Components are an essential building block in Ember applications. They allow
-developers to package presentation and behavior into a single unit and give it
-a name. You can think of them like defining your own custom HTML elements, like
-a custom `<input>` or `<select>` tag that has its own behavior, values, and
-events that you can hook into in your templates. However, they shouldn't be
-confused with [_web components_](https://www.webcomponents.org/), which are a
-browser based API that is similar, but not as powerful as Ember components.
+An Ember component consists of:
 
-Like we mentioned in the section on [Templates](../templates/handlebars-basics/), components
-can have both a template and a class definition, like so:
+1. A template
+2. An optional, backing class definition
 
-```handlebars {data-filename=app/templates/components/hello-button.hbs}
-<button {{on "click" this.sayHello}}>
-  {{@buttonText}}
-</button>
+The template is rendered wherever the component is used in your application. If your component has a backing class, an _instance_ of that class is created for every use of the component:
+
+```handlebars
+{{!--
+  In this example, two BlogPost class instances
+  are created, one for each component
+--}}
+
+<BlogPost />
+<BlogPost />
 ```
 
-```javascript {data-filename=app/components/hello-button.js}
-import Component from '@glimmer/component';
-import { action } from '@ember/object';
+Each class instance keeps track of your component's _state_. We'll talk more about state later on, but for now you can think of it as variables that are _internal_ to your component. This is different from _arguments_, which are variables that are _external_ to your component, and something we'll talk about in the next section.
 
-export default class HelloButton extends Component {
-  @action
-  sayHello() {
-    console.log('Hello, world!');
-  }
+## Component Folder Structure
+
+Ember can automatically find components based on the folder structure of your
+app.
+
+By default, Ember expects the following folder structure:
+
+- Component classes exist in `app/components/`
+- Component templates exist in `app/templates/components/`
+
+Ember looks for files that are the `kebab-case` version of your component name.
+For instance, if you use the `<BlogPost />` component, Ember will look for:
+
+- `app/components/blog-post.js`
+- `app/templates/components/blog-post.hbs`
+
+Subfolders are used to maintain **nested components**.
+
+- `app/components/blog-post.js`
+- `app/components/blog-post/comment.js`
+- `app/templates/components/blog-post.hbs`
+- `app/templates/components/blog-post/comment.hbs`
+
+Please check out the Ember API to [learn more about nested components](https://api.emberjs.com/ember/release/classes/Component).
+
+### Creating a Component
+
+You can use Ember CLI to easily create a component and maintain the folder structure:
+
+```bash
+ember generate component blog-post
+```
+
+This will create the default files for backing class, template, and integration test:
+
+```bash
+installing component
+  create app/components/blog-post.js
+  create app/templates/components/blog-post.hbs
+installing component-test
+  create tests/integration/components/blog-post-test.js
+```
+
+The JavaScript file (backing class) looks like:
+
+```javascript {data-filename=app/components/blog-post.js}
+import Component from '@glimmer/component';
+
+export default class BlogPost extends Component {
 }
 ```
 
-And they can be used in other templates:
+And the template file:
+
+```handlebars {data-filename=app/templates/components/blog-post.hbs}
+{{yield}}
+```
+
+You can use the integration test to test your component. This will be covered later in the guides.
+
+### Creating a Nested Component
+
+Again, you can use Ember CLI to create a nested component:
+
+```bash
+ember generate component blog-post/comment
+
+installing component
+  create app/components/blog-post/comment.js
+  create app/templates/components/blog-post/comment.hbs
+installing component-test
+  create tests/integration/components/blog-post/comment-test.js
+```
+
+## Component Templates
+
+Templates in components use the Handlebars templating language, as discussed in
+the [Templating](../../templates/handlebars-basics/) section. A component's template is the layout
+that is used when rendering the component. If we update the `BlogPost`'s
+template to be:
+
+```handlebars {data-filename=app/templates/components/blog-post.hbs}
+<h1>Fun Facts About Tomster</h1>
+<section>
+  1. He's a hamster!
+  2. But also a Tomster!
+</section>
+```
+
+And then use the component like so:
 
 ```handlebars {data-filename=app/templates/application.hbs}
-<HelloButton @buttonText="Say Hello!"/>
+<BlogPost />
 ```
 
-The syntax for using a component is similar to standard HTML elements, but uses
-`<CapitalCase>` for the name of the component instead of lower case. This
-_invocation_, as we call it, for the `HelloButton` component results in the
-following HTML output wherever it was used:
+Then the rendered HTML will be:
 
 ```html
-<button>
-  Say Hello!
-</button>
+<h1>Fun Facts About Tomster</h1>
+<section>
+  1. He's a hamster! 2. But also a Tomster!
+</section>
 ```
 
-And when we click on the button, it triggers the `sayHello` action, logging
-"Hello, world!" to the console. We can reuse this component as many times as we
-like, and we can even change the text via the value that we pass to it,
-`@buttonText`, which is known as an _argument_:
+This template doesn't have anything dynamic in it yet, so the output is exactly
+the same as the template. We can add dynamic values directly by using double
+curly syntax:
 
-```handlebars {data-filename=app/templates/application.hbs}
-<HelloButton @buttonText="Say Hello!"/>
-<HelloButton @buttonText="Di Hola!"/>
-<HelloButton @buttonText="Dis Bonjour!"/>
+```handlebars {data-filename=app/templates/components/blog-post.hbs}
+<h1>{{@title}}</h1>
+<section class="{{this.sectionClass}}">
+  {{@content}}
+</section>
 ```
 
-Invoking the component three times like this results in the following HTML:
+Here, we have two different kinds of dynamic values:
 
-```html
-<button>
-  Say Hello!
-</button>
-<button>
-  Di Hola!
-</button>
-<button>
-  Dis Bonjour!
-</button>
+- `{{@title}}` and `{{@content}}` refer to _arguments_. These are values that
+  are passed to the component where it is invoked, and are part of what makes a
+  component reusable and composable. You can pass different values to a
+  component's arguments each time you use it:
+
+  ```handlebars
+  <BlogPost @title="An Interview With Zoey" />
+  <BlogPost @title="Fun Facts About Tomster" />
+  ```
+
+  We'll talk more about arguments in [the next
+  section](../arguments-and-attributes/). All arguments are prefixed with the `@`
+  symbol, so whenever you see `{{@...` you know its referring to any argument.
+
+- `{{this.sectionClass}}` refers to a _property_ of the component _instance_.
+  Like we mentioned before, components that have class definitions also get a
+  class instance every time they are created. In a component template,
+  `{{this}}` always refers to that instance, and allows you to access methods,
+  fields, and other properties on the class instance.
+
+It's important to note that arguments and properties can be used
+interchangeably, so we could for instance have used an argument for the
+`sectionClass`, and a class property for title or post content:
+
+```handlebars {data-filename=app/templates/components/blog-post.hbs}
+<h1>{{this.title}}</h1>
+<section class="{{@sectionClass}}">
+  {{this.content}}
+</section>
 ```
 
-However, clicking on each button will still log the same "Hello, world!"
-message, since the click handler is defined in the _class_ of the component, and
-doesn't use any arguments. We'll talk more about arguments - and their
-counterpart, _actions_ - later on.
+For more details on where and how you can invoke values, read through the
+[section on templating](../../templates/handlebars-basics/).
+The reason you would choose an argument or property is based on how you expect
+to use the component, and whether or not the value should be based on internal
+logic within the component, or values passed to the component where it is used.
 
 You can also use template helpers, modifiers, and other components within your
 component template:
 
-```handlebars {data-filename=app/templates/components/hello-button.hbs}
-<button {{on "click" this.sayHello}}>
-  {{#if @iconType}}
-    <Icon @type={{@iconType}} />
-  {{/if}}
-  {{concat @buttonText "!"}}
-</button>
+```handlebars {data-filename=app/templates/components/blog-post.hbs}
+<h1>{{capitalize @title}}</h1>
+
+<BlogSection>
+  {{@content}}
+</BlogSection>
 ```
 
-This allows you to have some logic in your templates, and to nest components
-within each other, building up a component _tree_. The component tree in Ember
-applications is similar to the DOM tree in the HTML - in fact, you can even
-inspect it using the [Ember Inspector](../ember-inspector/).
+We now have:
 
-<!-- [TODO: Screenshot of the Component tree in the Ember Inspector] -->
+- The `{{capitalize}}` helper, which we're using to format the `@title`
+  argument.
+- The `<BlogSection>` component, replaces the `<section>` element and presumably
+  has similar semantics, and some custom functionality (the implementation of
+  this component is not included).
 
-Components can also have blocks and children, just like standard HTML elements.
-We could update the `HelloButton` component to render its button text from its
-block instead of the `@buttonText` argument, by adding the `{{yield}}` helper
-to its template where we want to place its block:
+Using helpers, modifiers, and components allows you to have some logic in your
+templates, and to nest components within each other, building up a component
+_tree_.
 
-```handlebars {data-filename=app/templates/components/hello-button.hbs}
-<button {{on "click" this.sayHello}}>
+Finally, component templates can use a special helper: `{{yield}}`. We'll cover
+this helper in more detail in the [Yields](../yields/) section later on, but this
+helper allows us to specify that users can pass the component a _block_ of
+children, and where those children should be placed. If we go back to our
+`BlogPost` component, we can add a yield like this:
+
+```handlebars {data-filename=app/templates/components/blog-post.hbs}
+<h1>{{@title}}</h1>
+<section class="{{this.sectionClass}}">
   {{yield}}
-</button>
+</section>
 ```
 
-And then invoking the component in block form, with the text we want to be
-rendered in the button:
+We can then invoke this component with a block, like this:
+
+```handlebars
+<BlogPost @title="Fun Facts About Tomster">
+  1. He's a hamster!
+  2. But also a Tomster!
+</BlogPost>
+```
+
+And this will place the block - the text that is in between `<BlogPost>` and
+`</BlogPost>` - where the yield was in the original component when rendered:
+
+```html
+<h1>Fun Facts About Tomster</h1>
+<section class="blog-post-section">
+  1. He's a hamster!
+  2. But also a Tomster!
+</section>
+```
+
+You can also include any valid HTML, template helpers, components, or other
+statements in a component block, and these will be inserted in the yield:
+
+```handlebars
+<BlogPost @title="Fun Facts About Tomster">
+  <ol>
+    <li>He's a hamster!</li>
+    <li>But also a Tomster!</li>
+  </ol>
+</BlogPost>
+```
+
+A final thing that component templates can have is `...attributes`, which can be
+placed on any HTML element or component within the component's template:
+
+```handlebars {data-filename=app/templates/components/blog-post.hbs}
+<h1>{{@title}}</h1>
+<section ...attributes class="{{this.sectionClass}}">
+  {{yield}}
+</section>
+```
+
+We'll talk more about attributes in [the next
+section](../arguments-and-attributes/). They are values that get applied directly
+to elements, and can be used to customize the HTML of a component. Unlike
+arguments, they are _not_ prefixed with the `@` symbol:
+
+```handlebars
+<BlogPost @title="Fun Facts About Tomster" class="featured">
+  <ol>
+    <li>He's a hamster!</li>
+    <li>But also a Tomster!</li>
+  </ol>
+</BlogPost>
+```
+
+### Template-only components
+
+Components can have a template _without_ a backing class definition. These types
+of components are known as Template-Only components, as well as presentational
+or functional components, and their major difference is that they do not have an
+_instance_ or any instance state.
+
+What this means in practice is that using properties in the template
+(e.g. `{{this.myProperty}}`) will result in an error. In a template-only component
+you can only use arguments (e.g. `{{@myArgument}}`).
+
+Template-Only components are useful for components that don't need to have their
+own state, such as components that focus on presentation and formatting of data.
+For example, you could make a Template-Only greeting component that receives the
+name of a friend and greets them:
+
+```handlebars {data-filename=app/templates/components/greeting.hbs}
+<p>Hello {{@friend}}</p>
+```
 
 ```handlebars {data-filename=app/templates/application.hbs}
-<HelloButton>
-  Say Hello!
-</HelloButton>
+<Greeting @friend="Toby" />
 ```
 
-This is the same as our first example, with the `HelloButton` button component
-_yielding_ to the block that was passed to it instead of being passed an
-argument. We can put anything inside of that block, including text, HTML, and
-other components. This is part of what makes components so powerful and
-composable as a whole.
+## Component Classes
 
-Components can also consist of _just_ a template definition. Components with
-just a template are known as Template-Only components, as well as presentational
-or functional components. The major difference is that _unlike_ components with
-a class, Template-Only components are _stateless_ - they are purely based on the
-_arguments_ that they are passed. This makes them much easier to reason about,
-and very useful in many circumstances.
+Component classes are defined using native JavaScript class syntax, which is
+discussed in detail in the [Working With
+JavaScript](../../working-with-javascript/native-classes) section of the guides.
+You can define a component class like so:
 
-In the following guides we'll talk about:
+```js {data-filename=app/components/blog-post.js}
+import Component from '@glimmer/component';
 
-- **Defining a component**, its file structure and its API and lifecycle hooks,
-  and how to derive state based on getters.
+export default class BlogPost extends Component {
+}
+```
 
-- **Arguments and Attributes**, how to think about them as parameters to your
-  component, and how to use them effectively.
+> You may notice that we're importing the component from `@glimmer` instead of
+> `@ember`. The Glimmer VM is the underlying rendering engine in Ember, and
+> Glimmer.js is a minimal component framework built on top of the Glimmer VM.
+> Although components are imported from this outside library, you don't need worry about learning Glimmer separately from Ember.
 
-- **Actions**, which are how you can add interactivity to your app.
+You can add methods and fields to the component, and then access them from the
+component's template. For instance, we could add the `sectionClass` property
+that is referenced in the template for the `BlogPost` component from earlier:
 
-- **Yields**, block invocation in components, and how to pass values to blocks.
+```handlebars {data-filename=app/templates/components/blog-post.hbs}
+<h1>{{@title}}</h1>
+<section ...attributes class="{{this.sectionClass}}">
+  {{yield}}
+</section>
+```
 
-- **Interacting with the DOM**, some libraries require direct DOM manipulation,
-  which Ember fully supports
+```js {data-filename=app/components/blog-post.js}
+import Component from '@glimmer/component';
 
-- **Contextual Components**, which can be used dynamically to pass components
-  around as values, and allow them to be invoked in different locations.
+export default class BlogPost extends Component {
+  sectionClass = 'blog-post-section';
+}
+```
 
+You can also use JavaScript accessors (_getters_ and _setters_) to derive values
+that need to be calculated. For instance, we could provide a default title to
+the blog post if one wasn't provided:
+
+```handlebars {data-filename=app/templates/components/blog-post.hbs}
+<h1>{{this.title}}</h1>
+<section ...attributes class="{{this.sectionClass}}">
+  {{yield}}
+</section>
+```
+
+```js {data-filename=app/components/blog-post.js}
+import Component from '@glimmer/component';
+
+export default class BlogPost extends Component {
+  get title() {
+    return this.args.title || 'Untitled';
+  }
+}
+```
+
+Notice that in the component class, we access arguments via `this.args`. These
+are the same values as they are in the templates, they're just accessed
+differently in the class.
+
+Methods can also be defined on the class and called from the template. These are
+known as _actions_, and are decorated with the `@action` decorator.
+
+```handlebars {data-filename=app/templates/components/blog-post.hbs}
+<h1>{{this.title}}</h1>
+<section ...attributes class="{{this.sectionClass}}">
+  {{yield}}
+
+  <button {{on "click" this.likePost}} class="like-button">
+    Like!
+  </button>
+</section>
+```
+
+```js {data-filename=app/components/blog-post.js}
+import Component from '@glimmer/component';
+import { action } from '@ember/object';
+
+export default class BlogPost extends Component {
+  get title() {
+    return this.args.title || 'Untitled';
+  }
+
+  @action
+  likePost() {
+    fetch('https://www.example.blog/likes', { method: 'POST' }).then(() => {
+      console.log('Successfully liked!');
+    });,
+  }
+}
+```
+
+Any method that you use in a template should be decorated with this decorator.
+It'll be covered in more detail in the section on [Actions and
+Events](../actions-and-events).
+
+### Component Hooks and Properties
+
+Components have a very small class signature:
+
+```js
+class GlimmerComponent {
+  isDestroying = false;
+  isDestroyed = false;
+
+  constructor(owner, args) {
+    this.args = args;
+  }
+
+  willDestroy() {}
+}
+```
+
+The component class has 3 properties:
+
+- `args`: The arguments that were passed to the component
+- `isDestroying`: A boolean flag that indicates that the component is in the
+  process of being torn down
+- `isDestroyed`: A boolean flag that indicates that the component has been
+  completely torn down.
+
+In addition to that, it has two methods:
+
+- The `constructor` which receives a couple of arguments, the `owner` which is
+  related to _dependency injection_ (something we'll cover later) and the
+  `args`, the initial arguments to the component. Generally, these should just
+  be passed directly to `super`, where they will be assigned, and then used
+  through injections and `this.args` respectively:
+
+  ```js
+  class Tooltip extends Component {
+    constructor(owner, args) {
+      super(owner, args);
+
+      if (this.args.fadeIn === true) {
+        // fade in logic here
+      }
+    }
+  }
+  ```
+
+- The `willDestroy` hook, which can be used to cleanup the component instance
+  when it's being removed.
+
+These are the only hooks and properties that exist on the component, and the
+only ones you need to worry about! Now, onto Arguments and Attributes.

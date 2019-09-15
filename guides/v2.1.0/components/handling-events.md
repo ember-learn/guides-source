@@ -117,4 +117,4 @@ HTML5 drag and drop events:
 * `dragEnd`
 * `drop`
 
-[customEvents]: http://emberjs.com/api/classes/Ember.Application.html#property_customEvents
+[customEvents]: https://api.emberjs.com/classes/Ember.Application.html#property_customEvents

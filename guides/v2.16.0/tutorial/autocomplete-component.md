@@ -105,7 +105,7 @@ The `filter` function is passed in by the calling object. This is a pattern know
 
 Notice the `then` function called on the result of calling the `filter` function.
 The code expects the `filter` function to return a promise.
-A [promise](https://www.emberjs.com/api/ember/2.16/classes/Promise) is a JavaScript object that represents the result of an asynchronous function.
+A [promise](https://api.emberjs.com/ember/2.16/classes/Promise) is a JavaScript object that represents the result of an asynchronous function.
 A promise may or may not be executed at the time you receive it.
 To account for this, it provides functions, like `then` that let you give it code it will run when it eventually does receive a result.
 
@@ -279,7 +279,7 @@ The `value` property represents the latest state of the input field.
 Therefore we now check that results match the input field, ensuring that results will stay in sync with the last thing the user has typed.
 
 While this approach will keep our results order consistent, there are other things to consider when dealing with multiple concurrent tasks,
-such as [limiting the number of requests made to the server](https://www.emberjs.com/api/ember/2.16/classes/@ember%2Frunloop/methods/debounce?anchor=debounce).
+such as [limiting the number of requests made to the server](https://api.emberjs.com/ember/2.16/classes/@ember%2Frunloop/methods/debounce?anchor=debounce).
 To create effective and robust autocomplete behavior for your applications,
 we recommend considering the [`ember-concurrency`](http://ember-concurrency.com/#/docs/introduction) addon project.
 
@@ -340,7 +340,7 @@ Our `filterByCity` function is going to pretend to be the action function for ou
 We are not testing the actual filtering of rentals in this test, since it is focused on only the capability of the component.
 We will test the full logic of filtering in acceptance tests, described in the next section.
 
-Since our component is expecting the filter process to be asynchronous, we return promises from our filter, using [Ember's RSVP library](https://www.emberjs.com/api/ember/2.16/modules/rsvp).
+Since our component is expecting the filter process to be asynchronous, we return promises from our filter, using [Ember's RSVP library](https://api.emberjs.com/ember/2.16/modules/rsvp).
 
 Next, we'll add the call to render the component to show the cities we've provided above.
 
@@ -499,8 +499,8 @@ test('should filter the list of rentals by city.', function (assert) {
 
 We introduce two new helpers into this test, `fillIn` and `keyEvent`.
 
-* The [`fillIn`](http://emberjs.com/api/classes/Ember.Test.html#method_fillIn) helper "fills in" the given text into an input field matching the given selector.
-* The [`keyEvent`](http://emberjs.com/api/classes/Ember.Test.html#method_keyEvent) helper sends a key stroke event to the UI, simulating the user typing a key.
+* The [`fillIn`](https://api.emberjs.com/classes/Ember.Test.html#method_fillIn) helper "fills in" the given text into an input field matching the given selector.
+* The [`keyEvent`](https://api.emberjs.com/classes/Ember.Test.html#method_keyEvent) helper sends a key stroke event to the UI, simulating the user typing a key.
 
 In `app/components/list-filter.js`, we have as the top-level element rendered by the component a class called `list-filter`.
 We locate the search input within the component using the selector `.list-filter input`,

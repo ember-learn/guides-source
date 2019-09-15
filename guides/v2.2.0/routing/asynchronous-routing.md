@@ -15,7 +15,7 @@ with the fulfilled value as its sole argument, and if the promise rejects,
 the rejection handler gets called with a reason for the rejection as its
 sole argument. For example:
 
-[1]: http://emberjs.com/api/classes/RSVP.Promise.html#method_then
+[1]: https://api.emberjs.com/classes/RSVP.Promise.html#method_then
 
 ```javascript
 var promise = fetchTheAnswer();
@@ -78,7 +78,7 @@ promise, and so on, until all destination route models have been
 resolved. The values passed to the [`setupController()`][1] hook for each route
 will be the fulfilled values from the promises.
 
-[1]: http://emberjs.com/api/classes/Ember.Route.html#method_setupController
+[1]: https://api.emberjs.com/classes/Ember.Route.html#method_setupController
 
 A basic example:
 

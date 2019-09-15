@@ -40,7 +40,7 @@ This will display the result of `this.foo.item1` when index is 1, and
 
 ### The `let` helper
 
-Now let's say your template is starting to get a bit cluttered and you now want
+Now let's say your template is starting to get a bit cluttered and you want
 to clean up the logic in your templates. This can be achieved with the `let`
 block helper.
 The [`{{let}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/let?anchor=let)
@@ -49,38 +49,38 @@ helper lets you create new bindings in your template.
 Say your template now looks like this:
 
 ```handlebars
-Welcome back {{concat (capitalize this.person.firstName) ' ' (capitalize this.person.lastName)}}
+Welcome back {{concat this.person.firstName ' ' this.person.lastName}}
 
 Account Details:
-First Name: {{capitalize this.person.firstName}}
-Last Name: {{capitalize this.person.lastName}}
+First Name: {{this.person.firstName}}
+Last Name: {{this.person.lastName}}
 ```
 
-As mentioned in the previous section we use the `concat` helper to render both
+As mentioned in the previous section, we use the `concat` helper to render both
 `person.firstName` and `person.lastName` in one go. But we also want to make
 sure that the names are capitalized. It gets a bit repetitive to keep writing
 `capitalize` and honestly, we might just forget it at some point. Thankfully, we
 can use the `{{let}}` helper to fix this:
 
 ```handlebars
-{{#let (capitalize this.person.firstName) (capitalize this.person.lastName)
-  as |firstName lastName|
+{{#let (concat this.person.firstName this.person.lastName)
+  as |fullName|
 }}
-  Welcome back {{concat firstName ' ' lastName}}
+  Welcome back {{fullName}}
 
   Account Details:
-  First Name: {{firstName}}
-  Last Name: {{lastName}}
+  First Name: {{this.person.firstName}}
+  Last Name: {{this.person.lastName}}
 {{/let}}
 ```
 
-Now, as long as your template is wrapped in the `let` helper you can access the
+Now, as long as your template is wrapped in the `let` helper, you can access the
 capitalized first name and last name as `firstName` and `lastName` instead of
 `(capitalize this.person.firstName)`.
 
 ### The `array` helper
 
-Using the [`{{array}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/array?anchor=array) helper,
+Using the [`{{array}}`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/array?anchor=array) helper,
 you can pass arrays directly from the template as an argument to your components.
 
 ```handlebars

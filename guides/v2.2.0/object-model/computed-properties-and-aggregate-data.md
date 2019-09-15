@@ -1,4 +1,4 @@
-Sometimes you have a computed property whose value depends on the properties of 
+Sometimes you have a computed property whose value depends on the properties of
 items in an array. For example, you may have an array of todo items, and want
 to calculate how many remain incomplete based on their `isDone` property.
 
@@ -19,8 +19,8 @@ export default Ember.Component.extend({
 });
 ```
 
-Here, the dependent key `todos.@each.isDone` instructs Ember.js to update bindings 
-and fire observers when any of the following events occurs: 
+Here, the dependent key `todos.@each.isDone` instructs Ember.js to update bindings
+and fire observers when any of the following events occurs:
 
 1. The `isDone` property of any of the objects in the `todos` array changes.
 2. An item is added to the `todos` array.
@@ -81,10 +81,10 @@ export default Ember.Component.extend({
 Here, `indexOfSelectedTodo` depends on `todos.[]`, so it will update if we add an item
 to `todos`, but won't update if the value of `isDone` on a `todo` changes.
 
-Several of the [Ember.computed](http://emberjs.com/api/classes/Ember.computed.html) macros 
+Several of the [Ember.computed](https://api.emberjs.com/classes/Ember.computed.html) macros
 utilize the `[]` key to implement common use-cases. For instance, to
-create a computed property that mapped properties from an array, you could use 
-[Ember.computed.map](http://emberjs.com/api/classes/Ember.computed.html#method_map)
+create a computed property that mapped properties from an array, you could use
+[Ember.computed.map](https://api.emberjs.com/classes/Ember.computed.html#method_map)
 or build the computed property yourself:
 
 ```javascript

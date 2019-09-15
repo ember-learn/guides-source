@@ -164,3 +164,7 @@ code[data-diff] .diff-insertion::before {
 .language-handlebars .namespace {
   opacity: 1;
 }
+
+.cta {
+  max-width: 100% !important;
+}

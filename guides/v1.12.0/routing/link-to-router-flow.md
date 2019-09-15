@@ -81,11 +81,11 @@ the model.
 The purpose of this phase is both to collect and resolve all model
 promises for newly entered routes (or routes with updated contexts),
 as well as allow for any of the
-[beforeModel](http://emberjs.com/api/classes/Ember.Route.html#method_beforeModel)
+[beforeModel](https://api.emberjs.com/classes/Ember.Route.html#method_beforeModel)
 /
-[model](http://emberjs.com/api/classes/Ember.Route.html#method_model)
+[model](https://api.emberjs.com/classes/Ember.Route.html#method_model)
 /
-[afterModel](http://emberjs.com/api/classes/Ember.Route.html#method_afterModel)
+[afterModel](https://api.emberjs.com/classes/Ember.Route.html#method_afterModel)
 hooks to reject elsewhere. If any of these hooks return a promise, the
 transition will pause until the promise resolves/rejects.
 
@@ -100,11 +100,11 @@ no errors).
 
 After the transition has been validated and any models are resolved
 ember enters the Sync exit/enter/setup Phase. Here Ember calls
-[exit](http://emberjs.com/api/classes/Ember.Route.html#method_exit) on the existing
+[exit](https://api.emberjs.com/classes/Ember.Route.html#method_exit) on the existing
 routes and
-[enter](http://emberjs.com/api/classes/Ember.Route.html#method_enter)
+[enter](https://api.emberjs.com/classes/Ember.Route.html#method_enter)
 /
-[setup](http://emberjs.com/api/classes/Ember.Route.html#method_setup)
+[setup](https://api.emberjs.com/classes/Ember.Route.html#method_setup)
 on the newly entered routes.
 
 <img src="/images/guides/routing/sync-phase.png" alt="Active route" class="highlight">
