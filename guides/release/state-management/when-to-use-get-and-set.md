@@ -17,11 +17,11 @@ In classic Ember, all property access had to go through these two methods. Over
 time, these rules have become less strict, and now they have been minimized to
 just a few cases. In general, in a modern Ember app, you shouldn't need to use
 them all that much. As long as you are marking your properties as `@tracked`,
-autotracking should automatically figure out what needs to change, and when.
+Ember should automatically figure out what needs to change, and when.
 
 However, there still are two cases where you _will_ need to use them:
 
-- When accessing and updating plain, undecorated properties on objects
+- When accessing and updating plain properties on objects without decorators
 - When using Ember's `ObjectProxy` class, or a class that implements the
   `unknownProperty` function (which allows objects to intercept `get` calls)
 
@@ -68,7 +68,7 @@ let profile = new Profile();
 set(profile.person, 'firstName', 'Christopher'); // triggers an update
 ```
 
-This is also useful for interoperating with older Ember code which has not yet
+This is also useful when working with older Ember code which has not yet
 been updated to tracked properties. If you're unsure, you can use `get` and
 `set` to be safe.
 
@@ -83,12 +83,12 @@ available in IE11. Since many Ember users must still support IE11, Ember's
 
 The use cases for proxies are generally cases where some data is very dynamic,
 and its not possible to know ahead of time how to create a class that is
-decorated. For instance, [ember-m3](https://github.com/hjdivad/ember-m3) is an
+decorated. For instance, [`ember-m3`](https://github.com/hjdivad/ember-m3) is an
 addon that allows Ember Data to work with dynamically generated models instead
 of models defined using `@attr`, `@hasMany`, and `@belongsTo`. This cuts back on
 code shipped to the browser, but it means that the models have to _dynamically_
 watch and update values. A proxy allows all accesses and updates to be
-intercepted, so M3 can do what it needs to do without predefined classes.
+intercepted, so `m3` can do what it needs to do without predefined classes.
 
 Most `ObjectProxy` classes have their own `get` and `set` method on them, like
 `EmberObject` classes. This means you can use them directly on the class
