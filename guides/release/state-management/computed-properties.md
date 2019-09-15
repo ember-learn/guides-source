@@ -1,4 +1,4 @@
-Computed properties are a pre-Octane concept in Ember. They serve the same
+Computed properties are a concept in Ember prior to Octane. They serve the same
 purpose as tracked properties and native getters, allowing users to respond to
 changes, derive state, and ultimately update the DOM. They also have built-in
 caching to prevent having to perform expensive calculations more than once.
@@ -7,7 +7,7 @@ While computed properties are no longer the recommended default, it's likely
 that you may encounter them in code that hasn't been updated to tracked
 properties just yet, either in existing applications or in the wider Ember
 ecosystem, so this guide exists both to describe how they work and can be used,
-and how they interoperate with tracked properties.
+and how they work with tracked properties.
 
 ## Computed Property Usage
 
@@ -336,12 +336,12 @@ const Person = EmberObject.extend({
 ## Computed Property Dependency Types
 
 You may have noticed that in the previous section, our computed properties were
-depending on normal, undecorated properties. This is possible in classic Ember
+depending on normal properties without decorators. This is possible in classic Ember
 if we always update those properties using Ember's `set` method, which is why
 all of the examples use it. Computed properties can depend on other types of
 values as well though. Altogether, the types of values are:
 
-- Plain, undecorated object properties
+- Plain, object properties without decorators
 - `@tracked` properties
 - `@computed` properties
 - `@dependentKeyCompat` getters
@@ -516,7 +516,7 @@ properties. When you have removed all computed properties that are depending on 
 getter, you can remove the `@dependentKeyCompat` decorator.
 
 In general, you should try to remove `@dependentKeyCompat` decorators as you convert your
-app. Making getters compatible with the explicit dependency system means that more computeds can be written to watch
+app. Making getters compatible with the explicit dependency system means that more computed properties can be written to watch
 those getters, and the situation can get _worse_ instead of better over time. If
 you need to write a service or class that needs to interop with modern and
 classic code for some time, try to _minimize_ the number of `@dependentKeyCompat` getters
