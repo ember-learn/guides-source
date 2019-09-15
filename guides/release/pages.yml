@@ -55,8 +55,12 @@
       url: "displaying-the-keys-in-an-object"
     - title: "Binding Element Attributes"
       url: "binding-element-attributes"
+    - title: Links
+      url: links
     - title: "Actions"
       url: "actions"
+    - title: Input Helpers
+      url: input-helpers
     - title: "Built-in Helpers"
       url: "built-in-helpers"
     - title: "Writing Helpers"
@@ -259,7 +263,21 @@
       url: "render-performance"
     - title: "Troubleshooting"
       url: "troubleshooting"
-
+- title: Accessibility
+  url: accessibility
+  pages:
+    - title: Intro to Accessibility
+      url: index
+    - title: Application Considerations
+      url: application-considerations
+    - title: Page Template Considerations
+      url: page-template-considerations
+    - title: Component Considerations
+      url: components
+    - title: Testing Considerations
+      url: testing
+    - title: Learning Resources 
+      url: learning-resources
 - title: "Contributing to Ember.js"
   url: "contributing"
   isAdvanced: true
