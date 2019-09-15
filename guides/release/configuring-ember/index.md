@@ -2,7 +2,7 @@ Ember CLI ships with support for managing your application's environment. The ru
 
 Three notable properties on the `ENV` object are:
 
-- `EmberENV` can be used to define Ember feature flags (see the [Feature Flags guide](../feature-flags/)) to be enabled at runtime.
+- `EmberENV` can be used to define Ember feature flags (see the [Feature Flags guide](./feature-flags/)) to be enabled at runtime.
 - `APP` can be used to pass flags or options to the app's `Application` instance.
 - `environment` by default contains which of the build environments was selected at build time (`development`, `test`, or `production`).
 

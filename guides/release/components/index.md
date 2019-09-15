@@ -94,7 +94,7 @@ installing component-test
 ## Component Templates
 
 Templates in components use the Handlebars templating language, as discussed in
-the [Templating](../../templates/handlebars-basics/) section. A component's template is the layout
+the [Templates](../templates/handlebars-basics/) section. A component's template is the layout
 that is used when rendering the component. If we update the `BlogPost`'s
 template to be:
 
@@ -145,7 +145,7 @@ Here, we have two different kinds of dynamic values:
   ```
 
   We'll talk more about arguments in [the next
-  section](../arguments-and-attributes/). All arguments are prefixed with the `@`
+  section](./arguments-and-attributes/). All arguments are prefixed with the `@`
   symbol, so whenever you see `{{@...` you know its referring to any argument.
 
 - `{{this.sectionClass}}` refers to a _property_ of the component _instance_.
@@ -166,7 +166,7 @@ interchangeably, so we could for instance have used an argument for the
 ```
 
 For more details on where and how you can invoke values, read through the
-[section on templating](../../templates/handlebars-basics/).
+[section on templating](../templates/handlebars-basics/).
 The reason you would choose an argument or property is based on how you expect
 to use the component, and whether or not the value should be based on internal
 logic within the component, or values passed to the component where it is used.
@@ -195,7 +195,7 @@ templates, and to nest components within each other, building up a component
 _tree_.
 
 Finally, component templates can use a special helper: `{{yield}}`. We'll cover
-this helper in more detail in the [Yields](../yields/) section later on, but this
+this helper in more detail in the [Yields](./yields/) section later on, but this
 helper allows us to specify that users can pass the component a _block_ of
 children, and where those children should be placed. If we go back to our
 `BlogPost` component, we can add a yield like this:
@@ -250,7 +250,7 @@ placed on any HTML element or component within the component's template:
 ```
 
 We'll talk more about attributes in [the next
-section](../arguments-and-attributes/). They are values that get applied directly
+section](./arguments-and-attributes/). They are values that get applied directly
 to elements, and can be used to customize the HTML of a component. Unlike
 arguments, they are _not_ prefixed with the `@` symbol:
 

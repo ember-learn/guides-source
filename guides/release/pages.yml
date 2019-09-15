@@ -78,10 +78,8 @@
 - title: "Components"
   url: "components"
   pages:
-    - title: "Component Basics"
-      url: "index"
     - title: "Defining a Component"
-      url: "defining-a-component"
+      url: "index"
     - title: "Arguments and Attributes"
       url: "arguments-and-attributes"
     - title: "Actions and Events"
@@ -170,7 +168,7 @@
   url: "addons-and-dependencies"
   pages:
     - title: "Managing Dependencies"
-      url: "managing-dependencies"
+      url: "index"
 - title: "Testing"
   url: "testing"
   pages:
