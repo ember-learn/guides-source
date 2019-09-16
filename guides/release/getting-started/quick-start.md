@@ -153,7 +153,7 @@ Open the `scientists` template and add the following code to loop through the ar
 <h2>List of Scientists</h2>
 
 <ul>
-  {{#each @model as |scientist|}}
+  {{#each this.model as |scientist|}}
     <li>{{scientist}}</li>
   {{/each}}
 </ul>
@@ -221,7 +221,7 @@ We're going to tell our component:
     <li>{{scientist}}</li>
   {{/each}}
 </ul>
-<PeopleList @title="List of Scientists" @people={{@model}} />
+<PeopleList @title="List of Scientists" @people={{this.model}} />
 ```
 
 Go back to your browser and you should see that the UI looks identical.
