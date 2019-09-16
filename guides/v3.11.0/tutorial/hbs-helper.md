@@ -105,7 +105,7 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-module('Integration | Helper | my-helper', function(hooks) {
+module('Integration | Helper | rental-property-type', function(hooks) {
   setupRenderingTest(hooks);
 
   // Replace this with your real tests.
