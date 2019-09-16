@@ -149,3 +149,97 @@ skip('skip this test', function(assert) {
     assert.ok(true)
 });
 ```
+
+### Stubs
+
+Unit tests are often testing methods that call other methods or work with other objects.
+A stub is a substitute method or object to be used during the test.
+This isolates a unit test to the actual method under test.
+
+#### Stubbing a method
+
+```javascript {data-filename=app/services/some-thing.js}
+import Service from '@ember/service';
+
+export default class SomeThingService extends Service {
+  someComplicatedOtherMethod(x) {
+    return x * 2;
+  }
+
+  testMethod(y) {
+    let z = this.someComplicatedOtherMethod(y);
+    return `Answer: ${z}`;
+  }
+}
+```
+
+`someComplicatedOtherMethod` might have complex behavior that you do not want failing your
+unit test for `testMethod`, because you know `testMethod` works otherwise.
+Isolating unit tests is best practice because the tests that are failing should directly
+point to the method that is failing, allowing you to quickly fix it rather than figuring
+out which method the error is in. In we stub the other method:
+
+```javascript {data-filename=tests/unit/services/some-thing-test.js}
+import { module, test } from 'qunit';
+import { setupTest } from 'ember-qunit';
+
+module('Unit | Service | some thing', function(hooks) {
+  setupTest(hooks);
+
+  test('testMethod should return result of someComplicatedOtherFunction', function(assert) {
+    const someThing = this.owner.lookup('service:some-thing');
+    const originalSomeComplicatedOtherMethod = someThing.someComplicatedOtherMethod;
+    someThing.someComplicatedOtherMethod = function() { return 4 };
+
+    assert.equal(someThing.testMethod(2), 'Answer 4', 'testMethod is working');
+
+    someThing.someComplicatedOtherMethod = originalSomeComplicatedOtherMethod;
+  });
+});
+```
+
+#### Stubbing an object
+
+You can also stub an object:
+
+```javascript {data-filename=app/services/employees.js}
+import Service from '@ember/service';
+
+export default class EmployeesService extends Service {
+  employees = []
+
+  hire(person) {
+    person.addJob();
+    this.employees.push(person);
+    return `${person.firstName} ${person.lastName} is now an employee`;
+  }
+}
+```
+
+Here, you need to pass a person object, which could be a complex class.
+The `addJob` method in `Person` could be complex as well, perhaps requiring another class.
+Instead, create a simple object and pass it instead.
+
+```javascript {data-filename=tests/unit/services/employees-test.js}
+import { module, test } from 'qunit';
+import { setupTest } from 'ember-qunit';
+
+module('Unit | Service | employees', function(hooks) {
+  setupTest(hooks);
+
+  test('hire adds a person to employees array', function(assert) {
+    const someThing = this.owner.lookup('service:some-thing');
+
+    class MockPerson {
+      firstName = 'John'
+      lastName = 'Smith'
+      addJob() {}
+    };
+
+    let person = new Person();
+
+    assert.equal(someThing.hire(person), 'John Smith is now an employee');
+    assert.equal(somthing.employees[0], person);
+  });
+});
+```
