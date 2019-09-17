@@ -96,7 +96,7 @@ now
 
 **Alternatively**, you can also use their integration for [GitHub](https://zeit.co/github) or [GitLab](https://zeit.co/gitlab).
 
-That’s all!
+That's all!
 
 Your site will deploy, and you will receive a link similar to the following: `https://ember.now-examples.now.sh`
 
