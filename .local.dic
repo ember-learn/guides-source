@@ -76,6 +76,7 @@ hashchange
 Hoc
 htmlbars
 htmlbars-inline-precompile
+IE11
 interop
 interoperable
 interoperability
@@ -132,6 +133,7 @@ relayout
 renderer
 repo
 rerender
+rerenders
 rerendering
 routable
 runtime
