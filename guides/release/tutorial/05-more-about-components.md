@@ -177,16 +177,16 @@ module('Integration | Component | rental/image', function(hooks) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
 
-    await render(hbs`{{rental/image}}`);
+    await render(hbs`<Rental::Image />`);
 
     assert.equal(this.element.textContent.trim(), '');
 
     // Template block usage:
   test('it renders the given image', async function(assert) {
     await render(hbs`
-      {{#rental/image}}
+      <Rental::Image>
         template block text
-      {{/rental/image}}
+      </Rental::Image>
       <Rental::Image
         src="/assets/images/teaching-tomster.png"
         alt="Teaching Tomster"
