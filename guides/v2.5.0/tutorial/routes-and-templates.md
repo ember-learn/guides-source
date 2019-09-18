@@ -224,7 +224,7 @@ In addition to providing button-style links in each route of our application, we
 
 When you create an Ember application with Ember CLI as we did, it generates a template called `application.hbs`.
 Anything you put in this template is shown for every page in the application.
-The default `application.hbs` file contains an `h2` tag with the text "Welcome to Ember", and an [`{{outlet}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_outlet).
+The default `application.hbs` file contains an `h2` tag with the text "Welcome to Ember", and an [`{{outlet}}`](https://api.emberjs.com/classes/Ember.Templates.helpers.html#method_outlet).
 The `{{outlet}}` defers to the router, which will render in its place the markup for the current route.
 
 ```handlebars {data-filename=app/templates/application.hbs}

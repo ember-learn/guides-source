@@ -39,7 +39,7 @@ Out of the box, your application will include:
 * A development server.
 * Template compilation.
 * JavaScript and CSS minification.
-* ES2015 features via Babel.
+* Modern features via Babel.
 
 By providing everything you need to build production-ready web applications in an integrated package,
 Ember makes starting new projects a breeze.

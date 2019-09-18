@@ -84,7 +84,7 @@ With this code, we have established the following behaviors:
 ### <LinkTo /> component
 
 The `<LinkTo />` component supports specifying query params using the `@query`
-argument, along with the `{{hash}}` helper
+argument, along with the `{{hash}}` helper:
 
 ```handlebars
 // Explicitly set target query params
@@ -257,13 +257,13 @@ This affects query param behavior in two ways:
    will become `/articles?page=2`.
 
 ### Sticky Query Param Values
+
 The query params are defined per route/controller. They are not global to the app. 
 For example, if a route `first-route` has a query param `firstParam` associated with it and we try to navigate to `first-route` by using `<LinkTo />` component from a different route `second-route`, like in the following handlebar template, the `firstParam` will be omitted.
 
 ```handlebars
 <LinkTo @route="first-route" @query={{hash secondParam="asc"}}>Sort</LinkTo>
 ```
-
 
 By default, query param values in Ember are "sticky",
 in that if you make changes to a query param and then leave and re-enter the route,
@@ -280,7 +280,7 @@ then given the following nav bar links:
 ```handlebars
 <LinkTo @route="team" @model="badgers">Badgers</LinkTo>
 <LinkTo @route="team" @model="bears">Bears</LinkTo>
-<LinkTo @route="team" @model="potatoes"}}Potatoes</LinkTo>
+<LinkTo @route="team" @model="potatoes">Potatoes</LinkTo>
 ```
 
 the generated links would be:

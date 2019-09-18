@@ -5,7 +5,7 @@ how your contribution should be formatted.
 ### Solution
 Cookbook-style guides contain recipes that guide a beginning programmer to a deeper knowledge of the subject
 by answering specific, "how-to" style questions. Cookbook recipes address more topics than
-[API documentation for a class](http://emberjs.com/api/classes/Ember.Application.html), but are smaller in
+[API documentation for a class](https://api.emberjs.com/classes/Ember.Application.html), but are smaller in
 scope than [a topic-based guide](http://emberjs.com/guides/).
 
 All recipes follow the same format:

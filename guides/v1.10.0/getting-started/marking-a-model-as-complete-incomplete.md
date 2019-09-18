@@ -37,7 +37,7 @@ Todos.TodoController = Ember.ObjectController.extend({
 });
 ```
 
-When called from the template to display the current `isCompleted` state of the todo, this property will [proxy that question](http://emberjs.com/api/classes/Ember.ObjectController.html) to its underlying `model`. When called with a value because a user has toggled the checkbox in the template, this property will set the `isCompleted` property of its `model` to the passed value (`true` or `false`), persist the model update, and return the passed value so the checkbox will display correctly.
+When called from the template to display the current `isCompleted` state of the todo, this property will [proxy that question](https://api.emberjs.com/classes/Ember.ObjectController.html) to its underlying `model`. When called with a value because a user has toggled the checkbox in the template, this property will set the `isCompleted` property of its `model` to the passed value (`true` or `false`), persist the model update, and return the passed value so the checkbox will display correctly.
 
 The `isCompleted` function is marked a [computed property](../../object-model/computed-properties/) whose value is dependent on the value of `model.isCompleted`.
 
@@ -60,7 +60,7 @@ In `index.html` include `js/controllers/todo_controller.js` as a dependency:
 ### Additional Resources
 
   * [Changes in this step in `diff` format](https://github.com/emberjs/quickstart-code-sample/commit/8d469c04c237f39a58903a3856409a2592cc18a9)
-  * [Ember.Checkbox API documentation](http://emberjs.com/api/classes/Ember.Checkbox.html)
+  * [Ember.Checkbox API documentation](https://api.emberjs.com/classes/Ember.Checkbox.html)
   * [Ember Controller Guide](../../controllers/)
   * [Computed Properties Guide](../../object-model/computed-properties/)
   * [Naming Conventions Guide](../../concepts/naming-conventions/)

@@ -1,6 +1,6 @@
 A route's JavaScript file is one of the best places in an app to make requests to an API.
 In this section of the guides, you'll learn how to use the
-[`model`](http://api.emberjs.com/ember/release/classes/Route/methods/model?anchor=model)
+[`model`](https://api.emberjs.com/ember/3.11/classes/Route/methods/model?anchor=model)
 method to fetch data by making a HTTP request, and render it in a route's `hbs` template, or pass it down to a component.
 
 For example, take this router:
@@ -62,6 +62,8 @@ Now that data can be used in the `favorite-posts` template:
   </div>
 {{/each}}
 ```
+
+Behind the scenes, what is happening is that the [route's controller](https://api.emberjs.com/ember/3.11/classes/Route/methods/model?anchor=setupController) receives the results of the model hook, and Ember makes the model hook results available to the template. Your app may not have a controller file for the route, but the behavior is the same regardless.
 
 Let's compare some examples using the model hook to make asynchronous HTTP requests to a server somewhere.
 
@@ -128,9 +130,9 @@ identifier, instead):
 ### Ember Data example
 
 Ember Data is a powerful (but optional) library included by default in new Ember apps.
-In the next example, we will use Ember Data's [`findAll`](https://api.emberjs.com/ember-data/release/classes/DS.Store/methods/findAll?anchor=findAll) method, which returns a Promise, and resolves with an array of [Ember Data records](../../models/).
+In the next example, we will use Ember Data's [`findAll`](https://api.emberjs.com/ember-data/release/classes/Store/methods/findAll?anchor=findAll) method, which returns a Promise, and resolves with an array of [Ember Data records](../../models/).
 
-_Note that Ember Data also has a feature called a [`Model`](https://api.emberjs.com/ember-data/release/classes/DS.Model), but it's a separate concept from a route's [`model`](https://api.emberjs.com/ember/release/classes/Route/methods/model?anchor=model) hook._
+_Note that Ember Data also has a feature called a [`Model`](https://api.emberjs.com/ember-data/release/classes/Model), but it's a separate concept from a route's [`model`](https://api.emberjs.com/ember/3.11/classes/Route/methods/model?anchor=model) hook._
 
 ```javascript {data-filename=app/routes/favorite-posts.js}
 import Route from '@ember/routing/route';
@@ -149,7 +151,7 @@ export default class FavoritePostsRoute extends Route {
 What should you do if you need the `model` to return the results of multiple API requests?
 
 Multiple models can be returned through an
-[RSVP.hash](https://www.emberjs.com/api/ember/release/classes/rsvp/methods/hash?anchor=hash).
+[RSVP.hash](https://api.emberjs.com/ember/3.11/classes/rsvp/methods/hash?anchor=hash).
 The `RSVP.hash` method takes an object containing multiple promises.
 If all of the promises resolve, the returned promise will resolve to an object that contains the results of each request. For example:
 
@@ -207,7 +209,7 @@ Router.map(function() {
 
 Whatever shows up in the URL at the `:post_id`, the dynamic segment, will be available in the params for the route's `model` hook:
 
-```javascript {data-filename=app/routes/photo.js}
+```javascript {data-filename=app/routes/post.js}
 import Route from '@ember/routing/route';
 
 export default class PhotoRoute extends Route {
@@ -228,35 +230,33 @@ model(params) {
 
 ### Linking to a dynamic segment
 
-There are two ways to link to a dynamic segment from an `.hbs` template using the
-[link-to](../../templates/links/)
-helper.
+There are two ways to link to a dynamic segment from an `.hbs` template using [`<LinkTo>`](../../templates/links/).
 Depending on which approach you use, it will affect whether that route's `model` hook is run.
 To learn how to link to a dynamic segment from within the JavaScript file, see the API documentation on
-[`transitionTo`](https://api.emberjs.com/ember/release/classes/RouterService/methods/transitionTo?anchor=transitionTo)
+[`transitionTo`](https://api.emberjs.com/ember/3.11/classes/RouterService/methods/transitionTo?anchor=transitionTo)
 instead.
 
-When you provide a string or number to the `link-to`, the dynamic segment's `model` hook will run when the app transitions to the new route.
+When you provide a string or number to the `<LinkTo>`, the dynamic segment's `model` hook will run when the app transitions to the new route.
 In this example, `photo.id` might have an id of `4`:
 
 ```handlebars
 {{#each @model as |photo|}}
-  {{#link-to "photo" photo.id}}
+  <LinkTo @route="photo" @model={{photo.id}}>
     link text to display
-  {{/link-to}}
+  </LinkTo>
 {{/each}}
 ```
 
 However, if you provide the entire model context, the model hook for that URL segment will _not_ be run.
-For this reason, many Ember developers choose to pass only ids to `{{link-to}}` so that the behavior is consistent.
+For this reason, many Ember developers choose to pass only ids to `<LinkTo>` so that the behavior is consistent.
 
 Here's what it looks like to pass the entire `photo` record:
 
 ```handlebars
 {{#each @model as |photo|}}
-  {{#link-to "photo" photo}}
+  <LinkTo @route="photo" @model={{photo}}>
     link text to display
-  {{/link-to}}
+  </LinkTo>
 {{/each}}
 ```
 
@@ -265,9 +265,9 @@ If you decide to pass the entire model, be sure to cover this behavior in your [
 If a route you are trying to link to has multiple dynamic segments, like `/photos/4/comments/18`, be sure to specify all the necessary information for each segment:
 
 ```handlebars
-{{#link-to "photos.photo.comments.comment" 4 18}}
+<LinkTo @route="photos.photo.comments.comment" @models={{array 4 18}}>
   link text to display
-{{/link-to}}
+</LinkTo>
 ```
 
 Routes without dynamic segments will always execute the model hook.

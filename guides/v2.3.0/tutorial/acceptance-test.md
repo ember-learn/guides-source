@@ -88,14 +88,14 @@ test('should list available rentals.', function (assert) {
 ```
 The test assumes that each rental element will have a class called `listing`.
 
-The [`visit`](http://emberjs.com/api/classes/Ember.Test.html#method_visit) helper loads the route specified for the given URL.
+The [`visit`](https://api.emberjs.com/classes/Ember.Test.html#method_visit) helper loads the route specified for the given URL.
 
 The [`andThen`](../../testing/acceptance/#toc_wait-helpers) helper waits for all previously called test helpers to complete before executing the function you provide it.
 In this case, we need to wait for the page to load after `visit`, so that we can assert that the listings are displayed.
 
 For the next two tests, we want to verify that clicking the about and contact page links successfully load the proper URLs.
-We'll use the [`click`](http://emberjs.com/api/classes/Ember.Test.html#method_click) helper to simulate a user clicking these links.
-After the new screen loads, we just verify that the new URL matches our expectation using the [`currentUrl`](http://emberjs.com/api/classes/Ember.Test.html#method_currentURL) helper.
+We'll use the [`click`](https://api.emberjs.com/classes/Ember.Test.html#method_click) helper to simulate a user clicking these links.
+After the new screen loads, we just verify that the new URL matches our expectation using the [`currentUrl`](https://api.emberjs.com/classes/Ember.Test.html#method_currentURL) helper.
 
 ```javascript {data-filename=/tests/acceptance/list-rentals-test.js}
 test('should link to information about the company.', function (assert) {

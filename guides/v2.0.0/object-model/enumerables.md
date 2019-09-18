@@ -1,6 +1,6 @@
 In Ember.js, an enumerable is any object that contains a number of child
 objects, and which allows you to work with those children using the
-[Ember.Enumerable](http://emberjs.com/api/classes/Ember.Enumerable.html) API. The most common
+[Ember.Enumerable](https://api.emberjs.com/classes/Ember.Enumerable.html) API. The most common
 enumerable in the majority of apps is the native JavaScript array, which
 Ember.js extends to conform to the enumerable interface.
 
@@ -46,7 +46,7 @@ in an observable fashion, you should use `myArray.get('firstObject')` and
 
 In the rest of this guide, we'll explore some of the most common enumerable
 conveniences. For the full list, please see the [Ember.Enumerable API
-reference documentation.](http://emberjs.com/api/classes/Ember.Enumerable.html)
+reference documentation.](https://api.emberjs.com/classes/Ember.Enumerable.html)
 
 ### Iterating Over an Enumerable
 

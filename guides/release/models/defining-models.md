@@ -25,11 +25,22 @@ export default class Person extends Model {
 After you have defined a model class, you can start [finding](../finding-records/)
 and [working with records](../creating-updating-and-deleting-records/) of that type.
 
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+        Ember Data models are normally setup using the singular form (which is why we use `person` instead of `people` here)
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
+  </div>
+</div>
 
 ## Defining Attributes
 
 The `person` model we generated earlier didn't have any attributes. Let's
-add first and last name, as well as the birthday, using [`attr`](https://www.emberjs.com/api/ember-data/release/classes/DS/methods/attr?anchor=attr):
+add first and last name, as well as the birthday, using [`attr`](https://api.emberjs.com/ember-data/release/classes/Model/properties/attributes?anchor=attributes):
 
 ```javascript {data-filename=app/models/person.js}
 import DS from 'ember-data';

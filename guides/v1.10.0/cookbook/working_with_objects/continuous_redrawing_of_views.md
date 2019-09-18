@@ -185,10 +185,10 @@ The source code:
 
 Further reading:
 
-* [Ember Object](http://emberjs.com/api/classes/Ember.Object.html)
-* [Ember Application Initializers](http://emberjs.com/api/classes/Ember.Application.html#toc_initializers)
-* [Method Inject](http://emberjs.com/api/classes/Ember.Application.html#method_inject)
+* [Ember Object](https://api.emberjs.com/classes/Ember.Object.html)
+* [Ember Application Initializers](https://api.emberjs.com/classes/Ember.Application.html#toc_initializers)
+* [Method Inject](https://api.emberjs.com/classes/Ember.Application.html#method_inject)
 * [Conditionals](../../../templates/conditionals/)
 * [Writing Helpers](../../../templates/writing-helpers/)
 * [Defining a Component](../../../components/defining-a-component/)
-* [Ember Array Controller](http://emberjs.com/api/classes/Ember.ArrayController.html)
+* [Ember Array Controller](https://api.emberjs.com/classes/Ember.ArrayController.html)

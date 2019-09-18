@@ -153,4 +153,4 @@ Always check to see that the element you are adding an action to is interactive,
 As a rule of thumb, if you find yourself adding an action an `<a>` tag, you should turn it into a `<button>` instead.
 
 For more information about building accessible apps in Ember, see the
-[Accessibility Guide](../../reference/accessibility-guide/).
+[Accessibility Guide](../../accessibility/).

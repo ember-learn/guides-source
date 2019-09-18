@@ -1,6 +1,6 @@
 An [`Ember.Service`][1] is a long-lived Ember object that can be made available in different parts of your application.
 
-[1]: http://emberjs.com/api/classes/Ember.Service.html
+[1]: https://api.emberjs.com/classes/Ember.Service.html
 
 Services are useful for features that require shared state or persistent connections. Example uses of services might
 include:
@@ -24,7 +24,7 @@ ember generate service shopping-cart
 
 Services must extend the [`Ember.Service`][1] base class:
 
-[1]: http://emberjs.com/api/classes/Ember.Service.html
+[1]: https://api.emberjs.com/classes/Ember.Service.html
 
 ```javascript {data-filename=app/services/shopping-cart.js}
 export default Ember.Service.extend({

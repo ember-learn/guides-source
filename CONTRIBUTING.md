@@ -92,27 +92,27 @@ In code samples:
 
 \`\`\`
 
-* All fenced code blocks should begin with a language code supported by [prism.js](http://prismjs.com/) so that they get highlighted properly when rendered. Here are some frequently used language codes,
+* All fenced code blocks should begin with a language code supported by [prism.js](http://prismjs.com/) so that they get highlighted properly when rendered. Here are some frequently used language codes:
   * bash
   * javascript
   * css
   * handlebars
 
-When linking to topics from guide md files:
+When linking to topics from guide `.md` files:
 
 * use relative links when referencing a topic.
   * Incorrect: `https://guides.emberjs.com/release/routing/query-params/`
   * Correct: `../routing/query-params`
 
-* to reference a topic when you are in `index.md`, you only have to go up one level to reference another topics md file, `../main-topic/sub-topic`.
+* to reference a topic when you are in `index.md`, you only have to go up one level to reference another topics `.md` file, `../main-topic/sub-topic`.
   * example from `index.md` to `routing/query-params.md`:
     * `../routing/query-params`
 
-* to reference a md file in a different main topic to the one you are in, you need to go two levels up, `../../main-topic/sub-topic`.
+* to reference a `.md` file in a different main topic to the one you are in, you need to go two levels up, `../../main-topic/sub-topic`.
   * example from `routing/query-params.md` to `components/block-params.md`:
     * `../../components/block-params`
 
-* to reference a md file within the topic you are currently in, you need to go up one level, `../sub-topic`.
+* to reference a `.md` file within the topic you are currently in, you need to go up one level, `../sub-topic`.
   * example from `routing/query-params.md` to `routing/redirection.md`:
     * `../redirection`
 

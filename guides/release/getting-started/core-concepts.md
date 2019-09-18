@@ -124,7 +124,7 @@ Some examples of a hook are:
 * [Component Lifecycle Hooks](../../components/glimmer-components-dom/): the [`willRender()`](https://emberjs.com/api/ember/release/classes/Component/methods/willRender?anchor=willRender/) hook gets called before each time a component renders
 * Route Hooks: the [`model()`](https://www.emberjs.com/api/ember/release/classes/Route/methods/model?anchor=model/) hook is used to load the model on a route
 
-In the following example, the [`didRender()`](https://emberjs.com/api/ember/release/classes/Component/methods?anchor=didRender/) component lifecycle hook is used to log "I rendered!" to the console after each time the component is rendered.
+In the following example, the [`didRender()`](https://api.emberjs.com/ember/3.11/classes/Component/methods?anchor=didRender/) component lifecycle hook is used to log "I rendered!" to the console after each time the component is rendered.
 
 ```javascript {data-filename=/app/components/foo-did-render-example.js}
 import Component from '@ember/component';

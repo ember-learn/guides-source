@@ -3,7 +3,7 @@ change application state. For example, imagine that you have a template
 that shows a blog title, and supports expanding the post to show the body.
 
 If you add the
-[`{{action}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/action?anchor=action)
+[`{{action}}`](https://api.emberjs.com/ember/3.8/classes/Ember.Templates.helpers/methods/action?anchor=action)
 helper to any HTML DOM element, when a user clicks the element, the named event
 will be sent to the template's corresponding component or controller.
 
@@ -62,7 +62,7 @@ export default Component.extend({
 ## Specifying the Type of Event
 
 By default, the
-[`{{action}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/action?anchor=action)
+[`{{action}}`](https://api.emberjs.com/ember/3.8/classes/Ember.Templates.helpers/methods/action?anchor=action)
 helper listens for click events and triggers the action when the user clicks
 on the element.
 
@@ -116,7 +116,7 @@ You can specify `preventDefault=true` and this reverts to the standard Ember fun
 ## Modifying the action's first parameter
 
 If a `value` option for the
-[`{{action}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/action?anchor=action)
+[`{{action}}`](https://api.emberjs.com/ember/3.8/classes/Ember.Templates.helpers/methods/action?anchor=action)
 helper is specified, its value will be considered a property path that will
 be read off of the first parameter of the action. This comes very handy with
 event listeners and enables to work with one-way bindings.
@@ -157,7 +157,7 @@ Note that while Ember currently permits you to add an action to any DOM element,
 
 For example, if an action is attached to an `a` link
 without an `href` attribute, or to a `div`, some browsers won't execute the
-associated function. 
+associated function.
 
 Always check to see that the element you are adding an action to is interactive, according to
 [web accessibility and browser standards](https://developer.mozilla.org/en-US/docs/Web/HTML/Element#Interactive_elements).

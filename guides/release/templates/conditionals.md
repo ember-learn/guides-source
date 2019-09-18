@@ -1,4 +1,4 @@
-Oftentimes, you'll want to conditionally show different templates based on a
+Often, you'll want to conditionally show different templates based on a
 value in your JavaScript. Ember's templates have statements like
 [`if`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/if?anchor=if)
 and [`unless`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/if?anchor=unless)
@@ -82,7 +82,7 @@ invocation is rendered:
 ```
 
 The inverse of `{{if}}` is
-[`{{unless}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/if?anchor=unless),
+[`{{unless}}`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/if?anchor=unless),
 which can be used in the same three styles of invocation. For example, this
 template only shows an amount due when the user has not paid:
 
