@@ -54,6 +54,12 @@ npm: Installed dependencies
 Successfully initialized git.
 ```
 
+After creating the repository from the [ember-cli](https://ember-cli.com/) `new` command, navigate into it.
+
+```shell
+$ cd super-rentals
+```
+
 ```shell
 $ ember server
 Could not start watchman
