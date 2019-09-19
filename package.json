@@ -28,7 +28,9 @@
     "start": "ember serve",
     "test": "npm run test:node && npm run test:ember",
     "test:ember": "ember test",
-    "test:node": "mocha node-tests"
+    "test:node": "mocha node-tests --exclude node-tests/local/**",
+		"test:node-local": "mocha node-tests/local",
+    "test:node-local-exclude-api-urls": "FOLLOW_API_URLS=false npm run test:node-local"
   },
   "devDependencies": {
     "@ember/jquery": "^0.6.1",
@@ -74,6 +76,7 @@
     "lodash": "^4.17.15",
     "markdown-link-extractor": "^1.1.1",
     "mocha": "^6.2.0",
+    "node-fetch": "^2.6.0",
     "prember": "^1.0.3",
     "qunit-dom": "^0.9.0",
     "remark-cli": "^7.0.0",
