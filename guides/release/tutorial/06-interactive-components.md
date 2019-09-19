@@ -8,20 +8,12 @@ Here, we are going to do just that! We are going to implement the "View Larger" 
 
 In other words, we want a way to _toggle_ the image between one of the two _states_. In order to do that, we need a way for the component to store two possible states, and to be aware which states it is currently in.
 
-Ember optionally allows us to associate JavaScript code with a component for exactly this purpose. We can add a JavaScript file for our `<Rental::Image>` component by [~~running the `component-class` generator~~](https://github.com/emberjs/ember.js/pull/18359) running the `component` generator again with the `-gc` flag:
-
-<!-- TODO: https://github.com/emberjs/ember.js/pull/18359 -->
+Ember optionally allows us to associate JavaScript code with a component for exactly this purpose. We can add a JavaScript file for our `<Rental::Image>` component by running the `component-class` generator:
 
 ```shell
-$ ember generate component rental/image -gc
-installing component
-? Overwrite app/components/rental/image.hbs? (yndH) [52D[52C[2K[G? Overwrite app/components/rental/image.hbs? (yndH) n
->> No, skip[1A[11D[53C[1B[2K[1A[2K[G? Overwrite app/components/rental/image.hbs? (yndH) n
->> No, skip[1A[11D[53C[1B[2K[1A[2K[G? Overwrite app/components/rental/image.hbs? No, skip[53D[53C
+$ ember generate component-class rental/image
+installing component-class
   create app/components/rental/image.js
-  skip app/components/rental/image.hbs
-installing component-test
-? Overwrite tests/integration/components/rental/image-test.js? (yndH) [70D[70C
 ```
 
 This generated a JavaScript file with the same name as our component's template at `app/components/rentals/image.js`. It contains a _JavaScript class_, _inheriting_ from `@glimmer/component`.
