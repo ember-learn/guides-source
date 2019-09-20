@@ -1,8 +1,6 @@
 <!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/src/chapters/01-orientation.md -->
 
-<!-- TODO: fill this in -->
-
-Install Ember using npm:
+You can install the latest version of _Ember CLI_ by running the following command. If you've already done this by following the [Quick Start](../../getting-started/quick-start/) guide, feel free to skip ahead!
 
 ```shell
 $ npm install -g ember-cli
@@ -19,7 +17,7 @@ os: linux x64
 
 If a version number is shown, you're ready to go.
 
-<!-- TODO: fill this in -->
+We can create a new project using Ember CLI's `new` command. It follows the pattern `ember new <project-name>`. In our case, the project name would be `super-rentals`:
 
 ```shell
 $ ember new super-rentals -b @ember/octane-app-blueprint
@@ -54,11 +52,56 @@ npm: Installed dependencies
 Successfully initialized git.
 ```
 
-After creating the repository from the [ember-cli](https://ember-cli.com/) `new` command, navigate into it.
+This should have created a new folder for us called `super-rentals`. We can navigate into it using the `cd` command.
 
 ```shell
 $ cd super-rentals
 ```
+
+For the rest of the tutorial, all commands should be run within the `super-rentals` folder. This folder has the following structure:
+
+```plain
+super-rentals
+├── app
+│   ├── styles
+│   │   └── app.css
+│   ├── templates
+│   │   └── application.hbs
+│   ├── app.js
+│   ├── index.html
+│   ├── resolver.js
+│   └── router.js
+├── config
+│   ├── environment.js
+│   ├── optional-features.json
+│   └── targets.js
+├── public
+│   └── robots.txt
+├── tests
+│   ├── index.html
+│   └── test-helper.js
+├── tmp
+├── .editorconfig
+├── ember-cli-build.js
+├── .ember-cli.js
+├── .eslintignore
+├── .eslintrc.js
+├── .gitignore
+├── jsconfig.json
+├── package.json
+├── README.md
+├── .template-lintrc.js
+├── testem.js
+├── .travis.yml
+├── .watchmanconfig
+└── yarn.lock
+
+7 directories, 26 files
+```
+
+We will get to know the purposes of these files and folders as we go. For now, just know we will spend most of the time working within the `app` folder.
+
+Ember CLI comes with a lot of different commands for a variety of development tasks, such as the `ember new` command that we saw earlier. It also comes with a _development server_, which we can launch with the `ember server` command:
 
 ```shell
 $ ember server
@@ -69,13 +112,45 @@ building...
 Build successful (9761ms) – Serving on http://localhost:4200/
 ```
 
+The development server is responsible for compiling our app and serving it to the browsers. It may take a while to boot up. Once it's up and running, open your favorite browser and head to <http://localhost:4200>. You should see the following welcome page:
+
 <img src="/screenshots/01-orientation/welcome@2x.png" alt="Welcome to Ember!" width="1024" height="596">
 
-<!-- TODO: explain ember server, etc. -->
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+        <p>The <code>localhost</code> address in URL means that you can only access the development server from your local machine. If you would like to share your work to the world, you will have to <em>deploy</em> your app to the public Internet. Don't worry, we will cover that in Part 2 of the tutorial.</p>
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
+  </div>
+</div>
+
+You can exit out of the development server at any time by pressing `Ctrl + C` on your keyboard in the terminal where the server is running. We recommend having two terminal windows open: one to run the server in background, another to type Ember CLI commands.
+
+The development server has a feature called _live reload_, which monitors your app for file changes, automatically re-compiles everything, and refreshes any open browser pages. This comes in really handy during development, so let's give that a try!
+
+As text on the welcome page pointed out, the source code for the page is located in `app/templates/application.hbs`. Let's try to edit that file and replace it with our own content:
+
+```handlebars { data-filename="app/templates/application.hbs" data-diff="-1,-2,-3,-4,-5,-6,+7" }
+{{!-- The following component displays Ember's default welcome message. --}}
+<WelcomePage />
+{{!-- Feel free to remove this! --}}
+
+{{outlet}}
+
+Hello World!!!
+```
+
+Soon after saving the file, your browser should automatically refresh and render our greetings to the world. Neat!
+
+<img src="/screenshots/01-orientation/hello-world@2x.png" alt="Hello World!!!" width="1024" height="250">
 
 When you are done experimenting, go ahead and delete the `app/templates/application.hbs` file. We won't be needing this for a while, so let's start afresh. We can add it back later when we have a need for it.
 
-If you still have your browser tab open, your tab should automatically reload into a blank page as you delete the file. This reflects the fact that we no longer have an application template in our app.
+Again, if you still have your browser tab open, your tab will automatically re-render a blank page as soon as you delete the file. This reflects the fact that we no longer have an application template in our app.
 
 Create a `app/templates/index.hbs` file and paste the following markup.
 

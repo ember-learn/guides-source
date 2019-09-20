@@ -181,7 +181,7 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import { render, find } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 import ENV from 'super-rentals/config/environment';
 
 module('Integration | Component | map', function(hooks) {
@@ -316,7 +316,7 @@ For good measures, we will also add an assertion to the `<Rental>` tests to make
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Component | rental', function(hooks) {
   setupRenderingTest(hooks);
@@ -405,7 +405,7 @@ Just to be sure, we can add a test for this behavior:
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render, find } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 import ENV from 'super-rentals/config/environment';
 
 module('Integration | Component | map', function(hooks) {

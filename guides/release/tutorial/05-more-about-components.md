@@ -45,7 +45,7 @@ Then, we will write a test to ensure all of the details are present. We will rep
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Component | rental', function(hooks) {
   setupRenderingTest(hooks);
@@ -166,13 +166,11 @@ In general, it is a good idea to add `...attributes` to the primary element in y
 
 Let's write a test for our new component!
 
-<!-- TODO: https://github.com/emberjs/ember.js/issues/18242 -->
-
 ```js { data-filename="tests/integration/components/rental/image-test.js" data-diff="-9,-10,-11,-12,-13,-14,-15,-16,-17,+18,-20,-21,-22,+23,+24,+25,+26,-29,+30,+31,+32" }
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Component | rental/image', function(hooks) {
   setupRenderingTest(hooks);
@@ -211,7 +209,7 @@ Finally, we should also update the tests for the `<Rental>` component to confirm
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Component | rental', function(hooks) {
   setupRenderingTest(hooks);
