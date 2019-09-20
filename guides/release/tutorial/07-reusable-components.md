@@ -98,10 +98,8 @@ Build successful (13286ms) – Serving on http://localhost:4200/
 
 With the Mapbox API key in place, let's generate a new component for our map.
 
-<!-- TODO: https://github.com/emberjs/ember.js/pull/18359 (use --with-component-class) -->
-
 ```shell
-$ ember generate component map -gc
+$ ember generate component map --with-component-class
 installing component
   create app/components/map.js
   create app/components/map.hbs
@@ -109,16 +107,16 @@ installing component-test
   create tests/integration/components/map-test.js
 ```
 
-Since not every component will necessarily have some defined behavior associated with it, the component generator does not generate a JavaScript file for us by default. As we saw earlier, we can always [~~use the `component-class` generator~~](https://github.com/emberjs/ember.js/pull/18359) run the generator again to add a JavaScript file for a component later on.
+Since not every component will necessarily have some defined behavior associated with it, the component generator does not generate a JavaScript file for us by default. As we saw earlier, we can always use the `component-class` generator to add a JavaScript file for a component later on.
 
-However, in the case of our `<Map>` component, we are pretty sure that we are going to need a JavaScript file for some behavior that we have yet to define! To save a step later, we can pass the [~~`--with-component-class`~~](https://github.com/emberjs/ember.js/pull/18359) `-gc` flag to the component generator so that we have everything we need from the get-go.
+However, in the case of our `<Map>` component, we are pretty sure that we are going to need a JavaScript file for some behavior that we have yet to define! To save a step later, we can pass the `--with-component-class` flag to the component generator so that we have everything we need from the get-go.
 
 <div class="cta">
   <div class="cta-note">
     <div class="cta-note-body">
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
-        <p>Too much typing? Use <code>ember g component -gc map</code> instead. The <code>-gc</code> flag stands for <strong>G</strong>limmer <strong>c</strong>omponent, but you may also remember it as <strong>g</strong>enerate <strong>c</strong>lass.</p>
+        <p>Too much typing? Use <code>ember g component map -gc</code> instead. The <code>-gc</code> flag stands for <strong>G</strong>limmer <strong>c</strong>omponent, but you may also remember it as <strong>g</strong>enerate <strong>c</strong>lass.</p>
       </div>
     </div>
     <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
@@ -183,7 +181,7 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import { render, find } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 import ENV from 'super-rentals/config/environment';
 
 module('Integration | Component | map', function(hooks) {
@@ -318,7 +316,7 @@ For good measures, we will also add an assertion to the `<Rental>` tests to make
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Component | rental', function(hooks) {
   setupRenderingTest(hooks);
@@ -407,7 +405,7 @@ Just to be sure, we can add a test for this behavior:
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render, find } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 import ENV from 'super-rentals/config/environment';
 
 module('Integration | Component | map', function(hooks) {

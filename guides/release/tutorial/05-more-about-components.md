@@ -8,6 +8,8 @@ Let's start by creating the `<Rental>` component. This time, we will use the com
 $ ember generate component rental
 installing component
   create app/components/rental.hbs
+  skip app/components/rental.js
+  tip to add a class, run `ember generate component-class rental`
 installing component-test
   create tests/integration/components/rental-test.js
 ```
@@ -43,7 +45,7 @@ Then, we will write a test to ensure all of the details are present. We will rep
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Component | rental', function(hooks) {
   setupRenderingTest(hooks);
@@ -109,6 +111,8 @@ Next, let's add the image for the rental property. We will use the component gen
 $ ember generate component rental/image
 installing component
   create app/components/rental/image.hbs
+  skip app/components/rental/image.js
+  tip to add a class, run `ember generate component-class rental/image`
 installing component-test
   create tests/integration/components/rental/image-test.js
 ```
@@ -162,13 +166,11 @@ In general, it is a good idea to add `...attributes` to the primary element in y
 
 Let's write a test for our new component!
 
-<!-- TODO: https://github.com/emberjs/ember.js/issues/18242 -->
-
 ```js { data-filename="tests/integration/components/rental/image-test.js" data-diff="-9,-10,-11,-12,-13,-14,-15,-16,-17,+18,-20,-21,-22,+23,+24,+25,+26,-29,+30,+31,+32" }
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Component | rental/image', function(hooks) {
   setupRenderingTest(hooks);
@@ -177,16 +179,16 @@ module('Integration | Component | rental/image', function(hooks) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
 
-    await render(hbs`{{rental/image}}`);
+    await render(hbs`<Rental::Image />`);
 
     assert.equal(this.element.textContent.trim(), '');
 
     // Template block usage:
   test('it renders the given image', async function(assert) {
     await render(hbs`
-      {{#rental/image}}
+      <Rental::Image>
         template block text
-      {{/rental/image}}
+      </Rental::Image>
       <Rental::Image
         src="/assets/images/teaching-tomster.png"
         alt="Teaching Tomster"
@@ -207,7 +209,7 @@ Finally, we should also update the tests for the `<Rental>` component to confirm
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Component | rental', function(hooks) {
   setupRenderingTest(hooks);

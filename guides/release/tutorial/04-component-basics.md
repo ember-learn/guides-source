@@ -123,7 +123,7 @@ Let's replace the boilerplate code that was generated for us with our own test:
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Component | jumbo', function(hooks) {
   setupRenderingTest(hooks);
