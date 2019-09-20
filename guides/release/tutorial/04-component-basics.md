@@ -105,7 +105,7 @@ After saving, everything should look exactly the same as before, and all the tes
 
 <img src="/screenshots/04-component-basics/pass-2@2x.png" alt="Tests still passing another round of refactor" width="1024" height="512">
 
-While it may not save you a lot of characters in this case, encapsulating\* the implementation of the "jumbo" header into its own component makes the template slightly easier to read, as it allows the reader to focus on things that are unique to just that page. Further, if we need to make a change to the header, we can make it in a single place. Feel free to give that a try!
+While it may not save you a lot of characters in this case, _encapsulating_ the implementation of the "jumbo" header into its own component makes the template slightly easier to read, as it allows the reader to focus on things that are unique to just that page. Further, if we need to make a change to the header, we can make it in a single place. Feel free to give that a try!
 
 Before we move on to the next component, let's write an automated test for our `<Jumbo>` component. Run this command in your terminal:
 
@@ -115,7 +115,7 @@ installing component-test
   create tests/integration/components/jumbo-test.js
 ```
 
-Here, we used the generator to generate a _component test_. These are used to render and test a single component at a time. This is in contrast to the acceptance tests that we wrote earlier, which have to navigate and render entire pages worth of content.
+Here, we used the generator to generate a _component test_, also known as a _rendering test_. These are used to render and test a single component at a time. This is in contrast to the acceptance tests that we wrote earlier, which have to navigate and render entire pages worth of content.
 
 Let's replace the boilerplate code that was generated for us with our own test:
 
@@ -147,7 +147,7 @@ module('Integration | Component | jumbo', function(hooks) {
 
     assert.equal(this.element.textContent.trim(), 'template block text');
     assert.dom('.jumbo').exists();
-    assert.dom('.jumbo').containsText('Hello World');
+    assert.dom('.jumbo').hasText('Hello World');
     assert.dom('.jumbo .tomster').exists();
   });
 });
@@ -257,10 +257,10 @@ module('Acceptance | super rentals', function(hooks) {
 
     assert.equal(currentURL(), '/');
     assert.dom('nav').exists();
-    assert.dom('h1').containsText('SuperRentals');
-    assert.dom('h2').containsText('Welcome to Super Rentals!');
+    assert.dom('h1').hasText('SuperRentals');
+    assert.dom('h2').hasText('Welcome to Super Rentals!');
 
-    assert.dom('.jumbo a.button').containsText('About Us');
+    assert.dom('.jumbo a.button').hasText('About Us');
     await click('.jumbo a.button');
 
     assert.equal(currentURL(), '/about');
@@ -271,10 +271,10 @@ module('Acceptance | super rentals', function(hooks) {
 
     assert.equal(currentURL(), '/about');
     assert.dom('nav').exists();
-    assert.dom('h1').containsText('SuperRentals');
-    assert.dom('h2').containsText('About Super Rentals');
+    assert.dom('h1').hasText('SuperRentals');
+    assert.dom('h2').hasText('About Super Rentals');
 
-    assert.dom('.jumbo a.button').containsText('Contact Us');
+    assert.dom('.jumbo a.button').hasText('Contact Us');
     await click('.jumbo a.button');
 
     assert.equal(currentURL(), '/getting-in-touch');
@@ -285,10 +285,10 @@ module('Acceptance | super rentals', function(hooks) {
 
     assert.equal(currentURL(), '/getting-in-touch');
     assert.dom('nav').exists();
-    assert.dom('h1').containsText('SuperRentals');
-    assert.dom('h2').containsText('Contact Us');
+    assert.dom('h1').hasText('SuperRentals');
+    assert.dom('h2').hasText('Contact Us');
 
-    assert.dom('a.button').containsText('About');
+    assert.dom('a.button').hasText('About');
     await click('.jumbo a.button');
 
     assert.equal(currentURL(), '/about');
@@ -298,9 +298,9 @@ module('Acceptance | super rentals', function(hooks) {
     await visit('/');
 
     assert.dom('nav').exists();
-    assert.dom('nav a.menu-index').containsText('SuperRentals')
-    assert.dom('nav a.menu-about').containsText('About');
-    assert.dom('nav a.menu-contact').containsText('Contact');
+    assert.dom('nav a.menu-index').hasText('SuperRentals')
+    assert.dom('nav a.menu-about').hasText('About');
+    assert.dom('nav a.menu-contact').hasText('Contact');
 
     await click('nav a.menu-about');
     assert.equal(currentURL(), '/about');
@@ -380,7 +380,7 @@ While we are at it, we will also add a container element that wraps around the w
 </Jumbo>
 ```
 
-The `{{outlet}}` keyword denotes the place where our site's pages should be rendered into, similar to the `{{yield}}` keyword.
+The `{{outlet}}` keyword denotes the place where our site's pages should be rendered into, similar to the `{{yield}}` keyword we saw earlier.
 
 This is much nicer! We can run our test suite which confirms that everything still works after our refactor. We are ready to move on to the next feature!
 

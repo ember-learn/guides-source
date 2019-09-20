@@ -81,11 +81,11 @@ As its name implies, `config/environment.js` is used to _configure_ our app and 
   </div>
 </div>
 
-After saving the changes to our configuration file, we will need to restart our development and test servers to pick up these file changes. Unlike the files we have edited so far, `config/environment.js` is not automatically reloaded.
+After saving the changes to our configuration file, we will need to restart our development server to pick up these file changes. Unlike the files we have edited so far, `config/environment.js` is not automatically reloaded.
 
 <!-- TODO: https://github.com/ember-cli/ember-cli/issues/8782 -->
 
-You can stop the server by finding the window where `ember server` is running, then type Ctrl-C into the terminal. That is, typing the "C" key on your keyboard _while_ holding down the "Ctrl" key at the same time. Once it has stopped, you can start it back up again with the same `ember server` command.
+You can stop the server by finding the terminal window where `ember server` is running, then type `Ctrl + C`. That is, typing the "C" key on your keyboard _while_ holding down the "Ctrl" key at the same time. Once it has stopped, you can start it back up again with the same `ember server` command.
 
 ```shell
 $ ember server
@@ -325,11 +325,11 @@ module('Integration | Component | rental', function(hooks) {
     await render(hbs`<Rental />`);
 
     assert.dom('article').hasClass('rental');
-    assert.dom('article h3').containsText('Grand Old Mansion');
-    assert.dom('article .detail.owner').containsText('Veruca Salt');
-    assert.dom('article .detail.type').containsText('Standalone');
-    assert.dom('article .detail.location').containsText('San Francisco');
-    assert.dom('article .detail.bedrooms').containsText('15');
+    assert.dom('article h3').hasText('Grand Old Mansion');
+    assert.dom('article .detail.owner').includesText('Veruca Salt');
+    assert.dom('article .detail.type').includesText('Standalone');
+    assert.dom('article .detail.location').includesText('San Francisco');
+    assert.dom('article .detail.bedrooms').includesText('15');
     assert.dom('article .image').exists();
     assert.dom('article .map').exists();
   });
