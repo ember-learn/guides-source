@@ -43,7 +43,7 @@ It was quite a journey! To recap, here is what you have learned:
 
 - Organizing code with namespaced components
 - Forwarding HTML attributes with `...attributes`
-- Determining the appropiate amount of test coverage
+- Determining the appropriate amount of test coverage
 
 ## [Chapter 6](../06-interactive-components/)
 
