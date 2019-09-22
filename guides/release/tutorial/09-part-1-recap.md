@@ -4,7 +4,9 @@ Congratulations, you finished the first part of this tutorial!
 
 It was quite a journey! To recap, here is what you have learned:
 
-## [Chapter 1](../01-orientation/)
+<!-- Using ### [Chapter 1](../01-orientation/) triggers some sort of rendering bug -->
+
+<h3><a href="../01-orientation/">Chapter 1</a></h3>
 
 - Install Ember CLI
 - Bootstrapping a new Ember app with Ember CLI
@@ -12,7 +14,7 @@ It was quite a journey! To recap, here is what you have learned:
 - Editing files and live reload
 - Working with HTML, CSS and assets in an Ember app
 
-## [Chapter 2](../02-building-pages/)
+<h3><a href="../02-building-pages/">Chapter 2</a></h3>
 
 - Defining routes
 - Using route templates
@@ -20,7 +22,7 @@ It was quite a journey! To recap, here is what you have learned:
 - Linking pages with the `<LinkTo>` component
 - Passing arguments and attributes to components
 
-## [Chapter 3](../03-automated-testing/)
+<h3><a href="../03-automated-testing/">Chapter 3</a></h3>
 
 - The purpose of automated testing
 - Writing acceptance tests
@@ -29,7 +31,7 @@ It was quite a journey! To recap, here is what you have learned:
 - Working with Ember's test helpers
 - Practicing the testing workflow
 
-## [Chapter 4](../04-component-basics/)
+<h3><a href="../04-component-basics/">Chapter 4</a></h3>
 
 - Extracting markup into components
 - Invoking components
@@ -39,13 +41,13 @@ It was quite a journey! To recap, here is what you have learned:
 - Writing component tests
 - Using the application template and `{{outlet}}`s
 
-## [Chapter 5](../05-more-about-components/)
+<h3><a href="../05-more-about-components/">Chapter 5</a></h3>
 
 - Organizing code with namespaced components
 - Forwarding HTML attributes with `...attributes`
 - Determining the appropriate amount of test coverage
 
-## [Chapter 6](../06-interactive-components/)
+<h3><a href="../06-interactive-components/">Chapter 6</a></h3>
 
 - Adding behavior to component with classes
 - Managing state with tracked properties
@@ -55,7 +57,7 @@ It was quite a journey! To recap, here is what you have learned:
 - Invoking element modifiers
 - Testing user interactions
 
-## [Chapter 7](../07-reusable-components/)
+<h3><a href="../07-reusable-components/">Chapter 7</a></h3>
 
 - Managing application-level configurations
 - Parameterizing components with arguments
@@ -65,7 +67,7 @@ It was quite a journey! To recap, here is what you have learned:
 - Refactoring with getters and auto-track
 - Getting JavaScript values into the test context
 
-## [Chapter 8](../08-working-with-data/)
+<h3><a href="../08-working-with-data/">Chapter 8</a></h3>
 
 - Working with route files
 - Returning local data from the model hook
