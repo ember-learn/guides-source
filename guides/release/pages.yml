@@ -231,10 +231,26 @@
   pages:
     - title: "How to upgrade"
       url: "index"
-    - title: "Octane cheat sheet"
-      url: "cheat-sheet"
-    - title: "Editions Deep Dive"
-      url: "editions"
+    - title: "Octane Upgrade Guide"
+      url: "current-edition"
+      pages:
+        - title: "Introduction"
+          url: "index"
+        - title: "Templates"
+          url: "templates"
+        - title: "Native Classes"
+          url: "native-classes"
+        - title: "Tracked Properties"
+          url: "tracked-properties"
+        - title: "@action, {{on}} and {{fn}}"
+          url: "action-on-and-fn"
+        - title: "Glimmer Components"
+          url: "glimmer-components"
+        - title: "Modifiers"
+          url: "modifiers"
+        - title: "Cheat Sheet"
+          url: "cheat-sheet"
+
     # - title: "Deprecations"
     #   url: "deprecations"
 - title: "Developer Tools"
@@ -279,7 +295,7 @@
       url: components
     - title: Testing Considerations
       url: testing
-    - title: Learning Resources 
+    - title: Learning Resources
       url: learning-resources
 - title: "Contributing to Ember.js"
   url: "contributing"
