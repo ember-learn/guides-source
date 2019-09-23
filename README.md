@@ -8,7 +8,7 @@ help improve the learning experience of other developers.
 
 Looking for repositories for the other parts of [emberjs.com](https://emberjs.com)?
 Check out
-[website](https://github.com/emberjs/website),
+[website](https://github.com/ember-learn/ember-website),
 [ember-api-docs](https://github.com/ember-learn/ember-api-docs),
 [super-rentals tutorial](https://github.com/ember-learn/super-rentals),
 [statusboard](https://github.com/ember-learn/statusboard),
