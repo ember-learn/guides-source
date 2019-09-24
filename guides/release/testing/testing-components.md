@@ -262,7 +262,7 @@ module('Integration | Component | comment-form', function(hooks) {
       assert.deepEqual(actual, expected, 'submitted value is passed to external action');
     });
 
-    await render(hbs`<CommentForm @submitComment={{action externalAction}}>`);
+    await render(hbs`<CommentForm @submitComment={{action externalAction}} />`);
 
     // fill out the form and force an onchange
     await fillIn('textarea', 'You are not a wizard!');
