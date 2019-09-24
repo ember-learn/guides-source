@@ -45,10 +45,10 @@ jobs:
       name: 'Ember test suite'
     - script:
         - npm run build -- --prod
-        - travis_wait 40 netlify deploy
+        - travis_wait 50 netlify deploy
       if: type = pull_request
     - stage: deploy to prod
       script:
         - npm run build -- --prod
-        - travis_wait 40 netlify deploy --prod
+        - travis_wait 50 netlify deploy --prod
       if: type IN (push) AND branch = master
