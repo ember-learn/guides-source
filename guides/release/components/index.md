@@ -1,4 +1,4 @@
-To define a component, run:
+To create a new component, run:
 
 ```bash
 ember generate component my-component-name
