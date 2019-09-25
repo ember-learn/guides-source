@@ -4,8 +4,10 @@ allVersions:
   - "v3.10.0"
   - "v3.11.0"
   - "v3.12.0"
-currentVersion: "v3.12.0"
+  - "v3.13.0"
+currentVersion: "v3.13.0"
 ltsVersions:
   - "v2.18.0"
   - "v3.4.0"
   - "v3.8.0"
+  - "v3.12.0"
