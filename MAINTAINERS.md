@@ -2,11 +2,19 @@
 
 This document contains instructions and guidelines for maintainer tasks, like publishing and deploying new versions of the Guides.
 
-## Before deployment of a new version
+## Continuous deployment
 
-- Check briefly to see if there are any PRs that should be merged into the previous Guides version
+Whenever a PR is merged into `master`, Travis will automatically run the scripts that build the app and upload the results to Netlify. Netlify will then deploy the site. We currently allow only one Travis job at a time so that concurrent deploy commands do not cause a conflict.
 
-## To deploy a new version
+## Deploying a new version
+
+Whenever the release blog post is published for a new version of Ember, follow these steps.
+
+### Before deployment of a new version
+
+Check briefly to see if there are any PRs that should be merged into `/release/`, so that they are applied to both the new version we are about to deploy, and the previous version.
+
+### To deploy a new version
 
 It is required that all maintainers use 2FA (two factor authentication). These are the permissions needed for a deployment of the Guides:
 
@@ -20,10 +28,10 @@ It is required that all maintainers use 2FA (two factor authentication). These a
 5. Copy the contents of `guides/release/` into the new directory, `cp -r release vX.Y.Z`
 6. Edit `versions.yml` - add the version number to _both_ the end of the list and the `currentVersion`. The last item and `currentVersion` should match.
 7. Commit the change.
-8. Create a PR, check the app in staging, get a review, and merge to `master`. This will trigger an auto deployment.
+8. Create a PR, and in the comments, mention that when it is merged, the person who merges it must update the guides search ASAP, and include a link to this page for instructions. Look at the app in staging, get a review, and merge to `master`. This will trigger an auto deployment.
 9. Once it is deployed, follow the steps below to get the website search working for your new version.
 
-## After deploying a new version
+### Updating the guides search
 
 Currently getting the new version indexed and put in Algolia is a manual step. There is currently work going on to try to make this automatic, see the [tracking issue here](https://github.com/ember-learn/guides-source/issues/487) to follow along with progress.
 
@@ -44,7 +52,7 @@ git checkout master
 git pull
 ```
 
-I would now recommend that you make sure that you don't have any local changes using `git stash` because we're going to be a bit distructive (temporarily)
+Next, make sure that you don't have any local changes using `git stash` because we're going to be a bit distructive (temporarily)
 
 1. Delete all guides folders apart from `release` i.e. everything that starts with a `v`
   - cd guides
@@ -56,6 +64,4 @@ I would now recommend that you make sure that you don't have any local changes u
 5. run `ember deploy production`
 6. This should now be done, you can fix your local repo by running `git reset --hard HEAD`
 7. Before you walk away, you should check the guides app in production and see if you can search for something on the latest version
-8. Party some more 🎉
-
-  
+8. Party some more 🎉and let the rest of the team know that the updates have been made.  
