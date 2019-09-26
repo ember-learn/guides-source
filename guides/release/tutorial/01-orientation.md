@@ -100,6 +100,7 @@ super-rentals
 ├── .gitignore
 ├── jsconfig.json
 ├── package.json
+├── package-lock.json
 ├── README.md
 ├── .template-lintrc.js
 ├── testem.js
