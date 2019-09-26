@@ -10,7 +10,7 @@ To verify that your installation was successful, run:
 
 ```shell
 $ ember --version
-ember-cli: 3.12.0
+ember-cli: 3.13.0
 node: 12.8.1
 os: linux x64
 ```
@@ -47,9 +47,21 @@ installing octane-app-blueprint
   create testem.js
   create tests/index.html
   create tests/test-helper.js
+
+Installing packages... This might take a couple of minutes.
 npm: Installing dependencies ...
 npm: Installed dependencies
-Successfully initialized git.
+
+Initializing git repository.
+Git: successfully initialized.
+
+Successfully created project super-rentals.
+We suggest you that you get started by typing:
+
+  $ cd super-rentals
+  $ yarn start
+
+Happy coding!
 ```
 
 This should have created a new folder for us called `super-rentals`. We can navigate into it using the `cd` command.
@@ -80,7 +92,6 @@ super-rentals
 ├── tests
 │   ├── index.html
 │   └── test-helper.js
-├── tmp
 ├── .editorconfig
 ├── ember-cli-build.js
 ├── .ember-cli.js
@@ -93,10 +104,9 @@ super-rentals
 ├── .template-lintrc.js
 ├── testem.js
 ├── .travis.yml
-├── .watchmanconfig
-└── yarn.lock
+└── .watchmanconfig
 
-7 directories, 26 files
+6 directories, 25 files
 ```
 
 We will get to know the purposes of these files and folders as we go. For now, just know we will spend most of the time working within the `app` folder.
@@ -105,8 +115,6 @@ Ember CLI comes with a lot of different commands for a variety of development ta
 
 ```shell
 $ ember server
-Could not start watchman
-Visit https://ember-cli.com/user-guide/#watchman for more info.
 building... 
 
 Build successful (9761ms) – Serving on http://localhost:4200/
