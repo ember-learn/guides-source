@@ -89,8 +89,6 @@ You can stop the server by finding the terminal window where `ember server` is r
 
 ```shell
 $ ember server
-Could not start watchman
-Visit https://ember-cli.com/user-guide/#watchman for more info.
 building... 
 
 Build successful (13286ms) – Serving on http://localhost:4200/
