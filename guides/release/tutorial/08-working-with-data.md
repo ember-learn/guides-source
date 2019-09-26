@@ -75,7 +75,7 @@ Okay, now that we know that we have a model to use at our disposal, let's remove
 
 Let's try it out.
 
-First, let's pass in our model to our `<Rental>` component as the `@rental` argument. We will also remove the extraneous `<h1>` tag we added earlier, no that we know things are working:
+First, let's pass in our model to our `<Rental>` component as the `@rental` argument. We will also remove the extraneous `<h1>` tag we added earlier, now that we know things are working:
 
 ```handlebars { data-filename="app/templates/index.hbs" data-diff="-7,-8,-11,-12,-13,+14,+15,+16" }
 <Jumbo>
@@ -148,7 +148,7 @@ Since the model object contains exactly the same data as the previously-hard-cod
 
 Now, we have one last thing to do: update the tests to reflect this change.
 
-Because component tests are meant to render and test a single component in isolation from the rest of the app, they do not perform any routing, which means we won't have access to the same data return from the `model` hook.
+Because component tests are meant to render and test a single component in isolation from the rest of the app, they do not perform any routing, which means we won't have access to the same data returned from the `model` hook.
 
 Therefore, in our `<Rental>` component's test, we will have to feed the data into it some other way. We can do this using the `setProperties` we learned about from the [previous chapter](../07-reusable-components/).
 
