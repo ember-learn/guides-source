@@ -10,7 +10,7 @@ To verify that your installation was successful, run:
 
 ```shell
 $ ember --version
-ember-cli: 3.13.0
+ember-cli: 3.13.1
 node: 12.8.1
 os: linux x64
 ```
@@ -59,7 +59,7 @@ Successfully created project super-rentals.
 We suggest you that you get started by typing:
 
   $ cd super-rentals
-  $ yarn start
+  $ npm start
 
 Happy coding!
 ```
