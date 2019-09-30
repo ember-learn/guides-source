@@ -73,7 +73,7 @@
     "loader.js": "^4.7.0",
     "lodash": "^4.17.15",
     "markdown-link-extractor": "^1.1.1",
-    "mocha": "^6.2.0",
+    "mocha": "^6.2.1",
     "prember": "^1.0.3",
     "qunit-dom": "^0.9.0",
     "remark-cli": "^7.0.0",
