@@ -57,7 +57,9 @@ module.exports = function(environment) {
       },
     ],
     infoBanner: {
-      content: `Thanks for taking the Octane preview for a test drive! Visit
+      content: `This is a work-in-progress preview of what the Guides will be like starting in 3.14 of Ember, for Octane!
+It's the final countdown, and we need your help. 
+Visit
 <a href="https://emberjs.com/editions/octane" target="_blank" rel="noopener">emberjs.com/editions/octane</a>
 for more info and ways you can help out.
 These preview guides URLs are subject to change, so point your bookmarks at that landing page.
