@@ -2,6 +2,17 @@
 
 It's time to finally work on the rentals listing!
 
+<!-- TODO: add screen shot of the end state -->
+
+While building this list of rental properties, you will learn about:
+
+- Generating components
+- Organizing code with namespaced components
+- Forwarding HTML attributes with `...attributes`
+- Determining the appropriate amount of test coverage
+
+## Generating Components
+
 Let's start by creating the `<Rental>` component. This time, we will use the component generator to create the template and test file for us:
 
 ```shell
@@ -105,6 +116,8 @@ With that, we should see the `<Rental>` component showing our Grand Old Mansion 
 
 Things are looking pretty convincing already; not bad for just a little bit of work!
 
+## Organizing Code with Namespaced Components
+
 Next, let's add the image for the rental property. We will use the component generator for this again:
 
 ```shell
@@ -120,6 +133,8 @@ installing component-test
 This time, we had a `/` in the component's name. This resulted in the component being created at `app/components/rental/image.hbs`, which can be invoked as `<Rental::Image>`.
 
 Components like these are known as _[namespaced](https://en.wikipedia.org/wiki/Namespace)_ components. Namespacing allows us to organize our components by folders according to their purpose. This is completely optional — namespaced components are not special in any way.
+
+## Forwarding HTML Attributes with `...attributes`
 
 Let's edit the component's template:
 
@@ -160,9 +175,9 @@ We specified a `src` and an `alt` HTML attribute here, which will be passed alon
 
 <img src="/screenshots/05-more-about-components/rental-image@2x.png" alt="The <Rental::Image> component in action" width="1024" height="1129">
 
-This way, our `<Rental::Image>` component is not coupled to any specific rental property on the site. Of course, hard-coding problem still exists (we simply moved it to the `<Rental>` component), but we will deal with that soon. We will limit all the hard-coding to the `<Rental>` component, so that we will have an easier time cleaning it up when we switch to fetching real data.
+This way, our `<Rental::Image>` component is not coupled to any specific rental property on the site. Of course, the hard-coding problem still exists (we simply moved it to the `<Rental>` component), but we will deal with that soon. We will limit all the hard-coding to the `<Rental>` component, so that we will have an easier time cleaning it up when we switch to fetching real data.
 
-In general, it is a good idea to add `...attributes` to the primary element in your component. This will allow for maximum flexibility, as the invoker may need to pass along classes for styling, or ARIA attributes to improve accessibility.
+In general, it is a good idea to add `...attributes` to the primary element in your component. This will allow for maximum flexibility, as the invoker may need to pass along classes for styling or ARIA attributes to improve accessibility.
 
 Let's write a test for our new component!
 
@@ -202,6 +217,8 @@ module('Integration | Component | rental/image', function(hooks) {
   });
 });
 ```
+
+## Determining the Appropriate Amount of Test Coverage
 
 Finally, we should also update the tests for the `<Rental>` component to confirm that we successfully invoked `<Rental::Image>`.
 

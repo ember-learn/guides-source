@@ -2,7 +2,7 @@
 
 Welcome to the Ember Tutorial!
 
-In this tutorial, we will use Ember to build a professional looking application called Super Rentals. It's a website for browsing interesting places to stay at for your next vacation. Check out the [finished app](https://super-rentals-tutorial--ember-super-rentals.netlify.com) to get a sense of the scope of the project.
+In this tutorial, we will use Ember to build an application called Super Rentals. This will be a website for browsing interesting places to stay during your next vacation. Check out the [finished app](https://super-rentals-tutorial--ember-super-rentals.netlify.com) to get a sense of the scope of the project.
 
 <img src="/screenshots/08-working-with-data/three-properties@2x.png" alt="The finished Super Rentals app" width="1024" height="1129">
 
@@ -17,6 +17,6 @@ This tutorial is structured into two parts. The first part covers the following 
 - Automated testing
 - Working with server data
 
-The second part of the tutorial builds upon these concepts and take things to the next level.
+The second part of the tutorial builds upon these concepts and takes things to the next level.
 
 Let's dive right in!
