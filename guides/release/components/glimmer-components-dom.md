@@ -69,7 +69,7 @@ Think of this as evaluating the template from scratch, substituting in the new v
         and other state won't change for no reason.
       </div>
     </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
   </div>
 </div>
 
@@ -212,7 +212,7 @@ export default class Counter extends Component {
         the results of an element modifier into HTML.</p>
       </div>
     </div>
-    <img src="/images/mascots/tomster.png" role="presentation" alt="Ember Mascot">
+    <img src="/images/mascots/tomster.png" role="presentation" alt="">
   </div>
 </div>
 

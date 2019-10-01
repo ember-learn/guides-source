@@ -59,7 +59,7 @@ test('should allow disabling the button', async function(assert) {
         All examples in this guide follow QUnit. Rest assured, the best practices for testing that we present in this guide are independent of your choice of testing framework. Keep in mind, the setup functions from <a href="https://github.com/emberjs/ember-qunit" target="_blank" rel="noopener noreferrer">ember-qunit</a>—<code>setupTest</code>, <code>setupRenderingTest</code>, and <code>setupApplicationTest</code>—need to be replaced with those from <a href="https://github.com/emberjs/ember-mocha" target="_blank" rel="noopener noreferrer">ember-mocha</a>.
       </div>
     </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
   </div>
 </div>
 
@@ -89,7 +89,7 @@ You want to be able to grab DOM elements in your tests. Since Ember is just Java
         While you can use CSS classes as selectors, a best practice for testing is to <strong>separate the concerns between styling and testing</strong>. Class names and DOM structure change over time—for the better—by you, your team, and addon developers. If you rely on CSS classes, your tests will break and need a significant rewrite.
       </div>
     </div>
-    <img src="/images/mascots/tomster.png" role="presentation" alt="Ember Mascot">
+    <img src="/images/mascots/tomster.png" role="presentation" alt="">
   </div>
 </div>
 
