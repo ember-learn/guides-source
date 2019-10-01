@@ -133,7 +133,7 @@ The development server is responsible for compiling our app and serving it to th
         <p>The <code>localhost</code> address in URL means that you can only access the development server from your local machine. If you would like to share your work to the world, you will have to <em>deploy</em> your app to the public Internet. Don't worry, we will cover that in Part 2 of the tutorial.</p>
       </div>
     </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
   </div>
 </div>
 

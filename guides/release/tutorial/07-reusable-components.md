@@ -77,7 +77,7 @@ As its name implies, `config/environment.js` is used to _configure_ our app and 
         <p>If you prefer, you can <a href="https://account.mapbox.com/access-tokens/">create different access tokens</a> for use in different environments. At a minimum, they will each need to have the "styles:tiles" scope in order to use the static images API.</p>
       </div>
     </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
   </div>
 </div>
 
@@ -117,7 +117,7 @@ However, in the case of our `<Map>` component, we are pretty sure that we are go
         <p>Too much typing? Use <code>ember g component map -gc</code> instead. The <code>-gc</code> flag stands for <strong>G</strong>limmer <strong>c</strong>omponent, but you may also remember it as <strong>g</strong>enerate <strong>c</strong>lass.</p>
       </div>
     </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
   </div>
 </div>
 
@@ -302,7 +302,7 @@ Hey! That's a map!
         <p>If the map image failed to load, make sure you have the correct <code>MAPBOX_ACCESS_TOKEN</code> set in <code>config/environment.js</code>. Don't forget to restart the development and test servers after editing your config file!</p>
       </div>
     </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
   </div>
 </div>
 
@@ -344,7 +344,7 @@ From within our JavaScript class, we have access to our component's arguments us
         <p><code>this.args</code> is an API provided by the Glimmer component superclass. You may come across other components superclasses, such "classic" components in legacy codebases, that provide different APIs for accessing component arguments from JavaScript code.</p>
       </div>
     </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
   </div>
 </div>
 
