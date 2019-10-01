@@ -173,7 +173,7 @@ Finally open the template file for our `rental-listing` component and add the ne
     onclick={{action "toggleImageSize"}}
     role="button"
   >
-    <img src={{this.rental.image}} alt="">
+    <img src={{this.rental.image}} alt={{this.location.title}}>
     <small>View Larger</small>
   </a>
   <div class="details">
