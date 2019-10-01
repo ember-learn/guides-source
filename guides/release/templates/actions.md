@@ -64,7 +64,7 @@ the action name with a string in the template.
 For more examples of that syntax see <a href="https://guides.emberjs.com/v3.6.0/templates/actions/">previous version of this Guide entry</a>.
       </div>
     </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
   </div>
 </div>
 

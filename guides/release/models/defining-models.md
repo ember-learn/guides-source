@@ -33,7 +33,7 @@ and [working with records](../creating-updating-and-deleting-records/) of that t
         Ember Data models are normally setup using the singular form (which is why we use `person` instead of `people` here)
       </div>
     </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
   </div>
 </div>
 
