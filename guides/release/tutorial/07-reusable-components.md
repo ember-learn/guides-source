@@ -1,6 +1,20 @@
 <!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/src/chapters/07-reusable-components.md -->
 
-The last missing feature for the `<Rental>` component is the map, which is what we're going to work on next.
+The last missing feature for the `<Rental>` component is a map to show the location of the rental, which is what we're going to work on next:
+
+<img src="/screenshots/07-reusable-components/three-old-mansions@2x.png" alt="The Super Rentals app by the end of the chapter" width="1024" height="1129">
+
+While adding the map, you will learn about:
+
+- Managing application-level configurations
+- Parameterizing components with arguments
+- Accessing component arguments
+- Interpolating values in templates
+- Overriding HTML attributes in `...attributes`
+- Refactoring with getters and auto-track
+- Getting JavaScript values into the test context
+
+## Managing Application-level Configurations
 
 We will use the [Mapbox](https://www.mapbox.com) API to generate maps for our rental properties. You can [sign up](https://www.mapbox.com/signup/) for free and without a credit card.
 
@@ -74,10 +88,10 @@ As its name implies, `config/environment.js` is used to _configure_ our app and 
     <div class="cta-note-body">
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
-        <p>If you prefer, you can <a href="https://account.mapbox.com/access-tokens/">create different access tokens</a> for use in different environments. At a minimum, they will each need to have the "styles:tiles" scope in order to use the static images API.</p>
+        <p>If you prefer, you can <a href="https://account.mapbox.com/access-tokens/">create different Mapbox access tokens</a> for use in different environments. At a minimum, the tokens will each need to have the "styles:tiles" scope in order to use Mapbox's static images API.</p>
       </div>
     </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
   </div>
 </div>
 
@@ -93,6 +107,8 @@ building...
 
 Build successful (13286ms) – Serving on http://localhost:4200/
 ```
+
+## Generating a Component with a Component Class
 
 With the Mapbox API key in place, let's generate a new component for our map.
 
@@ -117,9 +133,11 @@ However, in the case of our `<Map>` component, we are pretty sure that we are go
         <p>Too much typing? Use <code>ember g component map -gc</code> instead. The <code>-gc</code> flag stands for <strong>G</strong>limmer <strong>c</strong>omponent, but you may also remember it as <strong>g</strong>enerate <strong>c</strong>lass.</p>
       </div>
     </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
   </div>
 </div>
+
+## Parameterizing Components with Arguments
 
 Let's start with our JavaScript file:
 
@@ -135,6 +153,8 @@ export default class MapComponent extends Component {
 ```
 
 Here, we import the access token from the config file and return it from a `token` _getter_. This allows us to access our token as `this.token` both inside the `MapComponent` class body, as well as the component's template. It is also important to URL-encode the token, just in case it contains any special characters that are not URL-safe.
+
+## Interpolating Values in Templates
 
 Now, let's move from the JavaScript file to the template:
 
@@ -154,11 +174,13 @@ First, we have a container element for styling purposes.
 
 Then we have an `<img>` tag to request and render the static map image from Mapbox.
 
-Our template contains several values that don't yet exist — `@lat`, `@long`, `@zoom`, `@width`, and `@height`. These are _arguments_ to the `<Map>` component that we will supply when invoking it.
+Our template contains several values that don't yet exist — `@lat`, `@lng`, `@zoom`, `@width`, and `@height`. These are _arguments_ to the `<Map>` component that we will supply when invoking it.
 
 By _parameterizing_ our component using arguments, we made a reusable component that can be invoked from different parts of the app and customized to meet the needs for those specific contexts. We have already seen this in action when using the `<LinkTo>` component [earlier](../02-building-pages/); we had to specify a `@route` argument so that it knew what page to navigate to.
 
 We supplied a reasonable default value for the `alt` attribute based on the values of the `@lat` and `@lng` arguments. You may notice that we are directly _interpolating_ values into the `alt` attribute's value. Ember will automatically concatenate these interpolated values into a final string value for us, including doing any necessary HTML-escaping.
+
+## Overriding HTML Attributes in `...attributes`
 
 Next, we used `...attributes` to allow the invoker to further customize the `<img>` tag, such as passing extra attributes such as `class`, as well as _overriding_ our default `alt` attribute with a more specific or human-friendly one.
 
@@ -198,7 +220,7 @@ module('Integration | Component | map', function(hooks) {
     await render(hbs`<Map />`);
     assert.dom('.map').exists();
     assert.dom('.map img').hasAttribute('alt', 'Map image at coordinates 37.7797,-122.4184');
-    assert.dom('.map img').hasAttribute('src', /^https:\/\/api\.mapbox\.com/);
+    assert.dom('.map img').hasAttribute('src', /^https:\/\/api\.mapbox\.com/, 'the src starts with "https://api.mapbox.com"');
     assert.dom('.map img').hasAttribute('width', '150');
     assert.dom('.map img').hasAttribute('height', '120');
 
@@ -217,7 +239,7 @@ module('Integration | Component | map', function(hooks) {
     assert.ok(src.includes(`access_token=${token}`), 'the src should include the escaped access token');
   });
 
-  test('the default alt attribute can be overriden', async function(assert) {
+  test('the default alt attribute can be overridden', async function(assert) {
     await render(hbs`<Map
       @lat="37.7797"
       @lng="-122.4184"
@@ -230,7 +252,7 @@ module('Integration | Component | map', function(hooks) {
     assert.dom('.map img').hasAttribute('alt', 'A map of San Francisco');
   });
 
-  test('the src, width and height attributes cannot be overriden', async function(assert) {
+  test('the src, width and height attributes cannot be overridden', async function(assert) {
     await render(hbs`<Map
       @lat="37.7797"
       @lng="-122.4184"
@@ -243,16 +265,18 @@ module('Integration | Component | map', function(hooks) {
     />`);
 
     assert.equal(this.element.textContent.trim(), 'template block text');
-    assert.dom('.map img').hasAttribute('src', /^https:\/\/api\.mapbox\.com/);
+    assert.dom('.map img').hasAttribute('src', /^https:\/\/api\.mapbox\.com/, 'the src starts with "https://api.mapbox.com"');
     assert.dom('.map img').hasAttribute('width', '150');
     assert.dom('.map img').hasAttribute('height', '120');
   });
 });
 ```
 
+Note that the `hasAttribute` test helper from `qunit-dom` supports using _regular expressions_. We used this feature to confirm that the `src` attribute starts with `https://api.mapbox.com/`, as opposed to requiring it to be an exact match against a string. This allows us to be reasonably confident that the code is working correctly, without being overly-detailed in our tests.
+
 _Fingers crossed..._ Let's run our tests.
 
-<img src="/screenshots/07-reusable-components/pass@2x.png" alt="Tests passing with the new <Map> tests" width="1024" height="768">
+<img src="/screenshots/07-reusable-components/pass@2x.png" alt="Tests passing with the new &lt;Map&gt; tests" width="1024" height="768">
 
 Hey, all the tests passed! But does that mean it actually works in practice? Let's find out by invoking the `<Map>` component from the `<Rental>` component's template:
 
@@ -302,11 +326,11 @@ Hey! That's a map!
         <p>If the map image failed to load, make sure you have the correct <code>MAPBOX_ACCESS_TOKEN</code> set in <code>config/environment.js</code>. Don't forget to restart the development and test servers after editing your config file!</p>
       </div>
     </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
   </div>
 </div>
 
-For good measures, we will also add an assertion to the `<Rental>` tests to make sure we rendered the `<Map>` component successfully.
+For good measure, we will also add an assertion to the `<Rental>` tests to make sure we rendered the `<Map>` component successfully.
 
 ```js { data-filename="tests/integration/components/rental-test.js" data-diff="+19" }
 import { module, test } from 'qunit';
@@ -332,7 +356,9 @@ module('Integration | Component | rental', function(hooks) {
 });
 ```
 
-At this point, a big part of our `<Map>` template is devoted to the `<img>` tag's `src` attribute, which is getting pretty long. One alternative is to move this computation into a JavaScript instead.
+## Refactoring with Getters and Auto-track
+
+At this point, a big part of our `<Map>` template is devoted to the `<img>` tag's `src` attribute, which is getting pretty long. One alternative is to move this computation into the JavaScript class instead.
 
 From within our JavaScript class, we have access to our component's arguments using the `this.args.*` API. Using that, we can move the URL logic from the template into a new getter.
 
@@ -341,10 +367,10 @@ From within our JavaScript class, we have access to our component's arguments us
     <div class="cta-note-body">
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
-        <p><code>this.args</code> is an API provided by the Glimmer component superclass. You may come across other components superclasses, such "classic" components in legacy codebases, that provide different APIs for accessing component arguments from JavaScript code.</p>
+        <p><code>this.args</code> is an API provided by the Glimmer component superclass. You may come across other component superclasses, such as "classic" components in legacy codebases, that provide different APIs for accessing component arguments from JavaScript code.</p>
       </div>
     </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
   </div>
 </div>
 
@@ -391,9 +417,9 @@ Note that we did not mark our getter as `@tracked`. Unlike instance variables, g
 
 That being said, the values _produced_ by getters can certainly change. In our case, the value produced by our `src` getter depends on the values of `lat`, `lng`, `width`, `height` and `zoom` from `this.args`. Whenever these _dependencies_ get updated, we would expect `{{this.src}}` from our template to be updated accordingly.
 
-Ember does this by automatically tracking any variables that were accessed while computing a getter's value. As long as the dependencies themselves are marked as `@tracked`, Ember will know exactly when to invalidate and re-render any templates that may potentially contain any "stale" (outdated) getter values. This feature is also know as _auto-track_.
+Ember does this by automatically tracking any variables that were accessed while computing a getter's value. As long as the dependencies themselves are marked as `@tracked`, Ember knows exactly when to invalidate and re-render any templates that may potentially contain any "stale" and outdated getter values. This feature is also known as _auto-track_. All arguments that can be accessed from `this.args` (in other words, `this.args.*`) are implicitly marked as `@tracked` by the Glimmer component superclass. Since we inherited from that superclass, everything Just Works™.
 
-Since all arguments are implicitly marked as `@tracked` by the Glimmer component superclass that we inherited from, everything Just Works™.
+## Getting JavaScript Values into the Test Context
 
 Just to be sure, we can add a test for this behavior:
 
@@ -418,7 +444,7 @@ module('Integration | Component | map', function(hooks) {
 
     assert.dom('.map').exists();
     assert.dom('.map img').hasAttribute('alt', 'Map image at coordinates 37.7797,-122.4184');
-    assert.dom('.map img').hasAttribute('src', /^https:\/\/api\.mapbox\.com/);
+    assert.dom('.map img').hasAttribute('src', /^https:\/\/api\.mapbox\.com/, 'the src starts with "https://api.mapbox.com"');
     assert.dom('.map img').hasAttribute('width', '150');
     assert.dom('.map img').hasAttribute('height', '120');
 
@@ -470,7 +496,7 @@ module('Integration | Component | map', function(hooks) {
     assert.ok(img.src.includes('300x200@2x'), 'the src should include the width,height and @2x parameter');
   });
 
-  test('the default alt attribute can be overriden', async function(assert) {
+  test('the default alt attribute can be overridden', async function(assert) {
     await render(hbs`<Map
       @lat="37.7797"
       @lng="-122.4184"
@@ -483,7 +509,7 @@ module('Integration | Component | map', function(hooks) {
     assert.dom('.map img').hasAttribute('alt', 'A map of San Francisco');
   });
 
-  test('the src, width and height attributes cannot be overriden', async function(assert) {
+  test('the src, width and height attributes cannot be overridden', async function(assert) {
     await render(hbs`<Map
       @lat="37.7797"
       @lng="-122.4184"
@@ -495,7 +521,7 @@ module('Integration | Component | map', function(hooks) {
       height="300"
     />`);
 
-    assert.dom('.map img').hasAttribute('src', /^https:\/\/api\.mapbox\.com/);
+    assert.dom('.map img').hasAttribute('src', /^https:\/\/api\.mapbox\.com/, 'the src starts with "https://api.mapbox.com"');
     assert.dom('.map img').hasAttribute('width', '150');
     assert.dom('.map img').hasAttribute('height', '120');
   });

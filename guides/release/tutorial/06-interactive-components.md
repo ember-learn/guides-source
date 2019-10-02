@@ -1,12 +1,32 @@
 <!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/src/chapters/06-interactive-components.md -->
 
+In this chapter, you will add interactivity to the page, allowing the user to click an image to enlarge or shrink it:
+
+<!-- TODO: make this a gif instead -->
+
+<img src="/screenshots/06-interactive-components/rental-image-default@2x.png" alt="The Super Rentals app by the end of the chapter (default image size)" width="1024" height="1129">
+
+<img src="/screenshots/06-interactive-components/rental-image-large@2x.png" alt="The Super Rentals app by the end of the chapter (large image size)" width="1024" height="1500">
+
+While doing so, you will learn about:
+
+- Adding behavior to components with classes
+- Accessing instance states from templates
+- Managing state with tracked properties
+- Using conditionals syntaxes in templates
+- Responding to user interaction with actions
+- Invoking element modifiers
+- Testing user interactions
+
+## Adding Behavior to Components with Classes
+
 So far, all the components we have written are purely _presentational_ — they are simply reusable snippets of markup. That's pretty cool! But in Ember, components can do so much more.
 
 Sometimes, you want to associate some _behavior_ with your components so that they can do more interesting things. For example, `<LinkTo>` can respond to clicks by changing the URL and navigating us to a different page.
 
 Here, we are going to do just that! We are going to implement the "View Larger" and "View Smaller" functionality, which will allow our users to click on a property's image to view a larger version, and click on it again to return to the smaller version.
 
-In other words, we want a way to _toggle_ the image between one of the two _states_. In order to do that, we need a way for the component to store two possible states, and to be aware which states it is currently in.
+In other words, we want a way to _toggle_ the image between one of the two _states_. In order to do that, we need a way for the component to store two possible states, and to be aware of which state it is currently in.
 
 Ember optionally allows us to associate JavaScript code with a component for exactly this purpose. We can add a JavaScript file for our `<Rental::Image>` component by running the `component-class` generator:
 
@@ -27,7 +47,7 @@ This generated a JavaScript file with the same name as our component's template 
 <p>In general, Glimmer components should be used whenever possible. However, you may also see <code>@ember/components</code>, or <em>classic components</em>, used in older apps. You can tell them apart by looking at their import path (which is helpful for looking up the respective documentation, as they have different and incompatible APIs).</p>
       </div>
     </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
   </div>
 </div>
 
@@ -45,6 +65,8 @@ export default class RentalImageComponent extends Component {
 ```
 
 Here, in the _component's constructor_, we _initialized_ the _instance variable_ `this.isLarge` with the value `false`, since this is the default state that we want for our component.
+
+## Accessing Instance States from Templates
 
 Let's update our template to use this state we just added:
 
@@ -69,7 +91,7 @@ In the template, we have access to the component's instance variables. The `{{#i
 
 We can verify this works by temporarily changing the initial value in our JavaScript file. If we change `app/components/rental/image.js` to initialize `this.isLarge = true;` in the constructor, we should see the large version of the property image in the browser. Cool!
 
-<img src="/screenshots/06-interactive-components/is-large-true@2x.png" alt="<Rental::Image> with this.isLarge set to true" width="1024" height="1500">
+<img src="/screenshots/06-interactive-components/is-large-true@2x.png" alt="&lt;Rental::Image&gt; with this.isLarge set to true" width="1024" height="1500">
 
 Once we've tested this out, we can change `this.isLarge` back to `false`.
 
@@ -90,6 +112,8 @@ export default class RentalImageComponent extends Component {
 This does exactly the same thing as before, but it's much shorter and less to type!
 
 Of course, our users cannot edit our source code, so we need a way for them to toggle the image size from the browser. Specifically, we want to toggle the value of `this.isLarge` whenever the user clicks on our component.
+
+## Managing State with Tracked Properties
 
 Let's modify our class to add a _method_ for toggling the size:
 
@@ -122,9 +146,11 @@ In our case, whenever we assign a new value to `this.isLarge`, the `@tracked` an
         <p>Don't worry! If you reference a variable in the template but forget to add the <code>@tracked</code> decorator, you will get a helpful development mode error when you change its value!</p>
       </div>
     </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
   </div>
 </div>
+
+## Responding to User Interaction with Actions
 
 Next, we added a `toggleSize` method to our class that switches `this.isLarge` to the opposite of its current state (`false` becomes `true`, or `true` becomes `false`).
 
@@ -138,7 +164,7 @@ Finally, we added the `@action` decorator to our method. This indicates to Ember
         <p>If you forget to do add the <code>@action</code> decorator, you will also get a helpful error when clicking on the button in development mode!</p>
       </div>
     </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
   </div>
 </div>
 
@@ -170,7 +196,13 @@ Next, we used the `{{on}}` _modifier_ to attach `this.toggleSize` as a click han
 
 With that, we have created our first _interactive_ component. Go ahead and try it in the browser!
 
-<!-- TODO: add a gif here -->
+<!-- TODO: make this a gif instead -->
+
+<img src="/screenshots/06-interactive-components/rental-image-default@2x.png" alt="&lt;Rental::Image&gt; (default size)" width="1024" height="1129">
+
+<img src="/screenshots/06-interactive-components/rental-image-large@2x.png" alt="&lt;Rental::Image&gt; (large size)" width="1024" height="1500">
+
+## Testing User Interactions
 
 Finally, let's write a test for this new behavior:
 
@@ -223,7 +255,7 @@ module('Integration | Component | rental/image', function(hooks) {
 });
 ```
 
-<img src="/screenshots/06-interactive-components/pass@2x.png" alt="Tests passing with the new <Rental::Image> test" width="1024" height="512">
+<img src="/screenshots/06-interactive-components/pass@2x.png" alt="Tests passing with the new &lt;Rental::Image&gt; test" width="1024" height="512">
 
 Let's clean up our template before moving on. We introduced a lot of duplication when we added the conditional in the template. If we look closely, the only things that are different between the two blocks are:
 

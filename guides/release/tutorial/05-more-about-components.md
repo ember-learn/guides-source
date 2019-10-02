@@ -1,6 +1,17 @@
 <!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/src/chapters/05-more-about-components.md -->
 
-It's time to finally work on the rentals listing!
+It's time to finally work on the rentals listing:
+
+<img src="/screenshots/05-more-about-components/rental-image@2x.png" alt="The Super Rentals app by the end of the chapter" width="1024" height="1129">
+
+While building this list of rental properties, you will learn about:
+
+- Generating components
+- Organizing code with namespaced components
+- Forwarding HTML attributes with `...attributes`
+- Determining the appropriate amount of test coverage
+
+## Generating Components
 
 Let's start by creating the `<Rental>` component. This time, we will use the component generator to create the template and test file for us:
 
@@ -79,7 +90,7 @@ module('Integration | Component | rental', function(hooks) {
 
 The test should pass.
 
-<img src="/screenshots/05-more-about-components/pass@2x.png" alt="Tests passing with the new <Rental> test" width="1024" height="512">
+<img src="/screenshots/05-more-about-components/pass@2x.png" alt="Tests passing with the new &lt;Rental&gt; test" width="1024" height="512">
 
 Finally, let's invoke this a couple of times from our index template to populate the page.
 
@@ -105,6 +116,8 @@ With that, we should see the `<Rental>` component showing our Grand Old Mansion 
 
 Things are looking pretty convincing already; not bad for just a little bit of work!
 
+## Organizing Code with Namespaced Components
+
 Next, let's add the image for the rental property. We will use the component generator for this again:
 
 ```shell
@@ -120,6 +133,8 @@ installing component-test
 This time, we had a `/` in the component's name. This resulted in the component being created at `app/components/rental/image.hbs`, which can be invoked as `<Rental::Image>`.
 
 Components like these are known as _[namespaced](https://en.wikipedia.org/wiki/Namespace)_ components. Namespacing allows us to organize our components by folders according to their purpose. This is completely optional — namespaced components are not special in any way.
+
+## Forwarding HTML Attributes with `...attributes`
 
 Let's edit the component's template:
 
@@ -158,11 +173,11 @@ Instead of hard-coding specific values for the `src` and `alt` attributes on the
 
 We specified a `src` and an `alt` HTML attribute here, which will be passed along to the component and attached to the element where `...attributes` is applied in the component template. You can think of this as being similar to `{{yield}}`, but for HTML attributes specifically, rather than displayed content. In fact, we have already used this feature [earlier](../02-building-pages/) when we passed a `class` attribute to `<LinkTo>`.
 
-<img src="/screenshots/05-more-about-components/rental-image@2x.png" alt="The <Rental::Image> component in action" width="1024" height="1129">
+<img src="/screenshots/05-more-about-components/rental-image@2x.png" alt="The &lt;Rental::Image&gt; component in action" width="1024" height="1129">
 
-This way, our `<Rental::Image>` component is not coupled to any specific rental property on the site. Of course, hard-coding problem still exists (we simply moved it to the `<Rental>` component), but we will deal with that soon. We will limit all the hard-coding to the `<Rental>` component, so that we will have an easier time cleaning it up when we switch to fetching real data.
+This way, our `<Rental::Image>` component is not coupled to any specific rental property on the site. Of course, the hard-coding problem still exists (we simply moved it to the `<Rental>` component), but we will deal with that soon. We will limit all the hard-coding to the `<Rental>` component, so that we will have an easier time cleaning it up when we switch to fetching real data.
 
-In general, it is a good idea to add `...attributes` to the primary element in your component. This will allow for maximum flexibility, as the invoker may need to pass along classes for styling, or ARIA attributes to improve accessibility.
+In general, it is a good idea to add `...attributes` to the primary element in your component. This will allow for maximum flexibility, as the invoker may need to pass along classes for styling or ARIA attributes to improve accessibility.
 
 Let's write a test for our new component!
 
@@ -203,6 +218,8 @@ module('Integration | Component | rental/image', function(hooks) {
 });
 ```
 
+## Determining the Appropriate Amount of Test Coverage
+
 Finally, we should also update the tests for the `<Rental>` component to confirm that we successfully invoked `<Rental::Image>`.
 
 ```js { data-filename="tests/integration/components/rental-test.js" data-diff="+18" }
@@ -230,4 +247,4 @@ module('Integration | Component | rental', function(hooks) {
 
 Because we already tested `<Rental::Image>` extensively on its own, we can omit the details here and keep our assertion to the bare minimum. That way, we won't  _also_ have to update the `<Rental>` tests whenever we make changes to `<Rental::Image>`.
 
-<img src="/screenshots/05-more-about-components/pass-2@2x.png" alt="Tests passing with the new <Rental::Image> test" width="1024" height="512">
+<img src="/screenshots/05-more-about-components/pass-2@2x.png" alt="Tests passing with the new &lt;Rental::Image&gt; test" width="1024" height="512">

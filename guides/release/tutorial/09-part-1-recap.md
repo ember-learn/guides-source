@@ -8,8 +8,8 @@ It was quite a journey! To recap, here is what you have learned:
 
 <h3><a href="../01-orientation/">Chapter 1</a></h3>
 
-- Install Ember CLI
-- Bootstrapping a new Ember app with Ember CLI
+- Installing Ember CLI
+- Creating a new Ember app with Ember CLI
 - Starting and stopping the development server
 - Editing files and live reload
 - Working with HTML, CSS and assets in an Ember app
@@ -43,15 +43,16 @@ It was quite a journey! To recap, here is what you have learned:
 
 <h3><a href="../05-more-about-components/">Chapter 5</a></h3>
 
+- Generating components
 - Organizing code with namespaced components
 - Forwarding HTML attributes with `...attributes`
 - Determining the appropriate amount of test coverage
 
 <h3><a href="../06-interactive-components/">Chapter 6</a></h3>
 
-- Adding behavior to component with classes
-- Managing state with tracked properties
+- Adding behavior to components with classes
 - Accessing instance states from templates
+- Managing state with tracked properties
 - Using conditionals syntaxes in templates
 - Responding to user interaction with actions
 - Invoking element modifiers

@@ -1,5 +1,20 @@
 <!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/src/chapters/03-automated-testing.md -->
 
+In this chapter, you will use Ember's built-in testing framework to write some automated tests for your app. By the end of this chapter, we will have an automated test suite that we can run to ensure our app is working correctly:
+
+<img src="/screenshots/03-automated-testing/pass-2@2x.png" alt="The Super Rentals test suite by the end of the chapter" width="1024" height="512">
+
+In the process, you will learn about:
+
+- The purpose of automated testing
+- Writing acceptance tests
+- Using generators in Ember CLI
+- Testing with the QUnit test framework
+- Working with Ember's test helpers
+- Practicing the testing workflow
+
+## The Purpose of Automated Testing
+
 We accomplished a lot in the last few chapters! Let's recap — we started with a blank canvas, added a few pages of content, styled everything to look pretty, dropped in a picture of Tomster, added links between our pages and amazingly, everything worked together flawlessly!
 
 But do we _really_ know that everything is actually working? Sure, we clicked around a bit to confirm that things look as expected. But do we feel confident that we checked _every_ page after the most recent change that we made?
@@ -8,9 +23,11 @@ After all, most of us have experienced (or heard horror stories about) making a 
 
 Maybe we can write a checklist somewhere of all the things to check after making changes to our site. But surely, this will get out of hand as we add more features to our app. It is also going to get old really quickly — repetitive tasks like that are best left to robots.
 
-Hmm, robots. That's an idea. What if we can write this checklist and just get the computer to check everything for us? I think we just invented the idea of _automated testing_!
+Hmm, robots. That's an idea. What if we can write this checklist and just get the computer to check everything for us? I think we just invented the idea of _automated testing_! Okay, maybe we were not the first to come up with the concept, but we independently discovered it so we still deserve some credit.
 
-Okay, maybe we were not the first to come up with the concept, but we independently discovered it so we still deserve some credit. Once we are done patting ourselves on the back, go ahead and run the following command in the terminal:
+## Adding Acceptance Tests with Generators
+
+Once we are done patting ourselves on the back, go ahead and run the following command in the terminal:
 
 ```shell
 $ ember generate acceptance-test super-rentals
@@ -32,9 +49,11 @@ Generators aren't required; we _could_ have created the file ourselves which wou
         <p>Want to save even more typing? <code>ember generate ...</code> can be shortened into <code>ember g ...</code>. That's 7 fewer characters!</p>
       </div>
     </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
   </div>
 </div>
+
+## Writing Acceptance Tests
 
 Acceptance tests, also known as _application tests_, are one of a few types of automated testing at our disposal in Ember. We will learn about the other types later, but what makes acceptance tests unique is that they test our app from the user's perspective — they are an automated version of the "click around and see if it works" testing we did earlier, which is exactly what we need.
 
@@ -76,7 +95,7 @@ After navigating to the `/` URL and waiting for things to settle, we check that 
 
 Next, we confirmed that the page has an `<h2>` tag that contains the text "Welcome to Super Rentals!". Knowing this is true means that we can be quite certain that the correct template has been rendered, without errors.
 
-Then, we looked for a link with the text `About Us`, located using the _CSS selector_ `.jumbo a.button`. This is the same syntax we used in our stylesheet, which means "look inside the tag with the `jumbo` class for an `<a>` tag with the `button` class". This matches up with the HTML structure in our template.
+Then, we looked for a link with the text `About Us`, located using the _CSS selector_ `.jumbo a.button`. This is the same syntax we used in our stylesheet, which means "look inside the tag with the `jumbo` class for an `<a>` tag with the `button` class." This matches up with the HTML structure in our template.
 
 Once the existence of this element on the page was confirmed, we told the test robot to click on this link. As mentioned above, this is a user interaction, so it needs to be `await`-ed.
 
@@ -90,13 +109,13 @@ Finally, we asserted that clicking on the link should bring us to the `/about` U
         <p>Here, we are writing the tests in a framework called QUnit, which is where the functions <code>module</code>, <code>test</code> and <code>assert</code> come from. We also have additional helpers like <code>click</code>, <code>visit</code>, and <code>currentURL</code> provided by the <code>@ember/test-helpers</code> package. You can tell what comes from which package based on the <code>import</code> paths at the top of the file. Knowing this will be helpful when you need to search for documentation on the Internet or ask for help.</p>
       </div>
     </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
   </div>
 </div>
 
 We can put our automated test into motion by running the _test server_ using the `ember test --server` command, or `ember t -s` for short. This server behaves much like the development server, but it is explicitly running for our tests. It may automatically open a browser window and take you to the test UI, or you can open `http://localhost:7357/` yourself.
 
-If you watch really carefully, you can see our test robot roam around our app and clicking links:
+If you watch really carefully, you can see our test robot roaming around our app and clicking links:
 
 <!-- TODO: make this a gif instead -->
 
@@ -109,6 +128,8 @@ As much as I enjoy watching this robot hard at work, the important thing here is
 <img src="/screenshots/03-automated-testing/fail@2x.png" alt="A failing test" width="1024" height="768">
 
 Don't forget to put that line back in when you are done!
+
+## Practicing the Testing Workflow
 
 Let's practice what we learned by adding tests for the remaining pages:
 
@@ -162,6 +183,6 @@ As with the development server, the test UI should automatically reload and reru
 
 <img src="/screenshots/03-automated-testing/pass-2@2x.png" alt="Tests still passing with the new tests" width="1024" height="512">
 
-For the rest of the tutorial, we will continue to add more automated tests as we develop new features. Testing is optional but highly recommended. Tests don't affect the functionality your app, they just protect it from _regressions_, which is just a fancy way of saying "accidental breakages."
+For the rest of the tutorial, we will continue to add more automated tests as we develop new features. Testing is optional but highly recommended. Tests don't affect the functionality of your app, they just protect it from _regressions_, which is just a fancy way of saying "accidental breakages."
 
 If you are in a hurry, you can skip over the testing sections in this tutorial and still be able to follow along with everything else. But don't you find it super satisfying — _oddly satisfying_ — to watch a robot click on things really, really fast?

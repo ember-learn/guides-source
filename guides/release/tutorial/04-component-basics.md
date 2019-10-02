@@ -1,5 +1,21 @@
 <!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/src/chapters/04-component-basics.md -->
 
+In this chapter, you will _refactor_ your existing templates to use components. We will also be adding a site-wide navigation bar:
+
+<img src="/screenshots/04-component-basics/index-with-nav@2x.png" alt="The Super Rentals app by the end of the chapter" width="1024" height="314">
+
+In doing so, you will learn about:
+
+- Extracting markup into components
+- Invoking components
+- Passing content to components
+- Yielding content with the `{{yield}}` keyword
+- Refactoring existing code
+- Writing component tests
+- Using the application template and `{{outlet}}`s
+
+## Extracting Markup into Components
+
 In a [previous chapter](../02-building-pages/), we got a light introduction to _components_ when using `<LinkTo>` to connect our pages. To recap, we said that components are Ember's way of creating _custom tags_ to supplement the built-in HTML tags from the browser. Now, we are going to create our own components!
 
 During the course of developing an app, it is pretty common to reuse the same UI element across different parts of the app. For example, we have been using the same "jumbo" header in all three pages so far. On every page we worked to follow the same basic structure:
@@ -32,9 +48,11 @@ That's it, we have created our first component! We can now _invoke_ this compone
         <p>Remember, when invoking components, we need to capitalize their names so Ember can tell them apart from regular HTML elements. The <code>jumbo.hbs</code> template corresponds to the <code>&#x3C;Jumbo></code> tag, just like <code>super-awesome.hbs</code> corresponds to <code>&#x3C;SuperAwesome></code>.</p>
       </div>
     </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
   </div>
 </div>
+
+## Passing Content to Components with `{{yield}}`
 
 When invoking a component, Ember will replace the component tag with the content found in the component's template. Just like regular HTML tags, it is common to pass _content_ to components, like `<Jumbo>some content</Jumbo>`. We can enable this using the `{{yield}}` keyword, which will be replaced with the content that was passed to the component.
 
@@ -50,6 +68,8 @@ Let's try it out by editing the index template:
 </div>
 </Jumbo>
 ```
+
+## Refactoring Existing Code
 
 After saving the changes, your page should automatically reload, and, _voilà_... nothing changed? Well, that's exactly what we wanted to happen this time! We successfully _refactored_ our index template to use the `<Jumbo>` component, and everything still works as expected. And the tests still pass!
 
@@ -107,6 +127,8 @@ After saving, everything should look exactly the same as before, and all the tes
 
 While it may not save you a lot of characters in this case, _encapsulating_ the implementation of the "jumbo" header into its own component makes the template slightly easier to read, as it allows the reader to focus on things that are unique to just that page. Further, if we need to make a change to the header, we can make it in a single place. Feel free to give that a try!
 
+## Writing Component Tests
+
 Before we move on to the next component, let's write an automated test for our `<Jumbo>` component. Run this command in your terminal:
 
 ```shell
@@ -155,7 +177,7 @@ module('Integration | Component | jumbo', function(hooks) {
 
 Instead of navigating to a URL, we start the test by rendering our `<Jumbo>` component on the test page. This is useful because it may otherwise require a lot of setup and interaction just to get to a page where your component is used. Component tests allows us to skip all of that and focus exclusively on testing the component in isolation.
 
-Just like visit and click, which we used earlier, render is also an async step, so we need to pair it with the `await` keyword. Other than that, the rest of the test is very similar to the acceptance tests we wrote we in the previous chapter. Make sure the test is passing by checking the tests UI in the browser.
+Just like visit and click, which we used earlier, render is also an async step, so we need to pair it with the `await` keyword. Other than that, the rest of the test is very similar to the acceptance tests we wrote in the previous chapter. Make sure the test is passing by checking the tests UI in the browser.
 
 <img src="/screenshots/04-component-basics/pass-3@2x.png" alt="Tests still passing with our component test" width="1024" height="512">
 
@@ -236,7 +258,7 @@ Voilà, we made another component!
         <p><code>&#x3C;NavBar /></code> is a shorthand for <code>&#x3C;NavBar>&#x3C;/NavBar></code>. Component tags must always be closed properly, even when you are not passing any content to them, as in this case. Since this is pretty common, Ember provides the alternative self-closing shorthand to save you some typing!</p>
       </div>
     </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
   </div>
 </div>
 
@@ -318,7 +340,9 @@ We updated the existing tests to assert that a `<nav>` element exists on each pa
 
 All tests should pass at this point!
 
-<img src="/screenshots/04-component-basics/pass-4@2x.png" alt="Tests still passing with our <NavBar> tests" width="1024" height="512">
+<img src="/screenshots/04-component-basics/pass-4@2x.png" alt="Tests still passing with our &lt;NavBar&gt; tests" width="1024" height="512">
+
+## Using the Application Template and `{{outlet}}`s
 
 Before we move on to the next feature, there is one more thing we could clean up. Since the `<NavBar>` is used for site-wide navigation, it really needs to be displayed on _every_ page in the app. So far, we have been adding the component on each page manually. This is a bit error-prone, as we could easily forget to do this the next time that we add a new page.
 
@@ -382,6 +406,6 @@ While we are at it, we will also add a container element that wraps around the w
 
 The `{{outlet}}` keyword denotes the place where our site's pages should be rendered into, similar to the `{{yield}}` keyword we saw earlier.
 
-This is much nicer! We can run our test suite which confirms that everything still works after our refactor. We are ready to move on to the next feature!
+This is much nicer! We can run our test suite, which confirms that everything still works after our refactor. We are ready to move on to the next feature!
 
 <img src="/screenshots/04-component-basics/pass-5@2x.png" alt="Tests still passing with {{outlet}}" width="1024" height="512">
