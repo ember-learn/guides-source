@@ -2,7 +2,7 @@
 
 In this chapter, you will install _Ember CLI_, use it to generate a new Ember project, and add some basic templates and styles to your new app. By the end of this chapter, you should have a landing page with Professor Tomster's cute little face featured on it:
 
-<!-- TODO: add screen shot of the end state -->
+<img src="/screenshots/01-orientation/styled-with-tomster@2x.png" alt="The Super Rentals app by the end of the chapter" width="1024" height="250">
 
 While building your landing page, you will learn about:
 

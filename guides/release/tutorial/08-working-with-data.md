@@ -1,8 +1,8 @@
 <!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/src/chapters/08-working-with-data.md -->
 
-In this chapter, we will remove the hard-coded data from our `<Rental>` component. By the end, your app would finally be displaying real data that came from the server!
+In this chapter, we will remove the hard-coded data from our `<Rental>` component. By the end, your app would finally be displaying real data that came from the server:
 
-<!-- TODO: add screen shot of the end state -->
+<img src="/screenshots/08-working-with-data/three-properties@2x.png" alt="The Super Rentals app by the end of the chapter" width="1024" height="1129">
 
 In this chapter, you will learn about:
 

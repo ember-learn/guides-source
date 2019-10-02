@@ -1,8 +1,12 @@
 <!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/src/chapters/02-building-pages.md -->
 
-In this chapter, you will build the first few pages of your Ember app and set up links between them. By the end of this chapter, you should have two new pages – an "About" page and a "Contact" page. These pages will be linked to from your landing page:
+In this chapter, you will build the first few pages of your Ember app and set up links between them. By the end of this chapter, you should have two new pages – an about page and a contact page. These pages will be linked to from your landing page:
 
-<!-- TODO: add screen shot of the end state -->
+<img src="/screenshots/02-building-pages/index-with-link@2x.png" alt="The Super Rentals app (homepage) by the end of the chapter" width="1024" height="250">
+
+<img src="/screenshots/02-building-pages/about-with-link@2x.png" alt="The Super Rentals app (about page) by the end of the chapter" width="1024" height="274">
+
+<img src="/screenshots/02-building-pages/contact-with-link@2x.png" alt="The Super Rentals app (contact page) by the end of the chapter" width="1024" height="444">
 
 While building these pages, you will learn about:
 

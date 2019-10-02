@@ -2,7 +2,11 @@
 
 In this chapter, you will add interactivity to the page, allowing the user to click an image to enlarge or shrink it:
 
-<!-- TODO: add gif of the end state -->
+<!-- TODO: make this a gif instead -->
+
+<img src="/screenshots/06-interactive-components/rental-image-default@2x.png" alt="The Super Rentals app by the end of the chapter (default image size)" width="1024" height="1500">
+
+<img src="/screenshots/06-interactive-components/rental-image-large@2x.png" alt="The Super Rentals app by the end of the chapter (large image size)" width="1024" height="1500">
 
 While doing so, you will learn about:
 
@@ -192,7 +196,11 @@ Next, we used the `{{on}}` _modifier_ to attach `this.toggleSize` as a click han
 
 With that, we have created our first _interactive_ component. Go ahead and try it in the browser!
 
-<!-- TODO: add a gif here -->
+<!-- TODO: make this a gif instead -->
+
+<img src="/screenshots/06-interactive-components/rental-image-default@2x.png" alt="<Rental::Image> (default size)" width="1024" height="1500">
+
+<img src="/screenshots/06-interactive-components/rental-image-large@2x.png" alt="<Rental::Image> (large size)" width="1024" height="1500">
 
 ## Testing User Interactions
 

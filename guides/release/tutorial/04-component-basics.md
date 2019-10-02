@@ -1,8 +1,8 @@
 <!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/src/chapters/04-component-basics.md -->
 
-In this chapter, you will _refactor_ your existing templates to use components. By the end, everything should look the same, but with less code duplication:
+In this chapter, you will _refactor_ your existing templates to use components. We will also be adding a site-wide navigation bar:
 
-<!-- TODO: add screen shot of the end state -->
+<img src="/screenshots/04-component-basics/index-with-nav@2x.png" alt="The Super Rentals app by the end of the chapter" width="1024" height="314">
 
 In doing so, you will learn about:
 

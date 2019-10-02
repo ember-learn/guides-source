@@ -1,8 +1,8 @@
 <!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/src/chapters/05-more-about-components.md -->
 
-It's time to finally work on the rentals listing!
+It's time to finally work on the rentals listing:
 
-<!-- TODO: add screen shot of the end state -->
+<img src="/screenshots/05-more-about-components/rental-image@2x.png" alt="The Super Rentals app by the end of the chapter" width="1024" height="1129">
 
 While building this list of rental properties, you will learn about:
 

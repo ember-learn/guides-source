@@ -1,8 +1,8 @@
 <!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/src/chapters/07-reusable-components.md -->
 
-The last missing feature for the `<Rental>` component is a map to show the location of the rental, which is what we're going to work on next.
+The last missing feature for the `<Rental>` component is a map to show the location of the rental, which is what we're going to work on next:
 
-<!-- TODO: add screen shot of the end state -->
+<img src="/screenshots/07-reusable-components/three-old-mansions@2x.png" alt="The Super Rentals app by the end of the chapter" width="1024" height="1129">
 
 While adding the map, you will learn about:
 
