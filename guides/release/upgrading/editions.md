@@ -1268,7 +1268,7 @@ callback function as the second argument:
 The event can be _any_ event name, not just the `click` event, which makes
 `{{on}}` perfect for handling any kind of DOM event. For a list of native
 browser events, see the [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/Events).
-The callback function will receive the event as it's first argument:
+The callback function will receive the event as its first argument:
 
 ```javascript
 import Component from '@glimmer/component';
