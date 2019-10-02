@@ -236,10 +236,10 @@ module('Unit | Service | employees', function(hooks) {
       addJob() {}
     };
 
-    let person = new Person();
+    let person = new MockPerson();
 
     assert.equal(someThing.hire(person), 'John Smith is now an employee');
-    assert.equal(somthing.employees[0], person);
+    assert.equal(someThing.employees[0], person);
   });
 });
 ```
