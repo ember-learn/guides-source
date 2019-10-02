@@ -4,7 +4,7 @@ In this chapter, you will add interactivity to the page, allowing the user to cl
 
 <!-- TODO: make this a gif instead -->
 
-<img src="/screenshots/06-interactive-components/rental-image-default@2x.png" alt="The Super Rentals app by the end of the chapter (default image size)" width="1024" height="1500">
+<img src="/screenshots/06-interactive-components/rental-image-default@2x.png" alt="The Super Rentals app by the end of the chapter (default image size)" width="1024" height="1129">
 
 <img src="/screenshots/06-interactive-components/rental-image-large@2x.png" alt="The Super Rentals app by the end of the chapter (large image size)" width="1024" height="1500">
 
@@ -198,7 +198,7 @@ With that, we have created our first _interactive_ component. Go ahead and try i
 
 <!-- TODO: make this a gif instead -->
 
-<img src="/screenshots/06-interactive-components/rental-image-default@2x.png" alt="<Rental::Image> (default size)" width="1024" height="1500">
+<img src="/screenshots/06-interactive-components/rental-image-default@2x.png" alt="<Rental::Image> (default size)" width="1024" height="1129">
 
 <img src="/screenshots/06-interactive-components/rental-image-large@2x.png" alt="<Rental::Image> (large size)" width="1024" height="1500">
 
