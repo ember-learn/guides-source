@@ -272,7 +272,7 @@ module('Integration | Component | map', function(hooks) {
 });
 ```
 
-Note that the `hasAttribute` test helper from qunit-dom supports using _regular expressions_. We used this feature to confirm that the `src` attribute starts with `https://api.mapbox.com/`, as opposed to requiring it to be an exact match against a string. This allows us to be reasonably confident that the code is working correctly, without being overly-detailed in our tests.
+Note that the `hasAttribute` test helper from `qunit-dom` supports using _regular expressions_. We used this feature to confirm that the `src` attribute starts with `https://api.mapbox.com/`, as opposed to requiring it to be an exact match against a string. This allows us to be reasonably confident that the code is working correctly, without being overly-detailed in our tests.
 
 _Fingers crossed..._ Let's run our tests.
 
