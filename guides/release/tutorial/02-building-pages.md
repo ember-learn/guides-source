@@ -1,5 +1,23 @@
 <!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/src/chapters/02-building-pages.md -->
 
+In this chapter, you will build the first few pages of your Ember app and set up links between them. By the end of this chapter, you should have two new pages – an about page and a contact page. These pages will be linked to from your landing page:
+
+<img src="/screenshots/02-building-pages/index-with-link@2x.png" alt="The Super Rentals app (homepage) by the end of the chapter" width="1024" height="250">
+
+<img src="/screenshots/02-building-pages/about-with-link@2x.png" alt="The Super Rentals app (about page) by the end of the chapter" width="1024" height="274">
+
+<img src="/screenshots/02-building-pages/contact-with-link@2x.png" alt="The Super Rentals app (contact page) by the end of the chapter" width="1024" height="444">
+
+While building these pages, you will learn about:
+
+- Defining routes
+- Using route templates
+- Customizing URLs
+- Linking pages with the `<LinkTo>` component
+- Passing arguments and attributes to components
+
+## Defining Routes
+
 With our [first page](../01-orientation/) down, let's add another one!
 
 This time, we would like the page to be served on the `/about` URL. In order to do this, we will need to tell Ember about our plan to add a page at that location. Otherwise, Ember will think we have visited an invalid URL!
@@ -22,6 +40,8 @@ Router.map(function() {
 
 This adds a _route_ named "about", which is served at the `/about` URL by default.
 
+## Using Route Templates
+
 With that in place, we can create a new `app/templates/about.hbs` template with the following content:
 
 ```handlebars { data-filename="app/templates/about.hbs" }
@@ -41,6 +61,8 @@ To see this in action, navigate to `http://localhost:4200/about`.
 <img src="/screenshots/02-building-pages/about@2x.png" alt="About page" width="1024" height="250">
 
 With that, our second page is done!
+
+## Defining Routes with Custom Paths
 
 We're on a roll! While we're at it, let's add our third page. This time, things are a little bit different. Everyone at the company calls this the "contact" page. However, the old website we are replacing already has a similar page, which is served at the legacy URL `/getting-in-touch`.
 
@@ -90,6 +112,8 @@ Ember comes with strong _conventions_ and sensible defaults — if we were start
 Once you have added the route and the template above, we should have the new page available to us at `http://localhost:4200/getting-in-touch`.
 
 <img src="/screenshots/02-building-pages/contact@2x.png" alt="Contact page" width="1024" height="394">
+
+## Linking Pages with the `<LinkTo>` Component
 
 We just put so much effort into making these pages, we need to make sure people can find them! The way we do that on the web is by using _hyperlinks_, or _links_ for short.
 
@@ -146,7 +170,7 @@ There is quite a bit going on here, so let's break it down.
 
 We have a lot more to say about components later, but for now, you can think of them as a way to provide _custom tags_ to supplement the built-in ones that came with the browser.
 
-The `@route=...` part is how we pass _arguments_ into the component. Here, we use this to specify _which_ route we want to link to. Note that this should be the _name_ of the route, not the path, which is why we specified `"about"` instead of `"/about"`, and `"contact"` instead of `"/getting-in-touch"`.
+The `@route=...` part is how we pass _arguments_ into the component. Here, we use this argument to specify _which_ route we want to link to. (Note that this should be the _name_ of the route, not the path, which is why we specified `"about"` instead of `"/about"`, and `"contact"` instead of `"/getting-in-touch"`.)
 
 In addition to arguments, components can also take the usual HTML attributes as well. In our example, we added a `"button"` class for styling purposes, but we could also specify other attributes as we see fit, such as the ARIA `role` attribute. These are passed without the `@` symbol (`class=...` as opposed to `@class=...`), so that Ember will know they are just regular HTML attributes.
 
@@ -164,4 +188,4 @@ However, when clicking on one of these special links, Ember will intercept the c
 
 We will learn more about how all of this works soon. In the meantime, go ahead and click on the link in the browser. Did you notice how snappy that was?
 
-Congratulations, you have completed your training as a master page-crafter!
+Congratulations, you are well on your way to becoming a master page-crafter!
