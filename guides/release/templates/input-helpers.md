@@ -14,7 +14,7 @@ Will become:
 
 ```html
 <label for="facebook">Facebook</label>
-<input id="facebook" type="text" value="http://www.facebook.com"/>
+<input id="facebook" type="text" value="http://www.facebook.com" />
 ```
 
 You can pass the following standard `<input>` attributes within the input
@@ -57,14 +57,13 @@ To dispatch an action on specific events such as `key-press`, use the following
 
 The following event types are supported (dasherized format):
 
-* `enter`
-* `insert-newline`
-* `escape-press`
-* `focus-in`
-* `focus-out`
-* `key-press`
-* `key-up`
-
+- `enter`
+- `insert-newline`
+- `escape-press`
+- `focus-in`
+- `focus-out`
+- `key-press`
+- `key-up`
 
 More [events types](https://api.emberjs.com/ember/3.11/classes/Component#event-names) are also supported but these events need to be written in camelCase format, such `mouseEnter`. Note, there are events of the same type in both the list above and linked. Event names listed above must be dasherized. Additional work is performed on these events.
 
@@ -81,24 +80,21 @@ helper to create a checkbox by setting its `type`:
 
 Checkboxes support the following properties:
 
-* `checked`
-* `disabled`
-* `tabindex`
-* `indeterminate`
-* `name`
-* `autofocus`
-* `form`
-
+- `checked`
+- `disabled`
+- `tabindex`
+- `indeterminate`
+- `name`
+- `autofocus`
+- `form`
 
 Which can be bound or set as described in the previous section.
 
-
-Checkboxes are a special input type. If you want to dispatch an action on a certain [event](https://api.emberjs.com/ember/3.11/classes/Component#event-handler-methods), you will always need to define the event name in camelCase format:
+If you want to dispatch an action on a certain [event](https://api.emberjs.com/ember/3.11/classes/Component#event-handler-methods), you will always need to define the event name in camelCase format:
 
 ```handlebars
 <Input @type="text" @keyPress={{action "updateName"}} />
 ```
-
 
 ## Text Areas
 
@@ -110,23 +106,23 @@ Will bind the value of the text area to `name` on the current context.
 
 [`<Textarea>`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/textarea?anchor=textarea) supports binding and/or setting the following properties:
 
-* `value`
-* `name`
-* `rows`
-* `cols`
-* `placeholder`
-* `disabled`
-* `maxlength`
-* `tabindex`
-* `selectionEnd`
-* `selectionStart`
-* `selectionDirection`
-* `wrap`
-* `readonly`
-* `autofocus`
-* `form`
-* `spellcheck`
-* `required`
+- `value`
+- `name`
+- `rows`
+- `cols`
+- `placeholder`
+- `disabled`
+- `maxlength`
+- `tabindex`
+- `selectionEnd`
+- `selectionStart`
+- `selectionDirection`
+- `wrap`
+- `readonly`
+- `autofocus`
+- `form`
+- `spellcheck`
+- `required`
 
 ### Binding dynamic attribute
 
