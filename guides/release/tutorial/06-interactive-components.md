@@ -91,7 +91,7 @@ In the template, we have access to the component's instance variables. The `{{#i
 
 We can verify this works by temporarily changing the initial value in our JavaScript file. If we change `app/components/rental/image.js` to initialize `this.isLarge = true;` in the constructor, we should see the large version of the property image in the browser. Cool!
 
-<img src="/screenshots/06-interactive-components/is-large-true@2x.png" alt="<Rental::Image> with this.isLarge set to true" width="1024" height="1500">
+<img src="/screenshots/06-interactive-components/is-large-true@2x.png" alt="&lt;Rental::Image&gt; with this.isLarge set to true" width="1024" height="1500">
 
 Once we've tested this out, we can change `this.isLarge` back to `false`.
 
@@ -198,9 +198,9 @@ With that, we have created our first _interactive_ component. Go ahead and try i
 
 <!-- TODO: make this a gif instead -->
 
-<img src="/screenshots/06-interactive-components/rental-image-default@2x.png" alt="<Rental::Image> (default size)" width="1024" height="1129">
+<img src="/screenshots/06-interactive-components/rental-image-default@2x.png" alt="&lt;Rental::Image&gt; (default size)" width="1024" height="1129">
 
-<img src="/screenshots/06-interactive-components/rental-image-large@2x.png" alt="<Rental::Image> (large size)" width="1024" height="1500">
+<img src="/screenshots/06-interactive-components/rental-image-large@2x.png" alt="&lt;Rental::Image&gt; (large size)" width="1024" height="1500">
 
 ## Testing User Interactions
 
@@ -255,7 +255,7 @@ module('Integration | Component | rental/image', function(hooks) {
 });
 ```
 
-<img src="/screenshots/06-interactive-components/pass@2x.png" alt="Tests passing with the new <Rental::Image> test" width="1024" height="512">
+<img src="/screenshots/06-interactive-components/pass@2x.png" alt="Tests passing with the new &lt;Rental::Image&gt; test" width="1024" height="512">
 
 Let's clean up our template before moving on. We introduced a lot of duplication when we added the conditional in the template. If we look closely, the only things that are different between the two blocks are:
 

@@ -276,7 +276,7 @@ Note that the `hasAttribute` test helper from `qunit-dom` supports using _regula
 
 _Fingers crossed..._ Let's run our tests.
 
-<img src="/screenshots/07-reusable-components/pass@2x.png" alt="Tests passing with the new <Map> tests" width="1024" height="768">
+<img src="/screenshots/07-reusable-components/pass@2x.png" alt="Tests passing with the new &lt;Map&gt; tests" width="1024" height="768">
 
 Hey, all the tests passed! But does that mean it actually works in practice? Let's find out by invoking the `<Map>` component from the `<Rental>` component's template:
 

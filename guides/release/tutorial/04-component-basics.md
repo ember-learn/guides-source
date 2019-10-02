@@ -340,7 +340,7 @@ We updated the existing tests to assert that a `<nav>` element exists on each pa
 
 All tests should pass at this point!
 
-<img src="/screenshots/04-component-basics/pass-4@2x.png" alt="Tests still passing with our <NavBar> tests" width="1024" height="512">
+<img src="/screenshots/04-component-basics/pass-4@2x.png" alt="Tests still passing with our &lt;NavBar&gt; tests" width="1024" height="512">
 
 ## Using the Application Template and `{{outlet}}`s
 
