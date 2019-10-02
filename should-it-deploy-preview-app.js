@@ -1,6 +1,11 @@
 /** eslint-env node */
 const https = require('https')
 
+/* 
+With this script, we only run a preview build on demand, since our CI was timing out
+when we ran previews for everything.
+*/
+
 if (process.env.TRAVIS_EVENT_TYPE !== 'pull_request') {
   console.log('This aint no pull request')
   process.exit(1)
