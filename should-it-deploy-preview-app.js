@@ -1,7 +1,9 @@
+#!/usr/bin/env node
+
 /** eslint-env node */
 const https = require('https')
 
-/* 
+/*
 With this script, we only run a preview build on demand, since our CI was timing out
 when we ran previews for everything.
 */
