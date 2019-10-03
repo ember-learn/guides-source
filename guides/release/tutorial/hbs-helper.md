@@ -34,13 +34,13 @@ Let's update our `rental-listing` component template to use our new helper and p
 
 ```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="-15,+16"}
 <article class="listing">
-  <a
+  <button
     onclick={{action 'toggleImageSize'}}
     class="image {{if this.isWide "wide"}}"
   >
     <img src={{this.rental.image}} alt="">
     <small>View Larger</small>
-  </a>
+  </button>
   <div class="details">
     <h3>{{this.rental.title}}</h3>
     <div class="detail owner">

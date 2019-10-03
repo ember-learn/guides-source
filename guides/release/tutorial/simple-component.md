@@ -119,13 +119,12 @@ We'll also add some text to indicate that the image can be clicked on,
 and wrap both with an anchor element,
 giving it the `image` class name so that our test can find it.
 
-```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="+2,+3,+5,+6"}
+```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="+2,+4,+5"}
 <article class="listing">
-  <a class="image {{if this.isWide "wide"}}"
-    role="button">
+  <button class="image {{if this.isWide "wide"}}">
     <img src={{this.rental.image}} alt="">
     <small>View Larger</small>
-  </a>
+  </button>
   <div class="details">
     <h3>{{this.rental.title}}</h3>
     <div class="detail owner">
@@ -176,18 +175,16 @@ export default Component.extend({
 In order to trigger this action, we need to use the `{{action}}` helper in our
 template:
 
-```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="-2,+3,+4,+5,+6,+7"}
+```handlebars {data-filename="app/templates/components/rental-listing.hbs" data-diff="-2,+3,+4,+5,+6"}
 <article class="listing">
-  <a class="image {{if this.isWide "wide"}}"
-    role="button">
-  <a
+  <button class="image {{if this.isWide "wide"}}">
+  <button
     onclick={{action "toggleImageSize"}}
     class="image {{if this.isWide "wide"}}"
-    role="button"
   >
     <img src={{this.rental.image}} alt="">
     <small>View Larger</small>
-  </a>
+  </button>
   <div class="details">
     <h3>{{this.rental.title}}</h3>
     <div class="detail owner">
