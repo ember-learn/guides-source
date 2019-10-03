@@ -39,7 +39,7 @@ jobs:
     - script:
         - npm run build -- --prod
         - travis_wait 50 netlify deploy
-      if: node ./should-it-deploy-preview-app.js
+      if: ./should-it-deploy-preview-app.js
     - stage: deploy to prod
       script:
         - npm run build -- --prod
