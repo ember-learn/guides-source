@@ -1,5 +1,5 @@
-The [`<Input>`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/if?anchor=input)
-and [`<Textarea>`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/if?anchor=textarea)
+The [`<Input>`](https://api.emberjs.com/ember/release/classes/Ember.Templates.components/methods/Input?anchor=Input)
+and [`<Textarea>`](https://api.emberjs.com/ember/release/classes/Ember.Templates.components/methods/Textarea?anchor=Textarea)
 components are the easiest way to create common form controls.
 Using these components, you can create form controls that are almost identical to the native HTML `<input>` or `<textarea>` elements, but are aware of Ember's two-way bindings and can automatically update.
 
