@@ -57,10 +57,10 @@ module.exports = function(environment) {
       },
     ],
     infoBanner: {
-      content: `Thanks for taking the Octane preview for a test drive! Visit
-<a href="https://emberjs.com/editions/octane" target="_blank" rel="noopener">emberjs.com/editions/octane</a>
-for more info and ways you can help out.
-These preview guides URLs are subject to change, so point your bookmarks at that landing page.
+      content: `Octane is almost here, and you can make it better!
+These are work-in-progress guides that will be published with Ember 3.14, so please
+<a href="https://github.com/ember-learn/guides-source/issues/669" target="_blank" rel="noopener">PR any improvements or open issues</a> ASAP.
+Thanks in advance!
 If you are looking for the latest stable release of Ember, please instead visit
 <a href="https://guides.emberjs.com" target="_blank" rel="noopener">guides.emberjs.com</a>.`
     },
