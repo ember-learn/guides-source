@@ -66,7 +66,7 @@ With that, our second page is done!
 
 We're on a roll! While we're at it, let's add our third page. This time, things are a little bit different. Everyone at the company calls this the "contact" page. However, the old website we are replacing already has a similar page, which is served at the legacy URL `/getting-in-touch`.
 
-We want to keep the existing URLs for the new website, but `getting-in-touch` is a mouthful to type and say out loud all the time! Fortunately, we can have the best of the both worlds:
+We want to keep the existing URLs for the new website, but we don't want to have to type `getting-in-touch` all over the new codebase! Fortunately, we can have the best of the both worlds:
 
 ```js { data-filename="app/router.js" data-diff="+11" }
 import EmberRouter from '@ember/routing/router';
@@ -174,7 +174,7 @@ The `@route=...` part is how we pass _arguments_ into the component. Here, we us
 
 In addition to arguments, components can also take the usual HTML attributes as well. In our example, we added a `"button"` class for styling purposes, but we could also specify other attributes as we see fit, such as the ARIA `role` attribute. These are passed without the `@` symbol (`class=...` as opposed to `@class=...`), so that Ember will know they are just regular HTML attributes.
 
-Under the hood, the `<LinkTo>` component generates a regular `<a>` tag for us with the appropriate `href` for the specific route. This allows for perfect interoperability for all _screen readers_, as well as the ability for our users to bookmark the link or open it in a new tab.
+Under the hood, the `<LinkTo>` component generates a regular `<a>` tag for us with the appropriate `href` for the specific route. This `<a>` tag works just fine with _screen readers_, as well as allowing our users to bookmark the link or open it in a new tab.
 
 However, when clicking on one of these special links, Ember will intercept the click, render the content for the new page, and update the URL — all performed locally without having to wait for the server, thus avoiding a full page refresh.
 
