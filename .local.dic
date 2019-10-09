@@ -75,6 +75,7 @@ Geolocation
 getter
 getters
 Getters
+GitLab
 globbing
 *google
 HammerJS
@@ -147,6 +148,7 @@ runtime
 sandboxed
 scp
 selectable
+serverless
 SEO
 serializer
 serializers
@@ -193,3 +195,4 @@ WAI-ARIA
 WCAG
 websocket
 Websockets
+ZEIT
