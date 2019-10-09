@@ -1,4 +1,4 @@
-In this section, you will learn about the configurations and libraries that affect an entire application's accessibility. 
+In this section, you will learn about the configurations and libraries that affect an entire application's accessibility.
 
 ## Language attribute
 
@@ -19,7 +19,7 @@ You can simplify your markup and increase accessibility at the same time by conf
 
 If you are using the [application template wrapper](https://emberjs.com/blog/2018/02/16/ember-3-1-beta-released.html#toc_new-optional-feature-application-template-wrapper) enabled (default state), then you would need to add certain aria roles to your [landmark regions](https://www.w3.org/WAI/PF/aria/roles#landmark_roles), even if you are using native HTML elements, because those regions are not the direct child descendant of the body element (they are the children of the div that wraps the Ember app).
 
-If you disable the [application template wrapper](https://emberjs.com/blog/2018/02/16/ember-3-1-beta-released.html#toc_new-optional-feature-application-template-wrapper), you will not need to add role attributes to your landmark regions when they are the direct descendant of the body element, and they are using native HTML elements. This is the preferred approach for accessible applications. 
+If you disable the [application template wrapper](https://emberjs.com/blog/2018/02/16/ember-3-1-beta-released.html#toc_new-optional-feature-application-template-wrapper), you will not need to add role attributes to your landmark regions when they are the direct descendant of the body element, and they are using native HTML elements. This is the preferred approach for accessible applications.
 
 To disable this feature and improve your app's accessibility:
 
@@ -54,26 +54,26 @@ ember feature:disable application-template-wrapper
     <div class="cta-note-body">
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
-        To learn more about landmark roles and how to use them: <a href="https://www.w3.org/WAI/PF/aria/roles#landmark_roles">https://www.w3.org/WAI/PF/aria/roles#landmark_roles</a>. Still need more help? Visit the #topic-a11y channel in <a href="https://emberjs.com/community/">the community chat</a>. 
+        To learn more about landmark roles and how to use them: <a href="https://www.w3.org/WAI/PF/aria/roles#landmark_roles">https://www.w3.org/WAI/PF/aria/roles#landmark_roles</a>. Still need more help? Visit the #topic-a11y channel in <a href="https://emberjs.com/community/">the community chat</a>.
       </div>
     </div>
     <img src="/images/mascots/zoey.png" role="presentation" alt="">
   </div>
 </div>
 
-## Ember applications vs role="application"
+## Ember applications vs role=''application''
 
 An important thing to note in this section is this: "application" in Ember development and "application" in landmark roles have two _very_ different meanings. 
 
-The <abbr title="too long; didn't read">TL;DR</abbr>? Don't use `role="application"` until you have done your research and know exactly how it is to be used correctly (if at all). There are **very** few use cases where the role of application is appropriate. 
+The <abbr title="too long; didn't read">TL;DR</abbr>? Don't use `role="application"` until you have done your research and know exactly how it is to be used correctly (if at all). There are **very** few use cases where the role of application is appropriate.
 
 Read more about it: [https://a11yproject.com/posts/how-to-use-application-role/](https://a11yproject.com/posts/how-to-use-application-role/)
 
 ## Accessibility addons
 
-Any addon that will provide UI elements to the application should be evaluated for accessibility before use. 
+Any addon that will provide UI elements to the application should be evaluated for accessibility before use.
 
-There are some existing Ember addons that may help you make your app more accessible. Each addon should be evaluated for its own usefulness and merit- you may find in some instances, that it would be better to implement the ideas presented in the addon in your own application. 
+There are some existing Ember addons that may help you make your app more accessible. Each addon should be evaluated for its own usefulness and merit- you may find in some instances, that it would be better to implement the ideas presented in the addon in your own application.
 
 Here are some examples of accessibility-focused addons created by many people throughout the Ember community:
 
