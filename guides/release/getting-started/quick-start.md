@@ -205,7 +205,7 @@ We're going to tell our component:
    provide this route's `model` as the list of people.
 
 ```handlebars {data-filename="app/templates/scientists.hbs"}
-<PeopleList @title="List of Scientists" @people={{this.model}} />
+<People-List @title="List of Scientists" @people={{this.model}} />
 ```
 
 Go back to your browser and you should see that the UI looks identical.
@@ -214,7 +214,7 @@ The only difference is that now we've componentized our list into a version that
 You can see this in action if you create a new route that shows a different list of people.
 As an exercise for the reader,
 you may try to create a `programmers` route that shows a list of famous programmers.
-By re-using the `PeopleList` component, you can do it in almost no code at all.
+By re-using the `People-List` component, you can do it in almost no code at all.
 
 ## Click Events
 
