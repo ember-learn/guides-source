@@ -127,7 +127,7 @@ may break the styling of an existing application in subtle ways:
   longer be contained in a block-layout element.
 
 If your application relies on those behaviors it is still recommended that
-you *enable* this feature, and simply add an appropriate element to
+you *disable* this feature, and simply add an appropriate element to
 `app/templates/application.hbs` wrapping that template's `{{outlet}}`.
 
 For more information, see [RFC #280](https://github.com/emberjs/rfcs/blob/master/text/0280-remove-application-wrapper.md).
