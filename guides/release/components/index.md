@@ -263,6 +263,22 @@ arguments, they are _not_ prefixed with the `@` symbol:
 </BlogPost>
 ```
 
+### Nested components invocation
+
+Components nested inside directories can be used via double comma syntax.
+It means that directories in component path should be procedeed with `::`.
+For example component `blog-post/comment` can be invoked like this:
+
+```handlebars
+<Blog-Post::Comment/>
+
+{{!--
+  Dashes in directory name can be ommited:
+--}}
+<BlogPost::Comment/>
+```
+
+
 ### Template-only components
 
 Components can have a template _without_ a backing class definition. These types
