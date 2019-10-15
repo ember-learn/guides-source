@@ -28,6 +28,7 @@ guides/v3.0.0/**/*.md
 guides/v3.1.0/**/*.md
 guides/v3.2.0/**/*.md
 guides/v3.3.0/**/*.md
-
-# redirect only files
-guides/release/working-with-javascript
+guides/v3.4.0/**/*.md
+guides/v3.5.0/**/*.md
+guides/v3.6.0/**/*.md
+guides/v3.7.0/**/*.md
