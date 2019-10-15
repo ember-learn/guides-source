@@ -214,8 +214,41 @@ arguments, they are _not_ prefixed with the `@` symbol:
 </BlogPost>
 ```
 
-And then invoking the component in block form, with the text we want to be
-rendered in the button:
+### Nested components invocation
+
+Components nested inside directories can be used via double comma syntax.
+It means that directories in component path should be procedeed with `::`.
+For example component `blog-post/comment` can be invoked like this:
+
+```handlebars
+<Blog-Post::Comment/>
+
+{{!--
+  Dashes in directory name can be ommited:
+--}}
+<BlogPost::Comment/>
+```
+
+
+### Template-only components
+
+Components can have a template _without_ a backing class definition. These types
+of components are known as Template-Only components, as well as presentational
+or functional components, and their major difference is that they do not have an
+_instance_ or any instance state.
+
+What this means in practice is that using properties in the template
+(e.g. `{{this.myProperty}}`) will result in an error. In a template-only component
+you can only use arguments (e.g. `{{@myArgument}}`).
+
+Template-Only components are useful for components that don't need to have their
+own state, such as components that focus on presentation and formatting of data.
+For example, you could make a Template-Only greeting component that receives the
+name of a friend and greets them:
+
+```handlebars {data-filename=app/templates/components/greeting.hbs}
+<p>Hello {{@friend}}</p>
+```
 
 ```handlebars {data-filename=app/templates/application.hbs}
 <HelloButton>
