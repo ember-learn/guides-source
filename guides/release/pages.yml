@@ -54,6 +54,15 @@
       url: "14-provider-components"
     - title: "Part 2: Recap"
       url: "15-part-2-recap"
+- title: "Components (update)"
+  url: components-update
+  pages:
+    - title: "HTML"
+      url: "html-is-html"
+    - title: "Extracting a Component"
+      url: "extracting-a-component"
+    - title: "Configuring a Component"
+      url: "configuring-a-component"
 - title: "Templating"
   url: "templates"
   pages:
@@ -164,7 +173,7 @@
       url: defining-models
     - title: Finding Records
       url: finding-records
-    - title: 'Creating, Updating and Deleting'
+    - title: "Creating, Updating and Deleting"
       url: creating-updating-and-deleting-records
     - title: Relationships
       url: relationships
