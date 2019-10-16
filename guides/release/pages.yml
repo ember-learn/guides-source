@@ -52,6 +52,15 @@
       url: "14-provider-components"
     - title: "Part 2: Recap"
       url: "15-part-2-recap"
+- title: "Components (update)"
+  url: components-update
+  pages:
+    - title: "HTML"
+      url: "html-is-html"
+    - title: "Extracting a Component"
+      url: "extracting-a-component"
+    - title: "Configuring a Component"
+      url: "configuring-a-component"
 - title: "Templating"
   url: "templates"
   pages:
@@ -158,16 +167,19 @@
   pages:
     - title: Introduction
       url: index
-    - title: Defining Your Routes
-      url: defining-your-routes
-    - title: Specifying a Route's Model
-      url: specifying-a-routes-model
-    - title: Rendering a Template
-      url: rendering-a-template
-    - title: Redirecting
-      url: redirection
-    - title: Preventing and Retrying Transitions
-      url: preventing-and-retrying-transitions
+    - title: Defining Models
+      url: defining-models
+    - title: Finding Records
+      url: finding-records
+    - title: "Creating, Updating and Deleting"
+      url: creating-updating-and-deleting-records
+    - title: Relationships
+      url: relationships
+    - title: Pushing Records into the Store
+      url: pushing-records-into-the-store
+      isAdvanced: true
+    - title: Handling Metadata
+      url: handling-metadata
       isAdvanced: true
     - title: Loading / Error Substates
       url: loading-and-error-substates
