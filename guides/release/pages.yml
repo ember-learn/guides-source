@@ -44,6 +44,15 @@
       url: "09-part-1-recap"
     - title: "Part 2: Introduction"
       url: "10-part-2"
+- title: "Components (update)"
+  url: components-update
+  pages:
+    - title: "HTML"
+      url: "html-is-html"
+    - title: "Extracting a Component"
+      url: "extracting-a-component"
+    - title: "Configuring a Component"
+      url: "configuring-a-component"
 - title: "Templating"
   url: "templates"
   pages:
@@ -154,7 +163,7 @@
       url: defining-models
     - title: Finding Records
       url: finding-records
-    - title: 'Creating, Updating and Deleting'
+    - title: "Creating, Updating and Deleting"
       url: creating-updating-and-deleting-records
     - title: Relationships
       url: relationships
@@ -279,7 +288,7 @@
       url: components
     - title: Testing Considerations
       url: testing
-    - title: Learning Resources 
+    - title: Learning Resources
       url: learning-resources
 - title: "Contributing to Ember.js"
   url: "contributing"
