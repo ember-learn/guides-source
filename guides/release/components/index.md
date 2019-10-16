@@ -262,12 +262,10 @@ argument. We can put anything inside of that block, including text, HTML, and
 other components. This is part of what makes components so powerful and
 composable as a whole.
 
-Components can also consist of _just_ a template definition. Components with
-just a template are known as Template-Only components, as well as presentational
-or functional components. The major difference is that _unlike_ components with
-a class, Template-Only components are _stateless_ - they are purely based on the
-_arguments_ that they are passed. This makes them much easier to reason about,
-and very useful in many circumstances.
+Component classes are defined using native JavaScript class syntax, which is
+discussed in detail in the [Working With
+JavaScript](../working-with-javascript/native-classes) section of the guides.
+You can define a component class like so:
 
 In the following guides we'll talk about:
 
