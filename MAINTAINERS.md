@@ -52,14 +52,14 @@ git checkout master
 git pull
 ```
 
-Next, make sure that you don't have any local changes using `git stash` because we're going to be a bit distructive (temporarily)
+Next, make sure that you don't have any local changes using `git stash` because we're going to be a bit destructive (temporarily)
 
 1. Delete all guides folders apart from `release` i.e. everything that starts with a `v`
   - cd guides
   - rm -rf v*
 2. Open versions.yml and delete everything in `allVersions` apart from the latest version (that has just been released) 
 3. Make sure `config/credentials.json` is in place as described above
-  - you may have accidently deleted this since last time as it is supposed to be ignored by git
+  - you may have accidentally deleted this since last time as it is supposed to be ignored by git
 4. Open `config/deploy.js` and delete the `versionsToIgnore` line in the `prember-algolia` config
 5. run `ember deploy production`
 6. This should now be done, you can fix your local repo by running `git reset --hard HEAD`
