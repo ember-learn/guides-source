@@ -162,7 +162,7 @@ By passing in `@model` into the `<Rental>` component as the `@rental` argument, 
 </article>
 ```
 
-Since the model object contains exactly the same data as the previously-hard-coded "Grand Old Mansion", the page should look exactly the same as before after the change.
+Since the model object contains exactly the same data as the previously-hard-coded "Grand Old Mansion", the page should look exactly the same as before the change.
 
 <img src="/screenshots/08-working-with-data/using-model-data@2x.png" alt="New header using the @model data" width="1024" height="512">
 
@@ -352,13 +352,13 @@ Before we go any further, let's pause for a second to look at the our server's d
 
 This data follows the _JSON:API_ format, which is _slightly_ different than the hard-coded data that we were returning from the model hook before.
 
-First off, the JSON:API format returns an array nested under the `"data"` key, rather than a just the data for a single rental property. If we think about this, though, it makes sense; we now want to show a whole list of rental properties that are coming from our server, not just one, so an array of rental property objects is just what we need.
+First off, the JSON:API format returns an array nested under the `"data"` key, rather than just the data for a single rental property. If we think about this, though, it makes sense; we now want to show a whole list of rental properties that are coming from our server, not just one, so an array of rental property objects is just what we need.
 
 The rental property objects contained in the array also have a slightly different structure. Every data object has a `type` and `id`, which we don't intend to use in our template (yet!). For now, the only data we really need is nested within the `attributes` key.
 
 There's one more key difference here, which perhaps only those with very sharp eyes will be able to catch: the data coming from the server is missing the `type` property, which previously existed on our hard-coded model object. The `type` property could either be `"Standalone"` or `"Community"`, depending on the type of rental property, which is required by our `<Rental>` component.
 
-In [Part 2](../10-part-2/) of this tutorial, we will learn about a much more convenient to consume data in the JSON:API format. For now, we can just fix up the data and deal with these differences in formats ourselves.
+In [Part 2](../10-part-2/) of this tutorial, we will learn about a more convenient way to consume data in the JSON:API format. For now, we can just fix up the data and deal with these differences in formats ourselves.
 
 We can handle it all in our model hook:
 
