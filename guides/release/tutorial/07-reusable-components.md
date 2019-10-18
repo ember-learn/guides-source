@@ -24,7 +24,7 @@ If you're curious, you can explore the options available on Mapbox by using the 
 
 Once you have signed up for the service, grab your _[default public token](https://account.mapbox.com/access-tokens/)_ and paste it into `config/environment.js`:
 
-```js { data-filename="config/environment.js" data-diff="+51,+52" }
+```js { data-filename="config/environment.js" data-diff="+50,+51" }
 'use strict';
 
 module.exports = function(environment) {
@@ -37,7 +37,6 @@ module.exports = function(environment) {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
         // e.g. EMBER_MODULE_UNIFICATION: true
-        EMBER_METAL_TRACKED_PROPERTIES: true
       },
       EXTEND_PROTOTYPES: {
         // Prevent Ember Data from overriding Date.parse.
