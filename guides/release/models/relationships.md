@@ -170,6 +170,7 @@ export default DS.Model.extend({
 
 ```javascript {data-filename=app/models/payment-method-cc.js}
 import { computed } from '@ember/object';
+import DS from 'ember-data';
 import PaymentMethod from './payment-method';
 
 export default PaymentMethod.extend({
