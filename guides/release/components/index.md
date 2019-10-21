@@ -216,7 +216,7 @@ arguments, they are _not_ prefixed with the `@` symbol:
 
 ### Nested components invocation
 
-Components nested inside directories can be used via double comma syntax.
+Components nested inside directories can be used via double colon syntax.
 It means that directories in component path should be procedeed with `::`.
 For example component `blog-post/comment` can be invoked like this:
 
