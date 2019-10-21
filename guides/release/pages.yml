@@ -61,6 +61,10 @@
       url: "extracting-a-component"
     - title: "Configuring a Component"
       url: "configuring-a-component"
+    - title: "Reference: Template Syntax"
+      url: "template-syntax-reference"
+    - title: "Component State"
+      url: "component-state"
 - title: "Templating"
   url: "templates"
   pages:
