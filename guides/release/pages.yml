@@ -57,6 +57,8 @@
       url: "template-syntax-reference"
     - title: "Component State"
       url: "component-state"
+    - title: "Template Helper Functions"
+      url: "helpers"
 - title: "Templating"
   url: "templates"
   pages:
