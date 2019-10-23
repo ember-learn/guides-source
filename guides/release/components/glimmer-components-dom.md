@@ -288,10 +288,10 @@ The modifier that we're going to build will allow us to say:
 
 Pretty nice, right?
 
-To accomplish that, we'll create a modifier in `app/modifiers/autofocus.js`. There are a few different convenience libraries for building a custom modifier. For this example, we'll use `ember-functional-modifiers`.
+To accomplish that, we'll create a modifier in `app/modifiers/autofocus.js` after first installing [`ember-modifier`](https://github.com/ember-modifier/ember-modifier):
 
 ```js {data-filename="app/modifiers/autofocus.js"}
-import modifier from "ember-functional-modifiers";
+import { modifier } from "ember-modifier";
 
 export default modifier(element => element.focus());
 ```
@@ -390,10 +390,10 @@ document.addEventListener("click", event => {
 
 The most important difference between this example and the cases we've seen so far is that we need to remove the `click` event handler from the document when this element is destroyed.
 
-To accomplish this, we can use `ember-functional-modifiers` to create a `click-outside` modifier that sets up the event listener after the element is first inserted and removes the event listener when the element is removed. In the `ember-functional-modifiers` addon, a modifier function returns _another function_ that should be run when Ember removes the element the modifier is attached to.
+To accomplish this, we can use [`ember-modifier`](https://github.com/ember-modifier/ember-modifier) to create a `click-outside` modifier that sets up the event listener after the element is first inserted and removes the event listener when the element is removed. In the `ember-modifier` addon, a modifier function returns _another function_ that should be run when Ember removes the element the modifier is attached to.
 
 ```js {data-filename="app/modifiers/on-click-outside.js"}
-import modifier from "ember-functional-modifiers";
+import { modifier } from "ember-modifier";
 
 export default modifier((element, [callback]) => {
   function handleClick(event) {
@@ -404,7 +404,7 @@ export default modifier((element, [callback]) => {
 
   document.addEventListener("click", handleClick);
 
-  return function onDestroy() {
+  return () => {
     document.removeEventListener("click", handleClick);
   };
 });
