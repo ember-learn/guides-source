@@ -784,26 +784,26 @@ functionality that lifecycle hooks contained.
 #### Writing your own modifiers
 
 There are also community APIs available for writing your own modifiers, such as
-[ember-functional-modifiers](https://github.com/spencer516/ember-functional-modifiers).
+[ember-modifier](https://github.com/ember-modifier/ember-modifier).
 Ember itself has low level APIs known as _modifier managers_ which can be used
 to write these higher level APIs. In general, it's recommended to use a
 community addon to write modifiers, and _not_ to write your own modifier
 manager.
 
 Let's see what our first example would look like if we were to write it as a
-modifier using `ember-functional-modifiers`:
+modifier using `ember-modifier`:
 
 ```js {data-filename=app/modifiers/add-event-listener.js}
-import modifier from 'ember-functional-modifiers';
+import { modifier } from 'ember-modifier';
 
-export default modifier((element, [listener]) => {
-  element.addEventListener(event, listener);
+export default modifier((element, [eventName, listener]) => {
+  element.addEventListener(eventName, listener);
 
-  return () => element.removeEventListener(event, listener);
+  return () => element.removeEventListener(eventName, listener);
 });
 ```
 
-```js {data-filename=app/modifiers/scroll-component.js}
+```js {data-filename=app/components/scroll-component.js}
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
