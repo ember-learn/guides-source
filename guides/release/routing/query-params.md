@@ -92,7 +92,6 @@ argument, along with the `{{hash}}` helper
 
 // Binding is also supported
 <LinkTo @route="posts" @query={{hash direction=this.otherDirection}}>Sort</LinkTo>
-
 ```
 
 In the above examples, `direction` is presumably a query param property
