@@ -264,7 +264,8 @@ attach some _code_ to the component.
 
 In addition to the template, a component can also have a JavaScript file for
 this exact purpose. Go ahead and create a `.js` file with the same name and in
-the same directory as our template, and paste in the following content:
+the same directory as our template (`app/components/people-list.js`),
+and paste in the following content:
 
 ```javascript {data-filename="app/components/people-list.js"}
 import Component from '@glimmer/component';
