@@ -87,10 +87,10 @@ The `LinkTo` component supports specifying query params using the
 
 ```handlebars
 // Explicitly set target query params
-<LinkTo @route="posts" @query={{hash direction="asc"}}>Sort<LinkTo>
+<LinkTo @route="posts" @query={{hash direction="asc"}}>Sort</LinkTo>
 
 // Binding is also supported
-<LinkTo @route="posts" @query={{hash direction=this.otherDirection}}>Sort<LinkTo>
+<LinkTo @route="posts" @query={{hash direction=this.otherDirection}}>Sort</LinkTo>
 ```
 
 In the above examples, `direction` is presumably a query param property
