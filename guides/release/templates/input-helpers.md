@@ -14,7 +14,7 @@ Will become:
 
 ```html
 <label for="facebook">Facebook</label>
-<input id="facebook" type="text" value="http://www.facebook.com" />
+<input id="facebook" type="text" value="http://www.facebook.com">
 ```
 
 You can pass the following standard `<input>` attributes within the input
