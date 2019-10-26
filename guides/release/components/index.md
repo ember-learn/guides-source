@@ -291,7 +291,7 @@ name of a friend and greets them:
 
 Component classes are defined using native JavaScript class syntax, which is
 discussed in detail in the [Working With
-JavaScript](../../working-with-javascript/native-classes) section of the guides.
+JavaScript](../working-with-javascript/native-classes) section of the guides.
 You can define a component class like so:
 
 ```js {data-filename=app/components/blog-post.js}
