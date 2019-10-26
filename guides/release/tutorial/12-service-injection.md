@@ -171,7 +171,7 @@ With that, we should have a working share button!
 
 <img src="/screenshots/12-service-injection/share-button@2x.png" alt="A share button that works!" width="1024" height="1381">
 
-<img src="/screenshots/12-service-injection/suggested-tweet@2x.png" alt="Suggested tweet" width="1024" height="489">
+<img src="/screenshots/12-service-injection/suggested-tweet@2x.png" alt="Suggested tweet" width="1024" height="449">
 
 <div class="cta">
   <div class="cta-note">
