@@ -107,7 +107,7 @@ Speaking of the template, let's create that as well. We'll add a `app/templates/
 </div>
 ```
 
-Ember comes with strong _conventions_ and sensible defaults — if we were starting from scratch, we wouldn't mind the default `/contact` URL. However, if the defaults don't work for us, it is no problem at all to customize Ember for our needs!
+Ember comes with strong _conventions_ and sensible defaults—if we were starting from scratch, we wouldn't mind the default `/contact` URL. However, if the defaults don't work for us, it is no problem at all to customize Ember for our needs!
 
 Once you have added the route and the template above, we should have the new page available to us at `http://localhost:4200/getting-in-touch`.
 
@@ -166,7 +166,7 @@ With Ember, we can do better than that! Instead of the plain-old `<a>` tag, Embe
 
 There is quite a bit going on here, so let's break it down.
 
-`<LinkTo>` is an example of a _component_ in Ember — you can tell them apart from regular HTML tags because they start with an uppercase letter. Along with regular HTML tags, components are a key building block that we can use to build up an app's user interface.
+`<LinkTo>` is an example of a _component_ in Ember—you can tell them apart from regular HTML tags because they start with an uppercase letter. Along with regular HTML tags, components are a key building block that we can use to build up an app's user interface.
 
 We have a lot more to say about components later, but for now, you can think of them as a way to provide _custom tags_ to supplement the built-in ones that came with the browser.
 
@@ -176,7 +176,7 @@ In addition to arguments, components can also take the usual HTML attributes as 
 
 Under the hood, the `<LinkTo>` component generates a regular `<a>` tag for us with the appropriate `href` for the specific route. This `<a>` tag works just fine with _screen readers_, as well as allowing our users to bookmark the link or open it in a new tab.
 
-However, when clicking on one of these special links, Ember will intercept the click, render the content for the new page, and update the URL — all performed locally without having to wait for the server, thus avoiding a full page refresh.
+However, when clicking on one of these special links, Ember will intercept the click, render the content for the new page, and update the URL—all performed locally without having to wait for the server, thus avoiding a full page refresh.
 
 <!-- TODO: make this a gif instead -->
 

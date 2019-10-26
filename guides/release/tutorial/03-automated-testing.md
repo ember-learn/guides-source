@@ -15,13 +15,13 @@ In the process, you will learn about:
 
 ## The Purpose of Automated Testing
 
-We accomplished a lot in the last few chapters! Let's recap — we started with a blank canvas, added a few pages of content, styled everything to look pretty, dropped in a picture of Tomster, added links between our pages and amazingly, everything worked together flawlessly!
+We accomplished a lot in the last few chapters! Let's recap—we started with a blank canvas, added a few pages of content, styled everything to look pretty, dropped in a picture of Tomster, added links between our pages and amazingly, everything worked together flawlessly!
 
 But do we _really_ know that everything is actually working? Sure, we clicked around a bit to confirm that things look as expected. But do we feel confident that we checked _every_ page after the most recent change that we made?
 
 After all, most of us have experienced (or heard horror stories about) making a Small Tweak™ in one area of the app that inadvertently broke _everything else_ when we weren't looking.
 
-Maybe we can write a checklist somewhere of all the things to check after making changes to our site. But surely, this will get out of hand as we add more features to our app. It is also going to get old really quickly — repetitive tasks like that are best left to robots.
+Maybe we can write a checklist somewhere of all the things to check after making changes to our site. But surely, this will get out of hand as we add more features to our app. It is also going to get old really quickly—repetitive tasks like that are best left to robots.
 
 Hmm, robots. That's an idea. What if we can write this checklist and just get the computer to check everything for us? I think we just invented the idea of _automated testing_! Okay, maybe we were not the first to come up with the concept, but we independently discovered it so we still deserve some credit.
 
@@ -55,7 +55,7 @@ Generators aren't required; we _could_ have created the file ourselves which wou
 
 ## Writing Acceptance Tests
 
-Acceptance tests, also known as _application tests_, are one of a few types of automated testing at our disposal in Ember. We will learn about the other types later, but what makes acceptance tests unique is that they test our app from the user's perspective — they are an automated version of the "click around and see if it works" testing we did earlier, which is exactly what we need.
+Acceptance tests, also known as _application tests_, are one of a few types of automated testing at our disposal in Ember. We will learn about the other types later, but what makes acceptance tests unique is that they test our app from the user's perspective—they are an automated version of the "click around and see if it works" testing we did earlier, which is exactly what we need.
 
 Let's open the generated test file and replace the boilerplate test with our own:
 
@@ -91,7 +91,7 @@ Because the page is going to take some time to load, this is known as an _async_
 
 This is almost always the behavior we want, so we will almost always use `await` and `visit` as a pair. This applies to other kinds of simulated interaction too, such as clicking on a button or a link, as they all take time to complete. Even though sometimes these actions may seem imperceptibly fast to us, we have to remember that our test robot has really, really fast hands, as we will see in a moment.
 
-After navigating to the `/` URL and waiting for things to settle, we check that the current URL matches the URL that we expect (`/`). We can use the `currentURL` test helper here, as well as `equal` _assertion_. This is how we encode our "checklist" into code — by specifying, or _asserting_ how things _should_ behave, we will be alerted if our app does _not_ behave in the way that we expect.
+After navigating to the `/` URL and waiting for things to settle, we check that the current URL matches the URL that we expect (`/`). We can use the `currentURL` test helper here, as well as `equal` _assertion_. This is how we encode our "checklist" into code—by specifying, or _asserting_ how things _should_ behave, we will be alerted if our app does _not_ behave in the way that we expect.
 
 Next, we confirmed that the page has an `<h2>` tag that contains the text "Welcome to Super Rentals!". Knowing this is true means that we can be quite certain that the correct template has been rendered, without errors.
 
@@ -121,7 +121,7 @@ If you watch really carefully, you can see our test robot roaming around our app
 
 <img src="/screenshots/03-automated-testing/pass@2x.png" alt="All tests passing" width="1024" height="512">
 
-It happens really quickly though — blink and you might miss it! In fact, I had to slow this animation down by a hundred times just so you can see it in action. I told you the robot has really, really fast hands!
+It happens really quickly though—blink and you might miss it! In fact, I had to slow this animation down by a hundred times just so you can see it in action. I told you the robot has really, really fast hands!
 
 As much as I enjoy watching this robot hard at work, the important thing here is that the test we wrote has _passed_, meaning everything is working exactly as we expect and the test UI is all green and happy. If you want, you can go to `index.hbs`, delete the `<LinkTo>` component and see what things look like when we have _a failing test_.
 
@@ -185,4 +185,4 @@ As with the development server, the test UI should automatically reload and reru
 
 For the rest of the tutorial, we will continue to add more automated tests as we develop new features. Testing is optional but highly recommended. Tests don't affect the functionality of your app, they just protect it from _regressions_, which is just a fancy way of saying "accidental breakages."
 
-If you are in a hurry, you can skip over the testing sections in this tutorial and still be able to follow along with everything else. But don't you find it super satisfying — _oddly satisfying_ — to watch a robot click on things really, really fast?
+If you are in a hurry, you can skip over the testing sections in this tutorial and still be able to follow along with everything else. But don't you find it super satisfying—_oddly satisfying_—to watch a robot click on things really, really fast?
