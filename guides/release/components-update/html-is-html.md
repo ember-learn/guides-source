@@ -96,53 +96,10 @@ If we just copy and paste the example into `application.hbs`, it will work witho
   resources, and anything else you think we'd need to know? Thanks.
 </p>
 
-<h2>Exotic dance moves</h2>
+<h2>TODO</h2>
 
 <p>
-  Yes, you are right! As part of my post-doctorate work, I <em>did</em> study
-  exotic tribal dances. To answer your question, my favourite dances are as
-  follows, with definitions:
-</p>
-
-<dl>
-  <dt>Polynesian chicken dance</dt>
-  <dd>
-    A little known but <em>very</em> influential dance dating back as far as
-    300<abbr title="Before Christ">BC</abbr>, a whole village would dance around
-    in a circle like chickens, to encourage their livestock or be "fruitful".
-  </dd>
-  <dt>Icelandic brownian shuffle</dt>
-  <dd>
-    Before the Icelanders developed fire as a means of getting warm, they used
-    to practice this dance, which involved huddling close together in a circle
-    on the floor, and shuffling their bodies around in imperceptably tiny, very
-    rapid movements. One of my fellow students used to say that he thought this
-    dance inspired modern styles such as Twerking.
-  </dd>
-  <dt>Arctic robot dance</dt>
-  <dd>
-    An interesting example of historic misinformation, English explorers in the
-    1960s believed to have discovered a new dance style characterised by
-    "robotic", stilted movements, being practiced by inhabitants of Northern
-    Alaska and Canada. Later on however it was discovered that they were just
-    moving like this because they were really cold.
-  </dd>
-</dl>
-
-<p>
-  For more of my research, see my
-  <a href="htp://www.example.com" title="Dr Gaye's exotic dance research"
-    >exotic dance research page</a
-  >.
-</p>
-
-<p>Yours sincerely,</p>
-
-<p>Dr Eleanor Gaye</p>
-
-<p>
-  University of Awesome motto: <q>Be excellent to each other.</q> --
-  <cite>The memoirs of Bill S Preston, <abbr title="Esquire">Esq</abbr></cite>
+  TODO
 </p>
 ```
 
