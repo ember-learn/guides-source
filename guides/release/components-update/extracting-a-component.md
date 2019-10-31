@@ -364,10 +364,10 @@ Include it in the application.
 ...
 ```
 
-And exotic dance moves.
+And dance moves.
 
 ```handlebars {data-filename="app/components/dance-moves.hbs"}
-<h2>Exotic dance moves</h2>
+<h2>TODO</h2>
 
 <p>TODO</p>
 ```
