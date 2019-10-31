@@ -229,19 +229,7 @@ But where will the data come from? You can <a href="/downloads/data.zip" downloa
 When you are done, your `public` folder should now have the following content:
 
 ```plain
-public
-├── api
-│   ├── rentals
-│   │   ├── downtown-charm.json
-│   │   ├── grand-old-mansion.json
-│   │   └── urban-living.json
-│   └── rentals.json
-├── assets
-│   └── images
-│       └── teaching-tomster.png
-└── robots.txt
 
-4 directories, 6 files
 ```
 
 You can verify that everything is working correctly by navigating to `http://localhost:4200/api/rentals.json`.

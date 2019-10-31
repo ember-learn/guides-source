@@ -299,7 +299,7 @@ In our `<Rentals>` component, we used the `as |results|` syntax when invoking `<
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
         <p>The local variable name <code>results</code> is arbitrary, and isn't special in any way! You could name it anything: <code>as |data|</code>, <code>as |filtered|</code>, or even <code>as |banana|</code>! In fact, the <code>... as |banana|</code> syntax is the same as declaring a local variable in JavaScript.
-Just as we can create a variable like <code>let banana = ...</code>, and then have access to that variable whenever we call <code>banana</code>, we can also have access to the yielded item by using whatever variable name we gave to our black parameter. The important thing here is that however you name the block param is how you will have access to the yielded data from inside the block.</p>
+Just as we can create a variable like <code>let banana = ...</code>, and then have access to that variable whenever we call <code>banana</code>, we can also have access to the yielded item by using whatever variable name we gave to our block parameter. The important thing here is that however you name the block param is how you will have access to the yielded data from inside the block.</p>
       </div>
     </div>
     <img src="/images/mascots/zoey.png" role="presentation" alt="">

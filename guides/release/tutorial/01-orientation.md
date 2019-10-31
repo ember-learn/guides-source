@@ -65,7 +65,6 @@ installing octane-app-blueprint
   create tests/test-helper.js
 
 Installing packages... This might take a couple of minutes.
-npm: Installing dependencies ...
 npm: Installed dependencies
 
 Initializing git repository.
@@ -89,41 +88,7 @@ $ cd super-rentals
 For the rest of the tutorial, all commands should be run within the `super-rentals` folder. This folder has the following structure:
 
 ```plain
-super-rentals
-├── app
-│   ├── styles
-│   │   └── app.css
-│   ├── templates
-│   │   └── application.hbs
-│   ├── app.js
-│   ├── index.html
-│   ├── resolver.js
-│   └── router.js
-├── config
-│   ├── environment.js
-│   ├── optional-features.json
-│   └── targets.js
-├── public
-│   └── robots.txt
-├── tests
-│   ├── index.html
-│   └── test-helper.js
-├── .editorconfig
-├── ember-cli-build.js
-├── .ember-cli.js
-├── .eslintignore
-├── .eslintrc.js
-├── .gitignore
-├── jsconfig.json
-├── package.json
-├── package-lock.json
-├── README.md
-├── .template-lintrc.js
-├── testem.js
-├── .travis.yml
-└── .watchmanconfig
 
-6 directories, 25 files
 ```
 
 We'll learn about the purposes of these files and folders as we go. For now, just know that we'll spend most of our time working within the `app` folder.
@@ -134,7 +99,6 @@ Ember CLI comes with a lot of different commands for a variety of development ta
 
 ```shell
 $ ember server
-building... 
 
 Build successful (9761ms) – Serving on http://localhost:4200/
 ```
