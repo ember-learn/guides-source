@@ -1,0 +1,3 @@
+---
+redirect: configuring-ember/index
+---
