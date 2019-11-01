@@ -102,6 +102,7 @@ You can stop the server by finding the terminal window where `ember server` is r
 
 ```shell
 $ ember server
+building... 
 
 Build successful (13286ms) – Serving on http://localhost:4200/
 ```
