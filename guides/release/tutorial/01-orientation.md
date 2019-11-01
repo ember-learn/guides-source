@@ -88,7 +88,41 @@ $ cd super-rentals
 For the rest of the tutorial, all commands should be run within the `super-rentals` folder. This folder has the following structure:
 
 ```plain
+super-rentals
+├── app
+│   ├── styles
+│   │   └── app.css
+│   ├── templates
+│   │   └── application.hbs
+│   ├── app.js
+│   ├── index.html
+│   ├── resolver.js
+│   └── router.js
+├── config
+│   ├── environment.js
+│   ├── optional-features.json
+│   └── targets.js
+├── public
+│   └── robots.txt
+├── tests
+│   ├── index.html
+│   └── test-helper.js
+├── .editorconfig
+├── .ember-cli.js
+├── .eslintignore
+├── .eslintrc.js
+├── .gitignore
+├── .template-lintrc.js
+├── .travis.yml
+├── .watchmanconfig
+├── README.md
+├── ember-cli-build.js
+├── jsconfig.json
+├── package.json
+├── package-lock.json
+└── testem.js
 
+6 directories, 25 files
 ```
 
 We'll learn about the purposes of these files and folders as we go. For now, just know that we'll spend most of our time working within the `app` folder.
