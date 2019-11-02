@@ -58,7 +58,7 @@ module.exports = function(environment) {
     ],
     infoBanner: {
       content: `Octane is almost here, and you can make it better!
-These are work-in-progress guides that will be published with Ember 3.14, so please
+These are work-in-progress guides that will be published when Octane becomes the default for Ember, so please
 <a href="https://github.com/ember-learn/guides-source/issues/669" target="_blank" rel="noopener">PR any improvements or open issues</a> ASAP.
 Thanks in advance!
 If you are looking for the latest stable release of Ember, please instead visit
