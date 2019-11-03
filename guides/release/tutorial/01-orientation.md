@@ -109,19 +109,19 @@ super-rentals
 │   ├── index.html
 │   └── test-helper.js
 ├── .editorconfig
-├── ember-cli-build.js
 ├── .ember-cli.js
 ├── .eslintignore
 ├── .eslintrc.js
 ├── .gitignore
+├── .template-lintrc.js
+├── .travis.yml
+├── .watchmanconfig
+├── README.md
+├── ember-cli-build.js
 ├── jsconfig.json
 ├── package.json
 ├── package-lock.json
-├── README.md
-├── .template-lintrc.js
-├── testem.js
-├── .travis.yml
-└── .watchmanconfig
+└── testem.js
 
 6 directories, 25 files
 ```
