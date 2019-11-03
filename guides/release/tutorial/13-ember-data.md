@@ -372,6 +372,6 @@ The UI works exactly the same as before as well, just with much less code!
 
 <img src="/screenshots/13-ember-data/homepage@2x.png" alt="The homepage works exactly the same as before, but with much less code!" width="1024" height="1129">
 
-<img src="/screenshots/13-ember-data/detailed@2x.png" alt="The details page works exactly the same as before, but with much less code!" width="1024" height="1389">
+<img src="/screenshots/13-ember-data/detailed@2x.png" alt="The details page works exactly the same as before, but with much less code!" width="1024" height="1381">
 
 As we mentioned earlier, Ember Data offers many, many features (like managing the _relationships_ between different models) and there's a lot more we can learn about it. We are just scratching the surface here. If you want to learn more about Ember Data, check out its own dedicated section in the guides!
