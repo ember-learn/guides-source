@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - name: Open Pull Request
-        uses: chancancode/pull-request-action@quote-json-strings
+        uses: vsoch/pull-request-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PULL_REQUEST_BRANCH: octane
@@ -34,7 +34,7 @@ jobs:
 
             Feel free to hold off on merging this PR and file an issue/PR in
             the upstream repo. After fixing the issues there, the [upstream CI
-            job](https://travis-ci.org/ember-learn/super-rentals-tutorial) will
+            job](https://github.com/ember-learn/super-rentals-tutorial/actions) will
             push the changes to [this pull request branch](https://github.com/ember-learn/guides-source/commits/super-rentals-tutorial),
             automatically, so you should see the changes relected in this PR
             shortly after.
