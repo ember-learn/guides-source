@@ -20,7 +20,7 @@ While doing so, you will learn about:
 
 ## Adding Behavior to Components with Classes
 
-So far, all the components we have written are purely _presentational_ — they are simply reusable snippets of markup. That's pretty cool! But in Ember, components can do so much more.
+So far, all the components we have written are purely _presentational_—they are simply reusable snippets of markup. That's pretty cool! But in Ember, components can do so much more.
 
 Sometimes, you want to associate some _behavior_ with your components so that they can do more interesting things. For example, `<LinkTo>` can respond to clicks by changing the URL and navigating us to a different page.
 
