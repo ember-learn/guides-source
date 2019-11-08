@@ -96,10 +96,13 @@ If we just copy and paste the example into `application.hbs`, it will work witho
   resources, and anything else you think we'd need to know? Thanks.
 </p>
 
-<h2>TODO</h2>
+<p>Yours sincerely,</p>
+
+<p>Dr Eleanor Gaye</p>
 
 <p>
-  TODO
+  University of Awesome motto: <q>Be excellent to each other.</q> --
+  <cite>The memoirs of Bill S Preston, <abbr title="Esquire">Esq</abbr></cite>
 </p>
 ```
 

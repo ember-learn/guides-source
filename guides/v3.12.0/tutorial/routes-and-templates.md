@@ -46,8 +46,8 @@ If we open `/app/router.js`, we'll see a new line of code for the **about** rout
 to run our `/app/routes/about.js` file when a visitor navigates to `/about`.
 
 ```javascript {data-filename="app/router.js" data-diff="+10"}
-import EmberRouter from '@ember/routing/router';
-import config from './config/environment';
+import EmberRouter from "@ember/routing/router";
+import config from "./config/environment";
 
 const Router = EmberRouter.extend({
   location: config.locationType,
@@ -55,7 +55,7 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
-  this.route('about');
+  this.route("about");
 });
 
 export default Router;
@@ -123,7 +123,7 @@ We'll put a link to the contact page on the about page, and a corresponding link
 page on the contact page.
 
 To do that, we'll use a [`{{link-to}}`](../../templates/links/) helper that Ember provides
-that makes it easy to link between our routes.  Let's adjust our `about.hbs` file:
+that makes it easy to link between our routes. Let's adjust our `about.hbs` file:
 
 ```handlebars {data-filename="app/templates/about.hbs" data-diff="+9,+10,+11"}
 <div class="jumbo">
@@ -172,6 +172,7 @@ Now, we'll add our corresponding link to the contact page so we can move back an
 ```
 
 ## A Rentals Route
+
 In addition to our `about` and `contact` pages, we want to show a list of rentals that
 our visitors can look through. So let's add a third route and call it `rentals`:
 
@@ -224,15 +225,15 @@ All we want to do when a user visits the root (`/`) URL is transition to
 implementing a route lifecycle hook called `redirect`.
 Route lifecycle hooks are special methods that are called automatically when a route renders or data changes.
 Inside, we'll call the
-[`transitionTo`](https://api.emberjs.com/ember/3.9/classes/Route/methods/redirect?anchor=transitionTo)
+[`transitionTo`](https://api.emberjs.com/ember/3.12/classes/Route/methods/redirect?anchor=transitionTo)
 function:
 
 ```javascript {data-filename="app/routes/index.js" data-diff="+4,+5,+6"}
-import Route from '@ember/routing/route';
+import Route from "@ember/routing/route";
 
 export default Route.extend({
   redirect() {
-    this.transitionTo('rentals');
+    this.transitionTo("rentals");
   }
 });
 ```
@@ -292,16 +293,16 @@ First, we want to test that visiting `/` properly redirects to `/rentals`. We'll
 and then make sure our current URL is `/rentals` once the redirect occurs.
 
 ```javascript {data-filename="tests/acceptance/list-rentals-test.js" data-diff="+9,+10"}
-import { module, test } from 'qunit';
-import { visit, currentURL } from '@ember/test-helpers';
-import { setupApplicationTest } from 'ember-qunit';
+import { module, test } from "qunit";
+import { visit, currentURL } from "@ember/test-helpers";
+import { setupApplicationTest } from "ember-qunit";
 
-module('Acceptance | list rentals', function (hooks) {
+module("Acceptance | list rentals", function(hooks) {
   setupApplicationTest(hooks);
 
-  test('should show rentals as the home page', async function (assert) {
-    await visit('/');
-    assert.equal(currentURL(), '/rentals', 'should redirect automatically');
+  test("should show rentals as the home page", async function(assert) {
+    await visit("/");
+    assert.equal(currentURL(), "/rentals", "should redirect automatically");
   });
 });
 ```
@@ -324,36 +325,33 @@ such as visiting routes, filling in fields, clicking on links/buttons, and waiti
 
 Some of the helpers we'll use commonly are:
 
-* [`visit`](https://github.com/emberjs/ember-test-helpers/blob/master/API.md#visit) - loads a given URL
-* [`click`](https://github.com/emberjs/ember-test-helpers/blob/master/API.md#click) - pretends to be a user clicking on a specific part of the screen
-* [`currentURL`](https://github.com/emberjs/ember-test-helpers/blob/master/API.md#currenturl) - returns the URL of the page we're currently on
+- [`visit`](https://github.com/emberjs/ember-test-helpers/blob/master/API.md#visit) - loads a given URL
+- [`click`](https://github.com/emberjs/ember-test-helpers/blob/master/API.md#click) - pretends to be a user clicking on a specific part of the screen
+- [`currentURL`](https://github.com/emberjs/ember-test-helpers/blob/master/API.md#currenturl) - returns the URL of the page we're currently on
 
 Let's import these helpers into our application test:
 
 ```javascript {data-filename="tests/acceptance/list-rentals-test.js" data-diff="-1,+3,+4,+5,+6,+7"}
-import { visit, currentURL } from '@ember/test-helpers';
-import { setupApplicationTest } from 'ember-qunit';
-import {
-  click,
-  currentURL,
-  visit
-} from '@ember/test-helpers';
+import { visit, currentURL } from "@ember/test-helpers";
+import { setupApplicationTest } from "ember-qunit";
+import { click, currentURL, visit } from "@ember/test-helpers";
 ```
 
 ### Test visiting our About and Contact pages
+
 Now let's add code that simulates a visitor arriving on our homepage, clicking one of our links and then visiting a new page.
 
 ```javascript {data-filename="tests/acceptance/list-rentals-test.js" data-diff="+2,+3,+4,+8,+9,+10"}
-test('should link to information about the company', async function(assert) {
-  await visit('/');
+test("should link to information about the company", async function(assert) {
+  await visit("/");
   await click(".menu-about");
-  assert.equal(currentURL(), '/about', 'should navigate to about');
+  assert.equal(currentURL(), "/about", "should navigate to about");
 });
 
-test('should link to contact information', async function(assert) {
-  await visit('/');
+test("should link to contact information", async function(assert) {
+  await visit("/");
   await click(".menu-contact");
-  assert.equal(currentURL(), '/contact', 'should navigate to contact');
+  assert.equal(currentURL(), "/contact", "should navigate to contact");
 });
 ```
 
