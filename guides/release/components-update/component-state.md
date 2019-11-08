@@ -69,7 +69,7 @@ export default class extends Component {
   }
 
   @action
-  increment() {
+  decrement() {
     this.count = this.count - 1;
   }
 }
@@ -99,7 +99,7 @@ export default class extends Component {
   }
 
   @action
-  increment() {
+  decrement() {
     this.count = this.count - 1;
   }
 }
