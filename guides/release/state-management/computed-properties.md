@@ -578,7 +578,7 @@ import { computed } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 
 class Person {
-  @tracking friends;
+  @tracked friends;
 
   constructor(friends = []) {
     this.friends = friends;
