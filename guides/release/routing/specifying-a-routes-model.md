@@ -20,8 +20,8 @@ import Route from '@ember/routing/route';
 
 export default class FavoritePostsRoute extends Route {
   model() {
-    console.log('The model hook just ran!')
-    return "Hello Ember!";
+    console.log('The model hook just ran!');
+    return 'Hello Ember!';
   }
 }
 ```
@@ -48,7 +48,7 @@ export default class FavoritePostsRoute extends Route {
       { title: 'Ember Roadmap' },
       { title: 'Accessibility in Ember' },
       { title: 'EmberConf Recap' }
-    ]
+    ];
   }
 }
 ```
@@ -74,18 +74,15 @@ Install [`ember-fetch`](https://github.com/ember-cli/ember-fetch) with the comma
 import Route from '@ember/routing/route';
 import fetch from 'fetch';
 
-export default class PhotoRoute extends Route {
-  model(params) {
-    return this.store.findRecord('photo', params.photo_id);
+export default class PhotosRoute extends Route {
+  async model() {
+    const response = await fetch('/my-cool-end-point.json');
+    const photos = await response.json();
+
+    return { photos };
   }
 }
 ```
-
-In the `model` hook for routes with dynamic segments, it's your job to
-turn the ID (something like `47` or `post-slug`) into a model that can
-be rendered by the route's template. In the above example, we use the
-photo's ID (`params.photo_id`) as an argument to Ember Data's `findRecord`
-method.
 
 Note: A route with a dynamic segment will always have its `model` hook called when it is entered via the URL.
 If the route is entered through a transition (e.g. when using the [`<LinkTo />`](../../templates/links/) component),
@@ -105,6 +102,22 @@ was passed a model):
   </p>
 {{/each}}
 ```
+
+while transitioning this way will cause the `model` hook to be executed (because `<LinkTo />` was passed `photo.id`, an
+identifier, instead):
+
+```handlebars {data-filename=app/templates/photos.hbs}
+<h1>Photos</h1>
+{{#each @model.photos as |photo|}}
+  <p>
+    <LinkTo @route="photo" @model={{photo.id}}>
+      <img src="{{photo.thumbnailUrl}}" alt="{{photo.title}}" />
+    </LinkTo>
+  </p>
+{{/each}}
+```
+
+### Ember Data example
 
 Ember Data is a powerful (but optional) library included by default in new Ember apps.
 In the next example, we will use Ember Data's [`findAll`](https://api.emberjs.com/ember-data/release/classes/Store/methods/findAll?anchor=findAll) method, which returns a Promise, and resolves with an array of [Ember Data records](../../models/).
@@ -191,7 +204,7 @@ import Route from '@ember/routing/route';
 
 export default class PhotoRoute extends Route {
   model(params) {
-    console.log('This is the dynamic segment data: ' + params.post_id)
+    console.log('This is the dynamic segment data: ' + params.post_id);
     // make an API request that uses the id
   }
 }
@@ -201,9 +214,15 @@ If you do not define a model hook for a route, it will default to using Ember Da
 
 ```js
 model(params) {
- return this.store.find('post', params.post_id);
+ return this.store.findRecord('post', params.post_id);
 }
 ```
+
+In the `model` hook for routes with dynamic segments, it's your job to
+turn the ID (something like `47` or `post-slug`) into a model that can
+be rendered by the route's template. In the above example, we use the
+post's ID (`params.post_id`) as an argument to Ember Data's `findRecord`
+method.
 
 ### Linking to a dynamic segment
 
@@ -254,7 +273,7 @@ Routes without dynamic segments will always execute the model hook.
 Sometimes you need to fetch a model, but your route doesn't have the parameters, because it's
 a child route and the route directly above or a few levels above has the parameters that your route
 needs.
-You might run into this if you have a URL like `/photos/4/comments/18`, and when you're in the comments route, you need a photo ID.
+You might run into this if you have a URL like `/album/4/songs/18`, and when you're in the comments route, you need a photo ID.
 
 In this scenario, you can use the `paramsFor` method to get the parameters of a parent route.
 
@@ -304,7 +323,7 @@ export default class AlbumRoute extends Route {
   model({ album_id }) {
     return RSVP.hash({
       album: this.store.findRecord('album', album_id),
-      songs: this.store.query('songs', { album: album_id })
+      songs: this.store.query('song', { album: album_id })
     });
   }
 }
