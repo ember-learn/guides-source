@@ -27,7 +27,7 @@ helper makes it easy to dynamically send a number of parameters to a component o
 format of a concatenated string.
 
 ```handlebars
-{{get "foo" (concat "item" this.index)}}
+{{get this.foo (concat "item" this.index)}}
 ```
 
 This will display the result of `this.foo.item1` when index is 1, and `this.foo.item2` when index is 2, etc.
