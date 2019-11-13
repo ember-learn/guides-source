@@ -20,8 +20,8 @@ import Route from '@ember/routing/route';
 
 export default class FavoritePostsRoute extends Route {
   model() {
-    console.log('The model hook just ran!')
-    return "Hello Ember!";
+    console.log('The model hook just ran!');
+    return 'Hello Ember!';
   }
 }
 ```
@@ -48,7 +48,7 @@ export default class FavoritePostsRoute extends Route {
       { title: 'Ember Roadmap' },
       { title: 'Accessibility in Ember' },
       { title: 'EmberConf Recap' }
-    ]
+    ];
   }
 }
 ```
@@ -77,7 +77,7 @@ Older browsers may not have `fetch`, but the `ember-fetch` library includes a po
 import Route from '@ember/routing/route';
 import fetch from 'fetch';
 
-export default class PhotoRoute extends Route {
+export default class PhotosRoute extends Route {
   async model() {
     const response = await fetch('/my-cool-end-point.json');
     const photos = await response.json();
@@ -86,12 +86,6 @@ export default class PhotoRoute extends Route {
   }
 }
 ```
-
-In the `model` hook for routes with dynamic segments, it's your job to
-turn the ID (something like `47` or `post-slug`) into a model that can
-be rendered by the route's template. In the above example, we use the
-photo's ID (`params.photo_id`) as an argument to Ember Data's `findRecord`
-method.
 
 Note: A route with a dynamic segment will always have its `model` hook called when it is entered via the URL.
 If the route is entered through a transition (e.g. when using the [`<LinkTo />`](../../templates/links/) component),
@@ -125,7 +119,6 @@ identifier, instead):
   </p>
 {{/each}}
 ```
-
 
 ### Ember Data example
 
@@ -214,7 +207,7 @@ import Route from '@ember/routing/route';
 
 export default class PhotoRoute extends Route {
   model(params) {
-    console.log('This is the dynamic segment data: ' + params.post_id)
+    console.log('This is the dynamic segment data: ' + params.post_id);
     // make an API request that uses the id
   }
 }
@@ -224,9 +217,15 @@ If you do not define a model hook for a route, it will default to using Ember Da
 
 ```js
 model(params) {
- return this.store.find('post', params.post_id);
+ return this.store.findRecord('post', params.post_id);
 }
 ```
+
+In the `model` hook for routes with dynamic segments, it's your job to
+turn the ID (something like `47` or `post-slug`) into a model that can
+be rendered by the route's template. In the above example, we use the
+post's ID (`params.post_id`) as an argument to Ember Data's `findRecord`
+method.
 
 ### Linking to a dynamic segment
 
@@ -277,7 +276,7 @@ Routes without dynamic segments will always execute the model hook.
 Sometimes you need to fetch a model, but your route doesn't have the parameters, because it's
 a child route and the route directly above or a few levels above has the parameters that your route
 needs.
-You might run into this if you have a URL like `/photos/4/comments/18`, and when you're in the comments route, you need a photo ID.
+You might run into this if you have a URL like `/album/4/songs/18`, and when you're in the comments route, you need a photo ID.
 
 In this scenario, you can use the `paramsFor` method to get the parameters of a parent route.
 
@@ -327,7 +326,7 @@ export default class AlbumRoute extends Route {
   model({ album_id }) {
     return RSVP.hash({
       album: this.store.findRecord('album', album_id),
-      songs: this.store.query('songs', { album: album_id })
+      songs: this.store.query('song', { album: album_id })
     });
   }
 }
