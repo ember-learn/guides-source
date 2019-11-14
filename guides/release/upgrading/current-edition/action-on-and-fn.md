@@ -1,9 +1,9 @@
 Octane provides a set of new conventional APIs for creating and adding event
 handlers and actions to your components and templates:
 
-* The `@action` decorator
-* The `{{on}}` modifier
-* The `{{fn}}` helper
+- The `@action` decorator
+- The `{{on}}` modifier
+- The `{{fn}}` helper
 
 These are meant to replace the `{{action}}` helper/modifier, which will be
 deprecated in the future. You can use them like this:
@@ -28,16 +28,16 @@ export default class Todo extends Component {
 
 `{{action}}` has a number of functions, including:
 
-* Creating action callbacks, which bind the _context_ of the callback (the
+- Creating action callbacks, which bind the _context_ of the callback (the
   component/controller).
-* Adding arguments to action callbacks:
+- Adding arguments to action callbacks:
 
   ```handlebars
     <!-- passes 123 to the 'setValue' action -->
     <MyComponent @onClick={{action 'setValue' 123}} />
   ```
 
-* Adding event handlers to elements (when used as a modifier):
+- Adding event handlers to elements (when used as a modifier):
 
   ```handlebars
     <button {{action 'sayHello'}}>Say Hello!</button>
@@ -46,9 +46,9 @@ export default class Todo extends Component {
 The new APIs split each of these pieces of functionality out into one clearly
 defined API:
 
-* `@action` is a decorator that binds a method to the context its used in
-* `{{on}}` is a modifier that's used to add event listeners to DOM elements
-* `{{fn}}` is a helper that adds arguments to another function or callback
+- `@action` is a decorator that binds a method to the context its used in
+- `{{on}}` is a modifier that's used to add event listeners to DOM elements
+- `{{fn}}` is a helper that adds arguments to another function or callback
 
 This keeps the responsibilities clearly delineated, and makes it much easier to
 reason about what each individual API is doing.
@@ -72,7 +72,7 @@ export default Component.extend({
       // ...
     }
   }
-})
+});
 ```
 
 After:
@@ -167,6 +167,7 @@ After:
 ```handlebars
 <input value={{this.value}} {{on "change" this.updateValue}} />
 ```
+
 ```javascript
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
@@ -201,11 +202,13 @@ import { action } from '@ember/object';
 
 export default class Example extends Component {
   @action
-  handleClick(value) {
+  handleClick(value /* event */) {
     console.log(value); // 123
   }
 }
 ```
+
+In that case, the event is implicitely passed as the last argument of the function
 
 This is a replacement for passing parameters to the `{{action}}` modifier or
 helper:
