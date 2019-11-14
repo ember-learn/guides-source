@@ -111,7 +111,7 @@ after examples of each API, converted from classic components:
 
     click() {
       console.log('Hello, world!');
-    },
+    }
   });
   ```
 
@@ -146,12 +146,12 @@ after examples of each API, converted from classic components:
   Before:
 
   ```js
-    import Component from '@ember/component';
+  import Component from '@ember/component';
 
-    export default Component.extend({
-      classNames: ['hello-world'],
-      text: 'Hello, world!',
-    });
+  export default Component.extend({
+    classNames: ['hello-world'],
+    text: 'Hello, world!'
+  });
   ```
 
   ```handlebars
@@ -161,11 +161,11 @@ after examples of each API, converted from classic components:
   After:
 
   ```js
-    import Component from '@glimmer/component';
+  import Component from '@glimmer/component';
 
-    export default class Hello extends Component {
-      text = 'Hello, world!';
-    }
+  export default class Hello extends Component {
+    text = 'Hello, world!';
+  }
   ```
 
   ```handlebars
@@ -179,13 +179,13 @@ after examples of each API, converted from classic components:
   Before:
 
   ```js
-    import Component from '@ember/component';
+  import Component from '@ember/component';
 
-    export default Component.extend({
-      classNameBindings: ['darkMode:dark-mode'],
-      darkMode: false,
-      text: 'Hello, world!',
-    });
+  export default Component.extend({
+    classNameBindings: ['darkMode:dark-mode'],
+    darkMode: false,
+    text: 'Hello, world!'
+  });
   ```
 
   ```handlebars
@@ -195,12 +195,13 @@ after examples of each API, converted from classic components:
   After:
 
   ```js
-    import Component from '@glimmer/component';
+  import Component from '@glimmer/component';
+  import { tracked } from '@glimmer/tracking';
 
-    export default class Hello extends Component {
-      text = 'Hello, world!';
-      darkMode = false;
-    }
+  export default class Hello extends Component {
+    text = 'Hello, world!';
+    @tracked darkMode = false;
+  }
   ```
 
   ```handlebars
@@ -214,13 +215,13 @@ after examples of each API, converted from classic components:
   Before:
 
   ```js
-    import Component from '@ember/component';
+  import Component from '@ember/component';
 
-    export default Component.extend({
-      attributeBindings: ['role'],
-      role: 'button',
-      text: 'Hello, world!',
-    });
+  export default Component.extend({
+    attributeBindings: ['role'],
+    role: 'button',
+    text: 'Hello, world!'
+  });
   ```
 
   ```handlebars
@@ -230,12 +231,12 @@ after examples of each API, converted from classic components:
   After:
 
   ```js
-    import Component from '@glimmer/component';
+  import Component from '@glimmer/component';
 
-    export default class Hello extends Component {
-      text = 'Hello, world!';
-      role = 'button';
-    }
+  export default class Hello extends Component {
+    text = 'Hello, world!';
+    role = 'button';
+  }
   ```
 
   ```handlebars
@@ -328,7 +329,7 @@ Before:
 import Component from '@ember/component';
 
 export default Component.extend({
-  text: 'Hello, world!',
+  text: 'Hello, world!'
 });
 ```
 
@@ -374,7 +375,7 @@ export default Component.extend({
 
   fullName: computed('firstName', 'lastName', function() {
     return `${this.firstName} ${this.lastName}`;
-  }),
+  })
 });
 ```
 
@@ -423,7 +424,7 @@ export default Component.extend({
 
   fullName: computed('firstName', 'lastName', function() {
     return `${this.firstName} ${this.lastName}`;
-  }),
+  })
 });
 ```
 
@@ -458,7 +459,7 @@ component:
 import Component from '@ember/component';
 
 export default Component.extend({
-  value: 'Hello, world!',
+  value: 'Hello, world!'
 });
 ```
 
@@ -474,7 +475,7 @@ import Component from '@ember/component';
 export default Component.extend({
   click() {
     this.set('value', 'Hello, moon!');
-  },
+  }
 });
 ```
 
@@ -587,7 +588,7 @@ export default Component.extend({
     if (this.onChange) {
       this.onChange(newValue);
     }
-  },
+  }
 });
 ```
 
@@ -707,7 +708,7 @@ export default Component.extend({
     this.element.removeEventListener(`scroll`, this.listener);
 
     this._super(...arguments);
-  },
+  }
 });
 ```
 
