@@ -233,7 +233,7 @@ Our component integration test will test two different behaviors:
 
 Let's update the default test to contain the scenarios we want to verify:
 
-```javascript {data-filename="tests/integration/components/rental-listing-test.js" data-diff="+11,+12,+13,+14,+15,+16,+17,+18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,-33,-34,-35"}
+```javascript {data-filename="tests/integration/components/rental-listing-test.js" data-diff="+11,+12,+13,+14,+15,+16,+17,+18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,-33,-34,-35,-36"}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
