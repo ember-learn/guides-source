@@ -263,6 +263,16 @@ arguments, they are _not_ prefixed with the `@` symbol:
 </BlogPost>
 ```
 
+### Nested components invocation
+
+Components nested inside subdirectories can be used with a double colon syntax.
+For example, a component found at `app/components/blog-post/comment.hbs` can
+be used like this in another template:
+
+```handlebars
+<BlogPost::Comment/>
+```
+
 ### Template-only components
 
 Components can have a template _without_ a backing class definition. These types
