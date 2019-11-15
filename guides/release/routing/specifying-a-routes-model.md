@@ -276,7 +276,7 @@ Routes without dynamic segments will always execute the model hook.
 Sometimes you need to fetch a model, but your route doesn't have the parameters, because it's
 a child route and the route directly above or a few levels above has the parameters that your route
 needs.
-You might run into this if you have a URL like `/album/4/songs/18`, and when you're in the comments route, you need a photo ID.
+You might run into this if you have a URL like `/album/4/songs/18`, and when you're in the songs route, you need an album ID.
 
 In this scenario, you can use the `paramsFor` method to get the parameters of a parent route.
 
