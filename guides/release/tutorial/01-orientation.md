@@ -24,7 +24,7 @@ To verify that your installation was successful, run:
 
 ```shell
 $ ember --version
-ember-cli: 3.13.1
+ember-cli: 3.14.0
 node: 12.8.1
 os: linux x64
 ```
@@ -72,7 +72,7 @@ Initializing git repository.
 Git: successfully initialized.
 
 Successfully created project super-rentals.
-We suggest you that you get started by typing:
+Get started by typing:
 
   $ cd super-rentals
   $ npm start
