@@ -111,7 +111,7 @@ after examples of each API, converted from classic components:
 
     click() {
       console.log('Hello, world!');
-    },
+    }
   });
   ```
 
