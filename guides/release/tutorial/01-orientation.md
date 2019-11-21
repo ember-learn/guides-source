@@ -33,7 +33,7 @@ If a version number is shown, you're ready to go.
 
 ## Creating a New Ember App with Ember CLI
 
-We can create a new project using Ember CLI's `new` command. It follows the pattern `ember new <project-name>`. In our case, the project name would be `super-rentals`:
+We can create a new project using Ember CLI's `new` command. It follows the pattern `ember new <project-name> -b @ember/octane-app-blueprint`. In our case, the project name would be `super-rentals`:
 
 ```shell
 $ ember new super-rentals -b @ember/octane-app-blueprint
