@@ -57,11 +57,46 @@ that is used when rendering the component. If we update the `BlogPost`'s
 template to be:
 
 ```handlebars {data-filename=app/templates/components/blog-post.hbs}
-<h1>Fun Facts About Tomster</h1>
-<section>
-  1. He's a hamster!
-  2. But also a Tomster!
-</section>
+<article class="blog-post">
+  <h1>{{@title}}</h1>
+  <p>{{yield}}</p>
+  <label for="title">Blog Title</label>
+  <p>Edit title: <Input @id="title" @type="text" @value={{@title}} /></p>
+</article>
+```
+
+Given the above template, you can now use the `<BlogPost />` component:
+
+```handlebars {data-filename=app/templates/index.hbs}
+{{#each this.model as |post|}}
+  <BlogPost @title={{post.title}}>
+    {{post.body}}
+  </BlogPost>
+{{/each}}
+```
+
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+In Ember templates there are different ways to invoke a Component. The syntax above is referred to as angle bracket invocation syntax, and it might not look familiar if you are looking at older code samples that use the classic invocation syntax. For more examples of ways to use Components in a template, see the <a href="../reference/syntax-conversion-guide">Syntax Conversion Guide</a>, a <a href="https://guides.emberjs.com/v3.6.0/components/defining-a-component/">previous version of the Guides</a> or <a href="https://api.emberjs.com/ember/3.6/classes/Component">Ember.js API documentation</a>.
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
+  </div>
+</div>
+
+Its model is populated in `model` hook in the route handler:
+
+```javascript {data-filename=app/routes/index.js}
+import Route from '@ember/routing/route';
+
+export default Route.extend({
+  model() {
+    return this.store.findAll('post');
+  }
+});
 ```
 
 And then use the component like so:
