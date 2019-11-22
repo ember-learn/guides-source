@@ -11,10 +11,10 @@ A sample component template could look like this:
 
 ```handlebars {data-filename=app/templates/components/blog-post.hbs}
 <article class="blog-post">
-  <h1>{{this.title}}</h1>
+  <h1>{{@title}}</h1>
   <p>{{yield}}</p>
   <label for="title">Blog Title</label>
-  <p>Edit title: <Input @id="title" @type="text" @value={{this.title}} /></p>
+  <p>Edit title: <Input @id="title" @type="text" @value={{@title}} /></p>
 </article>
 ```
 
