@@ -17,7 +17,7 @@ different users:
 ```
 
 The _structure_ of these components is identical, but they have somewhat
-different content (the user's initial) and attributes (the `title` and `class`
+different content (the user's first initial) and attributes (the `title` and `class`
 attributes).
 
 <div class="cta">
@@ -33,10 +33,9 @@ attributes).
   </div>
 </div>
 
-
 ## Arguments
 
-We can create a component that can be used in both situation by _templating_
+We can create a component that can be used in both situations by _templating_
 the parts of the HTML that are different.
 
 ```handlebars {data-filename="app/components/avatar.hbs"}
@@ -49,7 +48,7 @@ The syntax `{{@initial}}` means that the contents inside the `<div>` tag are
 _dynamic_ and will be specified by the `<Avatar>` tag. Likewise, the
 `{{@title}}` syntax means that the contents of the `title` attribute are dynamic
 and will be specified in the same way. We can now replace the received message
-avatar template with a usage of the `<Avatar>` tag providing arguments.
+avatar by using the `<Avatar>` tag and providing it with some arguments.
 
 ```handlebars {data-filename="app/components/received-message/avatar.hbs"}
 <Avatar @title="Tomster's avatar" @initial="T" />
@@ -69,14 +68,14 @@ the _browser_ what to do, it's telling your custom tag what to do.
       <div class="cta-note-message">
         <p>
           You might be wondering why Ember doesn't use attribute syntax for the
-          component syntax. We'll learn the next section that you can put normal
+          component syntax. In the next section, we'll learn that you can put normal
           HTML attributes on component tags, and they will end up on the HTML
           element that the component creates.
         </p>
         <p>
           So when you use a normal attribute name, you're putting a normal HTML
           attribute on an element. When you use an argument (which starts with
-          <code>@</code>), you're providing data to a component
+          <code>@</code>), you're providing data to a component.
         </p>
         <p>
           This also means that arguments can pass any kind of data to the
@@ -125,8 +124,8 @@ specified on the tag.
 </aside>
 ```
 
-The syntax `...attributes` specifies where in the template of a component
-attributes from the tag should go. Any number of attributes can be specified on
+The `...attributes` syntax determines where the attributes from a tag should
+appear in the component's template. Any number of attributes can be specified on
 the avatar component now, and they will all end up on the element that has
 `...attributes`.
 

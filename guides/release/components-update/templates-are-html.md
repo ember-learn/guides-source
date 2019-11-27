@@ -4,15 +4,15 @@ Because of this, templates are central to Ember, and one of the most important
 parts of the framework.
 
 We'll discuss the capabilities and core concepts of templates in the following
-chapters, but before we do that, we should get started the basics, and the
-simplest way to get started on an Ember template is with some HTML!
+chapters, but before we do that, we should get started with the basics, and the
+easiest way to get started on an Ember template is with some HTML!
 
 ## The Application Template
 
 The central template in an Ember application is the
 `app/templates/application.hbs` file. We can copy HTML into this file, and it
 will work without any changes. For instance, you can copy the following example
-HTML for a simple messaging app:
+HTML for a small messaging app:
 
 ```html {data-filename=app/templates/application.hbs}
 <div class="messages">
@@ -26,8 +26,8 @@ HTML for a simple messaging app:
     </h4>
 
     <p>
-      Hey Zoey, have you had a chance to look at the EmberConf brainstorming doc I
-      sent you?
+      Hey Zoey, have you had a chance to look at the EmberConf brainstorming doc
+      I sent you?
     </p>
   </section>
 
@@ -50,14 +50,14 @@ HTML for a simple messaging app:
         really is impressive how much we go through!)
       </li>
       <li>
-        A blimp would definitely make the venue very easy to find, but I think it
-        might be a bit out of our budget. Maybe we could rent some spotlights
+        A blimp would definitely make the venue very easy to find, but I think
+        it might be a bit out of our budget. Maybe we could rent some spotlights
         instead?
       </li>
       <li>
         We absolutely will need more hamster wheels, last year's line was
-        <em>way</em> too long. Will get on that now before rental season hits its
-        peak.
+        <em>way</em> too long. Will get on that now before rental season hits
+        its peak.
       </li>
     </ul>
 
@@ -65,7 +65,7 @@ HTML for a simple messaging app:
   </section>
 
   <form>
-    <input>
+    <input />
     <button>
       Send
     </button>
@@ -74,8 +74,8 @@ HTML for a simple messaging app:
 ```
 
 And if you serve the app, you'll see the HTML rendered, though it will be
-unstyled. You can copy these styles as well to `app/styles/app.css` to style the
-example components:
+unstyled. You can copy these styles as well to `app/styles/app.css` to make the
+example components prettier:
 
 ```css {data-filename=styles/app.css}
 body {
@@ -91,7 +91,7 @@ body {
   grid-template-columns: 80px 1fr;
   padding: 2em;
   border-radius: 0.5em;
-  box-shadow: 0 0.25em 1.5em 0.25em rgba(0,0,0,0.1);
+  box-shadow: 0 0.25em 1.5em 0.25em rgba(0, 0, 0, 0.1);
 }
 
 .messages > section {
@@ -175,7 +175,7 @@ You can even use SVG or web components without any changes. As long as your HTML
 
 In addition to normal HTML syntax, Ember allows you to use self-closing syntax (`<div />`) as a shorthand for an opening and closing tag (`<div></div>`).
 
-You don't **need** to use this syntax for "void" HTML tags such as `img` or `br`, which are already defined as self-closing by the HTML spec, but you **can** use this syntax as a shorthand for tags that are not self-closing.
+You don't **need** to use this syntax for ["empty" HTML tags](https://developer.mozilla.org/en-US/docs/Glossary/Empty_element) such as `img` or `br`, which are already defined as self-closing by the HTML spec, but you **can** use this syntax as a shorthand for tags that are not self-closing.
 
 # Supported Features
 
@@ -184,14 +184,14 @@ This means that all of the following HTML features work as-is:
 - Web components
 - SVG
 - HTML comments
-- Whitespace has the same rules as normal HTML
+- Whitespace (following the same rules as normal HTML)
 - Special HTML elements like `<table>` and `<select>`
 
 # Restrictions
 
 There are a handful of restrictions on the HTML that you can put in an Ember template:
 
-- Valid HTML only
+- Only valid HTML elements in a `<body>` tag can be used
 - No `<script>` tags
 - You can only use HTML that is valid in `<body>`
 

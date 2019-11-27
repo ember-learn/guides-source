@@ -29,7 +29,7 @@ Let's say we tried to create a single `address` component.
 If the `<Username>` tag doesn't specify a `@localTime` argument, we'll end up
 with some extra unneeded text in the output.
 
-What we need is a way to only include the local time text `@locaTime` exists at
+What we need is a way to only include the local time text `@localTime` exists at
 all. We can do this with an `if`:
 
 ```handlebars {data-filename="app/components/username.hbs"}
@@ -41,7 +41,7 @@ all. We can do this with an `if`:
 </h4>
 ```
 
-This the syntax for conditionals in an Ember template. The `#if` means that the
+This is the syntax for conditionals in an Ember template. The `#if` means that the
 part after the `{{#if ...}}` is nested inside of the conditional. Just like HTML
 tags continue until closed (`<div>` continues until `</div>`), the content
 nested inside an `#if` continues until `{{/if}}`.
@@ -50,7 +50,7 @@ nested inside an `#if` continues until `{{/if}}`.
 
 Sometimes, you need to place conditional content inside an argument or
 attribute. You can do this with _inline_ `if`. For instance, consider these two
-avatar components
+avatar components, for received messages and for sent messages respectively:
 
 ```handlebars {data-filename="app/components/received-message/avatar.hbs"}
 <aside>
@@ -83,7 +83,7 @@ is passed in and is truthy.
 </aside>
 ```
 
-You can then use the argument to add the active state to the received message
+We can then use the argument to add the active state to the received message
 avatar, and omit it from the sent message avatar.
 
 ```handlebars {data-filename="app/components/received-message/avatar.hbs"}
