@@ -57,11 +57,14 @@ representing different user's messages.
 </section>
 ```
 
-If we wanted to create a single, generic message component, we could swap out
-the avatar and username with more generic components. Their structure is pretty
-straightforward and similar, so we can use arguments and conditionals to handle
-the differences in content between them (see the previous chapters for details
-on how to do this).
+Instead of having two different components, one for sent messages and one for
+received messages, we could instead try to create a single message component.
+Inside of this message component, we could substitute the avatar and username
+with generic components, too.
+
+Their structure is pretty straightforward and similar, so we can use arguments
+and conditionals to handle the differences in content between them (see the
+previous chapters for details on how to do this).
 
 ```handlebars {data-filename="app/components/message.hbs"}
 <Message::Avatar
@@ -81,11 +84,11 @@ on how to do this).
 ```
 
 This works pretty well, but the message content is very different. It's also
-pretty long, so it wouldn't really be easy to pass through as an argument. What
-we really want is to leave a placeholder for any content supplied by the
-`<Message>` tag.
+pretty long, so it wouldn't really be easy to pass the message content through
+as an argument. What we really want is to leave a placeholder for any content
+supplied by the `<Message>` tag.
 
-The way we do that in Ember is the `{{yield}}` syntax.
+The way to do this in Ember is by using the `{{yield}}` syntax.
 
 ```handlebars {data-filename="app/components/message.hbs"}
 <Message::Avatar
@@ -104,10 +107,27 @@ The way we do that in Ember is the `{{yield}}` syntax.
 </section>
 ```
 
-You can think of `{{yield}}` as leaving a placeholder for the content of the
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+        <code>{{yield}}</code> is named after a similar concept in scripting languages,
+        including Ruby, JavaScript and Python. You don't need to understand the connection
+        in order to use it, but if you're in the mood for a tangent, check out
+        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/yield">
+          the yield operator in JavaScript
+        </a>
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
+  </div>
+</div>
+
+You can think of using `{{yield}}` as leaving a placeholder for the content of the
 `<Message>` tag.
 
-```handlebars {app/components/received-message.hbs}
+```handlebars {data-filename="app/components/received-message.hbs"}
 <Message
   @username="Tomster"
   @userIsActive={{true}}
@@ -160,8 +180,9 @@ You can think of `{{yield}}` as leaving a placeholder for the content of the
 </Message>
 ```
 
-We call the content of the `<Message>` tag "the block" and say that `{{yield}}`
-is "yielding to the block."
+As shown here, we can pass different content into the tag. The content
+of the tag is also referred to as _the block_. The `{{yield}}` syntax
+yields to the block once the block is passed into the component.
 
 <div class="cta">
   <div class="cta-note">
@@ -169,8 +190,8 @@ is "yielding to the block."
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
         You can think of the <code>Message</code> component like a function,
-        and the block as a <em>callback</em> that you're passing to the
-        component. From this perspective, the <code>{{yield}}</code> syntax
+        and the block as a <a href="https://developer.mozilla.org/en-US/docs/Glossary/Callback_function"><em>callback</em></a>
+        that you're passing to the component. From this perspective, the <code>{{yield}}</code> syntax
         calls the callback.
       </div>
     </div>

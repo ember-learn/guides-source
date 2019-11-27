@@ -1,7 +1,7 @@
 You can put all of your application HTML into a single file, but in practice,
 you'll probably want to break it apart into smaller files.
 
-In Ember, you break your application into smaller pieces called "components".
+In Ember, you break your application into smaller pieces called _"components"_.
 
 Let's start with the sample HTML for a messaging app that we introduced in the
 previous chapter:
@@ -18,8 +18,8 @@ previous chapter:
     </h4>
 
     <p>
-      Hey Zoey, have you had a chance to look at the EmberConf brainstorming doc I
-      sent you?
+      Hey Zoey, have you had a chance to look at the EmberConf brainstorming doc
+      I sent you?
     </p>
   </section>
 
@@ -42,14 +42,14 @@ previous chapter:
         really is impressive how much we go through!)
       </li>
       <li>
-        A blimp would definitely make the venue very easy to find, but I think it
-        might be a bit out of our budget. Maybe we could rent some spotlights
+        A blimp would definitely make the venue very easy to find, but I think
+        it might be a bit out of our budget. Maybe we could rent some spotlights
         instead?
       </li>
       <li>
         We absolutely will need more hamster wheels, last year's line was
-        <em>way</em> too long. Will get on that now before rental season hits its
-        peak.
+        <em>way</em> too long. Will get on that now before rental season hits
+        its peak.
       </li>
     </ul>
 
@@ -57,7 +57,7 @@ previous chapter:
   </section>
 
   <form>
-    <input>
+    <input />
     <button>
       Send
     </button>
@@ -108,15 +108,15 @@ components start with capital letters. Our component is called
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
         A component's name is the same as its name on the file system,
-        capitalizing the first letter and every letter following a `-`, and
-        removing the `-` ("pascal case").
+        with the first letter and every letter following a `-` being capitalized, and
+        removing the `-` (also known as _pascal case_).
       </div>
     </div>
     <img src="/images/mascots/zoey.png" role="presentation" alt="">
   </div>
 </div>
 
-We can include it into our application using HTML tag syntax.
+We can include our new component into our application by using HTML tag syntax.
 
 ```handlebars {data-filename="app/templates/application.hbs" data-diff="-2,-3,-4,-5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,+16"}
 <div class="messages">
@@ -181,8 +181,8 @@ We can include it into our application using HTML tag syntax.
 
 ### The Sent Message
 
-Let's do it again. Pull out the sent message, and then include it in our
-application template.
+Let's repeat the process of creating a component again. We can pull out the
+"sent" message, and then include it in our application template.
 
 ```handlebars {data-filename="app/components/sent-message.hbs"}
 <aside class="current-user">
@@ -504,7 +504,7 @@ way, allowing you to organize them as you see fit.
 
 ## Summary
 
-We've taken a big HTML file and broken it up into **components** to make it
+We've taken a big HTML file and broken it up into _components_ to make it
 easier to understand and maintain.
 
 A component is a chunk of HTML that can be included in another component using

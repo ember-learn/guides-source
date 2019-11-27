@@ -39,7 +39,7 @@ messaging app.
 
 We can see that when used, some of the arguments are fairly repetitive - both
 `@avatarTitle` and `@avatarInitial` are based on the user's `@username`, but the
-title has a more text, and the initial is only the first letter of the name.
+title has more text, and the initial is only the first letter of the name.
 
 We can update the component to calculate these values instead. For the
 `@avatarTitle`, we embed the argument directly in a string within the component.
@@ -107,10 +107,11 @@ username.
 
 ### Named Arguments
 
-Helpers can also receive named arguments, which can allow us to create easier to
-read APIs. For instance, we could provide the `start` and `length` arguments to
-`substring` as named arguments instead of positional arguments. This can also
-make it easier to provide default values for arguments.
+Helpers can also receive named arguments, which can allow us to create APIs that
+are easier to read. For instance, we could provide the `start` and `length`
+arguments to the `substring` helper as _named arguments_ instead of positional
+arguments, which is what we are currently using. This can also make it easier
+to provide default values for arguments.
 
 ```js {data-filename="app/helpers/substring.js"}
 import { helper } from "@ember/component/helper";
@@ -142,7 +143,7 @@ export default helper(substring);
 
 ## Class Helpers
 
-Helpers can also be defined using class syntax. For instance, you could define
+Helpers can also be defined using class syntax. For instance, we could define
 the substring helper using classes instead.
 
 ```js {data-filename="app/helpers/substring.js"}
@@ -164,11 +165,13 @@ discussing state in the next chapter).
     <div class="cta-note-body">
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
-        Helpers can also return nothing, and instead be used to call functions
-        or update state. For instance, you could create a helper to send a
-        tracking event whenever a page renders, or certain values on the page
-        update. Modifiers are alse useful for these use cases, and we'll discuss
-        them in more depth in later chapters.
+        <p>Helpers do not need to have a return value. They can return nothing and
+        instead be used to call functions or update state. For instance, you
+        could create a helper to send a tracking event whenever a page renders,
+        or certain values on the page update. Modifiers are also useful for
+        these use cases, and we'll discuss them in more depth in later chapters.</p>
+        <p>Using helpers in this way is an advanced pattern, and not something
+        you will need to be productive in Ember for the most part.</p>
       </div>
     </div>
     <img src="/images/mascots/zoey.png" role="presentation" alt="">

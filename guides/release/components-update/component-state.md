@@ -1,6 +1,6 @@
 While you can accomplish a lot in Ember using HTML templating, you'll need JavaScript to make your application interactive.
 
-Let's start with a really simple example, a counter component. When the user presses the `+` button, the count will increase by 1. When the user presses the `-` button, the count will decrease by 1.
+Let's start with a small example, a counter component. When the user presses the `+` button, the count will increase by 1. When the user presses the `-` button, the count will decrease by 1.
 
 First, let's start with the HTML.
 
@@ -24,7 +24,9 @@ export default class extends Component {
 }
 ```
 
-There's a bunch going on here, but the most important part is `@tracked count = 0`. This creates a dynamic value that you can stick in the template, instead of hardcoding it.
+There are a few things going on here, but the most important part is `@tracked count = 0`.
+This line creates a dynamic value called `count`, which you can stick inside of the
+template instead of hardcoding it.
 
 ```handlebars {data-filename="app/components/counter.hbs" data-diff="-1,+2"}
 <p>0</p>
@@ -34,15 +36,15 @@ There's a bunch going on here, but the most important part is `@tracked count = 
 <button>-1</button>
 ```
 
-When we say `this.count` in the component template, we're referring to a property that we defined in the JavaScript class.
+When we invoke `{{this.count}}` in the component template, we're referring to a property that we defined in the JavaScript class.
 
-The output looks the same as before, but now the `0` comes from JavaScript, and we can change it from the button.
+The output looks the same as before, but now the `0` comes from JavaScript, and after some more work, we can change its value with the buttons.
 
 ## HTML Modifiers and Actions
 
 Next, we want to wire up the buttons. When the user presses `+1`, we want `this.count` to go up by 1. When the user presses `-1`, we want it to go down by 1.
 
-To attach an event handler to an HTML tag, you use the `on` HTML modifier. HTML modifiers are an Ember syntax that allow you to attach logic to a tag.
+To attach an event handler to an HTML tag, we use the `on` HTML modifier. HTML modifiers are an Ember syntax that allow us to attach logic to a tag.
 
 ```handlebars {data-filename="app/components/counter.hbs" data-diff="-3,+4,-5,+6"}
 <p>{{this.count}}</p>
@@ -75,6 +77,8 @@ export default class extends Component {
 }
 ```
 
+Now, when the `+1` and `-1` buttons get clicked, the number displayed will change.
+
 ## Passing Arguments to Actions
 
 Our counter has two different actions, `increment` and `decrement`. But both actions are mostly doing the same thing. The only difference is that `increment` changes the count by `+1`, while `decrement` changes it by `-1`.
@@ -105,7 +109,7 @@ export default class extends Component {
 }
 ```
 
-Next, we'll update the template to turn the click handler into a function that passes the amount as an argument.
+Next, we'll update the template to turn the click handler into a function that passes an amount (for example, 1 and -1) in as an argument, using the fn helper.
 
 ```handlebars {data-filename="app/components/counter.hbs" data-diff="-3,+4,-5,+6"}
 <p>{{this.count}}</p>
@@ -123,7 +127,7 @@ Next, we'll update the template to turn the click handler into a function that p
       <div class="cta-note-message">
         An event handler takes a function as its second argument. When there are no arguments to the
         function, you can pass it directly, just like in JavaScript. Otherwise, you can build a
-        function inline by using the <code>fn</code> syntax.        
+        function inline by using the <code>fn</code> syntax.
       </div>
     </div>
     <img src="/images/mascots/zoey.png" role="presentation" alt="">
@@ -136,13 +140,13 @@ Let's say we want to add a button to our counter that allows us to double the cu
 
 Based on what we've already learned, we'll need:
 
-- A piece of state that represents the number to multiply the `count` by (the `multiple`)
+- A `multiple`, a piece of state that represents the number to multiply the `count` by
 - An action to double the `multiple`
 - A button in the template that calls the action
 
 But we'll also need a way to multiply the `count` by the `multiple` and show it in the template.
 
-Let's start with what we know already. Add the `multiple` tracked property and an action called `double` that doubles the `multiple`.
+Let's start with what we know already. We'll add the `multiple` tracked property and an action called `double` that doubles the `multiple`.
 
 ```js {data-filename="app/components/counter.js" data-diff="+7,+9,+10,+11,+12"}
 import Component from "@glimmer/component";
@@ -165,7 +169,7 @@ export default class extends Component {
 }
 ```
 
-And update the template to call the `double` action. We'll also add `this.multiple` to our output to confirm that the button is working.
+Then, we'll update the template to call the `double` action. We'll also add `this.multiple` to our output to help us confirm that our button is working.
 
 ```handlebars {data-filename="app/components/counter.hbs" data-diff="+2,+6"}
 <p>{{this.count}}</p>
@@ -176,7 +180,7 @@ And update the template to call the `double` action. We'll also add `this.multip
 <button {{on "click" this.double}}>Double It</button>
 ```
 
-To get the multiplied number into the template, we'll use a normal [JavaScript getter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get).
+To get the multiplied number into the template, we'll use a [JavaScript getter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get).
 
 ```js {data-filename="app/components/counter.js" data-diff="+9,+10,+11"}
 import Component from "@glimmer/component";
@@ -203,9 +207,9 @@ export default class extends Component {
 }
 ```
 
-**The getter does not need any special annotatations.** As long as you've marked the properties that can change with `@tracked`, you can use normal JavaScript to compute new values from those properties.
+**The getter does not need any special annotatations.** As long as you've marked the properties that can change with `@tracked`, you can use JavaScript to compute new values from those properties.
 
-We update the template to use the `total` property:
+We can now update the template to use the `total` property:
 
 ```handlebars {data-filename="app/components/counter.hbs" data-diff="+3"}
 <p>{{this.count}}</p>
@@ -218,7 +222,7 @@ We update the template to use the `total` property:
 <button {{on "click" this.double}}>Double It</button>
 ```
 
-And we're all done. Try to click the plus, minus and double buttons in any order, and watch as the three outputs stay up to date perfectly.
+And we're all done! If we try to click the plus, minus, or double buttons in any order, we can watch as these three outputs stay up-to-date perfectly.
 
 <div class="cta">
   <div class="cta-note">
