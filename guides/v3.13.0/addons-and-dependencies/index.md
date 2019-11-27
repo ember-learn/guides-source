@@ -142,7 +142,7 @@ All third-party assets, included either manually in `vendor/` or via a package m
 
 Third-party assets that are not added via `import()` will not be present in the final build.
 
-By default, `import`ed assets will be copied to `dist/` as they are, with the existing directory structure maintained.
+By default, imported assets will be copied to `dist/` as they are, with the existing directory structure maintained.
 
 ```javascript {data-filename=ember-cli-build.js}
 app.import('node_modules/font-awesome/fonts/fontawesome-webfont.ttf');
