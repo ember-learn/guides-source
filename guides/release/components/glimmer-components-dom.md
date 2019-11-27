@@ -337,7 +337,9 @@ export default class AudioPlayer extends Component {
 
 We'd like to call the `play` method on our `<audio>` element, but how do we get access to that element?
 
-We can give our component access to elements inside of it by using `ember-ref-modifier`.
+We can give our component access to elements inside of it by using [`ember-ref-modifier`](ref-modifier).
+
+[ref-modifier]: https://www.npmjs.com/package/ember-ref-modifier
 
 > The `{{ref}}` modifier takes a property name and an object, and assigns the modifier's element to that property on the object.
 
