@@ -4,15 +4,12 @@ Because of this, templates are central to Ember, and one of the most important
 parts of the framework.
 
 We'll discuss the capabilities and core concepts of templates in the following
-chapters, but before we do that, we should get started with the basics, and the
-easiest way to get started on an Ember template is with some HTML!
+chapters, but before we do that, we should get started with the basics. The
+simplest way to get started on an Ember template is with some HTML!
 
 ## The Application Template
 
-The central template in an Ember application is the
-`app/templates/application.hbs` file. We can copy HTML into this file, and it
-will work without any changes. For instance, you can copy the following example
-HTML for a small messaging app:
+The central template in an Ember application is the `app/templates/application.hbs` file. We can copy HTML into this file, and it will work without any changes. For instance, you can copy the following example HTML for a simple messaging app:
 
 ```html {data-filename=app/templates/application.hbs}
 <div class="messages">
@@ -73,14 +70,11 @@ HTML for a small messaging app:
 </div>
 ```
 
-You can _serve_ the app by running `ember s` in your terminal, which will make
-the local copy of your application available to view in your web browser.
+You can _serve_ the app by running `ember s` in your terminal, which will make the local copy of your application available to view in your web browser.
 
-If you serve the app and go to `localhost:4200` in your web browser, you'll
-see the HTML rendered. At this point, it will still be unstyled.
+If you serve the app and go to `localhost:4200` in your web browser, you'll see the HTML rendered. At this point, it will still be unstyled.
 
-You can copy these styles as well to `app/styles/app.css` to style the
-example components:
+To style the application, copy the following CSS into `app/styles/app.css`:
 
 ```css {data-filename=styles/app.css}
 body {
@@ -180,7 +174,17 @@ You can even use SVG or web components without any changes. As long as your HTML
 
 In addition to normal HTML syntax, Ember allows you to use self-closing syntax (`<div />`) as a shorthand for an opening and closing tag (`<div></div>`).
 
-You don't **need** to use this syntax for ["empty" HTML tags](https://developer.mozilla.org/en-US/docs/Glossary/Empty_element) such as `img` or `br`, which are already defined as self-closing by the HTML spec, but you **can** use this syntax as a shorthand for tags that are not self-closing.
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+        You don't <strong>need</strong> to use this syntax for "void" HTML tags such as `img` or `br`, which are already defined as self-closing by the HTML spec, but you <strong>can</strong> use this syntax as a shorthand for tags that are not self-closing.
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
+  </div>
+</div>
 
 # Supported Features
 
