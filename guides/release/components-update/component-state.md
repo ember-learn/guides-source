@@ -243,8 +243,8 @@ And we're all done! If we try to click the plus, minus, or double buttons in any
         </p>
         <p>Making a <code>total</code> getter that computed the total from the <code>amount</code> and
         <code>multiple</code> properties was more <strong>declarative</strong> than setting <code>total</code>
-        in all of the places that could have affected it (changing <code>total</code> directly is called the
-        "imperative" approach).</p>
+        in all of the places that could have affected it. If you had changed <code>total</code> directly, you
+        would have taken the <em>"imperative" approach</em>).</p>
       </div>
     </div>
     <img src="/images/mascots/zoey.png" role="presentation" alt="">
@@ -286,6 +286,11 @@ In the `Counter` component, instead of tracking the `multiple` internally, we ta
 <button {{on "click" (fn this.change -1)}}>-1</button>
 ```
 
+In templates, we refer to arguments by prefixing them with the `@` sign (in this case `@multiple`). In order to
+compute `this.total`, we'll need to refer to the `multiple` argument from JavaScript.
+
+We refer to a component's argument from JavaScript by prefixing them with `this.args.`.
+
 In JavaScript, we refer to it as `this.args.multiple`.
 
 ```js {data-filename="app/components/counter.js" data-diff="-7,-10,+11"}
@@ -308,3 +313,5 @@ export default class extends Component {
   }
 }
 ```
+
+The `total` is now computed by multiplying a piece of _local state_ (`this.count`) with an argument (`this.args.multiple`). You can mix and match local state and arguments however you wish, which allows you to easily break up a component into smaller pieces.
