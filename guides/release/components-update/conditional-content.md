@@ -72,6 +72,23 @@ _public API_ of the component, so an argument makes sense.
 So, we want to add the `is-active` class if an argument, like say `@isActive`,
 is passed in and is truthy.
 
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+        <p>
+          In Ember templates, the values <code>0</code>, <code>false</code>,
+          <code>null</code>, <code>undefined</code>, and the empty string are
+          falsy, just like in JavaScript. In addition, the empty array is also
+          considered falsy in Ember templates.
+        </p>
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
+  </div>
+</div>
+
 ```handlebars {data-filename="app/components/avatar.hbs"}
 <aside ...attributes>
   <div

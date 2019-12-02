@@ -1,5 +1,4 @@
-If you want to _reuse_ a component in multiple places, you'll need a way to
-template out parts of it.
+Components become useful building blocks of our app if we make them _reusable_. When we reuse components efficiently, we can avoid having to recreate parts of our app again and again. If you want to _reuse_ a component in multiple places, you'll need a way to template out parts of it.
 
 Let's start with two similar but not identical avatar components, that represent
 different users:
@@ -89,7 +88,7 @@ the _browser_ what to do, it's telling your custom tag what to do.
 
 ## HTML Attributes
 
-Now let's try use our `<Avatar>` component for the sent message avatar.
+Now let's try to use our `<Avatar>` component for the sent message avatar.
 
 ```handlebars {data-filename="app/components/sent-message/avatar.hbs"}
 <Avatar @title="Zoey's avatar" @initial="Z" />
@@ -136,9 +135,14 @@ the avatar component now, and they will all end up on the element that has
       <div class="cta-note-message">
         <p>
           <code>...attributes</code> syntax follows the same rules as
-          object-spread syntax in JavaScript. Attributes it appears
-          <em>after</em> will be overridden, while attributes it appears
-          <em>before</em> will not.
+          object-spread syntax in JavaScript. If it appears <em>after</em> an attribute,
+          it overrides that attribute. If it appears <em>before</em> an attribute, it
+          does not.</p>
+        <p>
+          In general, you should place <code>...attributes</code> after attributes that
+          you specify to give tags an opportunity to override your attribute. Place it
+          <strong>before</strong> your attributes only if you want to disallow tags from
+          overriding your attributes. This should be unusual.
         </p>
         <p>
           In addition, the <code>class</code> attribute is special, and will be

@@ -1,5 +1,5 @@
-At its core, Ember is a _template_ driven framework - every part of the UI that
-is shown to the user is defined in a template somewhere in your application.
+At its core, Ember's UIs are _HTML_ driven - every part of the UI that
+is shown to the user is defined in an HTML template somewhere in your application.
 Because of this, templates are central to Ember, and one of the most important
 parts of the framework.
 
@@ -73,9 +73,14 @@ HTML for a small messaging app:
 </div>
 ```
 
-And if you serve the app, you'll see the HTML rendered, though it will be
-unstyled. You can copy these styles as well to `app/styles/app.css` to make the
-example components prettier:
+You can _serve_ the app by running `ember s` in your terminal, which will make
+the local copy of your application available to view in your web browser.
+
+If you serve the app and go to `localhost:4200` in your web browser, you'll
+see the HTML rendered. At this point, it will still be unstyled.
+
+You can copy these styles as well to `app/styles/app.css` to style the
+example components:
 
 ```css {data-filename=styles/app.css}
 body {
