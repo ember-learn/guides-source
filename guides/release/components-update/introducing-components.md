@@ -1,10 +1,8 @@
-You can put all of your application HTML into a single file, but in practice,
-you'll probably want to break it apart into smaller files.
+You _could_ put all of your application HTML into a single file, but in practice, you'll probably want to break it apart into smaller files.
 
-In Ember, you break your application into smaller pieces called _"components"_.
+In Ember, those smaller pieces are called _components_.
 
-Let's start with the sample HTML for a messaging app that we introduced in the
-previous chapter:
+Let's start with the sample HTML for a messaging app (that we introduced in the previous chapter, if you're reading the guides in order):
 
 ```html {data-filename="app/templates/application.hbs"}
 <div class="messages">
@@ -67,16 +65,17 @@ previous chapter:
 
 ## Breaking it into pieces
 
-Let's take the large template and break it up into smaller pieces. We can see
-there are 3 pretty distinct parts of this template:
+Let's take the large template and break it up into smaller pieces. We can see that there are 3 distinct parts:
 
 - The received message (Tomster's message).
 - The sent message (Zoey's message).
-- The new message input.
+- The "new message" input.
+
+We'll break apart the larger HTML file into files containing each of these parts.
 
 ### The Received Message
 
-First, let's copy Tomster's message into its own component:
+First, let's copy Tomster's message into its own component. Components go in the `app/components` directory.
 
 ```handlebars {data-filename="app/components/received-message.hbs"}
 <aside>
@@ -95,26 +94,7 @@ First, let's copy Tomster's message into its own component:
 </section>
 ```
 
-We've just created our first component! A component is kind of like your own
-custom HTML tag.
-
-HTML tags start with lowercase letters (`<div>`, `<p>`, `<table>`), and Ember
-components start with capital letters. Our component is called
-`<ReceivedMessage>`, based on its name on the file system.
-
-<div class="cta">
-  <div class="cta-note">
-    <div class="cta-note-body">
-      <div class="cta-note-heading">Zoey says...</div>
-      <div class="cta-note-message">
-        A component's name is the same as its name on the file system,
-        with the first letter and every letter following a `-` being capitalized, and
-        removing the `-` (also known as _pascal case_).
-      </div>
-    </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="">
-  </div>
-</div>
+We've just created our first component!
 
 We can include our new component into our application by using HTML tag syntax.
 
@@ -179,10 +159,25 @@ We can include our new component into our application by using HTML tag syntax.
 </div>
 ```
 
+A _component_ is kind of like your own custom HTML tag. You can tell that a tag refers to an Ember component because it starts with a capital letter. Built-in tag start with lowercase letters (`<div>`, `<p>`, `<table>`). Our component is called `<ReceivedMessage>`, based on its name on the file system.
+
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+        A component's name is the same as its name on the file system,
+        capitalizing the first letter and every letter following a `-`, and
+        removing the `-` ("pascal case").
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
+  </div>
+</div>
+
 ### The Sent Message
 
-Let's repeat the process of creating a component again. We can pull out the
-"sent" message, and then include it in our application template.
+Let's do it again. We'll copy the sent message content into a new component, and then include it in our application template.
 
 ```handlebars {data-filename="app/components/sent-message.hbs"}
 <aside class="current-user">
@@ -270,7 +265,7 @@ Let's repeat the process of creating a component again. We can pull out the
 
 ### The New Message Input
 
-Finally, let's pull out the new message input.
+We have one last component to extract. Let's pull out the new message input.
 
 ```handlebars {data-filename="app/components/new-message-input.hbs"}
 <form>
@@ -301,9 +296,7 @@ And include it in the application.
 
 ## Breaking Components Down Further
 
-Components can be used _within_ other components, so we can continue to break
-down our template if we want. For instance, Tomster's avatar could be made
-into its own component that is then used within the `<ReceivedMessage>`.
+We can use components _within_ other components, so we can continue to break down our template into smaller pieces if we want. For instance, Tomster's avatar could be made into its own component that is then used within the `<ReceivedMessage>`.
 
 ```handlebars {data-filename="app/components/received-message-avatar.hbs"}
 <aside>
@@ -401,15 +394,11 @@ We can do the same for the `<SentMessage>` component:
 </section>
 ```
 
-Components can be broken down to any level, and included in each other and
-reused.
+Components can be broken down to any level, included in each other and reused.
 
 ### Nesting Components in Folders
 
-The avatar and username components are really pretty directly related to the
-respective sent and received message components. In some cases, it can be
-helpful to group related components together in the filesystem directly. We can
-do this by moving them into subfolders within `app/components`.
+The avatar and username components are directly related to the sent and received message components. Right now, they're grouped at the top level. As you get more components, this could make a big mess! Instead, we want group the related components together in the filesystem. We can do this by moving them into subfolders within `app/components`.
 
 ```handlebars {data-filename="" data-diff="-4,-5,+6,+7,+8,-9,-10,-11,+12,+13,+14"}
 app/
@@ -481,7 +470,7 @@ folder:
 </section>
 ```
 
-The `index.hbs` of a component directory can also be referred to directly:
+If you have a component named `index.hbs`, you can refer to it without the `::Index`. You can refer to `app/components/received-message/index.hbs` from other components as `<ReceivedMessage>`:
 
 ```handlebars {data-filename="" data-diff="-3,+6,-9,+11"}
 app/
@@ -498,14 +487,10 @@ app/
       username.hbs
 ```
 
-These two file paths are equivalent, so you wouldn't need to update the usage of
-the component anywhere. Components can be nested in multiple sub folders this
-way, allowing you to organize them as you see fit.
+These two file paths are equivalent, so you can refactor a component into a directory without changing all of the tags that refer to it. Components can be nested in multiple sub folders this way, allowing you to organize them as you see fit.
 
 ## Summary
 
-We've taken a big HTML file and broken it up into _components_ to make it
-easier to understand and maintain.
+We've taken a big HTML file and broken it up into _components_ to make the content easier to understand and maintain.
 
-A component is a chunk of HTML that can be included in another component using
-HTML tag syntax.
+A _component_ is a chunk of HTML that can be included in another component using HTML tag syntax.
