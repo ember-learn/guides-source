@@ -106,6 +106,7 @@ Without jQuery, any code that still relies on it will break, especially the foll
 - `jQuery` or `$` directly as a global, through `Ember.$()` or by importing it (`import jQuery from jquery;`)
 - global acceptance test helpers like `find()` or `click()`
 - `this.$()` in component tests
+- If you use `ember-data`, it automatically falls back to HTML5's [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) to make API requests. But, it is recommended to use [`ember-fetch`](https://github.com/ember-cli/ember-fetch), a polyfill for unsupported browsers.
 
 Note that this also applies to all addons that your app uses, so make sure they support being used without jQuery.
 
