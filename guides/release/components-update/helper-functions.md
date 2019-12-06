@@ -158,7 +158,7 @@ export default helper(substring);
 
 You can mix positional and named arguments to make your templates easy to read.
 
-## Advanced: Class Helpers
+## Class Helpers
 
 Helpers can also be defined using class syntax. For instance, we could define
 the substring helper using classes instead.
@@ -179,20 +179,119 @@ Class helpers are useful when the helper logic is fairly complicated, requires
 fine-grained control of the helper lifecycle, or is _stateful_ (we'll be
 discussing state in the next chapter).
 
-<div class="cta">
-  <div class="cta-note">
-    <div class="cta-note-body">
-      <div class="cta-note-heading">Zoey says...</div>
-      <div class="cta-note-message">
-        <p>Helpers do not need to have a return value. They can return nothing and
-        instead be used to call functions or update state. For instance, you
-        could create a helper to send a tracking event whenever a page renders,
-        or certain values on the page update. Modifiers are also useful for
-        these use cases, and we'll discuss them in more depth in later chapters.</p>
-        <p>Using helpers in this way is an advanced pattern, and not something
-        you will need to be productive in Ember for the most part.</p>
-      </div>
-    </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="">
-  </div>
-</div>
+## Built-in Helpers
+
+### The `get` helper
+
+The [`{{get}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/get?anchor=get)
+helper makes it easy to dynamically send the value of a variable to another
+helper or component. This can be useful if you want to output one of several
+values based on the result of a getter.
+
+```handlebars
+{{get this.address this.part}}
+```
+
+If the `part` getter returns "zip", this will display the result of `this.address.zip`.
+If it returns "city", you get `this.address.city`.
+
+### The `concat` helper
+
+In the last section it was discussed that helpers can be nested. This can be
+combined with these sorts of dynamic helpers. For example, the
+[`{{concat}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/concat?anchor=concat)
+helper makes it easy to dynamically send a number of parameters to a component
+or helper as a single parameter in the format of a concatenated string.
+
+```handlebars
+{{get this.foo (concat "item" this.index)}}
+```
+
+This will display the result of `this.foo.item1` when index is 1, and
+`this.foo.item2` when index is 2, etc.
+
+### The `let` helper
+
+Now let's say your template is starting to get a bit cluttered and you want
+to clean up the logic in your templates. This can be achieved with the `let`
+block helper.
+The [`{{let}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/let?anchor=let)
+helper lets you create new bindings in your template.
+
+Say your template now looks like this:
+
+```handlebars
+Welcome back {{concat this.person.firstName ' ' this.person.lastName}}
+
+Account Details:
+First Name: {{this.person.firstName}}
+Last Name: {{this.person.lastName}}
+```
+
+As mentioned in the previous section, we use the `concat` helper to render both
+`person.firstName` and `person.lastName` in one go. But we also want to make
+sure that the names are capitalized. It gets a bit repetitive to keep writing
+`capitalize` and honestly, we might just forget it at some point. Thankfully, we
+can use the `{{let}}` helper to fix this:
+
+```handlebars
+{{#let (concat this.person.firstName this.person.lastName)
+  as |fullName|
+}}
+  Welcome back {{fullName}}
+
+  Account Details:
+  First Name: {{this.person.firstName}}
+  Last Name: {{this.person.lastName}}
+{{/let}}
+```
+
+Now, as long as your template is wrapped in the `let` helper, you can access the
+capitalized first name and last name as `firstName` and `lastName` instead of
+`(capitalize this.person.firstName)`.
+
+### The `array` helper
+
+Using the [`{{array}}`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/array?anchor=array) helper,
+you can pass arrays directly from the template as an argument to your components.
+
+```handlebars
+<MyComponent
+  @people={{array
+    'Tom Dale'
+    'Yehuda Katz'
+    this.myOtherPerson
+  }}
+/>
+```
+
+In the component's template, you can then use the `people` argument as an array:
+
+```handlebars {data-filename=app/components/my-component/template.hbs}
+<ul>
+  {{#each @people as |person|}}
+    <li>{{person}}</li>
+  {{/each}}
+</ul>
+```
+
+### The `hash` helper
+
+Using the [`{{hash}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/array?anchor=hash)
+helper, you can pass objects directly from the template as an argument to your
+components.
+
+```handlebars
+<Greeting
+  @person={{hash
+    firstName='Jen'
+    lastName='Weber'
+  }}
+/>
+```
+
+In the component's template, you can then use the `person` object:
+
+```handlebars {data-filename=app/components/greeting/template.hbs}
+Hello, {{@person.firstName}} {{@person.lastName}}
+```
