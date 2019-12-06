@@ -12,11 +12,8 @@
       url: "index"
     - title: "Core Concepts"
       url: "core-concepts"
-# - title: "Anatomy of an App"
-#   url: "anatomy-of-an-app"
-#   pages:
-#     - title: "Overview"
-#       url: "index"
+    - title: "Working with JavaScript"
+      url: "working-with-javascript"
 - title: "Tutorial"
   url: tutorial
   pages:
@@ -67,12 +64,12 @@
       url: "block-content"
     - title: "Helper Functions"
       url: "helper-functions"
-    - title: "Component State"
-      url: "component-state"
+    - title: "Component State and Actions"
+      url: "component-state-and-actions"
     - title: "Looping Through Lists"
       url: "looping-through-lists"
-    - title: "Reference: Template Syntax"
-      url: "template-syntax-reference"
+    - title: "Built-in Components"
+      url: "built-in-components"
 - title: "Templating"
   url: "templates"
   pages:

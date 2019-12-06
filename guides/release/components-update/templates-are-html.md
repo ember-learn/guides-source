@@ -1,7 +1,7 @@
 At its core, Ember's UIs are _HTML_ driven - every part of the UI that
-is shown to the user is defined in an HTML template somewhere in your application.
-Because of this, templates are central to Ember, and one of the most important
-parts of the framework.
+is shown to the user is defined in an HTML template somewhere in your
+application. Because of this, templates are central to Ember, and one of the
+most important parts of the framework.
 
 We'll discuss the capabilities and core concepts of templates in the following
 chapters, but before we do that, we should get started with the basics. The
@@ -9,7 +9,9 @@ simplest way to get started on an Ember template is with some HTML!
 
 ## The Application Template
 
-The central template in an Ember application is the `app/templates/application.hbs` file. We can copy HTML into this file, and it will work without any changes. For instance, you can copy the following example HTML for a simple messaging app:
+The central template in an Ember application is the `app/templates/application.hbs`
+file. We can copy HTML into this file, and it will work without any changes. For
+instance, you can copy the following example HTML for a simple messaging app:
 
 ```html {data-filename=app/templates/application.hbs}
 <div class="messages">
@@ -70,9 +72,11 @@ The central template in an Ember application is the `app/templates/application.h
 </div>
 ```
 
-You can _serve_ the app by running `ember s` in your terminal, which will make the local copy of your application available to view in your web browser.
+You can _serve_ the app by running `ember s` in your terminal, which will make
+the local copy of your application available to view in your web browser.
 
-If you serve the app and go to `localhost:4200` in your web browser, you'll see the HTML rendered. At this point, it will still be unstyled.
+If you serve the app and go to `localhost:4200` in your web browser, you'll see
+the HTML rendered. At this point, it will still be unstyled.
 
 To style the application, copy the following CSS into `app/styles/app.css`:
 
@@ -166,20 +170,26 @@ form > button {
 
 ![screenshot of styled message app](/images/ember-core-concepts/messaging-app-1.png)
 
-You start building parts of an Ember application using HTML, so if you already know HTML and CSS, you know how to build a basic Ember application!
+You start building parts of an Ember application using HTML, so if you already
+know HTML and CSS, you know how to build a basic Ember application!
 
-You can even use SVG or web components without any changes. As long as your HTML is valid, Ember will render it.
+You can even use SVG or web components without any changes. As long as your HTML
+is valid, Ember will render it.
 
 # Self-Closing Tags
 
-In addition to normal HTML syntax, Ember allows you to use self-closing syntax (`<div />`) as a shorthand for an opening and closing tag (`<div></div>`).
+In addition to normal HTML syntax, Ember allows you to use self-closing syntax
+(`<div />`) as a shorthand for an opening and closing tag (`<div></div>`).
 
 <div class="cta">
   <div class="cta-note">
     <div class="cta-note-body">
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
-        You don't <strong>need</strong> to use this syntax for "void" HTML tags such as `img` or `br`, which are already defined as self-closing by the HTML spec, but you <strong>can</strong> use this syntax as a shorthand for tags that are not self-closing.
+        You don't <strong>need</strong> to use this syntax for "void" HTML tags
+        such as `img` or `br`, which are already defined as self-closing by the
+        HTML spec, but you <strong>can</strong> use this syntax as a shorthand
+        for tags that are not self-closing.
       </div>
     </div>
     <img src="/images/mascots/zoey.png" role="presentation" alt="">
@@ -198,7 +208,8 @@ This means that all of the following HTML features work as-is:
 
 # Restrictions
 
-There are a handful of restrictions on the HTML that you can put in an Ember template:
+There are a handful of restrictions on the HTML that you can put in an Ember
+template:
 
 - Only valid HTML elements in a `<body>` tag can be used
 - No `<script>` tags
