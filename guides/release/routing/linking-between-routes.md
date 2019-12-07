@@ -1,5 +1,5 @@
 Its important to be able to switch between routes and link to different parts of
-your applicaiton. We can do this declaratively in templates using the `<LinkTo>`
+your application. We can do this declaratively in templates using the `<LinkTo>`
 component.
 
 ## The `<LinkTo />` Component

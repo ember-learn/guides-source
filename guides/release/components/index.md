@@ -203,7 +203,7 @@ This means that all of the following HTML features work as-is:
 - Web components
 - SVG
 - HTML comments
-- Whitespace (following the same rules as normal HTML)
+- White space (following the same rules as normal HTML)
 - Special HTML elements like `<table>` and `<select>`
 
 # Restrictions

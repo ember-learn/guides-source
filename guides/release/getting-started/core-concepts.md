@@ -113,28 +113,6 @@ tags. In addition to rendering content, components can also have JavaScript
 code associated with them, allowing you to add _behavior_, such as responding
 to a user clicking on your component.
 
-We will cover these advanced component features in a later chapter.
-
-## Lifecycle Hooks
-
-In Ember, we use the term **lifecycle hook** for methods that are automatically called within the Ember application. These are methods that can be expected to be called automatically, rather than having to call them manually.
-
-Some examples of a hook are:
-
-* [Component Lifecycle Hooks](../../components/glimmer-components-dom/): the [`willRender()`](https://emberjs.com/api/ember/release/classes/Component/methods/willRender?anchor=willRender/) hook gets called before each time a component renders
-* Route Hooks: the [`model()`](https://www.emberjs.com/api/ember/release/classes/Route/methods/model?anchor=model/) hook is used to load the model on a route
-
-In the following example, the [`didRender()`](https://api.emberjs.com/ember/3.11/classes/Component/methods?anchor=didRender/) component lifecycle hook is used to log "I rendered!" to the console after each time the component is rendered.
-
-```javascript {data-filename=/app/components/foo-did-render-example.js}
-import Component from '@ember/component';
-
-export default class FooDidRenderExample extends Component {
-  didRender() {
-    super.didRender(...arguments);
-    console.log('I rendered!');
-  }
-}
-```
-
-Let's see these core concepts in action by building a property rental application in the next lesson.
+We will cover these advanced component features in a later chapter. For now,
+let's see these core concepts in action by building a property rental
+application in the next lesson.

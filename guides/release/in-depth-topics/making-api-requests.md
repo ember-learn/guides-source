@@ -8,14 +8,14 @@ Follow the links within it to see examples and learn more.
 
 Some common tools for making [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) (create, read, update, delete) requests in Ember include:
 
-- [Ember Data](../models/) is the official data persistence library for Ember. It has a powerful set of tools
+- [Ember Data](../../models/) is the official data persistence library for Ember. It has a powerful set of tools
 for formatting requests, normalizing responses, and efficiently
 managing a local cache of data. Install `@ember/data` to use it.
 It is included by default in new Ember apps.
 - Native JavaScript methods like [`fetch`](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API). Install [`ember-fetch`](https://github.com/ember-cli/ember-fetch) in order to provide support for older browsers, and `import fetch from 'fetch'` to use it.
-- [jQuery Ajax](https://api.jquery.com/jquery.ajax/) requests. See [the guide for optional features](../configuring-ember/optional-features/) in order to be able to `import jQuery from 'jquery'` in your app.
+- [jQuery Ajax](https://api.jquery.com/jquery.ajax/) requests. See [the guide for optional features](../../configuring-ember/optional-features/) in order to be able to `import jQuery from 'jquery'` in your app.
 - Other Ember-specific addons for data loading. Search for them on [Ember Observer](https://emberobserver.com)
-- ...and many more general JavaScript data fetching libraries, which you can install following [this guide](../addons-and-dependencies/managing-dependencies/).
+- ...and many more general JavaScript data fetching libraries, which you can install following [this guide](../../addons-and-dependencies/managing-dependencies/).
 
 ## Where to make API requests
 
@@ -23,7 +23,7 @@ API requests can be made almost anywhere in an Ember app, however the most commo
 
 ### Requests in a Route's `model` hook
 
-In almost every case, this is where your app should load data. You can see examples and more information in [Specifying a Route's Model](../routing/specifying-a-routes-model/).
+In almost every case, this is where your app should load data. You can see examples and more information in [Specifying a Route's Model](../../routing/specifying-a-routes-model/).
 
 These are the main reasons to load data in a `model` hook:
 
@@ -52,7 +52,7 @@ of data fetching should be done in a route's `model`.
 
 ### Requests in Services
 
-If someone is connecting to a third-party API, such as a service for payment or mapping, and they need that state across many routes, a [Service](../services/) might be a good place to make requests. Some common use cases include polling for data and managing websocket connections.
+If someone is connecting to a third-party API, such as a service for payment or mapping, and they need that state across many routes, a [Service](../../services/) might be a good place to make requests. Some common use cases include polling for data and managing websocket connections.
 
 Requests in services have the same drawbacks as Components. Functions and state in a Service can be used almost anywhere in the app.
 

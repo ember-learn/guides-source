@@ -10,12 +10,11 @@ Ember Octane for use with:
 - General utility classes
 
 For developers who are not already familiar with native classes, check out
-[Ember's native class guide](../../../working-with-javascript/native-classes/),
+[Ember's native class guide](../../../in-depth-topics/native-classes-in-depth/),
 which provides a thorough breakdown of native class functionality and usage.
 This section of the upgrade guide will focus on the differences between classic
-Ember classes and native classes. You can also reference the [Native vs. Classic
-Cheatsheet](../../../working-with-javascript/native-vs-classic-class-cheatsheet/)
-as a quick reference for these differences.
+Ember classes and native classes. You can also reference the Native vs. Classic
+Cheatsheet at the end of this guide as a quick reference for these differences.
 
 ## Benefits of Native Classes
 

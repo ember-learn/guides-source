@@ -65,7 +65,7 @@ Some of the features that Ember relies on, such as [class fields][5] and
 [decorators][6] have not yet been fully finalized in JavaScript just yet, so
 we'll cover these here with the assumption that you've had a chance to
 familiarize yourself with classes before. If you haven't, you can also check
-out [our detailed class primer](../in-depth-topics/native-classes).
+out [our detailed class primer](../in-depth-topics/native-classes-in-depth).
 
 [5]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes#Field_declarations
 [6]: https://github.com/tc39/proposal-decorators
@@ -210,6 +210,6 @@ This syntax is known as _classic class_ syntax, and if you're starting out on a
 new Ember application it's recommended that you stick with native classes
 instead. However, if you are working in an older application, or in an addon,
 you may encounter this syntax, so you can check out the
-[pre-Octane guides on classic classes](https://guides.emberjs.com/release/object-model/)
+[pre-Octane guides on classic classes](https://guides.emberjs.com/v3.14.0/object-model/)
 for more information on them.
 

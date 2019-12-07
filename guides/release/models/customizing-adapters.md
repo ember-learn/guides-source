@@ -242,7 +242,8 @@ export default class ApplicationAdapter extends JSONAPIAdapter {
 }
 ```
 
-[Getters](../../upgrading/editions/#toc_getters-and-setters) recompute with each access, so you could just as easily rely upon another dynamic value such as
+[Getters](../../in-depth-topics/autotracking-in-depth/) recompute with each
+access, so you could just as easily rely upon another dynamic value such as
 `document.cookie`.
 
 ```javascript {data-filename=app/adapters/application.js}

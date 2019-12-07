@@ -11,6 +11,7 @@ autocomplete
 autotrack
 auto-rollup
 autoruns
+autotracking
 aXe
 backticks
 beforeEach
@@ -41,6 +42,7 @@ DataAdapter
 datepicker
 de
 debounce
+declaratively
 deps
 deserialization
 deserializing
@@ -127,6 +129,7 @@ pre-transition
 presentational
 Presentational
 pre-transition
+pre-octane
 readme
 readonly
 recognizers
@@ -156,7 +159,8 @@ subclasses
 subclassing
 subdomain
 subexpression
-Subfolders
+substring
+subfolders
 suboptimal
 subroutes
 substate
@@ -192,3 +196,5 @@ websocket
 Websockets
 ZEIT
 yay
+template-lifecycle-dom-and-modifiers
+working-with-javascript
