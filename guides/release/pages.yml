@@ -1,7 +1,11 @@
 - title: "Introduction"
+  url: "toc-heading_introduction"
+  is_heading: true
+- title: "Guides and Tutorials"
   url: "index"
+  skip_toc: true
   pages:
-    - title: "What Is Ember"
+    - title: "Ember.js Guides"
       url: ""
 - title: "Getting Started"
   url: "getting-started"
@@ -51,6 +55,10 @@
       url: "14-provider-components"
     - title: "Part 2: Recap"
       url: "15-part-2-recap"
+
+- title: "Core Concepts"
+  url: "toc-heading_core-concepts"
+  is_heading: true
 - title: "Components"
   url: components
   pages:
@@ -143,11 +151,10 @@
       url: "making-api-requests"
     - title: "Native Classes In-Depth"
       url: "native-classes-in-depth"
-- title: "Addons and Dependencies"
-  url: "addons-and-dependencies"
-  pages:
-    - title: "Managing Dependencies"
-      url: "index"
+
+- title: "Application Development"
+  url: "toc-heading_application-development"
+  is_heading: true
 - title: "Testing"
   url: "testing"
   pages:
@@ -194,30 +201,26 @@
       url: "build-targets"
     - title: "Debugging"
       url: "debugging"
-- title: "Upgrading"
-  url: "upgrading"
+- title: Accessibility
+  url: accessibility
   pages:
-    - title: "How to upgrade"
+    - title: Intro to Accessibility
+      url: index
+    - title: Application Considerations
+      url: application-considerations
+    - title: Page Template Considerations
+      url: page-template-considerations
+    - title: Component Considerations
+      url: components
+    - title: Testing Considerations
+      url: testing
+    - title: Learning Resources
+      url: learning-resources
+- title: "Addons and Dependencies"
+  url: "addons-and-dependencies"
+  pages:
+    - title: "Managing Dependencies"
       url: "index"
-    - title: "Octane Upgrade Guide"
-      url: "current-edition"
-      pages:
-        - title: "Introduction"
-          url: "index"
-        - title: "Templates"
-          url: "templates"
-        - title: "Native Classes"
-          url: "native-classes"
-        - title: "Tracked Properties"
-          url: "tracked-properties"
-        - title: "@action, {{on}} and {{fn}}"
-          url: "action-on-and-fn"
-        - title: "Glimmer Components"
-          url: "glimmer-components"
-        - title: "Cheat Sheet"
-          url: "cheat-sheet"
-    # - title: "Deprecations"
-    #   url: "deprecations"
 - title: "Developer Tools"
   url: "ember-inspector"
   pages:
@@ -247,21 +250,34 @@
       url: "render-performance"
     - title: "Troubleshooting"
       url: "troubleshooting"
-- title: Accessibility
-  url: accessibility
+
+- title: "Additional Resources"
+  url: "toc-heading_additional-resources"
+  is_heading: true
+- title: "Upgrading"
+  url: "upgrading"
   pages:
-    - title: Intro to Accessibility
-      url: index
-    - title: Application Considerations
-      url: application-considerations
-    - title: Page Template Considerations
-      url: page-template-considerations
-    - title: Component Considerations
-      url: components
-    - title: Testing Considerations
-      url: testing
-    - title: Learning Resources
-      url: learning-resources
+    - title: "How to upgrade"
+      url: "index"
+    - title: "Octane Upgrade Guide"
+      url: "current-edition"
+      pages:
+        - title: "Introduction"
+          url: "index"
+        - title: "Templates"
+          url: "templates"
+        - title: "Native Classes"
+          url: "native-classes"
+        - title: "Tracked Properties"
+          url: "tracked-properties"
+        - title: "@action, {{on}} and {{fn}}"
+          url: "action-on-and-fn"
+        - title: "Glimmer Components"
+          url: "glimmer-components"
+        - title: "Cheat Sheet"
+          url: "cheat-sheet"
+    # - title: "Deprecations"
+    #   url: "deprecations"
 - title: "Contributing to Ember.js"
   url: "contributing"
   isAdvanced: true
