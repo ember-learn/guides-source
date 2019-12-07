@@ -17,39 +17,80 @@
 - title: "Tutorial"
   url: tutorial
   pages:
-    - title: "Part 1: Introduction"
-      url: "00-part-1"
-    - title: "Orientation"
-      url: "01-orientation"
-    - title: "Building Pages"
-      url: "02-building-pages"
-    - title: "Automated Testing"
-      url: "03-automated-testing"
-    - title: "Component Basics"
-      url: "04-component-basics"
-    - title: "More About Components"
-      url: "05-more-about-components"
-    - title: "Interactive Components"
-      url: "06-interactive-components"
-    - title: "Reusable Components"
-      url: "07-reusable-components"
-    - title: "Working With Data"
-      url: "08-working-with-data"
-    - title: "Part 1: Recap"
-      url: "09-part-1-recap"
-    - title: "Part 2: Introduction"
-      url: "10-part-2"
-    - title: "Route Params"
-      url: "11-route-params"
-    - title: "Service Injection"
-      url: "12-service-injection"
-    - title: "Ember Data"
-      url: "13-ember-data"
-    - title: "Provider Components"
-      url: "14-provider-components"
-    - title: "Part 2: Recap"
-      url: "15-part-2-recap"
-- title: "Components"
+    - title: Creating Your App
+      url: index
+    - title: Planning Your App
+      url: acceptance-test
+    - title: Routes and Templates
+      url: routes-and-templates
+    - title: The Model Hook
+      url: model-hook
+    - title: Installing Addons
+      url: installing-addons
+    - title: Building a Simple Component
+      url: simple-component
+    - title: Creating a Template Helper
+      url: hbs-helper
+    - title: Using Ember Data
+      url: ember-data
+    - title: Building a Complex Component
+      url: autocomplete-component
+    - title: Services
+      url: service
+    - title: Adding Nested Routes
+      url: subroutes
+    - title: Deploying
+      url: deploying
+- title: The Object Model
+  url: object-model
+  pages:
+    - title: Objects in Ember
+      url: index
+    - title: Classes and Instances
+      url: classes-and-instances
+    - title: Reopening Classes and Instances
+      url: reopening-classes-and-instances
+      isAdvanced: true
+    - title: Computed Properties
+      url: computed-properties
+    - title: Computed Properties and Aggregate Data
+      url: computed-properties-and-aggregate-data
+    - title: Observers
+      url: observers
+      isAdvanced: true
+    - title: Bindings
+      url: bindings
+      isAdvanced: true
+    - title: Enumerables
+      url: enumerables
+- title: Templating
+  url: templates
+  pages:
+    - title: Templating Basics
+      url: index
+    - title: Built-in Helpers
+      url: built-in-helpers
+    - title: Conditionals
+      url: conditionals
+    - title: Displaying a List of Items
+      url: displaying-a-list-of-items
+    - title: Displaying the Keys in an Object
+      url: displaying-the-keys-in-an-object
+    - title: Binding Element Attributes
+      url: binding-element-attributes
+    - title: Links
+      url: links
+    - title: Actions
+      url: actions
+    - title: Input Components
+      url: input-components
+    - title: Development Helpers
+      url: development-helpers
+      isAdvanced: true
+    - title: Writing Helpers
+      url: writing-helpers
+      isAdvanced: true
+- title: Components
   url: components
   pages:
     - title: "Templates are HTML"
