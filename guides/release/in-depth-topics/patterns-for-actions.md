@@ -40,8 +40,9 @@ Now we have a button that can receive some text as an argument, with a modal
 confirmation that will show conditionally based on its `isConfirming`
 property. You'll notice this property is decorated with the `@tracked`
 decorator - this is known as a _tracked property_, and indicates to Ember that
-the field will change in value over the lifetime of the component. We'll
-discuss this more in the section on [State Management](../../state-management/).
+the field will change in value over the lifetime of the component. You can learn
+more about tracked properties in the [Autotracking In-Depth](./autotracking-in-depth)
+guide.
 
 Next, we need to hook up the button to toggle that property. We'll
 do this with an _action_:
@@ -362,8 +363,9 @@ export default class ButtonWithConfirmation extends Component {
 In order for `confirmValue` to take on the value of the message text, we'll bind
 the property to the value of a user input field that will appear when the button
 is clicked. To accomplish this, we'll first modify the component so that it can
-be used in block form and we will [yield](../yields/) `confirmValue` to the
-block within the `"confirmDialog"` element:
+be used in block form and we will pass `confirmValue` as a
+[block parameter](../../components/block-content/) within the confirm dialog
+element:
 
 ```handlebars {data-filename=app/templates/components/button-with-confirmation.hbs}
 <button {{on "click" this.launchConfirmDialog}}>

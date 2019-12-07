@@ -269,8 +269,8 @@ And in the component class, we'll add the `addMessage` action. This action will
 create the new message from the text that the `<NewMessageInput>` component
 gives us, and push it into the messages array. In order for the messages array
 to react to that change, we'll also need to convert it into an
-[EmberArray](https://api.emberjs.com/ember/release/classes/EmberArray).
-EmberArray provides special methods that tell Ember when changes occur to the
+[`EmberArray`](https://api.emberjs.com/ember/release/classes/EmberArray).
+`EmberArray` provides special methods that tell Ember when changes occur to the
 array itself.
 
 ```js {data-filename="app/components/messages.js"}

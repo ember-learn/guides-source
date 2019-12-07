@@ -16,7 +16,7 @@ First, let's start with the HTML.
 
 ## Tracked Properties
 
-To make this work, we will need to stop hardcoding the number, and we will need
+To make this work, we will need to stop hard coding the number, and we will need
 to wire up the buttons.
 
 ```js {data-filename="app/components/counter.js"}
@@ -30,7 +30,7 @@ export default class Counter extends Component {
 
 There are a few things going on here, but the most important part is
 `@tracked count = 0`. This line creates a dynamic value called `count`, which
-you can stick inside of the template instead of hardcoding it.
+you can stick inside of the template instead of hard coding it.
 
 ```handlebars {data-filename="app/components/counter.hbs" data-diff="-1,+2"}
 <p>0</p>
@@ -232,7 +232,7 @@ export default class Counter extends Component {
 }
 ```
 
-**The getter does not need any special annotatations.** As long as you've marked
+**The getter does not need any special annotations.** As long as you've marked
 the properties that can change with `@tracked`, you can use JavaScript to
 compute new values from those properties.
 

@@ -103,7 +103,7 @@ In terms of performance, rendering tests sit in the middle, between unit and app
 
 ### Why Use Them?
 
-Since your app is made up of multiple components, you want to ensure that each is correct before testing them as a group. If a component is reusable, you want to guarantee that it works for all (if not, many) permutations of [arguments](../../components/arguments-and-attributes/) and [actions](../../components/actions-and-events/#toc_passing-down-the-action).
+Since your app is made up of multiple components, you want to ensure that each is correct before testing them as a group. If a component is reusable, you want to guarantee that it works for all (if not, many) permutations of [arguments](../../components/component-arguments-and-html-attributes/) and [actions](../../components/component-state-and-actions/).
 
 Rendering tests let you test components using Ember's rendering engine. This means, a component created in your rendering test will behave as it would in the real app. You are guaranteed that the component will follow its lifecycle hooks. You can also interact with the component like an end-user would.
 
