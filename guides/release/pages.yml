@@ -14,11 +14,8 @@
       url: "index"
     - title: "Core Concepts"
       url: "core-concepts"
-# - title: "Anatomy of an App"
-#   url: "anatomy-of-an-app"
-#   pages:
-#     - title: "Overview"
-#       url: "index"
+    - title: "Working with JavaScript"
+      url: "working-with-javascript"
 - title: "Tutorial"
   url: tutorial
   pages:
@@ -54,56 +51,29 @@
       url: "14-provider-components"
     - title: "Part 2: Recap"
       url: "15-part-2-recap"
-- title: "Templating"
-  url: "templates"
-  pages:
-    - title: "Templating Basics"
-      url: "index"
-    - title: "Conditionals"
-      url: "conditionals"
-    - title: "Displaying a List of Items"
-      url: "displaying-a-list-of-items"
-    - title: "Displaying the Keys in an Object"
-      url: "displaying-the-keys-in-an-object"
-    - title: "Binding Element Attributes"
-      url: "binding-element-attributes"
-    - title: Links
-      url: links
-    - title: "Actions"
-      url: "actions"
-    - title: Input Helpers
-      url: input-helpers
-    - title: "Built-in Helpers"
-      url: "built-in-helpers"
-    - title: "Writing Helpers"
-      url: "writing-helpers"
-      isAdvanced: true
-- title: "Working with JavaScript"
-  url: "working-with-javascript"
-  pages:
-    - title: "Learning JavaScript"
-      url: "index"
-    - title: "Native Classes"
-      url: "native-classes"
-    - title: "Classic Classes"
-      url: "classic-classes"
-    - title: "Native vs. Classic Class Cheatsheet"
-      url: "native-vs-classic-class-cheatsheet"
 - title: "Components"
-  url: "components"
+  url: components
   pages:
-    - title: "Defining a Component"
+    - title: "Templates are HTML"
       url: "index"
-    - title: "Arguments and Attributes"
-      url: "arguments-and-attributes"
-    - title: "Actions and Events"
-      url: "actions-and-events"
-    - title: "Yields"
-      url: "yields"
-    - title: "Contextual Components"
-      url: "contextual-components"
-    - title: "Working with the DOM"
-      url: "glimmer-components-dom"
+    - title: "Introducing Components"
+      url: "introducing-components"
+    - title: "Component Arguments and HTML Attributes"
+      url: "component-arguments-and-html-attributes"
+    - title: "Conditional Content"
+      url: "conditional-content"
+    - title: "Block Content"
+      url: "block-content"
+    - title: "Helper Functions"
+      url: "helper-functions"
+    - title: "Component State and Actions"
+      url: "component-state-and-actions"
+    - title: "Looping Through Lists"
+      url: "looping-through-lists"
+    - title: Template Lifecyle, DOM, and Modifiers
+      url: template-lifecycle-dom-and-modifiers
+    - title: "Built-in Components"
+      url: "built-in-components"
 - title: "Routing"
   url: "routing"
   pages:
@@ -130,31 +100,11 @@
       isAdvanced: true
     - title: "Controllers"
       url: "controllers"
-- title: "State Management"
-  url: "state-management"
-  pages:
-    - title: "Overview"
-      url: "index"
-    - title: "Tracked Properties"
-      url: "tracked-properties"
-    - title: "Patterns for State"
-      url: "patterns-for-state"
-    - title: "Computed Properties"
-      url: "computed-properties"
-    - title: "When to Use `get` and `set`"
-      url: "when-to-use-get-and-set"
 - title: "Services"
   url: "services"
   pages:
     - title: Overview
       url: "index"
-
-- title: "Making API requests"
-  url: "api-requests"
-  pages:
-    - title: "Overview"
-      url: "index"
-
 - title: "Ember Data"
   url: "models"
   pages:
@@ -164,7 +114,7 @@
       url: defining-models
     - title: Finding Records
       url: finding-records
-    - title: 'Creating, Updating and Deleting'
+    - title: "Creating, Updating and Deleting"
       url: creating-updating-and-deleting-records
     - title: Relationships
       url: relationships
@@ -180,6 +130,19 @@
     - title: Customizing Serializers
       url: customizing-serializers
       isAdvanced: true
+- title: "In-Depth Topics"
+  url: "in-depth-topics"
+  pages:
+    - title: "Autotracking In-Depth"
+      url: "autotracking-in-depth"
+    - title: "Patterns for Components"
+      url: "patterns-for-components"
+    - title: "Patterns for Actions"
+      url: "patterns-for-actions"
+    - title: "Making API Requests"
+      url: "making-api-requests"
+    - title: "Native Classes In-Depth"
+      url: "native-classes-in-depth"
 - title: "Addons and Dependencies"
   url: "addons-and-dependencies"
   pages:
@@ -231,11 +194,6 @@
       url: "build-targets"
     - title: "Debugging"
       url: "debugging"
-- title: "Deploying"
-  url: "deploying"
-  pages:
-    - title: "Overview"
-      url: "index"
 - title: "Upgrading"
   url: "upgrading"
   pages:
@@ -256,11 +214,8 @@
           url: "action-on-and-fn"
         - title: "Glimmer Components"
           url: "glimmer-components"
-        - title: "Modifiers"
-          url: "modifiers"
         - title: "Cheat Sheet"
           url: "cheat-sheet"
-
     # - title: "Deprecations"
     #   url: "deprecations"
 - title: "Developer Tools"
@@ -320,8 +275,3 @@
   pages:
     - title: "Web Development"
       url: "index"
-- title: "Reference"
-  url: "reference"
-  pages:
-    - title: Syntax Conversion Guide
-      url: index

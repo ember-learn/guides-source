@@ -448,3 +448,21 @@ export default class Sidebar extends Component {
   }
 }
 ```
+
+#### Modifiers and `...attributes`
+
+Modifiers can also be applied to components, and when they are, they are also
+passed forward and applied to an element with `...attributes`:
+
+```handlebars
+<Tooltip {{did-insert this.setupTooltip}}/>
+```
+
+```handlebars {data-filename="app/templates/components/tooltip.hbs"}
+<div ...attributes>
+  ...
+</div>
+```
+
+In this example, the `div` within the Tooltip component will get the
+`did-insert` modifier applied to it.

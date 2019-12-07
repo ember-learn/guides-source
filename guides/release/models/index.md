@@ -6,8 +6,9 @@ managing a local cache of data.
 Ember.js itself works with any type of back end: REST,
 JSON:API, GraphQL, or anything else.
 To learn about other ways to handle data and to find extensions,
-check out the guide for [making API requests](../api-requests/), look for plugins on [Ember Observer](https://www.emberobserver.com/),
-and search for community-made tutorials.
+check out the guide for [making API requests](../in-depth-topics/making-api-requests/),
+look for plugins on [Ember Observer](https://www.emberobserver.com/), and search
+for community-made tutorials.
 
 ## What are Ember Data models?
 
@@ -98,7 +99,7 @@ import fetch from 'fetch';
 
 export default class ListOfDrafts extends Component {
   @tracked drafts;
-  
+
   constructor() {
     super(...arguments);
 
@@ -133,7 +134,7 @@ import fetch from 'fetch';
 
 export default class DraftsButton extends Component {
   @tracked drafts;
-  
+
   constructor() {
     super(...arguments);
 

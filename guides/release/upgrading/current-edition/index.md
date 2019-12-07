@@ -11,19 +11,19 @@ This allows for new apps to have the best features enabled automatically, while 
 
 Here are some of the core features in Octane:
 
-- [Native JavaScript classes](../../working-with-javascript/native-classes/), unlocking simpler syntax, faster performance,
+- [Native JavaScript classes](../../in-depth-topics/native-classes-in-depth/), unlocking simpler syntax, faster performance,
   and better interop with the wider ecosystem.
-- [Decorators](../../working-with-javascript/native-classes/#toc_decorators) for customizing the behavior of components and other classes.
-- [Tracked properties](../../state-management/tracked-properties/), a type of decorator that simplifies keeping the DOM
+- [Decorators](../../in-depth-topics/native-classes-in-depth/#toc_decorators) for customizing the behavior of components and other classes.
+- [Tracked properties](../../in-depth-topics/autotracking-in-depth/), a type of decorator that simplifies keeping the DOM
   up-to-date with JavaScript changes.
 - **Async functions** (`async`/`await`) for authoring asynchronous code.
 - [Importing npm packages](../../addons-and-dependencies/managing-dependencies/#toc_regular-npm-packages) with zero additional configuration.
-- [Glimmer components](../../components/component-basics/), including
+- [Glimmer components](../../components/), including
   - **"Outer HTML" templates** that support fragments and easily customizing the
     root element.
   - **Customizable DOM attributes** with `...attributes`.
   - **`<AngleBracket>` syntax** for better readability.
-- [Modifiers](../../components/glimmer-components-dom/), which unify the experience of writing code that interacts with the DOM.
+- [Modifiers](../../components/template-lifecycle-dom-and-modifiers/), which unify the experience of writing code that interacts with the DOM.
 
 Just as important is what we're removing from the Ember experience. These
 features below will keep working, but you won't have to use them if you don't
