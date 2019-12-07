@@ -17,6 +17,10 @@ module('Acceptance | visual regression', function(hooks) {
     await pages.reduce(async (prev, section) => {
       await prev;
 
+      if (section.get('id').includes('toc-heading')) {
+        return;
+      }
+
       return section.get('pages').reduce(async (prev, page) => {
         await prev;
 

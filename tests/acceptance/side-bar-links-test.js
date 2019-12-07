@@ -30,6 +30,6 @@ module('Acceptance | side bar links', function(hooks) {
     let store = this.owner.lookup('service:store');
     let pages = await store.peekAll('page');
 
-    await visitPages(pages.toArray(), assert);
+    await visitPages(pages.toArray().filter(page => !page.id.includes('toc-heading')), assert);
   });
 });
