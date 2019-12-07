@@ -1,318 +1,218 @@
-Components are an essential building block in Ember applications. They allow
-developers to package presentation and behavior into a single unit and give it
-a name. You can think of them like defining your own custom HTML elements, like
-a custom `<input>` or `<select>` tag that has its own behavior, values, and
-events that you can hook into in your templates. However, they shouldn't be
-confused with [_web components_](https://www.webcomponents.org/), which are a
-browser based API that is similar, but not as powerful as Ember components.
+At its core, Ember's UIs are _HTML_ driven - every part of the UI that
+is shown to the user is defined in an HTML template somewhere in your
+application. Because of this, templates are central to Ember, and one of the
+most important parts of the framework.
 
-Like we mentioned in the section on [Templates](../templates/handlebars-basics/), components
-can have both a template and a class definition, like so:
+We'll discuss the capabilities and core concepts of templates in the following
+chapters, but before we do that, we should get started with the basics. The
+simplest way to get started on an Ember template is with some HTML!
 
-```handlebars {data-filename=app/templates/components/hello-button.hbs}
-<button {{on "click" this.sayHello}}>
-  {{@buttonText}}
-</button>
+## The Application Template
+
+The central template in an Ember application is the `app/templates/application.hbs`
+file. We can copy HTML into this file, and it will work without any changes. For
+instance, you can copy the following example HTML for a simple messaging app:
+
+```html {data-filename=app/templates/application.hbs}
+<div class="messages">
+  <aside>
+    <div class="avatar is-active" title="Tomster's avatar">T</div>
+  </aside>
+  <section>
+    <h4 class="username">
+      Tomster
+      <span class="local-time">their local time is 4:56pm</span>
+    </h4>
+
+    <p>
+      Hey Zoey, have you had a chance to look at the EmberConf brainstorming doc
+      I sent you?
+    </p>
+  </section>
+
+  <aside class="current-user">
+    <div class="avatar" title="Zoey's avatar">Z</div>
+  </aside>
+  <section>
+    <h4 class="username">Zoey</h4>
+
+    <p>Hey!</p>
+
+    <p>
+      I love the ideas! I'm really excited about where this year's EmberConf is
+      going, I'm sure it's going to be the best one yet. Some quick notes:
+    </p>
+
+    <ul>
+      <li>
+        Definitely agree that we should double the coffee budget this year (it
+        really is impressive how much we go through!)
+      </li>
+      <li>
+        A blimp would definitely make the venue very easy to find, but I think
+        it might be a bit out of our budget. Maybe we could rent some spotlights
+        instead?
+      </li>
+      <li>
+        We absolutely will need more hamster wheels, last year's line was
+        <em>way</em> too long. Will get on that now before rental season hits
+        its peak.
+      </li>
+    </ul>
+
+    <p>Let me know when you've nailed down the dates!</p>
+  </section>
+
+  <form>
+    <input />
+    <button>
+      Send
+    </button>
+  </form>
+</div>
 ```
 
-```javascript {data-filename=app/components/hello-button.js}
-import Component from '@glimmer/component';
-import { action } from '@ember/object';
+You can _serve_ the app by running `ember s` in your terminal, which will make
+the local copy of your application available to view in your web browser.
 
-export default class HelloButton extends Component {
-  @action
-  sayHello() {
-    console.log('Hello, world!');
-  }
+If you serve the app and go to `localhost:4200` in your web browser, you'll see
+the HTML rendered. At this point, it will still be unstyled.
+
+To style the application, copy the following CSS into `app/styles/app.css`:
+
+```css {data-filename=styles/app.css}
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 2em;
+  font-family: sans-serif;
+  background-color: #fdfdfd;
+}
+
+.messages {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  padding: 2em;
+  border-radius: 0.5em;
+  box-shadow: 0 0.25em 1.5em 0.25em rgba(0, 0, 0, 0.1);
+}
+
+.messages > section {
+  margin-bottom: 1.5em;
+  line-height: 1.5em;
+}
+
+.messages p,
+.messages ul,
+.username {
+  margin: 0.5em 0;
+}
+
+.local-time {
+  font-size: 0.8em;
+  color: #da6c4d;
+  font-weight: normal;
+  margin-left: 10px;
+}
+
+.avatar {
+  position: relative;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+
+  text-align: center;
+  line-height: 60px;
+
+  color: white;
+  font-weight: bold;
+  background-color: #ff907b;
+}
+
+.avatar.is-active:after {
+  content: " ";
+  height: 14px;
+  width: 14px;
+  border: solid 3px white;
+  border-radius: 50%;
+  background-color: #8bc34a;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.current-user .avatar {
+  background-color: #30aba5;
+}
+
+form {
+  display: grid;
+  grid-column: span 2;
+  grid-template-columns: 1fr 6em;
+}
+
+form > input {
+  padding: 0.5em;
+  border-top-left-radius: 0.5em;
+  border-bottom-left-radius: 0.5em;
+  border: 1px solid #cccccc;
+  border-right: none;
+  font-size: 1em;
+}
+
+form > button {
+  border-top-right-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
+  border: 1px solid #cccccc;
+  font-size: 1em;
 }
 ```
 
-And the template file:
+![screenshot of styled message app](/images/ember-core-concepts/messaging-app-1.png)
 
-```handlebars {data-filename=app/templates/components/blog-post.hbs}
-{{yield}}
-```
+You start building parts of an Ember application using HTML, so if you already
+know HTML and CSS, you know how to build a basic Ember application!
 
-You can use the integration test to test your component. This will be covered later in the guides.
+You can even use SVG or web components without any changes. As long as your HTML
+is valid, Ember will render it.
 
-### Creating a Nested Component
+# Self-Closing Tags
 
-Again, you can use Ember CLI to create a nested component:
-
-```bash
-ember generate component blog-post/comment
-
-installing component
-  create app/components/blog-post/comment.js
-  create app/templates/components/blog-post/comment.hbs
-installing component-test
-  create tests/integration/components/blog-post/comment-test.js
-```
-
-## Component Templates
-
-Templates in components use the Handlebars templating language, as discussed in
-the [Templates](../templates/handlebars-basics/) section. A component's template is the layout
-that is used when rendering the component. If we update the `BlogPost`'s
-template to be:
-
-```handlebars {data-filename=app/templates/components/blog-post.hbs}
-<article class="blog-post">
-  <h1>{{@title}}</h1>
-  <p>{{yield}}</p>
-  <label for="title">Blog Title</label>
-  <p>Edit title: <Input @id="title" @type="text" @value={{@title}} /></p>
-</article>
-```
-
-Given the above template, you can now use the `<BlogPost />` component:
-
-```handlebars {data-filename=app/templates/index.hbs}
-{{#each this.model as |post|}}
-  <BlogPost @title={{post.title}}>
-    {{post.body}}
-  </BlogPost>
-{{/each}}
-```
+In addition to normal HTML syntax, Ember allows you to use self-closing syntax
+(`<div />`) as a shorthand for an opening and closing tag (`<div></div>`).
 
 <div class="cta">
   <div class="cta-note">
     <div class="cta-note-body">
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
-In Ember templates there are different ways to invoke a Component. The syntax above is referred to as angle bracket invocation syntax, and it might not look familiar if you are looking at older code samples that use the classic invocation syntax. For more examples of ways to use Components in a template, see the <a href="../reference/syntax-conversion-guide">Syntax Conversion Guide</a>, a <a href="https://guides.emberjs.com/v3.6.0/components/defining-a-component/">previous version of the Guides</a> or <a href="https://api.emberjs.com/ember/3.6/classes/Component">Ember.js API documentation</a>.
+        You don't <strong>need</strong> to use this syntax for "void" HTML tags
+        such as `img` or `br`, which are already defined as self-closing by the
+        HTML spec, but you <strong>can</strong> use this syntax as a shorthand
+        for tags that are not self-closing.
       </div>
     </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
   </div>
 </div>
 
-Its model is populated in `model` hook in the route handler:
+# Supported Features
 
-```javascript {data-filename=app/routes/index.js}
-import Route from '@ember/routing/route';
+This means that all of the following HTML features work as-is:
 
-export default Route.extend({
-  model() {
-    return this.store.findAll('post');
-  }
-});
-```
+- Web components
+- SVG
+- HTML comments
+- Whitespace (following the same rules as normal HTML)
+- Special HTML elements like `<table>` and `<select>`
 
-And then use the component like so:
+# Restrictions
 
-```handlebars {data-filename=app/templates/application.hbs}
-<HelloButton @buttonText="Say Hello!"/>
-```
+There are a handful of restrictions on the HTML that you can put in an Ember
+template:
 
-The syntax for using a component is similar to standard HTML elements, but uses
-`<CapitalCase>` for the name of the component instead of lower case. This
-_invocation_, as we call it, for the `HelloButton` component results in the
-following HTML output wherever it was used:
+- Only valid HTML elements in a `<body>` tag can be used
+- No `<script>` tags
+- You can only use HTML that is valid in `<body>`
 
-```html
-<button>
-  Say Hello!
-</button>
-```
-
-And when we click on the button, it triggers the `sayHello` action, logging
-"Hello, world!" to the console. We can reuse this component as many times as we
-like, and we can even change the text via the value that we pass to it,
-`@buttonText`, which is known as an _argument_:
-
-```handlebars {data-filename=app/templates/application.hbs}
-<HelloButton @buttonText="Say Hello!"/>
-<HelloButton @buttonText="Di Hola!"/>
-<HelloButton @buttonText="Dis Bonjour!"/>
-```
-
-Invoking the component three times like this results in the following HTML:
-
-  ```handlebars
-  <BlogPost @title="An Interview With Zoey" />
-  <BlogPost @title="Fun Facts About Tomster" />
-  ```
-
-  We'll talk more about arguments in [the next
-  section](./arguments-and-attributes/). All arguments are prefixed with the `@`
-  symbol, so whenever you see `{{@...` you know its referring to any argument.
-
-- `{{this.sectionClass}}` refers to a _property_ of the component _instance_.
-  Like we mentioned before, components that have class definitions also get a
-  class instance every time they are created. In a component template,
-  `{{this}}` always refers to that instance, and allows you to access methods,
-  fields, and other properties on the class instance.
-
-It's important to note that arguments and properties can be used
-interchangeably, so we could for instance have used an argument for the
-`sectionClass`, and a class property for title or post content:
-
-```handlebars {data-filename=app/templates/components/blog-post.hbs}
-<h1>{{this.title}}</h1>
-<section class="{{@sectionClass}}">
-  {{this.content}}
-</section>
-```
-
-For more details on where and how you can invoke values, read through the
-[section on templating](../templates/handlebars-basics/).
-The reason you would choose an argument or property is based on how you expect
-to use the component, and whether or not the value should be based on internal
-logic within the component, or values passed to the component where it is used.
-
-You can also use template helpers, modifiers, and other components within your
-component template:
-
-```handlebars {data-filename=app/templates/components/blog-post.hbs}
-<h1>{{capitalize @title}}</h1>
-
-<BlogSection>
-  {{@content}}
-</BlogSection>
-```
-
-We now have:
-
-- The `{{capitalize}}` helper, which we're using to format the `@title`
-  argument.
-- The `<BlogSection>` component, replaces the `<section>` element and presumably
-  has similar semantics, and some custom functionality (the implementation of
-  this component is not included).
-
-Using helpers, modifiers, and components allows you to have some logic in your
-templates, and to nest components within each other, building up a component
-_tree_.
-
-Finally, component templates can use a special helper: `{{yield}}`. We'll cover
-this helper in more detail in the [Yields](./yields/) section later on, but this
-helper allows us to specify that users can pass the component a _block_ of
-children, and where those children should be placed. If we go back to our
-`BlogPost` component, we can add a yield like this:
-
-```handlebars {data-filename=app/templates/components/blog-post.hbs}
-<h1>{{@title}}</h1>
-<section class="{{this.sectionClass}}">
-  {{yield}}
-</section>
-```
-
-We can then invoke this component with a block, like this:
-
-```handlebars
-<BlogPost @title="Fun Facts About Tomster">
-  1. He's a hamster!
-  2. But also a Tomster!
-</BlogPost>
-```
-
-And this will place the block - the text that is in between `<BlogPost>` and
-`</BlogPost>` - where the yield was in the original component when rendered:
-
-```html
-<h1>Fun Facts About Tomster</h1>
-<section class="blog-post-section">
-  1. He's a hamster!
-  2. But also a Tomster!
-</section>
-```
-
-This allows you to have some logic in your templates, and to nest components
-within each other, building up a component _tree_. The component tree in Ember
-applications is similar to the DOM tree in the HTML - in fact, you can even
-inspect it using the [Ember Inspector](../ember-inspector/).
-
-<!-- [TODO: Screenshot of the Component tree in the Ember Inspector] -->
-
-Components can also have blocks and children, just like standard HTML elements.
-We could update the `HelloButton` component to render its button text from its
-block instead of the `@buttonText` argument, by adding the `{{yield}}` helper
-to its template where we want to place its block:
-
-```handlebars {data-filename=app/templates/components/hello-button.hbs}
-<button {{on "click" this.sayHello}}>
-  {{yield}}
-</section>
-```
-
-We'll talk more about attributes in [the next
-section](./arguments-and-attributes/). They are values that get applied directly
-to elements, and can be used to customize the HTML of a component. Unlike
-arguments, they are _not_ prefixed with the `@` symbol:
-
-```handlebars
-<BlogPost @title="Fun Facts About Tomster" class="featured">
-  <ol>
-    <li>He's a hamster!</li>
-    <li>But also a Tomster!</li>
-  </ol>
-</BlogPost>
-```
-
-### Nested components invocation
-
-Components nested inside subdirectories can be used with a double colon syntax.
-For example, a component found at `app/components/blog-post/comment.hbs` can
-be used like this in another template:
-
-```handlebars
-<BlogPost::Comment/>
-```
-
-### Template-only components
-
-Components can have a template _without_ a backing class definition. These types
-of components are known as Template-Only components, as well as presentational
-or functional components, and their major difference is that they do not have an
-_instance_ or any instance state.
-
-What this means in practice is that using properties in the template
-(e.g. `{{this.myProperty}}`) will result in an error. In a template-only component
-you can only use arguments (e.g. `{{@myArgument}}`).
-
-Template-Only components are useful for components that don't need to have their
-own state, such as components that focus on presentation and formatting of data.
-For example, you could make a Template-Only greeting component that receives the
-name of a friend and greets them:
-
-```handlebars {data-filename=app/templates/components/greeting.hbs}
-<p>Hello {{@friend}}</p>
-```
-
-```handlebars {data-filename=app/templates/application.hbs}
-<HelloButton>
-  Say Hello!
-</HelloButton>
-```
-
-This is the same as our first example, with the `HelloButton` button component
-_yielding_ to the block that was passed to it instead of being passed an
-argument. We can put anything inside of that block, including text, HTML, and
-other components. This is part of what makes components so powerful and
-composable as a whole.
-
-Component classes are defined using native JavaScript class syntax, which is
-discussed in detail in the [Working With
-JavaScript](../working-with-javascript/native-classes) section of the guides.
-You can define a component class like so:
-
-In the following guides we'll talk about:
-
-- **Defining a component**, its file structure and its API and lifecycle hooks,
-  and how to derive state based on getters.
-
-- **Arguments and Attributes**, how to think about them as parameters to your
-  component, and how to use them effectively.
-
-- **Actions**, which are how you can add interactivity to your app.
-
-- **Yields**, block invocation in components, and how to pass values to blocks.
-
-- **Interacting with the DOM**, some libraries require direct DOM manipulation,
-  which Ember fully supports
-
-- **Contextual Components**, which can be used dynamically to pass components
-  around as values, and allow them to be invoked in different locations.
-
-These are the only hooks and properties that exist on the component, and the
-only ones you need to worry about! Now, onto Arguments and Attributes.
+Other than that, go to town!

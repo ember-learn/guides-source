@@ -198,3 +198,103 @@ yields to the block once the block is passed into the component.
     <img src="/images/mascots/zoey.png" role="presentation" alt="">
   </div>
 </div>
+
+### Conditional Blocks
+
+Sometimes, we may want provide some default content if the user of a component
+hasn't provided a block. For instance, consider an error message dialog that has
+a default message in cases where we don't know what error occured. We could show
+the default message using the `(has-block)` syntax.
+
+```handlebars {data-filename=app/templates/components/error-dialog.hbs}
+<dialog>
+  {{#if (has-block)}}
+    {{yield}}
+  {{else}}
+    An unknown error occured!
+  {{/if}}
+</dialog>
+```
+
+Now, if we use our `ErrorDialog` component without a block, we'll get the
+default message.
+
+```handlebars
+<ErrorDialog/>
+```
+```html
+<!-- rendered -->
+<dialog>
+  An unknown error occured!
+</dialog>
+```
+
+If we had a more detailed message, though, we could use the block to pass it to
+the dialog.
+
+```handlebars
+<ErrorDialog>
+  <Icon type="no-internet" />
+  <p>You are not connected to the internet!</p>
+</ErrorDialog>
+```
+
+## Block Parameters
+
+Blocks can also pass values back into the template, similar to a callback
+function in JavaScript. Consider for instance a simple `BlogPost` component.
+
+```handlebars {data-filename=app/components/blog-post.hbs}
+<h1>{{@post.title}}</h1>
+<h2>{{@post.author}}</h1>
+
+{{@post.body}}
+```
+
+```handlebars
+<!-- usage -->
+<BlogPost @post={{@blogPost}} />
+```
+
+We may want to give the user the ability to put extra content before or after
+the post, like for instance image or a profile. Since we don't know what the
+user wants to do with the body of the post, we can instead pass the body back
+to them.
+
+```handlebars {data-filename=app/components/blog-post.hbs}
+<h1>{{@post.title}}</h1>
+<h2>{{@post.author}}</h1>
+
+{{yield @post.body}}
+```
+
+```handlebars
+<!-- usage -->
+<BlogPost @post={{@blogPost}} as |body|>
+  <img src="./blog-logo.png">
+
+  {{body}}
+
+  <AuthorBio @author={{@blogPost.author}} />
+</BlogPost>
+```
+
+We can yield back multiple values as well, separated by spaces.
+
+```handlebars {data-filename=app/components/blog-post.hbs}
+<h1>{{@post.title}}</h1>
+<h2>{{@post.author}}</h1>
+
+{{yield @post.title @post.author @post.body }}
+```
+
+```handlebars
+<!-- usage -->
+<BlogPost @post={{@blogPost}} as |title author body|>
+  <img src="./blog-logo.png">
+
+  {{body}}
+
+  <AuthorBio @author={{author}} />
+</BlogPost>
+```

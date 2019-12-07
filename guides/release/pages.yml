@@ -49,11 +49,11 @@
       url: "14-provider-components"
     - title: "Part 2: Recap"
       url: "15-part-2-recap"
-- title: "Components (update)"
-  url: components-update
+- title: "Components"
+  url: components
   pages:
     - title: "Templates are HTML"
-      url: "templates-are-html"
+      url: "index"
     - title: "Introducing Components"
       url: "introducing-components"
     - title: "Component Arguments and HTML Attributes"
@@ -68,58 +68,10 @@
       url: "component-state-and-actions"
     - title: "Looping Through Lists"
       url: "looping-through-lists"
+    - title: Template Lifecyle, DOM, and Modifiers
+      url: template-lifecycle-dom-and-modifiers
     - title: "Built-in Components"
       url: "built-in-components"
-- title: "Templating"
-  url: "templates"
-  pages:
-    - title: "Templating Basics"
-      url: "index"
-    - title: "Conditionals"
-      url: "conditionals"
-    - title: "Displaying a List of Items"
-      url: "displaying-a-list-of-items"
-    - title: "Displaying the Keys in an Object"
-      url: "displaying-the-keys-in-an-object"
-    - title: "Binding Element Attributes"
-      url: "binding-element-attributes"
-    - title: Links
-      url: links
-    - title: "Actions"
-      url: "actions"
-    - title: Input Helpers
-      url: input-helpers
-    - title: "Built-in Helpers"
-      url: "built-in-helpers"
-    - title: "Writing Helpers"
-      url: "writing-helpers"
-      isAdvanced: true
-- title: "Working with JavaScript"
-  url: "working-with-javascript"
-  pages:
-    - title: "Learning JavaScript"
-      url: "index"
-    - title: "Native Classes"
-      url: "native-classes"
-    - title: "Classic Classes"
-      url: "classic-classes"
-    - title: "Native vs. Classic Class Cheatsheet"
-      url: "native-vs-classic-class-cheatsheet"
-- title: "Components"
-  url: "components"
-  pages:
-    - title: "Defining a Component"
-      url: "index"
-    - title: "Arguments and Attributes"
-      url: "arguments-and-attributes"
-    - title: "Actions and Events"
-      url: "actions-and-events"
-    - title: "Yields"
-      url: "yields"
-    - title: "Contextual Components"
-      url: "contextual-components"
-    - title: "Working with the DOM"
-      url: "glimmer-components-dom"
 - title: "Routing"
   url: "routing"
   pages:
@@ -146,31 +98,11 @@
       isAdvanced: true
     - title: "Controllers"
       url: "controllers"
-- title: "State Management"
-  url: "state-management"
-  pages:
-    - title: "Overview"
-      url: "index"
-    - title: "Tracked Properties"
-      url: "tracked-properties"
-    - title: "Patterns for State"
-      url: "patterns-for-state"
-    - title: "Computed Properties"
-      url: "computed-properties"
-    - title: "When to Use `get` and `set`"
-      url: "when-to-use-get-and-set"
 - title: "Services"
   url: "services"
   pages:
     - title: Overview
       url: "index"
-
-- title: "Making API requests"
-  url: "api-requests"
-  pages:
-    - title: "Overview"
-      url: "index"
-
 - title: "Ember Data"
   url: "models"
   pages:
@@ -198,6 +130,19 @@
     - title: Asynchronous Routing
       url: asynchronous-routing
       isAdvanced: true
+- title: "In-Depth Topics"
+  url: "in-depth-topics"
+  pages:
+    - title: "Autotracking In-Depth"
+      url: "autotracking-in-depth"
+    - title: "Patterns for Components"
+      url: "patterns-for-components"
+    - title: "Patterns for Actions"
+      url: "patterns-for-actions"
+    - title: "Making API Requests"
+      url: "making-api-requests"
+    - title: "Native Classes In-Depth"
+      url: "native-classes-indepth"
 - title: "Addons and Dependencies"
   url: "addons-and-dependencies"
   pages:
@@ -249,11 +194,6 @@
       url: "build-targets"
     - title: "Debugging"
       url: "debugging"
-- title: "Deploying"
-  url: "deploying"
-  pages:
-    - title: "Overview"
-      url: "index"
 - title: "Upgrading"
   url: "upgrading"
   pages:
@@ -274,11 +214,8 @@
           url: "action-on-and-fn"
         - title: "Glimmer Components"
           url: "glimmer-components"
-        - title: "Modifiers"
-          url: "modifiers"
         - title: "Cheat Sheet"
           url: "cheat-sheet"
-
     # - title: "Deprecations"
     #   url: "deprecations"
 - title: "Developer Tools"
@@ -339,15 +276,3 @@
   pages:
     - title: "Web Development"
       url: "index"
-- title: "Reference"
-  url: "reference"
-  pages:
-    - title: "Syntax Conversion Guide"
-      url: "syntax-conversion-guide"
-    - title: "Accessibility"
-      url: 'accessibility'
-    - title: "Web Development Glossary"
-      url: "web-development"
-    - title: "Contributing to Ember.js"
-      url: 'contributing'
-

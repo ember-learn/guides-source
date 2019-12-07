@@ -1,21 +1,8 @@
-Like we mentioned at the beginning of this section, components are like custom,
-user-defined HTML elements. So far we've seen how to pass argument values
-into components, which is similar to passing attributes into HTML elements like
-`input`s, `select`s, or `dialog`s and how components can use these argument values
-in both their JavaScript and template. We've also seen how you can pass
-actual HTML attributes forward, allowing you to customize the elements that
-components produce.
+Actions are the primary method for updating state in an Ember application, and
+as such they have lots of uses and patterns. This guide covers some of the more
+common action patterns that can be used in Ember.
 
-But how do we make these components interactive? How do we respond to user
-actions like clicks, scrolls, touch events, etc? And how do we add our own
-events to our components, to send back in the opposite direction? How does data
-flow back out of the component to the parent?
-
-In Ember, interactivity is handled by **actions**. Actions are functions that
-can be used in Ember templates to respond to _events_, and can be used to
-respond to and communicate changes.
-
-## Actions
+## Action Fundamentals
 
 Imagine we're building an application where users can have accounts. We need to
 build the UI for users to delete their account. Because we don't want users to
@@ -73,11 +60,6 @@ export default class ButtonWithConfirmation extends Component {
   }
 }
 ```
-
-Like we discussed [Templating](../../templates/actions/), actions are methods
-that are decorated with the `@action` decorator, and which can be used in
-templates. We can assign the action to our button using the [`{{on}}`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/on?anchor=on)
-modifier:
 
 ```handlebars
 <button {{on "click" this.launchConfirmationDialog}}>
@@ -152,7 +134,7 @@ Now we can open and close the modal dialog at will! Next, we'll setup the
 component to send its _own_ events when the user clicks the "OK" and "Cancel"
 buttons.
 
-## Custom Events
+## Exposing Actions as Public API
 
 Let's create a parent component, the `UserProfile` component, where the user can
 delete their profile:
@@ -188,13 +170,9 @@ export default class UserProfile extends Component {
 ```
 
 Now we've implemented our action, but we have not told Ember when we want this
-action to be triggered, which is the next step.
-
-## Passing Down the Action
-
-In order to trigger the action when the user clicks "OK" in the
-`ButtonWithConfirmation` component, we'll need to pass the action _down_ to it
-as an argument:
+action to be triggered. In order to trigger the action when the user clicks "OK"
+in the `ButtonWithConfirmation` component, we'll need to pass the action _down_
+to it as an argument:
 
 ```handlebars {data-filename=app/templates/components/user-profile.hbs}
 <ButtonWithConfirmation
@@ -324,10 +302,9 @@ await this.args.onConfirm();
 ```
 
 However the expression `{{fn this.sendMessage "info"}}` used in passing the
-action to the component creates a closure and partially applies the given parameter to the new function. So now when the action is
-invoked, that parameter will automatically be passed as its argument,
+action to the component creates a closure and partially applies the given parameter to the new function. So now when the action is invoked, that parameter will automatically be passed as its argument,
 effectively calling `sendMessage("info")`, despite the argument not appearing in
-the calling code. More information on this can be found on the [template helpers page about the `fn`](../../templates/actions/) helper.
+the calling code.
 
 So far in our example, the action we have passed to `ButtonWithConfirmation` is
 a function that accepts one argument, `messageType`. Suppose we want to extend
@@ -584,22 +561,3 @@ Note that `deleteCurrentUser` is now prepended with `@` as opposed to `this.`
 
 Now when you confirm deletion, the action goes straight to the
 `SystemPreferencesEditor` to be handled in its local context.
-
-## String Action Notation and the `{{action}}` helper
-
-Historically the `{{action}}` helper (`<MyComponent @onClick=(action 'clickedButton')>`)
-and element modifier (`<button {{action 'clickedButton'}}>`) have accepted a
-string as the first argument. This form is no longer recommended, but might be
-seen in the wild when working on older Ember apps or addons.
-
-When you encounter a string based action it should be refactored to use the
-`@action` decorator (refactor away from the `actions` hash) along with the `fn` helper for any partial application needed.
-
-It is then recommended to use the `on` modifier directly with the
-`fn` helper and decorated functions.
-
-```handlebars
-<button {{on "click" (fn this.confirmDelete this.user)}}>
-  Confirm Delete
-</button>
-```
