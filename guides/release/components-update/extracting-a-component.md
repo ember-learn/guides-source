@@ -96,6 +96,14 @@ Let's start with MDN's [letter example](https://github.com/mdn/learning-area/blo
   resources, and anything else you think we'd need to know? Thanks.
 </p>
 
+<p>Yours sincerely,</p>
+
+<p>Dr Eleanor Gaye</p>
+
+<p>
+  University of Awesome motto: <q>Be excellent to each other.</q> --
+  <cite>The memoirs of Bill S Preston, <abbr title="Esquire">Esq</abbr></cite>
+</p>
 ```
 
 ## Breaking it into pieces
@@ -107,7 +115,6 @@ Let's take the large template and break it up into smaller pieces:
   - Receiver's address
   - Starting dates
   - Subjects
-  - Dance Moves
   - Signature
 
 ### The Sender's Address
@@ -395,10 +402,12 @@ Include it in the application.
 <StartingDates />
 <Subjects />
 
-<h2>TODO</h2>
+<p>Yours sincerely,</p>
 
-<p>TODO</p>
-...
+<p>Dr Eleanor Gaye</p>
+
+
+<p>University of Awesome motto: <q>Be excellent to each other.</q> -- <cite>The memoirs of Bill S Preston, <abbr title="Esquire">Esq</abbr></cite></p>
 ```
 
 And finally, the signature.
@@ -407,7 +416,6 @@ And finally, the signature.
 <p>Yours sincerely,</p>
 
 <p>Dr Eleanor Gaye</p>
-
 
 <p>University of Awesome motto: <q>Be excellent to each other.</q> -- <cite>The memoirs of Bill S Preston, <abbr
       title="Esquire">Esq</abbr></cite></p>
@@ -428,3 +436,9 @@ And finally, the signature.
       title="Esquire">Esq</abbr></cite></p>
 <Signature />
 ```
+
+### Summary
+
+We've taken a big HTML file and broken it up into **components** to make it easier to understand and maintain.
+
+A component is a chunk of HTML that can be included in another component using HTML tag syntax.
