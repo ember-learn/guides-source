@@ -209,9 +209,8 @@ keyword, which is described in more detail below.
 
 ### Fields
 
-Class fields are a new feature in JavaScript that are still being finalized,
-which is why they generally aren't part of most tutorials about classes. You can
-define a field like this:
+Class fields allow you to assign properties to an instance of the class on
+construction. You can define a field like this:
 
 ```js
 class Person {
@@ -219,7 +218,8 @@ class Person {
 }
 ```
 
-This is the same as defining the `Person` class with a constructor like this:
+This is the very similar to defining the `Person` class with a constructor like
+this:
 
 ```js
 class Person {
@@ -675,7 +675,7 @@ In certain cases, you will want to pass arguments to the super method before or
 after overriding. This allows the super class method to continue operating as it
 normally would.
 
-One common example is when overriding the 
+One common example is when overriding the
 [`normalizeResponse()`](https://www.emberjs.com/api/ember-data/release/classes/DS.JSONAPISerializer/methods/normalizeResponse?anchor=normalizeResponse)
 hook in one of Ember Data's serializers.
 

@@ -18,6 +18,8 @@ However, it might not be clear how all these pieces fit together in a full
 application. Where should you _put_ everything? And how should things be
 organized in your application?
 
+
+Fundamentally, applications are about _state_.
 This all comes down to _state_, and how best to organize it. Every application
 has different requirements, and there are many different patterns for state
 management that suit different needs. In this guide, we'll talk about state in
@@ -34,7 +36,7 @@ In Ember, there are 3 primary types of state:
   removed, it's instance is torn down, and all the values on the instance are
   cleaned up (via JavaScript's built-in [garbage collection][1]).
 
-- **Controller state**. When a route is rendered, its controller is created and
+- **Route state**. When a route is rendered, its controller is created and
   used to back the template for that route, like we discussed in the previous
   section on Routing. Unlike components, controllers continue to exist for the
   remainder of the application's lifecycle. This means we must be mindful of
@@ -47,21 +49,15 @@ In Ember, there are 3 primary types of state:
 
 [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Memory_Management#Garbage_collection
 
-In the section on components, we showed how Ember applications can be visualized
-as a tree of controllers and components.
+<!-- Ember applications can be visualized as a tree of routes and components.
 
 <!-- TODO: Diagram of components/controllers -->
 
-A piece of state can exist on any one of the components or controllers in this
-tree, and be passed down to the children of that component or controller via
+A piece of state can exist on any one of the components (or controllers)
+in this tree, and be passed down to the children of that component via
 component arguments.
 
 <!-- TODO: Diagram showing state being passed down several nodes -->
-
-Note that just because some state exists on a parent doesn't mean it exists on
-the child - it has to be passed down explicitly. Otherwise, we would come
-dangerously close to having effectively _global_ state for everything, which
-would not be ideal.
 
 Controllers exist for the lifetime of a program, so even when we've changed
 pages and navigated away, destroying the components in that tree, any state that
@@ -79,7 +75,7 @@ available _anywhere_, which is a very powerful tool.
 state which is consumed by several components -->
 
 Services can be used to centralize your state in one location, but if not used
-carefully and with solid conventions they can become messy quickly.
+carefully and with solid conventions they can become messy quickly. -->
 
 ## How State Flows
 

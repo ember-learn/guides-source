@@ -1,3 +1,10 @@
+Autotracking is how Ember's _reactivity_ model works - how it decides what to
+rerender, and when. This guide covers tracking in more depth, including how it
+can be used in various types of classes, and how it interacts with arrays and
+POJOs.
+
+## Autotracking Basics
+
 When Ember first renders a component, it renders the initial _state_ of that
 component - the state of the instance, and state of the arguments that are
 passed to it:
@@ -82,11 +89,11 @@ changes, only the `Hello` text in the browser will rerender - Ember leaves the
 Arguments, like `{{@name}}`, are automatically tracked, so if they change and
 are used somewhere in your component, the component will update accordingly.
 
-### Updating Tracked Properties
+## Updating Tracked Properties
 
 Tracked properties can be updated like any other property, using standard
-JavaScript syntax. The primary way that state gets updated in an Ember
-application is via _actions_, [as discussed earlier](../../templates/actions/):
+JavaScript syntax. For instance, we could update a tracked property via an
+action, as in this example component.
 
 ```handlebars {data-filename=app/templates/components/hello.hbs}
 {{this.greeting}}, {{@name}}!
@@ -298,37 +305,18 @@ will still push the `_cache` tracked property.
 
 Arrays are another example of a type of object where you can't enumerate every
 possible value - after all, there are an infinite number of integers (though you
-_may_ run out of bits in your computer at some point!) Like with POJOs with
-dynamic keys, it is recommended that you _reset_ the array after changing it in
-order to trigger changes:
+_may_ run out of bits in your computer at some point!). Instead, you can
+continue to use `EmberArray`, which will continue to work with tracking and will
+cause any dependencies that use it to invalidate correctly.
 
 ```js
+import { A } from '@ember/array';
+
 class ShoppingList {
-  @tracked items = [];
+  items = A([]);
 
   addItem(item) {
-    this.items.push(item);
-
-    // trigger an update
-    this.items = this.items;
+    this.items.pushObject(item);
   }
 }
 ```
-
-You can also follow the "immutable" pattern here if you're not as worried about
-performance:
-
-```js
-class ShoppingList {
-  @tracked items = [];
-
-  addItem(item) {
-    // Create a new array
-    this.items = [...this.items, item];
-  }
-}
-```
-
-<!-- ### Tracking Helpers/Modifiers
-
-TODO -->

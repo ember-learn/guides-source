@@ -36,8 +36,8 @@ These are the main reasons to load data in a `model` hook:
 
 Some people choose to load data in their Components.
 The drawback is that requires more work from developers to handle async, rendering,
-errors, concurrency, and URL state themselves - functionality they would get automatically if 
-they used a Route's `model` hook. 
+errors, concurrency, and URL state themselves - functionality they would get automatically if
+they used a Route's `model` hook.
 However there are valid use cases for loading data in a component, for developers who are
 comfortable handling the router's features themselves.
 

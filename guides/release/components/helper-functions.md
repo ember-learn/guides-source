@@ -158,7 +158,29 @@ export default helper(substring);
 
 You can mix positional and named arguments to make your templates easy to read.
 
-## Class Helpers
+### Nested Helpers
+
+Sometimes, you might see helpers invoked by placing them inside parentheses,
+`()`. This means that a Helper is being used inside of another Helper or
+Component. This is referred to as a "nested" Helper Invocation. Parentheses must
+be used because curly braces `{{}}` cannot be nested.
+
+```handlebars {data-filename=app/templates/application.hbs}
+{{sum (multiply 2 4) 2}}
+```
+
+In this example, we are using a helper to multiply `2` and `4` _before_ passing
+the value into `{{sum}}`.
+
+Thus, the output of these combined helpers is `10`.
+
+As you move forward with these template guides, keep in mind that a helper can
+be used anywhere a normal value can be used.
+
+Many of Ember's built-in helpers (as well as your custom helpers) can be used in
+nested form.
+
+## Advanced: Class Helpers
 
 Helpers can also be defined using class syntax. For instance, we could define
 the substring helper using classes instead.

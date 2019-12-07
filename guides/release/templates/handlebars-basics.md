@@ -1,3 +1,3 @@
 ---
-redirect: templates/index
+redirect: components/index
 ---
