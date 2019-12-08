@@ -16,29 +16,6 @@ code {
   }
 }
 
-/* HACK: quick hack as per: https://github.com/ember-learn/guides-source/issues/611
-   to hide edit page pencil link and the search bar globally. */
-a.edit-page, #search-input {
-  display: none;
-}
-
-/**
- * HACK: Removing the version dropdown temporarily for Octane. Remove this
- * before merging into master
- */
-
-.sidebar nav.toc-container {
-  margin-top: 0;
-}
-
-.sidebar .ember-basic-dropdown {
-  display: none;
-}
-
-.toc-container.versions {
-  border-top: 0;
-}
-
 .list-cards {
   flex-flow: row wrap;
   max-width: 100%;
