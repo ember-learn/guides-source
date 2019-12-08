@@ -288,7 +288,7 @@ The modifier that we're going to build will allow us to say:
 
 Pretty nice, right?
 
-To accomplish that, we'll create a modifier in `app/modifiers/autofocus.js` first install [`ember-modifier`](https://github.com/ember-modifier/ember-modifier) and generate an `autofucus` modifier for your app:
+To accomplish that, we'll create a modifier in `app/modifiers/autofocus.js`. First, install [`ember-modifier`](https://github.com/ember-modifier/ember-modifier) and then generate an `autofocus` modifier for your app:
 
 ```bash
 ember install ember-modifier
