@@ -14,10 +14,10 @@
       url: "index"
     - title: "Quick Start"
       url: "quick-start"
-    - title: "Core Concepts"
-      url: "core-concepts"
-    - title: "Working with JavaScript"
-      url: "working-with-javascript"
+    - title: "Working with HTML, CSS, and JavaScript"
+      url: "working-with-html-css-and-javascript"
+    - title: "Overview of an Ember App"
+      url: "overview-of-an-ember-app"
 - title: "Tutorial"
   url: "tutorial"
   pages:
@@ -93,6 +93,8 @@
       url: index
     - title: Defining Your Routes
       url: defining-your-routes
+    - title: Linking Between Routes
+      url: linking-between-routes
     - title: Specifying a Route's Model
       url: specifying-a-routes-model
     - title: Rendering a Template
