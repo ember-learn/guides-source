@@ -282,8 +282,6 @@
           url: "glimmer-components"
         - title: "Cheat Sheet"
           url: "cheat-sheet"
-    # - title: "Deprecations"
-    #   url: "deprecations"
 - title: "Contributing to Ember.js"
   url: "contributing"
   isAdvanced: true
