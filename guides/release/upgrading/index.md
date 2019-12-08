@@ -27,8 +27,8 @@ When they are available, they can save a lot of time that you would spend making
 If an API you are using will be going away in the next major version of Ember, you will see a deprecation warning in the developer console.
 Sometimes, they will be deprecation warnings caused by code in your app, and other times, they may be caused by an addon.
 
-For more guidance on what to do with deprecations, visit [Handling Deprecations](../configuring-ember/handling-deprecations), check out the Ember Inspector [tools for deprecations](release/ember-inspector/deprecations/), or read about the specifics in the [Deprecations Guides](https://deprecations.emberjs.com/).
+For more guidance on what to do with deprecations, visit [Handling Deprecations](../configuring-ember/handling-deprecations/), check out the Ember Inspector [tools for deprecations](release/ember-inspector/deprecations/), or read about the specifics in the [Deprecations Guides](https://deprecations.emberjs.com/).
 
 ## Upgrading to Octane
 
-Octane was a big shift in Ember's syntax, features, and mental models! If you are in the process of upgrading an existing app to use Octane patterns, check out our dedicated [Octane Update Guide](../current-edition/).
+Octane was a big shift in Ember's syntax, features, and mental models! If you are in the process of upgrading an existing app to use Octane patterns, check out our dedicated [Octane Update Guide](./current-edition/).
