@@ -7,9 +7,10 @@ as well as an integrated development toolkit that enables rapid iteration.
 Some of these features that you'll learn about in the guides are:
 
 * [Ember CLI](../configuring-ember/configuring-ember-cli/) - A robust development toolkit to create, develop, and build Ember applications. When you see an `$ ember <command>` instruction throughout the guides, that's Ember CLI!
-* [Routing](../routing/) - The central part of an Ember application. Enables developers to drive the application state from the URL.
-* [Templating engine](../templates/handlebars-basics/) - Use Handlebars syntax to write your application's templates
-* [Data layer](../models/) - Ember Data provides a consistent way to communicate with external APIs and manage application state
+* [Components](../components/) - The fundamental construct used in Ember applications, used to create reusable UI elements and define the layout and the functionality of the app.
+* [Routing](../routing/) - A central part of an Ember application. Enables developers to drive the application state from the URL.
+* [Services](../services/) - The way to store long-term state in your application and pass it around.
+* [Ember Data](../models/) - Ember Data provides a consistent way to communicate with external APIs and manage application state
 * [Ember Inspector](../ember-inspector/) - A browser extension, or bookmarklet, to inspect your application live. It's also useful for spotting Ember applications in the wild, try to install it and open up the [NASA website](https://www.nasa.gov/)!
 
 ## Organization
@@ -31,46 +32,16 @@ we recommend you start off by following along with these first two sections of t
 
 ## Assumptions
 
-While we try to make the Guides as beginner-friendly as we can,
-we must establish a baseline so that the guides can keep focused on Ember.js functionality.
-We will try to link to appropriate documentation whenever a concept is introduced.
+While we try to make the Guides as beginner-friendly as we can, we must
+establish a baseline so that the guides can keep focused on Ember.js
+functionality. We will try to link to appropriate documentation whenever a
+concept is introduced.
 
-To make the most out of the guides, you should have a working knowledge of:
-
-* **HTML, CSS, JavaScript** - the building blocks of web pages. You can find documentation of each of these technologies at the [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web).
-* **Promises** - the native way to deal with asynchrony in your JavaScript code. See the relevant [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) section.
-* **JavaScript modules** - you will better understand [Ember CLI's](https://ember-cli.com/) project structure and import paths if you are comfortable with [JavaScript Modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules).
-* **Modern syntax** - Ember CLI comes with Babel.js by default so you can
-take advantage of newer language features such as arrow functions, template
-strings, destructuring, and more. You can check the
-[Babel.js documentation](https://babeljs.io/docs/learn-es2015/) or read [Understanding ECMAScript 6](https://leanpub.com/understandinges6/read) online.
-
-## A Note on Mobile Performance
-
-Ember will do a lot to help you write fast apps, but it can't prevent you from
-writing a slow one. This is especially true on mobile devices. To deliver a great
-experience, it's important to measure performance early and often, and with a diverse
-set of devices.
-
-Make sure you are testing performance on real devices. Simulated mobile
-environments on a desktop computer give an optimistic-at-best representation of
-what your real world performance will be like. The more operating systems and
-hardware configurations you test, the more confident you can be.
-
-Due to their limited network connectivity and CPU power, great performance on
-mobile devices rarely comes for free. You should integrate performance testing
-into your development workflow from the beginning. This will help you avoid
-making costly architectural mistakes that are much harder to fix if you only
-notice them once your app is nearly complete.
-
-In short:
-
-1. Always test on real, representative mobile devices.
-2. Measure performance from the beginning, and keep testing as your app
-   develops.
-
-These tips will help you identify problems early so they can be addressed systematically, rather than
-in a last-minute scramble.
+To make the most out of the guides, you should have a working knowledge of
+**HTML, CSS, and JavaScript** - the building blocks of web pages. You can find
+out more about each of these technologies in the [Working with HTML, CSS, and JavaScript](./working-with-javascript)
+guide, including some of the special features that Ember uses such as class
+fields and decorators.
 
 ## Reporting a problem
 
