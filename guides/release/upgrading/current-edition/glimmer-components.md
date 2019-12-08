@@ -561,7 +561,7 @@ component state or DOM manipulation:
 - `didUpdateAttrs`
 
 These can generally be replaced either by using getters, in cases where they are
-related to updating component state, or by using _modifiers_.
+related to updating component state, or by using _modifiers_. For example, installing the [`ember-render-modifiers`](https://github.com/emberjs/ember-render-modifiers) addon will give you the ability to use `{{did-insert}}` and `{{did-update}}`. You can also write your own modifiers! Keep reading below to learn more.
 
 #### Updating component state
 
@@ -713,7 +713,7 @@ export default Component.extend({
 ```
 
 This could be rewritten using the `{{did-insert}}` and `{{will-destroy}}`
-modifiers from [ember-render-modifiers][2]:
+modifiers, if you install [ember-render-modifiers][2] in your app:
 
 [2]: https://github.com/emberjs/ember-render-modifiers
 
