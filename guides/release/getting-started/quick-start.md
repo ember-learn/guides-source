@@ -19,8 +19,7 @@ npm install -g ember-cli
 ```
 
 Don't have npm? [Learn how to install Node.js and npm here](https://docs.npmjs.com/getting-started/installing-node).
-For a full list of dependencies necessary for an Ember CLI project,
-consult our [Installing Ember](../../getting-started/) guide.
+For a full list of dependencies necessary for an Ember CLI project, visit the [Ember CLI Guides - Installing](https://cli.emberjs.com/release/basic-use/).
 
 ## Create a New Application
 

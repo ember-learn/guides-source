@@ -1,62 +1,97 @@
-Getting started with Ember is easy. Ember projects are created and managed
-through our command line build tool Ember CLI.
-This tool provides:
+## What is Ember?
 
-* Modern application asset management (including concatenation, minification, and versioning).
-* Generators to help create components, routes, and more.
-* A conventional project layout, making existing Ember applications easy to approach.
-* Support for modern JavaScript via the [Babel](https://babeljs.io/) project. This includes support for [JavaScript modules](http://exploringjs.com/es6/ch_modules.html), which are used throughout this guide.
-* A complete [QUnit](https://qunitjs.com/) test harness.
-* The ability to consume a growing ecosystem of [Ember Addons](https://emberobserver.com/).
+Ember is a JavaScript front-end framework designed to help you build websites with rich and complex user interactions.
+It does so by providing developers both with many features that are essential to manage complexity in modern web applications,
+as well as an integrated development toolkit that enables rapid iteration.
 
-## Dependencies
+Some of these features that you'll learn about in the guides are:
 
-### Git
+* [Ember CLI](../../configuring-ember/configuring-ember-cli/) - A robust development toolkit to create, develop, and build Ember applications. When you see an `$ ember <command>` instruction throughout the guides, that's Ember CLI!
+* [Routing](../../routing/) - The central part of an Ember application. Enables developers to drive the application state from the URL.
+* [Templating engine](../../templates/handlebars-basics/) - Use Handlebars syntax to write your application's templates
+* [Data layer](../../models/) - Ember Data provides a consistent way to communicate with external APIs and manage application state
+* [Ember Inspector](../../ember-inspector/) - A browser extension, or bookmarklet, to inspect your application live. It's also useful for spotting Ember applications in the wild, try to install it and open up the [NASA website](https://www.nasa.gov/)!
 
-Ember requires Git to manage many of its dependencies. Git comes with Mac OS
-X and most Linux distributions. Windows users can
-download and run [this Git installer](http://git-scm.com/download/win).
+## Organization
 
-### Node.js and npm
+On the left side of each Guides page is a table of contents,
+organized into sections that can be expanded to show the topics
+they cover. Both the sections and the topics within each section are
+ordered from basic to advanced concepts.
 
-Ember CLI is built with JavaScript, and requires the most recent LTS version of the [Node.js](https://nodejs.org/)
-runtime. It also requires dependencies fetched via [npm](https://www.npmjs.com/). npm is packaged with Node.js, so if your computer has Node.js
-installed you are ready to go.
+The Guides are intended to contain practical explanations of how to
+build Ember apps, focusing on the most widely-used features of Ember.js.
+For comprehensive documentation of every Ember feature and API, see the
+[Ember.js API documentation](https://api.emberjs.com/).
 
-If you're not sure whether you have Node.js or the right version, run this on your
-command line:
+The Guides begin with an explanation of how to get started with Ember,
+followed by a tutorial on how to build your first Ember app.
+If you're brand new to Ember,
+we recommend you start off by following along with these first two sections of the Guides.
 
-```bash
-node --version
-npm --version
-```
+## Assumptions
 
-If you get a *"command not found"* error or an outdated version for Node:
+While we try to make the Guides as beginner-friendly as we can,
+we must establish a baseline so that the guides can keep focused on Ember.js functionality.
+We will try to link to appropriate documentation whenever a concept is introduced.
 
-* Windows or Mac users can download and run [this Node.js installer](http://nodejs.org/en/download/).
-* Mac users often prefer to install Node using [Homebrew](http://brew.sh/). After
-installing Homebrew, run `brew install node` to install Node.js. Alternatively, installer packages are available directly
-from [Node.js](https://nodejs.org/en/download/).
-* Linux users can use [this guide for Node.js installation on Linux](https://nodejs.org/en/download/package-manager/).
+To make the most out of the guides, you should have a working knowledge of:
 
-If you get an outdated version of npm, run `npm install -g npm`.
+* **HTML, CSS, JavaScript** - the building blocks of web pages. You can find documentation of each of these technologies at the [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web).
+* **Promises** - the native way to deal with asynchrony in your JavaScript code. See the relevant [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) section.
+* **JavaScript modules** - you will better understand [Ember CLI's](https://ember-cli.com/) project structure and import paths if you are comfortable with [JavaScript Modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules).
+* **Modern syntax** - Ember CLI comes with Babel.js by default so you can
+take advantage of newer language features such as arrow functions, template
+strings, destructuring, and more. You can check the
+[Babel.js documentation](https://babeljs.io/docs/learn-es2015/) or read [Understanding ECMAScript 6](https://leanpub.com/understandinges6/read) online.
 
-### Watchman (optional)
+## A Note on Mobile Performance
 
-On Mac and Linux, you can improve file watching performance by installing [Watchman](https://facebook.github.io/watchman/docs/install.html).
+Ember will do a lot to help you write fast apps, but it can't prevent you from
+writing a slow one. This is especially true on mobile devices. To deliver a great
+experience, it's important to measure performance early and often, and with a diverse
+set of devices.
 
-## Installation
+Make sure you are testing performance on real devices. Simulated mobile
+environments on a desktop computer give an optimistic-at-best representation of
+what your real world performance will be like. The more operating systems and
+hardware configurations you test, the more confident you can be.
 
-Install Ember using npm:
+Due to their limited network connectivity and CPU power, great performance on
+mobile devices rarely comes for free. You should integrate performance testing
+into your development workflow from the beginning. This will help you avoid
+making costly architectural mistakes that are much harder to fix if you only
+notice them once your app is nearly complete.
 
-```bash
-npm install -g ember-cli
-```
+In short:
 
-To verify that your installation was successful, run:
+1. Always test on real, representative mobile devices.
+2. Measure performance from the beginning, and keep testing as your app
+   develops.
 
-```bash
-ember -v
-```
+These tips will help you identify problems early so they can be addressed systematically, rather than
+in a last-minute scramble.
 
-If a version number is shown, you're ready to go.
+## Reporting a problem
+
+Typos, missing words, and code samples with errors are all considered
+documentation bugs. If you spot one of them, or want to otherwise improve
+the existing guides, we are happy to help you help us!
+
+Some of the more common ways to report a problem with the guides are:
+
+* Using the pencil icon on the top-right of each guide page
+* Opening an issue or pull request to [the GitHub repository](https://github.com/ember-learn/guides-source/)
+
+Clicking the pencil icon will bring you to GitHub's editor for that
+guide so you can edit right away, using the Markdown markup language.
+This is the fastest way to correct a typo, a missing word, or an error in
+a code sample.
+
+If you wish to make a more significant contribution be sure to check our
+[issue tracker](https://github.com/ember-learn/guides-source/issues) to see if your issue is already being addressed. If you don't find an active issue, open a new one.
+
+If you have any questions about styling or the contributing process, you
+can check out our [contributing guide](https://github.com/ember-learn/guides-source/blob/master/CONTRIBUTING.md). If your question persists, reach us in the `#dev-ember-learning` channel on the [Ember Community Discord](https://discordapp.com/invite/zT3asNS).
+
+Good luck!
