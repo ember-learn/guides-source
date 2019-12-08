@@ -159,6 +159,24 @@
 - title: "Application Development"
   url: "toc-heading_application-development"
   is_heading: true
+- title: Application Concerns
+  url: applications
+  pages:
+    - title: Applications and Instances
+      url: index
+      isAdvanced: true
+    - title: Dependency Injection
+      url: dependency-injection
+      isAdvanced: true
+    - title: Initializers
+      url: initializers
+      isAdvanced: true
+    - title: The Run Loop
+      url: run-loop
+      isAdvanced: true
+    - title: Ember Engines
+      url: ember-engines
+      isAdvanced: true
 - title: "Testing"
   url: "testing"
   pages:
