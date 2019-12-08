@@ -7,7 +7,7 @@ With the plethora of libraries readily available for front-end development, some
 		<div class="shape shape--dark"></div>
     <div class="shape shape--accent"></div>
     <div class="shape shape--light"></div>
-		<a href="https://guides.emberjs.com/release/getting-started/intro/">Ember.js</a>
+		<a href="https://guides.emberjs.com/release/getting-started/">Ember.js</a>
 	</li>
 	<li class="list-item-card">
 		<div class="shape shape--dark"></div>
