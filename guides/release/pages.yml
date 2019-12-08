@@ -10,10 +10,10 @@
 - title: "Getting Started"
   url: "getting-started"
   pages:
+    - title: "How To Use The Guides"
+      url: "index"
     - title: "Quick Start"
       url: "quick-start"
-    - title: "Installing Ember"
-      url: "index"
     - title: "Core Concepts"
       url: "core-concepts"
     - title: "Working with JavaScript"
