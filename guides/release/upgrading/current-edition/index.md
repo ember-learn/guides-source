@@ -26,7 +26,7 @@ Here are some of the core features in Octane:
 - [Modifiers](../../components/template-lifecycle-dom-and-modifiers/), which unify the experience of writing code that interacts with the DOM.
 
 Just as important is what we're removing from the Ember experience. These
-features below will keep working, but you won't have to use them if you don't
+features below will keep working through the rest of Ember 3, but you won't have to use them if you don't
 want to.
 
 These have been replaced or made optional in Octane:
@@ -51,17 +51,6 @@ a new Ember app today, this is complexity they can safely skip learning.
 
 ## Creating a New App
 
-To create a new app that uses the default features for Octane:
-
-```sh
-ember new octane-app -b @ember/octane-app-blueprint
-```
-
-Once Octane is released, the default blueprint will be updated to reflect the
-Octane defaults and specifying this blueprint will no longer be necessary.
-
-<!-- replace-on-release - remove the contents above and replace with:
-
 To create a new app that has every Octane feature enabled, first make sure you have the latest Ember CLI version installed:
 
 ```sh
@@ -74,7 +63,6 @@ Then, create your app:
 ```sh
 ember new my-app-name
 ```
--->
 
 The remaining sections in this guide will go into details about how to upgrade
 each individual feature. There's a lot to learn here, but remember, you can
@@ -85,3 +73,65 @@ strictly.
 If you need any help, check out the [chat and forums](https://emberjs.com/community/).
 If you spot something to improve in this guide, you can help out by
 [filing an issue or a PR](https://github.com/ember-learn/guides-source). Thank you!
+
+
+## Octane upgrade strategy
+
+There are two areas of focus for upgrading to Octane: learning, and implementing.
+
+### Learning
+
+We recommend that all developers go through the [Quick Start Tutorial](../../getting-started/quick-start/) to learn the fundamentals of Octane, and then the main [Tutorial](../../tutorial/).
+
+Along the way, you might need to study up on [Native JavaScript Classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/class) too. Otherwise, it may be confusing about which parts of code are special to Ember, and what are not.
+
+If you work on a team of developers, it may be useful to have one developer go through the tutorials, try doing a small thing, and then demo that to the rest of the team. After everyone has had a chance for hands-on learning, schedule a meeting to plan how you want to proceed.
+By design, migrating to Octane can be done in pieces. It doesn't require a big-bang refactor. If you need advice, visit [the forums or the Ember Discord](https://emberjs.com/community/) (in Discord you can use the `#topic-octane-migration` channel).
+
+## Implementing
+
+1. Follow the [regular upgrade steps](https://cli.emberjs.com/release/basic-use/upgrading/) to update your app to at least version `3.15`.
+2. Run your tests to make sure everything still works as expected.
+5. Install `@ember/optional-features` in your app, if it is not already in the `devDependencies` of your `package.json`
+6. Turn on optional features one by one, running tests in between to make sure things still work as expected.
+7. Create a new component in your app, and experiment! `ember g component` will give you just a test and a template. Adding `-gc` to the command will generate the JavaScript class too. Try adding a button with an action.
+8. Try refactoring one existing component to use Octane style. Check out the [Cheat Sheet](./cheat-sheet/) and [Editions Deep Dive](./editions/) for some pointers.
+9. Review the refactoring checklist below to create a plan for handling existing code. Note that some steps have codemods available!
+
+If you need help along the way, visit [the Ember Community chat and forums](https://emberjs.com/community/).
+
+### Deprecations that matter for Octane
+
+By default, Octane does not include jQuery. Continuing to use jQuery in your app will not conflict with Octane features, however you should follow the deprecation instructions for [`jquery-apis`](https://deprecations.emberjs.com/v3.x/#toc_jquery-apis) if you need to keep using it.
+
+### Optional features in Octane
+
+A fully-Octane app has the following configuration in `config/optional-features.json`:
+
+```json
+{
+  "application-template-wrapper": false,
+  "jquery-integration": false,
+  "template-only-glimmer-components": true
+}
+```
+
+Use the command `ember feature:list` in your console to learn what each option does.
+
+### Refactoring checklist
+
+For many of the optional features, the thing they affect the most is what you see in your newly-created files, not within your existing code.
+Your app will keep working, even if you haven't refactored code to use Octane's features yet.
+Making new files in the Octane style is good place to start, but eventually you should refactor existing code so that your app follows one main programming model, not a mixture of Octane and Classic.
+Following a refactoring plan will help with onboarding new developers, and minimize flipping back and forth between different versions of the Ember Guides.
+
+There's no one-size-fits-all strategy, but here is a checklist you can adapt, once you're familiar with what Octane has to offer:
+
+1. Whenever you make new components, use Octane-style components. Create them with `ember generate component my-component -gc`. They can coexist in the same app with older components. Meanwhile, go through the rest of the steps below.
+2. Convert curly bracket components (`{{my-component}}`) to Angle Brackets (`<MyComponent />`), using the [`ember-angle-brackets-codemod`](https://github.com/ember-codemods/ember-angle-brackets-codemod). Angle Brackets are feature of Ember since [3.4](https://blog.emberjs.com/2018/10/07/ember-3-4-released.html) that does not change a component's behavior. Read the [Angle Bracket Syntax guide](./templates/) for some examples and more in-depth information.
+2. Use [Named Arguments](./editions/#toc_named-arguments) and `this` in your templates, by running the [`ember-no-implicit-this-codemod`](https://github.com/ember-codemods/ember-no-implicit-this-codemod). Component behavior should not change.
+3. Use the [`ember-native-class-codemod`](https://github.com/ember-codemods/ember-native-class-codemod) on your non-component JavaScript files.
+4. Refactor some components to use [Glimmer Components](../../components/). Good components to refactor first are those that do not rely on two-way bindings, computed properties, or observers. These components will serve as examples that your coworkers can refer back to.
+5. Now, you have a choice to make, and the right answer varies based on how your team operates and what your app is like. Consider which path has the least mental overhead for your engineering team, including both experienced and beginner Ember developers.
+   1. The first option is, you could leave most older components as-is, and gradually convert them to Octane style components whenever the course of your work requires you to edit those files. The advantage is that it is very easy for everyone to tell whether a component is classic or Octane. The disadvantage is that muscle memory for Objects vs Classes is tough to overcome.
+   2. The second option is, you could run the [`ember-native-class-codemod`](https://github.com/ember-codemods/ember-native-class-codemod) for all remaining components. This will turn them into components that import from `@ember/component`, retaining all the same APIs that classic components have, but just represented in a Native Class syntax. Then, following a similar pattern as option number one, you could convert them to import from `@glimmer/component` as you work. The advantage is that everyone gets used to working with Native Classes right away. The disadvantage is that the visual differences between a Native Class `@ember/component` and a `@glimmer/component` are subtle, and time could easily be lost to mistakes like trying to use `didInsertElement` on the `@glimmer/component`.
