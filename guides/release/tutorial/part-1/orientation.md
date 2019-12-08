@@ -1,8 +1,8 @@
-<!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/src/chapters/01-orientation.md -->
+<!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/scr/chapters/part-1/orientation.md -->
 
 In this chapter, you will install _Ember CLI_, use it to generate a new Ember project, and add some basic templates and styles to your new app. By the end of this chapter, you should have a landing page with Professor Tomster's cute little face featured on it:
 
-<img src="/screenshots/01-orientation/styled-with-tomster@2x.png" alt="The Super Rentals app by the end of the chapter" width="1024" height="250">
+<img src="/images/tutorial/part-1/orientation/styled-with-tomster@2x.png" alt="The Super Rentals app by the end of the chapter" width="1024" height="250">
 
 While building your landing page, you will learn about:
 
@@ -14,7 +14,7 @@ While building your landing page, you will learn about:
 
 ## Installing Ember CLI
 
-You can install the latest version of Ember CLI by running the following command. If you've already done this by following the [Quick Start](../../getting-started/quick-start/) guide, feel free to skip ahead!
+You can install the latest version of Ember CLI by running the following command. If you've already done this by following the [Quick Start](../../../getting-started/quick-start/) guide, feel free to skip ahead!
 
 ```shell
 $ npm install -g ember-cli
@@ -134,14 +134,14 @@ Ember CLI comes with a lot of different commands for a variety of development ta
 
 ```shell
 $ ember server
-building... 
+building...
 
 Build successful (9761ms) – Serving on http://localhost:4200/
 ```
 
 The development server is responsible for compiling our app and serving it to the browsers. It may take a while to boot up. Once it's up and running, open your favorite browser and head to <http://localhost:4200>. You should see the following welcome page:
 
-<img src="/screenshots/01-orientation/welcome@2x.png" alt="Welcome to Ember!" width="1024" height="596">
+<img src="/images/tutorial/part-1/orientation/welcome@2x.png" alt="Welcome to Ember!" width="1024" height="596">
 
 <div class="cta">
   <div class="cta-note">
@@ -175,7 +175,7 @@ Hello World!!!
 
 Soon after saving the file, your browser should automatically refresh and render our greetings to the world. Neat!
 
-<img src="/screenshots/01-orientation/hello-world@2x.png" alt="Hello World!!!" width="1024" height="250">
+<img src="/images/tutorial/part-1/orientation/hello-world@2x.png" alt="Hello World!!!" width="1024" height="250">
 
 When you are done experimenting, go ahead and delete the `app/templates/application.hbs` file. We won't be needing this for a while, so let's start afresh. We can add it back later when we have a need for it.
 
@@ -199,7 +199,7 @@ Of course, unlike HTML, Ember templates can do a lot more than just displaying s
 
 After saving the file, your browser tab should automatically refresh, showing us the welcome message we just worked on.
 
-<img src="/screenshots/01-orientation/unstyled@2x.png" alt="Welcome to Super Rentals! (unstyled)" width="1024" height="250">
+<img src="/images/tutorial/part-1/orientation/unstyled@2x.png" alt="Welcome to Super Rentals! (unstyled)" width="1024" height="250">
 
 Before we do anything else, let's add some styling to our app. We spend enough time staring at the computer screen as it is, so we must protect our eyesight against unstyled markup!
 
@@ -244,7 +244,7 @@ If you are familiar with CSS, feel free to customize these styles to your liking
 
 When you are ready, save the CSS file; our trusty development server should pick it up and refresh our page right away. No more unstyled content!
 
-<img src="/screenshots/01-orientation/styled@2x.png" alt="Welcome to Super Rentals! (styled)" width="1024" height="250">
+<img src="/images/tutorial/part-1/orientation/styled@2x.png" alt="Welcome to Super Rentals! (styled)" width="1024" height="250">
 
 To match the mockup from our designer, we will also need to download the `teaching-tomster.png` image, which was referenced from our CSS file:
 
@@ -262,4 +262,4 @@ Both Ember CLI and the development server understand these folder conventions an
 You can confirm this by navigating to
 `http://localhost:4200/assets/images/teaching-tomster.png`. The image should also show up in the welcome page we have been working on. You may need to do a manual refresh for the browser to pick up the new file.
 
-<img src="/screenshots/01-orientation/styled-with-tomster@2x.png" alt="Welcome to Super Rentals! (with Tomster)" width="1024" height="250">
+<img src="/images/tutorial/part-1/orientation/styled-with-tomster@2x.png" alt="Welcome to Super Rentals! (with Tomster)" width="1024" height="250">

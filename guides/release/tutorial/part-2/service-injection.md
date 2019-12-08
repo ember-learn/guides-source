@@ -1,4 +1,4 @@
-<!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/src/chapters/12-service-injection.md -->
+<!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/scr/chapters/part-2/service-injection.md -->
 
 As promised, we will now work on implementing the share button!
 
@@ -66,7 +66,7 @@ Let's start with the template that was generated for this component. We already 
 </a>
 ```
 
-Notice that we added `...attributes` to our `<a>` tag here. As [we learned earlier](../07-reusable-components/) when working on our `<Map>` component, the order of `...attributes` relative to other attributes is significant. We don't want to allow `href`, `target`, or `rel` to be overridden by the invoker, so we specified those attributes after `...attributes`.
+Notice that we added `...attributes` to our `<a>` tag here. As [we learned earlier](../../part-1/reusable-components/) when working on our `<Map>` component, the order of `...attributes` relative to other attributes is significant. We don't want to allow `href`, `target`, or `rel` to be overridden by the invoker, so we specified those attributes after `...attributes`.
 
 But what happens to the `class` attribute? Well, as it turns out, the `class` attribute is the one exception to how these component attributes are overridden! While all other HTML attributes follow the "last-write wins" rule, the values for the `class` attribute are merged together (concatenated) instead. There is a good reason for this: it allows the component to specify whatever classes that _it_ needs, while allowing the invokers of the component to freely add any extra classes that _they_ need for styling purposes.
 
@@ -169,9 +169,9 @@ Let's put this component to use by invoking it from the `<Rental::Detailed>` com
 
 With that, we should have a working share button!
 
-<img src="/screenshots/12-service-injection/share-button@2x.png" alt="A share button that works!" width="1024" height="1381">
+<img src="/images/tutorial/part-2/service-injection/share-button@2x.png" alt="A share button that works!" width="1024" height="1381">
 
-<img src="/screenshots/12-service-injection/suggested-tweet@2x.png" alt="Suggested tweet" width="1024" height="449">
+<img src="/images/tutorial/part-2/service-injection/suggested-tweet@2x.png" alt="Suggested tweet" width="1024" height="449">
 
 <div class="cta">
   <div class="cta-note">
@@ -299,7 +299,7 @@ The main event here is that we wanted to confirm the Twitter Intent URL includes
 
 If we run the tests in the browser, everything should...
 
-<img src="/screenshots/12-service-injection/fail@2x.png" alt="The test failed" width="1024" height="768">
+<img src="/images/tutorial/part-2/service-injection/fail@2x.png" alt="The test failed" width="1024" height="768">
 
 ...wait a minute, our tests didn't work...again!
 
@@ -355,7 +355,7 @@ Here, we added the `@service router;` declaration to our component class. This i
 
 With this change, everything is now working the way we intended.
 
-<img src="/screenshots/12-service-injection/pass-1@2x.png" alt="The previously failing test is now green" width="1024" height="960">
+<img src="/images/tutorial/part-2/service-injection/pass-1@2x.png" alt="The previously failing test is now green" width="1024" height="960">
 
 ## Ember Services vs. Global Variables
 
@@ -528,4 +528,4 @@ The main goal here is to test the key functionalities of the component individua
 
 With that, everything should be good to go, and our `<ShareButton>` component should now work everywhere!
 
-<img src="/screenshots/12-service-injection/pass-2@2x.png" alt="All the tests pass!" width="1024" height="960">
+<img src="/images/tutorial/part-2/service-injection/pass-2@2x.png" alt="All the tests pass!" width="1024" height="960">

@@ -1,10 +1,10 @@
-<!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/src/chapters/00-part-1.md -->
+<!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/scr/chapters/part-1/index.md -->
 
 Welcome to the Ember Tutorial!
 
 In this tutorial, we will use Ember to build an application called Super Rentals. This will be a website for browsing interesting places to stay during your next vacation. Check out the [finished app](https://super-rentals-tutorial--ember-super-rentals.netlify.com) to get a sense of the scope of the project.
 
-<img src="/screenshots/08-working-with-data/three-properties@2x.png" alt="The finished Super Rentals app" width="1024" height="1129">
+<img src="/images/tutorial/part-1/working-with-data/three-properties@2x.png" alt="The finished Super Rentals app" width="1024" height="1129">
 
 Along the way, you will learn everything you need to know to build a basic Ember application. If you get stuck at any point during the tutorial, feel free to download <https://github.com/ember-learn/super-rentals/tree/super-rentals-tutorial-output> for a complete working example.
 

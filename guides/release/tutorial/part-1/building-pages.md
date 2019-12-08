@@ -1,12 +1,12 @@
-<!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/src/chapters/02-building-pages.md -->
+<!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/scr/chapters/part-1/building-pages.md -->
 
 In this chapter, you will build the first few pages of your Ember app and set up links between them. By the end of this chapter, you should have two new pages – an about page and a contact page. These pages will be linked to from your landing page:
 
-<img src="/screenshots/02-building-pages/index-with-link@2x.png" alt="The Super Rentals app (homepage) by the end of the chapter" width="1024" height="250">
+<img src="/images/tutorial/part-1/building-pages/index-with-link@2x.png" alt="The Super Rentals app (homepage) by the end of the chapter" width="1024" height="250">
 
-<img src="/screenshots/02-building-pages/about-with-link@2x.png" alt="The Super Rentals app (about page) by the end of the chapter" width="1024" height="274">
+<img src="/images/tutorial/part-1/building-pages/about-with-link@2x.png" alt="The Super Rentals app (about page) by the end of the chapter" width="1024" height="274">
 
-<img src="/screenshots/02-building-pages/contact-with-link@2x.png" alt="The Super Rentals app (contact page) by the end of the chapter" width="1024" height="444">
+<img src="/images/tutorial/part-1/building-pages/contact-with-link@2x.png" alt="The Super Rentals app (contact page) by the end of the chapter" width="1024" height="444">
 
 While building these pages, you will learn about:
 
@@ -18,7 +18,7 @@ While building these pages, you will learn about:
 
 ## Defining Routes
 
-With our [first page](../01-orientation/) down, let's add another one!
+With our [first page](../orientation/) down, let's add another one!
 
 This time, we would like the page to be served on the `/about` URL. In order to do this, we will need to tell Ember about our plan to add a page at that location. Otherwise, Ember will think we have visited an invalid URL!
 
@@ -58,7 +58,7 @@ With that in place, we can create a new `app/templates/about.hbs` template with 
 
 To see this in action, navigate to `http://localhost:4200/about`.
 
-<img src="/screenshots/02-building-pages/about@2x.png" alt="About page" width="1024" height="250">
+<img src="/images/tutorial/part-1/building-pages/about@2x.png" alt="About page" width="1024" height="250">
 
 With that, our second page is done!
 
@@ -111,7 +111,7 @@ Ember comes with strong _conventions_ and sensible defaults—if we were startin
 
 Once you have added the route and the template above, we should have the new page available to us at `http://localhost:4200/getting-in-touch`.
 
-<img src="/screenshots/02-building-pages/contact@2x.png" alt="Contact page" width="1024" height="394">
+<img src="/images/tutorial/part-1/building-pages/contact@2x.png" alt="Contact page" width="1024" height="394">
 
 ## Linking Pages with the `<LinkTo>` Component
 
@@ -180,11 +180,11 @@ However, when clicking on one of these special links, Ember will intercept the c
 
 <!-- TODO: make this a gif instead -->
 
-<img src="/screenshots/02-building-pages/index-with-link@2x.png" alt="Index page after adding the link" width="1024" height="250">
+<img src="/images/tutorial/part-1/building-pages/index-with-link@2x.png" alt="Index page after adding the link" width="1024" height="250">
 
-<img src="/screenshots/02-building-pages/about-with-link@2x.png" alt="About page after adding the link" width="1024" height="274">
+<img src="/images/tutorial/part-1/building-pages/about-with-link@2x.png" alt="About page after adding the link" width="1024" height="274">
 
-<img src="/screenshots/02-building-pages/contact-with-link@2x.png" alt="Contact page after adding the link" width="1024" height="444">
+<img src="/images/tutorial/part-1/building-pages/contact-with-link@2x.png" alt="Contact page after adding the link" width="1024" height="444">
 
 We will learn more about how all of this works soon. In the meantime, go ahead and click on the link in the browser. Did you notice how snappy that was?
 

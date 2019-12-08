@@ -1,8 +1,8 @@
-<!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/src/chapters/08-working-with-data.md -->
+<!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/scr/chapters/part-1/working-with-data.md -->
 
 In this chapter, we will remove the hard-coded data from our `<Rental>` component. By the end, your app would finally be displaying real data that came from the server:
 
-<img src="/screenshots/08-working-with-data/three-properties@2x.png" alt="The Super Rentals app by the end of the chapter" width="1024" height="1129">
+<img src="/images/tutorial/part-1/working-with-data/three-properties@2x.png" alt="The Super Rentals app by the end of the chapter" width="1024" height="1129">
 
 In this chapter, you will learn about:
 
@@ -87,7 +87,7 @@ To test that this is working, let's modify our template and try to render the `t
 
 If we look at our page in the browser, we should see our model data reflected as a new header.
 
-<img src="/screenshots/08-working-with-data/model-header@2x.png" alt="New header using the @model data" width="1024" height="512">
+<img src="/images/tutorial/part-1/working-with-data/model-header@2x.png" alt="New header using the @model data" width="1024" height="512">
 
 Awesome!
 
@@ -164,13 +164,13 @@ By passing in `@model` into the `<Rental>` component as the `@rental` argument, 
 
 Since the model object contains exactly the same data as the previously-hard-coded "Grand Old Mansion", the page should look exactly the same as before the change.
 
-<img src="/screenshots/08-working-with-data/using-model-data@2x.png" alt="New header using the @model data" width="1024" height="512">
+<img src="/images/tutorial/part-1/working-with-data/using-model-data@2x.png" alt="New header using the @model data" width="1024" height="512">
 
 Now, we have one last thing to do: update the tests to reflect this change.
 
 Because component tests are meant to render and test a single component in isolation from the rest of the app, they do not perform any routing, which means we won't have access to the same data returned from the `model` hook.
 
-Therefore, in our `<Rental>` component's test, we will have to feed the data into it some other way. We can do this using the `setProperties` we learned about from the [previous chapter](../07-reusable-components/).
+Therefore, in our `<Rental>` component's test, we will have to feed the data into it some other way. We can do this using the `setProperties` we learned about from the [previous chapter](../reusable-components/).
 
 ```js { data-filename="tests/integration/components/rental-test.js" data-diff="-10,+11,+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28" }
 import { module, test } from 'qunit';
@@ -216,7 +216,7 @@ module('Integration | Component | rental', function(hooks) {
 
 Notice that we also need to update the invocation of the `<Rental>` component in the `render` function call to also have a `@rental` argument passed into it. If we run our tests now, they should all pass!
 
-<img src="/screenshots/08-working-with-data/pass@2x.png" alt="All our tests are passing" width="1024" height="768">
+<img src="/images/tutorial/part-1/working-with-data/pass@2x.png" alt="All our tests are passing" width="1024" height="768">
 
 ## Mocking Server Data with Static JSON Files
 
@@ -246,7 +246,7 @@ public
 
 You can verify that everything is working correctly by navigating to `http://localhost:4200/api/rentals.json`.
 
-<img src="/screenshots/08-working-with-data/data@2x.png" alt="Our server serving up our rental properties as JSON data" width="1024" height="512">
+<img src="/images/tutorial/part-1/working-with-data/data@2x.png" alt="Our server serving up our rental properties as JSON data" width="1024" height="512">
 
 Awesome! Our "server" is now up and running, serving up our rental properties as JSON data.
 
@@ -358,7 +358,7 @@ The rental property objects contained in the array also have a slightly differen
 
 There's one more key difference here, which perhaps only those with very sharp eyes will be able to catch: the data coming from the server is missing the `type` property, which previously existed on our hard-coded model object. The `type` property could either be `"Standalone"` or `"Community"`, depending on the type of rental property, which is required by our `<Rental>` component.
 
-In [Part 2](../10-part-2/) of this tutorial, we will learn about a more convenient way to consume data in the JSON:API format. For now, we can just fix up the data and deal with these differences in formats ourselves.
+In [Part 2](../../part-2/) of this tutorial, we will learn about a more convenient way to consume data in the JSON:API format. For now, we can just fix up the data and deal with these differences in formats ourselves.
 
 We can handle it all in our model hook:
 
@@ -429,10 +429,10 @@ Inside of the block we have access to the item of the _current_ iteration with t
 
 Now, let's go over to our browser and see what our index route looks like with this change.
 
-<img src="/screenshots/08-working-with-data/three-properties@2x.png" alt="Three different rental properties" width="1024" height="1129">
+<img src="/images/tutorial/part-1/working-with-data/three-properties@2x.png" alt="Three different rental properties" width="1024" height="1129">
 
 Hooray! Finally we're seeing different rental properties in our list. And we got to play with `fetch` and write a loop. Pretty productive, if you ask me.
 
 Better yet, all of our tests are still passing too!
 
-<img src="/screenshots/08-working-with-data/pass-2@2x.png" alt="All our tests are passing" width="1024" height="768">
+<img src="/images/tutorial/part-1/working-with-data/pass-2@2x.png" alt="All our tests are passing" width="1024" height="768">

@@ -1,4 +1,4 @@
-<!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/src/chapters/13-ember-data.md -->
+<!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/scr/chapters/part-2/ember-data.md -->
 
 In this chapter, we will work on removing some code duplication in our route handlers, by switching to using Ember Data to manage our data. The end result looks exactly the same before:
 
@@ -149,7 +149,7 @@ We can access these attributes for an instance of `RentalModel` using standard d
 
 Model classes in Ember Data are no different than any other classes we've worked with so far, in that they allow for a convenient place for adding custom behavior. We took advantage of this feature to move our `type` logic (which is a major source of unnecessary duplication in our route handlers) into a getter on our model class. Once we have everything working here, we will go back to clean that up.
 
-Attributes declared with the `@attr` decorator work with the auto-track feature (which we learned about [in a previous chapter](../07-reusable-components/)). Therefore, we are free to reference any model attributes in our getter (`this.category`), and Ember will know when to invalidate its result.
+Attributes declared with the `@attr` decorator work with the auto-track feature (which we learned about [in a previous chapter](../../part-1/reusable-components/)). Therefore, we are free to reference any model attributes in our getter (`this.category`), and Ember will know when to invalidate its result.
 
 ## Testing Models
 
@@ -226,7 +226,7 @@ It is worth pointing out that Ember Data provides a _`store` service_, also know
 
 Running the tests in the browser confirms that everything is working as intended:
 
-<img src="/screenshots/13-ember-data/pass-1@2x.png" alt="All the tests pass!" width="1024" height="1024">
+<img src="/images/tutorial/part-2/ember-data/pass-1@2x.png" alt="All the tests pass!" width="1024" height="1024">
 
 ## Loading Models in Routes
 
@@ -308,7 +308,7 @@ The Ember Data store acts as a kind of intermediary between our app and the serv
 
 That's a lot of theory, but is this going to work in our app? Let's run the tests and find out!
 
-<img src="/screenshots/13-ember-data/fail-1@2x.png" alt="A few tests failed!" width="1024" height="960">
+<img src="/images/tutorial/part-2/ember-data/fail-1@2x.png" alt="A few tests failed!" width="1024" height="960">
 
 Darn, there were a couple of failing tests! At the same time, it's great that we were made aware of the potential problems – yay, regression tests!
 
@@ -366,12 +366,12 @@ Adding the `.json` extension is a bit less common, and doesn't have a declarativ
 
 With our adapter in place, all our tests should pass again.
 
-<img src="/screenshots/13-ember-data/pass-2@2x.png" alt="Once again, all the tests are passing again!" width="1024" height="1024">
+<img src="/images/tutorial/part-2/ember-data/pass-2@2x.png" alt="Once again, all the tests are passing again!" width="1024" height="1024">
 
 The UI works exactly the same as before as well, just with much less code!
 
-<img src="/screenshots/13-ember-data/homepage@2x.png" alt="The homepage works exactly the same as before, but with much less code!" width="1024" height="1129">
+<img src="/images/tutorial/part-2/ember-data/homepage@2x.png" alt="The homepage works exactly the same as before, but with much less code!" width="1024" height="1129">
 
-<img src="/screenshots/13-ember-data/detailed@2x.png" alt="The details page works exactly the same as before, but with much less code!" width="1024" height="1381">
+<img src="/images/tutorial/part-2/ember-data/detailed@2x.png" alt="The details page works exactly the same as before, but with much less code!" width="1024" height="1381">
 
 As we mentioned earlier, Ember Data offers many, many features (like managing the _relationships_ between different models) and there's a lot more we can learn about it. We are just scratching the surface here. If you want to learn more about Ember Data, check out its own dedicated section in the guides!
