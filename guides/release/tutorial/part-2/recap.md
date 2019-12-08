@@ -1,10 +1,10 @@
-<!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/src/chapters/15-part-2-recap.md -->
+<!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/scr/chapters/part-2/15-part-2-recap.md -->
 
 Congratulations, you finished the second part of the tutorial!
 
 There was a lot of concepts to cover in part two. To recap, here is what you learned:
 
-<h3><a href="../11-route-params/">Chapter 11</a></h3>
+<h3><a href="../route-params/">Chapter 11</a></h3>
 
 - Routes with dynamic segments
 - Links with dynamic segments
@@ -12,14 +12,14 @@ There was a lot of concepts to cover in part two. To recap, here is what you lea
 - Accessing parameters from dynamic segments
 - Sharing common setup code between tests
 
-<h3><a href="../12-service-injection/">Chapter 12</a></h3>
+<h3><a href="../service-injection/">Chapter 12</a></h3>
 
 - Splattributes and the `class` attribute
 - The router service
 - Ember services vs. global variables
 - Mocking services in tests
 
-<h3><a href="../13-ember-data/">Chapter 13</a></h3>
+<h3><a href="../ember-data/">Chapter 13</a></h3>
 
 - Ember Data models
 - Testing models
@@ -27,7 +27,7 @@ There was a lot of concepts to cover in part two. To recap, here is what you lea
 - The Ember Data store
 - Working with adapters and serializers
 
-<h3><a href="../14-provider-components/">Chapter 14</a></h3>
+<h3><a href="../provider-components/">Chapter 14</a></h3>
 
 - Using Ember's built-in `<Input>` component
 - The provider component pattern

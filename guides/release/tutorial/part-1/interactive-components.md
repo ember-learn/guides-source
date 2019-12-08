@@ -1,12 +1,12 @@
-<!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/src/chapters/06-interactive-components.md -->
+<!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/scr/chapters/part-1/interactive-components.md -->
 
 In this chapter, you will add interactivity to the page, allowing the user to click an image to enlarge or shrink it:
 
 <!-- TODO: make this a gif instead -->
 
-<img src="/screenshots/06-interactive-components/rental-image-default@2x.png" alt="The Super Rentals app by the end of the chapter (default image size)" width="1024" height="1129">
+<img src="/images/tutorial/part-1/interactive-components/rental-image-default@2x.png" alt="The Super Rentals app by the end of the chapter (default image size)" width="1024" height="1129">
 
-<img src="/screenshots/06-interactive-components/rental-image-large@2x.png" alt="The Super Rentals app by the end of the chapter (large image size)" width="1024" height="1500">
+<img src="/images/tutorial/part-1/interactive-components/rental-image-large@2x.png" alt="The Super Rentals app by the end of the chapter (large image size)" width="1024" height="1500">
 
 While doing so, you will learn about:
 
@@ -43,7 +43,7 @@ This generated a JavaScript file with the same name as our component's template 
     <div class="cta-note-body">
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
-        <p><code>@glimmer/component</code>, or <em>Glimmer component</em>, is one of the several component classes available to use. They are a great starting point whenever you want to add behavior to your components. In this tutorial, we will be using Glimmer components exclusively.</p>        
+        <p><code>@glimmer/component</code>, or <em>Glimmer component</em>, is one of the several component classes available to use. They are a great starting point whenever you want to add behavior to your components. In this tutorial, we will be using Glimmer components exclusively.</p>
 <p>In general, Glimmer components should be used whenever possible. However, you may also see <code>@ember/components</code>, or <em>classic components</em>, used in older apps. You can tell them apart by looking at their import path (which is helpful for looking up the respective documentation, as they have different and incompatible APIs).</p>
       </div>
     </div>
@@ -91,7 +91,7 @@ In the template, we have access to the component's instance variables. The `{{#i
 
 We can verify this works by temporarily changing the initial value in our JavaScript file. If we change `app/components/rental/image.js` to initialize `this.isLarge = true;` in the constructor, we should see the large version of the property image in the browser. Cool!
 
-<img src="/screenshots/06-interactive-components/is-large-true@2x.png" alt="&lt;Rental::Image&gt; with this.isLarge set to true" width="1024" height="1500">
+<img src="/images/tutorial/part-1/interactive-components/is-large-true@2x.png" alt="&lt;Rental::Image&gt; with this.isLarge set to true" width="1024" height="1500">
 
 Once we've tested this out, we can change `this.isLarge` back to `false`.
 
@@ -198,9 +198,9 @@ With that, we have created our first _interactive_ component. Go ahead and try i
 
 <!-- TODO: make this a gif instead -->
 
-<img src="/screenshots/06-interactive-components/rental-image-default@2x.png" alt="&lt;Rental::Image&gt; (default size)" width="1024" height="1129">
+<img src="/images/tutorial/part-1/interactive-components/rental-image-default@2x.png" alt="&lt;Rental::Image&gt; (default size)" width="1024" height="1129">
 
-<img src="/screenshots/06-interactive-components/rental-image-large@2x.png" alt="&lt;Rental::Image&gt; (large size)" width="1024" height="1500">
+<img src="/images/tutorial/part-1/interactive-components/rental-image-large@2x.png" alt="&lt;Rental::Image&gt; (large size)" width="1024" height="1500">
 
 ## Testing User Interactions
 
@@ -255,7 +255,7 @@ module('Integration | Component | rental/image', function(hooks) {
 });
 ```
 
-<img src="/screenshots/06-interactive-components/pass@2x.png" alt="Tests passing with the new &lt;Rental::Image&gt; test" width="1024" height="512">
+<img src="/images/tutorial/part-1/interactive-components/pass@2x.png" alt="Tests passing with the new &lt;Rental::Image&gt; test" width="1024" height="512">
 
 Let's clean up our template before moving on. We introduced a lot of duplication when we added the conditional in the template. If we look closely, the only things that are different between the two blocks are:
 
@@ -304,4 +304,4 @@ Whether or not this is an improvement in the clarity of our code is mostly a mat
 
 Run the test suite one last time to confirm our refactor didn't break anything unexpectedly, and we will be ready for the next challenge!
 
-<img src="/screenshots/06-interactive-components/pass-2@2x.png" alt="Tests still passing after the refactor" width="1024" height="512">
+<img src="/images/tutorial/part-1/interactive-components/pass-2@2x.png" alt="Tests still passing after the refactor" width="1024" height="512">

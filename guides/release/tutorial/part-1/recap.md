@@ -1,12 +1,12 @@
-<!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/src/chapters/09-part-1-recap.md -->
+<!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/scr/chapters/part-1/recap.md -->
 
 Congratulations, you finished the first part of this tutorial!
 
 It was quite a journey! To recap, here is what you have learned:
 
-<!-- Using ### [Chapter 1](../01-orientation/) triggers some sort of rendering bug -->
+<!-- Using ### [Chapter 1](../orientation/) triggers some sort of rendering bug -->
 
-<h3><a href="../01-orientation/">Chapter 1</a></h3>
+<h3><a href="../orientation/">Chapter 1</a></h3>
 
 - Installing Ember CLI
 - Creating a new Ember app with Ember CLI
@@ -14,7 +14,7 @@ It was quite a journey! To recap, here is what you have learned:
 - Editing files and live reload
 - Working with HTML, CSS and assets in an Ember app
 
-<h3><a href="../02-building-pages/">Chapter 2</a></h3>
+<h3><a href="../building-pages/">Chapter 2</a></h3>
 
 - Defining routes
 - Using route templates
@@ -22,7 +22,7 @@ It was quite a journey! To recap, here is what you have learned:
 - Linking pages with the `<LinkTo>` component
 - Passing arguments and attributes to components
 
-<h3><a href="../03-automated-testing/">Chapter 3</a></h3>
+<h3><a href="../automated-testing/">Chapter 3</a></h3>
 
 - The purpose of automated testing
 - Writing acceptance tests
@@ -31,7 +31,7 @@ It was quite a journey! To recap, here is what you have learned:
 - Working with Ember's test helpers
 - Practicing the testing workflow
 
-<h3><a href="../04-component-basics/">Chapter 4</a></h3>
+<h3><a href="../component-basics/">Chapter 4</a></h3>
 
 - Extracting markup into components
 - Invoking components
@@ -41,14 +41,14 @@ It was quite a journey! To recap, here is what you have learned:
 - Writing component tests
 - Using the application template and `{{outlet}}`s
 
-<h3><a href="../05-more-about-components/">Chapter 5</a></h3>
+<h3><a href="../more-about-components/">Chapter 5</a></h3>
 
 - Generating components
 - Organizing code with namespaced components
 - Forwarding HTML attributes with `...attributes`
 - Determining the appropriate amount of test coverage
 
-<h3><a href="../06-interactive-components/">Chapter 6</a></h3>
+<h3><a href="../interactive-components/">Chapter 6</a></h3>
 
 - Adding behavior to components with classes
 - Accessing instance states from templates
@@ -58,7 +58,7 @@ It was quite a journey! To recap, here is what you have learned:
 - Invoking element modifiers
 - Testing user interactions
 
-<h3><a href="../07-reusable-components/">Chapter 7</a></h3>
+<h3><a href="../reusable-components/">Chapter 7</a></h3>
 
 - Managing application-level configurations
 - Parameterizing components with arguments
@@ -68,7 +68,7 @@ It was quite a journey! To recap, here is what you have learned:
 - Refactoring with getters and auto-track
 - Getting JavaScript values into the test context
 
-<h3><a href="../08-working-with-data/">Chapter 8</a></h3>
+<h3><a href="../working-with-data/">Chapter 8</a></h3>
 
 - Working with route files
 - Returning local data from the model hook

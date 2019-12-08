@@ -1,8 +1,8 @@
-<!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/src/chapters/03-automated-testing.md -->
+<!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/scr/chapters/part-1/automated-testing.md -->
 
 In this chapter, you will use Ember's built-in testing framework to write some automated tests for your app. By the end of this chapter, we will have an automated test suite that we can run to ensure our app is working correctly:
 
-<img src="/screenshots/03-automated-testing/pass-2@2x.png" alt="The Super Rentals test suite by the end of the chapter" width="1024" height="512">
+<img src="/images/tutorial/part-1/automated-testing/pass-2@2x.png" alt="The Super Rentals test suite by the end of the chapter" width="1024" height="512">
 
 In the process, you will learn about:
 
@@ -119,13 +119,13 @@ If you watch really carefully, you can see our test robot roaming around our app
 
 <!-- TODO: make this a gif instead -->
 
-<img src="/screenshots/03-automated-testing/pass@2x.png" alt="All tests passing" width="1024" height="512">
+<img src="/images/tutorial/part-1/automated-testing/pass@2x.png" alt="All tests passing" width="1024" height="512">
 
 It happens really quickly though—blink and you might miss it! In fact, I had to slow this animation down by a hundred times just so you can see it in action. I told you the robot has really, really fast hands!
 
 As much as I enjoy watching this robot hard at work, the important thing here is that the test we wrote has _passed_, meaning everything is working exactly as we expect and the test UI is all green and happy. If you want, you can go to `index.hbs`, delete the `<LinkTo>` component and see what things look like when we have _a failing test_.
 
-<img src="/screenshots/03-automated-testing/fail@2x.png" alt="A failing test" width="1024" height="768">
+<img src="/images/tutorial/part-1/automated-testing/fail@2x.png" alt="A failing test" width="1024" height="768">
 
 Don't forget to put that line back in when you are done!
 
@@ -181,7 +181,7 @@ module('Acceptance | super rentals', function(hooks) {
 
 As with the development server, the test UI should automatically reload and rerun the entire test suite as you save the files. It is recommended that you keep this page open as you develop your app. That way, you will get immediate feedback if you accidentally break something.
 
-<img src="/screenshots/03-automated-testing/pass-2@2x.png" alt="Tests still passing with the new tests" width="1024" height="512">
+<img src="/images/tutorial/part-1/automated-testing/pass-2@2x.png" alt="Tests still passing with the new tests" width="1024" height="512">
 
 For the rest of the tutorial, we will continue to add more automated tests as we develop new features. Testing is optional but highly recommended. Tests don't affect the functionality of your app, they just protect it from _regressions_, which is just a fancy way of saying "accidental breakages."
 

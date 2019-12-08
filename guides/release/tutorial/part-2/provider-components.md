@@ -1,4 +1,4 @@
-<!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/src/chapters/14-provider-components.md -->
+<!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/scr/chapters/part-2/provider-components.md -->
 
 In this chapter, we'll work on adding a new search feature, and refactor our `index.hbs` template into a new component along the way. We'll learn about a new pattern for passing data around between components, too! Once we're done, our page will look like this:
 
@@ -40,7 +40,7 @@ Well, we can start simple. Before we worry about implementing the "search" part 
 
 Now if we refresh the UI, it has an `<input>` element on the page.
 
-<img src="/screenshots/14-provider-components/homepage-with-inert-search@2x.png" alt="The homepage with a search box, but it doesn't work yet." width="1024" height="1327">
+<img src="/images/tutorial/part-2/provider-components/homepage-with-inert-search@2x.png" alt="The homepage with a search box, but it doesn't work yet." width="1024" height="1327">
 
 Awesome, one step done. Now, this input looks great, but it doesn't actually _do_ anything.
 
@@ -97,7 +97,7 @@ Remember the small change we made in the markup when we extracted our `<Rentals>
 
 Let's check our UI as well to make sure that we didn't break anything during this refactor...
 
-<img src="/screenshots/14-provider-components/homepage-with-rentals-component@2x.png" alt="The homepage looks exactly the same as before!" width="1024" height="1327">
+<img src="/images/tutorial/part-2/provider-components/homepage-with-rentals-component@2x.png" alt="The homepage looks exactly the same as before!" width="1024" height="1327">
 
 Awesome, it looks exactly the same!
 
@@ -178,7 +178,7 @@ module('Integration | Component | rentals', function(hooks) {
 
 Now, if we try running our tests, they should all pass after making this change.
 
-<img src="/screenshots/14-provider-components/pass-1@2x.png" alt="The new test is passing." width="1024" height="1024">
+<img src="/images/tutorial/part-2/provider-components/pass-1@2x.png" alt="The new test is passing." width="1024" height="1024">
 
 ## Using Ember's `<Input>`
 
@@ -253,7 +253,7 @@ export default class RentalsFilterComponent extends Component {
 
 In the `<Rentals::Filter>` component class, we have created a getter to do the work of filtering through our rentals based on two arguments: `@rentals` and `@query`. Inside of our getter function, we have these arguments accessible to us from `this.args`.
 
-In our component template, we are not actually _rendering_ anything. Instead, we're yielding to something, using the `{{yield}}` keyword, a syntax that [we have seen before](../04-component-basics/). As we might recall, the purpose of `{{yield}}` is to render the _block_ that is passed in by the component's _caller_, which is the thing that is invoking the current component (a template or another component, for example). But in this specific case, we don't just have a `{{yield}}` keyword. Instead, we have `this.results` _inside_ of our `{{yield}}` keyword. What is that doing, exactly?
+In our component template, we are not actually _rendering_ anything. Instead, we're yielding to something, using the `{{yield}}` keyword, a syntax that [we have seen before](../../part-1/component-basics/). As we might recall, the purpose of `{{yield}}` is to render the _block_ that is passed in by the component's _caller_, which is the thing that is invoking the current component (a template or another component, for example). But in this specific case, we don't just have a `{{yield}}` keyword. Instead, we have `this.results` _inside_ of our `{{yield}}` keyword. What is that doing, exactly?
 
 Well, in order to answer this question, let's look at how the data that we're yielding is being used in the `<Rentals>` component.
 
@@ -312,7 +312,7 @@ This is called the _provider component pattern_, which we see in action with one
 
 Okay, now that we have a better sense of which component is rendering what and the theory behind why all of this is happening, let's answer the big unanswered question: does this even work? If we try out our search box in the UI, what happens?
 
-<img src="/screenshots/14-provider-components/filtered-results@2x.png" alt="Trying out the search box." width="1024" height="797">
+<img src="/images/tutorial/part-2/provider-components/filtered-results@2x.png" alt="Trying out the search box." width="1024" height="797">
 
 Hooray, it works! Awesome. Now that we've tried this out manually in the UI, let's write a tests for this new behavior as well.
 
@@ -426,4 +426,4 @@ Great! In the process of adding this test, we'll notice that we also extracted o
   </div>
 </div>
 
-<img src="/screenshots/14-provider-components/pass-2@2x.png" alt="The new test is passing." width="1024" height="1024">
+<img src="/images/tutorial/part-2/provider-components/pass-2@2x.png" alt="The new test is passing." width="1024" height="1024">

@@ -1,8 +1,8 @@
-<!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/src/chapters/07-reusable-components.md -->
+<!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/scr/chapters/part-1/reusable-components.md -->
 
 The last missing feature for the `<Rental>` component is a map to show the location of the rental, which is what we're going to work on next:
 
-<img src="/screenshots/07-reusable-components/three-old-mansions@2x.png" alt="The Super Rentals app by the end of the chapter" width="1024" height="1129">
+<img src="/images/tutorial/part-1/reusable-components/three-old-mansions@2x.png" alt="The Super Rentals app by the end of the chapter" width="1024" height="1129">
 
 While adding the map, you will learn about:
 
@@ -102,7 +102,7 @@ You can stop the server by finding the terminal window where `ember server` is r
 
 ```shell
 $ ember server
-building... 
+building...
 
 Build successful (13286ms) – Serving on http://localhost:4200/
 ```
@@ -175,7 +175,7 @@ Then we have an `<img>` tag to request and render the static map image from Mapb
 
 Our template contains several values that don't yet exist—`@lat`, `@lng`, `@zoom`, `@width`, and `@height`. These are _arguments_ to the `<Map>` component that we will supply when invoking it.
 
-By _parameterizing_ our component using arguments, we made a reusable component that can be invoked from different parts of the app and customized to meet the needs for those specific contexts. We have already seen this in action when using the `<LinkTo>` component [earlier](../02-building-pages/); we had to specify a `@route` argument so that it knew what page to navigate to.
+By _parameterizing_ our component using arguments, we made a reusable component that can be invoked from different parts of the app and customized to meet the needs for those specific contexts. We have already seen this in action when using the `<LinkTo>` component [earlier](../building-pages/); we had to specify a `@route` argument so that it knew what page to navigate to.
 
 We supplied a reasonable default value for the `alt` attribute based on the values of the `@lat` and `@lng` arguments. You may notice that we are directly _interpolating_ values into the `alt` attribute's value. Ember will automatically concatenate these interpolated values into a final string value for us, including doing any necessary HTML-escaping.
 
@@ -275,7 +275,7 @@ Note that the `hasAttribute` test helper from `qunit-dom` supports using _regula
 
 _Fingers crossed..._ Let's run our tests.
 
-<img src="/screenshots/07-reusable-components/pass@2x.png" alt="Tests passing with the new &lt;Map&gt; tests" width="1024" height="768">
+<img src="/images/tutorial/part-1/reusable-components/pass@2x.png" alt="Tests passing with the new &lt;Map&gt; tests" width="1024" height="768">
 
 Hey, all the tests passed! But does that mean it actually works in practice? Let's find out by invoking the `<Map>` component from the `<Rental>` component's template:
 
@@ -313,7 +313,7 @@ Hey, all the tests passed! But does that mean it actually works in practice? Let
 
 Hey! That's a map!
 
-<img src="/screenshots/07-reusable-components/three-old-mansions@2x.png" alt="Three Grand Old Mansions" width="1024" height="1129">
+<img src="/images/tutorial/part-1/reusable-components/three-old-mansions@2x.png" alt="Three Grand Old Mansions" width="1024" height="1129">
 
 <!-- TODO: https://github.com/ember-cli/ember-cli/issues/8782 -->
 
@@ -410,7 +410,7 @@ export default class MapComponent extends Component {
 
 Much nicer! And all of our tests still pass!
 
-<img src="/screenshots/07-reusable-components/pass-2@2x.png" alt="Tests passing after the src getter refactor" width="1024" height="768">
+<img src="/images/tutorial/part-1/reusable-components/pass-2@2x.png" alt="Tests passing after the src getter refactor" width="1024" height="768">
 
 Note that we did not mark our getter as `@tracked`. Unlike instance variables, getters cannot be "assigned" a new value directly, so it does not make sense for Ember to monitor them for changes.
 
@@ -535,4 +535,4 @@ Instead, `this` refers to a special _test context_ object, which we have access 
 
 With all our tests passing, we are ready to move on!
 
-<img src="/screenshots/07-reusable-components/pass-3@2x.png" alt="All our tests are passing" width="1024" height="768">
+<img src="/images/tutorial/part-1/reusable-components/pass-3@2x.png" alt="All our tests are passing" width="1024" height="768">
