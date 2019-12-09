@@ -1,8 +1,10 @@
-<!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/scr/chapters/part-2/provider-components.md -->
+<!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/src/markdown/tutorial/part-2/12-provider-components.md -->
 
 In this chapter, we'll work on adding a new search feature, and refactor our `index.hbs` template into a new component along the way. We'll learn about a new pattern for passing data around between components, too! Once we're done, our page will look like this:
 
-<!-- TODO: add screen shot of the end state -->
+<!-- TODO: make this a gif instead -->
+
+<img src="/images/tutorial/part-2/provider-components/filtered-results@2x.png" alt="The Super Rentals app by the end of the chapter" width="1024" height="797">
 
 During this refactor, you will learn about:
 

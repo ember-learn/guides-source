@@ -1,4 +1,4 @@
-<!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/scr/chapters/part-1/automated-testing.md -->
+<!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/src/markdown/tutorial/part-1/03-automated-testing.md -->
 
 In this chapter, you will use Ember's built-in testing framework to write some automated tests for your app. By the end of this chapter, we will have an automated test suite that we can run to ensure our app is working correctly:
 

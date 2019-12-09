@@ -1,4 +1,4 @@
-<!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/scr/chapters/part-1/working-with-data.md -->
+<!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/src/markdown/tutorial/part-1/08-working-with-data.md -->
 
 In this chapter, we will remove the hard-coded data from our `<Rental>` component. By the end, your app would finally be displaying real data that came from the server:
 
@@ -358,7 +358,7 @@ The rental property objects contained in the array also have a slightly differen
 
 There's one more key difference here, which perhaps only those with very sharp eyes will be able to catch: the data coming from the server is missing the `type` property, which previously existed on our hard-coded model object. The `type` property could either be `"Standalone"` or `"Community"`, depending on the type of rental property, which is required by our `<Rental>` component.
 
-In [Part 2](../../part-2/) of this tutorial, we will learn about a more convenient way to consume data in the JSON:API format. For now, we can just fix up the data and deal with these differences in formats ourselves.
+In [Part 2](../10-part-2/) of this tutorial, we will learn about a more convenient way to consume data in the JSON:API format. For now, we can just fix up the data and deal with these differences in formats ourselves.
 
 We can handle it all in our model hook:
 

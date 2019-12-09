@@ -1,8 +1,10 @@
-<!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/scr/chapters/part-2/service-injection.md -->
+<!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/src/markdown/tutorial/part-2/10-service-injection.md -->
 
 As promised, we will now work on implementing the share button!
 
-<!-- TODO: add screen shot of the end state -->
+<!-- TODO: make this a gif instead -->
+
+<img src="/images/tutorial/part-2/service-injection/suggested-tweet@2x.png" alt="The working share button by the end of the chapter" width="1024" height="449">
 
 While adding the share button, you will learn about:
 
