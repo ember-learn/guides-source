@@ -1,4 +1,4 @@
-<!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/scr/chapters/part-1/orientation.md -->
+<!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/src/markdown/tutorial/part-1/01-orientation.md -->
 
 In this chapter, you will install _Ember CLI_, use it to generate a new Ember project, and add some basic templates and styles to your new app. By the end of this chapter, you should have a landing page with Professor Tomster's cute little face featured on it:
 
@@ -134,7 +134,7 @@ Ember CLI comes with a lot of different commands for a variety of development ta
 
 ```shell
 $ ember server
-building...
+building... 
 
 Build successful (9761ms) – Serving on http://localhost:4200/
 ```
