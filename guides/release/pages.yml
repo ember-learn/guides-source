@@ -16,8 +16,8 @@
       url: "quick-start"
     - title: "Working with HTML, CSS, and JavaScript"
       url: "working-with-html-css-and-javascript"
-    - title: "Overview of an Ember App"
-      url: "overview-of-an-ember-app"
+    - title: "Anatomy of an Ember App"
+      url: "anatomy-of-an-ember-app"
 - title: "Tutorial"
   url: "tutorial"
   pages:
