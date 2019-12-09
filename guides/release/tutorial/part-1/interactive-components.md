@@ -1,4 +1,4 @@
-<!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/scr/chapters/part-1/interactive-components.md -->
+<!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/src/markdown/tutorial/part-1/06-interactive-components.md -->
 
 In this chapter, you will add interactivity to the page, allowing the user to click an image to enlarge or shrink it:
 
@@ -43,7 +43,7 @@ This generated a JavaScript file with the same name as our component's template 
     <div class="cta-note-body">
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
-        <p><code>@glimmer/component</code>, or <em>Glimmer component</em>, is one of the several component classes available to use. They are a great starting point whenever you want to add behavior to your components. In this tutorial, we will be using Glimmer components exclusively.</p>
+        <p><code>@glimmer/component</code>, or <em>Glimmer component</em>, is one of the several component classes available to use. They are a great starting point whenever you want to add behavior to your components. In this tutorial, we will be using Glimmer components exclusively.</p>        
 <p>In general, Glimmer components should be used whenever possible. However, you may also see <code>@ember/components</code>, or <em>classic components</em>, used in older apps. You can tell them apart by looking at their import path (which is helpful for looking up the respective documentation, as they have different and incompatible APIs).</p>
       </div>
     </div>
