@@ -1,21 +1,19 @@
 Ember is a framework for building applications that run in the browser, which
-means that they are made with HTML, CSS, and JavaScript. You don't need to be an
-expert in any of these technologies to write an Ember app, but it's good to have
-some basic working knowledge of them in order to be able to work with Ember, and
-to work through the guides.
+means that they are made with HTML, CSS, and JavaScript. It is very helpful to
+be familiar with these technologies. If you find yourself getting stuck or
+confused as you learn Ember, come back to this page and see if there is a
+general topic below that you could explore.
 
 ## HTML
 
 Hypertext Markup Language (HTML) is a language for specifying the layout of web
-pages. It is not a _programming_ language; it is a markup language that defines
-the structure of your content. Ember provides a templating language that extends
-HTML and provides tools for making that structure dynamic.
+pages. It is a markup language that defines the structure of your content
+declaratively, which makes it very powerful. Ember provides a templating
+language that extends HTML and provides tools for making that structure dynamic.
 
-If you're new to HTML, we recommend [Mozilla's HTML Tutorial][html-guide] is
-fairly comprehensive, and the MDN is one of the best resources for learning
-about web APIs.
-
-[html-guide]: https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/HTML_basics
+If you're new to HTML, we recommend [Mozilla's HTML Tutorial](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/HTML_basics)
+is fairly comprehensive, and the MDN site is one of the best resources for
+learning about web APIs.
 
 ## CSS
 
@@ -23,33 +21,33 @@ CSS (Cascading Style Sheets) are used to style HTML. While HTML lays out the
 basic structure, CSS provides the rules for how that structure should display in
 the browser.
 
-If you're new to CSS, we recommend [the MDN guide for learning it][css-guide],
+If you're new to CSS, we recommend [the MDN guide for learning it](https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps),
 as it is fairly comprehensive and up to date.
-
-[css-guide]: https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps
 
 ## JavaScript
 
-JavaScript is the primary scripting language of the web. You don't need to be an
-expert in JavaScript to begin using Ember, but it helps to have some general
-programming knowledge as well as some basic knowledge of JavaScript and how it
-differs from other languages.
+JavaScript is the primary scripting language of the web. Most Ember apps have
+some amount of JavaScript code in them.
+
+Since Ember is a template-oriented framework, not all developers need to
+use JavaScript when working on Ember apps. Some developers may be more
+focused on the structure of an app's templates, its styles, or the
+accessibility an app. However, it's good to have some
+general knowledge of JavaScript for the places where it is used.
 
 If you're new to JavaScript, here are some excellent introductory materials:
 
-- [Mozilla's JavaScript Tutorial][mdn-js-guide] is pretty comprehensive, and the
-  MDN documentation is the go-to source for looking JavaScript and web APIs.
-- [javascript.info][js-info-guide] is a detailed interactive guide that takes
-  you through from the basics to the details. This one is pretty good for
-  beginners with no programming experience, since it starts from scratch and
+- [Mozilla's JavaScript Tutorial](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript)
+  is pretty comprehensive, and the MDN documentation is the go-to source for
+  learning about JavaScript and web APIs.
+- [javascript.info](https://javascript.info) is a detailed interactive guide
+  that takes you through from the basics to the details. This one is pretty good
+  for beginners with no programming experience, since it starts from scratch and
   ramps up.
-- [ES6 for humans][es6-for-humans] is a great resource if you're already
-  familiar with JavaScript in general, but haven't had a chance to get to know
-  some of its latest features that were finalized in 2015.
-
-[mdn-js-guide]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript
-[js-info-guide]: https://javascript.info
-[es6-for-humans]: https://github.com/metagrover/ES6-for-humans
+- [ES6 for humans](https://github.com/metagrover/ES6-for-humans) is a great
+  resource if you're already familiar with JavaScript in general, but haven't
+  had a chance to get to know some of its latest features that were finalized in
+  2015.
 
 We recommend familiarizing yourself with the following concepts in particular to
 make the most out of these guides and of Ember:
@@ -59,28 +57,21 @@ make the most out of these guides and of Ember:
   details on them.
 * **Modules** - you will better understand [Ember CLI's](https://ember-cli.com/)
   project structure and import paths if you are comfortable with
-  [JavaScript Modules][modules-guide].
+  [JavaScript Modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules).
 * **Events** - The native way to deal with user input in browser based web
   applications. Events are not part of the language of JavaScript itself, but
   they are part of the browser environment that JavaScript runs in, and they are
-  used commonly in Ember. You can read the [MDN introduction to events][events-guide]
+  used commonly in Ember. You can read the [MDN introduction to events](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events)
   for more details.
 * **Promises** - the native way to deal with asynchrony in your JavaScript code.
-  See the relevant [Mozilla Developer Network][promises-guide] section. In
-  addition, modern [`async/await` function syntax][async-await-guide] is good to
-  know.
-
-[modules-guide]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules
-[events-guide]: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events
-[promises-guide]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
-[async-await-guide]: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Async_await
+  See the relevant [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+  section. In addition, modern [`async/await` function syntax](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Async_await)
+  is good to know.
 
 ## JavaScript Classes
 
-Ember uses [JavaScript classes][classes-reference] for many of its constructs,
-such as Components, Routes, Services, and more:
-
-[classes-reference]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes
+Ember uses [JavaScript classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
+for many of its constructs, such as Components, Routes, Services, and more:
 
 ```js
 export default class PersonController extends Controller {
@@ -93,14 +84,11 @@ export default class PersonController extends Controller {
 }
 ```
 
-Some of the features that Ember relies on, such as [class fields][class-fields]
-and [decorators][decorators-proposal] have not yet been fully finalized in
-JavaScript just yet, so we'll cover these here with the assumption that you've
-had a chance to familiarize yourself with classes before. If you haven't, you
-can also check out [our detailed class primer](../../in-depth-topics/native-classes-in-depth/).
-
-[class-fields]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes#Field_declarations
-[decorators-proposal]: https://github.com/tc39/proposal-decorators
+Some of the features that Ember relies on, such as [class fields](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes#Field_declarations)
+and [decorators](https://github.com/tc39/proposal-decorators) have not yet been
+fully finalized in JavaScript just yet, so we'll cover these here with the
+assumption that you've had a chance to familiarize yourself with classes before.
+If you haven't, you can also check out [our detailed class primer](../../in-depth-topics/native-classes-in-depth/).
 
 ### Fields
 
@@ -247,22 +235,18 @@ for more information on them.
 
 ## Cross-Browser Support
 
-As you may already know, or as you'll find out as you learn more about it,
-JavaScript is an ever-evolving language based on the ECMAScript standard. Every
-web browser has its own JavaScript engine, and each time the browser updates
-they may add some of the new features that have been added to the language
-recently. As you can imagine, this makes writing code that works across all
-browsers tricky! If Chrome supports a feature, but Safari or Edge or IE don't,
-you may end up accidentally shipping code that works for you but breaks on other
-people's machines.
+Just like the JavaScript language changes over time, web browsers change too!
+Ember helps you to write code that can work across many different browsers and
+their versions. Behind the scenes, Ember uses Babel to compile modern JavaScript
+to something that can work on all browsers. Without this step, you could
+accidentally end up shipping code that works for your version of Chrome but
+breaks for someone using Edge. Ember has you covered!
 
 Luckily, Ember comes with a solution out of the box for this. Ember applications
 use [Babel](https://babeljs.io/) to compile modern JavaScript to something that
 can work on _all_ browsers. This means you can write modern JavaScript and use
 the latest features without any additional setup!
 
-> _Note: Some features require you to [enable the Babel polyfill][babel-polyfill].
+> _Note: Some features require you to [enable the Babel polyfill](https://github.com/babel/ember-cli-babel#polyfill).
 > This adds some extra weight to your application, but ensures you'll be
 > compatible with any new features that are added to JavaScript._
-
-[babel-polyfill]: https://github.com/babel/ember-cli-babel#polyfill

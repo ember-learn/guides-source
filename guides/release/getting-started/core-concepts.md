@@ -1,3 +1,3 @@
 ---
-redirect: getting-started/overview-of-an-ember-app
+redirect: getting-started/anatomy-of-an-ember-app
 ---
