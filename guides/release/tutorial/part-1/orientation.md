@@ -14,7 +14,7 @@ While building your landing page, you will learn about:
 
 ## Installing Ember CLI
 
-You can install the latest version of Ember CLI by running the following command. If you've already done this by following the [Quick Start](../../getting-started/quick-start/) guide, feel free to skip ahead!
+You can install the latest version of Ember CLI by running the following command. If you've already done this by following the [Quick Start](../../../getting-started/quick-start/) guide, feel free to skip ahead!
 
 ```shell
 $ npm install -g ember-cli
