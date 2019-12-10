@@ -85,8 +85,8 @@
       url: links
     - title: Actions
       url: actions
-    - title: Input Helpers
-      url: input-helpers
+    - title: Input Components
+      url: input-components
     - title: Development Helpers
       url: development-helpers
       isAdvanced: true
