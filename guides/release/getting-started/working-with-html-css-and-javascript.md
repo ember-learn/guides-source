@@ -46,8 +46,7 @@ If you're new to JavaScript, here are some excellent introductory materials:
   ramps up.
 - [ES6 for humans](https://github.com/metagrover/ES6-for-humans) is a great
   resource if you're already familiar with JavaScript in general, but haven't
-  had a chance to get to know some of its latest features that were finalized in
-  2015.
+  had a chance to get to know some of its latest features that were finalized in 2015.
 
 We recommend familiarizing yourself with the following concepts in particular to
 make the most out of these guides and of Ember:
