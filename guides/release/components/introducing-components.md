@@ -470,9 +470,9 @@ folder:
 </section>
 ```
 
-If you have a component named `index.hbs`, you can refer to it without the `::Index`. You can refer to `app/components/received-message/index.hbs` from other components as `<ReceivedMessage>`:
+If you have a component named `index.hbs`, you can refer to it without the `::Index`. So we can refactor `app/components/received-message.hbs` to `app/components/received-message/index.hbs` and continue to use it as `<ReceivedMessage>` without changing all the tags that refer to it:
 
-```handlebars {data-filename="" data-diff="-3,+6,-9,+11"}
+```handlebars {data-filename="" data-diff="-3,+5"}
 app/
   components/
     received-message.hbs
@@ -480,14 +480,9 @@ app/
       index.hbs
       avatar.hbs
       username.hbs
-    sent-message.hbs
-    sent-message/
-      index.hbs
-      avatar.hbs
-      username.hbs
 ```
 
-These two file paths are equivalent, so you can refactor a component into a directory without changing all of the tags that refer to it. Components can be nested in multiple sub folders this way, allowing you to organize them as you see fit.
+Components can be nested in multiple sub folders this way, allowing you to organize them as you see fit.
 
 ## Summary
 
