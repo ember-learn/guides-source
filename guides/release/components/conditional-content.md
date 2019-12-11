@@ -15,7 +15,7 @@ Let's take a look at two similar components representing a user's username.
 ```
 
 We can use arguments to make these two components dynamic, but the first
-username has extra information in the form of the local time of the user.
+username also has extra information about the local time of the user.
 
 Let's say we tried to create a single `address` component.
 
@@ -29,8 +29,8 @@ Let's say we tried to create a single `address` component.
 If the `<Username>` tag doesn't specify a `@localTime` argument, we'll end up
 with some extra unneeded text in the output.
 
-What we need is a way to only include the local time text `@localTime` exists at
-all. We can do this with an `if`:
+What we need is a way to only include the local time text if `@localTime` exists.
+We can do this with an `if`:
 
 ```handlebars {data-filename="app/components/username.hbs"}
 <h4 class="username">
@@ -72,6 +72,17 @@ _public API_ of the component, so an argument makes sense.
 So, we want to add the `is-active` class if an argument, like say `@isActive`,
 is passed in and is truthy.
 
+```handlebars {data-filename="app/components/avatar.hbs"}
+<aside ...attributes>
+  <div
+    class="avatar {{if @isActive "is-active"}}"
+    title="{{@title}}"
+  >
+    {{@initial}}
+  </div>
+</aside>
+```
+
 <div class="cta">
   <div class="cta-note">
     <div class="cta-note-body">
@@ -88,17 +99,6 @@ is passed in and is truthy.
     <img src="/images/mascots/zoey.png" role="presentation" alt="">
   </div>
 </div>
-
-```handlebars {data-filename="app/components/avatar.hbs"}
-<aside ...attributes>
-  <div
-    class="avatar {{if @isActive "is-active"}}"
-    title="{{@title}}"
-  >
-    {{@initial}}
-  </div>
-</aside>
-```
 
 We can then use the argument to add the active state to the received message
 avatar, and omit it from the sent message avatar.
