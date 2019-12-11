@@ -51,6 +51,17 @@ a new Ember app today, this is complexity they can safely skip learning.
 
 ## Creating a New App
 
+To create a new app that uses the default features for Octane:
+
+```sh
+ember new octane-app
+```
+
+Once Octane is released, the default blueprint will be updated to reflect the
+Octane defaults and specifying this blueprint will no longer be necessary.
+
+<!-- replace-on-release - remove the contents above and replace with:
+
 To create a new app that has every Octane feature enabled, first make sure you have the latest Ember CLI version installed:
 
 ```sh
