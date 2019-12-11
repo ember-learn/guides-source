@@ -1,7 +1,7 @@
 Component templates can leave a placeholder that users of the component can fill
 with their own HTML.
 
-To make it more concrete, let's take a look at two similar components
+To make that more concrete, let's take a look at two similar components
 representing different user's messages.
 
 ```handlebars {data-filename="app/components/received-message.hbs"}
@@ -257,7 +257,7 @@ function in JavaScript. Consider for instance a simple `BlogPost` component.
 ```
 
 We may want to give the user the ability to put extra content before or after
-the post, like for instance image or a profile. Since we don't know what the
+the post, such as an image or a profile. Since we don't know what the
 user wants to do with the body of the post, we can instead pass the body back
 to them.
 
