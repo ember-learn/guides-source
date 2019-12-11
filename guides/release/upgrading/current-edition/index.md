@@ -54,7 +54,7 @@ a new Ember app today, this is complexity they can safely skip learning.
 To create a new app that uses the default features for Octane:
 
 ```sh
-ember new octane-app -b @ember/octane-app-blueprint
+ember new octane-app
 ```
 
 Once Octane is released, the default blueprint will be updated to reflect the
