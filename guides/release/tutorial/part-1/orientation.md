@@ -141,7 +141,7 @@ Build successful (9761ms) – Serving on http://localhost:4200/
 
 The development server is responsible for compiling our app and serving it to the browsers. It may take a while to boot up. Once it's up and running, open your favorite browser and head to <http://localhost:4200>. You should see the following welcome page:
 
-<img src="/images/tutorial/part-1/orientation/welcome@2x.png" alt="Welcome to Ember!" width="1024" height="596">
+<img src="/images/tutorial/part-1/orientation/welcome@2x.png" alt="Welcome to Ember!" width="1024" height="100">
 
 <div class="cta">
   <div class="cta-note">
