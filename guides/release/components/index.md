@@ -213,6 +213,5 @@ template:
 
 - Only valid HTML elements in a `<body>` tag can be used
 - No `<script>` tags
-- You can only use HTML that is valid in `<body>`
 
 Other than that, go to town!
