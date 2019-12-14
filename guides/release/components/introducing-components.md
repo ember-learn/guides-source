@@ -159,7 +159,7 @@ We can include our new component into our application by using HTML tag syntax.
 </div>
 ```
 
-A _component_ is kind of like your own custom HTML tag. You can tell that a tag refers to an Ember component because it starts with a capital letter. Built-in tag start with lowercase letters (`<div>`, `<p>`, `<table>`). Our component is called `<ReceivedMessage>`, based on its name on the file system.
+A _component_ is kind of like your own custom HTML tag. You can tell that a tag refers to an Ember component because it starts with a capital letter. Built-in HTML tags start with lowercase letters (`<div>`, `<p>`, `<table>`). Our component is called `<ReceivedMessage>`, based on its name on the file system.
 
 <div class="cta">
   <div class="cta-note">
@@ -276,7 +276,7 @@ We have one last component to extract. Let's pull out the new message input.
 </form>
 ```
 
-And include it in the application.
+And include it in our `application.hbs` file.
 
 ```handlebars {data-filename="app/templates/application.hbs" data-diff="-6,-7,-8,-9,-10,-11,+12"}
 <div class="messages">
