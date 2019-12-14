@@ -68,7 +68,7 @@
     "eslint-plugin-ember": "^6.7.1",
     "eslint-plugin-import": "^2.18.2",
     "gfm-code-blocks": "^1.0.0",
-    "guidemaker": "^2.0.1",
+    "guidemaker": "2.0.3-beta.0",
     "guidemaker-ember-template": "ember-learn/guidemaker-ember-template#8863b3df25f9b9425c2b33525273a74213b71db7",
     "loader.js": "^4.7.0",
     "lodash": "^4.17.15",
