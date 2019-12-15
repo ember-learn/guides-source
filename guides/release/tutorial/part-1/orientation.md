@@ -24,7 +24,7 @@ To verify that your installation was successful, run:
 
 ```shell
 $ ember --version
-ember-cli: 3.14.0
+ember-cli: 3.15.0-beta.3
 node: 12.8.1
 os: linux x64
 ```
@@ -33,13 +33,16 @@ If a version number is shown, you're ready to go.
 
 ## Creating a New Ember App with Ember CLI
 
-We can create a new project using Ember CLI's `new` command. It follows the pattern `ember new <project-name> -b @ember/octane-app-blueprint`. In our case, the project name would be `super-rentals`:
+We can create a new project using Ember CLI's `new` command. It follows the pattern `ember new <project-name>`. In our case, the project name would be `super-rentals`:
 
 ```shell
-$ ember new super-rentals -b @ember/octane-app-blueprint
-installing octane-app-blueprint
+$ ember new super-rentals
+installing app
+Ember CLI v3.15.0-beta.3
+
+Creating a new Ember app in /home/runner/work/super-rentals-tutorial/super-rentals-tutorial/dist/code/super-rentals:
   create .editorconfig
-  create .ember-cli.js
+  create .ember-cli
   create .eslintignore
   create .eslintrc.js
   create .template-lintrc.js
@@ -47,22 +50,30 @@ installing octane-app-blueprint
   create .watchmanconfig
   create README.md
   create app/app.js
+  create app/components/.gitkeep
+  create app/controllers/.gitkeep
+  create app/helpers/.gitkeep
   create app/index.html
-  create app/resolver.js
+  create app/models/.gitkeep
   create app/router.js
+  create app/routes/.gitkeep
   create app/styles/app.css
   create app/templates/application.hbs
+  create app/templates/components/.gitkeep
   create config/environment.js
   create config/optional-features.json
   create config/targets.js
   create ember-cli-build.js
   create .gitignore
-  create jsconfig.json
   create package.json
   create public/robots.txt
   create testem.js
+  create tests/helpers/.gitkeep
   create tests/index.html
+  create tests/integration/.gitkeep
   create tests/test-helper.js
+  create tests/unit/.gitkeep
+  create vendor/.gitkeep
 
 Installing packages... This might take a couple of minutes.
 npm: Installing dependencies ...
@@ -91,13 +102,24 @@ For the rest of the tutorial, all commands should be run within the `super-renta
 ```plain
 super-rentals
 ├── app
+│   ├── components
+│   │   └── .gitkeep
+│   ├── controllers
+│   │   └── .gitkeep
+│   ├── helpers
+│   │   └── .gitkeep
+│   ├── models
+│   │   └── .gitkeep
+│   ├── routes
+│   │   └── .gitkeep
 │   ├── styles
 │   │   └── app.css
 │   ├── templates
+│   │   ├── components
+│   │   │   └── .gitkeep
 │   │   └── application.hbs
 │   ├── app.js
 │   ├── index.html
-│   ├── resolver.js
 │   └── router.js
 ├── config
 │   ├── environment.js
@@ -106,10 +128,18 @@ super-rentals
 ├── public
 │   └── robots.txt
 ├── tests
+│   ├── helpers
+│   │   └── .gitkeep
+│   ├── integration
+│   │   └── .gitkeep
+│   ├── unit
+│   │   └── .gitkeep
 │   ├── index.html
 │   └── test-helper.js
+├── vendor
+│   └── .gitkeep
 ├── .editorconfig
-├── .ember-cli.js
+├── .ember-cli
 ├── .eslintignore
 ├── .eslintrc.js
 ├── .gitignore
@@ -118,12 +148,11 @@ super-rentals
 ├── .watchmanconfig
 ├── README.md
 ├── ember-cli-build.js
-├── jsconfig.json
 ├── package.json
 ├── package-lock.json
 └── testem.js
 
-6 directories, 25 files
+16 directories, 33 files
 ```
 
 We'll learn about the purposes of these files and folders as we go. For now, just know that we'll spend most of our time working within the `app` folder.
@@ -163,13 +192,12 @@ The development server has a feature called _live reload_, which monitors your a
 
 As text on the welcome page pointed out, the source code for the page is located in `app/templates/application.hbs`. Let's try to edit that file and replace it with our own content:
 
-```handlebars { data-filename="app/templates/application.hbs" data-diff="-1,-2,-3,-4,-5,-6,+7" }
+```handlebars { data-filename="app/templates/application.hbs" data-diff="-1,-2,-3,-4,-5,+6" }
 {{!-- The following component displays Ember's default welcome message. --}}
 <WelcomePage />
 {{!-- Feel free to remove this! --}}
 
 {{outlet}}
-
 Hello World!!!
 ```
 
