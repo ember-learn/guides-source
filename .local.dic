@@ -18,7 +18,6 @@ beforeEach
 blockquote
 blogPost
 bookmarklet
-breakpoint
 Browserlist
 callouts
 camelize
@@ -44,8 +43,6 @@ de
 debounce
 declaratively
 deps
-deserialization
-deserializing
 draggable
 durations
 enumerables
@@ -59,7 +56,6 @@ ember-cli-head
 ember-cli-mirage.
 ember-cli-tutorial-style
 ember-debug-handlers-polyfill
-ember-qunit
 erroring
 Evented
 facto
@@ -189,9 +185,9 @@ untrusted
 usecase
 viewport
 VM
-VoiceOver
 Voilà
 voilà
+VoiceOver
 websocket
 Websockets
 ZEIT
