@@ -200,7 +200,7 @@ Person.reopen({
   partOfNameChanged: observer({
     dependentKeys: ['firstName', 'lastName'],
     fn() {
-    // Fires async after firstName or lastName have updated
+      // Fires async after firstName or lastName have updated
   },
   sync: false,
 });
