@@ -186,7 +186,7 @@ This is one of the reasons, why the `default-async-observers` feature is
 **enabled by default** in newly created, modern Ember applications.
 
 The `default-async-observers` feature affects the behaviour of observers application-wide,
-but can still set single instances of observers to run synchronously or async
+but you can still instruct individual observers to run synchronously or async
 manually. By using the `sync: true` option, observers who are otherwise async by default,
 can be marked as synchronous manually. Vice versa, otherwise synchronously running observers
 can be set to run asynchronously using the `sync: false` option.
