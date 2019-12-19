@@ -24,7 +24,7 @@ To verify that your installation was successful, run:
 
 ```shell
 $ ember --version
-ember-cli: 3.15.0-beta.3
+ember-cli: 3.15.0
 node: 12.8.1
 os: linux x64
 ```
@@ -38,7 +38,7 @@ We can create a new project using Ember CLI's `new` command. It follows the patt
 ```shell
 $ ember new super-rentals
 installing app
-Ember CLI v3.15.0-beta.3
+Ember CLI v3.15.0
 
 Creating a new Ember app in /home/runner/work/super-rentals-tutorial/super-rentals-tutorial/dist/code/super-rentals:
   create .editorconfig
@@ -59,7 +59,6 @@ Creating a new Ember app in /home/runner/work/super-rentals-tutorial/super-renta
   create app/routes/.gitkeep
   create app/styles/app.css
   create app/templates/application.hbs
-  create app/templates/components/.gitkeep
   create config/environment.js
   create config/optional-features.json
   create config/targets.js
@@ -115,8 +114,6 @@ super-rentals
 │   ├── styles
 │   │   └── app.css
 │   ├── templates
-│   │   ├── components
-│   │   │   └── .gitkeep
 │   │   └── application.hbs
 │   ├── app.js
 │   ├── index.html
@@ -152,7 +149,7 @@ super-rentals
 ├── package-lock.json
 └── testem.js
 
-16 directories, 33 files
+15 directories, 32 files
 ```
 
 We'll learn about the purposes of these files and folders as we go. For now, just know that we'll spend most of our time working within the `app` folder.
@@ -163,7 +160,7 @@ Ember CLI comes with a lot of different commands for a variety of development ta
 
 ```shell
 $ ember server
-building... 
+building...
 
 Build successful (9761ms) – Serving on http://localhost:4200/
 ```
