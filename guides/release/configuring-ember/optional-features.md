@@ -188,7 +188,7 @@ This is one of the reasons, why the `default-async-observers` feature is
 The `default-async-observers` feature affects the behaviour of observers application-wide,
 but you can still instruct individual observers to run synchronously or async
 manually. By using the `sync: true` option, observers who are otherwise async by default
-can be marked as synchronous manually. Vice versa, otherwise synchronously running observers
+can be marked as synchronous manually. Similarly, observers
 can be set to run asynchronously using the `sync: false` option.
 
 
