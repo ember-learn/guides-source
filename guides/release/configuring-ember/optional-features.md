@@ -212,5 +212,5 @@ you can enable this optional feature in older apps (Ember 3.13+) as follows:
 
 ```bash
 $ ember feature:enable default-async-observers
-Enable async observers application-wide. Be sure to commit config/optional-features.json to source control!
+# Enable async observers application-wide. Be sure to commit config/optional-features.json to source control!
 ```
