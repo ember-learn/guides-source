@@ -203,6 +203,7 @@ Person.extend({
       // Fires async after firstName or lastName have updated
     },
     sync: false,
+  })
 });
 ```
 
