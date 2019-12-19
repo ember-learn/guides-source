@@ -26,7 +26,7 @@ Check out Grand Old Mansion on Super Rentals! https://super-rentals.example/rent
 #vacation #travel #authentic #blessed #superrentals via @emberjs
 ```
 
-We could open a new page to the <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fsuper-rentals.example%2Frentals%2Fgrand-old-mansion&text=Check+out+Grand+Old+Mansion+on+Super+Rentals%21&hashtags=vacation%2Ctravel%2Cauthentic%2Cblessed%2Csuperrentals&via=emberjs" target="_blank" rel="external,nofollow,noopener,noreferrer">following URL</a>:
+We could open a new page to the <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fsuper-rentals.example%2Frentals%2Fgrand-old-mansion&text=Check+out+Grand+Old+Mansion+on+Super+Rentals%21&hashtags=vacation%2Ctravel%2Cauthentic%2Cblessed%2Csuperrentals&via=emberjs" target="_blank" rel="external nofollow noopener noreferrer">following URL</a>:
 
 ```plain
 https://twitter.com/intent/tweet?
@@ -61,7 +61,7 @@ Let's start with the template that was generated for this component. We already 
   ...attributes
   href={{this.shareURL}}
   target="_blank"
-  rel="external,nofollow,noopener,noreferrer"
+  rel="external nofollow noopener noreferrer"
   class="share button"
 >
   {{yield}}
@@ -120,7 +120,7 @@ Let's put this component to use by invoking it from the `<Rental::Detailed>` com
 <Jumbo>
   <h2>{{@rental.title}}</h2>
   <p>Nice find! This looks like a nice place to stay near {{@rental.city}}.</p>
-  <a href="#" target="_blank" rel="external,nofollow,noopener,noreferrer" class="share button">
+  <a href="#" target="_blank" rel="external nofollow noopener noreferrer" class="share button">
   <ShareButton
     @text="Check out {{@rental.title}} on Super Rentals!"
     @hashtags="vacation,travel,authentic,blessed,superrentals"
@@ -422,7 +422,7 @@ module('Integration | Component | share-button', function(hooks) {
     assert.equal(this.element.textContent.trim(), 'template block text');
     assert.dom('a').exists();
     assert.dom('a').hasAttribute('target', '_blank');
-    assert.dom('a').hasAttribute('rel', 'external,nofollow,noopener,noreferrer');
+    assert.dom('a').hasAttribute('rel', 'external nofollow noopener noreferrer');
     assert.dom('a').hasAttribute('href', `https://twitter.com/intent/tweet?url=${
       encodeURIComponent(
         new URL('/foo/bar?baz=true#some-section', window.location.origin)
@@ -475,7 +475,7 @@ module('Integration | Component | share-button', function(hooks) {
 
     assert.dom('a').exists();
     assert.dom('a').hasAttribute('target', '_blank');
-    assert.dom('a').hasAttribute('rel', 'external,nofollow,noopener,noreferrer');
+    assert.dom('a').hasAttribute('rel', 'external nofollow noopener noreferrer');
     assert.dom('a').hasAttribute('href', `https://twitter.com/intent/tweet?url=${
       encodeURIComponent(
         new URL('/foo/bar?baz=true#some-section', window.location.origin)
@@ -520,7 +520,7 @@ module('Integration | Component | share-button', function(hooks) {
     await render(hbs`<ShareButton targe="_self" rel="" href="/">Not a Tweet!</ShareButton>`);
 
     assert.dom('a').hasAttribute('target', '_blank');
-    assert.dom('a').hasAttribute('rel', 'external,nofollow,noopener,noreferrer');
+    assert.dom('a').hasAttribute('rel', 'external nofollow noopener noreferrer');
     assert.dom('a').hasAttribute('href', /^https:\/\/twitter\.com\/intent\/tweet/);
   });
 });
