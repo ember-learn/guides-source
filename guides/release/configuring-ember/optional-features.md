@@ -201,7 +201,7 @@ Person.reopen({
     fn() {
       // Fires async after firstName or lastName have updated
   },
-  sync: false,
+    sync: false,
 });
 ```
 
