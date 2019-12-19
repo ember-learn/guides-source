@@ -197,7 +197,7 @@ import { observer } from '@ember/object';
 
 Person.reopen({
   partOfNameChanged: observer({
-  dependentKeys: ['firstName', 'lastName'],
+    dependentKeys: ['firstName', 'lastName'],
   function() {
     // Fires async after firstName or lastName have updated
   },
