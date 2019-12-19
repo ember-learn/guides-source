@@ -1,3 +1,3 @@
 ---
-redirect: testing/application
+redirect: testing/testing-application
 ---
