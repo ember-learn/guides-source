@@ -195,7 +195,7 @@ can be set to run asynchronously using the `sync: false` option.
 ```javascript
 import { observer } from '@ember/object';
 
-Person.reopen({
+Person.extend({
   partOfNameChanged: observer({
     dependentKeys: ['firstName', 'lastName'],
     fn() {
