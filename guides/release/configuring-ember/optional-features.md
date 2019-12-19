@@ -176,7 +176,7 @@ For more information, see [RFC #278](https://github.com/emberjs/rfcs/blob/master
 
 With this feature *enabled*, Ember will run all observers in the application
 asynchronously by default. This leads to observers running in the runloop
-after the one in which the properties it observes were updated.
+_after_ the one in which the observed properties were updated.
 
 If the feature is *disabled*, observers run synchronously
 and will be invoked as soon as their observed properties update.
