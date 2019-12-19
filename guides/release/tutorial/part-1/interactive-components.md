@@ -161,7 +161,7 @@ Finally, we added the `@action` decorator to our method. This indicates to Ember
     <div class="cta-note-body">
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
-        <p>If you forget to do add the <code>@action</code> decorator, you will also get a helpful error when clicking on the button in development mode!</p>
+        <p>If you forget to add the <code>@action</code> decorator, you will also get a helpful error when clicking on the button in development mode!</p>
       </div>
     </div>
     <img src="/images/mascots/zoey.png" role="presentation" alt="">
