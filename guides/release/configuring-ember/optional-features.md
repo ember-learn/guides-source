@@ -179,7 +179,7 @@ asynchronously by default. This leads to observers running in the runloop
 after the one in which the properties it observes were updated.
 
 If the feature is *disabled*, observers run synchronously
-and will then update as soon as their observed properties update.
+and will be invoked as soon as their observed properties update.
 
 Async observers are more performant than those that run synchronously
 and can help you to manage your application state in a more predictable manner.
