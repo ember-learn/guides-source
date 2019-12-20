@@ -207,7 +207,7 @@ the `keyForRelationship` method.
       return key + 'Ids';
    }
  });
- ```
+```
 
 #### Sideloaded Relationships
 

@@ -9,12 +9,14 @@ Ember Octane for use with:
 - Helpers
 - General utility classes
 
+The [`ember-native-class-codemod`](https://github.com/ember-codemods/ember-native-class-codemod) will help you convert your existing code to Native Classes.
+
 For developers who are not already familiar with native classes, check out
 [Ember's native class guide](../../../in-depth-topics/native-classes-in-depth/),
 which provides a thorough breakdown of native class functionality and usage.
 This section of the upgrade guide will focus on the differences between classic
-Ember classes and native classes. You can also reference the Native vs. Classic
-Cheatsheet at the end of this guide as a quick reference for these differences.
+Ember classes and native classes. You can also reference the [Octane vs. Classic
+Cheatsheet](https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/) as a quick reference for these differences.
 
 ## Benefits of Native Classes
 
@@ -26,11 +28,10 @@ Before classes were available in JavaScript, Ember developers still got to use
 some class-like features thanks to `@ember/object`. Now that classes are
 available in JavaScript, we can do away with some of the `@ember/object` quirks.
 
-## Getting used to Native Classes
+## Native Classes for classic component
 
-The only class that is _not_ supported is the _classic Ember component_ class,
-imported from `@ember/component`. This is mainly because it requires additional
-decorators that are not available in Ember.js directly. You can instead use
+The only class that is _not_ supported out of the box is the _classic Ember component_ class,
+i.e. one imported from `@ember/component`. However, you can instead use
 external addons like [ember-decorators](https://ember-decorators.github.io/ember-decorators)
 if you want to convert these to native classes, and refer to their documentation
 as a guide.

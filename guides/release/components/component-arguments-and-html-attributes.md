@@ -23,9 +23,9 @@ attributes).
   <div class="cta-note">
     <div class="cta-note-body">
       <div class="cta-note-message">
-        You may have noticed that the <code>is-active</code> class on the
+        You may notice that the <code>is-active</code> class on the
         received message avatar from the previous chapters is missing here.
-        We'll return to this in the next chapter on
+        We'll cover that in the next chapter on
         <a href="../conditional-content">Conditional Content</a>.
       </div>
     </div>
@@ -66,19 +66,9 @@ the _browser_ what to do, it's telling your custom tag what to do.
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
         <p>
-          You might be wondering why Ember doesn't use attribute syntax for the
-          component syntax. In the next section, we'll learn that you can put normal
-          HTML attributes on component tags, and they will end up on the HTML
-          element that the component creates.
-        </p>
-        <p>
-          So when you use a normal attribute name, you're putting a normal HTML
-          attribute on an element. When you use an argument (which starts with
-          <code>@</code>), you're providing data to a component.
-        </p>
-        <p>
-          This also means that arguments can pass any kind of data to the
-          component, even though HTML attributes are always strings
+          You might be wondering why Ember uses the `@` syntax for its
+          components instead of normal HTML attribute syntax. We'll learn why
+          in the next section.
         </p>
       </div>
     </div>
@@ -88,7 +78,7 @@ the _browser_ what to do, it's telling your custom tag what to do.
 
 ## HTML Attributes
 
-Now let's try to use our `<Avatar>` component for the sent message avatar.
+Let's try to use our `<Avatar>` component for the sent message avatar.
 
 ```handlebars {data-filename="app/components/sent-message/avatar.hbs"}
 <Avatar @title="Zoey's avatar" @initial="Z" />
@@ -104,7 +94,7 @@ We're really, really close.
 ```
 
 We're just missing the `current-user` class on the HTML `<aside>` element. To
-make that work, we'll specify the HTML attribute `class` on the `<Address>` tag.
+make that work, we'll specify the HTML attribute `class` on the `<Avatar>` tag.
 
 ```handlebars {data-filename="app/components/sent-message/avatar.hbs"}
 <Avatar
@@ -134,15 +124,15 @@ the avatar component now, and they will all end up on the element that has
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
         <p>
-          <code>...attributes</code> syntax follows the same rules as
-          object-spread syntax in JavaScript. If it appears <em>after</em> an attribute,
+          In general, you should place <code>...attributes</code> after any attributes you
+          specify to give people using your component an opportunity to override your attribute.
+          If <code>...attributes</code> appears <em>after</em> an attribute,
           it overrides that attribute. If it appears <em>before</em> an attribute, it
           does not.</p>
         <p>
-          In general, you should place <code>...attributes</code> after attributes that
-          you specify to give tags an opportunity to override your attribute. Place it
+          Place <code>...attributes</code>
           <strong>before</strong> your attributes only if you want to disallow tags from
-          overriding your attributes. This should be unusual.
+          overriding your attributes. This is likely to be unusual.
         </p>
         <p>
           In addition, the <code>class</code> attribute is special, and will be

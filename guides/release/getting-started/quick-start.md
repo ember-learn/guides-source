@@ -19,8 +19,7 @@ npm install -g ember-cli
 ```
 
 Don't have npm? [Learn how to install Node.js and npm here](https://docs.npmjs.com/getting-started/installing-node).
-For a full list of dependencies necessary for an Ember CLI project,
-consult our [Installing Ember](../../getting-started/) guide.
+For a full list of dependencies necessary for an Ember CLI project, visit the [Ember CLI Guides - Installing](https://cli.emberjs.com/release/basic-use/).
 
 ## Create a New Application
 
@@ -78,7 +77,7 @@ In your editor, open `app/templates/application.hbs` and change it to the follow
 Ember detects the changed file and automatically reloads the page for you in the background.
 You should see that the welcome page has been replaced by "PeopleTracker".
 You also added an `{{outlet}}` to this page,
-which means that any nested route will be rendered in that place.
+which means that any route will be rendered in that place.
 
 ## Define a Route
 
@@ -119,7 +118,7 @@ Open the newly-created template in `app/templates/scientists.hbs` and add the fo
 ```
 
 In your browser, open [`http://localhost:4200/scientists`](http://localhost:4200/scientists).
-You should see the `<h2>` you put in the `scientists.hbs` template,
+You should see the `<h2>` we put in the `scientists.hbs` template,
 right below the `<h1>` from our `application.hbs` template.
 
 Now that we've got the `scientists` template rendering,
@@ -205,13 +204,14 @@ We've also renamed `scientist` to the more-generic `person`,
 decreasing the coupling of our component to where it's used.
 
 Save this template and switch back to the `scientists` template.
-Replace all our old code with our new componentized version.
 
 We're going to tell our component:
 
 1. What title to use, via the `@title` argument.
 2. What array of people to use, via the `@people` argument. We'll
    provide this route's `@model` as the list of people.
+
+Let's replace all our old code with our new componentized version:
 
 ```handlebars {data-filename="app/templates/scientists.hbs" data-diff="-1,-2,-3,-4,-5,-6,-7,+8"}
 <h2>List of Scientists</h2>
@@ -228,14 +228,14 @@ Go back to your browser and you should see that the UI looks identical.
 The only difference is that now we've componentized our list into a version that's more reusable and more maintainable.
 
 You can see this in action if you create a new route that shows a different list of people.
-As an exercise for the reader,
-you may try to create a `programmers` route that shows a list of famous programmers.
-By re-using the `PeopleList` component, you can do it in almost no code at all.
+As an additional exercise (that we won't cover),
+you can try to create a `programmers` route that shows a list of famous programmers.
+If you re-use the `PeopleList` component, you can do it with almost no code at all.
 
 ## Responding to user interactions
 
-So far, your application is listing data, but there is no way for the user to
-interact with the information. In web applications you often want to respond to
+So far, our application is listing data, but there is no way for the user to
+interact with the information. In web applications we often want to respond to
 user actions like clicks or hovers. Ember makes this easy to do.
 
 First, we can modify the `PeopleList` component to include a button:
@@ -279,12 +279,12 @@ export default class PeopleList extends Component {
 
 _Note: If you want this file created for you, you may pass the `-gc` flag when running the component generator._
 
-Here, we created a basic component class and adding a method that accepts a
+Here, we created a basic component class and added a method that accepts a
 person as an argument and brings up an alert dialog with their name. The
-`@action` _decorator_ indicates the intent of using this method as an _action_
+`@action` _decorator_ indicates we want to use this method as an _action_
 in our template, in response to user interaction.
 
-Finally, now that we have implemented the desired behavior, we can go back to
+Now that we have implemented the desired behavior, we can go back to
 the component's template and wire everything up:
 
 ```handlebars {data-filename="app/components/people-list.hbs" data-diff="-6,+7"}
@@ -300,8 +300,8 @@ the component's template and wire everything up:
 </ul>
 ```
 
-Here, we used the `on` _modifier_ to attach `this.showPerson` (the action we
-wrote earlier) to the button in the template.
+Here, we used the `on` _modifier_ to attach the `this.showPerson` action to
+the button in the template.
 
 There is a problem with this though – if you tried this in the browser, you
 will quickly discovered that clicking on the buttons will bring up an alert
@@ -354,7 +354,7 @@ If you're interested in deploying your app to production in a fast and reliable 
 check out the [Ember CLI Deploy](http://ember-cli-deploy.com/) addon.
 
 If you deploy your application to an Apache web server, first create a new virtual host for the application.
-To make sure all routes are handled by index.html,
+To make sure all routes are handled by `index.html`,
 add the following directive to the application's virtual host configuration:
 
 ```apacheconf

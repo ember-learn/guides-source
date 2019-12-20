@@ -41,7 +41,7 @@ By looking at how we use the `<Message>` component, we can see that some of the 
 
 Let's update the component to do that. It'll take a `@username` argument and calculate the title and initial.
 
-Since the title is just the `@username` plus some extra stuff, We can replace `@avatarTitle` by _interpolating_ the `@username` argument in a string literal passed to `<Message::Avatar>`.
+Since the title is just the `@username` plus some extra stuff, we can replace `@avatarTitle` by _interpolating_ the `@username` argument in a string literal passed to `<Message::Avatar>`.
 
 ```handlebars {data-filename="app/components/message.hbs" data-diff="-2,+3"}
 <Message::Avatar
@@ -61,7 +61,7 @@ Since the title is just the `@username` plus some extra stuff, We can replace `@
 </section>
 ```
 
-However, to get the first initial of the string, we'll need to use JavaScript. We'll write a helper function that gives us a substring from inside a string.
+However, to get the first initial of the string, we'll need to use JavaScript. To do that, we'll write a helper function.
 
 ## Writing a Helper Function
 
@@ -97,7 +97,7 @@ function substring(args) {
 export default helper(substring);
 ```
 
-**This is how we'll normally write helpers in Ember**.
+**This is how we normally write helpers in Ember**.
 
 We can then use this helper in the component's template to get the first letter of the username.
 
@@ -130,7 +130,7 @@ Using named arguments, we could make our template a lot clearer.
   @title="{{@username}}'s avatar"
   @initial={{substring @username 0 1}}
   {{! This won't work yet! We need to update the substring helper }}
-  @initial={{substring @username start=0 lenght=1}}
+  @initial={{substring @username start=0 length=1}}
   @isActive={{@userIsActive}}
   class="{{if @isCurrentUser "current-user"}}"
 />
@@ -219,8 +219,8 @@ If it returns "city", you get `this.address.city`.
 
 ### The `concat` helper
 
-In the last section it was discussed that helpers can be nested. This can be
-combined with these sorts of dynamic helpers. For example, the
+We mentioned above that helpers can be nested. This can be
+combined with different dynamic helpers. For example, the
 [`{{concat}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/concat?anchor=concat)
 helper makes it easy to dynamically send a number of parameters to a component
 or helper as a single parameter in the format of a concatenated string.
@@ -238,7 +238,7 @@ Now let's say your template is starting to get a bit cluttered and you want
 to clean up the logic in your templates. This can be achieved with the `let`
 block helper.
 The [`{{let}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/let?anchor=let)
-helper lets you create new bindings in your template.
+helper lets you create new bindings (or temporary variables) in your template.
 
 Say your template now looks like this:
 

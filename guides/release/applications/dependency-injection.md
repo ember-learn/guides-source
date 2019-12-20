@@ -1,5 +1,14 @@
 Ember applications utilize the [dependency injection](https://en.wikipedia.org/wiki/Dependency_injection)
 ("DI") design pattern to declare and instantiate classes of objects and dependencies between them.
+
+Generally, [Services](../../services/) are Ember's primary method for sharing
+state via dependency injection. In most cases, you shouldn't need to learn about
+how to work with Ember's DI system directly, or how to manually register and
+setup dependencies. However, there are times when it may be necessary. This
+guide covers the details of the system, and how to use it when needed.
+
+## Overview
+
 Applications and application instances each serve a role in Ember's DI implementation.
 
 An [`Application`](https://api.emberjs.com/ember/3.11/classes/Application) serves as a "registry" for dependency declarations.
