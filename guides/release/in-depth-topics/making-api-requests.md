@@ -10,7 +10,7 @@ Some common tools for making [CRUD](https://en.wikipedia.org/wiki/Create,_read,_
 
 - [Ember Data](../../models/) is the official data persistence library for Ember. It has a powerful set of tools
 for formatting requests, normalizing responses, and efficiently
-managing a local cache of data. Install `@ember/data` to use it.
+managing a local cache of data. Install `ember-data` to use it.
 It is included by default in new Ember apps.
 - Native JavaScript methods like [`fetch`](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API). Install [`ember-fetch`](https://github.com/ember-cli/ember-fetch) in order to provide support for older browsers, and `import fetch from 'fetch'` to use it.
 - [jQuery Ajax](https://api.jquery.com/jquery.ajax/) requests. See [the guide for optional features](../../configuring-ember/optional-features/) in order to be able to `import jQuery from 'jquery'` in your app.
