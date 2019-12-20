@@ -83,7 +83,7 @@ There are two areas of focus for upgrading to Octane: learning, and implementing
 
 We recommend that all developers go through the [Quick Start Tutorial](../../getting-started/quick-start/) to learn the fundamentals of Octane, and then the main [Tutorial](../../tutorial/).
 
-Along the way, you might need to study up on [Native JavaScript Classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/class) too. Otherwise, it may be confusing about which parts of code are special to Ember, and what are not.
+Along the way, you might need to study up on [Native JavaScript Classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/class) too. Otherwise, it may be confusing about which parts of code are special to Ember, and which are not.
 
 If you work on a team of developers, it may be useful to have one developer go through the tutorials, try doing a small thing, and then demo that to the rest of the team. After everyone has had a chance for hands-on learning, schedule a meeting to plan how you want to proceed.
 By design, migrating to Octane can be done in pieces. It doesn't require a big-bang refactor. If you need advice, visit [the forums or the Ember Discord](https://emberjs.com/community/) (in Discord you can use the `#topic-octane-migration` channel).
@@ -92,8 +92,7 @@ By design, migrating to Octane can be done in pieces. It doesn't require a big-b
 
 1. Follow the [regular upgrade steps](https://cli.emberjs.com/release/basic-use/upgrading/) to update your app to at least version `3.15`.
 2. Run your tests to make sure everything still works as expected.
-5. Install `@ember/optional-features` in your app, if it is not already in the `devDependencies` of your `package.json`
-6. Turn on optional features one by one, running tests in between to make sure things still work as expected.
+3. Run `npx @ember/octanify` to add any missing Octane related dependencies and enable the set of Octane optional features.
 7. Create a new component in your app, and experiment! `ember g component` will give you just a test and a template. Adding `-gc` to the command will generate the JavaScript class too. Try adding a button with an action.
 8. Try refactoring one existing component to use Octane style. Check out the [Cheat Sheet](./cheat-sheet/) and [Editions Deep Dive](./editions/) for some pointers.
 9. Review the refactoring checklist below to create a plan for handling existing code. Note that some steps have codemods available!
@@ -111,12 +110,13 @@ A fully-Octane app has the following configuration in `config/optional-features.
 ```json
 {
   "application-template-wrapper": false,
+  "default-async-observers": true,
   "jquery-integration": false,
   "template-only-glimmer-components": true
 }
 ```
 
-Use the command `ember feature:list` in your console to learn what each option does.
+As mentioned above, we recommend that you use `npx @ember/octanify` to ensure these flags are set to the appropriate values. To learn what each option does, check out the [Optional Features](../../configuring-ember/optional-features/) guide.
 
 ### Refactoring checklist
 
