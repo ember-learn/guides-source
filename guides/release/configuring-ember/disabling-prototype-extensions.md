@@ -76,15 +76,15 @@ required interfaces using the convenience method `Ember.A`:
 import { A } from '@ember/array';
 
 let islands = ['Oahu', 'Kauai'];
-islands.includes('Oahu');
-// => TypeError: Object Oahu,Kauai has no method 'includes'
+islands.pushObject('Maui');
+// => TypeError: Object Oahu,Kauai has no method `pushObject`
 
 // Convert `islands` to an array that implements the
 // Ember enumerable and array interfaces
 A(islands);
 
-islands.includes('Oahu');
-// => true
+islands.pushObject('Maui');
+// => ['Oahu', 'Kauai', 'Maui'];
 ```
 
 ### Strings
