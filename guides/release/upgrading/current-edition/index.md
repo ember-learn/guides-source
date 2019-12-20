@@ -116,7 +116,7 @@ A fully-Octane app has the following configuration in `config/optional-features.
 }
 ```
 
-To learn what each option does, check out the [Optional Features](../../configuring-ember/optional-features/) guide.
+As mentioned above, we recommend that you use `npx @ember/octanify` to ensure these flags are set to the appropriate values. To learn what each option does, check out the [Optional Features](../../configuring-ember/optional-features/) guide.
 
 ### Refactoring checklist
 
