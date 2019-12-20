@@ -1,8 +1,8 @@
-<!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/scr/chapters/part-2/route-params.md -->
+<!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/src/markdown/tutorial/part-2/09-route-params.md -->
 
 Now that we are fetching real data from our "server", let's add a new feature — dedicated pages for each of our rentals:
 
-<!-- TODO: add screen shot of the end state -->
+<img src="/images/tutorial/part-2/route-params/grand-old-mansion@2x.png" alt="The Super Rentals app (rentals page) by the end of the chapter" width="1024" height="1381">
 
 While adding these rental pages, you will learn about:
 
@@ -310,7 +310,7 @@ installing component-test
 <Jumbo>
   <h2>{{@rental.title}}</h2>
   <p>Nice find! This looks like a nice place to stay near {{@rental.city}}.</p>
-  <a href="#" target="_blank" rel="external,nofollow,noopener,noreferrer" class="share button">
+  <a href="#" target="_blank" rel="external nofollow noopener noreferrer" class="share button">
     Share on Twitter
   </a>
 </Jumbo>

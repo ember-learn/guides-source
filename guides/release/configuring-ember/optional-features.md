@@ -64,7 +64,7 @@ However, you may choose to install and use it in your app!
 
 #### Including jQuery
 
-To include jQuery in your Ember app, follow the instructions above to install `@ember/optional-features`. 
+To include jQuery in your Ember app, follow the instructions above to install `@ember/optional-features`.
 Next, enable the feature:
 
 ```bash
@@ -170,3 +170,46 @@ backwards compatibility for existing templates while new template-only
 components gain the advantages of this feature.
 
 For more information, see [RFC #278](https://github.com/emberjs/rfcs/blob/master/text/0278-template-only-components.md).
+
+### default-async-observers
+
+With this feature *enabled*, Ember will run all observers in the application
+asynchronously by default. This leads to observers running in the run loop
+*after* the one in which the observed properties were updated.
+
+If the feature is *disabled*, observers run synchronously
+and will be invoked as soon as their observed properties update.
+
+Async observers are more performant than those that run synchronously
+and can help you to manage your application state in a more predictable manner.
+This is one of the reasons, why the `default-async-observers` feature is
+**enabled by default** in newly created, modern Ember applications.
+
+The `default-async-observers` feature affects the behavior of observers application-wide,
+but you can still instruct individual observers to run synchronously or async
+manually. By using the `sync: true` option, observers who are otherwise async by default
+can be marked as synchronous manually. Similarly, observers
+can be set to run asynchronously using the `sync: false` option.
+
+
+```javascript
+import { observer } from '@ember/object';
+
+Person.extend({
+  partOfNameChanged: observer({
+    dependentKeys: ['firstName', 'lastName'],
+    fn() {
+      // Fires async after firstName or lastName have updated
+    },
+    sync: false,
+  })
+});
+```
+
+While the `default-async-observers` feature is only enabled by default in modern Ember applications,
+you can enable this optional feature in older apps (Ember 3.13+) as follows:
+
+```bash
+$ ember feature:enable default-async-observers
+# Enable async observers application-wide. Be sure to commit config/optional-features.json to source control!
+```

@@ -29,7 +29,7 @@ const Router = EmberRouter.extend({
       const title = this.getWithDefault('currentRouteName', 'unknown');
 
       // this is constant for this app and is only used to identify page views in the GA dashboard
-      const hostname = 'octane-guides-preview.emberjs.com';
+      const hostname = 'guides.emberjs.com';
 
       this.metrics.trackPage({ page, title, hostname });
     });

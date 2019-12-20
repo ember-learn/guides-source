@@ -159,7 +159,7 @@ We can include our new component into our application by using HTML tag syntax.
 </div>
 ```
 
-A _component_ is kind of like your own custom HTML tag. You can tell that a tag refers to an Ember component because it starts with a capital letter. Built-in tag start with lowercase letters (`<div>`, `<p>`, `<table>`). Our component is called `<ReceivedMessage>`, based on its name on the file system.
+A _component_ is kind of like your own custom HTML tag. You can tell that a tag refers to an Ember component because it starts with a capital letter. Built-in HTML tags start with lowercase letters (`<div>`, `<p>`, `<table>`). Our component is called `<ReceivedMessage>`, based on its name on the file system.
 
 <div class="cta">
   <div class="cta-note">
@@ -276,7 +276,7 @@ We have one last component to extract. Let's pull out the new message input.
 </form>
 ```
 
-And include it in the application.
+And include it in our `application.hbs` file.
 
 ```handlebars {data-filename="app/templates/application.hbs" data-diff="-6,-7,-8,-9,-10,-11,+12"}
 <div class="messages">
@@ -470,9 +470,9 @@ folder:
 </section>
 ```
 
-If you have a component named `index.hbs`, you can refer to it without the `::Index`. You can refer to `app/components/received-message/index.hbs` from other components as `<ReceivedMessage>`:
+If you have a component named `index.hbs`, you can refer to it without the `::Index`. So we can refactor `app/components/received-message.hbs` to `app/components/received-message/index.hbs` and continue to use it as `<ReceivedMessage>` without changing all the tags that refer to it:
 
-```handlebars {data-filename="" data-diff="-3,+6,-9,+11"}
+```handlebars {data-filename="" data-diff="-3,+5"}
 app/
   components/
     received-message.hbs
@@ -480,14 +480,9 @@ app/
       index.hbs
       avatar.hbs
       username.hbs
-    sent-message.hbs
-    sent-message/
-      index.hbs
-      avatar.hbs
-      username.hbs
 ```
 
-These two file paths are equivalent, so you can refactor a component into a directory without changing all of the tags that refer to it. Components can be nested in multiple sub folders this way, allowing you to organize them as you see fit.
+Components can be nested in multiple sub folders this way, allowing you to organize them as you see fit.
 
 ## Summary
 

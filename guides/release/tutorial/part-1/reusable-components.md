@@ -1,4 +1,4 @@
-<!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/scr/chapters/part-1/reusable-components.md -->
+<!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/src/markdown/tutorial/part-1/07-reusable-components.md -->
 
 The last missing feature for the `<Rental>` component is a map to show the location of the rental, which is what we're going to work on next:
 
@@ -36,7 +36,7 @@ module.exports = function(environment) {
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
-        // e.g. EMBER_MODULE_UNIFICATION: true
+        // e.g. EMBER_NATIVE_DECORATOR_SUPPORT: true
       },
       EXTEND_PROTOTYPES: {
         // Prevent Ember Data from overriding Date.parse.
@@ -102,7 +102,7 @@ You can stop the server by finding the terminal window where `ember server` is r
 
 ```shell
 $ ember server
-building...
+building... 
 
 Build successful (13286ms) – Serving on http://localhost:4200/
 ```
