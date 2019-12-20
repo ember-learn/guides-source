@@ -174,8 +174,8 @@ For more information, see [RFC #278](https://github.com/emberjs/rfcs/blob/master
 ### default-async-observers
 
 With this feature *enabled*, Ember will run all observers in the application
-asynchronously by default. This leads to observers running in the runloop
-_after_ the one in which the observed properties were updated.
+asynchronously by default. This leads to observers running in the run loop
+*after* the one in which the observed properties were updated.
 
 If the feature is *disabled*, observers run synchronously
 and will be invoked as soon as their observed properties update.
@@ -185,7 +185,7 @@ and can help you to manage your application state in a more predictable manner.
 This is one of the reasons, why the `default-async-observers` feature is
 **enabled by default** in newly created, modern Ember applications.
 
-The `default-async-observers` feature affects the behaviour of observers application-wide,
+The `default-async-observers` feature affects the behavior of observers application-wide,
 but you can still instruct individual observers to run synchronously or async
 manually. By using the `sync: true` option, observers who are otherwise async by default
 can be marked as synchronous manually. Similarly, observers
