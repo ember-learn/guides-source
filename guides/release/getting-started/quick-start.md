@@ -29,7 +29,7 @@ You can use the `ember new` command to create a new application.
 
 <!-- needs-octane-release-update -->
 ```bash
-ember new ember-quickstart -b @ember/octane-app-blueprint
+ember new ember-quickstart
 ```
 
 This one command will create a new directory called `ember-quickstart` and set up a new Ember application inside of it.
