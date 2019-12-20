@@ -18,25 +18,21 @@ Here's an example of a model hook in use within a route:
 ```javascript {data-filename=app/routes/favorite-posts.js}
 import Route from '@ember/routing/route';
 
-export default Route.extend({
+export default class FavoritePostsRoute extends Route {
   model() {
-    console.log('The model hook just ran!')
-    return "Hello Ember!";
+    console.log('The model hook just ran!');
+    return 'Hello Ember!';
   }
-});
+}
 ```
 
 `model` hooks have some special powers:
 
-1. When you return data from this model, it becomes automatically available in the route's `.hbs` file as `this.model`
-2. A `model` hook can return just about any type of data, like a string, object, or array, but the most common pattern is to return a JavaScript [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises)
-3. If you return a Promise from the model hook, your route will wait for the Promise to resolve before it renders the template
+1. When you return data from this model, it becomes automatically available in the route's `.hbs` file as `@model` and in the route's controller as `this.model`.
+2. A `model` hook can return just about any type of data, like a string, object, or array, but the most common pattern is to return a JavaScript [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises).
+3. If you return a Promise from the model hook, your route will wait for the Promise to resolve before it renders the template.
 4. Since the `model` hook is Promise-aware, it is great for making API requests (using tools like [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)) and returning the results.
-5. When using the `model` hook to load data, you can take advantage of other niceties that Ember provides, like
-[automatic route transitions](../preventing-and-retrying-transitions/)
-after the data is returned,
-[loading screens, error handling](../loading-and-error-substates/),
-and more
+5. When using the `model` hook to load data, you can take advantage of other niceties that Ember provides, like [automatic route transitions](../preventing-and-retrying-transitions/) after the data is returned, [loading screens, error handling](../loading-and-error-substates/), and more.
 6. The `model` hook may automatically re-run in certain conditions, as you'll read about below.
 
 ## Using the `model` hook
@@ -46,28 +42,28 @@ To start, here's an example of returning a simple array from the `model` hook. E
 ```javascript {data-filename=app/routes/favorite-posts.js}
 import Route from '@ember/routing/route';
 
-export default Route.extend({
+export default class FavoritePostsRoute extends Route {
   model() {
     return [
       { title: 'Ember Roadmap' },
       { title: 'Accessibility in Ember' },
       { title: 'EmberConf Recap' }
-    ]
+    ];
   }
-});
+}
 ```
 
-Now that data can be used in the `favorite-posts`  template:
+Now that data can be used in the `favorite-posts` template:
 
 ```handlebars {data-filename=app/templates/favorite-posts.hbs}
-{{#each this.model as |post|}}
+{{#each @model as |post|}}
   <div>
     {{post.title}}
   </div>
 {{/each}}
 ```
 
-Behind the scenes, what is happening is that the [route's controller](https://api.emberjs.com/ember/3.11/classes/Route/methods/model?anchor=setupController) receives the results of the model hook, and makes those results available to the template. Your app may not have a controller file for the route, but the behavior is the same regardless.
+Behind the scenes, what is happening is that the [route's controller](https://api.emberjs.com/ember/3.11/classes/Route/methods/model?anchor=setupController) receives the results of the model hook, and Ember makes the model hook results available to the template. Your app may not have a controller file for the route, but the behavior is the same regardless.
 
 Let's compare some examples using the model hook to make asynchronous HTTP requests to a server somewhere.
 
@@ -75,21 +71,54 @@ Let's compare some examples using the model hook to make asynchronous HTTP reque
 
 First, here's an example using a core browser API called [`fetch`](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API), which returns a Promise.
 Install [`ember-fetch`](https://github.com/ember-cli/ember-fetch) with the command `ember install ember-fetch`, if it is not already in the app's `package.json`.
+Older browsers may not have `fetch`, but the `ember-fetch` library includes a polyfill, so we don't have to worry about backwards compatibility!
 
-```javascript {data-filename=app/routes/favorite-posts.js}
+```javascript {data-filename=app/routes/photo.js}
 import Route from '@ember/routing/route';
 import fetch from 'fetch';
 
-export default Route.extend({
-  model() {
-    return fetch('/my-cool-end-point.json').then(function(response) {
-      return response.json();
-    });
+export default class PhotosRoute extends Route {
+  async model() {
+    const response = await fetch('/my-cool-end-point.json');
+    const photos = await response.json();
+
+    return { photos };
   }
-});
+}
 ```
 
-Older browsers may not have `fetch`, but the `ember-fetch` library includes a polyfill, so we don't have to worry about backwards compatibility!
+Note: A route with a dynamic segment will always have its `model` hook called when it is entered via the URL.
+If the route is entered through a transition (e.g. when using the [`<LinkTo />`](../../templates/links/) component),
+and a model object is provided, then the hook is not executed.
+If an identifier (such as an id or slug) is provided instead then the model hook will be executed.
+
+For example, transitioning to the `photo` route this way won't cause the `model` hook to be executed (because `<LinkTo />`
+was passed a model):
+
+```handlebars {data-filename=app/templates/photos.hbs}
+<h1>Photos</h1>
+{{#each @model.photos as |photo|}}
+  <p>
+    <LinkTo @route="photo" @model={{photo}}>
+      <img src="{{photo.thumbnailUrl}}" alt="{{photo.title}}" />
+    </LinkTo>
+  </p>
+{{/each}}
+```
+
+while transitioning this way will cause the `model` hook to be executed (because `<LinkTo />` was passed `photo.id`, an
+identifier, instead):
+
+```handlebars {data-filename=app/templates/photos.hbs}
+<h1>Photos</h1>
+{{#each @model.photos as |photo|}}
+  <p>
+    <LinkTo @route="photo" @model={{photo.id}}>
+      <img src="{{photo.thumbnailUrl}}" alt="{{photo.title}}" />
+    </LinkTo>
+  </p>
+{{/each}}
+```
 
 ### Ember Data example
 
@@ -102,12 +131,12 @@ _Note that Ember Data also has a feature called a [`Model`](https://api.emberjs.
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
-export default Route.extend({
+export default class FavoritePostsRoute extends Route {
   store: service(),
   model() {
     return this.get('store').findAll('posts');
   }
-});
+}
 ```
 
 ## Multiple Models
@@ -123,14 +152,14 @@ If all of the promises resolve, the returned promise will resolve to an object t
 import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
 
-export default Route.extend({
+export default class SongsRoute extends Route {
   model() {
     return RSVP.hash({
       songs: this.store.findAll('song'),
       albums: this.store.findAll('album')
     });
   }
-});
+}
 ```
 
 In the `songs` template, we can specify both models and use the `{{#each}}` helper to display
@@ -140,7 +169,7 @@ each record in the song model and album model:
 <h1>Playlist</h1>
 
 <ul>
-  {{#each this.model.songs as |song|}}
+  {{#each @model.songs as |song|}}
     <li>{{song.name}} by {{song.artist}}</li>
   {{/each}}
 </ul>
@@ -148,7 +177,7 @@ each record in the song model and album model:
 <h1>Albums</h1>
 
 <ul>
-  {{#each this.model.albums as |album|}}
+  {{#each @model.albums as |album|}}
     <li>{{album.title}} by {{album.artist}}</li>
   {{/each}}
 </ul>
@@ -176,21 +205,27 @@ Whatever shows up in the URL at the `:post_id`, the dynamic segment, will be ava
 ```javascript {data-filename=app/routes/post.js}
 import Route from '@ember/routing/route';
 
-export default Route.extend({
+export default class PhotoRoute extends Route {
   model(params) {
-    console.log('This is the dynamic segment data: ' + params.post_id)
+    console.log('This is the dynamic segment data: ' + params.post_id);
     // make an API request that uses the id
   }
-});
+}
 ```
 
 If you do not define a model hook for a route, it will default to using Ember Data to look up the record, as shown below:
 
 ```js
 model(params) {
- return this.store.find('post', params.post_id);
+ return this.store.findRecord('post', params.post_id);
 }
 ```
+
+In the `model` hook for routes with dynamic segments, it's your job to
+turn the ID (something like `47` or `post-slug`) into a model that can
+be rendered by the route's template. In the above example, we use the
+post's ID (`params.post_id`) as an argument to Ember Data's `findRecord`
+method.
 
 ### Linking to a dynamic segment
 
@@ -204,7 +239,7 @@ When you provide a string or number to the `<LinkTo>`, the dynamic segment's `mo
 In this example, `photo.id` might have an id of `4`:
 
 ```handlebars
-{{#each model as |photo|}}
+{{#each @model as |photo|}}
   <LinkTo @route="photo" @model={{photo.id}}>
     link text to display
   </LinkTo>
@@ -217,14 +252,14 @@ For this reason, many Ember developers choose to pass only ids to `<LinkTo>` so 
 Here's what it looks like to pass the entire `photo` record:
 
 ```handlebars
-{{#each model as |photo|}}
+{{#each @model as |photo|}}
   <LinkTo @route="photo" @model={{photo}}>
     link text to display
   </LinkTo>
 {{/each}}
 ```
 
-If you decide to pass the entire model, be sure to cover this behavior in your [acceptance tests](../../testing/acceptance/).
+If you decide to pass the entire model, be sure to cover this behavior in your [application tests](../../testing/testing-application/).
 
 If a route you are trying to link to has multiple dynamic segments, like `/photos/4/comments/18`, be sure to specify all the necessary information for each segment:
 
@@ -241,20 +276,20 @@ Routes without dynamic segments will always execute the model hook.
 Sometimes you need to fetch a model, but your route doesn't have the parameters, because it's
 a child route and the route directly above or a few levels above has the parameters that your route
 needs.
-You might run into this if you have a URL like `/photos/4/comments/18`, and when you're in the comments route, you need a photo ID.
+You might run into this if you have a URL like `/album/4/songs/18`, and when you're in the songs route, you need an album ID.
 
 In this scenario, you can use the `paramsFor` method to get the parameters of a parent route.
 
 ```javascript {data-filename=app/routes/album/index.js}
 import Route from '@ember/routing/route';
 
-export default Route.extend({
+export default class AlbumIndexRoute extends Route {
   model() {
     let { album_id } = this.paramsFor('album');
 
     return this.store.query('song', { album: album_id });
   }
-});
+}
 ```
 
 This is guaranteed to work because the parent route is loaded. But if you tried to
@@ -272,13 +307,13 @@ from the parent route.
 ```javascript {data-filename=app/routes/album/index.js}
 import Route from '@ember/routing/route';
 
-export default Route.extend({
+export default class AlbumRoute extends Route {
   model() {
     let { songs } = this.modelFor('album');
 
     return songs;
   }
-});
+}
 ```
 
 In the case above, the parent route looked something like this:
@@ -287,14 +322,14 @@ In the case above, the parent route looked something like this:
 import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
 
-export default Route.extend({
+export default class AlbumRoute extends Route {
   model({ album_id }) {
     return RSVP.hash({
       album: this.store.findRecord('album', album_id),
-      songs: this.store.query('songs', { album: album_id })
+      songs: this.store.query('song', { album: album_id })
     });
   }
-});
+}
 ```
 
 And calling `modelFor` returned the result of the `model` hook.
@@ -303,10 +338,10 @@ And calling `modelFor` returned the result of the `model` hook.
 
 If you are having trouble getting a model's data to show up in the template, here are some tips:
 
-- Use the [`{{debugger}}`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/debugger?anchor=debugger) or [`{{log}}`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/debugger?anchor=log) helper to inspect the `{{model}}` from the template
+- Use the [`{{debugger}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/debugger?anchor=debugger) or [`{{log}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/debugger?anchor=log) helper to inspect the `{{@model}}` from the template
 - return hard-coded sample data as a test to see if the problem is really in the model hook, or elsewhere down the line
 - study JavaScript Promises in general, to make sure you are returning data from the Promise correctly
 - make sure your `model` hook has a `return` statement
-- check to see whether the data returned from a `model` hook is an object, array, or JavaScript Primitive. For example, if the result of `model` is an array, using `{{this.model}}` in the template won't work. You will need to iterate over the array with an [`{{#each}}`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/each?anchor=each) helper. If the result is an object, you need to access the individual attribute like `{{this.model.title}}` to render it in the template.
+- check to see whether the data returned from a `model` hook is an object, array, or JavaScript Primitive. For example, if the result of `model` is an array, using `{{@model}}` in the template won't work. You will need to iterate over the array with an [`{{#each}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/each?anchor=each) helper. If the result is an object, you need to access the individual attribute like `{{@model.title}}` to render it in the template.
 - use your browser's development tools to examine the outgoing and incoming API responses and see if they match what your code expects
 - If you are using Ember Data, use the [Ember Inspector](../../ember-inspector/) browser plugin to explore the View Tree/Model and Data sections.

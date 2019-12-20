@@ -14,19 +14,20 @@ We have a `Person` object with `firstName` and `lastName` properties, but we als
 ```javascript
 import EmberObject, { computed } from '@ember/object';
 
-Person = EmberObject.extend({
+class Person extends EmberObject {
   // these will be supplied by `create`
-  firstName: null,
-  lastName: null,
+  firstName = null;
+  lastName = null;
 
-  fullName: computed('firstName', 'lastName', function() {
+  @computed('firstName', 'lastName')
+  get fullName() {
     return `${this.firstName} ${this.lastName}`;
-  })
-});
+  }
+}
 
 let ironMan = Person.create({
   firstName: 'Tony',
-  lastName:  'Stark'
+  lastName: 'Stark'
 });
 
 ironMan.fullName; // "Tony Stark"
@@ -49,32 +50,31 @@ Outside of those two circumstances the code in the property will not run, even i
 We'll modify the `fullName` property from the previous example to log to the console:
 
 ```javascript
-import Ember from 'ember';
+import EmberObject, { computed } from '@ember/object';
 
-…
-  fullName: computed('firstName', 'lastName', function() {
+class Person extends EmberObject {
+  @computed('firstName', 'lastName')
+  get fullName() {
     console.log('compute fullName'); // track when the property recomputes
     return `${this.firstName} ${this.lastName}`;
-  })
-…
+  }
+}
 ```
 
 Using the new property, it will only log after a `fullName` is accessed, and then only if either the `firstName` or `lastName` has been previously changed:
 
 ```javascript
-
 let ironMan = Person.create({
   firstName: 'Tony',
-  lastName:  'Stark'
+  lastName: 'Stark'
 });
 
 ironMan.fullName; // 'compute fullName'
-ironMan.set('firstName', 'Bruce') // no console output
+ironMan.set('firstName', 'Bruce'); // no console output
 
 ironMan.fullName; // 'compute fullName'
 ironMan.fullName; // no console output since dependencies have not changed
 ```
-
 
 ### Multiple dependents on the same object
 
@@ -86,22 +86,23 @@ For example, look at this computed property:
 ```javascript
 import EmberObject, { computed } from '@ember/object';
 
-const Home = EmberObject.extend({
-  location: {
+class Home extends EmberObject {
+  location = {
     streetName: 'Evergreen Terrace',
     streetNumber: 742
-  },
+  };
 
-  address: computed('location.streetName', 'location.streetNumber', function() {
+  @computed('location.streetName', 'location.streetNumber')
+  address() {
     return `${this.location.streetNumber} ${this.location.streetName}`;
-  })
-});
+  }
+}
 
-let home = Home.create()
+let home = Home.create();
 
-home.address // 742 Evergreen Terrace
-home.set('location.streetNumber', 744)
-home.address // 744 Evergreen Terrace
+home.address; // 742 Evergreen Terrace
+home.set('location.streetNumber', 744);
+home.address; // 744 Evergreen Terrace
 ```
 
 It is important to observe an object's properties, not the object itself that has properties nested inside. If the object reference `location` is used as a dependent key, the computed property will not recalculate when the `streetName` or `streetNumber` properties change.
@@ -109,27 +110,28 @@ It is important to observe an object's properties, not the object itself that ha
 ```javascript
 import EmberObject, { computed } from '@ember/object';
 
-const Home = EmberObject.extend({
-  location: {
+class Home extends EmberObject {
+  location = {
     streetName: 'Evergreen Terrace',
     streetNumber: 742
-  },
+  };
 
-  address: computed('location', function() {
+  @computed('location')
+  get address() {
     return `${this.location.streetNumber} ${this.location.streetName}`;
-  })
-});
+  }
+}
 
-let home = Home.create()
+let home = Home.create();
 
-home.address // 742 Evergreen Terrace
-home.set('location.streetNumber', 744)
-home.address // 742 Evergreen Terrace
+home.address; // 742 Evergreen Terrace
+home.set('location.streetNumber', 744);
+home.address; // 742 Evergreen Terrace
 home.set('location', {
   streetName: 'Evergreen Terrace',
   streetNumber: 744
-})
-home.address // 744 Evergreen Terrace
+});
+home.address; // 744 Evergreen Terrace
 ```
 
 Since both `streetName` and `streetNumber` are properties on the `location` object, we can use a short-hand syntax called _brace expansion_ to declare the dependents keys.
@@ -138,16 +140,17 @@ You surround the dependent properties with braces (`{}`), and separate with comm
 ```javascript
 import EmberObject, { computed } from '@ember/object';
 
-const Home = EmberObject.extend({
-  location: {
+class Home extends EmberObject {
+  location = {
     streetName: 'Evergreen Terrace',
     streetNumber: 742
-  },
+  };
 
-  address: computed('location.{streetName,streetNumber}', function() {
+  @computed('location.{streetName,streetNumber}')
+  get address() {
     return `${this.location.streetNumber} ${this.location.streetName}`;
-  })
-});
+  }
+}
 ```
 
 ### Chaining computed properties
@@ -159,20 +162,22 @@ and use the existing `fullName` property and add in some other properties:
 ```javascript
 import EmberObject, { computed } from '@ember/object';
 
-Person = EmberObject.extend({
-  firstName: null,
-  lastName: null,
-  age: null,
-  country: null,
+class Person extends EmberObject {
+  firstName = null;
+  lastName = null;
+  age = null;
+  country = null;
 
-  fullName: computed('firstName', 'lastName', function() {
+  @computed('firstName', 'lastName')
+  get fullName() {
     return `${this.firstName} ${this.lastName}`;
-  }),
+  }
 
-  description: computed('fullName', 'age', 'country', function() {
+  @computed('fullName', 'age', 'country')
+  get description() {
     return `${this.fullName}; Age: ${this.age}; Country: ${this.country}`;
-  })
-});
+  }
+}
 
 let captainAmerica = Person.create({
   firstName: 'Steve',
@@ -208,23 +213,21 @@ You must return the new intended value of the computed property from the setter 
 ```javascript
 import EmberObject, { computed } from '@ember/object';
 
-Person = EmberObject.extend({
-  firstName: null,
-  lastName: null,
+class Person extends EmberObject {
+  firstName = null;
+  lastName = null;
 
-  fullName: computed('firstName', 'lastName', {
-    get(key) {
-      return `${this.firstName} ${this.lastName}`;
-    },
-    set(key, value) {
-      let [firstName, lastName] = value.split(/\s+/);
-      this.set('firstName', firstName);
-      this.set('lastName',  lastName);
-      return value;
-    }
-  })
-});
-
+  @computed('firstName', 'lastName')
+  get fullName() {
+    return `${this.firstName} ${this.lastName}`;
+  }
+  set fullName(value) {
+    let [firstName, lastName] = value.split(/\s+/);
+    this.set('firstName', firstName);
+    this.set('lastName', lastName);
+    return value;
+  }
+}
 
 let captainAmerica = Person.create();
 captainAmerica.set('fullName', 'William Burnside');
@@ -243,15 +246,16 @@ In this example, the two computed properties are equivalent:
 import EmberObject, { computed } from '@ember/object';
 import { equal } from '@ember/object/computed';
 
-Person = EmberObject.extend({
-  fullName: 'Tony Stark',
+class Person extends EmberObject {
+  fullName = 'Tony Stark';
 
-  isIronManLongWay: computed('fullName', function() {
+  @computed('fullName')
+  get isIronManLongWay() {
     return this.fullName === 'Tony Stark';
-  }),
+  }
 
-  isIronManShortWay: equal('fullName', 'Tony Stark')
-});
+  @equal('fullName', 'Tony Stark') isIronManShortWay;
+}
 ```
 
 To see the full list of computed property macros, have a look at

@@ -7,24 +7,23 @@ Let's assume we have a `Player` model that has `level` and `levelName`
 attributes. We want to call `levelUp()` to increment the `level` and assign a
 new `levelName` when the player reaches level 5.
 
-> You can follow along by generating your own model with `ember generate
-> model player`.
+> You can follow along by generating your own model with `ember generate model player`.
 
 ```javascript {data-filename=app/models/player.js}
-import Model from 'ember-data/model';
-import attr from 'ember-data/attr';
+import DS from 'ember-data';
+const { Model, attr } = DS;
 
-export default Model.extend({
-  level: attr('number', { defaultValue: 0 }),
-  levelName: attr('string', { defaultValue: 'Noob' }),
+export default class Player extends Model {
+  @attr('number', { defaultValue: 0 }) level;
+  @attr('string', { defaultValue: 'Noob' }) levelName;
 
   levelUp() {
-    let newLevel = this.incrementProperty('level');
+    let newLevel = this.level++;
     if (newLevel === 5) {
-      this.set('levelName', 'Professional');
+      this.levelName = 'Professional';
     }
   }
-});
+}
 ```
 
 Now let's create a test which will call `levelUp` on the player when they are
@@ -40,13 +39,19 @@ module('Unit | Model | player', function(hooks) {
 
   // Specify the other units that are required for this test.
   test('should increment level when told to', function(assert) {
-    const player = run(() => this.owner.lookup('service:store').createRecord('player'));
+    const player = run(() =>
+      this.owner.lookup('service:store').createRecord('player')
+    );
 
     // wrap asynchronous call in run loop
     run(() => player.levelUp());
 
-    assert.equal(player.get('level'), 5, 'level gets incremented');
-    assert.equal(player.get('levelName'), 'Professional', 'new level is called professional');
+    assert.equal(player.level, 5, 'level gets incremented');
+    assert.equal(
+      player.levelName,
+      'Professional',
+      'new level is called professional'
+    );
   });
 });
 ```
@@ -61,23 +66,22 @@ declarations are setup properly.
 
 Assume that a `User` can own a `Profile`.
 
-> You can follow along by generating your own user and profile models with `ember
-> generate model user` and `ember generate model profile`.
+> You can follow along by generating your own user and profile models with `ember generate model user` and `ember generate model profile`.
 
 ```javascript {data-filename=app/models/profile.js}
-import Model from 'ember-data/model';
+import DS from 'ember-data';
+const { Model } = DS;
 
-export default Model.extend({
-});
+export default class Profile extends Model {}
 ```
 
 ```javascript {data-filename=app/models/user.js}
-import Model from 'ember-data/model';
-import { belongsTo } from 'ember-data/relationships';
+import DS from 'ember-data';
+const { Model, belongsTo } = DS;
 
-export default Model.extend({
-  profile: belongsTo('profile')
-});
+export default class User extends Model {
+  @belongsTo('profile') profile;
+}
 ```
 
 Then you could test that the relationship by looking it up on the `user` model which it is part of.
@@ -97,12 +101,16 @@ module('Unit | Model | user', function(hooks) {
     const relationship = get(User, 'relationshipsByName').get('profile');
 
     assert.equal(relationship.key, 'profile', 'has relationship with profile');
-    assert.equal(relationship.kind, 'belongsTo', 'kind of relationship is belongsTo');
+    assert.equal(
+      relationship.kind,
+      'belongsTo',
+      'kind of relationship is belongsTo'
+    );
   });
 });
 ```
 
 _Ember Data contains extensive tests around the functionality of
-relationships, so you probably don't need to duplicate those tests.  You could
+relationships, so you probably don't need to duplicate those tests. You could
 look at the [Ember Data tests](https://github.com/emberjs/data/tree/master/packages/-ember-data/tests) for examples of deeper relationship testing if you
 feel the need to do it._

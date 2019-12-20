@@ -1,6 +1,7 @@
 /* resetting image rules that crept in from bootstrap */
 svg, img {
   vertical-align: inherit !important;
+  height: auto;
 }
 
 /* resetting code rules that came from bootstrap */
@@ -104,6 +105,99 @@ code {
   z-index: 10;
 }
 
-.cta {
-  max-width: 100% !important;
+/* Fix diff formatting */
+
+code[data-diff] .diff-deletion {
+  background-color: rgba(144,84,84,.7);
+}
+code[data-diff] .diff-insertion {
+  background-color: rgba(93,125,93,.5);
+}
+code[data-diff] .diff-deletion .diff-deletion,
+code[data-diff] .diff-deletion .diff-insertion,
+code[data-diff] .diff-insertion .diff-deletion,
+code[data-diff] .diff-insertion .diff-insertion {
+  background-color: transparent;
+}
+code[data-diff] .diff-deletion > .diff-operator,
+code[data-diff] .diff-insertion > .diff-operator {
+  display: none;
+}
+code[data-diff] .diff-deletion::before {
+  content: "-";
+  margin-left: -1ch;
+  background-color: rgba(144,84,84,.7);
+  color: #f8f8f2;
+}
+code[data-diff] .diff-insertion::before {
+  content: "+";
+  margin-left: -1ch;
+  background-color: rgba(93,125,93,.5);
+  color: #f8f8f2;
+}
+
+/* Fix <Foo::Bar> */
+
+.language-handlebars .namespace {
+  opacity: 1;
+}
+
+/* Widens Zoey says... */
+
+.chapter .cta {
+  max-width: 95%;
+}
+.chapter .cta .cta-note {
+  width: 100%;
+}
+.chapter .cta .cta-note .cta-note-body .cta-note-message p {
+  font-size: 95%;
+  line-height: 1.75em;
+  margin: 0.5em 0;
+}
+@media screen and (min-width: 768px) {
+  .chapter .cta .cta-note img {
+    padding-bottom: 10px;
+  }
+}
+
+/* Make code blocks denser */
+
+.chapter pre, .chapter pre[class*=language-],
+.chapter code, .chapter code[class*=language-] {
+  line-height: 1.4;
+}
+.chapter pre, .chapter pre[class*=language-] {
+  font-size: 85%;
+  padding: 0.75em;
+}
+
+/* Make the line number "gutter" narrower and more balanced */
+
+.chapter pre.line-numbers,
+.chapter pre[class*=language-].line-numbers {
+  padding-left: 3.6em;
+}
+.chapter pre.line-numbers code,
+.chapter pre[class*=language-].line-numbers code {
+  display: inline-block;
+  margin-left: 0.05em;
+}
+
+/* ToC heading styles */
+
+li.toc-heading.toc-level-0 {
+  font-size: 0.8em;
+  text-transform: uppercase;
+  color: rgb(155, 41, 24, 0.76);
+  font-weight: bold;
+  margin: 2em 0 1em;
+}
+
+li.toc-heading.toc-level-0:first-of-type {
+  margin-top: 0;
+}
+
+li.toc-group.toc-level-0 {
+  padding-left: 1em;
 }

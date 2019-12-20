@@ -9,8 +9,8 @@ Ember allows you to control that access with a combination of hooks and methods 
 
 One of the methods is [`transitionTo()`](https://api.emberjs.com/ember/3.11/classes/Route/methods/transitionTo?anchor=transitionTo).
 Calling `transitionTo()` from a route or
-[`transitionToRoute()`](https://api.emberjs.com/ember/3.11/classes/Controller/methods/transitionToRoute?anchor=transitionToRoute) from a controller will stop any transitions currently in progress and start a new one, functioning as a redirect.
-`transitionTo()` behaves exactly like [`<LinkTo>`](../../templates/links/).
+[`transitionToRoute()`](https://www.emberjs.com/api/ember/release/classes/Controller/methods/transitionToRoute?anchor=transitionToRoute) from a controller will stop any transitions currently in progress and start a new one, functioning as a redirect.
+`transitionTo()` behaves exactly like the [`LinkTo`](../../templates/links/) helper.
 
 The other one is [`replaceWith()`](https://api.emberjs.com/ember/3.11/classes/Route/methods/transitionTo?anchor=replaceWith/) which works the same way as `transitionTo()`.
 The only difference between them is how they manage history.
@@ -34,11 +34,11 @@ Router.map(function() {
 ```javascript {data-filename=app/routes/index.js}
 import Route from '@ember/routing/route';
 
-export default Route.extend({
+export default class IndexRoute extends Route {
   beforeModel(/* transition */) {
     this.transitionTo('posts'); // Implicitly aborts the on-going transition.
   }
-});
+}
 ```
 
 `beforeModel()` receives the current transition as an argument, which we can store and retry later.
@@ -49,7 +49,7 @@ See [Storing and Retrying a Transition](../preventing-and-retrying-transitions/#
 for how to do that.
 
 If you need to examine some application state to figure out where to redirect,
-you might use a [service](../../applications/services/).
+you might use a [service](../../services/).
 
 ## Transitioning After the Model is Known
 
@@ -67,13 +67,13 @@ Router.map(function() {
 ```javascript {data-filename=app/routes/posts.js}
 import Route from '@ember/routing/route';
 
-export default Route.extend({
+export default class PostsRoute extends Route {
   afterModel(model, transition) {
     if (model.get('length') === 1) {
       this.transitionTo('post', model.get('firstObject'));
     }
   }
-});
+}
 ```
 
 When transitioning to the `posts` route if it turns out that there is only one post,
@@ -104,11 +104,11 @@ transition validated, and not cause the parent route's hooks to fire again:
 ```javascript {data-filename=app/routes/posts.js}
 import Route from '@ember/routing/route';
 
-export default Route.extend({
+export default class PostsRoute extends Route {
   redirect(model, transition) {
     if (model.get('length') === 1) {
       this.transitionTo('posts.post', model.get('firstObject'));
     }
   }
-});
+}
 ```

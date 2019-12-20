@@ -1,3 +1,3 @@
 ---
-redirect: templates/input-components
+redirect: components/built-in-components
 ---

@@ -82,20 +82,20 @@ For example, if your server API provides an endpoint for the currently logged in
 }
 ```
 
-and the adapter for the `User` model defines a `queryRecord()` method that targets that endpoint:
+And if the adapter for the `User` model defines a `queryRecord()` method that targets that endpoint:
 
 ```javascript {data-filename=app/adapters/user.js}
 import DS from 'ember-data';
 import fetch from 'fetch';
 
-export default DS.Adapter.extend({
+export default class UserAdapter extends DS.Adapter {
   queryRecord(store, type, query) {
     return fetch('/api/current_user');
   }
-});
+}
 ```
 
-then calling [`store.queryRecord()`](https://api.emberjs.com/ember-data/release/classes/Store/methods/findAll?anchor=queryRecord) will retrieve that object from the server:
+Then, calling [`store.queryRecord()`](https://api.emberjs.com/ember-data/release/classes/Store/methods/findAll?anchor=queryRecord) will retrieve that object from the server:
 
 ```javascript
 store.queryRecord('user', {}).then(function(user) {

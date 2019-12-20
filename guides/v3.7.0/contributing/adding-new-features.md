@@ -1,6 +1,6 @@
 In general, new feature development should be done on master.
 
-Bugfixes should not introduce new APIs or break existing APIs, and do
+Bug fixes should not introduce new APIs or break existing APIs, and do
 not need feature flags.
 
 Features can introduce new APIs, and need feature flags. They should not
@@ -15,13 +15,13 @@ possible.
 
 #### Urgent Bug Fixes
 
-Urgent bugfixes are bugfixes that need to be applied to the existing
+Urgent bug fixes are bug fixes that need to be applied to the existing
 release branch. If possible, they should be made on master and prefixed
 with `[BUGFIX release]`.
 
 #### Beta Bug Fixes
 
-Beta bugfixes are bugfixes that need to be applied to the beta branch.
+Beta bug fixes are bug fixes that need to be applied to the beta branch.
 If possible, they should be made on master and tagged with `[BUGFIX
 beta]`.
 
@@ -37,7 +37,7 @@ Features must always be wrapped in a feature flag. Tests for the feature
 must also be wrapped in a feature flag.
 
 Because the build-tools will process feature-flags, flags must use
-precisely this format. We are choosing conditionals rather than a block
+this exact format. We are choosing conditionals rather than a block
 form because functions change the surrounding scope and may introduce
 problems with early return.
 
@@ -52,14 +52,15 @@ for the feature are passing against the current state of the feature.
 
 #### Commits
 
-Commits related to a specific feature should include  a prefix like
+Commits related to a specific feature should include a prefix like
 `[FEATURE htmlbars]`. This will allow us to quickly identify all commits
-for a specific feature in the future. Features will never be applied to
-beta or release branches. Once a beta or release branch has been cut, it
-contains all of the new features it will ever have.
+for a specific feature in the future. 
+
+Features will never be applied to beta or release branches. Once a beta or 
+release branch has been cut, no new features may be added.
 
 If a feature has made it into beta or release, and you make a commit to
-master that fixes a bug in the feature, treat it like a bugfix as
+master that fixes a bug in the feature, treat it like a bug fix as
 described above.
 
 #### Feature Naming Conventions
@@ -72,7 +73,7 @@ Ember.FEATURES['htmlbars']
 
 ### Builds
 
-The Canary build, which is based off master, will include all features,
+The Canary build, which is based off master, will include all features
 guarded by the conditionals in the original source. This means that
 users of the canary build can enable whatever features they want by
 enabling them before creating their Ember.Application.
@@ -91,8 +92,8 @@ module.exports = function(environment) {
 
 ### `features.json`
 
-The root of the repository will contain a `features.json` file, which will
-contain a list of features that should be enabled for beta or release
+The root of the repository will contain a `features.json` file, which 
+contains a list of features that should be enabled for beta or release
 builds.
 
 This file is populated when branching, and may not gain additional
@@ -104,8 +105,8 @@ features after the original branch. It may remove features.
 }
 ```
 
-The build process will remove any features not included in the list, and
-remove the conditionals for features in the list.
+The build process will remove any features not included in the list as well as
+conditionals for features in the list.
 
 ### Travis Testing
 
@@ -137,7 +138,7 @@ Every six weeks, the core team goes through the following process.
 #### Beta Branch
 
 All remaining features on the beta branch are vetted for readiness. If
-any feature isn't ready, it is removed from `features.json`.
+a feature isn't ready, it is removed from `features.json`.
 
 Once this is done, the beta branch is tagged and merged into release.
 
