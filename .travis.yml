@@ -38,10 +38,14 @@ jobs:
       name: 'Ember test suite'
     - script:
         - npm run build -- --prod
+        - netlify link --name ember-guides
+        - netlify watch
         - travis_wait 50 netlify deploy
-      if: ./should-it-deploy-preview-app.js
+      # if: ./should-it-deploy-preview-app.js
     - stage: deploy to prod
       script:
         - npm run build -- --prod
+        - netlify link --name ember-guides
+        - netlify watch
         - travis_wait 50 netlify deploy --prod
       if: type IN (push) AND branch = master
