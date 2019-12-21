@@ -171,7 +171,7 @@ module('Acceptance | super rentals', function(hooks) {
     assert.equal(currentURL(), '/getting-in-touch');
     assert.dom('h2').hasText('Contact Us');
 
-    assert.dom('a.button').hasText('About');
+    assert.dom('a.button').hasText('About Us');
     await click('.jumbo a.button');
 
     assert.equal(currentURL(), '/about');
