@@ -49,5 +49,5 @@ jobs:
 
             You can rebase the branch and force-push, or even delete it! The CI
             job clones the branch fresh on each build, and re-creates it from
-            the octane branch if needed, so there shouldn't be any issues with
+            the master branch if needed, so there shouldn't be any issues with
             conflicts and such.
