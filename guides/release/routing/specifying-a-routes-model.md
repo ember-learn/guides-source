@@ -132,7 +132,7 @@ import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
 export default class FavoritePostsRoute extends Route {
-  store: service(),
+  @service store;
   model() {
     return this.get('store').findAll('posts');
   }
