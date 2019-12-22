@@ -25,7 +25,7 @@ Assuming an `article` route with a model that looks like:
 This component would be invoked this way:
 
 ```handlebars {data-filename=app/templates/article.hbs}
-<Article @title={{@model.title}} @body={{@model.title}}>
+<Article @title={{@model.title}} @body={{@model.body}}>
 ```
 
 The first time the `Article` component is rendered, it would produce this output:
