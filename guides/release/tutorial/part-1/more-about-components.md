@@ -138,7 +138,7 @@ Components like these are known as _[namespaced](https://en.wikipedia.org/wiki/N
 
 Let's edit the component's template:
 
-```handlebars { data-filename="app/components/rental/image.hbs" data-diff="-1,+2,+3,+4" }
+```handlebars { data-filename="app/templates/components/rental/image.hbs" data-diff="-1,+2,+3,+4" }
 {{yield}}
 <div class="image">
   <img ...attributes>
