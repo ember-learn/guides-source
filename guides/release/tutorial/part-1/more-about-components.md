@@ -147,7 +147,7 @@ Let's edit the component's template:
 
 Instead of hard-coding specific values for the `src` and `alt` attributes on the `<img>` tag, we opted for the `...attributes` keyword instead, which is also sometimes referred to as the _"splattributes"_ syntax. This allows arbitrary HTML attributes to be passed in when invoking this component, like so:
 
-```handlebars { data-filename="app/components/rental.hbs" data-diff="+2,+3,+4,+5" }
+```handlebars { data-filename="app/templates/components/rental.hbs" data-diff="+2,+3,+4,+5" }
 <article class="rental">
   <Rental::Image
     src="https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg"
