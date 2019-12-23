@@ -292,7 +292,7 @@ class SimpleCache {
   }
 
   get(key) {
-    return this._cache(key);
+    return this._cache[key];
   }
 }
 ```
