@@ -100,7 +100,7 @@ class Person {
 }
 ```
 
-This is the very similar to defining the `Person` class with a constructor like
+This is very similar to defining the `Person` class with a constructor like
 this:
 
 ```js
