@@ -116,7 +116,7 @@ This allows us to simplify the original template into this:
 {{/if}}
 ```
 
-Not only did we cleaned up the original template to be more readable, we now
+Not only did we clean up the original template to be more readable, we now
 have a `<UserProfile>` component that we can reuse whenever we need to render
 information about a given user.
 
