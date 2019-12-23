@@ -102,7 +102,7 @@ its own component:
 <img src="{{@user.profileImage}}" alt="{{@user.name}}'s profile picture"> {{@user.name}}
 ```
 
-This allows us to simplify the original template into this:
+Doing this allows us to simplify the original template like so:
 
 ```handlebars {data-filename="app/templates/welcome.hbs"}
 {{!-- The model for this route is the current user --}}
