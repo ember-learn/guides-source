@@ -38,10 +38,10 @@ jobs:
       name: 'Ember test suite'
     - script:
         - npm run build -- --prod
-        - travis_wait 50 netlify deploy --timeout=2999
+        - travis_wait 50 netlify deploy ; netlify watch
       # if: ./should-it-deploy-preview-app.js
     - stage: deploy to prod
       script:
         - npm run build -- --prod
-        - travis_wait 50 netlify deploy --prod --timeout=2999
+        - travis_wait 50 netlify deploy --prod ; netlify watch
       if: type IN (push) AND branch = master
