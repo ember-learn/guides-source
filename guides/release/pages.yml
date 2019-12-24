@@ -82,7 +82,7 @@
       url: "component-state-and-actions"
     - title: "Looping Through Lists"
       url: "looping-through-lists"
-    - title: Template Lifecyle, DOM, and Modifiers
+    - title: Template Lifecycle, DOM, and Modifiers
       url: template-lifecycle-dom-and-modifiers
     - title: "Built-in Components"
       url: "built-in-components"
