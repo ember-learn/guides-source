@@ -1,3 +1,3 @@
 ---
-redirect: applications/index
+redirect: applications/indeeeeeex
 ---
