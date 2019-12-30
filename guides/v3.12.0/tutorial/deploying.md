@@ -7,7 +7,7 @@ There are also services that will let you deploy easily.
 Before you run `ember build` for this tutorial ensure you have the environment variable `LEAFLET_MAPS_API_KEY` set on your operating system,
 so that you can view [the maps we set up previously](../service/).
 
-For many Unix shell environments you can simply provide the key in front of the of the build command, such as:
+For many Unix shell environments you can simply provide the key in front of the build command, such as:
 
 ```bash
 LEAFLET_MAPS_API_KEY=<your key> ember build --environment=development
