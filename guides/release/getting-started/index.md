@@ -39,7 +39,7 @@ concept is introduced.
 
 To make the most out of the guides, you should have a working knowledge of
 **HTML, CSS, and JavaScript** - the building blocks of web pages. You can find
-out more about each of these technologies in the [Working with HTML, CSS, and JavaScript](./working-with-javascript)
+out more about each of these technologies in the [Working with HTML, CSS, and JavaScript](./working-with-html-css-and-javascript/)
 guide, including some of the special features that Ember uses such as class
 fields and decorators.
 
