@@ -290,7 +290,7 @@ The Fetch API returns a _response object_ asynchronously. Once we have this obje
 
 ## Adapting Server Data
 
-Before we go any further, let's pause for a second to look at the our server's data again.
+Before we go any further, let's pause for a second to look at the server's data again.
 
 ```json { data-filename="public/api/rentals.json" }
 {
