@@ -274,7 +274,7 @@ capitalized first name and last name as `firstName` and `lastName` instead of
 
 ### The `array` helper
 
-Using the [`{{array}}`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/array?anchor=array) helper,
+Using the [`{{array}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/array?anchor=array) helper,
 you can pass arrays directly from the template as an argument to your components.
 
 ```handlebars

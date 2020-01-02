@@ -259,4 +259,4 @@ class Person extends EmberObject {
 ```
 
 To see the full list of computed property macros, have a look at
-[the API documentation](https://api.emberjs.com/ember/3.11/modules/@ember%2Fobject)
+[the API documentation](https://api.emberjs.com/ember/release/modules/@ember%2Fobject)

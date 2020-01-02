@@ -1,6 +1,6 @@
 Oftentimes we'll need to repeat a component multiple times in a row, with
 different data for each usage of the component. We can use the
-[`{{#each}}`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/if?anchor=each)
+[`{{#each}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/if?anchor=each)
 helper to loop through lists of items like this, repeating a section of template
 for each item in the list.
 
@@ -370,7 +370,7 @@ export default class extends Component {
 
 ### Empty Lists
 
-The [`{{#each}}`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/if?anchor=each)
+The [`{{#each}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/if?anchor=each)
 helper can also have a corresponding `{{else}}`. The contents of this block will
 render if the array passed to `{{#each}}` is empty:
 
