@@ -53,6 +53,7 @@ ember-cli-deprecation-workflow
 ember-cli-cjs-transform
 ember-cli-document-title
 ember-cli-head
+ember-cli-htmlbars
 ember-cli-mirage.
 ember-cli-tutorial-style
 ember-debug-handlers-polyfill
