@@ -97,7 +97,7 @@ Our counter has two different actions, `increment` and `decrement`. But both
 actions are mostly doing the same thing. The only difference is that `increment`
 changes the count by `+1`, while `decrement` changes it by `-1`.
 
-First, let's turn our `increment` and `decrement` methods into a single `update`
+First, let's turn our `increment` and `decrement` methods into a single `change`
 method that takes the amount as a parameter.
 
 ```js {data-filename="app/components/counter.js" data-diff="+8,+9,+10,+11,-12,-13,-14,-15,-17,-18,-19,-20"}
@@ -294,11 +294,11 @@ let's allow it to be passed in.
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 
-export default class Counter extends Component {
+export default class DoubleIt extends Component {
   @tracked multiple = 1;
 
   @action
-  change(amount) {
+  double() {
     this.multiple = this.multiple * 2;
   }
 }
@@ -398,16 +398,16 @@ Now, the Counter calls the `updateMultiple` argument (which we expect to be a
 function) with the new value for `multiple`, and the parent component can update
 the multiple.
 
-```handlebars
+```handlebars {data-filename="app/components/double-it.hbs"}
 <Counter @multiple={{this.multiple}} @updateMultiple={{this.updateMultiple}} />
 ```
 
-```js
+```js {data-filename="app/components/double-it.js"}
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { action } from "@ember/object";
 
-export default class Counter extends Component {
+export default class DoubleIt extends Component {
   @tracked multiple = 1;
 
   @action
