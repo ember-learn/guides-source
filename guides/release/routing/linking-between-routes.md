@@ -67,7 +67,7 @@ segment directly, bypassing the `serialize` hook entirely:
 <a href="/photos/1">First Photo Ever</a>
 ```
 
-When the use click on the link, Ember will run the `PhotoEditRoute`'s `model`
+When the user click on the link, Ember will run the `PhotoEditRoute`'s `model`
 hook with `params.photo_id = 1`. On the other hand, if a model object was
 passed instead of the `id`, the model hook will _not_ run.
 
