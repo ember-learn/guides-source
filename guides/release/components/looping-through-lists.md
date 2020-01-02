@@ -65,7 +65,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
-export default class extends Component {
+export default class Messages extends Component {
   messages = [
     {
       username: 'Tomster',
@@ -214,7 +214,7 @@ add an action for creating the new message. We'll add this to the
 ```
 
 We're using the `submit` event on the form itself here rather than adding a
-`click` event handler to the button since is about submitting the form as a
+`click` event handler to the button since it is about submitting the form as a
 whole. We also updated the `input` tag to instead use the built in `<Input>`
 component, which automatically updates the value we pass to `@value`. Next, lets
 add the component class:
@@ -248,7 +248,7 @@ getting the new message input.
 
 Next, we'll update the parent component to use this new argument.
 
-```handlebars {data-filename="app/components/messages.hbs" data-diff=""}
+```handlebars {data-filename="app/components/messages.hbs" data-diff="-12,+13"}
 <div class="messages">
   {{#each this.messages as |message|}}
     <Message
@@ -279,7 +279,7 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { A } from '@ember/array';
 
-export default class extends Component {
+export default class Messages extends Component {
   username = 'Zoey';
 
   @action
@@ -351,7 +351,7 @@ print positions in a queue
 ```javascript
 import Component from '@glimmer/component';
 
-export default class extends Component {
+export default class SomeComponent extends Component {
   queue = [
     { name: 'Yehuda' },
     { name: 'Jen' },
@@ -392,7 +392,7 @@ helper to do this:
 ```javascript {data-filename=/app/components/store-categories.js}
 import Component from '@glimmer/component';
 
-export default class extends Component {
+export default class StoreCategories extends Component {
   // Set the "categories" property to a JavaScript object
   // with the category name as the key and the value a list
   // of products.
