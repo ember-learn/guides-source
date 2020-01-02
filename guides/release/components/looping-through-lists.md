@@ -65,7 +65,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
-export default class Messages extends Component {
+export default class MessagesComponent extends Component {
   messages = [
     {
       username: 'Tomster',
@@ -279,7 +279,7 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { A } from '@ember/array';
 
-export default class Messages extends Component {
+export default class MessagesComponent extends Component {
   username = 'Zoey';
 
   @action
@@ -392,7 +392,7 @@ helper to do this:
 ```javascript {data-filename=/app/components/store-categories.js}
 import Component from '@glimmer/component';
 
-export default class StoreCategories extends Component {
+export default class StoreCategoriesComponent extends Component {
   // Set the "categories" property to a JavaScript object
   // with the category name as the key and the value a list
   // of products.
