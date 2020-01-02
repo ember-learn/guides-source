@@ -21,7 +21,7 @@ representing different user's messages.
 </section>
 ```
 
-```handlebars {data-filename="app/components/sent-address.hbs"}
+```handlebars {data-filename="app/components/sent-message.hbs"}
 <aside class="current-user">
   <div class="avatar" title="Zoey's avatar">Z</div>
 </aside>
@@ -201,7 +201,7 @@ yields to the block once the block is passed into the component.
 
 ### Conditional Blocks
 
-Sometimes, we may want provide some default content if the user of a component
+Sometimes, we may want to provide some default content if the user of a component
 hasn't provided a block. For instance, consider an error message dialog that has
 a default message in cases where we don't know what error occurred. We could show
 the default message using the `(has-block)` syntax.
