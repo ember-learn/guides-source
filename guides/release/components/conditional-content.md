@@ -17,7 +17,7 @@ Let's take a look at two similar components representing a user's username.
 We can use arguments to make these two components dynamic, but the first
 username also has extra information about the local time of the user.
 
-Let's say we tried to create a single `address` component.
+Let's say we tried to create a single `username` component.
 
 ```handlebars {data-filename="app/components/username.hbs"}
 <h4 class="username">
