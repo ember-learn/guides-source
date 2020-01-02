@@ -116,6 +116,8 @@ use an `on` helper with the [Web-API event name](https://developer.mozilla.org/e
 ```
 
 
+Internally, `<Input @type="checkbox" />` creates an instance of Checkbox. Do *not* use `Checkbox` directly.
+
 ## `<Textarea />`
 
 ```handlebars
