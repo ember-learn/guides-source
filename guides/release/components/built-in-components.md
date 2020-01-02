@@ -98,11 +98,11 @@ Checkboxes support the following properties:
 Which can be bound or set as described in the previous section.
 
 
-Checkboxes are a special input type. If you want to dispatch an action on a certain [event](https://api.emberjs.com/ember/release/classes/Component#event-handler-methods), you will always need to define the event name in camelCase format:
+Checkboxes are a special input type. If you want to dispatch an action on a certain [event](https://api.emberjs.com/ember/release/classes/Ember.Templates.components/methods/Input?anchor=Input), you will always need to define the event name in camelCase format:
 
 ```handlebars
 <label for="firstname">First Name</label>
-<Input @type="checkbox" @key-press={{this.updateName}} id="firstname" />
+<Input @type="checkbox" @keyPress={{this.updateName}} id="firstname" />
 ```
 
 
