@@ -4,8 +4,8 @@ as other major features of the Ember object model.
 
 ### Defining Classes
 
-To define a new Ember _class_, call the [`extend()`][1] method on
-[`EmberObject`][2]:
+To define a new Ember _class_, call the [`extend()`](https://api.emberjs.com/ember/release/classes/@ember%2Fobject/methods/extend?anchor=extend) method on
+[`EmberObject`](https://api.emberjs.com/ember/release/modules/@ember%2Fobject):
 
 [1]: https://www.emberjs.com/api/ember/release/classes/@ember%2Fobject/methods/extend?anchor=extend
 [2]: https://www.emberjs.com/api/ember/release/modules/@ember%2Fobject
@@ -24,9 +24,7 @@ This defines a new `Person` class with a `say()` method.
 
 You can also create a _subclass_ from any existing class by calling
 its `extend()` method. For example, you might want to create a subclass
-of Ember's built-in [`Component`][3] class:
-
-[3]: https://www.emberjs.com/api/ember/release/classes/Component
+of Ember's built-in [`Component`](https://api.emberjs.com/ember/release/classes/Component) class:
 
 ```javascript {data-filename=app/components/todo-item.js}
 import Component from '@ember/component';
@@ -89,7 +87,7 @@ The above example returns the original arguments (after your customizations) bac
 ### Creating Instances
 
 Once you have defined a class, you can create new _instances_ of that
-class by calling its [`create()`][5] method. Any methods, properties and
+class by calling its [`create()`](https://api.emberjs.com/ember/release/classes/@ember%2Fobject/methods/create?anchor=create) method. Any methods, properties and
 computed properties you defined on the class will be available to
 instances:
 
@@ -141,11 +139,7 @@ conventions in your Ember applications.
 
 ### Initializing Instances
 
-When a new instance is created, its [`init()`][6] method is invoked
-automatically. This is the ideal place to implement setup required on new
-instances:
-
-[6]: https://www.emberjs.com/api/ember/release/classes/EmberObject/methods/init?anchor=init
+When a new instance is created, its [`init()`](https://api.emberjs.com/ember/release/classes/EmberObject/methods/init?anchor=init) method is invoked automatically. This is the ideal place to implement setup required on new instances:
 
 ```javascript
 import EmberObject from '@ember/object';
@@ -228,7 +222,7 @@ Person.create({
 
 When reading a property value of an object, you can in most cases use the common JavaScript dot notation, e.g. `myObject.myProperty`.
 
-[Ember proxy objects][9] are the one big exception to this rule. If you're working with Ember proxy objects, including promise proxies for async relationships in Ember Data, you have to use Ember's [`get()`][7] accessor method to read values.
+[Ember proxy objects](https://api.emberjs.com/ember/release/classes/ObjectProxy) are the one big exception to this rule. If you're working with Ember proxy objects, including promise proxies for async relationships in Ember Data, you have to use Ember's [`get()`](https://api.emberjs.com/ember/release/classes/@ember%2Fobject/methods/get?anchor=get) accessor method to read values.
 
 Let's look at the following `blogPost` Ember Data model:
 
@@ -246,7 +240,7 @@ export default Model.extend({
 
 To access the blog post's title you can simply write `blogPost.title`, whereas only the syntax `blogPost.get('comments')` will return the post's comments.
 
-Always use Ember's [`set()`][8] method to update property values. It will propagate the value change to computed properties, observers, templates, etc. If you "just" use JavaScript's dot notation to update a property value, computed properties won't recalculate, observers won't fire and templates won't update.
+Always use Ember's [`set()`](https://api.emberjs.com/ember/release/classes/@ember%2Fobject/methods/set?anchor=set) method to update property values. It will propagate the value change to computed properties, observers, templates, etc. If you "just" use JavaScript's dot notation to update a property value, computed properties won't recalculate, observers won't fire and templates won't update.
 
 ```javascript
 import EmberObject from '@ember/object';
