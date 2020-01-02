@@ -99,17 +99,20 @@ Checkboxes support the following properties:
 Which can be bound or set as described in the previous section.
 
 
-Checkboxes are a special input type.  If you want to dispatch an action on a certain [event](https://api.emberjs.com/ember/release/classes/Component#event-handler-methods), you will always need to define the event name in [Web-API format](https://developer.mozilla.org/en-US/docs/Web/API/Document/keydown_event):
-Or per the camelCase mapping in Application.customEvents in packages/@ember/-internals/views/lib/system/event_dispatcher.js
+Checkboxes are a special input type.  If you want to dispatch an action on a certain [event](https://api.emberjs.com/ember/release/classes/Component#event-handler-methods),
+you will always need to either define the event name in camelCase format (e.g. `@keyDown`, see Application.customEvents), or
+use an `on` helper with the [Web-API event name](https://developer.mozilla.org/en-US/docs/Web/API/Document/keydown_event) (e.g. `on 'keydown'`):
 
 ```handlebars
 <label for="firstname">First Name</label>
-{{!-- This does not work --}}
-<Input @type="checkbox" @key-press={{this.updateName}} id="firstname" />
-{{!-- Instead do this --}}
-<Input @type="checkbox" @keypress={{action "updateName"}} />
-{{!-- or do this --}}
-<Input @type="checkbox" {{on 'keypress' this.updateName}} id="firstname" />
+{{!-- This does not work: uses dasherized event name --}}
+<Input @type="checkbox" @key-down={{this.updateName}} id="firstname" />
+{{!-- This does not work: uses actual event name --}}
+<Input @type="checkbox" @keydown={{this.updateName}} id="firstname" />
+{{!-- This works: uses camelCase event name--}}
+<Input @type="checkbox" @keyDown={{this.updateName}} id="firstname" />
+{{!-- This works: uses 'on' with actual event name--}}
+<Input @type="checkbox" {{on 'keydown' this.updateName}} id="firstname" />
 ```
 
 
