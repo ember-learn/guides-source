@@ -204,7 +204,7 @@ yields to the block once the block is passed into the component.
 Sometimes, we may want to provide some default content if the user of a component
 hasn't provided a block. For instance, consider an error message dialog that has
 a default message in cases where we don't know what error occurred. We could show
-the default message using the `(has-block)` syntax.
+the default message using the `(has-block)` syntax in an `ErrorDialog` component.
 
 ```handlebars {data-filename=app/templates/components/error-dialog.hbs}
 <dialog>
