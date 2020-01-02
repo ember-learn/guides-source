@@ -53,11 +53,11 @@ current context.
 
 ### Actions
 
-To dispatch an action on specific events such as `key-press`, use the following
+To dispatch an action on specific events such as `key-down`, use the following
 
 ```handlebars
 <label for="firstname">First Name</label>
-<Input @value={{this.firstName}} @key-press={{this.updateFirstName}} id="firstname" />
+<Input @value={{this.firstName}} @key-down={{this.updateFirstName}} id="firstname" />
 ```
 
 The following event types are supported (dasherized format):
@@ -67,7 +67,8 @@ The following event types are supported (dasherized format):
 * `escape-press`
 * `focus-in`
 * `focus-out`
-* `key-press`
+* `key-down`
+* `key-press` ([Deprecated Web API](https://developer.mozilla.org/en-US/docs/Web/API/Document/keypress_event))
 * `key-up`
 
 
@@ -98,7 +99,8 @@ Checkboxes support the following properties:
 Which can be bound or set as described in the previous section.
 
 
-Checkboxes are a special input type.  If you want to dispatch an action on a certain [event](https://api.emberjs.com/ember/release/classes/Component#event-handler-methods), you will always need to define the event name in [Web-API format](https://developer.mozilla.org/en-US/docs/Web/API/Document/keypress_event):
+Checkboxes are a special input type.  If you want to dispatch an action on a certain [event](https://api.emberjs.com/ember/release/classes/Component#event-handler-methods), you will always need to define the event name in [Web-API format](https://developer.mozilla.org/en-US/docs/Web/API/Document/keydown_event):
+Or per the camelCase mapping in Application.customEvents in packages/@ember/-internals/views/lib/system/event_dispatcher.js
 
 ```handlebars
 <label for="firstname">First Name</label>
