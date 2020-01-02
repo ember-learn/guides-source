@@ -243,11 +243,11 @@ helper lets you create new bindings (or temporary variables) in your template.
 Say your template now looks like this:
 
 ```handlebars
-Welcome back {{concat this.person.firstName ' ' this.person.lastName}}
+Welcome back {{concat (capitalize this.person.firstName) ' ' (capitalize this.person.lastName)}}
 
 Account Details:
-First Name: {{this.person.firstName}}
-Last Name: {{this.person.lastName}}
+First Name: {{capitalize this.person.firstName}}
+Last Name: {{capitalize this.person.lastName}}
 ```
 
 As mentioned in the previous section, we use the `concat` helper to render both
@@ -257,14 +257,14 @@ sure that the names are capitalized. It gets a bit repetitive to keep writing
 can use the `{{let}}` helper to fix this:
 
 ```handlebars
-{{#let (concat this.person.firstName this.person.lastName)
-  as |fullName|
+{{#let (capitalize this.person.firstName) (capitalize this.person.lastName)
+  as |firstName lastName|
 }}
-  Welcome back {{fullName}}
+  Welcome back {{concat firstName ' ' lastName}}
 
   Account Details:
-  First Name: {{this.person.firstName}}
-  Last Name: {{this.person.lastName}}
+  First Name: {{firstName}}
+  Last Name: {{lastName}}
 {{/let}}
 ```
 
