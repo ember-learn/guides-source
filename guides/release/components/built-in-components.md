@@ -100,7 +100,7 @@ Which can be bound or set as described in the previous section.
 
 
 Checkboxes are a special input type.  If you want to dispatch an action on a certain [event](https://api.emberjs.com/ember/release/classes/Component#event-handler-methods),
-you will always need to either define the event name in camelCase format (e.g. `@keyDown`, see Application.customEvents), or
+you will always need to either define the event name in camelCase format (e.g. `@keyDown`), or
 use an `on` helper with the [Web-API event name](https://developer.mozilla.org/en-US/docs/Web/API/Document/keydown_event) (e.g. `on 'keydown'`):
 
 ```handlebars
@@ -114,7 +114,6 @@ use an `on` helper with the [Web-API event name](https://developer.mozilla.org/e
 {{!-- This works: uses 'on' with actual event name--}}
 <Input @type="checkbox" {{on 'keydown' this.updateName}} id="firstname" />
 ```
-
 
 Internally, `<Input @type="checkbox" />` creates an instance of Checkbox. Do *not* use `Checkbox` directly.
 
