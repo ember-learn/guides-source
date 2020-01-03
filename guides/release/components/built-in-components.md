@@ -105,14 +105,14 @@ use an `on` helper with the [Web-API event name](https://developer.mozilla.org/e
 
 ```handlebars
 <label for="firstname">First Name</label>
+{{!-- This works: uses camelCase event name --}}
+<Input @type="checkbox" @keyDown={{this.updateName}} id="firstname" />
+{{!-- This works: uses 'on' with actual event name --}}
+<Input @type="checkbox" {{on "keydown" this.updateName}} id="firstname" />
 {{!-- This does not work: uses dasherized event name --}}
 <Input @type="checkbox" @key-down={{this.updateName}} id="firstname" />
 {{!-- This does not work: uses actual event name --}}
 <Input @type="checkbox" @keydown={{this.updateName}} id="firstname" />
-{{!-- This works: uses camelCase event name--}}
-<Input @type="checkbox" @keyDown={{this.updateName}} id="firstname" />
-{{!-- This works: uses 'on' with actual event name--}}
-<Input @type="checkbox" {{on 'keydown' this.updateName}} id="firstname" />
 ```
 
 Internally, `<Input @type="checkbox" />` creates an instance of Checkbox. Do *not* use `Checkbox` directly.
