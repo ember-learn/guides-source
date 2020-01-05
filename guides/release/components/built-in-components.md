@@ -53,11 +53,11 @@ current context.
 
 ### Actions
 
-To dispatch an action on specific events such as `key-press`, use the following
+To dispatch an action on specific events such as `key-down`, use the following
 
 ```handlebars
 <label for="firstname">First Name</label>
-<Input @value={{this.firstName}} @key-press={{this.updateFirstName}} id="firstname" />
+<Input @value={{this.firstName}} @key-down={{this.updateFirstName}} id="firstname" />
 ```
 
 The following event types are supported (dasherized format):
@@ -67,7 +67,8 @@ The following event types are supported (dasherized format):
 * `escape-press`
 * `focus-in`
 * `focus-out`
-* `key-press`
+* `key-down`
+* `key-press` ([Deprecated Web API](https://developer.mozilla.org/en-US/docs/Web/API/Document/keypress_event))
 * `key-up`
 
 
@@ -98,13 +99,23 @@ Checkboxes support the following properties:
 Which can be bound or set as described in the previous section.
 
 
-Checkboxes are a special input type. If you want to dispatch an action on a certain [event](https://api.emberjs.com/ember/release/classes/Component#event-handler-methods), you will always need to define the event name in camelCase format:
+Checkboxes are a special input type.  If you want to dispatch an action on a certain [event](https://api.emberjs.com/ember/release/classes/Component#event-handler-methods),
+you will always need to either define the event name in camelCase format (e.g. `@keyDown`), or
+use an `on` helper with the [Web-API event name](https://developer.mozilla.org/en-US/docs/Web/API/Document/keydown_event) (e.g. `on 'keydown'`):
 
 ```handlebars
 <label for="firstname">First Name</label>
-<Input @type="checkbox" @key-press={{this.updateName}} id="firstname" />
+{{!-- This works: uses camelCase event name --}}
+<Input @type="checkbox" @keyDown={{this.updateName}} id="firstname" />
+{{!-- This works: uses 'on' with actual event name --}}
+<Input @type="checkbox" {{on "keydown" this.updateName}} id="firstname" />
+{{!-- This does not work: uses dasherized event name --}}
+<Input @type="checkbox" @key-down={{this.updateName}} id="firstname" />
+{{!-- This does not work: uses actual event name --}}
+<Input @type="checkbox" @keydown={{this.updateName}} id="firstname" />
 ```
 
+Internally, `<Input @type="checkbox" />` creates an instance of Checkbox. Do *not* use `Checkbox` directly.
 
 ## `<Textarea />`
 
