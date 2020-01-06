@@ -123,7 +123,7 @@ For example, if we are currently on `/photos/2`, then the following template:
   <LinkTo @route="photos.photo.comment" @model={{comment}}>
     {{excerpt comment.body}}...
   </LinkTo>
-{{/comment}}
+{{/each}}
 ```
 
 ...will render something like this:
