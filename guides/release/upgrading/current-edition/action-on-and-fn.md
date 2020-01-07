@@ -57,7 +57,7 @@ reason about what each individual API is doing.
 
 ### The `@action` Decorator
 
-In Ember Octane, components are no longer defined on the `actions` object of a
+In Ember Octane, actions are no longer defined on the `actions` object of a
 component or controller. Instead, they are standard class methods decorated with
 the `@action` decorator.
 
