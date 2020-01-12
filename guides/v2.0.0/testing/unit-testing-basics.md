@@ -125,3 +125,5 @@ test('should set other prop to yes when foo changes', function(assert) {
   assert.equal(someThing.get('other'), 'yes');
 });
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

@@ -232,3 +232,5 @@ App.Folder = DS.Model.extend({
   parent: belongsTo('folder', {inverse: null})
 });
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

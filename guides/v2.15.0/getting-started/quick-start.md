@@ -299,3 +299,5 @@ add the following directive to the application's virtual host configuration:
 ```apacheconf
 FallbackResource index.html
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

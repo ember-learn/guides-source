@@ -48,3 +48,5 @@ person.get('isDirty');      //=> false
 person.get('isAdmin');      //=> false
 person.changedAttributes(); //=> {}
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

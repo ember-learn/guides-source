@@ -111,3 +111,5 @@ test('it renders', function(assert) {
 });
 
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

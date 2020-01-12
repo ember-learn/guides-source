@@ -223,3 +223,5 @@ Just like the filtering methods, the `every` and `some` methods have analogous `
 people.isEvery('isHappy', true) // false
 people.isAny('isHappy', true)  // true
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

@@ -77,3 +77,5 @@ render if the array passed to `{{#each}}` is empty:
   Sorry, nobody is here.
 {{/each}}
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

@@ -59,3 +59,5 @@ store.findRecord('post', 2).then(function(post) {
   post.destroyRecord(); // => DELETE to /posts/2
 });
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

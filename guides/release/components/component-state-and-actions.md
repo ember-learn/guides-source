@@ -416,3 +416,5 @@ export default class DoubleIt extends Component {
   }
 }
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

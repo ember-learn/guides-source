@@ -190,3 +190,5 @@ and accessing them within a template:
 ```handlebars
 {{@model.location.latitude}}
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

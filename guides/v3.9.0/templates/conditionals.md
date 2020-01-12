@@ -90,3 +90,5 @@ template only shows an amount due when the user has not paid:
   You owe: ${{this.total}}
 {{/unless}}
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

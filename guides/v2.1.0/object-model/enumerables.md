@@ -193,3 +193,5 @@ Just like the filtering methods, the `every` and `any` methods have analogous `i
 people.isEvery('isHappy', true) // false
 people.isAny('isHappy', true)  // true
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

@@ -35,3 +35,5 @@ template.
 ```handlebars
 {{outlet}}
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

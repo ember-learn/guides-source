@@ -256,6 +256,4 @@ person.set('name', 'Tobias Fünke');
 person.name; // 'Tobias Fünke'
 ```
 
-[7]: https://www.emberjs.com/api/ember/release/classes/@ember%2Fobject/methods/get?anchor=get
-[8]: https://www.emberjs.com/api/ember/release/classes/@ember%2Fobject/methods/set?anchor=set
-[9]: https://emberjs.com/api/ember/3.3/classes/ObjectProxy
+<!-- eof - needed for pages that end in a code block  -->
