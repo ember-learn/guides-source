@@ -69,3 +69,5 @@ user.set('fullName', 'Krang Gates');
 userComponent.set('userName', 'Truckasaurus Gates');
 user.get('fullName'); // "Krang Gates"
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

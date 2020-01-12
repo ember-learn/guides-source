@@ -204,3 +204,5 @@ import addContact from './add-contact';
 // addContact("Bob");
 // addContact("Dan");
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

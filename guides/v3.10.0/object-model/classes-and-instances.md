@@ -251,3 +251,5 @@ person.name; // 'Robert Jackson'
 person.set('name', 'Tobias Fünke');
 person.name; // 'Tobias Fünke'
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

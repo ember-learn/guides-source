@@ -110,3 +110,5 @@ App.SongsController = Ember.ArrayController.extend({
   <li>{{item.fullName}}</li>
 {{/each}}
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

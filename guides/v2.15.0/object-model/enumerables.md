@@ -201,3 +201,5 @@ analogous `isEvery()` and `isAny()` methods.
 people.isEvery('isHappy', true); // false
 people.isAny('isHappy', true);  // true
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

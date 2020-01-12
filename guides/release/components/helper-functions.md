@@ -317,3 +317,5 @@ In the component's template, you can then use the `person` object:
 ```handlebars {data-filename=app/components/greeting/template.hbs}
 Hello, {{@person.firstName}} {{@person.lastName}}
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

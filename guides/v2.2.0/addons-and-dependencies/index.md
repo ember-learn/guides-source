@@ -137,3 +137,5 @@ app.import('bower_components/es5-shim/es5-shim.js', {
   prepend: true
 });
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

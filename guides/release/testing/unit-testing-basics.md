@@ -245,3 +245,5 @@ module('Unit | Service | employees', function(hooks) {
   });
 });
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

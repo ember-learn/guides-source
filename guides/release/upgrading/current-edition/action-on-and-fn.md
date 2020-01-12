@@ -219,3 +219,5 @@ helper:
 <button {{on "click" (fn this.handleClick 123)}}>Click Me!</button>
 <MyComponent @onClick={{fn this.handleClick 123}} />
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

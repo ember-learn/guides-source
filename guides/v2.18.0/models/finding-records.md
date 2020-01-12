@@ -114,3 +114,5 @@ tom = store.query('user', {
   return users.get("firstObject");
 });
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

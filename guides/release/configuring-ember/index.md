@@ -18,3 +18,5 @@ if (ENV.environment === 'development') {
   // ...
 }
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

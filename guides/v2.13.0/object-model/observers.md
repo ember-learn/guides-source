@@ -138,3 +138,5 @@ person.addObserver('fullName', function() {
   // deal with the change
 });
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

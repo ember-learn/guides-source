@@ -129,3 +129,5 @@ module('Integration | Helper | my-helper', function(hooks) {
   });
 });
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

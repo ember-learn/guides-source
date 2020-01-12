@@ -117,3 +117,5 @@ export default Component.extend({
   positionalParams: 'params'
 });
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

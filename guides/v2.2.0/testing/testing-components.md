@@ -341,3 +341,5 @@ test('should render results after typing a term', function(assert) {
 
 });
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

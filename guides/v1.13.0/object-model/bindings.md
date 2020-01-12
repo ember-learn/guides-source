@@ -64,3 +64,5 @@ user.set('fullName', "Krang Gates");
 userView.set('userName', "Truckasaurus Gates");
 user.get('fullName'); // "Krang Gates"
 ```
+
+<!-- eof - needed for pages that end in a code block  -->
