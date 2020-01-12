@@ -62,7 +62,7 @@ A component consists of two parts:
 * A JavaScript source file (`app/components/rental-listing.js`) that defines how it will behave.
 
 Our template files (with the `.hbs` file extension) are written using the
-[Handlebars](../../templates/handlebars-basics) syntax, which consists of
+[Handlebars](../../templates/handlebars-basics/) syntax, which consists of
 regular HTML elements mixed with dynamic content in double curly braces:
 `{{ }}`. The variables inside the curly braces represent properties from our
 JavaScript source file. If the value of a property in our source file changes,

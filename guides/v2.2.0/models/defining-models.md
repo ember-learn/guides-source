@@ -56,7 +56,7 @@ export default DS.Model.extend({
 ```
 
 For more about adding computed properties to your classes, see [Computed
-Properties](../../object-model/computed-properties).
+Properties](../../object-model/computed-properties/).
 
 ### Transforms
 
