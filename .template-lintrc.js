@@ -1,5 +1,9 @@
 'use strict';
 
 module.exports = {
-  extends: 'octane'
+  extends: 'octane',
+  rules: {
+    'no-implicit-this': false,
+    'no-curly-component-invocation': false
+  }
 };
