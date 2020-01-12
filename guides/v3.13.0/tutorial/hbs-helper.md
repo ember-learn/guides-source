@@ -129,3 +129,5 @@ module('Integration | Helper | rental-property-type', function(hooks) {
   });
 });
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

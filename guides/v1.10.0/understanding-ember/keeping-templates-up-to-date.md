@@ -25,3 +25,5 @@ Your output will be free of markers, but be careful, because the output won't be
 ```html
 My new car is blue.
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

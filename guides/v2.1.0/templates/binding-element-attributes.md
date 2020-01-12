@@ -79,3 +79,5 @@ Now the same handlebars code above renders the following HTML:
 <input id="ember259" class="ember-view ember-text-field"
        type="text" data-toggle="tooltip" data-placement="bottom" title="Name">
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

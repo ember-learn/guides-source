@@ -344,3 +344,5 @@ export default Ember.Controller.extend({
   ]
 });
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

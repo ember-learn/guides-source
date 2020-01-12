@@ -384,3 +384,5 @@ still use Ember's `get` and `set` functions:
 get(maybeProxy, 'firstName');
 set(maybeProxy, 'firstName', 'Amy');
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

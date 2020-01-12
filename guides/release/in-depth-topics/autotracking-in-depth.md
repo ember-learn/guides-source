@@ -320,3 +320,5 @@ class ShoppingList {
   }
 }
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

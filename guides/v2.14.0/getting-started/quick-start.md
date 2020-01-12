@@ -322,3 +322,5 @@ add the following directive to the application's virtual host configuration
 ```
 FallbackResource index.html
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

@@ -279,3 +279,5 @@ export default Component.extend({
   }
 });
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

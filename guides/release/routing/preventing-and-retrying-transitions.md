@@ -106,3 +106,5 @@ export default class LoginController extends Controller {
   }
 }
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

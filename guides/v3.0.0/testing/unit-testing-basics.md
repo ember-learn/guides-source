@@ -186,3 +186,5 @@ skip('skip this test', function(assert) {
     assert.ok(true)
 });
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

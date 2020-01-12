@@ -80,3 +80,5 @@ arguments as:
 ```handlebars
 {{view "calendar"}}
 ```
+
+<!-- eof - needed for pages that end in a code block  -->
