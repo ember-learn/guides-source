@@ -112,3 +112,5 @@ export default class PostsRoute extends Route {
   }
 }
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

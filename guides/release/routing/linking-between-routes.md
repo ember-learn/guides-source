@@ -223,3 +223,5 @@ option:
   Top comment for the current photo
 </Link>
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

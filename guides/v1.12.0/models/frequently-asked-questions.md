@@ -136,3 +136,5 @@ socket.on('message', function (message) {
   store.pushPayload(message.model, message.data);
 });
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

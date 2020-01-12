@@ -352,3 +352,5 @@ export default class ArticlesController extends Controller {
   ]
 }
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

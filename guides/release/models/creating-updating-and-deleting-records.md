@@ -157,3 +157,5 @@ the [`destroyRecord`](https://api.emberjs.com/ember-data/release/classes/Model/m
   post.destroyRecord(); // => DELETE to /posts/2
 });
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

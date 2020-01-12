@@ -40,3 +40,5 @@ Person.reopen({
 Person.isPerson; // false - because it is static property created by `reopenClass`
 Person.create().get("isPerson"); // true
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

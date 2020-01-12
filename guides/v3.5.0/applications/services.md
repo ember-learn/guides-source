@@ -140,3 +140,5 @@ Note `cart` being used below to get data from the cart.
   {{/each}}
 </ul>
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

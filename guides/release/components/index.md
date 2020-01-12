@@ -186,10 +186,10 @@ In addition to normal HTML syntax, Ember allows you to use self-closing syntax
     <div class="cta-note-body">
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
-        You don't <strong>need</strong> to use this syntax for "void" HTML tags
-        such as `img` or `br`, which are already defined as self-closing by the
-        HTML spec, but you <strong>can</strong> use this syntax as a shorthand
-        for tags that are not self-closing.
+        You don't <strong>need</strong> to use this syntax for <a href="https://html.spec.whatwg.org/multipage/syntax.html#void-elements">"void" HTML
+        tags</a> such as <code>img</code> or <code>br</code>, which are already
+        defined as self-closing by the HTML specification, but you <strong>can</strong> use this syntax
+        as a shorthand for tags that are not self-closing.
       </div>
     </div>
     <img src="/images/mascots/zoey.png" role="presentation" alt="">

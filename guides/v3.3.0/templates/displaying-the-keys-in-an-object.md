@@ -74,3 +74,5 @@ The contents of this block will render if the object is empty, null, or undefine
   Sorry, nobody is here.
 {{/each-in}}
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

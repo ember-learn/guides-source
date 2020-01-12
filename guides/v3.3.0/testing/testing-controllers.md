@@ -79,3 +79,5 @@ module('Unit | Controller | posts', function(hooks) {
   });
 });
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

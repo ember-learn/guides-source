@@ -87,3 +87,5 @@ In the component's template, you can then use the `people` argument as an array:
   {{/each}}
 </ul>
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

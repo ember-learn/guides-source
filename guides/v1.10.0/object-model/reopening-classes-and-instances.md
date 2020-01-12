@@ -36,3 +36,5 @@ Person.reopenClass({
 
 Person.createMan().get('isMan') // true
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

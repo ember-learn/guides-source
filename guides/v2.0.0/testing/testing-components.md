@@ -270,3 +270,5 @@ test('should change displayed location when current location changes', function 
   assert.equal(this.$().text().trim(), 'You currently are located in Beijing, China', 'location display should change');
 });
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

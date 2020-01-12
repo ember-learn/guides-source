@@ -298,3 +298,5 @@ We can yield back multiple values as well, separated by spaces.
   <AuthorBio @author={{author}} />
 </BlogPost>
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

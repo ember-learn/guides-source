@@ -60,3 +60,5 @@ you expect:
 ```javascript
 > context
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

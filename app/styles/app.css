@@ -155,6 +155,10 @@ code[data-diff] .diff-insertion::before {
   line-height: 1.75em;
   margin: 0.5em 0;
 }
+.chapter .cta-note-body code {
+  padding: 0;
+  background-color: transparent;
+}
 @media screen and (min-width: 768px) {
   .chapter .cta .cta-note img {
     padding-bottom: 10px;
