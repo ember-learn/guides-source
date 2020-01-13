@@ -1,5 +1,5 @@
 As you learn about Ember, you'll see code like `Component.extend()` and
-`DS.Model.extend()`. Here, you'll learn about this `extend()` method, as well
+`Model.extend()`. Here, you'll learn about this `extend()` method, as well
 as other major features of the Ember object model.
 
 ### Defining Classes
@@ -223,9 +223,7 @@ When reading a property value of an object, you can in most cases use the common
 Let's look at the following `blogPost` Ember Data model:
 
 ```javascript {data-filename=app/models/blog-post.js}
-import Model from 'ember-data/model';
-import attr from 'ember-data/attr';
-import { hasMany } from 'ember-data/relationships';
+import Model, { attr, hasMany } from '@ember-data/model';
 
 export default Model.extend({
   title: attr('string'),

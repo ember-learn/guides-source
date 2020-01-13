@@ -169,8 +169,8 @@ export default class PaymentMethodModel extends Model {
 ```
 
 ```javascript {data-filename=app/models/payment-method-cc.js}
+import { attr } from '@ember-data/model';
 import PaymentMethod from './payment-method';
-const { attr } = DS;
 
 export default class PaymentMethodCcModel extends PaymentMethod {
   @attr last4;
