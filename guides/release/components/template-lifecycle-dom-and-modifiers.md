@@ -176,7 +176,7 @@ If you want to add an event handler to an HTML element, you can use the `{{on` e
 import Component from "@glimmer/component";
 import { action } from "@ember/object";
 
-export default class Counter extends Component {
+export default class CounterComponent extends Component {
   @tracked count = 0;
 
   @action
@@ -334,7 +334,7 @@ Next, let's add an event handler to the `Play` button:
 import Component from "@glimmer/component";
 import { action } from "@ember/object";
 
-export default class AudioPlayer extends Component {
+export default class AudioPlayerComponent extends Component {
   @action
   play() {
     // TODO
@@ -364,7 +364,7 @@ Now, the component can access the audio element in the `play` method:
 import Component from "@glimmer/component";
 import { action } from "@ember/object";
 
-export default class AudioPlayer extends Component {
+export default class AudioPlayerComponent extends Component {
   @action
   play() {
     // TODO
@@ -450,7 +450,7 @@ We could then use the `modal` component this way:
 import Component from "@glimmer/component";
 import { action } from "@ember/object";
 
-export default class Sidebar extends Component {
+export default class SidebarComponent extends Component {
   @tracked showingHelp = false;
 
   @action

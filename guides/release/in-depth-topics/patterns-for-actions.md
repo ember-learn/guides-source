@@ -31,7 +31,7 @@ normal component definition, like we've seen before:
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
-export default class ButtonWithConfirmation extends Component {
+export default class ButtonWithConfirmationComponent extends Component {
   @tracked isConfirming = false;
 }
 ```
@@ -52,7 +52,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
-export default class ButtonWithConfirmation extends Component {
+export default class ButtonWithConfirmationComponent extends Component {
   @tracked isConfirming = false;
 
   @action
@@ -88,7 +88,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
-export default class ButtonWithConfirmation extends Component {
+export default class ButtonWithConfirmationComponent extends Component {
   @tracked isConfirming = false;
 
   @action
@@ -160,7 +160,7 @@ import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
-export default class UserProfile extends Component {
+export default class UserProfileComponent extends Component {
   @service login;
 
   @action
@@ -190,7 +190,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
-export default class ButtonWithConfirmation extends Component {
+export default class ButtonWithConfirmationComponent extends Component {
   @tracked isConfirming = false;
 
   @action
@@ -238,7 +238,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
-export default class ButtonWithConfirmation extends Component {
+export default class ButtonWithConfirmationComponent extends Component {
   @tracked isConfirming = false;
 
   @action
@@ -274,7 +274,7 @@ expect a message type parameter to be provided as an argument:
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 
-export default class SendMessage extends Component {
+export default class SendMessageComponent extends Component {
   @action
   async sendMessage(messageType) {
     // send message here and return a promise
@@ -316,7 +316,7 @@ message the user is sending:
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 
-export default class SendMessage extends Component {
+export default class SendMessageComponent extends Component {
   @action
   async sendMessage(messageType, messageText) {
     // send message here and return a promise
@@ -345,7 +345,7 @@ will use a property `confirmValue` to represent that argument and pass it to
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 
-export default class ButtonWithConfirmation extends Component {
+export default class ButtonWithConfirmationComponent extends Component {
   @action
   async submitConfirm() {
     if (this.args.onConfirm) {
@@ -420,7 +420,7 @@ that processes the `sendMessage` logic.
 import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 
-export default class SendMessage extends Component {
+export default class SendMessageComponent extends Component {
   @service messaging;
 
   // component implementation
@@ -467,7 +467,7 @@ import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
-export default class UserProfile extends Component {
+export default class UserProfileComponent extends Component {
   @service login;
 
   @action
@@ -495,7 +495,7 @@ only the user's account `id` string.
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 
-export default class SystemPreferencesEditor extends Component {
+export default class SystemPreferencesEditorComponent extends Component {
   @action
   userDeleted(idStr /* , native clickEvent */) {
     // respond to deletion
@@ -525,7 +525,7 @@ import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
-export default class SystemPreferencesEditor extends Component {
+export default class SystemPreferencesEditorComponent extends Component {
   @service login;
 
   @action

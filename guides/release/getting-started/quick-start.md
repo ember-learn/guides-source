@@ -269,7 +269,7 @@ the same directory as our template, and paste in the following content:
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 
-export default class PeopleList extends Component {
+export default class PeopleListComponent extends Component {
   @action
   showPerson(person) {
     alert(`The person's name is ${person}!`);
