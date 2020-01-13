@@ -421,7 +421,7 @@ export default class AdeleRoute extends Route {
   @service store;
   model() {
     // GET to /artists?filter[name]=Adele&include=albums
-    this.store
+    return this.store
       .query('artist', {
         filter: { name: 'Adele' },
         include: 'albums'
