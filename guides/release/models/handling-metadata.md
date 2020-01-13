@@ -66,7 +66,7 @@ To use the `meta` data outside of the `model` hook, you need to return it:
 ```javascript {data-filename=app/routes/users.js}
 import Route from '@ember/routing/route';
 
-export default class Users extends Route {
+export default class UsersRoute extends Route {
   model() {
     return this.store.query('user', {}).then((results) => {
       return {

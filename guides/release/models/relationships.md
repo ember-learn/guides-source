@@ -392,7 +392,7 @@ as follows:
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
-export default class Post extends Route {
+export default class PostRoute extends Route {
   @service store;
   model(params) {
     return this.store.findRecord('post', params.post_id, {
@@ -412,7 +412,7 @@ would look like this:
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
-export default class Post extends Route {
+export default class PostRoute extends Route {
   @service store;
   model(params) {
     return this.store.findRecord('post', params.post_id, {
@@ -431,7 +431,7 @@ For example:
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
-export default class Adele extends Route {
+export default class AdeleRoute extends Route {
   @service store;
   model() {
     // GET to /artists?filter[name]=Adele&include=albums
