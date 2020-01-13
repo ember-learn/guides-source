@@ -16,7 +16,7 @@ passed to it:
 ```js {data-filename=app/components/hello.js}
 import Component from '@glimmer/component';
 
-export default class Hello extends Component {
+export default class HelloComponent extends Component {
   language = 'en';
 
   get greeting() {
@@ -63,7 +63,7 @@ We can do this by marking the field with the `@tracked` decorator:
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
-export default class Hello extends Component {
+export default class HelloComponent extends Component {
   @tracked language = 'en';
 
   get greeting() {
@@ -110,7 +110,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
-export default class Hello extends Component {
+export default class HelloComponent extends Component {
   @tracked language = 'en';
 
   get greeting() {
@@ -145,7 +145,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
-export default class Hello extends Component {
+export default class HelloComponent extends Component {
   constructor() {
     super(...arguments);
 
@@ -185,7 +185,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
-export default class Hello extends Component {
+export default class HelloComponent extends Component {
   @tracked language = 'en';
   @tracked supportedLanguages = ['en', 'de', 'es'];
 

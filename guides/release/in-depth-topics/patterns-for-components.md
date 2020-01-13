@@ -17,7 +17,7 @@ and class, you could do it like so:
 ```javascript {data-filename=app/components/tooltip.js}
 import Component from '@glimmer/component';
 
-export default class Tooltip extends Component {
+export default class TooltipComponent extends Component {
   get icon() {
     return this.args.icon ?? 'icon-info';
   }

@@ -142,7 +142,7 @@ once on the prototype like properties. This has a few important implications:
    ```js
    import Component from '@glimmer/component';
 
-   export default class ShoppingList extends Component {
+   export default class ShoppingListComponent extends Component {
      // This is completely ok!
      items = ['milk', 'potatoes'];
    }

@@ -23,7 +23,7 @@ to wire up the buttons.
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 
-export default class Counter extends Component {
+export default class CounterComponent extends Component {
   @tracked count = 0;
 }
 ```
@@ -73,7 +73,7 @@ import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { action } from "@ember/object";
 
-export default class Counter extends Component {
+export default class CounterComponent extends Component {
   @tracked count = 0;
 
   @action
@@ -105,7 +105,7 @@ import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { action } from "@ember/object";
 
-export default class Counter extends Component {
+export default class CounterComponent extends Component {
   @tracked count = 0;
 
   @action
@@ -175,7 +175,7 @@ import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { action } from "@ember/object";
 
-export default class Counter extends Component {
+export default class CounterComponent extends Component {
   @tracked count = 0;
   @tracked multiple = 1;
 
@@ -212,7 +212,7 @@ import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { action } from "@ember/object";
 
-export default class Counter extends Component {
+export default class CounterComponent extends Component {
   @tracked count = 0;
   @tracked multiple = 1;
 
@@ -294,7 +294,7 @@ let's allow it to be passed in.
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 
-export default class DoubleIt extends Component {
+export default class DoubleItComponent extends Component {
   @tracked multiple = 1;
 
   @action
@@ -331,7 +331,7 @@ import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { action } from "@ember/object";
 
-export default class Counter extends Component {
+export default class CounterComponent extends Component {
   @tracked count = 0;
   @tracked multiple = 1;
 
@@ -375,7 +375,7 @@ import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { action } from "@ember/object";
 
-export default class Counter extends Component {
+export default class CounterComponent extends Component {
   @tracked count = 0;
 
   get total() {
@@ -407,7 +407,7 @@ import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { action } from "@ember/object";
 
-export default class DoubleIt extends Component {
+export default class DoubleItComponent extends Component {
   @tracked multiple = 1;
 
   @action

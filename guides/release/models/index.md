@@ -97,7 +97,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import fetch from 'fetch';
 
-export default class ListOfDrafts extends Component {
+export default class ListOfDraftsComponent extends Component {
   @tracked drafts;
 
   constructor() {
@@ -132,7 +132,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import fetch from 'fetch';
 
-export default class DraftsButton extends Component {
+export default class DraftsButtonComponent extends Component {
   @tracked drafts;
 
   constructor() {

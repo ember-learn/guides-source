@@ -12,7 +12,7 @@ deprecated in the future. You can use them like this:
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 
-export default class Todo extends Component {
+export default class TodoComponent extends Component {
   @action
   toggleCompleted(isComplete) {
     // ...
@@ -80,7 +80,7 @@ After:
 ```javascript
 import Component from '@glimmer/component';
 
-export default class Example extends Component {
+export default class ExampleComponent extends Component {
   @action
   doSomething() {
     // ...
@@ -125,7 +125,7 @@ The callback function will receive the event as its first argument:
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 
-export default class Example extends Component {
+export default class ExampleComponent extends Component {
   @action
   handleClick(event) {
     event.preventDefault();
@@ -172,7 +172,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
-export default class Example extends Component {
+export default class ExampleComponent extends Component {
   @tracked value;
 
   @action
@@ -199,7 +199,7 @@ functions in your templates:
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 
-export default class Example extends Component {
+export default class ExampleComponent extends Component {
   @action
   handleClick(value) {
     console.log(value); // 123

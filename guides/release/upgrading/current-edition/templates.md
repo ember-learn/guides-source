@@ -237,7 +237,7 @@ If you need to provide a default value, you'll have to do it via a getter:
 ```js {data-filename=blog-post.js}
 import Component from '@glimmer/component';
 
-export default class BlogPost extends Component {
+export default class BlogPostComponent extends Component {
   get title() {
     return this.args.title || 'Untitled';
   }
