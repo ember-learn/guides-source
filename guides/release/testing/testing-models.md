@@ -10,8 +10,7 @@ new `levelName` when the player reaches level 5.
 > You can follow along by generating your own model with `ember generate model player`.
 
 ```javascript {data-filename=app/models/player.js}
-import DS from 'ember-data';
-const { Model, attr } = DS;
+import Model, { attr } from '@ember-data/model';
 
 export default class Player extends Model {
   @attr('number', { defaultValue: 0 }) level;
@@ -69,17 +68,15 @@ Assume that a `User` can own a `Profile`.
 > You can follow along by generating your own user and profile models with `ember generate model user` and `ember generate model profile`.
 
 ```javascript {data-filename=app/models/profile.js}
-import DS from 'ember-data';
-const { Model } = DS;
+import Model from '@ember-data/model';
 
-export default class Profile extends Model {}
+export default class ProfileModel extends Model {}
 ```
 
 ```javascript {data-filename=app/models/user.js}
-import DS from 'ember-data';
-const { Model, belongsTo } = DS;
+import Model, { belongsTo } from '@ember-data/model';
 
-export default class User extends Model {
+export default class UserModel extends Model {
   @belongsTo('profile') profile;
 }
 ```

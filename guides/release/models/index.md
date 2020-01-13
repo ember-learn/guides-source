@@ -205,10 +205,9 @@ example, a `Person` model might have a `firstName` attribute that is a
 string, and a `birthday` attribute that is a date:
 
 ```javascript {data-filename=app/models/person.js}
-import DS from 'ember-data';
-const { Model, attr } = DS;
+import Model, { attr } from '@ember-data/model';
 
-export default class Person extends Model {
+export default class PersonModel extends Model {
   @attr('string') firstName;
   @attr('date') birthday;
 }
@@ -219,19 +218,18 @@ example, an `order` may have many `line-items`, and a
 `line-item` may belong to a particular `order`.
 
 ```javascript {data-filename=app/models/order.js}
-import DS from 'ember-data';
-const { Model, hasMany } = DS;
+import Model, { hasMany } from '@ember-data/model';
 
-export default class Order extends Model {
+
+export default class OrderModel extends Model {
   @hasMany('line-item') lineItems;
 }
 ```
 
 ```javascript {data-filename=app/models/line-item.js}
-import DS from 'ember-data';
-const { Model, belongsTo } = DS;
+import Model, { belongsTo } from '@ember-data/model';
 
-export default class LineItem extends Model {
+export default class LineItemModel extends Model {
   @belongsTo('order') order;
 }
 ```
