@@ -111,12 +111,12 @@ Note that this also applies to all addons that your app uses, so make sure they 
 
 ### application-template-wrapper
 
-With this feature *disabled* Ember creates a wrapping div around the entire
+With this feature *enabled* Ember creates a wrapping div around the entire
 rendered application. Effectively, it is creating a `<div class="ember-view">`
 element which wraps the contents of an application's
 `app/templates/application.hbs` file.
 
-When *enabled*, this div will not be output. This is usually desirable, but
+When *disabled*, this div will not be output. This is usually desirable, but
 may break the styling of an existing application in subtle ways:
 
 - Perhaps the application relied on the root `.ember-view` for styles (CSS).
@@ -127,7 +127,7 @@ may break the styling of an existing application in subtle ways:
   longer be contained in a block-layout element.
 
 If your application relies on those behaviors it is still recommended that
-you *enable* this feature, and simply add an appropriate element to
+you *disable* this feature, and simply add an appropriate element to
 `app/templates/application.hbs` wrapping that template's `{{outlet}}`.
 
 For more information, see [RFC #280](https://github.com/emberjs/rfcs/blob/master/text/0280-remove-application-wrapper.md).
