@@ -348,7 +348,7 @@ let melanie = new Person();
 console.log(melanie.name); // 'Melanie Sumner'
 console.log(melanie._name); // 'Melanie Sumner'
 
-melanie.name = "Melanie Autumn";
+melanie.name = 'Melanie Autumn';
 console.log(melanie.name); // 'Melanie Autumn'
 console.log(melanie._name); // 'Melanie Autumn'
 ```
