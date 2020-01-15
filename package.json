@@ -27,12 +27,13 @@
     "lint:md": "remark . --frail",
     "start": "ember serve",
     "test": "npm run test:node && npm run test:ember",
-    "test:ember": "ember test",
+    "test:ember": "percy exec -- ember test",
     "test:node": "mocha node-tests"
   },
   "devDependencies": {
     "@ember/optional-features": "^1.1.0",
     "@glimmer/component": "^1.0.0",
+    "@percy/ember": "^2.0.0-beta.3",
     "babel-eslint": "^10.0.3",
     "broccoli-asset-rev": "^3.0.0",
     "chai": "^4.1.2",
@@ -59,7 +60,6 @@
     "ember-load-initializers": "^2.1.1",
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-metrics": "^0.14.0",
-    "ember-percy": "^1.6.0",
     "ember-qunit": "^4.6.0",
     "ember-resolver": "^7.0.0",
     "ember-source": "~3.15.0",
