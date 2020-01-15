@@ -119,7 +119,7 @@ and fields:
 
 ### Constructor
 
-The `constructor` method is a special method is classes. It's run when you
+The `constructor` method is a special method in classes. It's run when you
 create a new instance of the class, and can be used to setup the class:
 
 ```js
