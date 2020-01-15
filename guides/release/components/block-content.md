@@ -292,6 +292,7 @@ We can yield back multiple values as well, separated by spaces.
 <!-- usage -->
 <BlogPost @post={{@blogPost}} as |title author body|>
   <img src="./blog-logo.png">
+  {{title}}
 
   {{body}}
 
