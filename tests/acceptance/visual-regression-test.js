@@ -2,7 +2,7 @@ import { visit } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 import { get } from '@ember/object';
-import { percySnapshot } from 'ember-percy';
+import percySnapshot from '@percy/ember';
 
 module('Acceptance | visual regression', function(hooks) {
   setupApplicationTest(hooks);
