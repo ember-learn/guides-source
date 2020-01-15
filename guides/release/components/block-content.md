@@ -282,9 +282,6 @@ to them.
 We can yield back multiple values as well, separated by spaces.
 
 ```handlebars {data-filename=app/components/blog-post.hbs}
-<h1>{{@post.title}}</h1>
-<h2>{{@post.author}}</h1>
-
 {{yield @post.title @post.author @post.body }}
 ```
 
