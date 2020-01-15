@@ -270,10 +270,10 @@ to them.
 
 ```handlebars
 <!-- usage -->
-<BlogPost @post={{@blogPost}} as |body|>
+<BlogPost @post={{@blogPost}} as |postBody|>
   <img src="./blog-logo.png">
 
-  {{body}}
+  {{postBody}}
 
   <AuthorBio @author={{@blogPost.author}} />
 </BlogPost>
@@ -287,13 +287,13 @@ We can yield back multiple values as well, separated by spaces.
 
 ```handlebars
 <!-- usage -->
-<BlogPost @post={{@blogPost}} as |title author body|>
+<BlogPost @post={{@blogPost}} as |postTitle postAuthor postBody|>
   <img src="./blog-logo.png">
-  {{title}}
+  {{postTitle}}
 
-  {{body}}
+  {{postBody}}
 
-  <AuthorBio @author={{author}} />
+  <AuthorBio @author={{postAuthor}} />
 </BlogPost>
 ```
 
