@@ -263,7 +263,8 @@ attach some _code_ to the component.
 
 In addition to the template, a component can also have a JavaScript file for
 this exact purpose. Go ahead and create a `.js` file with the same name and in
-the same directory as our template, and paste in the following content:
+the same directory as our template (`app/components/people-list.js`),
+and paste in the following content:
 
 ```javascript {data-filename="app/components/people-list.js"}
 import Component from '@glimmer/component';
@@ -305,7 +306,7 @@ the button in the template.
 
 There is a problem with this though – if you tried this in the browser, you
 will quickly discovered that clicking on the buttons will bring up an alert
-dialog that said "The person's name is undefined!" – eek!
+dialog that said "The person's name is `[Object Mousevent]`!" – eek!
 
 The cause of this bug is that we wrote our action to take an argument – the
 person's name – and we forgot to pass it. The fix is easy enough:
