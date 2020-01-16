@@ -7,6 +7,9 @@ module.exports = function(defaults) {
     fingerprint: {
       extensions: ['js', 'css', 'map'],
       exclude: ['downloads']
+    },
+    guidemaker: {
+      premberVersionFilter: '3.12.0'
     }
   });
 
