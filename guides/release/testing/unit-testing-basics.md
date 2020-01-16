@@ -2,7 +2,6 @@ Unit tests (as well as container tests) are generally used to test a small piece
 and ensure that it is doing what was intended.
 Unlike application tests, they are narrow in scope and do not require the Ember application to be running.
 
-
 Let's have a look at a common use case - testing a service - to understand the basic principles of testing in Ember.
 This will set the foundation for other parts of your Ember application such as controllers, components, helpers and others.
 Testing a service is as simple as creating a container test,
@@ -24,7 +23,7 @@ export default class SomeThingService extends Service {
   get computedFoo() {
     return `computed ${this.foo}`;
   }
-};
+}
 ```
 
 Within the test for this object, we'll lookup the service instance, update the `foo` property (which
@@ -40,9 +39,9 @@ module('Unit | Service | some thing', function(hooks) {
 
   test('should correctly concat foo', function(assert) {
     const someThing = this.owner.lookup('service:some-thing');
-    someThing.set('foo', 'baz');
+    someThing.foo = baz;
 
-    assert.equal(someThing.get('computedFoo'), 'computed baz');
+    assert.equal(someThing.computedFoo, 'computed baz');
   });
 });
 ```
@@ -92,7 +91,7 @@ module('Unit | Service | some thing', function(hooks) {
 
     someThing.testMethod();
 
-    assert.equal(someThing.get('foo'), 'baz');
+    assert.equal(someThing.foo, 'baz');
   });
 });
 ```
@@ -112,7 +111,7 @@ export default class SomeThingService extends Service {
     this.count += 1;
     return `count: ${this.count}`;
   }
-};
+}
 ```
 
 The test would call the `calc` method and assert it gets back the correct value.
@@ -142,11 +141,11 @@ You can do it by using `skip`:
 import { test, skip } from 'qunit';
 
 test('run this test', function(assert) {
-    assert.ok(true)
+  assert.ok(true);
 });
 
 skip('skip this test', function(assert) {
-    assert.ok(true)
+  assert.ok(true);
 });
 ```
 
@@ -188,8 +187,11 @@ module('Unit | Service | some thing', function(hooks) {
 
   test('testMethod should return result of someComplicatedOtherFunction', function(assert) {
     const someThing = this.owner.lookup('service:some-thing');
-    const originalSomeComplicatedOtherMethod = someThing.someComplicatedOtherMethod;
-    someThing.someComplicatedOtherMethod = function() { return 4 };
+    const originalSomeComplicatedOtherMethod =
+      someThing.someComplicatedOtherMethod;
+    someThing.someComplicatedOtherMethod = function() {
+      return 4;
+    };
 
     assert.equal(someThing.testMethod(2), 'Answer 4', 'testMethod is working');
 
@@ -206,7 +208,7 @@ You can also stub an object:
 import Service from '@ember/service';
 
 export default class EmployeesService extends Service {
-  employees = []
+  employees = [];
 
   hire(person) {
     person.addJob();
@@ -231,10 +233,10 @@ module('Unit | Service | employees', function(hooks) {
     const someThing = this.owner.lookup('service:some-thing');
 
     class MockPerson {
-      firstName = 'John'
-      lastName = 'Smith'
+      firstName = 'John';
+      lastName = 'Smith';
       addJob() {}
-    };
+    }
 
     let person = new MockPerson();
 
@@ -243,3 +245,5 @@ module('Unit | Service | employees', function(hooks) {
   });
 });
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

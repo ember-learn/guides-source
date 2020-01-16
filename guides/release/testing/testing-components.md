@@ -65,7 +65,7 @@ We can better see what this means, once we start writing out our first test case
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Component | pretty-color', function(hooks) {
   setupRenderingTest(hooks);
@@ -96,7 +96,7 @@ component's `style` attribute and is reflected in the rendered HTML:
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Component | pretty-color', function(hooks) {
   setupRenderingTest(hooks);
@@ -123,7 +123,7 @@ We might also test this component to ensure that the content of its template is 
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Component | pretty-color', function(hooks) {
   setupRenderingTest(hooks);
@@ -182,7 +182,7 @@ And our test might look like this:
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { click, render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Component | magic-title', function(hooks) {
   setupRenderingTest(hooks);
@@ -247,7 +247,7 @@ external action is called:
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { click, fillIn, render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Component | comment-form', function(hooks) {
   setupRenderingTest(hooks);
@@ -313,7 +313,7 @@ In this case we initially force location to "New York".
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 import Service from '@ember/service';
 
 //Stub location service
@@ -349,7 +349,7 @@ the test needs to check that the stub data from the service is reflected in the 
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 import Service from '@ember/service';
 
 //Stub location service
@@ -390,7 +390,7 @@ In the next example, we'll add another test that validates that the display chan
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 import Service from '@ember/service';
 
 //Stub location service
@@ -457,7 +457,7 @@ The `settled` function itself returns a Promise that resolves once all async ope
 
 You can use `settled` as a helper in your tests directly and `await` it for all async behavior to settle deliberately.
 
-Imagine you have a typeahead component that uses [`Ember.run.debounce`](https://api.emberjs.com/ember/3.11/classes/@ember%2Frunloop/methods/debounce?anchor=debounce) to limit requests to the server, and you want to verify that results are displayed after typing a character.
+Imagine you have a typeahead component that uses [`Ember.run.debounce`](https://api.emberjs.com/ember/release/classes/@ember%2Frunloop/methods/debounce?anchor=debounce) to limit requests to the server, and you want to verify that results are displayed after typing a character.
 
 > You can follow along by generating your own component with `ember generate
 > component delayed-typeahead`.
@@ -492,7 +492,7 @@ In your test, use the `settled` helper to wait until your debounce timer is up a
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render, settled } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Component | delayed-typeahead', function(hooks) {
   setupRenderingTest(hooks);
@@ -521,3 +521,5 @@ module('Integration | Component | delayed-typeahead', function(hooks) {
   });
 });
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

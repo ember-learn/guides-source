@@ -1,99 +1,91 @@
 - title: "Introduction"
+  url: "toc-heading_introduction"
+  is_heading: true
+- title: "Guides and Tutorials"
   url: "index"
+  skip_toc: true
   pages:
-    - title: "What Is Ember"
+    - title: "Ember.js Guides"
       url: ""
 - title: "Getting Started"
   url: "getting-started"
   pages:
     - title: "How To Use The Guides"
-      url: "intro"
+      url: "index"
     - title: "Quick Start"
       url: "quick-start"
-    - title: "Installing Ember"
-      url: "index"
-    - title: "Core Concepts"
-      url: "core-concepts"
-# - title: "Anatomy of an App"
-#   url: "anatomy-of-an-app"
-#   pages:
-#     - title: "Overview"
-#       url: "index"
+    - title: "Working with HTML, CSS, and JavaScript"
+      url: "working-with-html-css-and-javascript"
+    - title: "Anatomy of an Ember App"
+      url: "anatomy-of-an-ember-app"
 - title: "Tutorial"
-  url: tutorial
+  url: "tutorial"
   pages:
-    - title: "Part 1: Introduction"
-      url: "00-part-1"
-    - title: "Orientation"
-      url: "01-orientation"
-    - title: "Building Pages"
-      url: "02-building-pages"
-    - title: "Automated Testing"
-      url: "03-automated-testing"
-    - title: "Component Basics"
-      url: "04-component-basics"
-    - title: "More About Components"
-      url: "05-more-about-components"
-    - title: "Interactive Components"
-      url: "06-interactive-components"
-    - title: "Reusable Components"
-      url: "07-reusable-components"
-    - title: "Working With Data"
-      url: "08-working-with-data"
-    - title: "Part 1: Recap"
-      url: "09-part-1-recap"
-    - title: "Part 2: Introduction"
-      url: "10-part-2"
-- title: "Templating"
-  url: "templates"
-  pages:
-    - title: "Templating Basics"
-      url: "index"
-    - title: "Conditionals"
-      url: "conditionals"
-    - title: "Displaying a List of Items"
-      url: "displaying-a-list-of-items"
-    - title: "Displaying the Keys in an Object"
-      url: "displaying-the-keys-in-an-object"
-    - title: "Binding Element Attributes"
-      url: "binding-element-attributes"
-    - title: Links
-      url: links
-    - title: "Actions"
-      url: "actions"
-    - title: Input Helpers
-      url: input-helpers
-    - title: "Built-in Helpers"
-      url: "built-in-helpers"
-    - title: "Writing Helpers"
-      url: "writing-helpers"
-      isAdvanced: true
-- title: "Working with JavaScript"
-  url: "working-with-javascript"
-  pages:
-    - title: "Learning JavaScript"
-      url: "index"
-    - title: "Native Classes"
-      url: "native-classes"
-    - title: "Classic Classes"
-      url: "classic-classes"
-    - title: "Native vs. Classic Class Cheatsheet"
-      url: "native-vs-classic-class-cheatsheet"
+    - title: "Part 1"
+      url: "part-1"
+      pages:
+        - title: "Introduction"
+          url: "index"
+        - title: "Orientation"
+          url: "orientation"
+        - title: "Building Pages"
+          url: "building-pages"
+        - title: "Automated Testing"
+          url: "automated-testing"
+        - title: "Component Basics"
+          url: "component-basics"
+        - title: "More About Components"
+          url: "more-about-components"
+        - title: "Interactive Components"
+          url: "interactive-components"
+        - title: "Reusable Components"
+          url: "reusable-components"
+        - title: "Working With Data"
+          url: "working-with-data"
+        - title: "Recap"
+          url: "recap"
+    - title: "Part 2"
+      url: "part-2"
+      pages:
+        - title: "Introduction"
+          url: "index"
+        - title: "Route Params"
+          url: "route-params"
+        - title: "Service Injection"
+          url: "service-injection"
+        - title: "Ember Data"
+          url: "ember-data"
+        - title: "Provider Components"
+          url: "provider-components"
+        - title: "Recap"
+          url: "recap"
+
+- title: "Core Concepts"
+  url: "toc-heading_core-concepts"
+  is_heading: true
 - title: "Components"
-  url: "components"
+  url: components
   pages:
-    - title: "Defining a Component"
+    - title: "Templates are HTML"
       url: "index"
-    - title: "Arguments and Attributes"
-      url: "arguments-and-attributes"
-    - title: "Actions and Events"
-      url: "actions-and-events"
-    - title: "Yields"
-      url: "yields"
-    - title: "Contextual Components"
-      url: "contextual-components"
-    - title: "Working with the DOM"
-      url: "glimmer-components-dom"
+    - title: "Introducing Components"
+      url: "introducing-components"
+    - title: "Component Arguments and HTML Attributes"
+      url: "component-arguments-and-html-attributes"
+    - title: "Conditional Content"
+      url: "conditional-content"
+    - title: "Block Content"
+      url: "block-content"
+    - title: "Helper Functions"
+      url: "helper-functions"
+    - title: "Component State and Actions"
+      url: "component-state-and-actions"
+    - title: "Looping Through Lists"
+      url: "looping-through-lists"
+    - title: Template Lifecycle, DOM, and Modifiers
+      url: template-lifecycle-dom-and-modifiers
+    - title: "Built-in Components"
+      url: "built-in-components"
 - title: "Routing"
   url: "routing"
   pages:
@@ -101,6 +93,8 @@
       url: index
     - title: Defining Your Routes
       url: defining-your-routes
+    - title: Linking Between Routes
+      url: linking-between-routes
     - title: Specifying a Route's Model
       url: specifying-a-routes-model
     - title: Rendering a Template
@@ -120,31 +114,11 @@
       isAdvanced: true
     - title: "Controllers"
       url: "controllers"
-- title: "State Management"
-  url: "state-management"
-  pages:
-    - title: "Overview"
-      url: "index"
-    - title: "Tracked Properties"
-      url: "tracked-properties"
-    - title: "Patterns for State"
-      url: "patterns-for-state"
-    - title: "Computed Properties"
-      url: "computed-properties"
-    - title: "When to Use `get` and `set`"
-      url: "when-to-use-get-and-set"
 - title: "Services"
   url: "services"
   pages:
     - title: Overview
       url: "index"
-
-- title: "Making API requests"
-  url: "api-requests"
-  pages:
-    - title: "Overview"
-      url: "index"
-
 - title: "Ember Data"
   url: "models"
   pages:
@@ -154,7 +128,7 @@
       url: defining-models
     - title: Finding Records
       url: finding-records
-    - title: 'Creating, Updating and Deleting'
+    - title: "Creating, Updating and Deleting"
       url: creating-updating-and-deleting-records
     - title: Relationships
       url: relationships
@@ -170,11 +144,41 @@
     - title: Customizing Serializers
       url: customizing-serializers
       isAdvanced: true
-- title: "Addons and Dependencies"
-  url: "addons-and-dependencies"
+- title: "In-Depth Topics"
+  url: "in-depth-topics"
   pages:
-    - title: "Managing Dependencies"
-      url: "index"
+    - title: "Autotracking In-Depth"
+      url: "autotracking-in-depth"
+    - title: "Patterns for Components"
+      url: "patterns-for-components"
+    - title: "Patterns for Actions"
+      url: "patterns-for-actions"
+    - title: "Making API Requests"
+      url: "making-api-requests"
+    - title: "Native Classes In-Depth"
+      url: "native-classes-in-depth"
+
+- title: "Application Development"
+  url: "toc-heading_application-development"
+  is_heading: true
+- title: Application Concerns
+  url: applications
+  pages:
+    - title: Applications and Instances
+      url: index
+      isAdvanced: true
+    - title: Dependency Injection
+      url: dependency-injection
+      isAdvanced: true
+    - title: Initializers
+      url: initializers
+      isAdvanced: true
+    - title: The Run Loop
+      url: run-loop
+      isAdvanced: true
+    - title: Ember Engines
+      url: ember-engines
+      isAdvanced: true
 - title: "Testing"
   url: "testing"
   pages:
@@ -221,38 +225,26 @@
       url: "build-targets"
     - title: "Debugging"
       url: "debugging"
-- title: "Deploying"
-  url: "deploying"
+- title: Accessibility
+  url: accessibility
   pages:
-    - title: "Overview"
-      url: "index"
-- title: "Upgrading"
-  url: "upgrading"
+    - title: Intro to Accessibility
+      url: index
+    - title: Application Considerations
+      url: application-considerations
+    - title: Page Template Considerations
+      url: page-template-considerations
+    - title: Component Considerations
+      url: components
+    - title: Testing Considerations
+      url: testing
+    - title: Learning Resources
+      url: learning-resources
+- title: "Addons and Dependencies"
+  url: "addons-and-dependencies"
   pages:
-    - title: "How to upgrade"
+    - title: "Managing Dependencies"
       url: "index"
-    - title: "Octane Upgrade Guide"
-      url: "current-edition"
-      pages:
-        - title: "Introduction"
-          url: "index"
-        - title: "Templates"
-          url: "templates"
-        - title: "Native Classes"
-          url: "native-classes"
-        - title: "Tracked Properties"
-          url: "tracked-properties"
-        - title: "@action, {{on}} and {{fn}}"
-          url: "action-on-and-fn"
-        - title: "Glimmer Components"
-          url: "glimmer-components"
-        - title: "Modifiers"
-          url: "modifiers"
-        - title: "Cheat Sheet"
-          url: "cheat-sheet"
-
-    # - title: "Deprecations"
-    #   url: "deprecations"
 - title: "Developer Tools"
   url: "ember-inspector"
   pages:
@@ -282,21 +274,32 @@
       url: "render-performance"
     - title: "Troubleshooting"
       url: "troubleshooting"
-- title: Accessibility
-  url: accessibility
+
+- title: "Additional Resources"
+  url: "toc-heading_additional-resources"
+  is_heading: true
+- title: "Upgrading"
+  url: "upgrading"
   pages:
-    - title: Intro to Accessibility
-      url: index
-    - title: Application Considerations
-      url: application-considerations
-    - title: Page Template Considerations
-      url: page-template-considerations
-    - title: Component Considerations
-      url: components
-    - title: Testing Considerations
-      url: testing
-    - title: Learning Resources
-      url: learning-resources
+    - title: "How to upgrade"
+      url: "index"
+    - title: "Octane Upgrade Guide"
+      url: "current-edition"
+      pages:
+        - title: "Introduction"
+          url: "index"
+        - title: "Templates"
+          url: "templates"
+        - title: "Native Classes"
+          url: "native-classes"
+        - title: "Tracked Properties"
+          url: "tracked-properties"
+        - title: "@action, {{on}} and {{fn}}"
+          url: "action-on-and-fn"
+        - title: "Glimmer Components"
+          url: "glimmer-components"
+        - title: "Cheat Sheet"
+          url: "cheat-sheet"
 - title: "Contributing to Ember.js"
   url: "contributing"
   isAdvanced: true
@@ -310,8 +313,3 @@
   pages:
     - title: "Web Development"
       url: "index"
-- title: "Reference"
-  url: "reference"
-  pages:
-    - title: Syntax Conversion Guide
-      url: index

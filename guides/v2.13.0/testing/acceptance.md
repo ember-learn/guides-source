@@ -254,3 +254,5 @@ import './should-have-element-with-count';
 import './dblclick';
 import './add-contact';
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

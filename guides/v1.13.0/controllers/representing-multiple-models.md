@@ -50,3 +50,5 @@ Now we can use this property in our template:
 
 {{longSongCount}} songs over 30 seconds.
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

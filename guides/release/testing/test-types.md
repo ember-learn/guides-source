@@ -36,25 +36,25 @@ The code below shows how unit tests check individual methods. Imagine that our a
 
 ```javascript {data-filename=tests/unit/math-library-test.js}
 import { module, test } from 'qunit';
-import util from 'our-app-name/utils/math-library';
+import { getDivisors, isPrime } from 'our-app-name/utils/math-library';
 
 module('Unit | Utility | math-library', function() {
   test('should check if a number is prime', function(assert) {
-    assert.strictEqual(util.isPrime(1), false);
-    assert.strictEqual(util.isPrime(2), true);
-    assert.strictEqual(util.isPrime(3), true);
-    assert.strictEqual(util.isPrime(4), false);
-    assert.strictEqual(util.isPrime(5), true);
-    assert.strictEqual(util.isPrime(6), false);
+    assert.strictEqual(isPrime(1), false);
+    assert.strictEqual(isPrime(2), true);
+    assert.strictEqual(isPrime(3), true);
+    assert.strictEqual(isPrime(4), false);
+    assert.strictEqual(isPrime(5), true);
+    assert.strictEqual(isPrime(6), false);
   });
 
   test('should get all divisors of a number', function(assert) {
-    assert.deepEqual(util.getDivisors(1), [1]);
-    assert.deepEqual(util.getDivisors(2), [1, 2]);
-    assert.deepEqual(util.getDivisors(3), [1, 3]);
-    assert.deepEqual(util.getDivisors(4), [1, 2, 4]);
-    assert.deepEqual(util.getDivisors(5), [1, 5]);
-    assert.deepEqual(util.getDivisors(6), [1, 2, 3, 6]);
+    assert.deepEqual(getDivisors(1), [1]);
+    assert.deepEqual(getDivisors(2), [1, 2]);
+    assert.deepEqual(getDivisors(3), [1, 3]);
+    assert.deepEqual(getDivisors(4), [1, 2, 4]);
+    assert.deepEqual(getDivisors(5), [1, 5]);
+    assert.deepEqual(getDivisors(6), [1, 2, 3, 6]);
   });
 });
 ```
@@ -103,18 +103,18 @@ In terms of performance, rendering tests sit in the middle, between unit and app
 
 ### Why Use Them?
 
-Since your app is made up of multiple components, you want to ensure that each is correct before testing them as a group. If a component is reusable, you want to guarantee that it works for all (if not, many) permutations of [arguments](../../components/arguments-and-attributes/) and [actions](../../components/actions-and-events/#toc_passing-down-the-action).
+Since your app is made up of multiple components, you want to ensure that each is correct before testing them as a group. If a component is reusable, you want to guarantee that it works for all (if not, many) permutations of [arguments](../../components/component-arguments-and-html-attributes/) and [actions](../../components/component-state-and-actions/).
 
 Rendering tests let you test components using Ember's rendering engine. This means, a component created in your rendering test will behave as it would in the real app. You are guaranteed that the component will follow its lifecycle hooks. You can also interact with the component like an end-user would.
 
 ### Examples
 
-Consider a button component. For simplicity, assume that the component keeps track of the number of clicks and displays it as text. (In other words, this component doesn't allow arguments or actions to be passed.)
+Consider a button component. For simplicity, assume that the component keeps track of the number of clicks and displays it as label. (In other words, this component doesn't allow arguments or actions to be passed.)
 
-```javascript {data-filename=tests/integration/components/simple-button/component-test.js}
+```javascript {data-filename=tests/integration/components/simple-button-test.js}
 import { click, render } from '@ember/test-helpers';
 import { setupRenderingTest } from 'ember-qunit';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 import { module, test } from 'qunit';
 
 module('Integration | Component | simple-button', function(hooks) {
@@ -122,18 +122,18 @@ module('Integration | Component | simple-button', function(hooks) {
 
   test('should keep track of clicks', async function(assert) {
     await render(hbs`<SimpleButton />`);
-    assert.dom(this.element).hasText('0 clicks');
+    assert.dom('[data-test-label]').hasText('0 clicks');
 
-    await click(this.element);
-    assert.dom(this.element).hasText('1 click');
+    await click('[data-test-button]');
+    assert.dom('[data-test-label]').hasText('1 click');
 
-    await click(this.element);
-    assert.dom(this.element).hasText('2 clicks');
+    await click('[data-test-button]');
+    assert.dom('[data-test-label]').hasText('2 clicks');
   });
 });
 ```
 
-Note, we imported `render` and `click` from [@ember/test-helpers](https://github.com/emberjs/ember-test-helpers/blob/master/API.md) to show and interact with the component. We also imported `hbs` from [htmlbars-inline-precompile](https://github.com/ember-cli/ember-cli-htmlbars-inline-precompile) to help with inline template definitions. With these methods, we can check if clicking on the component correctly updates its output to the user.
+Note, we imported `render` and `click` from [@ember/test-helpers](https://github.com/emberjs/ember-test-helpers/blob/master/API.md) to show and interact with the component. We also imported `hbs` from [ember-cli-htmlbars](https://github.com/ember-cli/ember-cli-htmlbars) to help with inline template definitions. With these methods, we can check if clicking on the component correctly updates its output to the user.
 
 Here are more examples where rendering tests are ideal:
 
@@ -182,14 +182,14 @@ module('Acceptance | posts', function(hooks) {
 
   test('The user can create a blog post', async function(assert) {
     await visit('/posts/new');
-    await fillIn('[data-test-title]', 'My New Post');
-    await fillIn('[data-test-content]', 'Lorem ipsum dolor sit amet');
+    await fillIn('[data-test-field="Title"]', 'My New Post');
+    await fillIn('[data-test-field="Content"]', 'Lorem ipsum dolor sit amet');
     await click('[data-test-button="Save"]');
 
     // The user is redirected to their new post
     assert.strictEqual(currentURL(), '/posts/1');
-    assert.dom('[data-test-title]').hasText('My New Post');
-    assert.dom('[data-test-content]').hasText('Lorem ipsum dolor sit amet');
+    assert.dom('[data-test-field="Title"]').hasText('My New Post');
+    assert.dom('[data-test-field="Content"]').hasText('Lorem ipsum dolor sit amet');
   });
 });
 ```

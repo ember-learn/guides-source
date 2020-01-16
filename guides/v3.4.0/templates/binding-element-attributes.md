@@ -74,3 +74,5 @@ Now the same template above renders the following HTML:
 ```html
 <a id="ember239" class="ember-view" href="#/photos" data-toggle="dropdown" lang="es">Fotos</a>
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

@@ -71,7 +71,7 @@ defined on it to be a promise.
 If the promise fulfills, the transition will pick up where it left off and
 begin resolving the next (child) route's model, pausing if it too is a
 promise, and so on, until all destination route models have been
-resolved. The values passed to the [`setupController()`](https://api.emberjs.com/ember/3.11/classes/Route/methods/setupController?anchor=setupController) hook for each route
+resolved. The values passed to the [`setupController()`](https://api.emberjs.com/ember/release/classes/Route/methods/setupController?anchor=setupController) hook for each route
 will be the fulfilled values from the promises.
 
 
@@ -166,3 +166,5 @@ export default class FunkyRoute extends Route {
   }
 }
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

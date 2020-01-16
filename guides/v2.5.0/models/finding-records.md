@@ -80,3 +80,5 @@ this.store.queryRecord('person', { filter: { email: 'tomster@example.com' } }).t
   // do something with `tomster`
 });
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

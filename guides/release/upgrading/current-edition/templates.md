@@ -131,12 +131,36 @@ Here are the main differences between angle bracket and curly syntax:
   without `=` default to truthy). If you still need positional arguments, you
   _must_ use the component with curly bracket syntax.
 
+  If you are updating a classic component to use angle bracket syntax, you can
+  also overwrite the parameter array with a named argument instead. For
+  instance, if `my-greeting` had the following implementation:
+
+  ```javascript {data-filename="app/components/my-greeting.js"}
+  import Component from '@ember/component';
+
+  export default Component.extend({
+  }).reopenClass({
+    positionalParams: 'params'
+  });
+  ```
+
+  To invoke it using angle bracket syntax, you would do the following:
+
+  ```handlebars
+  <MyGreeting @params={{array "Hello" "World"}}>
+  ```
+
 - You can use either angle bracket or curly brackets invocation for a given
   component within the same app, and even within the same template. This allows
   for gradual migration.
 
 - Angle bracket syntax works for invoking components of any type, whether they
   are classic components, Glimmer components, or any other type of component.
+
+- Curly syntax is still appropriate for some types of components! Check out
+  [`ember-control-flow-component`](https://github.com/tildeio/ember-control-flow-component)
+  for an alternative to Glimmer components and angle bracket syntax for such
+  components.
 
 ## Named Arguments
 
@@ -213,7 +237,7 @@ If you need to provide a default value, you'll have to do it via a getter:
 ```js {data-filename=blog-post.js}
 import Component from '@glimmer/component';
 
-export default class BlogPost extends Component {
+export default class BlogPostComponent extends Component {
   get title() {
     return this.args.title || 'Untitled';
   }

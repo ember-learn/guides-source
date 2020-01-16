@@ -161,75 +161,21 @@ will still push the `_cache` tracked property.
 
 Arrays are another example of a type of object where you can't enumerate every
 possible value - after all, there are an infinite number of integers (though you
-_may_ run out of bits in your computer at some point!) Like with POJOs with
-dynamic keys, it is recommended that you _reset_ the array after changing it in
-order to trigger changes:
+_may_ run out of bits in your computer at some point!). Instead, you can
+continue to use `EmberArray`, which will continue to work with tracking and will
+cause any dependencies that use it to invalidate correctly.
 
 ```js
+import { A } from '@ember/array';
+
 class ShoppingList {
-  @tracked items = [];
+  items = A([]);
 
   addItem(item) {
-    this.items.push(item);
-
-    // trigger an update
-    this.items = this.items;
+    this.items.pushObject(item);
   }
 }
 ```
-
-### Data Down, Actions Up: A Single Owner for Every Object
-
-The pattern of resetting a POJO or array may seem pretty strange, and may be
-difficult to refactor to in some applications. After all, it's possible that the
-array or object is referenced in multiple places. Does this mean you have to
-reset it in _all_ of those locations in order for it to update properly? That
-would quickly become a maintenance nightmare!
-
-In order to make tracked properties work effectively, you must follow the
-_single owner_ principle - every piece of state, every object or array, should
-have a _single_, canonical "owner". This could be a component, or a controller,
-or a service - but ultimately, this will be the object that owns and updates
-that state, and all other values should _derive_ from that state via getters,
-component arguments, or other _trackable_ means.
-
-This is what is meant by the Data Down, Actions Up pattern. The data should flow
-downward, along with _actions_ that can be used to update the data. For
-instance, you might have an array of people in a controller, and an action which
-updates those people:
-
-```js
-import Controller from '@ember/controller';
-import { action } from '@ember/object';
-import { tracked } from '@glimmer/tracking';
-
-export default class ApplicationController extends Controller {
-  people = [];
-
-  @action
-  addPerson(person) {
-    this.people.push(person);
-    this.people = this.people;
-  }
-}
-```
-
-And you could pass this downward into components for use:
-
-```handlebars
-<ul>
-  {{#each this.people as |person|}}
-    <li>{{person.name}}</li>
-  {{/each}}
-</ul>
-
-<CreatePersonForm @addPerson={{this.addPerson}}/>
-```
-
-Following this pattern means that by updating the value in the owner object, you
-can be sure that everywhere that the value is used will be updated as well. It
-_also_ means that you centralize all mutations to your state in a single
-location, which prevents your code from becoming a twisted tangled mess!
 
 ### Backwards Compatibility
 
@@ -327,3 +273,116 @@ objectAt() {
 
 This will push the tag for the `[]` property onto the autotrack stack, and that
 property is what is invalidated when the array is updated with KVO methods.
+
+## When to Use `get` and `set`
+
+Ember's classic change tracking system used two methods to ensure that all data
+was accessed properly and updated correctly: `get` and `set`.
+
+```js
+import { get, set } from '@ember/object';
+
+let person = {};
+
+set(person, 'firstName', 'Amy');
+set(person, 'lastName', 'Lam');
+
+get(person, 'firstName'); // 'Amy'
+get(person, 'lastName'); // 'Lam'
+```
+
+In classic Ember, all property access had to go through these two methods. Over
+time, these rules have become less strict, and now they have been minimized to
+just a few cases. In general, in a modern Ember app, you shouldn't need to use
+them all that much. As long as you are marking your properties as `@tracked`,
+Ember should automatically figure out what needs to change, and when.
+
+However, there still are two cases where you _will_ need to use them:
+
+- When accessing and updating plain properties on objects without decorators
+- When using Ember's `ObjectProxy` class, or a class that implements the
+  `unknownProperty` function (which allows objects to intercept `get` calls)
+
+Additionally, you will have to continue using _accessor_ functions for arrays if
+you want arrays to update as expected. These functions are covered in more
+detail in the guide on arrays (LINK TO ARRAY GUIDES HERE).
+
+Importantly, you do _not_ have to use `get` or `set` when reading or updating
+computed properties, as was noted in the computed property section.
+
+### Plain Properties
+
+In general, if a value in your application could update, and that update should
+trigger rerenders, then you should mark that value as `@tracked`. This
+oftentimes may mean taking a POJO and turning it into a class, but this is
+usually better because it forces us to _rationalize_ the object - think about
+what its API is, what values it has, what data it represents, and define that in
+a single place.
+
+However, there are times when data is _too_ dynamic. As noted below, proxies are
+often used for this type of data, but usually they're overkill. Most of the
+time, all we want is a POJO.
+
+In those cases, you can still use `get` and `set` to read and update state from
+POJOs within your getters, and these will track automatically and trigger
+updates.
+
+```js
+class Profile {
+  person = {
+    firstName: 'Chris',
+    lastName: 'Thoburn',
+  };
+
+  get profileName() {
+    return `${get(this.person, 'firstName')} ${get(this.person, 'lastName')}`;
+  }
+}
+
+let profile = new Profile();
+
+// render the page...
+
+set(profile.person, 'firstName', 'Christopher'); // triggers an update
+```
+
+This is also useful when working with older Ember code which has not yet
+been updated to tracked properties. If you're unsure, you can use `get` and
+`set` to be safe.
+
+### `ObjectProxy`
+
+Ember has and continues to support an implementation of a [Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy),
+which is a type of object that can _wrap around_ other objects and _intercept_
+all of your gets and sets to them. Native JavaScript proxies allow you to do
+this without any special methods or syntax, but unfortunately they are not
+available in IE11. Since many Ember users must still support IE11, Ember's
+`ObjectProxy` class allows us to accomplish something similar.
+
+The use cases for proxies are generally cases where some data is very dynamic,
+and its not possible to know ahead of time how to create a class that is
+decorated. For instance, [`ember-m3`](https://github.com/hjdivad/ember-m3) is an
+addon that allows Ember Data to work with dynamically generated models instead
+of models defined using `@attr`, `@hasMany`, and `@belongsTo`. This cuts back on
+code shipped to the browser, but it means that the models have to _dynamically_
+watch and update values. A proxy allows all accesses and updates to be
+intercepted, so `m3` can do what it needs to do without predefined classes.
+
+Most `ObjectProxy` classes have their own `get` and `set` method on them, like
+`EmberObject` classes. This means you can use them directly on the class
+instance:
+
+```js
+proxy.get('firstName');
+proxy.set('firstName', 'Amy');
+```
+
+If you're unsure whether or not a given object will be a proxy or not, you can
+still use Ember's `get` and `set` functions:
+
+```js
+get(maybeProxy, 'firstName');
+set(maybeProxy, 'firstName', 'Amy');
+```
+
+<!-- eof - needed for pages that end in a code block  -->

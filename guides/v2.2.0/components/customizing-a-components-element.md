@@ -152,3 +152,5 @@ export default Ember.Component.extend({
   customHref: 'http://emberjs.com'
 });
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

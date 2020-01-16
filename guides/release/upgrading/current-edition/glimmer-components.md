@@ -10,7 +10,7 @@ like this:
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
-export default class Todo extends Component {
+export default class TodoComponent extends Component {
   @tracked completed;
 }
 ```
@@ -111,7 +111,7 @@ after examples of each API, converted from classic components:
 
     click() {
       console.log('Hello, world!');
-    },
+    }
   });
   ```
 
@@ -125,7 +125,7 @@ after examples of each API, converted from classic components:
   import Component from '@glimmer/component';
   import { action } from '@ember/object';
 
-  export default class HelloButton extends Component {
+  export default class HelloButtonComponent extends Component {
     text = 'Hello, world!';
 
     @action
@@ -146,12 +146,12 @@ after examples of each API, converted from classic components:
   Before:
 
   ```js
-    import Component from '@ember/component';
+  import Component from '@ember/component';
 
-    export default Component.extend({
-      classNames: ['hello-world'],
-      text: 'Hello, world!',
-    });
+  export default Component.extend({
+    classNames: ['hello-world'],
+    text: 'Hello, world!'
+  });
   ```
 
   ```handlebars
@@ -161,11 +161,11 @@ after examples of each API, converted from classic components:
   After:
 
   ```js
-    import Component from '@glimmer/component';
+  import Component from '@glimmer/component';
 
-    export default class Hello extends Component {
-      text = 'Hello, world!';
-    }
+  export default class HelloComponent extends Component {
+    text = 'Hello, world!';
+  }
   ```
 
   ```handlebars
@@ -179,13 +179,13 @@ after examples of each API, converted from classic components:
   Before:
 
   ```js
-    import Component from '@ember/component';
+  import Component from '@ember/component';
 
-    export default Component.extend({
-      classNameBindings: ['darkMode:dark-mode'],
-      darkMode: false,
-      text: 'Hello, world!',
-    });
+  export default Component.extend({
+    classNameBindings: ['darkMode:dark-mode'],
+    darkMode: false,
+    text: 'Hello, world!'
+  });
   ```
 
   ```handlebars
@@ -195,12 +195,13 @@ after examples of each API, converted from classic components:
   After:
 
   ```js
-    import Component from '@glimmer/component';
+  import Component from '@glimmer/component';
+  import { tracked } from '@glimmer/tracking';
 
-    export default class Hello extends Component {
-      text = 'Hello, world!';
-      darkMode = false;
-    }
+  export default class HelloComponent extends Component {
+    text = 'Hello, world!';
+    @tracked darkMode = false;
+  }
   ```
 
   ```handlebars
@@ -214,13 +215,13 @@ after examples of each API, converted from classic components:
   Before:
 
   ```js
-    import Component from '@ember/component';
+  import Component from '@ember/component';
 
-    export default Component.extend({
-      attributeBindings: ['role'],
-      role: 'button',
-      text: 'Hello, world!',
-    });
+  export default Component.extend({
+    attributeBindings: ['role'],
+    role: 'button',
+    text: 'Hello, world!'
+  });
   ```
 
   ```handlebars
@@ -230,12 +231,12 @@ after examples of each API, converted from classic components:
   After:
 
   ```js
-    import Component from '@glimmer/component';
+  import Component from '@glimmer/component';
 
-    export default class Hello extends Component {
-      text = 'Hello, world!';
-      role = 'button';
-    }
+  export default class HelloComponent extends Component {
+    text = 'Hello, world!';
+    role = 'button';
+  }
   ```
 
   ```handlebars
@@ -328,7 +329,7 @@ Before:
 import Component from '@ember/component';
 
 export default Component.extend({
-  text: 'Hello, world!',
+  text: 'Hello, world!'
 });
 ```
 
@@ -341,7 +342,7 @@ After:
 ```js
 import Component from '@glimmer/component';
 
-export default class Hello extends Component {
+export default class HelloComponent extends Component {
   text = 'Hello, world!';
 }
 ```
@@ -374,7 +375,7 @@ export default Component.extend({
 
   fullName: computed('firstName', 'lastName', function() {
     return `${this.firstName} ${this.lastName}`;
-  }),
+  })
 });
 ```
 
@@ -388,7 +389,7 @@ After:
 ```js
 import Component from '@glimmer/component';
 
-export default class Person extends Component {
+export default class PersonComponent extends Component {
   get fullName() {
     return `${this.args.firstName} ${this.args.lastName}`;
   }
@@ -423,7 +424,7 @@ export default Component.extend({
 
   fullName: computed('firstName', 'lastName', function() {
     return `${this.firstName} ${this.lastName}`;
-  }),
+  })
 });
 ```
 
@@ -432,7 +433,7 @@ After:
 ```js
 import Component from '@glimmer/component';
 
-export default class Person extends Component {
+export default class PersonComponent extends Component {
   get firstName() {
     return this.args.firstName || 'Kenneth';
   }
@@ -458,7 +459,7 @@ component:
 import Component from '@ember/component';
 
 export default Component.extend({
-  value: 'Hello, world!',
+  value: 'Hello, world!'
 });
 ```
 
@@ -474,7 +475,7 @@ import Component from '@ember/component';
 export default Component.extend({
   click() {
     this.set('value', 'Hello, moon!');
-  },
+  }
 });
 ```
 
@@ -500,7 +501,7 @@ the value:
 // components/parent.js
 import Component from '@glimmer/component';
 
-export default class Parent extends Component {
+export default class ParentComponent extends Component {
   value = 'Hello, world!';
 
   @action
@@ -519,7 +520,7 @@ export default class Parent extends Component {
 // components/child.js
 import Component from '@ember/component';
 
-export default class Child extends Component {}
+export default class ChildComponent extends Component {}
 ```
 
 ```handlebars
@@ -560,7 +561,7 @@ component state or DOM manipulation:
 - `didUpdateAttrs`
 
 These can generally be replaced either by using getters, in cases where they are
-related to updating component state, or by using _modifiers_.
+related to updating component state, or by using _modifiers_. For example, installing the [`ember-render-modifiers`](https://github.com/emberjs/ember-render-modifiers) addon will give you the ability to use `{{did-insert}}` and `{{did-update}}`. You can also write your own modifiers! Keep reading below to learn more.
 
 #### Updating component state
 
@@ -587,7 +588,7 @@ export default Component.extend({
     if (this.onChange) {
       this.onChange(newValue);
     }
-  },
+  }
 });
 ```
 
@@ -598,7 +599,7 @@ the state of your component:
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
-export default class Text extends Component {
+export default class TextComponent extends Component {
   @tracked _value;
 
   get value() {
@@ -632,7 +633,7 @@ The Parent component.
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
-export default class Form extends Component {
+export default class FormComponent extends Component {
   @tracked text;
   @tracked disabled;
 
@@ -667,7 +668,7 @@ export default class Form extends Component {
 ```js
 import Component from '@glimmer/component';
 
-export default class Text extends Component {
+export default class TextComponent extends Component {
   @action
   updateValue(newValue) {
     if (this.args.onChange) {
@@ -707,12 +708,12 @@ export default Component.extend({
     this.element.removeEventListener(`scroll`, this.listener);
 
     this._super(...arguments);
-  },
+  }
 });
 ```
 
 This could be rewritten using the `{{did-insert}}` and `{{will-destroy}}`
-modifiers from [ember-render-modifiers][2]:
+modifiers, if you install [ember-render-modifiers][2] in your app:
 
 [2]: https://github.com/emberjs/ember-render-modifiers
 
@@ -868,3 +869,5 @@ Additionally, the `mut` helper generally can't be used for the same reason:
   onkeyup={{action (mut this.value) target="value"}}
 />
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

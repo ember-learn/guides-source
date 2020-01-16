@@ -174,3 +174,5 @@ Requests for any resource will include the following HTTP headers.
 ANOTHER_HEADER: Some header value
 API_KEY: secret key
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

@@ -104,3 +104,5 @@ Now, the output of our template is a lot friendlier:
   <strong>Duration</strong>: 4:17
 </p>
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

@@ -202,3 +202,5 @@ import shouldHaveElementWithCount from './should-have-element-with-count';
 import dblclick from './dblclick';
 import addContact from './add-contact';
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

@@ -2,7 +2,7 @@ import { visit } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 import { get } from '@ember/object';
-import { percySnapshot } from 'ember-percy';
+import percySnapshot from '@percy/ember';
 
 module('Acceptance | visual regression', function(hooks) {
   setupApplicationTest(hooks);
@@ -16,6 +16,10 @@ module('Acceptance | visual regression', function(hooks) {
 
     await pages.reduce(async (prev, section) => {
       await prev;
+
+      if (section.get('id').includes('toc-heading')) {
+        return;
+      }
 
       return section.get('pages').reduce(async (prev, page) => {
         await prev;

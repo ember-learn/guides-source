@@ -127,3 +127,5 @@ undefined:
   Sorry, nobody is here.
 {{/each-in}}
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

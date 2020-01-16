@@ -55,7 +55,7 @@ in [Testing Components](../testing-components/).
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Helper | format currency', function(hooks) {
   setupRenderingTest(hooks);
@@ -77,7 +77,7 @@ We can now also properly test if a helper will respond to property changes.
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Helper | format currency', function(hooks) {
   setupRenderingTest(hooks);
@@ -96,3 +96,5 @@ module('Integration | Helper | format currency', function(hooks) {
   });
 });
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

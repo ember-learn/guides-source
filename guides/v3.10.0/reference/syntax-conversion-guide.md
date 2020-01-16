@@ -113,3 +113,5 @@ When you need direct support for positional arguments, you should still reach fo
 ```handlebars
 {{some-component param1 param2}}
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

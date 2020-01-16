@@ -18,32 +18,45 @@ Writing tests is also a fun activity, a nice change of pace from delivering feat
 
 Every Ember app comes with [QUnit](http://qunitjs.com/) and [QUnit DOM](https://github.com/simplabs/qunit-dom). QUnit is a testing framework, and QUnit DOM is a library that helps you **write tests that are concise and readable**.
 
-To see the power of QUnit DOM, consider this code snippet. It checks whether our button component shows the right text and the right CSS attribute.
+To see the power of QUnit DOM, consider this code snippet. It checks whether our button component shows the right label and the right attributes.
 
-```javascript {data-filename=tests/integration/components/simple-button/component-test.js}
+```javascript {data-filename=tests/integration/components/simple-button-test.js}
 /*
   For simplicity, the import, module, and setup statements
-  are omitted here. Our component accepts two attributes,
-  text (string) and isDisabled (boolean).
+  are omitted here. Our component accepts two arguments,
+  label (string) and isDisabled (boolean).
 */
-test('should show text', async function(assert) {
-  await render(hbs`<SimpleButton @text="Hello world!" />`);
+test('should show label', async function(assert) {
+  await render(hbs`
+    <SimpleButton
+      @label="Hello world!"
+    />
+  `);
+  let button = this.element.querySelector('button');
 
   // QUnit
-  assert.strictEqual(this.element.textContent.trim(), 'Hello world!');
+  assert.strictEqual(button.textContent.trim(), 'Hello world!');
 
   // QUnit DOM
-  assert.dom(this.element).hasText('Hello world!');
+  assert.dom(button).hasText('Hello world!');
 });
 
 test('should allow disabling the button', async function(assert) {
-  await render(hbs`<SimpleButton @text="Hello world!" @isDisabled={{true}} />`);
+  await render(hbs`
+    <SimpleButton
+      @label="Hello world!"
+      @isDisabled={{true}}
+    />
+  `);
+  let button = this.element.querySelector('button');
 
   // QUnit
-  assert.ok(this.element.classList.contains('is-disabled'));
+  assert.strictEqual(button.disabled, true);
+  assert.ok(button.classList.contains('is-disabled'));
 
   // QUnit DOM
-  assert.dom(this.element).hasClass('is-disabled');
+  assert.dom(button).hasAttribute('disabled');
+  assert.dom(button).hasClass('is-disabled');
 });
 ```
 
@@ -65,7 +78,7 @@ test('should allow disabling the button', async function(assert) {
 
 ### Ember CLI
 
-When you use [Ember CLI](https://ember-cli.com/generators-and-blueprints) to generate an Ember "object" (e.g. component, model, service), it will create a test file with a setup that correctly addresses your testing framework and the [type of test that you should write](../testing/test-types).
+When you use [Ember CLI](https://ember-cli.com/generators-and-blueprints) to generate an Ember "object" (e.g. component, model, service), it will create a test file with a setup that correctly addresses your testing framework and the [type of test that you should write](./test-types).
 
 You can also use Ember CLI to create the test file separately from the object. For example, if you enter the following lines in the terminal:
 
@@ -95,21 +108,35 @@ You want to be able to grab DOM elements in your tests. Since Ember is just Java
 
 [Ember Test Selectors](https://github.com/simplabs/ember-test-selectors) is an addon that helps you **write tests that are more resilient to DOM changes**. You use `data-test-*` attributes to mark the elements that will be used in your tests. The addon works with QUnit DOM and helpers from [@ember/test-helpers](https://github.com/emberjs/ember-test-helpers/). It also removes the `data-test-*` attributes in the production build.
 
-Consider the example of a button component again. This time, our component can display a Material icon in addition to the text.
+Consider the example of a button component again. This time, our component can display a Material icon in addition to the label.
 
-```handlebars {data-filename=app/templates/components/simple-button.hbs}
-<button type="button">
-  {{#if icon}}
-    <i data-test-icon class="material-icons">{{icon}}</i>
+```handlebars {data-filename=app/components/simple-button.hbs}
+<button
+  data-test-button={{@label}}
+  type="button"
+>
+  {{#if @icon}}
+    <i
+      data-test-icon
+      aria-hidden="true"
+      class="material-icons"
+    >
+      {{@icon}}
+    </i>
   {{/if}}
 
-  <span data-test-text>{{text}}</span>
+  <span data-test-label>{{@label}}</span>
 </button>
 ```
 
-```javascript {data-filename=tests/integration/components/simple-button/component-test.js}
-test('should show icon and text', async function(assert) {
-  await render(hbs`<SimpleButton @icon="face" @text="Hello world!" />`);
+```javascript {data-filename=tests/integration/components/simple-button-test.js}
+test('should show icon and label', async function(assert) {
+  await render(hbs`
+    <SimpleButton
+      @icon="face"
+      @label="Hello world!"
+    />
+  `);
 
   // Bad
   assert.strictEqual(
@@ -121,7 +148,7 @@ test('should show icon and text', async function(assert) {
   assert.strictEqual(
     this.element.querySelector('span').textContent.trim(),
     'Hello world!',
-    'The user sees the correct text.'
+    'The user sees the correct label.'
   );
 
   // Good
@@ -132,17 +159,17 @@ test('should show icon and text', async function(assert) {
   );
 
   assert.strictEqual(
-    this.element.querySelector('[data-test-text]').textContent.trim(),
+    this.element.querySelector('[data-test-label]').textContent.trim(),
     'Hello world!',
-    'The user sees the correct text.'
+    'The user sees the correct label.'
   );
 
   // Great!
   assert.dom('[data-test-icon]')
     .hasText('face', 'The user sees the correct icon.');
 
-  assert.dom('[data-test-text]')
-    .hasText('Hello world!', 'The user sees the correct text.');
+  assert.dom('[data-test-label]')
+    .hasText('Hello world!', 'The user sees the correct label.');
 });
 ```
 
@@ -205,16 +232,16 @@ The `--filter` option is more versatile. You can provide a phrase to match again
 
 ```bash
 # Button component example
-ember test --server --filter="should show icon and text"
+ember test --server --filter="should show icon and label"
 
 # Test everything related to your dashboard
-ember t -s -f="dashboard"
+ember t -s -f="Dashboard"
 
 # Run integration tests
-ember t -s -f="integration"
+ember t -s -f="Integration"
 ```
 
-With QUnit, you can also exclude tests by adding an exclamation point to the beginning of the filter, e.g. `ember test --filter="!acceptance"`.
+In QUnit, you can exclude tests by adding an exclamation point to the beginning of the filter, e.g. `ember test --filter="!Acceptance"`. In Mocha, `ember test --filter="Acceptance" --invert`.
 
 To learn more about options for testing, you can visit [Ember CLI Documentation](https://ember-cli.com/testing) or type `ember help test` in the command line.
 

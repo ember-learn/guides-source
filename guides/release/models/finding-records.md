@@ -38,9 +38,9 @@ Use [`store.peekAll()`](https://api.emberjs.com/ember-data/release/classes/Store
 let blogPosts = this.store.peekAll('blog-post'); // => no network request
 ```
 
-`store.findAll()` returns a `DS.PromiseArray` that fulfills to a `DS.RecordArray` and `store.peekAll` directly returns a `DS.RecordArray`.
+`store.findAll()` returns a `PromiseArray` that fulfills to a `RecordArray` and `store.peekAll` directly returns a `RecordArray`.
 
-It's important to note that `DS.RecordArray` is not a JavaScript array, it's an object that implements [`MutableArray`](https://api.emberjs.com/ember/3.11/classes/MutableArray).
+It's important to note that `RecordArray` is not a JavaScript array, it's an object that implements [`MutableArray`](https://api.emberjs.com/ember/release/classes/MutableArray).
 This is important because, for example, if you want to retrieve records by index,
 the `[]` notation will not work--you'll have to use `objectAt(index)` instead.
 
@@ -48,7 +48,7 @@ the `[]` notation will not work--you'll have to use `objectAt(index)` instead.
 
 Ember Data provides the ability to query for records that meet certain criteria.
 Calling [`store.query()`](https://api.emberjs.com/ember-data/release/classes/Store/methods/findAll?anchor=query) will make a `GET` request with the passed object serialized as query params.
-This method returns a `DS.PromiseArray` in the same way as `findAll`.
+This method returns a `PromiseArray` in the same way as `findAll`.
 
 For example, we could search for all `person` models who have the name of
 `Peter`:
@@ -85,10 +85,10 @@ For example, if your server API provides an endpoint for the currently logged in
 And if the adapter for the `User` model defines a `queryRecord()` method that targets that endpoint:
 
 ```javascript {data-filename=app/adapters/user.js}
-import DS from 'ember-data';
+import Adapter from '@ember-data/adapter';
 import fetch from 'fetch';
 
-export default class UserAdapter extends DS.Adapter {
+export default class UserAdapter extends Adapter {
   queryRecord(store, type, query) {
     return fetch('/api/current_user');
   }
@@ -122,3 +122,5 @@ tom = store.query('user', {
   return users.get("firstObject");
 });
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

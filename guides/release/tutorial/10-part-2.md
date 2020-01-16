@@ -1,3 +1,0 @@
-<!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/src/chapters/10-part-2.md -->
-
-Coming soon!

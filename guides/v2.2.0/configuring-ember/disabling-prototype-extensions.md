@@ -155,3 +155,5 @@ doStuffWhenInserted: Ember.on('didInsertElement', function() {
   /* awesome sauce */
 });
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

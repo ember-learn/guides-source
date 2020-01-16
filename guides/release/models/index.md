@@ -6,8 +6,9 @@ managing a local cache of data.
 Ember.js itself works with any type of back end: REST,
 JSON:API, GraphQL, or anything else.
 To learn about other ways to handle data and to find extensions,
-check out the guide for [making API requests](../api-requests/), look for plugins on [Ember Observer](https://www.emberobserver.com/),
-and search for community-made tutorials.
+check out the guide for [making API requests](../in-depth-topics/making-api-requests/),
+look for plugins on [Ember Observer](https://www.emberobserver.com/), and search
+for community-made tutorials.
 
 ## What are Ember Data models?
 
@@ -96,9 +97,9 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import fetch from 'fetch';
 
-export default class ListOfDrafts extends Component {
+export default class ListOfDraftsComponent extends Component {
   @tracked drafts;
-  
+
   constructor() {
     super(...arguments);
 
@@ -131,9 +132,9 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import fetch from 'fetch';
 
-export default class DraftsButton extends Component {
+export default class DraftsButtonComponent extends Component {
   @tracked drafts;
-  
+
   constructor() {
     super(...arguments);
 
@@ -204,10 +205,9 @@ example, a `Person` model might have a `firstName` attribute that is a
 string, and a `birthday` attribute that is a date:
 
 ```javascript {data-filename=app/models/person.js}
-import DS from 'ember-data';
-const { Model, attr } = DS;
+import Model, { attr } from '@ember-data/model';
 
-export default class Person extends Model {
+export default class PersonModel extends Model {
   @attr('string') firstName;
   @attr('date') birthday;
 }
@@ -218,19 +218,18 @@ example, an `order` may have many `line-items`, and a
 `line-item` may belong to a particular `order`.
 
 ```javascript {data-filename=app/models/order.js}
-import DS from 'ember-data';
-const { Model, hasMany } = DS;
+import Model, { hasMany } from '@ember-data/model';
 
-export default class Order extends Model {
+
+export default class OrderModel extends Model {
   @hasMany('line-item') lineItems;
 }
 ```
 
 ```javascript {data-filename=app/models/line-item.js}
-import DS from 'ember-data';
-const { Model, belongsTo } = DS;
+import Model, { belongsTo } from '@ember-data/model';
 
-export default class LineItem extends Model {
+export default class LineItemModel extends Model {
   @belongsTo('order') order;
 }
 ```

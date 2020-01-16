@@ -64,7 +64,7 @@ However, you may choose to install and use it in your app!
 
 #### Including jQuery
 
-To include jQuery in your Ember app, follow the instructions above to install `@ember/optional-features`. 
+To include jQuery in your Ember app, follow the instructions above to install `@ember/optional-features`.
 Next, enable the feature:
 
 ```bash
@@ -102,7 +102,7 @@ Now your app will be about 30KB lighter!
 
 Without jQuery, any code that still relies on it will break, especially the following usages:
 
-- [`this.$()`](https://api.emberjs.com/ember/3.11/classes/Component/methods/$?anchor=%24) in components
+- [`this.$()`](https://api.emberjs.com/ember/release/classes/Component/methods/$?anchor=%24) in components
 - `jQuery` or `$` directly as a global, through `Ember.$()` or by importing it (`import jQuery from jquery;`)
 - global acceptance test helpers like `find()` or `click()`
 - `this.$()` in component tests
@@ -111,12 +111,12 @@ Note that this also applies to all addons that your app uses, so make sure they 
 
 ### application-template-wrapper
 
-With this feature *disabled* Ember creates a wrapping div around the entire
+With this feature *enabled* Ember creates a wrapping div around the entire
 rendered application. Effectively, it is creating a `<div class="ember-view">`
 element which wraps the contents of an application's
 `app/templates/application.hbs` file.
 
-When *enabled*, this div will not be output. This is usually desirable, but
+When *disabled*, this div will not be output. This is usually desirable, but
 may break the styling of an existing application in subtle ways:
 
 - Perhaps the application relied on the root `.ember-view` for styles (CSS).
@@ -127,7 +127,7 @@ may break the styling of an existing application in subtle ways:
   longer be contained in a block-layout element.
 
 If your application relies on those behaviors it is still recommended that
-you *enable* this feature, and simply add an appropriate element to
+you *disable* this feature, and simply add an appropriate element to
 `app/templates/application.hbs` wrapping that template's `{{outlet}}`.
 
 For more information, see [RFC #280](https://github.com/emberjs/rfcs/blob/master/text/0280-remove-application-wrapper.md).
@@ -170,3 +170,48 @@ backwards compatibility for existing templates while new template-only
 components gain the advantages of this feature.
 
 For more information, see [RFC #278](https://github.com/emberjs/rfcs/blob/master/text/0278-template-only-components.md).
+
+### default-async-observers
+
+With this feature *enabled*, Ember will run all observers in the application
+asynchronously by default. This leads to observers running in the run loop
+*after* the one in which the observed properties were updated.
+
+If the feature is *disabled*, observers run synchronously
+and will be invoked as soon as their observed properties update.
+
+Async observers are more performant than those that run synchronously
+and can help you to manage your application state in a more predictable manner.
+This is one of the reasons, why the `default-async-observers` feature is
+**enabled by default** in newly created, modern Ember applications.
+
+The `default-async-observers` feature affects the behavior of observers application-wide,
+but you can still instruct individual observers to run synchronously or async
+manually. By using the `sync: true` option, observers who are otherwise async by default
+can be marked as synchronous manually. Similarly, observers
+can be set to run asynchronously using the `sync: false` option.
+
+
+```javascript
+import { observer } from '@ember/object';
+
+Person.extend({
+  partOfNameChanged: observer({
+    dependentKeys: ['firstName', 'lastName'],
+    fn() {
+      // Fires async after firstName or lastName have updated
+    },
+    sync: false,
+  })
+});
+```
+
+While the `default-async-observers` feature is only enabled by default in modern Ember applications,
+you can enable this optional feature in older apps (Ember 3.13+) as follows:
+
+```bash
+$ ember feature:enable default-async-observers
+# Enable async observers application-wide. Be sure to commit config/optional-features.json to source control!
+```
+
+<!-- eof - needed for pages that end in a code block  -->
