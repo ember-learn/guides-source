@@ -84,7 +84,7 @@ which coerce the value to the JavaScript type that matches its name.
 ```javascript {data-filename=app/models/person.js}
 import Model, { attr } from '@ember-data/model';
 
-export default class Person extends Model {
+export default class PersonModel extends Model {
   @attr('string') name;
   @attr('number') age;
   @attr('boolean') admin;
