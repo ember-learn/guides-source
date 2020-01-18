@@ -183,7 +183,7 @@ import JSONAPISerializer from '@ember-data/serializer/json-api';
 
 export default class ApplicationSerializer extends JSONAPISerializer {
   serialize(snapshot, options) {
-    let json = this._super(...arguments);
+    let json = super.serialize(...arguments);
 
     json.data.attributes.cost = {
       amount: json.data.attributes.amount,
@@ -248,7 +248,7 @@ export default class ApplicationSerializer extends JSONAPISerializer {
 
     delete payload.data.attributes.cost;
 
-    return this._super(...arguments);
+    return super.normalizeResponse(...arguments);
   }
 }
 ```
