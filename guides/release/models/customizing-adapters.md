@@ -153,7 +153,7 @@ export default class ApplicationAdapter extends JSONAPIAdapter {
 }
 ```
 
-Requests for `person` would now target `https://api.emberjs.com/1/people/1`.
+Requests for `person` would now target `https://api.emberjs.com/api/1/people/1`.
 
 
 #### Host Customization
