@@ -56,10 +56,11 @@ export default class ShoppingCartService extends Service {
 ### Accessing Services
 
 To access a service,
-you can inject it in any container-resolved object such as a component or another service using the `inject` function from the `@ember/service` module.
-There are two ways to use this function.
+you can inject it in any container-resolved object such as a component or another service using the `inject` decorator from the `@ember/service` module.
+Standard practice is to alias `inject` as `service` to make it more clear that it is performing service injection.
+There are two ways to use this decorator.
 You can either invoke it with no arguments, or you can pass it the registered name of the service.
-When no arguments are passed, the service is loaded based on the name of the variable key.
+When no arguments are passed, the service is loaded based on the name of the decorated property.
 You can load the shopping cart service with no arguments like below.
 
 ```javascript {data-filename=app/components/cart-contents.js}
@@ -67,19 +68,21 @@ import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 
 export default class CartContentsComponent extends Component {
-  //will load the service in file /app/services/shopping-cart.js
+  // Will load the service defined in: app/services/shopping-cart.js
   @service shoppingCart;
 }
 ```
 
-Another way to inject a service is to provide the name of the service as the argument.
+This injects the shopping cart service into the component and makes it available as the `shoppingCart` property.
+
+Another way to inject a service is to provide the name of the service as an argument to the decorator.
 
 ```javascript {data-filename=app/components/cart-contents.js}
 import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 
 export default class CartContentsComponent extends Component {
-  //will load the service in file /app/services/shopping-cart.js
+  // Will load the service defined in: app/services/shopping-cart.js
   @service('shopping-cart') cart;
 }
 ```
@@ -95,7 +98,7 @@ import Component from '@glimmer/component';
 import { getOwner } from '@ember/application';
 
 export default class CartContentsComponent extends Component {
-  //will load the service in file /app/services/shopping-cart.js
+  // Will load the service defined in: app/services/shopping-cart.js
   get cart() {
     return getOwner(this).lookup('service:shopping-cart');
   }
@@ -122,6 +125,7 @@ export default class CartContentsComponent extends Component {
 	}
 }
 ```
+
 Once injected into a component, a service can also be used in the template.
 Note `cart` being used below to get data from the cart.
 
