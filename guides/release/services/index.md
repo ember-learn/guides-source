@@ -26,7 +26,7 @@ Services must extend the [`Service`](https://api.emberjs.com/ember/release/modul
 import Service from '@ember/service';
 
 export default class ShoppingCartService extends Service {
-};
+}
 ```
 
 Like any Ember object, a service is initialized and can have properties and methods of its own.
@@ -50,7 +50,7 @@ export default class ShoppingCartService extends Service {
   empty() {
     this.items.clear();
   }
-};
+}
 ```
 
 ### Accessing Services
@@ -69,7 +69,7 @@ import { inject as service } from '@ember/service';
 export default class CartContentsComponent extends Component {
   //will load the service in file /app/services/shopping-cart.js
   @service shoppingCart;
-};
+}
 ```
 
 Another way to inject a service is to provide the name of the service as the argument.
@@ -81,7 +81,7 @@ import { inject as service } from '@ember/service';
 export default class CartContentsComponent extends Component {
   //will load the service in file /app/services/shopping-cart.js
   @service('shopping-cart') cart;
-};
+}
 ```
 
 This injects the shopping cart service into the component and makes it available as the `cart` property.
@@ -99,7 +99,7 @@ export default class CartContentsComponent extends Component {
   get cart() {
     return getOwner(this).lookup('service:shopping-cart');
   }
-};
+}
 ```
 
 Injected properties are lazy loaded; meaning the service will not be instantiated until the property is explicitly called.
@@ -120,7 +120,7 @@ export default class CartContentsComponent extends Component {
 	remove(item) {
 		this.cart.remove(item);
 	}
-};
+}
 ```
 Once injected into a component, a service can also be used in the template.
 Note `cart` being used below to get data from the cart.
