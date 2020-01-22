@@ -61,14 +61,14 @@ Every `<input>` element should have an associated `<label>` element. To do this,
 
 ```html
 <label for="input-firstName">First Name:</label>
-<input id="input-firstName" name="firstName" value="" />
+<input id="input-firstName" name="firstName" value="" type="text" />
 ```
 
 It is also valid to wrap the `<label>` element around the `<input />` element: 
 
 ```html
 <label>First Name:
-  <input id="input-firstName" name="firstName" value="" />
+  <input name="firstName" value="" type="text" />
 </label>
 ```
 
