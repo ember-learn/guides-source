@@ -37,7 +37,7 @@ import { A } from '@ember/array';
 import Service from '@ember/service';
 
 export default class ShoppingCartService extends Service {
-  items = [];
+  items = A([]);
 
 
   add(item) {
