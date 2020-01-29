@@ -119,7 +119,7 @@ and fields:
 
 ### Constructor
 
-The `constructor` method is a special method is classes. It's run when you
+The `constructor` method is a special method in classes. It's run when you
 create a new instance of the class, and can be used to setup the class:
 
 ```js
@@ -348,9 +348,9 @@ let melanie = new Person();
 console.log(melanie.name); // 'Melanie Sumner'
 console.log(melanie._name); // 'Melanie Sumner'
 
-melanie.name = 'Melanie Sumner';
-console.log(melanie.name); // 'Melanie Sumner'
-console.log(melanie._name); // 'Melanie Sumner'
+melanie.name = 'Melanie Autumn';
+console.log(melanie.name); // 'Melanie Autumn'
+console.log(melanie._name); // 'Melanie Autumn'
 ```
 
 Getters can also be used on their own to calculate values dynamically:

@@ -270,10 +270,10 @@ to them.
 
 ```handlebars
 <!-- usage -->
-<BlogPost @post={{@blogPost}} as |body|>
+<BlogPost @post={{@blogPost}} as |postBody|>
   <img src="./blog-logo.png">
 
-  {{body}}
+  {{postBody}}
 
   <AuthorBio @author={{@blogPost.author}} />
 </BlogPost>
@@ -282,20 +282,18 @@ to them.
 We can yield back multiple values as well, separated by spaces.
 
 ```handlebars {data-filename=app/components/blog-post.hbs}
-<h1>{{@post.title}}</h1>
-<h2>{{@post.author}}</h1>
-
 {{yield @post.title @post.author @post.body }}
 ```
 
 ```handlebars
 <!-- usage -->
-<BlogPost @post={{@blogPost}} as |title author body|>
+<BlogPost @post={{@blogPost}} as |postTitle postAuthor postBody|>
   <img src="./blog-logo.png">
+  {{postTitle}}
 
-  {{body}}
+  {{postBody}}
 
-  <AuthorBio @author={{author}} />
+  <AuthorBio @author={{postAuthor}} />
 </BlogPost>
 ```
 
