@@ -1,0 +1,38 @@
+name: Tutorial Pull Requests
+
+on:
+  pull_request:
+    branches-ignore:
+      - super-rentals-tutorial
+    paths:
+      - guides/release/tutorial/**/*.md
+
+jobs:
+  do-no-edit:
+    name: Do Not Edit Generated Files
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: Fetch
+        env:
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+        run: git fetch origin "${BASE_REF}"
+      - name: Annotate
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          STATUS="0"
+
+          for FILE in $(git diff --name-only "${BASE_SHA}"); do
+            LINE=$(sed -n "\|<\!-- Heads up\!|=" "${FILE}")
+            if [[ ! -z "$LINE" ]]; then
+              STATUS="1"
+              echo "::error file=${FILE},line=${LINE}::This is a generated file, do not edit directly. Follow the URL above to edit the source file instead."
+            fi
+          done
+
+          exit "${STATUS}"
