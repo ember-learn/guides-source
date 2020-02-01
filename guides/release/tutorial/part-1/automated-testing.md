@@ -34,7 +34,7 @@ $ ember generate acceptance-test super-rentals
 installing acceptance-test
   create tests/acceptance/super-rentals-test.js
 ```
-
+sdklajsdljas
 This is called a _generator_ command in Ember CLI. Generators automatically create files for us based on Ember's conventions and populate them with the appropriate boilerplate content, similar to how `ember new` initially created a skeleton app for us. It typically follows the pattern `ember generate <type> <name>`, where `<type>` is the kind of thing we are generating, and `<name>` is what we want to call it.
 
 In this case, we generated an _acceptance test_ located at `tests/acceptance/super-rentals-test.js`.
