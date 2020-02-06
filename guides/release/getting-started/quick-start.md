@@ -211,6 +211,10 @@ We're going to tell our component:
 2. What array of people to use, via the `@people` argument. We'll
    provide this route's `@model` as the list of people.
 
+We'll need to make some changes to the code we wrote before.
+
+In the rest of the code examples in this tutorial, whenever we add or remove code, we will show a "diff." The lines you need to remove have a minus sign in front of them, and the lines you should add haver a plus sign. If you are using a screen reader while you go through the Guides, we recommend using Firefox and NVDA or Safari + VoiceOver for the best experience.
+
 Let's replace all our old code with our new componentized version:
 
 ```handlebars {data-filename="app/templates/scientists.hbs" data-diff="-1,-2,-3,-4,-5,-6,-7,+8"}
