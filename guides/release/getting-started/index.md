@@ -43,6 +43,10 @@ out more about each of these technologies in the [Working with HTML, CSS, and Ja
 guide, including some of the special features that Ember uses such as class
 fields and decorators.
 
+## Accessibility
+
+If you are using a screen reader while you go through the Guides, we recommend using Firefox and NVDA or Safari and VoiceOver for the best experience.
+
 ## Reporting a problem
 
 Typos, missing words, and code samples with errors are all considered
