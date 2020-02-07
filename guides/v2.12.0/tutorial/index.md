@@ -148,3 +148,5 @@ The application should now be a completely blank canvas to build our application
 {{outlet}}
 
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

@@ -39,3 +39,5 @@ hit, you can use the `templateContext` in your console to lookup properties:
 > templateContext.get('name')
 "Bruce Lee"
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

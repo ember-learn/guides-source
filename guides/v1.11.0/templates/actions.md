@@ -244,3 +244,5 @@ a parent view, use the following:
   {{post.title}}
 </p>
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

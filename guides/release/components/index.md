@@ -1,140 +1,217 @@
-To define a component, run:
+At its core, Ember's UIs are _HTML_ driven - every part of the UI that
+is shown to the user is defined in an HTML template somewhere in your
+application. Because of this, templates are central to Ember, and one of the
+most important parts of the framework.
 
-```bash
-ember generate component my-component-name
+We'll discuss the capabilities and core concepts of templates in the following
+chapters, but before we do that, we should get started with the basics. The
+simplest way to get started on an Ember template is with some HTML!
+
+## The Application Template
+
+The central template in an Ember application is the `app/templates/application.hbs`
+file. We can copy HTML into this file, and it will work without any changes. For
+instance, you can copy the following example HTML for a simple messaging app:
+
+```html {data-filename=app/templates/application.hbs}
+<div class="messages">
+  <aside>
+    <div class="avatar is-active" title="Tomster's avatar">T</div>
+  </aside>
+  <section>
+    <h4 class="username">
+      Tomster
+      <span class="local-time">their local time is 4:56pm</span>
+    </h4>
+
+    <p>
+      Hey Zoey, have you had a chance to look at the EmberConf brainstorming doc
+      I sent you?
+    </p>
+  </section>
+
+  <aside class="current-user">
+    <div class="avatar" title="Zoey's avatar">Z</div>
+  </aside>
+  <section>
+    <h4 class="username">Zoey</h4>
+
+    <p>Hey!</p>
+
+    <p>
+      I love the ideas! I'm really excited about where this year's EmberConf is
+      going, I'm sure it's going to be the best one yet. Some quick notes:
+    </p>
+
+    <ul>
+      <li>
+        Definitely agree that we should double the coffee budget this year (it
+        really is impressive how much we go through!)
+      </li>
+      <li>
+        A blimp would definitely make the venue very easy to find, but I think
+        it might be a bit out of our budget. Maybe we could rent some spotlights
+        instead?
+      </li>
+      <li>
+        We absolutely will need more hamster wheels, last year's line was
+        <em>way</em> too long. Will get on that now before rental season hits
+        its peak.
+      </li>
+    </ul>
+
+    <p>Let me know when you've nailed down the dates!</p>
+  </section>
+
+  <form>
+    <input />
+    <button>
+      Send
+    </button>
+  </form>
+</div>
 ```
 
-Ember components are used to turn markup text and styles into reusable content.
-Components consist of two parts: a JavaScript component file that defines behavior, and its accompanying Handlebars template that defines the markup for the component's UI.
+You can _serve_ the app by running `ember s` in your terminal, which will make
+the local copy of your application available to view in your web browser.
 
-A sample component template could look like this:
+If you serve the app and go to `localhost:4200` in your web browser, you'll see
+the HTML rendered. At this point, it will still be unstyled.
 
-```handlebars {data-filename=app/templates/components/blog-post.hbs}
-<article class="blog-post">
-  <h1>{{this.title}}</h1>
-  <p>{{yield}}</p>
-  <label for="title">Blog Title</label>
-  <p>Edit title: <Input @id="title" @type="text" @value={{this.title}} /></p>
-</article>
+To style the application, copy the following CSS into `app/styles/app.css`:
+
+```css {data-filename=styles/app.css}
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 2em;
+  font-family: sans-serif;
+  background-color: #fdfdfd;
+}
+
+.messages {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  padding: 2em;
+  border-radius: 0.5em;
+  box-shadow: 0 0.25em 1.5em 0.25em rgba(0, 0, 0, 0.1);
+}
+
+.messages > section {
+  margin-bottom: 1.5em;
+  line-height: 1.5em;
+}
+
+.messages p,
+.messages ul,
+.username {
+  margin: 0.5em 0;
+}
+
+.local-time {
+  font-size: 0.8em;
+  color: #da6c4d;
+  font-weight: normal;
+  margin-left: 10px;
+}
+
+.avatar {
+  position: relative;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+
+  text-align: center;
+  line-height: 60px;
+
+  color: white;
+  font-weight: bold;
+  background-color: #ff907b;
+}
+
+.avatar.is-active:after {
+  content: " ";
+  height: 14px;
+  width: 14px;
+  border: solid 3px white;
+  border-radius: 50%;
+  background-color: #8bc34a;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.current-user .avatar {
+  background-color: #30aba5;
+}
+
+form {
+  display: grid;
+  grid-column: span 2;
+  grid-template-columns: 1fr 6em;
+}
+
+form > input {
+  padding: 0.5em;
+  border-top-left-radius: 0.5em;
+  border-bottom-left-radius: 0.5em;
+  border: 1px solid #cccccc;
+  border-right: none;
+  font-size: 1em;
+}
+
+form > button {
+  border-top-right-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
+  border: 1px solid #cccccc;
+  font-size: 1em;
+}
 ```
 
-Given the above template, you can now use the `<BlogPost />` component:
+![screenshot of styled message app](/images/ember-core-concepts/messaging-app-1.png)
 
-```handlebars {data-filename=app/templates/index.hbs}
-{{#each this.model as |post|}}
-  <BlogPost @title={{post.title}}>
-    {{post.body}}
-  </BlogPost>
-{{/each}}
-```
+You start building parts of an Ember application using HTML, so if you already
+know HTML and CSS, you know how to build a basic Ember application!
+
+You can even use SVG or web components without any changes. As long as your HTML
+is valid, Ember will render it.
+
+# Self-Closing Tags
+
+In addition to normal HTML syntax, Ember allows you to use self-closing syntax
+(`<div />`) as a shorthand for an opening and closing tag (`<div></div>`).
 
 <div class="cta">
   <div class="cta-note">
     <div class="cta-note-body">
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
-In Ember templates there are different ways to invoke a Component. The syntax above is referred to as angle bracket invocation syntax, and it might not look familiar if you are looking at older code samples that use the classic invocation syntax. For more examples of ways to use Components in a template, see the <a href="../reference/syntax-conversion-guide">Syntax Conversion Guide</a>, a <a href="https://guides.emberjs.com/v3.6.0/components/defining-a-component/">previous version of the Guides</a> or <a href="https://api.emberjs.com/ember/3.6/classes/Component">Ember.js API documentation</a>.
+        You don't <strong>need</strong> to use this syntax for <a href="https://html.spec.whatwg.org/multipage/syntax.html#void-elements">"void" HTML
+        tags</a> such as <code>img</code> or <code>br</code>, which are already
+        defined as self-closing by the HTML specification, but you <strong>can</strong> use this syntax
+        as a shorthand for tags that are not self-closing.
       </div>
     </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
   </div>
 </div>
 
-Its model is populated in `model` hook in the route handler:
+# Supported Features
 
-```javascript {data-filename=app/routes/index.js}
-import Route from '@ember/routing/route';
+This means that all of the following HTML features work as-is:
 
-export default Route.extend({
-  model() {
-    return this.store.findAll('post');
-  }
-});
-```
+- Web components
+- SVG
+- HTML comments
+- White space (following the same rules as normal HTML)
+- Special HTML elements like `<table>` and `<select>`
 
-Each component is backed by an element under the hood. By default,
-Ember will use a `<div>` element to contain your component's template.
-To learn how to change the element Ember uses for your component, see
-[Customizing a Component's
-Element](./customizing-a-components-element/).
+# Restrictions
 
+There are a handful of restrictions on the HTML that you can put in an Ember
+template:
 
-## Defining a Component Subclass
+- Only valid HTML elements in a `<body>` tag can be used
+- No `<script>` tags
 
-Often times, your components will contain reused Handlebar templates. In
-those cases, you do not need to write any JavaScript at all. Handlebars
-allows you to define templates and reuse them as components.
-
-If you need to customize the behavior of the component you'll
-need to define a subclass of [`Component`](https://api.emberjs.com/ember/3.11/classes/Component). For example, you would
-need a custom subclass if you wanted to change a component's element,
-respond to actions from the component's template, or manually make
-changes to the component's element using JavaScript.
-
-Ember knows which subclass powers a component based on its filename. For
-example, if you have a component called `blog-post`, you would create a
-file at `app/components/blog-post.js`. If your component was called
-`audio-player-controls`, the file name would be at
-`app/components/audio-player-controls.js`.
-
-## Dynamically rendering a component
-
-The [`{{component}}`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/component?anchor=component) helper can be used to defer the selection of a component to
-run time. The `<MyComponent />` syntax always renders the same component,
-while using the `{{component}}` helper allows choosing a component to render on
-the fly. This is useful in cases where you want to interact with different
-external libraries depending on the data. Using the `{{component}}` helper would
-allow you to keep different logic well separated.
-
-The first parameter of the helper is the name of a component to render, as a
-string. So `{{component 'blog-post'}}` is the same as using `<BlogPost />`.
-
-The real value of [`{{component}}`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/component?anchor=component) comes from being able to dynamically pick
-the component being rendered. Below is an example of using the helper as a
-means of choosing different components for displaying different kinds of posts:
-
-```handlebars {data-filename=app/templates/components/foo-component.hbs}
-<h3>Hello from foo!</h3>
-<p>{{this.post.body}}</p>
-```
-
-```handlebars {data-filename=app/templates/components/bar-component.hbs}
-<h3>Hello from bar!</h3>
-<div>{{this.post.author}}</div>
-```
-
-```javascript {data-filename=app/routes/index.js}
-import Route from '@ember/routing/route';
-
-export default Route.extend({
-  model() {
-    return this.store.findAll('post');
-  }
-});
-```
-
-```handlebars {data-filename=app/templates/index.hbs}
-{{#each this.model as |post|}}
-  {{!-- either foo-component or bar-component --}}
-  {{component post.componentName post=post}}
-{{/each}}
-```
-
-or
-
-```handlebars {data-filename=app/templates/index.hbs}
-{{#each this.model as |post|}}
-  {{!-- either foo-component or bar-component --}}
-  {{#let (component this.componentName) as |Post|}}
-    <Post @post={{post}} />
-  {{/let}}
-{{/each}}
-```
-
-When the parameter passed to `{{component}}` evaluates to `null` or `undefined`,
-the helper renders nothing. When the parameter changes, the currently rendered
-component is destroyed and the new component is created and brought in.
-
-Picking different components to render in response to the data allows you to
-have different template and behavior for each case. The `{{component}}` helper
-is a powerful tool for improving code modularity.
+Other than that, go to town!

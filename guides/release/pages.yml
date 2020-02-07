@@ -1,130 +1,100 @@
-- title: Guides and Tutorials
-  url: index
+- title: "Introduction"
+  url: "toc-heading_introduction"
+  is_heading: true
+- title: "Guides and Tutorials"
+  url: "index"
   skip_toc: true
   pages:
-    - title: Ember.js Guides
-      url: ''
-- title: Getting Started
-  url: getting-started
+    - title: "Ember.js Guides"
+      url: ""
+- title: "Getting Started"
+  url: "getting-started"
   pages:
-    - title: How To Use The Guides
-      url: intro
-    - title: Quick Start
-      url: quick-start
-    - title: Installing Ember
-      url: index
-    - title: Core Concepts
-      url: core-concepts
-    - title: JavaScript Primer
-      url: js-primer
-- title: Tutorial
-  url: tutorial
+    - title: "How To Use The Guides"
+      url: "index"
+    - title: "Quick Start"
+      url: "quick-start"
+    - title: "Working with HTML, CSS, and JavaScript"
+      url: "working-with-html-css-and-javascript"
+    - title: "Anatomy of an Ember App"
+      url: "anatomy-of-an-ember-app"
+- title: "Tutorial"
+  url: "tutorial"
   pages:
-    - title: Creating Your App
-      url: index
-    - title: Planning Your App
-      url: acceptance-test
-    - title: Routes and Templates
-      url: routes-and-templates
-    - title: The Model Hook
-      url: model-hook
-    - title: Installing Addons
-      url: installing-addons
-    - title: Building a Simple Component
-      url: simple-component
-    - title: Creating a Template Helper
-      url: hbs-helper
-    - title: Using Ember Data
-      url: ember-data
-    - title: Building a Complex Component
-      url: autocomplete-component
-    - title: Services
-      url: service
-    - title: Adding Nested Routes
-      url: subroutes
-    - title: Deploying
-      url: deploying
-- title: The Object Model
-  url: object-model
-  pages:
-    - title: Objects in Ember
-      url: index
-    - title: Classes and Instances
-      url: classes-and-instances
-    - title: Reopening Classes and Instances
-      url: reopening-classes-and-instances
-      isAdvanced: true
-    - title: Computed Properties
-      url: computed-properties
-    - title: Computed Properties and Aggregate Data
-      url: computed-properties-and-aggregate-data
-    - title: Observers
-      url: observers
-      isAdvanced: true
-    - title: Bindings
-      url: bindings
-      isAdvanced: true
-    - title: Enumerables
-      url: enumerables
-- title: Templating
-  url: templates
-  pages:
-    - title: Templating Basics
-      url: index
-    - title: Built-in Helpers
-      url: built-in-helpers
-    - title: Conditionals
-      url: conditionals
-    - title: Displaying a List of Items
-      url: displaying-a-list-of-items
-    - title: Displaying the Keys in an Object
-      url: displaying-the-keys-in-an-object
-    - title: Binding Element Attributes
-      url: binding-element-attributes
-    - title: Links
-      url: links
-    - title: Actions
-      url: actions
-    - title: Input Helpers
-      url: input-helpers
-    - title: Development Helpers
-      url: development-helpers
-      isAdvanced: true
-    - title: Writing Helpers
-      url: writing-helpers
-      isAdvanced: true
-- title: Components
+    - title: "Part 1"
+      url: "part-1"
+      pages:
+        - title: "Introduction"
+          url: "index"
+        - title: "Orientation"
+          url: "orientation"
+        - title: "Building Pages"
+          url: "building-pages"
+        - title: "Automated Testing"
+          url: "automated-testing"
+        - title: "Component Basics"
+          url: "component-basics"
+        - title: "More About Components"
+          url: "more-about-components"
+        - title: "Interactive Components"
+          url: "interactive-components"
+        - title: "Reusable Components"
+          url: "reusable-components"
+        - title: "Working With Data"
+          url: "working-with-data"
+        - title: "Recap"
+          url: "recap"
+    - title: "Part 2"
+      url: "part-2"
+      pages:
+        - title: "Introduction"
+          url: "index"
+        - title: "Route Params"
+          url: "route-params"
+        - title: "Service Injection"
+          url: "service-injection"
+        - title: "Ember Data"
+          url: "ember-data"
+        - title: "Provider Components"
+          url: "provider-components"
+        - title: "Recap"
+          url: "recap"
+
+- title: "Core Concepts"
+  url: "toc-heading_core-concepts"
+  is_heading: true
+- title: "Components"
   url: components
   pages:
-    - title: Defining a Component
-      url: index
-    - title: The Component Lifecycle
-      url: the-component-lifecycle
-    - title: Passing Properties to a Component
-      url: passing-properties-to-a-component
-    - title: Wrapping Content in a Component
-      url: wrapping-content-in-a-component
-    - title: Customizing a Component's Element
-      url: customizing-a-components-element
-      isAdvanced: true
-    - title: Using Block Params
-      url: block-params
-    - title: Handling Events
-      url: handling-events
-    - title: Triggering Changes with Actions
-      url: triggering-changes-with-actions
-- title: Controllers
-  url: controllers
-  pages:
-    - title: Introduction
-      url: index
-- title: Routing
-  url: routing
+    - title: "Templates are HTML"
+      url: "index"
+    - title: "Introducing Components"
+      url: "introducing-components"
+    - title: "Component Arguments and HTML Attributes"
+      url: "component-arguments-and-html-attributes"
+    - title: "Conditional Content"
+      url: "conditional-content"
+    - title: "Block Content"
+      url: "block-content"
+    - title: "Helper Functions"
+      url: "helper-functions"
+    - title: "Component State and Actions"
+      url: "component-state-and-actions"
+    - title: "Looping Through Lists"
+      url: "looping-through-lists"
+    - title: Template Lifecycle, DOM, and Modifiers
+      url: template-lifecycle-dom-and-modifiers
+    - title: "Built-in Components"
+      url: "built-in-components"
+- title: "Routing"
+  url: "routing"
   pages:
     - title: Introduction
       url: index
     - title: Defining Your Routes
       url: defining-your-routes
+    - title: Linking Between Routes
+      url: linking-between-routes
     - title: Specifying a Route's Model
       url: specifying-a-routes-model
     - title: Rendering a Template
@@ -142,8 +112,15 @@
     - title: Asynchronous Routing
       url: asynchronous-routing
       isAdvanced: true
-- title: Ember Data
-  url: models
+    - title: "Controllers"
+      url: "controllers"
+- title: "Services"
+  url: "services"
+  pages:
+    - title: Overview
+      url: "index"
+- title: "Ember Data"
+  url: "models"
   pages:
     - title: Introduction
       url: index
@@ -151,7 +128,7 @@
       url: defining-models
     - title: Finding Records
       url: finding-records
-    - title: 'Creating, Updating and Deleting'
+    - title: "Creating, Updating and Deleting"
       url: creating-updating-and-deleting-records
     - title: Relationships
       url: relationships
@@ -167,32 +144,64 @@
     - title: Customizing Serializers
       url: customizing-serializers
       isAdvanced: true
-- title: Addons and Dependencies
-  url: addons-and-dependencies
+- title: "In-Depth Topics"
+  url: "in-depth-topics"
   pages:
-    - title: Managing Dependencies
-      url: index
-- title: Testing
-  url: testing
+    - title: "Autotracking In-Depth"
+      url: "autotracking-in-depth"
+    - title: "Patterns for Components"
+      url: "patterns-for-components"
+    - title: "Patterns for Actions"
+      url: "patterns-for-actions"
+    - title: "Making API Requests"
+      url: "making-api-requests"
+    - title: "Native Classes In-Depth"
+      url: "native-classes-in-depth"
+
+- title: "Application Development"
+  url: "toc-heading_application-development"
+  is_heading: true
+- title: Application Concerns
+  url: applications
   pages:
-    - title: Introduction
+    - title: Applications and Instances
       url: index
-    - title: Application Tests
-      url: acceptance
-    - title: Testing Basics
-      url: unit-testing-basics
-    - title: Testing Components
-      url: testing-components
-    - title: Testing Helpers
-      url: testing-helpers
-    - title: Testing Controllers
-      url: testing-controllers
-    - title: Testing Routes
-      url: testing-routes
-    - title: Testing Models
-      url: testing-models
-- title: Configuration
-  url: configuring-ember
+      isAdvanced: true
+    - title: Dependency Injection
+      url: dependency-injection
+      isAdvanced: true
+    - title: Initializers
+      url: initializers
+      isAdvanced: true
+    - title: The Run Loop
+      url: run-loop
+      isAdvanced: true
+    - title: Ember Engines
+      url: ember-engines
+      isAdvanced: true
+- title: "Testing"
+  url: "testing"
+  pages:
+    - title: "Introduction"
+      url: "index"
+    - title: "Test Types"
+      url: "test-types"
+    - title: "Testing Application"
+      url: "testing-application"
+    - title: "Testing Basics"
+      url: "unit-testing-basics"
+    - title: "Testing Components"
+      url: "testing-components"
+    - title: "Testing Helpers"
+      url: "testing-helpers"
+    - title: "Testing Controllers"
+      url: "testing-controllers"
+    - title: "Testing Routes"
+      url: "testing-routes"
+    - title: "Testing Models"
+      url: "testing-models"
+- title: "Configuration"
+  url: "configuring-ember"
   pages:
     - title: Configuring Your App
       url: index
@@ -212,59 +221,10 @@
     - title: Optional Features
       url: optional-features
       isAdvanced: true
-    - title: Build targets
-      url: build-targets
-    - title: Debugging
-      url: debugging
-- title: Application Concerns
-  url: applications
-  pages:
-    - title: Applications and Instances
-      url: index
-      isAdvanced: true
-    - title: Dependency Injection
-      url: dependency-injection
-      isAdvanced: true
-    - title: Initializers
-      url: initializers
-      isAdvanced: true
-    - title: Services
-      url: services
-    - title: The Run Loop
-      url: run-loop
-      isAdvanced: true
-    - title: Ember Engines
-      url: ember-engines
-      isAdvanced: true
-- title: Ember Inspector
-  url: ember-inspector
-  pages:
-    - title: Introduction
-      url: index
-    - title: Installing the Inspector
-      url: installation
-    - title: Object Inspector
-      url: object-inspector
-    - title: The Component Tree
-      url: component-tree
-    - title: The View Tree
-      url: view-tree
-    - title: Inspecting Routes
-      url: routes
-    - title: Data Tab
-      url: data
-    - title: Tackling Deprecations
-      url: deprecations
-    - title: Library Info
-      url: info
-    - title: Debugging Promises
-      url: promises
-    - title: Inspecting Objects via the Container
-      url: container
-    - title: Rendering Performance
-      url: render-performance
-    - title: Troubleshooting
-      url: troubleshooting
+    - title: "Build targets"
+      url: "build-targets"
+    - title: "Debugging"
+      url: "debugging"
 - title: Accessibility
   url: accessibility
   pages:
@@ -278,10 +238,70 @@
       url: components
     - title: Testing Considerations
       url: testing
-    - title: Learning Resources 
-      url: learning-resources      
-- title: Contributing to Ember.js
-  url: contributing
+    - title: Learning Resources
+      url: learning-resources
+- title: "Addons and Dependencies"
+  url: "addons-and-dependencies"
+  pages:
+    - title: "Managing Dependencies"
+      url: "index"
+- title: "Developer Tools"
+  url: "ember-inspector"
+  pages:
+    - title: "Introduction"
+      url: "index"
+    - title: "Installing the Inspector"
+      url: "installation"
+    - title: "Object Inspector"
+      url: "object-inspector"
+    - title: "The Component Tree"
+      url: "component-tree"
+    - title: "The View Tree"
+      url: "view-tree"
+    - title: "Inspecting Routes"
+      url: "routes"
+    - title: "Data Tab"
+      url: "data"
+    - title: "Tackling Deprecations"
+      url: "deprecations"
+    - title: "Library Info"
+      url: "info"
+    - title: "Debugging Promises"
+      url: "promises"
+    - title: "Inspecting Objects via the Container"
+      url: "container"
+    - title: "Rendering Performance"
+      url: "render-performance"
+    - title: "Troubleshooting"
+      url: "troubleshooting"
+
+- title: "Additional Resources"
+  url: "toc-heading_additional-resources"
+  is_heading: true
+- title: "Upgrading"
+  url: "upgrading"
+  pages:
+    - title: "How to upgrade"
+      url: "index"
+    - title: "Octane Upgrade Guide"
+      url: "current-edition"
+      pages:
+        - title: "Introduction"
+          url: "index"
+        - title: "Templates"
+          url: "templates"
+        - title: "Native Classes"
+          url: "native-classes"
+        - title: "Tracked Properties"
+          url: "tracked-properties"
+        - title: "@action, {{on}} and {{fn}}"
+          url: "action-on-and-fn"
+        - title: "Glimmer Components"
+          url: "glimmer-components"
+        - title: "Cheat Sheet"
+          url: "cheat-sheet"
+- title: "Contributing to Ember.js"
+  url: "contributing"
   isAdvanced: true
   pages:
     - title: Adding New Features
@@ -291,10 +311,5 @@
 - title: Glossary
   url: glossary
   pages:
-    - title: Web Development
-      url: index
-- title: Reference
-  url: reference
-  pages:
-    - title: Syntax Conversion Guide
-      url: index
+    - title: "Web Development"
+      url: "index"

@@ -21,23 +21,15 @@ want to change:
 ```javascript
 this.store.findRecord('person', 1).then(function(tyrion) {
   // ...after the record has loaded
-  tyrion.set('firstName', 'Yollo');
+  tyrion.firstName = 'Yollo';
 });
-```
-
-All of the Ember.js conveniences are available for
-modifying attributes. For example, you can use `Ember.Object`'s
-[`incrementProperty`](https://api.emberjs.com/ember/2.15/classes/Ember.Object/methods/incrementProperty?anchor=incrementProperty) helper:
-
-```javascript
-person.incrementProperty('age'); // Happy birthday!
 ```
 
 ## Persisting Records
 
 Records in Ember Data are persisted on a per-instance basis.
 Call [`save()`](https://api.emberjs.com/ember-data/release/classes/Model/methods/save?anchor=save)
-on any instance of `DS.Model` and it will make a network request.
+on any instance of `Model` and it will make a network request.
 
 Ember Data takes care of tracking the state of each record for
 you. This allows Ember Data to treat newly created records differently
@@ -58,9 +50,9 @@ Records that already exist on the backend are updated using the HTTP `PATCH` ver
 
 ```javascript
 store.findRecord('post', 1).then(function(post) {
-  post.get('title'); // => "Rails is Omakase"
+  post.title; // => "Rails is Omakase"
 
-  post.set('title', 'A new post');
+  post.title = 'A new post';
 
   post.save(); // => PATCH to '/posts/1'
 });
@@ -76,11 +68,11 @@ method. `changedAttributes` returns an object, whose keys are the changed
 properties and values are an array of values `[oldValue, newValue]`.
 
 ```javascript
-person.get('isAdmin');            // => false
-person.get('hasDirtyAttributes'); // => false
-person.set('isAdmin', true);
-person.get('hasDirtyAttributes'); // => true
-person.changedAttributes();       // => { isAdmin: [false, true] }
+person.isAdmin; // => false
+person.hasDirtyAttributes; // => false
+person.isAdmin = true;
+person.hasDirtyAttributes; // => true
+person.changedAttributes(); // => { isAdmin: [false, true] }
 ```
 
 At this point, you can either persist your changes via `save()` or you can roll
@@ -90,14 +82,14 @@ for a saved record reverts all the `changedAttributes` to their original value.
 If the record `isNew` it will be removed from the store.
 
 ```javascript
-person.get('hasDirtyAttributes'); // => true
-person.changedAttributes();       // => { isAdmin: [false, true] }
+person.hasDirtyAttributes; // => true
+person.changedAttributes(); // => { isAdmin: [false, true] }
 
 person.rollbackAttributes();
 
-person.get('hasDirtyAttributes'); // => false
-person.get('isAdmin');            // => false
-person.changedAttributes();       // => {}
+person.hasDirtyAttributes; // => false
+person.isAdmin; // => false
+person.changedAttributes(); // => {}
 ```
 
 ## Handling Validation Errors
@@ -119,7 +111,7 @@ the errors from saving a blog post in your template:
 
 [`save()`](https://api.emberjs.com/ember-data/release/classes/Model/methods/rollbackAttributes?anchor=save) returns
 a promise, which makes it easy to asynchronously handle success and failure
-scenarios.  Here's a common pattern:
+scenarios. Here's a common pattern:
 
 ```javascript
 let post = store.createRecord('post', {
@@ -137,7 +129,10 @@ function failure(reason) {
   // handle the error
 }
 
-post.save().then(transitionToPost).catch(failure);
+post
+  .save()
+  .then(transitionToPost)
+  .catch(failure);
 
 // => POST to '/posts'
 // => transitioning to posts.show route
@@ -146,21 +141,21 @@ post.save().then(transitionToPost).catch(failure);
 ## Deleting Records
 
 Deleting records is as straightforward as creating records. Call [`deleteRecord()`](https://api.emberjs.com/ember-data/release/classes/Model/methods/rollbackAttributes?anchor=deleteRecord)
-on any instance of `DS.Model`. This flags the record as `isDeleted`. The
-deletion can then be persisted using `save()`.  Alternatively, you can use
+on any instance of `Model`. This flags the record as `isDeleted`. The
+deletion can then be persisted using `save()`. Alternatively, you can use
 the [`destroyRecord`](https://api.emberjs.com/ember-data/release/classes/Model/methods/rollbackAttributes?anchor=destroyRecord) method to delete and persist at the same time.
 
 ```javascript
-store.findRecord('post', 1, { backgroundReload: false }).then(function(post) {
+  let post = store.peekRecord('post', 1);
   post.deleteRecord();
-  post.get('isDeleted'); // => true
+  post.isDeleted; // => true
   post.save(); // => DELETE to /posts/1
 });
 
 // OR
-store.findRecord('post', 2, { backgroundReload: false }).then(function(post) {
+  post = store.peekRecord('post', 2);
   post.destroyRecord(); // => DELETE to /posts/2
 });
 ```
 
-The `backgroundReload` option is used to prevent the fetching of the destroyed record, since [`findRecord()`](https://api.emberjs.com/ember-data/release/classes/Adapter/methods/findRecord?anchor=findRecord) automatically schedules a fetch of the record from the adapter.
+<!-- eof - needed for pages that end in a code block  -->

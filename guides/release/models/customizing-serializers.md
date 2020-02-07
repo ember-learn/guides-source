@@ -124,18 +124,20 @@ serializer for your entire application by defining an "application"
 serializer.
 
 ```javascript {data-filename=app/serializers/application.js}
-import DS from 'ember-data';
+import JSONAPISerializer from '@ember-data/serializer/json-api';
 
-export default DS.JSONAPISerializer.extend({});
+export default class ApplicationSerializer extends JSONAPISerializer {
+}
 ```
 
 You can also define a serializer for a specific model. For example, if
 you had a `post` model you could also define a `post` serializer:
 
 ```javascript {data-filename=app/serializers/post.js}
-import DS from 'ember-data';
+import JSONAPISerializer from '@ember-data/serializer/json-api';
 
-export default DS.JSONAPISerializer.extend({});
+export default class PostSerializer extends JSONAPISerializer {
+}
 ```
 
 To change the format of the data that is sent to the backend store, you can use
@@ -177,11 +179,11 @@ But our server expects data in this format:
 Here's how you can change the data:
 
 ```javascript {data-filename=app/serializers/application.js}
-import DS from 'ember-data';
+import JSONAPISerializer from '@ember-data/serializer/json-api';
 
-export default DS.JSONAPISerializer.extend({
+export default class ApplicationSerializer extends JSONAPISerializer {
   serialize(snapshot, options) {
-    let json = this._super(...arguments);
+    let json = super.serialize(...arguments);
 
     json.data.attributes.cost = {
       amount: json.data.attributes.amount,
@@ -192,8 +194,8 @@ export default DS.JSONAPISerializer.extend({
     delete json.data.attributes.currency;
 
     return json;
-  },
-});
+  }
+}
 ```
 
 Similarly, if your backend store provides data in a format other than JSON:API,
@@ -237,18 +239,18 @@ And so we need to change it to look like:
 Here's how we could do it:
 
 ```javascript {data-filename=app/serializers/application.js}
-import DS from 'ember-data';
+import JSONAPISerializer from '@ember-data/serializer/json-api';
 
-export default DS.JSONAPISerializer.extend({
+export default class ApplicationSerializer extends JSONAPISerializer {
   normalizeResponse(store, primaryModelClass, payload, id, requestType) {
     payload.data.attributes.amount = payload.data.attributes.cost.amount;
     payload.data.attributes.currency = payload.data.attributes.cost.currency;
 
     delete payload.data.attributes.cost;
 
-    return this._super(...arguments);
-  },
-});
+    return super.normalizeResponse(...arguments);
+  }
+}
 ```
 
 To normalize only a single model, you can use the
@@ -268,11 +270,11 @@ serializer's `primaryKey` property to correctly transform the id
 property to `id` when serializing and deserializing data.
 
 ```javascript {data-filename=app/serializers/application.js}
-import DS from 'ember-data';
+import JSONAPISerializer from '@ember-data/serializer/json-api';
 
-export default DS.JSONAPISerializer.extend({
-  primaryKey: '_id'
-});
+export default class ApplicationSerializer extends JSONAPISerializer {
+  primaryKey = '_id';
+}
 ```
 
 ### Attribute Names
@@ -281,13 +283,13 @@ In Ember Data the convention is to camelize attribute names on a
 model. For example:
 
 ```javascript {data-filename=app/models/person.js}
-import DS from 'ember-data';
+import Model, { attr } from '@ember-data/model';
 
-export default DS.Model.extend({
-  firstName: DS.attr('string'),
-  lastName:  DS.attr('string'),
-  isPersonOfTheYear: DS.attr('boolean')
-});
+export default class PersonModel extends Model {
+  @attr('string') firstName;
+  @attr('string') lastName;
+  @attr('boolean') isPersonOfTheYear;
+}
 ```
 
 However, the `JSONAPISerializer` expects attributes to be dasherized
@@ -317,18 +319,18 @@ method like this.
 
 ```javascript {data-filename=app/serializers/application.js}
 import { underscore } from '@ember/string';
-import DS from 'ember-data';
+import JSONAPISerializer from '@ember-data/serializer/json-api';
 
-export default DS.JSONAPISerializer.extend({
+export default class ApplicationSerializer extends JSONAPISerializer {
   keyForAttribute(attr) {
     return underscore(attr);
   }
-});
+}
 ```
 
 Irregular keys can be mapped with a custom serializer. The `attrs`
 object can be used to declare a simple mapping between property names
-on DS.Model records and payload keys in the serialized JSON object
+on `Model` records and payload keys in the serialized JSON object
 representing the record. An object with the property key can also be
 used to designate the attribute's key on the response payload.
 
@@ -338,21 +340,21 @@ desired attribute name is simply `lastName`, then create a custom
 Serializer for the model and override the `attrs` property.
 
 ```javascript {data-filename=app/models/person.js}
-import DS from 'ember-data';
+import Model, { attr } from '@ember-data/model';
 
-export default DS.Model.extend({
-  lastName: DS.attr('string')
-});
+export default class PersonModel extends Model {
+  @attr('string') lastName;
+}
 ```
 
 ```javascript {data-filename=app/serializers/person.js}
-import DS from 'ember-data';
+import JSONAPISerializer from '@ember-data/serializer/json-api';
 
-export default DS.JSONAPISerializer.extend({
-  attrs: {
+export default class PersonSerializer extends JSONAPISerializer {
+  attrs = {
     lastName: 'lastNameOfPerson'
-  }
-});
+  };
+}
 ```
 
 ### Relationships
@@ -361,11 +363,11 @@ References to other records should be done by ID. For example, if you
 have a model with a `hasMany` relationship:
 
 ```javascript {data-filename=app/models/post.js}
-import DS from 'ember-data';
+import Model, { hasMany } from '@ember-data/model';
 
-export default DS.Model.extend({
-  comments: DS.hasMany('comment', { async: true })
-});
+export default class PostModel extends Model {
+  @hasMany('comment', { async: true }) comments;
+}
 ```
 
 The JSON should encode the relationship as an array of IDs and types:
@@ -397,11 +399,11 @@ dasherized version of the property's name. For example, if you have
 a model:
 
 ```javascript {data-filename=app/models/comment.js}
-import DS from 'ember-data';
+import Model, { belongsTo } from '@ember-data/model';
 
-export default DS.Model.extend({
-  originalPost: DS.belongsTo('post')
-});
+export default class CommentModel extends Model {
+  @belongsTo('post') originalPost
+}
 ```
 
 The JSON should encode the relationship as an ID to another record:
@@ -425,13 +427,13 @@ the
 method.
 
 ```javascript {data-filename=app/serializers/application.js}
-import DS from 'ember-data';
+import JSONAPISerializer from '@ember-data/serializer/json-api';
 
-export default DS.JSONAPISerializer.extend({
+export default class ApplicationSerializer extends JSONAPISerializer {
   keyForRelationship(key, relationship) {
     return key + 'Ids';
   }
-});
+}
 ```
 
 
@@ -445,25 +447,25 @@ Ember Data can have new JSON transforms
 registered for use as attributes:
 
 ```javascript {data-filename=app/transforms/coordinate-point.js}
-import DS from 'ember-data';
+import Transform from '@ember-data/serializer/transform';
 import EmberObject from '@ember/object';
 
-export default DS.Transform.extend({
+export default class CoordinatePointTransform extends Transform {
   serialize(value) {
     return [value.get('x'), value.get('y')];
   },
   deserialize(value) {
     return EmberObject.create({ x: value[0], y: value[1] });
   }
-});
+}
 ```
 
 ```javascript {data-filename=app/models/cursor.js}
-import DS from 'ember-data';
+import Model from '@ember-data/model';
 
-export default DS.Model.extend({
-  position: DS.attr('coordinate-point')
-});
+export default class Cursor extends Model {
+  @attr('coordinate-point') position;
+}
 ```
 
 When `coordinatePoint` is received from the API, it is
@@ -502,11 +504,11 @@ To use it in your application you will need to define a
 `serializer:application` that extends the `JSONSerializer`.
 
 ```javascript {data-filename=app/serializers/application.js}
-import DS from 'ember-data';
+import JSONAPISerializer from '@ember-data/serializer/json-api';
 
-export default DS.JSONSerializer.extend({
+export default class ApplicationSerializer extends JSONSerializer {
   // ...
-});
+}
 ```
 
 For requests that are only expected to return 1 record
@@ -579,16 +581,17 @@ that looks similar to this:
 You would define your relationship like this:
 
 ```javascript {data-filename=app/serializers/post.js}
-import DS from 'ember-data';
+import JSONSerializer from '@ember-data/serializer/json';
+import { EmbeddedRecordsMixin } from '@ember-data/serializer/rest';
 
-export default DS.JSONSerializer.extend(DS.EmbeddedRecordsMixin, {
-  attrs: {
+export default class PostSerializer extends JSONSerializer.extend(EmbeddedRecordsMixin) {
+  attrs = {
     authors: {
       serialize: 'records',
       deserialize: 'records'
     }
-  }
-});
+  };
+}
 ```
 
 If you find yourself needing to both serialize and deserialize the
@@ -596,13 +599,14 @@ embedded relationship you can use the shorthand option of `{ embedded:
 'always' }`. The example above could therefore be expressed as such:
 
 ```javascript {data-filename=app/serializers/post.js}
-import DS from 'ember-data';
+import JSONSerializer from '@ember-data/serializer/json';
+import { EmbeddedRecordsMixin } from '@ember-data/serializer/rest';
 
-export default DS.JSONSerializer.extend(DS.EmbeddedRecordsMixin, {
-  attrs: {
+export default class PostSerializer extends JSONSerializer.extend(EmbeddedRecordsMixin) {
+  attrs = {
     authors: { embedded: 'always' }
-  }
-});
+  };
+}
 ```
 
 
@@ -619,10 +623,11 @@ serializing the record. This is possible by using the `serialize:
 setting `serialize: false`.
 
 ```javascript {data-filename=app/serializers/post.js}
-import DS from 'ember-data';
+import JSONSerializer from '@ember-data/serializer/json';
+import { EmbeddedRecordsMixin } from '@ember-data/serializer/rest';
 
-export default DS.JSONSerializer.extend(DS.EmbeddedRecordsMixin, {
-  attrs: {
+export default class PostSerializer extends JSONSerializer.extend(EmbeddedRecordsMixin) {
+  attrs = {
     author: {
       serialize: false,
       deserialize: 'records'
@@ -631,8 +636,8 @@ export default DS.JSONSerializer.extend(DS.EmbeddedRecordsMixin, {
       deserialize: 'records',
       serialize: 'ids'
     }
-  }
-});
+  };
+}
 ```
 
 ### EmbeddedRecordsMixin Defaults
@@ -650,11 +655,11 @@ all, you can use `serialize: false`.
 
 ## Authoring Serializers
 
-If you would like to create a custom serializer it’s recommended that you
+If you would like to create a custom serializer, it is recommended that you
 start with the `JSONAPISerializer` or `JSONSerializer` and extend one of
 those to match your needs.
 However, if your payload is extremely different from one of these
-serializers you can create your own by extending the `DS.Serializer`
+serializers you can create your own by extending the `Serializer`
 base class.
 
 A serializer has two main roles in Ember Data.
@@ -682,8 +687,8 @@ Ember Data's own `JSONAPISerializer` assumes types are plural and it
 will automatically singularize the types.
 
 Second, attribute and relationship names in the JSON:API document
-should exactly match the name and casing of the `DS.attr()`,
-`DS.belongsTo()` and `DS.hasMany()`, properties defined on the
+should exactly match the name and casing of the `@attr`,
+`@belongsTo` and `@hasMany`, properties defined on the
 Model.
 
 By convention these property names are camelCase in Ember Data models.
@@ -704,14 +709,14 @@ follows the [JSON:API](http://jsonapi.org/) specification.
 Example: given this `post` model.
 
 ```javascript {data-filename=app/models/post.js}
-import DS from 'ember-data';
+import Model, { attr, hasMany } from '@ember-data/model';
 
-export default DS.Model.extend({
-  title: DS.attr('string'),
-  tag: DS.attr('string'),
-  comments: hasMany('comment', { async: false }),
-  relatedPosts: hasMany('post')
-});
+export default class Post extends Model {
+  @attr('string') title;
+  @attr('string') tag;
+  @hasMany('comment', { async: false }) comments;
+  @hasMany('post') relatedPosts;
+}
 ```
 
 The normalized JSON object that Ember Data expects a serializer to

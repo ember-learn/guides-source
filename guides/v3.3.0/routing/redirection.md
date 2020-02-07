@@ -112,3 +112,5 @@ export default Route.extend({
   }
 });
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

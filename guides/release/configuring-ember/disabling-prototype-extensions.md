@@ -9,7 +9,7 @@ objects in the following ways:
 
 * `String` is extended to add convenience methods, such as
   `camelize()` and `w()`. You can find a list of these methods with the
-  [Ember.String documentation](https://api.emberjs.com/ember/3.11/classes/String).
+  [Ember.String documentation](https://api.emberjs.com/ember/release/classes/String).
 
 * `Function` is extended with methods to annotate functions as
   computed properties, via the `property()` method, and as observers,
@@ -76,21 +76,21 @@ required interfaces using the convenience method `Ember.A`:
 import { A } from '@ember/array';
 
 let islands = ['Oahu', 'Kauai'];
-islands.includes('Oahu');
-// => TypeError: Object Oahu,Kauai has no method 'includes'
+islands.pushObject('Maui');
+// => TypeError: Object Oahu,Kauai has no method `pushObject`
 
 // Convert `islands` to an array that implements the
 // Ember enumerable and array interfaces
 A(islands);
 
-islands.includes('Oahu');
-// => true
+islands.pushObject('Maui');
+// => ['Oahu', 'Kauai', 'Maui'];
 ```
 
 ### Strings
 
 Strings will no longer have the convenience methods described in the
-[`Ember.String` API reference](https://api.emberjs.com/ember/3.11/classes/String).
+[`Ember.String` API reference](https://api.emberjs.com/ember/release/classes/String).
 Instead,
 you can use the similarly-named methods of the `Ember.String` object and
 pass the string to use as the first parameter:
@@ -162,3 +162,5 @@ doStuffWhenInserted: on('didInsertElement', function() {
   /* awesome sauce */
 });
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

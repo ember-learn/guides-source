@@ -36,3 +36,5 @@ Ember.Router.extend({
   location: 'none'
 });
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

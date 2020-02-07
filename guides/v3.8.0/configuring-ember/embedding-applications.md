@@ -99,3 +99,5 @@ Router.map(function() {
 
 export default Router;
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

@@ -349,3 +349,5 @@ export default Controller.extend({
   ]
 });
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

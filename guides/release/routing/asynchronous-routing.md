@@ -71,7 +71,7 @@ defined on it to be a promise.
 If the promise fulfills, the transition will pick up where it left off and
 begin resolving the next (child) route's model, pausing if it too is a
 promise, and so on, until all destination route models have been
-resolved. The values passed to the [`setupController()`](https://api.emberjs.com/ember/3.11/classes/Route/methods/setupController?anchor=setupController) hook for each route
+resolved. The values passed to the [`setupController()`](https://api.emberjs.com/ember/release/classes/Route/methods/setupController?anchor=setupController) hook for each route
 will be the fulfilled values from the promises.
 
 
@@ -81,19 +81,19 @@ A basic example:
 import Route from '@ember/routing/route';
 import { later } from '@ember/runloop';
 
-export default Route.extend({
+export default class TardyRoute extends Route {
   model() {
     return new Promise(function(resolve) {
       later(function() {
         resolve({ msg: 'Hold Your Horses' });
       }, 3000);
     });
-  },
+  }
 
   setupController(controller, model) {
     console.log(model.msg); // "Hold Your Horses"
   }
-});
+}
 ```
 
 When transitioning into `route:tardy`, the `model()` hook will be called and
@@ -122,24 +122,24 @@ along the way, e.g.:
 
 ```javascript {data-filename=app/routes/good-for-nothing.js}
 import Route from '@ember/routing/route';
+import { action } from '@ember/object';
 
-export default Route.extend({
+export default class GoodForNothingRoute extends Route {
   model() {
     return Promise.reject("FAIL");
-  },
-
-  actions: {
-    error(reason) {
-      alert(reason); // "FAIL"
-
-      // Can transition to another route here, e.g.
-      // this.transitionTo('index');
-
-      // Uncomment the line below to bubble this error event:
-      // return true;
-    }
   }
-});
+
+  @action
+  error(reason) {
+    alert(reason); // "FAIL"
+
+    // Can transition to another route here, e.g.
+    // this.transitionTo('index');
+
+    // Uncomment the line below to bubble this error event:
+    // return true;
+  }
+}
 ```
 
 In the above example, the error event would stop right at
@@ -156,7 +156,7 @@ them into fulfills that won't halt the transition.
 ```javascript {data-filename=app/routes/funky.js}
 import Route from '@ember/routing/route';
 
-export default Route.extend({
+export default class FunkyRoute extends Route {
   model() {
     return iHopeThisWorks().catch(function() {
       // Promise rejected, fulfill with some default value to
@@ -164,5 +164,7 @@ export default Route.extend({
       return { msg: 'Recovered from rejected promise' };
     });
   }
-});
+}
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

@@ -19,8 +19,7 @@ npm install -g ember-cli
 ```
 
 Don't have npm? [Learn how to install Node.js and npm here](https://docs.npmjs.com/getting-started/installing-node).
-For a full list of dependencies necessary for an Ember CLI project,
-consult our [Installing Ember](../../getting-started/) guide.
+For a full list of dependencies necessary for an Ember CLI project, visit the [Ember CLI Guides - Installing](https://cli.emberjs.com/release/basic-use/).
 
 ## Create a New Application
 
@@ -28,6 +27,7 @@ Once you've installed Ember CLI via npm,
 you will have access to a new `ember` command in your terminal.
 You can use the `ember new` command to create a new application.
 
+<!-- needs-octane-release-update -->
 ```bash
 ember new ember-quickstart
 ```
@@ -77,7 +77,7 @@ In your editor, open `app/templates/application.hbs` and change it to the follow
 Ember detects the changed file and automatically reloads the page for you in the background.
 You should see that the welcome page has been replaced by "PeopleTracker".
 You also added an `{{outlet}}` to this page,
-which means that any nested route will be rendered in that place.
+which means that any route will be rendered in that place.
 
 ## Define a Route
 
@@ -118,7 +118,7 @@ Open the newly-created template in `app/templates/scientists.hbs` and add the fo
 ```
 
 In your browser, open [`http://localhost:4200/scientists`](http://localhost:4200/scientists).
-You should see the `<h2>` you put in the `scientists.hbs` template,
+You should see the `<h2>` we put in the `scientists.hbs` template,
 right below the `<h1>` from our `application.hbs` template.
 
 Now that we've got the `scientists` template rendering,
@@ -131,16 +131,15 @@ We'll take the code created for us by the generator and add a `model()` method t
 ```javascript {data-filename="app/routes/scientists.js"}
 import Route from '@ember/routing/route';
 
-export default Route.extend({
+export default class ScientistsRoute extends Route {
   model() {
     return ['Marie Curie', 'Mae Jemison', 'Albert Hofmann'];
   }
-});
+}
 ```
 
-This code example uses the latest features in JavaScript,
-some of which you may not be familiar with.
-Learn more with this [overview of the newest JavaScript features](https://ponyfoo.com/articles/es6).
+This code example uses a feature of JavaScript called classes.
+Learn more with this [overview of the latest JavaScript features](https://ponyfoo.com/articles/es6).
 
 In a route's `model()` method, you return whatever data you want to make available to the template.
 If you need to fetch data asynchronously,
@@ -153,13 +152,21 @@ Open the `scientists` template and add the following code to loop through the ar
 <h2>List of Scientists</h2>
 
 <ul>
-  {{#each this.model as |scientist|}}
+  {{#each @model as |scientist|}}
     <li>{{scientist}}</li>
   {{/each}}
 </ul>
 ```
 
-Here, we use the `each` helper to loop over each item in the array we provided from the `model()` hook and print it inside an `<li>` element.
+Here, we use the `each` _helper_ to loop over each item in the array we
+provided from the `model()` hook. Ember will render the _block_ contained
+inside the `{{#each}}...{{/each}}` helper once for each item (each scientist in
+our case) in the array. The item (the scientist) that is being rendered
+currently will be made available in the `scientist` variable, as denoted by
+`as |scientist|` in the `each` helper.
+
+The end result is that there will be one `<li>` element corresponding to each
+scientist in the array inside the `<ul>` unordered list.
 
 ## Create a UI Component
 
@@ -176,12 +183,9 @@ Make a new component by typing:
 ember generate component people-list
 ```
 
-Notice that while the file generate is dasherized, `people-list`, when you try to use it in a template,
-you should use capital case, `PeopleList`.
-
 Copy and paste the `scientists` template into the `PeopleList` component's template and edit it to look as follows:
 
-```handlebars {data-filename=app/templates/components/people-list.hbs}
+```handlebars {data-filename=app/components/people-list.hbs}
 <h2>{{@title}}</h2>
 
 <ul>
@@ -191,72 +195,144 @@ Copy and paste the `scientists` template into the `PeopleList` component's templ
 </ul>
 ```
 
-Note that we've changed the title from a hard-coded string ("List of Scientists") to a dynamic property (`{{@title}}`).
+Note that we've changed the title from a hard-coded string ("List of Scientists")
+to `{{@title}}`. The `@` indicates that `@title` is an argument that will be
+passed into the component, which makes it easier to reuse the same component in
+other parts of the app we are building.
+
 We've also renamed `scientist` to the more-generic `person`,
 decreasing the coupling of our component to where it's used.
 
 Save this template and switch back to the `scientists` template.
-Replace all our old code with our new componentized version.
 
 We're going to tell our component:
 
-1. What title to use, via the `title` attribute.
-2. What array of people to use, via the `people` attribute. We'll
-   provide this route's `model` as the list of people.
+1. What title to use, via the `@title` argument.
+2. What array of people to use, via the `@people` argument. We'll
+   provide this route's `@model` as the list of people.
 
-```handlebars {data-filename="app/templates/scientists.hbs"}
-<PeopleList @title="List of Scientists" @people={{this.model}} />
+We'll need to make some changes to the code we wrote before.
+
+In the rest of the code examples in this tutorial, whenever we add or remove code, we will show a "diff." The lines you need to remove have a minus sign in front of them, and the lines you should add have a plus sign. If you are using a screen reader while you go through the Guides, we recommend using Firefox and NVDA or Safari and VoiceOver for the best experience.
+
+Let's replace all our old code with our new componentized version:
+
+```handlebars {data-filename="app/templates/scientists.hbs" data-diff="-1,-2,-3,-4,-5,-6,-7,+8"}
+<h2>List of Scientists</h2>
+
+<ul>
+  {{#each @model as |scientist|}}
+    <li>{{scientist}}</li>
+  {{/each}}
+</ul>
+<PeopleList @title="List of Scientists" @people={{@model}} />
 ```
 
 Go back to your browser and you should see that the UI looks identical.
 The only difference is that now we've componentized our list into a version that's more reusable and more maintainable.
 
 You can see this in action if you create a new route that shows a different list of people.
-As an exercise for the reader,
-you may try to create a `programmers` route that shows a list of famous programmers.
-By re-using the `PeopleList` component, you can do it in almost no code at all.
+As an additional exercise (that we won't cover),
+you can try to create a `programmers` route that shows a list of famous programmers.
+If you re-use the `PeopleList` component, you can do it with almost no code at all.
 
-## Click Events
+## Responding to user interactions
 
-So far, your application is listing data,
-but there is no way for the user to interact with the information.
-In web applications you often want to listen for user events like clicks or hovers.
-Ember makes this easy to do.
-First, add a `<button>` with an `action` helper to the `li` in your `PeopleList` component.
+So far, our application is listing data, but there is no way for the user to
+interact with the information. In web applications we often want to respond to
+user actions like clicks or hovers. Ember makes this easy to do.
 
-```handlebars {data-filename="app/templates/components/people-list.hbs"}
+First, we can modify the `PeopleList` component to include a button:
+
+```handlebars {data-filename="app/components/people-list.hbs"}
 <h2>{{@title}}</h2>
 
 <ul>
   {{#each @people as |person|}}
-    <li><button {{action "showPerson" person}}>{{person}}</button></li>
+    <li>
+      <button>{{person}}</button>
+    </li>
   {{/each}}
 </ul>
 ```
 
-The `action` helper allows you to add event listeners to elements and call named functions.
-By default, the `action` helper adds a `click` event listener,
-but it can be used to listen for any element event.
-Now, when the `li` element is clicked a `showPerson` function will be called from the `actions` object in the `PeopleList` component.
-Think of this like calling `this.actions.showPerson(person)` from our template.
+Now that we have a button, we need to wire it up to do _something_ when a user
+clicks on it. For simplicity, let's say we want to show an `alert` dialog with
+the person's name when the button is clicked.
 
-To handle this function call you need to modify the `PeopleList` component file to add the function to be called.
-In the component, add an `actions` object with a `showPerson` function that alerts the first argument.
+So far, our `PeopleList` component is purely presentational – it takes some
+inputs as arguments and renders them using a template. To introduce _behavior_
+to our component – handling the button click in this case, we will need to
+attach some _code_ to the component.
+
+In addition to the template, a component can also have a JavaScript file for
+this exact purpose. Go ahead and create a `.js` file with the same name and in
+the same directory as our template (`app/components/people-list.js`),
+and paste in the following content:
 
 ```javascript {data-filename="app/components/people-list.js"}
-import Component from '@ember/component';
+import Component from '@glimmer/component';
+import { action } from '@ember/object';
 
-export default Component.extend({
-  actions: {
-    showPerson(person) {
-      alert(person);
-    }
+export default class PeopleListComponent extends Component {
+  @action
+  showPerson(person) {
+    alert(`The person's name is ${person}!`);
   }
-});
+}
 ```
 
-Now in the browser when a scientist's name is clicked,
-this function is called and the person's name is alerted.
+_Note: If you want this file created for you, you may pass the `-gc` flag when running the component generator._
+
+Here, we created a basic component class and added a method that accepts a
+person as an argument and brings up an alert dialog with their name. The
+`@action` _decorator_ indicates we want to use this method as an _action_
+in our template, in response to user interaction.
+
+Now that we have implemented the desired behavior, we can go back to
+the component's template and wire everything up:
+
+```handlebars {data-filename="app/components/people-list.hbs" data-diff="-6,+7"}
+<h2>{{@title}}</h2>
+
+<ul>
+  {{#each @people as |person|}}
+    <li>
+      <button>{{person}}</button>
+      <button {{on 'click' this.showPerson}}>{{person}}</button>
+    </li>
+  {{/each}}
+</ul>
+```
+
+Here, we used the `on` _modifier_ to attach the `this.showPerson` action to
+the button in the template.
+
+There is a problem with this though – if you tried this in the browser, you
+will quickly discovered that clicking on the buttons will bring up an alert
+dialog that said "The person's name is `[Object Mousevent]`!" – eek!
+
+The cause of this bug is that we wrote our action to take an argument – the
+person's name – and we forgot to pass it. The fix is easy enough:
+
+```handlebars {data-filename="app/components/people-list.hbs" data-diff="-6,+7"}
+<h2>{{@title}}</h2>
+
+<ul>
+  {{#each @people as |person|}}
+    <li>
+      <button {{on 'click' this.showPerson}}>{{person}}</button>
+      <button {{on 'click' (fn this.showPerson person)}}>{{person}}</button>
+    </li>
+  {{/each}}
+</ul>
+```
+
+Instead of passing the action to the `on` modifier directly, we used the `fn`
+helper to pass the `person` as an argument which our action expects.
+
+Feel free to try this in the browser. Finally, everything should behave exactly
+as we hoped!
 
 ## Building For Production
 
@@ -266,14 +342,14 @@ it's time to get it ready to deploy to our users.
 To do so, run the following command:
 
 ```bash
-ember build --env production
+ember build --environment=production
 ```
 
 The `build` command packages up all of the assets that make up your
 application&mdash;JavaScript, templates, CSS, web fonts, images, and
 more.
 
-In this case, we told Ember to build for the production environment via the `--env` flag.
+In this case, we told Ember to build for the production environment via the `--environment` flag.
 This creates an optimized bundle that's ready to upload to your web host.
 Once the build finishes,
 you'll find all of the concatenated and minified assets in your application's `dist/` directory.
@@ -283,9 +359,11 @@ If you're interested in deploying your app to production in a fast and reliable 
 check out the [Ember CLI Deploy](http://ember-cli-deploy.com/) addon.
 
 If you deploy your application to an Apache web server, first create a new virtual host for the application.
-To make sure all routes are handled by index.html,
+To make sure all routes are handled by `index.html`,
 add the following directive to the application's virtual host configuration:
 
 ```apacheconf
 FallbackResource index.html
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

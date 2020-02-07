@@ -393,3 +393,5 @@ would see this:
 Welcome back! <b>&lt;script
 type="javascript"&gt;alert('pwned!');&lt;/script&gt;</b> has joined the channel.
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

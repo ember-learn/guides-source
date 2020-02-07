@@ -1,0 +1,32 @@
+{{#each data as |page|}}
+  {{! template-lint-disable simple-unless }}
+  {{#unless (or page.skipToc (get page "skip-toc"))}}
+    {{#if (includes page.id "toc-heading")}}
+      <li class="toc-heading {{tocLevel}}">{{page.title}}</li>
+    {{else if page.pages}}
+      <li class="toc-group {{tocLevel}}">
+        {{#cp-panel open=(eq currentSection.id page.id) as |p|}}
+          {{#if fastboot.isFastBoot}}
+            {{#link-to "version.show" page.id activeClass="selected" class="cp-Panel-toggle" data-test-toc-link=page.title}}
+              {{page.title}}
+            {{/link-to}}
+          {{else}}
+            {{#p.toggle data-test-toc-title=page.title}}
+              {{page.title}}
+            {{/p.toggle}}
+          {{/if}}
+
+          {{#p.body}}
+            {{table-of-contents data=page.pages currentPage=currentPage level=(inc level)}}
+          {{/p.body}}
+        {{/cp-panel}}
+      </li>
+    {{else}}
+      <li class="toc-link {{tocLevel}} {{if (eq currentPage.url page.url) "selected"}}">
+        {{#link-to "version.show" page.url activeClass="selected" data-test-toc-link=page.title}}
+          {{page.title}}
+        {{/link-to}}
+      </li>
+    {{/if}}
+  {{/unless}}
+{{/each}}

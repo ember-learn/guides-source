@@ -4,64 +4,64 @@ define how your models relate to each other.
 ### One-to-One
 
 To declare a one-to-one relationship between two models, use
-`DS.belongsTo`:
+`belongsTo`:
 
 ```javascript {data-filename=app/models/user.js}
-import DS from 'ember-data';
+import Model, { belongsTo } from '@ember-data/model';
 
-export default DS.Model.extend({
-  profile: DS.belongsTo('profile')
-});
+export default class UserModel extends Model {
+  @belongsTo('profile') profile;
+}
 ```
 
 ```javascript {data-filename=app/models/profile.js}
-import DS from 'ember-data';
+import Model, { belongsTo } from '@ember-data/model';
 
-export default DS.Model.extend({
-  user: DS.belongsTo('user')
-});
+export default class ProfileModel extends Model {
+  @belongsTo('user') user;
+}
 ```
 
 ### One-to-Many
 
 To declare a one-to-many relationship between two models, use
-`DS.belongsTo` in combination with `DS.hasMany`, like this:
+`belongsTo` in combination with `hasMany`, like this:
 
 ```javascript {data-filename=app/models/blog-post.js}
-import DS from 'ember-data';
+import Model, { hasMany } from '@ember-data/model';
 
-export default DS.Model.extend({
-  comments: DS.hasMany('comment')
-});
+export default class BlogPostModel extends Model {
+  @hasMany('comment') comments;
+}
 ```
 
 ```javascript {data-filename=app/models/comment.js}
-import DS from 'ember-data';
+import Model, { belongsTo } from '@ember-data/model';
 
-export default DS.Model.extend({
-  blogPost: DS.belongsTo('blog-post')
-});
+export default class CommentModel extends Model {
+  @belongsTo('blog-post') blogPost;
+}
 ```
 
 ### Many-to-Many
 
 To declare a many-to-many relationship between two models, use
-`DS.hasMany`:
+`hasMany`:
 
 ```javascript {data-filename=app/models/blog-post.js}
-import DS from 'ember-data';
+import Model, { hasMany } from '@ember-data/model';
 
-export default DS.Model.extend({
-  tags: DS.hasMany('tag')
-});
+export default class BlogPostModel extends Model {
+  @hasMany('tag') tags;
+}
 ```
 
 ```javascript {data-filename=app/models/tag.js}
-import DS from 'ember-data';
+import Model, { hasMany } from '@ember-data/model';
 
-export default DS.Model.extend({
-  blogPosts: DS.hasMany('blog-post')
-});
+export default class TagModel extends Model {
+  @hasMany('blog-post') blogPosts;
+}
 ```
 
 ### Explicit Inverses
@@ -74,30 +74,30 @@ that model.
 
 However, sometimes you may have multiple `belongsTo`/`hasMany`s for
 the same type. You can specify which property on the related model is
-the inverse using `DS.belongsTo` or `DS.hasMany`'s `inverse`
+the inverse using `belongsTo` or `hasMany`'s `inverse`
 option. Relationships without an inverse can be indicated as such by
 including `{ inverse: null }`.
 
-
 ```javascript {data-filename=app/models/comment.js}
-import DS from 'ember-data';
+import Model, { belongsTo } from '@ember-data/model';
 
-export default DS.Model.extend({
-  onePost: DS.belongsTo('blog-post', { inverse: null }),
-  twoPost: DS.belongsTo('blog-post'),
-  redPost: DS.belongsTo('blog-post'),
-  bluePost: DS.belongsTo('blog-post')
-});
+export default class CommentModel extends Model {
+  @belongsTo('blog-post', { inverse: null }) onePost;
+  @belongsTo('blog-post') twoPost;
+  @belongsTo('blog-post') redPost;
+  @belongsTo('blog-post') bluePost;
+}
 ```
 
 ```javascript {data-filename=app/models/blog-post.js}
-import DS from 'ember-data';
+import Model, { hasMany } from '@ember-data/model';
 
-export default DS.Model.extend({
-  comments: DS.hasMany('comment', {
+export default class BlogPostModel extends Model {
+  @hasMany('comment', {
     inverse: 'redPost'
   })
-});
+  comments;
+}
 ```
 
 ### Reflexive Relations
@@ -109,33 +109,33 @@ is no inverse relationship then you can set the inverse to `null`.
 Here's an example of a one-to-many reflexive relationship:
 
 ```javascript {data-filename=app/models/folder.js}
-import DS from 'ember-data';
+import Model, { belongsTo, hasMany } from '@ember-data/model';
 
-export default DS.Model.extend({
-  children: DS.hasMany('folder', { inverse: 'parent' }),
-  parent: DS.belongsTo('folder', { inverse: 'children' })
-});
+export default class FolderModel extends Model {
+  @hasMany('folder', { inverse: 'parent' }) children;
+  @belongsTo('folder', { inverse: 'children' }) parent;
+}
 ```
 
 Here's an example of a one-to-one reflexive relationship:
 
 ```javascript {data-filename=app/models/user.js}
-import DS from 'ember-data';
+import Model, { attr, belongsTo } from '@ember-data/model';
 
-export default DS.Model.extend({
-  name: DS.attr('string'),
-  bestFriend: DS.belongsTo('user', { inverse: 'bestFriend' }),
-});
+export default class UserModel extends Model {
+  @attr('string') name;
+  @belongsTo('user', { inverse: 'bestFriend' }) bestFriend;
+}
 ```
 
 You can also define a reflexive relationship that doesn't have an inverse:
 
 ```javascript {data-filename=app/models/folder.js}
-import DS from 'ember-data';
+import Model, { belongsTo } from '@ember-data/model';
 
-export default DS.Model.extend({
-  parent: DS.belongsTo('folder', { inverse: null })
-});
+export default class FolderModel extends Model {
+  @belongsTo('folder', { inverse: null }) parent;
+}
 ```
 
 ### Polymorphism
@@ -153,94 +153,106 @@ property on the model. Confused? See the API response below.
 First, let's look at the model definitions:
 
 ```javascript {data-filename=app/models/user.js}
-import DS from 'ember-data';
+import Model, { hasMany } from '@ember-data/model';
 
-export default DS.Model.extend({
-  paymentMethods: DS.hasMany('payment-method', { polymorphic: true })
-});
+export default class UserModel extends Model {
+  @hasMany('payment-method', { polymorphic: true }) paymentMethods;
+}
 ```
 
 ```javascript {data-filename=app/models/payment-method.js}
-import DS from 'ember-data';
+import Model, { belongsTo } from '@ember-data/model';
 
-export default DS.Model.extend({
-  user: DS.belongsTo('user', { inverse: 'paymentMethods' }),
-});
+export default class PaymentMethodModel extends Model {
+  @belongsTo('user', { inverse: 'paymentMethods' }) user;
+}
 ```
 
 ```javascript {data-filename=app/models/payment-method-cc.js}
-import { computed } from '@ember/object';
+import { attr } from '@ember-data/model';
 import PaymentMethod from './payment-method';
 
-export default PaymentMethod.extend({
-  last4: DS.attr(),
+export default class PaymentMethodCcModel extends PaymentMethod {
+  @attr last4;
 
-  obfuscatedIdentifier: computed('last4', function () {
+  get obfuscatedIdentifier() {
     return `**** **** **** ${this.last4}`;
-  })
-});
+  }
+}
 ```
 
 ```javascript {data-filename=app/models/payment-method-paypal.js}
-import { computed } from '@ember/object';
-import DS from 'ember-data';
+import { attr } from '@ember-data/model';
 import PaymentMethod from './payment-method'
 
-export default PaymentMethod.extend({
-  linkedEmail: DS.attr(),
+export default class PaymentMethodPaypalModel extends PaymentMethod {
+  @attr linkedEmail;
 
-  obfuscatedIdentifier: computed('linkedEmail', function () {
-    let last5 = this.linkedEmail.split('').reverse().slice(0, 5).reverse().join('');
+  get obfuscatedIdentifier() {
+    let last5 = this.linkedEmail
+      .split('')
+      .reverse()
+      .slice(0, 5)
+      .reverse()
+      .join('');
 
     return `••••${last5}`;
-  })
-});
+  }
+}
 ```
 
 And our API might setup these relationships like so:
 
 ```json
 {
-	"data": {
-		"id": "8675309",
-		"type": "user",
-		"attributes": {
-			"name": "Anfanie Farmeo"
-		},
-		"relationships": {
-			"payment-methods": {
-				"data": [{
-					"id": "1",
-					"type": "payment-method-paypal"
-				}, {
-					"id": "2",
-					"type": "payment-method-cc"
-				}, {
-					"id": "3",
-					"type": "payment-method-apple-pay"
-				}]
-			}
-		}
-	},
-	"included": [{
-		"id": "1",
-		"type": "payment-method-paypal",
-		"attributes": {
-			"linked-email": "ryan@gosling.io"
-		}
-	}, {
-		"id": "2",
-		"type": "payment-method-cc",
-		"attributes": {
-			"last4": "1335"
-		}
-	}, {
-		"id": "3",
-		"type": "payment-method-apple-pay",
-		"attributes": {
-			"last4": "5513"
-		}
-	}]
+  "data": {
+    "id": "8675309",
+    "type": "user",
+    "attributes": {
+      "name": "Anfanie Farmeo"
+    },
+    "relationships": {
+      "payment-methods": {
+        "data": [
+          {
+            "id": "1",
+            "type": "payment-method-paypal"
+          },
+          {
+            "id": "2",
+            "type": "payment-method-cc"
+          },
+          {
+            "id": "3",
+            "type": "payment-method-apple-pay"
+          }
+        ]
+      }
+    }
+  },
+  "included": [
+    {
+      "id": "1",
+      "type": "payment-method-paypal",
+      "attributes": {
+        "linked-email": "ryan@gosling.io"
+      }
+    },
+    {
+      "id": "2",
+      "type": "payment-method-cc",
+      "attributes": {
+        "last4": "1335"
+      }
+    },
+    {
+      "id": "3",
+      "type": "payment-method-apple-pay",
+      "attributes": {
+        "last4": "5513"
+      }
+    }
+  ]
 }
 ```
 
@@ -253,8 +265,8 @@ relationship. However, since readonly data will never need to be
 updated and saved this often results in the creation of a great deal
 of code for very little benefit. An alternate approach is to define
 these relationships using an attribute with no transform
-(`DS.attr()`). This makes it easy to access readonly values in
-computed properties and templates without the overhead of defining
+(`@attr`). This makes it easy to access readonly values in
+other objects and templates without the overhead of defining
 extraneous models.
 
 ### Creating Records
@@ -262,19 +274,19 @@ extraneous models.
 Let's assume that we have a `blog-post` and a `comment` model. A single blog post can have several comments linked to it. The correct relationship is shown below:
 
 ```javascript {data-filename=app/models/blog-post.js}
-import DS from 'ember-data';
+import Model, { hasMany } from '@ember-data/model';
 
-export default DS.Model.extend({
-  comments: DS.hasMany('comment')
-});
+export default class BlogPostModel extends Model {
+  @hasMany('comment') comments;
+}
 ```
 
 ```javascript {data-filename=app/models/comment.js}
-import DS from 'ember-data';
+import Model, { belongsTo } from '@ember-data/model';
 
-export default DS.Model.extend({
-  blogPost: DS.belongsTo('blog-post')
-});
+export default class CommentModel extends Model {
+  @belongsTo('blog-post') blogPost;
+}
 ```
 
 Now, suppose we want to add comments to an existing blogPost. We can do this in two ways, but for both of them, we first need to look up a blog post that is already loaded in the store, using its id:
@@ -282,6 +294,7 @@ Now, suppose we want to add comments to an existing blogPost. We can do this in 
 ```javascript
 let myBlogPost = this.store.peekRecord('blog-post', 1);
 ```
+
 Now we can either set the `belongsTo` relationship in our new comment, or, update the blogPost's `hasMany` relationship. As you might observe, we don't need to set both `hasMany` and `belongsTo` for a record. Ember Data will do that for us.
 
 First, let's look at setting the `belongsTo` relationship in our new comment:
@@ -299,10 +312,10 @@ This will create a new `comment` record and save it to the server. Ember Data wi
 The second way of doing the same thing is to link the two records together by updating the blogPost's `hasMany` relationship as shown below:
 
 ```javascript
-let comment = this.store.createRecord('comment', {
-});
-myBlogPost.get('comments').pushObject(comment);
-comment.save().then(function () {
+let comment = this.store.createRecord('comment', {});
+let comments = await myBlogPost.comments;
+comments.pushObject(comment);
+comment.save().then(function() {
   myBlogPost.save();
 });
 ```
@@ -332,7 +345,7 @@ let blogPost = this.store.createRecord('blog-post', {
 });
 
 this.store.findRecord('user', 1).then(function(user) {
-  blogPost.set('author', user);
+  blogPost.author = user;
 });
 ```
 
@@ -361,13 +374,18 @@ as follows:
 
 ```javascript {data-filename=app/routes/post.js}
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 
-export default Route.extend({
+export default class PostRoute extends Route {
+  @service store;
   model(params) {
-   return this.store.findRecord('post', params.post_id, {include: 'comments'});
+    return this.store.findRecord('post', params.post_id, {
+      include: 'comments'
+    });
   }
-});
+}
 ```
+
 The post's comments would then be available in your template as `model.comments`.
 
 Nested relationships can be specified in the `include` parameter as a dot-separated sequence of relationship names.
@@ -376,13 +394,18 @@ would look like this:
 
 ```javascript {data-filename=app/routes/post.js}
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 
-export default Route.extend({
+export default class PostRoute extends Route {
+  @service store;
   model(params) {
-   return this.store.findRecord('post', params.post_id, {include: 'comments,comments.author'});
+    return this.store.findRecord('post', params.post_id, {
+      include: 'comments,comments.author'
+    });
   }
-});
+}
 ```
+
 The `query()` and `queryRecord()` methods each take a `query` argument that is
 serialized directly into the URL query string and the `include` parameter may
 form part of that argument.
@@ -390,18 +413,22 @@ For example:
 
 ```javascript {data-filename=app/routes/adele.js}
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 
-export default Route.extend({
+export default class AdeleRoute extends Route {
+  @service store;
   model() {
     // GET to /artists?filter[name]=Adele&include=albums
-    this.store.query('artist', {
-      filter: {name: 'Adele'},
-      include: 'albums'
-    }).then(function(artists) {
-      return artists.get('firstObject');
-    });
+    return this.store
+      .query('artist', {
+        filter: { name: 'Adele' },
+        include: 'albums'
+      })
+      .then(function(artists) {
+        return artists.firstObject;
+      });
   }
-});
+}
 ```
 
 ### Updating Existing Records
@@ -411,7 +438,7 @@ Sometimes we want to set relationships on already existing records. We can simpl
 ```javascript
 let blogPost = this.store.peekRecord('blog-post', 1);
 let comment = this.store.peekRecord('comment', 1);
-comment.set('blogPost', blogPost);
+comment.blogPost = blogPost;
 comment.save();
 ```
 
@@ -420,7 +447,8 @@ Alternatively, we could update the `hasMany` relationship by pushing a record in
 ```javascript
 let blogPost = this.store.peekRecord('blog-post', 1);
 let comment = this.store.peekRecord('comment', 1);
-blogPost.get('comments').pushObject(comment);
+let comments = await blogPost.comments;
+comments.pushObject(comment);
 blogPost.save();
 ```
 
@@ -430,7 +458,7 @@ To remove a `belongsTo` relationship, we can set it to `null`, which will also r
 
 ```javascript
 let comment = this.store.peekRecord('comment', 1);
-comment.set('blogPost', null);
+comment.blogPost = null;
 comment.save();
 ```
 
@@ -439,7 +467,8 @@ It is also possible to remove a record from a `hasMany` relationship:
 ```javascript
 let blogPost = this.store.peekRecord('blog-post', 1);
 let comment = this.store.peekRecord('comment', 1);
-blogPost.get('comments').removeObject(comment);
+let comments = await blogPost.comments;
+comments.removeObject(comment);
 blogPost.save();
 ```
 
@@ -454,9 +483,8 @@ For example, if we were to work on a blogPost's asynchronous comments, we would 
 ```javascript
 let blogPost = this.store.peekRecord('blog-post', 1);
 
-blogPost.get('comments').then((comments) => {
-  // now we can work with the comments
-});
+let comments = await blogPost.comments;
+// now we can work with the comments
 ```
 
 The same applies to `belongsTo` relationships:
@@ -464,9 +492,8 @@ The same applies to `belongsTo` relationships:
 ```javascript
 let comment = this.store.peekRecord('comment', 1);
 
-comment.get('blogPost').then((blogPost) => {
-  // the blogPost is available here
-});
+let blogPost = await comment.blogPost;
+// the blogPost is available here
 ```
 
 Handlebars templates will automatically be updated to reflect a resolved promise. We can display a list of comments in a blogPost like so:

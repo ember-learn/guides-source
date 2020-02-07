@@ -29,19 +29,21 @@ the top-most route in the route hierarchy, and its `model` hook gets
 called once when the app starts up.
 
 ```javascript {data-filename=app/models/album.js}
-import DS from 'ember-data';
+import Model, { attr } from '@ember-data/model';
 
-export default DS.Model.extend({
-  title: DS.attr(),
-  artist: DS.attr(),
-  songCount: DS.attr()
-});
+export default class AlbumModel extends Model {
+  @attr title;
+  @attr artist;
+  @attr songCount;
+}
 ```
 
 ```javascript {data-filename=app/routes/application.js}
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 
-export default Route.extend({
+export default class ApplicationRoute extends Route {
+  @service store;
   model() {
     this.store.push({
       data: [{
@@ -65,7 +67,7 @@ export default Route.extend({
       }]
     });
   }
-});
+}
 ```
 
 The store's `push()` method is a low level API which accepts a JSON
@@ -81,21 +83,23 @@ serializer before pushing it into the store, you can use the
 [`store.pushPayload()`](https://api.emberjs.com/ember-data/release/classes/Store/methods/push?anchor=pushPayload) method.
 
 ```javascript {data-filename=app/serializers/album.js}
-import DS from 'ember-data';
+import RESTSerializer from '@ember-data/serializer/rest';
 
-export default DS.RESTSerializer.extend({
+export default class AlbumSerializer extends RESTSerializer {
   normalize(typeHash, hash) {
     hash['songCount'] = hash['song_count']
     delete hash['song_count']
-    return this._super(typeHash, hash);
+    return super(typeHash, hash);
   }
-});
+}
 ```
 
 ```javascript {data-filename=app/routes/application.js}
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 
-export default Route.extend({
+export default class ApplicationRoute extends Route {
+  @service store;
   model() {
     this.store.pushPayload({
       albums: [
@@ -114,7 +118,7 @@ export default Route.extend({
       ]
     });
   }
-});
+}
 ```
 
 The `push()` method is also important when working with complex
@@ -128,23 +132,23 @@ so it can be accessed by other parts of your application.
 
 ```javascript {data-filename=app/routes/confirm-payment.js}
 import Route from '@ember/routing/route';
+import { action } from '@ember/object';
 import fetch from 'fetch';
 
-export default Route.extend({
-  actions: {
-    confirm(data) {
-      fetch('process-payment', {
-        method: 'POST',
-        body: JSON.stringify(data)
-      })
-      .then(response => response.json())
-      .then(digitalInventory => {
-        this.store.push(digitalInventory);
-        this.transitionTo('thank-you');
-      });
-    }
+export default class ConfirmPaymentRoute extends Route {
+  @action
+  confirm(data) {
+    fetch('process-payment', {
+      method: 'POST',
+      body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(digitalInventory => {
+      this.store.push(digitalInventory);
+      this.transitionTo('thank-you');
+    });
   }
-});
+}
 ```
 
 Properties that are defined on the model but are omitted in the

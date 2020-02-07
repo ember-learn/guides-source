@@ -10,7 +10,7 @@ Fortunately, Ember provides a way for projects to deal with deprecations in an o
 ## Filtering Deprecations
 
 When your project has a lot of deprecations, you can start by filtering out deprecations that do not have to be addressed right away.
-You can use the [deprecation handlers](https://api.emberjs.com/ember/3.11/functions/@ember%2Fdebug/registerDeprecationHandler) API to check for what release a deprecated feature will be removed.
+You can use the [deprecation handlers](https://api.emberjs.com/ember/release/functions/@ember%2Fdebug/registerDeprecationHandler) API to check for what release a deprecated feature will be removed.
 An example handler is shown below that filters out all deprecations that are not going away in release 2.0.0.
 
 ```javascript {data-filename= app/initializers/main.js}
@@ -91,7 +91,8 @@ window.deprecationWorkflow.config = {
 Rerun your test suite as you make updates to your workflow file and you should validate that your deprecations are gone. Once that is completed,
 you can proceed with enhancing your application without the sea of deprecation warnings clouding your log.
 
-### 2. "Turn on" a deprecation
+### 2. Turn on a deprecation
+
 Once you have built your `deprecation-workflow.js` file and your deprecations are silenced, you can begin to work on deprecations one by one
 at your own leisure.  To find deprecations, you can change the handler value of that message to either `throw` or `log`.  Throw will
 throw an actual exception when the deprecation is encountered, so that tests that use the deprecated feature will fail.  Choosing to log will

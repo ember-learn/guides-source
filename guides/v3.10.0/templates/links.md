@@ -144,3 +144,5 @@ can use the `replace=true` option:
   </LinkTo>
 </p>
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

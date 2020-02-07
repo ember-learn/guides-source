@@ -1,7 +1,7 @@
 In Ember Data, an Adapter determines how data is persisted to a
 backend data store. Things such as the backend host, URL format
- and headers used to talk to a REST API can all be configured
- in an adapter.
+and headers used to talk to a REST API can all be configured
+in an adapter.
 
 Ember Data's default Adapter has some built-in assumptions about
 how a [REST API should look](http://jsonapi.org/). If your backend conventions
@@ -24,11 +24,11 @@ the default Adapter, however it will still be superseded by model
 specific Adapters.
 
 ```javascript {data-filename=app/adapters/application.js}
-import DS from 'ember-data';
+import JSONAPIAdapter from '@ember-data/adapter/json-api';
 
-export default DS.JSONAPIAdapter.extend({
+export default class ApplicationAdapter extends JSONAPIAdapter {
   // Application specific overrides go here
-});
+}
 ```
 
 If you have one model that has exceptional rules for communicating
@@ -38,27 +38,26 @@ For example, running `ember generate adapter post` will create the
 following file:
 
 ```javascript {data-filename=app/adapters/post.js}
-import DS from 'ember-data';
-
-export default DS.JSONAPIAdapter.extend({
-  namespace: 'api/v1'
-});
+import JSONAPIAdapter from '@ember-data/adapter/json-api';
+export default class ApplicationAdapter extends JSONAPIAdapter {
+  namespace = 'api/v1';
+}
 ```
 
 Ember Data comes with several built-in adapters.
 Feel free to use these adapters as a starting point for creating your own custom adapter.
 
-- [DS.Adapter](https://api.emberjs.com/ember-data/release/classes/Adapter) is the basic adapter
+- [`Adapter`](https://api.emberjs.com/ember-data/release/classes/Adapter) is the basic adapter
 with no functionality. It is generally a good starting point if you
 want to create an adapter that is radically different from the other
 Ember adapters.
 
-- [DS.JSONAPIAdapter](https://api.emberjs.com/ember-data/release/classes/JSONAPIAdapter)
+- [`JSONAPIAdapter`](https://api.emberjs.com/ember-data/release/classes/JSONAPIAdapter)
 The `JSONAPIAdapter` is the default adapter and follows JSON:API
 conventions to communicate with an HTTP server by transmitting JSON
 via XHR.
 
-- [DS.RESTAdapter](https://api.emberjs.com/ember-data/release/classes/RESTAdapter)
+- [`RESTAdapter`](https://api.emberjs.com/ember-data/release/classes/RESTAdapter)
 The `RESTAdapter` allows your store to communicate with an HTTP server
 by transmitting JSON via XHR. Before Ember Data 2.0 this adapter was the default.
 
@@ -66,7 +65,7 @@ by transmitting JSON via XHR. Before Ember Data 2.0 this adapter was the default
 ## Customizing the JSONAPIAdapter
 
 The
-[DS.JSONAPIAdapter](https://api.emberjs.com/ember-data/release/classes/JSONAPIAdapter)
+[JSONAPIAdapter](https://api.emberjs.com/ember-data/release/classes/JSONAPIAdapter)
 has a handful of hooks that are commonly used to extend it to work
 with non-standard backends.
 
@@ -146,14 +145,14 @@ The `namespace` property can be used to prefix requests with a
 specific URL namespace.
 
 ```javascript {data-filename=app/adapters/application.js}
-import DS from 'ember-data';
+import JSONAPIAdapter from '@ember-data/adapter/json-api';
 
-export default DS.JSONAPIAdapter.extend({
-  namespace: 'api/1'
-});
+export default class ApplicationAdapter extends JSONAPIAdapter {
+  namespace = 'api/1';
+}
 ```
 
-Requests for `person` would now target `https://api.emberjs.com/1/people/1`.
+Requests for `person` would now target `https://api.emberjs.com/api/1/people/1`.
 
 
 #### Host Customization
@@ -163,11 +162,11 @@ like to specify a new domain you can do so by setting the `host`
 property on the adapter.
 
 ```javascript {data-filename=app/adapters/application.js}
-import DS from 'ember-data';
+import JSONAPIAdapter from '@ember-data/adapter/json-api';
 
-export default DS.JSONAPIAdapter.extend({
-  host: 'https://api.example.com'
-});
+export default class ApplicationAdapter extends JSONAPIAdapter {
+  host = 'https://api.example.com';
+}
 ```
 
 Requests for `person` would now target `https://api.example.com/people/1`.
@@ -184,14 +183,14 @@ underscore_case instead of dash-case you could override the
 `pathForType` method like this:
 
 ```javascript {data-filename=app/adapters/application.js}
-import DS from 'ember-data';
+import JSONAPIAdapter from '@ember-data/adapter/json-api';
 import { underscore } from '@ember/string';
 
-export default DS.JSONAPIAdapter.extend({
+export default class ApplicationAdapter extends JSONAPIAdapter {
   pathForType(type) {
     return underscore(type);
   }
-});
+}
 ```
 
 Requests for `person` would now target `/person/1`.
@@ -201,66 +200,56 @@ Requests for `user-profile` would now target `/user_profile/1`.
 
 Some APIs require HTTP headers, e.g. to provide an API key. Arbitrary
 headers can be set as key/value pairs on the `JSONAPIAdapter`'s `headers`
-object and Ember Data will send them along with each network request.
-(Note that we set headers in `init()` because default property values
-should not be arrays or objects.)
+object and Ember Data will send them along with each ajax request.
 
 ```javascript {data-filename=app/adapters/application.js}
-import DS from 'ember-data';
+import JSONAPIAdapter from '@ember-data/adapter/json-api';
 
-export default DS.JSONAPIAdapter.extend({
-  init() {
-    this._super(...arguments);
-
-    this.set('headers', {
-      'API_KEY': 'secret key',
-      'ANOTHER_HEADER': 'Some header value'
-    });
-  }
-});
+export default class ApplicationAdapter extends JSONAPIAdapter {
+  headers = {
+    'API_KEY': 'secret key',
+    'ANOTHER_HEADER': 'Some header value'
+  };
+}
 ```
 
-`headers` can also be used as a computed property to support dynamic
-headers. In the example below, the headers are generated with a computed
-property dependent on the `session` service.
+You can combine tracked properties with ES6 getters to make `headers` dynamic.
+In the example below, the headers are generated dynamically using a
+property from the `session` service.
 
 ```javascript {data-filename=app/adapters/application.js}
-import DS from 'ember-data';
-import { computed } from '@ember/object';
+import JSONAPIAdapter from '@ember-data/adapter/json-api';
+import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
 
-
-export default DS.JSONAPIAdapter.extend({
-  session: service('session'),
-  headers: computed('session.authToken', function() {
+export default class ApplicationAdapter extends JSONAPIAdapter {
+  @service session;
+  @tracked session.authToken;
+  get headers() {
     return {
       'API_KEY': this.session.authToken,
       'ANOTHER_HEADER': 'Some header value'
     };
-  })
-});
+  }
+}
 ```
 
-In some cases, your dynamic headers may require data from some
-object outside of Ember's observer system (for example
-`document.cookie`). You can use the
-[volatile](https://api.emberjs.com/ember/3.11/classes/@ember%2Fobject%2Fcomputed/methods/property?anchor=volatile)
-function to set the property into a non-cached mode causing the headers to
-be recomputed with every request.
+[Getters](../../in-depth-topics/autotracking-in-depth/) recompute with each
+access, so you could just as easily rely upon another dynamic value such as
+`document.cookie`.
 
 ```javascript {data-filename=app/adapters/application.js}
-import DS from 'ember-data';
-import { computed } from '@ember/object';
+import JSONAPIAdapter from '@ember-data/adapter/json-api';
 import { get } from '@ember/object';
 
-export default DS.JSONAPIAdapter.extend({
-  headers: computed(function() {
+export default class ApplicationAdapter extends JSONAPIAdapter {
+  get headers() {
     return {
       'API_KEY': get(document.cookie.match(/apiKey\=([^;]*)/), '1'),
       'ANOTHER_HEADER': 'Some header value'
     };
-  }).volatile()
-});
+  }
+}
 ```
 
 #### Authoring Adapters
@@ -276,11 +265,11 @@ ensure Ember does the right thing in the case a user of your adapter
 does not specify an `serializer:application`.
 
 ```javascript {data-filename=app/adapters/my-custom-adapter.js}
-import DS from 'ember-data';
+import JSONAPIAdapter from '@ember-data/adapter/json-api';
 
-export default DS.JSONAPIAdapter.extend({
-  defaultSerializer: '-default'
-});
+export default class MyCustomAdapter extends JSONAPIAdapter {
+  defaultSerializer = '-default';
+}
 ```
 
 ## Community Adapters

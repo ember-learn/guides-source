@@ -30,10 +30,10 @@ as one of `controller:articles`'s `queryParams`:
 ```javascript {data-filename=app/controllers/articles.js}
 import Controller from '@ember/controller';
 
-export default Controller.extend({
-  queryParams: ['category'],
-  category: null
-});
+export default class ArticlesController extends Controller {
+  queryParams = ['category'];
+  category = null;
+}
 ```
 
 This sets up a binding between the `category` query param in the URL,
@@ -41,21 +41,22 @@ and the `category` property on `controller:articles`. In other words,
 once the `articles` route has been entered, any changes to the
 `category` query param in the URL will update the `category` property
 on `controller:articles`, and vice versa.
-Note that you can't bind `queryParams` to computed properties, they
+Note that you can't make `queryParams` be a dynamically generated property (neither computed property, nor property getter); they
 have to be values.
 
-Now we need to define a computed property of our category-filtered
-array that the `articles` template will render:
+Now we need to define a getter for our category-filtered
+array, which the `articles` template will render. For the getter to recompute when values change, `category` and `model` should be marked as tracked properties:
 
 ```javascript {data-filename=app/controllers/articles.js}
 import Controller from '@ember/controller';
-import { computed } from '@ember/object';
 
-export default Controller.extend({
-  queryParams: ['category'],
-  category: null,
+export default class ArticlesController extends Controller {
+  queryParams = ['category'];
+  @tracked category = null;
 
-  filteredArticles: computed('category', 'model', function() {
+  @tracked model;
+
+  get filteredArticles() {
     let category = this.category;
     let articles = this.model;
 
@@ -64,8 +65,8 @@ export default Controller.extend({
     } else {
       return articles;
     }
-  })
-});
+  }
+}
 ```
 
 With this code, we have established the following behaviors:
@@ -80,17 +81,18 @@ With this code, we have established the following behaviors:
    full router transition (i.e. it won't call `model` hooks and
    `setupController`, etc.); it will only update the URL.
 
-### `LinkTo` component
+### <LinkTo /> component
 
-The `LinkTo` component supports specifying query params using the
-`query-params` subexpression helper.
+The `<LinkTo />` component supports specifying query params using the `@query`
+argument, along with the `{{hash}}` helper:
 
 ```handlebars
 // Explicitly set target query params
-<LinkTo @route="posts" @query={{hash direction="asc"}}>Sort<LinkTo>
+<LinkTo @route="posts" @query={{hash direction="asc"}}>Sort</LinkTo>
 
 // Binding is also supported
-<LinkTo @route="posts" @query={{hash direction=this.otherDirection}}>Sort<LinkTo>
+<LinkTo @route="posts" @query={{hash direction=this.otherDirection}}>Sort</LinkTo>
+
 ```
 
 In the above examples, `direction` is presumably a query param property
@@ -98,7 +100,7 @@ on the `posts` controller, but it could also refer to a `direction` property
 on any of the controllers associated with the `posts` route hierarchy,
 matching the leaf-most controller with the supplied property name.
 
-The `<LinkTo>` component takes into account query parameters when determining
+The `<LinkTo />` component takes into account query parameters when determining
 its "active" state, and will set the class appropriately. The active state
 is determined by calculating whether the query params end up the same after
 clicking a link. You don't have to supply all of the current,
@@ -125,7 +127,7 @@ this.transitionTo('/posts/1?sort=date&showDetails=true');
 
 ### Opting into a full transition
 
-When you change query params through a transition (`transitionTo` and `<LinkTo>`),
+When you change query params through a transition (`transitionTo` and `<LinkTo />`),
 it is not considered a full transition.
 This means that the controller properties associated with the query params will be updated,
 as will the URL, but no `Route` method hook like `model` or `setupController` will be called.
@@ -138,12 +140,12 @@ you can set it as follows:
 ```javascript {data-filename=app/routes/articles.js}
 import Route from '@ember/routing/route';
 
-export default Route.extend({
-  queryParams: {
+export default class ArticlesRoute extends Route {
+  queryParams = {
     category: {
       refreshModel: true
     }
-  },
+  }
 
   model(params) {
     // This gets called upon entering 'articles' route
@@ -154,15 +156,15 @@ export default Route.extend({
     // which we can forward to the server.
     return this.store.query('article', params);
   }
-});
+}
 ```
 
 ```javascript {data-filename=app/controllers/articles.js}
 import Controller from '@ember/controller';
 
-export default Controller.extend({
-  queryParams: ['category'],
-  category: null
+export default class ArticlesController extends Controller {
+  queryParams = ['category'];
+  category = null;
 });
 ```
 
@@ -177,16 +179,16 @@ you can specify this as follows:
 ```javascript {data-filename=app/routes/articles.js}
 import Route from '@ember/routing/route';
 
-export default Route.extend({
-  queryParams: {
+export default class ArticlesRoute extends Route {
+  queryParams = {
     category: {
       replace: true
     }
   }
-});
+}
 ```
 
-This behavior is similar to `<LinkTo>`,
+This behavior is similar to `<LinkTo />`,
 which also lets you opt into a `replaceState` transition via `replace=true`.
 
 ### Map a controller's property to a different query param key
@@ -198,13 +200,13 @@ You can also map a controller property to a different query param key using the 
 ```javascript {data-filename=app/controllers/articles.js}
 import Controller from '@ember/controller';
 
-export default Controller.extend({
-  queryParams: {
+export default class ArticlesController extends Controller {
+  queryParams = {
     category: 'articles_category'
-  },
+  }
 
-  category: null
-});
+  category = null
+}
 ```
 
 This will cause changes to the `controller:articles`'s `category`
@@ -216,15 +218,15 @@ be provided along with strings in the `queryParams` array.
 ```javascript {data-filename=app/controllers/articles.js}
 import Controller from '@ember/controller';
 
-export default Controller.extend({
-  queryParams: ['page', 'filter', {
+export default class ArticlesController extends Controller {
+  queryParams = ['page', 'filter', {
     category: 'articles_category'
-  }],
+  }]
 
-  category: null,
-  page: 1,
-  filter: 'recent'
-});
+  category = null;
+  page = 1;
+  filter = 'recent';
+}
 ```
 
 ### Default values and deserialization
@@ -235,10 +237,10 @@ the controller query param property `page` is considered to have a default value
 ```javascript {data-filename=app/controllers/articles.js}
 import Controller from '@ember/controller';
 
-export default Controller.extend({
-  queryParams: 'page',
-  page: 1
-});
+export default class ArticlesController extends Controller {
+  queryParams = 'page';
+  page = 1;
+}
 ```
 
 This affects query param behavior in two ways:
@@ -255,8 +257,9 @@ This affects query param behavior in two ways:
    will become `/articles?page=2`.
 
 ### Sticky Query Param Values
+
 The query params are defined per route/controller. They are not global to the app. 
-For example, if a route `first-route` has a query param `firstParam` associated with it and we try to navigate to `first-route` by using `<LinkTo>` from a different route `second-route`, like in the following handlebar template, the `firstParam` will be omitted. 
+For example, if a route `first-route` has a query param `firstParam` associated with it and we try to navigate to `first-route` by using `<LinkTo />` component from a different route `second-route`, like in the following handlebar template, the `firstParam` will be omitted.
 
 ```handlebars
 <LinkTo @route="first-route" @query={{hash secondParam="asc"}}>Sort</LinkTo>
@@ -294,7 +297,7 @@ it is stored and tied to the model loaded into the route.
 If you wish to reset a query param, you have two options:
 
 1. explicitly pass in the default value for that query param into
-   `<LinkTo` or `transitionTo`.
+   `<LinkTo />` or `transitionTo`.
 2. use the `Route.resetController` hook to set query param values back to
    their defaults before exiting the route or changing the route's model.
 
@@ -305,14 +308,14 @@ The result of this is that all links pointing back into the exited route will us
 ```javascript {data-filename=app/routes/articles.js}
 import Route from '@ember/routing/route';
 
-export default Route.extend({
+export default class ArticlesRoute extends Route {
   resetController(controller, isExiting, transition) {
     if (isExiting) {
       // isExiting would be false if only the route's model was changing
       controller.set('page', 1);
     }
   }
-});
+}
 ```
 
 In some cases, you might not want the sticky query param value to be
@@ -324,13 +327,13 @@ config hash:
 ```javascript {data-filename=app/controllers/articles.js}
 import Controller from '@ember/controller';
 
-export default Controller.extend({
-  queryParams: [{
+export default class ArticlesController extends Controller {
+  queryParams = [{
     showMagnifyingGlass: {
       scope: 'controller'
     }
   }]
-});
+}
 ```
 
 The following demonstrates how you can override both the scope and the query param URL key of a single controller query param property:
@@ -338,8 +341,8 @@ The following demonstrates how you can override both the scope and the query par
 ```javascript {data-filename=app/controllers/articles.js}
 import Controller from '@ember/controller';
 
-export default Controller.extend({
-  queryParams: ['page', 'filter',
+export default class ArticlesController extends Controller {
+  queryParams = ['page', 'filter',
     {
       showMagnifyingGlass: {
         scope: 'controller',
@@ -347,5 +350,7 @@ export default Controller.extend({
       }
     }
   ]
-});
+}
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

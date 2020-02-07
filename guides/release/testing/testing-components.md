@@ -8,20 +8,19 @@ The `style` attribute of the component is bound to its `style` property.
 > component pretty-color`.
 
 ```javascript {data-filename="app/components/pretty-color.js"}
-import Component from '@ember/component';
-import { computed } from '@ember/object';
+import Component from '@glimmer/component';
 
-export default Component.extend({
-  attributeBindings: ['style'],
-
-  style: computed('name', function() {
-    return `color: ${this.name}`;
-  })
-});
+export default class PrettyColorComponent extends Component {
+  get style() {
+    return `color: ${this.args.name}`;
+  }
+}
 ```
 
 ```handlebars {data-filename="app/templates/components/pretty-color.hbs"}
-Pretty Color: {{this.name}}
+<div style={{this.style}}>
+  Pretty Color: {{@name}}
+</div>
 ```
 
 The `module` from QUnit will scope your tests into groups of tests which can be configured and run independently.
@@ -66,7 +65,7 @@ We can better see what this means, once we start writing out our first test case
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Component | pretty-color', function(hooks) {
   setupRenderingTest(hooks);
@@ -97,7 +96,7 @@ component's `style` attribute and is reflected in the rendered HTML:
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Component | pretty-color', function(hooks) {
   setupRenderingTest(hooks);
@@ -124,7 +123,7 @@ We might also test this component to ensure that the content of its template is 
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Component | pretty-color', function(hooks) {
   setupRenderingTest(hooks);
@@ -156,23 +155,23 @@ Imagine you have the following component that changes its title when a button is
 > component magic-title`.
 
 ```javascript {data-filename="app/components/magic-title.js"}
-import Component from '@ember/component';
+import Component from '@glimmer/component';
+import { action } from '@ember/object';
 
-export default Component.extend({
-  title: 'Hello World',
+export default class MagicTitleComponent extends Component {
+  title = 'Hello World';
 
-  actions: {
-    updateTitle() {
-      this.set('title', 'This is Magic');
-    }
+  @action
+  updateTitle() {
+    this.set('title', 'This is Magic');
   }
-});
+}
 ```
 
 ```handlebars {data-filename="app/templates/components/magic-title.hbs"}
 <h2>{{this.title}}</h2>
 
-<button class="title-button" {{action "updateTitle"}}>
+<button class="title-button" {{on "click" this.updateTitle}}>
   Update Title
 </button>
 ```
@@ -183,7 +182,7 @@ And our test might look like this:
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { click, render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Component | magic-title', function(hooks) {
   setupRenderingTest(hooks);
@@ -218,24 +217,24 @@ passing along the form's data:
 > component comment-form`.
 
 ```javascript {data-filename="app/components/comment-form.js"}
-import Component from '@ember/component';
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
 
-export default Component.extend({
-  comment: '',
+export default class CommentFormComponent extends Component {
+  @tracked comment = '';
 
-  actions: {
-    submitComment() {
-      this.submitComment({ comment: this.comment });
-    }
+  @action
+  submitComment() {
+    this.args.submitComment({ comment: this.comment });
   }
-});
+}
 ```
 
 ```handlebars {data-filename="app/templates/components/comment-form.hbs"}
 <form {{action "submitComment" on="submit"}}>
   <label for="comment">Comment:</label>
   <Textarea @id="comment" @value={{this.comment}} />
-
   <input class="comment-input" type="submit" value="Submit"/>
 </form>
 ```
@@ -248,7 +247,7 @@ external action is called:
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { click, fillIn, render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Component | comment-form', function(hooks) {
   setupRenderingTest(hooks);
@@ -262,7 +261,7 @@ module('Integration | Component | comment-form', function(hooks) {
       assert.deepEqual(actual, expected, 'submitted value is passed to external action');
     });
 
-    await render(hbs`<CommentForm @submitComment={{action externalAction}}>`);
+    await render(hbs`<CommentForm @submitComment={{action externalAction}} />`);
 
     // fill out the form and force an onchange
     await fillIn('textarea', 'You are not a wizard!');
@@ -285,22 +284,21 @@ Imagine you have the following component that uses a location service to display
 > component location-indicator`.
 
 ```javascript {data-filename="app/components/location-indicator.js"}
-import Component from '@ember/component';
-import { computed } from '@ember/object';
+import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 
-export default Component.extend({
-  locationService: service('location-service'),
+export default class LocationIndicatorComponent extends Component {
+  @service location;
 
   // when the coordinates change, call the location service to get the current city and country
-  city: computed('locationService.currentLocation', function () {
-    return this.locationService.getCurrentCity();
-  }),
+  get city() {
+    return this.location.getCurrentCity();
+  }
 
-  country: computed('locationService.currentLocation', function () {
-    return this.locationService.getCurrentCountry();
-  })
-});
+  get country() {
+    return this.location.getCurrentCountry();
+  }
+}
 ```
 
 ```handlebars {data-filename="app/templates/components/location-indicator.hbs"}
@@ -315,7 +313,7 @@ In this case we initially force location to "New York".
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 import Service from '@ember/service';
 
 //Stub location service
@@ -351,7 +349,7 @@ the test needs to check that the stub data from the service is reflected in the 
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 import Service from '@ember/service';
 
 //Stub location service
@@ -392,7 +390,7 @@ In the next example, we'll add another test that validates that the display chan
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 import Service from '@ember/service';
 
 //Stub location service
@@ -459,29 +457,28 @@ The `settled` function itself returns a Promise that resolves once all async ope
 
 You can use `settled` as a helper in your tests directly and `await` it for all async behavior to settle deliberately.
 
-Imagine you have a typeahead component that uses [`Ember.run.debounce`](https://api.emberjs.com/ember/3.11/classes/@ember%2Frunloop/methods/debounce?anchor=debounce) to limit requests to the server, and you want to verify that results are displayed after typing a character.
+Imagine you have a typeahead component that uses [`Ember.run.debounce`](https://api.emberjs.com/ember/release/classes/@ember%2Frunloop/methods/debounce?anchor=debounce) to limit requests to the server, and you want to verify that results are displayed after typing a character.
 
 > You can follow along by generating your own component with `ember generate
 > component delayed-typeahead`.
 
 ```javascript {data-filename="app/components/delayed-typeahead.js"}
-import Component from '@ember/component';
+import Component from '@glimmer/component';
+import { action } from '@ember/object';
 import { debounce } from '@ember/runloop';
 
-export default Component.extend({
-  actions: {
-    handleTyping() {
-      //the fetchResults function is passed into the component from its parent
-      debounce(this, this.fetchResults, this.searchValue, 250);
-    }
+export default class DelayedTypeaheadComponent extends Component {
+  @action
+  handleTyping() {
+    //the fetchResults function is passed into the component from its parent
+    debounce(this, this.fetchResults, this.searchValue, 250);
   }
-});
+};
 ```
 
 ```handlebars {data-filename="app/templates/components/delayed-typeahead.hbs"}
 <label for="search">Search</label>
-<Input @id="search" @value={{this.searchValue}} @key-up={{action "handleTyping"}} />
-
+<Input @id="search" @value={{this.searchValue}} @key-up={{this.handleTyping}} />
 <ul>
   {{#each this.results as |result|}}
     <li class="result">{{result.name}}</li>
@@ -495,7 +492,7 @@ In your test, use the `settled` helper to wait until your debounce timer is up a
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render, settled } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Component | delayed-typeahead', function(hooks) {
   setupRenderingTest(hooks);
@@ -524,3 +521,5 @@ module('Integration | Component | delayed-typeahead', function(hooks) {
   });
 });
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

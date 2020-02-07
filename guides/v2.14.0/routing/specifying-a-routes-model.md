@@ -163,3 +163,5 @@ each record in the song model and album model:
   {{/each}}
 </ul>
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

@@ -10,27 +10,26 @@ also described as container tests.
 Here we have a controller `PostsController` with two properties, a method that
 sets one of those properties, and an action named `setProps`.
 
-> You can follow along by generating your own controller with `ember generate
-> controller posts`.
+> You can follow along by generating your own controller with `ember generate controller posts`.
 
 ```javascript {data-filename=app/controllers/posts.js}
 import Controller from '@ember/controller';
+import { action } from '@ember/object';
 
-export default Controller.extend({
-  propA: 'You need to write tests',
-  propB: 'And write one for me too',
+export default class PostsController extends Controller {
+  propA = 'You need to write tests';
+  propB = 'And write one for me too';
 
   setPropB(str) {
-    this.set('propB', str);
-  },
-
-  actions: {
-    setProps(str) {
-      this.set('propA', 'Testing is cool');
-      this.setPropB(str);
-    }
+    this.propB = str;
   }
-});
+
+  @action
+  setProps(str) {
+    this.propA = 'Testing is cool';
+    this.setPropB(str);
+  }
+}
 ```
 
 The `setProps` action directly sets one property, and calls the method to set the other.
@@ -65,8 +64,16 @@ module('Unit | Controller | posts', function(hooks) {
     let controller = this.owner.lookup('controller:posts');
 
     // check the properties before the action is triggered
-    assert.equal(controller.get('propA'), 'You need to write tests', 'propA initialized');
-    assert.equal(controller.get('propB'), 'And write one for me too', 'propB initialized');
+    assert.equal(
+      controller.propA,
+      'You need to write tests',
+      'propA initialized'
+    );
+    assert.equal(
+      controller.propB,
+      'And write one for me too',
+      'propB initialized'
+    );
 
     // trigger the action on the controller by using the `send` method,
     // passing in any params that our action may be expecting
@@ -74,8 +81,10 @@ module('Unit | Controller | posts', function(hooks) {
 
     // finally we assert that our values have been updated
     // by triggering our action.
-    assert.equal(controller.get('propA'), 'Testing is cool', 'propA updated');
-    assert.equal(controller.get('propB'), 'Testing Rocks!', 'propB updated');
+    assert.equal(controller.propA, 'Testing is cool', 'propA updated');
+    assert.equal(controller.propB, 'Testing Rocks!', 'propB updated');
   });
 });
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

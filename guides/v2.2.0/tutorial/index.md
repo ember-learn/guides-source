@@ -194,3 +194,5 @@ Let's update our `index.hbs` with some HTML for our home page and our links to t
 {{#link-to "about"}}About{{/link-to}}
 {{#link-to "contact"}}Click here to contact us.{{/link-to}}
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

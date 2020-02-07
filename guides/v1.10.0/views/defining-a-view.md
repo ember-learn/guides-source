@@ -40,3 +40,5 @@ To remove a view from the document, call `remove`:
 ```javascript
 view.remove();
 ```
+
+<!-- eof - needed for pages that end in a code block  -->
