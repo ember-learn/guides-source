@@ -60,7 +60,6 @@ describe('check all external links in markdown files', function () {
 
 			for (let i = 0; i < externalLinks.length; i++) {
 				await sleep(externalLinks[i].delay);
-				console.log(externalLinks[i].url);
 				responses.push(await checkExternalLink(externalLinks[i].url));
 			}
 
