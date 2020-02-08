@@ -62,14 +62,14 @@ To dispatch an action on specific events such as `key-down`, use the following
 
 The following event types are supported (dasherized format):
 
-* `enter`
-* `insert-newline`
-* `escape-press`
-* `focus-in`
-* `focus-out`
-* `key-down`
-* `key-press` ([Deprecated Web API](https://developer.mozilla.org/en-US/docs/Web/API/Document/keypress_event))
-* `key-up`
+* `@enter`
+* `@insert-newline`
+* `@escape-press`
+* `@focus-in`
+* `@focus-out`
+* `@key-down`
+* `@key-press` ([Deprecated Web API](https://developer.mozilla.org/en-US/docs/Web/API/Document/keypress_event))
+* `@key-up`
 
 
 More [events types](https://api.emberjs.com/ember/release/classes/Component#event-names) are also supported but these events need to be written in camelCase format, such `mouseEnter`. Note, there are events of the same type in both the list above and linked. Event names listed above must be dasherized. Additional work is performed on these events.
