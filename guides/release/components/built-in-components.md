@@ -12,7 +12,7 @@ update the state of their values.
 
 ```handlebars
 <label for="site">Ember Question</label>
-<Input @id="site" @value="How do text fields work?" />
+<Input id="site" @value="How do text fields work?" />
 ```
 
 Will become:
@@ -45,7 +45,7 @@ rendering context. For example:
 
 ```handlebars
 <label for="firstname">First Name</label>
-<Input @id="firstname" @type="text" @value={{this.firstName}} @size="50" disabled={{this.entryNotAllowed}} />
+<Input id="firstname" @type="text" @value={{this.firstName}} size="50" disabled={{this.entryNotAllowed}} />
 ```
 
 Will bind the `disabled` attribute to the value of `entryNotAllowed` in the
@@ -82,7 +82,7 @@ helper to create a checkbox by setting its `@type`:
 
 ```handlebars
 <label for="admin-checkbox">Is Admin?</label>
-<Input @id="admin-checkbox" @type="checkbox" @name="isAdmin" @checked={{this.isAdmin}} />
+<Input id="admin-checkbox" @type="checkbox" name="isAdmin" @checked={{this.isAdmin}} />
 ```
 
 Checkboxes support the following properties:
