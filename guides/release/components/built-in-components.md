@@ -26,16 +26,16 @@ You can pass the following standard `<input>` attributes within the input
 helper:
 
 <table>
-  <tr><td>`readonly`</td><td>`required`</td><td>`autofocus`</td></tr>
-  <tr><td>`value`</td><td>`placeholder`</td><td>`disabled`</td></tr>
-  <tr><td>`size`</td><td>`tabindex`</td><td>`maxlength`</td></tr>
-  <tr><td>`name`</td><td>`min`</td><td>`max`</td></tr>
-  <tr><td>`pattern`</td><td>`accept`</td><td>`autocomplete`</td></tr>
-  <tr><td>`autosave`</td><td>`formaction`</td><td>`formenctype`</td></tr>
-  <tr><td>`formmethod`</td><td>`formnovalidate`</td><td>`formtarget`</td></tr>
-  <tr><td>`height`</td><td>`inputmode`</td><td>`multiple`</td></tr>
-  <tr><td>`step`</td><td>`width`</td><td>`form`</td></tr>
-  <tr><td>`selectionDirection`</td><td>`spellcheck`</td><td>`type`</td></tr>
+  <tr><td><code>readonly</code></td><td><code>required</code></td><td><code>autofocus</code></td></tr>
+  <tr><td><code>value</code></td><td><code>placeholder</code></td><td><code>disabled</code></td></tr>
+  <tr><td><code>size</code></td><td><code>tabindex</code></td><td><code>maxlength</code></td></tr>
+  <tr><td><code>name</code></td><td><code>min</code></td><td><code>max</code></td></tr>
+  <tr><td><code>pattern</code></td><td><code>accept</code></td><td><code>autocomplete</code></td></tr>
+  <tr><td><code>autosave</code></td><td><code>formaction</code></td><td><code>formenctype</code></td></tr>
+  <tr><td><code>formmethod</code></td><td><code>formnovalidate</code></td><td><code>formtarget</code></td></tr>
+  <tr><td><code>height</code></td><td><code>inputmode</code></td><td><code>multiple</code></td></tr>
+  <tr><td><code>step</code></td><td><code>width</code></td><td><code>form</code></td></tr>
+  <tr><td><code>selectionDirection</code></td><td><code>spellcheck</code></td><td><code>type</code></td></tr>
 </table>
 
 If these attributes are set to a quoted string, their values will be set
