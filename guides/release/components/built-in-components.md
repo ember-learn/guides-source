@@ -27,7 +27,7 @@ helper:
 
 <table>
   <tr><td><code>readonly</code></td><td><code>required</code></td><td><code>autofocus</code></td></tr>
-  <tr><td><code>value</code></td><td><code>placeholder</code></td><td><code>disabled</code></td></tr>
+  <tr><td><code>@value</code></td><td><code>placeholder</code></td><td><code>disabled</code></td></tr>
   <tr><td><code>size</code></td><td><code>tabindex</code></td><td><code>maxlength</code></td></tr>
   <tr><td><code>name</code></td><td><code>min</code></td><td><code>max</code></td></tr>
   <tr><td><code>pattern</code></td><td><code>accept</code></td><td><code>autocomplete</code></td></tr>
@@ -35,7 +35,7 @@ helper:
   <tr><td><code>formmethod</code></td><td><code>formnovalidate</code></td><td><code>formtarget</code></td></tr>
   <tr><td><code>height</code></td><td><code>inputmode</code></td><td><code>multiple</code></td></tr>
   <tr><td><code>step</code></td><td><code>width</code></td><td><code>form</code></td></tr>
-  <tr><td><code>selectionDirection</code></td><td><code>spellcheck</code></td><td><code>type</code></td></tr>
+  <tr><td><code>selectionDirection</code></td><td><code>spellcheck</code></td><td><code>@type</code></td></tr>
 </table>
 
 If these attributes are set to a quoted string, their values will be set
