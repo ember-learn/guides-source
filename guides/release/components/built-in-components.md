@@ -78,7 +78,7 @@ More [events types](https://api.emberjs.com/ember/release/classes/Component#even
 
 You can also use the
 [`<Input />`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/if?anchor=input)
-helper to create a checkbox by setting its `type`:
+helper to create a checkbox by setting its `@type`:
 
 ```handlebars
 <label for="admin-checkbox">Is Admin?</label>
@@ -87,7 +87,7 @@ helper to create a checkbox by setting its `type`:
 
 Checkboxes support the following properties:
 
-* `checked`
+* `@checked`
 * `disabled`
 * `tabindex`
 * `indeterminate`
@@ -128,7 +128,7 @@ Will bind the value of the text area to `name` on the current context.
 
 [`<Textarea>`](https://api.emberjs.com/ember/release/classes/Ember.Templates.components/methods/Textarea?anchor=Textarea) supports binding and/or setting the following properties:
 
-* `value`
+* `@value`
 * `name`
 * `rows`
 * `cols`
