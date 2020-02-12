@@ -89,28 +89,28 @@
 - title: "Routing"
   url: "routing"
   pages:
-    - title: Introduction
-      url: index
-    - title: Defining Your Routes
-      url: defining-your-routes
-    - title: Linking Between Routes
-      url: linking-between-routes
-    - title: Specifying a Route's Model
-      url: specifying-a-routes-model
-    - title: Rendering a Template
-      url: rendering-a-template
-    - title: Redirecting
-      url: redirection
-    - title: Preventing and Retrying Transitions
-      url: preventing-and-retrying-transitions
+    - title: "Introduction"
+      url: "index"
+    - title: "Defining Your Routes"
+      url: "defining-your-routes"
+    - title: "Linking Between Routes"
+      url: "linking-between-routes"
+    - title: "Specifying a Route's Model"
+      url: "specifying-a-routes-model"
+    - title: "Rendering a Template"
+      url: "rendering-a-template"
+    - title: "Redirecting"
+      url: "redirection"
+    - title: "Preventing and Retrying Transitions"
+      url: "preventing-and-retrying-transitions"
       isAdvanced: true
-    - title: Loading / Error Substates
-      url: loading-and-error-substates
+    - title: "Loading / Error Substates"
+      url: "loading-and-error-substates"
       isAdvanced: true
-    - title: Query Parameters
-      url: query-params
-    - title: Asynchronous Routing
-      url: asynchronous-routing
+    - title: "Query Parameters"
+      url: "query-params"
+    - title: "Asynchronous Routing"
+      url: "asynchronous-routing"
       isAdvanced: true
     - title: "Controllers"
       url: "controllers"
@@ -122,27 +122,27 @@
 - title: "Ember Data"
   url: "models"
   pages:
-    - title: Introduction
-      url: index
-    - title: Defining Models
-      url: defining-models
-    - title: Finding Records
-      url: finding-records
+    - title: "Introduction"
+      url: "index"
+    - title: "Defining Models"
+      url: "defining-models"
+    - title: "Finding Records"
+      url: "finding-records"
     - title: "Creating, Updating and Deleting"
-      url: creating-updating-and-deleting-records
-    - title: Relationships
-      url: relationships
-    - title: Pushing Records into the Store
-      url: pushing-records-into-the-store
+      url: "creating-updating-and-deleting-records"
+    - title: "Relationships"
+      url: "relationships"
+    - title: "Pushing Records into the Store"
+      url: "pushing-records-into-the-store"
       isAdvanced: true
-    - title: Handling Metadata
-      url: handling-metadata
+    - title: "Handling Metadata"
+      url: "handling-metadata"
       isAdvanced: true
-    - title: Customizing Adapters
-      url: customizing-adapters
+    - title: "Customizing Adapters"
+      url: "customizing-adapters"
       isAdvanced: true
-    - title: Customizing Serializers
-      url: customizing-serializers
+    - title: "Customizing Serializers"
+      url: "customizing-serializers"
       isAdvanced: true
 - title: "In-Depth Topics"
   url: "in-depth-topics"
@@ -161,23 +161,23 @@
 - title: "Application Development"
   url: "toc-heading_application-development"
   is_heading: true
-- title: Application Concerns
-  url: applications
+- title: "Application Concerns"
+  url: "applications"
   pages:
-    - title: Applications and Instances
-      url: index
+    - title: "Applications and Instances"
+      url: "index"
       isAdvanced: true
-    - title: Dependency Injection
-      url: dependency-injection
+    - title: "Dependency Injection"
+      url: "dependency-injection"
       isAdvanced: true
-    - title: Initializers
-      url: initializers
+    - title: "Initializers"
+      url: "initializers"
       isAdvanced: true
-    - title: The Run Loop
-      url: run-loop
+    - title: "The Run Loop"
+      url: "run-loop"
       isAdvanced: true
-    - title: Ember Engines
-      url: ember-engines
+    - title: "Ember Engines"
+      url: "ember-engines"
       isAdvanced: true
 - title: "Testing"
   url: "testing"
@@ -203,23 +203,23 @@
 - title: "Configuration"
   url: "configuring-ember"
   pages:
-    - title: Configuring Your App
-      url: index
-    - title: Configuring Ember CLI
-      url: configuring-ember-cli
-    - title: Handling Deprecations
-      url: handling-deprecations
-    - title: Disabling Prototype Extensions
-      url: disabling-prototype-extensions
-    - title: Specifying the URL Type
-      url: specifying-url-type
-    - title: Embedding Applications
-      url: embedding-applications
-    - title: Feature Flags
-      url: feature-flags
+    - title: "Configuring Your App"
+      url: "index"
+    - title: "Configuring Ember CLI"
+      url: "configuring-ember-cli"
+    - title: "Handling Deprecations"
+      url: "handling-deprecations"
+    - title: "Disabling Prototype Extensions"
+      url: "disabling-prototype-extensions"
+    - title: "Specifying the URL Type"
+      url: "specifying-url-type"
+    - title: "Embedding Applications"
+      url: "embedding-applications"
+    - title: "Feature Flags"
+      url: f"eature-flags"
       isAdvanced: true
-    - title: Optional Features
-      url: optional-features
+    - title: "Optional Features"
+      url: "optional-features"
       isAdvanced: true
     - title: "Build targets"
       url: "build-targets"
@@ -228,18 +228,18 @@
 - title: Accessibility
   url: accessibility
   pages:
-    - title: Intro to Accessibility
-      url: index
-    - title: Application Considerations
-      url: application-considerations
-    - title: Page Template Considerations
-      url: page-template-considerations
-    - title: Component Considerations
-      url: components
-    - title: Testing Considerations
-      url: testing
-    - title: Learning Resources
-      url: learning-resources
+    - title: "Intro to Accessibility"
+      url: "index"
+    - title: "Application Considerations"
+      url: "application-considerations"
+    - title: "Page Template Considerations"
+      url: "page-template-considerations"
+    - title: "Component Considerations"
+      url: "components"
+    - title: "Testing Considerations"
+      url: "testing"
+    - title: "Learning Resources"
+      url: "learning-resources"
 - title: "Addons and Dependencies"
   url: "addons-and-dependencies"
   pages:
@@ -304,12 +304,12 @@
   url: "contributing"
   isAdvanced: true
   pages:
-    - title: Adding New Features
-      url: index
-    - title: Repositories
-      url: repositories
-- title: Glossary
-  url: glossary
+    - title: "Adding New Features"
+      url: "index"
+    - title: "Repositories"
+      url: "repositories"
+- title: "Glossary"
+  url: "glossary"
   pages:
     - title: "Web Development"
       url: "index"
