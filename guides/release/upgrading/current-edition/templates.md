@@ -66,7 +66,7 @@ you are invoking would be placed on the component's wrapper element.
   component's arguments. To do this, we use the `@` symbol:
 
   ```handlebars
-  <CustomInput @value={{this.text}}/>
+  <CustomInput @value={{this.text}} />
   ```
 
   This allows you to see at a glance whether a value is an argument, which will
@@ -91,14 +91,14 @@ Here are the main differences between angle bracket and curly syntax:
     {{todo-item item=item}}
 
     {{!-- After --}}
-    <Todo @item={{this.item}}/>
+    <Todo @item={{this.item}} />
   ```
 
 - When you pass a bound value to a component, remember that it needs to be
   wrapped in curly braces:
 
   ```handlebars
-    <Todo @done={{this.isDone}}/>
+    <Todo @done={{this.isDone}} />
   ```
 
   Like HTML, all values for attributes that are not wrapped in strings are
