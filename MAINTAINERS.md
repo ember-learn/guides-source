@@ -24,12 +24,13 @@ It is required that all maintainers use 2FA (two factor authentication). These a
 1. Clone the guides-source repository to your local machine
 2. Make sure you have a clean git history with `git status`
 3. Get the latest commits on `master` using `git pull origin master`
-4. Create a directory in `guides` for the version that is one less than the "lastest." For example, if the newest release of Ember is `3.9`, you will make a directory for `3.8` that is a copy of `release`.
-5. Copy the contents of `guides/release/` into the new directory, `cp -r release vX.Y.Z`
-6. Edit `versions.yml` - add the version number to _both_ the end of the list and the `currentVersion`. The last item and `currentVersion` should match.
-7. Commit the change.
-8. Create a PR, and in the comments, mention that when it is merged, the person who merges it must update the guides search ASAP, and include a link to this page for instructions. Look at the app in staging, get a review, and merge to `master`. This will trigger an auto deployment.
-9. Once it is deployed, follow the steps below to get the website search working for your new version.
+4. Make a branch, i.e. `git checkout -b release-new-version`
+5. Create a directory in `guides` for the version that is one less than the "lastest." For example, if the newest release of Ember is `3.9`, you will make a directory for `3.8` that is a copy of `release`. `mkdir guides/vX.Y.0`
+6. Copy the contents of `guides/release/` into the new directory, `cp -r release/* vX.Y.0/`
+7. Edit `versions.yml` - add the version number to _both_ the end of the list and the `currentVersion`. The last item and `currentVersion` should match.
+8. Double check that the new directory that you made is the latest release minus one. Commit the changes and push your branch.
+9. Create a PR, and in the comments, mention that when it is merged, the person who merges it must update the guides search ASAP, and include a link to this page for instructions. Look at the app in staging, get a review, and merge to `master`. This will trigger an auto deployment.
+10. Once it is deployed, follow the steps below to get the website search working for your new version.
 
 ### Updating the guides search
 
