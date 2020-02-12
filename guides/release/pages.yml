@@ -216,7 +216,7 @@
     - title: "Embedding Applications"
       url: "embedding-applications"
     - title: "Feature Flags"
-      url: f"eature-flags"
+      url: "feature-flags"
       isAdvanced: true
     - title: "Optional Features"
       url: "optional-features"
