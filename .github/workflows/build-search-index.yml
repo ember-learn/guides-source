@@ -1,0 +1,22 @@
+name: "Build search index"
+
+on: release
+
+env: 
+  ALGOLIA_APPLICATION: ${{ secrets.ALGOLIA_APPLICATION }}
+  ALGOLIA_INDEX: ${{ secrets.ALGOLIA_INDEX }}
+  ALGOLIA_KEY: ${{ secrets.ALGOLIA_KEY }}
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: NPM or Yarn install with caching
+      uses: bahmutov/npm-install@v1.1.0
+    - name: "Prerelease steps"
+      run: node prerelease-setup.js
+    - name: "Run production build"
+      run: ./node_modules/.bin/ember deploy production
