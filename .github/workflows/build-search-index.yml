@@ -1,6 +1,9 @@
 name: "Build search index"
 
-on: release
+on:
+  push:
+    tags:
+      - '*'
 
 env: 
   ALGOLIA_APPLICATION: ${{ secrets.ALGOLIA_APPLICATION }}
