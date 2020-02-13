@@ -32,6 +32,7 @@ import Controller from '@ember/controller';
 
 export default class ArticlesController extends Controller {
   queryParams = ['category'];
+  
   category = null;
 }
 ```
@@ -52,6 +53,7 @@ import Controller from '@ember/controller';
 
 export default class ArticlesController extends Controller {
   queryParams = ['category'];
+  
   @tracked category = null;
 
   @tracked model;
@@ -144,7 +146,7 @@ export default class ArticlesRoute extends Route {
     category: {
       refreshModel: true
     }
-  }
+  };
 
   model(params) {
     // This gets called upon entering 'articles' route
@@ -163,6 +165,7 @@ import Controller from '@ember/controller';
 
 export default class ArticlesController extends Controller {
   queryParams = ['category'];
+  
   category = null;
 });
 ```
@@ -183,7 +186,7 @@ export default class ArticlesRoute extends Route {
     category: {
       replace: true
     }
-  }
+  };
 }
 ```
 
@@ -200,11 +203,11 @@ You can also map a controller property to a different query param key using the 
 import Controller from '@ember/controller';
 
 export default class ArticlesController extends Controller {
-  queryParams = {
+  queryParams = [{
     category: 'articles_category'
-  }
+  }];
 
-  category = null
+  category = null;
 }
 ```
 
@@ -220,7 +223,7 @@ import Controller from '@ember/controller';
 export default class ArticlesController extends Controller {
   queryParams = ['page', 'filter', {
     category: 'articles_category'
-  }]
+  }];
 
   category = null;
   page = 1;
@@ -237,7 +240,8 @@ the controller query param property `page` is considered to have a default value
 import Controller from '@ember/controller';
 
 export default class ArticlesController extends Controller {
-  queryParams = 'page';
+  queryParams = ['page'];
+  
   page = 1;
 }
 ```
@@ -330,7 +334,7 @@ export default class ArticlesController extends Controller {
     showMagnifyingGlass: {
       scope: 'controller'
     }
-  }]
+  }];
 }
 ```
 
@@ -340,14 +344,12 @@ The following demonstrates how you can override both the scope and the query par
 import Controller from '@ember/controller';
 
 export default class ArticlesController extends Controller {
-  queryParams = ['page', 'filter',
-    {
-      showMagnifyingGlass: {
-        scope: 'controller',
-        as: 'glass'
-      }
+  queryParams = ['page', 'filter', {
+    showMagnifyingGlass: {
+      scope: 'controller',
+      as: 'glass'
     }
-  ]
+  }];
 }
 ```
 
