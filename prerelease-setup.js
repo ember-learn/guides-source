@@ -5,17 +5,30 @@ const YAML = require('yaml');
 const fs = require('fs');
 const path = require('path');
 const process = require('process');
+const algoliaSearch = require("algoliasearch");
 
-console.log('Begin: Prerelease');
+(async function() {
 
-const prevReleaseFolders = glob.sync('guides/!(release|versions.yml)');
-del.sync(prevReleaseFolders);
-del.sync(['app', 'node-tests', 'tests']);
+  console.log("Begin: Prerelease");
 
-const versionsFile = path.join(process.cwd(), 'guides/versions.yml');
-const guidesVersionDoc = YAML.parse(fs.readFileSync(versionsFile, 'utf8'));
+  const prevReleaseFolders = glob.sync("guides/!(release|versions.yml)");
+  del.sync(prevReleaseFolders);
+  del.sync(["app", "node-tests", "tests"]);
 
-guidesVersionDoc.allVersions = [guidesVersionDoc.allVersions.pop()];
-fs.writeFileSync(versionsFile, YAML.stringify(guidesVersionDoc));
+  const versionsFile = path.join(process.cwd(), "guides/versions.yml");
+  const guidesVersionDoc = YAML.parse(fs.readFileSync(versionsFile, "utf8"));
 
-console.log('Completed: Prerelease');
+  guidesVersionDoc.allVersions = [guidesVersionDoc.allVersions.pop()];
+  fs.writeFileSync(versionsFile, YAML.stringify(guidesVersionDoc));
+
+  const client = algoliaSearch(
+    process.env.ALGOLIA_APPLICATION,
+    process.env.ALGOLIA_KEY
+  );
+
+  const guidesSearchIndex = client.initIndex(process.env.ALGOLIA_INDEX);
+  await guidesSearchIndex.clearIndex();
+
+  console.log("Completed: Prerelease");
+
+})();
