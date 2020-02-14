@@ -146,16 +146,14 @@ deletion can then be persisted using `save()`. Alternatively, you can use
 the [`destroyRecord`](https://api.emberjs.com/ember-data/release/classes/Model/methods/rollbackAttributes?anchor=destroyRecord) method to delete and persist at the same time.
 
 ```javascript
-  let post = store.peekRecord('post', 1);
-  post.deleteRecord();
-  post.isDeleted; // => true
-  post.save(); // => DELETE to /posts/1
-});
+let post = store.peekRecord('post', 1);
+post.deleteRecord();
+post.isDeleted; // => true
+post.save(); // => DELETE to /posts/1
 
 // OR
-  post = store.peekRecord('post', 2);
-  post.destroyRecord(); // => DELETE to /posts/2
-});
+post = store.peekRecord('post', 2);
+post.destroyRecord(); // => DELETE to /posts/2
 ```
 
 <!-- eof - needed for pages that end in a code block  -->
