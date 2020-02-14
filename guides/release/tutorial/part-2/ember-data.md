@@ -323,11 +323,11 @@ Hm, okay, so we have to teach Ember Data to fetch data from the correct location
 
 Ember Data uses an _adapter_ and _serializer_ architecture. Adapters deal with _how_ and _where_ Ember Data should fetch data from your servers, such as whether to use HTTP, HTTPS, WebSockets or local storage, as well as the URLs, headers and parameters to use for these requests. On the other hand, serializers are in charge of converting the data returned by the server into a format Ember Data can understand.
 
-The idea is that, provided that your backend exposes a _consistent_ protocol and interchange format to access its data, we can write a single adapter-serializer pair to handle all data fetches for the entire application. Of course, if your backend's endpoints are not so consistent, don't worry, Ember Data allows you to define more specific, per-model adapters and serializers too!
+The idea is that, provided that your backend exposes a _consistent_ protocol and interchange format to access its data, we can write a single adapter-serializer pair to handle all data fetches for the entire application.
 
 As it turns out, JSON:API just happens to be Ember Data's default data protocol and interchange format. Out of the box, Ember Data provides a default JSON:API adapter and serializer. This is great news for us, since that is also what our server has implemented. What a wonderful coincidence!
 
-However, as mentioned above, there are some minor differences between how our server works and Ember Data's default assumptions. We can customize the default behavior by defining our own adapter:
+However, as mentioned above, there are some minor differences between how our server works and Ember Data's default assumptions. We can customize the default behavior by defining our own adapter and serializer:
 
 ```js { data-filename="app/adapters/application.js" }
 import JSONAPIAdapter from '@ember-data/adapter/json-api';
@@ -341,7 +341,14 @@ export default class ApplicationAdapter extends JSONAPIAdapter {
 }
 ```
 
-By convention, adapters are located at `app/adapters`. Furthermore, the adapter named `application` is called the _application adapter_, which will be used to fetch data for all models in our app. Typically, this should be sufficient, but as mentioned above, Ember Data also allows us to define model-specific adapters. For example, if `app/adapters/rental.js` is present, it will be used for fetching the `rental` model. We won't be needing this feature, but it's good to know that it exists.
+```js { data-filename="app/serializers/application.js" }
+import JSONAPISerializer from '@ember-data/serializer/json-api';
+
+export default class ApplicationSerializer extends JSONAPISerializer {
+}
+```
+
+By convention, adapters are located at `app/adapters`. Furthermore, the adapter named `application` is called the _application adapter_, which will be used to fetch data for all models in our app.
 
 Inside this newly created file, we defined an `ApplicationAdapter` class, inheriting from the built-in `JSONAPIAdapter`. This allows us to inherit all the default JSON:API functionalities, while customizing the things that didn't work for us by default. Specifically:
 
@@ -352,19 +359,9 @@ Adding a namespace prefix happens to be pretty common across Ember apps, so the 
 
 Adding the `.json` extension is a bit less common, and doesn't have a declarative configuration API of its own. Instead, we will need to _override_ Ember Data's `buildURL` method. Inside of `buildURL`, we will call `super.buildURL(...args)` to invoke the `JSONAPIAdapter` default implementation of `buildURL`. This will give us the URL that the adapter _would have built_, which would be something like `/api/rentals` and `/api/rentals/grand-old-mansion` after configuring the `namespace` above. All we have to do is to append `.json` to this URL and return it.
 
-<div class="cta">
-  <div class="cta-note">
-    <div class="cta-note-body">
-      <div class="cta-note-heading">Zoey says...</div>
-      <div class="cta-note-message">
-        <p>Since the JSON data returned by our server is JSON:API-compliant, the default serializer (which would be <code>JSONAPISerializer</code>) should work just fine for us. However, if we had wanted to customize it, we could create an <code>application</code> serializer at <code>app/serializers/application.js</code>.</p>
-      </div>
-    </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="">
-  </div>
-</div>
+Similarly, serializers are located at `app/serializers`. Adapters and serializers are always added together as a pair. We added an `application` adapter, so we also added a corresponding serializer to go with it as well. Since the JSON data returned by our server is JSON:API-compliant, the default `JSONAPISerializer` work just fine for us without further customization.
 
-With our adapter in place, all our tests should pass again.
+With our adapter and serializer in place, all our tests should pass again.
 
 <img src="/images/tutorial/part-2/ember-data/pass-2@2x.png" alt="Once again, all the tests are passing again!" width="1024" height="1024">
 
@@ -374,4 +371,4 @@ The UI works exactly the same as before as well, just with much less code!
 
 <img src="/images/tutorial/part-2/ember-data/detailed@2x.png" alt="The details page works exactly the same as before, but with much less code!" width="1024" height="1381">
 
-As we mentioned earlier, Ember Data offers many, many features (like managing the _relationships_ between different models) and there's a lot more we can learn about it. We are just scratching the surface here. If you want to learn more about Ember Data, check out its own dedicated section in the guides!
+Ember Data offers many, many features (like managing the _relationships_ between different models) and there's a lot more we can learn about it. For example, if your backend's have some inconsistencies across different endpoints, Ember Data allows you to define more specific, per-model adapters and serializers too! We are just scratching the surface here. If you want to learn more about Ember Data, check out its own dedicated section in the guides!

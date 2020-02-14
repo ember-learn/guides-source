@@ -24,7 +24,7 @@ If you're curious, you can explore the options available on Mapbox by using the 
 
 Once you have signed up for the service, grab your _[default public token](https://account.mapbox.com/access-tokens/)_ and paste it into `config/environment.js`:
 
-```js { data-filename="config/environment.js" data-diff="+50,+51" }
+```js { data-filename="config/environment.js" data-diff="+51,+52" }
 'use strict';
 
 module.exports = function(environment) {
@@ -47,6 +47,7 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+      RAISE_ON_DEPRECATION: true,
     }
   };
 
