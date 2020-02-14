@@ -9,7 +9,7 @@ jobs:
   do-no-edit:
     name: Do Not Edit Generated Files
     runs-on: ubuntu-latest
-    if: github.event.pull_request.head.ref != "super-rentals-tutorial"
+    if: github.event.pull_request.head.ref != 'super-rentals-tutorial'
 
     steps:
       - name: Checkout
