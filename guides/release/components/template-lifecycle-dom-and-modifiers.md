@@ -175,6 +175,7 @@ If you want to add an event handler to an HTML element, you can use the `{{on` e
 ```js {data-filename="app/components/counter.js"}
 import Component from "@glimmer/component";
 import { action } from "@ember/object";
+import { tracked } from '@glimmer/tracking';
 
 export default class CounterComponent extends Component {
   @tracked count = 0;
