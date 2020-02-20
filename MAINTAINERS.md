@@ -34,6 +34,6 @@ It is required that all maintainers use 2FA (two factor authentication). These a
 
 ### Updating the guides search
 
-1. Create a git tag which would trigger a github action that'll take care of updating the indexes.
+1. Using the GitHub Releases page, create a git tag for the release version, i.e. `v3.16.0`. Tagging a release using any tag name triggers a github action that'll take care of updating the indexes.
 1. Before you walk away, you should check the guides app in production and see if you can search for something on the latest version
 1. Party some more 🎉 and let the rest of the team know that the updates have been made.
