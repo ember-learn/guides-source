@@ -247,7 +247,7 @@ If you want to set a property, you can use the `prop` element modifier.
 
 So far, we've talked about web APIs that work by setting attributes as well as web APIs that work by setting properties. But what about web APIs that work by calling methods, like setting focus on an element?
 
-For example, let's say we want to focus the an `<input>` in a form as soon as the form is rendered. The web API for focusing an element is:
+For example, let's say we want to focus an `<input>` in a form as soon as the form is rendered. The web API for focusing an element is:
 
 ```js
 inputElement.focus();
