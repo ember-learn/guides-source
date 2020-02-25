@@ -129,7 +129,7 @@ export default class CartContentsComponent extends Component {
 Once injected into a component, a service can also be used in the template.
 Note `cart` being used below to get data from the cart.
 
-```handlebars {data-filename=app/templates/components/cart-contents.hbs}
+```handlebars {data-filename=app/components/cart-contents.hbs}
 <ul>
   {{#each this.cart.items as |item|}}
     <li>

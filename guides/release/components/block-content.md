@@ -206,7 +206,7 @@ hasn't provided a block. For instance, consider an error message dialog that has
 a default message in cases where we don't know what error occurred. We could show
 the default message using the `(has-block)` syntax in an `ErrorDialog` component.
 
-```handlebars {data-filename=app/templates/components/error-dialog.hbs}
+```handlebars {data-filename=app/components/error-dialog.hbs}
 <dialog>
   {{#if (has-block)}}
     {{yield}}
