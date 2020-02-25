@@ -17,7 +17,7 @@ export default class PrettyColorComponent extends Component {
 }
 ```
 
-```handlebars {data-filename="app/templates/components/pretty-color.hbs"}
+```handlebars {data-filename="app/components/pretty-color.hbs"}
 <div style={{this.style}}>
   Pretty Color: {{@name}}
 </div>
@@ -168,7 +168,7 @@ export default class MagicTitleComponent extends Component {
 }
 ```
 
-```handlebars {data-filename="app/templates/components/magic-title.hbs"}
+```handlebars {data-filename="app/components/magic-title.hbs"}
 <h2>{{this.title}}</h2>
 
 <button class="title-button" {{on "click" this.updateTitle}}>
@@ -230,11 +230,10 @@ export default class CommentFormComponent extends Component {
 }
 ```
 
-```handlebars {data-filename="app/templates/components/comment-form.hbs"}
-<form {{on "submit" this.submitComment}}>
-  <label>Comment:</label>
-  <Textarea @value={{this.comment}} />
-
+```handlebars {data-filename="app/components/comment-form.hbs"}
+<form {{action "submitComment" on="submit"}}>
+  <label for="comment">Comment:</label>
+  <Textarea @id="comment" @value={{this.comment}} />
   <input class="comment-input" type="submit" value="Submit"/>
 </form>
 ```
@@ -301,7 +300,7 @@ export default class LocationIndicatorComponent extends Component {
 }
 ```
 
-```handlebars {data-filename="app/templates/components/location-indicator.hbs"}
+```handlebars {data-filename="app/components/location-indicator.hbs"}
 You currently are located in {{this.city}}, {{this.country}}
 ```
 
@@ -476,8 +475,9 @@ export default class DelayedTypeaheadComponent extends Component {
 };
 ```
 
-```handlebars {data-filename="app/templates/components/delayed-typeahead.hbs"}
-<Input @value={{this.searchValue}} @key-up={{this.handleTyping}} />
+```handlebars {data-filename="app/components/delayed-typeahead.hbs"}
+<label for="search">Search</label>
+<Input @id="search" @value={{this.searchValue}} @key-up={{this.handleTyping}} />
 <ul>
   {{#each this.results as |result|}}
     <li class="result">{{result.name}}</li>

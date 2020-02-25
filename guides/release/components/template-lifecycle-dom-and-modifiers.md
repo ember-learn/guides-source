@@ -187,7 +187,7 @@ export default class CounterComponent extends Component {
 }
 ```
 
-```handlebars {data-filename="app/templates/components/counter.hbs"}
+```handlebars {data-filename="app/components/counter.hbs"}
 <p>{{this.count}}</p>
 
 <button {{on "click" this.increment}}>+</button>
@@ -259,7 +259,7 @@ The simplest way to accomplish this is by using the `did-insert` modifier from [
 
 [render-modifiers]: https://github.com/emberjs/ember-render-modifiers
 
-```handlebars {app/templates/components/edit-form.hbs}
+```handlebars {app/components/edit-form.hbs}
 <form>
   <input {{did-insert this.focus}}>
 </form>
@@ -281,7 +281,7 @@ Using the `did-insert` modifier works well for one-off cases, but if you want to
 
 The modifier that we're going to build will allow us to say:
 
-```handlebars {data-filename="app/templates/components/edit-form.hbs"}
+```handlebars {data-filename="app/components/edit-form.hbs"}
 <form>
   <input {{autofocus}}>
 </form>
@@ -314,7 +314,7 @@ What if you want to handle an event in one part of your component by calling a D
 
 Let's start with the HTML we're working with:
 
-```handlebars {data-filename="app/templates/components/audio-player.hbs"}
+```handlebars {data-filename="app/components/audio-player.hbs"}
 <audio src={{@srcURL}} />
 
 <button>Play</button>
@@ -323,7 +323,7 @@ Let's start with the HTML we're working with:
 
 Next, let's add an event handler to the `Play` button:
 
-```handlebars {data-filename="app/templates/components/audio-player.hbs" data-diff="-3,+4"}
+```handlebars {data-filename="app/components/audio-player.hbs" data-diff="-3,+4"}
 <audio src={{@srcURL}} />
 
 <button>Play</button>
@@ -351,7 +351,7 @@ We can give our component access to elements inside of it by using [`ember-ref-m
 
 In this case, we'll assign the `<audio>` element to the `audioElement` property in our component:
 
-```handlebars {data-filename="app/templates/components/audio-player.hbs" data-diff="-1,+2"}
+```handlebars {data-filename="app/components/audio-player.hbs" data-diff="-1,+2"}
 <audio src={{@srcURL}} />
 <audio src={{@srcURL}} {{ref this "audioElement"}} />
 
@@ -380,7 +380,7 @@ In most cases, your component should restrict its behavior to its own elements. 
 
 Let's start with the DOM structure of a super-simple component that would remove its contents when a click occurs outside of the element.
 
-```handlebars {data-filename="app/templates/components/modal.hbs"}
+```handlebars {data-filename="app/components/modal.hbs"}
 <div class="modal">
   {{yield}}
 </div>
@@ -429,7 +429,7 @@ export default modifier((element, [callback]) => {
 
 Now that we've created this modifier, we can use it in our `modal` component, and add some logic to invoke a passed-in action whenever the user clicks outside the modal.
 
-```handlebars {data-filename="app/templates/components/modal.hbs"}
+```handlebars {data-filename="app/components/modal.hbs"}
 <div class="modal" {{on-click-outside @clickedOutside}}>
   {{yield}}
 </div>
@@ -437,7 +437,7 @@ Now that we've created this modifier, we can use it in our `modal` component, an
 
 We could then use the `modal` component this way:
 
-```handlebars {data-filename="app/templates/components/sidebar.hbs"}
+```handlebars {data-filename="app/components/sidebar.hbs"}
 <p class="help-icon" {{on "click" this.showHelp}}>?</p>
 
 {{#if this.showingHelp}}
@@ -475,7 +475,7 @@ passed forward and applied to an element with `...attributes`:
 <Tooltip {{did-insert this.setupTooltip}}/>
 ```
 
-```handlebars {data-filename="app/templates/components/tooltip.hbs"}
+```handlebars {data-filename="app/components/tooltip.hbs"}
 <div ...attributes>
   ...
 </div>
