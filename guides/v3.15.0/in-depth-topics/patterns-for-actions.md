@@ -12,7 +12,7 @@ to confirm in order to trigger some action.
 We'll call this the `ButtonWithConfirmation` component. We can start off with a
 normal component definition, like we've seen before:
 
-```handlebars {data-filename=app/templates/components/button-with-confirmation.hbs}
+```handlebars {data-filename=app/components/button-with-confirmation.hbs}
 <button>{{@text}}</button>
 
 {{#if this.isConfirming}}
@@ -140,7 +140,7 @@ buttons.
 Let's create a parent component, the `UserProfile` component, where the user can
 delete their profile:
 
-```handlebars {data-filename=app/templates/components/user-profile.hbs}
+```handlebars {data-filename=app/components/user-profile.hbs}
 <ButtonWithConfirmation
   @text="Click OK to delete your account."
 />
@@ -175,7 +175,7 @@ action to be triggered. In order to trigger the action when the user clicks "OK"
 in the `ButtonWithConfirmation` component, we'll need to pass the action _down_
 to it as an argument:
 
-```handlebars {data-filename=app/templates/components/user-profile.hbs}
+```handlebars {data-filename=app/components/user-profile.hbs}
 <ButtonWithConfirmation
   @text="Click OK to delete your account."
   @onConfirm={{this.deleteAccount}}
@@ -288,7 +288,7 @@ template can provide the required parameter when the action is passed to the
 child. For example, if we want to use the button to send a message of type
 `"info"`:
 
-```handlebars {data-filename=app/templates/components/send-message.hbs}
+```handlebars {data-filename=app/components/send-message.hbs}
 <ButtonWithConfirmation
   @text="Click to send your message."
   @onConfirm={{fn this.sendMessage "info"}}
@@ -367,7 +367,7 @@ be used in block form and we will pass `confirmValue` as a
 [block parameter](../../components/block-content/) within the confirm dialog
 element:
 
-```handlebars {data-filename=app/templates/components/button-with-confirmation.hbs}
+```handlebars {data-filename=app/components/button-with-confirmation.hbs}
 <button {{on "click" this.launchConfirmDialog}}>
   {{this.text}}
 </button>
@@ -395,7 +395,7 @@ element:
 With this modification, we can now use the component in `SendMessage` to wrap a
 text input element whose `value` attribute is set to `confirmValue`:
 
-```handlebars {data-filename=app/templates/components/send-message.hbs}
+```handlebars {data-filename=app/components/send-message.hbs}
 <ButtonWithConfirmation
   @text="Click to send your message."
   @onConfirm={{fn this.sendMessage "info"}}
@@ -430,7 +430,7 @@ export default class SendMessageComponent extends Component {
 We can tell the action to invoke the `sendMessage` action directly on the
 messaging service.
 
-```handlebars {data-filename=app/templates/components/send-message.hbs}
+```handlebars {data-filename=app/components/send-message.hbs}
 <ButtonWithConfirmation
   @text="Click to send your message."
   @onConfirm={{fn this.messaging.sendMessage "info"}}
@@ -484,7 +484,7 @@ deletion is an account ID. For this case, the `fn` helper provides the value
 via partial application to allow a parent component to dig into the passed
 object to pull out only what it needs.
 
-```handlebars {data-filename=app/templates/components/system-preferences-editor.hbs}
+```handlebars {data-filename=app/components/system-preferences-editor.hbs}
 <UserProfile @didDelete={{fn this.userDeleted this.login.currentUser.id}} />
 ```
 
@@ -538,7 +538,7 @@ export default class SystemPreferencesEditorComponent extends Component {
 Then our `system-preferences-editor` template passes its local `deleteUser`
 action into the `UserProfile` as that component's `deleteCurrentUser` argument.
 
-```handlebars {data-filename=app/templates/components/system-preferences-editor.hbs}
+```handlebars {data-filename=app/components/system-preferences-editor.hbs}
 <UserProfile
   @deleteCurrentUser={{fn this.deleteUser this.login.currentUser.id}}
 />
@@ -551,7 +551,7 @@ was passed from a parent, then it might have looked like `@deleteUser` instead.
 In our `user-profile.hbs` template we change our action to call
 `deleteCurrentUser` as passed above.
 
-```handlebars {data-filename=app/templates/components/user-profile.hbs}
+```handlebars {data-filename=app/components/user-profile.hbs}
 <ButtonWithConfirmation
   @text="Click OK to delete your account."
   @onConfirm={{@deleteCurrentUser}}

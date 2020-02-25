@@ -28,7 +28,7 @@ export default class TooltipComponent extends Component {
 }
 ```
 
-```handlebars {data-filename=app/templates/components/tooltip.hbs}
+```handlebars {data-filename=app/components/tooltip.hbs}
 <div class="{{this.tooltipClass}}">
   <i class="{{this.icon}}"></i>
   {{@content}}
@@ -142,12 +142,12 @@ comes from being able to dynamically pick the component being rendered. Below is
 an example of using the helper as a means of choosing different components for
 displaying different kinds of posts:
 
-```handlebars {data-filename=app/templates/components/foo-component.hbs}
+```handlebars {data-filename=app/components/foo-component.hbs}
 <h3>Hello from foo!</h3>
 <p>{{this.post.body}}</p>
 ```
 
-```handlebars {data-filename=app/templates/components/bar-component.hbs}
+```handlebars {data-filename=app/components/bar-component.hbs}
 <h3>Hello from bar!</h3>
 <div>{{this.post.author}}</div>
 ```

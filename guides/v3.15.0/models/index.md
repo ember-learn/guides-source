@@ -113,7 +113,7 @@ export default class ListOfDraftsComponent extends Component {
 You could then show the list of drafts in your component's template like
 this:
 
-```handlebars {data-filename=app/templates/components/list-of-drafts.hbs}
+```handlebars {data-filename=app/components/list-of-drafts.hbs}
 <ul>
   {{#each this.drafts key="id" as |draft|}}
     <li>{{draft.title}}</li>
@@ -145,7 +145,7 @@ export default class DraftsButtonComponent extends Component {
 }
 ```
 
-```handlebars {data-filename=app/templates/components/drafts-button.hbs}
+```handlebars {data-filename=app/components/drafts-button.hbs}
 <LinkTo @route="drafts" @tagName="button">
   Drafts ({{this.drafts.length}})
 </LinkTo>
