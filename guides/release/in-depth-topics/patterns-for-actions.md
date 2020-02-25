@@ -41,7 +41,7 @@ confirmation that will show conditionally based on its `isConfirming`
 property. You'll notice this property is decorated with the `@tracked`
 decorator - this is known as a _tracked property_, and indicates to Ember that
 the field will change in value over the lifetime of the component. You can learn
-more about tracked properties in the [Autotracking In-Depth](./autotracking-in-depth)
+more about tracked properties in the [Autotracking In-Depth](../autotracking-in-depth/)
 guide.
 
 Next, we need to hook up the button to toggle that property. We'll
