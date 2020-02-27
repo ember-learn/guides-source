@@ -9,7 +9,7 @@ When Ember first renders a component, it renders the initial _state_ of that
 component - the state of the instance, and state of the arguments that are
 passed to it:
 
-```handlebars {data-filename=app/templates/components/hello.hbs}
+```handlebars {data-filename=app/components/hello.hbs}
 {{this.greeting}}, {{@name}}!
 ```
 
@@ -95,7 +95,7 @@ Tracked properties can be updated like any other property, using standard
 JavaScript syntax. For instance, we could update a tracked property via an
 action, as in this example component.
 
-```handlebars {data-filename=app/templates/components/hello.hbs}
+```handlebars {data-filename=app/components/hello.hbs}
 {{this.greeting}}, {{@name}}!
 
 <select {{on "change" this.updateLanguage}}>

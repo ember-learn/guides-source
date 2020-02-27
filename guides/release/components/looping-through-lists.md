@@ -402,7 +402,7 @@ export default class StoreCategoriesComponent extends Component {
 });
 ```
 
-```handlebars {data-filename=/app/templates/components/store-categories.hbs}
+```handlebars {data-filename=/app/components/store-categories.hbs}
 <ul>
   {{#each-in this.categories as |category products|}}
     <li>{{category}}
