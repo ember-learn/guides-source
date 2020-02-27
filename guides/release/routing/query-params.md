@@ -49,6 +49,7 @@ array, which the `articles` template will render. For the getter to recompute wh
 
 ```javascript {data-filename=app/controllers/articles.js}
 import Controller from '@ember/controller';
+import { tracked } from '@glimmer/tracking';
 
 export default class ArticlesController extends Controller {
   queryParams = ['category'];
