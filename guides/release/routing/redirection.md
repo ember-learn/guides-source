@@ -80,6 +80,20 @@ When transitioning to the `posts` route if it turns out that there is only one p
 the current transition will be aborted in favor of redirecting to the `PostRoute`
 with the single post object being its model.
 
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+        If you attempt to redirect with the `queryParams` option, make sure
+        that the query params are defined on the controller!
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
+  </div>
+</div>
+
+
 ### Child Routes
 
 Let's change the router above to use a nested route, like this:
