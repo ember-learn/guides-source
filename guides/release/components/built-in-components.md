@@ -12,7 +12,7 @@ update the state of their values.
 
 ```handlebars
 <label for="site">Ember Question</label>
-<Input @id="site" @value="How do text fields work?" />
+<Input id="site" @value="How do text fields work?" />
 ```
 
 Will become:
@@ -26,16 +26,16 @@ You can pass the following standard `<input>` attributes within the input
 helper:
 
 <table>
-  <tr><td>`readonly`</td><td>`required`</td><td>`autofocus`</td></tr>
-  <tr><td>`value`</td><td>`placeholder`</td><td>`disabled`</td></tr>
-  <tr><td>`size`</td><td>`tabindex`</td><td>`maxlength`</td></tr>
-  <tr><td>`name`</td><td>`min`</td><td>`max`</td></tr>
-  <tr><td>`pattern`</td><td>`accept`</td><td>`autocomplete`</td></tr>
-  <tr><td>`autosave`</td><td>`formaction`</td><td>`formenctype`</td></tr>
-  <tr><td>`formmethod`</td><td>`formnovalidate`</td><td>`formtarget`</td></tr>
-  <tr><td>`height`</td><td>`inputmode`</td><td>`multiple`</td></tr>
-  <tr><td>`step`</td><td>`width`</td><td>`form`</td></tr>
-  <tr><td>`selectionDirection`</td><td>`spellcheck`</td><td>`type`</td></tr>
+  <tr><td><code>readonly</code></td><td><code>required</code></td><td><code>autofocus</code></td></tr>
+  <tr><td><code>@value</code></td><td><code>placeholder</code></td><td><code>disabled</code></td></tr>
+  <tr><td><code>size</code></td><td><code>tabindex</code></td><td><code>maxlength</code></td></tr>
+  <tr><td><code>name</code></td><td><code>min</code></td><td><code>max</code></td></tr>
+  <tr><td><code>pattern</code></td><td><code>accept</code></td><td><code>autocomplete</code></td></tr>
+  <tr><td><code>autosave</code></td><td><code>formaction</code></td><td><code>formenctype</code></td></tr>
+  <tr><td><code>formmethod</code></td><td><code>formnovalidate</code></td><td><code>formtarget</code></td></tr>
+  <tr><td><code>height</code></td><td><code>inputmode</code></td><td><code>multiple</code></td></tr>
+  <tr><td><code>step</code></td><td><code>width</code></td><td><code>form</code></td></tr>
+  <tr><td><code>selectionDirection</code></td><td><code>spellcheck</code></td><td><code>@type</code></td></tr>
 </table>
 
 If these attributes are set to a quoted string, their values will be set
@@ -45,7 +45,7 @@ rendering context. For example:
 
 ```handlebars
 <label for="firstname">First Name</label>
-<Input @id="firstname" @type="text" @value={{this.firstName}} @size="50" disabled={{this.entryNotAllowed}} />
+<Input id="firstname" @type="text" @value={{this.firstName}} size="50" disabled={{this.entryNotAllowed}} />
 ```
 
 Will bind the `disabled` attribute to the value of `entryNotAllowed` in the
@@ -62,14 +62,14 @@ To dispatch an action on specific events such as `key-down`, use the following
 
 The following event types are supported (dasherized format):
 
-* `enter`
-* `insert-newline`
-* `escape-press`
-* `focus-in`
-* `focus-out`
-* `key-down`
-* `key-press` ([Deprecated Web API](https://developer.mozilla.org/en-US/docs/Web/API/Document/keypress_event))
-* `key-up`
+* `@enter`
+* `@insert-newline`
+* `@escape-press`
+* `@focus-in`
+* `@focus-out`
+* `@key-down`
+* `@key-press` ([Deprecated Web API](https://developer.mozilla.org/en-US/docs/Web/API/Document/keypress_event))
+* `@key-up`
 
 
 More [events types](https://api.emberjs.com/ember/release/classes/Component#event-names) are also supported but these events need to be written in camelCase format, such `mouseEnter`. Note, there are events of the same type in both the list above and linked. Event names listed above must be dasherized. Additional work is performed on these events.
@@ -78,16 +78,16 @@ More [events types](https://api.emberjs.com/ember/release/classes/Component#even
 
 You can also use the
 [`<Input />`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/if?anchor=input)
-helper to create a checkbox by setting its `type`:
+helper to create a checkbox by setting its `@type`:
 
 ```handlebars
 <label for="admin-checkbox">Is Admin?</label>
-<Input @id="admin-checkbox" @type="checkbox" @name="isAdmin" @checked={{this.isAdmin}} />
+<Input id="admin-checkbox" @type="checkbox" name="isAdmin" @checked={{this.isAdmin}} />
 ```
 
 Checkboxes support the following properties:
 
-* `checked`
+* `@checked`
 * `disabled`
 * `tabindex`
 * `indeterminate`
@@ -128,7 +128,7 @@ Will bind the value of the text area to `name` on the current context.
 
 [`<Textarea>`](https://api.emberjs.com/ember/release/classes/Ember.Templates.components/methods/Textarea?anchor=Textarea) supports binding and/or setting the following properties:
 
-* `value`
+* `@value`
 * `name`
 * `rows`
 * `cols`
