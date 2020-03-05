@@ -389,10 +389,7 @@ Overall, Ember developers have many options for how they deploy their apps!
 
 Following these steps will help you get your site up and running in minutes:
 
-Now that you have the basics down, are you feeling creative and adventurous?
-The Ember community has created hundreds of addons that you can use for free in your app.
-Addons let you quickly add features like calendars, navbars, payments, authentication, themes, and more.
-Visit [Ember Observer](https://emberobserver.com) to browse the possibilities!
+First you need to [sign up for a Netlify account](https://app.netlify.com/signup) account if you do not already have one:
 
 ![deploying to Netlify](/images/quick-guide/netlify/create-netlify-account.png)
 
