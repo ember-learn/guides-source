@@ -9,6 +9,7 @@ We'll cover these steps:
 3. Defining a route.
 4. Writing a UI component.
 5. Building your app to be deployed to production.
+6. Deploying your app to Netlify.
 
 ## Install Ember
 
@@ -29,6 +30,8 @@ Once you've installed Ember CLI via npm,
 you will have access to a new `ember` command in your terminal.
 You can use the `ember new` command to create a new application.
 
+<!-- needs-octane-release-update -->
+
 ```bash
 ember new ember-quickstart
 ```
@@ -36,10 +39,10 @@ ember new ember-quickstart
 This one command will create a new directory called `ember-quickstart` and set up a new Ember application inside of it.
 Out of the box, your application will include:
 
-* A development server.
-* Template compilation.
-* JavaScript and CSS minification.
-* Modern features via Babel.
+- A development server.
+- Template compilation.
+- JavaScript and CSS minification.
+- Modern features via Babel.
 
 By providing everything you need to build production-ready web applications in an integrated package,
 Ember makes starting new projects a breeze.
@@ -135,11 +138,11 @@ and we can specify a model by editing `app/routes/scientists.js`.
 We'll take the code created for us by the generator and add a `model()` method to the `Route`:
 
 ```javascript {data-filename="app/routes/scientists.js"}
-import Route from '@ember/routing/route';
+import Route from "@ember/routing/route";
 
 export default class ScientistsRoute extends Route {
   model() {
-    return ['Marie Curie', 'Mae Jemison', 'Albert Hofmann'];
+    return ["Marie Curie", "Mae Jemison", "Albert Hofmann"];
   }
 }
 ```
@@ -277,8 +280,8 @@ the same directory as our template (`app/components/people-list.js`),
 and paste in the following content:
 
 ```javascript {data-filename="app/components/people-list.js"}
-import Component from '@glimmer/component';
-import { action } from '@ember/object';
+import Component from "@glimmer/component";
+import { action } from "@ember/object";
 
 export default class PeopleListComponent extends Component {
   @action
@@ -372,29 +375,76 @@ add the following directive to the application's virtual host configuration:
 FallbackResource index.html
 ```
 
-## Next steps
+## Deploying your app to Netlify
 
-Now that your app is deployed, what should you do next?
+[Netlify](http://netlify.com/products) is a platform that deploys your apps to production.
 
-### Advance to the next level
+![About Netlify](/images/quick-guide/netlify/netlify-product.png)
 
-There is an official, free tutorial here in the Guides that takes delves deeper into some of the features you used today.
-[Give it a try!](../tutorial/)
+Why Netlify?
 
-### Explore the ecosystem
+It's fun and easy! It does not require a high level of knowledge for you to deploy your website to production. Netlify offers a free account option that satisfies most website production needs and no credit card is required. Netlify is also a long-term supporter of Ember ❤️. Following these steps will hopefully help you get your site up and running in minutes.
 
-Now that you have the basics down, are you feeling creative and adventurous?
-The Ember community has created hundreds of addons that you can use for free in your app.
-Addons let you quickly add features like calendars, navbars, payments, authentication, themes, and more.
-Visit [EmberObserver](https://emberobserver.com) to browse the possibilities!
+First you need to [sign-up for a Netlify account](https://app.netlify.com/signup) account if you do not already have one:
 
-### Style it up
+![deploying to Netlify](/images/quick-guide/netlify/create-netlify-account.png)
 
-That app we made is a bit plain. Do you know any CSS? Put your styles in `app/styles/app.css`, which is automatically included in your app build.
+This section will walk you through 2 ways to deploy your ember application to production using the Netlify platform:
 
-### Connect with the Ember Community
+1. Deploying to Netlify using drag and drop
+2. Deploying to Netlify using Git (specifically GitHub)
 
-One thing that makes Ember special is that every app you create has a _lot_ in common with apps that other people have made.
-This means that chances are good that you can connect with other developers who share both your interests and technical challenges.
-Visit the [Ember Community page](https://emberjs.com/community/) to learn about the ways you can get connect. Find a nearby meetup, ask questions, follow a newsletter, and more!
-We hope to see you around!
+**Deploying to Netlify using drag and drop**
+
+- This assumes you have already created the `dist/` directory by running this command
+
+```bash
+ember build --environment=production
+```
+
+- Once you are logged-in to your Netlify account and in the "Sites" section, you should see the Netlify drag and drop area
+
+  ![Netlify Drag and Drop Area](/images/quick-guide/netlify/drag-and-drop/02.png)
+
+- Next, locate your `/dist` folder on your local machine and drag and drop it into this area
+
+- When your files have been successfully uploaded, you should see the status of your deployment in the "Getting started" section
+
+![Getting Started using Drag and Drop on Netlify](/images/quick-guide/netlify/drag-and-drop/03.png)
+
+- Once you see "Your site is deployed" as shown above, your website is now live and you can click on the link provided above the "Getting started" section to view your site
+
+![View your site on Netlify](/images/quick-guide/netlify/drag-and-drop/04.png)
+
+- Congratulations! Your site is now live and in production!
+
+**Deploying to Netlify using Git (specifically GitHub)**
+
+- Make sure you are logged-in to your Netlify account and in the "Sites" section
+
+- Click the button that says "New site from Git".
+
+![Netlify Continuous Deployment Git](/images/quick-guide/netlify/github/new-site-from-git.png)
+
+- Click the "GitHub" button under "Continuous Deployment" to connect to your GitHub account. Please note - you will be taken to a series of GitHub login screens and asked to select your GitHub preferences related to Netlify
+
+![Netlify choose your GitHub repository to deploy](/images/quick-guide/netlify/github/connect-to-github.png)
+
+- Once you have successfully connected your GitHub account with Netlify, you should see a list of repositories to choose from. Select or search for your GitHub repository that you wish to deploy
+
+![Netlify Ember Default Deploy Settings](/images/quick-guide/netlify/github/select-github-repo.png)
+
+- If you have successfully selected your repo and it is an Ember application, Netlify will automatically generate the deploy settings as shown below. These instructions assume you do not want to change any of the default settings generated by Netlify. So if everything looks good to you, go ahead and click the "Deploy site" button
+
+![Netlify GitHub Deploy Overview](/images/quick-guide/netlify/github/github-create-new-site.png)
+
+- Once you click the "Deploy site" button, you will be taken to your website "Overview" and you should see the status of your deployment
+
+![Netlify GitHub Deploy Confirmation](/images/quick-guide/netlify/github/github-deploy-confirmation.png)
+
+- Once you see "Your site is deployed" as shown above, your website is now live and you can click on the link provided above the "Getting started" section to view your site
+
+![View your site on Netlify](/images/quick-guide/netlify/github/github-live.png)
+
+- Congratulations! Your site is now live and in production!
+  <!-- eof - needed for pages that end in a code block  -->
