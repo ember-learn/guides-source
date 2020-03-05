@@ -31,7 +31,6 @@ you will have access to a new `ember` command in your terminal.
 You can use the `ember new` command to create a new application.
 
 <!-- needs-octane-release-update -->
-
 ```bash
 ember new ember-quickstart
 ```
