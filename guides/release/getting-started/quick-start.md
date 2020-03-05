@@ -382,7 +382,12 @@ FallbackResource index.html
 
 Why Netlify?
 
-It's fun and easy! It does not require a high level of knowledge for you to deploy your website to production. Netlify offers a free account option that satisfies most website production needs and no credit card is required. Netlify is also a long-term supporter of Ember ❤️. Following these steps will hopefully help you get your site up and running in minutes.
+It does not require a high level of knowledge for you to deploy your website to production.
+Netlify offers a free account option and no credit card is required.
+These Guides themselves are hosted on Netlify, while other parts of `emberjs.com` are hosted using Heroku, Fastly, GitHub pages, and AWS.
+Overall, Ember developers have many options for how they deploy their apps!
+
+Following these steps will help you get your site up and running in minutes:
 
 Now that you have the basics down, are you feeling creative and adventurous?
 The Ember community has created hundreds of addons that you can use for free in your app.
