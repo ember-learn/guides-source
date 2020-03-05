@@ -376,7 +376,7 @@ FallbackResource index.html
 
 ## Deploying your app to Netlify
 
-[Netlify](http://netlify.com/products) is a platform that deploys your apps to production.
+[Netlify](http://netlify.com/products) is a one of many ways to deploy your app to the web so you can share it with others!
 
 ![About Netlify](/images/quick-guide/netlify/netlify-product.png)
 
