@@ -1,6 +1,6 @@
 Welcome to Ember! Follow this guide to build a simple web app using HTML, JavaScript, the command line, and some of Ember's best features.
 Each step has code you can copy and paste directly or modify to make it your own.
-Along the way, you will be introduced to the Ember community so that you can get help and continue your learning journey.
+Along the way, you will be introduced to the Ember community so that you know who to ask for help and how to continue your learning journey.
 
 We'll cover these steps:
 
@@ -29,7 +29,6 @@ Once you've installed Ember CLI via npm,
 you will have access to a new `ember` command in your terminal.
 You can use the `ember new` command to create a new application.
 
-<!-- needs-octane-release-update -->
 ```bash
 ember new ember-quickstart
 ```
