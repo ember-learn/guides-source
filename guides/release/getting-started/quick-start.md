@@ -139,6 +139,7 @@ We'll take the code created for us by the generator and add a `model()` method t
 
 ```javascript {data-filename="app/routes/scientists.js"}
 import Route from '@ember/routing/route';
+
 export default class ScientistsRoute extends Route {
   model() {
     return ['Marie Curie', 'Mae Jemison', 'Albert Hofmann'];
