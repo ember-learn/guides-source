@@ -386,7 +386,7 @@ There is an official, free tutorial here in the Guides that takes delves deeper 
 Now that you have the basics down, are you feeling creative and adventurous?
 The Ember community has created hundreds of addons that you can use for free in your app.
 Addons let you quickly add features like calendars, navbars, payments, authentication, themes, and more.
-Visit [EmberObserver](https://emberobserver.com) to browse the possibilities!
+Visit [Ember Observer](https://emberobserver.com) to browse the possibilities!
 
 ### Style it up
 
