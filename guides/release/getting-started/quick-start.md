@@ -384,7 +384,10 @@ Why Netlify?
 
 It's fun and easy! It does not require a high level of knowledge for you to deploy your website to production. Netlify offers a free account option that satisfies most website production needs and no credit card is required. Netlify is also a long-term supporter of Ember ❤️. Following these steps will hopefully help you get your site up and running in minutes.
 
-First you need to [sign-up for a Netlify account](https://app.netlify.com/signup) account if you do not already have one:
+Now that you have the basics down, are you feeling creative and adventurous?
+The Ember community has created hundreds of addons that you can use for free in your app.
+Addons let you quickly add features like calendars, navbars, payments, authentication, themes, and more.
+Visit [Ember Observer](https://emberobserver.com) to browse the possibilities!
 
 ![deploying to Netlify](/images/quick-guide/netlify/create-netlify-account.png)
 
