@@ -1,4 +1,6 @@
-This guide will teach you how to build a simple app using Ember from scratch.
+Welcome to Ember! Follow this guide to build a simple web app using HTML, JavaScript, the command line, and some of Ember's best features.
+Each step has code you can copy and paste directly or modify to make it your own.
+Along the way, you will be introduced to the Ember community so that you can get help and continue your learning journey.
 
 We'll cover these steps:
 
@@ -63,6 +65,11 @@ Serving on http://localhost:4200/
 Open [`http://localhost:4200`](http://localhost:4200) in your browser of choice.
 You should see an Ember welcome page and not much else.
 Congratulations! You just created and booted your first Ember app.
+
+If you are having trouble getting this running, other Ember developers would be happy to help!
+Visit [The Ember Community Page](https://emberjs.com/community/) to join chat or forums.
+
+## Write some HTML in a template
 
 We will start by editing the `application` template.
 This template is always on screen while the user has your application loaded.
@@ -366,4 +373,29 @@ add the following directive to the application's virtual host configuration:
 FallbackResource index.html
 ```
 
-<!-- eof - needed for pages that end in a code block  -->
+## Next steps
+
+Now that your app is deployed, what should you do next?
+
+### Advance to the next level
+
+There is an official, free tutorial here in the Guides that takes delves deeper into some of the features you used today.
+[Give it a try!](../tutorial/)
+
+### Explore the ecosystem
+
+Now that you have the basics down, are you feeling creative and adventurous?
+The Ember community has created hundreds of addons that you can use for free in your app.
+Addons let you quickly add features like calendars, navbars, payments, authentication, themes, and more.
+Visit [EmberObserver](https://emberobserver.com) to browse the possibilities!
+
+### Style it up
+
+That app we made is a bit plain. Do you know any CSS? Put your styles in `app/styles/app.css`, which is automatically included in your app build.
+
+### Connect with the Ember Community
+
+One thing that makes Ember special is that every app you create has a _lot_ in common with apps that other people have made.
+This means that chances are good that you can connect with other developers who share both your interests and technical challenges.
+Visit the [Ember Community page](https://emberjs.com/community/) to learn about the ways you can get connect. Find a nearby meetup, ask questions, follow a newsletter, and more!
+We hope to see you around!
