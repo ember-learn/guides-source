@@ -396,7 +396,7 @@ Visit [Ember Observer](https://emberobserver.com) to browse the possibilities!
 
 ![deploying to Netlify](/images/quick-guide/netlify/create-netlify-account.png)
 
-This section will walk you through 2 ways to deploy your ember application to production using the Netlify platform:
+This section will walk you through two ways to deploy your ember application to production using the Netlify platform:
 
 1. Deploying to Netlify using drag and drop
 2. Deploying to Netlify using Git (specifically GitHub)
