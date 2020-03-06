@@ -59,6 +59,22 @@ part after the `{{#if ...}}` is nested inside of the conditional. Just like HTML
 tags continue until closed (`<div>` continues until `</div>`), the content
 nested inside an `#if` continues until `{{/if}}`.
 
+In our case, if the `@localTime` property exists with truthy value then, the markup (`<span class="local-time">their local time is {{@localTime}}</span>`) will be rendered.
+
+If a value passed to `{{#if}}` evaluates to falsy, the `{{else}}` block
+of that invocation is rendered:
+
+```handlebars
+<h4 class="username">
+  {{@name}}
+  {{#if @localTime}}
+    <span class="local-time">their local time is {{@localTime}}</span>
+  {{else}}
+    Unable to fetch local time!
+  {{/if}}
+</h4>
+```
+
 ## Inline `if`
 
 Sometimes, you need to place conditional content inside an argument or
@@ -148,3 +164,5 @@ avatar, and omit it from the sent message avatar.
     <img src="/images/mascots/zoey.png" role="presentation" alt="">
   </div>
 </div>
+
+Refer the [API doc of the `if` helper](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/if?anchor=if) for more patterns
