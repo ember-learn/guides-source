@@ -389,7 +389,7 @@ Overall, Ember developers have many options for how they deploy their apps!
 
 Following these steps will help you get your site up and running in minutes:
 
-First you need to [sign up for a Netlify account](https://app.netlify.com/signup) account if you do not already have one:
+First you need to [sign up for a Netlify account](https://app.netlify.com/signup) if you do not already have one:
 
 ![deploying to Netlify](/images/quick-guide/netlify/create-netlify-account.png)
 
