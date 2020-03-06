@@ -63,10 +63,21 @@ Serving on http://localhost:4200/
 
 Open [`http://localhost:4200`](http://localhost:4200) in your browser of choice.
 You should see an Ember welcome page and not much else.
-Congratulations! You just created and booted your first Ember app.
 
-If you are having trouble getting this running, other Ember developers would be happy to help!
-Visit [The Ember Community Page](https://emberjs.com/community/) to join chat or forums.
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+        If you are having trouble getting this running, other Ember developers would be happy to help!
+        Visit <a href="https://emberjs.com/community/"> The Ember Community Page</a> to join chat groups or forums.
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
+  </div>
+</div>
+
+Congratulations! You just created and booted your first Ember app.
 
 ## Write some HTML in a template
 
