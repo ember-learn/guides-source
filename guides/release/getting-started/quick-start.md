@@ -389,7 +389,7 @@ Now that your app is deployed, what should you do next?
 
 ### Advance to the next level
 
-There is an official, free tutorial here in the Guides that takes delves deeper into some of the features you used today.
+There is an official, free tutorial here in the Guides that delves deeper into some of the features you used today.
 [Give it a try!](../tutorial/)
 
 ### Explore the ecosystem
@@ -407,5 +407,5 @@ That app we made is a bit plain. Do you know any CSS? Put your styles in `app/st
 
 One thing that makes Ember special is that every app you create has a _lot_ in common with apps that other people have made.
 This means that chances are good that you can connect with other developers who share both your interests and technical challenges.
-Visit the [Ember Community page](https://emberjs.com/community/) to learn about the ways you can get connect. Find a nearby meetup, ask questions, follow a newsletter, and more!
+Visit the [Ember Community page](https://emberjs.com/community/) to learn about the ways you can get connected. Find a nearby meetup, ask questions, follow a newsletter, and more!
 We hope to see you around!
