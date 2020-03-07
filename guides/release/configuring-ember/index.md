@@ -1,4 +1,4 @@
-Ember CLI ships with support for managing your application's environment. The runtime environment for the application is defined in `config/environment.js`. Here an object `ENV` is built for each of the three Ember CLI-supported build modes: development, test, and production.
+While Ember gives you strong defaults so that you might never need to configure anything, it still supports configuring your app if you need to! Ember CLI ships with support for managing your application's environment. The runtime environment for the application is defined in `config/environment.js`. Here an object `ENV` is built for each of the three Ember CLI-supported build modes: development, test, and production.
 
 Three notable properties on the `ENV` object are:
 
