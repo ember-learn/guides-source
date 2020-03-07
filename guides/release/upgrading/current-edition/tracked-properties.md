@@ -304,9 +304,7 @@ However, there still are two cases where you _will_ need to use them:
   `unknownProperty` function (which allows objects to intercept `get` calls)
 
 Additionally, you will have to continue using _accessor_ functions for arrays if
-you want arrays to update as expected. These functions are covered in more
-detail in the guide on arrays (LINK TO ARRAY GUIDES HERE).
-
+you want arrays to update as expected.
 Importantly, you do _not_ have to use `get` or `set` when reading or updating
 computed properties, as was noted in the computed property section.
 
