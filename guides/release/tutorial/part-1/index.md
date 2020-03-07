@@ -2,6 +2,8 @@
 
 Welcome to the Ember Tutorial!
 
+If at any point along the way you need some help, come visit the Ember Community [chat](https://discord.gg/emberjs) or [forums](https://discuss.emberjs.com/) to ask questions- we're here to help!
+
 In this tutorial, we will use Ember to build an application called Super Rentals. This will be a website for browsing interesting places to stay during your next vacation. Check out the [finished app](https://super-rentals-tutorial--ember-super-rentals.netlify.com) to get a sense of the scope of the project.
 
 <img src="/images/tutorial/part-1/working-with-data/three-properties@2x.png" alt="The finished Super Rentals app" width="1024" height="1129">
