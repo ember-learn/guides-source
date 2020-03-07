@@ -165,4 +165,4 @@ avatar, and omit it from the sent message avatar.
   </div>
 </div>
 
-Refer the [API doc of the `if` helper](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/if?anchor=if) for more patterns.
+Refer the [API documentation of the `if` helper](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/if?anchor=if) for more patterns.
