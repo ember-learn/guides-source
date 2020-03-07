@@ -305,6 +305,7 @@ However, there still are two cases where you _will_ need to use them:
 
 Additionally, you will have to continue using _accessor_ functions for arrays if
 you want arrays to update as expected.
+
 Importantly, you do _not_ have to use `get` or `set` when reading or updating
 computed properties, as was noted in the computed property section.
 
