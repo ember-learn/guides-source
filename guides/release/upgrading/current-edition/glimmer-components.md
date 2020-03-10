@@ -205,7 +205,7 @@ after examples of each API, converted from classic components:
   ```
 
   ```handlebars
-    <div class="{{if this.darkMode 'dark-mode'}}">
+    <div class={{if this.darkMode "dark-mode"}}>
       {{this.text}}
     </div>
   ```
