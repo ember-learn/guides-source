@@ -8,14 +8,14 @@ datepicker that aren't specific to Ember apps.
 
 ## Addons
 
-Addons are JavaScript packages that integrate with Ember. For example, [`ember-cli-sass`](https://github.com/aexmachina/ember-cli-sass)
+Addons are JavaScript packages that integrate with Ember. For example, [`ember-cli-sass`](https://github.com/adopted-ember-addons/ember-cli-sass)
 is an addon that allows you to use SASS/SCSS in your applications. You can install it using the Ember CLI with the following command:
 
 ```bash
 ember install ember-cli-sass
 ```
 
-This will modify your `package.json` (and `package-lock.json`), typically bringing in other dependencies. Some addons will also add
+This will modify your `package.json` (and `package-lock.json` or `yarn.lock`), typically bringing in other dependencies. Some addons will also add
 additional files to your projects when relevant.
 
 There are many addons that cover all kinds of use cases. For more detail, as well as examples of what addons can do,
