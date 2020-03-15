@@ -504,7 +504,7 @@ To use it in your application you will need to define a
 `serializer:application` that extends the `JSONSerializer`.
 
 ```javascript {data-filename=app/serializers/application.js}
-import JSONAPISerializer from '@ember-data/serializer/json-api';
+import JSONSerializer from '@ember-data/serializer/json';
 
 export default class ApplicationSerializer extends JSONSerializer {
   // ...
