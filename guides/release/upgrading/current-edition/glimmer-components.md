@@ -315,7 +315,7 @@ throw an error if someone tries to use attributes when invoking your component:
 
 ```handlebars
 {{!-- This throws an error --}}
-<UncustomizableButton class="customized-button-class"/>
+<UncustomizableButton class="customized-button-class" />
 ```
 
 Attributes are also available to classic components, and `...attributes` is
