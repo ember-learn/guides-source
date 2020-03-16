@@ -66,7 +66,7 @@ Their structure is pretty straightforward and similar, so we can use arguments
 and conditionals to handle the differences in content between them (see the
 previous chapters for details on how to do this).
 
-```handlebars {data-filename="app/components/message.hbs"}
+```handlebars {data-filename="app/components/message/index.hbs"}
 <Message::Avatar
   @title={{@avatarTitle}}
   @initial={{@avatarInitial}}
@@ -90,7 +90,7 @@ supplied by the `<Message>` tag.
 
 The way to do this in Ember is by using the `{{yield}}` syntax.
 
-```handlebars {data-filename="app/components/message.hbs"}
+```handlebars {data-filename="app/components/message/index.hbs"}
 <Message::Avatar
   @title={{@avatarTitle}}
   @initial={{@avatarInitial}}
