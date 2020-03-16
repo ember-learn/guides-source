@@ -4,7 +4,7 @@ Ember's template syntax limits what you can express to keep the structure of you
 
 For instance, let's take a look at a generic message component from a messaging app.
 
-```handlebars {data-filename="app/components/message.hbs"}
+```handlebars {data-filename="app/components/message/index.hbs"}
 <Message::Avatar
   @title={{@avatarTitle}}
   @initial={{@avatarInitial}}
@@ -43,7 +43,7 @@ Let's update the component to do that. It'll take a `@username` argument and cal
 
 Since the title is just the `@username` plus some extra stuff, we can replace `@avatarTitle` by _interpolating_ the `@username` argument in a string literal passed to `<Message::Avatar>`.
 
-```handlebars {data-filename="app/components/message.hbs" data-diff="-2,+3"}
+```handlebars {data-filename="app/components/message/index.hbs" data-diff="-2,+3"}
 <Message::Avatar
   @title={{@avatarTitle}}
   @title="{{@username}}'s avatar"
@@ -101,7 +101,7 @@ export default helper(substring);
 
 We can then use this helper in the component's template to get the first letter of the username.
 
-```handlebars {data-filename="app/components/message.hbs" data-diff="-3,+4"}
+```handlebars {data-filename="app/components/message/index.hbs" data-diff="-3,+4"}
 <Message::Avatar
   @title="{{@username}}'s avatar"
   @initial={{@avatarTitle}}
@@ -125,7 +125,7 @@ The syntax `{{substring @username 0 1}}` is a little hard to read. We see some n
 
 Using named arguments, we could make our template a lot clearer.
 
-```handlebars {data-filename="app/components/message.hbs" data-diff="-3,+4,+5"}
+```handlebars {data-filename="app/components/message/index.hbs" data-diff="-3,+4,+5"}
 <Message::Avatar
   @title="{{@username}}'s avatar"
   @initial={{substring @username 0 1}}
