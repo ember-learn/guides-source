@@ -178,7 +178,7 @@ console.log(counter.count); // 0
 Decorators are _normal_ JavaScript functions that get applied with a special
 syntax, which is why you import them like any other function, but you use the
 `@` symbol when applying them. Decorators come in a variety of flavors, and some
-can be applied to class's directly as well:
+can be applied to classes directly as well:
 
 ```js
 @observable
@@ -201,11 +201,11 @@ console.log(matt.name); // Matthew Beale
 Ember provides a number of decorators, such as the `@tracked` decorator, that
 will be described in greater detail later on in the guides.
 
-> Note: Decorators are still being actively developed in JavaScript, which means
+> _Note: Decorators are still being actively developed in JavaScript, which means
 > that there may be small changes in the future. The decorators provided by
 > Ember should remain stable through these changes, but it is recommended that
 > you exercise caution if using any external decorator libraries which may not
-> have the same stability guarantees.
+> have the same stability guarantees._
 
 ### Classic Classes
 
