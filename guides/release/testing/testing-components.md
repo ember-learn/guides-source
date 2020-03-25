@@ -331,7 +331,7 @@ class LocationStub extends Service {
   getCurrentCountry() {
     return this.country;
   }
-});
+}
 
 module('Integration | Component | location-indicator', function(hooks) {
   setupRenderingTest(hooks);
@@ -353,27 +353,28 @@ import { hbs } from 'ember-cli-htmlbars';
 import Service from '@ember/service';
 
 //Stub location service
-const locationStub = Service.extend({
-  city: 'New York',
-  country: 'USA',
-  currentLocation: {
+class LocationStub extends Service {
+  city = 'New York';
+  country = 'USA';
+  currentLocation = {
     x: 1234,
     y: 5678
-  },
+  };
 
   getCurrentCity() {
     return this.city;
-  },
+  }
+  
   getCurrentCountry() {
     return this.country;
   }
-});
+}
 
 module('Integration | Component | location-indicator', function(hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(function(assert) {
-    this.owner.register('service:location-service', locationStub);
+    this.owner.register('service:location-service', LocationStub);
   });
 
   test('should reveal current location', async function(assert) {
@@ -394,27 +395,28 @@ import { hbs } from 'ember-cli-htmlbars';
 import Service from '@ember/service';
 
 //Stub location service
-const locationStub = Service.extend({
-  city: 'New York',
-  country: 'USA',
-  currentLocation: {
+class LocationStub extends Service {
+  city = 'New York';
+  country = 'USA';
+  currentLocation = {
     x: 1234,
     y: 5678
-  },
+  };
 
   getCurrentCity() {
     return this.city;
-  },
+  }
+  
   getCurrentCountry() {
     return this.country;
   }
-});
+}
 
 module('Integration | Component | location-indicator', function(hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(function(assert) {
-    this.owner.register('service:location-service', locationStub);
+    this.owner.register('service:location-service', LocationStub);
   });
 
   test('should reveal current location', async function(assert) {
