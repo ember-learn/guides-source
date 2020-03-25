@@ -29,8 +29,8 @@ categories, and rated according to objective metrics. If you are looking for an 
 
 While dependencies can be managed in several ways,
 it's worth noting that the process can be greatly simplified for new developers by using ember-auto-import,
-which offers zero config imports from npm packages.
-It's easily installed using `ember install ember-auto-import`.
+which offers zero config imports from npm packages. 
+It's built into new Ember apps by default and can be installed in older apps by using `ember install ember-auto-import`.
 For further usage instructions, please follow the [project README](https://github.com/ef4/ember-auto-import).
 
 ## Other assets
