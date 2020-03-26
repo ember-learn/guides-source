@@ -76,8 +76,8 @@ arguments, which we'll discuss next.
 import { helper } from "@ember/component/helper";
 
 function substring(args) {
-  let [string, start, length] = args;
-  return string.substr(start, length);
+  let [string, start, end] = args;
+  return string.substring(start, end);
 }
 
 export default helper(substring);
@@ -88,10 +88,10 @@ We can tighten up the implementation by moving the [destructuring](https://devel
 ```js {data-filename="app/helpers/substring.js" data-diff="+3,-4,-5"}
 import { helper } from "@ember/component/helper";
 
-function substring([string, start, length]) {
+function substring([string, start, end]) {
 function substring(args) {
-  let [string, start, length] = args;
-  return string.substr(start, length);
+  let [string, start, end] = args;
+  return string.substring(start, length);
 }
 
 export default helper(substring);
