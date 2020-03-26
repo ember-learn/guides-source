@@ -316,7 +316,7 @@ Okay, now that we have a better sense of which component is rendering what and t
 
 <img src="/images/tutorial/part-2/provider-components/filtered-results@2x.png" alt="Trying out the search box." width="1024" height="797">
 
-Hooray, it works! Awesome. Now that we've tried this out manually in the UI, let's write a tests for this new behavior as well.
+Hooray, it works! Awesome. Now that we've tried this out manually in the UI, let's write a test for this new behavior as well.
 
 ```js { data-filename="tests/integration/components/rentals-test.js" data-diff="-3,+4,-10,+11,+59,+61,+74,+75,+76,+77,+78,+79,+80,+81,+82,+83,+84,+85,+86,+87,+88,+89,+90,+91,+92" }
 import { module, test } from 'qunit';
