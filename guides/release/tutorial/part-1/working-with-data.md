@@ -239,10 +239,9 @@ public
 ├── assets
 │   └── images
 │       └── teaching-tomster.png
-├── _redirects
 └── robots.txt
 
-4 directories, 7 files
+4 directories, 6 files
 ```
 
 You can verify that everything is working correctly by navigating to `http://localhost:4200/api/rentals.json`.
