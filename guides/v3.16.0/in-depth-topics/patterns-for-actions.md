@@ -485,11 +485,11 @@ via partial application to allow a parent component to dig into the passed
 object to pull out only what it needs.
 
 ```handlebars {data-filename=app/components/system-preferences-editor.hbs}
-<UserProfile @didDelete={{fn this.userDeleted this.login.currentUser.id}} />
+<UserProfile @didDelete={{fn this.userDeleted}} />
 ```
 
 Now when the `system-preferences-editor` handles the delete action, it receives
-only the user's account `id` string.
+ the entire user object and can extract the `id` string.
 
 ```javascript {data-filename=app/components/system-preferences-editor.js}
 import Component from '@glimmer/component';
@@ -497,7 +497,7 @@ import { action } from '@ember/object';
 
 export default class SystemPreferencesEditorComponent extends Component {
   @action
-  userDeleted(idStr /* , native clickEvent */) {
+  userDeleted(userObj /* , native clickEvent */) {
     // respond to deletion
   }
 }
