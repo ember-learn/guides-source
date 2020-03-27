@@ -76,8 +76,8 @@ arguments, which we'll discuss next.
 import { helper } from "@ember/component/helper";
 
 function substring(args) {
-  let [string, start, length] = args;
-  return string.substr(start, length);
+  let [string, start, end] = args;
+  return string.substring(start, end);
 }
 
 export default helper(substring);
@@ -88,10 +88,10 @@ We can tighten up the implementation by moving the [destructuring](https://devel
 ```js {data-filename="app/helpers/substring.js" data-diff="+3,-4,-5"}
 import { helper } from "@ember/component/helper";
 
-function substring([string, start, length]) {
+function substring([string, start, end]) {
 function substring(args) {
-  let [string, start, length] = args;
-  return string.substr(start, length);
+  let [string, start, end] = args;
+  return string.substring(start, end);
 }
 
 export default helper(substring);
@@ -149,8 +149,8 @@ In addition to taking _positional arguments_ as an array, helpers take _named ar
 ```js {data-filename="app/helpers/substring.js"}
 import { helper } from "@ember/component/helper";
 
-function substring([string], { start, length }) {
-  return string.substr(start || 0, length);
+function substring([string], { start, end }) {
+  return string.substring(start || 0, end);
 }
 
 export default helper(substring);
@@ -191,8 +191,8 @@ import Helper from "@ember/component/helper";
 
 function substring([string], { start, length }) {
 export default class Substring extends Helper {
-  compute([string], { start, length }) {
-    return string.substr(start || 0, length);
+  compute([string], { start, end }) {
+    return string.substring(start || 0, end);
   }
 }
 ```
