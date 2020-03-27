@@ -16,11 +16,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PULL_REQUEST_BRANCH: master
-          PULL_REQUEST_TITLE: Octane Tutorial Updates
+          PULL_REQUEST_TITLE: Tutorial Updates
           PULL_REQUEST_BODY: >
             This is an *[automated](https://github.com/ember-learn/guides-source/blob/super-rentals-tutorial/.github/workflows/tutorial-ingestion.yml)*
             pull request to let you know there are new content available for
-            the revamped Octane tutorial!
+            the tutorial!
 
 
             If these changes look good to you, it is recommended that you merge
