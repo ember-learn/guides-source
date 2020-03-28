@@ -459,7 +459,7 @@ export default class Messaging extends Service {
 A component will often not know what information a parent needs to process an
 action, and will just pass all the information it has. For example, our
 `UserProfile` component is going to notify its parent,
-`system-preferences-editor`, that a user's account was deleted, and passes along
+`SystemPreferencesEditor`, that a user's account was deleted, and passes along
 with it the full user profile object.
 
 ```javascript {data-filename=app/components/user-profile.js}
@@ -479,7 +479,7 @@ export default class UserProfileComponent extends Component {
 }
 ```
 
-All our `system-preferences-editor` component really needs to process a user
+All our `SystemPreferencesEditor` component really needs to process a user
 deletion is an account ID. For this case, the `fn` helper provides the value
 via partial application to allow a parent component to dig into the passed
 object to pull out only what it needs.
@@ -488,7 +488,7 @@ object to pull out only what it needs.
 <UserProfile @didDelete={{fn this.userDeleted}} />
 ```
 
-Now when the `system-preferences-editor` handles the delete action, it receives
+Now when the `SystemPreferencesEditor` handles the delete action, it receives
  the entire user object and can extract the `id` string.
 
 ```javascript {data-filename=app/components/system-preferences-editor.js}
@@ -515,7 +515,7 @@ components can pass actions to child components through templates alone without
 adding JavaScript code to those child components.
 
 For example, say we want to move account deletion from the `UserProfile`
-component to its parent `system-preferences-editor`.
+component to its parent `SystemPreferencesEditor`.
 
 First we would move the `deleteUser` action from `user-profile.js` to
 the parent `system-preferences-editor.js`.
@@ -535,7 +535,7 @@ export default class SystemPreferencesEditorComponent extends Component {
 }
 ```
 
-Then our `system-preferences-editor` template passes its local `deleteUser`
+Then our `SystemPreferencesEditor` template passes its local `deleteUser`
 action into the `UserProfile` as that component's `deleteCurrentUser` argument.
 
 ```handlebars {data-filename=app/components/system-preferences-editor.hbs}
@@ -545,7 +545,7 @@ action into the `UserProfile` as that component's `deleteCurrentUser` argument.
 ```
 
 The `deleteUser` action is prepended with `this.`, since
-`system-preferences-editor` is where the action is defined now. If the action
+`SystemPreferencesEditor` is where the action is defined now. If the action
 was passed from a parent, then it might have looked like `@deleteUser` instead.
 
 In our `user-profile.hbs` template we change our action to call
