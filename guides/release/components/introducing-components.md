@@ -98,22 +98,8 @@ We've just created our first component!
 
 We can include our new component into our application by using HTML tag syntax.
 
-```handlebars {data-filename="app/templates/application.hbs" data-diff="-2,-3,-4,-5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,+16"}
+```handlebars {data-filename="app/templates/application.hbs"}
 <div class="messages">
-  <aside>
-    <div class="avatar is-active" title="Tomster's avatar">T</div>
-  </aside>
-  <section>
-    <h4 class="username">
-      Tomster
-      <span class="local-time">their local time is 4:56pm</span>
-    </h4>
-
-    <p>
-      Hey Zoey, have you had a chance to look at the EmberConf
-      brainstorming doc I sent you?
-    </p>
-  </section>
   <ReceivedMessage/>
 
   <aside class="current-user">
@@ -215,43 +201,10 @@ Let's do it again. We'll copy the sent message content into a new component, and
 </section>
 ```
 
-```handlebars {data-filename="app/templates/application.hbs" data-diff="-4,-5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,-33,-34,-35,-36,+37"}
+```handlebars {data-filename="app/templates/application.hbs"}
 <div class="messages">
   <ReceivedMessage />
 
-  <aside>
-    <div class="avatar" title="Zoey's avatar">Z</div>
-  </aside>
-  <section>
-    <h4 class="username">Zoey</h4>
-
-    <p>Hey!</p>
-
-    <p>
-      I love the ideas! I'm really excited about where this year's
-      EmberConf is going, I'm sure it's going to be the best one yet.
-      Some quick notes:
-    </p>
-
-    <ul>
-      <li>
-        Definitely agree that we should double the coffee budget this
-        year (it really is impressive how much we go through!)
-      </li>
-      <li>
-        A blimp would definitely make the venue very easy to find, but
-        I think it might be a bit out of our budget. Maybe we could
-        rent some spotlights instead?
-      </li>
-      <li>
-        We absolutely will need more hamster wheels, last year's line
-        was <em>way</em> too long. Will get on that now before rental
-        season hits its peak.
-      </li>
-    </ul>
-
-    <p>Let me know when you've nailed down the dates!</p>
-  </section>
   <SentMessage />
 
   <form>
@@ -278,18 +231,12 @@ We have one last component to extract. Let's pull out the new message input.
 
 And include it in our `application.hbs` file.
 
-```handlebars {data-filename="app/templates/application.hbs" data-diff="-6,-7,-8,-9,-10,-11,+12"}
+```handlebars {data-filename="app/templates/application.hbs"}
 <div class="messages">
   <ReceivedMessage />
 
   <SentMessage />
 
-  <form>
-    <input>
-    <button>
-      Send
-    </button>
-  </form>
   <NewMessageInput />
 </div>
 ```
@@ -304,10 +251,7 @@ We can use components _within_ other components, so we can continue to break dow
 </aside>
 ```
 
-```handlebars {data-filename="app/components/received-message.hbs" data-diff="-1,-2,-3,+4"}
-<aside>
-  <div class="avatar is-active" title="Tomster's avatar">T</div>
-</aside>
+```handlebars {data-filename="app/components/received-message.hbs"}
 <ReceivedMessageAvatar />
 <section>
   <h4 class="username">
@@ -331,13 +275,9 @@ We could also extract the username from the message:
 </h4>
 ```
 
-```handlebars {data-filename="app/components/received-message.hbs" data-diff="-3,-4,-5,-6,+7"}
+```handlebars {data-filename="app/components/received-message.hbs"}
 <ReceivedMessageAvatar />
 <section>
-  <h4 class="username">
-    Tomster
-    <span class="local-time">their local time is 4:56pm</span>
-  </h4>
   <ReceivedMessageUsername />
 
   <p>
@@ -359,10 +299,9 @@ We can do the same for the `<SentMessage>` component:
 <h4 class="username">Zoey</h4>
 ```
 
-```handlebars {data-filename="app/components/sent-message.hbs" data-diff="-3,+4"}
+```handlebars {data-filename="app/components/sent-message.hbs"}
 <SentMessageAvatar />
 <section>
-  <h4 class="username">Zoey</h4>
   <SentMessageUsername />
 
   <p>Hey!</p>
@@ -400,18 +339,14 @@ Components can be broken down to any level, included in each other and reused.
 
 The avatar and username components are directly related to the sent and received message components. Right now, they're grouped at the top level. As you get more components, this could make a big mess! Instead, we want group the related components together in the filesystem. We can do this by moving them into subfolders within `app/components`.
 
-```handlebars {data-filename="" data-diff="-4,-5,+6,+7,+8,-9,-10,-11,+12,+13,+14"}
+```handlebars
 app/
   components/
     received-message.hbs
-    received-message-avatar.hbs
-    received-message-username.hbs
     received-message/
       avatar.hbs
       username.hbs
     sent-message.hbs
-    sent-message-avatar.hbs
-    sent-message-username.hbs
     sent-message/
       avatar.hbs
       username.hbs
@@ -420,11 +355,9 @@ app/
 We can then use the `::` separator in templates to access components within a
 folder:
 
-```handlebars {data-filename="app/components/received-message.hbs" data-diff="-1,+2,-4,+5"}
-<ReceivedMessageAvatar />
+```handlebars {data-filename="app/components/received-message.hbs"}
 <ReceivedMessage::Avatar />
 <section>
-  <ReceivedMessageUsername />
   <ReceivedMessage::Username />
 
   <p>
@@ -434,11 +367,9 @@ folder:
 </section>
 ```
 
-```handlebars {data-filename="app/components/sent-message.hbs" data-diff="-1,+2,-4,+5"}
-<SentMessageAvatar />
+```handlebars {data-filename="app/components/sent-message.hbs"}
 <SentMessage::Avatar />
 <section>
-  <SentMessageUsername />
   <SentMessage::Username />
 
   <p>Hey!</p>
@@ -472,10 +403,9 @@ folder:
 
 If you have a component named `index.hbs`, you can refer to it without the `::Index`. So we can refactor `app/components/received-message.hbs` to `app/components/received-message/index.hbs` and continue to use it as `<ReceivedMessage>` without changing all the tags that refer to it:
 
-```handlebars {data-filename="" data-diff="-3,+5"}
+```handlebars
 app/
   components/
-    received-message.hbs
     received-message/
       index.hbs
       avatar.hbs
