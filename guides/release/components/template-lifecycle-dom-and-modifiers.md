@@ -108,9 +108,8 @@ the output will be:
 
 Just like in previous examples, you can think of attribute changes as substitution. If the model changes to:
 
-```json {data-filename="input" data-diff="-2,+3"}
+```json {data-filename="input"}
 {
-  "title": "Hello world",
   "title": "Hello world!",
   "body": "This is the first article. [UPDATE] I am so excited!"
 }
@@ -118,10 +117,8 @@ Just like in previous examples, you can think of attribute changes as substituti
 
 the output will be updated to:
 
-```html {data-filename="output" data-diff="-1,+2,-3,+4"}
-<article title="Hello world">
+```html {data-filename="output"}
 <article title="Hello world!">
-  <header><h1>Hello world</h1></header>
   <header><h1>Hello world!</h1></header>
   <section>This is the first article. [UPDATE] I am so excited!</section>
 </article>
@@ -323,10 +320,9 @@ Let's start with the HTML we're working with:
 
 Next, let's add an event handler to the `Play` button:
 
-```handlebars {data-filename="app/components/audio-player.hbs" data-diff="-3,+4"}
+```handlebars {data-filename="app/components/audio-player.hbs"}
 <audio src={{@srcURL}} />
 
-<button>Play</button>
 <button {{on "click" this.play}}>Play</button>
 <button>Pause</button>
 ```
@@ -351,8 +347,7 @@ We can give our component access to elements inside of it by using [`ember-ref-m
 
 In this case, we'll assign the `<audio>` element to the `audioElement` property in our component:
 
-```handlebars {data-filename="app/components/audio-player.hbs" data-diff="-1,+2"}
-<audio src={{@srcURL}} />
+```handlebars {data-filename="app/components/audio-player.hbs"}
 <audio src={{@srcURL}} {{ref this "audioElement"}} />
 
 <button {{on "click" this.play}}>Play</button>
@@ -361,14 +356,13 @@ In this case, we'll assign the `<audio>` element to the `audioElement` property 
 
 Now, the component can access the audio element in the `play` method:
 
-```js {data-filename="app/components/audio-player.js" data-diff="-7,+8"}
+```js {data-filename="app/components/audio-player.js"}
 import Component from "@glimmer/component";
 import { action } from "@ember/object";
 
 export default class AudioPlayerComponent extends Component {
   @action
   play() {
-    // TODO
     this.audioElement.play();
   }
 }
