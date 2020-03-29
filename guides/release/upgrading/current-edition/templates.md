@@ -91,7 +91,7 @@ Here are the main differences between angle bracket and curly syntax:
     {{todo-item item=item}}
 
     {{!-- After --}}
-    <Todo @item={{this.item}} />
+    <TodoItem @item={{this.item}} />
   ```
 
 - When you pass a bound value to a component, remember that it needs to be
