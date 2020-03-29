@@ -21,6 +21,23 @@ Will become:
 <label for="site">Ember Question</label>
 <input id="site" type="text" value="How do text fields work?"/>
 ```
+### Naming with aria-label
+
+The aria-label property enables developers to name an element with a string that is not visually rendered.
+
+```handlebars
+<Input id="site" @value="How do text fields work?" aria-label="Ember Question"/>
+```
+
+The aria-label property is useful when there is no visible text content that will serve as an appropriate accessible name. 
+
+### Naming with aria-labelledby
+The aria-labelledby property enables developers to reference other elements on the page to define an accessible name. 
+
+```handlebars
+<span id="site-label">Ember Question</span>
+<Input id="site" @value="How do text fields work?" aria-labelledby="site-label"/>
+```
 
 You can pass the following standard `<input>` attributes within the input
 helper:
