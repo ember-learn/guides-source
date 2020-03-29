@@ -120,9 +120,9 @@ Here are the main differences between angle bracket and curly syntax:
 - Yielded components can also be invoked with angle bracket syntax:
 
   ```handlebars
-  <TodoList as |Item|>
-    <Item />
-  </TodoList>
+    <TodoList as |Item|>
+      <Item />
+    </TodoList>
   ```
 
 - Positional arguments (e.g. `{{my-component this.someValue}}`) are _not_
@@ -136,12 +136,12 @@ Here are the main differences between angle bracket and curly syntax:
   instance, if `my-greeting` had the following implementation:
 
   ```javascript {data-filename="app/components/my-greeting.js"}
-  import Component from '@ember/component';
+    import Component from '@ember/component';
 
-  export default Component.extend({
-  }).reopenClass({
-    positionalParams: 'params'
-  });
+    export default Component.extend({
+    }).reopenClass({
+      positionalParams: 'params'
+    });
   ```
 
   To invoke it using angle bracket syntax, you would do the following:
