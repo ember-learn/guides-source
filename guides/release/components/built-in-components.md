@@ -41,8 +41,7 @@ For example, the `aria-labelledby` property enables developers to reference othe
 <Input id="site" @value="How do text fields work?" aria-labelledby="site-label"/>
 ```
 
-You can pass the following standard `<input>` attributes within the input
-helper:
+Here are some other standard `<input>` attributes that are supported:
 
 <table>
   <tr><td><code>readonly</code></td><td><code>required</code></td><td><code>autofocus</code></td></tr>
