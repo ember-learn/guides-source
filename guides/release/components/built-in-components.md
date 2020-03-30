@@ -23,13 +23,13 @@ Will become:
 ```
 ### Naming with aria-label
 
-The aria-label property enables developers to name an element with a string that is not visually rendered.
+The `aria-label` property enables developers to name an element with a string that is not visually rendered.
 
 ```handlebars
 <Input id="site" @value="How do text fields work?" aria-label="Ember Question"/>
 ```
 
-The aria-label property is useful when there is no visible text content that will serve as an appropriate accessible name. 
+The `aria-label` property is useful when there is no visible text content that will serve as an appropriate accessible name. 
 
 ### Setting attributes on Input
 
