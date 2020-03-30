@@ -34,7 +34,7 @@ The aria-label property is useful when there is no visible text content that wil
 ### Setting attributes on Input
 
 Just like a native `<input>` element, there are many different types of attributes that you can apply to Ember's `<Input />` component, such as `aria` attributes or `required`. 
-The aria-labelledby property enables developers to reference other elements on the page to define an accessible name. 
+For example, the `aria-labelledby` property enables developers to reference other elements on the page to define an accessible name:
 
 ```handlebars
 <span id="site-label">Ember Question</span>
