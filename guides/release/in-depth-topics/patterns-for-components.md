@@ -29,8 +29,8 @@ export default class TooltipComponent extends Component {
 ```
 
 ```handlebars {data-filename=app/components/tooltip.hbs}
-<div class="{{this.tooltipClass}}">
-  <i class="{{this.icon}}"></i>
+<div class={{this.tooltipClass}}>
+  <i class={{this.icon}}></i>
   {{@content}}
 </div>
 ```
