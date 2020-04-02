@@ -23,7 +23,10 @@ branches:
     - master
 
 script:
-  - npm run lint:hbs
-  - npm run lint:js
-  - npm run lint:md
-  - npm test
+  - echo $TRAVIS_REPO_SLUG
+  - echo $TRAVIS_PULL_REQUEST_SLUG
+  - echo $TRAVIS_PULL_REQUEST_BRANCH # if === 'master'?
+  # - npm run lint:hbs
+  # - npm run lint:js
+  # - npm run lint:md
+  # - npm test
