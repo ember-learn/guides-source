@@ -37,8 +37,8 @@ Just like a native `<input>` element, there are many different types of attribut
 For example, the `aria-labelledby` property enables developers to reference other elements on the page to define an accessible name:
 
 ```handlebars
-<span id="site-label">Ember Question</span>
-<Input id="site" @value="How do text fields work?" aria-labelledby="site-label"/>
+<Input aria-labelledby="button-search" />
+<button id="button-search">Search</button>
 ```
 
 Here are some other standard `<input>` attributes that are supported:
