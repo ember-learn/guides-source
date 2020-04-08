@@ -22,7 +22,7 @@ Ember, and you don't need to worry about learning it separately.
 
 ## Benefits of Glimmer Components
 
-Glimmer components have a some huge benefits
+Glimmer components have some huge benefits
 
 - These new components give you all the benefits described in Native Classes
   above
