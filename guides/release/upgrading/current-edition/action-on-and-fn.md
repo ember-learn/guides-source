@@ -133,6 +133,8 @@ export default class ExampleComponent extends Component {
 }
 ```
 
+Note that the `{{action}}` modifier called `event.preventDefault()` under the hood, but the `{{on}}` modifier does not, so if you need to do anything other than the default action for a particular event, you must call `event.preventDefault` within the action. 
+
 This is a replacement for `{{action}}` when it is used as a modifier:
 
 ```handlebars
