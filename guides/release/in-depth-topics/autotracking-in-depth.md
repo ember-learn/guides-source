@@ -149,7 +149,7 @@ export default class HelloComponent extends Component {
   constructor() {
     super(...arguments);
 
-    fetch('./api/preferences')
+    fetch('/api/preferences')
       .then(r => r.json()) // convert the response to a JS object
       .then(response => {
         this.language = response.preferredLanguage;
