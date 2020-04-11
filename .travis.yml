@@ -26,5 +26,4 @@ script:
   - npm run lint:hbs
   - npm run lint:js
   - npm run lint:md
-  - [ "$TRAVIS_PULL_REQUEST_SLUG" != "ember-learn/guides-source" ] && [ "$TRAVIS_PULL_REQUEST_BRANCH" == "master" ] && export PERCY_BRANCH="fork-${TRAVIS_BUILD_NUMBER}"
   - npm test
