@@ -390,7 +390,7 @@ Now that your app is deployed, what should you do next?
 ### Advance to the next level
 
 There is an official, free tutorial here in the Guides that delves deeper into some of the features you used today.
-[Give it a try!](./tutorial)
+[Give it a try!](../../tutorial)
 
 ### Explore the ecosystem
 
