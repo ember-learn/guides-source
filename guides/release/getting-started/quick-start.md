@@ -392,7 +392,7 @@ FallbackResource index.html
 ![About Netlify](/images/quick-guide/netlify/netlify-product.png)
 
 There is an official, free tutorial here in the Guides that delves deeper into some of the features you used today.
-[Give it a try!](./tutorial)
+[Give it a try!](../../tutorial)
 
 It does not require a high level of knowledge for you to deploy your website to production.
 Netlify offers a free account option and no credit card is required.
