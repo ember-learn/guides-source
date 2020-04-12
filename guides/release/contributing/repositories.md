@@ -22,6 +22,12 @@ Ember is made up of several libraries. If you wish to add a feature or fix a bug
 * [https://github.com/ember-learn/guides-source](https://github.com/ember-learn/guides-source)
 * [https://github.com/ember-learn/guides-app](https://github.com/ember-learn/guides-app)
 
+**Help Wanted Issues**
+* [https://help-wanted.emberjs.com/](https://help-wanted.emberjs.com/)
+
+**Community**
+* [https://emberjs.com/community](https://emberjs.com/community)
+
 # Libraries Used By Ember
 
 These libraries are part of the Ember asset output, but development of them takes place in a separate repository.
@@ -36,16 +42,11 @@ These libraries are part of the Ember asset output, but development of them take
 
 ## `Glimmer 2`
 * **glimmer** - Implements the really fast rendering engine now included in Ember
-* [https://github.com/tildeio/glimmer](https://github.com/tildeio/glimmer)
+* [https://github.com/glimmerjs/glimmer.js](https://github.com/glimmerjs/glimmer.js)
 
 ## `HTMLBars`
 * **htmlbars** - The syntax for templating most often used with Ember
-* [https://github.com/tildeio/htmlbars](https://github.com/tildeio/htmlbars)
-
-## `morph-range`
-
-* **morph-range** - Used by Ember for manipulating the text nodes known as morphs which are created for HTMLBars to keep track of text that could change.
-* [https://github.com/krisselden/morph-range](https://github.com/krisselden/morph-range)
+* [https://github.com/ember-cli/ember-cli-htmlbars](https://github.com/ember-cli/ember-cli-htmlbars)
 
 ## `Route Recognizer`
 
@@ -61,3 +62,6 @@ These libraries are part of the Ember asset output, but development of them take
 
 * **rsvp.js** - Implementation of the of Promises/A+ spec used by Ember.
 * [https://github.com/tildeio/rsvp.js](https://github.com/tildeio/rsvp.js)
+
+## Many different ways to contribute
+There are many different ways to contribute to Ember in which you’ll be able to learn more about the project along the way: For example, you can [write and share an Ember addon with the community](https://ember-cli.com/extending/#developing-addons-and-blueprints) or collaborate with the authors of your favorite addon to make it even better. You can share any of your experiences with Ember by blogging, screencasting or speaking about them at your [local Ember meetup group](https://www.emberjs.com/community/meetups/) or organizing local Ember events on your own. Helping to make Ember even better understood is in itself a great way to contribute to the community.
