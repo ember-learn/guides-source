@@ -4,11 +4,11 @@ There are two styles of `if`, block and inline:
 
 ```handlebars
 {{#if this.thingIsTrue}}
-   Content for the block form of "if"
+  Content for the block form of "if"
 {{/if}}
 
 <div class={{if this.thingIsTrue "value-if-true" "value-if-false"}}>
-    This div used the inline "if" to calculate the class to use.
+  This div used the inline "if" to calculate the class to use.
 </div>
 ```
 
@@ -105,7 +105,7 @@ is passed in and is truthy.
 <aside ...attributes>
   <div
     class="avatar {{if @isActive "is-active"}}"
-    title="{{@title}}"
+    title={{@title}}
   >
     {{@initial}}
   </div>
