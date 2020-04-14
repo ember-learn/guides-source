@@ -28,5 +28,8 @@ script:
   - npm run lint:md
   # if there's a forked PR with the `branch` set to `master`, we want to unset that for Percy
   # to avoid resetting the Percy projects baseline
-  - '[ "$TRAVIS_PULL_REQUEST_SLUG" != "ember-learn/guides-source" ] && [ "$TRAVIS_PULL_REQUEST_BRANCH" == "master" ] && export PERCY_BRANCH="fork-${TRAVIS_BUILD_NUMBER}"'
+  - |
+    if [ "$TRAVIS_PULL_REQUEST_SLUG" != "ember-learn/guides-source" ] && [ "$TRAVIS_PULL_REQUEST_BRANCH" == "master" ]; then
+     PERCY_BRANCH="fork-${TRAVIS_BUILD_NUMBER}"
+    fi  
   - npm test
