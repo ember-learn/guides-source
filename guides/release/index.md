@@ -1,4 +1,4 @@
-Welcome to the Ember.js Guides! This documentation will take you from total beginner to Ember expert.
+Welcome to the Ember.js Guides! This documentation will take you from total beginner to Ember expertzzz.
 
 With the plethora of libraries readily available for front-end development, sometimes it can be a little confusing to work with a front-end framework like Ember.js, where _everything_ you need to build an application is already included. To that end, we've segmented out each part of the guides so you can focus on just the part you want to work with. This should also make it faster for you to find what you need!
 
