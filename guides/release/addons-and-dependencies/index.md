@@ -138,9 +138,9 @@ All assets located in the `public/` folder will be copied as is to the final out
 
 For example, a `favicon` located at `public/images/favicon.ico` will be copied to `dist/images/favicon.ico`.
 
-All third-party assets, included either manually in `vendor/` or via a package manager like npm, must be added via `import()`.
+All third-party assets, included either manually in `vendor/` or via a package manager like npm, must be added via `app.import()`.
 
-Third-party assets that are not added via `import()` will not be present in the final build.
+Third-party assets that are not added via `app.import()` will not be present in the final build.
 
 By default, `import`ed assets will be copied to `dist/` as they are, with the existing directory structure maintained.
 
