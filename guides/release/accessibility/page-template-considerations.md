@@ -97,7 +97,7 @@ To read more about skip links, visit the [MDN docs](https://developer.mozilla.or
 
 ## Focus Management
 
-No single-page application framework provides the appropriate route-level focus for assistive technology in a default manner. This is primarily due to the way `pushState` works, and the lack of an event hook for JavaScript frameworks to tell assistive technology that the page content has changed. This _also_ means that the focus is unchanged on route navigation, which in some cases means that it would be lost entirely (if the element that previously had focus is now gone). 
+No single-page application framework provides the appropriate route-level focus for assistive technology in a default manner. This is primarily due to the way `pushState` works, and the lack of an event hook for JavaScript frameworks to tell assistive technology that the page content has changed. This *also* means that the focus is unchanged on route navigation, which in some cases means that it would be lost entirely (if the element that previously had focus is now gone). 
 
 Most frameworks have some mechanism for adding the missing functionality to an application. In Ember, there is an attempt to address these two specific shortcomings with [RFC 433](https://github.com/emberjs/rfcs/pull/433); in the meantime there are a few addons that exist to help provide page or view-level focus for your application. All options should be evaluated to determine which is the appropriate use case for your application:
 
