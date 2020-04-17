@@ -31,7 +31,6 @@ export default class Title extends Helper {
     document.title = this.original;
   }
 }
-
 ```
 
 We can use this helper to set the page title at any point in any template.
@@ -57,11 +56,12 @@ This title will take effect when we enter the “post” route, and the line of 
 
 This technique is a reasonable first step, but has limitations:
 
-- It does *not* work when the page is rendered server-side with FastBoot.
-- It doesn’t provide any conventions for constructing nested page titles.
-- It doesn’t automatically apply the site title (though you can imagine how to add that).
+- It doesn't work when the page is rendered server-side with FastBoot.
+- It doesn't provide any conventions for constructing nested page titles.
+- It doesn't automatically apply the site title (though you can imagine how to add that).
+- It may not be absolutely robust if data in your app changes *a lot* (imagine a realtime app).
 
-When your needs become more complex, the following addons faciliate page titles in a more dynamic and maintainable way (including FastBoot support):
+When your needs become more complex, the following addons facilitate page titles in a more dynamic and maintainable way (including FastBoot support):
 
 - [ember-page-title](https://github.com/adopted-ember-addons/ember-page-title)
 - [ember-cli-head](https://github.com/ronco/ember-cli-head)
