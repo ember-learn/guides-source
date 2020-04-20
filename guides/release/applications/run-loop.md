@@ -168,15 +168,18 @@ which will make you a better Ember developer.
 You should begin a run loop when the callback fires.
 
 The `Ember.run` method can be used to create a run loop.
-In this example, jQuery and `Ember.run` are used to handle a click event and run some Ember code.
+In this example, `Ember.run` is used to handle an online 
+event (browser gains internet access) and run some Ember code.
 
 ```javascript
-$('a').click(() => {
+window.addEventListener('online', () => {
   Ember.run(() => {  // begin loop
     // Code that results in jobs being scheduled goes here
   }); // end loop, jobs are flushed and executed
 });
 ```
+
+
 
 ## What happens if I forget to start a run loop in an async handler?
 
@@ -185,7 +188,7 @@ If you don't, Ember will try to approximate a beginning and end for you.
 Consider the following callback:
 
 ```javascript
-$('a').click(() => {
+window.addEventListener('online', () => {
   console.log('Doing things...');
 
   Ember.run.schedule('actions', () => {
@@ -202,7 +205,7 @@ These automatically created run loops we call _autoruns_.
 Here is some pseudocode to describe what happens using the example above:
 
 ```javascript
-$('a').click(() => {
+window.addEventListener('online', () => {
   // 1. autoruns do not change the execution of arbitrary code in a callback.
   //    This code is still run when this callback is executed and will not be
   //    scheduled on an autorun.
