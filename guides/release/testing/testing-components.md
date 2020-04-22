@@ -305,7 +305,7 @@ export default class LocationIndicatorComponent extends Component {
 You currently are located in {{this.city}}, {{this.country}}
 ```
 
-To stub the location service in your test, create a local stub object that extends `Ember.Service`,
+To stub the location service in your test, create a local stub object that extends `Service` from `@ember/service`,
 and register the stub as the service your tests need in the beforeEach function.
 In this case we initially force location to "New York".
 
@@ -317,27 +317,28 @@ import { hbs } from 'ember-cli-htmlbars';
 import Service from '@ember/service';
 
 //Stub location service
-const locationStub = Service.extend({
-  city: 'New York',
-  country: 'USA',
-  currentLocation: {
+class LocationStub extends Service {
+  city = 'New York';
+  country = 'USA';
+  currentLocation = {
     x: 1234,
     y: 5678
-  },
+  };
 
   getCurrentCity() {
     return this.city;
-  },
+  }
+
   getCurrentCountry() {
     return this.country;
   }
-});
+}
 
 module('Integration | Component | location-indicator', function(hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(function(assert) {
-    this.owner.register('service:location-service', locationStub);
+    this.owner.register('service:location-service', LocationStub);
   });
 });
 ```
@@ -353,27 +354,28 @@ import { hbs } from 'ember-cli-htmlbars';
 import Service from '@ember/service';
 
 //Stub location service
-const locationStub = Service.extend({
-  city: 'New York',
-  country: 'USA',
-  currentLocation: {
+class LocationStub extends Service {
+  city = 'New York';
+  country = 'USA';
+  currentLocation = {
     x: 1234,
     y: 5678
-  },
+  };
 
   getCurrentCity() {
     return this.city;
-  },
+  }
+  
   getCurrentCountry() {
     return this.country;
   }
-});
+}
 
 module('Integration | Component | location-indicator', function(hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(function(assert) {
-    this.owner.register('service:location-service', locationStub);
+    this.owner.register('service:location-service', LocationStub);
   });
 
   test('should reveal current location', async function(assert) {
@@ -394,27 +396,28 @@ import { hbs } from 'ember-cli-htmlbars';
 import Service from '@ember/service';
 
 //Stub location service
-const locationStub = Service.extend({
-  city: 'New York',
-  country: 'USA',
-  currentLocation: {
+class LocationStub extends Service {
+  city = 'New York';
+  country = 'USA';
+  currentLocation = {
     x: 1234,
     y: 5678
-  },
+  };
 
   getCurrentCity() {
     return this.city;
-  },
+  }
+  
   getCurrentCountry() {
     return this.country;
   }
-});
+}
 
 module('Integration | Component | location-indicator', function(hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(function(assert) {
-    this.owner.register('service:location-service', locationStub);
+    this.owner.register('service:location-service', LocationStub);
   });
 
   test('should reveal current location', async function(assert) {

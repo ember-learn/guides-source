@@ -8,14 +8,14 @@ datepicker that aren't specific to Ember apps.
 
 ## Addons
 
-Addons are JavaScript packages that integrate with Ember. For example, [`ember-cli-sass`](https://github.com/aexmachina/ember-cli-sass)
+Addons are JavaScript packages that integrate with Ember. For example, [`ember-cli-sass`](https://github.com/adopted-ember-addons/ember-cli-sass)
 is an addon that allows you to use SASS/SCSS in your applications. You can install it using the Ember CLI with the following command:
 
 ```bash
 ember install ember-cli-sass
 ```
 
-This will modify your `package.json` (and `package-lock.json`), typically bringing in other dependencies. Some addons will also add
+This will modify your `package.json` (and `package-lock.json` or `yarn.lock`), typically bringing in other dependencies. Some addons will also add
 additional files to your projects when relevant.
 
 There are many addons that cover all kinds of use cases. For more detail, as well as examples of what addons can do,
@@ -29,8 +29,8 @@ categories, and rated according to objective metrics. If you are looking for an 
 
 While dependencies can be managed in several ways,
 it's worth noting that the process can be greatly simplified for new developers by using ember-auto-import,
-which offers zero config imports from npm packages.
-It's easily installed using `ember install ember-auto-import`.
+which offers zero config imports from npm packages. 
+It's built into new Ember apps by default and can be installed in older apps by using `ember install ember-auto-import`.
 For further usage instructions, please follow the [project README](https://github.com/ef4/ember-auto-import).
 
 ## Other assets
@@ -138,9 +138,9 @@ All assets located in the `public/` folder will be copied as is to the final out
 
 For example, a `favicon` located at `public/images/favicon.ico` will be copied to `dist/images/favicon.ico`.
 
-All third-party assets, included either manually in `vendor/` or via a package manager like npm, must be added via `import()`.
+All third-party assets, included either manually in `vendor/` or via a package manager like npm, must be added via `app.import()`.
 
-Third-party assets that are not added via `import()` will not be present in the final build.
+Third-party assets that are not added via `app.import()` will not be present in the final build.
 
 By default, `import`ed assets will be copied to `dist/` as they are, with the existing directory structure maintained.
 

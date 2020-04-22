@@ -89,7 +89,7 @@ export default class AlbumSerializer extends RESTSerializer {
   normalize(typeHash, hash) {
     hash['songCount'] = hash['song_count']
     delete hash['song_count']
-    return super(typeHash, hash);
+    return super.normalize(typeHash, hash);
   }
 }
 ```
