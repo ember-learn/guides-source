@@ -15,7 +15,53 @@ Consider this format:
 
 Note that the unique page title is first. This is because it is the most important piece of information from a contextual perspective. Since a user with a screen reader can interrupt the screen reader as they wish, it introduces less fatigue when the unique page title is first, but provides the additional guidance if it is desired. 
 
-Until Ember provides this functionality by default, there are a few different Ember addons that will help:
+One simple way to add page titles is to create a `title` helper:
+
+```javascript {data-filename=app/helpers/title.js}
+import Helper from '@ember/component/helper';
+
+export default class Title extends Helper {
+  original = document.title;
+
+  compute([title]) {
+    document.title = title;
+  }
+
+  willDestroy() {
+    document.title = this.original;
+  }
+}
+```
+
+We can use this helper to set the page title at any point in any template.
+
+For example, if we have a “posts” route, we can set the page title for it like so:
+
+
+```handlebars {data-filename=app/routes/posts.hbs}
+{{title "Posts - Site Title"}}
+
+{{outlet}}
+```
+
+Extending the example, if we have a “post” route that lives within the “posts” route, we could set its page title like so:
+
+```handlebars {data-filename=app/routes/posts/post.hbs}
+{{title (concat @model.title " - Site Title")}}
+
+<h1>{{@model.title}}</h1>
+```
+
+This title will take effect when we enter the “post” route, and the line of code in our `willDestroy` hook will take care of restoring the former title when we return to the “posts” route.
+
+This technique is a reasonable first step, but has limitations:
+
+- It doesn't work when the page is rendered server-side with FastBoot.
+- It doesn't provide any conventions for constructing nested page titles.
+- It doesn't automatically apply the site title (though you can imagine how to add that).
+- It may not be absolutely robust if data in your app changes *a lot* (imagine a real time app).
+
+When your needs become more complex, the following addons facilitate page titles in a more dynamic and maintainable way (including FastBoot support):
 
 - [ember-page-title](https://github.com/adopted-ember-addons/ember-page-title)
 - [ember-cli-head](https://github.com/ronco/ember-cli-head)
@@ -23,6 +69,22 @@ Until Ember provides this functionality by default, there are a few different Em
 
 To evaluate more addons to add/manage content in the `<head>` of a page, view this category on [Ember Observer](https://emberobserver.com/categories/header-content).
 
+You can test that page titles are generated correctly by asserting on the value of `document.title` in your tests:
+
+```javascript {data-filename=tests/acceptance/posts-test.js}
+import { module, test } from 'qunit';
+import { visit, currentURL } from '@ember/test-helpers';
+import { setupApplicationTest } from 'ember-qunit';
+
+module('Acceptance | posts', function(hooks) {
+  setupApplicationTest(hooks);
+
+  test('visiting /posts', async function(assert) {
+    await visit('/posts');
+    assert.equal(document.title, 'Posts - Site Title');
+  });
+});
+```
 
 ## Skip Navigation Links
 
@@ -35,7 +97,7 @@ To read more about skip links, visit the [MDN docs](https://developer.mozilla.or
 
 ## Focus Management
 
-No single-page application framework provides the appropriate route-level focus for assistive technology in a default manner. This is primarily due to the way `pushState` works, and the lack of an event hook for JavaScript frameworks to tell assistive technology that the page content has changed. This _also_ means that the focus is unchanged on route navigation, which in some cases means that it would be lost entirely (if the element that previously had focus is now gone). 
+No single-page application framework provides the appropriate route-level focus for assistive technology in a default manner. This is primarily due to the way `pushState` works, and the lack of an event hook for JavaScript frameworks to tell assistive technology that the page content has changed. This *also* means that the focus is unchanged on route navigation, which in some cases means that it would be lost entirely (if the element that previously had focus is now gone). 
 
 Most frameworks have some mechanism for adding the missing functionality to an application. In Ember, there is an attempt to address these two specific shortcomings with [RFC 433](https://github.com/emberjs/rfcs/pull/433); in the meantime there are a few addons that exist to help provide page or view-level focus for your application. All options should be evaluated to determine which is the appropriate use case for your application:
 

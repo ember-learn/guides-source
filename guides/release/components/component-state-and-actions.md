@@ -20,8 +20,8 @@ To make this work, we will need to stop hard coding the number, and we will need
 to wire up the buttons.
 
 ```js {data-filename="app/components/counter.js"}
-import Component from "@glimmer/component";
-import { tracked } from "@glimmer/tracking";
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
 
 export default class CounterComponent extends Component {
   @tracked count = 0;
@@ -69,9 +69,9 @@ the component JavaScript. An action is a JavaScript method that can be used from
 a template.
 
 ```js {data-filename="app/components/counter.js" data-diff="+3,+8,+9,+10,+11,+13,+14,+15,+16"}
-import Component from "@glimmer/component";
-import { tracked } from "@glimmer/tracking";
-import { action } from "@ember/object";
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
 
 export default class CounterComponent extends Component {
   @tracked count = 0;
@@ -101,9 +101,9 @@ First, let's turn our `increment` and `decrement` methods into a single `change`
 method that takes the amount as a parameter.
 
 ```js {data-filename="app/components/counter.js" data-diff="+8,+9,+10,+11,-12,-13,-14,-15,-17,-18,-19,-20"}
-import Component from "@glimmer/component";
-import { tracked } from "@glimmer/tracking";
-import { action } from "@ember/object";
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
 
 export default class CounterComponent extends Component {
   @tracked count = 0;
@@ -171,9 +171,9 @@ Let's start with what we know already. We'll add the `multiple` tracked property
 and an action called `double` that doubles the `multiple`.
 
 ```js {data-filename="app/components/counter.js" data-diff="+7,+9,+10,+11,+12"}
-import Component from "@glimmer/component";
-import { tracked } from "@glimmer/tracking";
-import { action } from "@ember/object";
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
 
 export default class CounterComponent extends Component {
   @tracked count = 0;
@@ -208,9 +208,9 @@ To get the multiplied number into the template, we'll use a
 [JavaScript getter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get).
 
 ```js {data-filename="app/components/counter.js" data-diff="+9,+10,+11"}
-import Component from "@glimmer/component";
-import { tracked } from "@glimmer/tracking";
-import { action } from "@ember/object";
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
 
 export default class CounterComponent extends Component {
   @tracked count = 0;
@@ -291,8 +291,9 @@ let's allow it to be passed in.
 ```
 
 ```js {data-filename="app/components/double-it.js"}
-import Component from "@glimmer/component";
-import { tracked } from "@glimmer/tracking";
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
 
 export default class DoubleItComponent extends Component {
   @tracked multiple = 1;
@@ -327,9 +328,9 @@ We refer to a component's argument from JavaScript by prefixing them with
 In JavaScript, we refer to it as `this.args.multiple`.
 
 ```js {data-filename="app/components/counter.js" data-diff="-7,-10,+11"}
-import Component from "@glimmer/component";
-import { tracked } from "@glimmer/tracking";
-import { action } from "@ember/object";
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
 
 export default class CounterComponent extends Component {
   @tracked count = 0;
@@ -371,9 +372,9 @@ previously, we could using an action passed down via arguments.
 ```
 
 ```js {data-filename="app/components/counter.js" data-diff="+9,+17,+18,+19,+20"}
-import Component from "@glimmer/component";
-import { tracked } from "@glimmer/tracking";
-import { action } from "@ember/object";
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
 
 export default class CounterComponent extends Component {
   @tracked count = 0;
@@ -403,9 +404,9 @@ the multiple.
 ```
 
 ```js {data-filename="app/components/double-it.js"}
-import Component from "@glimmer/component";
-import { tracked } from "@glimmer/tracking";
-import { action } from "@ember/object";
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
 
 export default class DoubleItComponent extends Component {
   @tracked multiple = 1;

@@ -4,11 +4,11 @@ There are two styles of `if`, block and inline:
 
 ```handlebars
 {{#if this.thingIsTrue}}
-   Content for the block form of "if"
+  Content for the block form of "if"
 {{/if}}
 
 <div class={{if this.thingIsTrue "value-if-true" "value-if-false"}}>
-    This div used the inline "if" to calculate the class to use.
+  This div used the inline "if" to calculate the class to use.
 </div>
 ```
 
@@ -59,6 +59,22 @@ part after the `{{#if ...}}` is nested inside of the conditional. Just like HTML
 tags continue until closed (`<div>` continues until `</div>`), the content
 nested inside an `#if` continues until `{{/if}}`.
 
+In our case, if the `@localTime` property exists with truthy value then, the markup (`<span class="local-time">their local time is {{@localTime}}</span>`) will be rendered.
+
+If a value passed to `{{#if}}` evaluates to falsy, the `{{else}}` block
+of that invocation is rendered:
+
+```handlebars
+<h4 class="username">
+  {{@name}}
+  {{#if @localTime}}
+    <span class="local-time">their local time is {{@localTime}}</span>
+  {{else}}
+    Unable to fetch local time!
+  {{/if}}
+</h4>
+```
+
 ## Inline `if`
 
 Sometimes, you need to place conditional content inside an argument or
@@ -89,7 +105,7 @@ is passed in and is truthy.
 <aside ...attributes>
   <div
     class="avatar {{if @isActive "is-active"}}"
-    title="{{@title}}"
+    title={{@title}}
   >
     {{@initial}}
   </div>
@@ -148,3 +164,5 @@ avatar, and omit it from the sent message avatar.
     <img src="/images/mascots/zoey.png" role="presentation" alt="">
   </div>
 </div>
+
+Refer the [API documentation of the `if` helper](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/if?anchor=if) for more patterns.

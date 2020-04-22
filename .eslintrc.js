@@ -52,7 +52,7 @@ module.exports = {
         mocha: true
       },
       parserOptions: {
-        ecmaVersion: 6
+        ecmaVersion: 2018
       },
       rules: {
         "func-names": 0,

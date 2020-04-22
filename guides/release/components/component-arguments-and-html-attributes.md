@@ -39,7 +39,7 @@ the parts of the HTML that are different.
 
 ```handlebars {data-filename="app/components/avatar.hbs"}
 <aside>
-  <div class="avatar" title="{{@title}}">{{@initial}}</div>
+  <div class="avatar" title={{@title}}>{{@initial}}</div>
 </aside>
 ```
 
@@ -109,7 +109,7 @@ specified on the tag.
 
 ```handlebars {data-filename="app/components/avatar.hbs"}
 <aside ...attributes>
-  <div class="avatar" title="{{@title}}">{{@initial}}</div>
+  <div class="avatar" title={{@title}}>{{@initial}}</div>
 </aside>
 ```
 

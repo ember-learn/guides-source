@@ -66,3 +66,12 @@ npm test
 ### Linting and spellchecking
 
 The guides are spellchecked and linted for Markdown consistency. You can test your contributions by running `npm run lint:md`. Linting and spellchecking must pass or they will fail in Travis-CI.  See [CONTRIBUTING.md](CONTRIBUTING.md) for more information on linting and spellchecking.
+
+
+### Internal and external links
+
+Testing of internal and external links can be performed using three commands:
+
+1. `npm run test:node`.  Checks all relative links for all versions of the guides and runs all ither test scripts in the `node-tests` directory, except for those located in the `node-tests/local` sub-directory;
+1. `npm run test:node-local`. Checks all external links in the `guides/release` folder; and
+1. `npm run test:node-local-exclude-api-urls`.  Checks all external links except for links to the [API docs](https://api.emberjs.com).

@@ -9,7 +9,7 @@ For instance, let's take a look at a generic message component from a messaging 
   @title={{@avatarTitle}}
   @initial={{@avatarInitial}}
   @isActive={{@userIsActive}}
-  class="{{if @isCurrentUser "current-user"}}"
+  class={{if @isCurrentUser "current-user"}}
 />
 <section>
   <Message::Username
@@ -26,7 +26,6 @@ For instance, let's take a look at a generic message component from a messaging 
   @username="Tomster"
   @userIsActive={{true}}
   @userLocalTime="4:56pm"
-
   @avatarTitle="Tomster's avatar"
   @avatarInitial="T"
 >
@@ -49,7 +48,7 @@ Since the title is just the `@username` plus some extra stuff, we can replace `@
   @title="{{@username}}'s avatar"
   @initial={{@avatarInitial}}
   @isActive={{@userIsActive}}
-  class="{{if @isCurrentUser "current-user"}}"
+  class={{if @isCurrentUser "current-user"}}
 />
 <section>
   <Message::Username
@@ -73,11 +72,11 @@ To implement the helper, we write a JavaScript function that takes its arguments
 arguments, which we'll discuss next.
 
 ```js {data-filename="app/helpers/substring.js"}
-import { helper } from "@ember/component/helper";
+import { helper } from '@ember/component/helper';
 
 function substring(args) {
-  let [string, start, length] = args;
-  return string.substr(start, length);
+  let [string, start, end] = args;
+  return string.substring(start, end);
 }
 
 export default helper(substring);
@@ -86,12 +85,12 @@ export default helper(substring);
 We can tighten up the implementation by moving the [destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) into the function's signature.
 
 ```js {data-filename="app/helpers/substring.js" data-diff="+3,-4,-5"}
-import { helper } from "@ember/component/helper";
+import { helper } from '@ember/component/helper';
 
-function substring([string, start, length]) {
+function substring([string, start, end]) {
 function substring(args) {
-  let [string, start, length] = args;
-  return string.substr(start, length);
+  let [string, start, end] = args;
+  return string.substring(start, end);
 }
 
 export default helper(substring);
@@ -107,7 +106,7 @@ We can then use this helper in the component's template to get the first letter 
   @initial={{@avatarTitle}}
   @initial={{substring @username 0 1}}
   @isActive={{@userIsActive}}
-  class="{{if @isCurrentUser "current-user"}}"
+  class={{if @isCurrentUser "current-user"}}
 />
 <section>
   <Message::Username
@@ -132,7 +131,7 @@ Using named arguments, we could make our template a lot clearer.
   {{! This won't work yet! We need to update the substring helper }}
   @initial={{substring @username start=0 length=1}}
   @isActive={{@userIsActive}}
-  class="{{if @isCurrentUser "current-user"}}"
+  class={{if @isCurrentUser "current-user"}}
 />
 <section>
   <Message::Username
@@ -147,10 +146,10 @@ Using named arguments, we could make our template a lot clearer.
 In addition to taking _positional arguments_ as an array, helpers take _named arguments_ as a JavaScript object. Here's what that looks like using [destructuring syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Unpacking_fields_from_objects_passed_as_function_parameter).
 
 ```js {data-filename="app/helpers/substring.js"}
-import { helper } from "@ember/component/helper";
+import { helper } from '@ember/component/helper';
 
-function substring([string], { start, length }) {
-  return string.substr(start || 0, length);
+function substring([string], { start, end }) {
+  return string.substring(start || 0, end);
 }
 
 export default helper(substring);
@@ -186,13 +185,13 @@ Helpers can also be defined using class syntax. For instance, we could define
 the substring helper using classes instead.
 
 ```js {data-filename="app/helpers/substring.js" data-diff="-1,+2,-4,+5,+6,+8"}
-import { helper } from "@ember/component/helper";
-import Helper from "@ember/component/helper";
+import { helper } from '@ember/component/helper';
+import Helper from '@ember/component/helper';
 
 function substring([string], { start, length }) {
 export default class Substring extends Helper {
-  compute([string], { start, length }) {
-    return string.substr(start || 0, length);
+  compute([string], { start, end }) {
+    return string.substring(start || 0, end);
   }
 }
 ```

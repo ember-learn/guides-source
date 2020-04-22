@@ -1,4 +1,6 @@
-This guide will teach you how to build a simple app using Ember from scratch.
+Welcome to Ember! Follow this guide to build a simple web app using HTML, JavaScript, the command line, and some of Ember's best features.
+Each step has code you can copy and paste directly or modify to make it your own.
+Along the way, you will be introduced to the Ember community so that you know who to ask for help and how to continue your learning journey.
 
 We'll cover these steps:
 
@@ -28,7 +30,6 @@ Once you've installed Ember CLI via npm,
 you will have access to a new `ember` command in your terminal.
 You can use the `ember new` command to create a new application.
 
-<!-- needs-octane-release-update -->
 ```bash
 ember new ember-quickstart
 ```
@@ -63,7 +64,23 @@ Serving on http://localhost:4200/
 
 Open [`http://localhost:4200`](http://localhost:4200) in your browser of choice.
 You should see an Ember welcome page and not much else.
+
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+        If you are having trouble getting this running, other Ember developers would be happy to help!
+        Visit <a href="https://emberjs.com/community/"> The Ember Community Page</a> to join chat groups or forums.
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
+  </div>
+</div>
+
 Congratulations! You just created and booted your first Ember app.
+
+## Write some HTML in a template
 
 We will start by editing the `application` template.
 This template is always on screen while the user has your application loaded.
@@ -311,7 +328,7 @@ the button in the template.
 
 There is a problem with this though – if you tried this in the browser, you
 will quickly discovered that clicking on the buttons will bring up an alert
-dialog that said "The person's name is `[Object Mousevent]`!" – eek!
+dialog that said "The person's name is `[Object MouseEvent]`!" – eek!
 
 The cause of this bug is that we wrote our action to take an argument – the
 person's name – and we forgot to pass it. The fix is easy enough:
@@ -444,4 +461,31 @@ Once you see "Your site is deployed" as shown above, your website is now live an
 ![View your site on Netlify](/images/quick-guide/netlify/github/github-live.png)
 
 Congratulations! Your site is now live and in production!
-  <!-- eof - needed for pages that end in a code block  -->
+  
+## Next steps
+
+Now that your app is deployed, what should you do next?
+
+### Advance to the next level
+
+There is an official, free tutorial here in the Guides that delves deeper into some of the features you used today.
+[Give it a try!](./tutorial)
+
+### Explore the ecosystem
+
+Now that you have the basics down, are you feeling creative and adventurous?
+The Ember community has created hundreds of addons that you can use for free in your app.
+Addons let you quickly add features like calendars, navbars, payments, authentication, themes, and more.
+Visit [Ember Observer](https://emberobserver.com) to browse the possibilities!
+
+### Style it up
+
+That app we made is a bit plain. Do you know any CSS? Put your styles in `app/styles/app.css`, which is automatically included in your app build.
+
+### Connect with the Ember Community
+
+One thing that makes Ember special is that every app you create has a _lot_ in common with apps that other people have made.
+This means that chances are good that you can connect with other developers who share both your interests and technical challenges.
+Visit the [Ember Community page](https://emberjs.com/community/) to learn about the ways you can get connected. Find a nearby meetup, ask questions, follow a newsletter, and more!
+We hope to see you around!
+
