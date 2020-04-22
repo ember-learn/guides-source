@@ -397,7 +397,7 @@ There is an official, free tutorial here in the Guides that delves deeper into s
 It does not require a high level of knowledge for you to deploy your website to production.
 Netlify offers a free account option and no credit card is required.
 These Guides themselves are hosted on Netlify, while other parts of `emberjs.com` are hosted using Heroku, Fastly, GitHub pages, and AWS.
-Overall, Ember developers have many options for how they deploy their apps! You can learn more about them in the [Deployment tutorial](../tutorial/deploying/#toc_deployment-options).
+Overall, Ember developers have many options for how they deploy their apps! Netlify is just one of the many options you have.
 
 Following these steps will help you get your site up and running in minutes:
 
