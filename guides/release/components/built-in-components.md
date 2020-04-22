@@ -57,7 +57,7 @@ For example, the `aria-labelledby` property is useful for situations like a sear
 <button id="button-search">Search</button>
 ```
 
-Here are some other standard `<input>` attributes that are supported:
+Here are some other standard `<input>` attributes and arguments that are supported:
 
 <table>
   <tr><td><code>readonly</code></td><td><code>required</code></td><td><code>autofocus</code></td></tr>
