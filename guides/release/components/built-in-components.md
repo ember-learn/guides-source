@@ -21,7 +21,23 @@ Will become:
 <label for="site">Ember Question</label>
 <input id="site" type="text" value="How do text fields work?"/>
 ```
-### Naming with aria-label
+### Ways to associate labels and inputs
+
+Every input should be associated with a label. Within HTML, there are several different ways to do this.  In this section, we will show how to apply those strategies for Ember inputs.
+
+You can nest the input inside the label:
+
+<label>
+    Ask a question about Ember:
+    <Input type="text" @value={{this.val}} />
+</label>
+
+You can associate the label using `for` and `id`:
+
+<label for={{this.myUniqueId}}>
+    Ask a question about Ember:
+</label>
+<Input id={{this.myUniqueId}} type="text" @value={{this.val}} />
 
 The `aria-label` property enables developers to name an element with a string that is not visually rendered.
 
