@@ -1,6 +1,5 @@
 const { expect } = require('chai');
 
-
 /**
  * Autogenerate some mocha tests
  */
@@ -13,7 +12,7 @@ const {
   getBadRelativeUrlsForFile,
   getBadLineBreaks,
   getBadImageUrls,
-  getNonRelativeGuidesLinks,
+  getNonRelativeGuidesLinks
 } = require('./helpers');
 
 const paths = walkSync('guides')
@@ -24,7 +23,7 @@ function printBadLinks(badLinks) {
   return inspect(badLinks, { depth: null });
 }
 
-describe('check all links in markdown files', function () {
+describe('check all internal links in markdown files', function () {
   paths.forEach((filepath) => {
     it(`processing ${filepath}`, function () {
       const links = findMarkdownLinks(filepath);
@@ -49,4 +48,3 @@ describe('check all links in markdown files', function () {
     });
   });
 });
-

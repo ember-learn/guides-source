@@ -119,7 +119,7 @@ tom = store.query('user', {
     email: 'tomster@example.com'
   }
 }).then(function(users) {
-  return users.get("firstObject");
+  return users.get('firstObject');
 });
 ```
 

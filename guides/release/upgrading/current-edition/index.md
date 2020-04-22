@@ -94,7 +94,7 @@ By design, migrating to Octane can be done in pieces. It doesn't require a big-b
 2. Run your tests to make sure everything still works as expected.
 3. Run `npx @ember/octanify` to add any missing Octane related dependencies and enable the set of Octane optional features.
 7. Create a new component in your app, and experiment! `ember g component` will give you just a test and a template. Adding `-gc` to the command will generate the JavaScript class too. Try adding a button with an action.
-8. Try refactoring one existing component to use Octane style. Check out the [Cheat Sheet](./cheat-sheet/) and [Editions Deep Dive](./editions/) for some pointers.
+8. Try refactoring one existing component to use Octane style. Check out the [Cheat Sheet](./cheat-sheet/) and [Edition's Deep Dive](../../in-depth-topics/) for some pointers.
 9. Review the refactoring checklist below to create a plan for handling existing code. Note that some steps have codemods available!
 
 If you need help along the way, visit [the Ember Community chat and forums](https://emberjs.com/community/).

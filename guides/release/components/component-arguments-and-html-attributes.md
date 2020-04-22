@@ -109,7 +109,7 @@ specified on the tag.
 
 ```handlebars {data-filename="app/components/avatar.hbs"}
 <aside ...attributes>
-  <div class="avatar" title="{{@title}}">{{@initial}}</div>
+  <div class="avatar" title={{@title}}>{{@initial}}</div>
 </aside>
 ```
 
