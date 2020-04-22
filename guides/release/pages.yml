@@ -246,6 +246,9 @@
     - title: "Managing Dependencies"
       url: "index"
 - title: "Developer Tools"
+  url: "toc-heading_developer-tools"
+  is_heading: true
+- title: "Ember Inspector"
   url: "ember-inspector"
   pages:
     - title: "Introduction"
