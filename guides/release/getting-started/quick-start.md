@@ -395,7 +395,7 @@ Why Netlify?
 It does not require a high level of knowledge for you to deploy your website to production.
 Netlify offers a free account option and no credit card is required.
 These Guides themselves are hosted on Netlify, while other parts of `emberjs.com` are hosted using Heroku, Fastly, GitHub pages, and AWS.
-Overall, Ember developers have many options for how they deploy their apps! You can learn more about them in the [Deployment tutorial](../tutorial/deploying/#toc_deployment-options).
+Overall, Ember developers have many options for how they deploy their apps! Netlify is just one of the many options you have.
 
 Following these steps will help you get your site up and running in minutes:
 
@@ -488,4 +488,3 @@ One thing that makes Ember special is that every app you create has a _lot_ in c
 This means that chances are good that you can connect with other developers who share both your interests and technical challenges.
 Visit the [Ember Community page](https://emberjs.com/community/) to learn about the ways you can get connected. Find a nearby meetup, ask questions, follow a newsletter, and more!
 We hope to see you around!
-
