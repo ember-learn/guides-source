@@ -202,7 +202,12 @@ let person = new Person();
 person.firstName = 'Tom';
 ```
 
-And vice-versa, computed properties used in native getters will autotrack and
+Note, however, that if you want to use a getter as a dependent key, you will
+need to use the [`dependentKeyCompat`](https://api.emberjs.com/ember/release/functions/@ember%2Fobject%2Fcompat/dependentKeyCompat) decorator. This allows you to refactor
+existing computed properties into getters without breaking existing code that
+observes them.
+
+Vice-versa, computed properties used in native getters will autotrack and
 cause the getter to update correctly:
 
 ```js
