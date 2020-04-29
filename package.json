@@ -54,7 +54,7 @@
     "ember-cli-inject-live-reload": "^2.0.2",
     "ember-cli-netlify": "^0.3.1",
     "ember-cli-sri": "^2.1.1",
-    "ember-cli-template-lint": "^1.0.0-beta.3",
+    "ember-template-lint": "^2.6.0",
     "ember-cli-uglify": "^3.0.0",
     "ember-data": "~3.16.0",
     "ember-dictionary": "^0.2.4",
