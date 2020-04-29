@@ -23,7 +23,7 @@ export default class TodoComponent extends Component {
 ```handlebars
 <button {{on "click" (fn this.toggleCompleted true)}}>Complete</button>
 ```
-
+<br>
 ## Benefits of `@action`, `{{on}}`, and `{{fn}}`
 
 `{{action}}` has a number of functions, including:
