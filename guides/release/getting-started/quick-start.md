@@ -136,8 +136,9 @@ Open the newly-created template in `app/templates/scientists.hbs` and add the fo
 ```
 
 In your browser, open [`http://localhost:4200/scientists`](http://localhost:4200/scientists).
-You should see the `<h2>` we put in the `scientists.hbs` template,
-right below the `<h1>` from our `application.hbs` template.
+You should see the `<h2>` we put in the `scientists.hbs` template right below the `<h1>` from our `application.hbs` template.
+
+Since the scientist route is nested under the application route, Ember will render its content inside the application route template's `{{outlet}}` directive.
 
 Now that we've got the `scientists` template rendering,
 let's give it some data to render.
