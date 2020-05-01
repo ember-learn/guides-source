@@ -252,26 +252,6 @@ export default class ApplicationAdapter extends JSONAPIAdapter {
 }
 ```
 
-#### Authoring Adapters
-
-The `defaultSerializer` property can be used to specify the serializer
-that will be used by this adapter. This is only used when a model
-specific serializer or `serializer:application` are not defined.
-
-In an application, it is often easier to specify an
-`serializer:application`. However, if you are the author of a
-community adapter it is important to remember to set this property to
-ensure Ember does the right thing in the case a user of your adapter
-does not specify an `serializer:application`.
-
-```javascript {data-filename=app/adapters/my-custom-adapter.js}
-import JSONAPIAdapter from '@ember-data/adapter/json-api';
-
-export default class MyCustomAdapter extends JSONAPIAdapter {
-  defaultSerializer = '-default';
-}
-```
-
 ## Community Adapters
 
 If none of the built-in Ember Data Adapters work for your backend,
