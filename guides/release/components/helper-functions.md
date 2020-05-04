@@ -317,4 +317,4 @@ In the component's template, you can then use the `person` object:
 Hello, {{@person.firstName}} {{@person.lastName}}
 ```
 
-<!-- eof - needed for pages that end in a code block  -->
+To consult all available built-in helpers, you can check the [template helpers API documentation](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/).
