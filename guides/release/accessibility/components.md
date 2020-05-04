@@ -6,7 +6,7 @@ Browsers have implemented the spec in a way that provides functionality for free
 For example, consider this code sample: 
 
 ```html
-<button>Submit Form</button>
+<button type="submit">Submit Form</button>
 ```
 
 Here is what would be provided by the browser that the developer would otherwise need to provide: 

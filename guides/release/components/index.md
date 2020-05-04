@@ -65,7 +65,7 @@ instance, you can copy the following example HTML for a simple messaging app:
 
   <form>
     <input />
-    <button>
+    <button type="submit">
       Send
     </button>
   </form>
