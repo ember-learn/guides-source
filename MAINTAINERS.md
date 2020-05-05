@@ -34,35 +34,6 @@ It is required that all maintainers use 2FA (two factor authentication). These a
 
 ### Updating the guides search
 
-Currently getting the new version indexed and put in Algolia is a manual step. There is currently work going on to try to make this automatic, see the [tracking issue here](https://github.com/ember-learn/guides-source/issues/487) to follow along with progress.
+Currently getting the new version indexed and put in Algolia is a semi-manual step. There is currently work going on to try to make this automatic, see the [tracking issue here](https://github.com/ember-learn/guides-source/issues/487) to follow along with progress.
 
-Before we get started you need to login to the Algolia dashboard to get the API key. You login, click `API Keys` and then copy `Write API Key`. Once you have it you need to create the file `config/credentials.json` with the following content: 
-
-```json
-{
-  "algoliaKey": "<algolia-key>",
-  "algoliaIndex": "ember-guides",
-  "algoliaApplication": "Y1OMR4C7MF"
-}
-```
-
-Next let's make sure that you have pulled the latest changes after the new version PR has been merged into master
-
-```
-git checkout master
-git pull
-```
-
-Next, make sure that you don't have any local changes using `git stash` because we're going to be a bit destructive (temporarily)
-
-1. Delete all guides folders apart from `release` i.e. everything that starts with a `v`
-  - cd guides
-  - rm -rf v*
-2. Open versions.yml and delete everything in `allVersions` apart from the latest version (that has just been released) 
-3. Make sure `config/credentials.json` is in place as described above
-  - you may have accidentally deleted this since last time as it is supposed to be ignored by git
-4. Open `config/deploy.js` and delete the `versionsToIgnore` line in the `prember-algolia` config
-5. run `ember deploy production`
-6. This should now be done, you can fix your local repo by running `git reset --hard HEAD`
-7. Before you walk away, you should check the guides app in production and see if you can search for something on the latest version
-8. Party some more 🎉and let the rest of the team know that the updates have been made.  
+To proceed, run `yarn run release:search` and you will be presented with instructions.
