@@ -10,8 +10,8 @@ First, let's start with the HTML.
 ```handlebars {data-filename="app/components/counter.hbs"}
 <p>0</p>
 
-<button>+1</button>
-<button>-1</button>
+<button type="button">+1</button>
+<button type="button">-1</button>
 ```
 
 ## Tracked Properties
@@ -36,8 +36,8 @@ you can stick inside of the template instead of hard coding it.
 <p>0</p>
 <p>{{this.count}}</p>
 
-<button>+1</button>
-<button>-1</button>
+<button type="button">+1</button>
+<button type="button">-1</button>
 ```
 
 When we use `{{this.count}}` in the component template, we're referring to a
@@ -58,10 +58,10 @@ modifiers are an Ember syntax that allow us to attach logic to a tag.
 ```handlebars {data-filename="app/components/counter.hbs" data-diff="-3,+4,-5,+6"}
 <p>{{this.count}}</p>
 
-<button>+1</button>
-<button {{on "click" this.increment}}>+1</button>
-<button>-1</button>
-<button {{on "click" this.decrement}}>-1</button>
+<button type="button">+1</button>
+<button type="button" {{on "click" this.increment}}>+1</button>
+<button type="button">-1</button>
+<button type="button" {{on "click" this.decrement}}>-1</button>
 ```
 
 To make those event handlers do something, we will need to define _actions_ in
@@ -131,10 +131,10 @@ helper.
 ```handlebars {data-filename="app/components/counter.hbs" data-diff="-3,+4,-5,+6"}
 <p>{{this.count}}</p>
 
-<button {{on "click" this.increment}}>+1</button>
-<button {{on "click" (fn this.change 1)}}>+1</button>
-<button {{on "click" this.decrement}}>-1</button>
-<button {{on "click" (fn this.change -1)}}>-1</button>
+<button type="button" {{on "click" this.increment}}>+1</button>
+<button type="button" {{on "click" (fn this.change 1)}}>+1</button>
+<button type="button" {{on "click" this.decrement}}>-1</button>
+<button type="button" {{on "click" (fn this.change -1)}}>-1</button>
 ```
 
 <div class="cta">
@@ -198,10 +198,10 @@ Then, we'll update the template to call the `double` action. We'll also add
 <p>{{this.count}}</p>
 <p>× {{this.multiple}}</p>
 
-<button {{on "click" (fn this.change 1)}}>+1</button>
-<button {{on "click" (fn this.change -1)}}>-1</button>
+<button type="button" {{on "click" (fn this.change 1)}}>+1</button>
+<button type="button" {{on "click" (fn this.change -1)}}>-1</button>
 
-<button {{on "click" this.double}}>Double It</button>
+<button type="button" {{on "click" this.double}}>Double It</button>
 ```
 
 To get the multiplied number into the template, we'll use a
@@ -243,10 +243,10 @@ We can now update the template to use the `total` property:
 <p>× {{this.multiple}}</p>
 <p>= {{this.total}}</p>
 
-<button {{on "click" (fn this.change 1)}}>+1</button>
-<button {{on "click" (fn this.change -1)}}>-1</button>
+<button type="button" {{on "click" (fn this.change 1)}}>+1</button>
+<button type="button" {{on "click" (fn this.change -1)}}>-1</button>
 
-<button {{on "click" this.double}}>Double It</button>
+<button type="button" {{on "click" this.double}}>Double It</button>
 ```
 
 And we're all done! If we try to click the plus, minus, or double buttons in any
@@ -287,7 +287,7 @@ let's allow it to be passed in.
 ```handlebars {data-filename="app/components/double-it.hbs"}
 <Counter @multiple={{this.multiple}} />
 
-<button {{on "click" this.double}}>Double It</button>
+<button type="button" {{on "click" this.double}}>Double It</button>
 ```
 
 ```js {data-filename="app/components/double-it.js"}
@@ -314,8 +314,8 @@ take it as an argument. In the template, we refer to the argument as
 <p>× {{@multiple}}</p>
 <p>= {{this.total}}</p>
 
-<button {{on "click" (fn this.change 1)}}>+1</button>
-<button {{on "click" (fn this.change -1)}}>-1</button>
+<button type="button" {{on "click" (fn this.change 1)}}>+1</button>
+<button type="button" {{on "click" (fn this.change -1)}}>-1</button>
 ```
 
 In templates, we refer to arguments by prefixing them with the `@` sign (in this
@@ -365,10 +365,10 @@ previously, we could using an action passed down via arguments.
 <p>× {{@multiple}}</p>
 <p>= {{this.total}}</p>
 
-<button {{on "click" (fn this.change 1)}}>+1</button>
-<button {{on "click" (fn this.change -1)}}>-1</button>
+<button type="button" {{on "click" (fn this.change 1)}}>+1</button>
+<button type="button" {{on "click" (fn this.change -1)}}>-1</button>
 
-<button {{on "click" this.double}}>Double It</button>
+<button type="button" {{on "click" this.double}}>Double It</button>
 ```
 
 ```js {data-filename="app/components/counter.js" data-diff="+9,+17,+18,+19,+20"}
