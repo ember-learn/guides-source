@@ -311,8 +311,3 @@
       url: "index"
     - title: "Repositories"
       url: "repositories"
-- title: "Glossary"
-  url: "glossary"
-  pages:
-    - title: "Web Development"
-      url: "index"
