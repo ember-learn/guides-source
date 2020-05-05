@@ -319,7 +319,7 @@ the component's template and wire everything up:
   {{#each @people as |person|}}
     <li>
       <button type="button">{{person}}</button>
-      <button type="button"> {{on 'click' this.showPerson}}>{{person}}</button>
+      <button type="button" {{on 'click' this.showPerson}}>{{person}}</button>
     </li>
   {{/each}}
 </ul>
@@ -341,8 +341,8 @@ person's name – and we forgot to pass it. The fix is easy enough:
 <ul>
   {{#each @people as |person|}}
     <li>
-      <button type="button"> {{on 'click' this.showPerson}}>{{person}}</button>
-      <button type="button"> {{on 'click' (fn this.showPerson person)}}>{{person}}</button>
+      <button type="button" {{on 'click' this.showPerson}}>{{person}}</button>
+      <button type="button" {{on 'click' (fn this.showPerson person)}}>{{person}}</button>
     </li>
   {{/each}}
 </ul>

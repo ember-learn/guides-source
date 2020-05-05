@@ -190,7 +190,7 @@ export default class CounterComponent extends Component {
 ```handlebars {data-filename="app/components/counter.hbs"}
 <p>{{this.count}}</p>
 
-<button type="button"> {{on "click" this.increment}}>+</button>
+<button type="button" {{on "click" this.increment}}>+</button>
 ```
 
 <div class="cta">
@@ -327,7 +327,7 @@ Next, let's add an event handler to the `Play` button:
 <audio src={{@srcURL}} />
 
 <button type="button">Play</button>
-<button type="button"> {{on "click" this.play}}>Play</button>
+<button type="button" {{on "click" this.play}}>Play</button>
 <button type="button">Pause</button>
 ```
 
@@ -355,7 +355,7 @@ In this case, we'll assign the `<audio>` element to the `audioElement` property 
 <audio src={{@srcURL}} />
 <audio src={{@srcURL}} {{ref this "audioElement"}} />
 
-<button type="button"> {{on "click" this.play}}>Play</button>
+<button type="button" {{on "click" this.play}}>Play</button>
 <button type="button">Pause</button>
 ```
 
