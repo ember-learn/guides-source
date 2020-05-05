@@ -28,7 +28,10 @@
     "start": "ember serve",
     "test": "npm run test:node && npm run test:ember",
     "test:ember": "percy exec -- ember test",
-    "test:node": "mocha node-tests"
+    "test:node": "mocha node-tests --exclude node-tests/local/**",
+    "test:node-local": "mocha node-tests/local",
+    "test:node-local-exclude-api-urls": "FOLLOW_API_URLS=false npm run test:node-local",
+    "release:search": "scripts/update-search-index"
   },
   "devDependencies": {
     "@ember/optional-features": "^1.3.0",
