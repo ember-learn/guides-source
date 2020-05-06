@@ -190,7 +190,7 @@ export default class CounterComponent extends Component {
 ```handlebars {data-filename="app/components/counter.hbs"}
 <p>{{this.count}}</p>
 
-<button {{on "click" this.increment}}>+</button>
+<button type="button" {{on "click" this.increment}}>+</button>
 ```
 
 <div class="cta">
@@ -317,8 +317,8 @@ Let's start with the HTML we're working with:
 ```handlebars {data-filename="app/components/audio-player.hbs"}
 <audio src={{@srcURL}} />
 
-<button>Play</button>
-<button>Pause</button>
+<button type="button">Play</button>
+<button type="button">Pause</button>
 ```
 
 Next, let's add an event handler to the `Play` button:
@@ -326,9 +326,9 @@ Next, let's add an event handler to the `Play` button:
 ```handlebars {data-filename="app/components/audio-player.hbs" data-diff="-3,+4"}
 <audio src={{@srcURL}} />
 
-<button>Play</button>
-<button {{on "click" this.play}}>Play</button>
-<button>Pause</button>
+<button type="button">Play</button>
+<button type="button" {{on "click" this.play}}>Play</button>
+<button type="button">Pause</button>
 ```
 
 ```js {data-filename="app/components/audio-player.js"}
@@ -355,8 +355,8 @@ In this case, we'll assign the `<audio>` element to the `audioElement` property 
 <audio src={{@srcURL}} />
 <audio src={{@srcURL}} {{ref this "audioElement"}} />
 
-<button {{on "click" this.play}}>Play</button>
-<button>Pause</button>
+<button type="button" {{on "click" this.play}}>Play</button>
+<button type="button">Pause</button>
 ```
 
 Now, the component can access the audio element in the `play` method:

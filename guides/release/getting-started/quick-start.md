@@ -269,7 +269,7 @@ First, we can modify the `PeopleList` component to include a button:
 <ul>
   {{#each @people as |person|}}
     <li>
-      <button>{{person}}</button>
+      <button type="button">{{person}}</button>
     </li>
   {{/each}}
 </ul>
@@ -317,8 +317,8 @@ the component's template and wire everything up:
 <ul>
   {{#each @people as |person|}}
     <li>
-      <button>{{person}}</button>
-      <button {{on 'click' this.showPerson}}>{{person}}</button>
+      <button type="button">{{person}}</button>
+      <button type="button" {{on 'click' this.showPerson}}>{{person}}</button>
     </li>
   {{/each}}
 </ul>
@@ -340,8 +340,8 @@ person's name – and we forgot to pass it. The fix is easy enough:
 <ul>
   {{#each @people as |person|}}
     <li>
-      <button {{on 'click' this.showPerson}}>{{person}}</button>
-      <button {{on 'click' (fn this.showPerson person)}}>{{person}}</button>
+      <button type="button" {{on 'click' this.showPerson}}>{{person}}</button>
+      <button type="button" {{on 'click' (fn this.showPerson person)}}>{{person}}</button>
     </li>
   {{/each}}
 </ul>

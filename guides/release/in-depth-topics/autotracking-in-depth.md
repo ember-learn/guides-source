@@ -262,7 +262,7 @@ export default class ApplicationController extends Controller {
 ```handlebars {data-filename=app/templates/application.hbs}
 {{@model.fullName}}
 
-<button {{on "click" (fn this.updateName 'Krati' 'Ahuja')}}>
+<button type="button" {{on "click" (fn this.updateName 'Krati' 'Ahuja')}}>
   Update Name
 </button>
 ```
