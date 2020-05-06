@@ -22,6 +22,7 @@
   },
   "scripts": {
     "build": "ember build --environment=production",
+    "build:prebuilt": "node ./scripts/update-prebuild.mjs",
     "lint": "npm-run-all --aggregate-output --continue-on-error --parallel \"lint:!(fix)\"",
     "lint:fix": "npm-run-all --aggregate-output --continue-on-error --parallel lint:*:fix",
     "lint:hbs": "ember-template-lint .",
@@ -49,6 +50,7 @@
     "babel-eslint": "^10.1.0",
     "broccoli-asset-rev": "^3.0.0",
     "chai": "^4.3.4",
+    "compare-versions": "^6.0.0-rc.2",
     "ember-auto-import": "^2.6.1",
     "ember-cli": "~3.28.6",
     "ember-cli-app-version": "^5.0.0",
@@ -108,6 +110,7 @@
     "retext-repeated-words": "^3.0.0",
     "retext-spell": "^4.0.0",
     "retext-syntax-urls": "^2.0.0",
+    "shelljs": "^0.8.5",
     "unified": "^9.2.1",
     "walk-sync": "^2.0.2"
   },
