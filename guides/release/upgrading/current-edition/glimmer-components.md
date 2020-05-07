@@ -136,7 +136,7 @@ after examples of each API, converted from classic components:
   ```
 
   ```handlebars
-    <button {{on "click" this.sayHello}}>
+    <button type="button" {{on "click" this.sayHello}}>
       {{this.text}}
     </button>
   ```
@@ -310,7 +310,7 @@ throw an error if someone tries to use attributes when invoking your component:
 
 ```handlebars
 {{!-- components/uncustomizable-button.hbs --}}
-<button class="btn">Do a thing!</button>
+<button type="button" class="btn">Do a thing!</button>
 ```
 
 ```handlebars
@@ -481,7 +481,7 @@ export default Component.extend({
 
 ```handlebars
 {{!-- templates/components/child.hbs --}}
-<button>
+<button type="button">
   Change value
 </button>
 ```
@@ -525,7 +525,7 @@ export default class ChildComponent extends Component {}
 
 ```handlebars
 {{!-- templates/components/child.hbs --}}
-<button {{on "click" (fn @onClick 'Hello, moon!')}}>
+<button type="button" {{on "click" (fn @onClick 'Hello, moon!')}}>
   Change value
 </button>
 ```
@@ -660,7 +660,7 @@ export default class FormComponent extends Component {
   @disabled={{this.disabled}}
   @onChange={{this.updateText}}
 />
-<button {{on "click" (fn this.updateDisabled (not this.disabled))}}>
+<button type="button" {{on "click" (fn this.updateDisabled (not this.disabled))}}>
   Toggle Disabled
 </button>
 ```
