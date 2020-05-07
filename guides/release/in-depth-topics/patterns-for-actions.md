@@ -17,10 +17,10 @@ normal component definition, like we've seen before:
 
 {{#if this.isConfirming}}
   <div class="confirm-dialog">
-    <button type="button" class="confirm-submit">
+    <button type="submit" class="confirm-submit">
       OK
     </button>
-    <button type="button" class="confirm-cancel">
+    <button type="submit" class="confirm-cancel">
       Cancel
     </button>
   </div>
