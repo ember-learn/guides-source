@@ -134,7 +134,7 @@ Note `cart` being used below to get data from the cart.
   {{#each this.cart.items as |item|}}
     <li>
       {{item.name}}
-      <button {{on "click" (fn this.remove item)}}>Remove</button>
+      <button type="button" {{on "click" (fn this.remove item)}}>Remove</button>
     </li>
   {{/each}}
 </ul>

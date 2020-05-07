@@ -13,14 +13,14 @@ We'll call this the `ButtonWithConfirmation` component. We can start off with a
 normal component definition, like we've seen before:
 
 ```handlebars {data-filename=app/components/button-with-confirmation.hbs}
-<button>{{@text}}</button>
+<button type="button">{{@text}}</button>
 
 {{#if this.isConfirming}}
   <div class="confirm-dialog">
-    <button class="confirm-submit">
+    <button type="button" class="confirm-submit">
       OK
     </button>
-    <button class="confirm-cancel">
+    <button type="button" class="confirm-cancel">
       Cancel
     </button>
   </div>
@@ -63,16 +63,16 @@ export default class ButtonWithConfirmationComponent extends Component {
 ```
 
 ```handlebars
-<button {{on "click" this.launchConfirmationDialog}}>
+<button type="submit" {{on "click" this.launchConfirmationDialog}}>
   {{@text}}
 </button>
 
 {{#if this.isConfirming}}
   <div class="confirm-dialog">
-    <button class="confirm-submit">
+    <button type="submit" class="confirm-submit">
       OK
     </button>
-    <button class="confirm-cancel">
+    <button type="submit" class="confirm-cancel">
       Cancel
     </button>
   </div>
@@ -109,19 +109,19 @@ export default class ButtonWithConfirmationComponent extends Component {
 ```
 
 ```handlebars
-<button {{on "click" this.launchConfirmationDialog}}>
+<button type="submit" {{on "click" this.launchConfirmationDialog}}>
   {{@text}}
 </button>
 
 {{#if this.isConfirming}}
   <div class="confirm-dialog">
-    <button
+    <button type="submit"
       class="confirm-submit"
       {{on "click" this.submitConfirm}}
     >
       OK
     </button>
-    <button
+    <button type="submit"
       class="confirm-cancel"
       {{on "click" this.cancelConfirm}}
     >
@@ -368,7 +368,7 @@ be used in block form and we will pass `confirmValue` as a
 element:
 
 ```handlebars {data-filename=app/components/button-with-confirmation.hbs}
-<button {{on "click" this.launchConfirmDialog}}>
+<button type="button" {{on "click" this.launchConfirmDialog}}>
   {{this.text}}
 </button>
 
@@ -376,13 +376,13 @@ element:
   <div class="confirm-dialog">
     {{yield this.confirmValue}}
 
-    <button
+    <button type="submit"
       class="confirm-submit"
       {{on "click" this.submitConfirm}}
     >
       OK
     </button>
-    <button
+    <button type="submit"
       class="confirm-cancel"
       {{on "click" this.cancelConfirm}}
     >
