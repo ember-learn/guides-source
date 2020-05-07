@@ -17,10 +17,10 @@ normal component definition, like we've seen before:
 
 {{#if this.isConfirming}}
   <div class="confirm-dialog">
-    <button type="submit" class="confirm-submit">
+    <button type="button" class="confirm-submit">
       OK
     </button>
-    <button type="submit" class="confirm-cancel">
+    <button type="button" class="confirm-cancel">
       Cancel
     </button>
   </div>
@@ -63,16 +63,16 @@ export default class ButtonWithConfirmationComponent extends Component {
 ```
 
 ```handlebars
-<button type="submit" {{on "click" this.launchConfirmationDialog}}>
+<button type="button" {{on "click" this.launchConfirmationDialog}}>
   {{@text}}
 </button>
 
 {{#if this.isConfirming}}
   <div class="confirm-dialog">
-    <button type="submit" class="confirm-submit">
+    <button type="button" class="confirm-submit">
       OK
     </button>
-    <button type="submit" class="confirm-cancel">
+    <button type="button" class="confirm-cancel">
       Cancel
     </button>
   </div>
@@ -109,19 +109,21 @@ export default class ButtonWithConfirmationComponent extends Component {
 ```
 
 ```handlebars
-<button type="submit" {{on "click" this.launchConfirmationDialog}}>
+<button type="button" {{on "click" this.launchConfirmationDialog}}>
   {{@text}}
 </button>
 
 {{#if this.isConfirming}}
   <div class="confirm-dialog">
-    <button type="submit"
+    <button
+      type="button"
       class="confirm-submit"
       {{on "click" this.submitConfirm}}
     >
       OK
     </button>
-    <button type="submit"
+    <button
+      type="submit"
       class="confirm-cancel"
       {{on "click" this.cancelConfirm}}
     >
@@ -376,13 +378,13 @@ element:
   <div class="confirm-dialog">
     {{yield this.confirmValue}}
 
-    <button type="submit"
+    <button type="button"
       class="confirm-submit"
       {{on "click" this.submitConfirm}}
     >
       OK
     </button>
-    <button type="submit"
+    <button type="button"
       class="confirm-cancel"
       {{on "click" this.cancelConfirm}}
     >
