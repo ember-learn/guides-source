@@ -21,7 +21,7 @@ export default class TodoComponent extends Component {
 ```
 
 ```handlebars
-<button {{on "click" (fn this.toggleCompleted true)}}>Complete</button>
+<button type="button" {{on "click" (fn this.toggleCompleted true)}}>Complete</button>
 ```
 
 ## Benefits of `@action`, `{{on}}`, and `{{fn}}`
@@ -40,7 +40,7 @@ export default class TodoComponent extends Component {
 * Adding event handlers to elements (when used as a modifier):
 
   ```handlebars
-    <button {{action 'sayHello'}}>Say Hello!</button>
+    <button type="button" {{action 'sayHello'}}>Say Hello!</button>
   ```
 
 The new APIs split each of these pieces of functionality out into one clearly
@@ -95,13 +95,13 @@ action directly in templates, instead of using strings.
 Before:
 
 ```handlebars
-<button {{action "doSomething"}}>Click Me!</button>
+<button type="button" {{action "doSomething"}}>Click Me!</button>
 ```
 
 After:
 
 ```handlebars
-<button {{on "click" this.doSomething}}>Click Me!</button>
+<button type="button" {{on "click" this.doSomething}}>Click Me!</button>
 ```
 
 The decorator _is_ important, as it binds the action directly to the class so it
@@ -113,7 +113,7 @@ The API for `{{on}}` is the same as JavaScript's native [`addEventListener`](htt
 callback function as the second argument:
 
 ```handlebars
-<button {{on "click" this.handleClick}}>Click Me!</button>
+<button type="button" {{on "click" this.handleClick}}>Click Me!</button>
 ```
 
 The event can be _any_ event name, not just the `click` event, which makes
@@ -149,19 +149,19 @@ This is a replacement for `{{action}}` when it is used as a modifier:
 
 ```handlebars
 <!-- Before -->
-<button {{action 'handleClick'}}>Click Me!</button>
-<button {{action 'handleDoubleClick' on="doubleClick"}}>Double Click Me!</button>
+<button type="button" {{action 'handleClick'}}>Click Me!</button>
+<button type="button" {{action 'handleDoubleClick' on="doubleClick"}}>Double Click Me!</button>
 
 <!-- After -->
-<button {{on "click" this.handleClick}}>Click Me!</button>
-<button {{on "dblclick" this.handleDoubleClick}}>Double Click Me!</button>
+<button type="button" {{on "click" this.handleClick}}>Click Me!</button>
+<button type="button" {{on "dblclick" this.handleDoubleClick}}>Double Click Me!</button>
 ```
 
 You can also pass additional options such as `passive` and `once` as named
 parameters to the modifier:
 
 ```handlebars
-<button {{on "click" this.handleClick passive=true}}>Click Me!</button>
+<button type="button" {{on "click" this.handleClick passive=true}}>Click Me!</button>
 ```
 
 If you ever used the `value` parameter of `{{action}}`, there is no direct
@@ -204,7 +204,7 @@ a new function that combines. This allows you to pass parameters along to
 functions in your templates:
 
 ```handlebars
-<button {{on "click" (fn this.handleClick 123)}}>Click Me!</button>
+<button type="button" {{on "click" (fn this.handleClick 123)}}>Click Me!</button>
 ```
 
 ```javascript
@@ -224,11 +224,11 @@ helper:
 
 ```handlebars
 <!-- Before -->
-<button {{action 'handleClick' 123}}>Click Me!</button>
+<button type="button" {{action 'handleClick' 123}}>Click Me!</button>
 <MyComponent @onClick={{action 'handleClick' 123}} />
 
 <!-- After -->
-<button {{on "click" (fn this.handleClick 123)}}>Click Me!</button>
+<button type="button" {{on "click" (fn this.handleClick 123)}}>Click Me!</button>
 <MyComponent @onClick={{fn this.handleClick 123}} />
 ```
 
