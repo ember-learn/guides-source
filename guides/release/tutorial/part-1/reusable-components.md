@@ -103,7 +103,7 @@ You can stop the server by finding the terminal window where `ember server` is r
 
 ```shell
 $ ember server
-building... 
+building...
 
 Build successful (13286ms) – Serving on http://localhost:4200/
 ```
@@ -492,7 +492,7 @@ module('Integration | Component | map', function(hooks) {
       lng: -122.3321,
     });
 
-    assert.ok(img.src.includes('-122.3321,47.6062'), 'the src should include the lng,lat,zoom parameter');
+    assert.ok(img.src.includes('-122.3321,47.6062,12'), 'the src should include the lng,lat,zoom parameter');
     assert.ok(img.src.includes('300x200@2x'), 'the src should include the width,height and @2x parameter');
   });
 
