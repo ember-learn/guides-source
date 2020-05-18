@@ -216,8 +216,8 @@ add an action for creating the new message. We'll add this to the
 We're using the `submit` event on the form itself here rather than adding a
 `click` event handler to the button since it is about submitting the form as a
 whole. We also updated the `input` tag to instead use the built in `<Input>`
-component, which automatically updates the value we pass to `@value`. Next, lets
-add the component class:
+component, which automatically updates the value we pass to `@value`. Next,
+let's add the component class:
 
 ```javascript {data-filename="app/components/new-message-input.js"}
 import Component from '@glimmer/component';
