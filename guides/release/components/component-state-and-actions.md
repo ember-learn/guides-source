@@ -2,7 +2,7 @@ While you can accomplish a lot in Ember using HTML templating, you'll need
 JavaScript to make your application interactive.
 
 Let's start with a small example, a counter component. When the user presses
-the `+` button, the count will increase by 1. When the user presses the `-`
+the `+1` button, the count will increase by 1. When the user presses the `-1`
 button, the count will decrease by 1.
 
 First, let's start with the HTML.
