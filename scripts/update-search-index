@@ -1,0 +1,70 @@
+#!/bin/bash
+
+echo "Welcome to the guided process of updating the Guides search index"
+echo "We will now be running a mix of automated (🤖) and manual (👩‍💻) steps, please read the prompts carefully."
+
+STARTING_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+TEMP_BRANCH="update-search-index-$(( $RANDOM % 1000 ))"
+
+echo
+echo "🤖 Staging local changes"
+git add .
+git stash push -m $TEMP_BRANCH
+echo "  DONE"
+
+echo
+echo "🤖 Updating master branch from remote"
+read -p "Remote name (origin): " REMOTE
+REMOTE_NAME=${REMOTE:-origin}
+git fetch $REMOTE_NAME master
+git checkout FETCH_HEAD -b $TEMP_BRANCH
+
+echo
+echo "🤖 Removing guides."
+rm -rf ./guides/v?.*
+echo "  DONE"
+
+echo
+echo "👩‍💻 Go to https://www.algolia.com/apps/Y1OMR4C7MF/api-keys/all"
+read -sp "Algolia Write API Key: " write_api_key
+
+echo
+echo "🤖 Writing ./config/credentials.json"
+cat > ./config/credentials.json <<- EOF
+{
+  "algoliaKey": "$write_api_key",
+  "algoliaIndex": "ember-guides",
+  "algoliaApplication": "Y1OMR4C7MF"
+}
+EOF
+echo "  DONE"
+
+echo
+echo "🤖 Pruning allVersions in ./guides/versions.yml"
+CURRENT_VERSION=v$(cat ./guides/versions.yml | grep 'currentVersion' | grep -Eo "\d+.\d+.\d+")
+VERSIONS_TAIL=$(cat ./guides/versions.yml | sed -n -e '/currentVersion/,$p')
+cat > ./guides/versions.yml <<- EOF
+allVersions:
+  - "$CURRENT_VERSION"
+$VERSIONS_TAIL
+EOF
+echo "  DONE"
+
+echo
+echo "🤖 Deleting versionsToIgnore in ./config/deploy.js"
+sed -i '.bak' '/versionsToIgnore*/d' ./config/deploy.js
+rm ./config/deploy.js.bak
+echo "  DONE"
+
+echo
+echo "🤖 Deploying"
+ember deploy production
+echo "  DONE"
+
+echo
+echo "🤖 Restoring previous branch."
+git reset --hard
+git switch $STARTING_BRANCH
+git stash list | grep $TEMP_BRANCH | grep -Eo '^[^:]+' | git stash pop -
+git branch -D $TEMP_BRANCH
+git stash pop "$(git stash list | grep $TEMP_BRANCH | grep -Eo '^[^:]+')"
