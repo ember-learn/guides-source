@@ -53,7 +53,7 @@ ember serve
 
 Visit [http://localhost:4200](http://localhost:4200)
 
-Note: If you get an error on Mac OSX mentioning `"Error: EMFILE: too many open files, watch"`, try installing Watchman. Install [Homebrew](https://brew.sh/) if you don't have it. Then in you terminal `brew install watchman`.
+Note: If you get an error on macOS mentioning `"Error: EMFILE: too many open files, watch"`, try installing Watchman. Install [Homebrew](https://brew.sh/) if you don't have it. Then in you terminal `brew install watchman`.
 
 ## Running tests
 
