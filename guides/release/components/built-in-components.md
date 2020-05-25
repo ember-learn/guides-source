@@ -49,7 +49,7 @@ While it is more appropriate to use a `<label>` element, the `aria-label` attrib
 
 ### Setting attributes on Input
 
-Just like a native `<input>` element, there are many different types of attributes that you can apply to Ember's `<Input />` component, such as `aria` attributes or `required`. 
+Just like a native `<input>` element, there are many different types of attributes that you can apply to Ember's `<Input />` component, such as the `aria-*` attributes or `required`. 
 For example, the `aria-labelledby` property is useful for situations like a search input, where the search button can serve as the label for the input element:
 
 ```handlebars
