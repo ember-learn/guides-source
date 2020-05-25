@@ -39,7 +39,7 @@ You can associate the label using `for` and `id`:
 </label>
 <Input id={{this.myUniqueId}} type="text" @value={{this.val}} />
 
-The `aria-label` property enables developers to name an element with a string that is not visually rendered.
+The `aria-label` attribute enables developers to label an input element with a string that is not visually rendered, but still available to assistive technology. 
 
 ```handlebars
 <Input id="site" @value="How do text fields work?" aria-label="Ember Question"/>
