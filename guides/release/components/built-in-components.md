@@ -45,7 +45,7 @@ The `aria-label` attribute enables developers to label an input element with a s
 <Input id="site" @value="How do text fields work?" aria-label="Ember Question"/>
 ```
 
-The `aria-label` property is useful when there is no visible text content that will serve as an appropriate accessible name. 
+While it is more appropriate to use a `<label>` element, the `aria-label` attribute can be used in instances where visible text content is not possible.
 
 ### Setting attributes on Input
 
