@@ -1,7 +1,7 @@
 ---
 language: node_js
 node_js:
-  - '12.6.1'
+  - 'v12.6.1'
 
 dist: xenial
 
