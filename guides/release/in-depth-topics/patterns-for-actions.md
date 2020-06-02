@@ -63,7 +63,7 @@ export default class ButtonWithConfirmationComponent extends Component {
 ```
 
 ```handlebars
-<button type="button" {{on "click" this.launchConfirmationDialog}}>
+<button type="button" {{on "click" this.launchConfirmDialog}}>
   {{@text}}
 </button>
 
@@ -109,7 +109,7 @@ export default class ButtonWithConfirmationComponent extends Component {
 ```
 
 ```handlebars
-<button type="button" {{on "click" this.launchConfirmationDialog}}>
+<button type="button" {{on "click" this.launchConfirmDialog}}>
   {{@text}}
 </button>
 
