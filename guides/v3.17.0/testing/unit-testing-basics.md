@@ -39,7 +39,7 @@ module('Unit | Service | some thing', function(hooks) {
 
   test('should correctly concat foo', function(assert) {
     const someThing = this.owner.lookup('service:some-thing');
-    someThing.foo = baz;
+    someThing.foo = 'baz';
 
     assert.equal(someThing.computedFoo, 'computed baz');
   });
