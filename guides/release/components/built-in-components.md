@@ -27,17 +27,21 @@ Every input should be associated with a label. Within HTML, there are several di
 
 You can nest the input inside the label:
 
+```handlebars
 <label>
     Ask a question about Ember:
     <Input type="text" @value={{this.val}} />
 </label>
+```
 
 You can associate the label using `for` and `id`:
 
+```handlebars
 <label for={{this.myUniqueId}}>
     Ask a question about Ember:
 </label>
 <Input id={{this.myUniqueId}} type="text" @value={{this.val}} />
+```
 
 The `aria-label` attribute enables developers to label an input element with a string that is not visually rendered, but still available to assistive technology. 
 
