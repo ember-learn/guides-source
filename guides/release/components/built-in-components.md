@@ -58,7 +58,7 @@ For example, the `aria-labelledby` property is useful for situations like a sear
 
 ```handlebars
 <Input aria-labelledby="button-search" />
-<button id="button-search">Search</button>
+<button id="button-search" type="button">Search</button>
 ```
 
 Here are some other standard `<input>` attributes and arguments that are supported:
