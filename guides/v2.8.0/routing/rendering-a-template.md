@@ -33,5 +33,5 @@ export default Ember.Route.extend({
 You can override the [`renderTemplate()`][2] hook if you want finer control over template rendering.
 Among other things, it allows you to choose the controller used to configure the template and specific outlet to render it into.
 
-[1]: http://emberjs.com/api/classes/Ember.Route.html#property_templateName
-[2]: http://emberjs.com/api/classes/Ember.Route.html#method_renderTemplate
+[1]: https://api.emberjs.com/classes/Ember.Route.html#property_templateName
+[2]: https://api.emberjs.com/classes/Ember.Route.html#method_renderTemplate

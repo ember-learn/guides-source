@@ -1,14 +1,14 @@
-The [`{{input}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_input)
-and [`{{textarea}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_textarea)
+The [`{{input}}`](https://api.emberjs.com/classes/Ember.Templates.helpers.html#method_input)
+and [`{{textarea}}`](https://api.emberjs.com/classes/Ember.Templates.helpers.html#method_textarea)
 helpers in Ember.js are the easiest way to create common form controls. The
 `{{input}}` helper wraps the built-in [Ember.TextField][1] and [Ember.Checkbox][2]
 views, while `{{textarea}}` wraps [Ember.TextArea][3]. Using these helpers,
 you can create these views with declarations almost identical
 to how you'd create a traditional `<input>` or `<textarea>` element.
 
-[1]: http://emberjs.com/api/classes/Ember.TextField.html
-[2]: http://emberjs.com/api/classes/Ember.Checkbox.html
-[3]: http://emberjs.com/api/classes/Ember.TextArea.html
+[1]: https://api.emberjs.com/classes/Ember.TextField.html
+[2]: https://api.emberjs.com/classes/Ember.Checkbox.html
+[3]: https://api.emberjs.com/classes/Ember.TextArea.html
 
 ## Text fields
 
@@ -58,12 +58,12 @@ To dispatch an action on specific events, such as `enter` or `key-press`, use th
 {{input value=firstName key-press="updateFirstName"}}
 ```
 
-[Event Names](http://emberjs.com/api/classes/Ember.View.html#toc_event-names) must be dasherized.
+[Event Names](https://api.emberjs.com/classes/Ember.View.html#toc_event-names) must be dasherized.
 
 ## Checkboxes
 
 You can also use the
-[`{{input}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_input)
+[`{{input}}`](https://api.emberjs.com/classes/Ember.Templates.helpers.html#method_input)
 helper to create a checkbox by setting its `type`:
 
 ```handlebars
@@ -93,7 +93,7 @@ Will bind the value of the text area to `name` on the current context.
 
 [`{{textarea}}`][1] supports binding and/or setting the following properties:
 
-[1]: http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_textarea
+[1]: https://api.emberjs.com/classes/Ember.Templates.helpers.html#method_textarea
 
 * `value`
 * `name`
@@ -115,7 +115,7 @@ Will bind the value of the text area to `name` on the current context.
 
 ### Binding dynamic attribute
 
-You might need to bind a property dynamically to an input if you're building a flexible form, for example. To achieve this you need to use the [`{{get}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_get) and [`{{mut}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_mut) in conjunction like shown in the following example:
+You might need to bind a property dynamically to an input if you're building a flexible form, for example. To achieve this you need to use the [`{{get}}`](https://api.emberjs.com/classes/Ember.Templates.helpers.html#method_get) and [`{{mut}}`](https://api.emberjs.com/classes/Ember.Templates.helpers.html#method_mut) in conjunction like shown in the following example:
 
 ```handlebars
 {{input value=(mut (get person field))}}

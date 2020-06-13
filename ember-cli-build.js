@@ -5,7 +5,11 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
     fingerprint: {
-      extensions: ['js', 'css', 'map']
+      extensions: ['js', 'css', 'map'],
+      exclude: ['downloads']
+    },
+    guidemaker: {
+      premberVersionFilter: '3.12.0'
     }
   });
 

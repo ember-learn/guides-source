@@ -12,7 +12,7 @@ Router.map(function() {
 To load a model for the `favorite-posts` route, you would use the [`model()`][1]
 hook in the `favorite-posts` route handler:
 
-[1]: http://emberjs.com/api/classes/Ember.Route.html#method_model
+[1]: https://api.emberjs.com/classes/Ember.Route.html#method_model
 
 ```javascript {data-filename=app/routes/favorite-posts.js}
 import Ember from 'ember';
@@ -124,7 +124,7 @@ Routes without dynamic segments will always execute the model hook.
 ## Multiple Models
 
 Multiple models can be returned through an
-[RSVP.hash](http://emberjs.com/api/classes/RSVP.html#method_hash).
+[RSVP.hash](https://api.emberjs.com/classes/RSVP.html#method_hash).
 The `RSVP.hash` takes
 parameters that return promises, and when all parameter promises resolve, then
 the `RSVP.hash` promise resolves. For example:
@@ -163,3 +163,5 @@ each record in the song model and album model:
   {{/each}}
 </ul>
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

@@ -25,7 +25,7 @@ string](http://api.jquery.com/category/selectors/).
 ### Disabling URL Management
 
 You can prevent Ember from making changes to the URL by [changing the
-router's `location`](../../routing/specifying-the-location-api) to
+router's `location`](../../routing/specifying-the-location-api/) to
 `none`:
 
 ```javascript {data-filename=config/environment.js}
@@ -34,3 +34,5 @@ var ENV = {
 };
 export default ENV;
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

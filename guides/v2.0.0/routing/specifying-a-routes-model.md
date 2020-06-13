@@ -90,7 +90,7 @@ will always execute the model hook.
 ## Multiple Models
 
 Multiple models can be returned through an
-[Ember.RSVP.hash](http://emberjs.com/api/classes/RSVP.html#method_hash).
+[Ember.RSVP.hash](https://api.emberjs.com/classes/RSVP.html#method_hash).
 The `Ember.RSVP.hash` takes
 parameters that return promises, and when all parameter promises resolve, then
 the `Ember.RSVP.hash` promise resolves. For example:
@@ -126,3 +126,5 @@ each record in the song model and album model:
   {{/each}}
 </ul>
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

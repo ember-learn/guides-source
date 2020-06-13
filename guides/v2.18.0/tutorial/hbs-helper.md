@@ -124,3 +124,5 @@ test('it renders correctly for a Community rental', function(assert) {
   assert.equal(this.$().text().trim(), 'Community');
 });
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

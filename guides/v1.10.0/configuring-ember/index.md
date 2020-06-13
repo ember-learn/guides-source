@@ -7,7 +7,7 @@ objects in the following ways:
   do not implement them, adds convenience methods and properties to
   built-in arrays, and makes array mutations observable.
 * `String` is extended to add convenience methods, such as
-  `camelize()` and `fmt()`. 
+  `camelize()` and `fmt()`.
 * `Function` is extended with methods to annotate functions as
   computed properties, via the `property()` method, and as observers,
   via the `observes()` or `observesBefore()` methods.
@@ -83,7 +83,7 @@ islands.contains('Oahu');
 #### Strings
 
 Strings will no longer have the convenience methods described in the
-[Ember.String API reference.](http://emberjs.com/api/classes/Ember.String.html). Instead,
+[Ember.String API reference.](https://api.emberjs.com/classes/Ember.String.html). Instead,
 you can use the similarly-named methods of the `Ember.String` object and
 pass the string to use as the first parameter:
 

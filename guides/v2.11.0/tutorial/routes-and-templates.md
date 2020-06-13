@@ -224,7 +224,7 @@ We'll learn more about why the entry isn't required when we look at [nested rout
 Let's start by implementing the unit test for our new index route.
 
 Since all we want to do is transition people who visit `/` to `/rentals`,
-our unit test will make sure that the route's [`replaceWith`](http://emberjs.com/api/classes/Ember.Route.html#method_replaceWith) method is called with the desired route.
+our unit test will make sure that the route's [`replaceWith`](https://api.emberjs.com/classes/Ember.Route.html#method_replaceWith) method is called with the desired route.
 `replaceWith` is similar to the route's [`transitionTo`](../../routing/redirection/#toc_transitioning-before-the-model-is-known) function; the difference being that `replaceWith` will replace the current URL in the browser's history, while `transitionTo` will add to the history.
 Since we want our `rentals` route to serve as our home page, we will use the `replaceWith` function.
 
@@ -295,7 +295,7 @@ Let's open the application template at `/app/templates/application.hbs`, and add
 ```
 
 Notice the inclusion of an `{{outlet}}` within the body `div` element.
-The [`{{outlet}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_outlet) in this case is a placeholder for the content rendered by the current route, such as _about_, or _contact_.
+The [`{{outlet}}`](https://api.emberjs.com/classes/Ember.Templates.helpers.html#method_outlet) in this case is a placeholder for the content rendered by the current route, such as _about_, or _contact_.
 
 Now that we've added routes and linkages between them, the three acceptance tests we created for navigating to our routes should now pass.
 

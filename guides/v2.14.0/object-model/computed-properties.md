@@ -20,7 +20,7 @@ Person = Ember.Object.extend({
   fullName: Ember.computed('firstName', 'lastName', function() {
     let firstName = this.get('firstName');
     let lastName = this.get('lastName');
-    
+
     return `${firstName} ${lastName}`;
   })
 });
@@ -47,7 +47,7 @@ In the previous example, the `fullName` computed property depends on two other p
   fullName: Ember.computed('firstName', 'lastName', function() {
     let firstName = this.get('firstName');
     let lastName = this.get('lastName');
-    
+
     return `${firstName} ${lastName}`;
   })
 …
@@ -61,7 +61,7 @@ You surround the dependent properties with braces (`{}`), and separate with comm
   fullName: Ember.computed('{firstName,lastName}', function() {
     let firstName = this.get('firstName');
     let lastName = this.get('lastName');
-    
+
     return `${firstName} ${lastName}`;
   })
 …
@@ -189,4 +189,4 @@ Person = Ember.Object.extend({
 ```
 
 To see the full list of computed property macros, have a look at
-[the API documentation](http://emberjs.com/api/classes/Ember.computed.html)
+[the API documentation](https://api.emberjs.com/classes/Ember.computed.html)

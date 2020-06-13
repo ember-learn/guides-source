@@ -180,3 +180,5 @@ This would render this HTML when no title is passed to the component:
 ```html
 <span class="ember-view" title="Ember JS">
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

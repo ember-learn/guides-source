@@ -1,3 +1,5 @@
+/* eslint-disable ember/no-incorrect-calls-with-inline-anonymous-functions */
+
 import EmberRouter from '@ember/routing/router';
 import config from './config/environment';
 

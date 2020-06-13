@@ -91,10 +91,10 @@ There are a few things to note about the `didInsertElement()` hook:
   override the default method itself, particularly when order of execution
   is important.
 
-[did-insert-element]: http://emberjs.com/api/classes/Ember.Component.html#event_didInsertElement
-[dollar]: http://emberjs.com/api/classes/Ember.Component.html#method__
+[did-insert-element]: https://api.emberjs.com/classes/Ember.Component.html#event_didInsertElement
+[dollar]: https://api.emberjs.com/classes/Ember.Component.html#method__
 [event-names]: ../handling-events/#toc_event-names
-[on]: http://emberjs.com/api/classes/Ember.Component.html#method_on
+[on]: https://api.emberjs.com/classes/Ember.Component.html#method_on
 
 ## Detaching and Tearing Down Component Elements
 
@@ -121,4 +121,4 @@ willDestroyElement() {
 }
 ```
 
-[will-destroy-element]: http://emberjs.com/api/classes/Ember.Component.html#event_willDestroyElement
+[will-destroy-element]: https://api.emberjs.com/classes/Ember.Component.html#event_willDestroyElement

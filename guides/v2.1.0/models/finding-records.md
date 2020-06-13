@@ -41,7 +41,7 @@ an object that implements [`Ember.Enumerable`][1]. This is important because,
 for example, if you want to retrieve records by index, the `[]` notation will
 not work--you'll have to use `objectAt(index)` instead.
 
-[1]: http://emberjs.com/api/classes/Ember.Enumerable.html
+[1]: https://api.emberjs.com/classes/Ember.Enumerable.html
 
 ### Querying for Multiple Records
 
@@ -75,3 +75,5 @@ this.store.queryRecord('person', { filter: { email: 'tomster@example.com' } }).t
   // do something with `tomster`
 });
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

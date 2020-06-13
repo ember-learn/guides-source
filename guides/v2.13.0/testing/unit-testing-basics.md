@@ -9,7 +9,7 @@ is as simple as creating an instance of the object, setting its state, and
 running assertions against the object. By way of example, let's look at a few
 common cases.
 
-[1]: http://emberjs.com/api/classes/Ember.Object.html
+[1]: https://api.emberjs.com/classes/Ember.Object.html
 
 ### Testing Computed Properties
 
@@ -152,3 +152,5 @@ skip('skip this test', function(assert) {
     assert.ok(true)
 });
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

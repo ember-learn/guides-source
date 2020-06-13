@@ -11,7 +11,7 @@ ordered from basic to advanced concepts.
 The Guides are intended to contain practical explanations of how to
 build Ember apps, focusing on the most widely-used features of Ember.js.
 For comprehensive documentation of every Ember feature and API, see the
-[Ember.js API documentation](http://emberjs.com/api/).
+[Ember.js API documentation](https://api.emberjs.com/).
 
 The Guides begin with an explanation of how to get started with Ember,
 followed by a tutorial on how to build your first Ember app.
@@ -92,7 +92,7 @@ Good luck!
 
 [mdn]: https://developer.mozilla.org/en-US/docs/Web
 [promises]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
-[js-modules]: http://jsmodules.io/
+[js-modules]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules
 [babeljs]: https://babeljs.io/docs/learn-es2015/
 [es6]: https://leanpub.com/understandinges6/read
 

@@ -62,7 +62,7 @@ The target audience of the Guides are developers whose skills range from beginne
 
 The Guides are primarily meant to cover the "Ember happy path", and are not intended to be comprehensive. Leave edge cases and rarely-used features to the API documentation. Start each guide and each section with the simplest, most commonly-used features, and progress to the more advanced and less commonly-used features.
 
-Each guide should thoroughly explain the feature it documents, and include links to the API documentation. Links to authoritative sources of information on background concepts are also encouraged: for example, the _Handlebars Basics_ guide appropriately links to http://handlebarsjs.com/. Do not link to other outside content like blog posts or meetup slides, as reviewing and updating this content is better suited for content aggregators.
+Each guide should thoroughly explain the feature it documents, and include links to the API documentation. Links to authoritative sources of information on background concepts are also encouraged: for example, the _Handlebars Basics_ guide appropriately links to <http://handlebarsjs.com/>. Do not link to other outside content like blog posts or meetup slides, as reviewing and updating this content is better suited for content aggregators.
 
 Liberally use examples in your writing. For example, the sentence "Templates can contain expressions in double curly braces" should be expanded to something like "Templates can contain expressions in double curly braces, such as \`&lt;h1&gt;Welcome {{user.name}}&lt;/h1&gt;\`" A short example is often more clear than a long explanation. In fact, it is often helpful to give two examples to make things even clearer.
 
@@ -92,27 +92,27 @@ In code samples:
 
 \`\`\`
 
-* All fenced code blocks should begin with a language code supported by [prism.js](http://prismjs.com/) so that they get highlighted properly when rendered. Here are some frequently used language codes,
+* All fenced code blocks should begin with a language code supported by [prism.js](http://prismjs.com/) so that they get highlighted properly when rendered. Here are some frequently used language codes:
   * bash
   * javascript
   * css
   * handlebars
 
-When linking to topics from guide md files:
+When linking to topics from guide `.md` files:
 
 * use relative links when referencing a topic.
   * Incorrect: `https://guides.emberjs.com/release/routing/query-params/`
   * Correct: `../routing/query-params`
 
-* to reference a topic when you are in `index.md`, you only have to go up one level to reference another topics md file, `../main-topic/sub-topic`.
+* to reference a topic when you are in `index.md`, you only have to go up one level to reference another topics `.md` file, `../main-topic/sub-topic`.
   * example from `index.md` to `routing/query-params.md`:
     * `../routing/query-params`
 
-* to reference a md file in a different main topic to the one you are in, you need to go two levels up, `../../main-topic/sub-topic`.
+* to reference a `.md` file in a different main topic to the one you are in, you need to go two levels up, `../../main-topic/sub-topic`.
   * example from `routing/query-params.md` to `components/block-params.md`:
     * `../../components/block-params`
 
-* to reference a md file within the topic you are currently in, you need to go up one level, `../sub-topic`.
+* to reference a `.md` file within the topic you are currently in, you need to go up one level, `../sub-topic`.
   * example from `routing/query-params.md` to `routing/redirection.md`:
     * `../redirection`
 

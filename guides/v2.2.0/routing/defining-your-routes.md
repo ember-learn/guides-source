@@ -4,7 +4,7 @@ templates, loading data, and otherwise setting up application state.
 
 ## Basic Routes
 
-The [`map()`](http://emberjs.com/api/classes/Ember.Router.html#method_map) method
+The [`map()`](https://api.emberjs.com/classes/Ember.Router.html#method_map) method
 of your Ember application's router can be invoked to define URL mappings. When
 calling `map()`, you should pass a function that will be invoked with the value
 `this` set to an object which you can use to create routes.
@@ -32,7 +32,7 @@ Router.map(function() {
 Inside your templates, you can use [`{{link-to}}`][1] to navigate between
 routes, using the name that you provided to the `route` method.
 
-[1]: http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_link-to
+[1]: https://api.emberjs.com/classes/Ember.Templates.helpers.html#method_link-to
 
 ```handlebars
 {{#link-to "index"}}<img class="logo">{{/link-to}}
@@ -181,7 +181,7 @@ Router.map(function() {
 
 If the user navigates to `/post/5`, the route will then have the `post_id` of
 `5` to use to load the correct post. See [Specifying a Route's
-Model](../specifying-a-routes-model) for
+Model](../specifying-a-routes-model/) for
 more about how to load a model.
 
 ## Wildcard / globbing routes
@@ -201,5 +201,5 @@ Router.map(function() {
 To have your route do something beyond render a template with the same name, you'll
 need to create a route handler. The following guides will explore the different
 features of route handlers. For more information on routes, see the API documentation
-for [the router](http://emberjs.com/api/classes/Ember.Router.html) and for [route
-handlers](http://emberjs.com/api/classes/Ember.Route.html).
+for [the router](https://api.emberjs.com/classes/Ember.Router.html) and for [route
+handlers](https://api.emberjs.com/classes/Ember.Route.html).

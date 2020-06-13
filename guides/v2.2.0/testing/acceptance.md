@@ -137,15 +137,15 @@ In the `andThen` helper, we finally make our call to `assert.equal` which makes 
 assertion that the text found in the first li of the ul whose class is "posts"
 is equal to "My new post".
 
-[1]: http://emberjs.com/api/classes/Ember.Test.html#method_click
-[2]: http://emberjs.com/api/classes/Ember.Test.html#method_fillIn
-[3]: http://emberjs.com/api/classes/Ember.Test.html#method_keyEvent
-[4]: http://emberjs.com/api/classes/Ember.Test.html#method_triggerEvent
-[5]: http://emberjs.com/api/classes/Ember.Test.html#method_visit
-[6]: http://emberjs.com/api/classes/Ember.Test.html#method_currentPath
-[7]: http://emberjs.com/api/classes/Ember.Test.html#method_currentRouteName
-[8]: http://emberjs.com/api/classes/Ember.Test.html#method_currentURL
-[9]: http://emberjs.com/api/classes/Ember.Test.html#method_find
+[1]: https://api.emberjs.com/classes/Ember.Test.html#method_click
+[2]: https://api.emberjs.com/classes/Ember.Test.html#method_fillIn
+[3]: https://api.emberjs.com/classes/Ember.Test.html#method_keyEvent
+[4]: https://api.emberjs.com/classes/Ember.Test.html#method_triggerEvent
+[5]: https://api.emberjs.com/classes/Ember.Test.html#method_visit
+[6]: https://api.emberjs.com/classes/Ember.Test.html#method_currentPath
+[7]: https://api.emberjs.com/classes/Ember.Test.html#method_currentRouteName
+[8]: https://api.emberjs.com/classes/Ember.Test.html#method_currentURL
+[9]: https://api.emberjs.com/classes/Ember.Test.html#method_find
 
 ### Custom Test Helpers
 
@@ -166,8 +166,8 @@ called. The difference between `Ember.Test.registerHelper` and
 previous async helper has completed and any subsequent async helper will wait
 for it to finish before running.
 
-[10]: http://emberjs.com/api/classes/Ember.Test.html#method_registerAsyncHelper
-[11]: http://emberjs.com/api/classes/Ember.Test.html#method_registerHelper
+[10]: https://api.emberjs.com/classes/Ember.Test.html#method_registerAsyncHelper
+[11]: https://api.emberjs.com/classes/Ember.Test.html#method_registerHelper
 
 The helper method will always be called with the current Application as the
 first parameter. Other parameters need to be provided when calling the helper. Helpers need to be registered prior to calling
@@ -243,3 +243,5 @@ import './should-have-element-with-count';
 import './dblclick';
 import './add-contact';
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

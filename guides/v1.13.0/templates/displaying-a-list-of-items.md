@@ -25,7 +25,7 @@ The `{{#each}}` helper is bindings-aware.  If your
 application adds a new item to the array, or removes an item, the DOM
 will be updated without having to write any code. Note that a `[].push()`
 will not update the helper. Adding items need to be done with `[].pushObject`,
-and related [Ember Mutable Array methods](http://emberjs.com/api/classes/Ember.MutableArray.html) so that Ember can observe the change.
+and related [Ember Mutable Array methods](https://api.emberjs.com/classes/Ember.MutableArray.html) so that Ember can observe the change.
 
 ### Specifying Keys
   The `key` option is used to tell Ember how to determine if the array being
@@ -60,3 +60,5 @@ The contents of this block will render if the collection is empty:
   Sorry, nobody is here.
 {{/each}}
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

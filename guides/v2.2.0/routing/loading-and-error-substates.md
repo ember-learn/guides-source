@@ -75,7 +75,7 @@ for a leaf route like `slow-model`.
 If the various `beforeModel`/`model`/`afterModel` hooks
 don't immediately resolve, a [`loading`][1] event will be fired on that route.
 
-[1]: http://emberjs.com/api/classes/Ember.Route.html#event_loading
+[1]: https://api.emberjs.com/classes/Ember.Route.html#event_loading
 
 ```javascript {data-filename=app/routes/foo-slow-model.js}
 export default Ember.Route.extend({
@@ -154,7 +154,7 @@ etc.), an [`error`][1] event will fire from that route and bubble upward.
 This `error` event can be handled and used to display an error message,
 redirect to a login page, etc.
 
-[1]: http://emberjs.com/api/classes/Ember.Route.html#event_error
+[1]: https://api.emberjs.com/classes/Ember.Route.html#event_error
 
 ```javascript {data-filename=app/routes/articles-overview.js}
 export default Ember.Route.extend({

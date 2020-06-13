@@ -39,7 +39,7 @@ ember generate helper format-currency
 
 That file should export a function wrapped with [`Ember.Helper.helper()`][1]:
 
-[1]: http://emberjs.com/api/classes/Ember.Helper.html#method_helper
+[1]: https://api.emberjs.com/classes/Ember.Helper.html#method_helper
 
 ```javascript {data-filename=app/helpers/format-currency.js}
 export function formatCurrency(params) {
@@ -358,7 +358,7 @@ would see this:
 Welcome back! <b>&lt;script
 type="javascript"&gt;alert('pwned!');&lt;/script&gt;</b> has joined the channel.
 ```
-[1]: http://emberjs.com/api/classes/Ember.Helper.html
-[2]: http://emberjs.com/api/classes/Ember.Helper.html#method_compute
-[3]: http://emberjs.com/api/classes/Ember.Helper.html#method_helper
-[4]: http://emberjs.com/api/classes/Ember.String.html#method_htmlSafe
+[1]: https://api.emberjs.com/classes/Ember.Helper.html
+[2]: https://api.emberjs.com/classes/Ember.Helper.html#method_compute
+[3]: https://api.emberjs.com/classes/Ember.Helper.html#method_helper
+[4]: https://api.emberjs.com/classes/Ember.String.html#method_htmlSafe

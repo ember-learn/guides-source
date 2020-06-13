@@ -143,3 +143,5 @@ To enable this mode you can set:
 ```javascript
 Ember.run.backburner.DEBUG = true;
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

@@ -7,8 +7,8 @@ as other major features of the Ember object model.
 To define a new Ember _class_, call the [`extend()`][1] method on
 [`Ember.Object`][2]:
 
-[1]: http://emberjs.com/api/classes/Ember.Object.html#method_extend
-[2]: http://emberjs.com/api/classes/Ember.Object.html
+[1]: https://api.emberjs.com/classes/Ember.Object.html#method_extend
+[2]: https://api.emberjs.com/classes/Ember.Object.html
 
 ```javascript
 Person = Ember.Object.extend({
@@ -24,7 +24,7 @@ You can also create a _subclass_ from any existing class by calling
 its `extend()` method. For example, you might want to create a subclass
 of Ember's built-in [`Ember.Component`][1] class:
 
-[1]: http://emberjs.com/api/classes/Ember.Component.html
+[1]: https://api.emberjs.com/classes/Ember.Component.html
 
 ```javascript {data-filename=app/components/todo-item.js}
 export default Ember.Component.extend({
@@ -70,7 +70,7 @@ One common example is when overriding the [`normalizeResponse()`][3] hook in one
 
 A handy shortcut for this is to use a "spread operator", like `...arguments`:
 
-[3]: http://emberjs.com/api/data/classes/DS.JSONAPISerializer.html#method_normalizeResponse
+[3]: https://api.emberjs.com/data/classes/DS.JSONAPISerializer.html#method_normalizeResponse
 
 ```javascript
 normalizeResponse(store, primaryModelClass, payload, id, requestType)  {
@@ -88,7 +88,7 @@ class by calling its [`create()`][1] method. Any methods, properties and
 computed properties you defined on the class will be available to
 instances:
 
-[1]: http://emberjs.com/api/classes/Ember.Object.html#method_create
+[1]: https://api.emberjs.com/classes/Ember.Object.html#method_create
 
 ```javascript
 var person = Person.create();
@@ -129,7 +129,7 @@ When a new instance is created, its [`init()`][1] method is invoked
 automatically. This is the ideal place to implement setup required on new
 instances:
 
-[1]: http://emberjs.com/api/classes/Ember.Object.html#method_init
+[1]: https://api.emberjs.com/classes/Ember.Object.html#method_init
 
 ```javascript
 Person = Ember.Object.extend({
@@ -208,8 +208,8 @@ Person.create({
 When accessing the properties of an object, use the [`get()`][1]
 and [`set()`][2] accessor methods:
 
-[1]: http://emberjs.com/api/classes/Ember.Object.html#method_get
-[2]: http://emberjs.com/api/classes/Ember.Object.html#method_set
+[1]: https://api.emberjs.com/classes/Ember.Object.html#method_get
+[2]: https://api.emberjs.com/classes/Ember.Object.html#method_set
 
 ```javascript
 var person = Person.create();

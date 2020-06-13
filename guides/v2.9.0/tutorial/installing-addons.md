@@ -97,7 +97,7 @@ ember generate adapter application
 
 This adapter will extend the [`JSONAPIAdapter`][1] base class from Ember Data:
 
-[1]: http://emberjs.com/api/data/classes/DS.JSONAPIAdapter.html
+[1]: https://api.emberjs.com/data/classes/DS.JSONAPIAdapter.html
 
 ```javascript {data-filename=app/adapters/application.js}
 import DS from 'ember-data';
@@ -107,3 +107,5 @@ export default DS.JSONAPIAdapter.extend({
 });
 
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

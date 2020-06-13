@@ -35,3 +35,5 @@ as an `outlet` so that nested routes can be seamlessly inserted.  It is equivale
 ```handlebars
 {{outlet}}
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

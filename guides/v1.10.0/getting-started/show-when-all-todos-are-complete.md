@@ -23,7 +23,7 @@ allAreDone: function(key, value) {
 
 This property will be `true` if the controller has any todos and every todo's `isCompleted` property is true. If the `isCompleted` property of any todo changes, this property will be recomputed. If the return value has changed, sections of the template that need to update will be automatically updated for us.
 
-Reload your web browser to ensure that there are no errors and the behavior described above occurs. 
+Reload your web browser to ensure that there are no errors and the behavior described above occurs.
 
 ### Live Preview
 <a class="jsbin-embed" href="http://jsbin.com/IcItARE/1/embed?live">Ember.js • TodoMVC</a><script src="https://static.jsbin.com/js/embed.js"></script>
@@ -31,4 +31,4 @@ Reload your web browser to ensure that there are no errors and the behavior desc
 ### Additional Resources
 
   * [Changes in this step in `diff` format](https://github.com/emberjs/quickstart-code-sample/commit/9bf8a430bc4afb06f31be55f63f1d9806e6ab01c)
-  * [Ember.Checkbox API documentation](http://emberjs.com/api/classes/Ember.Checkbox.html)
+  * [Ember.Checkbox API documentation](https://api.emberjs.com/classes/Ember.Checkbox.html)

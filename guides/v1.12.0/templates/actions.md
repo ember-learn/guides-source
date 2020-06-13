@@ -168,7 +168,7 @@ You can specify an alternative event by using the `on` option.
 You should use the normalized event names [listed in the View guide][1].
 In general, two-word event names (like `keypress`) become `keyPress`.
 
-[1]: http://emberjs.com/api/classes/Ember.View.html#toc_event-names
+[1]: https://api.emberjs.com/classes/Ember.View.html#toc_event-names
 
 ### Specifying Whitelisted Modifier Keys
 
@@ -247,3 +247,5 @@ a parent view, use the following:
   {{post.title}}
 </p>
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

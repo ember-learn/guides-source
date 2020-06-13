@@ -37,7 +37,7 @@ You can also have Ember generate the file for you from the command line:
 ember generate helper format-currency
 ```
 
-That file should export a function wrapped with [`Ember.Helper.helper()`](http://emberjs.com/api/classes/Ember.Helper.html#method_helper):
+That file should export a function wrapped with [`Ember.Helper.helper()`](https://api.emberjs.com/classes/Ember.Helper.html#method_helper):
 
 ```javascript {data-filename="app/helpers/format-currency.js"}
 import { helper } from '@ember/component/helper';
@@ -394,7 +394,7 @@ would see this:
 Welcome back! <b>&lt;script
 type="javascript"&gt;alert('pwned!');&lt;/script&gt;</b> has joined the channel.
 ```
-[1]: https://www.emberjs.com/api/ember/2.16/classes/Helper
-[2]: https://www.emberjs.com/api/ember/2.16/classes/Helper/methods/compute?anchor=compute
-[3]: http://emberjs.com/api/classes/Ember.Helper.html#method_helper
-[4]: https://www.emberjs.com/api/ember/2.16/classes/@ember%2Fstring/methods/htmlSafe?anchor=htmlSafe
+[1]: https://api.emberjs.com/ember/2.18/classes/Helper
+[2]: https://api.emberjs.com/ember/2.18/classes/Helper/methods/compute?anchor=compute
+[3]: https://api.emberjs.com/classes/Ember.Helper.html#method_helper
+[4]: https://api.emberjs.com/ember/2.18/classes/@ember%2Fstring/methods/htmlSafe?anchor=htmlSafe

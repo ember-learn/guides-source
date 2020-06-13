@@ -1,7 +1,7 @@
 ## Creating Records
 
 You can create records by calling the
-[`createRecord()`](http://emberjs.com/api/data/classes/DS.Store.html#method_createRecord)
+[`createRecord()`](https://api.emberjs.com/data/classes/DS.Store.html#method_createRecord)
 method on the store.
 
 ```javascript
@@ -27,7 +27,7 @@ this.get('store').findRecord('person', 1).then(function(tyrion) {
 
 All of the Ember.js conveniences are available for
 modifying attributes. For example, you can use `Ember.Object`'s
-[`incrementProperty`](http://emberjs.com/api/classes/Ember.Object.html#method_incrementProperty) helper:
+[`incrementProperty`](https://api.emberjs.com/classes/Ember.Object.html#method_incrementProperty) helper:
 
 ```javascript
 person.incrementProperty('age'); // Happy birthday!
@@ -36,7 +36,7 @@ person.incrementProperty('age'); // Happy birthday!
 ## Persisting Records
 
 Records in Ember Data are persisted on a per-instance basis.
-Call [`save()`](http://emberjs.com/api/data/classes/DS.Model.html#method_save)
+Call [`save()`](https://api.emberjs.com/data/classes/DS.Model.html#method_save)
 on any instance of `DS.Model` and it will make a network request.
 
 Ember Data takes care of tracking the state of each record for
@@ -68,10 +68,10 @@ store.findRecord('post', 1).then(function(post) {
 
 You can tell if a record has outstanding changes that have not yet been
 saved by checking its
-[`hasDirtyAttributes`](http://emberjs.com/api/data/classes/DS.Model.html#property_hasDirtyAttributes)
+[`hasDirtyAttributes`](https://api.emberjs.com/data/classes/DS.Model.html#property_hasDirtyAttributes)
 property. You can also see what parts of
 the record were changed and what the original value was using the
-[`changedAttributes()`](http://emberjs.com/api/data/classes/DS.Model.html#method_changedAttributes)
+[`changedAttributes()`](https://api.emberjs.com/data/classes/DS.Model.html#method_changedAttributes)
 method. `changedAttributes` returns an object, whose keys are the changed
 properties and values are an array of values `[oldValue, newValue]`.
 
@@ -85,7 +85,7 @@ person.changedAttributes();       //=> { isAdmin: [false, true] }
 
 At this point, you can either persist your changes via `save()` or you can roll
 back your changes. Calling
-[`rollbackAttributes()`](http://emberjs.com/api/data/classes/DS.Model.html#method_rollbackAttributes)
+[`rollbackAttributes()`](https://api.emberjs.com/data/classes/DS.Model.html#method_rollbackAttributes)
 for a saved record reverts all the `changedAttributes` to their original value.
 If the record `isNew` it will be removed from the store.
 
@@ -117,8 +117,8 @@ the errors from saving a blog post in your template:
 
 ## Promises
 
-[`save()`](http://emberjs.com/api/data/classes/DS.Model.html#method_save) returns
-a promise, which makes it easy to asynchronously handle success and failure 
+[`save()`](https://api.emberjs.com/data/classes/DS.Model.html#method_save) returns
+a promise, which makes it easy to asynchronously handle success and failure
 scenarios.  Here's a common pattern:
 
 ```javascript
@@ -145,10 +145,10 @@ post.save().then(transitionToPost).catch(failure);
 
 ## Deleting Records
 
-Deleting records is as straightforward as creating records. Call [`deleteRecord()`](http://emberjs.com/api/data/classes/DS.Model.html#method_deleteRecord)
-on any instance of `DS.Model`. This flags the record as `isDeleted`. The 
-deletion can then be persisted using `save()`.  Alternatively, you can use 
-the [`destroyRecord`](http://emberjs.com/api/data/classes/DS.Model.html#method_destroyRecord) method to delete and persist at the same time.
+Deleting records is as straightforward as creating records. Call [`deleteRecord()`](https://api.emberjs.com/data/classes/DS.Model.html#method_deleteRecord)
+on any instance of `DS.Model`. This flags the record as `isDeleted`. The
+deletion can then be persisted using `save()`.  Alternatively, you can use
+the [`destroyRecord`](https://api.emberjs.com/data/classes/DS.Model.html#method_destroyRecord) method to delete and persist at the same time.
 
 ```javascript
 store.findRecord('post', 1, { backgroundReload: false }).then(function(post) {
@@ -165,4 +165,4 @@ store.findRecord('post', 2, { backgroundReload: false }).then(function(post) {
 
 The `backgroundReload` option is used to prevent the fetching of the destroyed record, since [`findRecord()`][findRecord] automatically schedules a fetch of the record from the adapter.
 
-[findRecord]: <http://emberjs.com/api/data/classes/DS.Store.html#method_findRecord>
+[findRecord]: <https://api.emberjs.com/data/classes/DS.Store.html#method_findRecord>

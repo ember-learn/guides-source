@@ -1,5 +1,5 @@
 To iterate over a list of items, use the
-[`{{#each}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_each)
+[`{{#each}}`](https://api.emberjs.com/classes/Ember.Templates.helpers.html#method_each)
 helper. The first argument to this helper is the array to be iterated, and
 the value being iterated is yielded as a block param. Block params are only
 available inside the block of their helper.
@@ -61,7 +61,7 @@ block param. Block params are space-separated, without commas. For example:
 
 ### Empty Lists
 
-The [`{{#each}}`](http://emberjs.com/api/classes/Ember.Templates.helpers.html#method_each)
+The [`{{#each}}`](https://api.emberjs.com/classes/Ember.Templates.helpers.html#method_each)
 helper can have a corresponding `{{else}}`. The contents of this block will
 render if the array passed to `{{#each}}` is empty:
 
@@ -72,3 +72,5 @@ render if the array passed to `{{#each}}` is empty:
   Sorry, nobody is here.
 {{/each}}
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

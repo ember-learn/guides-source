@@ -68,7 +68,7 @@ In other words, you can invoke the above component example like this:
 To set the component up to receive parameters this way, you need
 set the [`positionalParams`][1] attribute in your component class.
 
-[1]: http://emberjs.com/api/classes/Ember.Component.html#property_positionalParams
+[1]: https://api.emberjs.com/classes/Ember.Component.html#property_positionalParams
 
 ```javascript {data-filename=app/components/blog-post.js}
 import Ember from 'ember';
@@ -111,3 +111,5 @@ BlogPostComponent.reopenClass({
 
 export default BlogPostComponent;
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

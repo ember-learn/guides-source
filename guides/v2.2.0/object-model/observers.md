@@ -74,7 +74,7 @@ To get around these problems, you should make use of [`Ember.run.once()`][1].
 This will ensure that any processing you need to do only happens once, and
 happens in the next run loop once all bindings are synchronized:
 
-[1]: http://emberjs.com/api/classes/Ember.run.html#method_once
+[1]: https://api.emberjs.com/classes/Ember.run.html#method_once
 
 ```javascript
 Person.reopen({
@@ -101,7 +101,7 @@ If you need an observer to fire as part of the initialization process, you
 cannot rely on the side effect of `set`. Instead, specify that the observer
 should also run after `init` by using [`Ember.on()`][1]:
 
-[1]: http://emberjs.com/api/classes/Ember.html#method_on
+[1]: https://api.emberjs.com/classes/Ember.html#method_on
 
 ```javascript
 Person = Ember.Object.extend({
@@ -134,10 +134,12 @@ get it in your `init()` method.
 You can also add observers to an object outside of a class definition
 using [`addObserver()`][1]:
 
-[1]: http://emberjs.com/api/classes/Ember.Object.html#method_addObserver
+[1]: https://api.emberjs.com/classes/Ember.Object.html#method_addObserver
 
 ```javascript
 person.addObserver('fullName', function() {
   // deal with the change
 });
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

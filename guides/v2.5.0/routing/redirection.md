@@ -1,10 +1,10 @@
-Calling [`transitionTo()`][1] from a route or [`transitionToRoute()`][2] from a 
-controller will stop any transition currently in progress and start a new 
-one, functioning as a redirect. `transitionTo()` behaves exactly like the 
+Calling [`transitionTo()`][1] from a route or [`transitionToRoute()`][2] from a
+controller will stop any transition currently in progress and start a new
+one, functioning as a redirect. `transitionTo()` behaves exactly like the
 [link-to](../../templates/links/) helper.
 
-[1]: http://emberjs.com/api/classes/Ember.Route.html#method_transitionTo
-[2]: http://emberjs.com/api/classes/Ember.Controller.html#method_transitionToRoute
+[1]: https://api.emberjs.com/classes/Ember.Route.html#method_transitionTo
+[2]: https://api.emberjs.com/classes/Ember.Controller.html#method_transitionToRoute
 
 If the new route has dynamic segments, you need to pass either a _model_ or an _identifier_ for each segment.
 Passing a model will skip that segment's `model()` hook (since the model is
@@ -15,7 +15,7 @@ already loaded).
 If you want to redirect from one route to another, you can do the transition in
 the [`beforeModel()`][3] hook of your route handler.
 
-[3]: http://emberjs.com/api/classes/Ember.Route.html#method_beforeModel
+[3]: https://api.emberjs.com/classes/Ember.Route.html#method_beforeModel
 
 ```javascript {data-filename=app/router.js}
 Router.map(function() {
@@ -41,7 +41,7 @@ redirection, you can use the [`afterModel()`][4] hook.
 It receives the resolved model as the first parameter and the transition as
 the second one. For example:
 
-[4]: http://emberjs.com/api/classes/Ember.Route.html#method_afterModel
+[4]: https://api.emberjs.com/classes/Ember.Route.html#method_afterModel
 
 ```javascript {data-filename=app/router.js}
 Router.map(function() {
@@ -85,7 +85,7 @@ before the redirect.
 Instead, we can use the [`redirect()`][5] method, which will leave the original
 transition validated, and not cause the parent route's hooks to fire again:
 
-[5]: http://emberjs.com/api/classes/Ember.Route.html#method_redirect
+[5]: https://api.emberjs.com/classes/Ember.Route.html#method_redirect
 
 ```javascript {data-filename=app/routes/posts.js}
 export default Ember.Route.extend({
@@ -96,3 +96,5 @@ export default Ember.Route.extend({
   }
 });
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

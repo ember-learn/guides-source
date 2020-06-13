@@ -4,8 +4,8 @@ as other major features of the Ember object model.
 
 ### Defining Classes
 
-To define a new Ember _class_, call the [`extend()`](https://www.emberjs.com/api/ember/release/classes/@ember%2Fobject/methods/extend?anchor=extend) method on
-[`EmberObject`](https://www.emberjs.com/api/ember/release/modules/@ember%2Fobject):
+To define a new Ember _class_, call the [`extend()`](https://api.emberjs.com/ember/3.8/classes/@ember%2Fobject/methods/extend?anchor=extend) method on
+[`EmberObject`](https://api.emberjs.com/ember/3.8/modules/@ember%2Fobject):
 
 ```javascript
 import EmberObject from '@ember/object';
@@ -21,7 +21,7 @@ This defines a new `Person` class with a `say()` method.
 
 You can also create a _subclass_ from any existing class by calling
 its `extend()` method. For example, you might want to create a subclass
-of Ember's built-in [`Component`](https://www.emberjs.com/api/ember/release/classes/Component) class:
+of Ember's built-in [`Component`](https://api.emberjs.com/ember/3.8/classes/Component) class:
 
 ```javascript {data-filename=app/components/todo-item.js}
 import Component from '@ember/component';
@@ -66,7 +66,7 @@ In certain cases, you will want to pass arguments to `_super()` before or after 
 
 This allows the original method to continue operating as it normally would.
 
-One common example is when overriding the [`normalizeResponse()`](https://www.emberjs.com/api/ember-data/release/classes/DS.JSONAPISerializer/methods/normalizeResponse?anchor=normalizeResponse) hook in one of Ember-Data's serializers.
+One common example is when overriding the [`normalizeResponse()`](https://api.emberjs.com/ember-data/3.8/classes/DS.JSONAPISerializer/methods/normalizeResponse?anchor=normalizeResponse) hook in one of Ember-Data's serializers.
 
 A handy shortcut for this is to use a "spread operator", like `...arguments`:
 
@@ -82,7 +82,7 @@ The above example returns the original arguments (after your customizations) bac
 ### Creating Instances
 
 Once you have defined a class, you can create new _instances_ of that
-class by calling its [`create()`](https://www.emberjs.com/api/ember/release/classes/@ember%2Fobject/methods/create?anchor=create) method. Any methods, properties and
+class by calling its [`create()`](https://api.emberjs.com/ember/3.8/classes/@ember%2Fobject/methods/create?anchor=create) method. Any methods, properties and
 computed properties you defined on the class will be available to
 instances:
 
@@ -132,7 +132,7 @@ conventions in your Ember applications.
 
 ### Initializing Instances
 
-When a new instance is created, its [`init()`](https://www.emberjs.com/api/ember/release/classes/EmberObject/methods/init?anchor=init) method is invoked
+When a new instance is created, its [`init()`](https://api.emberjs.com/ember/3.8/classes/EmberObject/methods/init?anchor=init) method is invoked
 automatically. This is the ideal place to implement setup required on new
 instances:
 
@@ -217,9 +217,9 @@ Person.create({
 
 ### Accessing Object Properties
 
-When reading a property value of an object, you can in most cases use the common JavaScript dot notation, e.g. `myObject.myProperty`. 
+When reading a property value of an object, you can in most cases use the common JavaScript dot notation, e.g. `myObject.myProperty`.
 
-[Ember proxy objects](https://emberjs.com/api/ember/3.3/classes/ObjectProxy) are the one big exception to this rule. If you're working with Ember proxy objects, including promise proxies for async relationships in Ember Data, you have to use Ember's [`get()`](https://www.emberjs.com/api/ember/release/classes/@ember%2Fobject/methods/get?anchor=get) accessor method to read values.
+[Ember proxy objects](https://api.emberjs.com/ember/3.3/classes/ObjectProxy) are the one big exception to this rule. If you're working with Ember proxy objects, including promise proxies for async relationships in Ember Data, you have to use Ember's [`get()`](https://api.emberjs.com/ember/3.8/classes/@ember%2Fobject/methods/get?anchor=get) accessor method to read values.
 
 Let's look at the following `blogPost` Ember Data model:
 
@@ -237,7 +237,7 @@ export default Model.extend({
 
 To access the blog post's title you can simply write `blogPost.title`, whereas only the syntax `blogPost.get('comments')` will return the post's comments.
 
-Always use Ember's [`set()`](https://www.emberjs.com/api/ember/release/classes/@ember%2Fobject/methods/set?anchor=set) method to update property values. It will propagate the value change to computed properties, observers, templates, etc. If you "just" use JavaScript's dot notation to update a property value, computed properties won't recalculate, observers won't fire and templates won't update.
+Always use Ember's [`set()`](https://api.emberjs.com/ember/3.8/classes/@ember%2Fobject/methods/set?anchor=set) method to update property values. It will propagate the value change to computed properties, observers, templates, etc. If you "just" use JavaScript's dot notation to update a property value, computed properties won't recalculate, observers won't fire and templates won't update.
 
 ```javascript
 import EmberObject from '@ember/object';
@@ -252,3 +252,5 @@ person.name; // 'Robert Jackson'
 person.set('name', 'Tobias Fünke');
 person.name; // 'Tobias Fünke'
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

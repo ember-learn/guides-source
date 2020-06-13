@@ -103,3 +103,5 @@ captainAmerica.set('fullName', 'William Burnside');
 captainAmerica.get('firstName'); // William
 captainAmerica.get('lastName'); // Burnside
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

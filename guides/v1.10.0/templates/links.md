@@ -142,3 +142,5 @@ the browser's history you can use the `replace=true` option:
   {{/link-to}}
 </p>
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

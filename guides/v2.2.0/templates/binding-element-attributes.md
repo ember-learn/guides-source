@@ -59,8 +59,8 @@ renders the following HTML:
 
 To enable support for data attributes an attribute binding must be
 added to the component, e.g.
-[`Ember.LinkComponent`](http://emberjs.com/api/classes/Ember.LinkComponent.html)
-or [`Ember.TextField`](http://emberjs.com/api/classes/Ember.TextField.html)
+[`Ember.LinkComponent`](https://api.emberjs.com/classes/Ember.LinkComponent.html)
+or [`Ember.TextField`](https://api.emberjs.com/classes/Ember.TextField.html)
 for the specific attribute:
 
 ```javascript
@@ -81,3 +81,5 @@ Now the same handlebars code above renders the following HTML:
 <input id="ember259" class="ember-view ember-text-field"
        type="text" data-toggle="tooltip" data-placement="bottom" title="Name">
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

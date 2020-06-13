@@ -81,3 +81,5 @@ test('visiting /transitions', function(assert) {
   });
 });
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

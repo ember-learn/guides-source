@@ -1,6 +1,6 @@
 An [`Ember.Service`][1] is an Ember object that lives for the duration of the application, and can be made available in different parts of your application.
 
-[1]: http://emberjs.com/api/classes/Ember.Service.html
+[1]: https://api.emberjs.com/classes/Ember.Service.html
 
 Services are useful for features that require shared state or persistent connections. Example uses of services might
 include:
@@ -24,7 +24,7 @@ ember generate service shopping-cart
 
 Services must extend the [`Ember.Service`][1] base class:
 
-[1]: http://emberjs.com/api/classes/Ember.Service.html
+[1]: https://api.emberjs.com/classes/Ember.Service.html
 
 ```javascript {data-filename=app/services/shopping-cart.js}
 import Ember from 'ember';
@@ -94,7 +94,7 @@ This injects the shopping cart service into the component and makes it available
 
 Sometimes a service may or may not exist, like when an initializer conditionally registers a service.
 Since normal injection will throw an error if the service doesn't exist,
-you must look up the service using Ember's [`getOwner`](https://emberjs.com/api/classes/Ember.html#method_getOwner) instead. 
+you must look up the service using Ember's [`getOwner`](https://api.emberjs.com/classes/Ember.html#method_getOwner) instead.
 
 ```javascript {data-filename=app/components/cart-contents.js}
 import Ember from 'ember';
@@ -141,3 +141,5 @@ Note `cart` being used below to get data from the cart.
   {{/each}}
 </ul>
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

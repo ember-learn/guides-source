@@ -112,3 +112,5 @@ When you need direct support for positional arguments or if your components are 
 {{some-component param1 param2}}
 {{ui/foo-bar}}
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

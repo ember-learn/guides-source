@@ -85,3 +85,5 @@ user has not paid:
   You owe: ${{total}}
 {{/unless}}
 ```
+
+<!-- eof - needed for pages that end in a code block  -->
