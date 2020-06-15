@@ -54,7 +54,7 @@ export default class App extends Application {
 ```
 ### Dealing with deprecations
 
-In addition to what is described in the [Handling Deprecations guide](./handling-deprecations),
+In addition to what is described in the [Handling Deprecations guide](../handling-deprecations),
 you can turn on the following settings:
 
 ```javascript
