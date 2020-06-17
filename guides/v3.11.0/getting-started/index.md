@@ -43,7 +43,7 @@ If you get an outdated version of npm, run `npm install -g npm`.
 
 ### Watchman (optional)
 
-On Mac and Linux, you can improve file watching performance by installing [Watchman](https://facebook.github.io/watchman/docs/install.html).
+On Mac and Linux, you can improve file watching performance by installing [Watchman](https://facebook.github.io/watchman/docs/install).
 
 ## Installation
 
