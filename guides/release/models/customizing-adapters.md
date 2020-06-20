@@ -214,18 +214,15 @@ export default class ApplicationAdapter extends JSONAPIAdapter {
 }
 ```
 
-You can combine tracked properties with ES6 getters to make `headers` dynamic.
-In the example below, the headers are generated dynamically using a
-property from the `session` service.
+You can combine tracked properties with ES6 getters to make `headers` dynamic. For example, you may have a `session` service with a tracked property called `authToken`:
 
 ```javascript {data-filename=app/adapters/application.js}
 import JSONAPIAdapter from '@ember-data/adapter/json-api';
-import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
 
 export default class ApplicationAdapter extends JSONAPIAdapter {
   @service session;
-  @tracked session.authToken;
+
   get headers() {
     return {
       'API_KEY': this.session.authToken,
