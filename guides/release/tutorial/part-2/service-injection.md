@@ -178,7 +178,7 @@ With that, we should have a working share button!
     <div class="cta-note-body">
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
-        <p>Feel free to try sending the tweet! However, keep in mind that your followers cannot access your local server at <code>http://localhost:4200/</code>. Don't worry though, at the end of the tutorial, we will deploy the app to the Internet so you can show everyone what you made!</p>
+        <p>Feel free to try sending the tweet! However, keep in mind that your followers cannot access your local server at <code>http://localhost:4200/</code>.</p>
       </div>
     </div>
     <img src="/images/mascots/zoey.png" role="presentation" alt="">
