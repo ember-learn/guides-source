@@ -19,6 +19,7 @@
 	.fill-maize{fill:#C09A3F;}
 	.fill-dark-red{fill:#9B5436;}
 	.fill-light-blue{fill:#3095C3;}
+	.text-10{font-size:10px;}
 </style>
 <g id="Background">
 	<rect class="st0" width="116.5" height="540.9"/>
@@ -116,11 +117,11 @@
     <!-- line 3 -->
     <tspan x="0" y="28.8">});</tspan>
   </text>
-	<text transform="matrix(1 0 0 1 295.5 170.3959)" class="font-monospace text-12">
+	<text transform="matrix(1 0 0 1 295.5 170.3959)" class="font-monospace text-10">
     <!-- line 1 -->
-    <tspan class="fill-dark-red" x="0" y="0"> class </tspan><tspan class="fill-maize">RentalRoute </tspan><tspan class="fill-dark-red">extends </tspan><tspan class="fill-maize">Route</tspan> {
+    <tspan class="fill-dark-red" x="0" y="0"> export default class </tspan><tspan class="fill-maize">RentalRoute </tspan><tspan class="fill-dark-red">extends </tspan><tspan class="fill-maize">Route</tspan> {
     <!-- line 2 -->
-    <tspan x="14" y="14.4" class="fill-dark-red">async </tspan><tspan class="fill-dark-blue">model</tspan>() {
+    <tspan x="14" y="14.4" class="fill-dark-blue">model</tspan>() {
     <!-- line 3 -->
     <tspan x="28" y="28.8" class="fill-maize">return </tspan><tspan class="fill-dark-red">this</tspan>.store.<tspan class="fill-dark-blue">findAll</tspan>(<tspan class="fill-light-blue">&apos;rental&apos;</tspan>);
     <!-- line 4 -->
