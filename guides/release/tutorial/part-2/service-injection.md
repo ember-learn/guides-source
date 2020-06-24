@@ -4,7 +4,7 @@ As promised, we will now work on implementing the share button!
 
 <!-- TODO: make this a gif instead -->
 
-![The working share button by the end of the chapter](/images/tutorial/part-2/service-injection/suggested-tweet@2x.png)
+<img src="/images/tutorial/part-2/service-injection/share-button@2x.png" alt="The working share button by the end of the chapter" width="1024" height="1381">
 
 While adding the share button, you will learn about:
 
