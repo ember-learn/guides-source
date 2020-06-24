@@ -4,7 +4,7 @@ As promised, we will now work on implementing the share button!
 
 <!-- TODO: make this a gif instead -->
 
-<img src="/images/tutorial/part-2/service-injection/suggested-tweet@2x.png" alt="The working share button by the end of the chapter" width="1024" height="449">
+![The working share button by the end of the chapter](/images/tutorial/part-2/service-injection/suggested-tweet@2x.png)
 
 While adding the share button, you will learn about:
 
@@ -173,14 +173,12 @@ With that, we should have a working share button!
 
 <img src="/images/tutorial/part-2/service-injection/share-button@2x.png" alt="A share button that works!" width="1024" height="1381">
 
-<img src="/images/tutorial/part-2/service-injection/suggested-tweet@2x.png" alt="Suggested tweet" width="1024" height="449">
-
 <div class="cta">
   <div class="cta-note">
     <div class="cta-note-body">
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
-        <p>Feel free to try sending the tweet! However, keep in mind that your followers cannot access your local server at <code>http://localhost:4200/</code>. Don't worry though, at the end of the tutorial, we will deploy the app to the Internet so you can show everyone what you made!</p>
+        <p>Feel free to try sending the tweet! However, keep in mind that your followers cannot access your local server at <code>http://localhost:4200/</code>.</p>
       </div>
     </div>
     <img src="/images/mascots/zoey.png" role="presentation" alt="">
