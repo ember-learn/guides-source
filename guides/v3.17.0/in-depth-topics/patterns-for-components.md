@@ -176,3 +176,13 @@ component is destroyed and the new component is created and brought in.
 Picking different components to render in response to the data allows you to
 have different template and behavior for each case. The `{{component}}` helper
 is a powerful tool for improving code modularity.
+
+---
+
+To avoid this guide from going on too long we've built a site entirely around
+[ember-component-patterns that you can check out here](https://emberjs-1.gitbook.io/ember-component-patterns/).
+This project covers individual component patterns in greater detail complete 
+with anti-patterns and accessibility in mind.
+
+[![ember-component-patterns](/images/ember-component-patterns.png)](https://emberjs-1.gitbook.io/ember-component-patterns/)
+
