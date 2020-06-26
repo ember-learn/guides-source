@@ -1,7 +1,6 @@
 This guide assumes that you have read the [component guides](../../components/)
 and are familiar with how Ember components work. We'll cover components in more
-depth in this section, including additional functionality that was not covered
-in the main guides, and patterns
+depth in this section, including additional functionality and patterns.
 
 ## Argument Defaults
 
