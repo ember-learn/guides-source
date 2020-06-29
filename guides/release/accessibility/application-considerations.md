@@ -11,6 +11,8 @@ A primary language should be defined on the `<html>` element's `lang` attribute.
 
 The `html` element may not have multiple `lang` _values_. Instead, an element containing content in a different language than the `html`'s `lang` may be wrapped in an element with its own `lang` attribute.
 
+![For example, a HTML tag may have a lang of "es" while a paragraph may have a lang of "en"](/images/accessibility/application-considerations/lang.png)
+
 <div class="cta">
   <div class="cta-note">
     <div class="cta-note-body">
