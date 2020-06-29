@@ -176,6 +176,24 @@ code[data-diff] .diff-insertion::before {
   padding: 0.75em;
 }
 
+/* Pullquote (blockquote) emphasis */
+
+.chapter blockquote {
+  font-family: serif;
+  font-size: 85%;
+  color: #4d4d4d;
+  padding: 0.5em 0.75em;
+  border: 1px solid #F8E7CF;
+  border-radius: 2px;
+}
+
+.chapter blockquote p:first-child {
+  margin-top: 0;
+}
+.chapter blockquote p:last-child {
+  margin-bottom: 0;
+}
+
 /* Make the line number "gutter" narrower and more balanced */
 
 .chapter pre.line-numbers,
