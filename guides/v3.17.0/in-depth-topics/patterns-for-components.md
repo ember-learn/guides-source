@@ -1,6 +1,6 @@
 This guide assumes that you have read the [component guides](../../components/)
 and are familiar with how Ember components work. We'll cover components in more
-depth in this section, including additional functionality and patterns.
+depth in this section. At the end, we'll present recommended component patterns.
 
 ## Argument Defaults
 
@@ -177,12 +177,9 @@ Picking different components to render in response to the data allows you to
 have different template and behavior for each case. The `{{component}}` helper
 is a powerful tool for improving code modularity.
 
----
+## Learn More
 
-To avoid this guide from going on too long we've built a site entirely around
-[ember-component-patterns that you can check out here](https://emberjs-1.gitbook.io/ember-component-patterns/).
-This project covers individual component patterns in greater detail complete 
-with anti-patterns and accessibility in mind.
+To keep this guide concise, we built a separate site for [component patterns in Ember](https://emberjs-1.gitbook.io/ember-component-patterns/).
+This project also addresses anti-patterns and accessibility for components.
 
 [![ember-component-patterns](/images/ember-component-patterns.png)](https://emberjs-1.gitbook.io/ember-component-patterns/)
-
