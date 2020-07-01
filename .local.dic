@@ -57,6 +57,7 @@ ember-cli-htmlbars
 ember-cli-mirage.
 ember-cli-tutorial-style
 ember-debug-handlers-polyfill
+ember-intl
 erroring
 Evented
 facto
@@ -92,6 +93,7 @@ invokers
 jquery-integration
 keyCode
 KVO
+lang
 linters
 lookups
 Mapbox

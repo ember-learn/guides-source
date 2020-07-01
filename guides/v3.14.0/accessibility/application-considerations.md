@@ -2,16 +2,16 @@ In this section, you will learn about the configurations and libraries that affe
 
 ## Lang Attribute
 
-Declaring the language of the HTML document explicitly allows users to be better able to understand your content.
+Declaring the language of the HTML document allows users to better understand your content.
 
 > Both assistive technologies and conventional user agents can render text more accurately when the language of the Web page is identified. Screen readers can load the correct pronunciation rules. Visual browsers can display characters and scripts correctly. Media players can show captions correctly. As a result, users with disabilities will be better able to understand the content.
 > [WCAG Success Criterion 3.1.1: Intent](https://www.w3.org/WAI/WCAG21/Understanding/language-of-page.html#intent)
 
-A primary language should be defined on the `<html>` element's `lang` attribute. For existing Ember apps a developer may edit the `index.html` file or leverage [ember-intl](https://github.com/ember-intl/ember-intl). [Soon Ember CLI will allow for creating new applications with this attribute set for you automatically](https://github.com/ember-cli/ember-cli/pull/9259).
+A primary language should be defined on the `<html>` element's `lang` attribute. For existing Ember apps, a developer may edit the `index.html` file or leverage [ember-intl](https://github.com/ember-intl/ember-intl).
 
-The `html` element may not have multiple `lang` _values_. Instead, an element containing content in a different language than the `html`'s `lang` may be wrapped in an element with its own `lang` attribute.
+The `html` element may not have multiple `lang` _values_. If an element contains content in a language different from the primary, then you can provide the element its own `lang` attribute.
 
-![For example, a HTML tag may have a lang of "es" while a paragraph may have a lang of "en"](/images/accessibility/application-considerations/lang.png)
+![For example, the HTML tag may have a lang of "es" while a paragraph may have a lang of "en"](/images/accessibility/application-considerations/lang.png)
 
 <div class="cta">
   <div class="cta-note">
