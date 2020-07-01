@@ -1,15 +1,31 @@
 In this section, you will learn about the configurations and libraries that affect an entire application's accessibility.
 
-## Language attribute
+## Lang Attribute
 
-Every application must have a primary language declaration. This language declaration is important for assistive technology like screen readers, internationalization tools built into browsers, and search engines.
+Declaring the language of the HTML document allows users to better understand your content.
 
-To indicate the primary language, use the `lang` attribute on the `<html>` element. Until Ember provides this by default, developers should edit the `index.html` file of the generated Ember application with the default language declaration. This is inherited by all other elements, and will set a default language for the text in the document head element.
+> Both assistive technologies and conventional user agents can render text more accurately when the language of the Web page is identified. Screen readers can load the correct pronunciation rules. Visual browsers can display characters and scripts correctly. Media players can show captions correctly. As a result, users with disabilities will be better able to understand the content.
+> [WCAG Success Criterion 3.1.1: Intent](https://www.w3.org/WAI/WCAG21/Understanding/language-of-page.html#intent)
 
-If there happens to be any content on the page that is in a different language from that declared in the `<html>` element, the `lang` attribute can be used on the parent element to indicate a different language.
+A primary language should be defined on the `<html>` element's `lang` attribute. For existing Ember apps, a developer may edit the `index.html` file or leverage [ember-intl](https://github.com/ember-intl/ember-intl).
 
-Note: a page cannot have multiple language attribute _values_. For example, this means that `lang="en"` could be set on the page's HTML element and then `lang="es"` could be set on a different element in the page content (as appropriate).  
+The `html` element may not have multiple `lang` _values_. If an element contains content in a language different from the primary, then you can provide the element its own `lang` attribute.
 
+![For example, the HTML tag may have a lang of "es" while a paragraph may have a lang of "en"](/images/accessibility/application-considerations/lang.png)
+
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+        <p>
+        To learn more about the lang attribute and how to use it: <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang">https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang</a>. Unsure which language subtag to use? Try <a href="https://r12a.github.io/app-subtags/">the Language Subtag Lookup tool</a>.
+        </p>
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
+  </div>
+</div>
 
 ## Configurations
 
