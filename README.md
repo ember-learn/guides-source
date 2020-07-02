@@ -8,7 +8,7 @@ help improve the learning experience of other developers.
 
 Looking for repositories for the other parts of [emberjs.com](https://emberjs.com)?
 Check out
-[website](https://github.com/emberjs/website),
+[website](https://github.com/ember-learn/ember-website),
 [ember-api-docs](https://github.com/ember-learn/ember-api-docs),
 [super-rentals tutorial](https://github.com/ember-learn/super-rentals),
 [statusboard](https://github.com/ember-learn/statusboard),
@@ -53,6 +53,8 @@ ember serve
 
 Visit [http://localhost:4200](http://localhost:4200)
 
+Note: If you get an error on macOS mentioning `"Error: EMFILE: too many open files, watch"`, try installing Watchman. Install [Homebrew](https://brew.sh/) if you don't have it. Then in you terminal `brew install watchman`.
+
 ## Running tests
 
 Use `npm` to run tests instead of `ember`, since we have additional
@@ -66,3 +68,12 @@ npm test
 ### Linting and spellchecking
 
 The guides are spellchecked and linted for Markdown consistency. You can test your contributions by running `npm run lint:md`. Linting and spellchecking must pass or they will fail in Travis-CI.  See [CONTRIBUTING.md](CONTRIBUTING.md) for more information on linting and spellchecking.
+
+
+### Internal and external links
+
+Testing of internal and external links can be performed using three commands:
+
+1. `npm run test:node`.  Checks all relative links for all versions of the guides and runs all ither test scripts in the `node-tests` directory, except for those located in the `node-tests/local` sub-directory;
+1. `npm run test:node-local`. Checks all external links in the `guides/release` folder; and
+1. `npm run test:node-local-exclude-api-urls`.  Checks all external links except for links to the [API docs](https://api.emberjs.com).

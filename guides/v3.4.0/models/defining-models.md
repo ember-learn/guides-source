@@ -158,3 +158,5 @@ export default DS.Model.extend({
   })
 });
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

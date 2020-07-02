@@ -28,7 +28,7 @@ string](http://api.jquery.com/category/selectors/).
 ### Disabling URL Management
 
 You can prevent Ember from making changes to the URL by [changing the
-router's `location`](../specifying-url-type) to
+router's `location`](../specifying-url-type/) to
 `none`:
 
 ```javascript {data-filename=config/environment.js}
@@ -50,3 +50,5 @@ Ember.Router.extend({
   rootURL: '/blog/'
 });
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

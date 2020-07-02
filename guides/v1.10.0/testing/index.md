@@ -43,4 +43,4 @@ improved, please feel free to [contribute].
 
 [automated tests]: http://en.wikipedia.org/wiki/Test_automation
 [QUnit]: http://qunitjs.com/
-[contribute]: https://github.com/emberjs/website
+[contribute]: https://github.com/ember-learn/ember-website

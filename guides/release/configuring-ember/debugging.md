@@ -8,16 +8,16 @@ with your application.
 ```javascript {data-filename=app/app.js}
 import Application from '@ember/application';
 
-export default Application.extend({
+export default class App extends Application {
   // Basic logging, e.g. "Transitioned into 'post'"
-  LOG_TRANSITIONS: true,
+  LOG_TRANSITIONS = true,
 
   // Extremely detailed logging, highlighting every internal
   // step made while transitioning into a route, including
   // `beforeModel`, `model`, and `afterModel` hooks, and
   // information about redirects and aborted transitions
-  LOG_TRANSITIONS_INTERNAL: true
-});
+  LOG_TRANSITIONS_INTERNAL = true
+}
 ```
 ## Views / Templates
 
@@ -35,20 +35,6 @@ ENV.APP.LOG_VIEW_LOOKUPS = true;
 ENV.APP.LOG_ACTIVE_GENERATION = true;
 ```
 
-## Observers / Binding
-
-### See all observers for an object, key
-
-```javascript
-Ember.observersFor(comments, keyName);
-```
-
-### Log object bindings
-
-```javascript {data-filename=config/environments.js}
-ENV.APP.LOG_BINDINGS = true;
-```
-
 ## Miscellaneous
 
 ### Turn on resolver resolution logging
@@ -62,11 +48,14 @@ and which it is generating automatically for you.
 ```javascript {data-filename=app/app.js}
 import Application from '@ember/application';
 
-export default Application.extend({
-  LOG_RESOLVER: true
-});
+export default class App extends Application {
+  LOG_RESOLVER = true
+}
 ```
 ### Dealing with deprecations
+
+In addition to what is described in the [Handling Deprecations guide](../handling-deprecations/),
+you can turn on the following settings:
 
 ```javascript
 Ember.ENV.RAISE_ON_DEPRECATION = true;
@@ -75,9 +64,10 @@ Ember.ENV.LOG_STACKTRACE_ON_DEPRECATION = true;
 
 ### Implement an Ember.onerror hook to log all errors in production
 
-```javascript
+```javascript {data-filename=app/app.js}
+import Ember from 'ember';
 import fetch from 'fetch';
-
+// ...
 Ember.onerror = function(error) {
   fetch('/error-notification', {
     method: 'POST',

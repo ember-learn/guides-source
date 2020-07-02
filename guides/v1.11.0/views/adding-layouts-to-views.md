@@ -38,3 +38,5 @@ This will result in view instances containing the following HTML
   Hello, <b>Teddy</b>!
 </div>
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

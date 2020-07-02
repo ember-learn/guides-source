@@ -88,3 +88,5 @@ this.get('store').queryRecord('person', {
   // do something with `tomster`
 });
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

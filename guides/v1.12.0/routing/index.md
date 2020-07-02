@@ -51,3 +51,5 @@ Ember.Router.extend({
   rootURL: '/blog/'
 });
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

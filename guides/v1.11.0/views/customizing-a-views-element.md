@@ -177,3 +177,5 @@ This yields a view wrapper that will look something like this:
 ```html
 <div id="ember420" class="ember-view is-urgent p4"></div>
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

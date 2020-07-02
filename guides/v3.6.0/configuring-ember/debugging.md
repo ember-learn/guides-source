@@ -39,20 +39,6 @@ Ember.keys(Ember.TEMPLATES)
 ENV.APP.LOG_ACTIVE_GENERATION = true;
 ```
 
-## Observers / Binding
-
-### See all observers for an object, key
-
-```javascript
-Ember.observersFor(comments, keyName);
-```
-
-### Log object bindings
-
-```javascript {data-filename=config/environments.js}
-ENV.APP.LOG_BINDINGS = true;
-```
-
 ## Miscellaneous
 
 ### Turn on resolver resolution logging

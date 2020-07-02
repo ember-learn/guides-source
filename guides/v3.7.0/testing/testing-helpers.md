@@ -94,3 +94,5 @@ module('Integration | Helper | format currency', function(hooks) {
   });
 });
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

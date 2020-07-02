@@ -1,5 +1,9 @@
 'use strict';
 
 module.exports = {
-  extends: 'recommended'
+  extends: 'octane',
+  rules: {
+    'no-implicit-this': false,
+    'no-curly-component-invocation': false
+  }
 };

@@ -6,7 +6,7 @@ Browsers have implemented the spec in a way that provides functionality for free
 For example, consider this code sample: 
 
 ```html
-<button>Submit Form</button>
+<button type="submit">Submit Form</button>
 ```
 
 Here is what would be provided by the browser that the developer would otherwise need to provide: 
@@ -61,14 +61,14 @@ Every `<input>` element should have an associated `<label>` element. To do this,
 
 ```html
 <label for="input-firstName">First Name:</label>
-<input id="input-firstName" name="firstName" value="" />
+<input id="input-firstName" name="firstName" value="" type="text" />
 ```
 
 It is also valid to wrap the `<label>` element around the `<input />` element: 
 
 ```html
 <label>First Name:
-  <input id="input-firstName" name="firstName" value="" />
+  <input name="firstName" value="" type="text" />
 </label>
 ```
 

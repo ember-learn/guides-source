@@ -113,7 +113,7 @@ Examples of Rendering Tests are:
 
 Rendering Tests are used to test Components and Helpers where we need to render a layout and assert some interaction byproduct occurs.
 
-You can read more about it in the [Testing Components](../testing-components/) or the [Testing Helpers](./testing-helpers) section.
+You can read more about it in the [Testing Components](./testing-components/) or the [Testing Helpers](./testing-helpers) section.
 
 ### Application Tests
 

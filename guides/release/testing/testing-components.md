@@ -17,7 +17,7 @@ export default class PrettyColorComponent extends Component {
 }
 ```
 
-```handlebars {data-filename="app/templates/components/pretty-color.hbs"}
+```handlebars {data-filename="app/components/pretty-color.hbs"}
 <div style={{this.style}}>
   Pretty Color: {{@name}}
 </div>
@@ -65,7 +65,7 @@ We can better see what this means, once we start writing out our first test case
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Component | pretty-color', function(hooks) {
   setupRenderingTest(hooks);
@@ -96,7 +96,7 @@ component's `style` attribute and is reflected in the rendered HTML:
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Component | pretty-color', function(hooks) {
   setupRenderingTest(hooks);
@@ -123,7 +123,7 @@ We might also test this component to ensure that the content of its template is 
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Component | pretty-color', function(hooks) {
   setupRenderingTest(hooks);
@@ -168,10 +168,10 @@ export default class MagicTitleComponent extends Component {
 }
 ```
 
-```handlebars {data-filename="app/templates/components/magic-title.hbs"}
+```handlebars {data-filename="app/components/magic-title.hbs"}
 <h2>{{this.title}}</h2>
 
-<button class="title-button" {{on "click" this.updateTitle}}>
+<button type="button" class="title-button" {{on "click" this.updateTitle}}>
   Update Title
 </button>
 ```
@@ -182,7 +182,7 @@ And our test might look like this:
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { click, render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Component | magic-title', function(hooks) {
   setupRenderingTest(hooks);
@@ -231,7 +231,7 @@ export default class CommentFormComponent extends Component {
 }
 ```
 
-```handlebars {data-filename="app/templates/components/comment-form.hbs"}
+```handlebars {data-filename="app/components/comment-form.hbs"}
 <form {{action "submitComment" on="submit"}}>
   <label for="comment">Comment:</label>
   <Textarea @id="comment" @value={{this.comment}} />
@@ -247,7 +247,7 @@ external action is called:
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { click, fillIn, render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Component | comment-form', function(hooks) {
   setupRenderingTest(hooks);
@@ -261,7 +261,7 @@ module('Integration | Component | comment-form', function(hooks) {
       assert.deepEqual(actual, expected, 'submitted value is passed to external action');
     });
 
-    await render(hbs`<CommentForm @submitComment={{this.externalAction}}>`);
+    await render(hbs`<CommentForm @submitComment={{action externalAction}} />`);
 
     // fill out the form and force an onchange
     await fillIn('textarea', 'You are not a wizard!');
@@ -301,11 +301,11 @@ export default class LocationIndicatorComponent extends Component {
 }
 ```
 
-```handlebars {data-filename="app/templates/components/location-indicator.hbs"}
+```handlebars {data-filename="app/components/location-indicator.hbs"}
 You currently are located in {{this.city}}, {{this.country}}
 ```
 
-To stub the location service in your test, create a local stub object that extends `Ember.Service`,
+To stub the location service in your test, create a local stub object that extends `Service` from `@ember/service`,
 and register the stub as the service your tests need in the beforeEach function.
 In this case we initially force location to "New York".
 
@@ -313,31 +313,32 @@ In this case we initially force location to "New York".
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 import Service from '@ember/service';
 
 //Stub location service
-const locationStub = Service.extend({
-  city: 'New York',
-  country: 'USA',
-  currentLocation: {
+class LocationStub extends Service {
+  city = 'New York';
+  country = 'USA';
+  currentLocation = {
     x: 1234,
     y: 5678
-  },
+  };
 
   getCurrentCity() {
     return this.city;
-  },
+  }
+
   getCurrentCountry() {
     return this.country;
   }
-});
+}
 
 module('Integration | Component | location-indicator', function(hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(function(assert) {
-    this.owner.register('service:location-service', locationStub);
+    this.owner.register('service:location-service', LocationStub);
   });
 });
 ```
@@ -349,31 +350,32 @@ the test needs to check that the stub data from the service is reflected in the 
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 import Service from '@ember/service';
 
 //Stub location service
-const locationStub = Service.extend({
-  city: 'New York',
-  country: 'USA',
-  currentLocation: {
+class LocationStub extends Service {
+  city = 'New York';
+  country = 'USA';
+  currentLocation = {
     x: 1234,
     y: 5678
-  },
+  };
 
   getCurrentCity() {
     return this.city;
-  },
+  }
+  
   getCurrentCountry() {
     return this.country;
   }
-});
+}
 
 module('Integration | Component | location-indicator', function(hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(function(assert) {
-    this.owner.register('service:location-service', locationStub);
+    this.owner.register('service:location-service', LocationStub);
   });
 
   test('should reveal current location', async function(assert) {
@@ -390,31 +392,32 @@ In the next example, we'll add another test that validates that the display chan
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 import Service from '@ember/service';
 
 //Stub location service
-const locationStub = Service.extend({
-  city: 'New York',
-  country: 'USA',
-  currentLocation: {
+class LocationStub extends Service {
+  city = 'New York';
+  country = 'USA';
+  currentLocation = {
     x: 1234,
     y: 5678
-  },
+  };
 
   getCurrentCity() {
     return this.city;
-  },
+  }
+  
   getCurrentCountry() {
     return this.country;
   }
-});
+}
 
 module('Integration | Component | location-indicator', function(hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(function(assert) {
-    this.owner.register('service:location-service', locationStub);
+    this.owner.register('service:location-service', LocationStub);
   });
 
   test('should reveal current location', async function(assert) {
@@ -457,7 +460,7 @@ The `settled` function itself returns a Promise that resolves once all async ope
 
 You can use `settled` as a helper in your tests directly and `await` it for all async behavior to settle deliberately.
 
-Imagine you have a typeahead component that uses [`Ember.run.debounce`](https://api.emberjs.com/ember/3.11/classes/@ember%2Frunloop/methods/debounce?anchor=debounce) to limit requests to the server, and you want to verify that results are displayed after typing a character.
+Imagine you have a typeahead component that uses [`Ember.run.debounce`](https://api.emberjs.com/ember/release/classes/@ember%2Frunloop/methods/debounce?anchor=debounce) to limit requests to the server, and you want to verify that results are displayed after typing a character.
 
 > You can follow along by generating your own component with `ember generate
 > component delayed-typeahead`.
@@ -476,7 +479,7 @@ export default class DelayedTypeaheadComponent extends Component {
 };
 ```
 
-```handlebars {data-filename="app/templates/components/delayed-typeahead.hbs"}
+```handlebars {data-filename="app/components/delayed-typeahead.hbs"}
 <label for="search">Search</label>
 <Input @id="search" @value={{this.searchValue}} @key-up={{this.handleTyping}} />
 <ul>
@@ -492,7 +495,7 @@ In your test, use the `settled` helper to wait until your debounce timer is up a
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render, settled } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Component | delayed-typeahead', function(hooks) {
   setupRenderingTest(hooks);
@@ -521,3 +524,5 @@ module('Integration | Component | delayed-typeahead', function(hooks) {
   });
 });
 ```
+
+<!-- eof - needed for pages that end in a code block  -->

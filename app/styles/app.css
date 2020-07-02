@@ -16,29 +16,6 @@ code {
   }
 }
 
-/* HACK: quick hack as per: https://github.com/ember-learn/guides-source/issues/611
-   to hide edit page pencil link and the search bar globally. */
-a.edit-page, #search-input {
-  display: none;
-}
-
-/**
- * HACK: Removing the version dropdown temporarily for Octane. Remove this
- * before merging into master
- */
-
-.sidebar nav.toc-container {
-  margin-top: 0;
-}
-
-.sidebar .ember-basic-dropdown {
-  display: none;
-}
-
-.toc-container.versions {
-  border-top: 0;
-}
-
 .list-cards {
   flex-flow: row wrap;
   max-width: 100%;
@@ -178,6 +155,10 @@ code[data-diff] .diff-insertion::before {
   line-height: 1.75em;
   margin: 0.5em 0;
 }
+.chapter .cta-note-body code {
+  padding: 0;
+  background-color: transparent;
+}
 @media screen and (min-width: 768px) {
   .chapter .cta .cta-note img {
     padding-bottom: 10px;
@@ -205,4 +186,22 @@ code[data-diff] .diff-insertion::before {
 .chapter pre[class*=language-].line-numbers code {
   display: inline-block;
   margin-left: 0.05em;
+}
+
+/* ToC heading styles */
+
+li.toc-heading.toc-level-0 {
+  font-size: 0.8em;
+  text-transform: uppercase;
+  color: rgb(155, 41, 24, 0.76);
+  font-weight: bold;
+  margin: 2em 0 1em;
+}
+
+li.toc-heading.toc-level-0:first-of-type {
+  margin-top: 0;
+}
+
+li.toc-group.toc-level-0 {
+  padding-left: 1em;
 }
