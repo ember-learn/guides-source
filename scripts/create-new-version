@@ -1,0 +1,59 @@
+#!/bin/bash
+
+echo "Welcome to the guided process of updating the Guides search index"
+echo "We will now be running a mix of automated (🤖) and manual (👩‍💻) steps, please read the prompts carefully."
+
+STARTING_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+TEMP_BRANCH="create-new-guides-version-$(( $RANDOM % 1000 ))"
+
+echo
+echo "🤖 Staging local changes"
+git add .
+git stash push -m $TEMP_BRANCH
+echo "  DONE"
+
+echo
+echo "🤖 Updating master branch from remote"
+read -p "Remote name (origin): " REMOTE
+REMOTE_NAME=${REMOTE:-origin}
+git fetch $REMOTE_NAME master
+git checkout FETCH_HEAD -b $TEMP_BRANCH
+echo "  DONE"
+
+echo
+echo "👩‍💻 Merge any pending PRs for the current release https://github.com/ember-learn/guides-source/pulls"
+read -n 1 -s -r -p "Press any key to continue"
+
+CURRENT_VERSION=$(grep "currentVersion" guides/versions.yml | sed "s/currentVersion.*\(v.*\)\"/\1/")
+MAJOR_VERSION=$(echo $CURRENT_VERSION | cut -d "." -f 1 | cut -c 2-)
+MINOR_VERSION=$(echo $CURRENT_VERSION | cut -d "." -f 2)
+PATCH_VERSION=$(echo $CURRENT_VERSION | cut -d "." -f 3)
+NEXT_VERSION=$(($MAJOR_VERSION.$(($MINOR_VERSION+1)).$PATCH_VERSION))
+
+echo "🤖 Copying release to $CURRENT_VERSION"
+cp -r guides/release guides/$CURRENT_VERSION
+echo "  DONE"
+
+echo "🤖 Updating /guides/versions.yml"
+sed -i .bak "s/\(currentVersion:.*\)v.*/\1v$(echo $NEXT_VERSION)\"/" guides/versions.yml
+rm guides/versions.yml.bak
+echo "  DONE"
+
+echo
+echo "🤖 Committing changes and publishing branch to remote"
+git add .
+git commit -m "v$(echo $NEXT_VERSION)"
+git push -u origin $TEMP_BRANCH
+echo "  DONE"
+
+echo
+echo "👩‍💻 Create pull request for $($TEMP_BRANCH): https://github.com/ember-learn/guides-source/compare/master...$TEMP_BRANCH"
+read -n 1 -s -r -p "Press any key to continue"
+
+echo
+echo "🤖 Restoring previous branch."
+git reset --hard
+git switch $STARTING_BRANCH
+git stash list | grep $TEMP_BRANCH | grep -Eo '^[^:]+' | git stash pop -
+git branch -D $TEMP_BRANCH
+git stash pop "$(git stash list | grep $TEMP_BRANCH | grep -Eo '^[^:]+')"
