@@ -1,21 +1,11 @@
 [![Build Status](https://travis-ci.org/ember-learn/guides-source.svg?branch=master)](https://travis-ci.org/ember-learn/guides-source)
 [![This project is using Percy.io for visual regression testing.](https://percy.io/static/images/percy-badge.svg)](https://percy.io/Ember/guides-app)
 
-## Ember Guides Source
+# Ember Guides Source
 
-This repository contains the written content
-for the [Ember.js Guides](https://guides.emberjs.com).
-Here, contributors can file issues and submit PRs to
-help improve the learning experience of other developers.
+This repository contains the written content for the [Ember.js Guides](https://guides.emberjs.com). Contributors can file issues and submit pull requests (PRs) to help improve everyone's learning experience.
 
-Looking for repositories for the other parts of [emberjs.com](https://emberjs.com)?
-Check out
-[website](https://github.com/ember-learn/ember-website),
-[ember-api-docs](https://github.com/ember-learn/ember-api-docs),
-[super-rentals tutorial](https://github.com/ember-learn/super-rentals),
-[statusboard](https://github.com/ember-learn/statusboard),
-[deprecation-app](https://github.com/ember-learn/deprecation-app),
-and [styleguide](https://github.com/ember-learn/ember-styleguide).
+Looking for repositories for the other parts of [emberjs.com](https://emberjs.com)? Check out the [website](https://github.com/ember-learn/ember-website), [ember-api-docs](https://github.com/ember-learn/ember-api-docs), [super-rentals tutorial](https://github.com/ember-learn/super-rentals), [statusboard](https://github.com/ember-learn/statusboard), [deprecation-app](https://github.com/ember-learn/deprecation-app), and [styleguide](https://github.com/ember-learn/ember-styleguide).
 
 ## Contributing
 
