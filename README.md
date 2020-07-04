@@ -29,7 +29,10 @@ If you run `ember serve`, the Markdown files are turned into HTML to create an a
 - [guidemaker](https://github.com/empress/guidemaker)
 - [guidemaker-ember-template](https://github.com/ember-learn/guidemaker-ember-template)
 
-## Local Development
+
+## Local development
+
+To run the Ember Guides app locally, type these commands into your terminal.
 
 ```bash
 git clone git://github.com/ember-learn/guides-source.git
@@ -39,9 +42,9 @@ npm install
 ember serve
 ```
 
-Visit [http://localhost:4200](http://localhost:4200)
+Afterwards, visit [http://localhost:4200](http://localhost:4200) on your browser.
 
-Note: If you get an error on macOS mentioning `"Error: EMFILE: too many open files, watch"`, try installing Watchman. Install [Homebrew](https://brew.sh/) if you don't have it. Then in you terminal `brew install watchman`.
+Note: On Mac, if you get the error `Error: EMFILE: too many open files, watch`, try installing Watchman. Install [Homebrew](https://brew.sh/) if you don't have it. Then, in your terminal, run `brew install watchman`.
 
 ## Running tests
 
