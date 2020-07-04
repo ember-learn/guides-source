@@ -211,7 +211,7 @@ the default message using the `(has-block)` syntax in an `ErrorDialog` component
   {{#if (has-block)}}
     {{yield}}
   {{else}}
-    An unknown error occured!
+    An unknown error occurred!
   {{/if}}
 </dialog>
 ```
@@ -225,7 +225,7 @@ default message.
 ```html
 <!-- rendered -->
 <dialog>
-  An unknown error occured!
+  An unknown error occurred!
 </dialog>
 ```
 
