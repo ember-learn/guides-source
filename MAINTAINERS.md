@@ -22,8 +22,8 @@ It is required that all maintainers use 2FA (two factor authentication). These a
 - Percy dashboard
 
 1. Run `npm run release:guides` and follow the script's instructions. At the end, the script will create a PR for releasing a new version of the Ember Guides.
-9. In the newly created PR, mention that when it is merged, the person who merges it must update the guides search ASAP, and include a link to this page for instructions. Look at the app in staging, get a review, and merge to `master`. This will trigger an auto deployment.
-10. Once it is deployed, follow the steps below to get the website search working for your new version.
+1. In the PR, mention that **the person who merges it must update the guides search ASAP**. Add a link to this page for instructions on updating the guides search. Look at the app in staging, get a review, and merge to `master`. This will trigger an auto deployment.
+1. Once it is deployed, follow the steps below to get the website search working for your new version.
 
 ### Updating the guides search
 
