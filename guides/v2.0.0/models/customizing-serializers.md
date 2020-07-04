@@ -630,7 +630,7 @@ record's type name or attributes. It is important to make sure that
 the type name matches the name of the file where it is defined
 exactly. Also attribute and relationship names in the JSON API
 document should match the name an casing of the attribute and
-relationship properites on the Model.
+relationship properties on the Model.
 
 For Example: given this `post` model.
 
