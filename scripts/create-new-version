@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Welcome to the guided process of updating the Guides search index"
-echo "We will now be running a mix of automated (🤖) and manual (👩‍💻) steps, please read the prompts carefully."
+echo "We will now be running a mix of automated (🤖) and manual (👩‍💻) steps. Please read the prompts carefully."
 
 STARTING_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 TEMP_BRANCH="create-new-guides-version-$(( $RANDOM % 1000 ))"
