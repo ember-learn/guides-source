@@ -92,7 +92,7 @@ promise.then(function(result){  // Run loop might* need to be on here
 });
 ```
 
-* Calling `then` (observing/chaining) only needs to be implicitely wrapped in a run call statement (eg `Ember.run(...)`) if there is a possibility you will chain/observe the promise after it's been fulfilled.  See the examples below which will help explain the different scenarios.
+* Calling `then` (observing/chaining) only needs to be implicitly wrapped in a run call statement (eg `Ember.run(...)`) if there is a possibility you will chain/observe the promise after it's been fulfilled.  See the examples below which will help explain the different scenarios.
 
 #####Walk through example of observing/chaining before the promise has fulfilled
 
