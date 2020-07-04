@@ -46,25 +46,35 @@ Afterwards, visit [http://localhost:4200](http://localhost:4200) on your browser
 
 Note: On Mac, if you get the error `Error: EMFILE: too many open files, watch`, try installing Watchman. Install [Homebrew](https://brew.sh/) if you don't have it. Then, in your terminal, run `brew install watchman`.
 
+
 ## Running tests
 
-Use `npm` to run tests instead of `ember`, since we have additional
-tests like spellchecking that are not part of The Ember app's tests.
+Use `npm test` to run tests locally. In addition to the Ember app, we check for broken links.
 
-```
-npm install
+```bash
 npm test
 ```
 
 ### Linting and spellchecking
 
-The guides are spellchecked and linted for Markdown consistency. You can test your contributions by running `npm run lint:md`. Linting and spellchecking must pass or they will fail in Travis-CI.  See [CONTRIBUTING.md](CONTRIBUTING.md) for more information on linting and spellchecking.
+The guides are spellchecked and linted for Markdown consistency. You can check your edits by running,
 
+```bash
+npm run lint:md
+```
 
 ### Internal and external links
 
-Testing of internal and external links can be performed using three commands:
+You can find broken internal (relative) and external links by running 3 commands:
 
-1. `npm run test:node`.  Checks all relative links for all versions of the guides and runs all ither test scripts in the `node-tests` directory, except for those located in the `node-tests/local` sub-directory;
-1. `npm run test:node-local`. Checks all external links in the `guides/release` folder; and
-1. `npm run test:node-local-exclude-api-urls`.  Checks all external links except for links to the [API docs](https://api.emberjs.com).
+```bash
+# Check all internal links across all versions of the Guides
+npm run test:node
+
+# Check all external links in the `/guides/release` folder
+npm run test:node-local
+
+# Check all external links in the `/guides/release` folder,
+# except for those to the API docs (https://api.emberjs.com)
+npm run test:node-local-exclude-api-urls
+```
