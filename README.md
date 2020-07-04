@@ -1,5 +1,7 @@
+[![Build Status](https://travis-ci.org/ember-learn/guides-source.svg?branch=master)](https://travis-ci.org/ember-learn/guides-source)
+[![This project is using Percy.io for visual regression testing.](https://percy.io/static/images/percy-badge.svg)](https://percy.io/Ember/guides-app)
 
-## Ember Guides Source [![Build Status](https://travis-ci.org/ember-learn/guides-source.svg?branch=master)](https://travis-ci.org/ember-learn/guides-source)
+## Ember Guides Source
 
 This repository contains the written content
 for the [Ember.js Guides](https://guides.emberjs.com).
