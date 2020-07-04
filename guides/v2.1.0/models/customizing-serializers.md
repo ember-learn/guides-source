@@ -1,4 +1,4 @@
-In Ember Data, serializers format the data sent to and recieved from
+In Ember Data, serializers format the data sent to and received from
 the backend store. By default, Ember Data serializes data using the
 [JSON API](http://jsonapi.org/) format. If your backend uses a different
 format, Ember Data allows you to customize the serializer or use a
