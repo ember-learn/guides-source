@@ -19,18 +19,15 @@ Please see [CONTRIBUTING.md](CONTRIBUTING.md) for additional instructions on how
 
 ## Project layout
 
-The Guides content takes the form of Markdown files (just like most READMEs).
-Each minor version of Ember has its own directory within `/guides/`.
-Pull requests should make edits to only the contents of the `guides/release` directory,
-which is the latest deployed version of the guides.
-The exception is that PRs to fix broken links in older versions of the guides are ok.
-On `ember serve`, the Markdown files are turned into HTML
-to create an app. Most of the functionality comes from
-[guidemaker](https://github.com/empress/guidemaker) and
-[guidemaker-ember-template](https://github.com/ember-learn/guidemaker-ember-template).
-The styles come from [ember-styleguide](https://github.com/ember-learn/ember-styleguide),
-the shared home of components and stylesheets used throughout the family of
-Ember sites.
+The Ember Guides content are written in Markdown. Each minor version of Ember has its own directory within `/guides`.
+
+In general, your PR should make edits to only the files in the `/guides/release` directory, which corresponds to the latest version of Ember. Exceptions may include fixing broken links and typos in older versions of the Ember Guides.
+
+If you run `ember serve`, the Markdown files are turned into HTML to create an app. We use the following addons to make this happen:
+
+- [ember-styleguide](https://github.com/ember-learn/ember-styleguide)
+- [guidemaker](https://github.com/empress/guidemaker)
+- [guidemaker-ember-template](https://github.com/ember-learn/guidemaker-ember-template)
 
 ## Local Development
 
