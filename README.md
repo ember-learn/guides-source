@@ -7,15 +7,14 @@ This repository contains the written content for the [Ember.js Guides](https://g
 
 Looking for repositories for the other parts of [emberjs.com](https://emberjs.com)? Check out the [website](https://github.com/ember-learn/ember-website), [ember-api-docs](https://github.com/ember-learn/ember-api-docs), [super-rentals tutorial](https://github.com/ember-learn/super-rentals), [statusboard](https://github.com/ember-learn/statusboard), [deprecation-app](https://github.com/ember-learn/deprecation-app), and [styleguide](https://github.com/ember-learn/ember-styleguide).
 
+
 ## Contributing
 
-Welcome and thanks for your help! Please see [CONTRIBUTING.md](CONTRIBUTING.md)
-for detailed instructions on how to format your work and submit a Pull Request.
-First-time contributors are encouraged to choose issues that are labeled
-"help wanted" or "good for new contributors." If you have questions or
-want a buddy to pair with, you can join the
-[dev-ember-learning channel](https://discordapp.com/channels/480462759797063690/480777444203429888)
-in the [Ember Community Discord](https://discordapp.com/invite/zT3asNS).
+Welcome and thanks for your help!
+
+First-time contributors are encouraged to look at issues that are labeled **help wanted** or **good first issue**. If you have questions or want a buddy to pair with, you can join the [#dev-ember-learning channel](https://discordapp.com/channels/480462759797063690/480777444203429888) in the [Ember Community Discord](https://discordapp.com/invite/zT3asNS).
+
+Please see [CONTRIBUTING.md](CONTRIBUTING.md) for additional instructions on how to format your work and submit a PR.
 
 
 ## Project layout
