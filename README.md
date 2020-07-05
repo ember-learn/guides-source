@@ -19,7 +19,7 @@ Please see [CONTRIBUTING.md](CONTRIBUTING.md) for additional instructions on how
 
 ## Project layout
 
-The Ember Guides content are written in Markdown. Each minor version of Ember has its own directory within `/guides`.
+The Ember Guides content is written in Markdown. Each minor version of Ember has its own directory within `/guides`.
 
 In general, your PR should make edits to only the files in the `/guides/release` directory, which corresponds to the latest version of Ember. Exceptions may include fixing broken links and typos in older versions of the Ember Guides.
 
