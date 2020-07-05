@@ -65,7 +65,7 @@ npm run lint:md
 
 ### Internal and external links
 
-You can find broken internal (relative) and external links by running 3 commands:
+Testing of internal and external links can be performed using 3 commands:
 
 ```bash
 # Check all internal links across all versions of the Guides
