@@ -35,7 +35,9 @@ cp -r guides/release guides/$CURRENT_VERSION
 echo "  DONE"
 
 echo "🤖 Updating /guides/versions.yml"
-sed -i .bak "s/\(currentVersion:.*\)v.*/\1v$(echo $NEXT_VERSION)\"/" guides/versions.yml
+sed -i .bak "s/\(currentVersion:.*v\).*/\1$(echo $NEXT_VERSION)\"/" guides/versions.yml
+sed -i .bak -e "/currentVersion/i \\
+\ \ - \"$(echo $NEXT_VERSION)\"" guides/versions.yml
 rm guides/versions.yml.bak
 echo "  DONE"
 
