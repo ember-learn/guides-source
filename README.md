@@ -5,7 +5,13 @@
 
 This repository contains the written content for the [Ember.js Guides](https://guides.emberjs.com). Contributors can file issues and submit pull requests (PRs) to help improve everyone's learning experience.
 
-Looking for repositories for the other parts of [emberjs.com](https://emberjs.com)? Check out the [website](https://github.com/ember-learn/ember-website), [ember-api-docs](https://github.com/ember-learn/ember-api-docs), [super-rentals tutorial](https://github.com/ember-learn/super-rentals), [statusboard](https://github.com/ember-learn/statusboard), [deprecation-app](https://github.com/ember-learn/deprecation-app), and [styleguide](https://github.com/ember-learn/ember-styleguide).
+Looking for repositories for the other parts of [emberjs.com](https://emberjs.com)? Check out
+[website](https://github.com/ember-learn/ember-website),
+[ember-api-docs](https://github.com/ember-learn/ember-api-docs),
+[super-rentals tutorial](https://github.com/ember-learn/super-rentals),
+[statusboard](https://github.com/ember-learn/statusboard),
+[deprecation-app](https://github.com/ember-learn/deprecation-app),
+and [styleguide](https://github.com/ember-learn/ember-styleguide).
 
 
 ## Contributing
@@ -68,13 +74,17 @@ npm run lint:md
 Testing of internal and external links can be performed using 3 commands:
 
 ```bash
-# Check all internal links across all versions of the Guides
+# Run all test scripts in `/node-tests` except those located
+# in `/node-tests/local`. In particular, this command checks
+# all internal links across all versions of the Guides.
 npm run test:node
 
-# Check all external links in the `/guides/release` folder
+# Run all test scripts in `/node-tests/local`. In particular,
+# this command checks all external links in the release version
+# of the Guides. 
 npm run test:node-local
 
-# Check all external links in the `/guides/release` folder,
-# except for those to the API docs (https://api.emberjs.com)
+# When checking external links in the release version, don't
+# check links to the API docs (https://api.emberjs.com).
 npm run test:node-local-exclude-api-urls
 ```
