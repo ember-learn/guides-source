@@ -3,15 +3,20 @@
 echo "Welcome to the guided process of updating the Guides search index"
 echo "We will now be running a mix of automated (🤖) and manual (👩‍💻) steps. Please read the prompts carefully."
 
+# Keep track of the branch the script user is on for later reversal.
 STARTING_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+# Generate a new branch name for the release by adding a pseudorandom suffix.
 TEMP_BRANCH="create-new-guides-version-$(( $RANDOM % 1000 ))"
 
+# Here we are stash any changes the script user might have to avoid losing them.
 echo
 echo "🤖 Staging local changes"
 git add .
 git stash push -m $TEMP_BRANCH
 echo "  DONE"
 
+# Ask the user what the remote name is.
+# `${REMOTE:-origin}` means that it defaults to `origin` if the script user did not provide a nanme.
 echo
 echo "🤖 Updating master branch from remote"
 read -p "Remote name (origin): " REMOTE
@@ -20,20 +25,40 @@ git fetch $REMOTE_NAME master
 git checkout FETCH_HEAD -b $TEMP_BRANCH
 echo "  DONE"
 
+# Pause the execution of the script while the user does a manual task.
+# The read flags do the following:
+# `-n 1` tells `read` to only read one character.
+# `-s` prevents `read` from echoing the input.
+# `-r` doesn't allow backslashes as escape characters.
+# `-p "…"` specifies what `read` prompts the user.
 echo
 echo "👩‍💻 Merge any pending PRs for the current release https://github.com/ember-learn/guides-source/pulls"
 read -n 1 -s -r -p "Press any key to continue"
 
+# Grabs the different version components from the guides/versions.yml file.
+# `cut` can be a bit confusing at first because it's one-indexed. The flags are:
+# `-d "."` specifies `.` as the delimiter.
+# `-f N` specifies which of the delimited sections to keep
+# `cut -c 2-` gets rid of the "v" prefix by selecting from the second character onwards.
 CURRENT_VERSION=$(grep "currentVersion" guides/versions.yml | sed "s/currentVersion.*\(v.*\)\"/\1/")
 MAJOR_VERSION=$(echo $CURRENT_VERSION | cut -d "." -f 1 | cut -c 2-)
 MINOR_VERSION=$(echo $CURRENT_VERSION | cut -d "." -f 2)
 PATCH_VERSION=$(echo $CURRENT_VERSION | cut -d "." -f 3)
-NEXT_VERSION=$(($MAJOR_VERSION.$(($MINOR_VERSION+1)).$PATCH_VERSION))
+NEXT_VERSION=$MAJOR_VERSION.$(($MINOR_VERSION+1)).$PATCH_VERSION
 
+# Copy the current release guides into the appropriate version-numbered folder.
+# `-r` is for recursive, so all directory content is copied.
 echo "🤖 Copying release to $CURRENT_VERSION"
 cp -r guides/release guides/$CURRENT_VERSION
 echo "  DONE"
 
+# Uses sed to replace the current version number in-place.
+# We remove the backup file so it is not committed with the new guides content and versions.yml changes.
+#
+# In the `sed` command, `-i .bak` specifies the extension for the backup file. Since this is a versioned repository, the backup file isn't vital.
+# The regular expression is matching and capturing (using parens) everything until the "v" so we can use it in the replacement as `\1`.
+# Then we interpolate the new version and replace the closing double quote.
+# We also add the relevant version to the list by using sed's i command.
 echo "🤖 Updating /guides/versions.yml"
 sed -i .bak "s/\(currentVersion:.*v\).*/\1$(echo $NEXT_VERSION)\"/" guides/versions.yml
 sed -i .bak -e "/currentVersion/i \\
@@ -54,6 +79,7 @@ read -n 1 -s -r -p "Press any key to continue"
 
 echo
 echo "🤖 Restoring previous branch."
+echo "You might see an error if you didn't have a stash."
 git reset --hard
 git switch $STARTING_BRANCH
 git stash list | grep $TEMP_BRANCH | grep -Eo '^[^:]+' | git stash pop -
