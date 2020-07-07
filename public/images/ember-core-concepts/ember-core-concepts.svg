@@ -9,326 +9,326 @@
   </defs>
   <g id="ember-core-concepts-text" class="cls-1">
     <g id="URL">
-      <text id="code" class="cls-2" transform="translate(274.8 32.15)">
+      <text role="presentation" id="code" class="cls-2" transform="translate(274.8 32.15)">
         http://localhost:4200/rentals
       </text>
-      <text id="title" class="cls-3" transform="translate(151.82 32.15)">
+      <text role="presentation" id="title" class="cls-3" transform="translate(151.82 32.15)">
         UR
-        <tspan class="cls-4" x="23.11" y="0">
+        <tspan role="presentation" class="cls-4" x="23.11" y="0">
         L
       </tspan>
     </text>
   </g>
   <g id="Router">
-    <text id="code-2" data-name="code" class="cls-2" transform="translate(274.8 98.07)">
+    <text role="presentation" id="code-2" data-name="code" class="cls-2" transform="translate(274.8 98.07)">
       Router.
-      <tspan class="cls-5" x="46.36" y="0">
+      <tspan role="presentation" class="cls-5" x="46.36" y="0">
       map
     </tspan>
-    <tspan class="cls-6" x="66.23" y="0">
+    <tspan role="presentation" class="cls-6" x="66.23" y="0">
       (
     </tspan>
-    <tspan class="cls-7" x="72.85" y="0">
+    <tspan role="presentation" class="cls-7" x="72.85" y="0">
       function
     </tspan>
-    <tspan x="125.83" y="0">
+    <tspan role="presentation" x="125.83" y="0">
       () {
     </tspan>
-    <tspan x="0" y="13.2" xml:space="preserve">
+    <tspan role="presentation" x="0" y="13.2" xml:space="preserve">
   </tspan>
-  <tspan class="cls-8" x="13.25" y="13.2">
+  <tspan role="presentation" class="cls-8" x="13.25" y="13.2">
     this
   </tspan>
-  <tspan class="cls-6" x="39.74" y="13.2">
+  <tspan role="presentation" class="cls-6" x="39.74" y="13.2">
     .
   </tspan>
-  <tspan class="cls-5" x="46.36" y="13.2">
+  <tspan role="presentation" class="cls-5" x="46.36" y="13.2">
     route
   </tspan>
-  <tspan x="79.47" y="13.2">
+  <tspan role="presentation" x="79.47" y="13.2">
     (
   </tspan>
-  <tspan class="cls-9" x="86.09" y="13.2">
+  <tspan role="presentation" class="cls-9" x="86.09" y="13.2">
     &apos;rentals&apos;
   </tspan>
-  <tspan class="cls-6" x="145.7" y="13.2">
+  <tspan role="presentation" class="cls-6" x="145.7" y="13.2">
     );
   </tspan>
-  <tspan x="0" y="26.4">
+  <tspan role="presentation" x="0" y="26.4">
     });
   </tspan>
 </text>
-<text id="actions" class="cls-10" transform="translate(15.02 98.35)">
+<text role="presentation" id="actions" class="cls-10" transform="translate(15.02 98.35)">
   Maps:
-  <tspan class="cls-11">
-  <tspan x="0" y="13.2" xml:space="preserve">
+  <tspan role="presentation" class="cls-11">
+  <tspan role="presentation" x="0" y="13.2" xml:space="preserve">
     - url to a route
   </tspan>
 </tspan>
 </text>
-<text id="title-2" data-name="title" class="cls-3" transform="translate(151.82 98.07)">
+<text role="presentation" id="title-2" data-name="title" class="cls-3" transform="translate(151.82 98.07)">
   Router
-  <tspan class="cls-12">
-  <tspan x="0" y="26.4">
+  <tspan role="presentation" class="cls-12">
+  <tspan role="presentation" x="0" y="26.4">
     route
   </tspan>
-  <tspan class="cls-13" x="27.35" y="26.4">
+  <tspan role="presentation" class="cls-13" x="27.35" y="26.4">
     r
   </tspan>
-  <tspan x="30.9" y="26.4">
+  <tspan role="presentation" x="30.9" y="26.4">
     .js
   </tspan>
 </tspan>
 </text>
 </g>
 <g id="Route-Handler">
-  <text id="code-3" data-name="code" class="cls-14" transform="translate(274.8 191.04)">
+  <text role="presentation" id="code-3" data-name="code" class="cls-14" transform="translate(274.8 191.04)">
     export
-    <tspan class="cls-15" x="39.74" y="0">
+    <tspan role="presentation" class="cls-15" x="39.74" y="0">
   </tspan>
-  <tspan class="cls-7" x="46.36" y="0">
+  <tspan role="presentation" class="cls-7" x="46.36" y="0">
     default class
   </tspan>
-  <tspan class="cls-16" x="139.07" y="0">
+  <tspan role="presentation" class="cls-16" x="139.07" y="0">
     RentalsRoute
   </tspan>
-  <tspan class="cls-15" x="218.54" y="0">
+  <tspan role="presentation" class="cls-15" x="218.54" y="0">
 </tspan>
-<tspan class="cls-17" x="225.17" y="0">
+<tspan role="presentation" class="cls-17" x="225.17" y="0">
   extends
 </tspan>
-<tspan class="cls-16" x="278.15" y="0">
+<tspan role="presentation" class="cls-16" x="278.15" y="0">
   Route
 </tspan>
-<tspan class="cls-18" x="311.26" y="0" xml:space="preserve">
+<tspan role="presentation" class="cls-18" x="311.26" y="0" xml:space="preserve">
   {
 </tspan>
-<tspan class="cls-18">
-  <tspan x="0" y="13.2" xml:space="preserve">
+<tspan role="presentation" class="cls-18">
+  <tspan role="presentation" x="0" y="13.2" xml:space="preserve">
 </tspan>
-<tspan class="cls-17" x="13.25" y="13.2">
+<tspan role="presentation" class="cls-17" x="13.25" y="13.2">
   async
 </tspan>
-<tspan class="cls-5" x="52.98" y="13.2">
+<tspan role="presentation" class="cls-5" x="52.98" y="13.2">
   model
 </tspan>
-<tspan class="cls-6" x="86.09" y="13.2">
+<tspan role="presentation" class="cls-6" x="86.09" y="13.2">
   () {
 </tspan>
-<tspan x="0" y="26.4" xml:space="preserve">
+<tspan role="presentation" x="0" y="26.4" xml:space="preserve">
 </tspan>
-<tspan class="cls-7" x="26.49" y="26.4">
+<tspan role="presentation" class="cls-7" x="26.49" y="26.4">
   return
 </tspan>
-<tspan class="cls-19" x="72.85" y="26.4">
+<tspan role="presentation" class="cls-19" x="72.85" y="26.4">
   this
 </tspan>
-<tspan x="99.34" y="26.4">
+<tspan role="presentation" x="99.34" y="26.4">
   .store.
 </tspan>
-<tspan class="cls-16" x="145.7" y="26.4">
+<tspan role="presentation" class="cls-16" x="145.7" y="26.4">
   findAll
 </tspan>
-<tspan class="cls-6" x="192.05" y="26.4">
+<tspan role="presentation" class="cls-6" x="192.05" y="26.4">
   (
 </tspan>
-<tspan class="cls-9" x="198.68" y="26.4">
+<tspan role="presentation" class="cls-9" x="198.68" y="26.4">
   &apos;rental&apos;
 </tspan>
-<tspan class="cls-6" x="251.66" y="26.4">
+<tspan role="presentation" class="cls-6" x="251.66" y="26.4">
   );
 </tspan>
-<tspan x="0" y="39.6" xml:space="preserve">
+<tspan role="presentation" x="0" y="39.6" xml:space="preserve">
   }
 </tspan>
-<tspan x="0" y="52.8">
+<tspan role="presentation" x="0" y="52.8">
   }
 </tspan>
 </tspan>
 </text>
-<text id="actions-2" data-name="actions" class="cls-10" transform="translate(15.02 190.99)">
+<text role="presentation" id="actions-2" data-name="actions" class="cls-10" transform="translate(15.02 190.99)">
   Loads:
-  <tspan class="cls-11">
-  <tspan x="0" y="13.2" xml:space="preserve">
+  <tspan role="presentation" class="cls-11">
+  <tspan role="presentation" x="0" y="13.2" xml:space="preserve">
     - a template
   </tspan>
-  <tspan x="0" y="26.4" xml:space="preserve">
+  <tspan role="presentation" x="0" y="26.4" xml:space="preserve">
     - a model
   </tspan>
 </tspan>
-<tspan x="0" y="79.2">
+<tspan role="presentation" x="0" y="79.2">
   Persists to:
 </tspan>
-<tspan class="cls-11">
-  <tspan x="0" y="92.4" xml:space="preserve">
+<tspan role="presentation" class="cls-11">
+  <tspan role="presentation" x="0" y="92.4" xml:space="preserve">
     - web server
   </tspan>
 </tspan>
 </text>
-<text id="model" class="cls-20" transform="translate(323.44 305.04)">
+<text role="presentation" id="model" class="cls-20" transform="translate(323.44 305.04)">
   Model
 </text>
-<text id="title-3" data-name="title" class="cls-3" transform="translate(151.82 191.04) scale(0.9 1)">
+<text role="presentation" id="title-3" data-name="title" class="cls-3" transform="translate(151.82 191.04) scale(0.9 1)">
   Route Handler
 </text>
-<text class="cls-21" transform="translate(151.82 217.44)">
+<text role="presentation" class="cls-21" transform="translate(151.82 217.44)">
   routes/rentals.js
 </text>
 </g>
 <g id="Templates">
-  <text id="code-4" data-name="code" class="cls-22" transform="translate(274.8 349.21)">
+  <text role="presentation" id="code-4" data-name="code" class="cls-22" transform="translate(274.8 349.21)">
     &lt;
-    <tspan class="cls-9" x="6.62" y="0">
+    <tspan role="presentation" class="cls-9" x="6.62" y="0">
     ul
   </tspan>
-  <tspan x="19.87" y="0">
+  <tspan role="presentation" x="19.87" y="0">
     &gt;
   </tspan>
-  <tspan class="cls-18">
-    <tspan x="0" y="13.2" xml:space="preserve">
+  <tspan role="presentation" class="cls-18">
+    <tspan role="presentation" x="0" y="13.2" xml:space="preserve">
       {{
     </tspan>
-    <tspan class="cls-7" x="26.49" y="13.2">
+    <tspan role="presentation" class="cls-7" x="26.49" y="13.2">
       #each
     </tspan>
-    <tspan class="cls-6" x="59.6" y="13.2">
+    <tspan role="presentation" class="cls-6" x="59.6" y="13.2">
   </tspan>
-  <tspan class="cls-8" x="66.23" y="13.2">
+  <tspan role="presentation" class="cls-8" x="66.23" y="13.2">
     @model
   </tspan>
-  <tspan class="cls-17" x="112.58" y="13.2">
+  <tspan role="presentation" class="cls-17" x="112.58" y="13.2">
     as
   </tspan>
-  <tspan x="125.83" y="13.2" xml:space="preserve">
+  <tspan role="presentation" x="125.83" y="13.2" xml:space="preserve">
     |
   </tspan>
-  <tspan class="cls-8" x="139.07" y="13.2">
+  <tspan role="presentation" class="cls-8" x="139.07" y="13.2">
     rental
   </tspan>
-  <tspan x="178.81" y="13.2">
+  <tspan role="presentation" x="178.81" y="13.2">
     |}}
   </tspan>
-  <tspan x="0" y="26.4" xml:space="preserve">
+  <tspan role="presentation" x="0" y="26.4" xml:space="preserve">
 </tspan>
-<tspan class="cls-5" x="26.49" y="26.4">
+<tspan role="presentation" class="cls-5" x="26.49" y="26.4">
   &lt;
 </tspan>
-<tspan class="cls-9" x="33.11" y="26.4">
+<tspan role="presentation" class="cls-9" x="33.11" y="26.4">
   li
 </tspan>
-<tspan class="cls-5" x="46.36" y="26.4">
+<tspan role="presentation" class="cls-5" x="46.36" y="26.4">
   &gt;&lt;
 </tspan>
-<tspan class="cls-9" x="59.6" y="26.4">
+<tspan role="presentation" class="cls-9" x="59.6" y="26.4">
   Rental
 </tspan>
-<tspan x="99.34" y="26.4">
+<tspan role="presentation" x="99.34" y="26.4">
 </tspan>
-<tspan class="cls-7" x="105.96" y="26.4">
+<tspan role="presentation" class="cls-7" x="105.96" y="26.4">
   @rental
 </tspan>
-<tspan x="152.32" y="26.4">
+<tspan role="presentation" x="152.32" y="26.4">
   ={{
 </tspan>
-<tspan class="cls-8" x="172.19" y="26.4">
+<tspan role="presentation" class="cls-8" x="172.19" y="26.4">
   rental
 </tspan>
-<tspan x="211.92" y="26.4">
+<tspan role="presentation" x="211.92" y="26.4">
   }} /
 </tspan>
-<tspan class="cls-5" x="238.41" y="26.4">
+<tspan role="presentation" class="cls-5" x="238.41" y="26.4">
   &gt;&lt;
 </tspan>
-<tspan class="cls-6" x="251.66" y="26.4">
+<tspan role="presentation" class="cls-6" x="251.66" y="26.4">
   /
 </tspan>
-<tspan class="cls-23" x="258.28" y="26.4">
+<tspan role="presentation" class="cls-23" x="258.28" y="26.4">
   li
 </tspan>
-<tspan class="cls-16" x="271.53" y="26.4">
+<tspan role="presentation" class="cls-16" x="271.53" y="26.4">
   &gt;
 </tspan>
-<tspan x="0" y="39.6" xml:space="preserve">
+<tspan role="presentation" x="0" y="39.6" xml:space="preserve">
   {{
 </tspan>
-<tspan class="cls-7" x="26.49" y="39.6">
+<tspan role="presentation" class="cls-7" x="26.49" y="39.6">
   /each
 </tspan>
-<tspan class="cls-6" x="59.6" y="39.6">
+<tspan role="presentation" class="cls-6" x="59.6" y="39.6">
   }}
 </tspan>
 </tspan>
-<tspan x="0" y="52.8">
+<tspan role="presentation" x="0" y="52.8">
   &lt;
 </tspan>
-<tspan class="cls-15" x="6.62" y="52.8">
+<tspan role="presentation" class="cls-15" x="6.62" y="52.8">
   /
 </tspan>
-<tspan class="cls-9" x="13.25" y="52.8">
+<tspan role="presentation" class="cls-9" x="13.25" y="52.8">
   ul
 </tspan>
-<tspan x="26.49" y="52.8">
+<tspan role="presentation" x="26.49" y="52.8">
   &gt;
 </tspan>
 </text>
-<text id="actions-3" data-name="actions" class="cls-10" transform="translate(15.02 349.08)">
+<text role="presentation" id="actions-3" data-name="actions" class="cls-10" transform="translate(15.02 349.08)">
   Loads:
-  <tspan class="cls-11">
-  <tspan x="0" y="13.2" xml:space="preserve">
+  <tspan role="presentation" class="cls-11">
+  <tspan role="presentation" x="0" y="13.2" xml:space="preserve">
     - components
   </tspan>
 </tspan>
-<tspan x="0" y="39.6">
+<tspan role="presentation" x="0" y="39.6">
   Accesses:
 </tspan>
-<tspan class="cls-11">
-  <tspan x="0" y="52.8" xml:space="preserve">
+<tspan role="presentation" class="cls-11">
+  <tspan role="presentation" x="0" y="52.8" xml:space="preserve">
     - model data
   </tspan>
 </tspan>
 </text>
-<text id="title-4" data-name="title" class="cls-3" transform="translate(151.82 349.29)">
-  <tspan class="cls-24">
+<text role="presentation" id="title-4" data-name="title" class="cls-3" transform="translate(151.82 349.29)">
+  <tspan role="presentation" class="cls-24">
     T
   </tspan>
-  <tspan x="8.59" y="0">
+  <tspan role="presentation" x="8.59" y="0">
     emplates
   </tspan>
 </text>
-<text class="cls-21" transform="translate(151.82 375.69) scale(0.9 1)">
+<text role="presentation" class="cls-21" transform="translate(151.82 375.69) scale(0.9 1)">
   templates/rentals.hbs
 </text>
 </g>
 <g id="Component">
-  <text id="component-1" class="cls-3" transform="translate(151.16 467.49)">
+  <text role="presentation" id="component-1" class="cls-3" transform="translate(151.16 467.49)">
     Component
-    <tspan class="cls-12">
-    <tspan x="0" y="26.4">
+    <tspan role="presentation" class="cls-12">
+    <tspan role="presentation" x="0" y="26.4">
       components/rental.js
     </tspan>
-    <tspan x="0" y="39.6">
+    <tspan role="presentation" x="0" y="39.6">
       components/rental.hbs
     </tspan>
   </tspan>
 </text>
-<text id="component-2" class="cls-3" transform="translate(310.21 467.49)">
+<text role="presentation" id="component-2" class="cls-3" transform="translate(310.21 467.49)">
   Component
-  <tspan class="cls-12">
-  <tspan x="0" y="26.4">
+  <tspan role="presentation" class="cls-12">
+  <tspan role="presentation" x="0" y="26.4">
     components/rental.js
   </tspan>
-  <tspan x="0" y="39.6">
+  <tspan role="presentation" x="0" y="39.6">
     components/rental.hbs
   </tspan>
 </tspan>
 </text>
-<text id="component-2-2" data-name="component-2" class="cls-3" transform="translate(469.36 467.49)">
+<text role="presentation" id="component-2-2" data-name="component-2" class="cls-3" transform="translate(469.36 467.49)">
   Component
-  <tspan class="cls-12">
-  <tspan x="0" y="26.4">
+  <tspan role="presentation" class="cls-12">
+  <tspan role="presentation" x="0" y="26.4">
     components/rental.js
   </tspan>
-  <tspan x="0" y="39.6">
+  <tspan role="presentation" x="0" y="39.6">
     components/rental.hbs
   </tspan>
 </tspan>
