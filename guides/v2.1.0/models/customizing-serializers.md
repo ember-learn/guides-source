@@ -1,4 +1,4 @@
-In Ember Data, serializers format the data sent to and recieved from
+In Ember Data, serializers format the data sent to and received from
 the backend store. By default, Ember Data serializes data using the
 [JSON API](http://jsonapi.org/) format. If your backend uses a different
 format, Ember Data allows you to customize the serializer or use a
@@ -630,7 +630,7 @@ record's type name or attributes. It is important to make sure that
 the type name matches the name of the file where it is defined
 exactly. Also attribute and relationship names in the JSON API
 document should match the name an casing of the attribute and
-relationship properites on the Model.
+relationship properties on the Model.
 
 For Example: given this `post` model.
 

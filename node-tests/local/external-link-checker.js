@@ -37,7 +37,7 @@ const doNotCheckList = [
 	'http://localhost:4200/scientists', // generating routes, link to open local server route
 	'http://localhost:4200/contact', // model hook tutorial code snippet
 	'http://localhost:4200/about', // model hook tutorial code snippet
-	'http://localhost:4200/about/', // routes and tempaltes
+	'http://localhost:4200/about/', // routes and templates
 	'https://codepen.io/melsumner/live/ZJeYoP' // ...codepen does not play with fetch api.
 ]
 

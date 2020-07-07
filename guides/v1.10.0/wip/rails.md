@@ -32,7 +32,7 @@ The -m option specifies a template on which to base your new project. We have pr
 * Runs `bundle install`
 * Generates an appropriate directory structure inside `app/assets/javascripts/`
 * Generates an `AssetsController` and supplies an appropriate route in order to serve your application
-* Generates an appropirate `ApplicationSerializer` for Ember.js' RESTAdapter.
+* Generates an appropriate `ApplicationSerializer` for Ember.js' RESTAdapter.
 
 When rails has finished creating your application it will reside in the `photoblog` directory. Switch to this newly created directory:
 
