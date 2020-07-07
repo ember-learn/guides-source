@@ -1,4 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 622 540.9">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 622 540.9" role="img"
+  aria-describedby="ember-core-concepts-desc" 
+  aria-labelledby="ember-core-concepts-title ember-core-concepts-desc"
+>
+  <title id="ember-core-concepts-title">Ember Core Concepts</title>
+  <desc id="ember-core-concepts-desc">
+    This image presents four core concepts of an Ember app, the router, route
+    handlers, templates, and components. The router, defined in router.js, maps
+    a URL to an Ember Route. Every Ember Route has a route handler, which loads
+    a template and a model. The model persists to a web server. The Route's
+    template, finally, loads components and accesses the model data to populate
+    the components' templates. This process is described in more detail below.
+  </desc>
   <defs>
     <style>
       .cls-1{opacity:0;}.cls-14,.cls-2,.cls-22{font-size:11px;font-family:DejaVuSansMonoNerdFontComplete-Book, DejaVuSansMono
