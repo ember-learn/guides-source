@@ -195,4 +195,6 @@ Ember also allows you to write an `if-else` statement in inline form. It looks s
 ```
 
 
-Refer the [API documentation of the `if` helper](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/if?anchor=if) for more patterns.
+## Learn More
+
+Please see the [API documentation of the `if` helper](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/if?anchor=if) for more patterns.

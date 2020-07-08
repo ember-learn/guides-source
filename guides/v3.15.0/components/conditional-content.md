@@ -193,3 +193,8 @@ Ember also allows you to write an `if-else` statement in inline form. It looks s
 ```handlebars {data-filename="app/components/my-component.hbs"}
 {{if condition value1 value2}}
 ```
+
+
+## Learn More
+
+Please see the [API documentation of the `if` helper](https://api.emberjs.com/ember/3.15.0/classes/Ember.Templates.helpers/methods/if?anchor=if) for more patterns.
