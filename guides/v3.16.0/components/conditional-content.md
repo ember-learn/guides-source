@@ -13,7 +13,9 @@ In a template, you can use `if` to conditionally render content. There are 2 sty
 
 ## Block `if`
 
-Let's take a look at two similar components representing a user's username.
+### Motivation
+
+Let's take a look at two components that display a person's username.
 
 ```handlebars {data-filename="app/components/received-message/username.hbs"}
 <h4 class="username">
@@ -23,11 +25,12 @@ Let's take a look at two similar components representing a user's username.
 ```
 
 ```handlebars {data-filename="app/components/sent-message/username.hbs"}
-<h4 class="username">Zoey</h4>
+<h4 class="username">
+  Zoey
+</h4>
 ```
 
-We can use arguments to make these two components dynamic, but the first
-username also has extra information about the local time of the user.
+The components look similar, don't they? The first component shows extra information about the user's local time.
 
 Let's say we tried to create a single `username` component.
 
@@ -38,11 +41,9 @@ Let's say we tried to create a single `username` component.
 </h4>
 ```
 
-If the `<Username>` tag doesn't specify a `@localTime` argument, we'll end up
-with some extra unneeded text in the output.
+If the `<Username>` tag doesn't specify a `@localTime` argument, we will see an extra, incomplete text, `their local time is `, on the screen.
 
-What we need is a way to only include the local time text if `@localTime` exists.
-We can do this with an `if`:
+What we need is a way to display the local time if `@localTime` exists. We can do this with an `if`.
 
 ```handlebars {data-filename="app/components/username.hbs"}
 <h4 class="username">
@@ -53,26 +54,50 @@ We can do this with an `if`:
 </h4>
 ```
 
-This is the syntax for conditionals in an Ember template. The `#if` means that the
-part after the `{{#if ...}}` is nested inside of the conditional. Just like HTML
-tags continue until closed (`<div>` continues until `</div>`), the content
-nested inside an `#if` continues until `{{/if}}`.
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+        <p>
+          Just like in JavaScript, <code>0</code>, <code>false</code>, <code>null</code>, <code>undefined</code>, and the empty string are falsy in Ember templates. Unlike in JavaScript, the empty array is also considered falsy in Ember templates.
+        </p>
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
+  </div>
+</div>
 
-In our case, if the `@localTime` property exists with truthy value then, the markup (`<span class="local-time">their local time is {{@localTime}}</span>`) will be rendered.
+### Usage
 
-If a value passed to `{{#if}}` evaluates to falsy, the `{{else}}` block
-of that invocation is rendered:
-
-```handlebars
-<h4 class="username">
-  {{@name}}
-  {{#if @localTime}}
-    <span class="local-time">their local time is {{@localTime}}</span>
-  {{else}}
-    Unable to fetch local time!
-  {{/if}}
-</h4>
+```handlebars {data-filename="app/components/my-component.hbs"}
+{{#if condition}}
+  {{!-- some content --}}
+{{/if}}
 ```
+
+This is the syntax for an `if` statement in block form. If the `condition` is true, Ember will render the content that is inside the block.
+
+Like any programming language, Ember also allows you to write `if-else` and `if-else if` statements in a template.
+
+```handlebars {data-filename="app/components/my-component.hbs"}
+{{#if condition}}
+  {{!-- some content --}}
+{{else}}
+  {{!-- some other content --}}
+{{/if}}
+
+{{#if condition1}}
+  ...
+{{else if condition2}}
+  ...
+{{else if condition3}}
+  ...
+{{else}}
+  ...
+{{/if}}
+```
+
 
 ## Inline `if`
 
@@ -110,23 +135,6 @@ is passed in and is truthy.
   </div>
 </aside>
 ```
-
-<div class="cta">
-  <div class="cta-note">
-    <div class="cta-note-body">
-      <div class="cta-note-heading">Zoey says...</div>
-      <div class="cta-note-message">
-        <p>
-          In Ember templates, the values <code>0</code>, <code>false</code>,
-          <code>null</code>, <code>undefined</code>, and the empty string are
-          falsy, just like in JavaScript. In addition, the empty array is also
-          considered falsy in Ember templates.
-        </p>
-      </div>
-    </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="">
-  </div>
-</div>
 
 We can then use the argument to add the active state to the received message
 avatar, and omit it from the sent message avatar.
