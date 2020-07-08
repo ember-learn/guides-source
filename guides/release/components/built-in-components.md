@@ -21,9 +21,47 @@ Will become:
 <label for="site">Ember Question</label>
 <input id="site" type="text" value="How do text fields work?"/>
 ```
+### Ways to associate labels and inputs
 
-You can pass the following standard `<input>` attributes within the input
-helper:
+Every input should be associated with a label. Within HTML, there are several different ways to do this.  In this section, we will show how to apply those strategies for Ember inputs.
+
+You can nest the input inside the label:
+
+```handlebars
+<label>
+    Ask a question about Ember:
+    <Input type="text" @value={{this.val}} />
+</label>
+```
+
+You can associate the label using `for` and `id`:
+
+```handlebars
+<label for={{this.myUniqueId}}>
+    Ask a question about Ember:
+</label>
+<Input id={{this.myUniqueId}} type="text" @value={{this.val}} />
+```
+
+The `aria-label` attribute enables developers to label an input element with a string that is not visually rendered, but still available to assistive technology. 
+
+```handlebars
+<Input id="site" @value="How do text fields work?" aria-label="Ember Question"/>
+```
+
+While it is more appropriate to use a `<label>` element, the `aria-label` attribute can be used in instances where visible text content is not possible.
+
+### Setting attributes on Input
+
+Just like a native `<input>` element, there are many different types of attributes that you can apply to Ember's `<Input />` component, such as the `aria-*` attributes or `required`. 
+For example, the `aria-labelledby` property is useful for situations like a search input, where the search button can serve as the label for the input element:
+
+```handlebars
+<Input aria-labelledby="button-search" />
+<button id="button-search" type="button">Search</button>
+```
+
+Here are some other standard `<input>` attributes and arguments that are supported:
 
 <table>
   <tr><td><code>readonly</code></td><td><code>required</code></td><td><code>autofocus</code></td></tr>
