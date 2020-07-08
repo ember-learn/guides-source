@@ -1,4 +1,5 @@
-In a template, you can use `if` to conditionally render content. There are 2 styles of `if`: **block** and **inline**.
+In a template, you can use `if` to conditionally render content.
+There are 2 styles of `if`: **block** and **inline**.
 
 ```handlebars
 {{#if this.thingIsTrue}}
@@ -30,7 +31,8 @@ Let's take a look at two components that display a person's username.
 </h4>
 ```
 
-The components look similar, don't they? The first component shows extra information about the user's local time.
+The components look similar, don't they?
+The first component shows extra information about the user's local time.
 
 Let's say we tried to create a single `username` component.
 
@@ -41,9 +43,11 @@ Let's say we tried to create a single `username` component.
 </h4>
 ```
 
-If the `<Username>` tag doesn't specify a `@localTime` argument, we will see an extra, incomplete text, `their local time is `, on the screen.
+If the `<Username>` tag doesn't specify a `@localTime` argument,
+we will see an extra, incomplete text, `their local time is `, on the screen.
 
-What we need is a way to display the local time if `@localTime` exists. We can do this with an `if`.
+What we need is a way to display the local time if `@localTime` exists.
+We can do this with an `if`.
 
 ```handlebars {data-filename="app/components/username.hbs"}
 <h4 class="username">
@@ -60,7 +64,10 @@ What we need is a way to display the local time if `@localTime` exists. We can d
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
         <p>
-          Just like in JavaScript, <code>0</code>, <code>false</code>, <code>null</code>, <code>undefined</code>, and the empty string are falsy in Ember templates. Unlike in JavaScript, the empty array is also considered falsy in Ember templates.
+          Just like in JavaScript, <code>0</code>, <code>false</code>,
+          <code>null</code>, <code>undefined</code>, and
+          the empty string are falsy in Ember templates.
+          Unlike in JavaScript, the empty array is also considered falsy in Ember templates.
         </p>
       </div>
     </div>
@@ -76,9 +83,11 @@ What we need is a way to display the local time if `@localTime` exists. We can d
 {{/if}}
 ```
 
-This is the syntax for an `if` statement in block form. If the `condition` is true, Ember will render the content that is inside the block.
+This is the syntax for an `if` statement in block form.
+If the `condition` is true, Ember will render the content that is inside the block.
 
-Like any programming language, Ember also allows you to write `if-else` and `if-else if` statements in a template.
+Like many programming languages, Ember also allows you to write `if else` and
+`if else if` statements in a template.
 
 ```handlebars {data-filename="app/components/my-component.hbs"}
 {{#if condition}}
@@ -105,7 +114,8 @@ Like any programming language, Ember also allows you to write `if-else` and `if-
 
 Sometimes, you will want to conditionally set an argument or attribute.
 
-For instance, consider two components that display a user's avatar. One is for a recipient and the other for a sender.
+For instance, consider two components that display a user's avatar.
+One is for a recipient and the other for a sender.
 
 ```handlebars {data-filename="app/components/received-message/avatar.hbs"}
 <aside>
@@ -129,13 +139,21 @@ For instance, consider two components that display a user's avatar. One is for a
 </aside>
 ```
 
-Again, the two components look similar. The first component has an `is-active` class, while the second a `current-user` class. How should we unify the components into one?
+Again, the two components look similar.
+The first component has an `is-active` class, while the second a `current-user` class.
+How should we unify the components into one?
 
-The `is-active` class is responsible for showing the active icon. _How_ that icon is rendered may change over time, so we won't use `...attributes` to apply the `is-active` class. Instead, we'll pass the argument `@isActive` to dictate _what_ to do (e.g. render the icon).
+The `is-active` class is responsible for showing the active icon.
+_How_ that icon is rendered may change over time,
+so we won't use `...attributes` to apply the `is-active` class.
+Instead, we'll pass the argument `@isActive` to dictate _what_ to do (e.g. render the icon).
 
-As for the `current-user` class, it may have been just one of a few classes that can be applied to the `<aside>` element. Let's use `...attributes` to apply the `current-user` class.
+As for the `current-user` class, it may have been just one of a few classes
+that can be applied to the `<aside>` element.
+Let's use `...attributes` to apply the `current-user` class.
 
-We take these API designs into account and end up with a reusable component. The component uses an inline `if` to conditionally apply the `is-active` class.
+We take these API designs into account and end up with a reusable component.
+The component uses an inline `if` to conditionally apply the `is-active` class.
 
 ```handlebars {data-filename="app/components/avatar.hbs"}
 <aside ...attributes>
@@ -172,7 +190,11 @@ Afterwards, we can refactor the initial components.
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
         <p>
-          When passing a literal JavaScript value to a component, we have to wrap the value in double curlies (e.g. <code>@isActive={{true}}</code>). A value that isn't wrapped in curlies is assigned as string, which matches the behavior in HTML attributes. For example, writing <code>@isActive=true</code> will set <code>@isActive</code> to the string <code>'true'</code>.
+          When passing a literal JavaScript value to a component,
+          we have to wrap the value in double curlies (e.g. <code>@isActive={{true}}</code>).
+          A value that isn't wrapped in curlies is assigned as string,
+          which matches the behavior in HTML attributes.
+          For example, writing <code>@isActive=true</code> will set <code>@isActive</code> to the string <code>'true'</code>.
         </p>
       </div>
     </div>
@@ -186,9 +208,11 @@ Afterwards, we can refactor the initial components.
 {{if condition value}}
 ```
 
-This is the syntax for an `if` statement in inline form. If the `condition` is true, Ember will use `value` at the invocation site.
+This is the syntax for an `if` statement in inline form.
+If the `condition` is true, Ember will use `value` at the invocation site.
 
-Ember also allows you to write an `if-else` statement in inline form. It looks similar to a ternary operator.
+Ember also allows you to write an `if else` statement in inline form.
+It looks similar to a ternary operator.
 
 ```handlebars {data-filename="app/components/my-component.hbs"}
 {{if condition value1 value2}}
