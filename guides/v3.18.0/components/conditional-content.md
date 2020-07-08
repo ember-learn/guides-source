@@ -1,6 +1,4 @@
-You can conditionally include some content in the output of a template by using
-Ember's `if` syntax in templates.
-There are two styles of `if`, block and inline:
+In a template, you can use `if` to conditionally render content. There are 2 styles of `if`: **block** and **inline**.
 
 ```handlebars
 {{#if this.thingIsTrue}}
@@ -11,6 +9,7 @@ There are two styles of `if`, block and inline:
   This div used the inline "if" to calculate the class to use.
 </div>
 ```
+
 
 ## Block `if`
 

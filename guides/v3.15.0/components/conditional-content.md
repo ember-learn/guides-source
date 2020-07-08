@@ -1,5 +1,15 @@
-You can conditionally include some content in the output of a template by using
-Ember's `if` syntax in templates.
+In a template, you can use `if` to conditionally render content. There are 2 styles of `if`: **block** and **inline**.
+
+```handlebars
+{{#if this.thingIsTrue}}
+  Content for the block form of "if"
+{{/if}}
+
+<div class={{if this.thingIsTrue "value-if-true" "value-if-false"}}>
+  This div used the inline "if" to calculate the class to use.
+</div>
+```
+
 
 Let's take a look at two similar components representing a user's username.
 
