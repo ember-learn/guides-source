@@ -59,6 +59,8 @@ However, the most common methods for providing accessible names can be reviewed 
 
 Every `<input>` element should have an associated `<label>` element. To do this, the `<input>` element's `id` attribute value should be the same as the `for` attribute value on the `<label>`, like this:
 
+![Separate input and label elements with a connection established by matching for and id attributes](/images/accessibility/component-considerations/input-for-id.png)
+
 ```html
 <label for="input-firstName">First Name:</label>
 <input id="input-firstName" name="firstName" value="" type="text" />
@@ -66,10 +68,24 @@ Every `<input>` element should have an associated `<label>` element. To do this,
 
 It is also valid to wrap the `<label>` element around the `<input />` element: 
 
+![A child input element nested within a parent label element without any for and id attributes](/images/accessibility/component-considerations/input-nested.png)
+
 ```html
 <label>First Name:
   <input name="firstName" value="" type="text" />
 </label>
 ```
 
-However, this option can be a little harder to apply styles to, so both should be tested before determining which approach to use. 
+However, this option can be a little harder to apply styles to, so both should be tested before determining which approach to use.
+
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+To dig deeper into accessible input patterns in Ember check out the <a href="https://emberjs-1.gitbook.io/ember-component-patterns/form-components/input">ember-component-patterns article on Input Fields</a>.
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
+  </div>
+</div>
