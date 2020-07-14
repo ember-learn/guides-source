@@ -143,7 +143,7 @@ You can think of using `{{yield}}` as leaving a placeholder for the content of t
 </Message>
 ```
 
-```handlebars {app/components/sent-message.hbs}
+```handlebars {data-filename="app/components/sent-message.hbs"}
 <Message
   @username="Zoey"
   @isCurrentUser={{true}}
