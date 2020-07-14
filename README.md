@@ -48,7 +48,7 @@ npm install
 ember serve
 ```
 
-Afterwards, visit [http://localhost:4200](http://localhost:4200) on your browser.
+Afterwards, visit [http://localhost:4200](http://localhost:4200) in your browser.
 
 Note: On Mac, if you get the error `Error: EMFILE: too many open files, watch`, try installing Watchman. Install [Homebrew](https://brew.sh/) if you don't have it. Then, in your terminal, run `brew install watchman`.
 
@@ -69,9 +69,11 @@ The guides are spellchecked and linted for Markdown consistency. You can check y
 npm run lint:md
 ```
 
+Linting and spellchecking must pass or they will fail in Travis-CI. See [CONTRIBUTING.md](CONTRIBUTING.md) for more information on linting and spellchecking.
+
 ### Internal and external links
 
-Testing of internal and external links can be performed using 3 commands:
+Testing of internal and external links can be performed using three commands:
 
 ```bash
 # Run all test scripts in `/node-tests` except those located
