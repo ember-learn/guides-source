@@ -1,7 +1,7 @@
 ## Creating Records
 
 You can create records by calling the
-[`createRecord()`](https://api.emberjs.com/ember-data/release/classes/Adapter/methods/createRecord?anchor=createRecord)
+[`createRecord()`](https://api.emberjs.com/ember-data/release/classes/Store/methods/createRecord?anchor=createRecord)
 method on the store.
 
 ```javascript
