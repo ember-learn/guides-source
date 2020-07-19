@@ -62,7 +62,7 @@ Let's update our `rental-listing` component template to use our new helper and p
 
 Ideally we'll see "Type: Standalone - Estate" for our first rental property.
 Instead, our default template helper is returning back our `rental.category` values.
-Let's update our helper to look if a property exists in an array of `communityPropertyTypes`,
+Let's update our helper to see if a property exists in an array of `communityPropertyTypes`,
 if so, we'll return either `'Community'` or `'Standalone'`:
 
 ```javascript {data-filename="app/helpers/rental-property-type.js" data-diff="-3,-4,-5,+7,+8,+9,+10,+11,+13,+14,+15,+16,+18,+19,+21"}
