@@ -1,4 +1,4 @@
-When considering an application's page or view structure, there are a few primary concerns that should be planned for: 
+When considering an application's page or view structure, there are a few primary concerns that should be planned for:
 
 - page title
 - skip navigation links
@@ -7,13 +7,15 @@ When considering an application's page or view structure, there are a few primar
 
 ## Page Title
 
-Each page (what is rendered for a unique URL) should have a page title. This page title should be unique to that page, and should accurately reflect what that page does. 
+Each page (what is rendered for a unique URL) should have a page title. This page title should be unique to that page, and should accurately reflect what that page does.
 
-Consider this format: 
+Consider this format:
 
 `Unique Page Title - Site Title`
 
-Note that the unique page title is first. This is because it is the most important piece of information from a contextual perspective. Since a user with a screen reader can interrupt the screen reader as they wish, it introduces less fatigue when the unique page title is first, but provides the additional guidance if it is desired. 
+<img width="675px" title="Page Title Example" alt="A visual representation of page title in the browser's tab" src="/images/accessibility/page-template-considerations/page-title.png"/>
+
+Note that the unique page title is first. This is because it is the most important piece of information from a contextual perspective. Since a user with a screen reader can interrupt the screen reader as they wish, it introduces less fatigue when the unique page title is first, but provides the additional guidance if it is desired.
 
 Until Ember provides this functionality by default, there are a few different Ember addons that will help:
 
