@@ -36,7 +36,7 @@ Given the above template, you can now use the `<BlogPost />` component:
 In Ember templates there are different ways to invoke a Component. The syntax above is referred to as angle bracket invocation syntax, and it might not look familiar if you are looking at older code samples that use the classic invocation syntax. For more examples of ways to use Components in a template, see the <a href="../reference/syntax-conversion-guide">Syntax Conversion Guide</a>, a <a href="https://guides.emberjs.com/v3.6.0/components/defining-a-component/">previous version of the Guides</a> or <a href="https://api.emberjs.com/ember/3.6/classes/Component">Ember.js API documentation</a>.
       </div>
     </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
   </div>
 </div>
 

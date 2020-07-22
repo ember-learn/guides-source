@@ -141,7 +141,7 @@ export default class ExampleComponent extends Component {
         The <code>{{action}}</code> modifier called <code>event.preventDefault()</code> under the hood, but the <code>{{on}}</code> modifier does not, so if you need to do anything other than the default action for a particular event, you must call <code>event.preventDefault</code> within the action.
       </div>
     </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
   </div>
 </div> 
 
