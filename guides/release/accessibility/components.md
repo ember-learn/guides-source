@@ -86,6 +86,6 @@ However, this option can be a little harder to apply styles to, so both should b
 To dig deeper into accessible input patterns in Ember check out the <a href="https://emberjs-1.gitbook.io/ember-component-patterns/form-components/input">ember-component-patterns article on Input Fields</a>.
       </div>
     </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
   </div>
 </div>
