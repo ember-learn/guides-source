@@ -33,7 +33,7 @@ where available.
         </a>.
       </div>
     </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
   </div>
 </div>
 
