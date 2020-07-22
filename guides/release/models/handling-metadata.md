@@ -74,9 +74,9 @@ export default class UsersRoute extends Route {
         meta: results.meta
       };
     });
-  },
+  }
   setupController(controller, { users, meta }) {
-    super(controller, users);
+    super.setupController(controller, users);
     controller.meta = meta;
   }
 }
