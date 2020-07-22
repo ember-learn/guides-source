@@ -186,7 +186,7 @@ first ask the store for it.
         so you can access it as `this.store`!
       </div>
     </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
   </div>
 </div>
 
