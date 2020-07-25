@@ -13,7 +13,7 @@ Consider this format:
 
 `Unique Page Title - Site Title`
 
-![A visual representation of page title in the browser's tab](/images/accessibility/page-template-considerations/page-title.png)
+<img width="675px" title="Page Title Example" alt="A visual representation of page title in the browser's tab" src="/images/accessibility/page-template-considerations/page-title.png"/>
 
 Note that the unique page title is first. This is because it is the most important piece of information from a contextual perspective. Since a user with a screen reader can interrupt the screen reader as they wish, it introduces less fatigue when the unique page title is first, but provides the additional guidance if it is desired.
 
@@ -91,6 +91,8 @@ module('Acceptance | posts', function(hooks) {
 ## Skip Navigation Links
 
 A skip navigation link, or skip link, is a useful feature for users who want to bypass content that is repeated on multiple pages (i.e., a site header). This can especially helpful to users with assistive technology, who have to browse website content in a more linear fashion, but it can also be useful for power users who prefer to navigate websites only using a keyboard.
+
+<img width="675px" title="Skip Main Content Example" alt="A visual representation of how the skip link works in the browser" src="/images/accessibility/page-template-considerations/skip-main-content.png"/>
 
 To implement a skip link in an application, add an anchor element as close as possible after the opening `<body>` element, and have it link to the beginning of the page's main content area.
 
