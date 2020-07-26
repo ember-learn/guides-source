@@ -130,7 +130,7 @@ Using named arguments, we could make our template a lot clearer.
   @title="{{@username}}'s avatar"
   @initial={{substring @username 0 1}}
   {{! This won't work yet! We need to update the substring helper }}
-  @initial={{substring @username start=0 length=1}}
+  @initial={{substring @username start=0 end=1}}
   @isActive={{@userIsActive}}
   class="{{if @isCurrentUser "current-user"}}"
 />
