@@ -1,11 +1,9 @@
 ## What is Ember?
 
-Ember.js is a Javascript front-end framework for ambitious web developers.
-Ember includes everything needed to build modern web applications with rich
-UIs that work on any device. It does so by providing developers both with
-many features that are essential to manage complexity in modern web applications,
-as well as an [integrated development toolkit](../configuring-ember/configuring-ember-cli/)
-that enables rapid iteration.
+Ember.js is a productive, battle-tested JavaScript framework for building modern web applications.
+It includes everything you need to build rich UIs that work on any device. It does so by providing
+developers both with many features that are essential to manage complexity in modern web applications,
+as well as an integrated development toolkit that enables rapid iteration.
 
 Some of these features that you'll learn about in the guides are:
 
