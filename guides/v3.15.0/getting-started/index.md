@@ -2,7 +2,7 @@
 
 Ember.js is a productive, battle-tested JavaScript framework for building modern web applications.
 It includes everything you need to build rich UIs that work on any device. It does so by providing
-developers both with many features that are essential to manage complexity in modern web applications,
+developers many features that are essential to manage complexity in modern web applications,
 as well as an integrated development toolkit that enables rapid iteration.
 
 Some of these features that you'll learn about in the guides are:
