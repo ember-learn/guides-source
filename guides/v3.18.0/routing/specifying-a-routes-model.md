@@ -63,7 +63,7 @@ Now that data can be used in the `favorite-posts` template:
 {{/each}}
 ```
 
-Behind the scenes, what is happening is that the [route's controller](https://api.emberjs.com/ember/3.18/classes/Route/methods/model?anchor=setupController) receives the results of the model hook, and Ember makes the model hook results available to the template. Your app may not have a controller file for the route, but the behavior is the same regardless.
+Behind the scenes, what is happening is that the [route's controller](https://api.emberjs.com/ember/3.18/classes/Route/methods/setupController?anchor=setupController) receives the results of the model hook, and Ember makes the model hook results available to the template. Your app may not have a controller file for the route, but the behavior is the same regardless.
 
 Let's compare some examples using the model hook to make asynchronous HTTP requests to a server somewhere.
 
@@ -338,7 +338,7 @@ And calling `modelFor` returned the result of the `model` hook.
 
 If you are having trouble getting a model's data to show up in the template, here are some tips:
 
-- Use the [`{{debugger}}`](https://api.emberjs.com/ember/3.18/classes/Ember.Templates.helpers/methods/debugger?anchor=debugger) or [`{{log}}`](https://api.emberjs.com/ember/3.18/classes/Ember.Templates.helpers/methods/debugger?anchor=log) helper to inspect the `{{@model}}` from the template
+- Use the [`{{debugger}}`](https://api.emberjs.com/ember/3.18/classes/Ember.Templates.helpers/methods/debugger?anchor=debugger) or [`{{log}}`](https://api.emberjs.com/ember/3.18/classes/Ember.Templates.helpers/methods/log?anchor=log) helper to inspect the `{{@model}}` from the template
 - return hard-coded sample data as a test to see if the problem is really in the model hook, or elsewhere down the line
 - study JavaScript Promises in general, to make sure you are returning data from the Promise correctly
 - make sure your `model` hook has a `return` statement
