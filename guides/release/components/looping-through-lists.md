@@ -1,6 +1,6 @@
 Oftentimes we'll need to repeat a component multiple times in a row, with
 different data for each usage of the component. We can use the
-[`{{#each}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/if?anchor=each)
+[`{{#each}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/each?anchor=each)
 helper to loop through lists of items like this, repeating a section of template
 for each item in the list.
 
@@ -369,7 +369,7 @@ export default class SomeComponent extends Component {
 
 ### Empty Lists
 
-The [`{{#each}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/if?anchor=each)
+The [`{{#each}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/each?anchor=each)
 helper can also have a corresponding `{{else}}`. The contents of this block will
 render if the array passed to `{{#each}}` is empty:
 
@@ -385,7 +385,7 @@ render if the array passed to `{{#each}}` is empty:
 
 There are also times when we need to loop through the keys and values of an
 object rather than an array, similar to JavaScript's `for...in` loop. We can use
-the [`{{#each-in}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/if?anchor=each-in)
+the [`{{#each-in}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/each-in?anchor=each-in)
 helper to do this:
 
 ```javascript {data-filename=/app/components/store-categories.js}
@@ -445,12 +445,12 @@ The above example will print a list like this:
 An object's keys will be listed in the same order as the array returned from
 calling `Object.keys` on that object. If you want a different sort order, you
 should use `Object.keys` to get an array, sort that array with the built-in JavaScript
-tools, and use the [`{{#each}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/if?anchor=each-in)
+tools, and use the [`{{#each}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/each?anchor=each)
 helper instead.
 
 ### Empty Lists
 
-The [`{{#each-in}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/if?anchor=each-in)
+The [`{{#each-in}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/each-in?anchor=each-in)
 helper can have a matching `{{else}}`. The contents of this block will render if
 the object is empty, null, or undefined:
 
