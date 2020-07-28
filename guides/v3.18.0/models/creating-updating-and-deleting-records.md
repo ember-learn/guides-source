@@ -109,7 +109,7 @@ the errors from saving a blog post in your template:
 
 ## Promises
 
-[`save()`](https://api.emberjs.com/ember-data/3.18/classes/Model/methods/rollbackAttributes?anchor=save) returns
+[`save()`](https://api.emberjs.com/ember-data/3.18/classes/Model/methods/save?anchor=save) returns
 a promise, which makes it easy to asynchronously handle success and failure
 scenarios. Here's a common pattern:
 
@@ -140,10 +140,10 @@ post
 
 ## Deleting Records
 
-Deleting records is as straightforward as creating records. Call [`deleteRecord()`](https://api.emberjs.com/ember-data/3.18/classes/Model/methods/rollbackAttributes?anchor=deleteRecord)
+Deleting records is as straightforward as creating records. Call [`deleteRecord()`](https://api.emberjs.com/ember-data/3.18/classes/Model/methods/deleteRecord?anchor=deleteRecord)
 on any instance of `Model`. This flags the record as `isDeleted`. The
 deletion can then be persisted using `save()`. Alternatively, you can use
-the [`destroyRecord`](https://api.emberjs.com/ember-data/3.18/classes/Model/methods/rollbackAttributes?anchor=destroyRecord) method to delete and persist at the same time.
+the [`destroyRecord`](https://api.emberjs.com/ember-data/3.18/classes/Model/methods/destroyRecord?anchor=destroyRecord) method to delete and persist at the same time.
 
 ```javascript
 let post = store.peekRecord('post', 1);
