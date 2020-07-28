@@ -80,7 +80,7 @@ the casing of the properties defined on the Model class.
 
 If you would like the data to be normalized by the model's default
 serializer before pushing it into the store, you can use the
-[`store.pushPayload()`](https://api.emberjs.com/ember-data/3.18/classes/Store/methods/push?anchor=pushPayload) method.
+[`store.pushPayload()`](https://api.emberjs.com/ember-data/3.18/classes/Store/methods/pushPayload?anchor=pushPayload) method.
 
 ```javascript {data-filename=app/serializers/album.js}
 import RESTSerializer from '@ember-data/serializer/rest';
