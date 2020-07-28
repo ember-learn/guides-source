@@ -1,7 +1,7 @@
-The [`<Input>`](https://api.emberjs.com/ember/release/classes/Ember.Templates.components/methods/Input?anchor=Input)
+The [`<Input>`](https://api.emberjs.com/ember/3.14/classes/Ember.Templates.components/methods/Input?anchor=Input)
 and [`<Textarea>`](https://api.emberjs.com/ember/release/classes/Ember.Templates.components/methods/Textarea?anchor=Textarea)
 components are the easiest way to create common form controls.
-Using these helpers, you can create form controls that are almost identical to the native HTML `<input>` or `<textarea>` elements, but are aware of Ember's two-way bindings and can automatically update.
+Using these components, you can create form controls that are almost identical to the native HTML `<input>` or `<textarea>` elements, but are aware of Ember's two-way bindings and can automatically update.
 
 ## Text fields
 
@@ -70,8 +70,8 @@ More [events types](https://api.emberjs.com/ember/release/classes/Component#even
 ## Checkboxes
 
 You can also use the
-[`<Input>`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/if?anchor=input)
-helper to create a checkbox by setting its `type`:
+[`<Input>`](https://api.emberjs.com/ember/3.14/classes/Ember.Templates.components/methods/Input?anchor=Input)
+component to create a checkbox by setting its `type`:
 
 ```handlebars
 <label for="admin-checkbox">Is Admin?</label>
