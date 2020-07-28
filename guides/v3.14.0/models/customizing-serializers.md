@@ -252,7 +252,7 @@ export default DS.JSONAPISerializer.extend({
 ```
 
 To normalize only a single model, you can use the
-[`normalize()`](https://api.emberjs.com/ember-data/release/classes/JSONAPISerializer/methods/normalizeResponse?anchor=normalize)
+[`normalize()`](https://api.emberjs.com/ember-data/3.14/classes/JSONAPISerializer/methods/normalize?anchor=normalize)
 hook similarly.
 
 For more hooks to customize the serializer with, see the [Ember Data serializer
@@ -421,7 +421,7 @@ The JSON should encode the relationship as an ID to another record:
 ```
 If needed these naming conventions can be overwritten by implementing
 the
-[`keyForRelationship()`](https://api.emberjs.com/ember-data/release/classes/JSONAPISerializer/methods/keyForAttribute?anchor=keyForRelationship)
+[`keyForRelationship()`](https://api.emberjs.com/ember-data/3.14/classes/JSONAPISerializer/methods/keyForRelationship?anchor=keyForRelationship)
 method.
 
 ```javascript {data-filename=app/serializers/application.js}
@@ -665,7 +665,7 @@ Secondly, it transforms snapshots of records into a payload the
 adapter will send to the server when creating, updating, or deleting a
 record.
 
-#### Ember Data's Normalized JSON Format
+### Ember Data's Normalized JSON Format
 
 The normalized JSON format that Ember Data expects is a
 [JSON:API](http://jsonapi.org/) document with a couple of additional
@@ -744,10 +744,10 @@ Note that the type is `"post"` to match the post model and the
 `relatedPosts` relationship in the document matches the
 `relatedPosts: hasMany('post')` on the model.
 
-#### Normalizing adapter responses
+### Normalizing adapter responses
 
 When creating a custom serializer you will need to define a
-[normalizeResponse](https://api.emberjs.com/ember-data/release/classes/Serializer/methods/serialize?anchor=normalizeResponse)
+[normalizeResponse](https://api.emberjs.com/ember-data/3.14/classes/Serializer/methods/normalizeResponse?anchor=normalizeResponse)
 method to transform the response from the adapter into the normalized
 JSON object described above.
 
@@ -765,7 +765,7 @@ This method is called by `store.normalize(type, payload)` and is often
 used for normalizing requests made outside of Ember Data because they
 do not fall into the normal CRUD flow that the adapter provides.
 
-#### Serializing records
+### Serializing records
 
 Finally a serializer will need to implement a
 [serialize](https://api.emberjs.com/ember-data/release/classes/Serializer/methods/serialize?anchor=serialize)
