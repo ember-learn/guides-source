@@ -20,7 +20,7 @@ But first things first: we need to add a route for this new page. We can do that
 
 ```js { data-filename="app/router.js" data-diff="+12" }
 import EmberRouter from '@ember/routing/router';
-import config from './config/environment';
+import config from 'super-rentals/config/environment';
 
 export default class Router extends EmberRouter {
   location = config.locationType;
