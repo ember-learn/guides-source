@@ -14,7 +14,7 @@ It also adds the route to the router.
 
 ## Basic Routes
 
-The [`map()`](https://api.emberjs.com/ember/release/classes/EmberRouter/methods/map?anchor=map) method
+The [`map()`](https://api.emberjs.com/ember/3.18/classes/EmberRouter/methods/map?anchor=map) method
 of your Ember application's router can be invoked to define URL mappings. When
 calling `map()`, you should pass a function that will be invoked with the value
 `this` set to an object which you can use to create routes.
@@ -350,8 +350,8 @@ export default class SomeRouteRoute extends Route {
 To have your route do something beyond render a template with the same name, you'll
 need to create a route handler. The following guides will explore the different
 features of route handlers. For more information on routes, see the API documentation
-for [the router](https://api.emberjs.com/ember/release/classes/EmberRouter) and for [route
-handlers](https://api.emberjs.com/ember/release/classes/Route).
+for [the router](https://api.emberjs.com/ember/3.18/classes/EmberRouter) and for [route
+handlers](https://api.emberjs.com/ember/3.18/classes/Route).
 
 ## Transitioning Between Routes
 Once the routes are defined, how do we go about transitioning between them within our application? It depends on where the transition needs to take place:
