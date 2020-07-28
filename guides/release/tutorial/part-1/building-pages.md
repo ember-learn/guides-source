@@ -26,7 +26,7 @@ The place to manage what pages are available is the _router_. Go ahead and open 
 
 ```js { data-filename="app/router.js" data-diff="+10" }
 import EmberRouter from '@ember/routing/router';
-import config from './config/environment';
+import config from 'super-rentals/config/environment';
 
 export default class Router extends EmberRouter {
   location = config.locationType;
@@ -70,7 +70,7 @@ We want to keep the existing URLs for the new website, but we don't want to have
 
 ```js { data-filename="app/router.js" data-diff="+11" }
 import EmberRouter from '@ember/routing/router';
-import config from './config/environment';
+import config from 'super-rentals/config/environment';
 
 export default class Router extends EmberRouter {
   location = config.locationType;
