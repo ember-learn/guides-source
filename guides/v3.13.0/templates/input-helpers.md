@@ -66,7 +66,7 @@ The following event types are supported (dasherized format):
 * `key-up`
 
 
-More [events types](https://api.emberjs.com/ember/3.11/classes/Component#event-names) are also supported but these events need to be written in camelCase format, such `mouseEnter`. Note, there are events of the same type in both the list above and linked. Event names listed above must be dasherized. Additional work is performed on these events.
+More [event types](https://api.emberjs.com/ember/3.13/classes/Component#event-handler-methods) are also supported but these events need to be written in camelCase format, such `mouseEnter`. Note, there are events of the same type in both the list above and linked. Event names listed above must be dasherized. Additional work is performed on these events.
 
 ## Checkboxes
 
