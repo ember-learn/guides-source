@@ -1,10 +1,10 @@
 Ember provides a few helpful components out-of-the-box for common tasks,
 including:
 
-* [`<Input />`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/if?anchor=input)
+* [`<Input />`](https://api.emberjs.com/ember/3.16/classes/Ember.Templates.components/methods/Input?anchor=Input)
 * [`<Textarea />`](https://api.emberjs.com/ember/release/classes/Ember.Templates.components/methods/Textarea?anchor=Textarea)
 
-Using these helpers, you can create form controls that are almost identical to
+Using these components, you can create form controls that are almost identical to
 the native HTML `<input>` or `<textarea>` elements, and which automatically
 update the state of their values.
 
@@ -72,13 +72,13 @@ The following event types are supported (dasherized format):
 * `@key-up`
 
 
-More [events types](https://api.emberjs.com/ember/release/classes/Component#event-names) are also supported but these events need to be written in camelCase format, such `mouseEnter`. Note, there are events of the same type in both the list above and linked. Event names listed above must be dasherized. Additional work is performed on these events.
+More [event types](https://api.emberjs.com/ember/3.16/classes/Component#event-handler-methods) are also supported but these events need to be written in camelCase format, such `mouseEnter`. Note, there are events of the same type in both the list above and linked. Event names listed above must be dasherized. Additional work is performed on these events.
 
 ### Checkboxes
 
 You can also use the
-[`<Input />`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/if?anchor=input)
-helper to create a checkbox by setting its `@type`:
+[`<Input />`](https://api.emberjs.com/ember/3.16/classes/Ember.Templates.components/methods/Input?anchor=Input)
+component to create a checkbox by setting its `@type`:
 
 ```handlebars
 <label for="admin-checkbox">Is Admin?</label>
