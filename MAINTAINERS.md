@@ -34,7 +34,7 @@ The script will create and update the necessary files for you, showing you a URL
 #### Major versions
 
 Currently only minor version releases are scripted.
-To make a major version release, please follow the steps in `release:guides:minor` manually, adjusting the command for the major version.
+To make a major version release, please follow the steps in `scripts/create-new-minor-version` manually, adjusting the command for the major version.
 
 ### Updating the guides search
 
