@@ -23,7 +23,7 @@ It is required that all maintainers use 2FA (two factor authentication). These a
 
 #### Minor versions
 
-To release a new minor version, you can use the `npm run releases:guides:minor` command.
+To release a new minor version, you can use the `npm run release:guides:minor` command.
 The script will create and update the necessary files for you, showing you a URL at the end that you can use to create the PR.
 
 0. Run `npm install` to guarantee dependencies are installed.
