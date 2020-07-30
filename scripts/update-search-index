@@ -57,6 +57,11 @@ rm ./config/deploy.js.bak
 echo "  DONE"
 
 echo
+echo "🤖 Deleting dist folder"
+rm -r dist
+echo "  DONE"
+
+echo
 echo "🤖 Deploying"
 ember deploy production
 echo "  DONE"
