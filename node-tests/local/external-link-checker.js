@@ -33,12 +33,8 @@ const releasePaths = walkSync('guides/release')
  * @type {Array}
  */
 const doNotCheckList = [
-  'http://localhost:4200', // getting-started/quick-start
-  'http://localhost:4200/scientists', // generating routes, link to open local server route
-  'http://localhost:4200/contact', // model hook tutorial code snippet
-  'http://localhost:4200/about', // model hook tutorial code snippet
-  'http://localhost:4200/about/', // routes and templates
-  'https://codepen.io/melsumner/live/ZJeYoP' // ...codepen does not play with fetch api.
+  'http://localhost:4200',
+  'https://codepen.io/melsumner/live/ZJeYoP' // codepen does not play with fetch api
 ];
 
 describe('check all external links in markdown files', function() {
@@ -50,7 +46,10 @@ describe('check all external links in markdown files', function() {
 
       const externalLinks = findMarkdownLinks(filePath)
         .filter((link) => link.startsWith('http')) // should have more robust regex
-        .filter((link) => !doNotCheckList.includes(link))
+        .filter((link) => {
+          const canSkipCheck = doNotCheckList.some(address => link.startsWith(address));
+          return !canSkipCheck;
+        })
         .filter((link) => !(skipApiUrls && link.toLowerCase().includes('api.emberjs.com')))
         .map(mapToLocalUrl)
         .map(removeTrailingApostrophe)
