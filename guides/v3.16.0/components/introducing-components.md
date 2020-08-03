@@ -398,7 +398,7 @@ Components can be broken down to any level, included in each other and reused.
 
 ### Nesting Components in Folders
 
-The avatar and username components are directly related to the sent and received message components. Right now, they're grouped at the top level. As you get more components, this could make a big mess! Instead, we want group the related components together in the filesystem. We can do this by moving them into subfolders within `app/components`.
+The avatar and username components are directly related to the sent and received message components. Right now, they're grouped at the top level. As you get more components, this could make a big mess! Instead, we want to group the related components together in the filesystem. We can do this by moving them into subfolders within `app/components`.
 
 ```handlebars {data-filename="" data-diff="-4,-5,+6,+7,+8,-9,-10,-11,+12,+13,+14"}
 app/
