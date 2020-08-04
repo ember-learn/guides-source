@@ -203,7 +203,7 @@ person.firstName = 'Tom';
 ```
 
 Note, however, that if you want to use a getter as a dependent key, you will
-need to use the [`dependentKeyCompat`](https://api.emberjs.com/ember/release/functions/@ember%2Fobject%2Fcompat/dependentKeyCompat) decorator. This allows you to refactor
+need to use the [`dependentKeyCompat`](https://api.emberjs.com/ember/3.17/functions/@ember%2Fobject%2Fcompat/dependentKeyCompat) decorator. This allows you to refactor
 existing computed properties into getters without breaking existing code that
 observes them.
 
