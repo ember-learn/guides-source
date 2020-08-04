@@ -460,7 +460,7 @@ The `settled` function itself returns a Promise that resolves once all async ope
 
 You can use `settled` as a helper in your tests directly and `await` it for all async behavior to settle deliberately.
 
-Imagine you have a typeahead component that uses [`Ember.run.debounce`](https://api.emberjs.com/ember/release/classes/@ember%2Frunloop/methods/debounce?anchor=debounce) to limit requests to the server, and you want to verify that results are displayed after typing a character.
+Imagine you have a typeahead component that uses [`Ember.run.debounce`](https://api.emberjs.com/ember/3.19/classes/@ember%2Frunloop/methods/debounce?anchor=debounce) to limit requests to the server, and you want to verify that results are displayed after typing a character.
 
 > You can follow along by generating your own component with `ember generate
 > component delayed-typeahead`.

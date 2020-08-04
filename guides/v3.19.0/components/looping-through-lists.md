@@ -1,6 +1,6 @@
 Oftentimes we'll need to repeat a component multiple times in a row, with
 different data for each usage of the component. We can use the
-[`{{#each}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/each?anchor=each)
+[`{{#each}}`](https://api.emberjs.com/ember/3.19/classes/Ember.Templates.helpers/methods/each?anchor=each)
 helper to loop through lists of items like this, repeating a section of template
 for each item in the list.
 
@@ -185,7 +185,7 @@ as a string.
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
         Using triple curly brackets is just one way to put dynamic HTML into
-        Ember templates. We can also use the <a href="https://api.emberjs.com/ember/release/functions/@ember%2Ftemplate/htmlSafe">htmlSafe</a>
+        Ember templates. We can also use the <a href="https://api.emberjs.com/ember/3.19/functions/@ember%2Ftemplate/htmlSafe">htmlSafe</a>
         function to wrap template strings. Additionally, inserting unknown HTML
         into an app can always produce unexpected results, so we should be
         careful and always make sure that the HTML is safe (as in, won't cause
@@ -269,7 +269,7 @@ And in the component class, we'll add the `addMessage` action. This action will
 create the new message from the text that the `<NewMessageInput>` component
 gives us, and push it into the messages array. In order for the messages array
 to react to that change, we'll also need to convert it into an
-[`EmberArray`](https://api.emberjs.com/ember/release/classes/EmberArray).
+[`EmberArray`](https://api.emberjs.com/ember/3.19/classes/EmberArray).
 `EmberArray` provides special methods that tell Ember when changes occur to the
 array itself.
 
@@ -369,7 +369,7 @@ export default class SomeComponent extends Component {
 
 ### Empty Lists
 
-The [`{{#each}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/each?anchor=each)
+The [`{{#each}}`](https://api.emberjs.com/ember/3.19/classes/Ember.Templates.helpers/methods/each?anchor=each)
 helper can also have a corresponding `{{else}}`. The contents of this block will
 render if the array passed to `{{#each}}` is empty:
 
@@ -385,7 +385,7 @@ render if the array passed to `{{#each}}` is empty:
 
 There are also times when we need to loop through the keys and values of an
 object rather than an array, similar to JavaScript's `for...in` loop. We can use
-the [`{{#each-in}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/each-in?anchor=each-in)
+the [`{{#each-in}}`](https://api.emberjs.com/ember/3.19/classes/Ember.Templates.helpers/methods/each-in?anchor=each-in)
 helper to do this:
 
 ```javascript {data-filename=/app/components/store-categories.js}
@@ -445,12 +445,12 @@ The above example will print a list like this:
 An object's keys will be listed in the same order as the array returned from
 calling `Object.keys` on that object. If you want a different sort order, you
 should use `Object.keys` to get an array, sort that array with the built-in JavaScript
-tools, and use the [`{{#each}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/each?anchor=each)
+tools, and use the [`{{#each}}`](https://api.emberjs.com/ember/3.19/classes/Ember.Templates.helpers/methods/each?anchor=each)
 helper instead.
 
 ### Empty Lists
 
-The [`{{#each-in}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/each-in?anchor=each-in)
+The [`{{#each-in}}`](https://api.emberjs.com/ember/3.19/classes/Ember.Templates.helpers/methods/each-in?anchor=each-in)
 helper can have a matching `{{else}}`. The contents of this block will render if
 the object is empty, null, or undefined:
 
