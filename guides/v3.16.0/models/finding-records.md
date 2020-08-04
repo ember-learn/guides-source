@@ -40,7 +40,7 @@ let blogPosts = this.store.peekAll('blog-post'); // => no network request
 
 `store.findAll()` returns a `PromiseArray` that fulfills to a `RecordArray` and `store.peekAll` directly returns a `RecordArray`.
 
-It's important to note that `RecordArray` is not a JavaScript array, it's an object that implements [`MutableArray`](https://api.emberjs.com/ember/release/classes/MutableArray).
+It's important to note that `RecordArray` is not a JavaScript array, it's an object that implements [`MutableArray`](https://api.emberjs.com/ember/3.16/classes/MutableArray).
 This is important because, for example, if you want to retrieve records by index,
 the `[]` notation will not work--you'll have to use `objectAt(index)` instead.
 

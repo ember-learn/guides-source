@@ -185,7 +185,7 @@ as a string.
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
         Using triple curly brackets is just one way to put dynamic HTML into
-        Ember templates. We can also use the <a href="https://api.emberjs.com/ember/release/functions/@ember%2Ftemplate/htmlSafe">htmlSafe</a>
+        Ember templates. We can also use the <a href="https://api.emberjs.com/ember/3.16/functions/@ember%2Ftemplate/htmlSafe">htmlSafe</a>
         function to wrap template strings. Additionally, inserting unknown HTML
         into an app can always produce unexpected results, so we should be
         careful and always make sure that the HTML is safe (as in, won't cause
@@ -269,7 +269,7 @@ And in the component class, we'll add the `addMessage` action. This action will
 create the new message from the text that the `<NewMessageInput>` component
 gives us, and push it into the messages array. In order for the messages array
 to react to that change, we'll also need to convert it into an
-[`EmberArray`](https://api.emberjs.com/ember/release/classes/EmberArray).
+[`EmberArray`](https://api.emberjs.com/ember/3.16/classes/EmberArray).
 `EmberArray` provides special methods that tell Ember when changes occur to the
 array itself.
 

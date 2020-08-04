@@ -91,7 +91,7 @@ This injects the shopping cart service into the component and makes it available
 
 Sometimes a service may or may not exist, like when an initializer conditionally registers a service.
 Since normal injection will throw an error if the service doesn't exist,
-you must look up the service using Ember's [`getOwner`](https://api.emberjs.com/ember/release/classes/@ember%2Fapplication/methods/getOwner?anchor=getOwner) instead.
+you must look up the service using Ember's [`getOwner`](https://api.emberjs.com/ember/3.16/classes/@ember%2Fapplication/methods/getOwner?anchor=getOwner) instead.
 
 ```javascript {data-filename=app/components/cart-contents.js}
 import Component from '@glimmer/component';
