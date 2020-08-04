@@ -62,8 +62,8 @@ module('Unit | Utility | math-library', function() {
 Here are more examples where unit tests are ideal:
 
 - Inside a controller, a computed property continues to filter `this.model` correctly after an action is taken
-- Check how [`normalize()`](https://api.emberjs.com/ember-data/release/classes/JSONAPISerializer/methods/normalize?anchor=normalize) in a serializer receives data
-- Check how [`serialize()`](https://api.emberjs.com/ember-data/release/classes/JSONAPISerializer/methods/serialize?anchor=serialize) in a serializer sends data
+- Check how [`normalize()`](https://api.emberjs.com/ember-data/3.17/classes/JSONAPISerializer/methods/normalize?anchor=normalize) in a serializer receives data
+- Check how [`serialize()`](https://api.emberjs.com/ember-data/3.17/classes/JSONAPISerializer/methods/serialize?anchor=serialize) in a serializer sends data
 - A [cron](https://en.wikipedia.org/wiki/Cron) utility parses an input string into an object that can be used for UI
 
 ### What to Watch Out for
