@@ -321,14 +321,23 @@ Let's start with the HTML we're working with:
 <button type="button">Pause</button>
 ```
 
-Next, let's add an event handler to the `Play` button:
+It might be tempting to try to handle this by managing the whole set of interactions at the component level. But there are three reasons we might want to tackle this using a modifier instead:
 
-```handlebars {data-filename="app/components/audio-player.hbs" data-diff="-3,+4"}
+1. Components don't have access to DOM elements directly. We'd have to render the page, push an element back up into the component class, and *then* wire it up. This would come with performance costs, because we would have to render twice before anything could work.
+2. We can't really use autotracking or 1-way data flow that way. If we wanted the caller of our component to be able to pass an argument in and have the component respond appropriately, we'd have to use something like `{{did-update}}`.
+3. None of the logic we built to manage playing and pausing would be reusable! It would be specific to just this component.
+
+Using a custom modifier, we can avoid all of these issues!
+
+First, let's add event handlers to the `Play` and `Pause` buttons:
+
+```handlebars {data-filename="app/components/audio-player.hbs" data-diff="-3,+4,-5,+6"}
 <audio src={{@srcURL}} />
 
 <button type="button">Play</button>
 <button type="button" {{on "click" this.play}}>Play</button>
 <button type="button">Pause</button>
+<button type="button" {{on "click" this.pause}}>Pause</button>
 ```
 
 ```js {data-filename="app/components/audio-player.js"}
@@ -340,39 +349,70 @@ export default class AudioPlayerComponent extends Component {
   play() {
     // TODO
   }
-}
-```
 
-We'd like to call the `play` method on our `<audio>` element, but how do we get access to that element?
-
-We can give our component access to elements inside of it by using [`ember-ref-modifier`](https://github.com/lifeart/ember-ref-modifier).
-
-> The `{{ref}}` modifier takes a property name and an object, and assigns the modifier's element to that property on the object.
-
-In this case, we'll assign the `<audio>` element to the `audioElement` property in our component:
-
-```handlebars {data-filename="app/components/audio-player.hbs" data-diff="-1,+2"}
-<audio src={{@srcURL}} />
-<audio src={{@srcURL}} {{ref this "audioElement"}} />
-
-<button type="button" {{on "click" this.play}}>Play</button>
-<button type="button">Pause</button>
-```
-
-Now, the component can access the audio element in the `play` method:
-
-```js {data-filename="app/components/audio-player.js" data-diff="-7,+8"}
-import Component from "@glimmer/component";
-import { action } from "@ember/object";
-
-export default class AudioPlayerComponent extends Component {
   @action
-  play() {
+  pause() {
     // TODO
-    this.audioElement.play();
   }
 }
 ```
+
+From the component's point of view, all it needs to do is track whether it should be playing or not, since we're going to manage the DOM element with the modifier. So we can just use `@tracked` and a normal property here.
+
+```js {data-filename="app/components/audio-player.js" data-diff="+2,+6,+7,-10,+11,-16,+17"}
+import Component from "@glimmer/component";
+import { tracked } from "@glimmer/tracking";
+import { action } from "@ember/object";
+
+export default class AudioPlayerComponent extends Component {
+  @tracked isPlaying = false;
+
+  @action
+  play() {
+    // TODO
+    this.isPlaying = true;
+  }
+
+  @action
+  pause() {
+    // TODO
+    this.isPlaying = false;
+  }
+}
+```
+
+Now the component is managing the state of the player, but we still need to translate that into the DOM method calls. So let's create a modifier!
+
+```bash
+ember install ember-modifier
+ember generate modifier play-when
+```
+
+In this modifier, we'll take an argument that specifies whether we should be playing or paused.
+
+```js {data-filename="app/modifiers/play-when.js"}
+import { modifier } from "ember-modifier";
+
+export default modifier((element, [isPlaying]) => {
+  if (isPlaying) {
+    element.play();
+  } else {
+    element.pause();
+  }
+});
+```
+
+We can now attach the modifier to the `audio` element:
+
+```handlebars {data-filename="app/components/audio-player.hbs" data-diff="-1,+2"}
+<audio src={{@srcURL}} />
+<audio src={{@srcURL}} {{play-when this.isPlaying}} />
+
+<button type="button" {{on "click" this.play}}>Play</button>
+<button type="button" {{on "click" this.pause}}>Pause</button>
+```
+
+With that, we're done! Notice that we've separated the concerns of *managing state* from *managing DOM interactions*. The component manages the state. The modifier manages the DOM. And this modifier could be reused for *any* `HTMLMediaElement`, including other `audio` or `video` element in our code.
 
 ## Out-of-Component Modifications
 
