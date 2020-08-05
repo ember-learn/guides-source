@@ -22,7 +22,7 @@ let blogPost = this.store.peekRecord('blog-post', 1); // => no network request
 
 ### Retrieving Multiple Records
 
-Use [`store.findAll()`](https://api.emberjs.com/ember-data/release/classes/Store/methods/findAll?anchor=findAll) to retrieve all of the records for a given type:
+Use [`store.findAll()`](https://api.emberjs.com/ember-data/3.15/classes/Store/methods/findAll?anchor=findAll) to retrieve all of the records for a given type:
 
 ```javascript
 // GET /blog-posts
@@ -40,7 +40,7 @@ let blogPosts = this.store.peekAll('blog-post'); // => no network request
 
 `store.findAll()` returns a `PromiseArray` that fulfills to a `RecordArray` and `store.peekAll` directly returns a `RecordArray`.
 
-It's important to note that `RecordArray` is not a JavaScript array, it's an object that implements [`MutableArray`](https://api.emberjs.com/ember/release/classes/MutableArray).
+It's important to note that `RecordArray` is not a JavaScript array, it's an object that implements [`MutableArray`](https://api.emberjs.com/ember/3.15/classes/MutableArray).
 This is important because, for example, if you want to retrieve records by index,
 the `[]` notation will not work--you'll have to use `objectAt(index)` instead.
 
@@ -108,7 +108,7 @@ As in the case of `store.query()`, a query object can also be passed to `store.q
 However the adapter must return a single model object, not an array containing one element,
 otherwise Ember Data will throw an exception.
 
-Note that Ember's default [JSON:API adapter](https://api.emberjs.com/ember-data/release/classes/JSONAPIAdapter) does not provide the functionality needed to support `queryRecord()` directly as it relies on REST request definitions that return result data in the form of an array.
+Note that Ember's default [JSON:API adapter](https://api.emberjs.com/ember-data/3.15/classes/JSONAPIAdapter) does not provide the functionality needed to support `queryRecord()` directly as it relies on REST request definitions that return result data in the form of an array.
 
 If your server API or your adapter only provides array responses but you wish to retrieve just a single record, you can alternatively use the `query()` method as follows:
 
