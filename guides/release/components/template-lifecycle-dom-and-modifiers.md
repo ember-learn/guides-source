@@ -359,7 +359,7 @@ export default class AudioPlayerComponent extends Component {
 }
 ```
 
-From the component's point of view, all it needs to do is track whether it should be playing or not, since we're going to manage the DOM element with the modifier. So we can just use `@tracked` and a normal property here.
+Recall that our modifier will manage the DOM (i.e. calling the audio element's `play` or `pause` method). All the component needs to do is to track if the audio is playing.
 
 ```js {data-filename="app/components/audio-player.js" data-diff="+2,+6,+7,-10,+11,-16,+17"}
 import Component from "@glimmer/component";
