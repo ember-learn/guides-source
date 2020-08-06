@@ -321,17 +321,17 @@ What if you want to handle an event in one part of your component by calling a D
 
 How should we connect clicking the "Play" and "Pause" to calling the audio tag's `play` and `pause` methods?
 
-While we *could* manage these DOM interactions in the component class (for example, by using `{{did-render}}`), we're better off using a modifier here. It lets us cleanly separate our concerns: the component manages the *state*, and the modifier manages *interactions with the DOM*.
+While we _could_ manage these DOM interactions in the component class (for example, by using `{{did-render}}`), we're better off using a modifier here. It lets us cleanly separate our concerns: the component manages the _state_, and the modifier manages _interactions with the DOM_.
 
 There are three reasons to reach for modifiers for DOM element interactions:
 
 1. A component, by itself, doesn't have direct access to DOM elements. We have to render the page, push an element back up into the component class, and only then can we safely refer to that element. This can sometimes require us to render the component's HTML twice in order for things to start working. Modifiers let us avoid this possible performance issue.
 
-2. By keeping state in the component and handling DOM method calls in a modifier, we can use autotracking and stick to 1-way data flow in the component. Further, we could change the component's own design later *without* having to change how we interact with the DOM element.
+2. By keeping state in the component and handling DOM method calls in a modifier, we can use autotracking and stick to 1-way data flow in the component. Further, we could change the component's own design later _without_ having to change how we interact with the DOM element.
 
 3. The code for calling the audio element's `play` and `pause` can be reused. It isn't tied to this particular audio component. It can be tested independently, too!
 
-Now that we see *why* we want to use a modifier for our audio component, let's walk through *how* to create one. We will start with the component (to manage the state) and then implement the modifier (the manage the DOM).
+Now that we see _why_ we want to use a modifier for our audio component, let's walk through _how_ to create one. We will start with the component (to manage the state) and then implement the modifier (the manage the DOM).
 
 First, we add actions to handle the `click` events for the `Play` and `Pause` buttons:
 
@@ -385,7 +385,7 @@ export default class AudioPlayerComponent extends Component {
 }
 ```
 
-That's it for the component: we're translating the user's interactions into *state*. Now we need to build a modifier to translate the state into the appropriate DOM method calls!
+That's it for the component: we're translating the user's interactions into _state_. Now we need to build a modifier to translate the state into the appropriate DOM method calls!
 
 ```bash
 ember install ember-modifier
@@ -418,9 +418,9 @@ Last but not least, we attach the modifier to the `audio` element:
 
 With that, we can now click the buttons to play and pause the audio!
 
-In summary, when you want to allow elements in a component to communicate, see if you can separate the concerns of *managing state* and *managing DOM interactions*. The component can manage the state, while a modifier can manage the DOM.
+In summary, when you want to allow elements in a component to communicate, see if you can separate the concerns of _managing state_ and _managing DOM interactions_. The component can manage the state, while a modifier can manage the DOM.
 
-The modifier that we made for the audio player component can be reused on *any* element that implements `play` and `pause` methods. In particular, we can reuse the modifier on an `HTMLMediaElement`, which includes `audio` and `video` elements.
+The modifier that we made for the audio player component can be reused on _any_ element that implements `play` and `pause` methods. In particular, we can reuse the modifier on an `HTMLMediaElement`, which includes `audio` and `video` elements.
 
 ## Out-of-Component Modifications
 
