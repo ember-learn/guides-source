@@ -404,7 +404,7 @@ export default modifier((element, [isPlaying]) => {
 });
 ```
 
-We can now attach the modifier to the `audio` element:
+Last but not least, we attach the modifier to the `audio` element:
 
 ```handlebars {data-filename="app/components/audio-player.hbs" data-diff="-1,+2"}
 <audio src={{@srcURL}} />
