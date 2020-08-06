@@ -321,7 +321,9 @@ Let's start with the HTML we're working with:
 <button type="button">Pause</button>
 ```
 
-It might be tempting to try to handle this by managing the whole set of interactions at the component level. But there are three reasons we might want to tackle this using a modifier instead:
+It might be tempting to define all interactions in the component class. However, as we will see soon, the key to a better solution is to separate concerns. Let the component manage the state and the modifier manage the DOM.
+
+In general, there are 3 reasons why we might want to introduce a modifier:
 
 1. Components don't have access to DOM elements directly. We'd have to render the page, push an element back up into the component class, and *then* wire it up. This would come with performance costs, because we would have to render twice before anything could work.
 2. We can't really use autotracking or 1-way data flow that way. If we wanted the caller of our component to be able to pass an argument in and have the component respond appropriately, we'd have to use something like `{{did-update}}`.
