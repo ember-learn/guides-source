@@ -323,7 +323,7 @@ How should we connect clicking the "Play" and "Pause" to calling the audio tag's
 
 While we *could* manage these DOM interactions in the component class (for example, by using `{{did-render}}`), we're better off using a modifier here. It lets us cleanly separate our concerns: the component manages the *state*, and the modifier manages *interactions with the DOM*.
 
-There are three reasons we should keep state management in a component and DOM element management in a modifier:
+There are three reasons to reach for modifiers for DOM element interactions:
 
 1. A component, by itself, doesn't have direct access to DOM elements. We have to render the page, push an element back up into the component class, and only then can we safely refer to that element. This can sometimes require us to render the component's HTML twice in order for things to start working. Modifiers let us avoid this possible performance issue.
 
