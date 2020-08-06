@@ -385,7 +385,7 @@ export default class AudioPlayerComponent extends Component {
 }
 ```
 
-Now the component is managing the state of the player, but we still need to translate that into the DOM method calls. So let's create a modifier!
+That's it for the component: we're succesfully handling all of the *state*. Now we need to build a modifier to translate the state into the appropriate DOM method calls!
 
 ```bash
 ember install ember-modifier
