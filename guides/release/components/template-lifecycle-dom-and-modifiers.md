@@ -416,7 +416,11 @@ Last but not least, we attach the modifier to the `audio` element:
 <button type="button" {{on "click" this.pause}}>Pause</button>
 ```
 
-With that, we're done! Notice that we've separated the concerns of *managing state* from *managing DOM interactions*. The component manages the state. The modifier manages the DOM. And this modifier could be reused for *any* `HTMLMediaElement`, including other `audio` or `video` element in our code.
+With that, we can now click the buttons to play and pause the audio!
+
+In summary, when you want to allow elements in a component to communicate, see if you can separate the concerns of *managing state* and *managing DOM interactions*. The component can manage the state, while a modifier can manage the DOM.
+
+The modifier that we made for the audio player component can be reused on *any* element that implements `play` and `pause` methods. In particular, we can reuse the modifier on an `HTMLMediaElement`, which includes `audio` and `video` elements.
 
 ## Out-of-Component Modifications
 
