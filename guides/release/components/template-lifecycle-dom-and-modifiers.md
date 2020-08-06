@@ -310,9 +310,7 @@ Now we can use our custom `{{autofocus}}` modifier throughout our application.
 
 ## Communicating Between Elements in a Component
 
-What if you want to handle an event in one part of your component by calling a DOM method on another part? For example, let's say you're creating an audio component, and you want clicking the "Play" button to call the audio tag's `play` method.
-
-Let's start with the HTML we're working with:
+What if you want to handle an event in one part of your component by calling a DOM method on another part? For example, let's say you're creating an audio component:
 
 ```handlebars {data-filename="app/components/audio-player.hbs"}
 <audio src={{@srcURL}} />
@@ -321,17 +319,21 @@ Let's start with the HTML we're working with:
 <button type="button">Pause</button>
 ```
 
-It might be tempting to define all interactions in the component class. However, as we will see soon, the key to a better solution is to separate concerns. Let the component manage the state and the modifier manage the DOM.
+How should we make it so that clicking the "Play" and "Pause" buttons to call the audio tag's `play` and `pause` methods?
 
-In general, there are 3 reasons why we might want to introduce a modifier:
+While we *could* manage these DOM interactions in the component class (for example, by using `{{did-render}}`), we're better off using a modifier here. It lets us cleanly separate our concerns: the component manages the *state*, and the modifier manages *interactions with the DOM*.
 
-1. Components don't have access to DOM elements directly. We'd have to render the page, push an element back up into the component class, and *then* wire it up. This would come with performance costs, because we would have to render twice before anything could work.
-2. We can't really use autotracking or 1-way data flow that way. If we wanted the caller of our component to be able to pass an argument in and have the component respond appropriately, we'd have to use something like `{{did-update}}`.
-3. None of the logic we built to manage playing and pausing would be reusable! It would be specific to just this component.
+There are three reasons we should keep state management in a component and DOM element management in a modifier:
 
-Using a custom modifier, we can avoid all of these issues!
+1. A component, by itself, doesn't have direct access to DOM elements. We have to render the page, push an element back up into the component class, and only then can we safely refer to that element. This can sometimes require us to render the component's HTML twice in order for things to start working. Modifiers let us avoid this possible performance issue.
 
-First, let's add event handlers to the `Play` and `Pause` buttons:
+2. By keeping state in the component and handling DOM method calls in a modifier, we can use autotracking and practice 1-way data flow. We could change the component's own design later *without* having to change how we interact with the DOM element.
+
+3. The code for calling the audio element's `play` and `pause` can be reused. It isn't tied to this particular audio component. It can be tested independently, too!
+
+Now that we see *why* to use a modifier for our audio component, let's walk through *how* to create one. We will start with the component (to manage the state) and then implement the modifier (the manage the DOM).
+
+First, we add actions to handle the `click` events for the `Play` and `Pause` buttons:
 
 ```handlebars {data-filename="app/components/audio-player.hbs" data-diff="-3,+4,-5,+6"}
 <audio src={{@srcURL}} />
