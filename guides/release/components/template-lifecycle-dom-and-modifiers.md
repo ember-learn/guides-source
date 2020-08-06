@@ -331,7 +331,7 @@ There are three reasons to reach for modifiers for DOM element interactions:
 
 3. The code for calling the audio element's `play` and `pause` can be reused. It isn't tied to this particular audio component. It can be tested independently, too!
 
-Now that we see *why* to use a modifier for our audio component, let's walk through *how* to create one. We will start with the component (to manage the state) and then implement the modifier (the manage the DOM).
+Now that we see *why* we want to use a modifier for our audio component, let's walk through *how* to create one. We will start with the component (to manage the state) and then implement the modifier (the manage the DOM).
 
 First, we add actions to handle the `click` events for the `Play` and `Pause` buttons:
 
