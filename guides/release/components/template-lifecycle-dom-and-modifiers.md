@@ -319,7 +319,7 @@ What if you want to handle an event in one part of your component by calling a D
 <button type="button">Pause</button>
 ```
 
-How should we make it so that clicking the "Play" and "Pause" buttons to call the audio tag's `play` and `pause` methods?
+How should we connect clicking the "Play" and "Pause" to calling the audio tag's `play` and `pause` methods?
 
 While we *could* manage these DOM interactions in the component class (for example, by using `{{did-render}}`), we're better off using a modifier here. It lets us cleanly separate our concerns: the component manages the *state*, and the modifier manages *interactions with the DOM*.
 
