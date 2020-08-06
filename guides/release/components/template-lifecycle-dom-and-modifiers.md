@@ -418,7 +418,7 @@ With that, we can now click the buttons to play and pause the audio!
 
 In summary, when you want to allow elements in a component to communicate, see if you can separate the concerns of _managing state_ and _managing DOM interactions_. The component can manage the state, while a modifier can manage the DOM.
 
-The modifier that we made for the audio player component can be reused on _any_ element that implements `play` and `pause` methods. In particular, we can reuse the modifier on an `HTMLMediaElement`, which includes `audio` and `video` elements.
+The modifier that we made for the audio player component can be reused on _any_ element that implements `play` and `pause` methods. In particular, we can reuse the modifier on any `HTMLMediaElement`, which includes `audio` and `video` elements.
 
 ## Out-of-Component Modifications
 
