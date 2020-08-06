@@ -392,7 +392,7 @@ ember install ember-modifier
 ember generate modifier play-when
 ```
 
-In this modifier, we'll take an argument that specifies whether we should be playing or paused.
+The modifier takes 1 argument, a Boolean that specifies if we should call the element's `play` or `pause` method.
 
 ```js {data-filename="app/modifiers/play-when.js"}
 import { modifier } from "ember-modifier";
