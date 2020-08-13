@@ -10,13 +10,13 @@ import Application from '@ember/application';
 
 export default class App extends Application {
   // Basic logging, e.g. "Transitioned into 'post'"
-  LOG_TRANSITIONS = true,
+  LOG_TRANSITIONS = true;
 
   // Extremely detailed logging, highlighting every internal
   // step made while transitioning into a route, including
   // `beforeModel`, `model`, and `afterModel` hooks, and
   // information about redirects and aborted transitions
-  LOG_TRANSITIONS_INTERNAL = true
+  LOG_TRANSITIONS_INTERNAL = true;
 }
 ```
 ## Views / Templates
@@ -49,7 +49,7 @@ and which it is generating automatically for you.
 import Application from '@ember/application';
 
 export default class App extends Application {
-  LOG_RESOLVER = true
+  LOG_RESOLVER = true;
 }
 ```
 ### Dealing with deprecations
