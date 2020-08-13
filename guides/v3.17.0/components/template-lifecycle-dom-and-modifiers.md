@@ -310,25 +310,36 @@ Now we can use our custom `{{autofocus}}` modifier throughout our application.
 
 ## Communicating Between Elements in a Component
 
-What if you want to handle an event in one part of your component by calling a DOM method on another part? For example, let's say you're creating an audio component, and you want clicking the "Play" button to call the audio tag's `play` method.
-
-Let's start with the HTML we're working with:
+What if you want to handle an event in one part of your component by calling a DOM method on another part? For example, let's say you're creating an audio component:
 
 ```handlebars {data-filename="app/components/audio-player.hbs"}
 <audio src={{@srcURL}} />
 
-<button>Play</button>
-<button>Pause</button>
+<button type="button">Play</button>
+<button type="button">Pause</button>
 ```
 
-Next, let's add an event handler to the `Play` button:
+How should we connect clicking the "Play" and "Pause" to calling the audio tag's `play` and `pause` methods?
 
-```handlebars {data-filename="app/components/audio-player.hbs" data-diff="-3,+4"}
+While we _could_ manage these DOM interactions in the component class (for example, by using `{{did-render}}`), we're better off using a modifier here. It lets us cleanly separate our concerns: the component manages the _state_, and the modifier manages _interactions with the DOM_.
+
+There are three reasons to reach for modifiers for DOM element interactions:
+
+1. A component, by itself, doesn't have direct access to DOM elements. We have to render the page, push an element back up into the component class, and only then can we safely refer to that element. This can sometimes require us to render the component's HTML twice in order for things to start working. Modifiers let us avoid this possible performance issue.
+2. By keeping state in the component and handling DOM method calls in a modifier, we can use autotracking and stick to 1-way data flow in the component. Further, we could change the component's own design later _without_ having to change how we interact with the DOM element.
+3. The code for calling the audio element's `play` and `pause` can be reused. It isn't tied to this particular audio component. It can be tested independently, too!
+
+Now that we see _why_ we want to use a modifier for our audio component, let's walk through _how_ to create one. We will start with the component (to manage the state) and then implement the modifier (the manage the DOM).
+
+First, we add actions to handle the `click` events for the `Play` and `Pause` buttons:
+
+```handlebars {data-filename="app/components/audio-player.hbs" data-diff="-3,+4,-5,+6"}
 <audio src={{@srcURL}} />
 
-<button>Play</button>
-<button {{on "click" this.play}}>Play</button>
-<button>Pause</button>
+<button type="button">Play</button>
+<button type="button" {{on "click" this.play}}>Play</button>
+<button type="button">Pause</button>
+<button type="button" {{on "click" this.pause}}>Pause</button>
 ```
 
 ```js {data-filename="app/components/audio-player.js"}
@@ -340,39 +351,74 @@ export default class AudioPlayerComponent extends Component {
   play() {
     // TODO
   }
-}
-```
 
-We'd like to call the `play` method on our `<audio>` element, but how do we get access to that element?
-
-We can give our component access to elements inside of it by using [`ember-ref-modifier`](https://github.com/lifeart/ember-ref-modifier).
-
-> The `{{ref}}` modifier takes a property name and an object, and assigns the modifier's element to that property on the object.
-
-In this case, we'll assign the `<audio>` element to the `audioElement` property in our component:
-
-```handlebars {data-filename="app/components/audio-player.hbs" data-diff="-1,+2"}
-<audio src={{@srcURL}} />
-<audio src={{@srcURL}} {{ref this "audioElement"}} />
-
-<button {{on "click" this.play}}>Play</button>
-<button>Pause</button>
-```
-
-Now, the component can access the audio element in the `play` method:
-
-```js {data-filename="app/components/audio-player.js" data-diff="-7,+8"}
-import Component from "@glimmer/component";
-import { action } from "@ember/object";
-
-export default class AudioPlayerComponent extends Component {
   @action
-  play() {
+  pause() {
     // TODO
-    this.audioElement.play();
   }
 }
 ```
+
+Recall that our modifier will manage the DOM (i.e. calling the audio element's `play` or `pause` method). All the component needs to do is to track whether the audio is playing:
+
+```js {data-filename="app/components/audio-player.js" data-diff="+2,+6,+7,-10,+11,-16,+17"}
+import Component from "@glimmer/component";
+import { tracked } from "@glimmer/tracking";
+import { action } from "@ember/object";
+
+export default class AudioPlayerComponent extends Component {
+  @tracked isPlaying = false;
+
+  @action
+  play() {
+    // TODO
+    this.isPlaying = true;
+  }
+
+  @action
+  pause() {
+    // TODO
+    this.isPlaying = false;
+  }
+}
+```
+
+That's it for the component: we're translating the user's interactions into _state_. Now we need to build a modifier to translate the state into the appropriate DOM method calls!
+
+```bash
+ember install ember-modifier
+ember generate modifier play-when
+```
+
+The modifier takes 1 argument, a Boolean that specifies if we should call the element's `play` or `pause` method.
+
+```js {data-filename="app/modifiers/play-when.js"}
+import { modifier } from "ember-modifier";
+
+export default modifier((element, [isPlaying]) => {
+  if (isPlaying) {
+    element.play();
+  } else {
+    element.pause();
+  }
+});
+```
+
+Last but not least, we attach the modifier to the `audio` element:
+
+```handlebars {data-filename="app/components/audio-player.hbs" data-diff="-1,+2"}
+<audio src={{@srcURL}} />
+<audio src={{@srcURL}} {{play-when this.isPlaying}} />
+
+<button type="button" {{on "click" this.play}}>Play</button>
+<button type="button" {{on "click" this.pause}}>Pause</button>
+```
+
+With that, we can now click the buttons to play and pause the audio!
+
+In summary, when you want to allow elements in a component to communicate, see if you can separate the concerns of _managing state_ and _managing DOM interactions_. The component can manage the state, while a modifier can manage the DOM.
+
+The modifier that we made for the audio player component can be reused on _any_ element that implements `play` and `pause` methods. In particular, we can reuse the modifier on any `HTMLMediaElement`, which includes `audio` and `video` elements.
 
 ## Out-of-Component Modifications
 
