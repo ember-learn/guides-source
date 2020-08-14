@@ -222,6 +222,8 @@ other parts of the app we are building.
 We've also renamed `scientist` to the more-generic `person`,
 decreasing the coupling of our component to where it's used.
 
+The component tag name must start with capital letters if component name is single worded like `components/navbar.hbs` then component tag will be `<Navbar ... />` if component name is multiple worded like `components/people-list.hbs` use `<PeopleList ... />` as tag name.
+
 Save this template and switch back to the `scientists` template.
 
 We're going to tell our component:
