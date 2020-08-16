@@ -39,7 +39,7 @@ Router.map(function() {
 });
 ```
 
-Inside your templates, you can use [`<LinkTo>`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/link-to?anchor=link-to) to navigate between
+Inside your templates, you can use [`<LinkTo>`](https://api.emberjs.com/ember/3.12/classes/Ember.Templates.components/methods/LinkTo?anchor=LinkTo) to navigate between
 routes, using the name that you provided to the `route` method.
 
 ```handlebars
@@ -355,7 +355,7 @@ handlers](https://api.emberjs.com/ember/3.11/classes/Route).
 ## Transitioning Between Routes
 Once the routes are defined, how do we go about transitioning between them within our application? It depends on where the transition needs to take place:
 
-- From a template, use [`<LinkTo>`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/link-to?anchor=link-to) as mentioned above
+- From a template, use [`<LinkTo>`](https://api.emberjs.com/ember/3.12/classes/Ember.Templates.components/methods/LinkTo?anchor=LinkTo) as mentioned above
 - From a route, use the [`transitionTo()`](https://api.emberjs.com/ember/3.11/classes/Route/methods/transitionTo?anchor=transitionTo) method
 - From a controller, use the [`transitionToRoute()`](https://api.emberjs.com/ember/3.11/classes/Controller/methods/transitionToRoute?anchor=transitionToRoute) method
 - From anywhere else in your application, such as a component, inject the [Router Service](https://api.emberjs.com/ember/3.11/classes/RouterService) and use the [`transitionTo()`](https://api.emberjs.com/ember/3.11/classes/RouterService/methods/transitionTo?anchor=transitionTo) method
