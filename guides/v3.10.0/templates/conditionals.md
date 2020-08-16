@@ -1,5 +1,5 @@
 Statements like [`if`](https://api.emberjs.com/ember/3.10/classes/Ember.Templates.helpers/methods/if?anchor=if)
-and [`unless`](https://api.emberjs.com/ember/3.10/classes/Ember.Templates.helpers/methods/if?anchor=unless)
+and [`unless`](https://api.emberjs.com/ember/3.10/classes/Ember.Templates.helpers/methods/unless?anchor=unless)
 are implemented as built-in helpers. Helpers can be invoked three ways, each
 of which is illustrated below with conditionals.
 
@@ -81,7 +81,7 @@ of that invocation is rendered:
 ```
 
 The inverse of `{{if}}` is
-[`{{unless}}`](https://api.emberjs.com/ember/3.10/classes/Ember.Templates.helpers/methods/if?anchor=unless),
+[`{{unless}}`](https://api.emberjs.com/ember/3.10/classes/Ember.Templates.helpers/methods/unless?anchor=unless),
 which can be used in the same three styles of invocation. For example, this
 template only shows an amount due when the user has not paid:
 
