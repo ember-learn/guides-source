@@ -35,7 +35,7 @@ You can also have Ember generate the file for you from the command line:
 ember generate helper format-currency
 ```
 
-That file should export a function wrapped with [`Ember.Helper.helper()`](https://api.emberjs.com/ember/2.15/classes/Ember.Helper/methods/helper?anchor=helper):
+That file should export a function wrapped with [`helper()`](https://api.emberjs.com/ember/3.8/functions/@ember%2Fcomponent%2Fhelper/helper):
 
 ```javascript {data-filename=app/helpers/format-currency.js}
 import { helper } from '@ember/component/helper';
@@ -249,7 +249,7 @@ although this is usually unnecessary and error-prone.
 To create a class-based helper, rather than exporting a simple function, you
 should export a subclass of [`Ember.Helper`](https://api.emberjs.com/ember/3.8/classes/Helper). Helper classes must contain a
 [`compute`](https://api.emberjs.com/ember/3.8/classes/Helper/methods/compute?anchor=compute) method that behaves the same as the function passed to
-[`Ember.Helper.helper`](https://api.emberjs.com/ember/3.8/classes/Helper/methods/compute?anchor=helper).  In order to access a service, you must first inject it
+[`helper`](https://api.emberjs.com/ember/3.8/functions/@ember%2Fcomponent%2Fhelper/helper).  In order to access a service, you must first inject it
 into the class-based helper.  Once added, you can call the service's methods or
 access its properties from within the `compute()` method.
 
