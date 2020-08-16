@@ -12,7 +12,7 @@ Calling `transitionTo()` from a route or
 [`transitionToRoute()`](https://api.emberjs.com/ember/3.8/classes/Controller/methods/transitionToRoute?anchor=transitionToRoute) from a controller will stop any transitions currently in progress and start a new one, functioning as a redirect.
 `transitionTo()` behaves exactly like the [link-to](../../templates/links/) helper.
 
-The other one is [`replaceWith()`](https://api.emberjs.com/ember/3.8/classes/Route/methods/transitionTo?anchor=replaceWith/) which works the same way as `transitionTo()`.
+The other one is [`replaceWith()`](https://api.emberjs.com/ember/3.8/classes/Route/methods/replaceWith?anchor=replaceWith) which works the same way as `transitionTo()`.
 The only difference between them is how they manage history.
 `replaceWith()` substitutes the current route entry and replaces it with that of the route we are redirecting to,
 while `transitionTo()` leaves the entry for the current route and creates a new one for the redirection.
@@ -22,7 +22,7 @@ Passing a model will skip the route's `model()` hook since the model is already 
 
 ## Transitioning Before the Model is Known
 
-Since a route's [`beforeModel()`](https://api.emberjs.com/ember/3.8/classes/Route/methods/transitionTo?anchor=beforeModel) executes before the `model()` hook,
+Since a route's [`beforeModel()`](https://api.emberjs.com/ember/3.8/classes/Route/methods/beforeModel?anchor=beforeModel) executes before the `model()` hook,
 it's a good place to do a redirect if you don't need any information that is contained in the model.
 
 ```javascript {data-filename=app/router.js}
@@ -53,7 +53,7 @@ you might use a [service](../../applications/services/).
 
 ## Transitioning After the Model is Known
 
-If you need information about the current model in order to decide about redirection, you can use the [`afterModel()`](https://api.emberjs.com/ember/3.8/classes/Route/methods/transitionTo?anchor=afterModel) hook.
+If you need information about the current model in order to decide about redirection, you can use the [`afterModel()`](https://api.emberjs.com/ember/3.8/classes/Route/methods/afterModel?anchor=afterModel) hook.
 It receives the resolved model as the first parameter and the transition as the second one.
 For example:
 
@@ -98,7 +98,7 @@ route's `beforeModel`, `model`, and `afterModel` hooks will fire again within
 the new, redirected transition. This is inefficient, since they just fired
 before the redirect.
 
-Instead, we can use the [`redirect()`](https://api.emberjs.com/ember/3.8/classes/Route/methods/transitionTo?anchor=redirect) method, which will leave the original
+Instead, we can use the [`redirect()`](https://api.emberjs.com/ember/3.8/classes/Route/methods/redirect?anchor=redirect) method, which will leave the original
 transition validated, and not cause the parent route's hooks to fire again:
 
 ```javascript {data-filename=app/routes/posts.js}
