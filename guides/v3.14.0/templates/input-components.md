@@ -104,7 +104,7 @@ If you want to dispatch an action on a certain [event](https://api.emberjs.com/e
 
 Will bind the value of the text area to `name` on the current context.
 
-[`<Textarea>`](https://api.emberjs.com/ember/3.14/classes/Ember.Templates.helpers/methods/textarea?anchor=textarea) supports binding and/or setting the following properties:
+[`<Textarea>`](https://api.emberjs.com/ember/3.14/classes/Ember.Templates.components/methods/Textarea?anchor=Textarea) supports binding and/or setting the following properties:
 
 - `value`
 - `name`
