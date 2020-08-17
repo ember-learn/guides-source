@@ -1,5 +1,5 @@
-The [`<Input>`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/if?anchor=input)
-and [`<Textarea>`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/if?anchor=textarea)
+The [`<Input>`](https://api.emberjs.com/ember/3.13/classes/Ember.Templates.components/methods/Input?anchor=Input)
+and [`<Textarea>`](https://api.emberjs.com/ember/3.13/classes/Ember.Templates.components/methods/Textarea?anchor=Textarea)
 components are the easiest way to create common form controls.
 Using these helpers, you can create form controls that are almost identical to the native HTML `<input>` or `<textarea>` elements, but are aware of Ember's two-way bindings and can automatically update.
 
@@ -71,7 +71,7 @@ More [event types](https://api.emberjs.com/ember/3.13/classes/Component#event-ha
 ## Checkboxes
 
 You can also use the
-[`<Input>`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/if?anchor=input)
+[`<Input>`](https://api.emberjs.com/ember/3.13/classes/Ember.Templates.components/methods/Input?anchor=Input)
 helper to create a checkbox by setting its `type`:
 
 ```handlebars
@@ -108,7 +108,7 @@ Checkboxes are a special input type. If you want to dispatch an action on a cert
 
 Will bind the value of the text area to `name` on the current context.
 
-[`<Textarea>`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/textarea?anchor=textarea) supports binding and/or setting the following properties:
+[`<Textarea>`](https://api.emberjs.com/ember/3.13/classes/Ember.Templates.components/methods/Textarea?anchor=Textarea) supports binding and/or setting the following properties:
 
 * `value`
 * `name`

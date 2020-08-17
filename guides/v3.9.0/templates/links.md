@@ -1,7 +1,7 @@
 ## The `{{link-to}}` Component
 
 You create a link to a route using the
-[`{{link-to}}`](https://api.emberjs.com/ember/3.9/classes/Ember.Templates.helpers/methods/get?anchor=link-to)
+[`{{link-to}}`](https://api.emberjs.com/ember/3.9/classes/Ember.Templates.helpers/methods/link-to?anchor=link-to)
 component.
 
 ```javascript {data-filename=app/router.js}
@@ -118,7 +118,7 @@ For more information on how to use query parameters see the [query parameters](.
 ### Using link-to as an inline component
 
 In addition to being used as a block expression, the
-[`link-to`](https://api.emberjs.com/ember/3.9/classes/Ember.Templates.helpers/methods/get?anchor=link-to)
+[`link-to`](https://api.emberjs.com/ember/3.9/classes/Ember.Templates.helpers/methods/link-to?anchor=link-to)
 component can also be used in inline form by specifying the link text as the first
 argument to the component:
 

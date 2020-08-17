@@ -108,7 +108,7 @@ changes on individual members of the array.
 ### Computed Property Macros
 
 Ember also provides a computed property macro
-[`computed.filterBy`](https://api.emberjs.com/ember/3.11/classes/@ember%2Fobject%2Fcomputed/methods/alias?anchor=filterBy),
+[`computed.filterBy`](https://api.emberjs.com/ember/3.13/classes/@ember%2Fobject%2Fcomputed/methods/filterBy?anchor=filterBy),
 which is a shorter way of expressing the above computed property:
 
 ```javascript {data-filename=app/components/todo-list.js}

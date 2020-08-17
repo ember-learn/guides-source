@@ -224,7 +224,7 @@ All we want to do when a user visits the root (`/`) URL is transition to
 implementing a route lifecycle hook called `redirect`.
 Route lifecycle hooks are special methods that are called automatically when a route renders or data changes.
 Inside, we'll call the
-[`transitionTo`](https://api.emberjs.com/ember/3.9/classes/Route/methods/redirect?anchor=transitionTo)
+[`transitionTo`](https://api.emberjs.com/ember/3.14/classes/Route/methods/transitionTo?anchor=transitionTo)
 function:
 
 ```javascript {data-filename="app/routes/index.js" data-diff="+4,+5,+6"}
