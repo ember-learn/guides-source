@@ -166,9 +166,7 @@ A _component_ is kind of like your own custom HTML tag. You can tell that a tag 
     <div class="cta-note-body">
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
-        A component's name is the same as its name on the file system,
-        capitalizing the first letter and every letter following a `-`, and
-        removing the `-` ("pascal case").
+        We capitalize the first letter and every letter after <code>-</code>, then remove the hyphens.
       </div>
     </div>
     <img src="/images/mascots/zoey.png" role="presentation" alt="">
