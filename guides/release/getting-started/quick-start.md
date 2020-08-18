@@ -222,7 +222,7 @@ other parts of the app we are building.
 We've also renamed `scientist` to the more-generic `person`,
 decreasing the coupling of our component to where it's used.
 
-Also, note that ember strictly follows `title case naming` style in templates, so defining `<PeopleList>` as `<peoplelist>` or `<peopleList>` won't work.
+Our component is called `<PeopleList>`, based on its name on the file system. Please note that the letters P and L are capitalized.
 
 Save this template and switch back to the `scientists` template.
 
@@ -249,7 +249,7 @@ Let's replace all our old code with our new componentized version:
 <PeopleList 
   @title="List of Scientists" 
   @people={{@model}} 
-  />
+/>
 ```
 
 Go back to your browser and you should see that the UI looks identical.
