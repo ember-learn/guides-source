@@ -14,7 +14,7 @@ It also adds the route to the router.
 
 ## Basic Routes
 
-The [`map()`](https://api.emberjs.com/ember/3.11/classes/EmberRouter/methods/map?anchor=map) method
+The [`map()`](https://api.emberjs.com/ember/3.13/classes/EmberRouter/methods/map?anchor=map) method
 of your Ember application's router can be invoked to define URL mappings. When
 calling `map()`, you should pass a function that will be invoked with the value
 `this` set to an object which you can use to create routes.
@@ -349,13 +349,13 @@ export default Route.extend({
 To have your route do something beyond render a template with the same name, you'll
 need to create a route handler. The following guides will explore the different
 features of route handlers. For more information on routes, see the API documentation
-for [the router](https://api.emberjs.com/ember/3.11/classes/EmberRouter) and for [route
-handlers](https://api.emberjs.com/ember/3.11/classes/Route).
+for [the router](https://api.emberjs.com/ember/3.13/classes/EmberRouter) and for [route
+handlers](https://api.emberjs.com/ember/3.13/classes/Route).
 
 ## Transitioning Between Routes
 Once the routes are defined, how do we go about transitioning between them within our application? It depends on where the transition needs to take place:
 
 - From a template, use [`<LinkTo>`](https://api.emberjs.com/ember/3.13/classes/Ember.Templates.components/methods/LinkTo?anchor=LinkTo) as mentioned above
-- From a route, use the [`transitionTo()`](https://api.emberjs.com/ember/3.11/classes/Route/methods/transitionTo?anchor=transitionTo) method
-- From a controller, use the [`transitionToRoute()`](https://api.emberjs.com/ember/3.11/classes/Controller/methods/transitionToRoute?anchor=transitionToRoute) method
-- From anywhere else in your application, such as a component, inject the [Router Service](https://api.emberjs.com/ember/3.11/classes/RouterService) and use the [`transitionTo()`](https://api.emberjs.com/ember/3.11/classes/RouterService/methods/transitionTo?anchor=transitionTo) method
+- From a route, use the [`transitionTo()`](https://api.emberjs.com/ember/3.13/classes/Route/methods/transitionTo?anchor=transitionTo) method
+- From a controller, use the [`transitionToRoute()`](https://api.emberjs.com/ember/3.13/classes/Controller/methods/transitionToRoute?anchor=transitionToRoute) method
+- From anywhere else in your application, such as a component, inject the [Router Service](https://api.emberjs.com/ember/3.13/classes/RouterService) and use the [`transitionTo()`](https://api.emberjs.com/ember/3.13/classes/RouterService/methods/transitionTo?anchor=transitionTo) method
