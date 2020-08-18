@@ -93,7 +93,7 @@ Checkboxes support the following properties:
 Which can be bound or set as described in the previous section.
 
 
-Checkboxes are a special input type. If you want to dispatch an action on a certain [event](https://api.emberjs.com/ember/3.11/classes/Component#event-handler-methods), you will always need to define the event name in camelCase format:
+Checkboxes are a special input type. If you want to dispatch an action on a certain [event](https://api.emberjs.com/ember/3.12/classes/Component#event-handler-methods), you will always need to define the event name in camelCase format:
 
 ```handlebars
 <Input @type="checkbox" @keyPress={{action "updateName"}} />
@@ -130,10 +130,10 @@ Will bind the value of the text area to `name` on the current context.
 
 ### Binding dynamic attribute
 
-You might need to bind a property dynamically to an input if you're building a flexible form, for example. To achieve this you need to use the [`{{get}}`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/get?anchor=get) and [`{{mut}}`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/mut?anchor=mut) in conjunction like shown in the following example:
+You might need to bind a property dynamically to an input if you're building a flexible form, for example. To achieve this you need to use the [`{{get}}`](https://api.emberjs.com/ember/3.12/classes/Ember.Templates.helpers/methods/get?anchor=get) and [`{{mut}}`](https://api.emberjs.com/ember/3.12/classes/Ember.Templates.helpers/methods/mut?anchor=mut) in conjunction like shown in the following example:
 
 ```handlebars
 <Input @value={{mut (get this.person this.field)}} />
 ```
 
-The `{{get}}` helper allows you to dynamically specify which property to bind, while the `{{mut}}` helper allows the binding to be updated from the input. See the respective helper documentation for more detail: [`{{get}}`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/get?anchor=get) and [`{{mut}}`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/mut?anchor=mut).
+The `{{get}}` helper allows you to dynamically specify which property to bind, while the `{{mut}}` helper allows the binding to be updated from the input. See the respective helper documentation for more detail: [`{{get}}`](https://api.emberjs.com/ember/3.12/classes/Ember.Templates.helpers/methods/get?anchor=get) and [`{{mut}}`](https://api.emberjs.com/ember/3.12/classes/Ember.Templates.helpers/methods/mut?anchor=mut).
