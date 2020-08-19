@@ -204,7 +204,7 @@ discussing state in the next chapter).
 
 ### The `get` helper
 
-The [`{{get}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/get?anchor=get)
+The [`{{get}}`](https://api.emberjs.com/ember/3.19/classes/Ember.Templates.helpers/methods/get?anchor=get)
 helper makes it easy to dynamically send the value of a variable to another
 helper or component. This can be useful if you want to output one of several
 values based on the result of a getter.
@@ -220,7 +220,7 @@ If it returns "city", you get `this.address.city`.
 
 We mentioned above that helpers can be nested. This can be
 combined with different dynamic helpers. For example, the
-[`{{concat}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/concat?anchor=concat)
+[`{{concat}}`](https://api.emberjs.com/ember/3.19/classes/Ember.Templates.helpers/methods/concat?anchor=concat)
 helper makes it easy to dynamically send a number of parameters to a component
 or helper as a single parameter in the format of a concatenated string.
 
@@ -236,7 +236,7 @@ This will display the result of `this.foo.item1` when index is 1, and
 Now let's say your template is starting to get a bit cluttered and you want
 to clean up the logic in your templates. This can be achieved with the `let`
 block helper.
-The [`{{let}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/let?anchor=let)
+The [`{{let}}`](https://api.emberjs.com/ember/3.19/classes/Ember.Templates.helpers/methods/let?anchor=let)
 helper lets you create new bindings (or temporary variables) in your template.
 
 Say your template now looks like this:
@@ -298,7 +298,7 @@ In the component's template, you can then use the `people` argument as an array:
 
 ### The `hash` helper
 
-Using the [`{{hash}}`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/array?anchor=hash)
+Using the [`{{hash}}`](https://api.emberjs.com/ember/3.19/classes/Ember.Templates.helpers/methods/hash?anchor=hash)
 helper, you can pass objects directly from the template as an argument to your
 components.
 
