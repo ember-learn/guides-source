@@ -469,8 +469,8 @@ syntax and _not_ extending from `EmberObject` at all in your apps.
   const Actress = Person.extend({});
   ```
 
-[1]: https://emberjs.com/api/ember/release/functions/@ember%2Fobject/extend
-[2]: https://www.emberjs.com/api/ember/release/classes/EmberObject
+[1]: https://api.emberjs.com/ember/3.16/functions/@ember%2Fobject/extend
+[2]: https://api.emberjs.com/ember/3.16/classes/EmberObject
 
 ### Instantiation
 
@@ -523,7 +523,7 @@ syntax and _not_ extending from `EmberObject` at all in your apps.
 
 - Use the `init` method instead of the `constructor`.
 
-[3]: https://emberjs.com/api/ember/release/functions/@ember%2Fobject/create
+[3]: https://api.emberjs.com/ember/3.16/functions/@ember%2Fobject/create
 
 ### Methods
 
