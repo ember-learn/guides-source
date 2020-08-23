@@ -147,7 +147,7 @@ fullNameDidChange: observer('fullName', function() {
 })
 ```
 
-Evented functions are annotated using `Ember.on()`:
+Evented functions are annotated using [`Ember.on()`](https://api.emberjs.com/ember/3.0/classes/Evented/methods/on?anchor=on):
 
 ```javascript
 import { on } from '@ember/object/evented';
