@@ -228,7 +228,7 @@ The [`beforeModel`](https://api.emberjs.com/ember/3.1/classes/Route/methods/befo
 hook gets executed before the data gets fetched from the model hook, and before the page is rendered.
 See [the next section](../model-hook/) for an explanation of the model hook.
 
-In our index route handler, we'll call the [`replaceWith`](https://api.emberjs.com/ember/3.1/classes/Route/methods/beforeModel?anchor=replaceWith) function.
+In our index route handler, we'll call the [`replaceWith`](https://api.emberjs.com/ember/3.1/classes/Route/methods/replaceWith?anchor=replaceWith) function.
 The `replaceWith` function is similar to the route's [`transitionTo()`](https://api.emberjs.com/ember/3.1/classes/Route/methods/transitionTo?anchor=transitionTo) function,
 the difference being that `replaceWith` will replace the current URL in the browser's history,
 while `transitionTo` will add to the history.
