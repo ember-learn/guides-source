@@ -214,10 +214,10 @@ For our service unit test, we'll want to verify that locations that have been pr
 We will isolate our tests from actually calling Leaflet Maps by stubbing the map service.
 On line 20 of `map-element-test.js` below we create a JavaScript object to simulate the behavior of the utility, but instead of creating a Google map, we return an empty JavaScript object.
 
-To instantiate the service, we can instantiate it through ember's resolver using the [`factoryFor`](https://api.emberjs.com/ember/3.11/classes/ApplicationInstance/methods/factoryFor?anchor=factoryFor) method.
+To instantiate the service, we can instantiate it through ember's resolver using the [`factoryFor`](https://api.emberjs.com/ember/3.13/classes/ApplicationInstance/methods/factoryFor?anchor=factoryFor) method.
 `factoryFor` allows us to have control over the creation of the service in Ember, to pass arguments to the constructor that can override parts of the service for our tests.
 
-For cases where we do not need to override parts of the service, we can use [`lookup`](https://api.emberjs.com/ember/3.11/classes/ApplicationInstance/methods/lookup?anchor=lookup)
+For cases where we do not need to override parts of the service, we can use [`lookup`](https://api.emberjs.com/ember/3.13/classes/ApplicationInstance/methods/lookup?anchor=lookup)
 In our test below we are passing in our fake map utility object in the first test, and passing a cache object for the second test.
 
 ```javascript {data-filename="tests/unit/services/map-element-test.js" data-diff="+4,+5,-9,-10,-11,-12,-13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33,+34,+35,+36,+37,+38,+39,+40,+41,+42,+43"}
@@ -276,7 +276,7 @@ In the second test, only one assert is expected (line 36), since the map element
 Also, note that the second test uses a dummy object as the returned map element (defined on line 4).
 Our map element can be substituted with any object because we are only asserting that the cache has been accessed (see line 42).
 
-The location in the cache has been [`camelized`](https://api.emberjs.com/ember/3.11/classes/String/methods/camelize?anchor=camelize) (line 38),
+The location in the cache has been [`camelized`](https://api.emberjs.com/ember/3.13/classes/String/methods/camelize?anchor=camelize) (line 38),
 so that it may be used as a key to look up our element.
 This matches the behavior in `getMapElement` when city has not yet been cached.
 
@@ -444,7 +444,7 @@ module('Acceptance | list rentals', function(hooks) {
 ```
 
 What's happening here is we are adding our own stub maps service that simply creates an empty div.
-Then we are putting it in Ember's [registry](../../applications/dependency-injection/#toc_factory-registrations) using the [owner](https://api.emberjs.com/ember/3.0/functions/@ember%2Fapplication/getOwner) object given by the test context. When our component loads the maps service, it gets our stub service instead.
+Then we are putting it in Ember's [registry](../../applications/dependency-injection/#toc_factory-registrations) using the [owner](https://api.emberjs.com/ember/3.13/functions/@ember%2Fapplication/getOwner) object given by the test context. When our component loads the maps service, it gets our stub service instead.
 That way every time that component is created, our stub map service gets injected over the map-element service.
 Now when we run our application tests, you'll notice that maps do not get rendered as the test runs.
 
