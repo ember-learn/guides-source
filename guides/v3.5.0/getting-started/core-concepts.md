@@ -66,10 +66,10 @@ In Ember, we use the term **hook** for methods that are automatically called wit
 
 Some examples of a hook are:
 
-* [Component Lifecycle Hooks](../../components/the-component-lifecycle/): the [`willRender()`](https://api.emberjs.com/ember/3.5/classes/Component/methods/willRender?anchor=willRender/) hook gets called before each time a component renders
-* Route Hooks: the [`model()`](https://api.emberjs.com/ember/3.5/classes/Route/methods/model?anchor=model/) hook is used to load the model on a route
+* [Component Lifecycle Hooks](../../components/the-component-lifecycle/): the [`willRender()`](https://api.emberjs.com/ember/3.5/classes/Component/methods/willRender?anchor=willRender) hook gets called before each time a component renders
+* Route Hooks: the [`model()`](https://api.emberjs.com/ember/3.5/classes/Route/methods/model?anchor=model) hook is used to load the model on a route
 
-In the following example, the [`didRender()`](https://api.emberjs.com/ember/3.5/classes/Component/methods?anchor=didRender/) component lifecycle hook is used to log "I rendered!" to the console after each time the component is rendered.
+In the following example, the [`didRender()`](https://api.emberjs.com/ember/3.5/classes/Component/methods/didRender?anchor=didRender) component lifecycle hook is used to log "I rendered!" to the console after each time the component is rendered.
 
 ```javascript {data-filename=/app/components/foo-did-render-example.js}
 import Component from '@ember/component';
