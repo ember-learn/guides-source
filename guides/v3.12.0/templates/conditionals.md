@@ -1,4 +1,4 @@
-Statements like [`if`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/if?anchor=if)
+Statements like [`if`](https://api.emberjs.com/ember/3.12/classes/Ember.Templates.helpers/methods/if?anchor=if)
 and [`unless`](https://api.emberjs.com/ember/3.12/classes/Ember.Templates.helpers/methods/unless?anchor=unless)
 are implemented as built-in helpers. Helpers can be invoked three ways, each
 of which is illustrated below with conditionals.
@@ -12,7 +12,7 @@ displaying a property, but helpers accept arguments. For example:
 </div>
 ```
 
-[`{{if}}`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/if?anchor=if)
+[`{{if}}`](https://api.emberjs.com/ember/3.12/classes/Ember.Templates.helpers/methods/if?anchor=if)
 in this case returns `"zoooom"` when `isFast` is true and
 `"putt-putt-putt"` when `isFast` is false. Helpers invoked as inline expressions
 render a single value, the same way that properties are a single value.
@@ -53,7 +53,7 @@ properties on `person` only if that it is present:
 {{/if}}
 ```
 
-[`{{if}}`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/if?anchor=if)
+[`{{if}}`](https://api.emberjs.com/ember/3.12/classes/Ember.Templates.helpers/methods/if?anchor=if)
 checks for truthiness, which means all values except `false`,
 `undefined`, `null`, `''`, `0`  or `[]` (i.e., any JavaScript falsy value or an
 empty array).
