@@ -104,4 +104,4 @@ module('Unit | Model | user', function(hooks) {
 
 _Ember Data contains extensive tests around the functionality of
 relationships, so you probably don't need to duplicate those tests.  You could
-look at the [Ember Data tests](https://github.com/emberjs/data/tree/master/tests) for examples of deeper relationship testing if you feel the need to do it._
+look at the [Ember Data tests](https://github.com/emberjs/data/tree/master/packages/-ember-data/tests) for examples of deeper relationship testing if you feel the need to do it._
