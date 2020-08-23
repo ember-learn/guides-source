@@ -67,7 +67,7 @@ this.store.query('person', {
 ### Querying for A Single Record
 
 If you are using an adapter that supports server requests capable of returning a single model object,
-Ember Data provides a convenience method [`store.queryRecord()`](https://api.emberjs.com/ember-data/3.10/classes/DS.Store/methods/queryRecord?anchor=queryRecord)that will return a promise that resolves with that single record.
+Ember Data provides a convenience method [`store.queryRecord()`](https://api.emberjs.com/ember-data/3.10/classes/DS.Store/methods/queryRecord?anchor=queryRecord) that will return a promise that resolves with that single record.
 The request is made via a method `queryRecord()` defined by the adapter.
 
 For example, if your server API provides an endpoint for the currently logged in user:
