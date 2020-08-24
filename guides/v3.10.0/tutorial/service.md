@@ -444,7 +444,7 @@ module('Acceptance | list rentals', function(hooks) {
 ```
 
 What's happening here is we are adding our own stub maps service that simply creates an empty div.
-Then we are putting it in Ember's [registry](../../applications/dependency-injection/#toc_factory-registrations) using the [owner](https://api.emberjs.com/ember/3.0/functions/@ember%2Fapplication/getOwner) object given by the test context. When our component loads the maps service, it gets our stub service instead.
+Then we are putting it in Ember's [registry](../../applications/dependency-injection/#toc_factory-registrations) using the [owner](https://api.emberjs.com/ember/3.10/functions/@ember%2Fapplication/getOwner) object given by the test context. When our component loads the maps service, it gets our stub service instead.
 That way every time that component is created, our stub map service gets injected over the map-element service.
 Now when we run our application tests, you'll notice that maps do not get rendered as the test runs.
 
