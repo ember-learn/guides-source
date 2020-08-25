@@ -1,4 +1,4 @@
-A [`Service`](https://api.emberjs.com/ember/3.2/modules/@ember%2Fservice) is an Ember object that lives for the duration of the application, and can be made available in different parts of your application.
+A [`Service`](https://api.emberjs.com/ember/3.2/classes/Service) is an Ember object that lives for the duration of the application, and can be made available in different parts of your application.
 
 Services are useful for features that require shared state or persistent connections. Example uses of services might
 include:
@@ -20,7 +20,7 @@ For example, the following command will create the `ShoppingCart` service:
 ember generate service shopping-cart
 ```
 
-Services must extend the [`Service`](https://api.emberjs.com/ember/3.2/modules/@ember%2Fservice) base class:
+Services must extend the [`Service`](https://api.emberjs.com/ember/3.2/classes/Service) base class:
 
 ```javascript {data-filename=app/services/shopping-cart.js}
 import Service from '@ember/service';

@@ -1,5 +1,5 @@
-The [`{{input}}`](https://api.emberjs.com/ember/3.4/classes/Ember.Templates.helpers/methods/if?anchor=input)
-and [`{{textarea}}`](https://api.emberjs.com/ember/3.4/classes/Ember.Templates.helpers/methods/if?anchor=textarea)
+The [`{{input}}`](https://api.emberjs.com/ember/3.4/classes/Ember.Templates.helpers/methods/input?anchor=input)
+and [`{{textarea}}`](https://api.emberjs.com/ember/3.4/classes/Ember.Templates.helpers/methods/textarea?anchor=textarea)
 helpers in Ember.js are the easiest way to create common form controls.
 Using these helpers, you can create form controls that are almost identical to the native HTML `<input>` or `<textarea>` elements, but are aware of Ember's two-way bindings and can automatically update.
 
@@ -51,12 +51,12 @@ To dispatch an action on specific events, such as `enter` or `key-press`, use th
 {{input value=firstName key-press="updateFirstName"}}
 ```
 
-[Event Names](https://api.emberjs.com/ember/3.4/classes/Component) must be dasherized.
+[Event Names](https://api.emberjs.com/ember/3.4/classes/Component#event-names) must be dasherized.
 
 ## Checkboxes
 
 You can also use the
-[`{{input}}`](https://api.emberjs.com/ember/3.4/classes/Ember.Templates.helpers/methods/if?anchor=input)
+[`{{input}}`](https://api.emberjs.com/ember/3.4/classes/Ember.Templates.helpers/methods/input?anchor=input)
 helper to create a checkbox by setting its `type`:
 
 ```handlebars

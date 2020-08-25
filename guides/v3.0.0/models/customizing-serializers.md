@@ -198,7 +198,7 @@ export default DS.JSONAPISerializer.extend({
 
 Similarly, if your backend store provides data in a format other than JSON API,
 you can use the
-[`normalizeResponse()`](https://api.emberjs.com/ember-data/3.0/classes/DS.JSONAPISerializer/methods/serialize?anchor=normalizeResponse)
+[`normalizeResponse()`](https://api.emberjs.com/ember-data/3.0/classes/DS.JSONAPISerializer/methods/normalizeResponse?anchor=normalizeResponse)
 hook. Using the same example as above, if the server provides data that looks
 like:
 
@@ -252,7 +252,7 @@ export default DS.JSONAPISerializer.extend({
 ```
 
 To normalize only a single model, you can use the
-[`normalize()`](https://api.emberjs.com/ember-data/3.0/classes/DS.JSONAPISerializer/methods/serialize?anchor=normalize)
+[`normalize()`](https://api.emberjs.com/ember-data/3.0/classes/DS.JSONAPISerializer/methods/normalize?anchor=normalize)
 hook similarly.
 
 For more hooks to customize the serializer with, see the [Ember Data serializer
@@ -421,7 +421,7 @@ The JSON should encode the relationship as an ID to another record:
 ```
 If needed these naming conventions can be overwritten by implementing
 the
-[`keyForRelationship()`](https://api.emberjs.com/ember-data/3.0/classes/DS.JSONAPISerializer/methods/keyForAttribute?anchor=keyForRelationship)
+[`keyForRelationship()`](https://api.emberjs.com/ember-data/3.0/classes/DS.JSONAPISerializer/methods/keyForRelationship?anchor=keyForRelationship)
 method.
 
 ```javascript {data-filename=app/serializers/application.js}
@@ -764,7 +764,7 @@ the possible values of: `'findRecord'`, `'queryRecord'`, `'findAll'`,
 `'createRecord'`, `'deleteRecord'`, and `'updateRecord'`) as arguments.
 
 A custom serializer will also need to define a
-[normalize](https://api.emberjs.com/data/classes/DS.Serializer.html#method_normalize)
+[normalize](https://api.emberjs.com/ember-data/3.0/classes/DS.Serializer/methods/normalize?anchor=normalize)
 method.
 This method is called by `store.normalize(type, payload)` and is often
 used for normalizing requests made outside of Ember Data because they
