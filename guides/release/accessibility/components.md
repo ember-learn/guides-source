@@ -62,8 +62,8 @@ Every `<input>` element should have an associated `<label>` element. To do this,
 ![Separate input and label elements with a connection established by matching for and id attributes](/images/accessibility/component-considerations/input-for-id.png)
 
 ```html
-<label for="input-firstName">First Name:</label>
-<input id="input-firstName" name="firstName" value="" type="text" />
+<label for="input-name">Name:</label>
+<input id="input-name" name="name" value="" type="text" />
 ```
 
 It is also valid to wrap the `<label>` element around the `<input />` element: 
@@ -71,8 +71,8 @@ It is also valid to wrap the `<label>` element around the `<input />` element:
 ![A child input element nested within a parent label element without any for and id attributes](/images/accessibility/component-considerations/input-nested.png)
 
 ```html
-<label>First Name:
-  <input name="firstName" value="" type="text" />
+<label>Name:
+  <input name="name" value="" type="text" />
 </label>
 ```
 

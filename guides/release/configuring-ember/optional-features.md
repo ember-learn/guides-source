@@ -196,10 +196,10 @@ can be set to run asynchronously using the `sync: false` option.
 import { observer } from '@ember/object';
 
 Person.extend({
-  partOfNameChanged: observer({
-    dependentKeys: ['firstName', 'lastName'],
+  aspectRatioChanged: observer({
+    dependentKeys: ['width', 'height'],
     fn() {
-      // Fires async after firstName or lastName have updated
+      // Fires async after width or height have updated
     },
     sync: false,
   })
