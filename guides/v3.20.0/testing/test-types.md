@@ -90,7 +90,7 @@ module('Unit | Service | flash-messages', function(hooks) {
 });
 ```
 
-By calling `setupTest()`, you gain access to a few things. First is Ember's [Dependency Injection](../../applications/dependency-injection/) system. In short, you can [look up](https://api.emberjs.com/ember/release/classes/ApplicationInstance/methods/lookup?anchor=lookup) anything in your application, with a little help from `this.owner`. Second, you gain access to some common utility functions, `this.get()` and `this.set()`, in your tests. Finally, you can use `pauseTest()` to [debug your tests](../#toc_how-to-debug-tests).
+By calling `setupTest()`, you gain access to a few things. First is Ember's [Dependency Injection](../../applications/dependency-injection/) system. In short, you can [look up](https://api.emberjs.com/ember/3.20/classes/ApplicationInstance/methods/lookup?anchor=lookup) anything in your application, with a little help from `this.owner`. Second, you gain access to some common utility functions, `this.get()` and `this.set()`, in your tests. Finally, you can use `pauseTest()` to [debug your tests](../#toc_how-to-debug-tests).
 
 
 ## Rendering Tests
