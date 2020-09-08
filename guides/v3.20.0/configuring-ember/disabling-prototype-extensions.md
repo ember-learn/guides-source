@@ -9,7 +9,7 @@ objects in the following ways:
 
 * `String` is extended to add convenience methods, such as
   `camelize()` and `w()`. You can find a list of these methods with the
-  [Ember.String documentation](https://api.emberjs.com/ember/release/classes/String).
+  [Ember.String documentation](https://api.emberjs.com/ember/3.20/classes/String).
 
 * `Function` is extended with methods to annotate functions as
   computed properties, via the `property()` method, and as observers,
@@ -90,7 +90,7 @@ islands.pushObject('Maui');
 ### Strings
 
 Strings will no longer have the convenience methods described in the
-[`Ember.String` API reference](https://api.emberjs.com/ember/release/classes/String).
+[`Ember.String` API reference](https://api.emberjs.com/ember/3.20/classes/String).
 Instead,
 you can use the similarly-named methods of the `Ember.String` object and
 pass the string to use as the first parameter:
@@ -147,7 +147,7 @@ fullNameDidChange: observer('fullName', function() {
 })
 ```
 
-Evented functions are annotated using [`Ember.on()`](https://api.emberjs.com/ember/release/classes/Evented/methods/on?anchor=on):
+Evented functions are annotated using [`Ember.on()`](https://api.emberjs.com/ember/3.20/classes/Evented/methods/on?anchor=on):
 
 ```javascript
 import { on } from '@ember/object/evented';
