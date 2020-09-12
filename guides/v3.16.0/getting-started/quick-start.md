@@ -191,7 +191,7 @@ As your application grows, you will notice you are sharing UI elements between m
 or using them multiple times on the same page.
 Ember makes it easy to refactor your templates into reusable components.
 
-Let's create a `PeopleList` component that we can use in multiple places to show a list of people.
+Let's create a `<PeopleList>` component that we can use in multiple places to show a list of people.
 
 As usual, there's a generator that makes this easy for us.
 Make a new component by typing:
@@ -200,7 +200,7 @@ Make a new component by typing:
 ember generate component people-list
 ```
 
-Copy and paste the `scientists` template into the `PeopleList` component's template and edit it to look as follows:
+Copy and paste the `scientists` template into the `<PeopleList>` component's template and edit it to look as follows:
 
 ```handlebars {data-filename=app/components/people-list.hbs}
 <h2>{{@title}}</h2>
@@ -220,6 +220,22 @@ other parts of the app we are building.
 We've also renamed `scientist` to the more-generic `person`,
 decreasing the coupling of our component to where it's used.
 
+Our component is called `<PeopleList>`, based on its name on the file system. Please note that the letters P and L are capitalized.
+
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+        A component's name is derived from its file name.
+        We capitalize the first letter and every letter after <code>-</code>, then remove the hyphens.
+        This is known as pascal case.
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
+  </div>
+</div>
+
 Save this template and switch back to the `scientists` template.
 
 We're going to tell our component:
@@ -234,7 +250,7 @@ In the rest of the code examples in this tutorial, whenever we add or remove cod
 
 Let's replace all our old code with our new componentized version:
 
-```handlebars {data-filename="app/templates/scientists.hbs" data-diff="-1,-2,-3,-4,-5,-6,-7,+8"}
+```handlebars {data-filename="app/templates/scientists.hbs" data-diff="-1,-2,-3,-4,-5,-6,-7,+8,+9,+10,+11"}
 <h2>List of Scientists</h2>
 
 <ul>
@@ -242,7 +258,10 @@ Let's replace all our old code with our new componentized version:
     <li>{{scientist}}</li>
   {{/each}}
 </ul>
-<PeopleList @title="List of Scientists" @people={{@model}} />
+<PeopleList 
+  @title="List of Scientists" 
+  @people={{@model}} 
+/>
 ```
 
 Go back to your browser and you should see that the UI looks identical.
@@ -251,7 +270,7 @@ The only difference is that now we've componentized our list into a version that
 You can see this in action if you create a new route that shows a different list of people.
 As an additional exercise (that we won't cover),
 you can try to create a `programmers` route that shows a list of famous programmers.
-If you re-use the `PeopleList` component, you can do it with almost no code at all.
+If you re-use the `<PeopleList>` component, you can do it with almost no code at all.
 
 ## Responding to user interactions
 
@@ -259,7 +278,7 @@ So far, our application is listing data, but there is no way for the user to
 interact with the information. In web applications we often want to respond to
 user actions like clicks or hovers. Ember makes this easy to do.
 
-First, we can modify the `PeopleList` component to include a button:
+First, we can modify the `<PeopleList>` component to include a button:
 
 ```handlebars {data-filename="app/components/people-list.hbs"}
 <h2>{{@title}}</h2>
@@ -277,7 +296,7 @@ Now that we have a button, we need to wire it up to do _something_ when a user
 clicks on it. For simplicity, let's say we want to show an `alert` dialog with
 the person's name when the button is clicked.
 
-So far, our `PeopleList` component is purely presentational – it takes some
+So far, our `<PeopleList>` component is purely presentational – it takes some
 inputs as arguments and renders them using a template. To introduce _behavior_
 to our component – handling the button click in this case, we will need to
 attach some _code_ to the component.

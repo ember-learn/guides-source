@@ -69,8 +69,8 @@ import EmberObject, {
 } from '@ember/object';
 
 class User extends EmberObject {
-  firstName = null
-  lastName = null
+  firstName = null;
+  lastName = null;
 
   @computed('firstName', 'lastName')
   get fullName() {
