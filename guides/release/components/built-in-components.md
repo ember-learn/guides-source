@@ -158,7 +158,7 @@ Internally, `<Input @type="checkbox" />` creates an instance of Checkbox. Do *no
 ## `<Textarea />`
 
 ```handlebars
-<label for="textarea-post-name">Post:</label>
+<label for="textarea-post">Post:</label>
 <Textarea @value={{this.post}} name="post" cols="80" rows="6" id="textarea-post" />
 ```
 
@@ -193,8 +193,8 @@ and [`{{mut}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.he
 in conjunction like shown in the following example:
 
 ```handlebars
-<label for="name">Name:</label>
-<Input @value={{mut (get this.person this.field)}} id="name" name="name" />
+<label for="input-name">Name:</label>
+<Input @value={{mut (get this.person this.field)}} id="name" name="input-name" />
 ```
 
 The `{{get}}` helper allows you to dynamically specify which property to bind,

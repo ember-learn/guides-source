@@ -21,7 +21,7 @@ want to change:
 ```javascript
 this.store.findRecord('post', 1).then(function(post) {
   // ...after the record has loaded
-  post.title = 'UPDATED: Rails is Omakase';
+  post.title = 'A new post';
 });
 ```
 

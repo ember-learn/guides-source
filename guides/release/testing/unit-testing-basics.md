@@ -240,7 +240,7 @@ module('Unit | Service | employees', function(hooks) {
 
     let person = new MockPerson();
 
-    assert.equal(someThing.hire(person), 'John Smith is now an employee');
+    assert.equal(someThing.hire(person), 'Dr. Zoey is now an employee');
     assert.equal(someThing.employees[0], person);
   });
 });

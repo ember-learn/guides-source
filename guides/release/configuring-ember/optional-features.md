@@ -195,8 +195,8 @@ can be set to run asynchronously using the `sync: false` option.
 ```javascript
 import { observer } from '@ember/object';
 
-Person.extend({
-  aspectRatioChanged: observer({
+Image.extend({
+  onImageSizeChange: observer({
     dependentKeys: ['width', 'height'],
     fn() {
       // Fires async after width or height have updated
