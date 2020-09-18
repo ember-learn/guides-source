@@ -213,7 +213,7 @@ export default class EmployeesService extends Service {
   hire(person) {
     person.addJob();
     this.employees.push(person);
-    return `${person.firstName} ${person.lastName} is now an employee`;
+    return `${person.title} ${person.name} is now an employee`;
   }
 }
 ```
@@ -233,14 +233,14 @@ module('Unit | Service | employees', function(hooks) {
     const someThing = this.owner.lookup('service:some-thing');
 
     class MockPerson {
-      firstName = 'John';
-      lastName = 'Smith';
+      title = 'Dr.';
+      name = 'Zoey';
       addJob() {}
     }
 
     let person = new MockPerson();
 
-    assert.equal(someThing.hire(person), 'John Smith is now an employee');
+    assert.equal(someThing.hire(person), 'Dr. Zoey is now an employee');
     assert.equal(someThing.employees[0], person);
   });
 });
