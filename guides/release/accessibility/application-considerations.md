@@ -11,7 +11,6 @@ A primary language should be defined on the `<html>` element's `lang` attribute.
 
 The `html` element may not have multiple `lang` _values_. If an element contains content in a language different from the primary, then you can provide the element its own `lang` attribute.
 
-
 ![For example, the HTML tag may have a lang of "es" while a paragraph may have a lang of "en"](/images/accessibility/application-considerations/lang.png)
 
 <div class="cta">
@@ -85,7 +84,6 @@ An important thing to note in this section is this: "application" in Ember devel
 The <abbr title="too long; didn't read">TL;DR</abbr>? Don't use `role="application"` until you have done your research and know exactly how it is to be used correctly (if at all). There are **very** few use cases where the role of application is appropriate.
 
 Read more about it: [https://www.a11yproject.com/posts/2013-02-09-how-to-use-application-role/](https://www.a11yproject.com/posts/2013-02-09-how-to-use-application-role/)
-
 
 ## Accessibility addons
 
