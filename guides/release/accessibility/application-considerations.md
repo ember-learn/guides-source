@@ -11,6 +11,7 @@ A primary language should be defined on the `<html>` element's `lang` attribute.
 
 The `html` element may not have multiple `lang` _values_. If an element contains content in a language different from the primary, then you can provide the element its own `lang` attribute.
 
+<<<<<<< HEAD
 ![For example, the HTML tag may have a lang of "es" while a paragraph may have a lang of "en"](/images/accessibility/application-considerations/lang.png)
 
 <div class="cta">
@@ -85,6 +86,8 @@ The <abbr title="too long; didn't read">TL;DR</abbr>? Don't use `role="applicati
 
 Read more about it: [https://www.a11yproject.com/posts/2013-02-09-how-to-use-application-role/](https://www.a11yproject.com/posts/2013-02-09-how-to-use-application-role/)
 
+=======
+>>>>>>> Remove application wrapper in A11y section of the guides issue #1515
 ## Accessibility addons
 
 Any addon that will provide UI elements to the application should be evaluated for accessibility before use.
