@@ -10,65 +10,6 @@ If there happens to be any content on the page that is in a different language f
 
 Note: a page cannot have multiple language attribute _values_. For example, this means that `lang="en"` could be set on the page's HTML element and then `lang="es"` could be set on a different element in the page content (as appropriate).  
 
-
-## Configurations
-
-### Application template wrapper
-
-You can simplify your markup and increase accessibility at the same time by configuring `application-template-wrapper`.
-
-If you are using the [application template wrapper](https://emberjs.com/blog/2018/02/16/ember-3-1-beta-released.html#toc_new-optional-feature-application-template-wrapper) enabled (default state), then you would need to add certain aria roles to your [landmark regions](https://www.w3.org/WAI/PF/aria/roles#landmark_roles), even if you are using native HTML elements, because those regions are not the direct child descendant of the body element (they are the children of the div that wraps the Ember app).
-
-If you disable the [application template wrapper](https://emberjs.com/blog/2018/02/16/ember-3-1-beta-released.html#toc_new-optional-feature-application-template-wrapper), you will not need to add role attributes to your landmark regions when they are the direct descendant of the body element, and they are using native HTML elements. This is the preferred approach for accessible applications.
-
-To disable this feature and improve your app's accessibility:
-
-```bash
-ember feature:disable application-template-wrapper
-```
-
-**Application Template Wrapper Disabled** _(preferred)_
-
-```hbs
-<body>
-  <header></header>
-  <main></main>
-  <footer></footer>
-</body>
-```
-
-**Application Template Wrapper Enabled**
-
-```hbs
-<body>
-  <div class="ember-view">
-    <header role="banner"></header>
-    <main role="main"></main>
-    <footer role="contentinfo"></footer>
-  </div>
-</body>
-```
-
-<div class="cta">
-  <div class="cta-note">
-    <div class="cta-note-body">
-      <div class="cta-note-heading">Zoey says...</div>
-      <div class="cta-note-message">
-        To learn more about landmark roles and how to use them: <a href="https://www.w3.org/WAI/PF/aria/roles#landmark_roles">https://www.w3.org/WAI/PF/aria/roles#landmark_roles</a>. Still need more help? Visit the #topic-a11y channel in <a href="https://emberjs.com/community/">the community chat</a>.
-      </div>
-    </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="">
-  </div>
-</div>
-
-## Ember applications vs role=''application''
-
-An important thing to note in this section is this: "application" in Ember development and "application" in landmark roles have two _very_ different meanings. 
-
-The <abbr title="too long; didn't read">TL;DR</abbr>? Don't use `role="application"` until you have done your research and know exactly how it is to be used correctly (if at all). There are **very** few use cases where the role of application is appropriate.
-
-Read more about it: [https://a11yproject.com/posts/how-to-use-application-role/](https://a11yproject.com/posts/how-to-use-application-role/)
-
 ## Accessibility addons
 
 Any addon that will provide UI elements to the application should be evaluated for accessibility before use.
