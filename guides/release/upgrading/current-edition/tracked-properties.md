@@ -254,8 +254,8 @@ class Image {
 }
 
 let profilePhoto = new Image();
-set(profilePhoto, 'width', 259);
-set(profilePhoto, 'height', 259);
+set(profilePhoto, 'width', 250);
+set(profilePhoto, 'height', 250);
 ```
 
 Additionally, certain Ember objects still require the use of `get` and `set`,
