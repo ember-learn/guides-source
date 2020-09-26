@@ -347,7 +347,7 @@ Here, we used the `on` _modifier_ to attach the `this.showPerson` action to
 the button in the template.
 
 There is a problem with this though – if you tried this in the browser, you
-will quickly discovered that clicking on the buttons will bring up an alert
+will quickly discover that clicking on the buttons will bring up an alert
 dialog that said "The person's name is `[Object MouseEvent]`!" – eek!
 
 The cause of this bug is that we wrote our action to take an argument – the
