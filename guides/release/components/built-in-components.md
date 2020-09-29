@@ -1,12 +1,10 @@
-Ember provides a few helpful components out-of-the-box for common tasks,
-including:
+Out of the box, Ember provides 2 components for building a form:
 
-* [`<Input />`](https://api.emberjs.com/ember/release/classes/Ember.Templates.components/methods/Input?anchor=Input)
-* [`<Textarea />`](https://api.emberjs.com/ember/release/classes/Ember.Templates.components/methods/Textarea?anchor=Textarea)
+* [`<Input>`](https://api.emberjs.com/ember/release/classes/Ember.Templates.components/methods/Input?anchor=Input)
+* [`<Textarea>`](https://api.emberjs.com/ember/release/classes/Ember.Templates.components/methods/Textarea?anchor=Textarea)
 
-Using these components, you can create form controls that are almost identical to
-the native HTML `<input>` or `<textarea>` elements, and which automatically
-update the state of their values.
+These components are similar in HTML markup to the native `<input>` or `<textarea>` elements. In contrast to the native elements, `<Input>` and `<Textarea>` automatically update the state of their bound values.
+
 
 ## `<Input/>`
 
