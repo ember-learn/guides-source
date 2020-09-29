@@ -199,7 +199,12 @@ The following example shows how to bind `this.userComment` to a text area's valu
 With the exception of `@value` argument, you can use any [attribute](https://developer.mozilla.org/docs/Web/HTML/Element/textarea#Attributes) that `<textarea>` natively supports.
 
 
-### Binding dynamic attribute
+<!--
+  TODO:
+  Move this section to a dedicated page for how to build forms.
+  Please present a solution that does not use `{{mut}}`.
+-->
+## Binding dynamic attribute
 
 You might need to bind a property dynamically to an input if you're building a
 flexible form, for example. To achieve this you need to use the
