@@ -6,19 +6,25 @@ Out of the box, Ember provides 2 components for building a form:
 These components are similar in HTML markup to the native `<input>` or `<textarea>` elements. In contrast to the native elements, `<Input>` and `<Textarea>` automatically update the state of their bound values.
 
 
-## `<Input/>`
+## `<Input>`
+
+We mentioned that the built-in components are similar in HTML markup to their native counterparts. What does this mean?
+
+Consider the following example in a template file.
 
 ```handlebars
-<label for="site">Ember Question</label>
-<Input id="site" @value="How do text fields work?" />
+<label for="user-question">Ask a question about Ember:</label>
+<Input id="user-question" @type="text" @value="How do text fields work?" />
 ```
 
-Will become:
+When Ember renders this template, you will see the following HTML code:
 
 ```html
-<label for="site">Ember Question</label>
-<input id="site" type="text" value="How do text fields work?"/>
+<label for="user-question">Ask a question about Ember:</label>
+<input id="user-question" type="text" value="How do text fields work?" />
 ```
+
+
 ### Ways to associate labels and inputs
 
 Every input should be associated with a label. Within HTML, there are several different ways to do this.  In this section, we will show how to apply those strategies for Ember inputs.
