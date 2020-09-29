@@ -179,34 +179,25 @@ To call an action on specific events, please use the `{{on}}` modifier:
 ```
 
 
-## `<Textarea />`
+## `<Textarea>`
+
+The following example shows how to bind `this.userComment` to a text area's value.
 
 ```handlebars
-<label for="textarea-post">Post:</label>
-<Textarea @value={{this.post}} name="post" cols="80" rows="6" id="textarea-post" />
+<label for="user-comment">Comment:</label>
+<Textarea
+  id="user-comment"
+  @value={{this.userComment}}
+  rows="6"
+  cols="80"
+/>
 ```
 
-Will bind the value of the text area to `post` on the current context.
 
-[`<Textarea>`](https://api.emberjs.com/ember/release/classes/Ember.Templates.components/methods/Textarea?anchor=Textarea) supports binding and/or setting the following properties:
+### Setting attributes on `<Textarea>`
 
-* `@value`
-* `name`
-* `rows`
-* `cols`
-* `placeholder`
-* `disabled`
-* `maxlength`
-* `tabindex`
-* `selectionEnd`
-* `selectionStart`
-* `selectionDirection`
-* `wrap`
-* `readonly`
-* `autofocus`
-* `form`
-* `spellcheck`
-* `required`
+With the exception of `@value` argument, you can use any [attribute](https://developer.mozilla.org/docs/Web/HTML/Element/textarea#Attributes) that `<textarea>` natively supports.
+
 
 ### Binding dynamic attribute
 
