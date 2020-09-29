@@ -104,26 +104,52 @@ Recall that there were a few exceptions. The following input attributes must be 
 
 ### Actions
 
-To dispatch an action on specific events such as `key-down`, use the following
+Starting with Ember Octane, we recommend using the `{{on}}` modifier to call an action on specific events such as the [input event](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event).
 
 ```handlebars
 <label for="input-name">Name:</label>
-<Input id="input-name" name="name" @type="text" @value={{this.name}} @key-down={{this.updateName}} />
+<Input
+  id="input-name"
+  @value={{this.name}}
+  {{on "input" this.validateName}}
+/>
 ```
 
-The following event types are supported (dasherized format):
+The event name (e.g. `"focusout"`, `"input"`, `"keydown"`) always follows the casing that the HTML standard uses.
 
-* `@enter`
-* `@insert-newline`
-* `@escape-press`
-* `@focus-in`
-* `@focus-out`
-* `@key-down`
-* `@key-press` ([Deprecated Web API](https://developer.mozilla.org/en-US/docs/Web/API/Document/keypress_event))
-* `@key-up`
+Due to legacy code, it is possible to call an action by passing an event argument.
 
+```handlebars
+<label for="input-name">Name:</label>
+<Input
+  id="input-name"
+  @value={{this.name}}
+  @input={{this.validateName}}
+/>
+```
 
-More [event types](https://api.emberjs.com/ember/release/classes/Component#event-handler-methods) are also supported but these events need to be written in camelCase format, such `mouseEnter`. Note, there are events of the same type in both the list above and linked. Event names listed above must be dasherized. Additional work is performed on these events.
+The argument name is always dasherized (e.g. `@focus-out`, `@input`, `@key-down`). To minimize confusion, we recommend that you use the `{{on}}` modifier. ([Learn more about the `{{on}}` modifier.](../../upgrading/current-edition/action-on-and-fn/#toc_the-on-modifier))
+
+Lastly, Ember Classic provided custom input events `@enter` and `@escape-press`. These are not a part of the HTML standard, but may facilitate accessibility.
+
+Starting with Ember Octane, please consider [writing a modifier](../../upgrading/current-edition/glimmer-components/#toc_writing-your-own-modifiers) to separate concerns: The component manages the state, while the modifier manages interactions with the DOM. If you prefer installing an addon, we recommend the `{{on-key}}` modifier from [ember-keyboard](https://github.com/adopted-ember-addons/ember-keyboard). Your action will receive an actual `event` object.
+
+```handlebars
+{{!-- Before --}}
+<Input
+  @enter={{this.doSomething}}
+  @escape-press={{this.doSomethingElse}}
+/>
+
+{{!-- After --}}
+<Input
+  {{on-key "Enter" this.doSomething}}
+  {{on-key "Escape" this.doSomethingElse event="keydown"}}
+/>
+```
+
+Note, the `keydown` event was used for `Escape` because `keypress` is deprecated.
+
 
 ### Checkboxes
 
