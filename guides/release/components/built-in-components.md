@@ -27,33 +27,47 @@ When Ember renders this template, you will see the following HTML code:
 
 ### Ways to associate labels and inputs
 
-Every input should be associated with a label. Within HTML, there are several different ways to do this.  In this section, we will show how to apply those strategies for Ember inputs.
+Every input should be associated with a label. In HTML, there are a few ways to do this. With the built-in `<Input>` component,
 
-You can nest the input inside the label:
+1. You can nest the input inside the label.
 
-```handlebars
-<label>
-    Ask a question about Ember:
-    <Input type="text" @value={{this.val}} />
-</label>
-```
+   ```handlebars
+   <label>
+     Ask a question about Ember:
 
-You can associate the label using `for` and `id`:
+     <Input
+       @type="text"
+       @value={{this.userQuestion}}
+     />
+   </label>
+   ```
 
-```handlebars
-<label for={{this.myUniqueId}}>
-    Ask a question about Ember:
-</label>
-<Input id={{this.myUniqueId}} type="text" @value={{this.val}} />
-```
+2. You can create an ID (globally unique within the webpage), then associate the label to the input with `for` and `id` attributes.
 
-The `aria-label` attribute enables developers to label an input element with a string that is not visually rendered, but still available to assistive technology. 
+   ```handlebars
+   <label for={{this.myUniqueId}}>
+     Ask a question about Ember:
+   </label>
 
-```handlebars
-<Input id="site" @value="How do text fields work?" aria-label="Ember Question"/>
-```
+   <Input
+     id={{this.myUniqueId}}
+     @type="text"
+     @value={{this.userQuestion}}
+   />
+   ```
 
-While it is more appropriate to use a `<label>` element, the `aria-label` attribute can be used in instances where visible text content is not possible.
+3. You can use the `aria-label` attribute to label the input with a string that is visually hidden but still available to assistive technology. 
+
+   ```handlebars
+   <Input
+     aria-label="Ask a question about Ember"
+     @type="text"
+     @value={{this.userQuestion}}
+   />
+   ```
+
+While it is more appropriate to use the `<label>` element, the `aria-label` attribute can be used in instances where visible text content is not possible.
+
 
 ### Setting attributes on Input
 
