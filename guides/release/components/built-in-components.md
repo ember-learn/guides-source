@@ -69,43 +69,38 @@ Every input should be associated with a label. In HTML, there are a few ways to 
 While it is more appropriate to use the `<label>` element, the `aria-label` attribute can be used in instances where visible text content is not possible.
 
 
-### Setting attributes on Input
+### Setting attributes on `<Input>`
 
-Just like a native `<input>` element, there are many different types of attributes that you can apply to Ember's `<Input />` component, such as the `aria-*` attributes or `required`. 
-For example, the `aria-labelledby` property is useful for situations like a search input, where the search button can serve as the label for the input element:
+With a few exceptions, you can pass [input attributes](https://developer.mozilla.org/docs/Web/HTML/Element/input#Attributes) as attributes (i.e. do not prepend `@`) to the `<Input>` component.
+
+For example, the `aria-labelledby` attribute may be useful if you have a search input. The search button can serve as the label for the input element:
 
 ```handlebars
 <Input aria-labelledby="button-search" />
 <button id="button-search" type="button">Search</button>
 ```
 
-Here are some other standard `<input>` attributes and arguments that are supported:
+If an attribute is set to a quoted string (`"button-search"` in the prior example), its value will be set directly on the element.
 
-<table>
-  <tr><td><code>readonly</code></td><td><code>required</code></td><td><code>autofocus</code></td></tr>
-  <tr><td><code>@value</code></td><td><code>placeholder</code></td><td><code>disabled</code></td></tr>
-  <tr><td><code>size</code></td><td><code>tabindex</code></td><td><code>maxlength</code></td></tr>
-  <tr><td><code>name</code></td><td><code>min</code></td><td><code>max</code></td></tr>
-  <tr><td><code>pattern</code></td><td><code>accept</code></td><td><code>autocomplete</code></td></tr>
-  <tr><td><code>autosave</code></td><td><code>formaction</code></td><td><code>formenctype</code></td></tr>
-  <tr><td><code>formmethod</code></td><td><code>formnovalidate</code></td><td><code>formtarget</code></td></tr>
-  <tr><td><code>height</code></td><td><code>inputmode</code></td><td><code>multiple</code></td></tr>
-  <tr><td><code>step</code></td><td><code>width</code></td><td><code>form</code></td></tr>
-  <tr><td><code>selectionDirection</code></td><td><code>spellcheck</code></td><td><code>@type</code></td></tr>
-</table>
-
-If these attributes are set to a quoted string, their values will be set
-directly on the element, as in the previous example. However, when left
-unquoted, these values will be bound to a property on the template's current
-rendering context. For example:
+You can also bind the attribute value to a property that you own.
+In the next example, the `disabled` attribute is bound to the value of `isReadOnly` in the current context.
 
 ```handlebars
 <label for="input-name">Name:</label>
-<Input id="input-name" name="name" @value={{this.name}} size="50" disabled={{this.entryNotAllowed}} />
+<Input
+  id="input-name"
+  @value={{this.name}}
+  disabled={{this.isReadOnly}}
+  maxlength="50"
+/>
 ```
 
-Will bind the `disabled` attribute to the value of `entryNotAllowed` in the
-current context.
+Recall that there were a few exceptions. The following input attributes must be passed as arguments (i.e. do prepend `@`) to the `<Input>` component:
+
+- `@checked`
+- `@type`
+- `@value`
+
 
 ### Actions
 
