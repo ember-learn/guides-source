@@ -153,46 +153,31 @@ Note, the `keydown` event was used for `Escape` because `keypress` is deprecated
 
 ### Checkboxes
 
-You can also use the
-[`<Input />`](https://api.emberjs.com/ember/release/classes/Ember.Templates.components/methods/Input?anchor=Input)
-component to create a checkbox by setting its `@type`:
+You can use the
+[`<Input>`](https://api.emberjs.com/ember/release/classes/Ember.Templates.components/methods/Input?anchor=Input)
+component to create a checkbox. Please set `@type` to the string `"checkbox"`, and use `@checked` instead of `@value`.
 
 ```handlebars
 <label for="admin-checkbox">Is Admin?</label>
-<Input id="admin-checkbox" @type="checkbox" name="isAdmin" @checked={{this.isAdmin}} />
+<Input
+  id="admin-checkbox"
+  @type="checkbox"
+  @checked={{this.isAdmin}}
+/>
 ```
 
-Checkboxes support the following properties:
-
-* `@checked`
-* `disabled`
-* `tabindex`
-* `indeterminate`
-* `name`
-* `autofocus`
-* `form`
-
-
-Which can be bound or set as described in the previous section.
-
-
-Checkboxes are a special input type.  If you want to dispatch an action on a certain [event](https://api.emberjs.com/ember/release/classes/Component#event-handler-methods),
-you will always need to either define the event name in camelCase format (e.g. `@keyDown`), or
-use an `on` helper with the [Web-API event name](https://developer.mozilla.org/en-US/docs/Web/API/Document/keydown_event) (e.g. `on 'keydown'`):
+To call an action on specific events, please use the `{{on}}` modifier:
 
 ```handlebars
-<label for="input-name">Name:</label>
-{{!-- This works: uses camelCase event name --}}
-<Input @type="checkbox" @keyDown={{this.updateName}} id="input-name" />
-{{!-- This works: uses 'on' with actual event name --}}
-<Input @type="checkbox" {{on "keydown" this.updateName}} id="input-name" />
-{{!-- This does not work: uses dasherized event name --}}
-<Input @type="checkbox" @key-down={{this.updateName}} id="input-name" />
-{{!-- This does not work: uses actual event name --}}
-<Input @type="checkbox" @keydown={{this.updateName}} id="input-name" />
+<label for="admin-checkbox">Is Admin?</label>
+<Input
+  id="admin-checkbox"
+  @type="checkbox"
+  @checked={{this.isAdmin}}
+  {{on "input" this.validateRole}}
+/>
 ```
 
-Internally, `<Input @type="checkbox" />` creates an instance of Checkbox. Do *not* use `Checkbox` directly.
 
 ## `<Textarea />`
 
