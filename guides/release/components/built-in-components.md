@@ -14,7 +14,11 @@ Consider the following example in a template file.
 
 ```handlebars
 <label for="user-question">Ask a question about Ember:</label>
-<Input id="user-question" @type="text" @value="How do text fields work?" />
+<Input
+  @id="user-question"
+  @type="text"
+  @value="How do text fields work?"
+/>
 ```
 
 When Ember renders this template, you will see the following HTML code:
@@ -42,7 +46,7 @@ Every input should be associated with a label. In HTML, there are a few ways to 
    </label>
    ```
 
-2. You can create an ID (globally unique within the webpage), then associate the label to the input with `for` and `id` attributes.
+2. You can create an ID (globally unique within the webpage), then associate the label to the input with `for` attribute and `@id` argument.
 
    ```handlebars
    <label for={{this.myUniqueId}}>
@@ -50,7 +54,7 @@ Every input should be associated with a label. In HTML, there are a few ways to 
    </label>
 
    <Input
-     id={{this.myUniqueId}}
+     @id={{this.myUniqueId}}
      @type="text"
      @value={{this.userQuestion}}
    />
@@ -88,7 +92,7 @@ In the next example, the `disabled` attribute is bound to the value of `isReadOn
 ```handlebars
 <label for="input-name">Name:</label>
 <Input
-  id="input-name"
+  @id="input-name"
   @value={{this.name}}
   disabled={{this.isReadOnly}}
   maxlength="50"
@@ -98,6 +102,7 @@ In the next example, the `disabled` attribute is bound to the value of `isReadOn
 Recall that there were a few exceptions. The following input attributes must be passed as arguments (i.e. do prepend `@`) to the `<Input>` component:
 
 - `@checked`
+- `@id`
 - `@type`
 - `@value`
 
@@ -109,7 +114,7 @@ Starting with Ember Octane, we recommend using the `{{on}}` modifier to call an 
 ```handlebars
 <label for="input-name">Name:</label>
 <Input
-  id="input-name"
+  @id="input-name"
   @value={{this.name}}
   {{on "input" this.validateName}}
 />
@@ -122,7 +127,7 @@ Due to legacy code, it is possible to call an action by passing an event argumen
 ```handlebars
 <label for="input-name">Name:</label>
 <Input
-  id="input-name"
+  @id="input-name"
   @value={{this.name}}
   @input={{this.validateName}}
 />
@@ -160,7 +165,7 @@ component to create a checkbox. Please set `@type` to the string `"checkbox"`, a
 ```handlebars
 <label for="admin-checkbox">Is Admin?</label>
 <Input
-  id="admin-checkbox"
+  @id="admin-checkbox"
   @type="checkbox"
   @checked={{this.isAdmin}}
 />
@@ -171,7 +176,7 @@ To call an action on specific events, please use the `{{on}}` modifier:
 ```handlebars
 <label for="admin-checkbox">Is Admin?</label>
 <Input
-  id="admin-checkbox"
+  @id="admin-checkbox"
   @type="checkbox"
   @checked={{this.isAdmin}}
   {{on "input" this.validateRole}}
@@ -186,7 +191,7 @@ The following example shows how to bind `this.userComment` to a text area's valu
 ```handlebars
 <label for="user-comment">Comment:</label>
 <Textarea
-  id="user-comment"
+  @id="user-comment"
   @value={{this.userComment}}
   rows="6"
   cols="80"
@@ -214,7 +219,10 @@ in conjunction like shown in the following example:
 
 ```handlebars
 <label for="input-name">Name:</label>
-<Input @value={{mut (get this.person this.field)}} id="name" name="input-name" />
+<Input
+  @id="input-name"
+  @value={{mut (get this.person this.field)}}
+/>
 ```
 
 The `{{get}}` helper allows you to dynamically specify which property to bind,
