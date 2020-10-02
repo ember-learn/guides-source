@@ -135,7 +135,7 @@ For backwards compatibility with earlier versions of Ember, it is possible to ca
 
 The argument name is always dasherized (e.g. `@focus-out`, `@input`, `@key-down`). To minimize confusion, we recommend that you use the `{{on}}` modifier. ([Learn more about the `{{on}}` modifier.](../../upgrading/current-edition/action-on-and-fn/#toc_the-on-modifier))
 
-Lastly, Ember Classic provided custom input events `@enter` and `@escape-press`. These are not a part of the HTML standard, but may facilitate accessibility.
+Lastly, Ember also provides custom input events `@enter` and `@escape-press`. These events do not exist on native input elements, but you may find them to be useful for handling keyboard interactions.
 
 Starting with Ember Octane, please consider [writing a modifier](../../upgrading/current-edition/glimmer-components/#toc_writing-your-own-modifiers) to separate concerns: The component manages the state, while the modifier manages interactions with the DOM. If you prefer installing an addon, we recommend the `{{on-key}}` modifier from [ember-keyboard](https://github.com/adopted-ember-addons/ember-keyboard). Your action will receive an actual `event` object.
 
