@@ -122,7 +122,7 @@ Starting with Ember Octane, we recommend using the `{{on}}` modifier to call an 
 
 The event name (e.g. `"focusout"`, `"input"`, `"keydown"`) always follows the casing that the HTML standard uses.
 
-Due to legacy code, it is possible to call an action by passing an event argument.
+For backwards compatibility with earlier versions of Ember, it is possible to call an action by passing an event argument.
 
 ```handlebars
 <label for="input-name">Name:</label>
