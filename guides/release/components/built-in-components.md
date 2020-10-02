@@ -160,7 +160,7 @@ Note, the `keydown` event was used for `Escape` because `keypress` is deprecated
 
 You can use the
 [`<Input>`](https://api.emberjs.com/ember/release/classes/Ember.Templates.components/methods/Input?anchor=Input)
-component to create a checkbox. Please set `@type` to the string `"checkbox"`, and use `@checked` instead of `@value`.
+component to create a checkbox. Set `@type` to the string `"checkbox"`, and use `@checked` instead of `@value`.
 
 ```handlebars
 <label for="admin-checkbox">Is Admin?</label>
