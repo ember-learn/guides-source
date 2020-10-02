@@ -171,7 +171,7 @@ component to create a checkbox. Set `@type` to the string `"checkbox"`, and use 
 />
 ```
 
-To call an action on specific events, please use the `{{on}}` modifier:
+To call an action on specific events, use the `{{on}}` modifier:
 
 ```handlebars
 <label for="admin-checkbox">Is Admin?</label>
