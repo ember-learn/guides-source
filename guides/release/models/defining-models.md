@@ -45,8 +45,8 @@ add first and last name, as well as the birthday, using [`attr`](https://api.emb
 import Model, { attr } from '@ember-data/model';
 
 export default class PersonModel extends Model {
-  @attr firstName;
-  @attr lastName;
+  @attr title;
+  @attr name;
   @attr birthday;
 }
 ```
@@ -61,11 +61,11 @@ You can use attributes like any other property, including from within [getter fu
 import Model, { attr } from '@ember-data/model';
 
 export default class PersonModel extends Model {
-  @attr firstName;
-  @attr lastName;
+  @attr title;
+  @attr name;
 
   get fullName() {
-    return `${this.firstName} ${this.lastName}`;
+    return `${this.title} ${this.name}`;
   }
 }
 ```
