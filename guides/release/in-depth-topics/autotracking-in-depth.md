@@ -407,4 +407,6 @@ console.log(count); // 2
 From the value of `count`, we see that, this time, `aspectRatio` was calculated
 only twice.
 
+The cache API was released in Ember 3.22. If you want to leverage this API between versions 3.13 and 3.21, you can install [ember-cache-primitive-polyfill](https://github.com/ember-polyfills/ember-cache-primitive-polyfill) to your project.
+
 <!-- eof - needed for pages that end in a code block  -->
