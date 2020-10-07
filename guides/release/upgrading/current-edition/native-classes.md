@@ -268,7 +268,7 @@ const ClassicPerson = EmberObject.extend({
   name: 'Tomster',
 
   fullName: join('title', 'name'),
-  displayName: alias('nickName'),
+  displayName: alias('nickname'),
 });
 
 // After
