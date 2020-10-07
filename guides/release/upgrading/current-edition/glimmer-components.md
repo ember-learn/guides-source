@@ -439,7 +439,7 @@ export default class ImageComponent extends Component {
   }
 
   get height() {
-    return this.args.height === undefined ? this.args.height : 0;
+    return this.args.height ?? 0;
   }
 
   get aspectRatio() {
