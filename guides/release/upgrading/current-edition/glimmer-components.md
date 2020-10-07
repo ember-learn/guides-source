@@ -435,7 +435,7 @@ import Component from '@glimmer/component';
 
 export default class ImageComponent extends Component {
   get width() {
-    return this.args.width === undefined ? this.args.width : 0;
+    return this.args.width ?? 0;
   }
 
   get height() {
