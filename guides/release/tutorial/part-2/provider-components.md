@@ -213,7 +213,7 @@ Next, we'll wire up our query state in the component template.
 </div>
 ```
 
-Interesting! There are a few things happening in this one-line template change. First, we're moving from using a plain HTML `<input>` tag to using an `<Input>` tag instead! As it turns out, Ember provides us with a helpful little _<Input> component_ for this exact use case. The `<Input>` component is actually just a wrapper around the `<input>` element.
+Interesting! There are a few things happening in this one-line template change. First, we're moving from using a plain HTML `<input>` tag to using an `<Input>` tag instead! As it turns out, Ember provides us with a helpful little _`<Input>` component_ for this exact use case. The `<Input>` component is actually just a wrapper around the `<input>` element.
 
 Ember's `<Input>` component is pretty neat; it will wire up things behind the scenes such that, whenever the user types something into the input box, `this.query` changes accordingly. In other words, `this.query` is kept in sync with the value of what is being searched; we finally have the perfect way of storing the state of our search query!
 
