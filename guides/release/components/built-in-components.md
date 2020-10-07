@@ -137,7 +137,9 @@ The argument name is always dasherized (e.g. `@focus-out`, `@input`, `@key-down`
 
 Lastly, Ember also provides custom input events `@enter` and `@escape-press`. These events do not exist on native input elements, but you may find them to be useful for handling keyboard interactions.
 
-Starting with Ember Octane, please consider [writing a modifier](../../upgrading/current-edition/glimmer-components/#toc_writing-your-own-modifiers) to separate concerns: The component manages the state, while the modifier manages interactions with the DOM. If you prefer installing an addon, we recommend the `{{on-key}}` modifier from [ember-keyboard](https://github.com/adopted-ember-addons/ember-keyboard). Your action will receive an actual `event` object.
+The modern, Octane-style way to handle keyboard events is to [write a modifier](../../upgrading/current-edition/glimmer-components/#toc_writing-your-own-modifiers) to separate concerns: The component manages the state, while the modifier manages interactions with the DOM. Your action will receive an actual `event` object.
+
+There are [community-made addons](https://emberobserver.com/?query=keyboard) to help manage keyboard events. For example, with [ember-keyboard](https://github.com/adopted-ember-addons/ember-keyboard), you can write,
 
 ```handlebars
 {{!-- Before --}}
