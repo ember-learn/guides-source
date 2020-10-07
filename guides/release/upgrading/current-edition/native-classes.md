@@ -278,7 +278,7 @@ class Person {
   name = 'Tomster';
 
   @join('title', 'name') fullName;
-  @alias('nickName') displayName;
+  @alias('nickname') displayName;
 }
 ```
 
