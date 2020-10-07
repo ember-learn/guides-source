@@ -263,7 +263,7 @@ function join(...keys) {
 
 // Before
 const ClassicPerson = EmberObject.extend({
-  nickName: 'Tom',
+  nickname: 'Tom',
   title: 'Prof.',
   name: 'Tomster',
 
