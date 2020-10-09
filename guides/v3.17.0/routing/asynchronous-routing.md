@@ -114,11 +114,10 @@ By default, if a model promise rejects during a transition, the transition is
 aborted, no new destination route templates are rendered, and an error
 is logged to the console.
 
-You can configure this error-handling logic via the `error` handler on
-the route's `actions` hash. When a promise rejects, an `error` event
-will be fired on that route and bubble up to `route:application`'s
-default error handler unless it is handled by a custom error handler
-along the way, e.g.:
+You can configure this error-handling logic via the `error` handler. When a
+promise rejects, an `error` event will be fired on that route and bubble up
+to `route:application`'s default error handler unless it is handled by a
+custom error handler along the way, e.g.:
 
 ```javascript {data-filename=app/routes/good-for-nothing.js}
 import Route from '@ember/routing/route';
