@@ -583,7 +583,7 @@ const Person = EmberObject.extend({
   }
 
   // good ✅
-  class Person {
+  class Image {
     constructor() {
       this.aspectRatio = this.width / this.height;
     }
