@@ -230,5 +230,5 @@ in conjunction like shown in the following example:
 The `{{get}}` helper allows you to dynamically specify which property to bind,
 while the `{{mut}}` helper allows the binding to be updated from the input. See
 the respective helper documentation for more detail:
-[`{{get}}`](https://api.emberjs.com/ember/v3.16/classes/Ember.Templates.helpers/methods/get?anchor=get)
-and [`{{mut}}`](https://api.emberjs.com/ember/v3.16/classes/Ember.Templates.helpers/methods/mut?anchor=mut).
+[`{{get}}`](https://api.emberjs.com/ember/3.16/classes/Ember.Templates.helpers/methods/get?anchor=get)
+and [`{{mut}}`](https://api.emberjs.com/ember/3.16/classes/Ember.Templates.helpers/methods/mut?anchor=mut).
