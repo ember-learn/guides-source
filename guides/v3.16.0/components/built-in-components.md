@@ -1,7 +1,7 @@
 Out of the box, Ember provides 2 components for building a form:
 
-* [`<Input>`](https://api.emberjs.com/ember/v3.16/classes/Ember.Templates.components/methods/Input?anchor=Input)
-* [`<Textarea>`](https://api.emberjs.com/ember/v3.16/classes/Ember.Templates.components/methods/Textarea?anchor=Textarea)
+* [`<Input>`](https://api.emberjs.com/ember/3.16/classes/Ember.Templates.components/methods/Input?anchor=Input)
+* [`<Textarea>`](https://api.emberjs.com/ember/3.16/classes/Ember.Templates.components/methods/Textarea?anchor=Textarea)
 
 These components are similar in HTML markup to the native `<input>` or `<textarea>` elements. In contrast to the native elements, `<Input>` and `<Textarea>` automatically update the state of their bound values.
 
