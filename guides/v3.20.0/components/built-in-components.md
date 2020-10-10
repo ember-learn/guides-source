@@ -215,8 +215,8 @@ With the exception of `@value` argument, you can use any [attribute](https://dev
 
 You might need to bind a property dynamically to an input if you're building a
 flexible form, for example. To achieve this you need to use the
-[`{{get}}`](https://api.emberjs.com/ember/v3.20/classes/Ember.Templates.helpers/methods/get?anchor=get)
-and [`{{mut}}`](https://api.emberjs.com/ember/v3.20/classes/Ember.Templates.helpers/methods/mut?anchor=mut)
+[`{{get}}`](https://api.emberjs.com/ember/3.20/classes/Ember.Templates.helpers/methods/get?anchor=get)
+and [`{{mut}}`](https://api.emberjs.com/ember/3.20/classes/Ember.Templates.helpers/methods/mut?anchor=mut)
 in conjunction like shown in the following example:
 
 ```handlebars
