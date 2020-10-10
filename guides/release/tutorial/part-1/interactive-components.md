@@ -36,7 +36,7 @@ installing component-class
   create app/components/rental/image.js
 ```
 
-This generated a JavaScript file with the same name as our component's template at `app/components/rentals/image.js`. It contains a _JavaScript class_, _inheriting_ from `@glimmer/component`.
+This generated a JavaScript file with the same name as our component's template at `app/components/rental/image.js`. It contains a _JavaScript class_, _inheriting_ from `@glimmer/component`.
 
 <div class="cta">
   <div class="cta-note">
