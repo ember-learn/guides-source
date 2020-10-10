@@ -184,12 +184,11 @@ as a string.
     <div class="cta-note-body">
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
-        Using triple curly brackets is just one way to put dynamic HTML into
-        Ember templates. We can also use the <a href="https://api.emberjs.com/ember/release/functions/@ember%2Ftemplate/htmlSafe">htmlSafe</a>
-        function to wrap template strings. Additionally, inserting unknown HTML
-        into an app can always produce unexpected results, so we should be
-        careful and always make sure that the HTML is safe (as in, won't cause
-        major issues) before inserting it.
+        Using triple curly brackets is a convenient way to put dynamic HTML into
+        Ember templates but is not recommended for production apps. Instead we can use
+        the <a href="https://api.emberjs.com/ember/release/functions/@ember%2Ftemplate/htmlSafe">htmlSafe</a>
+        into an app can always produce unexpected results and security issues, so we
+        should sanitize the HTML input and mark it safe with `htmlSafe` before inserting it.
       </div>
     </div>
     <img src="/images/mascots/zoey.png" role="presentation" alt="">
