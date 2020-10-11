@@ -10,9 +10,9 @@ For example, a computed property like this:
 ```js
 import EmberObject, { computed } from '@ember/object';
 
-const Person = EmberObject.extend({
-  fullName: computed('firstName', 'lastName', function() {
-    return `${this.firstName} ${this.lastName}`;
+const Image = EmberObject.extend({
+  aspectRatio: computed('width', 'height', function() {
+    return this.width / this.height;
   }),
 });
 ```
@@ -22,17 +22,17 @@ Could be rewritten as:
 ```js
 import { tracked } from '@glimmer/tracking';
 
-class Person {
-  @tracked firstName;
-  @tracked lastName;
+class Image {
+  @tracked width;
+  @tracked height;
 
-  get fullName() {
-    return `${this.firstName} ${this.lastName}`;
+  get aspectRatio() {
+    return this.width / this.height;
   }
 }
 ```
 
-Notice how `fullName` doesn't require _any_ annotation at all - it's a plain old
+Notice how `aspectRatio` doesn't require _any_ annotation at all - it's a plain old
 native getter, and it'll still work and invalidate if it's used anywhere in a
 template, directly or indirectly.
 
@@ -41,16 +41,16 @@ values, you can use standard JavaScript syntax instead!
 
 ```js
 // Before
-let chad = Person.create();
-chad.set('firstName', 'Chad');
-chad.set('lastName', 'Hietala');
+let profilePhoto = Image.create();
+profilePhoto.set('width', 300);
+profilePhoto.set('height', 300);
 ```
 
 ```js
 // After
-let chad = new Person();
-chad.firstName = 'Chad';
-chad.lastName = 'Hietala';
+let profilePhoto = new Image();
+profilePhoto.width = 300;
+profilePhoto.height = 300;
 ```
 
 `@tracked` installs a native setter that tracks updates to these properties,
@@ -61,9 +61,9 @@ Tracked properties have subtler benefits as well:
 - They enforce that all of the trackable properties in your classes are
   annotated, making them easy to find. With computed properties, it was common
   to have properties be "implicit" in a class definition, like in the example
-  above; the classic class version of `Person` doesn't have `firstName` and
-  `lastName` properties defined, but they are _implied_ by their existence as
-  dependencies in the `fullName` computed property.
+  above; the classic class version of `Image` doesn't have `width` and
+  `height` properties defined, but they are _implied_ by their existence as
+  dependencies in the `aspectRatio` computed property.
 - They enforce a "public API" of all values that are trackable in your class.
   With computed properties, it was possible to watch _any_ value in a class for changes, and
   there was nothing you as the class author could do about it. With tracked
@@ -187,33 +187,33 @@ dependency:
 import { tracked } from '@glimmer/tracking';
 import { computed } from '@ember/object';
 
-class Person {
-  @tracked firstName;
+class Image {
+  @tracked width;
 
-  @computed('firstName', 'lastName')
-  get fullName() {
-    return `${this.firstName} ${this.lastName}`;
+  @computed('width', 'height')
+  get aspectRatio() {
+    return this.width / this.height;
   }
 }
 
-let person = new Person();
+let profilePhoto = new Image();
 
-// This will correctly invalidate `fullName`
-person.firstName = 'Tom';
+// This will correctly invalidate `aspectRatio`
+profilePhoto.width = 200;
 ```
 
 And vice-versa, computed properties used in native getters will autotrack and
 cause the getter to update correctly:
 
 ```js
-class Person {
-  @computed('firstName', 'lastName')
-  get fullName() {
-    return `${this.firstName} ${this.lastName}`;
+class Image {
+  @computed('width', 'height')
+  get aspectRatio() {
+    return this.width / this.height;
   }
 
   get helloMessage() {
-    return `${this.fullName} says hello!`;
+    return `Image aspect ratio is: ${this.aspectRatio}!`;
   }
 }
 ```
@@ -223,18 +223,18 @@ Likewise, properties that are not decorated with `@tracked` that you get using
 them:
 
 ```js
-class Person {
-  get fullName() {
-    let firstName = get(this, 'firstName');
-    let lastName = get(this, 'lastName');
+class Image {
+  get aspectRatio() {
+    let width = get(this, 'width');
+    let height = get(this, 'height');
 
-    return `${firstName} ${lastName}`;
+    return this.width / this.height;
   }
 }
 
-let kris = new Person();
-set(kris, 'firstName', 'Kris');
-set(kris, 'lastName', 'Selden');
+let profilePhoto = new Image();
+set(profilePhoto, 'width', 300);
+set(profilePhoto, 'height', 300);
 ```
 
 However, you _must_ use `get` for these properties, since they are not tracked
@@ -242,15 +242,15 @@ and there is no way to know in advance that they might be changed with `set`.
 For instance, this will not work:
 
 ```js
-class Person {
-  get fullName() {
-    return `${this.firstName} ${this.lastName}`;
+class Image {
+  get aspectRatio() {
+    return this.width / this.height;
   }
 }
 
-let kris = new Person();
-set(kris, 'firstName', 'Kris');
-set(kris, 'lastName', 'Selden');
+let profilePhoto = new Image();
+set(profilePhoto, 'width', 250);
+set(profilePhoto, 'height', 250);
 ```
 
 Additionally, certain Ember objects still require the use of `get` and `set`,
@@ -282,13 +282,13 @@ was accessed properly and updated correctly: `get` and `set`.
 ```js
 import { get, set } from '@ember/object';
 
-let person = {};
+let image = {};
 
-set(person, 'firstName', 'Amy');
-set(person, 'lastName', 'Lam');
+set(image, 'width', 250);
+set(image, 'height', 500);
 
-get(person, 'firstName'); // 'Amy'
-get(person, 'lastName'); // 'Lam'
+get(image, 'width'); // 250
+get(image, 'height'); // 500
 ```
 
 In classic Ember, all property access had to go through these two methods. Over
@@ -329,13 +329,13 @@ updates.
 
 ```js
 class Profile {
-  person = {
-    firstName: 'Chris',
-    lastName: 'Thoburn',
+  photo = {
+    width: 300,
+    height: 300,
   };
 
-  get profileName() {
-    return `${get(this.person, 'firstName')} ${get(this.person, 'lastName')}`;
+  get photoAspectRatio() {
+    return get(this.photo, 'width') / get(this.photo, 'height');
   }
 }
 
@@ -343,7 +343,7 @@ let profile = new Profile();
 
 // render the page...
 
-set(profile.person, 'firstName', 'Christopher'); // triggers an update
+set(profile.photo, 'width', 500); // triggers an update
 ```
 
 This is also useful when working with older Ember code which has not yet
@@ -373,16 +373,16 @@ Most `ObjectProxy` classes have their own `get` and `set` method on them, like
 instance:
 
 ```js
-proxy.get('firstName');
-proxy.set('firstName', 'Amy');
+proxy.get('width');
+proxy.set('width', 100);
 ```
 
 If you're unsure whether or not a given object will be a proxy or not, you can
 still use Ember's `get` and `set` functions:
 
 ```js
-get(maybeProxy, 'firstName');
-set(maybeProxy, 'firstName', 'Amy');
+get(maybeProxy, 'width');
+set(maybeProxy, 'width', 100);
 ```
 
 <!-- eof - needed for pages that end in a code block  -->
