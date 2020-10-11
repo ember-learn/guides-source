@@ -370,18 +370,18 @@ import Component from '@ember/component';
 import { computed } from '@ember/object';
 
 export default Component.extend({
-  firstName: '',
-  lastName: '',
+  width: 0,
+  height: 0,
 
-  fullName: computed('firstName', 'lastName', function() {
-    return `${this.firstName} ${this.lastName}`;
+  aspectRatio: computed('width', 'height', function() {
+    return this.width / this.height;
   })
 });
 ```
 
 ```handlebars
 {{!-- Usage --}}
-<Person @firstName="Kenneth" @lastName="Larsen" />
+<Image @width="1920" @height="1080" />
 ```
 
 After:
@@ -389,21 +389,21 @@ After:
 ```js
 import Component from '@glimmer/component';
 
-export default class PersonComponent extends Component {
-  get fullName() {
-    return `${this.args.firstName} ${this.args.lastName}`;
+export default class ImageComponent extends Component {
+  get aspectRatio() {
+    return this.args.width / this.args.height;
   }
 }
 ```
 
 ```handlebars
 {{!-- Usage --}}
-<Person @firstName="Kenneth" @lastName="Larsen" />
+<Image @width="1920" @height="1080" />
 ```
 
 `args` and its values are automatically tracked, so there is no need to annotate
-them, the `fullName` getter will invalidate properly when they change and the
-component will rerender (if `fullName` is used in the template).
+them, the `aspectRatio` getter will invalidate properly when they change and the
+component will rerender (if `aspectRatio` is used in the template).
 
 Additionally, `args` is _not_ mutable, and is frozen in development modes. This
 is partially to prevent folks from trying to accomplish two-way bindings (which
@@ -419,11 +419,11 @@ import Component from '@ember/component';
 import { computed } from '@ember/object';
 
 export default Component.extend({
-  firstName: 'Kenneth',
-  lastName: 'Larsen',
+  width: 0,
+  height: 0,
 
-  fullName: computed('firstName', 'lastName', function() {
-    return `${this.firstName} ${this.lastName}`;
+  aspectRatio: computed('width', 'height', function() {
+    return this.width / this.height;
   })
 });
 ```
@@ -433,17 +433,17 @@ After:
 ```js
 import Component from '@glimmer/component';
 
-export default class PersonComponent extends Component {
-  get firstName() {
-    return this.args.firstName || 'Kenneth';
+export default class ImageComponent extends Component {
+  get width() {
+    return this.args.width ?? 0;
   }
 
-  get lastName() {
-    return this.args.lastName || 'Larsen';
+  get height() {
+    return this.args.height ?? 0;
   }
 
-  get fullName() {
-    return `${this.firstName} ${this.lastName}`;
+  get aspectRatio() {
+    return this.args.width / this.args.height;
   }
 }
 ```

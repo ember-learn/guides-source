@@ -269,18 +269,18 @@ refactoring:
 ```js
 // Avoid this 🛑
 class Person {
-  firstName = 'Yehuda';
-  lastName = 'Katz';
+  title = 'Prof.';
+  name = 'Tomster';
 
-  fullName = `${this.firstName} ${this.lastName}`;
+  fullName = `${this.title} ${this.name}`;
 }
 
 // because it breaks if you change the order
 class Person {
-  fullName = `${this.firstName} ${this.lastName}`;
+  fullName = `${this.title} ${this.name}`;
 
-  firstName = 'Yehuda';
-  lastName = 'Katz';
+  title = 'Prof.';
+  name = 'Tomster';
 }
 
 let yehuda = new Person();
@@ -289,11 +289,11 @@ console.log(yehuda.fullName); // undefined undefined
 // This is ok, works no matter what the order is ✅
 class Person {
   constructor() {
-    this.fullName = `${this.firstName} ${this.lastName}`;
+    this.fullName = `${this.title} ${this.name}`;
   }
 
-  firstName = 'Yehuda';
-  lastName = 'Katz';
+  title = 'Prof.';
+  name = 'Tomster';
 }
 ```
 
@@ -357,11 +357,11 @@ Getters can also be used on their own to calculate values dynamically:
 
 ```js
 class Person {
-  firstName = 'Mel';
-  lastName = 'Sumner';
+  title = 'Dr.';
+  name = 'Zoey';
 
   get fullName() {
-    return `${this.firstName} ${this.lastName}`;
+    return `${this.title} ${this.name}`;
   }
 }
 ```
