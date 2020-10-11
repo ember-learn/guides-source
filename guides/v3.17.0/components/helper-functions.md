@@ -242,34 +242,34 @@ helper lets you create new bindings (or temporary variables) in your template.
 Say your template now looks like this:
 
 ```handlebars
-Welcome back {{concat (capitalize this.person.firstName) ' ' (capitalize this.person.lastName)}}
+Welcome back {{concat (capitalize this.person.givenName) ' ' (capitalize this.person.familyName)}}
 
 Account Details:
-First Name: {{capitalize this.person.firstName}}
-Last Name: {{capitalize this.person.lastName}}
+Given Name: {{capitalize this.person.givenName}}
+Family Name: {{capitalize this.person.familyName}}
 ```
 
 As mentioned in the previous section, we use the `concat` helper to render both
-`person.firstName` and `person.lastName` in one go. But we also want to make
+`person.givenName` and `person.familyName` in one go. But we also want to make
 sure that the names are capitalized. It gets a bit repetitive to keep writing
 `capitalize` and honestly, we might just forget it at some point. Thankfully, we
 can use the `{{let}}` helper to fix this:
 
 ```handlebars
-{{#let (capitalize this.person.firstName) (capitalize this.person.lastName)
-  as |firstName lastName|
+{{#let (capitalize this.person.givenName) (capitalize this.person.familyName)
+  as |givenName familyName|
 }}
-  Welcome back {{concat firstName ' ' lastName}}
+  Welcome back {{concat givenName ' ' familyName}}
 
   Account Details:
-  First Name: {{firstName}}
-  Last Name: {{lastName}}
+  Given Name: {{givenName}}
+  Family Name: {{familyName}}
 {{/let}}
 ```
 
 Now, as long as your template is wrapped in the `let` helper, you can access the
-capitalized first name and last name as `firstName` and `lastName` instead of
-`(capitalize this.person.firstName)`.
+capitalized given name and family name as `givenName` and `familyName` instead of
+`(capitalize this.person.givenName)`.
 
 ### The `array` helper
 
@@ -305,8 +305,8 @@ components.
 ```handlebars
 <Greeting
   @person={{hash
-    firstName='Jen'
-    lastName='Weber'
+    givenName='Jen'
+    familyName='Weber'
   }}
 />
 ```
@@ -314,7 +314,7 @@ components.
 In the component's template, you can then use the `person` object:
 
 ```handlebars {data-filename=app/components/greeting/template.hbs}
-Hello, {{@person.firstName}} {{@person.lastName}}
+Hello, {{@person.givenName}} {{@person.familyName}}
 ```
 
 To consult all available built-in helpers, you can check the [template helpers API documentation](https://api.emberjs.com/ember/3.17/classes/Ember.Templates.helpers/).
