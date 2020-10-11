@@ -1,7 +1,7 @@
 Out of the box, Ember provides 2 components for building a form:
 
-* [`<Input>`](https://api.emberjs.com/ember/release/classes/Ember.Templates.components/methods/Input?anchor=Input)
-* [`<Textarea>`](https://api.emberjs.com/ember/release/classes/Ember.Templates.components/methods/Textarea?anchor=Textarea)
+* [`<Input>`](https://api.emberjs.com/ember/3.15/classes/Ember.Templates.components/methods/Input?anchor=Input)
+* [`<Textarea>`](https://api.emberjs.com/ember/3.15/classes/Ember.Templates.components/methods/Textarea?anchor=Textarea)
 
 These components are similar in HTML markup to the native `<input>` or `<textarea>` elements. In contrast to the native elements, `<Input>` and `<Textarea>` automatically update the state of their bound values.
 
@@ -161,7 +161,7 @@ Note, the `keydown` event was used for `Escape` because `keypress` is deprecated
 ### Checkboxes
 
 You can use the
-[`<Input>`](https://api.emberjs.com/ember/release/classes/Ember.Templates.components/methods/Input?anchor=Input)
+[`<Input>`](https://api.emberjs.com/ember/3.15/classes/Ember.Templates.components/methods/Input?anchor=Input)
 component to create a checkbox. Set `@type` to the string `"checkbox"`, and use `@checked` instead of `@value`.
 
 ```handlebars
@@ -215,8 +215,8 @@ With the exception of `@value` argument, you can use any [attribute](https://dev
 
 You might need to bind a property dynamically to an input if you're building a
 flexible form, for example. To achieve this you need to use the
-[`{{get}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/get?anchor=get)
-and [`{{mut}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/mut?anchor=mut)
+[`{{get}}`](https://api.emberjs.com/ember/3.15/classes/Ember.Templates.helpers/methods/get?anchor=get)
+and [`{{mut}}`](https://api.emberjs.com/ember/3.15/classes/Ember.Templates.helpers/methods/mut?anchor=mut)
 in conjunction like shown in the following example:
 
 ```handlebars
@@ -230,5 +230,5 @@ in conjunction like shown in the following example:
 The `{{get}}` helper allows you to dynamically specify which property to bind,
 while the `{{mut}}` helper allows the binding to be updated from the input. See
 the respective helper documentation for more detail:
-[`{{get}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/get?anchor=get)
-and [`{{mut}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/mut?anchor=mut).
+[`{{get}}`](https://api.emberjs.com/ember/3.15/classes/Ember.Templates.helpers/methods/get?anchor=get)
+and [`{{mut}}`](https://api.emberjs.com/ember/3.15/classes/Ember.Templates.helpers/methods/mut?anchor=mut).
