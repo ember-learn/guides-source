@@ -201,14 +201,14 @@ defines the attributes, relationships, and behavior of the data that you
 present to the user.
 
 Models define the type of data that will be provided by your server. For
-example, a `Person` model might have a `firstName` attribute that is a
+example, a `Person` model might have a `name` attribute that is a
 string, and a `birthday` attribute that is a date:
 
 ```javascript {data-filename=app/models/person.js}
 import Model, { attr } from '@ember-data/model';
 
 export default class PersonModel extends Model {
-  @attr('string') firstName;
+  @attr('string') name;
   @attr('date') birthday;
 }
 ```

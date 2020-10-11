@@ -19,9 +19,9 @@ Making changes to Ember Data records is as simple as setting the attribute you
 want to change:
 
 ```javascript
-this.store.findRecord('person', 1).then(function(tyrion) {
+this.store.findRecord('post', 1).then(function(post) {
   // ...after the record has loaded
-  tyrion.firstName = 'Yollo';
+  post.title = 'A new post';
 });
 ```
 
