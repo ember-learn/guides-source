@@ -119,14 +119,14 @@ wrap the function:
 import { computed } from '@ember/object';
 
 // This won't work:
-fullName: function() {
-  return `${this.firstName} ${this.lastName}`;
-}.property('firstName', 'lastName')
+aspectRatio: function() {
+  return this.width / this.height;
+}.property('width', 'height')
 
 
 // Instead, do this:
-fullName: computed('firstName', 'lastName', function() {
-  return `${this.firstName} ${this.lastName}`;
+aspectRatio: computed('width', 'height', function() {
+  return this.width / this.height;
 })
 ```
 
@@ -136,14 +136,14 @@ Observers are annotated using `Ember.observer()`:
 import { observer } from '@ember/object';
 
 // This won't work:
-fullNameDidChange: function() {
-  console.log('Full name changed');
-}.observes('fullName')
+aspectRatioDidChange: function() {
+  console.log('Aspect ratio changed');
+}.observes('aspectRatio')
 
 
 // Instead, do this:
-fullNameDidChange: observer('fullName', function() {
-  console.log('Full name changed');
+aspectRatioDidChange: observer('aspectRatio', function() {
+  console.log('Aspect ratio changed');
 })
 ```
 
