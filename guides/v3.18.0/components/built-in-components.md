@@ -122,6 +122,22 @@ Starting with Ember Octane, we recommend using the `{{on}}` modifier to call an 
 
 The event name (e.g. `"focusout"`, `"input"`, `"keydown"`) always follows the casing that the HTML standard uses.
 
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Tomster says...</div>
+      <div class="cta-note-message">
+        <p>
+          We mention event arguments below to help with Octane upgrade.
+          Due to a bug, event arguments do not work in versions 3.15 and 3.17-3.19.
+          Please consider using the <code>{{on}}</code> modifier or upgrading to the next LTS (3.16 or 3.20).
+        </p>
+      </div>
+    </div>
+    <img src="/images/mascots/tomster.png" role="presentation" alt="">
+  </div>
+</div>
+
 For backwards compatibility with earlier versions of Ember, it is possible to call an action by passing an event argument.
 
 ```handlebars
