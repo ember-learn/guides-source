@@ -7,7 +7,7 @@ as well as an integrated development toolkit that enables rapid iteration.
 
 Some of these features that you'll learn about in the guides are:
 
-* [Ember CLI](https://cli.emberjs.com/v3.17/) - A robust development toolkit to create, develop, and build Ember applications. Learn [basic commands](https://cli.emberjs.com/v3.17/basic-use/cli-commands/) from the CLI Guides.
+* [Ember CLI](https://cli.emberjs.com/release/) - A robust development toolkit to create, develop, and build Ember applications. Learn [basic commands](https://cli.emberjs.com/release/basic-use/cli-commands/) from the CLI Guides.
 * [Components](../components/) - The fundamental construct used in Ember applications, used to create reusable UI elements and define the layout and the functionality of the app.
 * [Routing](../routing/) - A central part of an Ember application. Enables developers to drive the application state from the URL.
 * [Services](../services/) - The way to store long-term state in your application and pass it around.
