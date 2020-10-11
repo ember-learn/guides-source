@@ -126,8 +126,7 @@ serializer.
 ```javascript {data-filename=app/serializers/application.js}
 import JSONAPISerializer from '@ember-data/serializer/json-api';
 
-export default class ApplicationSerializer extends JSONAPISerializer {      "given-name": "Jeff",
-      "family-name": "Atwood"
+export default class ApplicationSerializer extends JSONAPISerializer {  
 }
 ```
 
