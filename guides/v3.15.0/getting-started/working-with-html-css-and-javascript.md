@@ -73,12 +73,12 @@ Ember uses [JavaScript classes](https://developer.mozilla.org/en-US/docs/Web/Jav
 for many of its constructs, such as Components, Routes, Services, and more:
 
 ```js
-export default class PersonController extends Controller {
-  @tracked firstName = 'Yehuda';
-  @tracked lastName = 'Katz';
+export default class PermissionController extends Controller {
+  @tracked isAdmin = false;
+  @tracked isManager = false;
 
-  get fullName() {
-    return `${this.firstName} ${this.lastName}`;
+  get canEdit() {
+    return this.isAdmin || this.isManager;
   }
 }
 ```
@@ -95,18 +95,18 @@ Class fields allow you to assign properties to an instance of the class on
 construction. You can define a field like this:
 
 ```js
-class Person {
-  name = 'Yehuda Katz';
+class Permission {
+  canEdit = false;
 }
 ```
 
-This is very similar to defining the `Person` class with a constructor like
+This is very similar to defining the `Permission` class with a constructor like
 this:
 
 ```js
-class Person {
+class Permission {
   constructor() {
-    this.name = 'Yehuda Katz';
+    this.canEdit = false;
   }
 }
 ```
@@ -118,14 +118,14 @@ if the field is a primitive, like a string or a number, but does matter if it's
 an object or an array:
 
 ```js
-class Person {
-  friends = [];
+class Permission {
+  roles = [];
 }
 
-let tom = new Person();
-let yehuda = new Person();
+let tom = new Permission();
+let yehuda = new Permission();
 
-tom.friends === yehuda.friends;
+tom.roles === yehuda.roles;
 // false, they're different arrays
 ```
 
@@ -182,20 +182,20 @@ can be applied to class's directly as well:
 
 ```js
 @observable
-class Person {}
+class Permission {}
 ```
 
 Some decorators can also receive arguments:
 
 ```js
-class Person {
-  fullName = 'Matthew Beale';
+class Permission {
+  canEdit = false;
 
-  @alias('fullName') name;
+  @alias('canEdit') editable;
 }
 
-let matt = new Person();
-console.log(matt.name); // Matthew Beale
+let current = new Permission();
+console.log(current.editable); // false
 ```
 
 Ember provides a number of decorators, such as the `@tracked` decorator, that
@@ -214,12 +214,12 @@ which looks like this:
 
 ```js
 export default Controller.extend({
-  firstName: tracked({ value: 'Yehuda' }),
-  lastName: tracked({ value: 'Katz' }),
+  isAdmin: tracked({ value: false }),
+  isManager: tracked({ value: false }),
 
-  fullName: descriptor({
+  canEdit: descriptor({
     get() {
-      return `${this.firstName} ${this.lastName}`;
+      return this.isAdmin || this.isManager;
     },
   }),
 });

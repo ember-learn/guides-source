@@ -221,16 +221,16 @@ within your components and routes:
 
 ```js {data-filename=src/utils/person.js}
 export default class Person {
-  @tracked firstName;
-  @tracked lastName;
+  @tracked title;
+  @tracked name;
 
-  constructor(firstName, lastName) {
-    this.firstName = firstName;
-    this.lastName = lastName;
+  constructor(title, name) {
+    this.title = title;
+    this.name = name;
   }
 
   get fullName() {
-    return `${this.firstName} ${this.lastName}`;
+    return `${this.title} ${this.name}`;
   }
 }
 ```
@@ -241,7 +241,7 @@ import Person from '../../../../utils/person';
 
 export default class ApplicationRoute extends Route {
   model() {
-    return new Person('Tobias', 'Bieniek');
+    return new Person('Dr.', 'Zoey');
   }
 }
 ```
@@ -252,9 +252,9 @@ import { action } from '@ember/object';
 
 export default class ApplicationController extends Controller {
   @action
-  updateName(firstName, lastName) {
-    this.model.firstName = firstName;
-    this.model.lastName = lastName;
+  updateName(title, name) {
+    this.model.title = title;
+    this.model.name = name;
   }
 }
 ```
@@ -262,7 +262,7 @@ export default class ApplicationController extends Controller {
 ```handlebars {data-filename=app/templates/application.hbs}
 {{@model.fullName}}
 
-<button type="button" {{on "click" (fn this.updateName 'Krati' 'Ahuja')}}>
+<button type="button" {{on "click" (fn this.updateName 'Prof.' 'Tomster')}}>
   Update Name
 </button>
 ```
