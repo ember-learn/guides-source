@@ -34,7 +34,7 @@ Router.map(function() {
 });
 ```
 
-Notice that we are doing something a little different here. Instead of using the default path (`/rental`), we're specifying a custom path. Not only are we using a custom path, but we're also passing in a `:rental_id`, which is what we call a _dynamic segment_. When these routes are evaluated, the `rental_id` will be substituted with the `id` of the individual rental property that we are trying to navigate to.
+Notice that we are doing something a little different here. Instead of using the default path (`/rental`), we're specifying a custom path. Not only are we using a custom path, but we're also passing in a `:rental_id`, which is what we call a _[dynamic segment](../../../routing/defining-your-routes/#toc_dynamic-segments)_. When these routes are evaluated, the `rental_id` will be substituted with the `id` of the individual rental property that we are trying to navigate to.
 
 ## Links with Dynamic Segments
 

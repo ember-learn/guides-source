@@ -152,7 +152,7 @@ export default class MapComponent extends Component {
 }
 ```
 
-Here, we import the access token from the config file and return it from a `token` _getter_. This allows us to access our token as `this.token` both inside the `MapComponent` class body, as well as the component's template. It is also important to URL-encode the token, just in case it contains any special characters that are not URL-safe.
+Here, we import the access token from the config file and return it from a `token` _[getter](https://javascript.info/property-accessors)_. This allows us to access our token as `this.token` both inside the `MapComponent` class body, as well as the component's template. It is also important to [URL-encode](https://javascript.info/url#encoding-strings) the token, just in case it contains any special characters that are not URL-safe.
 
 ## Interpolating Values in Templates
 
@@ -174,7 +174,7 @@ First, we have a container element for styling purposes.
 
 Then we have an `<img>` tag to request and render the static map image from Mapbox.
 
-Our template contains several values that don't yet exist—`@lat`, `@lng`, `@zoom`, `@width`, and `@height`. These are _arguments_ to the `<Map>` component that we will supply when invoking it.
+Our template contains several values that don't yet exist—`@lat`, `@lng`, `@zoom`, `@width`, and `@height`. These are _[arguments](../../../components/component-arguments-and-html-attributes/#toc_arguments)_ to the `<Map>` component that we will supply when invoking it.
 
 By _parameterizing_ our component using arguments, we made a reusable component that can be invoked from different parts of the app and customized to meet the needs for those specific contexts. We have already seen this in action when using the `<LinkTo>` component [earlier](../building-pages/); we had to specify a `@route` argument so that it knew what page to navigate to.
 
@@ -192,7 +192,7 @@ The `src` attribute interpolates all the required parameters into the URL format
 
 Finally, since we are using the `@2x` "retina" image, we should specify the `width` and `height` attributes. Otherwise, the `<img>` will be rendered at twice the size than what we expected!
 
-We just added a lot of behavior into a single component, so let's write some tests! In particular, we should make sure to have some _test coverage_ for the overriding-HTML-attributes behavior we discussed above.
+We just added a lot of behavior into a single component, so let's write some tests! In particular, we should make sure to have some _[test coverage](../../../testing/)_ for the overriding-HTML-attributes behavior we discussed above.
 
 ```js { data-filename="tests/integration/components/map-test.js" data-diff="-3,+4,+6,-11,-12,-13,+14,+15,+16,+17,+18,+19,+20,+21,-23,+24,+25,+26,+27,+28,-30,+31,+32,-34,-35,-36,-37,-38,-39,+40,+41,+42,+43,+44,+45,+46,+47,+48,+49,+50,+51,+52,+53,+54,+55,+56,+57,+58,+59,+60,+61,+62,+63,+64,+65,+66,+67,+68,-70,+71,+72,+73" }
 import { module, test } from 'qunit';
@@ -272,7 +272,7 @@ module('Integration | Component | map', function(hooks) {
 });
 ```
 
-Note that the `hasAttribute` test helper from `qunit-dom` supports using _regular expressions_. We used this feature to confirm that the `src` attribute starts with `https://api.mapbox.com/`, as opposed to requiring it to be an exact match against a string. This allows us to be reasonably confident that the code is working correctly, without being overly-detailed in our tests.
+Note that the `hasAttribute` test helper from [`qunit-dom`](https://github.com/simplabs/qunit-dom/blob/master/API.md) supports using _[regular expressions](https://javascript.info/regexp-introduction)_. We used this feature to confirm that the `src` attribute starts with `https://api.mapbox.com/`, as opposed to requiring it to be an exact match against a string. This allows us to be reasonably confident that the code is working correctly, without being overly-detailed in our tests.
 
 _Fingers crossed..._ Let's run our tests.
 
@@ -417,7 +417,7 @@ Note that we did not mark our getter as `@tracked`. Unlike instance variables, g
 
 That being said, the values _produced_ by getters can certainly change. In our case, the value produced by our `src` getter depends on the values of `lat`, `lng`, `width`, `height` and `zoom` from `this.args`. Whenever these _dependencies_ get updated, we would expect `{{this.src}}` from our template to be updated accordingly.
 
-Ember does this by automatically tracking any variables that were accessed while computing a getter's value. As long as the dependencies themselves are marked as `@tracked`, Ember knows exactly when to invalidate and re-render any templates that may potentially contain any "stale" and outdated getter values. This feature is also known as _auto-track_. All arguments that can be accessed from `this.args` (in other words, `this.args.*`) are implicitly marked as `@tracked` by the Glimmer component superclass. Since we inherited from that superclass, everything Just Works™.
+Ember does this by automatically tracking any variables that were accessed while computing a getter's value. As long as the dependencies themselves are marked as `@tracked`, Ember knows exactly when to invalidate and re-render any templates that may potentially contain any "stale" and outdated getter values. This feature is also known as _[auto-track](../../../in-depth-topics/autotracking-in-depth/)_. All arguments that can be accessed from `this.args` (in other words, `this.args.*`) are implicitly marked as `@tracked` by the Glimmer component superclass. Since we inherited from that superclass, everything Just Works™.
 
 ## Getting JavaScript Values into the Test Context
 
