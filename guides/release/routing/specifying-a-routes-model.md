@@ -87,39 +87,6 @@ export default class PhotosRoute extends Route {
 }
 ```
 
-Note: A route with a dynamic segment will always have its `model` hook called when it is entered via the URL.
-If the route is entered through a transition (e.g. when using the [`<LinkTo />`](../../templates/links/) component),
-and a model object is provided, then the hook is not executed.
-If an identifier (such as an id or slug) is provided instead then the model hook will be executed.
-
-For example, transitioning to the `photo` route this way won't cause the `model` hook to be executed (because `<LinkTo />`
-was passed a model):
-
-```handlebars {data-filename=app/templates/photos.hbs}
-<h1>Photos</h1>
-{{#each @model.photos as |photo|}}
-  <p>
-    <LinkTo @route="photo" @model={{photo}}>
-      <img src="{{photo.thumbnailUrl}}" alt="{{photo.title}}" />
-    </LinkTo>
-  </p>
-{{/each}}
-```
-
-while transitioning this way will cause the `model` hook to be executed (because `<LinkTo />` was passed `photo.id`, an
-identifier, instead):
-
-```handlebars {data-filename=app/templates/photos.hbs}
-<h1>Photos</h1>
-{{#each @model.photos as |photo|}}
-  <p>
-    <LinkTo @route="photo" @model={{photo.id}}>
-      <img src="{{photo.thumbnailUrl}}" alt="{{photo.title}}" />
-    </LinkTo>
-  </p>
-{{/each}}
-```
-
 ### Ember Data example
 
 Ember Data is a powerful (but optional) library included by default in new Ember apps.
@@ -238,7 +205,7 @@ instead.
 When you provide a string or number to the `<LinkTo>`, the dynamic segment's `model` hook will run when the app transitions to the new route.
 In this example, `photo.id` might have an id of `4`:
 
-```handlebars
+```handlebars {data-filename=app/templates/photos.hbs}
 {{#each @model as |photo|}}
   <LinkTo @route="photo" @model={{photo.id}}>
     link text to display
@@ -251,7 +218,7 @@ For this reason, many Ember developers choose to pass only ids to `<LinkTo>` so 
 
 Here's what it looks like to pass the entire `photo` record:
 
-```handlebars
+```handlebars {data-filename=app/templates/photos.hbs}
 {{#each @model as |photo|}}
   <LinkTo @route="photo" @model={{photo}}>
     link text to display
@@ -307,7 +274,7 @@ from the parent route.
 ```javascript {data-filename=app/routes/album/index.js}
 import Route from '@ember/routing/route';
 
-export default class AlbumRoute extends Route {
+export default class AlbumIndexRoute extends Route {
   model() {
     let { songs } = this.modelFor('album');
 
