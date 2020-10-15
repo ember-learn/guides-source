@@ -73,7 +73,7 @@ First, here's an example using a core browser API called [`fetch`](https://devel
 Install [`ember-fetch`](https://github.com/ember-cli/ember-fetch) with the command `ember install ember-fetch`, if it is not already in the app's `package.json`.
 Older browsers may not have `fetch`, but the `ember-fetch` library includes a polyfill, so we don't have to worry about backwards compatibility!
 
-```javascript {data-filename=app/routes/photo.js}
+```javascript {data-filename=app/routes/photos.js}
 import Route from '@ember/routing/route';
 import fetch from 'fetch';
 
@@ -134,7 +134,7 @@ import { inject as service } from '@ember/service';
 export default class FavoritePostsRoute extends Route {
   @service store;
   model() {
-    return this.store.findAll('posts');
+    return this.store.findAll('post');
   }
 }
 ```
@@ -205,7 +205,7 @@ Whatever shows up in the URL at the `:post_id`, the dynamic segment, will be ava
 ```javascript {data-filename=app/routes/post.js}
 import Route from '@ember/routing/route';
 
-export default class PhotoRoute extends Route {
+export default class Route extends Route {
   model(params) {
     console.log('This is the dynamic segment data: ' + params.post_id);
     // make an API request that uses the id
