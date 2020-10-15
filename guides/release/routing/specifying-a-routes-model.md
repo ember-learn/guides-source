@@ -205,7 +205,7 @@ Whatever shows up in the URL at the `:post_id`, the dynamic segment, will be ava
 ```javascript {data-filename=app/routes/post.js}
 import Route from '@ember/routing/route';
 
-export default class Route extends Route {
+export default class PostRoute extends Route {
   model(params) {
     console.log('This is the dynamic segment data: ' + params.post_id);
     // make an API request that uses the id
