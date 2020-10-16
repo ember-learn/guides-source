@@ -17,10 +17,12 @@ Ember is made up of several libraries. If you wish to add a feature or fix a bug
 
 * [https://github.com/emberjs/website](https://github.com/emberjs/website)
 
-**Ember Guides** - Source for [http://guides.emberjs.com](http://guides.emberjs.com) which you are currently reading.
+**Ember Deprecations** - Source for [https://deprecations.emberjs.com](https://deprecations.emberjs.com)
+* [https://github.com/ember-learn/deprecation-app](https://github.com/ember-learn/deprecation-app)
 
+**Ember Guides** - Source for [http://guides.emberjs.com](http://guides.emberjs.com) which you are currently reading.
 * [https://github.com/ember-learn/guides-source](https://github.com/ember-learn/guides-source)
-* [https://github.com/ember-learn/guides-app](https://github.com/ember-learn/guides-app)
+* [https://github.com/ember-learn/cli-guides](https://github.com/ember-learn/cli-guides)
 
 **Help Wanted Issues**
 * [https://help-wanted.emberjs.com/](https://help-wanted.emberjs.com/)
