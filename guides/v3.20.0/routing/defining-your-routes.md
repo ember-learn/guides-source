@@ -329,9 +329,11 @@ Note that if you want to manually transition to this wildcard route, you need to
 
 ```javascript {data-filename=app/routes/some-route.js}
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
 export default class SomeRouteRoute extends Route {
+  @service store;
   // …
   @action
   async visitUserProfile(id) {

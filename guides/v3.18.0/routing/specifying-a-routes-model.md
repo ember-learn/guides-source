@@ -17,11 +17,8 @@ Here's an example of a model hook in use within a route:
 
 ```javascript {data-filename=app/routes/favorite-posts.js}
 import Route from '@ember/routing/route';
-import { inject as service } from '@ember/service';
 
 export default class FavoritePostsRoute extends Route {
-  @service store;
-
   model() {
     console.log('The model hook just ran!');
     return 'Hello Ember!';
@@ -130,8 +127,11 @@ In the next example, we will use Ember Data's [`findAll`](https://api.emberjs.co
 
 ```javascript {data-filename=app/routes/favorite-posts.js}
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 
 export default class FavoritePostsRoute extends Route {
+  @service store;
+
   model() {
     return this.store.findAll('posts');
   }
@@ -151,9 +151,12 @@ If all of the promises resolve, the returned promise will resolve to an object t
 
 ```javascript {data-filename=app/routes/songs.js}
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 import RSVP from 'rsvp';
 
 export default class SongsRoute extends Route {
+  @service store;
+
   model() {
     return RSVP.hash({
       songs: this.store.findAll('song'),
@@ -283,8 +286,11 @@ In this scenario, you can use the `paramsFor` method to get the parameters of a 
 
 ```javascript {data-filename=app/routes/album/index.js}
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 
 export default class AlbumIndexRoute extends Route {
+  @service store;
+
   model() {
     let { album_id } = this.paramsFor('album');
 
@@ -321,9 +327,12 @@ In the case above, the parent route looked something like this:
 
 ```javascript {data-filename=app/routes/album.js}
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 import RSVP from 'rsvp';
 
 export default class AlbumRoute extends Route {
+  @service store;
+
   model({ album_id }) {
     return RSVP.hash({
       album: this.store.findRecord('album', album_id),
