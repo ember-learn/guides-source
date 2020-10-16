@@ -139,8 +139,11 @@ you can set it as follows:
 
 ```javascript {data-filename=app/routes/articles.js}
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 
 export default class ArticlesRoute extends Route {
+  @service store;
+  
   queryParams = {
     category: {
       refreshModel: true
