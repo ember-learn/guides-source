@@ -17,11 +17,8 @@ Here's an example of a model hook in use within a route:
 
 ```javascript {data-filename=app/routes/favorite-posts.js}
 import Route from '@ember/routing/route';
-import { inject as service } from '@ember/service';
 
 export default class FavoritePostsRoute extends Route {
-  @service store;
-
   model() {
     console.log('The model hook just ran!');
     return 'Hello Ember!';
@@ -335,7 +332,7 @@ import RSVP from 'rsvp';
 
 export default class AlbumRoute extends Route {
   @service store;
-  
+
   model({ album_id }) {
     return RSVP.hash({
       album: this.store.findRecord('album', album_id),
