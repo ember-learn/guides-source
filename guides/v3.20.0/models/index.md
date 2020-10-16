@@ -186,8 +186,10 @@ first ask the store for it.
     <div class="cta-note-body">
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
-        Ember Data injects the store service in every route and controller,
-        so you can access it as `this.store`!
+        Ember Data injects the store service to every route and controller
+        so that you can immediately write <code>this.store</code>!
+        If you want to access the store in a component or another service,
+        you will need to <a href="../services/#toc_accessing-services">inject</a> the store service.
       </div>
     </div>
     <img src="/images/mascots/zoey.png" role="presentation" alt="">
