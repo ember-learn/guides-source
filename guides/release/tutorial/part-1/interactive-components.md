@@ -22,11 +22,11 @@ While doing so, you will learn about:
 
 So far, all the components we have written are purely _presentational_—they are simply reusable snippets of markup. That's pretty cool! But in Ember, components can do so much more.
 
-Sometimes, you want to associate some _behavior_ with your components so that they can do more interesting things. For example, `<LinkTo>` can respond to clicks by changing the URL and navigating us to a different page.
+Sometimes, you want to associate some _[behavior](https://developer.mozilla.org/docs/Learn/JavaScript/Building_blocks/Events)_ with your components so that they can do more interesting things. For example, `<LinkTo>` can respond to clicks by changing the URL and navigating us to a different page.
 
 Here, we are going to do just that! We are going to implement the "View Larger" and "View Smaller" functionality, which will allow our users to click on a property's image to view a larger version, and click on it again to return to the smaller version.
 
-In other words, we want a way to _toggle_ the image between one of the two _states_. In order to do that, we need a way for the component to store two possible states, and to be aware of which state it is currently in.
+In other words, we want a way to _toggle_ the image between one of the two _[states](../../../components/component-state-and-actions/)_. In order to do that, we need a way for the component to store two possible states, and to be aware of which state it is currently in.
 
 Ember optionally allows us to associate JavaScript code with a component for exactly this purpose. We can add a JavaScript file for our `<Rental::Image>` component by running the `component-class` generator:
 
@@ -36,15 +36,15 @@ installing component-class
   create app/components/rental/image.js
 ```
 
-This generated a JavaScript file with the same name as our component's template at `app/components/rentals/image.js`. It contains a _JavaScript class_, _inheriting_ from `@glimmer/component`.
+This generated a JavaScript file with the same name as our component's template at `app/components/rental/image.js`. It contains a _[JavaScript class](https://javascript.info/class)_, _[inheriting](https://javascript.info/class-inheritance)_ from `@glimmer/component`.
 
 <div class="cta">
   <div class="cta-note">
     <div class="cta-note-body">
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
-        <p><code>@glimmer/component</code>, or <em>Glimmer component</em>, is one of the several component classes available to use. They are a great starting point whenever you want to add behavior to your components. In this tutorial, we will be using Glimmer components exclusively.</p>        
-<p>In general, Glimmer components should be used whenever possible. However, you may also see <code>@ember/components</code>, or <em>classic components</em>, used in older apps. You can tell them apart by looking at their import path (which is helpful for looking up the respective documentation, as they have different and incompatible APIs).</p>
+        <p><code>@glimmer/component</code>, or <em><a href="../../../upgrading/current-edition/glimmer-components/">Glimmer component</a></em>, is one of the several component classes available to use. They are a great starting point whenever you want to add behavior to your components. In this tutorial, we will be using Glimmer components exclusively.</p>        
+<p>In general, Glimmer components should be used whenever possible. However, you may also see <code>@ember/components</code>, or <em><a href="https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/">classic components</a></em>, used in older apps. You can tell them apart by looking at their import path (which is helpful for looking up the respective documentation, as they have different and incompatible APIs).</p>
       </div>
     </div>
     <img src="/images/mascots/zoey.png" role="presentation" alt="">
@@ -87,7 +87,7 @@ Let's update our template to use this state we just added:
 {{/if}}
 ```
 
-In the template, we have access to the component's instance variables. The `{{#if ...}}...{{else}}...{{/if}}` _conditionals_ syntax allows us to render different content based on a condition (in this case, the value of the instance variable `this.isLarge`). Combining these two features, we can render either the small or the large version of the image accordingly.
+In the template, we have access to the component's instance variables. The `{{#if ...}}...{{else}}...{{/if}}` _[conditionals](../../../components/conditional-content/)_ syntax allows us to render different content based on a condition (in this case, the value of the instance variable `this.isLarge`). Combining these two features, we can render either the small or the large version of the image accordingly.
 
 We can verify this works by temporarily changing the initial value in our JavaScript file. If we change `app/components/rental/image.js` to initialize `this.isLarge = true;` in the constructor, we should see the large version of the property image in the browser. Cool!
 
@@ -115,7 +115,7 @@ Of course, our users cannot edit our source code, so we need a way for them to t
 
 ## Managing State with Tracked Properties
 
-Let's modify our class to add a _method_ for toggling the size:
+Let's modify our class to add a _[method](../../../in-depth-topics/native-classes-in-depth/#toc_methods)_ for toggling the size:
 
 ```js { data-filename="app/components/rental/image.js" data-diff="+2,+3,-6,+7,+8,+9,+10,+11" }
 import Component from '@glimmer/component';
@@ -134,9 +134,9 @@ export default class RentalImageComponent extends Component {
 
 We did a few things here, so let's break it down.
 
-First, we added the `@tracked` _decorator_ to the `isLarge` instance variable. This annotation tells Ember to monitor this variable for updates. Whenever this variable's value changes, Ember will automatically re-render any templates that depend on its value.
+First, we added the `@tracked` _[decorator](../../../in-depth-topics/native-classes-in-depth/#toc_decorators)_ to the `isLarge` instance variable. This annotation tells Ember to monitor this variable for updates. Whenever this variable's value changes, Ember will automatically re-render any templates that depend on its value.
 
-In our case, whenever we assign a new value to `this.isLarge`, the `@tracked` annotation will cause Ember to re-evaluate the `{{#if this.isLarge}}` conditional in our template, and will switch between the two _blocks_ accordingly.
+In our case, whenever we assign a new value to `this.isLarge`, the `@tracked` annotation will cause Ember to re-evaluate the `{{#if this.isLarge}}` conditional in our template, and will switch between the two _[blocks](../../../components/conditional-content/#toc_block-if)_ accordingly.
 
 <div class="cta">
   <div class="cta-note">
@@ -192,7 +192,7 @@ We changed two things here.
 
 First, since we wanted to make our component interactive, we switched the containing tag from `<div>` to `<button>` (this is important for accessibility reasons). By using the correct semantic tag, we will also get focusability and keyboard interaction handling "for free".
 
-Next, we used the `{{on}}` _modifier_ to attach `this.toggleSize` as a click handler on the button.
+Next, we used the `{{on}}` _[modifier](../../../components/template-lifecycle-dom-and-modifiers/#toc_event-handlers)_ to attach `this.toggleSize` as a click handler on the button.
 
 With that, we have created our first _interactive_ component. Go ahead and try it in the browser!
 
@@ -262,7 +262,7 @@ Let's clean up our template before moving on. We introduced a lot of duplication
 1. The presence of the `"large"` CSS class on the `<button>` tag.
 2. The "View Larger" and "View Smaller" text.
 
-These changes are buried deep within the large amount of duplicated code. We can reduce the duplication by using an `{{if}}` _expression_ instead:
+These changes are buried deep within the large amount of duplicated code. We can reduce the duplication by using an `{{if}}` _[expression](../../../components/conditional-content/#toc_inline-if)_ instead:
 
 ```handlebars { data-filename="app/components/rental/image.hbs" data-diff="-1,-2,-3,+4,+5,+6,-8,-9,-10,-11,+12,-14,-15,+16,+17" }
 {{#if this.isLarge}}
@@ -284,7 +284,7 @@ These changes are buried deep within the large amount of duplicated code. We can
 </button>
 ```
 
-The expression version of `{{if}}` takes two arguments. The first argument is the _condition_. The second argument is the expression that should be evaluated if the condition is true.
+The expression version of `{{if}}` takes two arguments. The first argument is the condition. The second argument is the expression that should be evaluated if the condition is true.
 
 Optionally, `{{if}}` can take a third argument for what the expression should evaluate into if the condition is false. This means we could rewrite the button label like so:
 
