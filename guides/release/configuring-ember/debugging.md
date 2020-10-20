@@ -1,6 +1,9 @@
 Ember provides several configuration options that can help you debug problems
 with your application.
 
+## Ember Inspector
+The [Ember Inspector](https://github.com/emberjs/ember-inspector) is a browser extension that makes understanding and debugging your Ember.js application a snap. To learn more about it check out the [dedicated guide](../../ember-inspector/).
+
 ## Routing
 
 ### Log router transitions
