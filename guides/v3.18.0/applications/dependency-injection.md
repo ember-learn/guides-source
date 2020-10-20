@@ -184,7 +184,7 @@ import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 
 export default Component.extend({
-  cart: service('shopping-cart')
+  @service('shopping-cart') cart;
 });
 ```
 
@@ -196,7 +196,7 @@ import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 
 export default Component.extend({
-  shoppingCart: service()
+  @service shoppingCart;
 });
 ```
 
