@@ -34,7 +34,8 @@ const releasePaths = walkSync('guides/release')
  */
 const doNotCheckList = [
   'http://localhost:4200',
-  'https://codepen.io/melsumner/live/ZJeYoP' // codepen does not play with fetch api
+  'https://codepen.io/melsumner/live/ZJeYoP', // codepen does not play with fetch api
+  'https://www.ember-cli-mirage.com/docs/testing/acceptance-tests', // results in an initial 404, but forwards to the correct path
 ];
 
 describe('check all external links in markdown files', function() {
