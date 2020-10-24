@@ -56,9 +56,6 @@ module.exports = function(environment) {
         }
       },
     ],
-    infoBanner: {
-      content: `Ember Octane is here! A lot has changed since Ember 3.14, including these Guides. Read more in the <a href="https://blog.emberjs.com/2019/12/20/octane-is-here.html">Ember Blog</a>.`
-    },
   };
 
   if (environment === 'development') {
