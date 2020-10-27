@@ -73,7 +73,7 @@ First, here's an example using a core browser API called [`fetch`](https://devel
 Install [`ember-fetch`](https://github.com/ember-cli/ember-fetch) with the command `ember install ember-fetch`, if it is not already in the app's `package.json`.
 Older browsers may not have `fetch`, but the `ember-fetch` library includes a polyfill, so we don't have to worry about backwards compatibility!
 
-```javascript {data-filename=app/routes/photo.js}
+```javascript {data-filename=app/routes/photos.js}
 import Route from '@ember/routing/route';
 import fetch from 'fetch';
 
@@ -85,39 +85,6 @@ export default class PhotosRoute extends Route {
     return { photos };
   }
 }
-```
-
-Note: A route with a dynamic segment will always have its `model` hook called when it is entered via the URL.
-If the route is entered through a transition (e.g. when using the [`<LinkTo />`](../../templates/links/) component),
-and a model object is provided, then the hook is not executed.
-If an identifier (such as an id or slug) is provided instead then the model hook will be executed.
-
-For example, transitioning to the `photo` route this way won't cause the `model` hook to be executed (because `<LinkTo />`
-was passed a model):
-
-```handlebars {data-filename=app/templates/photos.hbs}
-<h1>Photos</h1>
-{{#each @model.photos as |photo|}}
-  <p>
-    <LinkTo @route="photo" @model={{photo}}>
-      <img src="{{photo.thumbnailUrl}}" alt="{{photo.title}}" />
-    </LinkTo>
-  </p>
-{{/each}}
-```
-
-while transitioning this way will cause the `model` hook to be executed (because `<LinkTo />` was passed `photo.id`, an
-identifier, instead):
-
-```handlebars {data-filename=app/templates/photos.hbs}
-<h1>Photos</h1>
-{{#each @model.photos as |photo|}}
-  <p>
-    <LinkTo @route="photo" @model={{photo.id}}>
-      <img src="{{photo.thumbnailUrl}}" alt="{{photo.title}}" />
-    </LinkTo>
-  </p>
-{{/each}}
 ```
 
 ### Ember Data example
@@ -133,7 +100,7 @@ export default class FavoritePostsRoute extends Route {
   @service store;
 
   model() {
-    return this.store.findAll('posts');
+    return this.store.findAll('post');
   }
 }
 ```
@@ -209,7 +176,7 @@ Whatever shows up in the URL at the `:post_id`, the dynamic segment, will be ava
 ```javascript {data-filename=app/routes/post.js}
 import Route from '@ember/routing/route';
 
-export default class PhotoRoute extends Route {
+export default class PostRoute extends Route {
   model(params) {
     console.log('This is the dynamic segment data: ' + params.post_id);
     // make an API request that uses the id
@@ -242,7 +209,7 @@ instead.
 When you provide a string or number to the `<LinkTo>`, the dynamic segment's `model` hook will run when the app transitions to the new route.
 In this example, `photo.id` might have an id of `4`:
 
-```handlebars
+```handlebars {data-filename=app/templates/photos.hbs}
 {{#each @model as |photo|}}
   <LinkTo @route="photo" @model={{photo.id}}>
     link text to display
@@ -255,7 +222,7 @@ For this reason, many Ember developers choose to pass only ids to `<LinkTo>` so 
 
 Here's what it looks like to pass the entire `photo` record:
 
-```handlebars
+```handlebars {data-filename=app/templates/photos.hbs}
 {{#each @model as |photo|}}
   <LinkTo @route="photo" @model={{photo}}>
     link text to display
@@ -314,7 +281,7 @@ from the parent route.
 ```javascript {data-filename=app/routes/album/index.js}
 import Route from '@ember/routing/route';
 
-export default class AlbumRoute extends Route {
+export default class AlbumIndexRoute extends Route {
   model() {
     let { songs } = this.modelFor('album');
 
