@@ -45,7 +45,7 @@ A sophisticated text editor for code, markup and prose.
 
 You'll want to remove any linter / completion manager you currently have installed (or disable them for `js/ts/hbs` files), and follow the install guides for the following packages:
 
-[Conquer for Completion (coc) for nvim](https://github.com/neoclide/coc.nvim) - coc is an intellisense engine for neovim which takes control over all linting, hinting, and language-server integration.
+[Conquer for Completion (coc) for nvim](https://github.com/neoclide/coc.nvim) -  an `intellisense` engine for neovim which takes control over all linting, hinting, and language-server integration.
 
 [coc-ember](https://github.com/NullVoxPopuli/coc-ember) - Ember.js language server extension including useful for configuration instructions.
 
