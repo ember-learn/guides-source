@@ -1,4 +1,4 @@
-During development, add Ember.js specifc extensions to your code editor for added functionality. Below is a list of some of the extensions available:  
+During development, add Ember.js specific extensions to your code editor for added functionality. Below is a list of some of the extensions available, many of which are created and maintained by the developer community:  
 
 ## Visual Studio Code
 
