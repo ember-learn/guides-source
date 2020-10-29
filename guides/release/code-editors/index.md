@@ -43,7 +43,7 @@ A sophisticated text editor for code, markup and prose.
 
 ## neovim
 
-You'll want to remove any linter / completion manager you currently have installed (or disable them for js/ts/hbs files), and follow the install guides for the following packages:
+You'll want to remove any linter / completion manager you currently have installed (or disable them for `js/ts/hbs` files), and follow the install guides for the following packages:
 
 [Conquer for Completion (coc) for nvim](https://github.com/neoclide/coc.nvim) - coc is an intellisense engine for neovim which takes control over all linting, hinting, and language-server integration.
 
