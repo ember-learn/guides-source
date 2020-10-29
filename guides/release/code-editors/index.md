@@ -8,7 +8,7 @@ Visual Studio Code is a code editor optimized for building and debugging modern 
 
 [Glimmer Templates Syntax](https://marketplace.visualstudio.com/items?itemName=lifeart.vscode-glimmer-syntax) - Syntax formatting for glimmer templates.
 
-[Related Files Hopper](https://marketplace.visualstudio.com/items?itemName=suchitadoshi1987.file-hopper) - This extension allows movement within a collection of related files with a single keystroke making development faster and efficient. This is especially useful for finding related files within embers components. 
+[Related Files Hopper](https://marketplace.visualstudio.com/items?itemName=suchitadoshi1987.file-hopper) - This extension allows movement within a collection of related files with a single keystroke making development faster and efficient. This is especially useful for finding related files within components. 
 
 [EditorConfig for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig) - Attempts to override user/workspace settings with settings found in .editorconfig files. The .editorconfig file helps developers define and maintain consistent coding styles between different editors and IDEs.
 
