@@ -28,7 +28,7 @@ Vim is a highly configurable text editor built to make creating and changing any
 
 Atom is hackable text editor for the 21st Century.
 
-[emberjs-atom](https://atom.io/packages/emberjs-atom) - Atom autocompletions, snippets for Ember.js.
+[emberjs-atom](https://atom.io/packages/emberjs-atom) - Atom autocompletions and snippets for Ember.js.
 
 [atom-ember-snippets](https://github.com/mattmcmanus/atom-ember-snippets) - Ember.js ES6, Ember Data & Handlebars snippets for Atom editor.
 
