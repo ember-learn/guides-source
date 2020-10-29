@@ -22,7 +22,7 @@ Vim is a highly configurable text editor built to make creating and changing any
 
 [vim-ember-hbs](https://github.com/joukevandermaas/vim-ember-hbs) - a plugin to add Ember template syntax highlighting and indentation to Vim.
 
-[embre tools](https://github.com/AndrewRadev/ember_tools.vim) - Varrious tools to work with Ember.js projects.
+[`ember_tools`](https://github.com/AndrewRadev/ember_tools.vim) - Various tools to work with Ember.js projects.
 
 ## Atom
 
