@@ -49,7 +49,7 @@ You'll want to remove any linter / completion manager you currently have install
 
 [coc-ember](https://github.com/NullVoxPopuli/coc-ember) - Ember.js language server extension including useful for configuration instructions.
 
-[Ember Language Server](https://github.com/lifeart/ember-language-server/tree/component-context-info) - Ember.js language server extension for coc.
+[Ember Language Server](https://github.com/lifeart/ember-language-server/tree/component-context-info) - Ember.js language server extension for `coc`.
 
 Optional addons for Unstable Ember Language Server:
 
