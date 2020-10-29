@@ -2,7 +2,7 @@ During development, add Ember.js specifc extensions to your code editor for adde
 
 ## Visual Studio Code
 
-Visual Studio Code is a code editor optimized for building and debugging modern web applications. VSC is one of the most popular text editors among ember developers.
+Visual Studio Code is a code editor optimized for building and debugging modern web applications. Visual Studio Code is one of the most popular text editors among Ember developers.
 
 [Unstable Ember Language Server](https://marketplace.visualstudio.com/items?itemName=lifeart.vscode-ember-unstable) - This provides autocompletions in templates and allows go-to-definition behavior within ember projects where tsserver wouldn't be able to help.
 
