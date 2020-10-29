@@ -47,7 +47,7 @@ You'll want to remove any linter / completion manager you currently have install
 
 [Conquer for Completion (coc) for nvim](https://github.com/neoclide/coc.nvim) - coc is an intellisense engine for neovim which takes control over all linting, hinting, and language-server integration.
 
-[coc-ember](https://github.com/NullVoxPopuli/coc-ember) - Ember.js language server extension including useful for configuratio instructions.
+[coc-ember](https://github.com/NullVoxPopuli/coc-ember) - Ember.js language server extension including useful for configuration instructions.
 
 [Ember Language Server](https://github.com/lifeart/ember-language-server/tree/component-context-info) - Ember.js language server extension for coc.
 
