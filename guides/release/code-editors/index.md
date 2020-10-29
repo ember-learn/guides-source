@@ -18,7 +18,7 @@ Visual Studio Code is a code editor optimized for building and debugging modern 
 
 Vim is a highly configurable text editor built to make creating and changing any kind of text very efficient. It is included as "vi" with most UNIX systems and with Apple OS X. 
 
-[ember.vim](https://github.com/dsawardekar/ember.vim) - Ember.vim is a Vim plugin for the Ember.js frontend framework inspired by vim-rails.
+[ember.vim](https://github.com/dsawardekar/ember.vim) -  a Vim plugin for the Ember.js frontend framework inspired by `vim-rails`.
 
 [vim-ember-hbs](https://github.com/joukevandermaas/vim-ember-hbs) - a plugin to add Ember Handlebars/HTMLBars syntax highlighting and indentation to Vim.
 
