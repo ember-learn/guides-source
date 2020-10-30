@@ -94,7 +94,7 @@ will be given the `active` CSS class. For example, if you were at the URL
 ### Multiple Dynamic Segments
 
 Sometimes, you may need to generate links for nested routes which can
-have multiple [dynamic segment](../../routing/defining-your-routes/#toc_dynamic-segments).
+have multiple [dynamic segments](../../routing/defining-your-routes/#toc_dynamic-segments).
 For example, consider the following route definitions:
 
 ```javascript {data-filename=app/router.js}
