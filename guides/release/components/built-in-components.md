@@ -99,7 +99,7 @@ In the next example, the `disabled` attribute is bound to the value of `isReadOn
 />
 ```
 
-Recall that there were a few exceptions. The following input attributes must be passed as arguments (i.e. do prepend `@`) to the `<Input>` component:
+Recall that there were a few exceptions. The following input attributes must be passed as arguments (i.e. you must prepend `@`) to the `<Input>` component:
 
 - `@checked`
 - `@id`
