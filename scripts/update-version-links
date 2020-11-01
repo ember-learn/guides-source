@@ -14,6 +14,8 @@
  * Examples:
  * ./update-version-links ../guides/v3.21.0 3.21
  * ./update-version-links ../guides/v3.21.0 3.21 --dry-run
+ * ./update-version-links ../guides/v3.21.0 3.21 --silent
+ * ./update-version-links ../guides/v3.21.0 3.21 --verbose
  *
  * Will replace the following:
  * https://api.emberjs.com/ember/release/ -> https://api.emberjs.com/ember/3.21/
@@ -93,7 +95,17 @@ if (process.argv[2] === '--tests') {
 
 const currentFolder = fs.realpathSync(process.argv[2]);
 const newVersionNumber = process.argv[3];
-const dryRun = process.argv[4] && process.argv[4] === '--dry-run';
+
+let dryRun = false;
+let verbose = false;
+let silent = false;
+
+if (process.argv.length > 4) {
+  const options = process.argv.slice(4);
+  dryRun = options.includes('--dry-run');
+  verbose = options.includes('--verbose');
+  silent = options.includes('--silent');
+}
 
 let filesFound = [];
 let filesUpdated = [];
@@ -121,20 +133,24 @@ const recursion = (path) => {
   });
 }
 
-console.log('Welcome to the automated process of updating the Guides version links');
-console.log();
-
-if (dryRun) {
-  console.log('❗ Running on --dry-run. Files will NOT be updated.');
+if (silent) {
+  recursion(currentFolder);
+} else {
+  console.log('Welcome to the automated process of updating the Guides version links');
   console.log();
-}
 
-recursion(currentFolder);
+  if (dryRun) {
+    console.log('❗ Running on --dry-run. Files will NOT be updated.');
+    console.log();
+  }
 
-console.log(`Found: ${filesFound.length} files`);
-console.log(`${dryRun ? 'To be updated:' : 'Updated:'} ${filesUpdated.length} files`);
+  recursion(currentFolder);
 
-if (filesUpdated.length) {
-  console.log();
-  console.log(filesUpdated);
+  console.log(`Found: ${filesFound.length} files`);
+  console.log(`${dryRun ? 'To be updated:' : 'Updated:'} ${filesUpdated.length} files`);
+
+  if (verbose) {
+    console.log();
+    console.log(filesUpdated);
+  }
 }
