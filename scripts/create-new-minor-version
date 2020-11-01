@@ -66,6 +66,11 @@ sed -i .bak -e "/currentVersion/i \\
 rm guides/versions.yml.bak
 echo "  DONE"
 
+# Update version numbers in links
+echo "🤖 Updating version number for links in /guides/$CURRENT_VERSION/**/*.md"
+node scripts/update-version-links guides/$CURRENT_VERSION $(echo $CURRENT_VERSION | cut -d "v" -f2) --silent
+echo "  DONE"
+
 echo
 echo "🤖 Committing changes and publishing branch to remote"
 git add .
