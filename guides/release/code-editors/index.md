@@ -4,25 +4,25 @@ During development, add Ember.js specific extensions to your code editor for add
 
 Visual Studio Code is a code editor optimized for building and debugging modern web applications. Visual Studio Code is one of the most popular text editors among Ember developers.
 
-[Unstable Ember Language Server](https://marketplace.visualstudio.com/items?itemName=lifeart.vscode-ember-unstable) - This provides autocompletions in templates and allows go-to-definition behavior within Ember projects.
+[Ember Language Server](https://marketplace.visualstudio.com/items?itemName=EmberTooling.vscode-ember) - This provides autocomplete in templates and allows go-to-definition behavior within Ember projects.
+
+[Ember JS (ES6) and Handlebars code snippets](https://marketplace.visualstudio.com/items?itemName=phanitejakomaravolu.EmberES6Snippets) - This extension contains Ember.js and Handlebars snippets to help you to type less but code more.
+
+[EditorConfig for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig) - Attempts to override user/workspace settings with settings found in `.editorconfig` files. The `.editorconfig` file helps developers define and maintain consistent coding styles between different editors and IDEs.
 
 [Glimmer Templates Syntax](https://marketplace.visualstudio.com/items?itemName=lifeart.vscode-glimmer-syntax) - Syntax formatting for glimmer templates.
 
-[Related Files Hopper](https://marketplace.visualstudio.com/items?itemName=suchitadoshi1987.file-hopper) - This extension allows movement within a collection of related files with a single keystroke making development faster and efficient. This is especially useful for finding related files within components. 
-
-[EditorConfig for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig) - Attempts to override user/workspace settings with settings found in .editorconfig files. The .editorconfig file helps developers define and maintain consistent coding styles between different editors and IDEs.
-
 [Prettier for Handlebars](https://marketplace.visualstudio.com/items?itemName=Alonski.prettier-for-handlebars-vscode) - Format your handlebars files with Prettier ...that's it! Note, because this uses the currently unreleased Prettier, it may break with future changes to Prettier.
 
-## vim
+## Vim
 
 Vim is a highly configurable text editor built to make creating and changing any kind of text very efficient. It is included as "vi" with most UNIX systems and with Apple OS X. 
 
-[ember.vim](https://github.com/dsawardekar/ember.vim) -  a Vim plugin for the Ember.js frontend framework inspired by `vim-rails`.
+[ember.vim](https://github.com/dsawardekar/ember.vim) -  a Vim plugin for the Ember.js frontend framework.
 
 [vim-ember-hbs](https://github.com/joukevandermaas/vim-ember-hbs) - a plugin to add Ember template syntax highlighting and indentation to Vim.
 
-[`ember_tools`](https://github.com/AndrewRadev/ember_tools.vim) - Various tools to work with Ember.js projects.
+[Ember Tools](https://github.com/AndrewRadev/ember_tools.vim) - Various tools to work with Ember.js projects.
 
 ## Atom
 
@@ -39,23 +39,20 @@ Atom is hackable text editor for the 21st Century.
 A sophisticated text editor for code, markup and prose.
 
 [ember-cli-sublime-snippets](https://github.com/terminalvelocity/ember-cli-sublime-snippets) - Ember CLI snippets for Sublime Text 3.
-[ember-component-template-split-view](https://github.com/mmitchellgarcia/ember-component-template-split-view) - Super simple Sublime Text plugin that will let you open corresponding template or route files with EmberJS components.
+[ember-component-template-split-view](https://github.com/mmitchellgarcia/ember-component-template-split-view) - Super simple Sublime Text plugin that will let you open corresponding template or route files with Ember.js components.
 
-## neovim
+## Neovim
 
-You'll want to remove any linter / completion manager you currently have installed (or disable them for `js/ts/hbs` files), and follow the install guides for the following packages:
+An honourable mention to Neovim, a hyperextensible Vim-based text editor with a good range of ember extensions. You'll want to remove any linter / completion manager you currently have installed (or disable them for js, ts or hbs files), and follow the install guides for the following packages:
 
-[Conquer for Completion (coc) for nvim](https://github.com/neoclide/coc.nvim) -  an `intellisense` engine for neovim which takes control over all linting, hinting, and language-server integration.
+[Conquer for Completion (COC) for Neovim](https://github.com/neoclide/coc.nvim) -  an Intellisense engine for Neovim which takes control over all linting, hinting, and language-server integration.
 
-[coc-ember](https://github.com/NullVoxPopuli/coc-ember) - Ember.js language server extension including useful for configuration instructions.
+[coc-ember](https://github.com/NullVoxPopuli/coc-ember) - Ember.js language server extension including useful configuration instructions.
 
-[Ember Language Server](https://github.com/lifeart/ember-language-server/tree/component-context-info) - Ember.js language server extension for `coc`.
-
-Optional addons for Unstable Ember Language Server:
-
+Optional addons for Neovim's Ember Language Server:
 - [els-addon-docs](https://github.com/lifeart/els-addon-docs)
 - [els-addon-typed-templates](https://github.com/lifeart/els-addon-typed-templates)
 - [ember-fast-cli](https://github.com/lifeart/ember-fast-cli)
 - [vim-ember-hbs](https://github.com/joukevandermaas/vim-ember-hbs)
-- [https://github.com/pangloss/vim-javascript](https://github.com/pangloss/vim-javascript)
-- [https://github.com/Quramy/vim-js-pretty-template](https://github.com/Quramy/vim-js-pretty-template)
+- [vim-javascript](https://github.com/pangloss/vim-javascript)
+- [vim-js-pretty-template](https://github.com/Quramy/vim-js-pretty-template)
