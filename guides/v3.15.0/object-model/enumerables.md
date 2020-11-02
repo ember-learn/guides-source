@@ -20,7 +20,7 @@ where available.
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
         It is best practice to
-        <a href="https://guides.emberjs.com/release/configuring-ember/disabling-prototype-extensions/">
+        <a href="https://guides.emberjs.com/v3.15.0/configuring-ember/disabling-prototype-extensions/">
           disable prototype extensions
         </a>
         in your app.
