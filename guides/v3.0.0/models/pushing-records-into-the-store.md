@@ -19,7 +19,7 @@ you want to update the UI immediately.
 
 ### Pushing Records
 
-To push a record into the store, call the store's [`push()`](https://api.emberjs.com/ember-data/2.16/classes/DS.Store/methods/push?anchor=push) method.
+To push a record into the store, call the store's [`push()`](https://api.emberjs.com/ember-data/3.0/classes/DS.Store/methods/push?anchor=push) method.
 
 For example, imagine we want to preload some data into the store when
 the application boots for the first time.
