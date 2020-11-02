@@ -62,8 +62,8 @@ module('Unit | Utility | math-library', function() {
 Here are more examples where unit tests are ideal:
 
 - Inside a controller, a computed property continues to filter `this.model` correctly after an action is taken
-- Check how [`normalize()`](https://api.emberjs.com/ember-data/release/classes/JSONAPISerializer/methods/normalize?anchor=normalize) in a serializer receives data
-- Check how [`serialize()`](https://api.emberjs.com/ember-data/release/classes/JSONAPISerializer/methods/serialize?anchor=serialize) in a serializer sends data
+- Check how [`normalize()`](https://api.emberjs.com/ember-data/3.21/classes/JSONAPISerializer/methods/normalize?anchor=normalize) in a serializer receives data
+- Check how [`serialize()`](https://api.emberjs.com/ember-data/3.21/classes/JSONAPISerializer/methods/serialize?anchor=serialize) in a serializer sends data
 - A [cron](https://en.wikipedia.org/wiki/Cron) utility parses an input string into an object that can be used for UI
 
 ### What to Watch Out for
@@ -90,7 +90,7 @@ module('Unit | Service | flash-messages', function(hooks) {
 });
 ```
 
-By calling `setupTest()`, you gain access to a few things. First is Ember's [Dependency Injection](../../applications/dependency-injection/) system. In short, you can [look up](https://api.emberjs.com/ember/release/classes/ApplicationInstance/methods/lookup?anchor=lookup) anything in your application, with a little help from `this.owner`. Second, you gain access to some common utility functions, `this.get()` and `this.set()`, in your tests. Finally, you can use `pauseTest()` to [debug your tests](../#toc_how-to-debug-tests).
+By calling `setupTest()`, you gain access to a few things. First is Ember's [Dependency Injection](../../applications/dependency-injection/) system. In short, you can [look up](https://api.emberjs.com/ember/3.21/classes/ApplicationInstance/methods/lookup?anchor=lookup) anything in your application, with a little help from `this.owner`. Second, you gain access to some common utility functions, `this.get()` and `this.set()`, in your tests. Finally, you can use `pauseTest()` to [debug your tests](../#toc_how-to-debug-tests).
 
 
 ## Rendering Tests
