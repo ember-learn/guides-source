@@ -6,7 +6,7 @@ Visual Studio Code is a code editor optimized for building and debugging modern 
 
 [Ember Language Server](https://marketplace.visualstudio.com/items?itemName=EmberTooling.vscode-ember) - Provides autocomplete in templates and allows go-to-definition behavior within Ember projects.
 
-[Ember JS (ES6) and Handlebars code snippets](https://marketplace.visualstudio.com/items?itemName=phanitejakomaravolu.EmberES6Snippets) - Ables Ember.js and Handlebars snippets to help you to type less but code more.
+[Ember JS (ES6) and Handlebars code snippets](https://marketplace.visualstudio.com/items?itemName=phanitejakomaravolu.EmberES6Snippets) - Enables Ember.js and Handlebars snippets to let you to type less and code more.
 
 [EditorConfig for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig) - Attempts to override user/workspace settings with settings found in `.editorconfig` files. The `.editorconfig` file helps developers define and maintain consistent coding styles between different editors and IDEs.
 
