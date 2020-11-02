@@ -5,7 +5,7 @@ component.
 ## The `<LinkTo />` Component
 
 You create a link to a route using the
-[`<LinkTo />`](https://api.emberjs.com/ember/release/classes/Ember.Templates.components/methods/LinkTo?anchor=LinkTo)
+[`<LinkTo />`](https://api.emberjs.com/ember/3.21/classes/Ember.Templates.components/methods/LinkTo?anchor=LinkTo)
 component.
 
 ```javascript {data-filename=app/router.js}
