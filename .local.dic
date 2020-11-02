@@ -112,6 +112,7 @@ naïve
 natively
 nav
 nav-bar
+Neovim
 *NPM
 NVDA
 onboarding
@@ -196,7 +197,9 @@ untracked
 untrusted
 usecase
 viewport
-vim-ember-hbs 
+vim-ember-hbs
+vim-javascript
+vim-js-pretty-template
 VM
 Voilà
 voilà

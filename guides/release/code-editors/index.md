@@ -28,7 +28,7 @@ Vim is a highly configurable text editor built to make creating and changing any
 
 Atom is hackable text editor for the 21st Century.
 
-[emberjs-atom](https://atom.io/packages/emberjs-atom) - Atom autocompletions and snippets for Ember.js.
+[emberjs-atom](https://atom.io/packages/emberjs-atom) - Atom autocomplete and snippets for Ember.js.
 
 [atom-ember-snippets](https://github.com/mattmcmanus/atom-ember-snippets) - Ember.js ES6, Ember Data & Handlebars snippets for Atom editor.
 
@@ -43,7 +43,7 @@ A sophisticated text editor for code, markup and prose.
 
 ## Neovim
 
-An honourable mention to Neovim, a hyperextensible Vim-based text editor with a good range of ember extensions. You'll want to remove any linter / completion manager you currently have installed (or disable them for js, ts or hbs files), and follow the install guides for the following packages:
+An honorable mention to Neovim, a hyper-extensible Vim-based text editor with a good range of ember extensions. You'll want to remove any linter / completion manager you currently have installed (or disable them for `.js`, `.ts` or `.hbs` files), and follow the install guides for the following packages:
 
 [Conquer for Completion (COC) for Neovim](https://github.com/neoclide/coc.nvim) -  an Intellisense engine for Neovim which takes control over all linting, hinting, and language-server integration.
 
