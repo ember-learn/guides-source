@@ -7,13 +7,13 @@ With the plethora of libraries readily available for front-end development, some
 		<div class="shape shape--dark"></div>
     <div class="shape shape--accent"></div>
     <div class="shape shape--light"></div>
-		<a href="https://guides.emberjs.com/release/getting-started/intro/">Ember.js</a>
+		<a href="./getting-started/intro/">Ember.js</a>
 	</li>
 	<li class="list-item-card">
 		<div class="shape shape--dark"></div>
     <div class="shape shape--accent"></div>
     <div class="shape shape--light"></div>
-		<a href="https://guides.emberjs.com/release/models/">Ember Data</a>
+		<a href="./models/">Ember Data</a>
 	</li>
 	<li class="list-item-card">
 		<div class="shape shape--dark"></div>
@@ -24,5 +24,5 @@ With the plethora of libraries readily available for front-end development, some
 		<div class="shape shape--dark"></div>
     <div class="shape shape--accent"></div>
     <div class="shape shape--light"></div>		
-		<a href="https://guides.emberjs.com/release/ember-inspector/">Ember Inspector</a></li>
+		<a href="./ember-inspector/">Ember Inspector</a></li>
 </ul>
