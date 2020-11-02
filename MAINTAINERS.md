@@ -4,7 +4,7 @@ This document contains instructions and guidelines for maintainer tasks, like pu
 
 ## Continuous deployment
 
-Whenever a PR is merged into `master`, Travis will automatically run the scripts that build the app and upload the results to Netlify. Netlify will then deploy the site. We currently allow only one Travis job at a time so that concurrent deploy commands do not cause a conflict.
+Netlify will deploy the site when a PR is successfully merged into `master`.
 
 ## Deploying a new version
 

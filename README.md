@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/ember-learn/guides-source.svg?branch=master)](https://travis-ci.org/ember-learn/guides-source)
+[![This project uses GitHub Actions for continuous integration.](https://github.com/ember-learn/guides-source/workflows/CI/badge.svg)](https://github.com/ember-learn/guides-source/actions?query=workflow%3ACI)
 [![This project is using Percy.io for visual regression testing.](https://percy.io/static/images/percy-badge.svg)](https://percy.io/Ember/guides-app)
 
 # Ember Guides Source
@@ -69,7 +69,7 @@ The guides are spellchecked and linted for Markdown consistency. You can check y
 npm run lint:md
 ```
 
-Linting and spellchecking must pass or they will fail in Travis-CI. See [CONTRIBUTING.md](CONTRIBUTING.md) for more information on linting and spellchecking.
+Linting and spellchecking must pass or they will fail in CI (continuous integration). See [CONTRIBUTING.md](CONTRIBUTING.md) for more information on linting and spellchecking.
 
 ### Internal and external links
 
