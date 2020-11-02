@@ -19,7 +19,7 @@ you want to update the UI immediately.
 
 ### Pushing Records
 
-To push a record into the store, call the store's [`push()`](https://api.emberjs.com/ember-data/release/classes/Store/methods/push?anchor=push) method.
+To push a record into the store, call the store's [`push()`](https://api.emberjs.com/ember-data/3.15/classes/Store/methods/push?anchor=push) method.
 
 For example, imagine we want to preload some data into the store when
 the application boots for the first time.
@@ -44,6 +44,7 @@ import { inject as service } from '@ember/service';
 
 export default class ApplicationRoute extends Route {
   @service store;
+  
   model() {
     this.store.push({
       data: [{
@@ -100,6 +101,7 @@ import { inject as service } from '@ember/service';
 
 export default class ApplicationRoute extends Route {
   @service store;
+
   model() {
     this.store.pushPayload({
       albums: [
@@ -132,10 +134,13 @@ so it can be accessed by other parts of your application.
 
 ```javascript {data-filename=app/routes/confirm-payment.js}
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 import fetch from 'fetch';
 
 export default class ConfirmPaymentRoute extends Route {
+  @service store;
+
   @action
   confirm(data) {
     fetch('process-payment', {

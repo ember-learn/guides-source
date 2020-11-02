@@ -7,9 +7,9 @@ Usually you want to redirect them to the login page, and after they have success
 There are many other reasons you probably want to have the last word on whether a user can or cannot access a certain page.
 Ember allows you to control that access with a combination of hooks and methods in your route.
 
-One of the methods is [`transitionTo()`](https://api.emberjs.com/ember/release/classes/Route/methods/transitionTo?anchor=transitionTo).
+One of the methods is [`transitionTo()`](https://api.emberjs.com/ember/3.15/classes/Route/methods/transitionTo?anchor=transitionTo).
 Calling `transitionTo()` from a route or
-[`transitionToRoute()`](https://www.emberjs.com/api/ember/release/classes/Controller/methods/transitionToRoute?anchor=transitionToRoute) from a controller will stop any transitions currently in progress and start a new one, functioning as a redirect.
+[`transitionToRoute()`](https://api.emberjs.com/ember/3.15/classes/Controller/methods/transitionToRoute?anchor=transitionToRoute) from a controller will stop any transitions currently in progress and start a new one, functioning as a redirect.
 `transitionTo()` behaves exactly like the [`LinkTo`](../../templates/links/) helper.
 
 The other one is [`replaceWith()`](https://api.emberjs.com/ember/3.15/classes/Route/methods/replaceWith?anchor=replaceWith) which works the same way as `transitionTo()`.

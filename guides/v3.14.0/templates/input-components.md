@@ -1,5 +1,5 @@
 The [`<Input>`](https://api.emberjs.com/ember/3.14/classes/Ember.Templates.components/methods/Input?anchor=Input)
-and [`<Textarea>`](https://api.emberjs.com/ember/release/classes/Ember.Templates.components/methods/Textarea?anchor=Textarea)
+and [`<Textarea>`](https://api.emberjs.com/ember/3.14/classes/Ember.Templates.components/methods/Textarea?anchor=Textarea)
 components are the easiest way to create common form controls.
 Using these components, you can create form controls that are almost identical to the native HTML `<input>` or `<textarea>` elements, but are aware of Ember's two-way bindings and can automatically update.
 
@@ -90,7 +90,7 @@ Checkboxes support the following properties:
 
 Which can be bound or set as described in the previous section.
 
-If you want to dispatch an action on a certain [event](https://api.emberjs.com/ember/release/classes/Component#event-handler-methods), you will always need to define the event name in camelCase format:
+If you want to dispatch an action on a certain [event](https://api.emberjs.com/ember/3.14/classes/Component#event-handler-methods), you will always need to define the event name in camelCase format:
 
 ```handlebars
 <Input @type="text" @keyPress={{action "updateName"}} />
@@ -104,7 +104,7 @@ If you want to dispatch an action on a certain [event](https://api.emberjs.com/e
 
 Will bind the value of the text area to `name` on the current context.
 
-[`<Textarea>`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/textarea?anchor=textarea) supports binding and/or setting the following properties:
+[`<Textarea>`](https://api.emberjs.com/ember/3.14/classes/Ember.Templates.components/methods/Textarea?anchor=Textarea) supports binding and/or setting the following properties:
 
 - `value`
 - `name`
@@ -126,10 +126,10 @@ Will bind the value of the text area to `name` on the current context.
 
 ### Binding dynamic attribute
 
-You might need to bind a property dynamically to an input if you're building a flexible form, for example. To achieve this you need to use the [`{{get}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/get?anchor=get) and [`{{mut}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/mut?anchor=mut) in conjunction like shown in the following example:
+You might need to bind a property dynamically to an input if you're building a flexible form, for example. To achieve this you need to use the [`{{get}}`](https://api.emberjs.com/ember/3.14/classes/Ember.Templates.helpers/methods/get?anchor=get) and [`{{mut}}`](https://api.emberjs.com/ember/3.14/classes/Ember.Templates.helpers/methods/mut?anchor=mut) in conjunction like shown in the following example:
 
 ```handlebars
 <Input @value={{mut (get this.person this.field)}} />
 ```
 
-The `{{get}}` helper allows you to dynamically specify which property to bind, while the `{{mut}}` helper allows the binding to be updated from the input. See the respective helper documentation for more detail: [`{{get}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/get?anchor=get) and [`{{mut}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/mut?anchor=mut).
+The `{{get}}` helper allows you to dynamically specify which property to bind, while the `{{mut}}` helper allows the binding to be updated from the input. See the respective helper documentation for more detail: [`{{get}}`](https://api.emberjs.com/ember/3.14/classes/Ember.Templates.helpers/methods/get?anchor=get) and [`{{mut}}`](https://api.emberjs.com/ember/3.14/classes/Ember.Templates.helpers/methods/mut?anchor=mut).

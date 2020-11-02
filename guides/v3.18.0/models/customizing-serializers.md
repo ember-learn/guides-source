@@ -35,8 +35,8 @@ should be dash-cased. For example, if you request a record from
     "type": "people",
     "id": "123",
     "attributes": {
-      "first-name": "Jeff",
-      "last-name": "Atwood"
+      "given-name": "Jeff",
+      "family-name": "Atwood"
     }
   }
 }
@@ -51,15 +51,15 @@ A response that contains multiple records may have an array in its
     "type": "people",
     "id": "123",
     "attributes": {
-      "first-name": "Jeff",
-      "last-name": "Atwood"
+      "given-name": "Jeff",
+      "family-name": "Atwood"
     }
   }, {
     "type": "people",
     "id": "124",
     "attributes": {
-      "first-name": "Yehuda",
-      "last-name": "Katz"
+      "given-name": "Yehuda",
+      "family-name": "Katz"
     }
   }]
 }
@@ -286,8 +286,8 @@ model. For example:
 import Model, { attr } from '@ember-data/model';
 
 export default class PersonModel extends Model {
-  @attr('string') firstName;
-  @attr('string') lastName;
+  @attr('string') givenName;
+  @attr('string') familyName;
   @attr('boolean') isPersonOfTheYear;
 }
 ```
@@ -301,8 +301,8 @@ in the document payload returned by your server:
     "id": "44",
     "type": "people",
     "attributes": {
-      "first-name": "Zaphod",
-      "last-name": "Beeblebrox",
+      "given-name": "Zaphod",
+      "family-name": "Beeblebrox",
       "is-person-of-the-year": true
     }
   }
@@ -335,15 +335,15 @@ representing the record. An object with the property key can also be
 used to designate the attribute's key on the response payload.
 
 
-If the JSON for `person` has a key of `lastNameOfPerson`, and the
-desired attribute name is simply `lastName`, then create a custom
+If the JSON for `person` has a key of `familyNameOfPerson`, and the
+desired attribute name is simply `familyName`, then create a custom
 Serializer for the model and override the `attrs` property.
 
 ```javascript {data-filename=app/models/person.js}
 import Model, { attr } from '@ember-data/model';
 
 export default class PersonModel extends Model {
-  @attr('string') lastName;
+  @attr('string') familyName;
 }
 ```
 
@@ -352,7 +352,7 @@ import JSONAPISerializer from '@ember-data/serializer/json-api';
 
 export default class PersonSerializer extends JSONAPISerializer {
   attrs = {
-    lastName: 'lastNameOfPerson'
+    familyName: 'familyNameOfPerson'
   };
 }
 ```

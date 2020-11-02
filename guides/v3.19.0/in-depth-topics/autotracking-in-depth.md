@@ -221,16 +221,16 @@ within your components and routes:
 
 ```js {data-filename=src/utils/person.js}
 export default class Person {
-  @tracked firstName;
-  @tracked lastName;
+  @tracked title;
+  @tracked name;
 
-  constructor(firstName, lastName) {
-    this.firstName = firstName;
-    this.lastName = lastName;
+  constructor(title, name) {
+    this.title = title;
+    this.name = name;
   }
 
   get fullName() {
-    return `${this.firstName} ${this.lastName}`;
+    return `${this.title} ${this.name}`;
   }
 }
 ```
@@ -241,7 +241,7 @@ import Person from '../../../../utils/person';
 
 export default class ApplicationRoute extends Route {
   model() {
-    return new Person('Tobias', 'Bieniek');
+    return new Person('Dr.', 'Zoey');
   }
 }
 ```
@@ -252,9 +252,9 @@ import { action } from '@ember/object';
 
 export default class ApplicationController extends Controller {
   @action
-  updateName(firstName, lastName) {
-    this.model.firstName = firstName;
-    this.model.lastName = lastName;
+  updateName(title, name) {
+    this.model.title = title;
+    this.model.name = name;
   }
 }
 ```
@@ -262,7 +262,7 @@ export default class ApplicationController extends Controller {
 ```handlebars {data-filename=app/templates/application.hbs}
 {{@model.fullName}}
 
-<button type="button" {{on "click" (fn this.updateName 'Krati' 'Ahuja')}}>
+<button type="button" {{on "click" (fn this.updateName 'Prof.' 'Tomster')}}>
   Update Name
 </button>
 ```
@@ -320,5 +320,93 @@ class ShoppingList {
   }
 }
 ```
+
+## Caching of tracked properties
+
+In contrast to computed properties from pre-Octane, tracked properties are not
+cached. A tracked property can also be recomputed even though its dependencies
+haven't changed. The following example shows this behavior:
+
+```js
+import { tracked } from '@glimmer/tracking';
+
+let count = 0;
+
+class Photo {
+  @tracked width = 600;
+  @tracked height = 400;
+
+  get aspectRatio() {
+    count++;
+    return this.width / this.height;
+  }
+}
+
+let photo = new Photo();
+
+console.log(photo.aspectRatio); // 1.5
+console.log(count); // 1
+console.log(photo.aspectRatio); // 1.5
+console.log(count); // 2
+
+photo.width = 800;
+
+console.log(photo.aspectRatio); // 2
+console.log(count); // 3
+```
+
+From the value of `count`, we see that `aspectRatio` was calculated 3 times.
+
+Recomputing is fine in most cases. If the computation that happens in the
+getter is very expensive, however, you will want to cache the value and
+retrieve it when the dependencies haven't changed. You want to recompute only
+if a dependency has been updated.
+
+Ember's [cache API](https://github.com/ember-polyfills/ember-cache-primitive-polyfill) lets
+you cache a getter in 2 steps:
+
+1. Pass a function that is costly to compute to `createCache`.
+1. In the getter, call the function with `getValue` and return its value.
+
+With these steps in mind, let's introduce caching to `aspectRatio`:
+
+```js
+import { tracked } from '@glimmer/tracking';
+import { createCache, getValue } from '@glimmer/tracking/primitives/cache';
+
+let count = 0;
+
+class Photo {
+  @tracked width = 600;
+  @tracked height = 400;
+
+  // `#` indicates a private field on the class
+  #aspectRatioCache = createCache(() => {
+    count++;
+    return this.width / this.height;
+  });
+
+  get aspectRatio() {
+    return getValue(this.#aspectRatioCache);
+  }
+}
+
+let photo = new Photo();
+
+console.log(photo.aspectRatio); // 1.5
+console.log(count); // 1
+console.log(photo.aspectRatio); // 1.5
+console.log(count); // 1
+
+photo.width = 800;
+
+console.log(photo.aspectRatio); // 2
+console.log(count); // 2
+```
+
+From the value of `count`, we see that, this time, `aspectRatio` was calculated
+only twice.
+
+The cache API was released in Ember 3.22. If you want to leverage this API between versions 3.13 and 3.21, you can install [ember-cache-primitive-polyfill](https://github.com/ember-polyfills/ember-cache-primitive-polyfill) to your project.
 
 <!-- eof - needed for pages that end in a code block  -->

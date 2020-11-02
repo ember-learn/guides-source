@@ -45,7 +45,7 @@ you would declare the dependency with braces: `todos.@each.{priority,title}`
 ### Computed Property Macros
 
 Ember also provides a computed property macro
-[`computed.filterBy`](https://api.emberjs.com/ember/2.16/classes/@ember%2Fobject%2Fcomputed/methods/alias?anchor=filterBy&show=inherited%2Cprotected%2Cprivate%2Cdeprecated),
+[`computed.filterBy`](https://api.emberjs.com/ember/3.0/classes/@ember%2Fobject%2Fcomputed/methods/filterBy?anchor=filterBy),
 which is a shorter way of expressing the above computed property:
 
 ```javascript {data-filename=app/components/todo-list.js}

@@ -5,11 +5,11 @@ format, Ember Data allows you to customize the serializer or use a
 different serializer entirely.
 
 Ember Data ships with 3 serializers. The
-[`JSONAPISerializer`](https://api.emberjs.com/ember-data/release/classes/JSONAPISerializer)
+[`JSONAPISerializer`](https://api.emberjs.com/ember-data/3.19/classes/JSONAPISerializer)
 is the default serializer and works with JSON:API backends. The
-[`JSONSerializer`](https://api.emberjs.com/ember-data/release/classes/JSONSerializer)
+[`JSONSerializer`](https://api.emberjs.com/ember-data/3.19/classes/JSONSerializer)
 is a simple serializer for working with single JSON object or arrays of records. The
-[`RESTSerializer`](https://api.emberjs.com/ember-data/release/classes/RESTSerializer)
+[`RESTSerializer`](https://api.emberjs.com/ember-data/3.19/classes/RESTSerializer)
 is a more complex serializer that supports sideloading and was the default
 serializer before 2.0.
 
@@ -35,8 +35,8 @@ should be dash-cased. For example, if you request a record from
     "type": "people",
     "id": "123",
     "attributes": {
-      "first-name": "Jeff",
-      "last-name": "Atwood"
+      "given-name": "Jeff",
+      "family-name": "Atwood"
     }
   }
 }
@@ -51,15 +51,15 @@ A response that contains multiple records may have an array in its
     "type": "people",
     "id": "123",
     "attributes": {
-      "first-name": "Jeff",
-      "last-name": "Atwood"
+      "given-name": "Jeff",
+      "family-name": "Atwood"
     }
   }, {
     "type": "people",
     "id": "124",
     "attributes": {
-      "first-name": "Yehuda",
-      "last-name": "Katz"
+      "given-name": "Yehuda",
+      "family-name": "Katz"
     }
   }]
 }
@@ -141,7 +141,7 @@ export default class PostSerializer extends JSONAPISerializer {
 ```
 
 To change the format of the data that is sent to the backend store, you can use
-the [`serialize()`](https://api.emberjs.com/ember-data/release/classes/JSONAPISerializer/methods/serialize?anchor=serialize)
+the [`serialize()`](https://api.emberjs.com/ember-data/3.19/classes/JSONAPISerializer/methods/serialize?anchor=serialize)
 hook. Let's say that we have this JSON:API response from Ember Data:
 
 ```json
@@ -200,7 +200,7 @@ export default class ApplicationSerializer extends JSONAPISerializer {
 
 Similarly, if your backend store provides data in a format other than JSON:API,
 you can use the
-[`normalizeResponse()`](https://api.emberjs.com/ember-data/release/classes/JSONAPISerializer/methods/normalizeResponse?anchor=normalizeResponse)
+[`normalizeResponse()`](https://api.emberjs.com/ember-data/3.19/classes/JSONAPISerializer/methods/normalizeResponse?anchor=normalizeResponse)
 hook. Using the same example as above, if the server provides data that looks
 like:
 
@@ -254,11 +254,11 @@ export default class ApplicationSerializer extends JSONAPISerializer {
 ```
 
 To normalize only a single model, you can use the
-[`normalize()`](https://api.emberjs.com/ember-data/release/classes/JSONAPISerializer/methods/normalize?anchor=normalize)
+[`normalize()`](https://api.emberjs.com/ember-data/3.19/classes/JSONAPISerializer/methods/normalize?anchor=normalize)
 hook similarly.
 
 For more hooks to customize the serializer with, see the [Ember Data serializer
-API documentation](https://api.emberjs.com/ember-data/release/classes/JSONAPISerializer).
+API documentation](https://api.emberjs.com/ember-data/3.19/classes/JSONAPISerializer).
 
 ### IDs
 
@@ -286,8 +286,8 @@ model. For example:
 import Model, { attr } from '@ember-data/model';
 
 export default class PersonModel extends Model {
-  @attr('string') firstName;
-  @attr('string') lastName;
+  @attr('string') givenName;
+  @attr('string') familyName;
   @attr('boolean') isPersonOfTheYear;
 }
 ```
@@ -301,8 +301,8 @@ in the document payload returned by your server:
     "id": "44",
     "type": "people",
     "attributes": {
-      "first-name": "Zaphod",
-      "last-name": "Beeblebrox",
+      "given-name": "Zaphod",
+      "family-name": "Beeblebrox",
       "is-person-of-the-year": true
     }
   }
@@ -311,7 +311,7 @@ in the document payload returned by your server:
 
 If the attributes returned by your server use a different convention
 you can use the serializer's
-[`keyForAttribute()`](https://api.emberjs.com/ember-data/release/classes/JSONAPISerializer/methods/keyForAttribute?anchor=keyForAttribute)
+[`keyForAttribute()`](https://api.emberjs.com/ember-data/3.19/classes/JSONAPISerializer/methods/keyForAttribute?anchor=keyForAttribute)
 method to convert an attribute name in your model to a key in your JSON
 payload. For example, if your backend returned attributes that are
 `under_scored` instead of `dash-cased` you could override the `keyForAttribute`
@@ -335,15 +335,15 @@ representing the record. An object with the property key can also be
 used to designate the attribute's key on the response payload.
 
 
-If the JSON for `person` has a key of `lastNameOfPerson`, and the
-desired attribute name is simply `lastName`, then create a custom
+If the JSON for `person` has a key of `familyNameOfPerson`, and the
+desired attribute name is simply `familyName`, then create a custom
 Serializer for the model and override the `attrs` property.
 
 ```javascript {data-filename=app/models/person.js}
 import Model, { attr } from '@ember-data/model';
 
 export default class PersonModel extends Model {
-  @attr('string') lastName;
+ @attr('string') familyName;
 }
 ```
 
@@ -352,7 +352,7 @@ import JSONAPISerializer from '@ember-data/serializer/json-api';
 
 export default class PersonSerializer extends JSONAPISerializer {
   attrs = {
-    lastName: 'lastNameOfPerson'
+    familyName: 'familyNameOfPerson'
   };
 }
 ```
@@ -423,7 +423,7 @@ The JSON should encode the relationship as an ID to another record:
 ```
 If needed these naming conventions can be overwritten by implementing
 the
-[`keyForRelationship()`](https://api.emberjs.com/ember-data/release/classes/JSONAPISerializer/methods/keyForRelationship?anchor=keyForRelationship)
+[`keyForRelationship()`](https://api.emberjs.com/ember-data/3.19/classes/JSONAPISerializer/methods/keyForRelationship?anchor=keyForRelationship)
 method.
 
 ```javascript {data-filename=app/serializers/application.js}
@@ -546,7 +546,7 @@ looks similar to this:
 The `JSONAPISerializer` is built on top of the `JSONSerializer` so they share
 many of the same hooks for customizing the behavior of the
 serialization process. Be sure to check out the
-[API docs](https://api.emberjs.com/ember-data/release/classes/JSONSerializer)
+[API docs](https://api.emberjs.com/ember-data/3.19/classes/JSONSerializer)
 for a full list of methods and properties.
 
 
@@ -752,7 +752,7 @@ Note that the type is `"post"` to match the post model and the
 ### Normalizing adapter responses
 
 When creating a custom serializer you will need to define a
-[normalizeResponse](https://api.emberjs.com/ember-data/release/classes/Serializer/methods/normalizeResponse?anchor=normalizeResponse)
+[normalizeResponse](https://api.emberjs.com/ember-data/3.19/classes/Serializer/methods/normalizeResponse?anchor=normalizeResponse)
 method to transform the response from the adapter into the normalized
 JSON object described above.
 
@@ -764,7 +764,7 @@ the possible values of: `'findRecord'`, `'queryRecord'`, `'findAll'`,
 `'createRecord'`, `'deleteRecord'`, and `'updateRecord'`) as arguments.
 
 A custom serializer will also need to define a
-[normalize](https://api.emberjs.com/ember-data/release/classes/Serializer/methods/normalize?anchor=normalize)
+[normalize](https://api.emberjs.com/ember-data/3.19/classes/Serializer/methods/normalize?anchor=normalize)
 method.
 This method is called by `store.normalize(type, payload)` and is often
 used for normalizing requests made outside of Ember Data because they
@@ -773,7 +773,7 @@ do not fall into the normal CRUD flow that the adapter provides.
 ### Serializing records
 
 Finally a serializer will need to implement a
-[serialize](https://api.emberjs.com/ember-data/release/classes/Serializer/methods/serialize?anchor=serialize)
+[serialize](https://api.emberjs.com/ember-data/3.19/classes/Serializer/methods/serialize?anchor=serialize)
 method.
 Ember Data will provide a record snapshot and an options hash and this
 method should return an object that the adapter will send to the

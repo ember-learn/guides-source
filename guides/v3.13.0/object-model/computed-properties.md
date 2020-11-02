@@ -255,4 +255,4 @@ Person = EmberObject.extend({
 ```
 
 To see the full list of computed property macros, have a look at
-[the API documentation](https://api.emberjs.com/ember/3.11/modules/@ember%2Fobject)
+[the API documentation](https://api.emberjs.com/ember/3.13/modules/@ember%2Fobject)

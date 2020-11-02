@@ -1,5 +1,5 @@
-The [`<Input>`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/if?anchor=input)
-and [`<Textarea>`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/if?anchor=textarea)
+The [`<Input>`](https://api.emberjs.com/ember/3.13/classes/Ember.Templates.components/methods/Input?anchor=Input)
+and [`<Textarea>`](https://api.emberjs.com/ember/3.13/classes/Ember.Templates.components/methods/Textarea?anchor=Textarea)
 components are the easiest way to create common form controls.
 Using these helpers, you can create form controls that are almost identical to the native HTML `<input>` or `<textarea>` elements, but are aware of Ember's two-way bindings and can automatically update.
 
@@ -71,7 +71,7 @@ More [event types](https://api.emberjs.com/ember/3.13/classes/Component#event-ha
 ## Checkboxes
 
 You can also use the
-[`<Input>`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/if?anchor=input)
+[`<Input>`](https://api.emberjs.com/ember/3.13/classes/Ember.Templates.components/methods/Input?anchor=Input)
 helper to create a checkbox by setting its `type`:
 
 ```handlebars
@@ -93,7 +93,7 @@ Checkboxes support the following properties:
 Which can be bound or set as described in the previous section.
 
 
-Checkboxes are a special input type. If you want to dispatch an action on a certain [event](https://api.emberjs.com/ember/3.11/classes/Component#event-handler-methods), you will always need to define the event name in camelCase format:
+Checkboxes are a special input type. If you want to dispatch an action on a certain [event](https://api.emberjs.com/ember/3.13/classes/Component#event-handler-methods), you will always need to define the event name in camelCase format:
 
 ```handlebars
 <Input @type="checkbox" @keyPress={{action "updateName"}} />
@@ -108,7 +108,7 @@ Checkboxes are a special input type. If you want to dispatch an action on a cert
 
 Will bind the value of the text area to `name` on the current context.
 
-[`<Textarea>`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/textarea?anchor=textarea) supports binding and/or setting the following properties:
+[`<Textarea>`](https://api.emberjs.com/ember/3.13/classes/Ember.Templates.components/methods/Textarea?anchor=Textarea) supports binding and/or setting the following properties:
 
 * `value`
 * `name`
@@ -130,10 +130,10 @@ Will bind the value of the text area to `name` on the current context.
 
 ### Binding dynamic attribute
 
-You might need to bind a property dynamically to an input if you're building a flexible form, for example. To achieve this you need to use the [`{{get}}`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/get?anchor=get) and [`{{mut}}`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/mut?anchor=mut) in conjunction like shown in the following example:
+You might need to bind a property dynamically to an input if you're building a flexible form, for example. To achieve this you need to use the [`{{get}}`](https://api.emberjs.com/ember/3.13/classes/Ember.Templates.helpers/methods/get?anchor=get) and [`{{mut}}`](https://api.emberjs.com/ember/3.13/classes/Ember.Templates.helpers/methods/mut?anchor=mut) in conjunction like shown in the following example:
 
 ```handlebars
 <Input @value={{mut (get this.person this.field)}} />
 ```
 
-The `{{get}}` helper allows you to dynamically specify which property to bind, while the `{{mut}}` helper allows the binding to be updated from the input. See the respective helper documentation for more detail: [`{{get}}`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/get?anchor=get) and [`{{mut}}`](https://api.emberjs.com/ember/3.11/classes/Ember.Templates.helpers/methods/mut?anchor=mut).
+The `{{get}}` helper allows you to dynamically specify which property to bind, while the `{{mut}}` helper allows the binding to be updated from the input. See the respective helper documentation for more detail: [`{{get}}`](https://api.emberjs.com/ember/3.13/classes/Ember.Templates.helpers/methods/get?anchor=get) and [`{{mut}}`](https://api.emberjs.com/ember/3.13/classes/Ember.Templates.helpers/methods/mut?anchor=mut).

@@ -71,7 +71,7 @@ defined on it to be a promise.
 If the promise fulfills, the transition will pick up where it left off and
 begin resolving the next (child) route's model, pausing if it too is a
 promise, and so on, until all destination route models have been
-resolved. The values passed to the [`setupController()`](https://api.emberjs.com/ember/release/classes/Route/methods/setupController?anchor=setupController) hook for each route
+resolved. The values passed to the [`setupController()`](https://api.emberjs.com/ember/3.19/classes/Route/methods/setupController?anchor=setupController) hook for each route
 will be the fulfilled values from the promises.
 
 
@@ -114,11 +114,10 @@ By default, if a model promise rejects during a transition, the transition is
 aborted, no new destination route templates are rendered, and an error
 is logged to the console.
 
-You can configure this error-handling logic via the `error` handler on
-the route's `actions` hash. When a promise rejects, an `error` event
-will be fired on that route and bubble up to `route:application`'s
-default error handler unless it is handled by a custom error handler
-along the way, e.g.:
+You can configure this error-handling logic via the `error` handler. When a
+promise rejects, an `error` event will be fired on that route and bubble up
+to `route:application`'s default error handler unless it is handled by a
+custom error handler along the way, e.g.:
 
 ```javascript {data-filename=app/routes/good-for-nothing.js}
 import Route from '@ember/routing/route';

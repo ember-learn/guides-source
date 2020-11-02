@@ -166,9 +166,9 @@ A _component_ is kind of like your own custom HTML tag. You can tell that a tag 
     <div class="cta-note-body">
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
-        A component's name is the same as its name on the file system,
-        capitalizing the first letter and every letter following a `-`, and
-        removing the `-` ("pascal case").
+        A component's name is derived from its file name.
+        We capitalize the first letter and every letter after <code>-</code>, then remove the hyphens.
+        This is known as pascal case.
       </div>
     </div>
     <img src="/images/mascots/zoey.png" role="presentation" alt="">
@@ -398,7 +398,7 @@ Components can be broken down to any level, included in each other and reused.
 
 ### Nesting Components in Folders
 
-The avatar and username components are directly related to the sent and received message components. Right now, they're grouped at the top level. As you get more components, this could make a big mess! Instead, we want group the related components together in the filesystem. We can do this by moving them into subfolders within `app/components`.
+The avatar and username components are directly related to the sent and received message components. Right now, they're grouped at the top level. As you get more components, this could make a big mess! Instead, we want to group the related components together in the filesystem. We can do this by moving them into subfolders within `app/components`.
 
 ```handlebars {data-filename="" data-diff="-4,-5,+6,+7,+8,-9,-10,-11,+12,+13,+14"}
 app/

@@ -61,20 +61,20 @@ baz.offsetHeight // read (fast since style and layout are already known)
 Interestingly, this pattern holds true for many other types of work.
 Essentially, batching similar work allows for better pipelining, and further optimization.
 
-Let's look at a similar example that is optimized in Ember, starting with a `User` object:
+Let's look at a similar example that is optimized in Ember, starting with an `Image` object:
 
 ```javascript
 import EmberObject, {
   computed
 } from '@ember/object';
 
-class User extends EmberObject {
-  firstName = null
-  lastName = null
+class Image extends EmberObject {
+  width = null;
+  height = null;
 
-  @computed('firstName', 'lastName')
-  get fullName() {
-    return `${this.firstName} ${this.lastName}`;
+  @computed('width', 'height')
+  get aspectRatio() {
+    return this.width / this.height;
   }
 }
 ```
@@ -82,19 +82,19 @@ class User extends EmberObject {
 and a template to display its attributes:
 
 ```handlebars
-{{this.firstName}}
-{{this.fullName}}
+{{this.width}}
+{{this.aspectRatio}}
 ```
 
 If we execute the following code without the run loop:
 
 ```javascript
-let user = User.create({ firstName: 'Tom', lastName: 'Huda' });
-user.set('firstName', 'Yehuda');
-// {{firstName}} and {{fullName}} are updated
+let profilePhoto = Image.create({ width: 250, height: 500 });
+user.set('width', 300);
+// {{width}} and {{aspectRatio}} are updated
 
-user.set('lastName', 'Katz');
-// {{lastName}} and {{fullName}} are updated
+user.set('height', 300);
+// {{height}} and {{aspectRatio}} are updated
 ```
 
 We see that the browser will rerender the template twice.
@@ -103,11 +103,11 @@ However, if we have the run loop in the above code,
 the browser will only rerender the template once the attributes have all been set.
 
 ```javascript
-let user = User.create({ firstName: 'Tom', lastName: 'Huda' });
-user.set('firstName', 'Yehuda');
-user.set('lastName', 'Katz');
-user.set('firstName', 'Tom');
-user.set('lastName', 'Huda');
+let profilePhoto = Image.create({ width: 250, height: 500 });
+user.set('width', 600);
+user.set('height', 600);
+user.set('width', 300);
+user.set('height', 300);
 ```
 
 In the above example with the run loop, since the user's attributes end up at the same values as before execution,
@@ -199,9 +199,9 @@ $('a').click(() => {
 });
 ```
 
-The run loop API calls that _schedule_ work, i.e. [`run.schedule`](https://api.emberjs.com/ember/release/classes/@ember%2Frunloop/methods/schedule?anchor=schedule),
-[`run.scheduleOnce`](https://api.emberjs.com/ember/release/classes/@ember%2Frunloop/methods/scheduleOnce?anchor=scheduleOnce),
-[`run.once`](https://api.emberjs.com/ember/release/classes/@ember%2Frunloop/methods/once?anchor=once) have the property that they will approximate a run loop for you if one does not already exist.
+The run loop API calls that _schedule_ work, i.e. [`run.schedule`](https://api.emberjs.com/ember/3.16/classes/@ember%2Frunloop/methods/schedule?anchor=schedule),
+[`run.scheduleOnce`](https://api.emberjs.com/ember/3.16/classes/@ember%2Frunloop/methods/scheduleOnce?anchor=scheduleOnce),
+[`run.once`](https://api.emberjs.com/ember/3.16/classes/@ember%2Frunloop/methods/once?anchor=once) have the property that they will approximate a run loop for you if one does not already exist.
 These automatically created run loops we call _autoruns_.
 
 Here is some pseudocode to describe what happens using the example above:
@@ -242,5 +242,5 @@ $('a').click(() => {
 
 ## Where can I find more information?
 
-Check out the [Ember.run](https://api.emberjs.com/ember/release/classes/@ember%2Frunloop) API documentation,
+Check out the [Ember.run](https://api.emberjs.com/ember/3.16/classes/@ember%2Frunloop) API documentation,
 as well as the [Backburner library](https://github.com/ebryn/backburner.js/) that powers the run loop.

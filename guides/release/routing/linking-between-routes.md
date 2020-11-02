@@ -5,7 +5,7 @@ component.
 ## The `<LinkTo />` Component
 
 You create a link to a route using the
-[`<LinkTo />`](https://www.emberjs.com/api/ember/release/classes/Ember.Templates.helpers/methods/get?anchor=link-to)
+[`<LinkTo />`](https://api.emberjs.com/ember/release/classes/Ember.Templates.components/methods/LinkTo?anchor=LinkTo)
 component.
 
 ```javascript {data-filename=app/router.js}
@@ -67,7 +67,7 @@ segment directly, bypassing the `serialize` hook entirely:
 <a href="/photos/1">First Photo Ever</a>
 ```
 
-When the user click on the link, Ember will run the `PhotoEditRoute`'s `model`
+When the user clicks on the link, Ember will run the `PhotoEditRoute`'s `model`
 hook with `params.photo_id = 1`. On the other hand, if a model object was
 passed instead of the `id`, the model hook will _not_ run.
 
@@ -94,7 +94,7 @@ will be given the `active` CSS class. For example, if you were at the URL
 ### Multiple Dynamic Segments
 
 Sometimes, you may need to generate links for nested routes which can
-have multiple [dynamic segment](../../routing/defining-your-routes/#toc_dynamic-segments).
+have multiple [dynamic segments](../../routing/defining-your-routes/#toc_dynamic-segments).
 For example, consider the following route definitions:
 
 ```javascript {data-filename=app/router.js}

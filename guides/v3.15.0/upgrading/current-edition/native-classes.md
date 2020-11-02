@@ -176,12 +176,12 @@ Other than that, fields can generally safely replace properties.
 Getters and setters can be defined directly on native classes:
 
 ```js
-export default class Person {
-  firstName = 'Katie';
-  lastName = 'Gengler';
+export default class Image {
+  width = 0;
+  height = 0;
 
-  get fullName() {
-    return `${this.firstName} ${this.lastName}`;
+  get aspectRatio() {
+    return this.width / this.height;
   }
 }
 ```
@@ -197,11 +197,11 @@ recently, but you can define them now with the standard JavaScript getter syntax
 
 ```js
 export default EmberObject.extend({
-  firstName: 'Katie',
-  lastName: 'Gengler',
+  width: 0,
+  height: 0,
 
-  get fullName() {
-    return `${this.firstName} ${this.lastName}`;
+  get aspectRatio() {
+    return this.width / this.height;
   },
 });
 ```
@@ -216,12 +216,12 @@ fact a type of decorator:
 import EmberObject, { computed } from '@ember/object';
 
 export default EmberObject.extend({
-  firstName: 'Katie',
-  lastName: 'Gengler',
+  width: 0,
+  height: 0,
 
-  fullName: computed('firstName', 'lastName', {
+  aspectRatio: computed('width', 'height', {
     get() {
-      return `${this.firstName} ${this.lastName}`;
+      return this.width / this.height;
     },
   }),
 });
@@ -233,13 +233,13 @@ syntax:
 ```js
 import { computed } from '@ember/object';
 
-export default class Person {
-  firstName = 'Katie';
-  lastName = 'Gengler';
+export default class Image {
+  width = 0;
+  height = 0;
 
-  @computed('firstName', 'lastName')
-  get fullName() {
-    return `${this.firstName} ${this.lastName}`;
+  @computed('width', 'height')
+  get aspectRatio() {
+    return this.width / this.height;
   }
 }
 ```
@@ -263,20 +263,22 @@ function join(...keys) {
 
 // Before
 const ClassicPerson = EmberObject.extend({
-  firstName: 'Katie',
-  lastName: 'Gengler',
+  nickname: 'Tom',
+  title: 'Prof.',
+  name: 'Tomster',
 
-  fullName: join('firstName', 'lastName'),
-  name: alias('fullName'),
+  fullName: join('title', 'name'),
+  displayName: alias('nickname'),
 });
 
 // After
 class Person {
-  firstName = 'Katie';
-  lastName = 'Gengler';
+  nickName = 'Tom';
+  title = 'Prof.';
+  name = 'Tomster';
 
-  @join('firstName', 'lastName') fullName;
-  @alias('fullName') name;
+  @join('title', 'name') fullName;
+  @alias('nickname') displayName;
 }
 ```
 
@@ -335,8 +337,7 @@ const Person = EmberObject.extend();
 const Firefighter = Person.extend({
   init() {
     this._super(...arguments);
-    this.firstName = 'Rob';
-    this.lastName = 'Jackson';
+    this.name = 'Rob Jackson';
   },
 
   saveKitten() {
@@ -351,8 +352,7 @@ class Person {}
 class Firefighter extends Person {
   constructor() {
     super();
-    this.firstName = 'Rob';
-    this.lastName = 'Jackson';
+    this.name = 'Rob Jackson';
   }
 
   saveKitten() {
@@ -469,8 +469,8 @@ syntax and _not_ extending from `EmberObject` at all in your apps.
   const Actress = Person.extend({});
   ```
 
-[1]: https://emberjs.com/api/ember/release/functions/@ember%2Fobject/extend
-[2]: https://www.emberjs.com/api/ember/release/classes/EmberObject
+[1]: https://api.emberjs.com/ember/3.15/functions/@ember%2Fobject/extend
+[2]: https://api.emberjs.com/ember/3.15/classes/EmberObject
 
 ### Instantiation
 
@@ -523,7 +523,7 @@ syntax and _not_ extending from `EmberObject` at all in your apps.
 
 - Use the `init` method instead of the `constructor`.
 
-[3]: https://emberjs.com/api/ember/release/functions/@ember%2Fobject/create
+[3]: https://api.emberjs.com/ember/3.15/functions/@ember%2Fobject/create
 
 ### Methods
 
@@ -575,21 +575,21 @@ const Person = EmberObject.extend({
 
   ```js
   // bad 🛑
-  class Person {
-    firstName = 'Chad';
-    lastName = 'Hietala';
+  class Image {
+    width = 0;
+    height = 0;
 
-    fullName = `${this.firstName} ${this.lastName}`;
+    aspectRatio = this.width / this.height;
   }
 
   // good ✅
-  class Person {
+  class Image {
     constructor() {
-      this.fullName = `${this.firstName} ${this.lastName}`;
+      this.aspectRatio = this.width / this.height;
     }
 
-    firstName = 'Chad';
-    lastName = 'Hietala';
+    width = 0;
+    height = 0;
   }
   ```
 

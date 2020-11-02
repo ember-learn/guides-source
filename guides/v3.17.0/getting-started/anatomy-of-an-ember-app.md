@@ -86,7 +86,7 @@ this guide.
 
 ## Components
 
-Components allows you to break up your templates and organize them into small,
+Components allow you to break up your templates and organize them into small,
 self-contained and reusable pieces.
 
 In its most basic form, a component is just a piece of template that can be

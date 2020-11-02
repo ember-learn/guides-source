@@ -102,7 +102,7 @@ Now your app will be about 30KB lighter!
 
 Without jQuery, any code that still relies on it will break, especially the following usages:
 
-- [`this.$()`](https://api.emberjs.com/ember/release/classes/Component/methods/$?anchor=%24) in components
+- [`this.$()`](https://api.emberjs.com/ember/3.17/classes/Component/methods/$?anchor=%24) in components
 - `jQuery` or `$` directly as a global, through `Ember.$()` or by importing it (`import jQuery from jquery;`)
 - global acceptance test helpers like `find()` or `click()`
 - `this.$()` in component tests
@@ -195,11 +195,11 @@ can be set to run asynchronously using the `sync: false` option.
 ```javascript
 import { observer } from '@ember/object';
 
-Person.extend({
-  partOfNameChanged: observer({
-    dependentKeys: ['firstName', 'lastName'],
+Image.extend({
+  onImageSizeChange: observer({
+    dependentKeys: ['width', 'height'],
     fn() {
-      // Fires async after firstName or lastName have updated
+      // Fires async after width or height have updated
     },
     sync: false,
   })

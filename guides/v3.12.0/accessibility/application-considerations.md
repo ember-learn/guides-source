@@ -83,7 +83,7 @@ An important thing to note in this section is this: "application" in Ember devel
 
 The <abbr title="too long; didn't read">TL;DR</abbr>? Don't use `role="application"` until you have done your research and know exactly how it is to be used correctly (if at all). There are **very** few use cases where the role of application is appropriate. 
 
-Read more about it: [https://a11yproject.com/posts/how-to-use-application-role/](https://a11yproject.com/posts/how-to-use-application-role/)
+Read more about it: [https://www.a11yproject.com/posts/2013-02-09-how-to-use-application-role/](https://www.a11yproject.com/posts/2013-02-09-how-to-use-application-role/)
 
 ## Accessibility addons
 

@@ -418,4 +418,10 @@ export default class DoubleItComponent extends Component {
 }
 ```
 
+## Learn more
+
+You will frequently create components in an app. Establishing patterns early can help reduce bugs and unforeseen issues. Learn more from the chapter [Patterns for Components](../../in-depth-topics/patterns-for-components/).
+
+Actions are JavaScript methods that you can call from a template. Find out how you can use actions with recommended patterns from the chapter [Patterns for Actions](../../in-depth-topics/patterns-for-actions/).
+
 <!-- eof - needed for pages that end in a code block  -->

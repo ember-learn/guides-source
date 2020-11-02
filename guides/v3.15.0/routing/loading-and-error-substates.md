@@ -21,8 +21,11 @@ Router.map(function() {
 
 ```javascript {data-filename=app/routes/slow-model.js}
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 
 export default class SlowModelRoute extends Route {
+  @service store;
+
   model() {
     return this.store.findAll('slow-model');
   }
@@ -102,13 +105,16 @@ within the route hierarchy where loading feedback is important.
 ### The `loading` event
 
 If the various `beforeModel`/`model`/`afterModel` hooks
-don't immediately resolve, a [`loading`](https://api.emberjs.com/ember/release/classes/Route/events/loading?anchor=loading) event will be fired on that route.
+don't immediately resolve, a [`loading`](https://api.emberjs.com/ember/3.15/classes/Route/events/loading?anchor=loading) event will be fired on that route.
 
 ```javascript {data-filename=app/routes/user-slow-model.js}
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
 export default class FooSlowModelRoute extends Route {
+  @service store;
+
   model() {
     return this.store.findAll('slow-model');
   }
@@ -215,15 +221,18 @@ logged.
 
 If the `articles.overview` route's `model` hook returns a promise that rejects
 (for instance the server returned an error, the user isn't logged in,
-etc.), an [`error`](https://api.emberjs.com/ember/release/classes/Route/events/error?anchor=error) event will fire from that route and bubble upward.
+etc.), an [`error`](https://api.emberjs.com/ember/3.15/classes/Route/events/error?anchor=error) event will fire from that route and bubble upward.
 This `error` event can be handled and used to display an error message,
 redirect to a login page, etc.
 
 ```javascript {data-filename=app/routes/articles-overview.js}
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
 export default class ArticlesOverviewRoute extends Route {
+  @service store;
+
   model(params) {
     return this.store.findAll('privileged-model');
   }
@@ -248,9 +257,12 @@ we can handle the `error` event and let it bubble by returning `true`.
 
 ```javascript {data-filename=app/routes/articles-overview.js}
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
 export default class ArticlesOverviewRoute extends Route {
+  @service store;
+  
   model(params) {
     return this.get('store').findAll('privileged-model');
   }

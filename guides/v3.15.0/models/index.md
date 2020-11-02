@@ -186,8 +186,10 @@ first ask the store for it.
     <div class="cta-note-body">
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
-        Ember Data injects the store service in every route and controller,
-        so you can access it as `this.store`!
+        Ember Data injects the store service to every route and controller
+        so that you can immediately write <code>this.store</code>!
+        If you want to access the store in a component or another service,
+        you will need to <a href="../services/#toc_accessing-services">inject</a> the store service.
       </div>
     </div>
     <img src="/images/mascots/zoey.png" role="presentation" alt="">
@@ -201,14 +203,14 @@ defines the attributes, relationships, and behavior of the data that you
 present to the user.
 
 Models define the type of data that will be provided by your server. For
-example, a `Person` model might have a `firstName` attribute that is a
+example, a `Person` model might have a `name` attribute that is a
 string, and a `birthday` attribute that is a date:
 
 ```javascript {data-filename=app/models/person.js}
 import Model, { attr } from '@ember-data/model';
 
 export default class PersonModel extends Model {
-  @attr('string') firstName;
+  @attr('string') name;
   @attr('date') birthday;
 }
 ```

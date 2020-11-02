@@ -27,7 +27,7 @@ this.store.findRecord('person', 1).then(function(tyrion) {
 
 All of the Ember.js conveniences are available for
 modifying attributes. For example, you can use `Ember.Object`'s
-[`incrementProperty`](https://api.emberjs.com/ember/2.15/classes/Ember.Object/methods/incrementProperty?anchor=incrementProperty) helper:
+[`incrementProperty`](https://api.emberjs.com/ember/3.8/classes/EmberObject/methods/incrementProperty?anchor=incrementProperty) helper:
 
 ```javascript
 person.incrementProperty('age'); // Happy birthday!
@@ -148,7 +148,7 @@ post.save().then(transitionToPost).catch(failure);
 Deleting records is as straightforward as creating records. Call [`deleteRecord()`](https://api.emberjs.com/ember-data/3.8/classes/DS.Model/methods/deleteRecord?anchor=deleteRecord)
 on any instance of `DS.Model`. This flags the record as `isDeleted`. The
 deletion can then be persisted using `save()`.  Alternatively, you can use
-the [`destroyRecord`](https://api.emberjs.com/ember-data/3.8/classes/DS.Model/methods/deleteRecord?anchor=destroyRecord) method to delete and persist at the same time.
+the [`destroyRecord`](https://api.emberjs.com/ember-data/3.8/classes/DS.Model/methods/destroyRecord?anchor=destroyRecord) method to delete and persist at the same time.
 
 ```javascript
 store.findRecord('post', 1, { backgroundReload: false }).then(function(post) {

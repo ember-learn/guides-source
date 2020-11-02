@@ -11,11 +11,11 @@ guide covers the details of the system, and how to use it when needed.
 
 Applications and application instances each serve a role in Ember's DI implementation.
 
-An [`Application`](https://api.emberjs.com/ember/release/classes/Application) serves as a "registry" for dependency declarations.
+An [`Application`](https://api.emberjs.com/ember/3.19/classes/Application) serves as a "registry" for dependency declarations.
 Factories (i.e. classes) are registered with an application,
 as well as rules about "injecting" dependencies that are applied when objects are instantiated.
 
-An [`ApplicationInstance`](https://api.emberjs.com/ember/release/classes/ApplicationInstance) serves as the "owner" for objects that are instantiated from registered factories.
+An [`ApplicationInstance`](https://api.emberjs.com/ember/3.19/classes/ApplicationInstance) serves as the "owner" for objects that are instantiated from registered factories.
 Application instances provide a means to "look up" (i.e. instantiate and / or retrieve) objects.
 
 > _Note: Although an `Application` serves as the primary registry for an app,
@@ -184,7 +184,7 @@ import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 
 export default Component.extend({
-  cart: service('shopping-cart')
+  @service('shopping-cart') cart;
 });
 ```
 
@@ -196,14 +196,14 @@ import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 
 export default Component.extend({
-  shoppingCart: service()
+  @service shoppingCart;
 });
 ```
 
 ## Factory Instance Lookups
 
 To fetch an instantiated factory from the running application you can call the
-[`lookup`](https://api.emberjs.com/ember/release/classes/ApplicationInstance/methods/lookup?anchor=lookup) method on an application instance. This method takes a string
+[`lookup`](https://api.emberjs.com/ember/3.19/classes/ApplicationInstance/methods/lookup?anchor=lookup) method on an application instance. This method takes a string
 to identify a factory and returns the appropriate object.
 
 ```javascript
@@ -234,9 +234,9 @@ export default {
 
 ### Getting an Application Instance from a Factory Instance
 
-[`Ember.getOwner`](https://api.emberjs.com/ember/release/classes/@ember%2Fapplication/methods/getOwner?anchor=getOwner) will retrieve the application instance that "owns" an
+[`Ember.getOwner`](https://api.emberjs.com/ember/3.19/classes/@ember%2Fapplication/methods/getOwner?anchor=getOwner) will retrieve the application instance that "owns" an
 object. This means that framework objects like components, helpers, and routes
-can use [`Ember.getOwner`](https://api.emberjs.com/ember/release/classes/@ember%2Fapplication/methods/getOwner?anchor=getOwner) to perform lookups through their application
+can use [`Ember.getOwner`](https://api.emberjs.com/ember/3.19/classes/@ember%2Fapplication/methods/getOwner?anchor=getOwner) to perform lookups through their application
 instance at runtime.
 
 For example, this component plays songs with different audio services based

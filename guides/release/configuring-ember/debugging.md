@@ -1,5 +1,9 @@
-Ember provides several configuration options that can help you debug problems
-with your application.
+Ember provides a browser extension and several configuration options
+to help you debug your application.
+
+## Ember Inspector
+The [Ember Inspector](https://github.com/emberjs/ember-inspector) is a browser extension that makes it easy to
+understand and debug your Ember.js application. To learn more, check out the [dedicated guide](../../ember-inspector/).
 
 ## Routing
 
@@ -10,13 +14,13 @@ import Application from '@ember/application';
 
 export default class App extends Application {
   // Basic logging, e.g. "Transitioned into 'post'"
-  LOG_TRANSITIONS = true,
+  LOG_TRANSITIONS = true;
 
   // Extremely detailed logging, highlighting every internal
   // step made while transitioning into a route, including
   // `beforeModel`, `model`, and `afterModel` hooks, and
   // information about redirects and aborted transitions
-  LOG_TRANSITIONS_INTERNAL = true
+  LOG_TRANSITIONS_INTERNAL = true;
 }
 ```
 ## Views / Templates
@@ -49,7 +53,7 @@ and which it is generating automatically for you.
 import Application from '@ember/application';
 
 export default class App extends Application {
-  LOG_RESOLVER = true
+  LOG_RESOLVER = true;
 }
 ```
 ### Dealing with deprecations

@@ -1,166 +1,250 @@
-Ember provides a few helpful components out-of-the-box for common tasks,
-including:
+Out of the box, Ember provides 2 components for building a form:
 
-* [`<Input />`](https://api.emberjs.com/ember/3.15/classes/Ember.Templates.components/methods/Input?anchor=Input)
-* [`<Textarea />`](https://api.emberjs.com/ember/release/classes/Ember.Templates.components/methods/Textarea?anchor=Textarea)
+* [`<Input>`](https://api.emberjs.com/ember/3.15/classes/Ember.Templates.components/methods/Input?anchor=Input)
+* [`<Textarea>`](https://api.emberjs.com/ember/3.15/classes/Ember.Templates.components/methods/Textarea?anchor=Textarea)
 
-Using these components, you can create form controls that are almost identical to
-the native HTML `<input>` or `<textarea>` elements, and which automatically
-update the state of their values.
+These components are similar in HTML markup to the native `<input>` or `<textarea>` elements. In contrast to the native elements, `<Input>` and `<Textarea>` automatically update the state of their bound values.
 
-## `<Input/>`
+
+## `<Input>`
+
+We mentioned that the built-in components are similar in HTML markup to their native counterparts. What does this mean?
+
+Consider the following example in a template file.
 
 ```handlebars
-<label for="site">Ember Question</label>
-<Input @id="site" @value="How do text fields work?" />
+<label for="user-question">Ask a question about Ember:</label>
+<Input
+  @id="user-question"
+  @type="text"
+  @value="How do text fields work?"
+/>
 ```
 
-Will become:
+When Ember renders this template, you will see the following HTML code:
 
 ```html
-<label for="site">Ember Question</label>
-<input id="site" type="text" value="How do text fields work?"/>
+<label for="user-question">Ask a question about Ember:</label>
+<input id="user-question" type="text" value="How do text fields work?" />
 ```
 
-You can pass the following standard `<input>` attributes within the input
-helper:
 
-<table>
-  <tr><td>`readonly`</td><td>`required`</td><td>`autofocus`</td></tr>
-  <tr><td>`value`</td><td>`placeholder`</td><td>`disabled`</td></tr>
-  <tr><td>`size`</td><td>`tabindex`</td><td>`maxlength`</td></tr>
-  <tr><td>`name`</td><td>`min`</td><td>`max`</td></tr>
-  <tr><td>`pattern`</td><td>`accept`</td><td>`autocomplete`</td></tr>
-  <tr><td>`autosave`</td><td>`formaction`</td><td>`formenctype`</td></tr>
-  <tr><td>`formmethod`</td><td>`formnovalidate`</td><td>`formtarget`</td></tr>
-  <tr><td>`height`</td><td>`inputmode`</td><td>`multiple`</td></tr>
-  <tr><td>`step`</td><td>`width`</td><td>`form`</td></tr>
-  <tr><td>`selectionDirection`</td><td>`spellcheck`</td><td>`type`</td></tr>
-</table>
+### Ways to associate labels and inputs
 
-If these attributes are set to a quoted string, their values will be set
-directly on the element, as in the previous example. However, when left
-unquoted, these values will be bound to a property on the template's current
-rendering context. For example:
+Every input should be associated with a label. In HTML, there are a few ways to do this. With the built-in `<Input>` component,
+
+1. You can nest the input inside the label.
+
+   ```handlebars
+   <label>
+     Ask a question about Ember:
+
+     <Input
+       @type="text"
+       @value={{this.userQuestion}}
+     />
+   </label>
+   ```
+
+2. You can create an ID (globally unique within the webpage), then associate the label to the input with `for` attribute and `@id` argument.
+
+   ```handlebars
+   <label for={{this.myUniqueId}}>
+     Ask a question about Ember:
+   </label>
+
+   <Input
+     @id={{this.myUniqueId}}
+     @type="text"
+     @value={{this.userQuestion}}
+   />
+   ```
+
+3. You can use the `aria-label` attribute to label the input with a string that is visually hidden but still available to assistive technology.
+
+   ```handlebars
+   <Input
+     aria-label="Ask a question about Ember"
+     @type="text"
+     @value={{this.userQuestion}}
+   />
+   ```
+
+While it is more appropriate to use the `<label>` element, the `aria-label` attribute can be used in instances where visible text content is not possible.
+
+
+### Setting attributes on `<Input>`
+
+With a few exceptions, you can pass [input attributes](https://developer.mozilla.org/docs/Web/HTML/Element/input#Attributes) as attributes (i.e. do not prepend `@`) to the `<Input>` component.
+
+For example, the `aria-labelledby` attribute may be useful if you have a search input. The search button can serve as the label for the input element:
 
 ```handlebars
-<label for="firstname">First Name</label>
-<Input @id="firstname" @type="text" @value={{this.firstName}} @size="50" disabled={{this.entryNotAllowed}} />
+<Input aria-labelledby="button-search" />
+<button id="button-search" type="button">Search</button>
 ```
 
-Will bind the `disabled` attribute to the value of `entryNotAllowed` in the
-current context.
+If an attribute is set to a quoted string (`"button-search"` in the prior example), its value will be set directly on the element.
+
+You can also bind the attribute value to a property that you own.
+In the next example, the `disabled` attribute is bound to the value of `isReadOnly` in the current context.
+
+```handlebars
+<label for="input-name">Name:</label>
+<Input
+  @id="input-name"
+  @value={{this.name}}
+  disabled={{this.isReadOnly}}
+  maxlength="50"
+/>
+```
+
+Recall that there were a few exceptions. The following input attributes must be passed as arguments (i.e. do prepend `@`) to the `<Input>` component:
+
+- `@checked`
+- `@id`
+- `@type`
+- `@value`
+
 
 ### Actions
 
-To dispatch an action on specific events such as `key-down`, use the following
+Starting with Ember Octane, we recommend using the `{{on}}` modifier to call an action on specific events such as the [input event](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event).
 
 ```handlebars
-<label for="firstname">First Name</label>
-<Input @value={{this.firstName}} @key-down={{this.updateFirstName}} id="firstname" />
+<label for="input-name">Name:</label>
+<Input
+  @id="input-name"
+  @value={{this.name}}
+  {{on "input" this.validateName}}
+/>
 ```
 
-The following event types are supported (dasherized format):
+The event name (e.g. `"focusout"`, `"input"`, `"keydown"`) always follows the casing that the HTML standard uses.
 
-* `enter`
-* `insert-newline`
-* `escape-press`
-* `focus-in`
-* `focus-out`
-* `key-down`
-* `key-press` ([Deprecated Web API](https://developer.mozilla.org/en-US/docs/Web/API/Document/keypress_event))
-* `key-up`
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Tomster says...</div>
+      <div class="cta-note-message">
+        <p>
+          We mention event arguments below to help with Octane upgrade.
+          Due to a bug, event arguments do not work in versions 3.15 and 3.17-3.19.
+          Please consider using the <code>{{on}}</code> modifier or upgrading to the next LTS (3.16 or 3.20).
+        </p>
+      </div>
+    </div>
+    <img src="/images/mascots/tomster.png" role="presentation" alt="">
+  </div>
+</div>
 
+For backwards compatibility with earlier versions of Ember, it is possible to call an action by passing an event argument.
 
-More [event types](https://api.emberjs.com/ember/3.15/classes/Component#event-handler-methods) are also supported but these events need to be written in camelCase format, such `mouseEnter`. Note, there are events of the same type in both the list above and linked. Event names listed above must be dasherized. Additional work is performed on these events.
+```handlebars
+<label for="input-name">Name:</label>
+<Input
+  @id="input-name"
+  @value={{this.name}}
+  @input={{this.validateName}}
+/>
+```
+
+The argument name is always dasherized (e.g. `@focus-out`, `@input`, `@key-down`). To minimize confusion, we recommend that you use the `{{on}}` modifier. ([Learn more about the `{{on}}` modifier.](../../upgrading/current-edition/action-on-and-fn/#toc_the-on-modifier))
+
+Lastly, Ember also provides custom input events `@enter` and `@escape-press`. These events do not exist on native input elements, but you may find them to be useful for handling keyboard interactions.
+
+The modern, Octane-style way to handle keyboard events is to [write a modifier](../../upgrading/current-edition/glimmer-components/#toc_writing-your-own-modifiers) to separate concerns: The component manages the state, while the modifier manages interactions with the DOM. Your action will receive an actual `event` object.
+
+There are [community-made addons](https://emberobserver.com/?query=keyboard) to help manage keyboard events. For example, with [ember-keyboard](https://github.com/adopted-ember-addons/ember-keyboard), you can write,
+
+```handlebars
+{{!-- Before --}}
+<Input
+  @enter={{this.doSomething}}
+  @escape-press={{this.doSomethingElse}}
+/>
+
+{{!-- After --}}
+<Input
+  {{on-key "Enter" this.doSomething}}
+  {{on-key "Escape" this.doSomethingElse event="keydown"}}
+/>
+```
+
+Note, the `keydown` event was used for `Escape` because `keypress` is deprecated.
+
 
 ### Checkboxes
 
-You can also use the
-[`<Input />`](https://api.emberjs.com/ember/3.15/classes/Ember.Templates.components/methods/Input?anchor=Input)
-component to create a checkbox by setting its `type`:
+You can use the
+[`<Input>`](https://api.emberjs.com/ember/3.15/classes/Ember.Templates.components/methods/Input?anchor=Input)
+component to create a checkbox. Set `@type` to the string `"checkbox"`, and use `@checked` instead of `@value`.
 
 ```handlebars
 <label for="admin-checkbox">Is Admin?</label>
-<Input @id="admin-checkbox" @type="checkbox" @name="isAdmin" @checked={{this.isAdmin}} />
+<Input
+  @id="admin-checkbox"
+  @type="checkbox"
+  @checked={{this.isAdmin}}
+/>
 ```
 
-Checkboxes support the following properties:
-
-* `checked`
-* `disabled`
-* `tabindex`
-* `indeterminate`
-* `name`
-* `autofocus`
-* `form`
-
-
-Which can be bound or set as described in the previous section.
-
-
-Checkboxes are a special input type.  If you want to dispatch an action on a certain [event](https://api.emberjs.com/ember/release/classes/Component#event-handler-methods),
-you will always need to either define the event name in camelCase format (e.g. `@keyDown`), or
-use an `on` helper with the [Web-API event name](https://developer.mozilla.org/en-US/docs/Web/API/Document/keydown_event) (e.g. `on 'keydown'`):
+To call an action on specific events, use the `{{on}}` modifier:
 
 ```handlebars
-<label for="firstname">First Name</label>
-{{!-- This works: uses camelCase event name --}}
-<Input @type="checkbox" @keyDown={{this.updateName}} id="firstname" />
-{{!-- This works: uses 'on' with actual event name --}}
-<Input @type="checkbox" {{on "keydown" this.updateName}} id="firstname" />
-{{!-- This does not work: uses dasherized event name --}}
-<Input @type="checkbox" @key-down={{this.updateName}} id="firstname" />
-{{!-- This does not work: uses actual event name --}}
-<Input @type="checkbox" @keydown={{this.updateName}} id="firstname" />
+<label for="admin-checkbox">Is Admin?</label>
+<Input
+  @id="admin-checkbox"
+  @type="checkbox"
+  @checked={{this.isAdmin}}
+  {{on "input" this.validateRole}}
+/>
 ```
 
-Internally, `<Input @type="checkbox" />` creates an instance of Checkbox. Do *not* use `Checkbox` directly.
 
-## `<Textarea />`
+## `<Textarea>`
+
+The following example shows how to bind `this.userComment` to a text area's value.
 
 ```handlebars
-<label for="firstname">First Name</label>
-<Textarea @value={{this.name}} cols="80" rows="6" id="firstname" />
+<label for="user-comment">Comment:</label>
+<Textarea
+  @id="user-comment"
+  @value={{this.userComment}}
+  rows="6"
+  cols="80"
+/>
 ```
 
-Will bind the value of the text area to `name` on the current context.
 
-[`<Textarea>`](https://api.emberjs.com/ember/release/classes/Ember.Templates.components/methods/Textarea?anchor=Textarea) supports binding and/or setting the following properties:
+### Setting attributes on `<Textarea>`
 
-* `value`
-* `name`
-* `rows`
-* `cols`
-* `placeholder`
-* `disabled`
-* `maxlength`
-* `tabindex`
-* `selectionEnd`
-* `selectionStart`
-* `selectionDirection`
-* `wrap`
-* `readonly`
-* `autofocus`
-* `form`
-* `spellcheck`
-* `required`
+With the exception of `@value` argument, you can use any [attribute](https://developer.mozilla.org/docs/Web/HTML/Element/textarea#Attributes) that `<textarea>` natively supports.
 
-### Binding dynamic attribute
+
+<!--
+  TODO:
+  Move this section to a dedicated page for how to build forms.
+  Please present a solution that does not use `{{mut}}`.
+-->
+## Binding dynamic attribute
 
 You might need to bind a property dynamically to an input if you're building a
 flexible form, for example. To achieve this you need to use the
-[`{{get}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/get?anchor=get)
-and [`{{mut}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/mut?anchor=mut)
+[`{{get}}`](https://api.emberjs.com/ember/3.15/classes/Ember.Templates.helpers/methods/get?anchor=get)
+and [`{{mut}}`](https://api.emberjs.com/ember/3.15/classes/Ember.Templates.helpers/methods/mut?anchor=mut)
 in conjunction like shown in the following example:
 
 ```handlebars
-<label for="firstname">First Name</label>
-<Input @value={{mut (get this.person this.field)}} id="firstname" />
+<label for="input-name">Name:</label>
+<Input
+  @id="input-name"
+  @value={{mut (get this.person this.field)}}
+/>
 ```
 
 The `{{get}}` helper allows you to dynamically specify which property to bind,
 while the `{{mut}}` helper allows the binding to be updated from the input. See
 the respective helper documentation for more detail:
-[`{{get}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/get?anchor=get)
-and [`{{mut}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/mut?anchor=mut).
+[`{{get}}`](https://api.emberjs.com/ember/3.15/classes/Ember.Templates.helpers/methods/get?anchor=get)
+and [`{{mut}}`](https://api.emberjs.com/ember/3.15/classes/Ember.Templates.helpers/methods/mut?anchor=mut).
