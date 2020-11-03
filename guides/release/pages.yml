@@ -259,8 +259,6 @@
       url: "object-inspector"
     - title: "The Component Tree"
       url: "component-tree"
-    - title: "The View Tree"
-      url: "view-tree"
     - title: "Inspecting Routes"
       url: "routes"
     - title: "Data Tab"
