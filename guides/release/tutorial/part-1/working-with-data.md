@@ -20,7 +20,7 @@ So far, we've been hard-coding everything into our `<Rental>` component. But tha
 
 We want to start working towards a place where we can eventually fetch data from the server, and then render the requested data as dynamic content from the templates. In order to do that, we will need a place where we can write the code for fetching data and loading it into the routes.
 
-In Ember, _route files_ are the place to do that. We haven't needed them yet, because all our routes are essentially just rendering static pages up until this point, but we are about to change that.
+In Ember, _[route files](../../../routing/defining-your-routes/)_ are the place to do that. We haven't needed them yet, because all our routes are essentially just rendering static pages up until this point, but we are about to change that.
 
 Let's start by creating a route file for the index route. We will create a new file at `app/routes/index.js` with the following content:
 
@@ -47,19 +47,19 @@ export default class IndexRoute extends Route {
 }
 ```
 
-There's a lot happening here that we haven't seen before, so let's walk through this. First, we're importing the _`Route` class_ into the file. This class is used as a starting point for adding functionality to a route, such as loading data.
+There's a lot happening here that we haven't seen before, so let's walk through this. First, we're importing the _[`Route` class](https://api.emberjs.com/ember/release/classes/Route)_ into the file. This class is used as a starting point for adding functionality to a route, such as loading data.
 
-Then, we are extending the `Route` class into our _own_ `IndexRoute`, which we also _`export`_ so that the rest of the application can use it.
+Then, we are extending the `Route` class into our _own_ `IndexRoute`, which we also _[`export`](https://javascript.info/import-export#export-default)_ so that the rest of the application can use it.
 
 ## Returning Local Data from the Model Hook
 
-So far, so good. But what's happening inside of this route class? We implemented an _async method_ called `model()`. This method is also known as the _model hook_.
+So far, so good. But what's happening inside of this route class? We implemented an _[async](https://developer.mozilla.org/docs/Learn/JavaScript/Asynchronous/Concepts)_ method called `model()`. This method is also known as the _model hook_.
 
-The model hook is responsible for fetching and preparing any data that you need for your route. Ember will automatically call this hook when entering a route, so that you can have an opportunity to run your own code to get the data you need. The object returned from this hook is known as the _model_ for the route (surprise!).
+The model hook is responsible for fetching and preparing any data that you need for your route. Ember will automatically call this hook when entering a route, so that you can have an opportunity to run your own code to get the data you need. The object returned from this hook is known as the _[model](../../../routing/specifying-a-routes-model/)_ for the route (surprise!).
 
 Usually, this is where we'd fetch data from a server. Since fetching data is usually an asynchronous operation, the model hook is marked as `async`. This gives us the option of using the `await` keyword to wait for the data fetching operations to finish.
 
-We'll get to that bit later on. At the moment, we are just returning the same hard-coding model data, extracted from the `<Rental>` component, but in a JavaScript object (also known as _POJO_) format.
+We'll get to that bit later on. At the moment, we are just returning the same hard-coding model data, extracted from the `<Rental>` component, but in a _[JavaScript object](https://developer.mozilla.org/docs/Learn/JavaScript/Objects/Basics)_ format.
 
 ## Accessing Route Models from Templates
 
@@ -286,7 +286,7 @@ First off, we're using the browser's _[Fetch API](https://developer.mozilla.org/
 
 As mentioned above, fetching data from the server is usually an asynchronous operation. The Fetch API takes this into account, which is why `fetch` is an `async` function, just like our model hook. To consume its response, we will have to pair it with the `await` keyword.
 
-The Fetch API returns a _response object_ asynchronously. Once we have this object, we can convert the server's response into whatever format we need; in our case, we knew the server sent the data using the JSON format, so we can use the `json()` method to _parse_ the response data accordingly. Parsing the response data is _also_ an asynchronous operation, so we'll just use the `await` keyword here, too.
+The Fetch API returns a _[response object](https://developer.mozilla.org/docs/Web/API/Response)_ asynchronously. Once we have this object, we can convert the server's response into whatever format we need; in our case, we knew the server sent the data using the JSON format, so we can use the `json()` method to _[parse](https://developer.mozilla.org/docs/Web/API/Body/json)_ the response data accordingly. Parsing the response data is _also_ an asynchronous operation, so we'll just use the `await` keyword here, too.
 
 ## Adapting Server Data
 
@@ -350,7 +350,7 @@ Before we go any further, let's pause for a second to look at the server's data 
 }
 ```
 
-This data follows the _JSON:API_ format, which is _slightly_ different than the hard-coded data that we were returning from the model hook before.
+This data follows the _[JSON:API](https://jsonapi.org/)_ format, which is _slightly_ different than the hard-coded data that we were returning from the model hook before.
 
 First off, the JSON:API format returns an array nested under the `"data"` key, rather than just the data for a single rental property. If we think about this, though, it makes sense; we now want to show a whole list of rental properties that are coming from our server, not just one, so an array of rental property objects is just what we need.
 

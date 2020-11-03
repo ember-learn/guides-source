@@ -1,6 +1,6 @@
 <!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/src/markdown/tutorial/part-1/01-orientation.md -->
 
-In this chapter, you will install _Ember CLI_, use it to generate a new Ember project, and add some basic templates and styles to your new app. By the end of this chapter, you should have a landing page with Professor Tomster's cute little face featured on it:
+In this chapter, you will install _[Ember CLI](https://cli.emberjs.com/release/)_, use it to generate a new Ember project, and add some basic templates and styles to your new app. By the end of this chapter, you should have a landing page with Professor Tomster's cute little face featured on it:
 
 <img src="/images/tutorial/part-1/orientation/styled-with-tomster@2x.png" alt="The Super Rentals app by the end of the chapter" width="1024" height="250">
 
@@ -24,7 +24,7 @@ To verify that your installation was successful, run:
 
 ```shell
 $ ember --version
-ember-cli: 3.20.0
+ember-cli: 3.22.0
 node: 12.18.3
 os: linux x64
 ```
@@ -38,7 +38,7 @@ We can create a new project using Ember CLI's `new` command. It follows the patt
 ```shell
 $ ember new super-rentals
 installing app
-Ember CLI v3.20.0
+Ember CLI v3.22.0
 
 Creating a new Ember app in /home/runner/work/super-rentals-tutorial/super-rentals-tutorial/dist/code/super-rentals:
   create .editorconfig
@@ -176,7 +176,7 @@ The development server is responsible for compiling our app and serving it to th
     <div class="cta-note-body">
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
-        <p>The <code>localhost</code> address in the URL means that you can only access the development server from your local machine. If you would like to share your work with the world, you will have to <em>deploy</em> your app to the public Internet. We'll cover how to do that in Part 2 of the tutorial.</p>
+        <p>The <code>localhost</code> address in the URL means that you can only access the development server from your local machine. If you would like to share your work with the world, you will have to <em><a href="https://cli.emberjs.com/release/basic-use/deploying/">deploy</a></em> your app to the public Internet. We'll cover how to do that in Part 2 of the tutorial.</p>
       </div>
     </div>
     <img src="/images/mascots/zoey.png" role="presentation" alt="">

@@ -48,7 +48,7 @@ Awesome, one step done. Now, this input looks great, but it doesn't actually _do
 
 ## Refactoring the index template into a component
 
-In order to make our search box actually work, we are going to need to retain and store the text that the user types in when they use the search box. This text is the search query, and it is a piece of _state_ that is going to change whenever the user types something into the search box.
+In order to make our search box actually work, we are going to need to retain and store the text that the user types in when they use the search box. This text is the search query, and it is a piece of _[state](../../../components/component-state-and-actions/)_ that is going to change whenever the user types something into the search box.
 
 But where are we going to put this newly-introduced piece of state? In order to wire up the search box, we need a place to store the search query. At the moment, our search box lives on the `index.hbs` route template, which doesn't have a good place to store this search query state. Darn, this would be so much easier to do if we had a component, because we could just store the state directly on the component!
 
@@ -213,7 +213,7 @@ Next, we'll wire up our query state in the component template.
 </div>
 ```
 
-Interesting! There are a few things happening in this one-line template change. First, we're moving from using a plain HTML `<input>` tag to using an `<Input>` tag instead! As it turns out, Ember provides us with a helpful little _<Input> component_ for this exact use case. The `<Input>` component is actually just a wrapper around the `<input>` element.
+Interesting! There are a few things happening in this one-line template change. First, we're moving from using a plain HTML `<input>` tag to using an `<Input>` tag instead! As it turns out, Ember provides us with a helpful little _[`<Input>` component](../../../components/built-in-components/#toc_input)_ for this exact use case. The `<Input>` component is actually just a wrapper around the `<input>` element.
 
 Ember's `<Input>` component is pretty neat; it will wire up things behind the scenes such that, whenever the user types something into the input box, `this.query` changes accordingly. In other words, `this.query` is kept in sync with the value of what is being searched; we finally have the perfect way of storing the state of our search query!
 
@@ -287,7 +287,7 @@ The `as |results|` syntax might look a little new to us, but it isn't the first 
 
 When we use this syntax, we are passing a block—the `...some content here...` in our example—to `{{#each}}`. Ember will iterate through the array we provided (`@items`) and render our block _once per item_ in the array.
 
-Inside of our block, we need to be able to access the current item _somehow_. The `{{#each}}` syntax provides the item to our block via the `as |item|` declaration, which creates a local variable `item`, also known as a _block parameter_.. In other words, as we iterate through `@items`, we will have access to the current item that we're looping over through the block parameter (`item`) The block parameter is only accessible from within inside of the block. Ember will fill in the block parameter with the current item of the iteration, and it will do this each time that it renders our block.
+Inside of our block, we need to be able to access the current item _somehow_. The `{{#each}}` syntax provides the item to our block via the `as |item|` declaration, which creates a local variable `item`, also known as a _[block parameter](../../../components/looping-through-lists/)_. In other words, as we iterate through `@items`, we will have access to the current item that we're looping over through the block parameter (`item`) The block parameter is only accessible from within inside of the block. Ember will fill in the block parameter with the current item of the iteration, and it will do this each time that it renders our block.
 
 The need to provide some data to a block is not unique to the `{{#each}}` syntax. In this case, our `<Rentals::Filter>` component wants to take the unfiltered list of rental properties and match them against the user's query. Once the component has matched the rentals against the query, it will need to provide a filtered list of rental properties to its caller (the `<Rentals>` component).
 

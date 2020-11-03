@@ -1,6 +1,6 @@
 <!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/src/markdown/tutorial/part-1/04-component-basics.md -->
 
-In this chapter, you will _refactor_ your existing templates to use components. We will also be adding a site-wide navigation bar:
+In this chapter, you will _[refactor](../../../components/introducing-components/#toc_breaking-it-into-pieces)_ your existing templates to use components. We will also be adding a site-wide navigation bar:
 
 <img src="/images/tutorial/part-1/component-basics/index-with-nav@2x.png" alt="The Super Rentals app by the end of the chapter" width="1024" height="314">
 
@@ -16,7 +16,7 @@ In doing so, you will learn about:
 
 ## Extracting Markup into Components
 
-In a [previous chapter](../building-pages/), we got a light introduction to _components_ when using `<LinkTo>` to connect our pages. To recap, we said that components are Ember's way of creating _custom tags_ to supplement the built-in HTML tags from the browser. Now, we are going to create our own components!
+In a [previous chapter](../building-pages/), we got a light introduction to _[components](../../../components/introducing-components/)_ when using `<LinkTo>` to connect our pages. To recap, we said that components are Ember's way of creating _custom tags_ to supplement the built-in HTML tags from the browser. Now, we are going to create our own components!
 
 During the course of developing an app, it is pretty common to reuse the same UI element across different parts of the app. For example, we have been using the same "jumbo" header in all three pages so far. On every page we worked to follow the same basic structure:
 
@@ -54,7 +54,7 @@ That's it, we have created our first component! We can now _invoke_ this compone
 
 ## Passing Content to Components with `{{yield}}`
 
-When invoking a component, Ember will replace the component tag with the content found in the component's template. Just like regular HTML tags, it is common to pass _content_ to components, like `<Jumbo>some content</Jumbo>`. We can enable this using the `{{yield}}` keyword, which will be replaced with the content that was passed to the component.
+When invoking a component, Ember will replace the component tag with the content found in the component's template. Just like regular HTML tags, it is common to pass _[content](../../../components/block-content/)_ to components, like `<Jumbo>some content</Jumbo>`. We can enable this using the `{{yield}}` keyword, which will be replaced with the content that was passed to the component.
 
 Let's try it out by editing the index template:
 
@@ -71,7 +71,7 @@ Let's try it out by editing the index template:
 
 ## Refactoring Existing Code
 
-After saving the changes, your page should automatically reload, and, _voilà_... nothing changed? Well, that's exactly what we wanted to happen this time! We successfully _refactored_ our index template to use the `<Jumbo>` component, and everything still works as expected. And the tests still pass!
+After saving the changes, your page should automatically reload, and, _voilà_... nothing changed? Well, that's exactly what we wanted to happen this time! We successfully _[refactored](../../../components/introducing-components/#toc_breaking-components-down-further)_ our index template to use the `<Jumbo>` component, and everything still works as expected. And the tests still pass!
 
 <img src="/images/tutorial/part-1/component-basics/index@2x.png" alt="Index page – nothing changed" width="1024" height="250">
 
@@ -125,7 +125,7 @@ After saving, everything should look exactly the same as before, and all the tes
 
 <img src="/images/tutorial/part-1/component-basics/pass-2@2x.png" alt="Tests still passing another round of refactor" width="1024" height="512">
 
-While it may not save you a lot of characters in this case, _encapsulating_ the implementation of the "jumbo" header into its own component makes the template slightly easier to read, as it allows the reader to focus on things that are unique to just that page. Further, if we need to make a change to the header, we can make it in a single place. Feel free to give that a try!
+While it may not save you a lot of characters in this case, _[encapsulating](../../../components/component-arguments-and-html-attributes/)_ the implementation of the "jumbo" header into its own component makes the template slightly easier to read, as it allows the reader to focus on things that are unique to just that page. Further, if we need to make a change to the header, we can make it in a single place. Feel free to give that a try!
 
 ## Writing Component Tests
 
@@ -137,7 +137,7 @@ installing component-test
   create tests/integration/components/jumbo-test.js
 ```
 
-Here, we used the generator to generate a _component test_, also known as a _rendering test_. These are used to render and test a single component at a time. This is in contrast to the acceptance tests that we wrote earlier, which have to navigate and render entire pages worth of content.
+Here, we used the generator to generate a _[component test](../../../testing/testing-components/)_, also known as a rendering test. These are used to render and test a single component at a time. This is in contrast to the acceptance tests that we wrote earlier, which have to navigate and render entire pages worth of content.
 
 Let's replace the boilerplate code that was generated for us with our own test:
 
@@ -310,7 +310,7 @@ module('Acceptance | super rentals', function(hooks) {
     assert.dom('h1').hasText('SuperRentals');
     assert.dom('h2').hasText('Contact Us');
 
-    assert.dom('a.button').hasText('About');
+    assert.dom('.jumbo a.button').hasText('About');
     await click('.jumbo a.button');
 
     assert.equal(currentURL(), '/about');
@@ -320,7 +320,7 @@ module('Acceptance | super rentals', function(hooks) {
     await visit('/');
 
     assert.dom('nav').exists();
-    assert.dom('nav a.menu-index').hasText('SuperRentals')
+    assert.dom('nav a.menu-index').hasText('SuperRentals');
     assert.dom('nav a.menu-about').hasText('About');
     assert.dom('nav a.menu-contact').hasText('Contact');
 
@@ -404,7 +404,7 @@ While we are at it, we will also add a container element that wraps around the w
 </Jumbo>
 ```
 
-The `{{outlet}}` keyword denotes the place where our site's pages should be rendered into, similar to the `{{yield}}` keyword we saw earlier.
+The `{{outlet}}` keyword denotes the place where our site's pages should be rendered into, similar to the `{{yield}}` keyword we saw [earlier](#toc_passing-content-to-components-with-yield).
 
 This is much nicer! We can run our test suite, which confirms that everything still works after our refactor. We are ready to move on to the next feature!
 

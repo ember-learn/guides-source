@@ -34,7 +34,7 @@ Router.map(function() {
 });
 ```
 
-Notice that we are doing something a little different here. Instead of using the default path (`/rental`), we're specifying a custom path. Not only are we using a custom path, but we're also passing in a `:rental_id`, which is what we call a _dynamic segment_. When these routes are evaluated, the `rental_id` will be substituted with the `id` of the individual rental property that we are trying to navigate to.
+Notice that we are doing something a little different here. Instead of using the default path (`/rental`), we're specifying a custom path. Not only are we using a custom path, but we're also passing in a `:rental_id`, which is what we call a _[dynamic segment](../../../routing/defining-your-routes/#toc_dynamic-segments)_. When these routes are evaluated, the `rental_id` will be substituted with the `id` of the individual rental property that we are trying to navigate to.
 
 ## Links with Dynamic Segments
 
@@ -503,7 +503,7 @@ module('Acceptance | super rentals', function(hooks) {
     assert.dom('h1').hasText('SuperRentals');
     assert.dom('h2').hasText('Contact Us');
 
-    assert.dom('a.button').hasText('About');
+    assert.dom('.jumbo a.button').hasText('About');
     await click('.jumbo a.button');
 
     assert.equal(currentURL(), '/about');
@@ -513,7 +513,7 @@ module('Acceptance | super rentals', function(hooks) {
     await visit('/');
 
     assert.dom('nav').exists();
-    assert.dom('nav a.menu-index').hasText('SuperRentals')
+    assert.dom('nav a.menu-index').hasText('SuperRentals');
     assert.dom('nav a.menu-about').hasText('About');
     assert.dom('nav a.menu-contact').hasText('Contact');
 

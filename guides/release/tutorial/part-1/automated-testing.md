@@ -23,7 +23,7 @@ After all, most of us have experienced (or heard horror stories about) making a 
 
 Maybe we can write a checklist somewhere of all the things to check after making changes to our site. But surely, this will get out of hand as we add more features to our app. It is also going to get old really quickly—repetitive tasks like that are best left to robots.
 
-Hmm, robots. That's an idea. What if we can write this checklist and just get the computer to check everything for us? I think we just invented the idea of _automated testing_! Okay, maybe we were not the first to come up with the concept, but we independently discovered it so we still deserve some credit.
+Hmm, robots. That's an idea. What if we can write this checklist and just get the computer to check everything for us? I think we just invented the idea of _[automated testing](../../../testing/)_! Okay, maybe we were not the first to come up with the concept, but we independently discovered it so we still deserve some credit.
 
 ## Adding Acceptance Tests with Generators
 
@@ -35,9 +35,9 @@ installing acceptance-test
   create tests/acceptance/super-rentals-test.js
 ```
 
-This is called a _generator_ command in Ember CLI. Generators automatically create files for us based on Ember's conventions and populate them with the appropriate boilerplate content, similar to how `ember new` initially created a skeleton app for us. It typically follows the pattern `ember generate <type> <name>`, where `<type>` is the kind of thing we are generating, and `<name>` is what we want to call it.
+This is called a _[generator](https://cli.emberjs.com/release/basic-use/cli-commands/#generatemorefiles)_ command in Ember CLI. Generators automatically create files for us based on Ember's conventions and populate them with the appropriate boilerplate content, similar to how `ember new` initially created a skeleton app for us. It typically follows the pattern `ember generate <type> <name>`, where `<type>` is the kind of thing we are generating, and `<name>` is what we want to call it.
 
-In this case, we generated an _acceptance test_ located at `tests/acceptance/super-rentals-test.js`.
+In this case, we generated an _[acceptance test](../../../testing/test-types/#toc_application-tests)_ located at `tests/acceptance/super-rentals-test.js`.
 
 Generators aren't required; we _could_ have created the file ourselves which would have accomplished the exact same thing. But, generators certainly save us a lot of typing. Go ahead and take a peek at the acceptance test file and see for yourself.
 
@@ -87,15 +87,15 @@ module('Acceptance | super rentals', function(hooks) {
 
 First, we instruct the test robot to navigate to the `/` URL of our app by using the `visit` _test helper_ provided by Ember. This is akin to us typing `http://localhost:4200/` in the browser's address bar and hitting the `enter` key.
 
-Because the page is going to take some time to load, this is known as an _async_ (short for _asynchronous_) step, so we will need to tell the test robot to wait by using JavaScript's `await` keyword. That way, it will wait until the page completely finishes loading before moving on to the next step.
+Because the page is going to take some time to load, this is known as an _[async](https://developer.mozilla.org/docs/Learn/JavaScript/Asynchronous/Concepts)_ (short for _asynchronous_) step, so we will need to tell the test robot to wait by using JavaScript's `await` keyword. That way, it will wait until the page completely finishes loading before moving on to the next step.
 
 This is almost always the behavior we want, so we will almost always use `await` and `visit` as a pair. This applies to other kinds of simulated interaction too, such as clicking on a button or a link, as they all take time to complete. Even though sometimes these actions may seem imperceptibly fast to us, we have to remember that our test robot has really, really fast hands, as we will see in a moment.
 
-After navigating to the `/` URL and waiting for things to settle, we check that the current URL matches the URL that we expect (`/`). We can use the `currentURL` test helper here, as well as `equal` _assertion_. This is how we encode our "checklist" into code—by specifying, or _asserting_ how things _should_ behave, we will be alerted if our app does _not_ behave in the way that we expect.
+After navigating to the `/` URL and waiting for things to settle, we check that the current URL matches the URL that we expect (`/`). We can use the `currentURL` test helper here, as well as `equal` _[assertion](https://github.com/emberjs/ember-test-helpers/blob/master/API.md)_. This is how we encode our "checklist" into code—by specifying, or asserting how things _should_ behave, we will be alerted if our app does _not_ behave in the way that we expect.
 
 Next, we confirmed that the page has an `<h2>` tag that contains the text "Welcome to Super Rentals!". Knowing this is true means that we can be quite certain that the correct template has been rendered, without errors.
 
-Then, we looked for a link with the text `About Us`, located using the _CSS selector_ `.jumbo a.button`. This is the same syntax we used in our stylesheet, which means "look inside the tag with the `jumbo` class for an `<a>` tag with the `button` class." This matches up with the HTML structure in our template.
+Then, we looked for a link with the text `About Us`, located using the _[CSS selector](https://developer.mozilla.org/docs/Learn/CSS/Building_blocks/Selectors)_ `.jumbo a.button`. This is the same syntax we used in our stylesheet, which means "look inside the tag with the `jumbo` class for an `<a>` tag with the `button` class." This matches up with the HTML structure in our template.
 
 Once the existence of this element on the page was confirmed, we told the test robot to click on this link. As mentioned above, this is a user interaction, so it needs to be `await`-ed.
 
@@ -171,7 +171,7 @@ module('Acceptance | super rentals', function(hooks) {
     assert.equal(currentURL(), '/getting-in-touch');
     assert.dom('h2').hasText('Contact Us');
 
-    assert.dom('a.button').hasText('About');
+    assert.dom('.jumbo a.button').hasText('About');
     await click('.jumbo a.button');
 
     assert.equal(currentURL(), '/about');
