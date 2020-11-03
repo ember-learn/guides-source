@@ -1,6 +1,6 @@
 The Components tab displays a collapsible representation of the views and components that are currently being rendered.  Selecting a component from the tree will open it in the [Object Inspector](../object-inspector/). 
 
-<img src="/images/guides/ember-inspector/component-tree-intro.png" width="680">
+<img src="/images/guides/ember-inspector/v4.3.4/component-tree-intro.png" width="680">
 
 Components will be displayed with curly braces.  Views are grayed out and not selectable.  Use the [View Tree](../view-tree/) to get more information on Views that are being rendered.
 
@@ -20,7 +20,7 @@ The two icons to the left of the search field will expand or collapse all compon
 
 By typing in the search field you can limit the components that are shown in the tree.
 
-<img src="/images/guides/ember-inspector/component-tree-filtering.png" width="680">
+<img src="/images/guides/ember-inspector/v4.3.4/component-tree-filtering.png" width="680">
 
 ### Highlighting Templates
 
@@ -30,7 +30,7 @@ When you hover over the items in the Component Tree, the related component will 
 highlighted in your app. For every highlighted component, you can see the
 template name and its associated objects.
 
-<img src="/images/guides/ember-inspector/component-tree-hover.png" width="680">
+<img src="/images/guides/ember-inspector/v4.3.4/component-tree-hover.png" width="680">
 
 #### Hovering over the app
 
@@ -44,7 +44,7 @@ highlighted.
 If you click on a highlighted template or component, the Inspector will select it. You can then
 click on the backing objects to send them to the object inspector.
 
-<img src="/images/guides/ember-inspector/component-tree-hover.png">
+<img src="/images/guides/ember-inspector/v4.3.4/component-tree-inspect.png">
 
 Click on the `X` button to deselect a template.
 

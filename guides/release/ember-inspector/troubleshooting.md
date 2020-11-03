@@ -56,7 +56,7 @@ If the Promises tab is working, but there are Promises you can't find,
 it's probably because these Promises were created before the
 Inspector was activated. To detect Promises the moment the app boots, click on the `Reload` button below:
 
-<img src="/images/guides/ember-inspector/troubleshooting-promises-toolbar.png" width="350">
+<img src="/images/guides/ember-inspector/v4.3.4/troubleshooting-promises-toolbar.png" width="680">
 
 #### Inspector Version Old on Firefox
 
