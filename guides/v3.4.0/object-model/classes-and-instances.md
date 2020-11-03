@@ -220,7 +220,7 @@ Person.create({
 
 When reading a property value of an object, you can in most cases use the common JavaScript dot notation, e.g. `myObject.myProperty`.
 
-[Ember proxy objects](https://api.emberjs.com/ember/3.3/classes/ObjectProxy) are the one big exception to this rule. If you're working with Ember proxy objects, including promise proxies for async relationships in Ember Data, you have to use Ember's [`get()`](https://api.emberjs.com/ember/3.4/classes/@ember%2Fobject/methods/get?anchor=get) accessor method to read values.
+[Ember proxy objects](https://api.emberjs.com/ember/3.4/classes/ObjectProxy) are the one big exception to this rule. If you're working with Ember proxy objects, including promise proxies for async relationships in Ember Data, you have to use Ember's [`get()`](https://api.emberjs.com/ember/3.4/classes/@ember%2Fobject/methods/get?anchor=get) accessor method to read values.
 
 Let's look at the following `blogPost` Ember Data model:
 
