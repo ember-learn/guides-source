@@ -73,7 +73,7 @@ jobs:
         with:
           custom-command: npm run test:ember
         env:
-          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+          PERCY_TOKEN: 877df6aad8486060f69a34864b6cd33f870633743b23411343737c46a875a762
 
 
   test-node:
