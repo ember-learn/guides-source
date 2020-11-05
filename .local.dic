@@ -45,6 +45,9 @@ declaratively
 deps
 draggable
 durations
+EditorConfig
+els-addon-docs
+els-addon-typed-templates
 enumerables
 ember-a11y
 ember-a11y-refocus
@@ -57,6 +60,7 @@ ember-cli-htmlbars
 ember-cli-mirage.
 ember-cli-tutorial-style
 ember-debug-handlers-polyfill
+ember-fast-cli 
 ember-intl
 erroring
 Evented
@@ -74,6 +78,7 @@ GitLab
 GIFs
 globbing
 *google
+hackable
 HammerJS
 hardcode
 hashchange
@@ -88,6 +93,7 @@ invoker
 IndexedDB
 Inflector
 instantiation
+Intellisense
 invoker
 invokers
 jquery-integration
@@ -106,6 +112,7 @@ naïve
 natively
 nav
 nav-bar
+Neovim
 *NPM
 NVDA
 onboarding
@@ -190,6 +197,9 @@ untracked
 untrusted
 usecase
 viewport
+vim-ember-hbs
+vim-javascript
+vim-js-pretty-template
 VM
 Voilà
 voilà

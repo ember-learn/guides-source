@@ -276,7 +276,12 @@
     - title: "Rendering Performance"
       url: "render-performance"
     - title: "Troubleshooting"
-      url: "troubleshooting"
+      url: "troubleshooting"      
+- title: "Code Editors"
+  url: "code-editors"
+  pages:
+    - title: "Ember Extensions"
+      url: "index"
 
 - title: "Additional Resources"
   url: "toc-heading_additional-resources"
