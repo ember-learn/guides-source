@@ -32,7 +32,7 @@ some amount of JavaScript code in them.
 Since Ember is a template-oriented framework, not all developers need to
 use JavaScript when working on Ember apps. Some developers may be more
 focused on the structure of an app's templates, its styles, or the
-accessibility an app. However, it's good to have some
+accessibility of an app. However, it's good to have some
 general knowledge of JavaScript for the places where it is used.
 
 If you're new to JavaScript, here are some excellent introductory materials:
