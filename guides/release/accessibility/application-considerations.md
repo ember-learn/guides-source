@@ -7,7 +7,7 @@ Declaring the language of the HTML document allows users to better understand yo
 > Both assistive technologies and conventional user agents can render text more accurately when the language of the Web page is identified. Screen readers can load the correct pronunciation rules. Visual browsers can display characters and scripts correctly. Media players can show captions correctly. As a result, users with disabilities will be better able to understand the content.
 > [WCAG Success Criterion 3.1.1: Intent](https://www.w3.org/WAI/WCAG21/Understanding/language-of-page.html#intent)
 
-The `--lang` option on the `ember new` command sets the language for a new application.
+A primary language should be defined on the `<html>` element's `lang` attribute. For new apps, you can use the `--lang` option on the `ember new` command to set the language for a new application.
 
 ```bash
 ember new mon-app --lang fr
