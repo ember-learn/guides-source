@@ -172,7 +172,7 @@ export default class ArticlesController extends Controller {
   queryParams = ['category'];
   
   category = null;
-});
+}
 ```
 
 ### Update URL with `replaceState` instead
