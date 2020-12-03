@@ -133,10 +133,10 @@ export default Component.extend({
 Here, `indexOfSelectedTodo` depends on `todos.[]`, so it will update if we add an item
 to `todos`, but won't update if the value of `isDone` on a `todo` changes.
 
-Several of the [Ember.computed](https://api.emberjs.com/ember/2.16/classes/@ember%2Fobject%2Fcomputed) macros
+Several of the [Ember.computed](https://api.emberjs.com/ember/3.0/classes/@ember%2Fobject%2Fcomputed) macros
 utilize the `[]` key to implement common use-cases. For instance, to
 create a computed property that mapped properties from an array, you could use
-[Ember.computed.map](https://api.emberjs.com/ember/2.16/classes/@ember%2Fobject%2Fcomputed/methods/map?anchor=map)
+[Ember.computed.map](https://api.emberjs.com/ember/3.0/classes/@ember%2Fobject%2Fcomputed/methods/map?anchor=map)
 or build the computed property yourself:
 
 ```javascript

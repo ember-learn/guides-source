@@ -28,7 +28,7 @@ and [working with records](../creating-updating-and-deleting-records/) of that t
 ## Defining Attributes
 
 The `person` model we generated earlier didn't have any attributes. Let's
-add first and last name, as well as the birthday, using [`DS.attr`](https://api.emberjs.com/ember-data/2.16/classes/DS/methods/attr?anchor=attr):
+add first and last name, as well as the birthday, using [`DS.attr`](https://api.emberjs.com/ember-data/2.17/classes/DS/methods/attr?anchor=attr):
 
 ```javascript {data-filename=app/models/person.js}
 import DS from 'ember-data';

@@ -66,7 +66,7 @@ In other words, you can invoke the above component example like this:
 ```
 
 To set the component up to receive parameters this way, you need to
-set the [`positionalParams`](https://api.emberjs.com/ember/2.16/classes/Component/properties/positionalParams?anchor=positionalParams) attribute in your component class.
+set the [`positionalParams`](https://api.emberjs.com/ember/2.17/classes/Component/properties/positionalParams?anchor=positionalParams) attribute in your component class.
 
 ```javascript {data-filename=app/components/blog-post.js}
 import Component from '@ember/component';
