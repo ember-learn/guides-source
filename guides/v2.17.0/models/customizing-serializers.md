@@ -198,7 +198,7 @@ export default DS.JSONAPISerializer.extend({
 
 Similarly, if your backend store provides data in a format other than JSON API,
 you can use the
-[`normalizeResponse()`](https://api.emberjs.com/ember-data/2.17/classes/DS.JSONAPISerializer/methods/serialize?anchor=normalizeResponse)
+[`normalizeResponse()`](https://api.emberjs.com/ember-data/2.17/classes/DS.JSONAPISerializer/methods/normalizeResponse?anchor=normalizeResponse)
 hook. Using the same example as above, if the server provides data that looks
 like:
 
@@ -252,7 +252,7 @@ export default DS.JSONAPISerializer.extend({
 ```
 
 To normalize only a single model, you can use the
-[`normalize()`](https://api.emberjs.com/ember-data/2.17/classes/DS.JSONAPISerializer/methods/serialize?anchor=normalize)
+[`normalize()`](https://api.emberjs.com/ember-data/2.17/classes/DS.JSONAPISerializer/methods/normalize?anchor=normalize)
 hook similarly.
 
 For more hooks to customize the serializer with, see the [Ember Data serializer
@@ -421,7 +421,7 @@ The JSON should encode the relationship as an ID to another record:
 ```
 If needed these naming conventions can be overwritten by implementing
 the
-[`keyForRelationship()`](https://api.emberjs.com/ember-data/2.17/classes/DS.JSONAPISerializer/methods/keyForAttribute?anchor=keyForRelationship)
+[`keyForRelationship()`](https://api.emberjs.com/ember-data/2.17/classes/DS.JSONAPISerializer/methods/keyForRelationship?anchor=keyForRelationship)
 method.
 
 ```javascript {data-filename=app/serializers/application.js}
