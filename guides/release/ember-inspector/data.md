@@ -2,13 +2,13 @@ You can inspect your models by clicking on the `Data` tab. Check out [Building a
 in your application, along with the number of loaded records.
 The Inspector displays the loaded records when you click on a model type.
 
-<img src="/images/guides/ember-inspector/data-screenshot.png" width="680"/>
+<img src="/images/guides/ember-inspector/v4.3.4/data-screenshot.png" width="680"/>
 
 ### Inspecting Records
 
 Each row in the list corresponds to one record. The first four model attributes are shown in the list view. Clicking on the record will open the Object Inspector for that record, and display all attributes.
 
-<img src="/images/guides/ember-inspector/data-object-inspector.png"
+<img src="/images/guides/ember-inspector/v4.3.4/data-object-inspector.png"
 width="680"/>
 
 ### Record States and Filtering
@@ -17,12 +17,12 @@ The Data tab is kept in sync with the data loaded in your application.
 Any record additions, deletions, or changes are reflected immediately. If you have unsaved
 records, they will be displayed in green by clicking on the New pill.
 
-<img src="/images/guides/ember-inspector/data-new-records.png"
+<img src="/images/guides/ember-inspector/v4.3.4/data-new-records.png"
 width="680"/>
 
 Click on the Modified pill to display unsaved record modifications.
 
-<img src="/images/guides/ember-inspector/data-modified-records.png"
+<img src="/images/guides/ember-inspector/v4.3.4/data-modified-records.png"
 width="680"/>
 
 You can also filter records by entering a query in the search box.

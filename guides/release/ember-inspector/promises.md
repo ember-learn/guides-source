@@ -2,7 +2,7 @@ The Inspector provides a way to look at all Promises created
 in your application. Click on the `Promises` menu to start inspecting them.
 
 
-<img src="/images/guides/ember-inspector/promises-screenshot.png" width="680" />
+<img src="/images/guides/ember-inspector/v4.3.4/promises-screenshot.png" width="680" />
 
 You can see a hierarchical list of Promises with labels describing each
 Promise, its state, its settled value, and the time it took to
@@ -21,7 +21,7 @@ Promises have different colors based on their state.
 
 You can filter by clicking on the following pills: `Rejected`, `Pending`, `Fulfilled`.
 
-<img src="/images/guides/ember-inspector/promises-toolbar.png" width="600"/>
+<img src="/images/guides/ember-inspector/v4.3.4/promises-toolbar.png" width="600"/>
 
 You can also search for Promises by typing a query in the search box.
 
@@ -49,8 +49,8 @@ Tracing Promises is disabled by default for performance reasons. To
 enable tracing, check the `Trace promise` checkbox. You may want to
 reload to trace existing Promises.
 
-<img src="/images/guides/ember-inspector/promises-trace-checkbox.png"
-width="200"/>
+<img src="/images/guides/ember-inspector/v4.3.4/promises-trace-checkbox.png"
+width="680"/>
 
 To trace a Promise, click on the `Trace` button next to the label,
 which will send the Promise stack trace to the console.

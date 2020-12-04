@@ -6,17 +6,15 @@ To open it, click on any Ember object. You can then view the object's properties
 
 Here's what you see when you click on an object:
 
-
-<img src="/images/guides/ember-inspector/object-inspector-controller.png" width="450">
-
+<img src="/images/guides/ember-inspector/v4.3.4/object-inspector-controller.png" width="450">
 
 The Inspector displays the parent objects and mixins that are composed into the chosen object, including the inherited properties.
 
 Each property value in this view is bound to your application, so if the value of a
 property updates in your app, it will be reflected in the Inspector.
 
-If a property name is preceded by a calculator icon, that means it is a [computed property](../../object-model/computed-properties/). If the value of a computed property hasn't yet been computed, you can
-click on the calculator to compute it.
+Note, each property is preceded by a letter icon to help you distinguish its type. For example, the letter G for a getter and the letter T for a tracked property. You can hover over the letter icon to learn more about the property.
+
 
 ### Exposing Objects to the Console
 
@@ -25,14 +23,14 @@ click on the calculator to compute it.
 You can expose objects to the console by clicking on the `$E` button within the Inspector.
 This will set the global `$E` variable to the chosen object.
 
-<img src="/images/guides/ember-inspector/object-inspector-$E.png"
+<img src="/images/guides/ember-inspector/v4.3.4/object-inspector-$E.png"
 width="450">
 
 You can also expose properties to the console. When you hover over an object's properties, a `$E` button will appear
 next to every property. Click on it to expose the property's value to the
 console.
 
-<img src="/images/guides/ember-inspector/object-inspector-property-$E.png" width="450">
+<img src="/images/guides/ember-inspector/v4.3.4/object-inspector-property-$E.png" width="450">
 
 
 #### Sending from the Console to the Inspector
@@ -54,7 +52,7 @@ Make sure the Inspector is active when you call this method.
 You can edit `String`, `Number`, and `Boolean` properties in the Inspector.
 Your changes will be reflected immediately in your app. Click on a property's value to start editing it.
 
-<img src="/images/guides/ember-inspector/object-inspector-edit.png"
+<img src="/images/guides/ember-inspector/v4.3.4/object-inspector-edit.png"
 width="450">
 
 Edit the property and press the `ENTER` key to commit the change, or `ESC` to cancel.
@@ -64,14 +62,14 @@ Edit the property and press the `ENTER` key to commit the change, or `ESC` to ca
 In addition to inspecting the properties above, you can inspect properties that hold Ember objects or arrays.
 Click on the property's value to inspect it.
 
-<img src="/images/guides/ember-inspector/object-inspector-object-property.png" width="450">
+<img src="/images/guides/ember-inspector/v4.3.4/object-inspector-object-property.png" width="450">
 
 You can continue drill into the Inspector as long as properties contain either an
 Ember object or an array.
 In the image below, we clicked on the `model` property first, then clicked
 on the `store` property.
 
-<img src="/images/guides/ember-inspector/object-inspector-nested-objects.png" width="450">
+<img src="/images/guides/ember-inspector/v4.3.4/object-inspector-nested-objects.png" width="450">
 
 You can see the path to the current object at the top of the
 Inspector. You can go back to the previous object by clicking on the
@@ -84,7 +82,7 @@ by framework level semantics. For example, if you inspect an Ember Data
 model, you can see `Attributes`, `Belongs To`, `Has Many`, and `Flags`
 groups.
 
-<img src="/images/guides/ember-inspector/object-inspector-model.png"
+<img src="/images/guides/ember-inspector/v4.3.4/object-inspector-model.png"
 width="450">
 
 Library authors can customize how any object will display in the Inspector.
