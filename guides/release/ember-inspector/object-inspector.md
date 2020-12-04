@@ -6,17 +6,15 @@ To open it, click on any Ember object. You can then view the object's properties
 
 Here's what you see when you click on an object:
 
-
 <img src="/images/guides/ember-inspector/v4.3.4/object-inspector-controller.png" width="450">
-
 
 The Inspector displays the parent objects and mixins that are composed into the chosen object, including the inherited properties.
 
 Each property value in this view is bound to your application, so if the value of a
 property updates in your app, it will be reflected in the Inspector.
 
-If a property name is preceded by a calculator icon, that means it is a [computed property](../../object-model/computed-properties/). If the value of a computed property hasn't yet been computed, you can
-click on the calculator to compute it.
+Note, each property is preceded by a letter icon to help you distinguish its type. For example, the letter G for a getter and the letter T for a tracked property. You can hover over the letter icon to learn more about the property.
+
 
 ### Exposing Objects to the Console
 
