@@ -426,7 +426,7 @@ directly on the class itself.
 ```js
 class Alert {
   static helloWorld() {
-    alert('Hello, world!');
+    return 'Hello, world!';
   }
 }
 
