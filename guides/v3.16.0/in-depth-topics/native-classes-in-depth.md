@@ -557,7 +557,7 @@ airbus.move(); // flying!
 
 However, child classes can use the `super` keyword to access the parent, and use
 its methods and accessors. Class fields are always overwritten on the instance,
-so the values on the parent class cannot be accessed on by the child if they are
+so the values on the parent class cannot be accessed by the child if they are
 redefined.
 
 ### `constructor` in extends
