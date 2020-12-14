@@ -233,7 +233,7 @@ class Image {
     let width = get(this, 'width');
     let height = get(this, 'height');
 
-    return this.width / this.height;
+    return width / height;
   }
 }
 
