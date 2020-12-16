@@ -74,7 +74,7 @@ To test that this is working, let's modify our template and try to render the `t
   <LinkTo @route="about" class="button">About Us</LinkTo>
 </Jumbo>
 
-<h1>{{@model.title}}</h1>
+<h1>{{this.model.title}}</h1>
 
 <div class="rentals">
   <ul class="results">
@@ -87,7 +87,7 @@ To test that this is working, let's modify our template and try to render the `t
 
 If we look at our page in the browser, we should see our model data reflected as a new header.
 
-<img src="/images/tutorial/part-1/working-with-data/model-header@2x.png" alt="New header using the @model data" width="1024" height="512">
+<img src="/images/tutorial/part-1/working-with-data/model-header@2x.png" alt="New header using the this.model data" width="1024" height="512">
 
 Awesome!
 
@@ -104,21 +104,21 @@ First, let's pass in our model to our `<Rental>` component as the `@rental` argu
   <LinkTo @route="about" class="button">About Us</LinkTo>
 </Jumbo>
 
-<h1>{{@model.title}}</h1>
+<h1>{{this.model.title}}</h1>
 
 <div class="rentals">
   <ul class="results">
     <li><Rental /></li>
     <li><Rental /></li>
     <li><Rental /></li>
-    <li><Rental @rental={{@model}} /></li>
-    <li><Rental @rental={{@model}} /></li>
-    <li><Rental @rental={{@model}} /></li>
+    <li><Rental @rental={{this.model}} /></li>
+    <li><Rental @rental={{this.model}} /></li>
+    <li><Rental @rental={{this.model}} /></li>
   </ul>
 </div>
 ```
 
-By passing in `@model` into the `<Rental>` component as the `@rental` argument, we will have access to our "Grand Old Mansion" model object in the `<Rental>` component's template! Now, we can replace our hard-coded values in this component by using the values that live on our `@rental` model.
+By passing in `this.model` into the `<Rental>` component as the `@rental` argument, we will have access to our "Grand Old Mansion" model object in the `<Rental>` component's template! Now, we can replace our hard-coded values in this component by using the values that live on our `@rental` model.
 
 ```handlebars { data-filename="app/components/rental.hbs" data-diff="-3,-4,+5,+6,-9,+10,-12,+13,-16,+17,-20,+21,-24,+25,-29,-30,+31,+32,-36,+37" }
 <article class="rental">
@@ -164,7 +164,7 @@ By passing in `@model` into the `<Rental>` component as the `@rental` argument, 
 
 Since the model object contains exactly the same data as the previously-hard-coded "Grand Old Mansion", the page should look exactly the same as before the change.
 
-<img src="/images/tutorial/part-1/working-with-data/using-model-data@2x.png" alt="New header using the @model data" width="1024" height="512">
+<img src="/images/tutorial/part-1/working-with-data/using-model-data@2x.png" alt="New header using the this.model data" width="1024" height="512">
 
 Now, we have one last thing to do: update the tests to reflect this change.
 
