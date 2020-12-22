@@ -63,6 +63,10 @@ export default {
 };
 ```
 
+### Naming Convention
+
+By default, factories are kebab-cased, and directories represented by a forward-slash. For example: a controller `app/controllers/users/primary-teachers` would be registered as `controllers:users/primary-teachers`.
+
 ### Registering Already Instantiated Objects
 
 By default, Ember will attempt to instantiate a registered factory when it is looked up.
