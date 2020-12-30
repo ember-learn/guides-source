@@ -288,7 +288,7 @@ We can yield back multiple values as well, separated by spaces.
 ```handlebars
 <!-- usage -->
 <BlogPost @post={{@blogPost}} as |postTitle postAuthor postBody|>
-  <img src="./blog-logo.png">
+  <img src="./blog-logo.png" alt="Logo">
   {{postTitle}}
 
   {{postBody}}
