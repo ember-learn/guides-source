@@ -172,16 +172,16 @@ Because component tests are meant to render and test a single component in isola
 
 Therefore, in our `<Rental>` component's test, we will have to feed the data into it some other way. We can do this using the `setProperties` we learned about from the [previous chapter](../reusable-components/).
 
-```js { data-filename="tests/integration/components/rental-test.js" data-diff="-10,+11,+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28" }
+```js { data-filename="tests/integration/components/rental-test.js" data-diff="-10,+11,+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30" }
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
-module('Integration | Component | rental', function(hooks) {
+module('Integration | Component | rental', function (hooks) {
   setupRenderingTest(hooks);
 
-  test('it renders information about a rental property', async function(assert) {
+  test('it renders information about a rental property', async function (assert) {
     await render(hbs`<Rental />`);
     this.setProperties({
       rental: {
@@ -195,9 +195,11 @@ module('Integration | Component | rental', function(hooks) {
         category: 'Estate',
         type: 'Standalone',
         bedrooms: 15,
-        image: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg',
-        description: 'This grand old mansion sits on over 100 acres of rolling hills and dense redwood forests.',
-      }
+        image:
+          'https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg',
+        description:
+          'This grand old mansion sits on over 100 acres of rolling hills and dense redwood forests.',
+      },
     });
 
     await render(hbs`<Rental @rental={{this.rental}} />`);
@@ -362,14 +364,10 @@ In [Part 2](../../part-2/) of this tutorial, we will learn about a more convenie
 
 We can handle it all in our model hook:
 
-```js { data-filename="app/routes/index.js" data-diff="+3,+4,+5,+6,+7,+8,-12,-13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27" }
+```js { data-filename="app/routes/index.js" data-diff="+3,+4,-8,-9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23" }
 import Route from '@ember/routing/route';
 
-const COMMUNITY_CATEGORIES = [
-  'Condo',
-  'Townhouse',
-  'Apartment'
-];
+const COMMUNITY_CATEGORIES = ['Condo', 'Townhouse', 'Apartment'];
 
 export default class IndexRoute extends Route {
   async model() {
@@ -378,7 +376,7 @@ export default class IndexRoute extends Route {
     return parsed;
     let { data } = await response.json();
 
-    return data.map(model => {
+    return data.map((model) => {
       let { attributes } = model;
       let type;
 
@@ -404,6 +402,8 @@ The last change we'll need to make is to our `index.hbs` route template, where w
 
 Let's see how.
 
+<!-- Workaround for https://github.com/emberjs/ember.js/issues/19334 -->
+
 ```handlebars { data-filename="app/templates/index.hbs" data-diff="-9,-10,-11,+12,+13,+14" }
 <Jumbo>
   <h2>Welcome to Super Rentals!</h2>
@@ -416,8 +416,8 @@ Let's see how.
     <li><Rental @rental={{@model}} /></li>
     <li><Rental @rental={{@model}} /></li>
     <li><Rental @rental={{@model}} /></li>
-    {{#each @model as |rental|}}
-      <li><Rental @rental={{rental}} /></li>
+    {{#each @model as |property|}}
+      <li><Rental @rental={{property}} /></li>
     {{/each}}
   </ul>
 </div>
@@ -425,7 +425,7 @@ Let's see how.
 
 We can use the `{{#each}}...{{/each}}` syntax to iterate and loop through the array returned by the model hook. For each iteration through the array—for each item in the array—we will render the block that is passed to it once. In our case, the block is our `<Rental>` component, surrounded by `<li>` tags.
 
-Inside of the block we have access to the item of the _current_ iteration with the `{{rental}}` variable. But why `rental`? Well, because we named it that! This variable comes from the `as |rental|` declaration of the `each` loop. We could have just as easily called it something else, like `as |property|`, in which case we would have to access the current item through the `{{property}}` variable.
+Inside of the block we have access to the item of the _current_ iteration with the `{{property}}` variable. But why `property`? Well, because we named it that! This variable comes from the `as |property|` declaration of the `each` loop. We could have just as easily called it something else, like `as |rental|`, in which case we would have to access the current item through the `{{rental}}` variable.
 
 Now, let's go over to our browser and see what our index route looks like with this change.
 

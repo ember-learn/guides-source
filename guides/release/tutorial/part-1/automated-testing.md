@@ -39,6 +39,10 @@ This is called a _[generator](https://cli.emberjs.com/release/basic-use/cli-comm
 
 In this case, we generated an _[acceptance test](../../../testing/test-types/#toc_application-tests)_ located at `tests/acceptance/super-rentals-test.js`.
 
+<!-- patch for https://github.com/emberjs/ember.js/issues/19333 -->
+
+<!-- end patch for https://github.com/emberjs/ember.js/issues/19333 -->
+
 Generators aren't required; we _could_ have created the file ourselves which would have accomplished the exact same thing. But, generators certainly save us a lot of typing. Go ahead and take a peek at the acceptance test file and see for yourself.
 
 <div class="cta">
@@ -65,12 +69,12 @@ import { visit, currentURL } from '@ember/test-helpers';
 import { click, visit, currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
-module('Acceptance | super rentals', function(hooks) {
+module('Acceptance | super rentals', function (hooks) {
   setupApplicationTest(hooks);
 
-  test('visiting /super-rentals', async function(assert) {
+  test('visiting /super-rentals', async function (assert) {
     await visit('/super-rentals');
-  test('visiting /', async function(assert) {
+  test('visiting /', async function (assert) {
     await visit('/');
 
     assert.equal(currentURL(), '/super-rentals');
@@ -138,10 +142,10 @@ import { module, test } from 'qunit';
 import { click, visit, currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
-module('Acceptance | super rentals', function(hooks) {
+module('Acceptance | super rentals', function (hooks) {
   setupApplicationTest(hooks);
 
-  test('visiting /', async function(assert) {
+  test('visiting /', async function (assert) {
     await visit('/');
 
     assert.equal(currentURL(), '/');
@@ -153,7 +157,7 @@ module('Acceptance | super rentals', function(hooks) {
     assert.equal(currentURL(), '/about');
   });
 
-  test('visiting /about', async function(assert) {
+  test('visiting /about', async function (assert) {
     await visit('/about');
 
     assert.equal(currentURL(), '/about');
@@ -165,7 +169,7 @@ module('Acceptance | super rentals', function(hooks) {
     assert.equal(currentURL(), '/getting-in-touch');
   });
 
-  test('visiting /getting-in-touch', async function(assert) {
+  test('visiting /getting-in-touch', async function (assert) {
     await visit('/getting-in-touch');
 
     assert.equal(currentURL(), '/getting-in-touch');

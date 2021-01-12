@@ -27,6 +27,10 @@ installing component-test
 
 The generator created two new files for us, a component template at `app/components/rental.hbs`, and a component test file at `tests/integration/components/rental-test.js`.
 
+<!-- patch for https://github.com/emberjs/ember.js/issues/19333 -->
+
+<!-- end patch for https://github.com/emberjs/ember.js/issues/19333 -->
+
 We will start by editing the template. Let's _[hard-code](https://en.wikipedia.org/wiki/Hard_coding)_ the details for one rental property for now, and replace it with the real data from the server later on.
 
 ```handlebars { data-filename="app/components/rental.hbs" data-diff="-1,+2,+3,+4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18" }
@@ -58,14 +62,14 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
-module('Integration | Component | rental', function(hooks) {
+module('Integration | Component | rental', function (hooks) {
   setupRenderingTest(hooks);
 
-  test('it renders', async function(assert) {
+  test('it renders', async function (assert) {
     // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+    // Handle any actions with this.set('myAction', function (val) { ... });
 
-  test('it renders information about a rental property', async function(assert) {
+  test('it renders information about a rental property', async function (assert) {
     await render(hbs`<Rental />`);
 
     assert.equal(this.element.textContent.trim(), '');
@@ -132,6 +136,10 @@ installing component-test
 
 This time, we had a `/` in the component's name. This resulted in the component being created at `app/components/rental/image.hbs`, which can be invoked as `<Rental::Image>`.
 
+<!-- patch for https://github.com/emberjs/ember.js/issues/19333 -->
+
+<!-- end patch for https://github.com/emberjs/ember.js/issues/19333 -->
+
 Components like these are known as _[namespaced](https://en.wikipedia.org/wiki/Namespace)_ components. Namespacing allows us to organize our components by folders according to their purpose. This is completely optional—namespaced components are not special in any way.
 
 ## Forwarding HTML Attributes with `...attributes`
@@ -181,25 +189,25 @@ In general, it is a good idea to add `...attributes` to the primary element in y
 
 Let's write a test for our new component!
 
-```js { data-filename="tests/integration/components/rental/image-test.js" data-diff="-9,-10,-11,-12,-13,-14,-15,-16,-17,+18,-20,-21,-22,+23,+24,+25,+26,-29,+30,+31,+32" }
+```js { data-filename="tests/integration/components/rental/image-test.js" data-diff="-9,-10,-11,-12,-13,-14,-15,-16,-17,+18,-20,-21,-22,+23,+24,+25,+26,-29,+30,+31,+32,+33,+34" }
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
-module('Integration | Component | rental/image', function(hooks) {
+module('Integration | Component | rental/image', function (hooks) {
   setupRenderingTest(hooks);
 
-  test('it renders', async function(assert) {
+  test('it renders', async function (assert) {
     // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+    // Handle any actions with this.set('myAction', function (val) { ... });
 
     await render(hbs`<Rental::Image />`);
 
     assert.equal(this.element.textContent.trim(), '');
 
     // Template block usage:
-  test('it renders the given image', async function(assert) {
+  test('it renders the given image', async function (assert) {
     await render(hbs`
       <Rental::Image>
         template block text
@@ -211,9 +219,11 @@ module('Integration | Component | rental/image', function(hooks) {
     `);
 
     assert.equal(this.element.textContent.trim(), 'template block text');
-    assert.dom('.image').exists();
-    assert.dom('.image img').hasAttribute('src', '/assets/images/teaching-tomster.png');
-    assert.dom('.image img').hasAttribute('alt', 'Teaching Tomster');
+    assert
+      .dom('.image img')
+      .exists()
+      .hasAttribute('src', '/assets/images/teaching-tomster.png')
+      .hasAttribute('alt', 'Teaching Tomster');
   });
 });
 ```
@@ -228,10 +238,10 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
-module('Integration | Component | rental', function(hooks) {
+module('Integration | Component | rental', function (hooks) {
   setupRenderingTest(hooks);
 
-  test('it renders information about a rental property', async function(assert) {
+  test('it renders information about a rental property', async function (assert) {
     await render(hbs`<Rental />`);
 
     assert.dom('article').hasClass('rental');

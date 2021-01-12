@@ -24,7 +24,7 @@ This time, we would like the page to be served on the `/about` URL. In order to 
 
 The place to manage what pages are available is the _router_. Go ahead and open `app/router.js` and make the following change:
 
-```js { data-filename="app/router.js" data-diff="+10" }
+```js { data-filename="app/router.js" data-diff="-9,+10,+11,+12" }
 import EmberRouter from '@ember/routing/router';
 import config from 'super-rentals/config/environment';
 
@@ -33,7 +33,8 @@ export default class Router extends EmberRouter {
   rootURL = config.rootURL;
 }
 
-Router.map(function() {
+Router.map(function () {});
+Router.map(function () {
   this.route('about');
 });
 ```
@@ -77,7 +78,7 @@ export default class Router extends EmberRouter {
   rootURL = config.rootURL;
 }
 
-Router.map(function() {
+Router.map(function () {
   this.route('about');
   this.route('contact', { path: '/getting-in-touch' });
 });

@@ -137,6 +137,10 @@ installing component-test
   create tests/integration/components/jumbo-test.js
 ```
 
+<!-- patch for https://github.com/emberjs/ember.js/issues/19333 -->
+
+<!-- end patch for https://github.com/emberjs/ember.js/issues/19333 -->
+
 Here, we used the generator to generate a _[component test](../../../testing/testing-components/)_, also known as a rendering test. These are used to render and test a single component at a time. This is in contrast to the acceptance tests that we wrote earlier, which have to navigate and render entire pages worth of content.
 
 Let's replace the boilerplate code that was generated for us with our own test:
@@ -147,13 +151,13 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
-module('Integration | Component | jumbo', function(hooks) {
+module('Integration | Component | jumbo', function (hooks) {
   setupRenderingTest(hooks);
 
-  test('it renders', async function(assert) {
+  test('it renders', async function (assert) {
     // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
-  test('it renders the content inside a jumbo header with a tomster', async function(assert) {
+    // Handle any actions with this.set('myAction', function (val) { ... });
+  test('it renders the content inside a jumbo header with a tomster', async function (assert) {
     await render(hbs`<Jumbo>Hello World</Jumbo>`);
 
     await render(hbs`<Jumbo />`);
@@ -271,10 +275,10 @@ import { module, test } from 'qunit';
 import { click, visit, currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
-module('Acceptance | super rentals', function(hooks) {
+module('Acceptance | super rentals', function (hooks) {
   setupApplicationTest(hooks);
 
-  test('visiting /', async function(assert) {
+  test('visiting /', async function (assert) {
     await visit('/');
 
     assert.equal(currentURL(), '/');
@@ -288,7 +292,7 @@ module('Acceptance | super rentals', function(hooks) {
     assert.equal(currentURL(), '/about');
   });
 
-  test('visiting /about', async function(assert) {
+  test('visiting /about', async function (assert) {
     await visit('/about');
 
     assert.equal(currentURL(), '/about');
@@ -302,7 +306,7 @@ module('Acceptance | super rentals', function(hooks) {
     assert.equal(currentURL(), '/getting-in-touch');
   });
 
-  test('visiting /getting-in-touch', async function(assert) {
+  test('visiting /getting-in-touch', async function (assert) {
     await visit('/getting-in-touch');
 
     assert.equal(currentURL(), '/getting-in-touch');
@@ -316,7 +320,7 @@ module('Acceptance | super rentals', function(hooks) {
     assert.equal(currentURL(), '/about');
   });
 
-  test('navigating using the nav-bar', async function(assert) {
+  test('navigating using the nav-bar', async function (assert) {
     await visit('/');
 
     assert.dom('nav').exists();
