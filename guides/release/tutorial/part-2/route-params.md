@@ -27,7 +27,7 @@ export default class Router extends EmberRouter {
   rootURL = config.rootURL;
 }
 
-Router.map(function() {
+Router.map(function () {
   this.route('about');
   this.route('contact', { path: '/getting-in-touch' });
   this.route('rental', { path: '/rentals/:rental_id' });
@@ -93,21 +93,17 @@ Thankfully, we can fix this pretty easily. As it turns out, the data that is ret
 
 If we look at the JSON data here, we can see that the `id` is included right alongside the `attributes` key. So we have access to this data; the only trouble is that we're not including it in our model! Let's change our model hook in the `index` route so that it includes the `id`.
 
-```js { data-filename="app/routes/index.js" data-diff="-15,+16,-25,+26" }
+```js { data-filename="app/routes/index.js" data-diff="-11,+12,-21,+22" }
 import Route from '@ember/routing/route';
 
-const COMMUNITY_CATEGORIES = [
-  'Condo',
-  'Townhouse',
-  'Apartment'
-];
+const COMMUNITY_CATEGORIES = ['Condo', 'Townhouse', 'Apartment'];
 
 export default class IndexRoute extends Route {
   async model() {
     let response = await fetch('/api/rentals.json');
     let { data } = await response.json();
 
-    return data.map(model => {
+    return data.map((model) => {
       let { attributes } = model;
       let { id, attributes } = model;
       let type;
@@ -131,16 +127,16 @@ Now that we've included our model's `id`, we should see the correct URLs to each
 
 Alright, we have just one more step left here: updating the tests. We can add an `id` to the rental that we defined in our test using `setProperties` and add an assertion for the expected URL, too.
 
-```js { data-filename="tests/integration/components/rental-test.js" data-diff="+12,+32" }
+```js { data-filename="tests/integration/components/rental-test.js" data-diff="+12,+34,+35,+36" }
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
-module('Integration | Component | rental', function(hooks) {
+module('Integration | Component | rental', function (hooks) {
   setupRenderingTest(hooks);
 
-  test('it renders information about a rental property', async function(assert) {
+  test('it renders information about a rental property', async function (assert) {
     this.setProperties({
       rental: {
         id: 'grand-old-mansion',
@@ -154,16 +150,20 @@ module('Integration | Component | rental', function(hooks) {
         category: 'Estate',
         type: 'Standalone',
         bedrooms: 15,
-        image: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg',
-        description: 'This grand old mansion sits on over 100 acres of rolling hills and dense redwood forests.',
-      }
+        image:
+          'https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg',
+        description:
+          'This grand old mansion sits on over 100 acres of rolling hills and dense redwood forests.',
+      },
     });
 
     await render(hbs`<Rental @rental={{this.rental}} />`);
 
     assert.dom('article').hasClass('rental');
     assert.dom('article h3').hasText('Grand Old Mansion');
-    assert.dom('article h3 a').hasAttribute('href', '/rentals/grand-old-mansion');
+    assert
+      .dom('article h3 a')
+      .hasAttribute('href', '/rentals/grand-old-mansion');
     assert.dom('article .detail.owner').includesText('Veruca Salt');
     assert.dom('article .detail.type').includesText('Standalone');
     assert.dom('article .detail.location').includesText('San Francisco');
@@ -192,14 +192,14 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
-module('Integration | Component | rental', function(hooks) {
+module('Integration | Component | rental', function (hooks) {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     this.owner.setupRouter();
   });
 
-  test('it renders information about a rental property', async function(assert) {
+  test('it renders information about a rental property', async function (assert) {
     this.setProperties({
       rental: {
         id: 'grand-old-mansion',
@@ -213,16 +213,20 @@ module('Integration | Component | rental', function(hooks) {
         category: 'Estate',
         type: 'Standalone',
         bedrooms: 15,
-        image: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg',
-        description: 'This grand old mansion sits on over 100 acres of rolling hills and dense redwood forests.',
-      }
+        image:
+          'https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg',
+        description:
+          'This grand old mansion sits on over 100 acres of rolling hills and dense redwood forests.',
+      },
     });
 
     await render(hbs`<Rental @rental={{this.rental}} />`);
 
     assert.dom('article').hasClass('rental');
     assert.dom('article h3').hasText('Grand Old Mansion');
-    assert.dom('article h3 a').hasAttribute('href', '/rentals/grand-old-mansion');
+    assert
+      .dom('article h3 a')
+      .hasAttribute('href', '/rentals/grand-old-mansion');
     assert.dom('article .detail.owner').includesText('Veruca Salt');
     assert.dom('article .detail.type').includesText('Standalone');
     assert.dom('article .detail.location').includesText('San Francisco');
@@ -258,11 +262,7 @@ Now that we have our `rental` route, let's finish up our `rental` page. The firs
 ```js { data-filename="app/routes/rental.js" }
 import Route from '@ember/routing/route';
 
-const COMMUNITY_CATEGORIES = [
-  'Condo',
-  'Townhouse',
-  'Apartment'
-];
+const COMMUNITY_CATEGORIES = ['Condo', 'Townhouse', 'Apartment'];
 
 export default class RentalRoute extends Route {
   async model(params) {
@@ -304,6 +304,10 @@ installing component
 installing component-test
   create tests/integration/components/rental/detailed-test.js
 ```
+
+<!-- patch for https://github.com/emberjs/ember.js/issues/19333 -->
+
+<!-- end patch for https://github.com/emberjs/ember.js/issues/19333 -->
 
 ```handlebars { data-filename="app/components/rental/detailed.hbs" data-diff="-1,+2,+3,+4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33,+34,+35,+36,+37,+38,+39,+40,+41,+42,+43,+44,+45" }
 {{yield}}
@@ -364,19 +368,19 @@ This component is similar to our `<Rental>` component, except for the following 
 
 Now that we have this template in place, we can add some tests for this new component of ours.
 
-```handlebars { data-filename="tests/integration/components/rental/detailed-test.js" data-diff="-9,-10,-11,+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,-32,+33,+34,-36,+37,+38,+39,+40,+41,-43,-44,-45,-46,-47,-48,+49,+50,-52,+53,+54,+55,+56,+57,+58,+59,+60" }
+```handlebars { data-filename="tests/integration/components/rental/detailed-test.js" data-diff="-9,-10,-11,+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,-34,+35,+36,-38,+39,+40,+41,+42,+43,+44,+45,-47,-48,-49,-50,-51,-52,+53,+54,-56,+57,+58,+59,+60,+61,+62,+63,+64" }
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
-module('Integration | Component | rental/detailed', function(hooks) {
+module('Integration | Component | rental/detailed', function (hooks) {
   setupRenderingTest(hooks);
 
-  test('it renders', async function(assert) {
+  test('it renders', async function (assert) {
     // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
-  hooks.beforeEach(function() {
+    // Handle any actions with this.set('myAction', function (val) { ... });
+  hooks.beforeEach(function () {
     this.setProperties({
       rental: {
         id: 'grand-old-mansion',
@@ -390,20 +394,24 @@ module('Integration | Component | rental/detailed', function(hooks) {
         category: 'Estate',
         type: 'Standalone',
         bedrooms: 15,
-        image: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg',
-        description: 'This grand old mansion sits on over 100 acres of rolling hills and dense redwood forests.',
-      }
+        image:
+          'https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg',
+        description:
+          'This grand old mansion sits on over 100 acres of rolling hills and dense redwood forests.',
+      },
     });
   });
 
     await render(hbs`<Rental::Detailed />`);
-  test('it renders a header with a share button', async function(assert) {
+  test('it renders a header with a share button', async function (assert) {
     await render(hbs`<Rental::Detailed @rental={{this.rental}} />`);
 
     assert.equal(this.element.textContent.trim(), '');
     assert.dom('.jumbo').exists();
     assert.dom('.jumbo h2').containsText('Grand Old Mansion');
-    assert.dom('.jumbo p').containsText('a nice place to stay near San Francisco');
+    assert
+      .dom('.jumbo p')
+      .containsText('a nice place to stay near San Francisco');
     assert.dom('.jumbo a.button').containsText('Share on Twitter');
   });
 
@@ -413,7 +421,7 @@ module('Integration | Component | rental/detailed', function(hooks) {
         template block text
       </Rental::Detailed>
     `);
-  test('it renders detailed information about a rental property', async function(assert) {
+  test('it renders detailed information about a rental property', async function (assert) {
     await render(hbs`<Rental::Detailed @rental={{this.rental}} />`);
 
     assert.equal(this.element.textContent.trim(), 'template block text');
@@ -446,10 +454,10 @@ import { module, test } from 'qunit';
 import { click, visit, currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
-module('Acceptance | super rentals', function(hooks) {
+module('Acceptance | super rentals', function (hooks) {
   setupApplicationTest(hooks);
 
-  test('visiting /', async function(assert) {
+  test('visiting /', async function (assert) {
     await visit('/');
 
     assert.equal(currentURL(), '/');
@@ -463,7 +471,7 @@ module('Acceptance | super rentals', function(hooks) {
     assert.equal(currentURL(), '/about');
   });
 
-  test('viewing the details of a rental property', async function(assert) {
+  test('viewing the details of a rental property', async function (assert) {
     await visit('/');
     assert.dom('.rental').exists({ count: 3 });
 
@@ -471,7 +479,7 @@ module('Acceptance | super rentals', function(hooks) {
     assert.equal(currentURL(), '/rentals/grand-old-mansion');
   });
 
-  test('visiting /rentals/grand-old-mansion', async function(assert) {
+  test('visiting /rentals/grand-old-mansion', async function (assert) {
     await visit('/rentals/grand-old-mansion');
 
     assert.equal(currentURL(), '/rentals/grand-old-mansion');
@@ -481,7 +489,7 @@ module('Acceptance | super rentals', function(hooks) {
     assert.dom('.rental.detailed').exists();
   });
 
-  test('visiting /about', async function(assert) {
+  test('visiting /about', async function (assert) {
     await visit('/about');
 
     assert.equal(currentURL(), '/about');
@@ -495,7 +503,7 @@ module('Acceptance | super rentals', function(hooks) {
     assert.equal(currentURL(), '/getting-in-touch');
   });
 
-  test('visiting /getting-in-touch', async function(assert) {
+  test('visiting /getting-in-touch', async function (assert) {
     await visit('/getting-in-touch');
 
     assert.equal(currentURL(), '/getting-in-touch');
@@ -509,7 +517,7 @@ module('Acceptance | super rentals', function(hooks) {
     assert.equal(currentURL(), '/about');
   });
 
-  test('navigating using the nav-bar', async function(assert) {
+  test('navigating using the nav-bar', async function (assert) {
     await visit('/');
 
     assert.dom('nav').exists();

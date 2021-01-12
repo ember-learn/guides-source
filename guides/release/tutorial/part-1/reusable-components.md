@@ -27,7 +27,7 @@ Once you have signed up for the service, grab your _[default public token](https
 ```js { data-filename="config/environment.js" data-diff="+51,+52" }
 'use strict';
 
-module.exports = function(environment) {
+module.exports = function (environment) {
   let ENV = {
     modulePrefix: 'super-rentals',
     environment,
@@ -41,14 +41,14 @@ module.exports = function(environment) {
       },
       EXTEND_PROTOTYPES: {
         // Prevent Ember Data from overriding Date.parse.
-        Date: false
-      }
+        Date: false,
+      },
     },
 
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-    }
+    },
   };
 
   if (environment === 'development') {
@@ -137,6 +137,10 @@ However, in the case of our `<Map>` component, we are pretty sure that we are go
   </div>
 </div>
 
+<!-- patch for https://github.com/emberjs/ember.js/issues/19333 -->
+
+<!-- end patch for https://github.com/emberjs/ember.js/issues/19333 -->
+
 ## Parameterizing Components with Arguments
 
 Let's start with our JavaScript file:
@@ -194,7 +198,7 @@ Finally, since we are using the `@2x` "retina" image, we should specify the `wid
 
 We just added a lot of behavior into a single component, so let's write some tests! In particular, we should make sure to have some _[test coverage](../../../testing/)_ for the overriding-HTML-attributes behavior we discussed above.
 
-```js { data-filename="tests/integration/components/map-test.js" data-diff="-3,+4,+6,-11,-12,-13,+14,+15,+16,+17,+18,+19,+20,+21,-23,+24,+25,+26,+27,+28,-30,+31,+32,-34,-35,-36,-37,-38,-39,+40,+41,+42,+43,+44,+45,+46,+47,+48,+49,+50,+51,+52,+53,+54,+55,+56,+57,+58,+59,+60,+61,+62,+63,+64,+65,+66,+67,+68,-70,+71,+72,+73" }
+```js { data-filename="tests/integration/components/map-test.js" data-diff="-3,+4,+6,-11,-12,-13,+14,+15,+16,+17,+18,+19,+20,+21,-23,+24,+25,+26,+27,+28,+29,+30,-32,+33,+34,-36,-37,-38,-39,-40,-41,+42,+43,+44,+45,-47,+48,+49,+50,+51,+52,+53,+54,+55,+56,+57,+58,+59,+60,+61,+62,+63,+64,+65,+66,+67,+68,+69,+70,+71,+72,+73,+74,+75,+76,+77,+78,+79,+80,+81,+82,+83,+84,+85,+86,+87,+88,+89,+90,+91,+92,+93" }
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
@@ -202,13 +206,13 @@ import { render, find } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 import ENV from 'super-rentals/config/environment';
 
-module('Integration | Component | map', function(hooks) {
+module('Integration | Component | map', function (hooks) {
   setupRenderingTest(hooks);
 
-  test('it renders', async function(assert) {
+  test('it renders', async function (assert) {
     // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
-  test('it renders a map image for the specified parameters', async function(assert) {
+    // Handle any actions with this.set('myAction', function (val) { ... });
+  test('it renders a map image for the specified parameters', async function (assert) {
     await render(hbs`<Map
       @lat="37.7797"
       @lng="-122.4184"
@@ -218,11 +222,13 @@ module('Integration | Component | map', function(hooks) {
     />`);
 
     await render(hbs`<Map />`);
-    assert.dom('.map').exists();
-    assert.dom('.map img').hasAttribute('alt', 'Map image at coordinates 37.7797,-122.4184');
-    assert.dom('.map img').hasAttribute('src', /^https:\/\/api\.mapbox\.com/, 'the src starts with "https://api.mapbox.com"');
-    assert.dom('.map img').hasAttribute('width', '150');
-    assert.dom('.map img').hasAttribute('height', '120');
+    assert
+      .dom('.map img')
+      .exists()
+      .hasAttribute('alt', 'Map image at coordinates 37.7797,-122.4184')
+      .hasAttribute('src')
+      .hasAttribute('width', '150')
+      .hasAttribute('height', '120');
 
     assert.equal(this.element.textContent.trim(), '');
     let { src } = find('.map img');
@@ -234,12 +240,29 @@ module('Integration | Component | map', function(hooks) {
         template block text
       </Map>
     `);
-    assert.ok(src.includes('-122.4184,37.7797,10'), 'the src should include the lng,lat,zoom parameter');
-    assert.ok(src.includes('150x120@2x'), 'the src should include the width,height and @2x parameter');
-    assert.ok(src.includes(`access_token=${token}`), 'the src should include the escaped access token');
+    assert.ok(
+      src.startsWith('https://api.mapbox.com/'),
+      'the src starts with "https://api.mapbox.com/"'
+    );
+
+    assert.equal(this.element.textContent.trim(), 'template block text');
+    assert.ok(
+      src.includes('-122.4184,37.7797,10'),
+      'the src should include the lng,lat,zoom parameter'
+    );
+
+    assert.ok(
+      src.includes('150x120@2x'),
+      'the src should include the width,height and @2x parameter'
+    );
+
+    assert.ok(
+      src.includes(`access_token=${token}`),
+      'the src should include the escaped access token'
+    );
   });
 
-  test('the default alt attribute can be overridden', async function(assert) {
+  test('the default alt attribute can be overridden', async function (assert) {
     await render(hbs`<Map
       @lat="37.7797"
       @lng="-122.4184"
@@ -252,7 +275,7 @@ module('Integration | Component | map', function(hooks) {
     assert.dom('.map img').hasAttribute('alt', 'A map of San Francisco');
   });
 
-  test('the src, width and height attributes cannot be overridden', async function(assert) {
+  test('the src, width and height attributes cannot be overridden', async function (assert) {
     await render(hbs`<Map
       @lat="37.7797"
       @lng="-122.4184"
@@ -264,10 +287,11 @@ module('Integration | Component | map', function(hooks) {
       height="300"
     />`);
 
-    assert.equal(this.element.textContent.trim(), 'template block text');
-    assert.dom('.map img').hasAttribute('src', /^https:\/\/api\.mapbox\.com/, 'the src starts with "https://api.mapbox.com"');
-    assert.dom('.map img').hasAttribute('width', '150');
-    assert.dom('.map img').hasAttribute('height', '120');
+    assert
+      .dom('.map img')
+      .hasAttribute('src', /^https:\/\/api\.mapbox\.com\//)
+      .hasAttribute('width', '150')
+      .hasAttribute('height', '120');
   });
 });
 ```
@@ -338,10 +362,10 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
-module('Integration | Component | rental', function(hooks) {
+module('Integration | Component | rental', function (hooks) {
   setupRenderingTest(hooks);
 
-  test('it renders information about a rental property', async function(assert) {
+  test('it renders information about a rental property', async function (assert) {
     await render(hbs`<Rental />`);
 
     assert.dom('article').hasClass('rental');
@@ -385,7 +409,7 @@ export default class MapComponent extends Component {
     let { lng, lat, width, height, zoom } = this.args;
 
     let coordinates = `${lng},${lat},${zoom}`;
-    let dimensions  = `${width}x${height}`;
+    let dimensions = `${width}x${height}`;
     let accessToken = `access_token=${this.token}`;
 
     return `${MAPBOX_API}/${coordinates}/${dimensions}@2x?${accessToken}`;
@@ -423,17 +447,17 @@ Ember does this by automatically tracking any variables that were accessed while
 
 Just to be sure, we can add a test for this behavior:
 
-```js { data-filename="tests/integration/components/map-test.js" data-diff="+33,+34,+35,+36,+37,+38,+39,+40,+41,+42,+43,+44,+45,+46,+47,+48,+49,+50,+51,+52,+53,+54,+55,+56,+57,+58,+59,+60,+61,+62,+63,+64,+65,+66,+67,+68,+69,+70,+71,+72" }
+```js { data-filename="tests/integration/components/map-test.js" data-diff="+51,+52,+53,+54,+55,+56,+57,+58,+59,+60,+61,+62,+63,+64,+65,+66,+67,+68,+69,+70,+71,+72,+73,+74,+75,+76,+77,+78,+79,+80,+81,+82,+83,+84,+85,+86,+87,+88,+89,+90,+91,+92,+93,+94,+95,+96,+97,+98,+99,+100,+101,+102,+103,+104,+105,+106,+107,+108,+109,+110,+111" }
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render, find } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 import ENV from 'super-rentals/config/environment';
 
-module('Integration | Component | map', function(hooks) {
+module('Integration | Component | map', function (hooks) {
   setupRenderingTest(hooks);
 
-  test('it renders a map image for the specified parameters', async function(assert) {
+  test('it renders a map image for the specified parameters', async function (assert) {
     await render(hbs`<Map
       @lat="37.7797"
       @lng="-122.4184"
@@ -442,21 +466,39 @@ module('Integration | Component | map', function(hooks) {
       @height="120"
     />`);
 
-    assert.dom('.map').exists();
-    assert.dom('.map img').hasAttribute('alt', 'Map image at coordinates 37.7797,-122.4184');
-    assert.dom('.map img').hasAttribute('src', /^https:\/\/api\.mapbox\.com/, 'the src starts with "https://api.mapbox.com"');
-    assert.dom('.map img').hasAttribute('width', '150');
-    assert.dom('.map img').hasAttribute('height', '120');
+    assert
+      .dom('.map img')
+      .exists()
+      .hasAttribute('alt', 'Map image at coordinates 37.7797,-122.4184')
+      .hasAttribute('src')
+      .hasAttribute('width', '150')
+      .hasAttribute('height', '120');
 
     let { src } = find('.map img');
     let token = encodeURIComponent(ENV.MAPBOX_ACCESS_TOKEN);
 
-    assert.ok(src.includes('-122.4184,37.7797,10'), 'the src should include the lng,lat,zoom parameter');
-    assert.ok(src.includes('150x120@2x'), 'the src should include the width,height and @2x parameter');
-    assert.ok(src.includes(`access_token=${token}`), 'the src should include the escaped access token');
+    assert.ok(
+      src.startsWith('https://api.mapbox.com/'),
+      'the src starts with "https://api.mapbox.com/"'
+    );
+
+    assert.ok(
+      src.includes('-122.4184,37.7797,10'),
+      'the src should include the lng,lat,zoom parameter'
+    );
+
+    assert.ok(
+      src.includes('150x120@2x'),
+      'the src should include the width,height and @2x parameter'
+    );
+
+    assert.ok(
+      src.includes(`access_token=${token}`),
+      'the src should include the escaped access token'
+    );
   });
 
-  test('it updates the `src` attribute when the arguments change', async function(assert) {
+  test('it updates the `src` attribute when the arguments change', async function (assert) {
     this.setProperties({
       lat: 37.7749,
       lng: -122.4194,
@@ -475,8 +517,15 @@ module('Integration | Component | map', function(hooks) {
 
     let img = find('.map img');
 
-    assert.ok(img.src.includes('-122.4194,37.7749,10'), 'the src should include the lng,lat,zoom parameter');
-    assert.ok(img.src.includes('150x120@2x'), 'the src should include the width,height and @2x parameter');
+    assert.ok(
+      img.src.includes('-122.4194,37.7749,10'),
+      'the src should include the lng,lat,zoom parameter'
+    );
+
+    assert.ok(
+      img.src.includes('150x120@2x'),
+      'the src should include the width,height and @2x parameter'
+    );
 
     this.setProperties({
       width: 300,
@@ -484,19 +533,33 @@ module('Integration | Component | map', function(hooks) {
       zoom: 12,
     });
 
-    assert.ok(img.src.includes('-122.4194,37.7749,12'), 'the src should include the lng,lat,zoom parameter');
-    assert.ok(img.src.includes('300x200@2x'), 'the src should include the width,height and @2x parameter');
+    assert.ok(
+      img.src.includes('-122.4194,37.7749,12'),
+      'the src should include the lng,lat,zoom parameter'
+    );
+
+    assert.ok(
+      img.src.includes('300x200@2x'),
+      'the src should include the width,height and @2x parameter'
+    );
 
     this.setProperties({
       lat: 47.6062,
       lng: -122.3321,
     });
 
-    assert.ok(img.src.includes('-122.3321,47.6062,12'), 'the src should include the lng,lat,zoom parameter');
-    assert.ok(img.src.includes('300x200@2x'), 'the src should include the width,height and @2x parameter');
+    assert.ok(
+      img.src.includes('-122.3321,47.6062,12'),
+      'the src should include the lng,lat,zoom parameter'
+    );
+
+    assert.ok(
+      img.src.includes('300x200@2x'),
+      'the src should include the width,height and @2x parameter'
+    );
   });
 
-  test('the default alt attribute can be overridden', async function(assert) {
+  test('the default alt attribute can be overridden', async function (assert) {
     await render(hbs`<Map
       @lat="37.7797"
       @lng="-122.4184"
@@ -509,7 +572,7 @@ module('Integration | Component | map', function(hooks) {
     assert.dom('.map img').hasAttribute('alt', 'A map of San Francisco');
   });
 
-  test('the src, width and height attributes cannot be overridden', async function(assert) {
+  test('the src, width and height attributes cannot be overridden', async function (assert) {
     await render(hbs`<Map
       @lat="37.7797"
       @lng="-122.4184"
@@ -521,9 +584,11 @@ module('Integration | Component | map', function(hooks) {
       height="300"
     />`);
 
-    assert.dom('.map img').hasAttribute('src', /^https:\/\/api\.mapbox\.com/, 'the src starts with "https://api.mapbox.com"');
-    assert.dom('.map img').hasAttribute('width', '150');
-    assert.dom('.map img').hasAttribute('height', '120');
+    assert
+      .dom('.map img')
+      .hasAttribute('src', /^https:\/\/api\.mapbox\.com\//)
+      .hasAttribute('width', '150')
+      .hasAttribute('height', '120');
   });
 });
 ```

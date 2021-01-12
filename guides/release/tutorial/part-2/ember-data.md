@@ -21,18 +21,14 @@ A while back, we added the `rental` route. If memory serves us well, we didn't d
 ```js { data-filename="app/routes/index.js" }
 import Route from '@ember/routing/route';
 
-const COMMUNITY_CATEGORIES = [
-  'Condo',
-  'Townhouse',
-  'Apartment'
-];
+const COMMUNITY_CATEGORIES = ['Condo', 'Townhouse', 'Apartment'];
 
 export default class IndexRoute extends Route {
   async model() {
     let response = await fetch('/api/rentals.json');
     let { data } = await response.json();
 
-    return data.map(model => {
+    return data.map((model) => {
       let { id, attributes } = model;
       let type;
 
@@ -51,11 +47,7 @@ export default class IndexRoute extends Route {
 ```js { data-filename="app/routes/rental.js" }
 import Route from '@ember/routing/route';
 
-const COMMUNITY_CATEGORIES = [
-  'Condo',
-  'Townhouse',
-  'Apartment'
-];
+const COMMUNITY_CATEGORIES = ['Condo', 'Townhouse', 'Apartment'];
 
 export default class RentalRoute extends Route {
   async model(params) {
@@ -93,11 +85,7 @@ Enough talking, why don't we give that a try!
 ```js { data-filename="app/models/rental.js" }
 import Model, { attr } from '@ember-data/model';
 
-const COMMUNITY_CATEGORIES = [
-  'Condo',
-  'Townhouse',
-  'Apartment'
-];
+const COMMUNITY_CATEGORIES = ['Condo', 'Townhouse', 'Apartment'];
 
 export default class RentalModel extends Model {
   @attr title;
@@ -161,6 +149,10 @@ installing model-test
   create tests/unit/models/rental-test.js
 ```
 
+<!-- patch for https://github.com/emberjs/data/issues/7418 -->
+
+<!-- end patch for https://github.com/emberjs/data/issues/7418 -->
+
 <div class="cta">
   <div class="cta-note">
     <div class="cta-note-body">
@@ -175,16 +167,16 @@ installing model-test
 
 The generator created some boilerplate code for us, which serves as a pretty good starting point for writing our test:
 
-```js { data-filename="tests/unit/models/rental-test.js" data-diff="-7,-8,+9,-11,-12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33,+34,+35,+36,+37,+38,+39,+40" }
+```js { data-filename="tests/unit/models/rental-test.js" data-diff="-7,-8,+9,-11,-12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33,+34,+35,+36,+37,+38,+39,+40,+41,+42" }
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 
-module('Unit | Model | rental', function(hooks) {
+module('Unit | Model | rental', function (hooks) {
   setupTest(hooks);
 
   // Replace this with your real tests.
-  test('it exists', function(assert) {
-  test('it has the right type', function(assert) {
+  test('it exists', function (assert) {
+  test('it has the right type', function (assert) {
     let store = this.owner.lookup('service:store');
     let model = store.createRecord('rental', {});
     assert.ok(model);
@@ -199,8 +191,10 @@ module('Unit | Model | rental', function(hooks) {
       },
       category: 'Estate',
       bedrooms: 15,
-      image: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg',
-      description: 'This grand old mansion sits on over 100 acres of rolling hills and dense redwood forests.',
+      image:
+        'https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg',
+      description:
+        'This grand old mansion sits on over 100 acres of rolling hills and dense redwood forests.',
     });
 
     assert.equal(rental.type, 'Standalone');
@@ -232,14 +226,10 @@ Running the tests in the browser confirms that everything is working as intended
 
 Alright, now that we have our model set up, it's time to refactor our route handlers to use Ember Data and remove the duplication!
 
-```js { data-filename="app/routes/index.js" data-diff="-2,-3,-4,-5,-6,-7,+8,-11,-12,-13,-14,-15,-16,-17,+18,-20,-21,-22,-23,-24,-25,-26,-27,+28,+29" }
+```js { data-filename="app/routes/index.js" data-diff="-2,-3,+4,-7,-8,-9,-10,-11,-12,-13,+14,-16,-17,-18,-19,-20,-21,-22,-23,+24,+25" }
 import Route from '@ember/routing/route';
 
-const COMMUNITY_CATEGORIES = [
-  'Condo',
-  'Townhouse',
-  'Apartment'
-];
+const COMMUNITY_CATEGORIES = ['Condo', 'Townhouse', 'Apartment'];
 import { inject as service } from '@ember/service';
 
 export default class IndexRoute extends Route {
@@ -247,7 +237,7 @@ export default class IndexRoute extends Route {
     let response = await fetch('/api/rentals.json');
     let { data } = await response.json();
 
-    return data.map(model => {
+    return data.map((model) => {
       let { id, attributes } = model;
       let type;
   @service store;
@@ -266,14 +256,10 @@ export default class IndexRoute extends Route {
 }
 ```
 
-```js { data-filename="app/routes/rental.js" data-diff="-2,-3,-4,-5,-6,-7,+8,-11,-12,-13,-14,-15,-16,+17,-19,-20,-21,-22,-23,-24,-25,+26,+27" }
+```js { data-filename="app/routes/rental.js" data-diff="-2,-3,+4,-7,-8,-9,-10,-11,-12,+13,-15,-16,-17,-18,-19,-20,-21,+22,+23" }
 import Route from '@ember/routing/route';
 
-const COMMUNITY_CATEGORIES = [
-  'Condo',
-  'Townhouse',
-  'Apartment'
-];
+const COMMUNITY_CATEGORIES = ['Condo', 'Townhouse', 'Apartment'];
 import { inject as service } from '@ember/service';
 
 export default class RentalRoute extends Route {
@@ -344,8 +330,7 @@ export default class ApplicationAdapter extends JSONAPIAdapter {
 ```js { data-filename="app/serializers/application.js" }
 import JSONAPISerializer from '@ember-data/serializer/json-api';
 
-export default class ApplicationSerializer extends JSONAPISerializer {
-}
+export default class ApplicationSerializer extends JSONAPISerializer {}
 ```
 
 By convention, adapters are located at `app/adapters`. Furthermore, the adapter named `application` is called the _application adapter_, which will be used to fetch data for all models in our app.

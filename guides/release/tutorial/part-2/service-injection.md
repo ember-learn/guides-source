@@ -53,6 +53,10 @@ installing component-test
   create tests/integration/components/share-button-test.js
 ```
 
+<!-- patch for https://github.com/emberjs/ember.js/issues/19333 -->
+
+<!-- end patch for https://github.com/emberjs/ember.js/issues/19333 -->
+
 Let's start with the template that was generated for this component. We already have some markup for the share button in the `<Rental::Detailed>` component we made earlier, so let's just copy that over into our new `<ShareButton>` component.
 
 ```handlebars { data-filename="app/components/share-button.hbs" data-diff="-1,+2,+3,+4,+5,+6,+7,+8,+9,+10" }
@@ -195,10 +199,10 @@ import { click, visit, currentURL } from '@ember/test-helpers';
 import { click, find, visit, currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
-module('Acceptance | super rentals', function(hooks) {
+module('Acceptance | super rentals', function (hooks) {
   setupApplicationTest(hooks);
 
-  test('visiting /', async function(assert) {
+  test('visiting /', async function (assert) {
     await visit('/');
 
     assert.equal(currentURL(), '/');
@@ -212,7 +216,7 @@ module('Acceptance | super rentals', function(hooks) {
     assert.equal(currentURL(), '/about');
   });
 
-  test('viewing the details of a rental property', async function(assert) {
+  test('viewing the details of a rental property', async function (assert) {
     await visit('/');
     assert.dom('.rental').exists({ count: 3 });
 
@@ -220,7 +224,7 @@ module('Acceptance | super rentals', function(hooks) {
     assert.equal(currentURL(), '/rentals/grand-old-mansion');
   });
 
-  test('visiting /rentals/grand-old-mansion', async function(assert) {
+  test('visiting /rentals/grand-old-mansion', async function (assert) {
     await visit('/rentals/grand-old-mansion');
 
     assert.equal(currentURL(), '/rentals/grand-old-mansion');
@@ -241,7 +245,7 @@ module('Acceptance | super rentals', function(hooks) {
     );
   });
 
-  test('visiting /about', async function(assert) {
+  test('visiting /about', async function (assert) {
     await visit('/about');
 
     assert.equal(currentURL(), '/about');
@@ -255,7 +259,7 @@ module('Acceptance | super rentals', function(hooks) {
     assert.equal(currentURL(), '/getting-in-touch');
   });
 
-  test('visiting /getting-in-touch', async function(assert) {
+  test('visiting /getting-in-touch', async function (assert) {
     await visit('/getting-in-touch');
 
     assert.equal(currentURL(), '/getting-in-touch');
@@ -269,7 +273,7 @@ module('Acceptance | super rentals', function(hooks) {
     assert.equal(currentURL(), '/about');
   });
 
-  test('navigating using the nav-bar', async function(assert) {
+  test('navigating using the nav-bar', async function (assert) {
     await visit('/');
 
     assert.dom('nav').exists();
@@ -381,7 +385,7 @@ More importantly, services are designed to be easily _swappable_. In our compone
 
 We will take advantage of this capability in our component test:
 
-```js { data-filename="tests/integration/components/share-button-test.js" data-diff="+3,+7,+8,+9,+10,+11,+12,-16,-17,-18,-19,-20,-21,-22,+23,+24,+25,-27,-28,-29,-30,-31,-32,+33,+34,-36,+37,+38,+39,+40,+41,+42,+43,+44,+45,+46,+47" }
+```js { data-filename="tests/integration/components/share-button-test.js" data-diff="+3,+7,+8,+9,+10,+11,+12,-16,-17,-18,-19,-20,-21,-22,+23,+24,+25,-27,-28,-29,-30,-31,-32,+33,+34,-36,+37,+38,+39,+40,+41,+42,+43,+44,+45,+46,+47,+48,+49" }
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import Service from '@ember/service';
@@ -394,17 +398,17 @@ class MockRouterService extends Service {
   }
 }
 
-module('Integration | Component | share-button', function(hooks) {
+module('Integration | Component | share-button', function (hooks) {
   setupRenderingTest(hooks);
 
-  test('it renders', async function(assert) {
+  test('it renders', async function (assert) {
     // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+    // Handle any actions with this.set('myAction', function (val) { ... });
 
     await render(hbs`<ShareButton />`);
 
     assert.equal(this.element.textContent.trim(), '');
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     this.owner.register('service:router', MockRouterService);
   });
 
@@ -414,21 +418,23 @@ module('Integration | Component | share-button', function(hooks) {
         template block text
       </ShareButton>
     `);
-  test('basic usage', async function(assert) {
+  test('basic usage', async function (assert) {
     await render(hbs`<ShareButton>Tweet this!</ShareButton>`);
 
     assert.equal(this.element.textContent.trim(), 'template block text');
-    assert.dom('a').exists();
-    assert.dom('a').hasAttribute('target', '_blank');
-    assert.dom('a').hasAttribute('rel', 'external nofollow noopener noreferrer');
-    assert.dom('a').hasAttribute('href', `https://twitter.com/intent/tweet?url=${
-      encodeURIComponent(
-        new URL('/foo/bar?baz=true#some-section', window.location.origin)
+    assert
+      .dom('a')
+      .hasAttribute('target', '_blank')
+      .hasAttribute('rel', 'external nofollow noopener noreferrer')
+      .hasAttribute(
+        'href',
+        `https://twitter.com/intent/tweet?url=${encodeURIComponent(
+          new URL('/foo/bar?baz=true#some-section', window.location.origin)
+        )}`
       )
-    }`);
-    assert.dom('a').hasClass('share');
-    assert.dom('a').hasClass('button');
-    assert.dom('a').containsText('Tweet this!');
+      .hasClass('share')
+      .hasClass('button')
+      .containsText('Tweet this!');
   });
 });
 ```
@@ -441,7 +447,7 @@ By using service injections and mocks, Ember allows us to build _loosely coupled
 
 While we are here, let's add some more tests for the various functionalities of the `<ShareButton>` component:
 
-```js { data-filename="tests/integration/components/share-button-test.js" data-diff="-4,+5,+19,+20,+21,+22,+23,+24,-33,-34,-35,-36,-37,+38,+42,+43,+44,+45,+46,+47,+48,+49,+50,+51,+52,+53,+54,+55,+56,+57,+58,+59,+60,+61,+62,+63,+64,+65,+66,+67,+68,+69,+70,+71,+72,+73,+74,+75,+76,+77,+78" }
+```js { data-filename="tests/integration/components/share-button-test.js" data-diff="-4,+5,+19,+20,+21,+22,+23,+24,-34,-35,-36,-37,-38,-39,+40,+44,+45,+46,+47,+48,+49,+50,+51,+52,+53,+54,+55,+56,+57,+58,+59,+60,+61,+62,+63,+64,+65,+66,+67,+68,+69,+70,+71,+72,+73,+74,+75,+76,+77,+78,+79,+80,+81,+82,+83,+84,+85,+86,+87,+88,+89,+90,+91,+92,+93,+94" }
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import Service from '@ember/service';
@@ -455,34 +461,36 @@ class MockRouterService extends Service {
   }
 }
 
-module('Integration | Component | share-button', function(hooks) {
+module('Integration | Component | share-button', function (hooks) {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     this.owner.register('service:router', MockRouterService);
 
-    this.tweetParam = param => {
+    this.tweetParam = (param) => {
       let link = find('a');
       let url = new URL(link.href);
       return url.searchParams.get(param);
     };
   });
 
-  test('basic usage', async function(assert) {
+  test('basic usage', async function (assert) {
     await render(hbs`<ShareButton>Tweet this!</ShareButton>`);
 
-    assert.dom('a').exists();
-    assert.dom('a').hasAttribute('target', '_blank');
-    assert.dom('a').hasAttribute('rel', 'external nofollow noopener noreferrer');
-    assert.dom('a').hasAttribute('href', `https://twitter.com/intent/tweet?url=${
-      encodeURIComponent(
-        new URL('/foo/bar?baz=true#some-section', window.location.origin)
+    assert
+      .dom('a')
+      .hasAttribute('target', '_blank')
+      .hasAttribute('rel', 'external nofollow noopener noreferrer')
+      .hasAttribute(
+        'href',
+        `https://twitter.com/intent/tweet?url=${encodeURIComponent(
+          new URL('/foo/bar?baz=true#some-section', window.location.origin)
+        )}`
       )
-    }`);
-    assert.dom('a').hasAttribute('href', /^https:\/\/twitter\.com\/intent\/tweet/);
-    assert.dom('a').hasClass('share');
-    assert.dom('a').hasClass('button');
-    assert.dom('a').containsText('Tweet this!');
+      .hasAttribute('href', /^https:\/\/twitter\.com\/intent\/tweet/)
+      .hasClass('share')
+      .hasClass('button')
+      .containsText('Tweet this!');
 
     assert.equal(
       this.tweetParam('url'),
@@ -490,36 +498,50 @@ module('Integration | Component | share-button', function(hooks) {
     );
   });
 
-  test('it supports passing @text', async function(assert) {
-    await render(hbs`<ShareButton @text="Hello Twitter!">Tweet this!</ShareButton>`);
+  test('it supports passing @text', async function (assert) {
+    await render(
+      hbs`<ShareButton @text="Hello Twitter!">Tweet this!</ShareButton>`
+    );
+
     assert.equal(this.tweetParam('text'), 'Hello Twitter!');
   });
 
-  test('it supports passing @hashtags', async function(assert) {
-    await render(hbs`<ShareButton @hashtags="foo,bar,baz">Tweet this!</ShareButton>`);
+  test('it supports passing @hashtags', async function (assert) {
+    await render(
+      hbs`<ShareButton @hashtags="foo,bar,baz">Tweet this!</ShareButton>`
+    );
+
     assert.equal(this.tweetParam('hashtags'), 'foo,bar,baz');
   });
 
-  test('it supports passing @via', async function(assert) {
+  test('it supports passing @via', async function (assert) {
     await render(hbs`<ShareButton @via="emberjs">Tweet this!</ShareButton>`);
     assert.equal(this.tweetParam('via'), 'emberjs');
   });
 
-  test('it supports adding extra classes', async function(assert) {
-    await render(hbs`<ShareButton class="extra things">Tweet this!</ShareButton>`);
+  test('it supports adding extra classes', async function (assert) {
+    await render(
+      hbs`<ShareButton class="extra things">Tweet this!</ShareButton>`
+    );
 
-    assert.dom('a').hasClass('share');
-    assert.dom('a').hasClass('button');
-    assert.dom('a').hasClass('extra');
-    assert.dom('a').hasClass('things');
+    assert
+      .dom('a')
+      .hasClass('share')
+      .hasClass('button')
+      .hasClass('extra')
+      .hasClass('things');
   });
 
-  test('the target, rel and href attributes cannot be overridden', async function(assert) {
-    await render(hbs`<ShareButton target="_self" rel="" href="/">Not a Tweet!</ShareButton>`);
+  test('the target, rel and href attributes cannot be overridden', async function (assert) {
+    await render(
+      hbs`<ShareButton target="_self" rel="" href="/">Not a Tweet!</ShareButton>`
+    );
 
-    assert.dom('a').hasAttribute('target', '_blank');
-    assert.dom('a').hasAttribute('rel', 'external nofollow noopener noreferrer');
-    assert.dom('a').hasAttribute('href', /^https:\/\/twitter\.com\/intent\/tweet/);
+    assert
+      .dom('a')
+      .hasAttribute('target', '_blank')
+      .hasAttribute('rel', 'external nofollow noopener noreferrer')
+      .hasAttribute('href', /^https:\/\/twitter\.com\/intent\/tweet/);
   });
 });
 ```

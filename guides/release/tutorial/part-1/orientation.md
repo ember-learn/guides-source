@@ -24,7 +24,7 @@ To verify that your installation was successful, run:
 
 ```shell
 $ ember --version
-ember-cli: 3.22.0
+ember-cli: 3.24.0
 node: 12.18.3
 os: linux x64
 ```
@@ -38,13 +38,15 @@ We can create a new project using Ember CLI's `new` command. It follows the patt
 ```shell
 $ ember new super-rentals
 installing app
-Ember CLI v3.22.0
+Ember CLI v3.24.0
 
 Creating a new Ember app in /home/runner/work/super-rentals-tutorial/super-rentals-tutorial/dist/code/super-rentals:
   create .editorconfig
   create .ember-cli
   create .eslintignore
   create .eslintrc.js
+  create .prettierignore
+  create .prettierrc.js
   create .template-lintrc.js
   create .travis.yml
   create .watchmanconfig
@@ -139,9 +141,12 @@ super-rentals
 │   └── .gitkeep
 ├── .editorconfig
 ├── .ember-cli
+├── .eslintcache
 ├── .eslintignore
 ├── .eslintrc.js
 ├── .gitignore
+├── .prettierignore
+├── .prettierrc.js
 ├── .template-lintrc.js
 ├── .travis.yml
 ├── .watchmanconfig
@@ -151,7 +156,7 @@ super-rentals
 ├── package-lock.json
 └── testem.js
 
-15 directories, 33 files
+15 directories, 36 files
 ```
 
 We'll learn about the purposes of these files and folders as we go. For now, just know that we'll spend most of our time working within the `app` folder.
@@ -191,7 +196,9 @@ The development server has a feature called _live reload_, which monitors your a
 
 As text on the welcome page pointed out, the source code for the page is located in `app/templates/application.hbs`. Let's try to edit that file and replace it with our own content:
 
-```handlebars { data-filename="app/templates/application.hbs" data-diff="-1,-2,-3,-4,-5,+6" }
+```handlebars { data-filename="app/templates/application.hbs" data-diff="-1,-2,-3,-4,-5,-6,-7,+8" }
+{{page-title "SuperRentals"}}
+
 {{!-- The following component displays Ember's default welcome message. --}}
 <WelcomePage />
 {{!-- Feel free to remove this! --}}
