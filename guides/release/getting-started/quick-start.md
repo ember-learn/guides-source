@@ -35,7 +35,7 @@ ember new ember-quickstart --lang en
 ```
 
 This one command will create a new directory called `ember-quickstart` and set up a new Ember application inside of it.
-The `--lang en` option sets the app's primary language to English improving accessibility.
+The `--lang en` option sets the app's primary language to English to help improve [accessibility](https://guides.emberjs.com/release/accessibility/application-considerations/#toc_lang-attribute).
 Out of the box, your application will include:
 
 * A development server.
