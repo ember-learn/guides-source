@@ -31,10 +31,11 @@ you will have access to a new `ember` command in your terminal.
 You can use the `ember new` command to create a new application.
 
 ```bash
-ember new ember-quickstart
+ember new ember-quickstart --lang en
 ```
 
 This one command will create a new directory called `ember-quickstart` and set up a new Ember application inside of it.
+The `--lang en` option sets the app's primary language to English to help improve [accessibility](../../accessibility/application-considerations/).
 Out of the box, your application will include:
 
 * A development server.
