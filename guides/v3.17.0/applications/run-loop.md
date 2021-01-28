@@ -90,10 +90,10 @@ If we execute the following code without the run loop:
 
 ```javascript
 let profilePhoto = Image.create({ width: 250, height: 500 });
-user.set('width', 300);
+profilePhoto.set('width', 300);
 // {{width}} and {{aspectRatio}} are updated
 
-user.set('height', 300);
+profilePhoto.set('height', 300);
 // {{height}} and {{aspectRatio}} are updated
 ```
 
@@ -104,10 +104,10 @@ the browser will only rerender the template once the attributes have all been se
 
 ```javascript
 let profilePhoto = Image.create({ width: 250, height: 500 });
-user.set('width', 600);
-user.set('height', 600);
-user.set('width', 300);
-user.set('height', 300);
+profilePhoto.set('width', 600);
+profilePhoto.set('height', 600);
+profilePhoto.set('width', 300);
+profilePhoto.set('height', 300);
 ```
 
 In the above example with the run loop, since the user's attributes end up at the same values as before execution,
