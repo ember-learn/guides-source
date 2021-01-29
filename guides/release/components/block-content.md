@@ -246,7 +246,7 @@ function in JavaScript. Consider for instance a simple `BlogPost` component.
 
 ```handlebars {data-filename=app/components/blog-post.hbs}
 <h1>{{@post.title}}</h1>
-<h2>{{@post.author}}</h1>
+<h2>{{@post.author}}</h2>
 
 {{@post.body}}
 ```
@@ -263,7 +263,7 @@ to them.
 
 ```handlebars {data-filename=app/components/blog-post.hbs}
 <h1>{{@post.title}}</h1>
-<h2>{{@post.author}}</h1>
+<h2>{{@post.author}}</h2>
 
 {{yield @post.body}}
 ```
