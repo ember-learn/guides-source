@@ -58,56 +58,122 @@ We commit it to our repository and we are off to the races!
 
 ### jquery-integration
 
-jQuery is commonly used for event handling and many popular libraries for charting and UI components.
-With the release of [Octane](https://emberjs.com/editions), Ember does not include [jQuery](https://jquery.com/) by default.
-However, you may choose to install and use it in your app!
+jQuery is commonly used for event handling and many popular libraries for
+charting and UI components. Ember was originally built using jQuery, but has
+since refactored and is no longer dependent on it. jQuery can still be used
+as in independent library alongside Ember, however.
 
-#### Including jQuery
+There are a few APIs that exist in Ember still that directly expose jQuery,
+Disabling this optional feature disables those APIs, but does not remove jQuery
+itself. jQuery is provided by the `@ember/jquery` addon, independent of the
+integration APIs.
 
-To include jQuery in your Ember app, follow the instructions above to install `@ember/optional-features`.
+#### Migrating Away from and disabling Ember jQuery integration APIs
+
+To disable this feature, first migrate away from the jQuery integration APIs.
+Below is a list of the jQuery specific APIs in Ember, and how to migrate away
+from them.
+
+- `this.$()` in Classic Ember components. This creates a jQuery selector that
+  targets the component's element. You can migrate away by using `this.element`
+  instead, which is the actual DOM element for the component. If you want to
+  continue using jQuery via `@ember/jquery`, you can do so with `this.element`:
+
+  ```js
+  import $ from 'jquery';
+  import Component from '@ember/copmonent';
+
+  export default class MyComponent extends Component {
+    didInsertElement() {
+      let el = $(this.element);
+
+      // ...
+    }
+  }
+  ```
+
+- Event handlers on Classic components, such as `click()` and `mouseEnter()`.
+  These APIs still work without the integration enabled, but they no longer
+  receive a jQuery event, they receive a native Event instead. You can convert
+  to using native events incrementally by using the [`ember-jquery-legacy`](https://github.com/emberjs/ember-jquery-legacy) addon, which provides a function that converts a jQuery
+  event into a native event safely. Once all of your event handlers have been
+  converted, you can disable jQuery integration.
+
+- `Ember.$()`, which is an alias for the global jQuery. This can either be
+  replaced with alternative APIs, or by installing `@ember/jquery` and importing
+  it directly.
+
+- Global acceptance test helpers like `find()` or `click()`. These can be
+  replaced with the `@ember/test-helpers`, which is the default for test helpers
+  now.
+
+- `this.$()` in component tests. This can be replaced with corresponding test
+  helpers from `@ember/test-helpers`.
+
+Note that if you disable these APIs, then all addons you use must also work
+without them, as they will not be available at all.
+
+Next, follow the instructions above to install `@ember/optional-features`, and
+run the following command to change `@ember/optional-features`:
+
+```sh
+ember feature:disable jquery-integration
+```
+
+#### Including jQuery without integration APIs
+
+If you would like to include jQuery without the Ember integration APIs, you can
+install `@ember/jquery`:
+
+```sh
+ember install @ember/jquery
+```
+
+This will allow you to import jQuery from `jquery`:
+
+```js
+import $ from 'jquery';
+```
+
+#### Including jQuery with integration APIs
+
+To include jQuery in your Ember app and enable the jQuery integration APIs such
+as `this.$()`, follow the instructions above to install `@ember/optional-features`.
 Next, enable the feature:
 
-```bash
+```sh
 ember feature:enable jquery-integration
 ```
 
 Then, install the `@ember/jquery` addon:
 
-```bash
+```sh
 ember install @ember/jquery
 ```
 
-Now, almost anywhere in your app, you can use `this.$()` to use jQuery methods.
+Now, almost anywhere in your app, you can use the various jQuery integration.
 
-#### Removing jQuery
+#### Removing jQuery completely
 
-If you are working on an application that already has jQuery installed, and would like to remove it, follow these steps.
+If you are working on an application that already has jQuery installed, and
+would like to remove it, follow these steps.
 
-First, refactor your own code to not depend on jQuery.
-Keep in mind that if any of your app's dependencies use jQuery,
-you will need to find an alternative for them.
+First, refactor your own code to not depend on jQuery. See the section above on
+how to do this. Keep in mind that you will have to remove jQuery usage entirely,
+you cannot use solutions that replace the integration API with jQuery
+independently such as `$(this.element)`.
 
-Next, follow the instructions above to install `@ember/optional-features`, and run the following command to change `@ember/optional-features`:
+Next, follow the instructions above to install `@ember/optional-features`, and
+run the following command to change `@ember/optional-features`:
 
-```bash
+```sh
 ember feature:disable jquery-integration
 ```
 
-Then, remove `@ember/jquery` from your `package.json`.
+Then, remove `@ember/jquery` from your package.json.
 
-This will remove jQuery from your `vendor.js` bundle and disable any use of jQuery in Ember itself.
-Now your app will be about 30KB lighter!
-
-#### Caveats
-
-Without jQuery, any code that still relies on it will break, especially the following usages:
-
-- [`this.$()`](https://api.emberjs.com/ember/release/classes/Component/methods/$?anchor=%24) in components
-- `jQuery` or `$` directly as a global, through `Ember.$()` or by importing it (`import jQuery from jquery;`)
-- global acceptance test helpers like `find()` or `click()`
-- `this.$()` in component tests
-
-Note that this also applies to all addons that your app uses, so make sure they support being used without jQuery.
+This will remove jQuery from your vendor.js bundle and disable any use of jQuery
+in Ember itself. Now your app will be about 30KB lighter!
 
 ### application-template-wrapper
 
