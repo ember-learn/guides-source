@@ -402,8 +402,6 @@ The last change we'll need to make is to our `index.hbs` route template, where w
 
 Let's see how.
 
-<!-- Workaround for https://github.com/emberjs/ember.js/issues/19334 -->
-
 ```handlebars { data-filename="app/templates/index.hbs" data-diff="-9,-10,-11,+12,+13,+14" }
 <Jumbo>
   <h2>Welcome to Super Rentals!</h2>
@@ -416,8 +414,8 @@ Let's see how.
     <li><Rental @rental={{@model}} /></li>
     <li><Rental @rental={{@model}} /></li>
     <li><Rental @rental={{@model}} /></li>
-    {{#each @model as |property|}}
-      <li><Rental @rental={{property}} /></li>
+    {{#each @model as |rental|}}
+      <li><Rental @rental={{rental}} /></li>
     {{/each}}
   </ul>
 </div>
@@ -425,7 +423,7 @@ Let's see how.
 
 We can use the `{{#each}}...{{/each}}` syntax to iterate and loop through the array returned by the model hook. For each iteration through the array—for each item in the array—we will render the block that is passed to it once. In our case, the block is our `<Rental>` component, surrounded by `<li>` tags.
 
-Inside of the block we have access to the item of the _current_ iteration with the `{{property}}` variable. But why `property`? Well, because we named it that! This variable comes from the `as |property|` declaration of the `each` loop. We could have just as easily called it something else, like `as |rental|`, in which case we would have to access the current item through the `{{rental}}` variable.
+Inside of the block we have access to the item of the _current_ iteration with the `{{rental}}` variable. But why `rental`? Well, because we named it that! This variable comes from the `as |rental|` declaration of the `each` loop. We could have just as easily called it something else, like `as |property|`, in which case we would have to access the current item through the `{{property}}` variable.
 
 Now, let's go over to our browser and see what our index route looks like with this change.
 
