@@ -202,6 +202,9 @@ discussing state in the next chapter).
 
 ## Built-in Helpers
 
+Below you will find some useful template helpers documented.
+For the full list of available helpers, you can check the [template helpers API documentation](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/).
+
 ### The `get` helper
 
 The [`{{get}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/get?anchor=get)
@@ -316,5 +319,3 @@ In the component's template, you can then use the `person` object:
 ```handlebars {data-filename=app/components/greeting/template.hbs}
 Hello, {{@person.givenName}} {{@person.familyName}}
 ```
-
-To consult all available built-in helpers, you can check the [template helpers API documentation](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/).
