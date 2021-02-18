@@ -278,6 +278,18 @@ In cases where components have dependencies on Ember services,
 it is possible to stub these dependencies for rendering tests.
 You stub Ember services by using the built-in `register()` function to register your stub service in place of the default.
 
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+        Not all services can be stubbed.
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
+  </div>
+</div>
+
 Imagine you have the following component that uses a location service to display the city and country of your current location:
 
 > You can follow along by generating your own component with `ember generate
