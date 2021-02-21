@@ -80,7 +80,7 @@ export default class SomeAuthenticatedRoute extends Route {
   beforeModel(transition) {
     if (!this.controllerFor('auth').userIsLoggedIn) {
       let loginController = this.controllerFor('login');
-      loginController.set('previousTransition', transition);
+      loginController.previousTransition = transition;
       this.transitionTo('login');
     }
   }
@@ -97,7 +97,7 @@ export default class LoginController extends Controller {
     // Log the user in, then reattempt previous transition if it exists.
     let previousTransition = this.previousTransition;
     if (previousTransition) {
-      this.set('previousTransition', null);
+      this.previousTransition = null;
       previousTransition.retry();
     } else {
       // Default back to homepage
