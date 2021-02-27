@@ -35,6 +35,23 @@ The first segment is the framework factory type, and the second is the name of t
 Hence, the `index` template has the key `template:index`.
 Ember has several built-in factory types, such as `service`, `route`, `template`, and `component`.
 
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+        <p>
+          You might ask, how can I find the name of a factory?
+        </p>
+        <p>
+          Factories are kebab-cased and directories are followed by a forward slash. For example, a controller <code>app/controllers/users/primary-teachers</code> is registered as <code>controller:users/primary-teachers</code>.
+        </p>
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
+  </div>
+</div>
+
 You can create your own factory type by simply registering a factory with the new type.
 For example, to create a `user` type,
 you'd simply register your factory with `application.register('user:user-to-register')`.
@@ -62,10 +79,6 @@ export default {
   initialize: initialize
 };
 ```
-
-### Naming Convention
-
-By default, factories are kebab-cased, and directories represented by a forward-slash. For example: a controller `app/controllers/users/primary-teachers` would be registered as `controllers:users/primary-teachers`.
 
 ### Registering Already Instantiated Objects
 
