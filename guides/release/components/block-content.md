@@ -271,7 +271,7 @@ to them.
 ```handlebars
 <!-- usage -->
 <BlogPost @post={{@blogPost}} as |postBody|>
-  <img src="./blog-logo.png" alt="Blog Logo">
+  <img alt="" role="presentation" src="./blog-logo.png">
 
   {{postBody}}
 
@@ -288,7 +288,7 @@ We can yield back multiple values as well, separated by spaces.
 ```handlebars
 <!-- usage -->
 <BlogPost @post={{@blogPost}} as |postTitle postAuthor postBody|>
-  <img src="./blog-logo.png" alt="Blog Logo">
+  <img alt="" role="presentation" src="./blog-logo.png">
   {{postTitle}}
 
   {{postBody}}
