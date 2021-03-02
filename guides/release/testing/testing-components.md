@@ -283,7 +283,7 @@ You stub non-Ember services by using the built-in `register()` function to regis
     <div class="cta-note-body">
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
-        Not all services can or should be stubbed. Certain services like router should never be stubbed. If an integration or unit test relies on routing then that behavior would be better tested as an acceptance test. The behavior of internal services like router may change over time and you should not attempt to override their behavior.
+If you are thinking of stubbing the router service in a unit or integration test, consider writing an acceptance test instead. Acceptance tests let you navigate through many routes in your app, and the router does not need to be stubbed in them. If you choose to stub the router, you will need to stub multiple methods.
       </div>
     </div>
     <img src="/images/mascots/zoey.png" role="presentation" alt="">
