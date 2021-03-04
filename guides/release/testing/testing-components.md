@@ -276,7 +276,19 @@ module('Integration | Component | comment-form', function(hooks) {
 
 In cases where components have dependencies on Ember services,
 it is possible to stub these dependencies for rendering tests.
-You stub Ember services by using the built-in `register()` function to register your stub service in place of the default.
+You stub non-Ember services by using the built-in `register()` function to register your stub service in place of the default.
+
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+If you are thinking of stubbing the router service in a unit or integration test, consider writing an acceptance test instead. Acceptance tests let you navigate through many routes in your app, and the router does not need to be stubbed in them. If you choose to stub the router, you will need to stub multiple methods.
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
+  </div>
+</div>
 
 Imagine you have the following component that uses a location service to display the city and country of your current location:
 
