@@ -52,3 +52,4 @@ currentVersion: "v3.25.0"
 ltsVersions:
   - "v3.16.0"
   - "v3.20.0"
+  - "v3.24.0"
