@@ -61,7 +61,7 @@ store.findRecord('post', 1).then(function(post) {
 You can tell if a record has outstanding changes that have not yet been
 saved by checking its
 [`hasDirtyAttributes`](https://api.emberjs.com/ember-data/release/classes/Model/properties/hasDirtyAttributes?anchor=hasDirtyAttributes)
-property. You can also see what parts of
+property. You can also see which parts of
 the record were changed and what the original value was using the
 [`changedAttributes()`](https://api.emberjs.com/ember-data/release/classes/Model/methods/changedAttributes?anchor=changedAttributes)
 method. `changedAttributes` returns an object, whose keys are the changed
@@ -75,11 +75,7 @@ person.hasDirtyAttributes; // => true
 person.changedAttributes(); // => { isAdmin: [false, true] }
 ```
 
-At this point, you can either persist your changes via `save()` or you can roll
-back your changes. Calling
-[`rollbackAttributes()`](https://api.emberjs.com/ember-data/release/classes/Model/methods/rollbackAttributes?anchor=rollbackAttributes)
-for a saved record reverts all the `changedAttributes` to their original value.
-If the record `isNew` it will be removed from the store.
+At this point, you can either persist your changes via `save()` or you can roll back your changes using [`rollbackAttributes()`](https://api.emberjs.com/ember-data/release/classes/Model/methods/rollbackAttributes?anchor=rollbackAttributes).
 
 ```javascript
 person.hasDirtyAttributes; // => true
