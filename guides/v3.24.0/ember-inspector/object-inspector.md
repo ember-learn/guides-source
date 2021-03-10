@@ -64,7 +64,7 @@ Click on the property's value to inspect it.
 
 <img src="/images/guides/ember-inspector/v4.3.4/object-inspector-object-property.png" width="450">
 
-You can continue drill into the Inspector as long as properties contain either an
+You can continue to drill into the Inspector as long as properties contain either an
 Ember object or an array.
 In the image below, we clicked on the `model` property first, then clicked
 on the `store` property.
