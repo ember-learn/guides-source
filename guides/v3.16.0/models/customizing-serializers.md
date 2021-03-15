@@ -453,7 +453,7 @@ import EmberObject from '@ember/object';
 export default class CoordinatePointTransform extends Transform {
   serialize(value) {
     return [value.get('x'), value.get('y')];
-  },
+  }
   deserialize(value) {
     return EmberObject.create({ x: value[0], y: value[1] });
   }
