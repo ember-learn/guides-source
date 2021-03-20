@@ -193,7 +193,7 @@ With that, we should have a working share button!
 
 To be sure, let's add some tests! Let's start with an acceptance test:
 
-```handlebars { data-filename="tests/acceptance/super-rentals-test.js" data-diff="-2,+3,+39,+40,+41,+42,+43,+44,+45,+46,+47,+48,+49" }
+```js { data-filename="tests/acceptance/super-rentals-test.js" data-diff="-2,+3,+39,+40,+41,+42,+43,+44,+45,+46,+47,+48,+49" }
 import { module, test } from 'qunit';
 import { click, visit, currentURL } from '@ember/test-helpers';
 import { click, find, visit, currentURL } from '@ember/test-helpers';
