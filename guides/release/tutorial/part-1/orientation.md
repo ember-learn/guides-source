@@ -33,7 +33,7 @@ If a version number is shown, you're ready to go.
 
 ## Creating a New Ember App with Ember CLI
 
-We can create a new project using Ember CLI's `new` command. It follows the pattern `ember new <project-name>`. In our case, the project name would be `super-rentals`:
+We can create a new project using Ember CLI's `new` command. It follows the pattern `ember new <project-name>`. In our case, the project name would be `super-rentals`. We will also include a `--lang en` option. This sets our app's primary language to English and improves the website's [accessibility](../../../accessibility/application-considerations/).
 
 ```shell
 $ ember new super-rentals
