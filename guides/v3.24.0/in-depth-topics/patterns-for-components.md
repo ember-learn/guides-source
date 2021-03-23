@@ -126,7 +126,7 @@ To learn more about `aria` roles and accessibility in Ember, check out the [Acce
 ## Contextual Components
 
 The [`{{component}}`](https://api.emberjs.com/ember/3.24.0/classes/Ember.Templates.helpers/methods/component?anchor=component)
-helper can be used to defer the selection of a component to run time. The
+helper can be used to defer the selection of a component to runtime. The
 `<MyComponent />` syntax always renders the same component, while using the
 `{{component}}` helper allows choosing a component to render on the fly. This is
 useful in cases where you want to interact with different external libraries
@@ -174,7 +174,7 @@ the helper renders nothing. When the parameter changes, the currently rendered
 component is destroyed and the new component is created and brought in.
 
 Picking different components to render in response to the data allows you to
-have different template and behavior for each case. The `{{component}}` helper
+have a different template and behavior for each case. The `{{component}}` helper
 is a powerful tool for improving code modularity.
 
 ## Learn More
