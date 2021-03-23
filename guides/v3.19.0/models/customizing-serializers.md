@@ -461,7 +461,7 @@ export default class CoordinatePointTransform extends Transform {
 ```
 
 ```javascript {data-filename=app/models/cursor.js}
-import Model from '@ember-data/model';
+import Model, { attr } from '@ember-data/model';
 
 export default class Cursor extends Model {
   @attr('coordinate-point') position;
