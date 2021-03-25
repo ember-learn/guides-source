@@ -33,8 +33,8 @@ Well, we can start simple. Before we worry about implementing the "search" part 
   </label>
 
   <ul class="results">
-    {{#each @model as |property|}}
-      <li><Rental @rental={{property}} /></li>
+    {{#each @model as |rental|}}
+      <li><Rental @rental={{rental}} /></li>
     {{/each}}
   </ul>
 </div>
@@ -56,8 +56,6 @@ Wait...why don't we just refactor the search box into a component? Once we do th
 
 Let's start simple again and begin our refactor by creating a new template for our component, which we will call `rentals.hbs`.
 
-<!-- Workaround for https://github.com/emberjs/ember.js/issues/19334 -->
-
 ```handlebars { data-filename="app/components/rentals.hbs" }
 <div class="rentals">
   <label>
@@ -66,8 +64,8 @@ Let's start simple again and begin our refactor by creating a new template for o
   </label>
 
   <ul class="results">
-    {{#each @rentals as |property|}}
-      <li><Rental @rental={{property}} /></li>
+    {{#each @rentals as |rental|}}
+      <li><Rental @rental={{rental}} /></li>
     {{/each}}
   </ul>
 </div>
@@ -89,8 +87,8 @@ There is one minor change to note here: while extracting our markup into a compo
   </label>
 
   <ul class="results">
-    {{#each @model as |property|}}
-      <li><Rental @rental={{property}} /></li>
+    {{#each @model as |rental|}}
+      <li><Rental @rental={{rental}} /></li>
     {{/each}}
   </ul>
 </div>
@@ -224,8 +222,8 @@ Next, we'll wire up our query state in the component template.
   </label>
 
   <ul class="results">
-    {{#each @rentals as |property|}}
-      <li><Rental @rental={{property}} /></li>
+    {{#each @rentals as |rental|}}
+      <li><Rental @rental={{rental}} /></li>
     {{/each}}
   </ul>
 </div>
@@ -285,12 +283,12 @@ Well, in order to answer this question, let's look at how the data that we're yi
   </label>
 
   <ul class="results">
-    {{#each @rentals as |property|}}
-      <li><Rental @rental={{property}} /></li>
+    {{#each @rentals as |rental|}}
+      <li><Rental @rental={{rental}} /></li>
     {{/each}}
     <Rentals::Filter @rentals={{@rentals}} @query={{this.query}} as |results|>
-      {{#each results as |property|}}
-        <li><Rental @rental={{property}} /></li>
+      {{#each results as |rental|}}
+        <li><Rental @rental={{rental}} /></li>
       {{/each}}
     </Rentals::Filter>
   </ul>
