@@ -137,6 +137,7 @@ module('Integration | Component | rental', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders information about a rental property', async function (assert) {
+    this.owner.setupRouter();
     this.setProperties({
       rental: {
         id: 'grand-old-mansion',
