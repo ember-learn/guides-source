@@ -220,7 +220,7 @@ like:
 }
 ```
 
-And so we need to change it to look like:
+And we need to change it to look like this:
 
 ```json
 {
