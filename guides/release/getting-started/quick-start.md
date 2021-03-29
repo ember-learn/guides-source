@@ -133,6 +133,7 @@ That is Ember telling you that it has created:
 Open the newly-created template in `app/templates/scientists.hbs` and add the following HTML:
 
 ```handlebars {data-filename=app/templates/scientists.hbs}
+{{page-title "Scientists"}}
 <h2>List of Scientists</h2>
 ```
 

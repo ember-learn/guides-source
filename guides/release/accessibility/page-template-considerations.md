@@ -17,31 +17,13 @@ Consider this format:
 
 Note that the unique page title is first. This is because it is the most important piece of information from a contextual perspective. Since a user with a screen reader can interrupt the screen reader as they wish, it introduces less fatigue when the unique page title is first, but provides the additional guidance if it is desired.
 
-One simple way to add page titles is to create a `title` helper:
-
-```javascript {data-filename=app/helpers/title.js}
-import Helper from '@ember/component/helper';
-
-export default class Title extends Helper {
-  original = document.title;
-
-  compute([title]) {
-    document.title = title;
-  }
-
-  willDestroy() {
-    document.title = this.original;
-  }
-}
-```
-
-We can use this helper to set the page title at any point in any template.
+A simple way to add page titles is to use the `page-title` helper which comes from the [ember-page-title](https://github.com/ember-cli/ember-page-title) addon that is installed by default in new apps. We can use this helper to set the page title at any point in any template.
 
 For example, if we have a “posts” route, we can set the page title for it like so:
 
 
 ```handlebars {data-filename=app/routes/posts.hbs}
-{{title "Posts - Site Title"}}
+{{page-title "Posts - Site Title"}}
 
 {{outlet}}
 ```
@@ -49,23 +31,13 @@ For example, if we have a “posts” route, we can set the page title for it li
 Extending the example, if we have a “post” route that lives within the “posts” route, we could set its page title like so:
 
 ```handlebars {data-filename=app/routes/posts/post.hbs}
-{{title (concat @model.title " - Site Title")}}
+{{page-title (concat @model.title " - Site Title")}}
 
 <h1>{{@model.title}}</h1>
 ```
 
-This title will take effect when we enter the “post” route, and the line of code in our `willDestroy` hook will take care of restoring the former title when we return to the “posts” route.
+When your needs become more complex, the following addons facilitate page titles in a more dynamic and maintainable way.
 
-This technique is a reasonable first step, but has limitations:
-
-- It doesn't work when the page is rendered server-side with FastBoot.
-- It doesn't provide any conventions for constructing nested page titles.
-- It doesn't automatically apply the site title (though you can imagine how to add that).
-- It may not be absolutely robust if data in your app changes *a lot* (imagine a real time app).
-
-When your needs become more complex, the following addons facilitate page titles in a more dynamic and maintainable way (including FastBoot support):
-
-- [ember-page-title](https://github.com/adopted-ember-addons/ember-page-title)
 - [ember-cli-head](https://github.com/ronco/ember-cli-head)
 - [ember-cli-document-title](https://github.com/kimroen/ember-cli-document-title)
 
