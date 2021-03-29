@@ -28,7 +28,7 @@ If you need some inspiration, you can check out the [Help Wanted](https://help-w
 # Asking for help
 
 Please comment directly on issues and PRs if you need help. This way others will see and can chime in to help.
-You can also visit emberjs.com/community and join the [Ember.js discord server](https://discord.gg/emberjs). Channels that start with `dev` are for contributors working on the corresponding projects, and they are a great place for questions.
+You can also visit the [Ember.js Community Page](https://emberjs.com/community) to join the Ember.js Discord server. Channels that start with `dev` are for contributors working on the corresponding projects, and they are a great place for questions.
 
 # In conclusion
 
