@@ -1,4 +1,33 @@
-In general, new feature development should be done on master.
+Anyone can participate in adding new features to Ember. This guide will
+provide some background information for developers who want to
+contribute to the core [`ember.js` codebase](https://github.com/emberjs/ember.js).
+
+## RFCs
+
+New features begin as RFCs (Request for Comments).
+The RFC process is how community members and core team members
+propose changes, such as adding new features or
+making deprecations.
+
+You can see work-in-progress proposals in the
+[Ember RFCs repository Pull Requests](https://github.com/emberjs/rfcs/pulls),
+and participate in giving feedback.
+[Merged RFCs](https://emberjs.github.io/rfcs/) are proposals
+that can move forward with implementation.
+You can reach out to an RFC author to find out how to
+get involved.
+
+You can also [learn how to write your own RFC](https://github.com/emberjs/rfcs#ember-rfcs).
+
+## Background information
+
+Here are some tips for working in the [`ember.js` repository](https://github.com/emberjs/ember.js).
+
+To learn how to make a pull request, review the
+[`CONTRIBUTING.md`](https://github.com/emberjs/ember.js/blob/master/CONTRIBUTING.md)
+instructions.
+
+In general, new feature development should be done on the `master` branch.
 
 Bugfixes should not introduce new APIs or break existing APIs, and do
 not need feature flags.
@@ -11,27 +40,27 @@ Security fixes should not introduce new APIs, but may, if strictly
 necessary, break existing APIs. Such breakages should be as limited as
 possible.
 
-### Bug Fixes
+## Bug Fixes
 
-#### Urgent Bug Fixes
+### Urgent Bug Fixes
 
 Urgent bugfixes are bugfixes that need to be applied to the existing
 release branch. If possible, they should be made on master and prefixed
 with `[BUGFIX release]`.
 
-#### Beta Bug Fixes
+### Beta Bug Fixes
 
 Beta bugfixes are bugfixes that need to be applied to the beta branch.
 If possible, they should be made on master and tagged with `[BUGFIX
 beta]`.
 
-#### Security Fixes
+### Security Fixes
 
 Security fixes need to be applied to the beta branch, the current
 release branch, and the previous tag. If possible, they should be made
 on master and tagged with `[SECURITY]`.
 
-### Features
+## Features
 
 Features must always be wrapped in a feature flag. Tests for the feature
 must also be wrapped in a feature flag.
@@ -50,7 +79,7 @@ if (Ember.FEATURES.isEnabled("feature")) {
 Tests will always run with all features on, so make sure that any tests
 for the feature are passing against the current state of the feature.
 
-#### Commits
+### Commits
 
 Commits related to a specific feature should include  a prefix like
 `[FEATURE htmlbars]`. This will allow us to quickly identify all commits
@@ -62,7 +91,7 @@ If a feature has made it into beta or release, and you make a commit to
 master that fixes a bug in the feature, treat it like a bugfix as
 described above.
 
-#### Feature Naming Conventions
+### Feature Naming Conventions
 
 ```javascript {data-filename=config/environment.js}
 Ember.FEATURES['<packageName>-<feature>'] // if package specific
@@ -70,7 +99,7 @@ Ember.FEATURES['container-factory-injections']
 Ember.FEATURES['htmlbars']
 ```
 
-### Builds
+## Builds
 
 The Canary build, which is based off master, will include all features,
 guarded by the conditionals in the original source. This means that
