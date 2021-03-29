@@ -1,6 +1,6 @@
 Helper functions are JavaScript functions that you can call from your template.
 
-Ember's template syntax limits what you can express to keep the structure of your application clear at a glance. When you need to compute something using JavaScript, you can use helper functions.
+Ember's template syntax limits what you can express to keep the structure of your application clear at a glance. When you need to compute something using JavaScript, you can use helper functions. It's possible to create your own helpers or just [use the built-in ones](./#toc_built-in-helpers).
 
 For instance, let's take a look at a generic message component from a messaging app.
 
