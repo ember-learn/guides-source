@@ -117,7 +117,7 @@ For a new PR:
    branch. If the commit doesn't apply cleanly or the tests fail, the
    build will fail.
 3. If a commit is tagged with `[BUGFIX release]`, the commit will be cherry-picked
-   into release, and the tests will be executed release branch. If the commit
+   into release, and the tests will be executed on release branch. If the commit
    doesn't apply cleanly or the tests fail, the build will fail.
 
 For a new commit to master:
