@@ -1,163 +1,35 @@
-In general, new feature development should be done on master.
+# Introduction
 
-Bugfixes should not introduce new APIs or break existing APIs, and do
-not need feature flags.
+Ember is an open source project that succeeds thanks to the help of volunteers. Community members at any level are invited to help out with anything from bug reports to documentation. This guide will give you some tips on how to get started and where to ask for help if you want to get involved. Thanks in advance for your help!
 
-Features can introduce new APIs, and need feature flags. They should not
-be applied to the release or beta branches, since SemVer requires
-bumping the minor version to introduce new features.
+# Types of contributions
 
-Security fixes should not introduce new APIs, but may, if strictly
-necessary, break existing APIs. Such breakages should be as limited as
-possible.
+Any change that aims to make an improvement is very welcome!
 
-### Bug Fixes
+You can create issues to document many things (list is not exhaustive!):
 
-#### Urgent Bug Fixes
+- Bugs
+- Ideas for enhancements
+- Code quality (e.g. refactoring)
+- Improving the documentation (clarifying, rephrasing, providing more examples, fixing typos, adding missing details)
 
-Urgent bugfixes are bugfixes that need to be applied to the existing
-release branch. If possible, they should be made on master and prefixed
-with `[BUGFIX release]`.
+Creating an issue is a great way to start a discussion and gather opinions of other members of the Ember community. Once a decision has been made, you or someone else can volunteer to work on it, and create a pull request with their work.
 
-#### Beta Bug Fixes
+Apart from creating new issues and pull request, another way to contribute is comment on existing issues and pull requests. The more eyes we get on something, the lower the chance we'll overlook potential problems.
 
-Beta bugfixes are bugfixes that need to be applied to the beta branch.
-If possible, they should be made on master and tagged with `[BUGFIX
-beta]`.
+# Where to get started
 
-#### Security Fixes
+A great place to start is helping improve something you personally ran into. E.g. if you found some of the documentation unclear yourself, please create an issue to highlight it, and optionally suggest how to simplify it.
 
-Security fixes need to be applied to the beta branch, the current
-release branch, and the previous tag. If possible, they should be made
-on master and tagged with `[SECURITY]`.
+Have a look at the [list of main repositories](https://guides.emberjs.com/release/contributing/repositories/) to learn about the different components of the Ember project.
 
-### Features
+If you need some inspiration, you can check out the [Help Wanted](https://help-wanted.emberjs.com/) dashboard to browse for issues. If you are a beginner, look out for issues with the "Help wanted" and "Good first issue" labels.
 
-Features must always be wrapped in a feature flag. Tests for the feature
-must also be wrapped in a feature flag.
+# Asking for help
 
-Because the build-tools will process feature-flags, flags must use
-precisely this format. We are choosing conditionals rather than a block
-form because functions change the surrounding scope and may introduce
-problems with early return.
+Please comment directly on issues and PRs if you need help. This way others will see and can chime in to help.
+You can also visit emberjs.com/community and join the [Ember.js discord server](https://discord.gg/emberjs). Channels that start with `dev` are for contributors working on the corresponding projects, and they are a great place for questions.
 
-```javascript
-if (Ember.FEATURES.isEnabled("feature")) {
-  // implementation
-}
-```
+# In conclusion
 
-Tests will always run with all features on, so make sure that any tests
-for the feature are passing against the current state of the feature.
-
-#### Commits
-
-Commits related to a specific feature should include  a prefix like
-`[FEATURE htmlbars]`. This will allow us to quickly identify all commits
-for a specific feature in the future. Features will never be applied to
-beta or release branches. Once a beta or release branch has been cut, it
-contains all of the new features it will ever have.
-
-If a feature has made it into beta or release, and you make a commit to
-master that fixes a bug in the feature, treat it like a bugfix as
-described above.
-
-#### Feature Naming Conventions
-
-```javascript {data-filename=config/environment.js}
-Ember.FEATURES['<packageName>-<feature>'] // if package specific
-Ember.FEATURES['container-factory-injections']
-Ember.FEATURES['htmlbars']
-```
-
-### Builds
-
-The Canary build, which is based off master, will include all features,
-guarded by the conditionals in the original source. This means that
-users of the canary build can enable whatever features they want by
-enabling them before creating their Ember.Application.
-
-```javascript {data-filename=config/environment.js}
-module.exports = function(environment) {
-  let ENV = {
-    EmberENV: {
-      FEATURES: {
-        htmlbars: true
-      }
-    },
-  }
-}
-```
-
-### `features.json`
-
-The root of the repository will contain a `features.json` file, which will
-contain a list of features that should be enabled for beta or release
-builds.
-
-This file is populated when branching, and may not gain additional
-features after the original branch. It may remove features.
-
-```javascript
-{
-  "htmlbars": true
-}
-```
-
-The build process will remove any features not included in the list, and
-remove the conditionals for features in the list.
-
-### Travis Testing
-
-For a new PR:
-
-1. Travis will test against master with all feature flags on.
-2. If a commit is tagged with `[BUGFIX beta]`, Travis will also
-   cherry-pick the commit into beta, and run the tests on that
-   branch. If the commit doesn't apply cleanly or the tests fail, the
-   tests will fail.
-3. If a commit is tagged with `[BUGFIX release]`, Travis will also cherry-pick
-   the commit into release, and run the test on that branch. If the commit
-   doesn't apply cleanly or the tests fail, the tests will fail.
-
-For a new commit to master:
-
-1. Travis will run the tests as described above.
-2. If the build passes, Travis will cherry-pick the commits into the
-   appropriate branches.
-
-The idea is that new commits should be submitted as PRs to ensure they
-apply cleanly, and once the merge button is pressed, Travis will apply
-them to the right branches.
-
-### Go/No-Go Process
-
-Every six weeks, the core team goes through the following process.
-
-#### Beta Branch
-
-All remaining features on the beta branch are vetted for readiness. If
-any feature isn't ready, it is removed from `features.json`.
-
-Once this is done, the beta branch is tagged and merged into release.
-
-#### Master Branch
-
-All features on the master branch are vetted for readiness. In order for
-a feature to be considered "ready" at this stage, it must be ready as-is
-with no blockers. Features are a no-go even if they are close and
-additional work on the beta branch would make it ready.
-
-Because this process happens every six weeks, there will be another
-opportunity for a feature to make it soon enough.
-
-Once this is done, the master branch is merged into beta. A
-`features.json` file is added with the features that are ready.
-
-### Beta Releases
-
-Every week, we repeat the Go/No-Go process for the features that remain
-on the beta branch. Any feature that has become unready is removed from
-the `features.json`.
-
-Once this is done, a Beta release is tagged and pushed.
+We would like to reiterate once again - anyone at any skill level can help out! If you have any ideas to improve anything whatsoever, we would love to see your contribution!
