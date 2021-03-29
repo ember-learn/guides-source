@@ -4,6 +4,27 @@ import { setupApplicationTest } from 'ember-qunit';
 import { get } from '@ember/object';
 import percySnapshot from '@percy/ember';
 
+function getAllPageUrls(page, urls = []) {
+  if (page.url) {
+    urls.push(page.url);
+  }
+  for (let subPage of get(page, 'pages') || []) {
+    getAllPageUrls(subPage, urls);
+  }
+  return urls;
+}
+
+function extractPageInfo(url) {
+  let name = `/${url}/index.html`;
+
+  if (url.endsWith('index')) {
+    name = `/${url}.html`;
+  } else if (url.endsWith('index/')) {
+    name = '/index.html';
+  }
+  return { url, name };
+}
+
 module('Acceptance | visual regression', function(hooks) {
   setupApplicationTest(hooks);
 
@@ -14,30 +35,17 @@ module('Acceptance | visual regression', function(hooks) {
     let store = this.owner.lookup('service:store');
     let pages = store.peekAll('page');
 
-    await pages.reduce(async (prev, section) => {
-      await prev;
+    const urls = pages.reduce(function(urls, page) {
+      return urls.concat(getAllPageUrls(page));
+    }, []);
 
-      if (section.get('id').includes('toc-heading')) {
-        return;
-      }
+    const pageInfos = urls.map(extractPageInfo).filter(function(pageInfo, _, self) {
+      return self.find(pi => pi.name === pageInfo.name) === pageInfo;
+    });
 
-      return section.get('pages').reduce(async (prev, page) => {
-        await prev;
-
-        let url = get(page, 'url');
-
-        await visit(`/release/${url}`);
-
-        let name = `/${page.url}/index.html`;
-
-        if (page.url.endsWith('index')) {
-          name = `/${page.url}.html`;
-        } else if (page.url.endsWith('index/')) {
-          name = '/index.html';
-        }
-
-        await percySnapshot(name);
-      }, Promise.resolve());
-    }, Promise.resolve());
+    for (let pageInfo of pageInfos) {
+      await visit(`/release/${pageInfo.url}`);
+      await percySnapshot(pageInfo.name);
+    }
   });
 });
