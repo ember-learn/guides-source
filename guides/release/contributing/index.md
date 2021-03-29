@@ -21,7 +21,7 @@ Apart from creating new issues and pull requests, another way to contribute is c
 
 A great place to start is helping improve something you personally ran into. E.g. if you found some of the documentation unclear yourself, please create an issue to highlight it, and optionally suggest how to simplify it.
 
-Have a look at the [list of main repositories](/release/contributing/repositories/) to learn about the different components of the Ember project.
+Have a look at the [list of main repositories](../repositories) to learn about the different components of the Ember project.
 
 If you need some inspiration, you can check out the [Help Wanted](https://help-wanted.emberjs.com/) dashboard to browse for issues. If you are a beginner, look out for issues with the "Help wanted" and "Good first issue" labels.
 
