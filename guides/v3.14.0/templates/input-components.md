@@ -75,7 +75,7 @@ component to create a checkbox by setting its `type`:
 
 ```handlebars
 <label for="admin-checkbox">Is Admin?</label>
-<Input @id="admin-checkbox" @type="checkbox" @name="isAdmin" @checked={{this.isAdmin}} />
+<Input @id="admin-checkbox" @type="checkbox" @checked={{this.isAdmin}} />
 ```
 
 Checkboxes support the following properties:
@@ -93,7 +93,7 @@ Which can be bound or set as described in the previous section.
 If you want to dispatch an action on a certain [event](https://api.emberjs.com/ember/3.14/classes/Component#event-handler-methods), you will always need to define the event name in camelCase format:
 
 ```handlebars
-<Input @type="text" @keyPress={{action "updateName"}} />
+<Input @id="admin-checkbox" @type="checkbox" @checked={{this.isAdmin}} @input={{this.validateRole}} />
 ```
 
 ## Text Areas
