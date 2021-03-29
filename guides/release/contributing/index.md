@@ -113,7 +113,7 @@ For a new PR:
 
 1. Tests will run against master with all feature flags on.
 2. If a commit is tagged with `[BUGFIX beta]`, the commit will be
-   cherry-picked into beta, and the automated tests will be exececuted on that
+   cherry-picked into beta, and the automated tests will be executed on that
    branch. If the commit doesn't apply cleanly or the tests fail, the
    build will fail.
 3. If a commit is tagged with `[BUGFIX release]`, the commit will be cherry-picked
