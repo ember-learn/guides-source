@@ -107,15 +107,16 @@ ember generate route posts/new
 ```
 
 And then add the `{{outlet}}` helper to your template where you want the nested
-template to display:
+template to display. You can also add a page title with the current page name (using [page-title helper](https://guides.emberjs.com/release/accessibility/page-template-considerations/#toc_page-title)), this will help users with assistive technology know where they are in the website.
 
 ```handlebars {data-filename=templates/posts.hbs}
+{{page-title "Posts - Site Title"}}
 <h1>Posts</h1>
 {{!-- Display posts and other content --}}
 {{outlet}}
 ```
 
-This router creates a route for `/posts` and for `/posts/new`. When a user
+This generates a route for `/posts` and for `/posts/new`. When a user
 visits `/posts`, they'll simply see the `posts.hbs` template. (Below, [index
 routes](#toc_index-routes) explains an important addition to this.) When the
 user visits `posts/new`, they'll see the `posts/new.hbs` template rendered into
@@ -214,6 +215,7 @@ The index route is most helpful for rendering a view when the route has [dynamic
 A `templates/posts.hbs` file has the following:
 
 ```handlebars {data-filename=templates/posts.hbs}
+{{page-title "Posts"}}
 <h1>This is the posts template, containing headers to show on all child routes</h1>
 {{outlet}}
 ```
@@ -221,12 +223,14 @@ A `templates/posts.hbs` file has the following:
 The `templates/posts/index.hbs` file has the following:
 
 ```handlebars {data-filename=templates/posts/index.hbs}
+{{page-title "Posts"}}
 <p>This is the posts/index template with a list of posts</p>
 ```
 
 The `templates/posts/post.hbs` file has the following:
 
 ```handlebars {data-filename=templates/posts/post.hbs}
+{{page-title "Post"}}
 <p>This is an individual post, from the posts/post template, used when we enter the /posts/:post_id route</p>
 ```
 
@@ -244,6 +248,7 @@ Router.map(function() {
 When the user navigates to `/posts/123`, the following markup will be seen:
 
 ```handlebars {data-filename=templates/posts/post.hbs}
+{{page-title "Posts"}}
 <h1>This is the posts template, containing headers to show on all child routes</h1>
 <p>This is an individual post, from the posts/post template, used when we enter the /posts/:post_id route</p>
 ```
@@ -251,6 +256,7 @@ When the user navigates to `/posts/123`, the following markup will be seen:
 When the user navigates to `/posts/`, the following markup will be seen:
 
 ```handlebars {data-filename=templates/posts/index.hbs}
+{{page-title "Posts"}}
 <h1>This is the posts template, containing headers to show on all child routes</h1>
 <p>This is the posts/index template with a list of posts</p>
 ```
@@ -319,6 +325,7 @@ Router.map(function() {
 ```
 
 ```handlebars {data-filename=app/templates/not-found.hbs}
+{{page-title "Not found"}}
 <p>Oops, the page you're looking for wasn't found</p>
 ```
 
