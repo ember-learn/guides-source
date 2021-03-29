@@ -96,7 +96,7 @@ Which can be bound or set as described in the previous section.
 Checkboxes are a special input type. If you want to dispatch an action on a certain [event](https://api.emberjs.com/ember/3.11/classes/Component#event-handler-methods), you will always need to define the event name in camelCase format:
 
 ```handlebars
-<Input @type="checkbox" @keypress={{action "updateName"}} />
+<Input @id="admin-checkbox" @type="checkbox" @checked={{this.isAdmin}} @input={{this.validateRole}} />
 ```
 
 
