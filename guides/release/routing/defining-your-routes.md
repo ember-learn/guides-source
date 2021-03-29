@@ -107,7 +107,7 @@ ember generate route posts/new
 ```
 
 And then add the `{{outlet}}` helper to your template where you want the nested
-template to display. You can also add a page title with the current page name (using [page-title helper](https://guides.emberjs.com/release/accessibility/page-template-considerations/#toc_page-title)), this will help users with assistive technology know where they are in the website.
+template to display. You can also add a page title with the current page name (using [page-title helper](../../accessibility/page-template-considerations/#toc_page-title)), this will help users with assistive technology know where they are in the website.
 
 ```handlebars {data-filename=templates/posts.hbs}
 {{page-title "Posts - Site Title"}}
