@@ -15,7 +15,7 @@ You can create issues to document many things (list is not exhaustive!):
 
 Creating an issue is a great way to start a discussion and gather opinions of other members of the Ember community. Once a decision has been made, you or someone else can volunteer to work on it, and create a pull request with their work.
 
-Apart from creating new issues and pull request, another way to contribute is comment on existing issues and pull requests. The more eyes we get on something, the lower the chance we'll overlook potential problems.
+Apart from creating new issues and pull request, another way to contribute is comment on existing issues and pull requests. The more reviewers we get for something, the lower the chance we'll overlook potential problems.
 
 # Where to get started
 
