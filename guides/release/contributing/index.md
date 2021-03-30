@@ -127,7 +127,7 @@ For a new commit to master:
    appropriate branches.
 
 The idea is that new commits should be submitted as PRs to ensure they
-apply cleanly, and once the merge button is pressed, they will be applied
+apply cleanly when a PR is merged.
 
 ### Go/No-Go Process
 
