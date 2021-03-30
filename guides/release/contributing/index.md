@@ -136,28 +136,27 @@ features after the original branch. It may remove features.
 The build process will remove any features not included in the list, and
 remove the conditionals for features in the list.
 
-### Travis Testing
+### Continuous Integration Tests
 
 For a new PR:
 
-1. Travis will test against master with all feature flags on.
-2. If a commit is tagged with `[BUGFIX beta]`, Travis will also
-   cherry-pick the commit into beta, and run the tests on that
+1. Tests will run against master with all feature flags on.
+2. If a commit is tagged with `[BUGFIX beta]`, the commit will be
+   cherry-picked into beta, and the automated tests will be executed on that
    branch. If the commit doesn't apply cleanly or the tests fail, the
-   tests will fail.
-3. If a commit is tagged with `[BUGFIX release]`, Travis will also cherry-pick
-   the commit into release, and run the test on that branch. If the commit
-   doesn't apply cleanly or the tests fail, the tests will fail.
+   build will fail.
+3. If a commit is tagged with `[BUGFIX release]`, the commit will be cherry-picked
+   into release, and the tests will be executed on the release branch. If the commit
+   doesn't apply cleanly or the tests fail, the build will fail.
 
 For a new commit to master:
 
-1. Travis will run the tests as described above.
-2. If the build passes, Travis will cherry-pick the commits into the
+1. Tests will be executed as described above.
+2. If the build passes, the commits will be cherry-picked into the
    appropriate branches.
 
 The idea is that new commits should be submitted as PRs to ensure they
-apply cleanly, and once the merge button is pressed, Travis will apply
-them to the right branches.
+apply cleanly when a PR is merged.
 
 ### Go/No-Go Process
 
