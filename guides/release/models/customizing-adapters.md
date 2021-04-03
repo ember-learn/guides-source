@@ -39,8 +39,8 @@ following file:
 
 ```javascript {data-filename=app/adapters/post.js}
 import JSONAPIAdapter from '@ember-data/adapter/json-api';
-export default class ApplicationAdapter extends JSONAPIAdapter {
-  namespace = 'api/v1';
+
+export default class PostAdapter extends JSONAPIAdapter {
 }
 ```
 
@@ -107,7 +107,7 @@ ActiveSupport::Inflector compatible library for inflecting words
 between plural and singular forms. Irregular or uncountable
 pluralizations can be specified via `Ember.Inflector.inflector`.
 
-To do this, create an [Initializer](../../applications/initializers/) file containing your customizations. The Ember CLI's `initializer` generator can be used `ember generate initializer custom-inflector-rules` to create the file. Update its content as follow:
+To do this, create an [Initializer](../../applications/initializers/) file containing your customizations. The Ember CLI's `initializer` generator can be used `ember generate initializer custom-inflector-rules` to create the file. Update its content as follows:
 
 ```javascript {data-filename=app/initializers/custom-inflector-rules.js}
 import Inflector from 'ember-inflector';
