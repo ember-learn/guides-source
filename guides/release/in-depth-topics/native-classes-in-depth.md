@@ -465,7 +465,7 @@ console.log(counter.count); // 0
 Decorators are _normal_ JavaScript functions that get applied with a special
 syntax, which is why you import them like any other function, but you use the
 `@` symbol when applying them. Decorators come in a variety of flavors, and some
-can be applied to class's directly as well:
+can be applied to classes directly as well:
 
 ```js
 @observable
