@@ -1,4 +1,4 @@
-import PageService from '../services/page';
+import PageService from 'ember-guides/services/page';
 
 Object.defineProperty(PageService.prototype, 'pages', {
   get() {
@@ -7,11 +7,17 @@ Object.defineProperty(PageService.prototype, 'pages', {
 
   set(pages) {
     if (pages) {
-      this._pages = pages.filter(page => page.id.indexOf('toc-heading') === -1);
+      this._pages = pages.filter(page => {
+        const pageId = page.id ?? '';
+
+        return !pageId.includes('toc-heading');
+      });
     }
   }
 });
 
+export function initialize() {}
+
 export default {
-  initialize() {}
+  initialize,
 };
