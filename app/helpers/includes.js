@@ -1,5 +1,5 @@
 import { helper } from '@ember/component/helper';
 
-export default helper(([string = '', match]) => {
-  return string.indexOf(match) !== -1;
+export default helper(function includes([string = '', query]) {
+  return string.includes(query);
 });
