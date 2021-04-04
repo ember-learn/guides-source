@@ -31,15 +31,19 @@ export default class ApplicationAdapter extends JSONAPIAdapter {
 }
 ```
 
-If you have one model that has exceptional rules for communicating
-with its backend than the others you can create a Model specific
-Adapter by running the command `ember generate adapter adapter-name`.
-For example, running `ember generate adapter post` will create the
-following file:
+If there is a model that does not follow the backend's typical conventions, you
+can create an adapter that is specific to that model. The model-specific adapter
+will override the rules in the `application` adapter.
+
+To create a model-specific adapter, run the command `ember generate adapter <model-name>`.
+For example, suppose there is a `post` model that needs to talk to the `v1` API
+in the backend. We can run `ember generate adapter post` to create the adapter,
+then specify the `post` adapter's namespace:
 
 ```javascript {data-filename=app/adapters/post.js}
 import JSONAPIAdapter from '@ember-data/adapter/json-api';
-export default class ApplicationAdapter extends JSONAPIAdapter {
+
+export default class PostAdapter extends JSONAPIAdapter {
   namespace = 'api/v1';
 }
 ```
@@ -107,7 +111,7 @@ ActiveSupport::Inflector compatible library for inflecting words
 between plural and singular forms. Irregular or uncountable
 pluralizations can be specified via `Ember.Inflector.inflector`.
 
-To do this, create an [Initializer](../../applications/initializers/) file containing your customizations. The Ember CLI's `initializer` generator can be used `ember generate initializer custom-inflector-rules` to create the file. Update its content as follow:
+To do this, create an [Initializer](../../applications/initializers/) file containing your customizations. The Ember CLI's `initializer` generator can be used `ember generate initializer custom-inflector-rules` to create the file. Update its content as follows:
 
 ```javascript {data-filename=app/initializers/custom-inflector-rules.js}
 import Inflector from 'ember-inflector';
