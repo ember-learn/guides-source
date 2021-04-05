@@ -1,6 +1,5 @@
 {{#each @data as |page|}}
-  {{! template-lint-disable simple-unless }}
-  {{#unless (or page.skipToc (get page "skip-toc"))}}
+  {{#unless page.skipToc}}
     {{#if (includes page.id "toc-heading")}}
       <li class="toc-heading {{this.tocLevel}}">
         {{page.title}}
