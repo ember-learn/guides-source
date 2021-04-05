@@ -1,48 +1,61 @@
-{{#each data as |page|}}
+{{#each @data as |page|}}
   {{! template-lint-disable simple-unless }}
   {{#unless (or page.skipToc (get page "skip-toc"))}}
     {{#if (includes page.id "toc-heading")}}
-      <li class="toc-heading {{tocLevel}}">
+      <li class="toc-heading {{this.tocLevel}}">
         {{page.title}}
       </li>
 
     {{else if page.pages}}
-      <li class="toc-group {{tocLevel}}">
-        {{#cp-panel open=(eq currentSection.id page.id) as |panel|}}
-          {{#if fastboot.isFastBoot}}
-            {{#link-to "version.show" page.id
-              activeClass="selected"
-              class="cp-Panel-toggle"
-              data-test-toc-link=page.title
-            }}
+      <li class="toc-group {{this.tocLevel}}">
+        <CpPanel
+          @open={{eq @currentSection.id page.id}}
+          as |panel|
+        >
+          {{#if this.fastboot.isFastBoot}}
+            <LinkTo
+              @activeClass="selected"
+              @classNames="cp-Panel-toggle"
+              @model={{page.id}}
+              @route="version.show"
+              data-test-toc-link={{page.title}}
+            >
               {{page.title}}
-            {{/link-to}}
+            </LinkTo>
           {{else}}
-            {{#panel.toggle
-              data-test-toc-title=page.title
-            }}
+            <panel.toggle
+              data-test-toc-title={{page.title}}
+            >
               {{page.title}}
-            {{/panel.toggle}}
+            </panel.toggle>
           {{/if}}
 
-          {{#panel.body}}
-            {{table-of-contents
-              currentPage=currentPage
-              data=page.pages
-              level=(inc level)
-            }}
-          {{/panel.body}}
-        {{/cp-panel}}
+          <panel.body>
+            <TableOfContents
+              @currentPage={{@currentPage}}
+              @data={{page.pages}}
+              @level={{inc (or @level 0)}}
+            />
+          </panel.body>
+        </CpPanel>
       </li>
 
     {{else}}
-      <li class="toc-link {{tocLevel}} {{if (eq currentPage.url page.url) "selected"}}">
-        {{#link-to "version.show" page.url
-          activeClass="selected"
-          data-test-toc-link=page.title
-        }}
+      <li
+        class="
+          toc-link
+          {{this.tocLevel}}
+          {{if (eq @currentPage.url page.url) "selected"}}
+        "
+      >
+        <LinkTo
+          @activeClass="selected"
+          @model={{page.url}}
+          @route="version.show"
+          data-test-toc-link={{page.title}}
+        >
           {{page.title}}
-        {{/link-to}}
+        </LinkTo>
       </li>
 
     {{/if}}
