@@ -1,44 +1,37 @@
-/* eslint-disable ember/no-incorrect-calls-with-inline-anonymous-functions */
-
 import EmberRouter from '@ember/routing/router';
-import config from './config/environment';
-
-import { get } from '@ember/object';
 import { inject as service } from '@ember/service';
-import { scheduleOnce } from '@ember/runloop';
+import config from 'ember-guides/config/environment';
 
-const Router = EmberRouter.extend({
-  location: config.locationType,
-  rootURL: config.rootURL,
+export default class Router extends EmberRouter {
+  @service fastboot;
+  @service metrics;
 
-  metrics: service(),
-  fastboot: service(),
+  location = config.locationType;
+  rootURL = config.rootURL;
 
-  init() {
-    this._super(...arguments);
+  constructor() {
+    super(...arguments);
+
     this.on('routeDidChange', () => {
-      this._trackPage();
-    })
-  },
+      this.trackPage();
+    });
+  }
 
-  _trackPage() {
-    if(get(this, 'fastboot.isFastBoot')) {
+  trackPage() {
+    if (this.fastboot.isFastBoot) {
       return;
     }
 
-    scheduleOnce('afterRender', this, () => {
-      const page = this.url;
-      const title = this.getWithDefault('currentRouteName', 'unknown');
+    /*
+      `hostname` is constant and is used to identify page views
+      in the Google Analytics Dashboard
+    */
+    const hostname = 'guides.emberjs.com';
+    const page = this.url;
+    const title = this.currentRouteName ?? 'unknown';
 
-      // this is constant for this app and is only used to identify page views in the GA dashboard
-      const hostname = 'guides.emberjs.com';
+    this.metrics.trackPage({ hostname, page, title });
+  }
+}
 
-      this.metrics.trackPage({ page, title, hostname });
-    });
-  },
-});
-
-Router.map(function() {
-});
-
-export default Router;
+Router.map(function () {});
