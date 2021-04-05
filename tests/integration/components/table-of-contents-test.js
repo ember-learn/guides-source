@@ -11,9 +11,7 @@ module('Integration | Component | table-of-contents', function (hooks) {
 
   test("renders a table of contents when we don't pass pages", async function (assert) {
     await render(hbs`
-      <ol>
-        <TableOfContents />
-      </ol>
+      <TableOfContents />
     `);
 
     assert.areTitlesCorrect([]);
@@ -25,11 +23,9 @@ module('Integration | Component | table-of-contents', function (hooks) {
     this.pages = createPages();
 
     await render(hbs`
-      <ol>
-        <TableOfContents
-          @data={{this.pages}}
-        />
-      </ol>
+      <TableOfContents
+        @data={{this.pages}}
+      />
     `);
 
     assert.areTitlesCorrect([
@@ -59,11 +55,9 @@ module('Integration | Component | table-of-contents', function (hooks) {
     this.pages = createPages();
 
     await render(hbs`
-      <ol>
-        <TableOfContents
-          @data={{this.pages}}
-        />
-      </ol>
+      <TableOfContents
+        @data={{this.pages}}
+      />
     `);
 
     await click('[data-test-toc-title="Upgrading"]');
@@ -144,11 +138,9 @@ module('Integration | Component | table-of-contents', function (hooks) {
     this.pages = createPages();
 
     await render(hbs`
-      <ol>
-        <TableOfContents
-          @data={{this.pages}}
-        />
-      </ol>
+      <TableOfContents
+        @data={{this.pages}}
+      />
     `);
 
     await click('[data-test-toc-title="Upgrading"]');
