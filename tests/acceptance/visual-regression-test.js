@@ -1,16 +1,21 @@
 import { visit } from '@ember/test-helpers';
-import { module, test } from 'qunit';
-import { setupApplicationTest } from 'ember-qunit';
-import { get } from '@ember/object';
 import percySnapshot from '@percy/ember';
+import { setupApplicationTest } from 'ember-qunit';
+import { module, test } from 'qunit';
 
 function getAllPageUrls(page, urls = []) {
-  if (page.url) {
-    urls.push(page.url);
+  const { pages, url } = page;
+
+  if (url) {
+    urls.push(url);
   }
-  for (let subPage of get(page, 'pages') || []) {
-    getAllPageUrls(subPage, urls);
+
+  if (pages) {
+    for (let subPage of pages) {
+      getAllPageUrls(subPage, urls);
+    }
   }
+
   return urls;
 }
 
@@ -22,6 +27,7 @@ function extractPageInfo(url) {
   } else if (url.endsWith('index/')) {
     name = '/index.html';
   }
+
   return { url, name };
 }
 

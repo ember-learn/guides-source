@@ -14,9 +14,9 @@
           {{#if this.fastboot.isFastBoot}}
             <LinkTo
               @activeClass="selected"
-              @classNames="cp-Panel-toggle"
               @model={{page.id}}
               @route="version.show"
+              class="cp-Panel-toggle"
               data-test-toc-link={{page.title}}
             >
               {{page.title}}
