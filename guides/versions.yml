@@ -48,7 +48,8 @@ allVersions:
   - "v3.23.0"
   - "v3.24.0"
   - "v3.25.0"
-currentVersion: "v3.25.0"
+  - "v3.26.0"
+currentVersion: "v3.26.0"
 ltsVersions:
   - "v3.20.0"
   - "v3.24.0"
