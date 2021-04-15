@@ -355,7 +355,7 @@ export default class HelloComponent extends Component {
 
 ### Arguments
 
-In class components, arguments are assigned _directly_ to the class instance.
+In classic components, arguments are assigned _directly_ to the class instance.
 This has caused a lot of issues over the years, from methods and actions being
 overwritten, to unclear code where the difference between internal class values
 and arguments is hard to reason about.
