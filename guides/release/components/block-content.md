@@ -22,10 +22,8 @@ This is equivalent to explicitly naming the default block using the named block 
 </ExampleComponent>
 ```
 
-Block content can be both an easier and prettier way to provide a
-component with content, and it's also more functional. Through Block Content,
-users of the component can add additional styling and behavior by using HTML,
-modifiers, and other components within the block.
+Through Block Content, users of the component can add additional styling and
+behavior by using HTML, modifiers, and other components within the block.
 
 To make that more concrete, let's take a look at two similar components
 representing different user's messages.
