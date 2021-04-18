@@ -10,7 +10,7 @@ Here's an example that provides a component with the implicit default block.
 </ExampleComponent>
 ```
 
-This is equivalent to explicitly naming the block "default" using the named block syntax.
+This is equivalent to explicitly naming the default block using the named block syntax.
 
 ```handlebars
 <ExampleComponent>
