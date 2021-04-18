@@ -4,7 +4,7 @@ Here's an example that provides a component with the implicit default block.
 
 ```handlebars
 <ExampleComponent>
-  This is the default <b>Block Content</b> that will
+  This is the default <b>block content</b> that will
   replace `{{yield}}` (or `{{yield to="default"}}`)
   in the `ExampleComponent` template.
 </ExampleComponent>
