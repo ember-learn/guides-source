@@ -1,5 +1,6 @@
 Component templates can leave one or more placeholders that users can fill with their own HTML.
-This is called Block Content. Here's an example that provides a component with "default" Block Content.
+These are called blocks.
+Here's an example that provides a component with the implicit default block.
 
 ```handlebars
 <ExampleComponent>
