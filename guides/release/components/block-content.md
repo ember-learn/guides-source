@@ -15,7 +15,7 @@ This is equivalent to explicitly naming the default block using the named block 
 ```handlebars
 <ExampleComponent>
   <:default>
-    This is the default <b>Block Content</b> that will
+    This is the default <b>block content</b> that will
     replace `{{yield}}` (or `{{yield to="default"}}`)
     in the `ExampleComponent` template.
   </:default>
