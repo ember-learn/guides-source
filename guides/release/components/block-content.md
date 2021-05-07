@@ -1,5 +1,29 @@
-Component templates can leave a placeholder that users of the component can fill
-with their own HTML.
+Component templates can leave one or more placeholders that users can fill with their own HTML.
+These are called blocks.
+Here's an example that provides a component with the implicit default block.
+
+```handlebars
+<ExampleComponent>
+  This is the default <b>block content</b> that will
+  replace `{{yield}}` (or `{{yield to="default"}}`)
+  in the `ExampleComponent` template.
+</ExampleComponent>
+```
+
+This is equivalent to explicitly naming the default block using the named block syntax.
+
+```handlebars
+<ExampleComponent>
+  <:default>
+    This is the default <b>block content</b> that will
+    replace `{{yield}}` (or `{{yield to="default"}}`)
+    in the `ExampleComponent` template.
+  </:default>
+</ExampleComponent>
+```
+
+Through Block Content, users of the component can add additional styling and
+behavior by using HTML, modifiers, and other components within the block.
 
 To make that more concrete, let's take a look at two similar components
 representing different user's messages.
