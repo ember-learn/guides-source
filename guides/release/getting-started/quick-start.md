@@ -425,14 +425,20 @@ First you need to [sign up for a Netlify account](https://app.netlify.com/signup
 
 ![deploying to Netlify](/images/quick-guide/netlify/create-netlify-account.png)
 
-This section will walk you through two ways to deploy your ember application to production using the Netlify platform:
+The next step is to let the web app server know how to handle urls.
+For Netlify, you can create a file in your `ember-quickstart` folder called
+`_redirects`. Add `/* /index.html 200` to the first line and save the file. 
+This will let the server know to redirect all pages to `index.html` file. 
+Once redirected, Ember.js app itself will generate the matching html for urls such as `/scientists`.
+
+Now you are ready to deploy your app to production on Netlify platform. There are two ways to do this:
 
 1. Deploying to Netlify using drag and drop
 2. Deploying to Netlify using Git (specifically GitHub)
 
 **Deploying to Netlify using drag and drop**
 
-This assumes you have already created the `dist/` directory by running this command
+You may need to re-create your `dist/` directory to include changes made to `_redirects` file by running this command
 
 ```bash
 ember build --environment=production
