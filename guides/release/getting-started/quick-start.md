@@ -440,7 +440,7 @@ Now you are ready to deploy your app to production on Netlify platform. There ar
 
 **Deploying to Netlify using drag and drop**
 
-You may need to re-create your `dist/` directory to include changes made to `_redirects` file by running this command
+You may need to re-create your `dist` directory to include changes made to `_redirects` file by running this command
 
 ```bash
 ember build --environment=production
