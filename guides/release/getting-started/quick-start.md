@@ -430,8 +430,8 @@ For Netlify, you can create a file in your `ember-quickstart` folder called
 `_redirects`. Add `/* /index.html 200` to the first line and save the file. 
 This will let the server know to redirect all pages to `index.html` file. 
 Once redirected, Ember.js app itself will generate the matching html for URLs such as `/scientists`.
-Or, you can use tools created by the community to help make deploying easier,
-such as [ember-cli-netlify](https://github.com/shipshapecode/ember-cli-netlify). 
+
+Two, you can use an addon created by the community, such as [ember-cli-netlify](https://github.com/shipshapecode/ember-cli-netlify), to handle URLs.
 
 Now you are ready to deploy your app to production on Netlify platform. There are two ways to do this:
 
