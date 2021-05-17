@@ -451,7 +451,7 @@ Once you are logged-in to your Netlify account and in the "Sites" section, you s
 
   ![Netlify Drag and Drop Area](/images/quick-guide/netlify/drag-and-drop/02.png)
 
-Next, locate your `/dist` folder on your local machine and drag and drop it into this area
+Next, locate your `dist` folder on your local machine and drag and drop it into this area
 
 When your files have been successfully uploaded, you should see the status of your deployment in the "Getting started" section
 
