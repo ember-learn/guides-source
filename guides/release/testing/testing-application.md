@@ -36,7 +36,7 @@ For example:
 
 ```javascript {data-filename=tests/acceptance/new-post-appears-first-test.js}
 import { module, test } from 'qunit';
-import { click, fillIn, visit } from '@ember/test-helpers';
+import { findAll, click, fillIn, visit } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
 module('Acceptance | posts', function(hooks) {
@@ -46,7 +46,7 @@ module('Acceptance | posts', function(hooks) {
     await visit('/posts/new');
     await fillIn('input.title', 'My new post');
     await click('button.submit');
-    assert.equal(document.querySelector('ul.posts li').textContent, 'My new post');
+    assert.equal(findAll('ul.posts li').textContent, 'My new post');
   });
 });
 ```
@@ -119,7 +119,7 @@ Before making an assertion, wait for the execution of each asynchronous helper t
     await visit('/posts/new');
     await fillIn('input.title', 'My new post');
     await click('button.submit');
-    assert.equal(this.element.querySelector('ul.posts li').textContent, 'My new post');
+    assert.equal(findAll('ul.posts li').textContent, 'My new post');
   });
 ```
 
