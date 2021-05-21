@@ -9,19 +9,20 @@ try {
   credentials = {};
 }
 
-module.exports = function(deployTarget) {
+module.exports = function (deployTarget) {
   let ENV = {
     build: {},
     'prember-algolia': {
       indexName: credentials.algoliaIndex || process.env.ALGOLIA_INDEX,
-      applicationId: credentials.algoliaApplication || process.env.ALGOLIA_APPLICATION,
+      applicationId:
+        credentials.algoliaApplication || process.env.ALGOLIA_APPLICATION,
       apiKey: credentials.algoliaKey || process.env.ALGOLIA_KEY,
       tagsToExclude: '.old-version-warning,.edit-page,code,pre',
       cssSelector: 'section',
       versionsToIgnore: ['1.x', '2.x'],
       versionPattern: /^(v\d+\.\d+\.\d+)\//,
       pathPattern: /^v\d+\.\d+\.\d+\/(.*)\/index.html$/,
-    }
+    },
   };
 
   if (deployTarget === 'development') {

@@ -31,23 +31,25 @@ function extractPageInfo(url) {
   return { url, name };
 }
 
-module('Acceptance | visual regression', function(hooks) {
+module('Acceptance | visual regression', function (hooks) {
   setupApplicationTest(hooks);
 
-  test(`visiting visual regressions with Percy`, async function(assert) {
+  test(`visiting visual regressions with Percy`, async function (assert) {
     assert.expect(0);
     await visit('/release');
 
     let store = this.owner.lookup('service:store');
     let pages = store.peekAll('page');
 
-    const urls = pages.reduce(function(urls, page) {
+    const urls = pages.reduce(function (urls, page) {
       return urls.concat(getAllPageUrls(page));
     }, []);
 
-    const pageInfos = urls.map(extractPageInfo).filter(function(pageInfo, _, self) {
-      return self.find(pi => pi.name === pageInfo.name) === pageInfo;
-    });
+    const pageInfos = urls
+      .map(extractPageInfo)
+      .filter(function (pageInfo, _, self) {
+        return self.find((pi) => pi.name === pageInfo.name) === pageInfo;
+      });
 
     for (let pageInfo of pageInfos) {
       await visit(`/release/${pageInfo.url}`);

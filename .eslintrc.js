@@ -44,9 +44,7 @@ module.exports = {
     },
     // node tests
     {
-      files: [
-        'node-tests/**/*.js'
-      ],
+      files: ['node-tests/**/*.js'],
       env: {
         node: true,
         mocha: true,
@@ -55,9 +53,9 @@ module.exports = {
         ecmaVersion: 2018,
       },
       rules: {
-        "func-names": 0,
-        "prefer-arrow-callback": 0,
-        "no-unused-expressions": 0,
+        'func-names': 0,
+        'prefer-arrow-callback': 0,
+        'no-unused-expressions': 0,
         // this can be removed once the following is fixed
         // https://github.com/mysticatea/eslint-plugin-node/issues/77
         'node/no-unpublished-require': 'off',
