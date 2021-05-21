@@ -5,7 +5,6 @@
 # compiled output
 /dist/
 /tmp/
-/public/assets/
 
 # dependencies
 /bower_components/
