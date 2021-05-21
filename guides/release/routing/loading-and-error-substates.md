@@ -112,7 +112,7 @@ import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
-export default class FooSlowModelRoute extends Route {
+export default class UserSlowModelRoute extends Route {
   @service store;
   
   model() {
@@ -138,7 +138,7 @@ When using the `loading` handler, we can make use of the transition promise to k
 import Route from '@ember/routing/route';
 import { action } from '@ember/object';
 
-export default class FooSlowModelRoute extends Route {
+export default class UserSlowModelRoute extends Route {
   // ...
   @action
   async loading(transition, originRoute) {
@@ -158,7 +158,7 @@ we can implement the `loading` action and let it bubble by returning `true`.
 import Route from '@ember/routing/route';
 import { action } from '@ember/object';
 
-export default class FooSlowModelRoute extends Route {
+export default class UserSlowModelRoute extends Route {
   // ...
   @action
   loading(transition) {
