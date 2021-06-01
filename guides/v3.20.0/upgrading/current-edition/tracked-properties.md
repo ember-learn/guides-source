@@ -103,7 +103,7 @@ const Person = EmberObject.extend({
   fullAddress: computed('address.{street,city,region,country}', function() {
     let { street, city, region, country } = this.address;
 
-    return `${street}, ${city}, ${state}, ${country}`;
+    return `${street}, ${city}, ${region}, ${country}`;
   }),
 });
 ```
@@ -125,7 +125,7 @@ class Person {
   get fullAddress() {
     let { street, city, region, country } = this.address;
 
-    return `${street}, ${city}, ${state}, ${country}`;
+    return `${street}, ${city}, ${region}, ${country}`;
   }
 }
 ```
