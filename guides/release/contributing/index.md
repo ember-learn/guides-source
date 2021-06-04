@@ -23,6 +23,12 @@ Have a look at the [list of main repositories](repositories) to learn about the 
 
 If you need some inspiration, you can check out the [Help Wanted](https://help-wanted.emberjs.com/) dashboard to browse for issues. If you are a beginner, look out for issues with the "Help wanted" and "Good first issue" labels.
 
+# Changing the API documentation
+
+To change the [API reference guidance](https://api.emberjs.com/ember/release), view the section for the package, method or class description you wish to change. At the top of the section, you will find a link to the 'defined in' or 'inherited from' file. Following this link will open the `.ts` file where both the guidance and the typescript code for the function is defined.
+
+Note, descriptive documentation is inline with the TS code making it easy to ensure the code and documentation match. For example, near the top of the [`store.createRecord()`](https://api.emberjs.com/ember-data/release/classes/Store/methods/createRecord?anchor=createRecord) API guidance section, you can find the 'defined in' link to the specific `.ts` file where the guidance is inlined: [`ds-model-store.ts`](https://github.com/emberjs/data/blob/v3.26.0/packages/store/addon/-private/system/ds-model-store.ts). You can then edit the guidance within the `.ts` file. Please follow the contributing guidance for the specific repo for example Ember.js [contributing.md](https://github.com/emberjs/ember.js/blob/master/CONTRIBUTING.md). This will help guide you on best practice for editing, commit messages, style and testing. 
+
 # Asking for help
 
 Please comment directly on issues and PRs if you need help. This way others will see and can chime in to help.
