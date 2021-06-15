@@ -117,9 +117,9 @@ Before making an assertion, wait for the execution of each asynchronous helper t
 ```javascript {data-filename=tests/acceptance/new-post-appears-first-test.js}
   test('should add new post', async function(assert) {
     await visit('/posts/new');
-    await fillIn('input.title', 'My new post');
-    await click('button.submit');
-    assert.dom('ul.posts li').hasText('My new post');
+    await fillIn('[data-test-post-input-title]', 'My new post');
+    await click('[data-test-post-save]');
+    assert.dom('[data-test-post-title]').hasText('My new post');
   });
 ```
 
