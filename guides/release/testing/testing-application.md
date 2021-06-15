@@ -44,9 +44,9 @@ module('Acceptance | posts', function(hooks) {
 
   test('should add new post', async function(assert) {
     await visit('/posts/new');
-    await fillIn('input.title', 'My new post');
-    await click('button.submit');
-    assert.dom('ul.posts li').hasText('My new post');
+    await fillIn('[data-test-post-input-title]', 'My new post');
+    await click('[data-test-post-save]');
+    assert.dom('[data-test-post-title]').hasText('My new post');
   });
 });
 ```
