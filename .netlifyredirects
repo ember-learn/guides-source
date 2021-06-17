@@ -1,2 +1,3 @@
 /                 /release/
 /current/*        /release/:splat
+/*                /index.html       200
