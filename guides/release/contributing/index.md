@@ -31,9 +31,11 @@ At the top of the page (for the package, method, or class), you will find the wo
 
 You can open the link to find a comment block. Make a pull request to update the comment block. The API Guides may take a few weeks to update while the future release is finalized.
 
-Note, the documentation is inline with the code to help ensure the code and documentation match.
-For example, near the top of the [`store.createRecord()`](https://api.emberjs.com/ember-data/release/classes/Store/methods/createRecord?anchor=createRecord) API guidance section, you can find the 'defined in' link to the specific `.ts` file where the guidance is inline: [`ds-model-store.ts`](https://github.com/emberjs/data/blob/v3.26.0/packages/store/addon/-private/system/ds-model-store.ts).
-You can then edit the guidance within the `.ts` file.
+Here is an example of updating a method. At the top of the section for [`store.createRecord()`](https://api.emberjs.com/ember-data/release/classes/Store/methods/createRecord?anchor=createRecord), you can find the words "Defined in."
+
+[Insert screenshot and provide alternate text if needed]
+
+Next to the words is, once again, the link to the source code [`ds-model-store.ts`](https://github.com/emberjs/data/blob/master/packages/store/addon/-private/system/ds-model-store.ts).
 
 Please follow the contributing guide in the specific repo. (Here is an example of the [contributing guide for Ember.js](https://github.com/emberjs/ember.js/blob/master/CONTRIBUTING.md).)
 The contributing guide may further describe how you can edit files, commit messages, and run linting and testing.
