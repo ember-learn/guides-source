@@ -46,7 +46,9 @@ module('Acceptance | posts', function(hooks) {
     await visit('/posts/new');
     await fillIn('[data-test-post-input-title]', 'My new post');
     await click('[data-test-post-save]');
-    assert.dom('[data-test-post-title]').hasText('My new post');
+    assert
+      .dom('[data-test-post-title]')
+      .hasText('My new post', 'The user sees the correct title.');
   });
 });
 ```
