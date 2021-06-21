@@ -23,7 +23,7 @@ Have a look at the [list of main repositories](repositories) to learn about the 
 
 If you need some inspiration, you can check out the [Help Wanted](https://help-wanted.emberjs.com/) dashboard to browse for issues. If you are a beginner, look out for issues with the "Help wanted" and "Good first issue" labels.
 
-# Changing the API documentation
+# Updating the API Guides
 
 To change the [API reference guidance](https://api.emberjs.com/ember/release), find the relevant section for the *package*, *method* or *class* you wish to change.
 At the top of the section, you will find a link to the 'defined in' or 'inherited from' file.
