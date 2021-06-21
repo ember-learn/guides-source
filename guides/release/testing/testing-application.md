@@ -44,9 +44,11 @@ module('Acceptance | posts', function(hooks) {
 
   test('should add new post', async function(assert) {
     await visit('/posts/new');
-    await fillIn('input.title', 'My new post');
-    await click('button.submit');
-    assert.equal(document.querySelector('ul.posts li').textContent, 'My new post');
+    await fillIn('[data-test-field="Title"]', 'My new post');
+    await click('[data-test-button="Save"]');
+    assert
+      .dom('[data-test-post-title]')
+      .hasText('My new post', 'The user sees the correct title.');
   });
 });
 ```
@@ -117,9 +119,9 @@ Before making an assertion, wait for the execution of each asynchronous helper t
 ```javascript {data-filename=tests/acceptance/new-post-appears-first-test.js}
   test('should add new post', async function(assert) {
     await visit('/posts/new');
-    await fillIn('input.title', 'My new post');
-    await click('button.submit');
-    assert.equal(this.element.querySelector('ul.posts li').textContent, 'My new post');
+    await fillIn('[data-test-field="Title"]', 'My new post');
+    await click('[data-test-button="Save"]');
+    assert.dom('[data-test-post-title]').hasText('My new post');
   });
 ```
 
