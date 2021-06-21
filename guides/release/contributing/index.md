@@ -36,8 +36,9 @@ You can open the link to find a comment block. Make a pull request to update the
 Note, the documentation is inline with the code to help ensure the code and documentation match.
 For example, near the top of the [`store.createRecord()`](https://api.emberjs.com/ember-data/release/classes/Store/methods/createRecord?anchor=createRecord) API guidance section, you can find the 'defined in' link to the specific `.ts` file where the guidance is inline: [`ds-model-store.ts`](https://github.com/emberjs/data/blob/v3.26.0/packages/store/addon/-private/system/ds-model-store.ts).
 You can then edit the guidance within the `.ts` file.
-Please follow the contributing guidance for the specific repo for example Ember.js [contributing.md](https://github.com/emberjs/ember.js/blob/master/CONTRIBUTING.md).
-The contributing guidance provides best practice for editing, commit messages, style and testing. 
+
+Please follow the contributing guide in the specific repo. (Here is an example of the [contributing guide for Ember.js](https://github.com/emberjs/ember.js/blob/master/CONTRIBUTING.md).)
+The contributing guide may further describe how you can edit files, commit messages, and run linting and testing.
 
 # Asking for help
 
