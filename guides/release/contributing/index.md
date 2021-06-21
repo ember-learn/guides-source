@@ -29,9 +29,7 @@ In the [API Guides](https://api.emberjs.com/ember/release), suppose you found a 
 
 At the top of the page (for the package, method, or class), you will find the words "Defined in" or "Inherited from". Next to these words is a link to the source code on GitHub.
 
-[Insert screenshot and provide alternate text if needed]
-
-You can open the link to find a comment block. Make a pull request to update the comment block. The API Guides will be updated in the near future (e.g. on the next Ember release).
+You can open the link to find a comment block. Make a pull request to update the comment block. The API Guides update may take a few weeks to update while the future release is finalised.
 
 Note, the documentation is inline with the code to help ensure the code and documentation match.
 For example, near the top of the [`store.createRecord()`](https://api.emberjs.com/ember-data/release/classes/Store/methods/createRecord?anchor=createRecord) API guidance section, you can find the 'defined in' link to the specific `.ts` file where the guidance is inline: [`ds-model-store.ts`](https://github.com/emberjs/data/blob/v3.26.0/packages/store/addon/-private/system/ds-model-store.ts).
