@@ -33,8 +33,6 @@ You can open the link to find a comment block. Make a pull request to update the
 
 Here is an example of updating a method. At the top of the section for [`store.createRecord()`](https://api.emberjs.com/ember-data/release/classes/Store/methods/createRecord?anchor=createRecord), you can find the words "Defined in."
 
-[Insert screenshot and provide alternate text if needed]
-
 Next to the words is, once again, the link to the source code [`ds-model-store.ts`](https://github.com/emberjs/data/blob/master/packages/store/addon/-private/system/ds-model-store.ts).
 
 Please follow the contributing guide in the specific repo. (Here is an example of the [contributing guide for Ember.js](https://github.com/emberjs/ember.js/blob/master/CONTRIBUTING.md).)
