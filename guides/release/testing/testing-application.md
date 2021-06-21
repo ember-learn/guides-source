@@ -44,8 +44,8 @@ module('Acceptance | posts', function(hooks) {
 
   test('should add new post', async function(assert) {
     await visit('/posts/new');
-    await fillIn('[data-test-post-input-title]', 'My new post');
-    await click('[data-test-post-save]');
+    await fillIn('[data-test-field="Title"]', 'My new post');
+    await click('[data-test-button="Save"]');
     assert
       .dom('[data-test-post-title]')
       .hasText('My new post', 'The user sees the correct title.');
@@ -119,8 +119,8 @@ Before making an assertion, wait for the execution of each asynchronous helper t
 ```javascript {data-filename=tests/acceptance/new-post-appears-first-test.js}
   test('should add new post', async function(assert) {
     await visit('/posts/new');
-    await fillIn('[data-test-post-input-title]', 'My new post');
-    await click('[data-test-post-save]');
+    await fillIn('[data-test-field="Title"]', 'My new post');
+    await click('[data-test-button="Save"]');
     assert.dom('[data-test-post-title]').hasText('My new post');
   });
 ```
