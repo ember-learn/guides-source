@@ -53,9 +53,10 @@ This generated a JavaScript file with the same name as our component's template 
 
 Ember will create an _instance_ of the class whenever our component is invoked. We can use that instance to store our state:
 
-```js { data-filename="app/components/rental/image.js" data-diff="+4,+5,+6,+7" }
+```js { data-filename="app/components/rental/image.js" data-diff="-3,+4,+5,+6,+7,+8,+9" }
 import Component from '@glimmer/component';
 
+export default class RentalImageComponent extends Component {}
 export default class RentalImageComponent extends Component {
   constructor(...args) {
     super(...args);
