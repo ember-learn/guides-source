@@ -315,7 +315,6 @@ components.
 ```
 
 In the component's template, you can then use the `person` object:
-test
 ```handlebars {data-filename=app/components/greeting/template.hbs}
 Hello, {{@person.givenName}} {{@person.familyName}}
 ```
