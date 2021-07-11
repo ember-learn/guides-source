@@ -319,3 +319,67 @@ In the component's template, you can then use the `person` object:
 ```handlebars {data-filename=app/components/greeting/template.hbs}
 Hello, {{@person.givenName}} {{@person.familyName}}
 ```
+
+### The `in-element` helper
+
+Using the [`{{in-element}}`](https://api.emberjs.com/ember/3.27/classes/Ember.Templates.helpers/methods/in-element?anchor=in-element) helper, you can render content into a specific DOM element that is in a different part of the page. For instance, we might want
+to render a modal, tooltip or dropdown.
+
+Let's say I wanted to show a dropdown when a button is clicked on.
+
+We have the button we want to click on, a div element that will hold the dropdown and the dropdown component.
+```handlebars
+  <button type="button" {{on "click" this.onClickShowDropdown}}>More Actions</button>
+  <div id="dropdown-destination" />
+
+  <MyDropdownComponent
+    @show={{this.showDropdown}}
+  />
+```
+
+When the user clicks on the button, the flag `showDropdown` will be set to true.
+```js
+  @tracked
+  showDropdown = false;
+
+  @action
+  onClickShowDropdown() {
+    this.showDropdown = true;
+  }
+```
+
+Once `showDropdown` is `true`, the `in-element` helper activates and we pass the `destinationElement` that contains the destination DOM element. The `in-element` helper will take the content block and render into the destination element.
+```handlebars {data-filename=app/components/myDropDownComponent.hbs}
+{{#if @show}}
+  {{#in-element this.destinationElement}}
+    <ul>
+      <li>Archive</li>
+      <li>Mark as Read</li>
+      <li>Report</li>
+    </ul>
+  {{/in-element}}
+{{/if}}
+```
+
+We need to make sure
+```js {data-filename=app/components/myDropDownComponent.js}
+  get destinationElement() {
+    return document.querySelector('#dropdown-destination');
+  }
+```
+
+After the user clicks on the button, the final HTML result for the div will be like this:
+```html
+  <div id="dropdown-destination">
+    <ul>
+      <li>Archive</li>
+      <li>Mark as Read</li>
+      <li>Report</li>
+    </ul>
+  </div>
+```
+
+Things to note:
+- The destination element needs to exist in the DOM before we use the helper.
+- When the destination element changes, the content will re-render completely.
+- By default, the `in-element` helper will replace the entire contents of the destination element. If we want it to just append, we need to pass `insertBefore=null`.
