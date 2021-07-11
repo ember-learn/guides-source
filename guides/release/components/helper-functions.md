@@ -379,5 +379,5 @@ After the user clicks on the button, the final HTML result for the div will be l
 
 Things to note:
 - The destination element needs to exist in the DOM before we use the helper. If not, an error will be thrown in development mode, but not in production.
-- When the destination element changes, the content will re-render completely.
+- When the destination element changes, the contents defined in `in-element` will re-render completely.
 - By default, the `in-element` helper will replace the entire contents of the destination element. If we want it to just append, we need to pass `insertBefore=null`.
