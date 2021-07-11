@@ -315,7 +315,7 @@ components.
 ```
 
 In the component's template, you can then use the `person` object:
-
+test
 ```handlebars {data-filename=app/components/greeting/template.hbs}
 Hello, {{@person.givenName}} {{@person.familyName}}
 ```
@@ -327,8 +327,8 @@ to render a modal, tooltip or dropdown.
 
 Let's say I wanted to show a dropdown when a button is clicked on.
 
-We have the button we want to click on, a div element that will hold the dropdown and the dropdown component.
-```handlebars
+Below, we have the button we want to click on, a div element that will hold the dropdown and the dropdown component.
+```handlebars {data-filename=app/components/some-component.hbs}
   <button type="button" {{on "click" this.onClickShowDropdown}}>More Actions</button>
   <div id="dropdown-destination" />
 
@@ -337,8 +337,8 @@ We have the button we want to click on, a div element that will hold the dropdow
   />
 ```
 
-When the user clicks on the button, the flag `showDropdown` will be set to true.
-```js
+When the user clicks on the button, the flag `showDropdown` will be set to `true`.
+```js {data-filename=app/components/some-component.js}
   @tracked
   showDropdown = false;
 
@@ -349,7 +349,7 @@ When the user clicks on the button, the flag `showDropdown` will be set to true.
 ```
 
 Once `showDropdown` is `true`, the `in-element` helper activates and we pass the `destinationElement` that contains the destination DOM element. The `in-element` helper will take the content block and render into the destination element.
-```handlebars {data-filename=app/components/myDropDownComponent.hbs}
+```handlebars {data-filename=app/components/my-dropdown-component.hbs}
 {{#if @show}}
   {{#in-element this.destinationElement}}
     <ul>
@@ -361,8 +361,7 @@ Once `showDropdown` is `true`, the `in-element` helper activates and we pass the
 {{/if}}
 ```
 
-We need to make sure
-```js {data-filename=app/components/myDropDownComponent.js}
+```js {data-filename=app/components/my-dropdown-component.js}
   get destinationElement() {
     return document.querySelector('#dropdown-destination');
   }
@@ -380,6 +379,6 @@ After the user clicks on the button, the final HTML result for the div will be l
 ```
 
 Things to note:
-- The destination element needs to exist in the DOM before we use the helper.
+- The destination element needs to exist in the DOM before we use the helper. If not, an error will be thrown in development mode, but not in production.
 - When the destination element changes, the content will re-render completely.
 - By default, the `in-element` helper will replace the entire contents of the destination element. If we want it to just append, we need to pass `insertBefore=null`.
