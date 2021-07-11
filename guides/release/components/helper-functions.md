@@ -326,7 +326,7 @@ to render a modal, tooltip or dropdown.
 
 Let's say I wanted to show a dropdown when a button is clicked on.
 
-Below, we have the button we want to click on, a div element that will hold the dropdown and the dropdown component.
+Below, we have the button we want to click on, a div element that will hold the dropdown and the dropdown component. We pass in `showDropdown` that will add the dropdown into our div.
 ```handlebars {data-filename=app/components/some-component.hbs}
   <button type="button" {{on "click" this.onClickShowDropdown}}>More Actions</button>
   <div id="dropdown-destination" />
@@ -347,7 +347,7 @@ When the user clicks on the button, the flag `showDropdown` will be set to `true
   }
 ```
 
-Once `showDropdown` is `true`, the `in-element` helper activates and we pass the `destinationElement` that contains the destination DOM element. The `in-element` helper will take the content block and render into the destination element.
+Since `showDropdown` is passed into `MyDropdownComponent` as `show`, when `show` is `true`, the `in-element` helper is activated. We pass in `destinationElement` into `in-element` which contains the destination DOM element. The `in-element` helper will take the content block and render into the destination element.
 ```handlebars {data-filename=app/components/my-dropdown-component.hbs}
 {{#if @show}}
   {{#in-element this.destinationElement}}
