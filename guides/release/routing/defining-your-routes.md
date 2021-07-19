@@ -206,7 +206,7 @@ The following scenarios may help with understanding the `index` route:
 Router.map(function() {
 });
 ```
-- When a user navigates to `/posts`, the contents of `index.hbs` will be rendered. This is similar to a user navigating to the child route of `/posts`. `/posts/index` is child route like `/posts/comments` or `/posts/likes`.
+- When a user navigates to `/posts`, the contents of `index.hbs` will be rendered. This is similar to a user navigating to the child route of `/posts`. `/posts/index` is a child route like `/posts/comments` or `/posts/likes`.
 
 ### When to use an index route
 
