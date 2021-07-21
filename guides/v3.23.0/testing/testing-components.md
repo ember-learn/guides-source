@@ -156,14 +156,15 @@ Imagine you have the following component that changes its title when a button is
 
 ```javascript {data-filename="app/components/magic-title.js"}
 import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
 export default class MagicTitleComponent extends Component {
-  title = 'Hello World';
+  @tracked title = 'Hello World';
 
   @action
   updateTitle() {
-    this.set('title', 'This is Magic');
+    this.title = 'This is Magic';
   }
 }
 ```
@@ -194,7 +195,7 @@ module('Integration | Component | magic-title', function(hooks) {
 
     assert.equal(this.element.querySelector('h2').textContent.trim(), 'Hello World', 'initial text is hello world');
 
-    //Click on the button
+    // Click on the button
     await click('.title-button');
 
     assert.equal(this.element.querySelector('h2').textContent.trim(), 'This is Magic', 'title changes after click');
@@ -232,7 +233,7 @@ export default class CommentFormComponent extends Component {
 ```
 
 ```handlebars {data-filename="app/components/comment-form.hbs"}
-<form {{action "submitComment" on="submit"}}>
+<form {{on "submit" this.submitComment}}>
   <label for="comment">Comment:</label>
   <Textarea @id="comment" @value={{this.comment}} />
   <input class="comment-input" type="submit" value="Submit"/>
@@ -261,7 +262,7 @@ module('Integration | Component | comment-form', function(hooks) {
       assert.deepEqual(actual, expected, 'submitted value is passed to external action');
     });
 
-    await render(hbs`<CommentForm @submitComment={{action externalAction}} />`);
+    await render(hbs`<CommentForm @submitComment={{this.externalAction}} />`);
 
     // fill out the form and force an onchange
     await fillIn('textarea', 'You are not a wizard!');
@@ -316,7 +317,7 @@ import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 import Service from '@ember/service';
 
-//Stub location service
+// Stub location service
 class LocationStub extends Service {
   city = 'New York';
   country = 'USA';
@@ -353,7 +354,7 @@ import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 import Service from '@ember/service';
 
-//Stub location service
+// Stub location service
 class LocationStub extends Service {
   city = 'New York';
   country = 'USA';
@@ -395,7 +396,7 @@ import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 import Service from '@ember/service';
 
-//Stub location service
+// Stub location service
 class LocationStub extends Service {
   city = 'New York';
   country = 'USA';
@@ -467,14 +468,17 @@ Imagine you have a typeahead component that uses [`Ember.run.debounce`](https://
 
 ```javascript {data-filename="app/components/delayed-typeahead.js"}
 import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { debounce } from '@ember/runloop';
 
 export default class DelayedTypeaheadComponent extends Component {
+  @tracked searchValue = '';
+
   @action
   handleTyping() {
-    //the fetchResults function is passed into the component from its parent
-    debounce(this, this.fetchResults, this.searchValue, 250);
+    // The fetchResults function is passed into the component from its parent
+    debounce(this, this.args.fetchResults, this.searchValue, 250);
   }
 };
 ```
@@ -483,7 +487,7 @@ export default class DelayedTypeaheadComponent extends Component {
 <label for="search">Search</label>
 <Input @id="search" @value={{this.searchValue}} @key-up={{this.handleTyping}} />
 <ul>
-  {{#each this.results as |result|}}
+  {{#each @results as |result|}}
     <li class="result">{{result.name}}</li>
   {{/each}}
 </ul>
