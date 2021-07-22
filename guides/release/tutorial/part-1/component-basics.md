@@ -137,10 +137,6 @@ installing component-test
   create tests/integration/components/jumbo-test.js
 ```
 
-<!-- patch for https://github.com/emberjs/ember.js/issues/19333 -->
-
-<!-- end patch for https://github.com/emberjs/ember.js/issues/19333 -->
-
 Here, we used the generator to generate a _[component test](../../../testing/testing-components/)_, also known as a rendering test. These are used to render and test a single component at a time. This is in contrast to the acceptance tests that we wrote earlier, which have to navigate and render entire pages worth of content.
 
 Let's replace the boilerplate code that was generated for us with our own test:
@@ -156,13 +152,13 @@ module('Integration | Component | jumbo', function (hooks) {
 
   test('it renders', async function (assert) {
     // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function (val) { ... });
+    // Handle any actions with this.set('myAction', function(val) { ... });
   test('it renders the content inside a jumbo header with a tomster', async function (assert) {
     await render(hbs`<Jumbo>Hello World</Jumbo>`);
 
     await render(hbs`<Jumbo />`);
 
-    assert.equal(this.element.textContent.trim(), '');
+    assert.dom(this.element).hasText('');
 
     // Template block usage:
     await render(hbs`
@@ -171,7 +167,7 @@ module('Integration | Component | jumbo', function (hooks) {
       </Jumbo>
     `);
 
-    assert.equal(this.element.textContent.trim(), 'template block text');
+    assert.dom(this.element).hasText('template block text');
     assert.dom('.jumbo').exists();
     assert.dom('.jumbo').hasText('Hello World');
     assert.dom('.jumbo .tomster').exists();

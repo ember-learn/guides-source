@@ -137,18 +137,15 @@ However, in the case of our `<Map>` component, we are pretty sure that we are go
   </div>
 </div>
 
-<!-- patch for https://github.com/emberjs/ember.js/issues/19333 -->
-
-<!-- end patch for https://github.com/emberjs/ember.js/issues/19333 -->
-
 ## Parameterizing Components with Arguments
 
 Let's start with our JavaScript file:
 
-```js { data-filename="app/components/map.js" data-diff="+2,+5,+6,+7" }
+```js { data-filename="app/components/map.js" data-diff="+2,-4,+5,+6,+7,+8,+9" }
 import Component from '@glimmer/component';
 import ENV from 'super-rentals/config/environment';
 
+export default class MapComponent extends Component {}
 export default class MapComponent extends Component {
   get token() {
     return encodeURIComponent(ENV.MAPBOX_ACCESS_TOKEN);
@@ -211,7 +208,7 @@ module('Integration | Component | map', function (hooks) {
 
   test('it renders', async function (assert) {
     // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function (val) { ... });
+    // Handle any actions with this.set('myAction', function(val) { ... });
   test('it renders a map image for the specified parameters', async function (assert) {
     await render(hbs`<Map
       @lat="37.7797"
@@ -230,7 +227,7 @@ module('Integration | Component | map', function (hooks) {
       .hasAttribute('width', '150')
       .hasAttribute('height', '120');
 
-    assert.equal(this.element.textContent.trim(), '');
+    assert.dom(this.element).hasText('');
     let { src } = find('.map img');
     let token = encodeURIComponent(ENV.MAPBOX_ACCESS_TOKEN);
 
@@ -245,7 +242,7 @@ module('Integration | Component | map', function (hooks) {
       'the src starts with "https://api.mapbox.com/"'
     );
 
-    assert.equal(this.element.textContent.trim(), 'template block text');
+    assert.dom(this.element).hasText('template block text');
     assert.ok(
       src.includes('-122.4184,37.7797,10'),
       'the src should include the lng,lat,zoom parameter'

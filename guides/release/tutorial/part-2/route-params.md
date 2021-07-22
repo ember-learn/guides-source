@@ -230,10 +230,6 @@ installing component-test
   create tests/integration/components/rental/detailed-test.js
 ```
 
-<!-- patch for https://github.com/emberjs/ember.js/issues/19333 -->
-
-<!-- end patch for https://github.com/emberjs/ember.js/issues/19333 -->
-
 ```handlebars { data-filename="app/components/rental/detailed.hbs" data-diff="-1,+2,+3,+4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33,+34,+35,+36,+37,+38,+39,+40,+41,+42,+43,+44,+45" }
 {{yield}}
 <Jumbo>
@@ -304,7 +300,7 @@ module('Integration | Component | rental/detailed', function (hooks) {
 
   test('it renders', async function (assert) {
     // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function (val) { ... });
+    // Handle any actions with this.set('myAction', function(val) { ... });
   hooks.beforeEach(function () {
     this.setProperties({
       rental: {
@@ -331,7 +327,7 @@ module('Integration | Component | rental/detailed', function (hooks) {
   test('it renders a header with a share button', async function (assert) {
     await render(hbs`<Rental::Detailed @rental={{this.rental}} />`);
 
-    assert.equal(this.element.textContent.trim(), '');
+    assert.dom(this.element).hasText('');
     assert.dom('.jumbo').exists();
     assert.dom('.jumbo h2').containsText('Grand Old Mansion');
     assert
@@ -349,7 +345,7 @@ module('Integration | Component | rental/detailed', function (hooks) {
   test('it renders detailed information about a rental property', async function (assert) {
     await render(hbs`<Rental::Detailed @rental={{this.rental}} />`);
 
-    assert.equal(this.element.textContent.trim(), 'template block text');
+    assert.dom(this.element).hasText('template block text');
     assert.dom('article').hasClass('rental');
     assert.dom('article h3').containsText('About Grand Old Mansion');
     assert.dom('article .detail.owner').containsText('Veruca Salt');

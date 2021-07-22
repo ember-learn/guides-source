@@ -149,10 +149,6 @@ installing model-test
   create tests/unit/models/rental-test.js
 ```
 
-<!-- patch for https://github.com/emberjs/data/issues/7418 -->
-
-<!-- end patch for https://github.com/emberjs/data/issues/7418 -->
-
 <div class="cta">
   <div class="cta-note">
     <div class="cta-note-body">
