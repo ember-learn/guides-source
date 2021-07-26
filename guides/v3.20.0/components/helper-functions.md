@@ -321,14 +321,17 @@ To consult all available built-in helpers, you can check the [template helpers A
 
 ### The `in-element` helper
 
-Using the [`{{in-element}}`](https://api.emberjs.com/ember/3.27/classes/Ember.Templates.helpers/methods/in-element?anchor=in-element) helper, you can render content into a specific DOM element that is in a different part of the page. For instance, we might want
-to render a modal, tooltip or dropdown.
+Using the [`{{in-element}}`](https://api.emberjs.com/ember/3.20/classes/Ember.Templates.helpers/methods/in-element?anchor=in-element) helper, you can render content into a DOM element that is in a _different_ part of the page. For instance, we might want
+to render a modal, tooltip, or dropdown.
 
-Let's say I wanted to show a dropdown when a button is clicked on.
-
-Below, we have the button we want to click on, a div element that will hold the dropdown and the dropdown component. We pass in `showDropdown` that will add the dropdown into our div.
+Suppose we want to show a dropdown menu when the user clicks on a button. The code below shows a `<button>` element, a placeholder `<div>` element, and a dropdown component. The argument `@show`, when set to `true`, will add the dropdown to the placeholder div.
 ```handlebars {data-filename=app/components/some-component.hbs}
-  <button type="button" {{on "click" this.onClickShowDropdown}}>More Actions</button>
+  <button
+    type="button"
+    {{on "click" this.onClickShowDropdown}}
+  >
+    More Actions
+  </button>
   <div id="dropdown-destination" />
 
   <MyDropdownComponent
@@ -347,7 +350,7 @@ When the user clicks on the button, the flag `showDropdown` will be set to `true
   }
 ```
 
-Since `showDropdown` is passed into `MyDropdownComponent` as `show`, when `show` is `true`, the `in-element` helper is activated. We pass in `destinationElement` into `in-element` which contains the destination DOM element. The `in-element` helper will take the content block and render into the destination element.
+The dropdown component uses the argument `@show` to activate the `in-element` helper. We must **provide the destination DOM element** to the helper. In other words, where should the helper render its block content?
 ```handlebars {data-filename=app/components/my-dropdown-component.hbs}
 {{#if @show}}
   {{#in-element this.destinationElement}}
@@ -378,6 +381,6 @@ After the user clicks on the button, the final HTML result for the div will be l
 ```
 
 Things to note:
-- The destination element needs to exist in the DOM before we use the helper. If not, an error will be thrown in development mode, but not in production.
-- When the destination element changes, the contents defined in `in-element` will re-render completely.
-- By default, the `in-element` helper will replace the entire contents of the destination element. If we want it to just append, we need to pass `insertBefore=null`.
+- The destination element needs to exist in the DOM before we use the helper. Otherwise, an error will be thrown if you are in development mode. The error is not thrown in production.
+- When the destination element changes, the content defined in `in-element` will re-render completely.
+- By default, the `in-element` helper replaces the destination element's existing content with the helper's block content. If you want to instead append the block content, you can pass `insertBefore=null`.
