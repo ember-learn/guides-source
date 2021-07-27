@@ -61,7 +61,7 @@ ember-cli-netlify
 ember-cli-mirage.
 ember-cli-tutorial-style
 ember-debug-handlers-polyfill
-ember-fast-cli 
+ember-fast-cli
 ember-intl
 erroring
 Evented
@@ -213,3 +213,4 @@ ZEIT
 yay
 template-lifecycle-dom-and-modifiers
 working-with-html-css-and-javascript
+dropdown
