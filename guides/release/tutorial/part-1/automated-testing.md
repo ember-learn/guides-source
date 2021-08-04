@@ -39,10 +39,6 @@ This is called a _[generator](https://cli.emberjs.com/release/basic-use/cli-comm
 
 In this case, we generated an _[acceptance test](../../../testing/test-types/#toc_application-tests)_ located at `tests/acceptance/super-rentals-test.js`.
 
-<!-- patch for https://github.com/emberjs/ember.js/issues/19333 -->
-
-<!-- end patch for https://github.com/emberjs/ember.js/issues/19333 -->
-
 Generators aren't required; we _could_ have created the file ourselves which would have accomplished the exact same thing. But, generators certainly save us a lot of typing. Go ahead and take a peek at the acceptance test file and see for yourself.
 
 <div class="cta">

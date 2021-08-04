@@ -27,10 +27,6 @@ installing component-test
 
 The generator created two new files for us, a component template at `app/components/rental.hbs`, and a component test file at `tests/integration/components/rental-test.js`.
 
-<!-- patch for https://github.com/emberjs/ember.js/issues/19333 -->
-
-<!-- end patch for https://github.com/emberjs/ember.js/issues/19333 -->
-
 We will start by editing the template. Let's _[hard-code](https://en.wikipedia.org/wiki/Hard_coding)_ the details for one rental property for now, and replace it with the real data from the server later on.
 
 ```handlebars { data-filename="app/components/rental.hbs" data-diff="-1,+2,+3,+4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18" }
@@ -67,12 +63,12 @@ module('Integration | Component | rental', function (hooks) {
 
   test('it renders', async function (assert) {
     // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function (val) { ... });
+    // Handle any actions with this.set('myAction', function(val) { ... });
 
   test('it renders information about a rental property', async function (assert) {
     await render(hbs`<Rental />`);
 
-    assert.equal(this.element.textContent.trim(), '');
+    assert.dom(this.element).hasText('');
 
     // Template block usage:
     await render(hbs`
@@ -81,7 +77,7 @@ module('Integration | Component | rental', function (hooks) {
       </Rental>
     `);
 
-    assert.equal(this.element.textContent.trim(), 'template block text');
+    assert.dom(this.element).hasText('template block text');
     assert.dom('article').hasClass('rental');
     assert.dom('article h3').hasText('Grand Old Mansion');
     assert.dom('article .detail.owner').includesText('Veruca Salt');
@@ -135,10 +131,6 @@ installing component-test
 ```
 
 This time, we had a `/` in the component's name. This resulted in the component being created at `app/components/rental/image.hbs`, which can be invoked as `<Rental::Image>`.
-
-<!-- patch for https://github.com/emberjs/ember.js/issues/19333 -->
-
-<!-- end patch for https://github.com/emberjs/ember.js/issues/19333 -->
 
 Components like these are known as _[namespaced](https://en.wikipedia.org/wiki/Namespace)_ components. Namespacing allows us to organize our components by folders according to their purpose. This is completely optional—namespaced components are not special in any way.
 
@@ -200,11 +192,11 @@ module('Integration | Component | rental/image', function (hooks) {
 
   test('it renders', async function (assert) {
     // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function (val) { ... });
+    // Handle any actions with this.set('myAction', function(val) { ... });
 
     await render(hbs`<Rental::Image />`);
 
-    assert.equal(this.element.textContent.trim(), '');
+    assert.dom(this.element).hasText('');
 
     // Template block usage:
   test('it renders the given image', async function (assert) {
@@ -218,7 +210,7 @@ module('Integration | Component | rental/image', function (hooks) {
       />
     `);
 
-    assert.equal(this.element.textContent.trim(), 'template block text');
+    assert.dom(this.element).hasText('template block text');
     assert
       .dom('.image img')
       .exists()

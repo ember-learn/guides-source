@@ -24,8 +24,8 @@ To verify that your installation was successful, run:
 
 ```shell
 $ ember --version
-ember-cli: 3.25.3
-node: 12.18.3
+ember-cli: 3.27.0
+node: 12.22.1
 os: linux x64
 ```
 
@@ -36,9 +36,9 @@ If a version number is shown, you're ready to go.
 We can create a new project using Ember CLI's `new` command. It follows the pattern `ember new <project-name>`. In our case, the project name would be `super-rentals`. We will also include a `--lang en` option. This sets our app's primary language to English and improves the website's [accessibility](../../../accessibility/application-considerations/).
 
 ```shell
-$ ember new super-rentals
+$ ember new super-rentals --lang en
 installing app
-Ember CLI v3.25.3
+Ember CLI v3.27.0
 
 Creating a new Ember app in /home/runner/work/super-rentals-tutorial/super-rentals-tutorial/dist/code/super-rentals:
   create .editorconfig

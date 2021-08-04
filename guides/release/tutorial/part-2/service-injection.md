@@ -53,10 +53,6 @@ installing component-test
   create tests/integration/components/share-button-test.js
 ```
 
-<!-- patch for https://github.com/emberjs/ember.js/issues/19333 -->
-
-<!-- end patch for https://github.com/emberjs/ember.js/issues/19333 -->
-
 Let's start with the template that was generated for this component. We already have some markup for the share button in the `<Rental::Detailed>` component we made earlier, so let's just copy that over into our new `<ShareButton>` component.
 
 ```handlebars { data-filename="app/components/share-button.hbs" data-diff="-1,+2,+3,+4,+5,+6,+7,+8,+9,+10" }
@@ -82,9 +78,10 @@ We also have a `{{yield}}` inside of our `<a>` tag so that we can customize the 
 
 Whew! Let's look at the JavaScript class next.
 
-```js { data-filename="app/components/share-button.js" data-diff="+3,+4,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28" }
+```js { data-filename="app/components/share-button.js" data-diff="-3,+4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30" }
 import Component from '@glimmer/component';
 
+export default class ShareButtonComponent extends Component {}
 const TWEET_INTENT = 'https://twitter.com/intent/tweet';
 
 export default class ShareButtonComponent extends Component {
@@ -403,11 +400,11 @@ module('Integration | Component | share-button', function (hooks) {
 
   test('it renders', async function (assert) {
     // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function (val) { ... });
+    // Handle any actions with this.set('myAction', function(val) { ... });
 
     await render(hbs`<ShareButton />`);
 
-    assert.equal(this.element.textContent.trim(), '');
+    assert.dom(this.element).hasText('');
   hooks.beforeEach(function () {
     this.owner.register('service:router', MockRouterService);
   });
@@ -421,7 +418,7 @@ module('Integration | Component | share-button', function (hooks) {
   test('basic usage', async function (assert) {
     await render(hbs`<ShareButton>Tweet this!</ShareButton>`);
 
-    assert.equal(this.element.textContent.trim(), 'template block text');
+    assert.dom(this.element).hasText('template block text');
     assert
       .dom('a')
       .hasAttribute('target', '_blank')
