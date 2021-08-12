@@ -864,6 +864,6 @@ Additionally, the `mut` helper generally can't be used for the same reason:
 />
 ```
 
-Since Octane template-only components shares a subset of the features available
-to `@glimmer/component`, they can be "upgraded" seamless to a Glimmer component
-by adding a JavaScript file alongside the template when the need arises.
+Since Octane, a template-only component shares a subset of features that are available
+in `@glimmer/component`. Such component can be seamlessly "upgraded" to a Glimmer component,
+when you add a JavaScript file alongside the template.
