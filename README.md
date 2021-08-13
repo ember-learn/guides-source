@@ -38,6 +38,8 @@ If you run `ember serve`, the Markdown files are turned into HTML to create an a
 
 ## Local development
 
+**NOTE:** This project uses [Volta](https://volta.sh/) to ensure the correct Node.js version is used during local development.
+
 To run the Ember Guides app locally, type these commands into your terminal.
 
 ```bash
