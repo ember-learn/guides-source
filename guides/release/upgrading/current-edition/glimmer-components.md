@@ -841,12 +841,6 @@ it with `on`:
 ## Template-Only Components
 
 In Octane, template-only components have only an `hbs` file and no `JavaScript` file.
-Behind the scenes, template-only components inherit from `'@glimmer/component'`.
-
-They can be thought of as _functional_ components, in the sense that their
-output (the rendered template) is a pure function of their inputs (their
-arguments). The fact that they can't have state makes them much easier to reason
-about in general, and less prone to errors.
 
 Template-only components have no backing class instance, so `this` in their
 templates is `null`. This means that you can only reference passed in arguments
@@ -870,4 +864,6 @@ Additionally, the `mut` helper generally can't be used for the same reason:
 />
 ```
 
-<!-- eof - needed for pages that end in a code block  -->
+Since Octane, a template-only component shares a subset of features that are available
+in `@glimmer/component`. Such component can be seamlessly "upgraded" to a Glimmer component,
+when you add a JavaScript file alongside the template.
