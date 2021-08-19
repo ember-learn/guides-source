@@ -485,7 +485,7 @@ let matt = new Person();
 console.log(matt.name); // Matthew Beale
 ```
 
-Ember provides a number of decorators, such as the [`@tracked` decorator](https://api.emberjs.com/ember/3.27/modules/@ember%2Fobject#functions), that
+Ember provides [a number of decorators](https://api.emberjs.com/ember/release/modules/@ember%2Fobject#functions), such as the [`@tracked` decorator](https://api.emberjs.com/ember/release/functions/@glimmer%2Ftracking/tracked), that
 will be described in greater detail later on in the guides.
 
 > Note: Decorators are still being actively developed in JavaScript, which means
