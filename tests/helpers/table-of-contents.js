@@ -30,7 +30,7 @@ function setupCustomAssertions(assert) {
   };
 
   assert.areTitlesCorrect = (expectedTitles = []) => {
-    const tocTitles = findAll('[data-test-toc-title]');
+    const tocTitles = findAll('[data-test-toc-link]');
     const isLengthCorrect = tocTitles.length === expectedTitles.length;
 
     assert.ok(
