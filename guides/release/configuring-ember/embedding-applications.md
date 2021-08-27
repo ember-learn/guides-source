@@ -15,20 +15,18 @@ different element by specifying its `rootElement` property:
 
 ```javascript {data-filename="app/app.js" data-diff="+7"}
 import Application from '@ember/application';
-import Resolver from './resolver';
+import Resolver from 'ember-resolver';
 import loadInitializers from 'ember-load-initializers';
 import config from './config/environment';
 
-const App = Application.extend({
-  rootElement: '#app',
-  modulePrefix: config.modulePrefix,
-  podModulePrefix: config.podModulePrefix,
-  Resolver
-});
+export default class App extends Application {
+  rootElement = '#app';
+  modulePrefix = config.modulePrefix;
+  podModulePrefix = config.podModulePrefix;
+  Resolver = Resolver;
+}
 
 loadInitializers(App, config.modulePrefix);
-
-export default App;
 ```
 
 This property can be specified as either an element or a
@@ -89,15 +87,13 @@ You will notice that this is then used to configure your application's router:
 import Router from '@ember/routing/router';
 import config from './config/environment';
 
-const Router = Router.extend({
-  location: config.locationType,
-  rootURL: config.rootURL
-});
+export default class Router extends EmberRouter {
+  location = config.locationType;
+  rootURL = config.rootURL;
+}
 
 Router.map(function() {
 });
-
-export default Router;
 ```
 
 <!-- eof - needed for pages that end in a code block  -->
