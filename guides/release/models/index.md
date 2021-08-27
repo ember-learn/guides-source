@@ -124,7 +124,7 @@ this:
 This works great for the `list-of-drafts` component. However, your app
 is likely made up of many different components. On another page you
 may want a component to display the number of drafts. You may be
-tempted to copy and paste your existing `willRender` code into the new
+tempted to copy and paste your existing code into the new
 component.
 
 ```javascript {data-filename=app/components/drafts-button.js}
