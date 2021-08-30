@@ -169,12 +169,12 @@ Routes in this example application can now access the injected logger:
 ```javascript {data-filename=app/routes/index.js}
 import Route from '@ember/routing/route';
 
-export default Route.extend({
+export default class IndexRoute extends Route {
   activate() {
     // The logger property is injected into all routes
     this.logger.log('Entered the index route!');
   }
-});
+};
 ```
 
 Injections can also be made on a specific factory by using its full key:
@@ -197,24 +197,24 @@ and services (via `import { inject } from '@ember/service';`).
 The following code injects the `shopping-cart` service on the `cart-contents` component as the property `cart`:
 
 ```javascript {data-filename=app/components/cart-contents.js}
-import Component from '@ember/component';
+import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 
-export default Component.extend({
+export default class CartContentComponent extends Component {
   @service('shopping-cart') cart;
-});
+};
 ```
 
 If you'd like to inject a service with the same name as the property,
 simply leave off the service name (the dasherized version of the name will be used):
 
 ```javascript {data-filename=app/components/cart-contents.js}
-import Component from '@ember/component';
+import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 
-export default Component.extend({
+export default class CartContentComponent extends Component {
   @service shoppingCart;
-});
+};
 ```
 
 ## Factory Instance Lookups

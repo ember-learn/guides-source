@@ -61,18 +61,20 @@ baz.offsetHeight // read (fast since style and layout are already known)
 Interestingly, this pattern holds true for many other types of work.
 Essentially, batching similar work allows for better pipelining, and further optimization.
 
-Let's look at a similar example that is optimized in Ember, starting with an `Image` object:
+Let's look at a similar example that is optimized in Ember, starting with an `Image` class:
 
 ```javascript
-import EmberObject, {
-  computed
-} from '@ember/object';
+import { tracked } from '@glimmer/traking';
 
-class Image extends EmberObject {
-  width = null;
-  height = null;
+class Image {
+  @tracked width;
+  @tracked height;
 
-  @computed('width', 'height')
+  constructor({ width, height }) {
+    this.width = width ?? null;
+    this.height = height ?? null;
+  }
+
   get aspectRatio() {
     return this.width / this.height;
   }
@@ -89,12 +91,12 @@ and a template to display its attributes:
 If we execute the following code without the run loop:
 
 ```javascript
-let profilePhoto = Image.create({ width: 250, height: 500 });
-profilePhoto.set('width', 300);
-// {{width}} and {{aspectRatio}} are updated
+let profilePhoto = new Image({ width: 250, height: 500 });
+profilePhoto.width = 300;
+// {{this.width}} and {{this.aspectRatio}} are updated
 
-profilePhoto.set('height', 300);
-// {{height}} and {{aspectRatio}} are updated
+profilePhoto.height = 300;
+// {{this.height}} and {{this.aspectRatio}} are updated
 ```
 
 We see that the browser will rerender the template twice.
@@ -103,11 +105,11 @@ However, if we have the run loop in the above code,
 the browser will only rerender the template once the attributes have all been set.
 
 ```javascript
-let profilePhoto = Image.create({ width: 250, height: 500 });
-profilePhoto.set('width', 600);
-profilePhoto.set('height', 600);
-profilePhoto.set('width', 300);
-profilePhoto.set('height', 300);
+let profilePhoto = new Image({ width: 250, height: 500 });
+profilePhoto.width = 600;
+profilePhoto.height = 600;
+profilePhoto.width = 300;
+profilePhoto.height = 300;
 ```
 
 In the above example with the run loop, since the user's attributes end up at the same values as before execution,
