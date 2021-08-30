@@ -406,7 +406,7 @@ export default class StoreCategoriesComponent extends Component {
     'Bourbons': ['Bulleit', 'Four Roses', 'Woodford Reserve'],
     'Ryes': ['WhistlePig', 'High West']
   };
-});
+};
 ```
 
 ```handlebars {data-filename=/app/components/store-categories.hbs}
