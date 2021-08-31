@@ -174,7 +174,7 @@ export default class IndexRoute extends Route {
     // The logger property is injected into all routes
     this.logger.log('Entered the index route!');
   }
-};
+}
 ```
 
 Injections can also be made on a specific factory by using its full key:
