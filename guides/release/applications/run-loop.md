@@ -64,7 +64,7 @@ Essentially, batching similar work allows for better pipelining, and further opt
 Let's look at a similar example that is optimized in Ember, starting with an `Image` class:
 
 ```javascript
-import { tracked } from '@glimmer/traking';
+import { tracked } from '@glimmer/tracking';
 
 class Image {
   @tracked width;
