@@ -235,7 +235,7 @@ export default class CommentFormComponent extends Component {
 ```handlebars {data-filename="app/components/comment-form.hbs"}
 <form {{on "submit" this.submitComment}}>
   <label for="comment">Comment:</label>
-  <Textarea @id="comment" @value={{this.comment}} />
+  <Textarea id="comment" @value={{this.comment}} />
   <input class="comment-input" type="submit" value="Submit"/>
 </form>
 ```
@@ -497,7 +497,7 @@ export default class DelayedTypeaheadComponent extends Component {
 
 ```handlebars {data-filename="app/components/delayed-typeahead.hbs"}
 <label for="search">Search</label>
-<Input @id="search" @value={{this.searchValue}} @key-up={{this.handleTyping}} />
+<Input id="search" @value={{this.searchValue}} {{on 'keyup' this.handleTyping}} />
 <ul>
   {{#each @results as |result|}}
     <li class="result">{{result.name}}</li>
