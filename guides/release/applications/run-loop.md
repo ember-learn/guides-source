@@ -93,7 +93,7 @@ If we execute the following code without the run loop:
 ```javascript
 let profilePhoto = new Image({ width: 250, height: 500 });
 profilePhoto.width = 300;
-// {{this.width}} and {{this.aspectRatio}} are updated
+// profilePhoto.width and profilePhoto.aspectRatio are updated
 
 profilePhoto.height = 300;
 // {{this.height}} and {{this.aspectRatio}} are updated
