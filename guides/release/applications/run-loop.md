@@ -96,7 +96,7 @@ profilePhoto.width = 300;
 // profilePhoto.width and profilePhoto.aspectRatio are updated
 
 profilePhoto.height = 300;
-// {{this.height}} and {{this.aspectRatio}} are updated
+// profilePhoto.height and profilePhoto.aspectRatio are updated
 ```
 
 We see that the browser will rerender the template twice.
