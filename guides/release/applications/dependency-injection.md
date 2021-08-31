@@ -202,7 +202,7 @@ import { inject as service } from '@ember/service';
 
 export default class CartContentComponent extends Component {
   @service('shopping-cart') cart;
-};
+}
 ```
 
 If you'd like to inject a service with the same name as the property,
