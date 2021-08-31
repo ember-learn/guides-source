@@ -214,7 +214,7 @@ import { inject as service } from '@ember/service';
 
 export default class CartContentComponent extends Component {
   @service shoppingCart;
-};
+}
 ```
 
 ## Factory Instance Lookups
