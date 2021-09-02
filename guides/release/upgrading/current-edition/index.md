@@ -104,7 +104,7 @@ If you need help along the way, visit [the Ember Community chat and forums](http
 ### Refactoring checklist
 
 Ember Octane introduces new syntax and patterns centered around
-using native JavaScript classes and HTML-centric templates.
+using native JavaScript classes and templates that focus on HTML.
 While your older style components and templates will keep working,
 eventually you should refactor existing code so that your app follows one main programming model, not a mixture of Octane and Classic.
 Following a refactoring plan will help with onboarding new developers, and minimize flipping back and forth between different versions of the Ember Guides.
