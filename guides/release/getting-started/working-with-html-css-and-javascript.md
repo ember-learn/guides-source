@@ -209,6 +209,8 @@ will be described in greater detail later on in the guides.
 
 ### Classic Classes
 
+Classic classes are deprecated, but it is still useful to be able
+to recognize them when looking at older code or blog posts.
 Ember used its own custom class syntax before native JavaScript classes existed,
 which looks like this:
 
@@ -225,12 +227,9 @@ export default Controller.extend({
 });
 ```
 
-This syntax is known as _classic class_ syntax, and if you're starting out on a
-new Ember application it's recommended that you stick with native classes
-instead. However, if you are working in an older application, or in an addon,
-you may encounter this syntax, so you can check out the
+This syntax is known as _classic class_ syntax. You can check out the
 [pre-Octane guides on classic classes](../../../v3.12.0/object-model/)
-for more information on them.
+for more information on how to convert a classic class to modern Ember.
 
 ## Cross-Browser Support
 
