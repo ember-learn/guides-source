@@ -1,13 +1,12 @@
 This guide is for developers who already know Ember, and who want to learn the new concepts introduced
-by Octane, Ember's first Edition.
+by Octane, Ember's first Edition, which was [released in December 2019](https://blog.emberjs.com/ember-3-15-released).
 
 If you're new to Ember, we recommend starting with the [Quick start and Tutorials](https://emberjs.com/learn).
 
 ## What is Ember Octane?
 
-Over the past few years, many new features have been added to Ember with the goal of introducing a new programming model for the framework.
-This new model brings major gains in productivity and performance, incrementally via a series of minor (non-breaking) releases.
-This allows for new apps to have the best features enabled automatically, while teams working on existing apps can migrate over time, while still keeping their apps up-to-date with the latest release.
+Ember Octane introduced a programming model in Ember that brought major gains in productivity and performance, incrementally via a series of minor (non-breaking) releases.
+This allows for new apps to have the best features enabled automatically, while teams working on existing apps can migrate over time and continue updating their app's dependency versions.
 
 Here are some of the core features in Octane:
 
@@ -25,8 +24,8 @@ Here are some of the core features in Octane:
   - **`<AngleBracket>` syntax** for better readability.
 - [Modifiers](../../components/template-lifecycle-dom-and-modifiers/), which unify the experience of writing code that interacts with the DOM.
 
-Just as important is what we're removing from the Ember experience. These
-features below will keep working through the rest of Ember 3, but you won't have to use them if you don't
+Just as important is what was removed from the Ember experience. These
+features below will keep working through the rest of Ember 4, but you won't have to use them if you don't
 want to.
 
 These have been replaced or made optional in Octane:
@@ -90,39 +89,24 @@ By design, migrating to Octane can be done in pieces. It doesn't require a big-b
 
 ## Implementing
 
-1. Follow the [regular upgrade steps](https://cli.emberjs.com/release/basic-use/upgrading/) to update your app to at least version `3.15`.
-2. Run your tests to make sure everything still works as expected.
-3. Run `npx @ember/octanify` to add any missing Octane related dependencies and enable the set of Octane optional features.
-7. Create a new component in your app, and experiment! `ember g component` will give you just a test and a template. Adding `-gc` to the command will generate the JavaScript class too. Try adding a button with an action.
+These steps assume your app is on version 4.x of Ember. If you are on an older
+version, please choose it from the dropdown in the sidebar.
+
+1. Make sure you have `@glimmer/component` and `@glimmer/tracking`
+installed in your app.
+2. Create a new component in your app, and experiment! `ember g component` will give you just a test and a template. Adding `-gc` to the command will generate the JavaScript class to go with it. Try adding a button with an action.
+If you need to generate a classic component, you can still make one with `ember g component -cc`
 8. Try refactoring one existing component to use Octane style. Check out the [Cheat Sheet](./cheat-sheet/) and [Edition's Deep Dive](../../in-depth-topics/) for some pointers.
 9. Review the refactoring checklist below to create a plan for handling existing code. Note that some steps have codemods available!
 
 If you need help along the way, visit [the Ember Community chat and forums](https://emberjs.com/community/).
 
-### Deprecations that matter for Octane
-
-By default, Octane does not include jQuery. Continuing to use jQuery in your app will not conflict with Octane features, however you should follow the deprecation instructions for [`jquery-apis`](https://deprecations.emberjs.com/v3.x/#toc_jquery-apis) if you need to keep using it.
-
-### Optional features in Octane
-
-A fully-Octane app has the following configuration in `config/optional-features.json`:
-
-```json
-{
-  "application-template-wrapper": false,
-  "default-async-observers": true,
-  "jquery-integration": false,
-  "template-only-glimmer-components": true
-}
-```
-
-As mentioned above, we recommend that you use `npx @ember/octanify` to ensure these flags are set to the appropriate values. To learn what each option does, check out the [Optional Features](../../configuring-ember/optional-features/) guide.
-
 ### Refactoring checklist
 
-For many of the optional features, the thing they affect the most is what you see in your newly-created files, not within your existing code.
-Your app will keep working, even if you haven't refactored code to use Octane's features yet.
-Making new files in the Octane style is good place to start, but eventually you should refactor existing code so that your app follows one main programming model, not a mixture of Octane and Classic.
+Ember Octane introduces new syntax and patterns centered around
+using native JavaScript classes and HTML-centric templates.
+While your older style components and templates will keep working,
+eventually you should refactor existing code so that your app follows one main programming model, not a mixture of Octane and Classic.
 Following a refactoring plan will help with onboarding new developers, and minimize flipping back and forth between different versions of the Ember Guides.
 
 There's no one-size-fits-all strategy, but here is a checklist you can adapt, once you're familiar with what Octane has to offer:

@@ -1,9 +1,10 @@
-There are three major changes to templates in Octane compared to classic Ember:
+There are two significant changes to templates in Octane compared to classic Ember:
 
 1. Angle Bracket Syntax
 2. Named Arguments
-3. Required `this`
 
+Note that this guide assumes your app is on version 4.x of Ember. If you are on an older
+version, please choose it from the dropdown in the sidebar.
 ## Angle Bracket Syntax
 
 When you are using a component in a template, you can invoke it using Angle Brackets (`<...>`) instead of curly braces (`{{...}}`).
@@ -261,45 +262,3 @@ Or by using a helper in the template:
 If you find yourself forgetting to add the `@` symbol before named arguments, it
 may be helpful to think of how the child template mirrors argument being passed
 into a component via angle bracket invocation.
-
-## Required `this` in templates
-
-Finally, one thing you may have noticed in the above examples is a lot more
-references to `this` in the template. Values that are rendered from the local
-component or controller instance that backs the template must now have `this`
-prepended at the beginning of the path:
-
-```handlebars
-{{!-- Before --}}
-{{title}}
-
-{{!-- After --}}
-{{this.title}}
-```
-
-### Benefits of `this` in templates
-
-The reason for this change is to provide extra clarity to both users reading
-templates, and the compiler. Without explicitly referring to `this`, a lot of
-handlebars statements are pretty ambiguous - for instance, `{{title}}` could be
-a helper, a local variable, or a component property.
-
-### Getting used to `this` in templates
-
-You can think of `this` as meaning, an argument came from `this` component or
-controller, not a parent context.
-
-Local variables, introduced via a yield, can still be referred to directly
-(without `this`) since they're unambiguous:
-
-```handlebars
-{{#let "Title" as |title|}}
-  {{!-- This works, because it's a local variable and unambiguous --}}
-  {{title}}
-{{/let}}
-```
-
-If you forget to use `this` when you are supposed to, it will fall back to the
-context of the component or controller context that backs the template. However,
-the fallback behavior is deprecated and will be removed in future major versions
-of Ember (4+).
