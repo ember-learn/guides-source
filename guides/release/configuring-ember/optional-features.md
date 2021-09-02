@@ -33,24 +33,21 @@ Usage:
 
 Available features:
 
-  application-template-wrapper (Default: true)
-    Wrap the top-level application template (application.hbs) with a `<div class="ember-view">` element.
-    More information: https://github.com/emberjs/rfcs/pull/280
-
-  jquery-integration (Default: true)
-    Adds jQuery to the Ember application.
-    More information: https://github.com/emberjs/rfcs/pull/294
+  some-example-feature (Default: true)
+    A description of the feature goes here
+    More information: <link to an RFC>
 ```
 
 ## Features
 
 Once you see a feature that you would like to toggle for your project you can run one of two commands, `ember feature:enable <feature>` and `ember feature:disable <feature>`.
 
-Let us disable `jquery-integration` to see what happens:
+Let us disable an optional feature to see what happens. Substitute `some-example-feature`
+for a real feature name when you run this command.
 
 ```bash
-$ ember feature:disable jquery-integration
-Disabled jquery-integration. Be sure to commit config/optional-features.json to source control!
+$ ember feature:disable some-example-feature
+Disabled some-example-feature. Be sure to commit config/optional-features.json to source control!
 ```
 
 As we can see from the warning, `@ember/optional-features` has created a file in `config/optional-features.json` to store the configuration for your project.
