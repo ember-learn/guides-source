@@ -62,6 +62,11 @@ rm -r dist
 echo "  DONE"
 
 echo
+echo "🤖 Deleting tmp folder"
+rm -r tmp
+echo "  DONE"
+
+echo
 echo "🤖 Deploying"
 ember deploy production
 echo "  DONE"
