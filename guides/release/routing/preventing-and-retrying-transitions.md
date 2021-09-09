@@ -8,8 +8,7 @@ later time by calling `transition.retry()`.
 ### Preventing Transitions via `routeWillChange`
 
 When a transition is attempted, whether via `<LinkTo />`, `transitionTo`,
-or a URL change, a `routeWillChange` action is fired on the currently
-active routes. This gives each active route, starting with the leaf-most
+or a URL change, a `routeWillChange` event is fired on the [RouterService](https://api.emberjs.com/ember/release/classes/RouterService/events). This gives each active route, starting with the leaf-most
 route, the opportunity to decide whether or not the transition should occur.
 
 Imagine your app is in a route that's displaying a complex form for the user
@@ -21,12 +20,16 @@ Here's one way this situation could be handled:
 
 ```javascript {data-filename=app/routes/form.js}
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 
 export default class FormRoute extends Route {
-  init() {
-    this._super(...arguments);
-    this.on('routeWillChange', transition => {
-      if (this.controller.userHasEnteredData &&
+  @service router;
+
+  constructor() {
+    super(...arguments);
+    
+    this.router.on('routeWillChange', (transition) => {
+      if (!transition.to.find(route => route.name === this.routeName) && 
         !confirm('Are you sure you want to abandon progress?')) {
         transition.abort();
       }
