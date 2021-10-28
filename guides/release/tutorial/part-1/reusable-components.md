@@ -163,9 +163,9 @@ Now, let's move from the JavaScript file to the template:
 {{yield}}
 <div class="map">
   <img
-    alt="Map image at coordinates {{@lat}},{{@lng}}"
+    alt="Map image at coordinates {{@lat}},{{@lon}}"
     ...attributes
-    src="https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/{{@lng}},{{@lat}},{{@zoom}}/{{@width}}x{{@height}}@2x?access_token={{this.token}}"
+    src="https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/{{@lon}},{{@lat}},{{@zoom}}/{{@width}}x{{@height}}@2x?access_token={{this.token}}"
     width={{@width}} height={{@height}}
   >
 </div>
@@ -175,11 +175,11 @@ First, we have a container element for styling purposes.
 
 Then we have an `<img>` tag to request and render the static map image from Mapbox.
 
-Our template contains several values that don't yet exist—`@lat`, `@lng`, `@zoom`, `@width`, and `@height`. These are _[arguments](../../../components/component-arguments-and-html-attributes/#toc_arguments)_ to the `<Map>` component that we will supply when invoking it.
+Our template contains several values that don't yet exist—`@lat`, `@lon`, `@zoom`, `@width`, and `@height`. These are _[arguments](../../../components/component-arguments-and-html-attributes/#toc_arguments)_ to the `<Map>` component that we will supply when invoking it.
 
 By _parameterizing_ our component using arguments, we made a reusable component that can be invoked from different parts of the app and customized to meet the needs for those specific contexts. We have already seen this in action when using the `<LinkTo>` component [earlier](../building-pages/); we had to specify a `@route` argument so that it knew what page to navigate to.
 
-We supplied a reasonable default value for the `alt` attribute based on the values of the `@lat` and `@lng` arguments. You may notice that we are directly _interpolating_ values into the `alt` attribute's value. Ember will automatically concatenate these interpolated values into a final string value for us, including doing any necessary HTML-escaping.
+We supplied a reasonable default value for the `alt` attribute based on the values of the `@lat` and `@lon` arguments. You may notice that we are directly _interpolating_ values into the `alt` attribute's value. Ember will automatically concatenate these interpolated values into a final string value for us, including doing any necessary HTML-escaping.
 
 ## Overriding HTML Attributes in `...attributes`
 
@@ -212,7 +212,7 @@ module('Integration | Component | map', function (hooks) {
   test('it renders a map image for the specified parameters', async function (assert) {
     await render(hbs`<Map
       @lat="37.7797"
-      @lng="-122.4184"
+      @lon="-122.4184"
       @zoom="10"
       @width="150"
       @height="120"
@@ -245,7 +245,7 @@ module('Integration | Component | map', function (hooks) {
     assert.dom(this.element).hasText('template block text');
     assert.ok(
       src.includes('-122.4184,37.7797,10'),
-      'the src should include the lng,lat,zoom parameter'
+      'the src should include the lon,lat,zoom parameter'
     );
 
     assert.ok(
@@ -262,7 +262,7 @@ module('Integration | Component | map', function (hooks) {
   test('the default alt attribute can be overridden', async function (assert) {
     await render(hbs`<Map
       @lat="37.7797"
-      @lng="-122.4184"
+      @lon="-122.4184"
       @zoom="10"
       @width="150"
       @height="120"
@@ -275,7 +275,7 @@ module('Integration | Component | map', function (hooks) {
   test('the src, width and height attributes cannot be overridden', async function (assert) {
     await render(hbs`<Map
       @lat="37.7797"
-      @lng="-122.4184"
+      @lon="-122.4184"
       @zoom="10"
       @width="150"
       @height="120"
@@ -324,7 +324,7 @@ Hey, all the tests passed! But does that mean it actually works in practice? Let
   </div>
   <Map
     @lat="37.7749"
-    @lng="-122.4194"
+    @lon="-122.4194"
     @zoom="9"
     @width="150"
     @height="150"
@@ -403,9 +403,9 @@ const MAPBOX_API = 'https://api.mapbox.com/styles/v1/mapbox/streets-v11/static';
 
 export default class MapComponent extends Component {
   get src() {
-    let { lng, lat, width, height, zoom } = this.args;
+    let { lon, lat, width, height, zoom } = this.args;
 
-    let coordinates = `${lng},${lat},${zoom}`;
+    let coordinates = `${lon},${lat},${zoom}`;
     let dimensions = `${width}x${height}`;
     let accessToken = `access_token=${this.token}`;
 
@@ -421,9 +421,9 @@ export default class MapComponent extends Component {
 ```handlebars { data-filename="app/components/map.hbs" data-diff="-5,+6" }
 <div class="map">
   <img
-    alt="Map image at coordinates {{@lat}},{{@lng}}"
+    alt="Map image at coordinates {{@lat}},{{@lon}}"
     ...attributes
-    src="https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/{{@lng}},{{@lat}},{{@zoom}}/{{@width}}x{{@height}}@2x?access_token={{this.token}}"
+    src="https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/{{@lon}},{{@lat}},{{@zoom}}/{{@width}}x{{@height}}@2x?access_token={{this.token}}"
     src={{this.src}}
     width={{@width}} height={{@height}}
   >
@@ -436,7 +436,7 @@ Much nicer! And all of our tests still pass!
 
 Note that we did not mark our getter as `@tracked`. Unlike instance variables, getters cannot be "assigned" a new value directly, so it does not make sense for Ember to monitor them for changes.
 
-That being said, the values _produced_ by getters can certainly change. In our case, the value produced by our `src` getter depends on the values of `lat`, `lng`, `width`, `height` and `zoom` from `this.args`. Whenever these _dependencies_ get updated, we would expect `{{this.src}}` from our template to be updated accordingly.
+That being said, the values _produced_ by getters can certainly change. In our case, the value produced by our `src` getter depends on the values of `lat`, `lon`, `width`, `height` and `zoom` from `this.args`. Whenever these _dependencies_ get updated, we would expect `{{this.src}}` from our template to be updated accordingly.
 
 Ember does this by automatically tracking any variables that were accessed while computing a getter's value. As long as the dependencies themselves are marked as `@tracked`, Ember knows exactly when to invalidate and re-render any templates that may potentially contain any "stale" and outdated getter values. This feature is also known as _[auto-track](../../../in-depth-topics/autotracking-in-depth/)_. All arguments that can be accessed from `this.args` (in other words, `this.args.*`) are implicitly marked as `@tracked` by the Glimmer component superclass. Since we inherited from that superclass, everything Just Works™.
 
@@ -457,7 +457,7 @@ module('Integration | Component | map', function (hooks) {
   test('it renders a map image for the specified parameters', async function (assert) {
     await render(hbs`<Map
       @lat="37.7797"
-      @lng="-122.4184"
+      @lon="-122.4184"
       @zoom="10"
       @width="150"
       @height="120"
@@ -481,7 +481,7 @@ module('Integration | Component | map', function (hooks) {
 
     assert.ok(
       src.includes('-122.4184,37.7797,10'),
-      'the src should include the lng,lat,zoom parameter'
+      'the src should include the lon,lat,zoom parameter'
     );
 
     assert.ok(
@@ -498,7 +498,7 @@ module('Integration | Component | map', function (hooks) {
   test('it updates the `src` attribute when the arguments change', async function (assert) {
     this.setProperties({
       lat: 37.7749,
-      lng: -122.4194,
+      lon: -122.4194,
       zoom: 10,
       width: 150,
       height: 120,
@@ -506,7 +506,7 @@ module('Integration | Component | map', function (hooks) {
 
     await render(hbs`<Map
       @lat={{this.lat}}
-      @lng={{this.lng}}
+      @lon={{this.lon}}
       @zoom={{this.zoom}}
       @width={{this.width}}
       @height={{this.height}}
@@ -516,7 +516,7 @@ module('Integration | Component | map', function (hooks) {
 
     assert.ok(
       img.src.includes('-122.4194,37.7749,10'),
-      'the src should include the lng,lat,zoom parameter'
+      'the src should include the lon,lat,zoom parameter'
     );
 
     assert.ok(
@@ -532,7 +532,7 @@ module('Integration | Component | map', function (hooks) {
 
     assert.ok(
       img.src.includes('-122.4194,37.7749,12'),
-      'the src should include the lng,lat,zoom parameter'
+      'the src should include the lon,lat,zoom parameter'
     );
 
     assert.ok(
@@ -542,12 +542,12 @@ module('Integration | Component | map', function (hooks) {
 
     this.setProperties({
       lat: 47.6062,
-      lng: -122.3321,
+      lon: -122.3321,
     });
 
     assert.ok(
       img.src.includes('-122.3321,47.6062,12'),
-      'the src should include the lng,lat,zoom parameter'
+      'the src should include the lon,lat,zoom parameter'
     );
 
     assert.ok(
@@ -559,7 +559,7 @@ module('Integration | Component | map', function (hooks) {
   test('the default alt attribute can be overridden', async function (assert) {
     await render(hbs`<Map
       @lat="37.7797"
-      @lng="-122.4184"
+      @lon="-122.4184"
       @zoom="10"
       @width="150"
       @height="120"
@@ -572,7 +572,7 @@ module('Integration | Component | map', function (hooks) {
   test('the src, width and height attributes cannot be overridden', async function (assert) {
     await render(hbs`<Map
       @lat="37.7797"
-      @lng="-122.4184"
+      @lon="-122.4184"
       @zoom="10"
       @width="150"
       @height="120"
