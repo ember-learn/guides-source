@@ -443,7 +443,7 @@ export default class ImageComponent extends Component {
   }
 
   get aspectRatio() {
-    return this.args.width / this.args.height;
+    return this.width / this.height;
   }
 }
 ```
