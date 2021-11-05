@@ -55,7 +55,8 @@ Let's start with the sample HTML for a messaging app (that we introduced in the 
   </section>
 
   <form>
-    <input />
+    <label for="message">Message</label>
+    <input id="message" />
     <button type="submit">
       Send
     </button>
@@ -151,7 +152,8 @@ We can include our new component into our application by using HTML tag syntax.
   </section>
 
   <form>
-    <input />
+    <label for="message">Message</label>
+    <input id="message" />
     <button type="submit">
       Send
     </button>
@@ -255,7 +257,8 @@ Let's do it again. We'll copy the sent message content into a new component, and
   <SentMessage />
 
   <form>
-    <input />
+    <label for="message">Message</label>
+    <input id="message" />
     <button type="submit">
       Send
     </button>
@@ -269,7 +272,8 @@ We have one last component to extract. Let's pull out the new message input.
 
 ```handlebars {data-filename="app/components/new-message-input.hbs"}
 <form>
-  <input />
+  <label for="message">Message</label>
+  <input id="message" />
   <button type="submit">
     Send
   </button>
@@ -285,7 +289,8 @@ And include it in our `application.hbs` file.
   <SentMessage />
 
   <form>
-    <input>
+    <label for="message">Message</label>
+    <input id="message" />
     <button type="submit">
       Send
     </button>
