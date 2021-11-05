@@ -11,6 +11,13 @@ There are 2 styles of `if`: **block** and **inline**.
 </div>
 ```
 
+Additionally, you concatenate a conditional like this: 
+
+```handlebars
+<div class="badge {{if @color (concat 'badge-' @color)}}">
+  Badge Text
+</div>
+```
 
 ## Block `if`
 
