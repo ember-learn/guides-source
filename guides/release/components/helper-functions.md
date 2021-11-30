@@ -208,9 +208,21 @@ For the full list of available helpers, you can check the [template helpers API 
 ### The `get` helper
 
 The [`{{get}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/get?anchor=get)
-helper makes it easy to dynamically send the value of a variable to another
-helper or component. This can be useful if you want to output one of several
-values based on the result of a getter.
+helper makes it easy to dynamically look up a property on an object. The second argument to `{{get}}` can be a string or an integer depending on the object being accessed.
+
+
+accessing properties on an object with string keys:
+```handlebars
+{{get this.someObject "object_key"}}
+```
+accessing via indices:
+
+```handlebars
+{{get this.someObjectWithNumericKeys 0}}
+
+{{get this.someArray 0}}
+```
+or outputting one of several values based on result of a getter:
 
 ```handlebars
 {{get this.address this.part}}
@@ -218,6 +230,7 @@ values based on the result of a getter.
 
 If the `part` getter returns "zip", this will display the result of `this.address.zip`.
 If it returns "city", you get `this.address.city`.
+
 
 ### The `concat` helper
 
