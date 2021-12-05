@@ -266,7 +266,11 @@ The simplest way to accomplish this is by using the `did-insert` modifier from [
 ```
 
 ```js {app/components/edit-form.js}
-export default class EditForm {
+import Component from '@glimmer/component';
+import { action } from '@ember/object';
+
+export default class EditFormComponent extends Component {
+  @action
   focus(element) {
     element.focus();
   }
