@@ -208,20 +208,24 @@ For the full list of available helpers, you can check the [template helpers API 
 ### The `get` helper
 
 The [`{{get}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/get?anchor=get)
-helper makes it easy to dynamically look up a property on an object. The second argument to `{{get}}` can be a string or an integer depending on the object being accessed.
+helper makes it easy to dynamically look up a property on an object or an element in an array. The second argument to `{{get}}` can be a string or an integer depending on the object being accessed.
 
 
 accessing properties on an object with string keys:
 ```handlebars
 {{get this.someObject "object_key"}}
 ```
-accessing via indices:
+accessing properties on an object with numeric keys:
 
 ```handlebars
 {{get this.someObjectWithNumericKeys 0}}
+` ` `
 
+accessing elements in an array:
+
+```handlebars
 {{get this.someArray 0}}
-```
+` ` `
 or outputting one of several values based on result of a getter:
 
 ```handlebars
