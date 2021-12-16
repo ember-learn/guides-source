@@ -292,7 +292,7 @@ export default class MessagesComponent extends Component {
     }];
   }
 
-  messages = [
+  @tracked messages = [
     {
       username: 'Tomster',
       active: true,
