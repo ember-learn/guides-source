@@ -111,21 +111,20 @@ active query params for this to be true.
 
 ### transitionTo
 
-`Route#transitionTo` and `Controller#transitionToRoute`
-accept a final argument, which is an object with the key `queryParams`.
+`Router#transitionTo` accepts a final argument, which is an object with the key `queryParams`.
 
 ```javascript {data-filename=app/routes/some-route.js}
-this.transitionTo('post', object, { queryParams: { showDetails: true }});
-this.transitionTo('posts', { queryParams: { sort: 'title' }});
+this.router.transitionTo('post', object, { queryParams: { showDetails: true }});
+this.router.transitionTo('posts', { queryParams: { sort: 'title' }});
 
 // if you want to transition the query parameters without changing the route
-this.transitionTo({ queryParams: { direction: 'asc' }});
+this.router.transitionTo({ queryParams: { direction: 'asc' }});
 ```
 
 You can also add query params to URL transitions:
 
 ```javascript {data-filename=app/routes/some-route.js}
-this.transitionTo('/posts/1?sort=date&showDetails=true');
+this.router.transitionTo('/posts/1?sort=date&showDetails=true');
 ```
 
 ### Opting into a full transition

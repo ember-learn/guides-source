@@ -122,8 +122,11 @@ custom error handler along the way, e.g.:
 ```javascript {data-filename=app/routes/good-for-nothing.js}
 import Route from '@ember/routing/route';
 import { action } from '@ember/object';
+// import { inject as service } from '@ember/service';
 
 export default class GoodForNothingRoute extends Route {
+  // @service router;
+
   model() {
     return Promise.reject("FAIL");
   }
@@ -133,7 +136,7 @@ export default class GoodForNothingRoute extends Route {
     alert(reason); // "FAIL"
 
     // Can transition to another route here, e.g.
-    // this.transitionTo('index');
+    // this.router.transitionTo('index');
 
     // Uncomment the line below to bubble this error event:
     // return true;

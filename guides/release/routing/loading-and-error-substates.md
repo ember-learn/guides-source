@@ -232,6 +232,7 @@ import { action } from '@ember/object';
 
 export default class ArticlesOverviewRoute extends Route {
   @service store;
+  @service router;
 
   model(params) {
     return this.store.findAll('privileged-model');
@@ -240,7 +241,7 @@ export default class ArticlesOverviewRoute extends Route {
   @action
   error(error, transition) {
     if (error.status === '403') {
-      this.replaceWith('login');
+      this.router.replaceWith('login');
     } else {
       // Let the route above this handle the error.
       return true;

@@ -75,13 +75,16 @@ they've logged in.
 
 ```javascript {data-filename=app/routes/some-authenticated.js}
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 
 export default class SomeAuthenticatedRoute extends Route {
+  @service router;
+
   beforeModel(transition) {
     if (!this.controllerFor('auth').userIsLoggedIn) {
       let loginController = this.controllerFor('login');
       loginController.previousTransition = transition;
-      this.transitionTo('login');
+      this.router.transitionTo('login');
     }
   }
 }
@@ -90,8 +93,11 @@ export default class SomeAuthenticatedRoute extends Route {
 ```javascript {data-filename=app/controllers/login.js}
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
+import { inject as service } from '@ember/service';
 
 export default class LoginController extends Controller {
+  @service router;
+
   @action
   login() {
     // Log the user in, then reattempt previous transition if it exists.
@@ -101,7 +107,7 @@ export default class LoginController extends Controller {
       previousTransition.retry();
     } else {
       // Default back to homepage
-      this.transitionToRoute('index');
+      this.router.transitionTo('index');
     }
   }
 }
