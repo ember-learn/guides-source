@@ -66,7 +66,7 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
 export default class MessagesComponent extends Component {
-  messages = [
+  @tracked messages = [
     {
       username: 'Tomster',
       active: true,
@@ -273,30 +273,26 @@ Next, we'll update the parent component to use this new argument.
 
 And in the component class, we'll add the `addMessage` action. This action will
 create the new message from the text that the `<NewMessageInput>` component
-gives us, and push it into the messages array. In order for the messages array
-to react to that change, we'll also need to convert it into an
-[`EmberArray`](https://api.emberjs.com/ember/release/classes/EmberArray).
-`EmberArray` provides special methods that tell Ember when changes occur to the
-array itself.
+gives us, and push it into the messages array.
 
 ```js {data-filename="app/components/messages.js"}
 import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
-import { A } from '@ember/array';
 
 export default class MessagesComponent extends Component {
   username = 'Zoey';
 
   @action
   addMessage(messageText) {
-    this.messages.pushObject({
+    this.messages = [...this.messages, {
       username: this.username,
       active: true,
       content: `<p>${messageText}</p>`
-    });
+    }];
   }
 
-  messages = A([
+  @tracked messages = [
     {
       username: 'Tomster',
       active: true,
@@ -340,7 +336,7 @@ export default class MessagesComponent extends Component {
         <p>Let me know when you've nailed down the dates!</p>
       `
     }
-  ]);
+  ];
 }
 ```
 
