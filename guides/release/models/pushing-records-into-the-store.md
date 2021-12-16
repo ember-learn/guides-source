@@ -140,6 +140,7 @@ import fetch from 'fetch';
 
 export default class ConfirmPaymentRoute extends Route {
   @service store;
+  @service router;
   
   @action
   confirm(data) {
@@ -150,7 +151,7 @@ export default class ConfirmPaymentRoute extends Route {
     .then(response => response.json())
     .then(digitalInventory => {
       this.store.push(digitalInventory);
-      this.transitionTo('thank-you');
+      this.router.transitionTo('thank-you');
     });
   }
 }

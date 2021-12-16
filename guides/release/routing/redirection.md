@@ -33,10 +33,13 @@ Router.map(function() {
 
 ```javascript {data-filename=app/routes/index.js}
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 
 export default class IndexRoute extends Route {
+  @service router;
+
   beforeModel(/* transition */) {
-    this.transitionTo('posts'); // Implicitly aborts the on-going transition.
+    this.router.transitionTo('posts'); // Implicitly aborts the on-going transition.
   }
 }
 ```
@@ -66,11 +69,14 @@ Router.map(function() {
 
 ```javascript {data-filename=app/routes/posts.js}
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 
 export default class PostsRoute extends Route {
+  @service router;
+
   afterModel(model, transition) {
     if (model.get('length') === 1) {
-      this.transitionTo('post', model.get('firstObject'));
+      this.router.transitionTo('post', model.get('firstObject'));
     }
   }
 }
@@ -117,11 +123,14 @@ transition validated, and not cause the parent route's hooks to fire again:
 
 ```javascript {data-filename=app/routes/posts.js}
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 
 export default class PostsRoute extends Route {
+  @service router;
+
   redirect(model, transition) {
     if (model.get('length') === 1) {
-      this.transitionTo('posts.post', model.get('firstObject'));
+      this.router.transitionTo('posts.post', model.get('firstObject'));
     }
   }
 }
