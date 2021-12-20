@@ -24,7 +24,7 @@ To verify that your installation was successful, run:
 
 ```shell
 $ ember --version
-ember-cli: 3.27.0
+ember-cli: 4.0.1
 node: 12.22.1
 os: linux x64
 ```
@@ -38,17 +38,17 @@ We can create a new project using Ember CLI's `new` command. It follows the patt
 ```shell
 $ ember new super-rentals --lang en
 installing app
-Ember CLI v3.27.0
+Ember CLI v4.0.1
 
 Creating a new Ember app in /home/runner/work/super-rentals-tutorial/super-rentals-tutorial/dist/code/super-rentals:
   create .editorconfig
   create .ember-cli
   create .eslintignore
   create .eslintrc.js
+  create .github/workflows/ci.yml
   create .prettierignore
   create .prettierrc.js
   create .template-lintrc.js
-  create .travis.yml
   create .watchmanconfig
   create README.md
   create app/app.js
@@ -103,6 +103,9 @@ For the rest of the tutorial, all commands should be run within the `super-renta
 
 ```plain
 super-rentals
+├── .github
+│   └── workflows
+│       └── ci.yml
 ├── app
 │   ├── components
 │   │   └── .gitkeep
@@ -148,7 +151,6 @@ super-rentals
 ├── .prettierignore
 ├── .prettierrc.js
 ├── .template-lintrc.js
-├── .travis.yml
 ├── .watchmanconfig
 ├── README.md
 ├── ember-cli-build.js
@@ -156,7 +158,7 @@ super-rentals
 ├── package-lock.json
 └── testem.js
 
-15 directories, 36 files
+17 directories, 36 files
 ```
 
 We'll learn about the purposes of these files and folders as we go. For now, just know that we'll spend most of our time working within the `app` folder.
@@ -174,7 +176,7 @@ Build successful (9761ms) – Serving on http://localhost:4200/
 
 The development server is responsible for compiling our app and serving it to the browsers. It may take a while to boot up. Once it's up and running, open your favorite browser and head to <http://localhost:4200>. You should see the following welcome page:
 
-<img src="/images/tutorial/part-1/orientation/welcome@2x.png" alt="Welcome to Ember!" width="1024" height="100">
+<img src="/images/tutorial/part-1/orientation/welcome@2x.png" alt="Welcome to Ember!" width="1024" height="906">
 
 <div class="cta">
   <div class="cta-note">

@@ -202,7 +202,7 @@ module('Acceptance | super rentals', function (hooks) {
   test('visiting /', async function (assert) {
     await visit('/');
 
-    assert.equal(currentURL(), '/');
+    assert.strictEqual(currentURL(), '/');
     assert.dom('nav').exists();
     assert.dom('h1').hasText('SuperRentals');
     assert.dom('h2').hasText('Welcome to Super Rentals!');
@@ -210,7 +210,7 @@ module('Acceptance | super rentals', function (hooks) {
     assert.dom('.jumbo a.button').hasText('About Us');
     await click('.jumbo a.button');
 
-    assert.equal(currentURL(), '/about');
+    assert.strictEqual(currentURL(), '/about');
   });
 
   test('viewing the details of a rental property', async function (assert) {
@@ -218,13 +218,13 @@ module('Acceptance | super rentals', function (hooks) {
     assert.dom('.rental').exists({ count: 3 });
 
     await click('.rental:first-of-type a');
-    assert.equal(currentURL(), '/rentals/grand-old-mansion');
+    assert.strictEqual(currentURL(), '/rentals/grand-old-mansion');
   });
 
   test('visiting /rentals/grand-old-mansion', async function (assert) {
     await visit('/rentals/grand-old-mansion');
 
-    assert.equal(currentURL(), '/rentals/grand-old-mansion');
+    assert.strictEqual(currentURL(), '/rentals/grand-old-mansion');
     assert.dom('nav').exists();
     assert.dom('h1').containsText('SuperRentals');
     assert.dom('h2').containsText('Grand Old Mansion');
@@ -234,9 +234,9 @@ module('Acceptance | super rentals', function (hooks) {
     let button = find('.share.button');
 
     let tweetURL = new URL(button.href);
-    assert.equal(tweetURL.host, 'twitter.com');
+    assert.strictEqual(tweetURL.host, 'twitter.com');
 
-    assert.equal(
+    assert.strictEqual(
       tweetURL.searchParams.get('url'),
       `${window.location.origin}/rentals/grand-old-mansion`
     );
@@ -245,7 +245,7 @@ module('Acceptance | super rentals', function (hooks) {
   test('visiting /about', async function (assert) {
     await visit('/about');
 
-    assert.equal(currentURL(), '/about');
+    assert.strictEqual(currentURL(), '/about');
     assert.dom('nav').exists();
     assert.dom('h1').hasText('SuperRentals');
     assert.dom('h2').hasText('About Super Rentals');
@@ -253,13 +253,13 @@ module('Acceptance | super rentals', function (hooks) {
     assert.dom('.jumbo a.button').hasText('Contact Us');
     await click('.jumbo a.button');
 
-    assert.equal(currentURL(), '/getting-in-touch');
+    assert.strictEqual(currentURL(), '/getting-in-touch');
   });
 
   test('visiting /getting-in-touch', async function (assert) {
     await visit('/getting-in-touch');
 
-    assert.equal(currentURL(), '/getting-in-touch');
+    assert.strictEqual(currentURL(), '/getting-in-touch');
     assert.dom('nav').exists();
     assert.dom('h1').hasText('SuperRentals');
     assert.dom('h2').hasText('Contact Us');
@@ -267,7 +267,7 @@ module('Acceptance | super rentals', function (hooks) {
     assert.dom('.jumbo a.button').hasText('About');
     await click('.jumbo a.button');
 
-    assert.equal(currentURL(), '/about');
+    assert.strictEqual(currentURL(), '/about');
   });
 
   test('navigating using the nav-bar', async function (assert) {
@@ -279,13 +279,13 @@ module('Acceptance | super rentals', function (hooks) {
     assert.dom('nav a.menu-contact').hasText('Contact');
 
     await click('nav a.menu-about');
-    assert.equal(currentURL(), '/about');
+    assert.strictEqual(currentURL(), '/about');
 
     await click('nav a.menu-contact');
-    assert.equal(currentURL(), '/getting-in-touch');
+    assert.strictEqual(currentURL(), '/getting-in-touch');
 
     await click('nav a.menu-index');
-    assert.equal(currentURL(), '/');
+    assert.strictEqual(currentURL(), '/');
   });
 });
 ```
@@ -306,7 +306,7 @@ If we run the tests in the browser, everything should...
 
 Looking at the failure closely, the problem seems to be that the component had captured `http://localhost:4200/tests` as the "current page's URL". The issue here is that the `<ShareButton>` component uses `window.location.href` to capture the current URL. Because we are running our tests at `http://localhost:4200/tests`, that's what we got. _Technically_ it's not wrong, but this is certainly not what we meant. Gotta love computers!
 
-This brings up an interesting question – why does the `currentURL()` test helper not have the same problem? In our test, we have been writing assertions like `assert.equal(currentURL(), '/about');`, and those assertions did not fail.
+This brings up an interesting question – why does the `currentURL()` test helper not have the same problem? In our test, we have been writing assertions like `assert.strictEqual(currentURL(), '/about');`, and those assertions did not fail.
 
 It turns out that this is something Ember's router handled for us. In an Ember app, the router is responsible for handling navigation and maintaining the URL. For example, when you click on a `<LinkTo>` component, it will ask the router to execute a _[route transition](../../../routing/preventing-and-retrying-transitions/)_. Normally, the router is set up to update the browser's address bar whenever it transitions into a new route. That way, your users will be able to use the browser's back button and bookmark functionality just like any other webpage.
 
@@ -382,27 +382,32 @@ More importantly, services are designed to be easily _swappable_. In our compone
 
 We will take advantage of this capability in our component test:
 
-```js { data-filename="tests/integration/components/share-button-test.js" data-diff="+3,+7,+8,+9,+10,+11,+12,-16,-17,-18,-19,-20,-21,-22,+23,+24,+25,-27,-28,-29,-30,-31,-32,+33,+34,-36,+37,+38,+39,+40,+41,+42,+43,+44,+45,+46,+47,+48,+49" }
+```js { data-filename="tests/integration/components/share-button-test.js" data-diff="+3,-7,-8,+9,+10,+11,+12,-14,-15,-16,+17,+18,+19,+20,+21,-23,+24,+25,-27,+28,+29,+30,-32,-33,-34,-35,-36,-37,+38,+39,-41,+42,+43,+44,+45,+46,+47,+48,+49,+50,+51,+52" }
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import Service from '@ember/service';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
+module('Integration | Component | share-button', function (hooks) {
+  setupRenderingTest(hooks);
+const MOCK_URL = new URL(
+  '/foo/bar?baz=true#some-section',
+  window.location.origin
+);
+
+  test('it renders', async function (assert) {
+    // Set any properties with this.set('myProperty', 'value');
+    // Handle any actions with this.set('myAction', function(val) { ... });
 class MockRouterService extends Service {
   get currentURL() {
     return '/foo/bar?baz=true#some-section';
   }
 }
 
+    await render(hbs`<ShareButton />`);
 module('Integration | Component | share-button', function (hooks) {
   setupRenderingTest(hooks);
-
-  test('it renders', async function (assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
-
-    await render(hbs`<ShareButton />`);
 
     assert.dom(this.element).hasText('');
   hooks.beforeEach(function () {
@@ -425,9 +430,7 @@ module('Integration | Component | share-button', function (hooks) {
       .hasAttribute('rel', 'external nofollow noopener noreferrer')
       .hasAttribute(
         'href',
-        `https://twitter.com/intent/tweet?url=${encodeURIComponent(
-          new URL('/foo/bar?baz=true#some-section', window.location.origin)
-        )}`
+        `https://twitter.com/intent/tweet?url=${encodeURIComponent(MOCK_URL.href)}`
       )
       .hasClass('share')
       .hasClass('button')
@@ -444,13 +447,18 @@ By using service injections and mocks, Ember allows us to build _loosely coupled
 
 While we are here, let's add some more tests for the various functionalities of the `<ShareButton>` component:
 
-```js { data-filename="tests/integration/components/share-button-test.js" data-diff="-4,+5,+19,+20,+21,+22,+23,+24,-34,-35,-36,-37,-38,-39,+40,+44,+45,+46,+47,+48,+49,+50,+51,+52,+53,+54,+55,+56,+57,+58,+59,+60,+61,+62,+63,+64,+65,+66,+67,+68,+69,+70,+71,+72,+73,+74,+75,+76,+77,+78,+79,+80,+81,+82,+83,+84,+85,+86,+87,+88,+89,+90,+91,+92,+93,+94" }
+```js { data-filename="tests/integration/components/share-button-test.js" data-diff="-4,+5,+24,+25,+26,+27,+28,+29,-39,-40,-41,-42,+43,+47,+48,+49,+50,+51,+52,+53,+54,+55,+56,+57,+58,+59,+60,+61,+62,+63,+64,+65,+66,+67,+68,+69,+70,+71,+72,+73,+74,+75,+76,+77,+78,+79,+80,+81,+82,+83,+84,+85,+86,+87,+88,+89,+90,+91,+92,+93,+94" }
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import Service from '@ember/service';
 import { render } from '@ember/test-helpers';
 import { find, render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
+
+const MOCK_URL = new URL(
+  '/foo/bar?baz=true#some-section',
+  window.location.origin
+);
 
 class MockRouterService extends Service {
   get currentURL() {
@@ -480,19 +488,14 @@ module('Integration | Component | share-button', function (hooks) {
       .hasAttribute('rel', 'external nofollow noopener noreferrer')
       .hasAttribute(
         'href',
-        `https://twitter.com/intent/tweet?url=${encodeURIComponent(
-          new URL('/foo/bar?baz=true#some-section', window.location.origin)
-        )}`
+        `https://twitter.com/intent/tweet?url=${encodeURIComponent(MOCK_URL.href)}`
       )
       .hasAttribute('href', /^https:\/\/twitter\.com\/intent\/tweet/)
       .hasClass('share')
       .hasClass('button')
       .containsText('Tweet this!');
 
-    assert.equal(
-      this.tweetParam('url'),
-      new URL('/foo/bar?baz=true#some-section', window.location.origin)
-    );
+    assert.strictEqual(this.tweetParam('url'), MOCK_URL.href);
   });
 
   test('it supports passing @text', async function (assert) {
@@ -500,7 +503,7 @@ module('Integration | Component | share-button', function (hooks) {
       hbs`<ShareButton @text="Hello Twitter!">Tweet this!</ShareButton>`
     );
 
-    assert.equal(this.tweetParam('text'), 'Hello Twitter!');
+    assert.strictEqual(this.tweetParam('text'), 'Hello Twitter!');
   });
 
   test('it supports passing @hashtags', async function (assert) {
@@ -508,12 +511,12 @@ module('Integration | Component | share-button', function (hooks) {
       hbs`<ShareButton @hashtags="foo,bar,baz">Tweet this!</ShareButton>`
     );
 
-    assert.equal(this.tweetParam('hashtags'), 'foo,bar,baz');
+    assert.strictEqual(this.tweetParam('hashtags'), 'foo,bar,baz');
   });
 
   test('it supports passing @via', async function (assert) {
     await render(hbs`<ShareButton @via="emberjs">Tweet this!</ShareButton>`);
-    assert.equal(this.tweetParam('via'), 'emberjs');
+    assert.strictEqual(this.tweetParam('via'), 'emberjs');
   });
 
   test('it supports adding extra classes', async function (assert) {
