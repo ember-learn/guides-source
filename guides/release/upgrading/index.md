@@ -1,6 +1,11 @@
 When someone says they are "upgrading" their Ember app, it could mean one of several things, especially if they say that they are "upgrading to Octane."
 This Guide will help fill in the blanks about how to upgrade your app's version, get access to the latest and greatest features, and form a strategy for using Octane's features in your existing apps.
 
+## Details about recent releases
+
+You can learn about what changed in every release by reading the 
+[official Ember blog](https://blog.emberjs.com).
+
 ## Routine minor version maintenance upgrades
 
 Let's say you are upgrading an app from `v3.4` to `v3.8`.
