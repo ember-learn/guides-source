@@ -25,10 +25,6 @@ and maintain consistent coding styles between different editors and IDEs.
 [Glimmer Templates Syntax](https://marketplace.visualstudio.com/items?itemName=lifeart.vscode-glimmer-syntax) -
 Syntax formatting for glimmer templates.
 
-[Prettier for Handlebars](https://marketplace.visualstudio.com/items?itemName=Alonski.prettier-for-handlebars-vscode) -
-Format your handlebars files with Prettier ...that's it! 
-Note, because this uses the currently unreleased Prettier, it may break with future changes to Prettier.
-
 ## Vim and Neovim
 
 Vim is a highly configurable text editor built to make creating and changing any kind of text very efficient.
