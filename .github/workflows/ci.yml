@@ -1,6 +1,6 @@
 name: CI
 
-on: 
+on:
   push:
     branches:
       - master
@@ -8,6 +8,7 @@ on:
 
 env:
   NODE_VERSION: 12.19
+  NODE_OPTIONS: "--max_old_space_size=4096"
 
 jobs:
   lint:
