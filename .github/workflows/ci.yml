@@ -1,13 +1,13 @@
 name: CI
 
-on: 
+on:
   push:
     branches:
       - master
   pull_request:
 
 env:
-  NODE_VERSION: 12.19
+  NODE_VERSION: 16.13
 
 jobs:
   lint:
