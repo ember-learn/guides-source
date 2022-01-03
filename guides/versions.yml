@@ -52,7 +52,8 @@ allVersions:
   - "v3.27.0"
   - "v3.28.0"
   - "v4.0.0"
-currentVersion: "v4.0.0"
+  - "v4.1.0"
+currentVersion: "v4.1.0"
 ltsVersions:
   - "v3.20.0"
   - "v3.24.0"
