@@ -65,7 +65,7 @@ To use the `meta` data outside of the `model` hook, you need to return it:
 
 ```javascript {data-filename=app/routes/users.js}
 import Route from '@ember/routing/route';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 
 export default class UsersRoute extends Route {
   @service store;

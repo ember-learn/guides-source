@@ -33,7 +33,7 @@ Router.map(function() {
 
 ```javascript {data-filename=app/routes/index.js}
 import Route from '@ember/routing/route';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 
 export default class IndexRoute extends Route {
   @service router;
@@ -69,7 +69,7 @@ Router.map(function() {
 
 ```javascript {data-filename=app/routes/posts.js}
 import Route from '@ember/routing/route';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 
 export default class PostsRoute extends Route {
   @service router;
@@ -123,7 +123,7 @@ transition validated, and not cause the parent route's hooks to fire again:
 
 ```javascript {data-filename=app/routes/posts.js}
 import Route from '@ember/routing/route';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 
 export default class PostsRoute extends Route {
   @service router;

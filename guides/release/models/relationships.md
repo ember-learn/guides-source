@@ -374,7 +374,7 @@ as follows:
 
 ```javascript {data-filename=app/routes/post.js}
 import Route from '@ember/routing/route';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 
 export default class PostRoute extends Route {
   @service store;
@@ -394,7 +394,7 @@ would look like this:
 
 ```javascript {data-filename=app/routes/post.js}
 import Route from '@ember/routing/route';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 
 export default class PostRoute extends Route {
   @service store;
@@ -413,7 +413,7 @@ For example:
 
 ```javascript {data-filename=app/routes/adele.js}
 import Route from '@ember/routing/route';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 
 export default class AdeleRoute extends Route {
   @service store;

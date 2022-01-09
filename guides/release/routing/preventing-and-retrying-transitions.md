@@ -20,7 +20,7 @@ Here's one way this situation could be handled:
 
 ```javascript {data-filename=app/routes/form.js}
 import Route from '@ember/routing/route';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 
 export default class FormRoute extends Route {
   @service router;
@@ -75,7 +75,7 @@ they've logged in.
 
 ```javascript {data-filename=app/routes/some-authenticated.js}
 import Route from '@ember/routing/route';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 
 export default class SomeAuthenticatedRoute extends Route {
   @service router;
@@ -93,7 +93,7 @@ export default class SomeAuthenticatedRoute extends Route {
 ```javascript {data-filename=app/controllers/login.js}
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 
 export default class LoginController extends Controller {
   @service router;

@@ -198,7 +198,7 @@ The following code injects the `shopping-cart` service on the `cart-contents` co
 
 ```javascript {data-filename=app/components/cart-contents.js}
 import Component from '@glimmer/component';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 
 export default class CartContentComponent extends Component {
   @service('shopping-cart') cart;
@@ -210,7 +210,7 @@ simply leave off the service name (the dasherized version of the name will be us
 
 ```javascript {data-filename=app/components/cart-contents.js}
 import Component from '@glimmer/component';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 
 export default class CartContentComponent extends Component {
   @service shoppingCart;

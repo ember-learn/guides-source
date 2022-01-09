@@ -298,7 +298,7 @@ Imagine you have the following component that uses a location service to display
 
 ```javascript {data-filename="app/components/location-indicator.js"}
 import Component from '@glimmer/component';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 
 export default class LocationIndicatorComponent extends Component {
   @service location;
