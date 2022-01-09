@@ -221,7 +221,7 @@ You can combine tracked properties with ES6 getters to make `headers` dynamic. F
 
 ```javascript {data-filename=app/adapters/application.js}
 import JSONAPIAdapter from '@ember-data/adapter/json-api';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 
 export default class ApplicationAdapter extends JSONAPIAdapter {
   @service session;

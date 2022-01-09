@@ -159,7 +159,7 @@ that manages the user's login and information.
 
 ```javascript {data-filename=app/components/user-profile.js}
 import Component from '@glimmer/component';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 import { action } from '@ember/object';
 
 export default class UserProfileComponent extends Component {
@@ -420,7 +420,7 @@ that processes the `sendMessage` logic.
 
 ```javascript {data-filename=app/components/send-message.js}
 import Component from '@glimmer/component';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 
 export default class SendMessageComponent extends Component {
   @service messaging;
@@ -466,7 +466,7 @@ with it the full user profile object.
 
 ```javascript {data-filename=app/components/user-profile.js}
 import Component from '@glimmer/component';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 import { action } from '@ember/object';
 
 export default class UserProfileComponent extends Component {
@@ -524,7 +524,7 @@ the parent `system-preferences-editor.js`.
 
 ```javascript {data-filename=app/components/system-preferences-editor.js}
 import Component from '@glimmer/component';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 import { action } from '@ember/object';
 
 export default class SystemPreferencesEditorComponent extends Component {

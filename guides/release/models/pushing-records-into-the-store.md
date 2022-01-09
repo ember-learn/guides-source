@@ -40,7 +40,7 @@ export default class AlbumModel extends Model {
 
 ```javascript {data-filename=app/routes/application.js}
 import Route from '@ember/routing/route';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 
 export default class ApplicationRoute extends Route {
   @service store;
@@ -97,7 +97,7 @@ export default class AlbumSerializer extends RESTSerializer {
 
 ```javascript {data-filename=app/routes/application.js}
 import Route from '@ember/routing/route';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 
 export default class ApplicationRoute extends Route {
   @service store;
@@ -134,7 +134,7 @@ so it can be accessed by other parts of your application.
 
 ```javascript {data-filename=app/routes/confirm-payment.js}
 import Route from '@ember/routing/route';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 import { action } from '@ember/object';
 import fetch from 'fetch';
 
