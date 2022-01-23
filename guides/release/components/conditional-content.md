@@ -114,6 +114,24 @@ Like many programming languages, Ember also allows you to write `if else` and
 {{/if}}
 ```
 
+An important feature of `if` statement is that it can be used only inside an
+HTML element or another block. For example following snippet won't work
+because it uses ``if`` statement **on** the HTML element:
+
+```handlebars {data-filename="app/components/sign-in.hbs"}
+  {{!-- Won't work --}}
+  <button {{#if @disabled}} disabled {{/if}} class="btn">Sign In</button>
+```
+
+Correct usage:
+
+```handlebars {data-filename="app/components/sign-in.hbs"}
+  {{#if @disabled}}
+    <button disabled class="btn">Sign In</button>
+  {{else}}
+    <button class="btn">Sign In</button>
+  {{/if}}
+```
 
 ## Inline `if`
 
@@ -224,6 +242,30 @@ It looks similar to a ternary operator.
 ```handlebars {data-filename="app/components/my-component.hbs"}
 {{if condition value1 value2}}
 ```
+
+Similarly to block `if`, you need to pay attention where inline `if` is placed
+otherwise ember will be confused. Inline `if` can be used only inside attributes values
+of HTML element. For example:
+
+```handlebars {data-filename="app/components/spinner.hbs"}
+  <span class="spinner {{if @inProgress 'visible' 'invisible'}}">
+  </span>
+```
+
+In example above, inline ``if`` is correctly used inside class attribute value.
+
+On the other hand, if you intend to use inline ``if`` to add "disabled"
+attribute to the HTML element:
+
+```handlebars {data-filename="app/components/spinner.hbs"}
+  {{!-- Won't work (!) --}}
+  <span {{if @disabled 'disabled' }}">
+  </span>
+```
+
+Ember will get confused and will complain with an error. In example above
+Ember will see `if` as modifier instead and complain about incorrect usage of
+modifier.
 
 
 ## Learn More
