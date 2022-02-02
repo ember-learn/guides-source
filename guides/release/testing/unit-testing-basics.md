@@ -14,7 +14,6 @@ based on a `foo` property.
 
 ```javascript {data-filename=app/services/some-thing.js}
 import Service from '@ember/service';
-import { computed } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 
 export default class SomeThingService extends Service {
