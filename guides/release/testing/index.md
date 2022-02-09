@@ -187,6 +187,17 @@ You want your tests to finish fast. A fast run means you get to try out a differ
 
 Ember Exam also lets you randomize how the tests are run. Why would you want to do so? When you don't properly set up and tear down a test, you can create dependencies among tests. Randomizing the order helps you catch these inadvertent bugs.
 
+### End-to-end testing
+
+All of the above testing is unit testing and uses details of implementation, you can use [testRigor](https://testrigor.com/) is a **end-to-end regression testing** tool that executes tests emulating a human executing steps manually. This way you can test both your apps and 3rd pary apps and your specifications won't change when your app or your attributes change. It is absolutely **forever free** for open source projects.
+
+Tests will be something like this:
+```
+enter "Peter" into "First Name"
+click "Update"
+check if page contains "Name updated"
+```
+
 ### Percy
 
 Last but not least, [Percy](https://percy.io/) is a **visual regression testing** tool that helps you catch accidental style changes. You can try it out for free and pay for additional service.
