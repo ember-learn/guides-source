@@ -1,20 +1,9 @@
 By default, Ember.js will extend the prototypes of native JavaScript
-objects in the following ways:
-
-* `Array` is extended to implement the `Ember.Enumerable`,
-  `Ember.MutableEnumerable`, `Ember.MutableArray` and `Ember.Array`
-  interfaces. This polyfills ECMAScript 5 array methods in browsers that
-  do not implement them, adds convenience methods and properties to
-  built-in arrays, and makes array mutations observable.
-
-* `String` is extended to add convenience methods, such as
-  `camelize()` and `w()`. You can find a list of these methods with the
-  [Ember.String documentation](https://api.emberjs.com/ember/release/classes/String).
-
-* `Function` is extended with methods to annotate functions as
-  computed properties, via the `property()` method, and as observers,
-  via the `observes()` method. Use of these methods
-  is now discouraged and not covered in recent versions of the Guides.
+arrays to implement the `Ember.Enumerable`, `Ember.MutableEnumerable`,
+`Ember.MutableArray` and `Ember.Array` interfaces. This polyfills
+ECMAScript 5 array methods in browsers that do not implement them, adds
+convenience methods and properties to built-in arrays, and makes array
+mutations observable.
 
 This is the extent to which Ember.js enhances native prototypes. We have
 carefully weighed the trade-offs involved with changing these prototypes,
@@ -48,8 +37,7 @@ for in your application's configuration like so:
 ENV = {
   EmberENV: {
     EXTEND_PROTOTYPES: {
-      String: false,
-      Array: true
+      Array: false
     }
   }
 }
@@ -87,80 +75,34 @@ islands.pushObject('Maui');
 // => ['Oahu', 'Kauai', 'Maui'];
 ```
 
-### Strings
-
-Strings will no longer have the convenience methods described in the
-[`Ember.String` API reference](https://api.emberjs.com/ember/release/classes/String).
-Instead,
-you can use the similarly-named methods of the `Ember.String` object and
-pass the string to use as the first parameter:
+You can also use an "immutable update" style with tracked properties:
 
 ```javascript
-import { camelize } from '@ember/string';
+import { tracked } from '@glimmer/tracking';
 
-'my_cool_class'.camelize();
-// => TypeError: Object my_cool_class has no method 'camelize'
+class Ocean {
+  islands = ['Oahu', 'Kauai'];
+  
+  addIsland(newIsland) {
+    this.islands = this.islands.concat(newIsland);
+  }
+}
 
-camelize('my_cool_class');
-// => "myCoolClass"
+const ocean = new Ocean();
+ocean.addIsland('Maui');
+ocean.islands; // => ['Oahu', 'Kauai', 'Maui'];
 ```
 
-### Functions
-
-The [Object Model](../../object-model/) section of the Guides describes
-how to write computed properties, observers, and bindings without
-prototype extensions. Below you can learn about how to convert existing
-code to the format now encouraged.
-
-To annotate computed properties, use the `Ember.computed()` method to
-wrap the function:
+Alternatively, you can use the community library `tracked-built-ins`
+to get a natively tracked version of `Array`, and use native `Array`
+methods with auto-tracking reactivity:
 
 ```javascript
-import { computed } from '@ember/object';
+import { TrackedArray } from 'tracked-built-ins';
 
-// This won't work:
-aspectRatio: function() {
-  return this.width / this.height;
-}.property('width', 'height')
-
-
-// Instead, do this:
-aspectRatio: computed('width', 'height', function() {
-  return this.width / this.height;
-})
-```
-
-Observers are annotated using `Ember.observer()`:
-
-```javascript
-import { observer } from '@ember/object';
-
-// This won't work:
-aspectRatioDidChange: function() {
-  console.log('Aspect ratio changed');
-}.observes('aspectRatio')
-
-
-// Instead, do this:
-aspectRatioDidChange: observer('aspectRatio', function() {
-  console.log('Aspect ratio changed');
-})
-```
-
-Evented functions are annotated using [`Ember.on()`](https://api.emberjs.com/ember/release/classes/Evented/methods/on?anchor=on):
-
-```javascript
-import { on } from '@ember/object/evented';
-
-// This won't work:
-doStuffWhenInserted: function() {
-  /* awesome sauce */
-}.on('didInsertElement');
-
-// Instead, do this:
-doStuffWhenInserted: on('didInsertElement', function() {
-  /* awesome sauce */
-});
+let islands = new TrackedArray(['Oahu', 'Kauai']);
+islands.push('Maui');
+// => ['Oahu', 'Kauai', 'Maui'];
 ```
 
 <!-- eof - needed for pages that end in a code block  -->
