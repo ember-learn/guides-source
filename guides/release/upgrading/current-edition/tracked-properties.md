@@ -281,6 +281,28 @@ property is what is invalidated when the array is updated with KVO methods.
 
 ## When to Use `get` and `set`
 
+Here are some cases where you still need to use `get` and `set`:
+
+- When accessing and updating plain properties on objects without decorators
+- When using Ember's `ObjectProxy` class, or a class that implements the
+  `unknownProperty` function (which allows objects to intercept `get` calls)
+- When accessing relationships for Ember Data records, e.g. 
+`blogPost.get('comments')`. Under the hood, this is a type of `ObjectProxy`.
+
+Additionally, you will have to continue using _accessor_ functions for arrays if
+you want arrays to update as expected.
+These functions are covered in more detail in the [Looping Through Lists](../../../components/looping-through-lists/) guide.
+
+Importantly, you do _not_ have to use `get` or `set` when reading or updating
+computed properties, as was noted in the computed property section.
+
+In the sections below, you will learn why these methods are still needed,
+and review some detailed examples of `ObjectProxy` and plain objects.
+
+### Background information
+
+Why do developers still need to use `get` and `set` in some places?
+
 Ember's classic change tracking system used two methods to ensure that all data
 was accessed properly and updated correctly: `get` and `set`.
 
@@ -298,22 +320,10 @@ get(image, 'height'); // 500
 
 In classic Ember, all property access had to go through these two methods. Over
 time, these rules have become less strict, and now they have been minimized to
-just a few cases. In general, in a modern Ember app, you shouldn't need to use
+just the few cases mentioned in this section.
+In general, in a modern Ember app, you shouldn't need to use
 them all that much. As long as you are marking your properties as `@tracked`,
 Ember should automatically figure out what needs to change, and when.
-
-However, there still are two cases where you _will_ need to use them:
-
-- When accessing and updating plain properties on objects without decorators
-- When using Ember's `ObjectProxy` class, or a class that implements the
-  `unknownProperty` function (which allows objects to intercept `get` calls)
-
-Additionally, you will have to continue using _accessor_ functions for arrays if
-you want arrays to update as expected.
-These functions are covered in more detail in the [Looping Through Lists](../../../components/looping-through-lists/) guide.
-
-Importantly, you do _not_ have to use `get` or `set` when reading or updating
-computed properties, as was noted in the computed property section.
 
 ### Plain Properties
 
