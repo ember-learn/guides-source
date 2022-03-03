@@ -81,7 +81,7 @@ You can also use an "immutable update" style with tracked properties:
 import { tracked } from '@glimmer/tracking';
 
 class Ocean {
-  islands = ['Oahu', 'Kauai'];
+  @tracked islands = ['Oahu', 'Kauai'];
   
   addIsland(newIsland) {
     this.islands = this.islands.concat(newIsland);
