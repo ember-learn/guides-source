@@ -107,9 +107,9 @@ To enable full stacktrace mode in Backburner, and thus determine the stack of th
 when it was scheduled onto the run loop, you can set:
 
 ```javascript {data-filename=app/app.js}
-import { run } from '@ember/runloop';
+import runloop from '@ember/runloop';
 
-run.backburner.DEBUG = true;
+runloop._backburner.DEBUG = true;
 ```
 
 Once the `DEBUG` value is set to `true`, when you are at a breakpoint you can navigate
