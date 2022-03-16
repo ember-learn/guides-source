@@ -510,10 +510,9 @@ export default class SystemPreferencesEditorComponent extends Component {
 When your components go multiple template layers deep, it is common to need to
 handle an action several layers up the tree.
 
-Note about prop drilling / anti-patterns?
+<!-- Note about prop drilling / anti-patterns?-->
 
-Parent
-components can pass actions to child components through templates alone without
+Parent components can pass actions to child components through templates alone without
 adding JavaScript code to those child components.
 
 For example, say we want to move account deletion from the `UserProfile`
