@@ -7,12 +7,11 @@ many of which are created and maintained by the developer community:
 Visual Studio Code is a code editor optimized for building and debugging modern web applications. 
 Visual Studio Code is one of the most popular text editors among Ember developers.
 
-[Ember Language Server](https://marketplace.visualstudio.com/items?itemName=EmberTooling.vscode-ember) -
-Provides autocomplete in templates and allows go-to-definition behavior within Ember projects.
-
 [Unstable Ember Language Server](https://marketplace.visualstudio.com/items?itemName=lifeart.vscode-ember-unstable) -
-A popular fork of Ember Language Server with different features.
-Don't let the 'unstable' name confuse you - it's safe to use!
+Unstable Ember Language Server is full-featured fork of Ember Language Server. It's stable and extremely power-featured.
+
+[Ember Language Server](https://marketplace.visualstudio.com/items?itemName=EmberTooling.vscode-ember) -
+Provides autocomplete in templates and allows go-to-definition behavior within Ember projects. *It is not under active maintaining.*
 
 [Ember JS (ES6) and Handlebars code snippets](https://marketplace.visualstudio.com/items?itemName=phanitejakomaravolu.EmberES6Snippets) -
 Enables Ember.js and Handlebars snippets to let you to type less and code more.
