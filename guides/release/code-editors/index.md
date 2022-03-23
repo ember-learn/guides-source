@@ -4,14 +4,11 @@ many of which are created and maintained by the developer community:
 
 ## Visual Studio Code
 
-Visual Studio Code is a code editor optimized for building and debugging modern web applications. 
+Visual Studio Code is a code editor optimized for building and debugging modern web applications.
 Visual Studio Code is one of the most popular text editors among Ember developers.
 
 [Unstable Ember Language Server](https://marketplace.visualstudio.com/items?itemName=lifeart.vscode-ember-unstable) -
 Unstable Ember Language Server is full-featured fork of Ember Language Server. It's stable and extremely power-featured.
-
-[Ember Language Server](https://marketplace.visualstudio.com/items?itemName=EmberTooling.vscode-ember) -
-Provides autocomplete in templates and allows go-to-definition behavior within Ember projects. *It is not under active maintaining.*
 
 [Ember JS (ES6) and Handlebars code snippets](https://marketplace.visualstudio.com/items?itemName=phanitejakomaravolu.EmberES6Snippets) -
 Enables Ember.js and Handlebars snippets to let you to type less and code more.
@@ -29,8 +26,8 @@ Syntax formatting for glimmer templates.
 Vim is a highly configurable text editor built to make creating and changing any kind of text very efficient.
 It is included as "vi" with most UNIX systems and with Apple OS X.
 Alternatively, Neovim is a hyper-extensible Vim-based text editor.
-Both editors share a range of cross-compatible extensions listed below. 
-  
+Both editors share a range of cross-compatible extensions listed below.
+
 You'll want to remove any linter / completion manager you currently have installed
 (or disable them for `.js`, `.ts` or `.hbs` files), and follow the install guides for the following packages:
 
@@ -47,7 +44,7 @@ Various tools for working with Ember.js projects.
 An Intellisense engine which takes control over all linting, hinting, and language-server integration.
 
 [coc-ember](https://github.com/NullVoxPopuli/coc-ember) -
-Ember.js language server extension including useful configuration instructions. 
+Ember.js language server extension including useful configuration instructions.
 Optional addons for Ember language server:
 - [vim-ember-hbs](https://github.com/joukevandermaas/vim-ember-hbs)
 - [vim-javascript](https://github.com/pangloss/vim-javascript)
