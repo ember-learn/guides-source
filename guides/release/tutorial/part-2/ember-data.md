@@ -226,7 +226,7 @@ Alright, now that we have our model set up, it's time to refactor our route hand
 import Route from '@ember/routing/route';
 
 const COMMUNITY_CATEGORIES = ['Condo', 'Townhouse', 'Apartment'];
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 
 export default class IndexRoute extends Route {
   async model() {
@@ -256,7 +256,7 @@ export default class IndexRoute extends Route {
 import Route from '@ember/routing/route';
 
 const COMMUNITY_CATEGORIES = ['Condo', 'Townhouse', 'Apartment'];
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 
 export default class RentalRoute extends Route {
   async model(params) {
