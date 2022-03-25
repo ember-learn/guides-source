@@ -1,6 +1,6 @@
 <!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/src/markdown/tutorial/part-2/11-ember-data.md -->
 
-In this chapter, we will work on removing some code duplication in our route handlers, by switching to using Ember Data to manage our data. The end result looks exactly the same before:
+In this chapter, we will work on removing some code duplication in our route handlers, by switching to using Ember Data to manage our data. The end result looks exactly the same as before:
 
 <img src="/images/tutorial/part-2/ember-data/homepage@2x.png" alt="The Super Rentals app by the end of the chapter" width="1024" height="1129">
 
@@ -193,19 +193,19 @@ module('Unit | Model | rental', function (hooks) {
         'This grand old mansion sits on over 100 acres of rolling hills and dense redwood forests.',
     });
 
-    assert.equal(rental.type, 'Standalone');
+    assert.strictEqual(rental.type, 'Standalone');
 
     rental.category = 'Condo';
-    assert.equal(rental.type, 'Community');
+    assert.strictEqual(rental.type, 'Community');
 
     rental.category = 'Townhouse';
-    assert.equal(rental.type, 'Community');
+    assert.strictEqual(rental.type, 'Community');
 
     rental.category = 'Apartment';
-    assert.equal(rental.type, 'Community');
+    assert.strictEqual(rental.type, 'Community');
 
     rental.category = 'Estate';
-    assert.equal(rental.type, 'Standalone');
+    assert.strictEqual(rental.type, 'Standalone');
   });
 });
 ```
@@ -226,7 +226,7 @@ Alright, now that we have our model set up, it's time to refactor our route hand
 import Route from '@ember/routing/route';
 
 const COMMUNITY_CATEGORIES = ['Condo', 'Townhouse', 'Apartment'];
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 
 export default class IndexRoute extends Route {
   async model() {
@@ -256,7 +256,7 @@ export default class IndexRoute extends Route {
 import Route from '@ember/routing/route';
 
 const COMMUNITY_CATEGORIES = ['Condo', 'Townhouse', 'Apartment'];
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 
 export default class RentalRoute extends Route {
   async model(params) {
