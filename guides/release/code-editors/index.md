@@ -55,7 +55,7 @@ Ember.js language server extension including useful configuration instructions.
 
 [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) -
 high-fidelity static highlighting. With `ensure_installed = { 'glimmer' }`, this
-also includes support for embedded templates in javascript and typescript.
+also includes support for embedded templates in JavaScript and typescript.
 
 To get embedded template highlighting without tree-sitter (and too much config to include here):
 - [vim-ember-hbs](https://github.com/joukevandermaas/vim-ember-hbs)
