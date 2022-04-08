@@ -228,6 +228,8 @@ Likewise, properties that are not decorated with `@tracked` that you get using
 them:
 
 ```js
+import { get, set } from '@ember/object';
+
 class Image {
   get aspectRatio() {
     let width = get(this, 'width');
@@ -247,6 +249,8 @@ and there is no way to know in advance that they might be changed with `set`.
 For instance, this will not work:
 
 ```js
+import { set } from '@ember/object';
+
 class Image {
   get aspectRatio() {
     return this.width / this.height;
