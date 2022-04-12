@@ -11,10 +11,27 @@ guides/v3.0.0/**/*.md
 guides/v3.1.0/**/*.md
 guides/v3.2.0/**/*.md
 guides/v3.3.0/**/*.md
-
-# redirect only files
-guides/release/working-with-javascript
 guides/v3.4.0/**/*.md
 guides/v3.5.0/**/*.md
 guides/v3.6.0/**/*.md
 guides/v3.7.0/**/*.md
+guides/v3.8.0/**/*.md
+guides/v3.9.0/**/*.md
+guides/v3.10.0/**/*.md
+guides/v3.11.0/**/*.md
+guides/v3.12.0/**/*.md
+guides/v3.13.0/**/*.md
+guides/v3.14.0/**/*.md
+guides/v3.15.0/**/*.md
+guides/v3.16.0/**/*.md
+guides/v3.17.0/**/*.md
+guides/v3.18.0/**/*.md
+guides/v3.19.0/**/*.md
+guides/v3.20.0/**/*.md
+guides/v3.21.0/**/*.md
+guides/v3.22.0/**/*.md
+guides/v3.23.0/**/*.md
+
+# redirect only files
+guides/release/working-with-javascript
+
