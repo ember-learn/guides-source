@@ -224,6 +224,8 @@
   pages:
     - title: "Introduction"
       url: "index"
+    - title: "Testing Tools"
+      url: "testing-tools"
     - title: "Test Types"
       url: "test-types"
     - title: "Testing Application"
@@ -274,7 +276,7 @@
     - title: "Rendering Performance"
       url: "render-performance"
     - title: "Troubleshooting"
-      url: "troubleshooting"      
+      url: "troubleshooting"
 - title: "Code Editors"
   url: "code-editors"
   pages:
