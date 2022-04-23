@@ -1,3 +1,6 @@
+When you create new routes in your app, users can visit different URLs
+and see the content of each page.
+
 When your application starts, the router matches the current URL to the _routes_
 that you've defined. The routes, in turn, are responsible for displaying
 templates, loading data, and setting up application state.
