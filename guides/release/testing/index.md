@@ -8,7 +8,7 @@ In this section, we will cover why testing is important and how to run, debug an
 
 Writing tests is a necessary ingredient if you want to guarantee users and stakeholders that your app, whether small or large, will function as intended at any given time. The larger your app, the more costly and error-prone manual testing becomes.
 
-Writing tests is also a fun activity, a nice change of pace from delivering features daily, and a way to help you refactor code and improve as a developer. Tests can also serve as a living documentation—a key element in onboarding new developers.
+Writing tests is also a fun activity, a nice change of pace from delivering features daily, and a way to help you refactor code and improve as a developer. Tests can also serve as a living documentation — a key element in onboarding new developers.
 
 ## How to Run Tests
 

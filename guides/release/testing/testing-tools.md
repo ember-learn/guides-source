@@ -1,4 +1,4 @@
-Ember comes with great testing tools out of the box and popular addons which you can use as your testing game evolves.
+Ember comes with great testing tools out of the box and popular add-ons which you can use as your testing game evolves.
 
 In this section, we will go through various tools, that you can use while building an Ember app.
 
@@ -89,14 +89,14 @@ You want to be able to grab DOM elements in your tests. Since Ember is just Java
     <div class="cta-note-body">
       <div class="cta-note-heading">Tomster says...</div>
       <div class="cta-note-message">
-        While you can use CSS classes as selectors, a best practice for testing is to <strong>separate the concerns between styling and testing</strong>. Class names and DOM structure change over time—for the better—by you, your team, and addon developers. If you rely on CSS classes, your tests will break and need a significant rewrite.
+        While you can use CSS classes as selectors, a best practice for testing is to <strong>separate the concerns between styling and testing</strong>. Class names and DOM structure change over time—for the better—by you, your team, and add-on developers. If you rely on CSS classes, your tests will break and need a significant rewrite.
       </div>
     </div>
     <img src="/images/mascots/tomster.png" role="presentation" alt="">
   </div>
 </div>
 
-[Ember Test Selectors](https://github.com/simplabs/ember-test-selectors) is an addon that helps you **write tests that are more resilient to DOM changes**. You use `data-test-*` attributes to mark the elements that will be used in your tests. The addon works with QUnit DOM and helpers from [@ember/test-helpers](https://github.com/emberjs/ember-test-helpers/). It also removes the `data-test-*` attributes in the production build.
+[Ember Test Selectors](https://github.com/simplabs/ember-test-selectors) is an add-on that helps you **write tests that are more resilient to DOM changes**. You use `data-test-*` attributes to mark the elements that will be used in your tests. The add-on works with QUnit DOM and helpers from [@ember/test-helpers](https://github.com/emberjs/ember-test-helpers/). It also removes the `data-test-*` attributes in the production build.
 
 Consider the example of a button component again. This time, our component can display a Material icon in addition to the label.
 
@@ -162,13 +162,13 @@ test("should show icon and label", async function (assert) {
 
 If your application receives and sends data, you want to show that you can take these actions successfully. You also want to prove that you can handle the error states correctly.
 
-[Ember CLI Mirage](https://www.ember-cli-mirage.com/) is an addon that allows you to create a mock server. You can also use it to test your app against various server states. To learn more about using Mirage in tests, we encourage you to [visit the official website](https://www.ember-cli-mirage.com/docs/testing/acceptance-tests).
+[Ember CLI Mirage](https://www.ember-cli-mirage.com/) is an add-on that allows you to create a mock server. You can also use it to test your app against various server states. To learn more about using Mirage in tests, we encourage you to [visit the official website](https://www.ember-cli-mirage.com/docs/testing/acceptance-tests).
 
 ### Ember Exam
 
 You want your tests to finish fast. A fast run means you get to try out a different solution and iterate many more times.
 
-[Ember Exam](https://github.com/ember-cli/ember-exam) is an addon that allows you to parallelize the run. If you have many rendering and application tests, this can dramatically speed up your testing.
+[Ember Exam](https://github.com/ember-cli/ember-exam) is an add-on that allows you to parallelize the run. If you have many rendering and application tests, this can dramatically speed up your testing.
 
 Ember Exam also lets you randomize how the tests are run. Why would you want to do so? When you don't properly set up and tear down a test, you can create dependencies among tests. Randomizing the order helps you catch these inadvertent bugs.
 
@@ -180,6 +180,6 @@ While we don't recommend this practice in general, you might also use Percy in l
 
 ## Summary
 
-Ember provides easy paths to integrate QUnit and Mocha, also it supports a variety of addons and debugging tools to improve your developer experience in testing.
+Ember provides easy paths to integrate QUnit and Mocha, also it supports a variety of add-ons and debugging tools to improve your developer experience in testing.
 
 In the next section, we will study 3 types of tests that Ember supports—unit, rendering, and application tests. We will look at each type and when you might use one over another.
