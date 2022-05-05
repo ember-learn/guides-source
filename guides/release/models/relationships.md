@@ -256,6 +256,28 @@ And our API might setup these relationships like so:
 }
 ```
 
+### Accessing relationship
+
+When accessing ember-data relationship in your app, you can either ask for accessing the relation asynchronously or synchronously.
+
+It's possible to configure it through the `{ async: boolean }` property.
+
+```javascript {data-filename=app/models/organization.js}
+import Model, { hasMany } from '@ember-data/model';
+
+export default class OrganizationModel extends Model {
+  @hasMany('membership', { async: false }) memberships;
+}
+```
+
+Thus, later in your app, you will be able to access the relationship like so:
+
+```javascript
+let memberships = organization.get('memberships');
+```
+
+For more information about async relationships, you can [check out the official documentation.](https://api.emberjs.com/ember-data/release/functions/@ember-data%2Fmodel/hasMany)
+
 ### Readonly Nested Data
 
 Some models may have properties that are deeply nested objects of
