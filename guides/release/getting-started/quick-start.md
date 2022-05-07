@@ -427,7 +427,7 @@ First you need to [sign up for a Netlify account](https://app.netlify.com/signup
 
 The next step is to let the web app server know how to handle URLs. There are 2 ways to do so.
 
-One, you can create a file in your `ember-quickstart` folder called
+One, you can create a file in your `ember-quickstart/public` folder called
 `_redirects`. Add `/* /index.html 200` to the first line and save the file. 
 This will let the server know to redirect all pages to `index.html` file. 
 Once redirected, Ember.js app itself will generate the matching html for URLs such as `/scientists`.
