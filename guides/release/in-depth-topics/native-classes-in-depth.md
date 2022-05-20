@@ -495,6 +495,7 @@ will be described in greater detail later on in the guides.
 > have the same stability guarantees.
 
 ### Using injection
+
 Instances can also make use of injection if they are embedded into the application container. To achieve this, you need to call [`setOwner`](https://api.emberjs.com/ember/3.27/functions/@ember%2Fapplication/setOwner) on the instance and supply the container. You can access the container by calling [`getOwner`](https://api.emberjs.com/ember/3.27/functions/@ember%2Fapplication/getOwner) on any framework object (components, services, routes, etc.).
 
 ```js
