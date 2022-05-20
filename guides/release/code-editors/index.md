@@ -4,15 +4,11 @@ many of which are created and maintained by the developer community:
 
 ## Visual Studio Code
 
-Visual Studio Code is a code editor optimized for building and debugging modern web applications. 
+Visual Studio Code is a code editor optimized for building and debugging modern web applications.
 Visual Studio Code is one of the most popular text editors among Ember developers.
 
-[Ember Language Server](https://marketplace.visualstudio.com/items?itemName=EmberTooling.vscode-ember) -
-Provides autocomplete in templates and allows go-to-definition behavior within Ember projects.
-
-[Unstable Ember Language Server](https://marketplace.visualstudio.com/items?itemName=lifeart.vscode-ember-unstable) -
-A popular fork of Ember Language Server with different features.
-Don't let the 'unstable' name confuse you - it's safe to use!
+[Stable Ember Language Server](https://marketplace.visualstudio.com/items?itemName=lifeart.vscode-ember-unstable) -
+Stable Ember Language Server is a stable, full-featured language server. Its name comes from its history as a fork of Ember Language Server and the efforts to keep up with changes in Ember.
 
 [Ember JS (ES6) and Handlebars code snippets](https://marketplace.visualstudio.com/items?itemName=phanitejakomaravolu.EmberES6Snippets) -
 Enables Ember.js and Handlebars snippets to let you to type less and code more.
@@ -25,8 +21,11 @@ and maintain consistent coding styles between different editors and IDEs.
 [Glimmer Templates Syntax](https://marketplace.visualstudio.com/items?itemName=lifeart.vscode-glimmer-syntax) -
 Syntax formatting for glimmer templates.
 
+[VSCode Glimmer](https://marketplace.visualstudio.com/items?itemName=chiragpat.vscode-glimmer) -
+Provides embedded template highlighting support.
+
 [Prettier for Handlebars](https://marketplace.visualstudio.com/items?itemName=Alonski.prettier-for-handlebars-vscode) -
-Format your handlebars files with Prettier ...that's it! 
+Format your handlebars files with Prettier ...that's it!
 Note, because this uses the currently unreleased Prettier, it may break with future changes to Prettier.
 
 ## Vim and Neovim
@@ -34,8 +33,8 @@ Note, because this uses the currently unreleased Prettier, it may break with fut
 Vim is a highly configurable text editor built to make creating and changing any kind of text very efficient.
 It is included as "vi" with most UNIX systems and with Apple OS X.
 Alternatively, Neovim is a hyper-extensible Vim-based text editor.
-Both editors share a range of cross-compatible extensions listed below. 
-  
+Both editors share a range of cross-compatible extensions listed below.
+
 You'll want to remove any linter / completion manager you currently have installed
 (or disable them for `.js`, `.ts` or `.hbs` files), and follow the install guides for the following packages:
 
@@ -52,8 +51,13 @@ Various tools for working with Ember.js projects.
 An Intellisense engine which takes control over all linting, hinting, and language-server integration.
 
 [coc-ember](https://github.com/NullVoxPopuli/coc-ember) -
-Ember.js language server extension including useful configuration instructions. 
-Optional addons for Ember language server:
+Ember.js language server extension including useful configuration instructions.
+
+[nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) -
+high-fidelity static highlighting. With `ensure_installed = { 'glimmer' }`, this
+also includes support for embedded templates in JavaScript and typescript.
+
+To get embedded template highlighting without tree-sitter (and too much config to include here):
 - [vim-ember-hbs](https://github.com/joukevandermaas/vim-ember-hbs)
 - [vim-javascript](https://github.com/pangloss/vim-javascript)
 - [vim-js-pretty-template](https://github.com/Quramy/vim-js-pretty-template)
@@ -70,6 +74,9 @@ Atom autocomplete and snippets for Ember.js.
 
 [atom-ember-snippets](https://github.com/mattmcmanus/atom-ember-snippets) -
 Ember.js ES6, Ember Data & Handlebars snippets for Atom editor.
+
+[language-ember-htmlbars](https://atom.io/packages/language-ember-htmlbars) -
+Add Ember template syntax highlighting and indentation to Atom
 
 ## Sublime Text
 

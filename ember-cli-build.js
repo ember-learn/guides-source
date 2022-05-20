@@ -9,7 +9,7 @@ module.exports = function(defaults) {
       exclude: ['downloads']
     },
     guidemaker: {
-      premberVersionFilter: '3.12.0'
+      premberVersionFilter: '3.24.0'
     }
   });
 

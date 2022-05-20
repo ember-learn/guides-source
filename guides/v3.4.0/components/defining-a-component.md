@@ -56,7 +56,7 @@ Element](./customizing-a-components-element/).
 
 Often times, your components will contain reused Handlebar templates. In
 those cases, you do not need to write any JavaScript at all. Handlebars
-allows you to you to define templates and reuse them as components.
+allows you to define templates and reuse them as components.
 
 If you need to customize the behavior of the component you'll
 need to define a subclass of [`Component`](https://api.emberjs.com/ember/3.4/classes/Component). For example, you would

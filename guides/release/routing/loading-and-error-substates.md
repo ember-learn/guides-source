@@ -21,7 +21,7 @@ Router.map(function() {
 
 ```javascript {data-filename=app/routes/slow-model.js}
 import Route from '@ember/routing/route';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 
 export default class SlowModelRoute extends Route {
   @service store;
@@ -109,7 +109,7 @@ don't immediately resolve, a [`loading`](https://api.emberjs.com/ember/release/c
 
 ```javascript {data-filename=app/routes/user-slow-model.js}
 import Route from '@ember/routing/route';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 import { action } from '@ember/object';
 
 export default class UserSlowModelRoute extends Route {
@@ -227,11 +227,12 @@ redirect to a login page, etc.
 
 ```javascript {data-filename=app/routes/articles-overview.js}
 import Route from '@ember/routing/route';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 import { action } from '@ember/object';
 
 export default class ArticlesOverviewRoute extends Route {
   @service store;
+  @service router;
 
   model(params) {
     return this.store.findAll('privileged-model');
@@ -240,7 +241,7 @@ export default class ArticlesOverviewRoute extends Route {
   @action
   error(error, transition) {
     if (error.status === '403') {
-      this.replaceWith('login');
+      this.router.replaceWith('login');
     } else {
       // Let the route above this handle the error.
       return true;
@@ -257,7 +258,7 @@ we can handle the `error` event and let it bubble by returning `true`.
 
 ```javascript {data-filename=app/routes/articles-overview.js}
 import Route from '@ember/routing/route';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 import { action } from '@ember/object';
 
 export default class ArticlesOverviewRoute extends Route {

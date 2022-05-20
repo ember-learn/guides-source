@@ -25,6 +25,11 @@ rm -rf ./guides/v?.*
 echo "  DONE"
 
 echo
+echo "🤖 Removing pre-built guides."
+rm -rf ./public/v?.*
+echo "  DONE"
+
+echo
 echo "👩‍💻 Go to https://www.algolia.com/apps/Y1OMR4C7MF/api-keys/all"
 read -sp "Algolia Write API Key: " write_api_key
 
@@ -59,6 +64,11 @@ echo "  DONE"
 echo
 echo "🤖 Deleting dist folder"
 rm -r dist
+echo "  DONE"
+
+echo
+echo "🤖 Deleting tmp folder"
+rm -r tmp
 echo "  DONE"
 
 echo

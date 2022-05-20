@@ -443,7 +443,7 @@ export default class ImageComponent extends Component {
   }
 
   get aspectRatio() {
-    return this.args.width / this.args.height;
+    return this.width / this.height;
   }
 }
 ```
@@ -561,7 +561,7 @@ component state or DOM manipulation:
 - `didUpdateAttrs`
 
 These can generally be replaced either by using getters, in cases where they are
-related to updating component state, or by using _modifiers_. For example, installing the [`ember-render-modifiers`](https://github.com/emberjs/ember-render-modifiers) addon will give you the ability to use `{{did-insert}}` and `{{did-update}}`. You can also write your own modifiers! Keep reading below to learn more.
+related to updating component state, or by using _modifiers_. For example, installing the [`@ember/render-modifiers`](https://github.com/emberjs/ember-render-modifiers) addon will give you the ability to use `{{did-insert}}` and `{{did-update}}`. You can also write your own modifiers! Keep reading below to learn more.
 
 #### Updating component state
 

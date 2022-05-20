@@ -11,6 +11,13 @@ There are 2 styles of `if`: **block** and **inline**.
 </div>
 ```
 
+Additionally, you can use template helpers like `concat` within a conditional. For the example below, if `@color` has a truthy value, such as `'navy'`, the div classes will include `badge-navy`:
+
+```handlebars
+<div class="badge {{if @color (concat 'badge-' @color)}}">
+  Badge Text
+</div>
+```
 
 ## Block `if`
 

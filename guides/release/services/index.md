@@ -65,7 +65,7 @@ You can load the shopping cart service with no arguments like below.
 
 ```javascript {data-filename=app/components/cart-contents.js}
 import Component from '@glimmer/component';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 
 export default class CartContentsComponent extends Component {
   // Will load the service defined in: app/services/shopping-cart.js
@@ -79,7 +79,7 @@ Another way to inject a service is to provide the name of the service as an argu
 
 ```javascript {data-filename=app/components/cart-contents.js}
 import Component from '@glimmer/component';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 
 export default class CartContentsComponent extends Component {
   // Will load the service defined in: app/services/shopping-cart.js
@@ -113,7 +113,7 @@ Below we add a remove action to the `cart-contents` component.
 
 ```javascript {data-filename=app/components/cart-contents.js}
 import Component from '@glimmer/component';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 import { action } from '@ember/object';
 
 export default class CartContentsComponent extends Component {
