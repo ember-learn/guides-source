@@ -494,6 +494,50 @@ will be described in greater detail later on in the guides.
 > you exercise caution if using any external decorator libraries which may not
 > have the same stability guarantees.
 
+### Using injection
+
+Instances can also make use of injection if they are embedded into the application container. To achieve this, you need to call [`setOwner`](https://api.emberjs.com/ember/3.27/functions/@ember%2Fapplication/setOwner) on the instance and supply the container. You can access the container by calling [`getOwner`](https://api.emberjs.com/ember/3.27/functions/@ember%2Fapplication/getOwner) on any framework object (components, services, routes, etc.).
+
+```js
+import { inject as service } from '@ember/service';
+import { getOwner, setOwner } from '@ember/application';
+ 
+class Item {
+  @service('shopping-cart') cart;
+
+  function addToCart() {
+    this.cart.add(this);
+  }
+}
+
+// On any framework object...
+let item = new Item();
+setOwner(item, getOwner(this));
+item.addToCart();
+```
+
+Alternatively, you can call `setOwner` in the class constructor and simply supply the caller as an argument to the constructor.
+```js
+import { inject as service } from '@ember/service';
+import { getOwner, setOwner } from '@ember/application';
+
+class Item {
+  @service('shopping-cart') cart;
+
+  constructor(context) {
+    setOwner(this, getOwner(context));
+  }
+
+  function addToCart() {
+    this.cart.add(this);
+  }
+}
+
+// On any framework object...
+let item = new Item(this);
+item.addToCart();
+```
+
 ## Extending Classes
 
 You can create classes that extend existing classes, inheriting all of their
