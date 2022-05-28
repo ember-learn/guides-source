@@ -282,7 +282,7 @@ We have one last component to extract. Let's pull out the new message input.
 
 And include it in our `application.hbs` file.
 
-```handlebars {data-filename="app/templates/application.hbs" data-diff="-6,-7,-8,-9,-10,-11,+12"}
+```handlebars {data-filename="app/templates/application.hbs" data-diff="-6,-7,-8,-9,-10,-11,-12,+13"}
 <div class="messages">
   <ReceivedMessage />
 
