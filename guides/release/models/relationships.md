@@ -258,7 +258,7 @@ And our API might setup these relationships like so:
 
 ### Accessing relationship
 
-When accessing ember-data relationship in your app, you can either ask for accessing the relation asynchronously or synchronously.
+When accessing ember-data relationships in your app, you can either ask for the related record asynchronously or synchronously.
 
 It's possible to configure it through the `{ async: boolean }` property. The default value is `true`.
 
