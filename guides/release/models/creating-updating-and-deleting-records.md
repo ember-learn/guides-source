@@ -118,7 +118,7 @@ let post = store.createRecord('post', {
 let self = this;
 
 function transitionToPost(post) {
-  self.transitionToRoute('posts.show', post);
+  this.router.transitionTo('posts.show', post);
 }
 
 function failure(reason) {
