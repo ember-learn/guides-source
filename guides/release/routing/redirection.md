@@ -7,12 +7,10 @@ Usually you want to redirect them to the login page, and after they have success
 There are many other reasons you probably want to have the last word on whether a user can or cannot access a certain page.
 Ember allows you to control that access with a combination of hooks and methods in your route.
 
-One of the methods is [`transitionTo()`](https://api.emberjs.com/ember/release/classes/Route/methods/transitionTo?anchor=transitionTo).
-Calling `transitionTo()` from a route or
-[`transitionToRoute()`](https://api.emberjs.com/ember/release/classes/Controller/methods/transitionToRoute?anchor=transitionToRoute) from a controller will stop any transitions currently in progress and start a new one, functioning as a redirect.
-`transitionTo()` behaves exactly like the [`LinkTo`](../../templates/links/) helper.
+One of the methods is [`transitionTo()`](https://api.emberjs.com/ember/release/classes/RouterService/methods/transitionTo?anchor=transitionTo).
+Calling `transitionTo()` on the router service will stop any transitions currently in progress and start a new one, functioning as a redirect.
 
-The other one is [`replaceWith()`](https://api.emberjs.com/ember/release/classes/Route/methods/replaceWith?anchor=replaceWith) which works the same way as `transitionTo()`.
+The other one is [`replaceWith()`](https://api.emberjs.com/ember/release/classes/RouterService/methods/replaceWith?anchor=replaceWith) which works the same way as `transitionTo()`.
 The only difference between them is how they manage history.
 `replaceWith()` substitutes the current route entry and replaces it with that of the route we are redirecting to,
 while `transitionTo()` leaves the entry for the current route and creates a new one for the redirection.

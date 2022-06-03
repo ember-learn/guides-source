@@ -110,28 +110,18 @@ a promise, which makes it easy to asynchronously handle success and failure
 scenarios. Here's a common pattern:
 
 ```javascript
-let post = store.createRecord('post', {
+// Assumed to have already injected the router and store services
+const newPost = this.store.createRecord('post', {
   title: 'Rails is Omakase',
   body: 'Lorem ipsum'
 });
 
-let self = this;
-
-function transitionToPost(post) {
-  self.transitionToRoute('posts.show', post);
+try {
+  await newPost.save();
+  this.router.transitionTo('posts.show', newPost.id);
+} catch (error) {
+  // Handle error
 }
-
-function failure(reason) {
-  // handle the error
-}
-
-post
-  .save()
-  .then(transitionToPost)
-  .catch(failure);
-
-// => POST to '/posts'
-// => transitioning to posts.show route
 ```
 
 ## Deleting Records
