@@ -14,7 +14,6 @@ You can use the [deprecation handlers](https://api.emberjs.com/ember/release/fun
 An example handler is shown below that filters out all deprecations that are not going away in release 2.0.0.
 
 ```javascript {data-filename= app/initializers/main.js}
-import Ember from 'ember';
 import { registerDeprecationHandler } from '@ember/debug';
 
 export function initialize() {
