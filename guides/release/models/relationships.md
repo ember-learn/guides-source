@@ -260,7 +260,7 @@ And our API might setup these relationships like so:
 
 When accessing ember-data relationships in your app, you can either ask for the related record asynchronously or synchronously.
 
-It's possible to configure it through the `{ async: boolean }` property. The default value is `true`.
+It's possible to configure it through the ` async` option. The default value is `true`.
 
 ```javascript {data-filename=app/models/organization.js}
 import Model, { hasMany } from '@ember-data/model';
