@@ -276,7 +276,7 @@ Thus, later in your app, you will be able to access the relationship like so:
 let memberships = organization.get('memberships');
 ```
 
-For more information about async relationships, you can [check out the official documentation.](https://api.emberjs.com/ember-data/release/functions/@ember-data%2Fmodel/hasMany)
+For more information, you can [check out the official documentation on async relationships.](https://api.emberjs.com/ember-data/release/functions/@ember-data%2Fmodel/hasMany)
 
 ### Readonly Nested Data
 
