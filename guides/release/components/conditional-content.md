@@ -114,16 +114,10 @@ Like many programming languages, Ember also allows you to write `if else` and
 {{/if}}
 ```
 
-An important feature of `if` statement is that it can be used only inside an
-HTML element or another block. For example following snippet won't work
-because it uses ``if`` statement **on** the HTML element:
+The block form of the `if` statement is typically used to wrap
+HTML elements or another block. If you want to use `if` inside of an HTML element, keep reading to learn about how to use inline `if` instead.
 
-```handlebars {data-filename="app/components/sign-in.hbs"}
-  {{!-- Won't work --}}
-  <button {{#if @disabled}} disabled {{/if}} class="btn">Sign In</button>
-```
-
-Correct usage:
+Here's an example of a block `if`, wrapping some HTML elements:
 
 ```handlebars {data-filename="app/components/sign-in.hbs"}
   {{#if @disabled}}
@@ -131,7 +125,6 @@ Correct usage:
   {{else}}
     <button class="btn">Sign In</button>
   {{/if}}
-```
 
 ## Inline `if`
 
