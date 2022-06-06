@@ -256,7 +256,7 @@ And our API might setup these relationships like so:
 }
 ```
 
-### Accessing relationship
+### Accessing related data
 
 When accessing ember-data relationships in your app, you can either ask for the related record asynchronously or synchronously.
 
