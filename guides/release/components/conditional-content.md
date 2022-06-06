@@ -243,29 +243,13 @@ It looks similar to a ternary operator.
 {{if condition value1 value2}}
 ```
 
-Similarly to block `if`, you need to pay attention where inline `if` is placed
-otherwise ember will be confused. Inline `if` can be used only inside attributes values
-of HTML element. For example:
+Similarly to block `if`, you need to pay attention where inline `if` is placed.
+Inline `if` can be used only inside attribute values
+of HTML elements. For example:
 
 ```handlebars {data-filename="app/components/spinner.hbs"}
   <span class="spinner {{if @inProgress 'visible' 'invisible'}}">
   </span>
-```
-
-In example above, inline ``if`` is correctly used inside class attribute value.
-
-On the other hand, if you intend to use inline ``if`` to add "disabled"
-attribute to the HTML element:
-
-```handlebars {data-filename="app/components/spinner.hbs"}
-  {{!-- Won't work (!) --}}
-  <span {{if @disabled 'disabled' }}">
-  </span>
-```
-
-Ember will get confused and will complain with an error. In example above
-Ember will see `if` as modifier instead and complain about incorrect usage of
-modifier.
 
 
 ## Learn More
