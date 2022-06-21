@@ -18,7 +18,7 @@ Let's take a look at each type and when you might use one over another.
 
 Unit tests check the **correctness of individual methods and functions**. Given an input, does the method return the right output? Since unit tests can check code at the method level, they can form the **foundation of your test suite**. Unit tests are also **extremely fast** by nature.
 
-Unit tests gets created automatically when you use Ember CLI to create [adapters](../../models/customizing-adapters/), controllers, initializers, [models](../../models/defining-models/), [serializers](../../models/customizing-serializers/), [services](../../services/), and utilities. We encourage you to read the rest of the documentation to learn writing tests for each.
+Unit tests get created automatically when you use Ember CLI to create [adapters](../../models/customizing-adapters/), controllers, initializers, [models](../../models/defining-models/), [serializers](../../models/customizing-serializers/), [services](../../services/), and utilities. We encourage you to read the rest of the documentation to learn writing tests for each.
 
 ### Why Use Them?
 
