@@ -190,7 +190,7 @@ The development server is responsible for compiling our app and serving it to th
   </div>
 </div>
 
-You can exit out of the development server at any time by typing `Ctrl + C` into the terminal window where `ember server` is running. That is, typing the "C" key on your keyboard _while_ holding down the "Ctrl" key at the same time. Once it has stopped, you can start it back up again with the same `ember server` command. We recommend having two terminal windows open: one to run the server in background, another to type other Ember CLI commands.
+You can exit out of the development server at any time by typing `Ctrl + C` (for Mac `Cmd + C`) into the terminal window where `ember server` is running. That is, typing the "C" key on your keyboard _while_ holding down the "Ctrl" key at the same time. Once it has stopped, you can start it back up again with the same `ember server` command. We recommend having two terminal windows open: one to run the server in background, another to type other Ember CLI commands.
 
 ## Editing Files and Live Reload
 
