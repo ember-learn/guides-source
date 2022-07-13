@@ -243,7 +243,7 @@ On the other hand, if you're looking at JavaScript documentation that tells you 
 
 If you want to set a property, you can use the `prop` element modifier.
 
-## Calling Methods On First Render
+## Calling Methods On Render
 
 So far, we've talked about web APIs that work by setting attributes as well as web APIs that work by setting properties. But what about web APIs that work by calling methods, like setting focus on an element?
 
@@ -253,35 +253,30 @@ For example, let's say we want to focus an `<input>` in a form as soon as the fo
 inputElement.focus();
 ```
 
-This code needs to run after the element is rendered.
-
-The simplest way to accomplish this is by using the `did-insert` modifier from [@ember/render-modifiers][render-modifiers].
-
-[render-modifiers]: https://github.com/emberjs/ember-render-modifiers
+This code needs to run after the element is rendered, and modifiers provided that capability.
 
 ```handlebars {app/components/edit-form.hbs}
 <form>
-  <input {{did-insert this.focus}}>
+  <input {{this.autofocus}}>
 </form>
 ```
 
+Here we define a local modifier right on the component class.
+
 ```js {app/components/edit-form.js}
 import Component from '@glimmer/component';
-import { action } from '@ember/object';
+import { modifier } from 'ember-modifier';
 
 export default class EditFormComponent extends Component {
-  @action
-  focus(element) {
-    element.focus();
-  }
+  autofocus = modifier((element) => element.focus());
 }
 ```
 
-The `did-insert` modifier will call a function after its element is added to the DOM. That function receives the element as a parameter.
+More information about `ember-modifier` can be found [on the README](https://github.com/ember-modifier/ember-modifier) as well as philosophy, how to think about modifiers, etc.
 
-### Abstracting the Logic Into a Custom Modifier
+### Abstracting the Logic Into a Shareable Modifier
 
-Using the `did-insert` modifier works well for one-off cases, but if you want to pull this logic into reusable functionality that you can use throughout your app, you can make your _own_ modifier.
+Using the local modifier sworks well for one-off cases, but if you want to pull this logic into reusable functionality that you can use throughout your app, you can move the modifier to a globally accessible place
 
 The modifier that we're going to build will allow us to say:
 
@@ -291,9 +286,9 @@ The modifier that we're going to build will allow us to say:
 </form>
 ```
 
-Pretty nice, right?
+No need for `this`, or to define anything on your component class.
 
-To accomplish that, we'll create a modifier in `app/modifiers/autofocus.js`. First, install [`ember-modifier`](https://github.com/ember-modifier/ember-modifier) and then generate an `autofocus` modifier for your app:
+To accomplish that, we'll create a file at `app/modifiers/autofocus.js`. First, ensure that [`ember-modifier`](https://github.com/ember-modifier/ember-modifier) is installed and then generate an `autofocus` modifier for your app:
 
 ```bash
 ember install ember-modifier
@@ -448,7 +443,7 @@ document.addEventListener("click", event => {
 
 The most important difference between this example and the cases we've seen so far is that we need to remove the `click` event handler from the document when this element is destroyed.
 
-To accomplish this, we can use [`ember-modifier`](https://github.com/ember-modifier/ember-modifier) to create a `on-click-outside` modifier that sets up the event listener after the element is first inserted and removes the event listener when the element is removed. 
+To accomplish this, we can use [`ember-modifier`](https://github.com/ember-modifier/ember-modifier) to create a `on-click-outside` modifier that sets up the event listener after the element is first inserted and removes the event listener when the element is removed.
 
 Run the following commands to install the addon and generate a new modifier:
 
