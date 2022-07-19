@@ -63,7 +63,7 @@ Let's open the generated test file and replace the boilerplate test with our own
 import { module, test } from 'qunit';
 import { visit, currentURL } from '@ember/test-helpers';
 import { click, visit, currentURL } from '@ember/test-helpers';
-import { setupApplicationTest } from 'ember-qunit';
+import { setupApplicationTest } from 'super-rentals/tests/helpers';
 
 module('Acceptance | super rentals', function (hooks) {
   setupApplicationTest(hooks);
@@ -136,7 +136,7 @@ Let's practice what we learned by adding tests for the remaining pages:
 ```js { data-filename="tests/acceptance/super-rentals-test.js" data-diff="+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33,+34,+35,+36,+37,+38,+39,+40,+41,+42" }
 import { module, test } from 'qunit';
 import { click, visit, currentURL } from '@ember/test-helpers';
-import { setupApplicationTest } from 'ember-qunit';
+import { setupApplicationTest } from 'super-rentals/tests/helpers';
 
 module('Acceptance | super rentals', function (hooks) {
   setupApplicationTest(hooks);

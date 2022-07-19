@@ -107,7 +107,7 @@ Now that we've finished our refactor and tried it out in the UI, let's write a t
 
 ```js { data-filename="tests/integration/components/rentals-test.js" }
 import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
+import { setupRenderingTest } from 'super-rentals/tests/helpers';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
@@ -336,7 +336,7 @@ Hooray, it works! Awesome. Now that we've tried this out manually in the UI, let
 
 ```js { data-filename="tests/integration/components/rentals-test.js" data-diff="-3,+4,-10,+11,+67,+69,+90,+91,+92,+93,+94,+95,+96,+97,+98,+99,+100,+101,+102,+103,+104,+105,+106,+107,+108" }
 import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
+import { setupRenderingTest } from 'super-rentals/tests/helpers';
 import { render } from '@ember/test-helpers';
 import { render, fillIn } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';

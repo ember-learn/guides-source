@@ -129,7 +129,7 @@ Alright, we have just one more step left here: updating the tests. We can add an
 
 ```js { data-filename="tests/integration/components/rental-test.js" data-diff="+12,+34,+35,+36" }
 import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
+import { setupRenderingTest } from 'super-rentals/tests/helpers';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
@@ -291,7 +291,7 @@ Now that we have this template in place, we can add some tests for this new comp
 
 ```handlebars { data-filename="tests/integration/components/rental/detailed-test.js" data-diff="-9,-10,-11,+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,-34,+35,+36,-38,+39,+40,+41,+42,+43,+44,+45,-47,-48,-49,-50,-51,-52,+53,+54,-56,+57,+58,+59,+60,+61,+62,+63,+64" }
 import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
+import { setupRenderingTest } from 'super-rentals/tests/helpers';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
@@ -385,7 +385,7 @@ Finally, let's add a `rental` template to actually _invoke_ our `<Rental::Detail
 ```js { data-filename="tests/acceptance/super-rentals-test.js" data-diff="+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33,+34,+35,+36,+37,+38,+39" }
 import { module, test } from 'qunit';
 import { click, visit, currentURL } from '@ember/test-helpers';
-import { setupApplicationTest } from 'ember-qunit';
+import { setupApplicationTest } from 'super-rentals/tests/helpers';
 
 module('Acceptance | super rentals', function (hooks) {
   setupApplicationTest(hooks);

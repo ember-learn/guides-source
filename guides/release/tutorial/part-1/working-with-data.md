@@ -174,7 +174,7 @@ Therefore, in our `<Rental>` component's test, we will have to feed the data int
 
 ```js { data-filename="tests/integration/components/rental-test.js" data-diff="-10,+11,+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30" }
 import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
+import { setupRenderingTest } from 'super-rentals/tests/helpers';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
