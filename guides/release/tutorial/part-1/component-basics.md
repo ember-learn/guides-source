@@ -143,7 +143,7 @@ Let's replace the boilerplate code that was generated for us with our own test:
 
 ```js { data-filename="tests/integration/components/jumbo-test.js" data-diff="-9,-10,-11,+12,+13,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,+27,+28,+29" }
 import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
+import { setupRenderingTest } from 'super-rentals/tests/helpers';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
@@ -269,7 +269,7 @@ But what kind of test? We _could_ write a component test for the `<NavBar>` by i
 ```js { data-filename="tests/acceptance/super-rentals-test.js" data-diff="+12,+13,+26,+27,+40,+41,+49,+50,+51,+52,+53,+54,+55,+56,+57,+58,+59,+60,+61,+62,+63,+64,+65,+66" }
 import { module, test } from 'qunit';
 import { click, visit, currentURL } from '@ember/test-helpers';
-import { setupApplicationTest } from 'ember-qunit';
+import { setupApplicationTest } from 'super-rentals/tests/helpers';
 
 module('Acceptance | super rentals', function (hooks) {
   setupApplicationTest(hooks);

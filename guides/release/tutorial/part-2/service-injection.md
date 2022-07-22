@@ -194,7 +194,7 @@ To be sure, let's add some tests! Let's start with an acceptance test:
 import { module, test } from 'qunit';
 import { click, visit, currentURL } from '@ember/test-helpers';
 import { click, find, visit, currentURL } from '@ember/test-helpers';
-import { setupApplicationTest } from 'ember-qunit';
+import { setupApplicationTest } from 'super-rentals/tests/helpers';
 
 module('Acceptance | super rentals', function (hooks) {
   setupApplicationTest(hooks);
@@ -384,7 +384,7 @@ We will take advantage of this capability in our component test:
 
 ```js { data-filename="tests/integration/components/share-button-test.js" data-diff="+3,-7,-8,+9,+10,+11,+12,-14,-15,-16,+17,+18,+19,+20,+21,-23,+24,+25,-27,+28,+29,+30,-32,-33,-34,-35,-36,-37,+38,+39,-41,+42,+43,+44,+45,+46,+47,+48,+49,+50,+51,+52" }
 import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
+import { setupRenderingTest } from 'super-rentals/tests/helpers';
 import Service from '@ember/service';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
@@ -449,7 +449,7 @@ While we are here, let's add some more tests for the various functionalities of 
 
 ```js { data-filename="tests/integration/components/share-button-test.js" data-diff="-4,+5,+24,+25,+26,+27,+28,+29,-39,-40,-41,-42,+43,+47,+48,+49,+50,+51,+52,+53,+54,+55,+56,+57,+58,+59,+60,+61,+62,+63,+64,+65,+66,+67,+68,+69,+70,+71,+72,+73,+74,+75,+76,+77,+78,+79,+80,+81,+82,+83,+84,+85,+86,+87,+88,+89,+90,+91,+92,+93,+94" }
 import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
+import { setupRenderingTest } from 'super-rentals/tests/helpers';
 import Service from '@ember/service';
 import { render } from '@ember/test-helpers';
 import { find, render } from '@ember/test-helpers';
