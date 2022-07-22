@@ -2,7 +2,7 @@ The Ember router has four options to manage your application's URL:  `history`,
 which uses the HTML5 History API; `hash`, which uses anchor-based URLs; `auto`,
 which uses `history` if supported by the user's browser, and falls back to
 `hash` otherwise; and `none`, which doesn't update the URL. By default, Ember
-CLI configures the router to use `auto`. You can change this option in
+CLI configures the router to use `history`. You can change this option in
 `config/environment.js` under `ENV.locationType`.
 
 ## history
