@@ -9,7 +9,8 @@ module('Acceptance | version menu when changing versions', function(hooks) {
   test('stays on index page', async function(assert) {
     await visit('/v2.17.0/');
     await selectChoose('.ember-basic-dropdown-trigger', '2.10');
-    assert.equal(currentURL(), '/v2.10.0');
+    const isOnIndexPage = currentURL() === '/v2.10.0/' || currentURL() === '/v2.10.0'
+    assert.ok(isOnIndexPage);
   });
 
   test('stays on same section', async function(assert) {
