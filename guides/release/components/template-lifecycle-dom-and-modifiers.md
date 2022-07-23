@@ -271,7 +271,10 @@ Here is how we can use our new modifier in a template:
 
 ```handlebars {app/components/edit-form.hbs}
 <form>
-  <input {{this.autofocus}}>
+  <label>
+    Name:
+    <input {{this.autofocus}}>
+  <label>
 </form>
 ```
 
