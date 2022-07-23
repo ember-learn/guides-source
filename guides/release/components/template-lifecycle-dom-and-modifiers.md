@@ -254,7 +254,12 @@ inputElement.focus();
 ```
 
 We can use a modifier to run a method immediately after an element has rendered.
-To follow along with the examples below, make sure you have `ember-modifier` installed in your app.
+To follow along with the examples below, make sure you have `ember-modifier` installed in your app:
+
+```
+npx ember install ember-modifier
+```
+
 Import `modifier` from `ember-modfier`, add an `autofocus` method to the component class,
 and then use it in a component template.
 
@@ -263,7 +268,7 @@ import Component from '@glimmer/component';
 import { modifier } from 'ember-modifier';
 
 export default class EditFormComponent extends Component {
-  autofocus = modifier((element) => element.focus());
+  autofocus = modifier((element) => element.focus(), { eager: false });
 }
 ```
 
