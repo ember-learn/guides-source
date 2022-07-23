@@ -245,7 +245,7 @@ If you want to set a property, you can use the `prop` element modifier.
 
 ## Calling Methods On Render
 
-So far, we've talked about web APIs that work by setting attributes as well as web APIs that work by setting properties. But what about web APIs that work by calling methods, like setting focus on an element?
+So far, we've talked about web APIs that work by setting attributes as well as web APIs that work by setting properties. But what about web APIs that work by calling methods, like setting focus on an element? 
 
 For example, let's say we want to focus an `<input>` in a form as soon as the form is rendered. The web API for focusing an element is:
 
@@ -254,15 +254,9 @@ inputElement.focus();
 ```
 
 We can use a modifier to run a method immediately after an element has rendered.
-In this example, we add an `autofocus` method to the component class, and use it in a template:
-
-```handlebars {app/components/edit-form.hbs}
-<form>
-  <input {{this.autofocus}}>
-</form>
-```
-
-Here we define a local modifier right on the component class.
+To follow along with the examples below, make sure you have `ember-modifier` installed in your app.
+Import `modifier` from `ember-modfier`, add an `autofocus` method to the component class,
+and then use it in a component template.
 
 ```js {app/components/edit-form.js}
 import Component from '@glimmer/component';
@@ -271,6 +265,14 @@ import { modifier } from 'ember-modifier';
 export default class EditFormComponent extends Component {
   autofocus = modifier((element) => element.focus());
 }
+```
+
+Here is how we can use our new modifier in a template:
+
+```handlebars {app/components/edit-form.hbs}
+<form>
+  <input {{this.autofocus}}>
+</form>
 ```
 
 Modifiers can be used in many other ways! For API documentation and more examples, visit the [the `ember-modifier` README](https://github.com/ember-modifier/ember-modifier).
