@@ -253,7 +253,8 @@ For example, let's say we want to focus an `<input>` in a form as soon as the fo
 inputElement.focus();
 ```
 
-This code needs to run after the element is rendered, and modifiers provided that capability.
+We can use a modifier to run a method immediately after an element has rendered.
+In this example, we add an `autofocus` method to the component class, and use it in a template:
 
 ```handlebars {app/components/edit-form.hbs}
 <form>
@@ -272,11 +273,11 @@ export default class EditFormComponent extends Component {
 }
 ```
 
-More information about `ember-modifier` can be found [on the README](https://github.com/ember-modifier/ember-modifier) as well as philosophy, how to think about modifiers, etc.
+Modifiers can be used in many other ways! For API documentation and more examples, visit the [the `ember-modifier` README](https://github.com/ember-modifier/ember-modifier).
 
 ### Abstracting the Logic Into a Shareable Modifier
 
-Using the local modifier sworks well for one-off cases, but if you want to pull this logic into reusable functionality that you can use throughout your app, you can move the modifier to a globally accessible place
+Writing a modifier in a component class works well for one-time use cases, but if you want to reuse the modifier in other places within your app, you can move the modifier to a globally accessible place.
 
 The modifier that we're going to build will allow us to say:
 
