@@ -24,9 +24,8 @@ Syntax formatting for glimmer templates.
 [VSCode Glimmer](https://marketplace.visualstudio.com/items?itemName=chiragpat.vscode-glimmer) -
 Provides embedded template highlighting support.
 
-[Prettier for Handlebars](https://marketplace.visualstudio.com/items?itemName=Alonski.prettier-for-handlebars-vscode) -
-Format your handlebars files with Prettier ...that's it!
-Note, because this uses the currently unreleased Prettier, it may break with future changes to Prettier.
+[Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) -
+Prettier is an opinionated code formatter. It enforces a consistent style by parsing your code and re-printing it with its own rules that take the maximum line length into account, wrapping code when necessary. Prettier supports Handlebars, Ember and Glimmer out of the box.
 
 ## Vim and Neovim
 
