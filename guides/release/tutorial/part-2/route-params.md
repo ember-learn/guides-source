@@ -412,10 +412,10 @@ module('Acceptance | super rentals', function (hooks) {
     assert.strictEqual(currentURL(), '/rentals/grand-old-mansion');
   });
 
-  test('visiting /rentals/grand-old-mansion', async function (assert) {
-    await visit('/rentals/grand-old-mansion');
+  test('visiting /rental/grand-old-mansion', async function (assert) {
+    await visit('/rental/grand-old-mansion');
 
-    assert.strictEqual(currentURL(), '/rentals/grand-old-mansion');
+    assert.strictEqual(currentURL(), '/rental/grand-old-mansion');
     assert.dom('nav').exists();
     assert.dom('h1').containsText('SuperRentals');
     assert.dom('h2').containsText('Grand Old Mansion');
