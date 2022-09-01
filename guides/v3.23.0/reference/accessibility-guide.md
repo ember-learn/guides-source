@@ -1,3 +1,0 @@
----
-redirect: accessibility/index
----

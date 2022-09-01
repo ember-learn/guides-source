@@ -1,3 +1,0 @@
----
-redirect: components/conditional-content
----

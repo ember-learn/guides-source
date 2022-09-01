@@ -1,3 +1,0 @@
----
-redirect: ember-inspector/index
----
