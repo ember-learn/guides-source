@@ -58,5 +58,5 @@ let ENV = {
 };
 ```
 
-For the truly ambitious developer, setting `ENV.EmberENV.ENABLE_ALL_FEATURES` to `true` will enable all
+For the truly ambitious developer, setting `ENV.EmberENV.ENABLE_OPTIONAL_FEATURES` to `true` will enable all
 experimental features.
