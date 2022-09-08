@@ -15,6 +15,17 @@ or via an argument passed to a component
 <div {{@someModifier}}>
 ```
 
+Modifiers can be curried with the `modifier` helper:
+```hbs
+{{! In a component called "Example" }}
+{{yield (modifier someModifier "arguments" "here")}}
+
+{{! Usage: }}
+<Example as |theModifier|>
+  <div {{theModifier}}>
+</Example>
+```
+
 
 ## Helpers
 
@@ -35,6 +46,17 @@ or via an argument passed to a component
 {{ (@theHelper) }}
 ```
 
+Helpers can be curried with the `helper` helper:
+```hbs
+{{! In a component called "Example" }}
+{{yield (helper someHelper "arguments" "here")}}
+
+{{! Usage: }}
+<Example as |theHelper|>
+  {{ (theHelper) }}
+</Example>
+```
+
 ## Components
 
 For Components, there is a specific syntax that only components may reside in
@@ -50,3 +72,16 @@ or via an argument passed to a component
 <@someComponent />
 ```
 
+Components can be curried with the `component` helper:
+```hbs
+{{!
+  In a component called "Example".
+  Note that components may only receive named arguments
+}}
+{{yield (component someComponent foo="arguments" bar="here")}}
+
+{{! Usage: }}
+<Example as |theComponent|>
+  <theComponent />
+</Example>
+```
