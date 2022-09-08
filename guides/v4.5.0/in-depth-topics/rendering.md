@@ -6,6 +6,15 @@ For Modifiers, there is a specific syntax that only modifiers may reside in
 ```hbs
 <div {{someModifier}}>
 ```
+or via property on some object
+```hbs
+<div {{this.property.someModifier}}>
+```
+or via an argument passed to a component
+```hbs
+<div {{@someModifier}}>
+```
+
 
 ## Helpers
 
@@ -16,6 +25,14 @@ For Helpers, there is a specific syntax that only helpers may reside in
 or nested in a sub-expression
 ```hbs
 {{yield (hash key=(theHelper) key2=(theHelper with args)) }}
+```
+or via property on some object
+```hbs
+{{ (this.property.theHelper) }}
+```
+or via an argument passed to a component
+```hbs
+{{ (@theHelper) }}
 ```
 
 ## Components
