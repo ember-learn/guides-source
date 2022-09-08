@@ -499,7 +499,7 @@ will be described in greater detail later on in the guides.
 Instances can also make use of injection if they are embedded into the application container. To achieve this, you need to call [`setOwner`](https://api.emberjs.com/ember/3.27/functions/@ember%2Fapplication/setOwner) on the instance and supply the container. You can access the container by calling [`getOwner`](https://api.emberjs.com/ember/3.27/functions/@ember%2Fapplication/getOwner) on any framework object (components, services, routes, etc.).
 
 ```js
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 import { getOwner, setOwner } from '@ember/application';
  
 class Item {
@@ -518,7 +518,7 @@ item.addToCart();
 
 Alternatively, you can call `setOwner` in the class constructor and simply supply the caller as an argument to the constructor.
 ```js
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 import { getOwner, setOwner } from '@ember/application';
 
 class Item {
