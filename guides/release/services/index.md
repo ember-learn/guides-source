@@ -56,8 +56,7 @@ export default class ShoppingCartService extends Service {
 ### Accessing Services
 
 To access a service,
-you can inject it in any container-resolved object such as a component or another service using the `inject` decorator from the `@ember/service` module.
-Standard practice is to alias `inject` as `service` to make it more clear that it is performing service injection.
+you can inject it into any container-resolved object such as a component or another service using the `service` decorator from the `@ember/service` module.
 There are two ways to use this decorator.
 You can either invoke it with no arguments, or you can pass it the registered name of the service.
 When no arguments are passed, the service is loaded based on the name of the decorated property.
