@@ -28,7 +28,7 @@ behavior by using HTML, modifiers, and other components within the block.
 To make that more concrete, let's take a look at two similar components
 representing different user's messages.
 
-```handlebars {data-filename="app/components/received-message.hbs"}
+```handlebars {data-filename="app/components/received-message/index.hbs"}
 <aside>
   <div class="avatar is-active" title="Tomster's avatar">T</div>
 </aside>
@@ -45,7 +45,7 @@ representing different user's messages.
 </section>
 ```
 
-```handlebars {data-filename="app/components/sent-message.hbs"}
+```handlebars {data-filename="app/components/sent-message/index.hbs"}
 <aside class="current-user">
   <div class="avatar" title="Zoey's avatar">Z</div>
 </aside>
@@ -91,14 +91,14 @@ and conditionals to handle the differences in content between them (see the
 previous chapters for details on how to do this).
 
 ```handlebars {data-filename="app/components/message.hbs"}
-<Message::Avatar
+<Avatar
   @title={{@avatarTitle}}
   @initial={{@avatarInitial}}
   @isActive={{@userIsActive}}
   class="{{if @isCurrentUser "current-user"}}"
 />
 <section>
-  <Message::Username
+  <Username
     @name={{@username}}
     @localTime={{@userLocalTime}}
   />
@@ -115,14 +115,14 @@ supplied by the `<Message>` tag.
 The way to do this in Ember is by using the `{{yield}}` syntax.
 
 ```handlebars {data-filename="app/components/message.hbs"}
-<Message::Avatar
+<Avatar
   @title={{@avatarTitle}}
   @initial={{@avatarInitial}}
   @isActive={{@userIsActive}}
   class="{{if @isCurrentUser "current-user"}}"
 />
 <section>
-  <Message::Username
+  <Username
     @name={{@username}}
     @localTime={{@userLocalTime}}
   />
@@ -151,7 +151,7 @@ The way to do this in Ember is by using the `{{yield}}` syntax.
 You can think of using `{{yield}}` as leaving a placeholder for the content of the
 `<Message>` tag.
 
-```handlebars {data-filename="app/components/received-message.hbs"}
+```handlebars {data-filename="app/components/received-message/index.hbs"}
 <Message
   @username="Tomster"
   @userIsActive={{true}}
@@ -167,7 +167,7 @@ You can think of using `{{yield}}` as leaving a placeholder for the content of t
 </Message>
 ```
 
-```handlebars {data-filename="app/components/sent-message.hbs"}
+```handlebars {data-filename="app/components/sent-message/index.hbs"}
 <Message
   @username="Zoey"
   @isCurrentUser={{true}}
