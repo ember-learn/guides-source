@@ -55,7 +55,6 @@ Let's start with the sample HTML for a messaging app (that we introduced in the 
   </section>
 
   <form>
-    <label for="message">Message</label>
     <input id="message" />
     <button type="submit">
       Send
