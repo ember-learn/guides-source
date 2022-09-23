@@ -64,7 +64,6 @@ instance, you can copy the following example HTML for a simple messaging app:
   </section>
 
   <form>
-    <label for="message">Message</label>
     <input id="message" />
     <button type="submit">
       Send
