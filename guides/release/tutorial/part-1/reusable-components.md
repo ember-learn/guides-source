@@ -91,6 +91,27 @@ As its name implies, `config/environment.js` is used to _configure_ our app and 
   </div>
 </div>
 
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+        <p>The above described way of storing your MapBox token will expose it on the
+        repository once you upload it. There is a safer way to store your public token, using dotenv:
+        <ul>
+          <li>run <code>ember i ember-cli-dotenv</code></li>
+          <li>create a .env file in the root folder and add the intended variable</li>
+          <li>on the dotenv.js file, add the variables to the clientAllowedKeys array</li>
+          <li>type <code>import ENV from '&lt;your_app_name&gt;"/config/environment'</code> on the
+          file in which you intend to access the env variable</li>
+          <li>access it with <code>ENV.&lt;env_var&gt;</code></li>
+        </ul>
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
+  </div>
+</div>
+
 After saving the changes to our configuration file, we will need to restart our development server to pick up these file changes. Unlike the files we have edited so far, `config/environment.js` is not automatically reloaded.
 
 <!-- TODO: https://github.com/ember-cli/ember-cli/issues/8782 -->
