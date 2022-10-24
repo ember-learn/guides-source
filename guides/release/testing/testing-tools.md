@@ -50,22 +50,6 @@ test("should allow disabling the button", async function (assert) {
 });
 ```
 
-### Mocha, Chai DOM
-
-[Mocha](https://mochajs.org/) is another testing framework. If you are more familiar with Mocha, you can install [ember-mocha](https://github.com/emberjs/ember-mocha) and [Chai DOM](https://www.chaijs.com/plugins/chai-dom/) instead.
-
-<div class="cta">
-  <div class="cta-note">
-    <div class="cta-note-body">
-      <div class="cta-note-heading">Zoey says...</div>
-      <div class="cta-note-message">
-        All examples in this guide follow QUnit. Rest assured, the best practices for testing that we present in this guide are independent of your choice of testing framework. Keep in mind, the setup functions from <a href="https://github.com/emberjs/ember-qunit" target="_blank" rel="noopener noreferrer">ember-qunit</a>—<code>setupTest</code>, <code>setupRenderingTest</code>, and <code>setupApplicationTest</code>—need to be replaced with those from <a href="https://github.com/emberjs/ember-mocha" target="_blank" rel="noopener noreferrer">ember-mocha</a>.
-      </div>
-    </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="">
-  </div>
-</div>
-
 ### Ember CLI
 
 When you use [Ember CLI](https://ember-cli.com/generators-and-blueprints) to generate an Ember "object" (e.g. component, model, service), it will create a test file with a setup that correctly addresses your testing framework and the [type of test that you should write](./test-types).
