@@ -9,15 +9,10 @@ The RFC process is how community members and core team members
 propose changes, such as adding new features or
 making deprecations.
 
-You can see work-in-progress proposals in the
-[Ember RFCs repository Pull Requests](https://github.com/emberjs/rfcs/pulls),
-and participate in giving feedback.
-[Merged RFCs](https://emberjs.github.io/rfcs/) are proposals
-that can move forward with implementation.
-You can reach out to an RFC author to find out how to
-get involved.
-
-You can also [learn how to write your own RFC](https://github.com/emberjs/rfcs#ember-rfcs).
+For more information about the RFC Process, including seeing the status of
+existing RFCs, learning how to write your own RFC, giving feedback to proposed RFCs,
+and how to help move accepted RFCs to full completion, visit the
+[RFCs Website](https://rfcs.emberjs.com).
 
 ## Background information
 
