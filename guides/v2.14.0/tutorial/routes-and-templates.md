@@ -134,9 +134,7 @@ that makes it easy to link between our routes.  Let's adjust our `about.hbs` fil
     By building a property rental site, we can simultaneously imagine traveling
     AND building Ember applications.
   </p>
-  {{#link-to 'contact' class="button"}}
-    Contact Us
-  {{/link-to}}
+  <LinkTo @route="contact" class="button">Contact Us</LinkTo>
 </div>
 ```
 
@@ -165,9 +163,7 @@ Now, we'll add our corresponding link to the contact page so we can move back an
     <a href="tel:503.555.1212">+1 (503) 555-1212</a><br>
     <a href="mailto:superrentalsrep@emberjs.com">superrentalsrep@emberjs.com</a>
   </p>
-  {{#link-to 'about' class="button"}}
-    About
-  {{/link-to}}
+  <LinkTo @route="about" class="button">About</LinkTo>
 </div>
 ```
 
@@ -187,9 +183,7 @@ We'll come back to this page in a bit to add in the actual rental properties.
   <div class="right tomster"></div>
   <h2>Welcome!</h2>
   <p>We hope you find exactly what you're looking for in a place to stay.</p>
-  {{#link-to 'about' class="button"}}
-    About Us
-  {{/link-to}}
+  <LinkTo @route="about" class="button">About</LinkTo>
 </div>
 ```
 
