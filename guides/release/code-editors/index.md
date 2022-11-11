@@ -7,8 +7,22 @@ many of which are created and maintained by the developer community:
 Visual Studio Code is a code editor optimized for building and debugging modern web applications.
 Visual Studio Code is one of the most popular text editors among Ember developers.
 
+### Syntax Highlighting
+
+Only one of these is needed.
+
+[VSCode Glimmer](https://marketplace.visualstudio.com/items?itemName=chiragpat.vscode-glimmer) -
+Provides embedded template highlighting support.
+
+[Glimmer Templates Syntax](https://marketplace.visualstudio.com/items?itemName=lifeart.vscode-glimmer-syntax) -
+Syntax formatting for glimmer templates.
+
+### Language Server
+
 [Stable Ember Language Server](https://marketplace.visualstudio.com/items?itemName=lifeart.vscode-ember-unstable) -
 Stable Ember Language Server is a stable, full-featured language server. Its name comes from its history as a fork of Ember Language Server and the efforts to keep up with changes in Ember.
+
+### Snippets / Workflow
 
 [Ember JS (ES6) and Handlebars code snippets](https://marketplace.visualstudio.com/items?itemName=phanitejakomaravolu.EmberES6Snippets) -
 Enables Ember.js and Handlebars snippets to let you to type less and code more.
@@ -17,12 +31,6 @@ Enables Ember.js and Handlebars snippets to let you to type less and code more.
 Attempts to override user/workspace settings with settings found in `.editorconfig` files.
 The `.editorconfig` file helps developers define
 and maintain consistent coding styles between different editors and IDEs.
-
-[Glimmer Templates Syntax](https://marketplace.visualstudio.com/items?itemName=lifeart.vscode-glimmer-syntax) -
-Syntax formatting for glimmer templates.
-
-[VSCode Glimmer](https://marketplace.visualstudio.com/items?itemName=chiragpat.vscode-glimmer) -
-Provides embedded template highlighting support.
 
 [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) -
 Prettier is an opinionated code formatting tool. It enforces a consistent style by parsing your code and re-printing it with its own rules that take the maximum line length into account, wrapping code when necessary. Prettier supports Handlebars, Ember and Glimmer out of the box.
@@ -37,29 +45,53 @@ Both editors share a range of cross-compatible extensions listed below.
 You'll want to remove any linter / completion manager you currently have installed
 (or disable them for `.js`, `.ts` or `.hbs` files), and follow the install guides for the following packages:
 
-[ember.vim](https://github.com/dsawardekar/ember.vim) -
-Shortcuts to navigate related files with Ember.js projects.
+### Syntax Highlighting
+
+Only one of these solutions is needed, with tree-sitter being the highest fidelity.
+
+[nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) -
+high-fidelity static highlighting with support for `.gjs` and `.gts` and embedded `hbs`. 
+Use `ensure_installed = { 'glimmer' }`.
+Example treesitter config [can be found here](https://github.com/NullVoxPopuli/dotfiles/blob/main/home/.config/nvim/lua/plugins/syntax.lua#L15)
+
+or
 
 [vim-ember-hbs](https://github.com/joukevandermaas/vim-ember-hbs) -
 Add Ember template syntax highlighting and indentation to Vim.
+To get embedded highlighting will involve these additional plugins:
+- [vim-javascript](https://github.com/pangloss/vim-javascript)
+- [vim-js-pretty-template](https://github.com/Quramy/vim-js-pretty-template)
 
-[Ember Tools](https://github.com/AndrewRadev/ember_tools.vim) -
-Various tools for working with Ember.js projects.
+
+### Language Server
+
+Only one of these solutions should be used at a time
+
+Native LSP with assistance from [Mason.nvim](https://github.com/williamboman/mason.nvim)
+Easily install and manage LSP servers, DAP servers, linters, and formatters.
+Example mason+lsp config [can be found here](https://github.com/NullVoxPopuli/dotfiles/tree/main/home/.config/nvim/lua)
+
+or 
+
+[Conquer for Completion (COC) for Neovim](https://github.com/neoclide/coc.nvim) -
+An Intellisense engine which takes control over all linting, hinting, and language-server integration.
+With the ember plugin [coc-ember](https://github.com/NullVoxPopuli/coc-ember) -
+Ember.js language server extension including useful configuration instructions.
 
 [Conquer for Completion (COC) for Neovim](https://github.com/neoclide/coc.nvim) -
 An Intellisense engine which takes control over all linting, hinting, and language-server integration.
 
-[coc-ember](https://github.com/NullVoxPopuli/coc-ember) -
-Ember.js language server extension including useful configuration instructions.
 
-[nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) -
-high-fidelity static highlighting. With `ensure_installed = { 'glimmer' }`, this
-also includes support for embedded templates in JavaScript and typescript.
+### Snippets / Workflow
 
-To get embedded template highlighting without tree-sitter (and too much config to include here):
-- [vim-ember-hbs](https://github.com/joukevandermaas/vim-ember-hbs)
-- [vim-javascript](https://github.com/pangloss/vim-javascript)
-- [vim-js-pretty-template](https://github.com/Quramy/vim-js-pretty-template)
+
+[ember.vim](https://github.com/dsawardekar/ember.vim) -
+Shortcuts to navigate related files with Ember.js projects.
+
+
+[Ember Tools](https://github.com/AndrewRadev/ember_tools.vim) -
+Various tools for working with Ember.js projects.
+
 
 ## Atom
 
