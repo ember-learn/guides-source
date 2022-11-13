@@ -5,13 +5,13 @@ You can create records by calling the
 method on the store.
 
 ```javascript
-store.createRecord('post', {
+this.store.createRecord('post', {
   title: 'Rails is Omakase',
   body: 'Lorem ipsum'
 });
 ```
 
-The store object is available in controllers and routes using `this.store`.
+To make `store` available, you can [inject the `store` service](https://guides.emberjs.com/release/models/#toc_injecting-the-store).
 
 ## Updating Records
 
