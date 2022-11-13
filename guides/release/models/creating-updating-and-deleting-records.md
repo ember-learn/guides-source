@@ -11,8 +11,6 @@ store.createRecord('post', {
 });
 ```
 
-The store object is available in controllers and routes using `this.store`.
-
 ## Updating Records
 
 Making changes to Ember Data records is as simple as setting the attribute you
