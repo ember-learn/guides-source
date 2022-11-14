@@ -50,9 +50,9 @@ You'll want to remove any linter / completion manager you currently have install
 Only one of these solutions is needed, with tree-sitter being the highest fidelity.
 
 [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) -
-high-fidelity static highlighting with support for `.gjs` and `.gts` and embedded `hbs`. 
+high-fidelity static highlighting with support for `.gjs` and `.gts` and embedded `hbs`.
 Use `ensure_installed = { 'glimmer' }`.
-Example treesitter config [can be found here](https://github.com/NullVoxPopuli/dotfiles/blob/main/home/.config/nvim/lua/plugins/syntax.lua#L15)
+Example `nvim-treesitter` config [can be found here](https://github.com/NullVoxPopuli/dotfiles/blob/main/home/.config/nvim/lua/plugins/syntax.lua#L15)
 
 or
 
@@ -69,9 +69,9 @@ Only one of these solutions should be used at a time
 
 Native LSP with assistance from [Mason.nvim](https://github.com/williamboman/mason.nvim)
 Easily install and manage LSP servers, DAP servers, linters, and formatters.
-Example mason+lsp config [can be found here](https://github.com/NullVoxPopuli/dotfiles/tree/main/home/.config/nvim/lua)
+Example mason+LSP config [can be found here](https://github.com/NullVoxPopuli/dotfiles/tree/main/home/.config/nvim/lua)
 
-or 
+or
 
 [Conquer for Completion (COC) for Neovim](https://github.com/neoclide/coc.nvim) -
 An Intellisense engine which takes control over all linting, hinting, and language-server integration.
