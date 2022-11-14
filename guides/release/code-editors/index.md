@@ -65,7 +65,7 @@ To get embedded highlighting will involve these additional plugins:
 
 ### Language Server
 
-Only one of these solutions should be used at a time
+Only one of these solutions should be used at a time.
 
 Native LSP with assistance from [Mason.nvim](https://github.com/williamboman/mason.nvim)
 Easily install and manage LSP servers, DAP servers, linters, and formatters.
@@ -77,10 +77,6 @@ or
 An Intellisense engine which takes control over all linting, hinting, and language-server integration.
 With the ember plugin [coc-ember](https://github.com/NullVoxPopuli/coc-ember) -
 Ember.js language server extension including useful configuration instructions.
-
-[Conquer for Completion (COC) for Neovim](https://github.com/neoclide/coc.nvim) -
-An Intellisense engine which takes control over all linting, hinting, and language-server integration.
-
 
 ### Snippets / Workflow
 
