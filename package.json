@@ -25,7 +25,7 @@
     "lint": "npm-run-all --aggregate-output --continue-on-error --parallel lint:*",
     "lint:hbs": "ember-template-lint .",
     "lint:js": "eslint .",
-    "lint:md": "remark . --frail",
+    "lint:md": "remark . --frail --quiet",
     "start": "ember serve",
     "test": "npm run test:node && npm run test:ember",
     "test:ember": "percy exec -- ember test",
