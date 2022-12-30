@@ -1,8 +1,8 @@
 Helper functions are JavaScript functions that you can call from your template.
 
-Ember's template syntax limits what you can express to keep the structure of your application clear at a glance. When you need to compute something using JavaScript, you can use helper functions. It's possible to create your own helpers or just [use the built-in ones](./#toc_built-in-helpers).
+Ember's template syntax limits what you can express to keep the structure of your application clear at a glance. When you need to compute something using JavaScript, you can use helper functions. It's possible to create your own helpers, locally or just [use the built-in ones](./#toc_built-in-helpers).
 
-For instance, let's take a look at a generic message component from a messaging app.
+Let's take a look at a generic message component from a messaging app.
 
 ```handlebars {data-filename="app/components/message.hbs"}
 <Message::Avatar
@@ -62,11 +62,43 @@ Since the title is just the `@username` plus some extra stuff, we can replace `@
 
 However, to get the first initial of the string, we'll need to use JavaScript. To do that, we'll write a helper function.
 
-## Writing a Helper Function
-
-We define helper functions in the `app/helpers` folder.
-
 In this case we want a helper function that takes three arguments: a string, a starting position, and a length. The function will return a substring of the original string.
+
+## Local Helper Functions
+
+It's possible to use plain functions for helpers and modifiers.
+
+```js {data-filename="app/components/message.js"}
+import Component from '@glimmer/component';
+import { setComponentTemplate } from '@ember/component';
+import { hbs } from 'ember-cli-htmlbars';
+
+export default class Message extends Component {
+  substring = (string, start, end) => string.substring(start, end);
+}
+```
+
+```handlebars {data-filename="app/components/message.hbs" data-diff="-3,+4"}
+<Message::Avatar
+  @title="{{@username}}'s avatar"
+  @initial={{@avatarTitle}}
+  @initial={{this.substring @username 0 1}}
+  @isActive={{@userIsActive}}
+  class={{if @isCurrentUser "current-user"}}
+/>
+<section>
+  <Message::Username
+    @name={{@username}}
+    @localTime={{@userLocalTime}}
+  />
+
+  {{yield}}
+</section>
+```
+
+## Global Helper Functions
+
+We define global helper functions in the `app/helpers` folder.
 
 To implement the helper, we write a JavaScript function that takes its arguments as an _array_. This is because helpers can also receive _named_
 arguments, which we'll discuss next.
@@ -96,8 +128,6 @@ function substring(args) {
 export default helper(substring);
 ```
 
-**This is how we normally write helpers in Ember**.
-
 We can then use this helper in the component's template to get the first letter of the username.
 
 ```handlebars {data-filename="app/components/message.hbs" data-diff="-3,+4"}
@@ -118,7 +148,7 @@ We can then use this helper in the component's template to get the first letter 
 </section>
 ```
 
-### Named Arguments
+## Named Arguments
 
 The syntax `{{substring @username 0 1}}` is a little hard to read. We see some numbers at the end but can't tell what exactly they mean. We can use _named arguments_ to make the `substring` helper easier to read.
 
@@ -157,7 +187,7 @@ export default helper(substring);
 
 You can mix positional and named arguments to make your templates easy to read.
 
-### Nested Helpers
+## Nested Helpers
 
 Sometimes, you might see helpers invoked by placing them inside parentheses,
 `()`. This means that a Helper is being used inside of another Helper or
