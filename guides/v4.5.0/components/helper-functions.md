@@ -66,7 +66,7 @@ In this case we want a helper function that takes three arguments: a string, a s
 
 ## Local Helper Functions
 
-It's possible to use plain functions for helpers and modifiers.
+It's possible to use plain functions for helpers and modifiers. A plain helper function can be "local" to or defined on components and controllers.
 
 ```js {data-filename="app/components/message.js"}
 import Component from '@glimmer/component';
@@ -77,6 +77,8 @@ export default class Message extends Component {
   substring = (string, start, end) => string.substring(start, end);
 }
 ```
+
+We can then use this helper in the component's template to get the first letter of the username.
 
 ```handlebars {data-filename="app/components/message.hbs" data-diff="-3,+4"}
 <Message::Avatar
@@ -96,9 +98,91 @@ export default class Message extends Component {
 </section>
 ```
 
+### Named Arguments
+
+Helpers default to using positional arguments, but sometimes it can make the corresponding syntax `{{substring @username 0 1}}` a little hard to read. We see some numbers at the end but can't tell what exactly they mean. We can use _named arguments_ to make the `substring` helper easier to read.
+
+Using named arguments, we could make our template a lot clearer.
+
+```handlebars {data-filename="app/components/message.hbs" data-diff="-3,+4,+5"}
+<Message::Avatar
+  @title="{{@username}}'s avatar"
+  @initial={{substring @username 0 1}}
+  {{! This won't work yet! We need to update the substring helper }}
+  @initial={{substring @username start=0 end=1}}
+  @isActive={{@userIsActive}}
+  class={{if @isCurrentUser "current-user"}}
+/>
+<section>
+  <Message::Username
+    @name={{@username}}
+    @localTime={{@userLocalTime}}
+  />
+
+  {{yield}}
+</section>
+```
+
+Helpers take _named arguments_ as a JavaScript object. All named arguments are grouped into an "options object" as the last parameter.
+
+```js {data-filename="app/components/message.js" data-diff="-6,+7"}
+import Component from '@glimmer/component';
+import { setComponentTemplate } from '@ember/component';
+import { hbs } from 'ember-cli-htmlbars';
+
+export default class Message extends Component {
+  substring = (string, start, end) => string.substring(start, end);
+  substring = (string, options) => string.substring(options.start, options.end);
+}
+```
+
+You can mix positional and named arguments to make your templates easy to read:
+
+```handlebars {data-filename="app/components/calculator.hbs"}
+{{this.calculate 1 2 op="add"}}
+```
+
+```js {data-filename="app/components/calculator.js"}
+export default class Calculator extends Component {
+  calculate(first, second, options) {
+    // ...
+  }
+}
+```
+
+### Nested Helpers
+
+Sometimes, you might see helpers invoked by placing them inside parentheses,
+`()`. This means that a Helper is being used inside of another Helper or
+Component. This is referred to as a "nested" Helper Invocation. Parentheses must be used because curly braces `{{}}` cannot be nested.
+
+```handlebars {data-filename=app/templates/application.hbs}
+{{this.sum (this.multiply 2 4) 2}}
+```
+
+In this example, we are using a helper to multiply `2` and `4` _before_ passing the value into `{{sum}}`.
+
+Thus, the output of these combined helpers is `10`.
+
+As you move forward with these template guides, keep in mind that a helper can be used anywhere a normal value can be used.
+
+Many of Ember's built-in helpers (as well as your custom helpers) can be used in nested form.
+
 ## Global Helper Functions
 
-We define global helper functions in the `app/helpers` folder.
+Next to local helpers, ember provides a way to use global helpers. We define global helper functions in the `app/helpers` folder. Once defined, they will be available to use directly inside all templates in your app.
+
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+        Before Ember 4.5, using global helpers was the only way to define helpers.
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
+  </div>
+</div>
 
 To implement the helper, we write a JavaScript function that takes its arguments as an _array_. This is because helpers can also receive _named_
 arguments, which we'll discuss next.
@@ -148,11 +232,9 @@ We can then use this helper in the component's template to get the first letter 
 </section>
 ```
 
-## Named Arguments
+### Named arguments
 
-The syntax `{{substring @username 0 1}}` is a little hard to read. We see some numbers at the end but can't tell what exactly they mean. We can use _named arguments_ to make the `substring` helper easier to read.
-
-Using named arguments, we could make our template a lot clearer.
+Similar to local helpers, global helpers also can mix positional and named arguments.
 
 ```handlebars {data-filename="app/components/message.hbs" data-diff="-3,+4,+5"}
 <Message::Avatar
@@ -173,8 +255,6 @@ Using named arguments, we could make our template a lot clearer.
 </section>
 ```
 
-In addition to taking _positional arguments_ as an array, helpers take _named arguments_ as a JavaScript object. Here's what that looks like using [destructuring syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Unpacking_fields_from_objects_passed_as_function_parameter).
-
 ```js {data-filename="app/helpers/substring.js"}
 import { helper } from '@ember/component/helper';
 
@@ -185,31 +265,7 @@ function substring([string], { start, end }) {
 export default helper(substring);
 ```
 
-You can mix positional and named arguments to make your templates easy to read.
-
-## Nested Helpers
-
-Sometimes, you might see helpers invoked by placing them inside parentheses,
-`()`. This means that a Helper is being used inside of another Helper or
-Component. This is referred to as a "nested" Helper Invocation. Parentheses must
-be used because curly braces `{{}}` cannot be nested.
-
-```handlebars {data-filename=app/templates/application.hbs}
-{{sum (multiply 2 4) 2}}
-```
-
-In this example, we are using a helper to multiply `2` and `4` _before_ passing
-the value into `{{sum}}`.
-
-Thus, the output of these combined helpers is `10`.
-
-As you move forward with these template guides, keep in mind that a helper can
-be used anywhere a normal value can be used.
-
-Many of Ember's built-in helpers (as well as your custom helpers) can be used in
-nested form.
-
-## Advanced: Class Helpers
+### Class Helpers
 
 Helpers can also be defined using class syntax. For instance, we could define
 the substring helper using classes instead.
