@@ -48,7 +48,7 @@ You can test that page titles are generated correctly by asserting on the value 
 ```javascript {data-filename=tests/acceptance/posts-test.js}
 import { module, test } from 'qunit';
 import { visit, currentURL } from '@ember/test-helpers';
-import { setupApplicationTest } from 'ember-qunit';
+import { setupApplicationTest } from 'my-app-name/tests/helpers';
 
 module('Acceptance | posts', function(hooks) {
   setupApplicationTest(hooks);

@@ -38,7 +38,7 @@ container:
 
 ```javascript {data-filename=tests/unit/controllers/posts-test.js}
 import { module, test } from 'qunit';
-import { setupTest } from 'ember-qunit';
+import { setupTest } from 'my-app-name/tests/helpers';
 
 module('Unit | Controller | posts', function(hooks) {
   setupTest(hooks);
@@ -52,7 +52,7 @@ and is also exposed in tests for your usage. Here it will return a singleton ins
 
 ```javascript {data-filename=tests/unit/controllers/posts-test.js}
 import { module, test } from 'qunit';
-import { setupTest } from 'ember-qunit';
+import { setupTest } from 'my-app-name/tests/helpers';
 
 module('Unit | Controller | posts', function(hooks) {
   setupTest(hooks);

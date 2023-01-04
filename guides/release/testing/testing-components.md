@@ -31,7 +31,7 @@ and cleaning up once your tests in this module are finished.
 
 ```javascript {data-filename="tests/integration/components/pretty-color-test.js"}
 import { module } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
+import { setupRenderingTest } from 'my-app-name/tests/helpers';
 
 module('Integration | Component | pretty-color', function(hooks) {
   setupRenderingTest(hooks);
@@ -44,7 +44,7 @@ Here, we can use the `QUnit.test` helper and we can give it a descriptive name:
 
 ```javascript {data-filename="tests/integration/components/pretty-color-test.js"}
 import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
+import { setupRenderingTest } from 'my-app-name/tests/helpers';
 
 module('Integration | Component | pretty-color', function(hooks) {
   setupRenderingTest(hooks);
@@ -63,7 +63,7 @@ We can better see what this means, once we start writing out our first test case
 
 ```javascript {data-filename="tests/integration/components/pretty-color-test.js"}
 import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
+import { setupRenderingTest } from 'my-app-name/tests/helpers';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
@@ -94,7 +94,7 @@ component's `style` attribute and is reflected in the rendered HTML:
 
 ```javascript {data-filename="tests/integration/components/pretty-color-test.js"}
 import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
+import { setupRenderingTest } from 'my-app-name/tests/helpers';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
@@ -121,7 +121,7 @@ We might also test this component to ensure that the content of its template is 
 
 ```javascript {data-filename="tests/integration/components/pretty-color-test.js"}
 import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
+import { setupRenderingTest } from 'my-app-name/tests/helpers';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
@@ -181,7 +181,7 @@ And our test might look like this:
 
 ```javascript {data-filename="tests/integration/components/magic-title-test.js"}
 import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
+import { setupRenderingTest } from 'my-app-name/tests/helpers';
 import { click, render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
@@ -246,7 +246,7 @@ external action is called:
 
 ```javascript {data-filename="tests/integration/components/comment-form-test.js"}
 import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
+import { setupRenderingTest } from 'my-app-name/tests/helpers';
 import { click, fillIn, render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
@@ -324,7 +324,7 @@ In this case we initially force location to "New York".
 
 ```javascript {data-filename="tests/integration/components/location-indicator-test.js"}
 import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
+import { setupRenderingTest } from 'my-app-name/tests/helpers';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 import Service from '@ember/service';
@@ -361,7 +361,7 @@ the test needs to check that the stub data from the service is reflected in the 
 
 ```javascript {data-filename="tests/integration/components/location-indicator-test.js" data-diff="+30,+31,+32,+33,+34,+35"}
 import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
+import { setupRenderingTest } from 'my-app-name/tests/helpers';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 import Service from '@ember/service';
@@ -403,7 +403,7 @@ In the next example, we'll add another test that validates that the display chan
 
 ```javascript {data-filename="tests/integration/components/location-indicator-test.js" data-diff="+36,+37,+38,+39,+40,+41,+42,+43,+44,+45,+46,+47,+48,+49,+50"}
 import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
+import { setupRenderingTest } from 'my-app-name/tests/helpers';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 import Service from '@ember/service';
@@ -509,7 +509,7 @@ In your test, use the `settled` helper to wait until your debounce timer is up a
 
 ```javascript {data-filename="tests/integration/components/delayed-typeahead-test.js"}
 import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
+import { setupRenderingTest } from 'my-app-name/tests/helpers';
 import { render, settled } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 

@@ -53,7 +53,7 @@ in [Testing Components](../testing-components/).
 
 ```javascript {data-filename=tests/integration/helpers/format-currency-test.js}
 import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
+import { setupRenderingTest } from 'my-app-name/tests/helpers';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
@@ -75,7 +75,7 @@ We can now also properly test if a helper will respond to property changes.
 
 ```javascript {data-filename=tests/integration/helpers/format-currency-test.js}
 import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
+import { setupRenderingTest } from 'my-app-name/tests/helpers';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
