@@ -45,7 +45,7 @@ Here is an example of test this route in an isolated test case:
 
 ```javascript {data-filename=tests/unit/routes/application-test.js}
 import { module, test } from 'qunit';
-import { setupTest } from 'ember-qunit';
+import { setupTest } from 'my-app-name/tests/helpers';
 
 let originalAlert;
 

@@ -73,7 +73,7 @@ When unit tests involve the Ember framework, you must import and call [`setupTes
 For example, consider a service that keeps an array of messages, to be shown to the user at a later time:
 
 ```javascript {data-filename=tests/unit/services/flash-messages-test.js}
-import { setupTest } from 'ember-qunit';
+import { setupTest } from 'my-app-name/tests/helpers';
 import { module, test } from 'qunit';
 
 module('Unit | Service | flash-messages', function(hooks) {
@@ -113,7 +113,7 @@ Consider a button component. For simplicity, assume that the component keeps tra
 
 ```javascript {data-filename=tests/integration/components/simple-button-test.js}
 import { click, render } from '@ember/test-helpers';
-import { setupRenderingTest } from 'ember-qunit';
+import { setupRenderingTest } from 'my-app-name/tests/helpers';
 import { hbs } from 'ember-cli-htmlbars';
 import { module, test } from 'qunit';
 
@@ -174,7 +174,7 @@ Let's continue with the blog post example from [Rendering Tests](../test-types/#
 
 ```javascript {data-filename=tests/acceptance/posts-test.js}
 import { click, currentURL, fillIn, visit } from '@ember/test-helpers';
-import { setupApplicationTest } from 'ember-qunit';
+import { setupApplicationTest } from 'my-app-name/tests/helpers';
 import { module, test } from 'qunit';
 
 module('Acceptance | posts', function(hooks) {

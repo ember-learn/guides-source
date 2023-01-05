@@ -10,7 +10,7 @@ This generates this file:
 ```javascript {data-filename=tests/acceptance/login-test.js}
 import { module, test } from 'qunit';
 import { visit, currentURL } from '@ember/test-helpers';
-import { setupApplicationTest } from 'ember-qunit';
+import { setupApplicationTest } from 'my-app-name/tests/helpers';
 
 module('Acceptance | login', function(hooks) {
   setupApplicationTest(hooks);
@@ -37,7 +37,7 @@ For example:
 ```javascript {data-filename=tests/acceptance/new-post-appears-first-test.js}
 import { module, test } from 'qunit';
 import { click, fillIn, visit } from '@ember/test-helpers';
-import { setupApplicationTest } from 'ember-qunit';
+import { setupApplicationTest } from 'my-app-name/tests/helpers';
 
 module('Acceptance | posts', function(hooks) {
   setupApplicationTest(hooks);

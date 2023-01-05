@@ -31,7 +31,7 @@ computed property is working correctly.
 
 ```javascript {data-filename=tests/unit/service/some-thing-test.js}
 import { module, test } from 'qunit';
-import { setupTest } from 'ember-qunit';
+import { setupTest } from 'my-app-name/tests/helpers';
 
 module('Unit | Service | some thing', function(hooks) {
   setupTest(hooks);
@@ -80,7 +80,7 @@ result of the method call.
 
 ```javascript {data-filename=tests/unit/services/some-thing-test.js}
 import { module, test } from 'qunit';
-import { setupTest } from 'ember-qunit';
+import { setupTest } from 'my-app-name/tests/helpers';
 
 module('Unit | Service | some thing', function(hooks) {
   setupTest(hooks);
@@ -117,7 +117,7 @@ The test would call the `calc` method and assert it gets back the correct value.
 
 ```javascript {data-filename=tests/unit/services/some-thing-test.js}
 import { module, test } from 'qunit';
-import { setupTest } from 'ember-qunit';
+import { setupTest } from 'my-app-name/tests/helpers';
 
 module('Unit | Service | some thing', function(hooks) {
   setupTest(hooks);
@@ -179,7 +179,7 @@ out which method the error is in. In we stub the other method:
 
 ```javascript {data-filename=tests/unit/services/some-thing-test.js}
 import { module, test } from 'qunit';
-import { setupTest } from 'ember-qunit';
+import { setupTest } from 'my-app-name/tests/helpers';
 
 module('Unit | Service | some thing', function(hooks) {
   setupTest(hooks);
@@ -223,7 +223,7 @@ Instead, create a simple object and pass it instead.
 
 ```javascript {data-filename=tests/unit/services/employees-test.js}
 import { module, test } from 'qunit';
-import { setupTest } from 'ember-qunit';
+import { setupTest } from 'my-app-name/tests/helpers';
 
 module('Unit | Service | employees', function(hooks) {
   setupTest(hooks);

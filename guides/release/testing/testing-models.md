@@ -30,7 +30,7 @@ level 4 to assert that the `levelName` changes. We will use `module` together wi
 
 ```javascript {data-filename=tests/unit/models/player-test.js}
 import { module, test } from 'qunit';
-import { setupTest } from 'ember-qunit';
+import { setupTest } from 'my-app-name/tests/helpers';
 import { run } from '@ember/runloop';
 
 module('Unit | Model | player', function(hooks) {
@@ -85,7 +85,7 @@ Then you could test that the relationship by looking it up on the `user` model w
 
 ```javascript {data-filename=tests/unit/models/user-test.js}
 import { module, test } from 'qunit';
-import { setupTest } from 'ember-qunit';
+import { setupTest } from 'my-app-name/tests/helpers';
 import { get } from '@ember/object';
 
 module('Unit | Model | user', function(hooks) {
