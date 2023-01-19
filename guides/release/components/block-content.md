@@ -22,6 +22,24 @@ This is equivalent to explicitly naming the default block using the named block 
 </ExampleComponent>
 ```
 
+Or consider the following modal component which utilizes a content block and a footer block.
+
+```handlebars
+<div class="modal">
+    <button type="button">Close modal</button>
+    <div class="modal__content">
+        <:content>
+            This block will be replaced with the `{{yield to="content"}}` `<Modal />` content.
+        </:content>
+    </div>
+    <footer class="modal__footer">
+        <:footer>
+            This block will be replaced with the `{{yield to="footer"}}` `<Modal />` content.
+        </:footer>
+    </footer>
+</div>
+```
+
 Through Block Content, users of the component can add additional styling and
 behavior by using HTML, modifiers, and other components within the block.
 
