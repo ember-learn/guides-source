@@ -7,19 +7,6 @@ STARTING_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 TEMP_BRANCH="update-search-index-$(( $RANDOM % 1000 ))"
 
 echo
-echo "🤖 Staging local changes"
-git add .
-git stash push -m $TEMP_BRANCH
-echo "  DONE"
-
-echo
-echo "🤖 Updating master branch from remote"
-read -p "Remote name (origin): " REMOTE
-REMOTE_NAME=${REMOTE:-origin}
-git fetch $REMOTE_NAME master
-git checkout FETCH_HEAD -b $TEMP_BRANCH
-
-echo
 echo "🤖 Removing guides."
 rm -rf ./guides/v?.*
 echo "  DONE"
@@ -75,11 +62,3 @@ echo
 echo "🤖 Deploying"
 ember deploy production
 echo "  DONE"
-
-echo
-echo "🤖 Restoring previous branch."
-git reset --hard
-git switch $STARTING_BRANCH
-git stash list | grep $TEMP_BRANCH | grep -Eo '^[^:]+' | git stash pop -
-git branch -D $TEMP_BRANCH
-git stash pop "$(git stash list | grep $TEMP_BRANCH | grep -Eo '^[^:]+')"
