@@ -10,11 +10,11 @@ check out the guide for [making API requests](../in-depth-topics/making-api-requ
 look for plugins on [Ember Observer](https://www.emberobserver.com/), and search
 for community-made tutorials.
 
-## What are Ember Data models?
+## What are EmberData models?
 
-In Ember Data, models are objects that represent the underlying data
+In EmberData, models are objects that represent the underlying data
 that your application presents to the user.
-Note that Ember Data models are a different concept than the
+Note that EmberData models are a different concept than the
 [`model`](../routing/specifying-a-routes-model/) method on Routes,
 although they share the same name.
 
@@ -44,27 +44,27 @@ more information about how components get model data, see the
 [Specifying a Route's Model](../routing/specifying-a-routes-model/)
 guide.
 
-At first, using Ember Data may feel different than the way you're used
+At first, using EmberData may feel different than the way you're used
 to writing JavaScript applications. Many developers are familiar with
 using Ajax to fetch raw JSON data from an endpoint, which may appear
 easy at first. Over time, however, complexity leaks out into your
 application code, making it hard to maintain.
 
-With Ember Data, managing models as your application grows becomes both
+With EmberData, managing models as your application grows becomes both
 simpler _and_ easier.
 
-Once you have an understanding of Ember Data, you will have a much
+Once you have an understanding of EmberData, you will have a much
 better way to manage the complexity of data loading in your application.
 This will allow your code to evolve and grow, with better maintainability.
 
-## Ember Data flexibility
+## EmberData flexibility
 
-Thanks to its use of the _adapter pattern_, Ember Data can be configured
+Thanks to its use of the _adapter pattern_, EmberData can be configured
 to work with many different kinds of backends. There is [an entire ecosystem of adapters](http://emberobserver.com/categories/ember-data-adapters)
 and several [built-in adapters](./customizing-adapters/)
 that allow your Ember app to talk to different types of servers.
 
-By default, Ember Data is designed to work out of the box with [JSON:API](http://jsonapi.org).
+By default, EmberData is designed to work out of the box with [JSON:API](http://jsonapi.org).
 JSON:API is a formal specification for building conventional, robust, and performant
 APIs that allow clients and servers to communicate model data.
 
@@ -74,12 +74,12 @@ more freedom to change pieces of your stack.
 
 If you need to integrate your Ember.js app with a server that does not
 have an [adapter](http://emberobserver.com/categories/ember-data-adapters) available (for example, you hand-rolled an API server
-that does not adhere to any JSON specification), Ember Data is designed
+that does not adhere to any JSON specification), EmberData is designed
 to **be configurable** to work with whatever data your server returns.
 
-Ember Data is also designed to work with streaming servers, like those
+EmberData is also designed to work with streaming servers, like those
 powered by WebSockets. You can open a socket to your server and push
-changes into Ember Data whenever they occur, giving your app a real-time
+changes into EmberData whenever they occur, giving your app a real-time
 user interface that is always up-to-date.
 
 ## The Store and a Single Source of Truth
@@ -168,7 +168,7 @@ The SOLID principles of good design tell us that objects should have a
 single responsibility. The responsibility of a component should be
 presenting model data to the user, not fetching the model.
 
-Good Ember apps take a different approach. Ember Data gives you a single
+Good Ember apps take a different approach. EmberData gives you a single
 **store** that is the central repository of models in your application.
 Routes and their corresponding controllers can ask the store for models, and the store is
 responsible for knowing how to fetch them.
@@ -182,7 +182,7 @@ first ask the store for it.
 
 ### Injecting the store
 
-Ember Data provides a store service that you can inject into routes, components, services and other classes, that enables you to access the store directly.
+EmberData provides a store service that you can inject into routes, components, services and other classes, that enables you to access the store directly.
 
 To do this, import the [`service` decorator](https://api.emberjs.com/ember/release/functions/@ember%2Fservice/service) and inject a `store` property into your class. Let's see an example using a route:
 
@@ -213,7 +213,7 @@ export default class BlogPostsIndexRoute extends Route {
 
 ## Models
 
-In Ember Data, each model is represented by a subclass of `Model` that
+In EmberData, each model is represented by a subclass of `Model` that
 defines the attributes, relationships, and behavior of the data that you
 present to the user.
 
@@ -321,7 +321,7 @@ of your application have already asked for and loaded it.
 One downside to returning a cached record is you may find the state of
 the data has changed since it was first loaded into the store's
 identity map. In order to prevent this stale data from being a problem
-for long, Ember Data will automatically make a request in the
+for long, EmberData will automatically make a request in the
 background each time a cached record is returned from the store. When
 the new data comes in, the record is updated, and if there have been
 changes to the record since the initial render, the template is
@@ -369,6 +369,6 @@ since it already has it saved locally.
 ---
 
 Models, records, adapters and the store are the core concepts you
-should understand to get the most out of Ember Data. The following
+should understand to get the most out of EmberData. The following
 sections go into more depth about each of these concepts, and how to
 use them together.

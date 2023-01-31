@@ -721,7 +721,7 @@ normally would.
 
 One common example is when overriding the
 [`normalizeResponse()`](https://api.emberjs.com/ember-data/release/classes/JSONAPISerializer/methods/normalizeResponse?anchor=normalizeResponse)
-hook in one of Ember Data's serializers.
+hook in one of EmberData's serializers.
 
 A handy shortcut for this is to use a "spread operator", like `...arguments`:
 

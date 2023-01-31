@@ -9,7 +9,7 @@ Ember is made up of several libraries. If you wish to add a feature or fix a bug
 
 * [https://github.com/ember-cli/ember-cli](https://github.com/ember-cli/ember-cli)
 
-**Ember Data** - A data persistence library for Ember.
+**EmberData** - A data persistence library for Ember.
 
 * [https://github.com/emberjs/data](https://github.com/emberjs/data)
 

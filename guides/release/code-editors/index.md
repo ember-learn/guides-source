@@ -100,7 +100,7 @@ Atom package to use the Ember Language Server.
 Atom autocomplete and snippets for Ember.js.
 
 [atom-ember-snippets](https://github.com/mattmcmanus/atom-ember-snippets) -
-Ember.js ES6, Ember Data & Handlebars snippets for Atom editor.
+Ember.js ES6, EmberData & Handlebars snippets for Atom editor.
 
 [language-ember-htmlbars](https://atom.io/packages/language-ember-htmlbars) -
 Add Ember template syntax highlighting and indentation to Atom

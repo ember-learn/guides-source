@@ -290,7 +290,7 @@ Here are some cases where you still need to use `get` and `set`:
 - When accessing and updating plain properties on objects without decorators
 - When using Ember's `ObjectProxy` class, or a class that implements the
   `unknownProperty` function (which allows objects to intercept `get` calls)
-- When accessing relationships for Ember Data records, e.g. 
+- When accessing relationships for EmberData records, e.g. 
 `blogPost.get('comments')`. Under the hood, this is a type of `ObjectProxy`.
 
 Additionally, you will have to continue using _accessor_ functions for arrays if
@@ -381,7 +381,7 @@ available in IE11. Since many Ember users must still support IE11, Ember's
 The use cases for proxies are generally cases where some data is very dynamic,
 and its not possible to know ahead of time how to create a class that is
 decorated. For instance, [`ember-m3`](https://github.com/hjdivad/ember-m3) is an
-addon that allows Ember Data to work with dynamically generated models instead
+addon that allows EmberData to work with dynamically generated models instead
 of models defined using `@attr`, `@hasMany`, and `@belongsTo`. This cuts back on
 code shipped to the browser, but it means that the models have to _dynamically_
 watch and update values. A proxy allows all accesses and updates to be
