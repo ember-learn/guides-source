@@ -2,7 +2,7 @@
 
 The last missing feature for the `<Rental>` component is a map to show the location of the rental, which is what we're going to work on next:
 
-<img src="/images/tutorial/part-1/reusable-components/three-old-mansions@2x.png" alt="The Super Rentals app by the end of the chapter" width="1024" height="1129">
+<img src="/images/tutorial/part-1/reusable-components/three-old-mansions@2x.png" alt="The Super Rentals app by the end of the chapter" width="1024" height="1130">
 
 While adding the map, you will learn about:
 
@@ -24,17 +24,18 @@ If you're curious, you can explore the options available on Mapbox by using the 
 
 Once you have signed up for the service, grab your _[default public token](https://account.mapbox.com/access-tokens/)_ and paste it into `config/environment.js`:
 
-```js { data-filename="config/environment.js" data-diff="+47,+48" }
+```js { data-filename="config/environment.js" data-diff="+48,+49" }
 'use strict';
 
 module.exports = function (environment) {
-  let ENV = {
+  const ENV = {
     modulePrefix: 'super-rentals',
     environment,
     rootURL: '/',
     locationType: 'history',
     EmberENV: {
       RAISE_ON_DEPRECATION: true,
+      EXTEND_PROTOTYPES: false,
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
         // e.g. EMBER_NATIVE_DECORATOR_SUPPORT: true
@@ -115,6 +116,8 @@ installing component
   create app/components/map.hbs
 installing component-test
   create tests/integration/components/map-test.js
+
+Running "lint:fix" script...
 ```
 
 Since not every component will necessarily have some defined behavior associated with it, the component generator does not generate a JavaScript file for us by default. As we saw earlier, we can always use the `component-class` generator to add a JavaScript file for a component later on.
@@ -331,7 +334,7 @@ Hey, all the tests passed! But does that mean it actually works in practice? Let
 
 Hey! That's a map!
 
-<img src="/images/tutorial/part-1/reusable-components/three-old-mansions@2x.png" alt="Three Grand Old Mansions" width="1024" height="1129">
+<img src="/images/tutorial/part-1/reusable-components/three-old-mansions@2x.png" alt="Three Grand Old Mansions" width="1024" height="1130">
 
 <!-- TODO: https://github.com/ember-cli/ember-cli/issues/8782 -->
 

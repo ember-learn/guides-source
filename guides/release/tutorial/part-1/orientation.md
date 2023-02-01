@@ -24,7 +24,7 @@ To verify that your installation was successful, run:
 
 ```shell
 $ ember --version
-ember-cli: 4.6.0
+ember-cli: 4.10.0
 node: 14.19.1
 os: linux x64
 ```
@@ -38,7 +38,7 @@ We can create a new project using Ember CLI's `new` command. It follows the patt
 ```shell
 $ ember new super-rentals --lang en
 installing app
-Ember CLI v4.6.0
+Ember CLI v4.10.0
 
 Creating a new Ember app in /home/runner/work/super-rentals-tutorial/super-rentals-tutorial/dist/code/super-rentals:
   create .editorconfig
@@ -75,7 +75,6 @@ Creating a new Ember app in /home/runner/work/super-rentals-tutorial/super-renta
   create tests/integration/.gitkeep
   create tests/test-helper.js
   create tests/unit/.gitkeep
-  create vendor/.gitkeep
 
 Installing packages... This might take a couple of minutes.
 npm: Installing dependencies ...
@@ -140,8 +139,6 @@ super-rentals
 │   │   └── .gitkeep
 │   ├── index.html
 │   └── test-helper.js
-├── vendor
-│   └── .gitkeep
 ├── .editorconfig
 ├── .ember-cli
 ├── .eslintcache
@@ -158,7 +155,7 @@ super-rentals
 ├── package-lock.json
 └── testem.js
 
-17 directories, 36 files
+16 directories, 35 files
 ```
 
 We'll learn about the purposes of these files and folders as we go. For now, just know that we'll spend most of our time working within the `app` folder.
@@ -176,7 +173,7 @@ Build successful (9761ms) – Serving on http://localhost:4200/
 
 The development server is responsible for compiling our app and serving it to the browsers. It may take a while to boot up. Once it's up and running, open your favorite browser and head to <http://localhost:4200>. You should see the following welcome page:
 
-<img src="/images/tutorial/part-1/orientation/welcome@2x.png" alt="Welcome to Ember!" width="1024" height="906">
+<img src="/images/tutorial/part-1/orientation/welcome@2x.png" alt="Welcome to Ember!" width="1024" height="919">
 
 <div class="cta">
   <div class="cta-note">
