@@ -65,6 +65,7 @@ ember-cli-tutorial-style
 ember-debug-handlers-polyfill
 ember-fast-cli
 ember-intl
+EmberData
 erroring
 Evented
 facto

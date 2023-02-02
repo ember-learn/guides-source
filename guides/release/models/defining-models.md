@@ -29,7 +29,7 @@ and [working with records](../creating-updating-and-deleting-records/) of that t
     <div class="cta-note-body">
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
-        Ember Data models are normally setup using the singular form (which is why we use `person` instead of `people` here)
+        EmberData models are normally setup using the singular form (which is why we use `person` instead of `people` here)
       </div>
     </div>
     <img src="/images/mascots/zoey.png" role="presentation" alt="">
@@ -77,7 +77,7 @@ match the type you would like to use in your JavaScript code. Ember
 Data allows you to define simple serialization and deserialization
 methods for attribute types called transforms. You can specify that
 you would like a transform to run for an attribute by providing the
-transform name as the first argument to the `attr` method. Ember Data
+transform name as the first argument to the `attr` method. EmberData
 supports attribute types of `string`, `number`, `boolean`, and `date`,
 which coerce the value to the JavaScript type that matches its name.
 
@@ -101,7 +101,7 @@ The `boolean` transform can handle values other than `true` or
 `1` will all coerce to `true`, and `false` otherwise.
 
 Transforms are not required. If you do not specify a transform name
-Ember Data will do no additional processing of the value.
+EmberData will do no additional processing of the value.
 
 #### Custom Transforms
 

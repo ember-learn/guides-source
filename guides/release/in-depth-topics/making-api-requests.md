@@ -8,7 +8,7 @@ Follow the links within it to see examples and learn more.
 
 Some common tools for making [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) (create, read, update, delete) requests in Ember include:
 
-- [Ember Data](../../models/) is the official data persistence library for Ember. It has a powerful set of tools
+- [EmberData](../../models/) is the official data persistence library for Ember. It has a powerful set of tools
 for formatting requests, normalizing responses, and efficiently
 managing a local cache of data. 
 It is included by default in new Ember apps.

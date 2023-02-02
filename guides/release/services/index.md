@@ -7,7 +7,7 @@ include:
 * Geolocation.
 * WebSockets.
 * Server-sent events or notifications.
-* Server-backed API calls that may not fit Ember Data.
+* Server-backed API calls that may not fit EmberData.
 * Third-party APIs.
 * Logging.
 

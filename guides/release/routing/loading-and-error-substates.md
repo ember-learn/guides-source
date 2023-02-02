@@ -32,7 +32,7 @@ export default class SlowModelRoute extends Route {
 }
 ```
 
-If you navigate to `slow-model`, in the `model` hook using [Ember Data](../../models/),
+If you navigate to `slow-model`, in the `model` hook using [EmberData](../../models/),
 the query may take a long time to complete.
 During this time, your UI isn't really giving you any feedback as to
 what's happening. If you're entering this route after a full page

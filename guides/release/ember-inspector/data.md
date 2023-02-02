@@ -30,4 +30,4 @@ You can also filter records by entering a query in the search box.
 ### Building a Data Custom Adapter
 
 You can use your own data persistence library with the Inspector. Build a [data adapter](https://github.com/emberjs/ember.js/blob/3ac2fdb0b7373cbe9f3100bdb9035dd87a849f64/packages/ember-extension-support/lib/data_adapter.js), and you can inspect your models
-using the Data tab. Use [Ember Data's data adapter](https://github.com/emberjs/data/blob/d7988679590bff63f4d92c4b5ecab173bd624ebb/packages/ember-data/lib/system/debug/debug_adapter.js) as an example for how to build your data adapter and [DataAdapter](https://api.emberjs.com/ember/release/classes/DataAdapter) documentation.
+using the Data tab. Use [EmberData's data adapter](https://github.com/emberjs/data/blob/d7988679590bff63f4d92c4b5ecab173bd624ebb/packages/ember-data/lib/system/debug/debug_adapter.js) as an example for how to build your data adapter and [DataAdapter](https://api.emberjs.com/ember/release/classes/DataAdapter) documentation.

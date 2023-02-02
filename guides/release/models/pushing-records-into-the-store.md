@@ -126,7 +126,7 @@ export default class ApplicationRoute extends Route {
 The `push()` method is also important when working with complex
 endpoints. You may find your application has an endpoint that performs
 some business logic then creates several records. This likely does not
-map cleanly to Ember Data's existing `save()` API which is structured
+map cleanly to EmberData's existing `save()` API which is structured
 around persisting a single record. Instead you should make your own
 custom network request and push the resulting model data into the store
 so it can be accessed by other parts of your application.

@@ -78,7 +78,7 @@ left-facing arrow at the top left.
 ### Custom Property Grouping
 
 Some properties are not only grouped by inheritance, but also
-by framework level semantics. For example, if you inspect an Ember Data
+by framework level semantics. For example, if you inspect an EmberData
 model, you can see `Attributes`, `Belongs To`, `Has Many`, and `Flags`
 groups.
 
@@ -87,5 +87,5 @@ width="450">
 
 Library authors can customize how any object will display in the Inspector.
 By defining a `_debugInfo` method, an object can tell the Inspector how it should be rendered.
-For an example on how to customize an object's properties, see [Ember Data's
+For an example on how to customize an object's properties, see [EmberData's
 customization](https://github.com/emberjs/data/blob/f1be2af71d7402d034bc034d9502733647cad295/packages/ember-data/lib/system/debug/debug_info.js).
