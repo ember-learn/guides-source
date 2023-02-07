@@ -205,12 +205,6 @@ simply pass them along with the invocation:
 CSS classes passed this way will be _in addition to_ the standard `ember-view`
 and possibly `active` classes.
 
-Note that the `<LinkTo />` component uses the element's `id` HTML attribute
-internally for event dispatching purposes. For that reason, if you would like
-to customize its HTML `id`, you must pass it as the `@id` argument instead.
-Overriding the components `id` attribute directly will stop the link from
-functioning correctly.
-
 ### Replacing history entries
 
 The default behavior for the `<LinkTo />` component is to add entries to the
