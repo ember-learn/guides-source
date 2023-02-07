@@ -29,7 +29,7 @@ Within the test for this object, we'll lookup the service instance, update the `
 should trigger the computed property), and assert that the logic in our
 computed property is working correctly.
 
-```javascript {data-filename=tests/unit/service/some-thing-test.js}
+```javascript {data-filename=tests/unit/services/some-thing-test.js}
 import { module, test } from 'qunit';
 import { setupTest } from 'my-app-name/tests/helpers';
 
