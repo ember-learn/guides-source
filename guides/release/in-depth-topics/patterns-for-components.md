@@ -169,6 +169,28 @@ or
 {{/each}}
 ```
 
+Or, for example the layout for a SuperForm component might be implemented as:
+
+```handlebars {data-filename=app/components/super-form.hbs}
+<form>
+  {{yield (hash
+    Input=(component "super-input" form=this model=this.model)
+    Textarea=(component "super-textarea" form=this model=this.model)
+    Submit=(component "super-submit" form=this model=this.model)
+  )}}
+</form>
+```
+
+And be used as:
+
+```handlebars {data-filename=app/templates/index.hbs}
+<SuperForm @model={{this.post}} as |f|>
+  <f.Input @name="title" />
+  <f.Textarea @name="body" />
+  <f.Submit />
+</SuperForm>
+```
+
 When the parameter passed to `{{component}}` evaluates to `null` or `undefined`,
 the helper renders nothing. When the parameter changes, the currently rendered
 component is destroyed and the new component is created and brought in.
@@ -176,6 +198,49 @@ component is destroyed and the new component is created and brought in.
 Picking different components to render in response to the data allows you to
 have a different template and behavior for each case. The `{{component}}` helper
 is a powerful tool for improving code modularity.
+
+### Contextual helpers & modifiers
+
+We can even use helpers and modifiers in the same way. Let's extend the SuperForm component:
+
+```handlebars {data-filename=app/components/super-form.hbs}
+<form>
+  {{yield (hash
+
+    Input=(component "super-input" form=this model=this.model)
+    Textarea=(component "super-textarea" form=this model=this.model)
+    Submit=(component "super-submit" form=this model=this.model)
+
+    is-valid=(helper "super-is-valid" form=this model=this.model)
+    error-for=(helper "super-error-for" form=this model=this.model)
+
+    auto-resize=(modifier "super-auto-resize")
+
+  )}}
+</form>
+```
+
+And be used as:
+
+```handlebars {data-filename=app/templates/index.hbs}
+<SuperForm @model={{this.post}} as |f|>
+
+  {{! Invoke a contextual component }}
+  <f.Input @name="title" />
+
+  {{! Invoke contextual helpers }}
+  {{#unless (f.is-valid "title")}}
+    <div class="error">This field {{f.error-for "title"}}</div>
+  {{/unless}}
+
+  {{! Invoke a contextual modifier on a contextual component invocation }}
+  <f.Textarea @name="body" {{f.auto-resize maxHeight="500"}} />
+
+  <f.Submit />
+</SuperForm>
+```
+
+These APIs open the doors for the creation of new, more powerful UI abstractions.
 
 ## Learn More
 
