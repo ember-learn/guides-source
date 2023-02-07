@@ -148,8 +148,15 @@ body {
 
 form {
   display: grid;
-  grid-column: span 2;
   grid-template-columns: 1fr 6em;
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  grid-column: span 2;
+}
+
+form > label {
+  grid-area: 1 / 1 / 2 / 2;
 }
 
 form > input {
@@ -159,6 +166,7 @@ form > input {
   border: 1px solid #cccccc;
   border-right: none;
   font-size: 1em;
+  grid-area: 2 / 1 / 3 / 2;
 }
 
 form > button {
@@ -166,6 +174,7 @@ form > button {
   border-bottom-right-radius: 0.5em;
   border: 1px solid #cccccc;
   font-size: 1em;
+  grid-area: 2 / 2 / 3 / 3; 
 }
 ```
 
