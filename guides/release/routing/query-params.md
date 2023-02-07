@@ -14,7 +14,7 @@ representing the current page number in a paginated collection, filter criteria,
 In web development, query parameters are used within a URL as described above but can also be used
 in API requests that retrieve data. Ember treats these as _two_ different concepts. This section
 describes how routing query parameters are used in Ember. See [finding records](../../models/finding-records/#toc_querying-for-multiple-records) to see how query parameters are
-applied to API requests in Ember Data.
+applied to API requests in EmberData.
 
 ### Specifying Query Parameters
 

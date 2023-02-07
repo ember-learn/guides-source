@@ -39,7 +39,7 @@ user's hard disk with [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/A
 avoid writing and hosting your own servers.
 
 Once you've loaded your models from storage, components know how to
-translate model data into a UI that your user can interact with.  For
+translate model data into a UI that your user can interact with. For
 more information about how components get model data, see the
 [Specifying a Route's Model](../routing/specifying-a-routes-model/)
 guide.
@@ -93,9 +93,9 @@ You might be tempted to make the component responsible for fetching that
 data and storing it:
 
 ```javascript {data-filename=app/components/list-of-drafts.js}
-import Component from '@glimmer/component';
-import { tracked } from '@glimmer/tracking';
-import fetch from 'fetch';
+import Component from "@glimmer/component";
+import { tracked } from "@glimmer/tracking";
+import fetch from "fetch";
 
 export default class ListOfDraftsComponent extends Component {
   @tracked drafts;
@@ -103,7 +103,7 @@ export default class ListOfDraftsComponent extends Component {
   constructor() {
     super(...arguments);
 
-    fetch('/drafts').then(data => {
+    fetch("/drafts").then((data) => {
       this.drafts = data;
     });
   }
@@ -128,9 +128,9 @@ tempted to copy and paste your existing `willRender` code into the new
 component.
 
 ```javascript {data-filename=app/components/drafts-button.js}
-import Component from '@glimmer/component';
-import { tracked } from '@glimmer/tracking';
-import fetch from 'fetch';
+import Component from "@glimmer/component";
+import { tracked } from "@glimmer/tracking";
+import fetch from "fetch";
 
 export default class DraftsButtonComponent extends Component {
   @tracked drafts;
@@ -138,7 +138,7 @@ export default class DraftsButtonComponent extends Component {
   constructor() {
     super(...arguments);
 
-    fetch('/drafts').then(data => {
+    fetch("/drafts").then((data) => {
       this.drafts = data;
     });
   }
@@ -180,16 +180,31 @@ for your app's models. Both routes and their corresponding controllers have acce
 this shared store; when they need to display or modify a model, they
 first ask the store for it.
 
+### Injecting the store
+
+Ember Data provides a store service that you can inject into routes, components, services and other classes, that enables you to access the store directly.
+
+To do this, import the [`service` decorator](https://api.emberjs.com/ember/4.1.0/functions/@ember%2Fservice/service) and inject a `store` property into your class. Let's see an example using a route:
+
+```javascript
+import Route from "@ember/routing/route";
+import { service } from "@ember/service";
+
+export default class BlogPostsIndexRoute extends Route {
+  @service store;
+
+  model() {
+    return this.store.findAll("posts");
+  }
+}
+```
 
 <div class="cta">
   <div class="cta-note">
     <div class="cta-note-body">
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
-        Ember Data injects the store service to every route and controller
-        so that you can immediately write <code>this.store</code>!
-        If you want to access the store in a component or another service,
-        you will need to <a href="../services/#toc_accessing-services">inject</a> the store service.
+        You can read more about service injection in the <a href="../services/#toc_accessing-services"><i>Accessing Services</i></a> guide.
       </div>
     </div>
     <img src="/images/mascots/zoey.png" role="presentation" alt="">
@@ -207,11 +222,11 @@ example, a `Person` model might have a `name` attribute that is a
 string, and a `birthday` attribute that is a date:
 
 ```javascript {data-filename=app/models/person.js}
-import Model, { attr } from '@ember-data/model';
+import Model, { attr } from "@ember-data/model";
 
 export default class PersonModel extends Model {
-  @attr('string') name;
-  @attr('date') birthday;
+  @attr("string") name;
+  @attr("date") birthday;
 }
 ```
 
@@ -220,19 +235,18 @@ example, an `order` may have many `line-items`, and a
 `line-item` may belong to a particular `order`.
 
 ```javascript {data-filename=app/models/order.js}
-import Model, { hasMany } from '@ember-data/model';
-
+import Model, { hasMany } from "@ember-data/model";
 
 export default class OrderModel extends Model {
-  @hasMany('line-item') lineItems;
+  @hasMany("line-item") lineItems;
 }
 ```
 
 ```javascript {data-filename=app/models/line-item.js}
-import Model, { belongsTo } from '@ember-data/model';
+import Model, { belongsTo } from "@ember-data/model";
 
 export default class LineItemModel extends Model {
-  @belongsTo('order') order;
+  @belongsTo("order") order;
 }
 ```
 
@@ -253,7 +267,7 @@ have a `Person` model. An individual record in your app might
 have a type of `person` and an ID of `1` or `steve-buscemi`.
 
 ```javascript
-this.store.findRecord('person', 1); // => { id: 1, name: 'steve-buscemi' }
+this.store.findRecord("person", 1); // => { id: 1, name: 'steve-buscemi' }
 ```
 
 An ID is usually assigned to a record by the server when you save it for
@@ -265,7 +279,7 @@ An **adapter** is an object that translates requests from Ember (such as
 "find the user with an ID of 1") into requests to a server.
 
 For example, if your application asks for a `Person` with an ID of
-`1`, how should Ember load it? Over HTTP or a WebSocket?  If
+`1`, how should Ember load it? Over HTTP or a WebSocket? If
 it's HTTP, is the URL `/person/1` or `/resources/people/1`?
 
 The adapter is responsible for answering all of these questions.
@@ -294,7 +308,7 @@ However, the next time your app asks for a `person` with ID `1`, the
 store will notice that it had already retrieved and cached that
 information from the server. Instead of sending another request for the
 same information, it will give your application the same record it had
-provided it the first time.  This feature—always returning the same
+provided it the first time. This feature—always returning the same
 record object, no matter how many times you look it up—is sometimes
 called an _identity map_.
 

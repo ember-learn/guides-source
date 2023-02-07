@@ -1,18 +1,18 @@
-In Ember Data, an Adapter determines how data is persisted to a
+In EmberData, an Adapter determines how data is persisted to a
 backend data store. Things such as the backend host, URL format
 and headers used to talk to a REST API can all be configured
 in an adapter.
 
-Ember Data's default Adapter has some built-in assumptions about
+EmberData's default Adapter has some built-in assumptions about
 how a [REST API should look](http://jsonapi.org/). If your backend conventions
-differ from those assumptions, Ember Data allows either slight adjustments
+differ from those assumptions, EmberData allows either slight adjustments
 or you can switch to a different adapter if your backend works noticeably
 differently.
 
 _(If you're looking to adjust how the data sent to the backend is formatted,
 check the [serializer](../customizing-serializers/) page.)_
 
-Extending Adapters is a natural process in Ember Data. Ember takes the
+Extending Adapters is a natural process in EmberData. Ember takes the
 position that you should extend an adapter to add different
 functionality. This results in code that is
 more testable, easier to understand and reduces bloat for people who
@@ -48,7 +48,7 @@ export default class PostAdapter extends JSONAPIAdapter {
 }
 ```
 
-Ember Data comes with several built-in adapters.
+EmberData comes with several built-in adapters.
 Feel free to use these adapters as a starting point for creating your own custom adapter.
 
 - [`Adapter`](https://api.emberjs.com/ember-data/release/classes/Adapter) is the basic adapter
@@ -63,7 +63,7 @@ via XHR.
 
 - [`RESTAdapter`](https://api.emberjs.com/ember-data/release/classes/RESTAdapter)
 The `RESTAdapter` allows your store to communicate with an HTTP server
-by transmitting JSON via XHR. Before Ember Data 2.0 this adapter was the default.
+by transmitting JSON via XHR. Before EmberData 2.0 this adapter was the default.
 
 
 ## Customizing the JSONAPIAdapter
@@ -204,7 +204,7 @@ Requests for `user-profile` would now target `/user_profile/1`.
 
 Some APIs require HTTP headers, e.g. to provide an API key. Arbitrary
 headers can be set as key/value pairs on the `JSONAPIAdapter`'s `headers`
-object and Ember Data will send them along with each ajax request.
+object and EmberData will send them along with each ajax request.
 
 ```javascript {data-filename=app/adapters/application.js}
 import JSONAPIAdapter from '@ember-data/adapter/json-api';
@@ -255,9 +255,9 @@ export default class ApplicationAdapter extends JSONAPIAdapter {
 
 ## Community Adapters
 
-If none of the built-in Ember Data Adapters work for your backend,
-be sure to check out some of the community maintained Ember Data
-Adapters. Some good places to look for Ember Data Adapters include:
+If none of the built-in EmberData Adapters work for your backend,
+be sure to check out some of the community maintained EmberData
+Adapters. Some good places to look for EmberData Adapters include:
 
 - [Ember Observer](http://emberobserver.com/categories/data)
 - [GitHub](https://github.com/search?q=ember+data+adapter&ref=cmdform)

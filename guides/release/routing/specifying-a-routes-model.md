@@ -87,10 +87,10 @@ export default class PhotosRoute extends Route {
 }
 ```
 
-### Ember Data example
+### EmberData example
 
-Ember Data is a powerful (but optional) library included by default in new Ember apps.
-In the next example, we will use Ember Data's [`findAll`](https://api.emberjs.com/ember-data/release/classes/Store/methods/findAll?anchor=findAll) method, which returns a Promise, and resolves with an array of [Ember Data records](../../models/).
+EmberData is a powerful (but optional) library included by default in new Ember apps.
+In the next example, we will use EmberData's [`findAll`](https://api.emberjs.com/ember-data/release/classes/Store/methods/findAll?anchor=findAll) method, which returns a Promise, and resolves with an array of [EmberData records](../../models/).
 
 ```javascript {data-filename=app/routes/favorite-posts.js}
 import Route from '@ember/routing/route';
@@ -105,7 +105,7 @@ export default class FavoritePostsRoute extends Route {
 }
 ```
 
-Note that Ember Data also has a feature called a [`Model`](https://api.emberjs.com/ember-data/release/classes/Model), but it's a separate concept from a route's [`model`](https://api.emberjs.com/ember/release/classes/Route/methods/model?anchor=model) hook.
+Note that EmberData also has a feature called a [`Model`](https://api.emberjs.com/ember-data/release/classes/Model), but it's a separate concept from a route's [`model`](https://api.emberjs.com/ember/release/classes/Route/methods/model?anchor=model) hook.
 
 ## Multiple Models
 
@@ -184,7 +184,7 @@ export default class PostRoute extends Route {
 }
 ```
 
-If you do not define a model hook for a route, it will default to using Ember Data to look up the record, as shown below:
+If you do not define a model hook for a route, it will default to using EmberData to look up the record, as shown below:
 
 ```js
 model(params) {
@@ -195,7 +195,7 @@ model(params) {
 In the `model` hook for routes with dynamic segments, it's your job to
 turn the ID (something like `47` or `post-slug`) into a model that can
 be rendered by the route's template. In the above example, we use the
-post's ID (`params.post_id`) as an argument to Ember Data's `findRecord`
+post's ID (`params.post_id`) as an argument to EmberData's `findRecord`
 method.
 
 ### Linking to a dynamic segment
@@ -321,4 +321,4 @@ If you are having trouble getting a model's data to show up in the template, her
 - make sure your `model` hook has a `return` statement
 - check to see whether the data returned from a `model` hook is an object, array, or JavaScript Primitive. For example, if the result of `model` is an array, using `{{@model}}` in the template won't work. You will need to iterate over the array with an [`{{#each}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/each?anchor=each) helper. If the result is an object, you need to access the individual attribute like `{{@model.title}}` to render it in the template.
 - use your browser's development tools to examine the outgoing and incoming API responses and see if they match what your code expects
-- If you are using Ember Data, use the [Ember Inspector](../../ember-inspector/) browser plugin to explore the View Tree/Model and Data sections.
+- If you are using EmberData, use the [Ember Inspector](../../ember-inspector/) browser plugin to explore the View Tree/Model and Data sections.

@@ -5,15 +5,17 @@ You can create records by calling the
 method on the store.
 
 ```javascript
-store.createRecord('post', {
+this.store.createRecord('post', {
   title: 'Rails is Omakase',
   body: 'Lorem ipsum'
 });
 ```
 
+To make `store` available, you can [inject the `store` service](../#toc_injecting-the-store).
+
 ## Updating Records
 
-Making changes to Ember Data records is as simple as setting the attribute you
+Making changes to EmberData records is as simple as setting the attribute you
 want to change:
 
 ```javascript
@@ -25,15 +27,15 @@ this.store.findRecord('post', 1).then(function(post) {
 
 ## Persisting Records
 
-Records in Ember Data are persisted on a per-instance basis.
+Records in EmberData are persisted on a per-instance basis.
 Call [`save()`](https://api.emberjs.com/ember-data/release/classes/Model/methods/save?anchor=save)
 on any instance of `Model` and it will make a network request.
 
-Ember Data takes care of tracking the state of each record for
-you. This allows Ember Data to treat newly created records differently
+EmberData takes care of tracking the state of each record for
+you. This allows EmberData to treat newly created records differently
 from existing records when saving.
 
-By default, Ember Data will `POST` newly created records to their type URL.
+By default, EmberData will `POST` newly created records to their type URL.
 
 ```javascript
 let post = store.createRecord('post', {

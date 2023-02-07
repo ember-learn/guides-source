@@ -2,7 +2,7 @@ Native classes are a feature of JavaScript. They are officially supported in
 Ember Octane for use with:
 
 - Components (except classic components)
-- Ember Data Models
+- EmberData Models
 - Routes
 - Controllers
 - Services
@@ -80,7 +80,7 @@ so you should eventually transition to `constructor`.
 
 It's important to note that only _explicit_ injections are available during
 class construction (e.g. injections added using `@service`). If you still rely
-on _implicit_ injections, like Ember Data automatically injecting the `store`
+on _implicit_ injections, like EmberData automatically injecting the `store`
 service, you will need to add it explicitly instead:
 
 ```js

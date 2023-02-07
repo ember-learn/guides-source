@@ -11,7 +11,7 @@ let result = this.store.query('post', {
 
 To get different _pages_ of data, you'd simply change your offset in increments of 10. So far, so good. But how do you know how many pages of data you have? Your server would need to return the total number of records as a piece of metadata.
 
-Each serializer will expect the metadata to be returned differently. For example, Ember Data's JSON deserializer looks for a `meta` key:
+Each serializer will expect the metadata to be returned differently. For example, EmberData's JSON deserializer looks for a `meta` key:
 
 ```javascript
 {

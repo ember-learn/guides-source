@@ -1,7 +1,7 @@
 _Container testing methods and computed properties follow previous patterns shown
 in [Testing Basics](../unit-testing-basics/) because DS.Model extends Ember.Object._
 
-[Ember Data](https://github.com/emberjs/data) Models can be tested in a module that uses the `setupTest` helper.
+[EmberData](https://github.com/emberjs/data) Models can be tested in a module that uses the `setupTest` helper.
 
 Let's assume we have a `Player` model that has `level` and `levelName`
 attributes. We want to call `levelUp()` to increment the `level` and assign a
@@ -30,7 +30,7 @@ level 4 to assert that the `levelName` changes. We will use `module` together wi
 
 ```javascript {data-filename=tests/unit/models/player-test.js}
 import { module, test } from 'qunit';
-import { setupTest } from 'ember-qunit';
+import { setupTest } from 'my-app-name/tests/helpers';
 import { run } from '@ember/runloop';
 
 module('Unit | Model | player', function(hooks) {
@@ -85,7 +85,7 @@ Then you could test that the relationship by looking it up on the `user` model w
 
 ```javascript {data-filename=tests/unit/models/user-test.js}
 import { module, test } from 'qunit';
-import { setupTest } from 'ember-qunit';
+import { setupTest } from 'my-app-name/tests/helpers';
 import { get } from '@ember/object';
 
 module('Unit | Model | user', function(hooks) {
@@ -107,7 +107,7 @@ module('Unit | Model | user', function(hooks) {
 });
 ```
 
-_Ember Data contains extensive tests around the functionality of
+_EmberData contains extensive tests around the functionality of
 relationships, so you probably don't need to duplicate those tests. You could
-look at the [Ember Data tests](https://github.com/emberjs/data/tree/master/packages/-ember-data/tests) for examples of deeper relationship testing if you
+look at the [EmberData tests](https://github.com/emberjs/data/tree/master/packages/-ember-data/tests) for examples of deeper relationship testing if you
 feel the need to do it._

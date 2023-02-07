@@ -1,4 +1,4 @@
-The Ember Data store provides an interface for retrieving records of a single type.
+The EmberData store provides an interface for retrieving records of a single type.
 
 ### Retrieving a Single Record
 
@@ -46,7 +46,7 @@ the `[]` notation will not work--you'll have to use `objectAt(index)` instead.
 
 ### Querying for Multiple Records
 
-Ember Data provides the ability to query for records that meet certain criteria.
+EmberData provides the ability to query for records that meet certain criteria.
 Calling [`store.query()`](https://api.emberjs.com/ember-data/release/classes/Store/methods/query?anchor=query) will make a `GET` request with the passed object serialized as query params.
 This method returns a `PromiseArray` in the same way as `findAll`.
 
@@ -67,7 +67,7 @@ this.store.query('person', {
 ### Querying for A Single Record
 
 If you are using an adapter that supports server requests capable of returning a single model object,
-Ember Data provides a convenience method [`store.queryRecord()`](https://api.emberjs.com/ember-data/release/classes/Store/methods/queryRecord?anchor=queryRecord) that will return a promise that resolves with that single record.
+EmberData provides a convenience method [`store.queryRecord()`](https://api.emberjs.com/ember-data/release/classes/Store/methods/queryRecord?anchor=queryRecord) that will return a promise that resolves with that single record.
 The request is made via a method `queryRecord()` defined by the adapter.
 
 For example, if your server API provides an endpoint for the currently logged in user:
@@ -106,7 +106,7 @@ store.queryRecord('user', {}).then(function(user) {
 
 As in the case of `store.query()`, a query object can also be passed to `store.queryRecord()` and is available for the adapter's `queryRecord()` to use to qualify the request.
 However the adapter must return a single model object, not an array containing one element,
-otherwise Ember Data will throw an exception.
+otherwise EmberData will throw an exception.
 
 Note that Ember's default [JSON:API adapter](https://api.emberjs.com/ember-data/release/classes/JSONAPIAdapter) does not provide the functionality needed to support `queryRecord()` directly as it relies on REST request definitions that return result data in the form of an array.
 

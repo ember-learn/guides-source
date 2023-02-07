@@ -26,6 +26,7 @@ chainable
 cheatsheet
 Checkboxes
 checkboxes
+coc-ember
 CoffeeScript
 ColorSafe
 componentized
@@ -36,6 +37,7 @@ customizable
 Customizable
 customizations
 D3
+DAP
 dasherize
 DataAdapter
 datepicker
@@ -63,6 +65,7 @@ ember-cli-tutorial-style
 ember-debug-handlers-polyfill
 ember-fast-cli
 ember-intl
+EmberData
 erroring
 Evented
 facto
@@ -72,6 +75,7 @@ Favicon
 focusability
 focusable
 formatter
+formatters
 fullname
 geocode
 geocoding
@@ -105,6 +109,7 @@ keyCode
 KVO
 lang
 linters
+LSP
 lookups
 Mapbox
 MDN
@@ -186,6 +191,7 @@ teardown
 templating
 todo
 todos
+treesitter
 triple-backtick
 tooltip
 trackable
