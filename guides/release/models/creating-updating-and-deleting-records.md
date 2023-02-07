@@ -11,7 +11,7 @@ this.store.createRecord('post', {
 });
 ```
 
-To make `store` available, you can [inject the `store` service](../models/#toc_injecting-the-store).
+To make `store` available, you can [inject the `store` service](../#toc_injecting-the-store).
 
 ## Updating Records
 
