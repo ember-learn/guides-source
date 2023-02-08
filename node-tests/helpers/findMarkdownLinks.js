@@ -10,5 +10,6 @@ const markdownLinkExtractor = require('markdown-link-extractor');
  */
 module.exports = function findMarkdownLinks(filepath) {
   const markdown = fs.readFileSync(filepath).toString();
-  return markdownLinkExtractor(markdown);
+  const { links } = markdownLinkExtractor(markdown);
+  return links;
 };
