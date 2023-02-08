@@ -157,6 +157,8 @@
       url: "making-api-requests"
     - title: "Native Classes In-Depth"
       url: "native-classes-in-depth"
+    - title: "Rendering Values"
+      url: "rendering-values"
 
 - title: "Application Development"
   url: "toc-heading_application-development"

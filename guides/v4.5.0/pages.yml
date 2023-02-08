@@ -149,6 +149,8 @@
   pages:
     - title: "Autotracking In-Depth"
       url: "autotracking-in-depth"
+    - title: "Rendering"
+      url: "rendering"
     - title: "Patterns for Components"
       url: "patterns-for-components"
     - title: "Patterns for Actions"
@@ -157,6 +159,8 @@
       url: "making-api-requests"
     - title: "Native Classes In-Depth"
       url: "native-classes-in-depth"
+    - title: "Rendering Values"
+      url: "rendering-values"
 
 - title: "Application Development"
   url: "toc-heading_application-development"
