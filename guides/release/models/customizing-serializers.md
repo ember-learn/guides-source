@@ -318,12 +318,11 @@ payload. For example, if your backend returned attributes that are
 method like this.
 
 ```javascript {data-filename=app/serializers/application.js}
-import { underscore } from '@ember/string';
 import JSONAPISerializer from '@ember-data/serializer/json-api';
 
 export default class ApplicationSerializer extends JSONAPISerializer {
   keyForAttribute(attr) {
-    return underscore(attr);
+    return attr.replace(/_/g, '-'); // blog_post_comment becomes blog-post-comment 
   }
 }
 ```
