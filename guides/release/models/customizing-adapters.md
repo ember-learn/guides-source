@@ -188,11 +188,10 @@ underscore_case instead of dash-case you could override the
 
 ```javascript {data-filename=app/adapters/application.js}
 import JSONAPIAdapter from '@ember-data/adapter/json-api';
-import { underscore } from '@ember/string';
 
 export default class ApplicationAdapter extends JSONAPIAdapter {
   pathForType(type) {
-    return underscore(type);
+    return type.replace(/-/g, '_'); // blog-post-comment becomes blog_post_comment 
   }
 }
 ```
