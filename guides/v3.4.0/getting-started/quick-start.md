@@ -84,6 +84,7 @@ which means that any nested route will be rendered in that place.
 Let's build an application that shows a list of scientists.
 To do that, the first step is to create a route.
 For now, you can think of routes as being the different pages that make up your application.
+In this example, your routes will be nested in the `application` template, accessed via the `{{outlet}}` you've added above.
 
 Ember comes with _generators_ that automate the boilerplate code for common tasks.
 To generate a route, type this in a new terminal window in your `ember-quickstart` directory:
@@ -145,6 +146,8 @@ Learn more with this [overview of the newest JavaScript features](https://ponyfo
 In a route's `model()` method, you return whatever data you want to make available to the template.
 If you need to fetch data asynchronously,
 the `model()` method supports any library that uses [JavaScript Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
+
+There is also the `.extend` which allows us to add information and methods to the route we've defined. 
 
 Now let's tell Ember how to turn that array of strings into HTML.
 Open the `scientists` template and add the following code to loop through the array and print it:
