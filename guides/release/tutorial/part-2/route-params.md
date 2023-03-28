@@ -2,7 +2,7 @@
 
 Now that we are fetching real data from our "server", let's add a new feature — dedicated pages for each of our rentals:
 
-<img src="/images/tutorial/part-2/route-params/grand-old-mansion@2x.png" alt="The Super Rentals app (rentals page) by the end of the chapter" width="1024" height="1382">
+<img src="/images/tutorial/part-2/route-params/grand-old-mansion@2x.png" alt="The Super Rentals app (rentals page) by the end of the chapter" width="1024" height="1390">
 
 While adding these rental pages, you will learn about:
 
@@ -81,7 +81,7 @@ Since we know that we're linking to the `rental` route that we just created, we 
 
 Let's see this in action. If we go back to our browser and refresh the page, we should see our links, but something isn't quite right yet!
 
-<img src="/images/tutorial/part-2/route-params/broken-links@2x.png" alt="Broken links" width="1024" height="100">
+<img src="/images/tutorial/part-2/route-params/broken-links@2x.png" alt="Broken links" width="1024" height="1130">
 
 The links are all pointing to `/rentals/undefined`. Yikes! This is because `<LinkTo>` tries to use the `id` property from our model in order to replace the dynamic segment and generate the URL.
 
@@ -474,7 +474,7 @@ module('Acceptance | super rentals', function (hooks) {
 
 Now, when we visit `http://localhost:4200/rentals/grand-old-mansion`, this is what we see:
 
-<img src="/images/tutorial/part-2/route-params/grand-old-mansion@2x.png" alt="A dedicated page for the Grand Old Mansion" width="1024" height="1382">
+<img src="/images/tutorial/part-2/route-params/grand-old-mansion@2x.png" alt="A dedicated page for the Grand Old Mansion" width="1024" height="1390">
 
 And if we run our tests now...
 
