@@ -19,7 +19,7 @@ Let's start by creating the `<Rental>` component. This time, we will use the com
 $ ember generate component rental
 installing component
   create app/components/rental.hbs
-  skip app/components/rental.js
+  skip app/components/rental.ts
   tip to add a class, run `ember generate component-class rental`
 installing component-test
   create tests/integration/components/rental-test.js
@@ -126,7 +126,7 @@ Next, let's add the image for the rental property. We will use the component gen
 $ ember generate component rental/image
 installing component
   create app/components/rental/image.hbs
-  skip app/components/rental/image.js
+  skip app/components/rental/image.ts
   tip to add a class, run `ember generate component-class rental/image`
 installing component-test
   create tests/integration/components/rental/image-test.js

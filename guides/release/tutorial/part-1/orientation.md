@@ -24,8 +24,8 @@ To verify that your installation was successful, run:
 
 ```shell
 $ ember --version
-ember-cli: 4.11.0
-node: 14.19.1
+ember-cli: 4.12.0
+node: 16.20.0
 os: linux x64
 ```
 
@@ -38,7 +38,7 @@ We can create a new project using Ember CLI's `new` command. It follows the patt
 ```shell
 $ ember new super-rentals --lang en
 installing app
-Ember CLI v4.11.0
+Ember CLI v4.12.0
 
 Creating a new Ember app in /home/runner/work/super-rentals-tutorial/super-rentals-tutorial/dist/code/super-rentals:
   create .editorconfig
@@ -48,6 +48,8 @@ Creating a new Ember app in /home/runner/work/super-rentals-tutorial/super-renta
   create .github/workflows/ci.yml
   create .prettierignore
   create .prettierrc.js
+  create .stylelintignore
+  create .stylelintrc.js
   create .template-lintrc.js
   create .watchmanconfig
   create README.md
@@ -147,6 +149,8 @@ super-rentals
 ├── .gitignore
 ├── .prettierignore
 ├── .prettierrc.js
+├── .stylelintignore
+├── .stylelintrc.js
 ├── .template-lintrc.js
 ├── .watchmanconfig
 ├── README.md
@@ -155,7 +159,7 @@ super-rentals
 ├── package-lock.json
 └── testem.js
 
-16 directories, 35 files
+16 directories, 37 files
 ```
 
 We'll learn about the purposes of these files and folders as we go. For now, just know that we'll spend most of our time working within the `app` folder.
