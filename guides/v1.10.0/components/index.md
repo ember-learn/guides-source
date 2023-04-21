@@ -11,8 +11,7 @@ JavaScript?
 
 That's exactly what components let you do. In fact, it's such a good
 idea that the W3C is currently working on the [Custom
-Elements](https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/custom/index.html)
-spec.
+Elements](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements) spec.
 
 Ember's implementation of components hews as closely to the [Web
 Components specification](http://www.w3.org/TR/components-intro/) as possible.
