@@ -235,15 +235,13 @@ for more information on how to convert a classic class to modern Ember.
 
 Just like the JavaScript language changes over time, web browsers change too!
 Ember helps you to write code that can work across many different browsers and
-their versions. Behind the scenes, Ember uses Babel to compile modern JavaScript
-to something that can work on all browsers. Without this step, you could
-accidentally end up shipping code that works for your version of Chrome but
-breaks for someone using Edge. Ember has you covered!
+their versions.
 
-Luckily, Ember comes with a solution out of the box for this. Ember applications
-use [Babel](https://babeljs.io/) to compile modern JavaScript to something that
-can work on _all_ browsers. This means you can write modern JavaScript and use
-the latest features without any additional setup!
+Behind the scenes, Ember uses [Babel](https://babeljs.io/) to compile modern
+JavaScript to something that can work on _all_ browsers. Without this step, you
+could accidentally end up shipping code that works for your version of Chrome but
+breaks for someone using Edge. Ember has you covered and let you write modern
+JavaScript and use the latest features without any additional setup!
 
 > _Note: Some features require you to [enable the Babel polyfill](https://github.com/babel/ember-cli-babel#polyfill).
 > This adds some extra weight to your application, but ensures you'll be
