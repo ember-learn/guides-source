@@ -1,3 +1,4 @@
+/* eslint-disable qunit/require-expect */
 import { visit } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 import { module, test } from 'qunit';
@@ -12,25 +13,26 @@ async function visitPages(pages, assert) {
 
     if (pages) {
       await visitPages(pages, assert);
-
     } else {
       await visit(`/release/${url}`);
 
       assert.dom('h1').hasText(title, 'We see the correct title in h1 tag.');
-
     }
   }
 }
 
-module('Acceptance | side bar links', function(hooks) {
+module('Acceptance | side bar links', function (hooks) {
   setupApplicationTest(hooks);
 
-  test('release links go to correct page', async function(assert) {
+  test('release links go to correct page', async function (assert) {
     await visit('/release');
 
     let store = this.owner.lookup('service:store');
     let pages = await store.peekAll('page');
 
-    await visitPages(pages.toArray().filter(page => !page.id.includes('toc-heading')), assert);
+    await visitPages(
+      pages.toArray().filter((page) => !page.id.includes('toc-heading')),
+      assert
+    );
   });
 });

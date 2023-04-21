@@ -25,23 +25,24 @@ module.exports = function (environment) {
     },
 
     'ember-meta': {
-      description: 'Ember.js helps developers be more productive out of the box. Designed with developer ergonomics in mind, its friendly APIs help you get your job done—fast.'
+      description:
+        'Ember.js helps developers be more productive out of the box. Designed with developer ergonomics in mind, its friendly APIs help you get your job done—fast.',
     },
 
     guidemaker: {
       title: 'Ember Guides',
-      sourceRepo: 'https://github.com/ember-learn/guides-source'
+      sourceRepo: 'https://github.com/ember-learn/guides-source',
     },
 
     algolia: {
       algoliaId: 'Y1OMR4C7MF',
       algoliaKey: '5d01c83734dc36754d9e94cbf6f8964d',
-      indexName: 'ember-guides'
+      indexName: 'ember-guides',
     },
 
     showdown: {
       ghCompatibleHeaderId: true,
-      prefixHeaderId: 'toc_'
+      prefixHeaderId: 'toc_',
     },
 
     deprecationsGuideURL: 'https://www.emberjs.com/deprecations/',
@@ -52,8 +53,8 @@ module.exports = function (environment) {
         environments: ['production'],
         config: {
           id: 'UA-27675533-1',
-          require: ['linkid']
-        }
+          require: ['linkid'],
+        },
       },
     ],
   };

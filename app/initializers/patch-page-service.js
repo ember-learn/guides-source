@@ -7,13 +7,13 @@ Object.defineProperty(PageService.prototype, 'pages', {
 
   set(pages) {
     if (pages) {
-      this._pages = pages.filter(page => {
+      this._pages = pages.filter((page) => {
         const pageId = page.id ?? '';
 
         return !pageId.includes('toc-heading');
       });
     }
-  }
+  },
 });
 
 export function initialize() {}

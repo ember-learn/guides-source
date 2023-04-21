@@ -57,21 +57,19 @@ module.exports = {
 
     // node tests
     {
-      files: [
-        'node-tests/**/*.js'
-      ],
+      files: ['node-tests/**/*.js'],
       env: {
         node: true,
-        mocha: true
+        mocha: true,
       },
       parserOptions: {
-        ecmaVersion: 2018
+        ecmaVersion: 2018,
       },
       rules: {
-        "func-names": 0,
-        "prefer-arrow-callback": 0,
-        "no-unused-expressions": 0
+        'func-names': 0,
+        'prefer-arrow-callback': 0,
+        'no-unused-expressions': 0,
       },
-    }
+    },
   ],
 };

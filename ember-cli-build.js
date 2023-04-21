@@ -6,11 +6,11 @@ module.exports = function (defaults) {
   let app = new EmberApp(defaults, {
     fingerprint: {
       extensions: ['js', 'css', 'map'],
-      exclude: ['downloads']
+      exclude: ['downloads'],
     },
     guidemaker: {
-      premberVersionFilter: '3.24.0'
-    }
+      premberVersionFilter: '3.24.0',
+    },
   });
 
   // Use `app.import` to add additional libraries to the generated

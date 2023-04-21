@@ -6,7 +6,7 @@ import { module, test } from 'qunit';
 
 module('Unit | Initializer | patch-page-service', function (hooks) {
   hooks.beforeEach(function () {
-    this.TestApplication = class TestApplication extends Application {}
+    this.TestApplication = class TestApplication extends Application {};
 
     this.TestApplication.initializer({
       initialize,
