@@ -1,12 +1,12 @@
-import { setApplication } from '@ember/test-helpers';
 import Application from 'ember-guides/app';
 import config from 'ember-guides/config/environment';
-import { start } from 'ember-qunit';
 import * as QUnit from 'qunit';
+import { setApplication } from '@ember/test-helpers';
 import { setup } from 'qunit-dom';
-
-setup(QUnit.assert);
+import { start } from 'ember-qunit';
 
 setApplication(Application.create(config.APP));
+
+setup(QUnit.assert);
 
 start();
