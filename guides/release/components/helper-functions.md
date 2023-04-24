@@ -83,7 +83,7 @@ We can then use this helper in the component's template to get the first letter 
 ```handlebars {data-filename="app/components/message.hbs" data-diff="-3,+4"}
 <Message::Avatar
   @title="{{@username}}'s avatar"
-  @initial={{@avatarTitle}}
+  @initial={{@avatarInitial}}
   @initial={{this.substring @username 0 1}}
   @isActive={{@userIsActive}}
   class={{if @isCurrentUser "current-user"}}
