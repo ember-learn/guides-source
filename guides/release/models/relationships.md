@@ -425,7 +425,7 @@ export default class AdeleRoute extends Route {
         include: 'albums'
       })
       .then(function(artists) {
-        return artists.firstObject;
+        return artists[0];
       });
   }
 }

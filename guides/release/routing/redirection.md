@@ -74,7 +74,7 @@ export default class PostsRoute extends Route {
 
   afterModel(model, transition) {
     if (model.get('length') === 1) {
-      this.router.transitionTo('post', model.get('firstObject'));
+      this.router.transitionTo('post', model[0]);
     }
   }
 }
@@ -128,7 +128,7 @@ export default class PostsRoute extends Route {
 
   redirect(model, transition) {
     if (model.get('length') === 1) {
-      this.router.transitionTo('posts.post', model.get('firstObject'));
+      this.router.transitionTo('posts.post', model[0]);
     }
   }
 }
