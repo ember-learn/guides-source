@@ -292,7 +292,7 @@ import Helper from '@ember/component/helper';
 
 export default class Substring extends Helper {
   compute(positional, { start, end }) {
-    const string = params[0];
+    const string = positional[0];
     return string.substring(start || 0, end);
   }
 }
