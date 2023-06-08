@@ -184,32 +184,12 @@ Next to local helpers, ember provides a way to use global helpers. We define glo
   </div>
 </div>
 
-To implement the helper, we write a JavaScript function that takes its arguments as an _array_. This is because helpers can also receive _named_
-arguments, which we'll discuss next.
+To implement the helper, we define and export a regular JavaScript function:
 
 ```js {data-filename="app/helpers/substring.js"}
-import { helper } from '@ember/component/helper';
-
-function substring(args) {
-  let [string, start, end] = args;
+export default function substring(string, start, end) {
   return string.substring(start, end);
 }
-
-export default helper(substring);
-```
-
-We can tighten up the implementation by moving the [destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) into the function's signature.
-
-```js {data-filename="app/helpers/substring.js" data-diff="+3,-4,-5"}
-import { helper } from '@ember/component/helper';
-
-function substring([string, start, end]) {
-function substring(args) {
-  let [string, start, end] = args;
-  return string.substring(start, end);
-}
-
-export default helper(substring);
 ```
 
 We can then use this helper in the component's template to get the first letter of the username.
@@ -256,35 +236,71 @@ Similar to local helpers, global helpers also can mix positional and named argum
 ```
 
 ```js {data-filename="app/helpers/substring.js"}
+export default function substring(string, { start, end }) {
+  return string.substring(start || 0, end);
+}
+```
+
+### Classic Helpers
+
+Sometimes, you may encounter helpers defined using the `helper` function:
+
+```js {data-filename="app/helpers/substring.js"}
 import { helper } from '@ember/component/helper';
 
-function substring([string], { start, end }) {
+function substring(positional, { start, end }) {
+  const string = positional[0];
   return string.substring(start || 0, end);
 }
 
 export default helper(substring);
 ```
 
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+        Before Ember 4.5, this was the only way to define helpers.
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
+  </div>
+</div>
+
+By wrapping the function using the `helper()` function, Ember will extract the
+arguments passed from the template. It'll then call your function with an array
+(positional arguments passed in the template) and an object (named arguments
+passed in the template).
+
+This style mostly exists for backwards compatibility reasons, but the other
+advantage is that it makes it easier to untangle the positional and named
+arguments (e.g. when your helper accept an arbitrary number of positional
+arguments and optionally some named arguments). Note that, however, it also
+makes it more difficult to reuse the logic of the helper function from regular
+JavaScript code outside of templates. On the other hand, if you define your
+helpers as plain JavaScript function, as we have been doing until now, you are
+able to import and call them from any JavaScript files in your app.
+
 ### Class Helpers
 
-Helpers can also be defined using class syntax. For instance, we could define
-the substring helper using classes instead.
+Classic helpers can also be defined using class syntax. For instance, we could
+define the substring helper using classes instead.
 
-```js {data-filename="app/helpers/substring.js" data-diff="-1,+2,-4,+5,+6,+8"}
-import { helper } from '@ember/component/helper';
+```js {data-filename="app/helpers/substring.js"}
 import Helper from '@ember/component/helper';
 
-function substring([string], { start, length }) {
 export default class Substring extends Helper {
-  compute([string], { start, end }) {
+  compute(positional, { start, end }) {
+    const string = params[0];
     return string.substring(start || 0, end);
   }
 }
 ```
 
 Class helpers are useful when the helper logic is fairly complicated, requires
-fine-grained control of the helper lifecycle, or is _stateful_ (we'll be
-discussing state in the next chapter).
+fine-grained control of the helper lifecycle, is _stateful_ (we'll be
+discussing state in the next chapter), or requiring access to a [service](../../services/).
 
 ## Built-in Helpers
 
