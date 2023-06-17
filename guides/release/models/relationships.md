@@ -314,7 +314,7 @@ The second way of doing the same thing is to link the two records together by up
 ```javascript
 let comment = this.store.createRecord('comment', {});
 let comments = await myBlogPost.comments;
-comments.pushObject(comment);
+comments.push(comment);
 comment.save().then(function() {
   myBlogPost.save();
 });
@@ -448,7 +448,7 @@ Alternatively, we could update the `hasMany` relationship by pushing a record in
 let blogPost = this.store.peekRecord('blog-post', 1);
 let comment = this.store.peekRecord('comment', 1);
 let comments = await blogPost.comments;
-comments.pushObject(comment);
+comments.push(comment);
 blogPost.save();
 ```
 
