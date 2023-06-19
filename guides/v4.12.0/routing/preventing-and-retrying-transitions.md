@@ -8,7 +8,7 @@ later time by calling `transition.retry()`.
 ### Preventing Transitions via `routeWillChange`
 
 When a transition is attempted, whether via `<LinkTo />`, `transitionTo`,
-or a URL change, a `routeWillChange` event is fired on the [`RouterService`](https://api.emberjs.com/ember/release/classes/RouterService/events). This gives each active route, starting with the leaf-most
+or a URL change, a `routeWillChange` event is fired on the [`RouterService`](https://api.emberjs.com/ember/4.12.0/classes/RouterService/events). This gives each active route, starting with the leaf-most
 route, the opportunity to decide whether or not the transition should occur.
 
 Imagine your app is in a route that's displaying a complex form for the user

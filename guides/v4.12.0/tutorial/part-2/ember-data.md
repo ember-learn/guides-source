@@ -331,16 +331,16 @@ export default class ApplicationSerializer extends JSONAPISerializer {}
 
 By convention, adapters are located at `app/adapters`. Furthermore, the adapter named `application` is called the _application adapter_, which will be used to fetch data for all models in our app.
 
-Inside this newly created file, we defined an `ApplicationAdapter` class, inheriting from the built-in [`JSONAPIAdapter`](https://api.emberjs.com/ember-data/release/classes/JSONAPIAdapter). This allows us to inherit all the default JSON:API functionalities, while customizing the things that didn't work for us by default. Specifically:
+Inside this newly created file, we defined an `ApplicationAdapter` class, inheriting from the built-in [`JSONAPIAdapter`](https://api.emberjs.com/ember-data/4.12.0/classes/JSONAPIAdapter). This allows us to inherit all the default JSON:API functionalities, while customizing the things that didn't work for us by default. Specifically:
 
 - Our resource URLs have an extra `/api` _namespace_ prefix.
 - Our resource URLs have a `.json` extension at the end.
 
 Adding a namespace prefix happens to be pretty common across Ember apps, so the `JSONAPIAdapter` has an API to do just that. All we need to do is to set the  `namespace` property to the prefix we want, which is `api` in our case.
 
-Adding the `.json` extension is a bit less common, and doesn't have a declarative configuration API of its own. Instead, we will need to _override_ Ember Data's [`buildURL`](https://api.emberjs.com/ember-data/release/classes/JSONAPIAdapter/methods/buildURL?anchor=buildURL) method. Inside of `buildURL`, we will call `super.buildURL(...args)` to invoke the `JSONAPIAdapter` default implementation of `buildURL`. This will give us the URL that the adapter _would have built_, which would be something like `/api/rentals` and `/api/rentals/grand-old-mansion` after configuring the `namespace` above. All we have to do is to append `.json` to this URL and return it.
+Adding the `.json` extension is a bit less common, and doesn't have a declarative configuration API of its own. Instead, we will need to _override_ Ember Data's [`buildURL`](https://api.emberjs.com/ember-data/4.12.0/classes/JSONAPIAdapter/methods/buildURL?anchor=buildURL) method. Inside of `buildURL`, we will call `super.buildURL(...args)` to invoke the `JSONAPIAdapter` default implementation of `buildURL`. This will give us the URL that the adapter _would have built_, which would be something like `/api/rentals` and `/api/rentals/grand-old-mansion` after configuring the `namespace` above. All we have to do is to append `.json` to this URL and return it.
 
-Similarly, serializers are located at `app/serializers`. Adapters and serializers are always added together as a pair. We added an `application` adapter, so we also added a corresponding serializer to go with it as well. Since the JSON data returned by our server is JSON:API-compliant, the default [`JSONAPISerializer`](https://api.emberjs.com/ember-data/release/classes/JSONAPISerializer) work just fine for us without further customization.
+Similarly, serializers are located at `app/serializers`. Adapters and serializers are always added together as a pair. We added an `application` adapter, so we also added a corresponding serializer to go with it as well. Since the JSON data returned by our server is JSON:API-compliant, the default [`JSONAPISerializer`](https://api.emberjs.com/ember-data/4.12.0/classes/JSONAPISerializer) work just fine for us without further customization.
 
 With our adapter and serializer in place, all our tests should pass again.
 

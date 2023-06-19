@@ -485,7 +485,7 @@ let matt = new Person();
 console.log(matt.name); // Matthew Beale
 ```
 
-Ember provides [a number of decorators](https://api.emberjs.com/ember/release/modules/@ember%2Fobject#functions), such as the [`@tracked` decorator](https://api.emberjs.com/ember/release/functions/@glimmer%2Ftracking/tracked), that
+Ember provides [a number of decorators](https://api.emberjs.com/ember/4.12.0/modules/@ember%2Fobject#functions), such as the [`@tracked` decorator](https://api.emberjs.com/ember/4.12.0/functions/@glimmer%2Ftracking/tracked), that
 will be described in greater detail later on in the guides.
 
 > Note: Decorators are still being actively developed in JavaScript, which means
@@ -496,7 +496,7 @@ will be described in greater detail later on in the guides.
 
 ### Using injection
 
-Instances can also make use of injection if they are embedded into the application container. To achieve this, you need to call [`setOwner`](https://api.emberjs.com/ember/3.27/functions/@ember%2Fapplication/setOwner) on the instance and supply the container. You can access the container by calling [`getOwner`](https://api.emberjs.com/ember/3.27/functions/@ember%2Fapplication/getOwner) on any framework object (components, services, routes, etc.).
+Instances can also make use of injection if they are embedded into the application container. To achieve this, you need to call [`setOwner`](https://api.emberjs.com/ember/4.12.0/functions/@ember%2Fapplication/setOwner) on the instance and supply the container. You can access the container by calling [`getOwner`](https://api.emberjs.com/ember/4.12.0/functions/@ember%2Fapplication/getOwner) on any framework object (components, services, routes, etc.).
 
 ```js
 import { service } from '@ember/service';
@@ -720,7 +720,7 @@ after overriding. This allows the super class method to continue operating as it
 normally would.
 
 One common example is when overriding the
-[`normalizeResponse()`](https://api.emberjs.com/ember-data/release/classes/JSONAPISerializer/methods/normalizeResponse?anchor=normalizeResponse)
+[`normalizeResponse()`](https://api.emberjs.com/ember-data/4.12.0/classes/JSONAPISerializer/methods/normalizeResponse?anchor=normalizeResponse)
 hook in one of EmberData's serializers.
 
 A handy shortcut for this is to use a "spread operator", like `...arguments`:

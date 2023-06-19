@@ -228,4 +228,4 @@ It looks similar to a ternary operator.
 
 ## Learn More
 
-Please see the [API documentation of the `if` helper](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/if?anchor=if) for more patterns.
+Please see the [API documentation of the `if` helper](https://api.emberjs.com/ember/4.12.0/classes/Ember.Templates.helpers/methods/if?anchor=if) for more patterns.

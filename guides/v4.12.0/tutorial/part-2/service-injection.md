@@ -314,7 +314,7 @@ However, during tests, the router is configured to maintain the "logical" URL in
 
 ## The Router Service
 
-To fix our problem, we would need to do the same. Ember exposes this internal state through the _[router service](https://api.emberjs.com/ember/release/classes/RouterService)_, which we can _[inject](../../../services/#toc_accessing-services)_ into our component:
+To fix our problem, we would need to do the same. Ember exposes this internal state through the _[router service](https://api.emberjs.com/ember/4.12.0/classes/RouterService)_, which we can _[inject](../../../services/#toc_accessing-services)_ into our component:
 
 ```js { data-filename="app/components/share-button.js" data-diff="+1,+7,+8,-10,+11" }
 import { service } from '@ember/service';

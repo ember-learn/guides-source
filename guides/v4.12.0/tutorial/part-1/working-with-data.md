@@ -47,7 +47,7 @@ export default class IndexRoute extends Route {
 }
 ```
 
-There's a lot happening here that we haven't seen before, so let's walk through this. First, we're importing the _[`Route` class](https://api.emberjs.com/ember/release/classes/Route)_ into the file. This class is used as a starting point for adding functionality to a route, such as loading data.
+There's a lot happening here that we haven't seen before, so let's walk through this. First, we're importing the _[`Route` class](https://api.emberjs.com/ember/4.12.0/classes/Route)_ into the file. This class is used as a starting point for adding functionality to a route, such as loading data.
 
 Then, we are extending the `Route` class into our _own_ `IndexRoute`, which we also _[`export`](https://javascript.info/import-export#export-default)_ so that the rest of the application can use it.
 

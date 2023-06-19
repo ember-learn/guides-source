@@ -184,7 +184,7 @@ first ask the store for it.
 
 EmberData provides a store service that you can inject into routes, components, services and other classes, that enables you to access the store directly.
 
-To do this, import the [`service` decorator](https://api.emberjs.com/ember/release/functions/@ember%2Fservice/service) and inject a `store` property into your class. Let's see an example using a route:
+To do this, import the [`service` decorator](https://api.emberjs.com/ember/4.12.0/functions/@ember%2Fservice/service) and inject a `store` property into your class. Let's see an example using a route:
 
 ```javascript
 import Route from "@ember/routing/route";

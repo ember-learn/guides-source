@@ -25,13 +25,13 @@ If you need some inspiration, you can check out the [Help Wanted](https://help-w
 
 # Updating the API Guides
 
-In the [API Guides](https://api.emberjs.com/ember/release), suppose you found a typo or wish to provide more details for a package, method, or class. Here is how you can make a change.
+In the [API Guides](https://api.emberjs.com/ember/4.12.0), suppose you found a typo or wish to provide more details for a package, method, or class. Here is how you can make a change.
 
 At the top of the page (for the package, method, or class), you will find the words "Defined in" or "Inherited from". Next to these words is a link to the source code on GitHub.
 
 You can open the link to find a comment block. Make a pull request to update the comment block. The API Guides may take a few weeks to update while the future release is finalized.
 
-Here is an example of updating a method. At the top of the section for [`store.createRecord()`](https://api.emberjs.com/ember-data/release/classes/Store/methods/createRecord?anchor=createRecord), you can find the words "Defined in."
+Here is an example of updating a method. At the top of the section for [`store.createRecord()`](https://api.emberjs.com/ember-data/4.12.0/classes/Store/methods/createRecord?anchor=createRecord), you can find the words "Defined in."
 
 Next to the words is, once again, the link to the source code [`ds-model-store.ts`](https://github.com/emberjs/data/blob/master/packages/store/addon/-private/system/ds-model-store.ts).
 
