@@ -30,7 +30,8 @@ rm -rf ./public/v?.*
 echo "  DONE"
 
 echo
-echo "👩‍💻 Go to https://www.algolia.com/apps/Y1OMR4C7MF/api-keys/all"
+echo "👩‍💻 Go to https://dashboard.algolia.com/account/api-keys/all?applicationId=Y1OMR4C7MF"
+echo "👩‍💻 Copy the Write API Key with the copy button beside the obfuscated key and paste it below (note it won't seem like you're pasting)"
 read -sp "Algolia Write API Key: " write_api_key
 
 echo
@@ -42,6 +43,7 @@ cat > ./config/credentials.json <<- EOF
   "algoliaApplication": "Y1OMR4C7MF"
 }
 EOF
+
 echo "  DONE"
 
 echo
