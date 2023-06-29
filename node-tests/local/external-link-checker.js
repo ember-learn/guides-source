@@ -13,7 +13,7 @@ const {
   mapToLocalUrl,
   removeTrailingApostrophe,
   randomizeFetchDelays,
-  sleep
+  sleep,
 } = require('./../helpers');
 
 function printBadLinks(badLinks) {
@@ -21,8 +21,8 @@ function printBadLinks(badLinks) {
 }
 
 const releasePaths = walkSync('guides/release')
-  .filter(filePath => extname(filePath) === '.md')
-  .map(filePath => `guides/release/${filePath}`);
+  .filter((filePath) => extname(filePath) === '.md')
+  .map((filePath) => `guides/release/${filePath}`);
 
 /**
  * The do not check list is a list of known URL's that will fail, but are still
@@ -38,20 +38,26 @@ const doNotCheckList = [
   'https://www.ember-cli-mirage.com/docs/testing/acceptance-tests', // results in an initial 404, but forwards to the correct path
 ];
 
-describe('check all external links in markdown files', function() {
-  const skipApiUrls = 'FOLLOW_API_URLS' in process.env && process.env.FOLLOW_API_URLS === 'false';
+describe('check all external links in markdown files', function () {
+  const skipApiUrls =
+    'FOLLOW_API_URLS' in process.env && process.env.FOLLOW_API_URLS === 'false';
 
   releasePaths.forEach((filePath) => {
-    it(`processing ${filePath}`, async function() {
+    it(`processing ${filePath}`, async function () {
       this.timeout(60000); // high for slow networks and pages with a lot of external links
 
       const externalLinks = findMarkdownLinks(filePath)
         .filter((link) => link.startsWith('http')) // should have more robust regex
         .filter((link) => {
-          const canSkipCheck = doNotCheckList.some(address => link.startsWith(address));
+          const canSkipCheck = doNotCheckList.some((address) =>
+            link.startsWith(address)
+          );
           return !canSkipCheck;
         })
-        .filter((link) => !(skipApiUrls && link.toLowerCase().includes('api.emberjs.com')))
+        .filter(
+          (link) =>
+            !(skipApiUrls && link.toLowerCase().includes('api.emberjs.com'))
+        )
         .map(mapToLocalUrl)
         .map(removeTrailingApostrophe)
         .map(randomizeFetchDelays);

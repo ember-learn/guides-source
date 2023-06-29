@@ -3,24 +3,34 @@ import { module, test } from 'qunit';
 
 import { setupApplicationTest } from 'ember-qunit';
 
-module('Acceptance | current url', function(hooks) {
+module('Acceptance | current url', function (hooks) {
   setupApplicationTest(hooks);
 
-  test('visiting /release-url', async function(assert) {
+  test('visiting /release-url', async function (assert) {
     await visit('/release');
     let page = this.owner.lookup('service:page');
     let currentVersion = page.get('currentVersion');
-    currentVersion = currentVersion.slice(currentVersion.indexOf('v') + 1 || 0, currentVersion.lastIndexOf('.') === currentVersion.indexOf('.') ? currentVersion.length : currentVersion.lastIndexOf('.'))
+    currentVersion = currentVersion.slice(
+      currentVersion.indexOf('v') + 1 || 0,
+      currentVersion.lastIndexOf('.') === currentVersion.indexOf('.')
+        ? currentVersion.length
+        : currentVersion.lastIndexOf('.')
+    );
     assert.dom('.ember-basic-dropdown-trigger').hasText(currentVersion);
   });
 
-  test('visiting / redirects you to /release', async function(assert) {
+  test('visiting / redirects you to /release', async function (assert) {
     await visit('/');
     let page = this.owner.lookup('service:page');
-    assert.equal(currentURL(), "/release");
+    assert.equal(currentURL(), '/release');
 
     let currentVersion = page.get('currentVersion');
-    currentVersion = currentVersion.slice(currentVersion.indexOf('v') + 1 || 0, currentVersion.lastIndexOf('.') === currentVersion.indexOf('.') ? currentVersion.length : currentVersion.lastIndexOf('.'))
+    currentVersion = currentVersion.slice(
+      currentVersion.indexOf('v') + 1 || 0,
+      currentVersion.lastIndexOf('.') === currentVersion.indexOf('.')
+        ? currentVersion.length
+        : currentVersion.lastIndexOf('.')
+    );
     assert.dom('.ember-basic-dropdown-trigger').hasText(currentVersion);
   });
 });
