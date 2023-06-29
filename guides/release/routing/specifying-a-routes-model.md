@@ -206,7 +206,7 @@ export default class PostRoute extends Route {
 
 Note that currently, if `model` is not specified, Ember will attempt
 to automatically find a store and use it for lookup. This behavior
-is unreliable and will be removed in future Ember versions.
+is a common source of confusion and will be removed in future Ember versions.
 
 ### Linking to a dynamic segment
 
