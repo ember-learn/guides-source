@@ -35,6 +35,10 @@ and maintain consistent coding styles between different editors and IDEs.
 [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) -
 Prettier is an opinionated code formatting tool. It enforces a consistent style by parsing your code and re-printing it with its own rules that take the maximum line length into account, wrapping code when necessary. Prettier supports Handlebars, Ember and Glimmer out of the box.
 
+### Glimmer templates
+
+[Glint](https://marketplace.visualstudio.com/items?itemName=typed-ember.glint-vscode) is a set of tools to aid in developing code that uses the Glimmer VM for rendering, such as Ember.js v3.24+ and GlimmerX projects. 
+
 ## Vim and Neovim
 
 Vim is a highly configurable text editor built to make creating and changing any kind of text very efficient.
