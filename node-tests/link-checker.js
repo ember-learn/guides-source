@@ -12,12 +12,12 @@ const {
   getBadRelativeUrlsForFile,
   getBadLineBreaks,
   getBadImageUrls,
-  getNonRelativeGuidesLinks
+  getNonRelativeGuidesLinks,
 } = require('./helpers');
 
 const paths = walkSync('guides')
-  .filter(filePath => extname(filePath) === '.md')
-  .map(filePath => `guides/${filePath}`);
+  .filter((filePath) => extname(filePath) === '.md')
+  .map((filePath) => `guides/${filePath}`);
 
 function printBadLinks(badLinks) {
   return inspect(badLinks, { depth: null });
@@ -32,7 +32,8 @@ describe('check all internal links in markdown files', function () {
         links,
       });
       const nonRelativeGuidesLinks = getNonRelativeGuidesLinks(filepath, links);
-      expect(nonRelativeGuidesLinks, printBadLinks(nonRelativeGuidesLinks)).to.be.empty;
+      expect(nonRelativeGuidesLinks, printBadLinks(nonRelativeGuidesLinks)).to
+        .be.empty;
 
       expect(badLinks, printBadLinks(badLinks)).to.be.empty;
 

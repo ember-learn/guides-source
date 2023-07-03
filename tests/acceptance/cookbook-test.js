@@ -2,7 +2,7 @@ import { click, currentURL, visit } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 
-module('Acceptance | cookbook', function(hooks) {
+module('Acceptance | cookbook', function (hooks) {
   setupApplicationTest(hooks);
 
   /*
@@ -10,14 +10,17 @@ module('Acceptance | cookbook', function(hooks) {
   the rest of the guides
   */
 
-  test('visiting /cookbook', async function(assert) {
+  test('visiting /cookbook', async function (assert) {
     await visit('/v1.10.0/cookbook/');
     assert.equal(currentURL(), '/v1.10.0/cookbook/');
-    await click('.next-guide')
+    await click('.next-guide');
     assert.equal(currentURL(), '/v1.10.0/cookbook/contributing');
-    await click('.next-guide')
-    assert.equal(currentURL(), '/v1.10.0/cookbook/contributing/understanding_the_cookbook_format');
-    await click('.previous-guide')
+    await click('.next-guide');
+    assert.equal(
+      currentURL(),
+      '/v1.10.0/cookbook/contributing/understanding_the_cookbook_format'
+    );
+    await click('.previous-guide');
     assert.equal(currentURL(), '/v1.10.0/cookbook/contributing');
   });
 });

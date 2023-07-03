@@ -25,10 +25,16 @@ module.exports = function pathIsValid(filepath, link) {
   let cleanedFilepath = removeMarkdownFileFromFilepath(filepath);
   cleanedFilepath = removeTrailingIndex(cleanedFilepath);
 
-  let normalized = computeLinkRelativeToWorkingDir(cleanedFilepath, cleanedLink);
+  let normalized = computeLinkRelativeToWorkingDir(
+    cleanedFilepath,
+    cleanedLink
+  );
   normalized = handleImageEdgeCases(normalized, link);
 
   // return true if it is a valid path to a directory OR markdown file.
   // No easy way to tell which is which, so try both
-  return checkIfPathExists(normalized.replace(/\/$/, '.md')) || checkIfPathExists(`${normalized}/index.md`);
+  return (
+    checkIfPathExists(normalized.replace(/\/$/, '.md')) ||
+    checkIfPathExists(`${normalized}/index.md`)
+  );
 };

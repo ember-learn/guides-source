@@ -10,10 +10,7 @@ function setupCustomAssertions(assert) {
     const tocLinks = findAll('[data-test-toc-link]');
     const isLengthCorrect = tocLinks.length === expectedLinks.length;
 
-    assert.ok(
-      isLengthCorrect,
-      `We see ${expectedLinks.length} links.`
-    );
+    assert.ok(isLengthCorrect, `We see ${expectedLinks.length} links.`);
 
     if (!isLengthCorrect) {
       return;
@@ -30,13 +27,10 @@ function setupCustomAssertions(assert) {
   };
 
   assert.areTitlesCorrect = (expectedTitles = []) => {
-    const tocTitles = findAll('[data-test-toc-title]');
+    const tocTitles = findAll('[data-test-toc-link]');
     const isLengthCorrect = tocTitles.length === expectedTitles.length;
 
-    assert.ok(
-      isLengthCorrect,
-      `We see ${expectedTitles.length} titles.`
-    );
+    assert.ok(isLengthCorrect, `We see ${expectedTitles.length} titles.`);
 
     if (!isLengthCorrect) {
       return;
