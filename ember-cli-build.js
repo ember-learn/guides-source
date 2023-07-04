@@ -6,7 +6,7 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 // it should probably be no older than 2 LTS versions.
 // If you need to update older pre-built versions then you can run
 // npm run build:prebuilt
-const BUILD_SINCE = '3.24.0';
+const BUILD_SINCE = '4.8.0';
 
 let guidemakerConfig = {};
 

@@ -26,7 +26,7 @@ shell.exec('git clean -xdf');
 // this can't use shell.js because we cleared node_modules
 await exec('npm i');
 
-shell.exec('rm public/assets/*');
+shell.exec('rm -r public/assets/*');
 shell.exec('rm -rf public/v*');
 
 shell.exec('ALL_VERSIONS=true ember build -prod');
