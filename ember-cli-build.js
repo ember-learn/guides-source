@@ -2,15 +2,25 @@
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
+// All versions since this one will be built on every PR or locally
+// it should probably be no older than 2 LTS versions.
+// If you need to update older pre-built versions then you can run
+// npm run build:prebuilt
+const BUILD_SINCE = '3.24.0';
+
+let guidemakerConfig = {};
+
+if (!process.env.ALL_VERSIONS) {
+  guidemakerConfig.premberVersionFilter = BUILD_SINCE;
+}
+
 module.exports = function (defaults) {
   let app = new EmberApp(defaults, {
     fingerprint: {
       extensions: ['js', 'css', 'map'],
       exclude: ['downloads'],
     },
-    guidemaker: {
-      premberVersionFilter: '3.24.0',
-    },
+    guidemaker: guidemakerConfig,
   });
 
   // Use `app.import` to add additional libraries to the generated
@@ -28,3 +38,5 @@ module.exports = function (defaults) {
 
   return app.toTree();
 };
+
+module.exports.BUILD_SINCE = BUILD_SINCE;
