@@ -45,7 +45,7 @@ ember feature:disable application-template-wrapper
 
 **Application Template Wrapper Disabled** _(preferred)_
 
-```hbs
+```handlebars
 <body>
   <header></header>
   <main></main>
@@ -55,7 +55,7 @@ ember feature:disable application-template-wrapper
 
 **Application Template Wrapper Enabled**
 
-```hbs
+```handlebars
 <body>
   <div class="ember-view">
     <header role="banner"></header>
