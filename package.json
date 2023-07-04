@@ -53,7 +53,6 @@
     "compare-versions": "^6.0.0-rc.2",
     "ember-auto-import": "^2.6.1",
     "ember-cli": "~3.28.6",
-    "ember-cli-app-version": "^5.0.0",
     "ember-cli-babel": "^7.26.10",
     "ember-cli-dependency-checker": "^3.2.0",
     "ember-cli-deploy": "^1.0.2",
