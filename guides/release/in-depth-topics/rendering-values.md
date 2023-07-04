@@ -3,20 +3,24 @@ In Ember, rendering occurs via syntax, rather than by value -- so _anything_ can
 ## Modifiers
 
 For Modifiers, there is a specific syntax that only modifiers may reside in
-```hbs
+
+```handlebars
 <div {{someModifier}}>
 ```
 or via property on some object
-```hbs
+
+```handlebars
 <div {{this.property.someModifier}}>
 ```
 or via an argument passed to a component
-```hbs
+
+```handlebars
 <div {{@someModifier}}>
 ```
 
 Modifiers can be curried with the `modifier` helper:
-```hbs
+
+```handlebars
 {{! In a component called "Example" }}
 {{yield (modifier someModifier "arguments" "here")}}
 
@@ -30,24 +34,24 @@ Modifiers can be curried with the `modifier` helper:
 ## Helpers
 
 For Helpers, there is a specific syntax that only helpers may reside in
-```hbs
+```handlebars
 {{ (theHelper) }}
 ```
 or nested in a sub-expression
-```hbs
+```handlebars
 {{yield (hash key=(theHelper) key2=(theHelper with args)) }}
 ```
 or via property on some object
-```hbs
+```handlebars
 {{ (this.property.theHelper) }}
 ```
 or via an argument passed to a component
-```hbs
+```handlebars
 {{ (@theHelper) }}
 ```
 
 Helpers can be curried with the `helper` helper:
-```hbs
+```handlebars
 {{! In a component called "Example" }}
 {{yield (helper someHelper "arguments" "here")}}
 
@@ -60,20 +64,20 @@ Helpers can be curried with the `helper` helper:
 ## Components
 
 For Components, there is a specific syntax that only components may reside in
-```hbs
+```handlebars
 <AComponent />
 ```
 or via a property on some object
-```hbs
+```handlebars
 <this.someComponent />
 ```
 or via an argument passed to a component
-```hbs
+```handlebars
 <@someComponent />
 ```
 
 Components can be curried with the `component` helper:
-```hbs
+```handlebars
 {{!
   In a component called "Example".
   Note that components may only receive named arguments

@@ -117,7 +117,7 @@ The most frequently used of these is `aria-describedby` and `aria-labelledby`.
 
 In these cases, make sure to declare _all_ of the relevant values in the correct order.
 
-```hbs
+```handlebars
 <MyInput @input-label="Password" aria-describedby="text-help-0 text-help-1" />
 ```
 
