@@ -1,0 +1,5 @@
+/*! algoliasearch.umd.js | 4.18.0 | © Algolia, inc. | https://github.com/algolia/algoliasearch-client-javascript */
+
+/*! showdown v 1.9.1 - 02-11-2019 */
+
+/*! tether 1.4.7 */
