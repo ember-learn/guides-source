@@ -1,6 +1,6 @@
 When it comes to running your tests there are multiple approaches that you can take depending on what best suits your workflow. Finding a low friction method of running your tests is important because it is something that you will be doing quite often.
 
-### <a name="browser"></a>The Browser
+### The Browser
 
 The simplest way of running your tests is just opening a page in the browser. The following is how to put a test "harness" around your app with qunit so you can run tests against it:
 
