@@ -24,7 +24,7 @@ To verify that your installation was successful, run:
 
 ```shell
 $ ember --version
-ember-cli: 5.0.0
+ember-cli: 5.1.0
 node: 16.20.0
 os: linux x64
 ```
@@ -38,7 +38,7 @@ We can create a new project using Ember CLI's `new` command. It follows the patt
 ```shell
 $ ember new super-rentals --lang en
 installing app
-Ember CLI v5.0.0
+Ember CLI v5.1.0
 
 Creating a new Ember app in /home/runner/work/super-rentals-tutorial/super-rentals-tutorial/dist/code/super-rentals:
   create .editorconfig
@@ -202,9 +202,9 @@ As text on the welcome page pointed out, the source code for the page is located
 ```handlebars { data-filename="app/templates/application.hbs" data-diff="-1,-2,-3,-4,-5,-6,-7,+8" }
 {{page-title "SuperRentals"}}
 
-{{!-- The following component displays Ember's default welcome message. --}}
+{{! The following component displays Ember's default welcome message. }}
 <WelcomePage />
-{{!-- Feel free to remove this! --}}
+{{! Feel free to remove this! }}
 
 {{outlet}}
 Hello World!!!
