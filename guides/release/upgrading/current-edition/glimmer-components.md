@@ -784,15 +784,17 @@ functionality that lifecycle hooks contained.
 
 #### Writing your own modifiers
 
-There are also community APIs available for writing your own modifiers, such as
-[ember-modifier](https://github.com/ember-modifier/ember-modifier).
-Ember itself has low level APIs known as _modifier managers_ which can be used
-to write these higher level APIs. In general, it's recommended to use a
-community addon to write modifiers, and _not_ to write your own modifier
-manager.
+New Ember apps ship with a dependency on
+[ember-modifier](https://github.com/ember-modifier/ember-modifier), which
+provides a friendly API for writing your own element modifiers. This library is
+in turn based on a low level API named _modifier managers_. Managers are a
+framework-development level feature, and not something most developers need to
+interact with.
 
-Let's see what our first example would look like if we were to write it as a
-modifier using `ember-modifier`:
+Custom modifiers based on the `ember-modifier` API can be a more expressive
+interface for your logic, and can better encapsulate an implementation.
+
+Let's write a modifier that implements adding an event listener.
 
 ```js {data-filename=app/modifiers/add-event-listener.js}
 import { modifier } from 'ember-modifier';
@@ -825,12 +827,16 @@ export default class ScrollComponent extends Component {
 </div>
 ```
 
-This modifier generalizes the functionality that the component implemented using
-lifecycle hooks before, so we can use this modifier whenever we need to in _any_
-component. This is a much better solution than manually managing event listeners
-every time we need one! At this point, the modifier is effectively the same as
-the `{{on}}` modifier as well, so we could get rid of it altogether and replace
-it with `on`:
+The new `add-event-listener` modifier presents a more expressive interface to
+the `hbs` template: There is only a single modifier to apply instead of two, the
+implemention always tears down after itself upon teardown of the target element,
+and the only JavaScript you have to write during re-user is the implementation
+of the business logic.
+
+At this point, it is worth noting that the custom `{{add-event-listener}}`
+modifier is effectively a re-implementation of the Ember built-in `{{on}}`
+modifier (See the
+[documentation](https://api.emberjs.com/ember/5.1/classes/Ember.Templates.helpers/methods/on?anchor=on)). Using that built-in looks like:
 
 ```handlebars {data-filename=app/components/scroll-component.hbs}
 <div {{on "scroll" this.listener}}>

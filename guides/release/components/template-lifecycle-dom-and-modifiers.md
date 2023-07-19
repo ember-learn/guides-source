@@ -293,10 +293,17 @@ The modifier that we're going to build will allow us to say:
 
 Pretty nice, right?
 
-To accomplish that, we'll create a modifier in `app/modifiers/autofocus.js`. First, install [`ember-modifier`](https://github.com/ember-modifier/ember-modifier) and then generate an `autofocus` modifier for your app:
+New Ember apps ship with a dependency on
+[ember-modifier](https://github.com/ember-modifier/ember-modifier), which
+provides a friendly API for writing your own element modifiers. This library is
+in turn based on a low level API named _modifier managers_. Managers are a
+framework-development level feature, and not something most developers need to
+interact with. You'll see in the following examples that the modifier API is
+imported from the `ember-modifier` package.
+
+First generate the `autofocus` modifier for your application:
 
 ```bash
-ember install ember-modifier
 ember generate modifier autofocus
 ```
 
@@ -308,9 +315,10 @@ import { modifier } from "ember-modifier";
 export default modifier(element => element.focus());
 ```
 
-And that's it!
+And that's it! Now we can use our custom `{{autofocus}}` modifier throughout our application.
 
-Now we can use our custom `{{autofocus}}` modifier throughout our application.
+Read more about the `ember-modifier` APIs at [ember-modifiers:
+Usage](https://github.com/ember-modifier/ember-modifier#usage).
 
 ## Communicating Between Elements in a Component
 
@@ -390,7 +398,6 @@ export default class AudioPlayerComponent extends Component {
 That's it for the component: we're translating the user's interactions into _state_. Now we need to build a modifier to translate the state into the appropriate DOM method calls!
 
 ```bash
-ember install ember-modifier
 ember generate modifier play-when
 ```
 
@@ -448,12 +455,11 @@ document.addEventListener("click", event => {
 
 The most important difference between this example and the cases we've seen so far is that we need to remove the `click` event handler from the document when this element is destroyed.
 
-To accomplish this, we can use [`ember-modifier`](https://github.com/ember-modifier/ember-modifier) to create a `on-click-outside` modifier that sets up the event listener after the element is first inserted and removes the event listener when the element is removed. 
+To accomplish this, we can use [`ember-modifier`](https://github.com/ember-modifier/ember-modifier) (which is already installed in newly generated Ember apps) to create a `on-click-outside` modifier that sets up the event listener after the element is first inserted and removes the event listener when the element is removed. 
 
-Run the following commands to install the addon and generate a new modifier:
+Generate the new modifier:
 
 ```bash
-ember install ember-modifier
 ember generate modifier on-click-outside
 ```
 
