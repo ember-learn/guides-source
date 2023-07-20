@@ -37,6 +37,7 @@ Prettier is an opinionated code formatting tool. It enforces a consistent style 
 
 ### Typed Glimmer Templates
 
+<div class="cta">
   <div class="cta-note">
     <div class="cta-note-body">
       <div class="cta-note-heading">Zoey says...</div>
