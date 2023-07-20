@@ -42,7 +42,7 @@ Prettier is an opinionated code formatting tool. It enforces a consistent style 
     <div class="cta-note-body">
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
-        This is not installed as part of the extension pack but should be considered for Ember projects built with TypeScript. Learn more about [<a href="https://typed-ember.gitbook.io/glint/">Glint here</a>.
+        This is not installed as part of the extension pack but should be considered for Ember projects built with TypeScript. Learn more about <a href="https://typed-ember.gitbook.io/glint/">Glint here</a>.
       </div>
     </div>
     <img src="/images/mascots/zoey.png" role="presentation" alt="">
