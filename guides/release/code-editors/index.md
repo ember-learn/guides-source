@@ -7,6 +7,8 @@ many of which are created and maintained by the developer community:
 Visual Studio Code is a code editor optimized for building and debugging modern web applications.
 Visual Studio Code is one of the most popular text editors among Ember developers.
 
+You can get started quickly by installing the [Extension Pack for VS Code](https://marketplace.visualstudio.com/items?itemName=EmberTooling.emberjs) which bundles some of the recommended plugins below in one install.
+
 ### Syntax Highlighting
 
 Only one of these is needed.
