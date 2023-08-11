@@ -829,7 +829,7 @@ export default class ScrollComponent extends Component {
 
 The new `add-event-listener` modifier presents a more expressive interface to
 the `hbs` template: There is only a single modifier to apply instead of two, the
-implemention always tears down after itself upon teardown of the target element,
+implementation always tears down after itself upon teardown of the target element,
 and the only JavaScript you have to write during re-user is the implementation
 of the business logic.
 
