@@ -15,7 +15,7 @@ is an addon that allows you to use SASS/SCSS in your applications. You can insta
 ember install ember-cli-sass
 ```
 
-This will modify your `package.json` (and `package-lock.json` or `yarn.lock`), typically bringing in other dependencies. Some addons will also add
+This will modify your `package.json` (and `package-lock.json` or `yarn.lock` or `pnpm-lock.yaml`), typically bringing in other dependencies. Some addons will also add
 additional files to your projects when relevant.
 
 There are many addons that cover all kinds of use cases. For more detail, as well as examples of what addons can do,
