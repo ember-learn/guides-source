@@ -240,7 +240,7 @@ module('Acceptance | super rentals', function (hooks) {
 
     assert.strictEqual(
       tweetURL.searchParams.get('url'),
-      `${window.location.origin}/rentals/grand-old-mansion`
+      `${window.location.origin}/rentals/grand-old-mansion`,
     );
   });
 
@@ -395,7 +395,7 @@ module('Integration | Component | share-button', function (hooks) {
   setupRenderingTest(hooks);
 const MOCK_URL = new URL(
   '/foo/bar?baz=true#some-section',
-  window.location.origin
+  window.location.origin,
 );
 
   test('it renders', async function (assert) {
@@ -411,7 +411,7 @@ class MockRouterService extends Service {
 module('Integration | Component | share-button', function (hooks) {
   setupRenderingTest(hooks);
 
-    assert.dom(this.element).hasText('');
+    assert.dom().hasText('');
   hooks.beforeEach(function () {
     this.owner.register('service:router', MockRouterService);
   });
@@ -425,7 +425,7 @@ module('Integration | Component | share-button', function (hooks) {
   test('basic usage', async function (assert) {
     await render(hbs`<ShareButton>Tweet this!</ShareButton>`);
 
-    assert.dom(this.element).hasText('template block text');
+    assert.dom().hasText('template block text');
     assert
       .dom('a')
       .hasAttribute('target', '_blank')
@@ -459,7 +459,7 @@ import { hbs } from 'ember-cli-htmlbars';
 
 const MOCK_URL = new URL(
   '/foo/bar?baz=true#some-section',
-  window.location.origin
+  window.location.origin,
 );
 
 class MockRouterService extends Service {
@@ -502,7 +502,7 @@ module('Integration | Component | share-button', function (hooks) {
 
   test('it supports passing @text', async function (assert) {
     await render(
-      hbs`<ShareButton @text="Hello Twitter!">Tweet this!</ShareButton>`
+      hbs`<ShareButton @text="Hello Twitter!">Tweet this!</ShareButton>`,
     );
 
     assert.strictEqual(this.tweetParam('text'), 'Hello Twitter!');
@@ -510,7 +510,7 @@ module('Integration | Component | share-button', function (hooks) {
 
   test('it supports passing @hashtags', async function (assert) {
     await render(
-      hbs`<ShareButton @hashtags="foo,bar,baz">Tweet this!</ShareButton>`
+      hbs`<ShareButton @hashtags="foo,bar,baz">Tweet this!</ShareButton>`,
     );
 
     assert.strictEqual(this.tweetParam('hashtags'), 'foo,bar,baz');
@@ -523,7 +523,7 @@ module('Integration | Component | share-button', function (hooks) {
 
   test('it supports adding extra classes', async function (assert) {
     await render(
-      hbs`<ShareButton class="extra things">Tweet this!</ShareButton>`
+      hbs`<ShareButton class="extra things">Tweet this!</ShareButton>`,
     );
 
     assert
@@ -536,7 +536,7 @@ module('Integration | Component | share-button', function (hooks) {
 
   test('the target, rel and href attributes cannot be overridden', async function (assert) {
     await render(
-      hbs`<ShareButton target="_self" rel="" href="/">Not a Tweet!</ShareButton>`
+      hbs`<ShareButton target="_self" rel="" href="/">Not a Tweet!</ShareButton>`,
     );
 
     assert

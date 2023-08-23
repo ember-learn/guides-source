@@ -70,7 +70,7 @@ module('Integration | Component | rental', function (hooks) {
   test('it renders information about a rental property', async function (assert) {
     await render(hbs`<Rental />`);
 
-    assert.dom(this.element).hasText('');
+    assert.dom().hasText('');
 
     // Template block usage:
     await render(hbs`
@@ -79,7 +79,7 @@ module('Integration | Component | rental', function (hooks) {
       </Rental>
     `);
 
-    assert.dom(this.element).hasText('template block text');
+    assert.dom().hasText('template block text');
     assert.dom('article').hasClass('rental');
     assert.dom('article h3').hasText('Grand Old Mansion');
     assert.dom('article .detail.owner').includesText('Veruca Salt');
@@ -200,7 +200,7 @@ module('Integration | Component | rental/image', function (hooks) {
 
     await render(hbs`<Rental::Image />`);
 
-    assert.dom(this.element).hasText('');
+    assert.dom().hasText('');
 
     // Template block usage:
   test('it renders the given image', async function (assert) {
@@ -214,7 +214,7 @@ module('Integration | Component | rental/image', function (hooks) {
       />
     `);
 
-    assert.dom(this.element).hasText('template block text');
+    assert.dom().hasText('template block text');
     assert
       .dom('.image img')
       .exists()

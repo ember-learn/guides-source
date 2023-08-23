@@ -215,7 +215,11 @@ module('Unit | Model | rental', function (hooks) {
 
 This model test is also known as a _[unit test](../../../testing/testing-models/)_. Unlike any of the other tests that we've written thus far, this test doesn't actually _render_ anything. It just instantiates the rental model object and tests the model object directly, manipulating its attributes and asserting their value.
 
-It is worth pointing out that EmberData provides a `store` _[service](../../../services/)_, also known as the EmberData store. In our test, we used the `this.owner.lookup('service:store')` API to get access to the EmberData store. The store provides a `createRecord` method to instantiate our model object for us.
+It is worth pointing out that EmberData provides a `store` _[service](../../../services/)_, also known as the EmberData store. In our test, we used the `this.owner.lookup('service:store')` API to get access to the EmberData store. The store provides a `createRecord` method to instantiate our model object for us. To make this `store` service available, we must add the following file:
+
+```
+export { default } from 'ember-data/store';
+```
 
 Running the tests in the browser confirms that everything is working as intended:
 
