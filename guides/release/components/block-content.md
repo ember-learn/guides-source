@@ -333,14 +333,16 @@ If you want to yield content to different spots in the same component, you can u
 You could also want to pass some values. This is the same process as the default `yield`, but you just have to pass `to` as the last argument. An example would be the popover:
 
 ```handlebars {data-filename=app/components/popover.hbs}
-<div class="popover">
-  <div class="popover__trigger">
-    {{yield this.isOpen to="trigger"}}
+  <div class="popover">
+    <div class="popover__trigger">
+      {{yield this.isOpen to="trigger"}}
+    </div>
+    {{#if this.isOpen}}
+      <div class="popover__content">
+        {{yield to="content"}}
+      </div>
+    {{/if}}
   </div>
-  <div class="popover__content">
-    {{yield this.isOpen to="content"}}
-  </div>
-</div>
 ```
 
 If we hadn’t named blocks, we would certainly have to pass components as `args` to the popover. But this is much more practical!
@@ -350,7 +352,7 @@ Here’s how we would call it:
 ```handlebars
 <Popover>
   <:trigger as |open|>
-    <button>Click to {{if open "close" "open"}}  the popover!</button>
+    <button type="button">Click to {{if open "close" "open"}}  the popover!</button>
   </:trigger>
   <:content>
       This is what is showed when I'm opened!
@@ -366,7 +368,7 @@ That would give this result:
 <!-- rendered -->
 <div class="popover">
   <div class="popover__trigger">
-    <button>Click to open the popover!</button>
+    <button type="button">Click to close the popover!</button>
   </div>
   <div class="popover__content">
      This is what is showed when I'm opened!
