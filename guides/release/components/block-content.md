@@ -322,4 +322,96 @@ We can yield back multiple values as well, separated by spaces.
 </BlogPost>
 ```
 
+## Named Blocks
+
+If you want to yield content to different spots in the same component, you can use named blocks. You just need to specify a name for the yielded block, like this:
+
+```handlebars
+{{yield to="somePlace"}}
+```
+
+You could also want to pass some values. This is the same process as the default `yield`, but you just have to pass `to` as the last argument. An example would be the popover:
+
+```handlebars {data-filename=app/components/popover.hbs}
+<div class="popover">
+  <div class="popover__trigger">
+    {{yield this.isOpen to="trigger"}}
+  </div>
+  <div class="popover__content">
+    {{yield this.isOpen to="content"}}
+  </div>
+</div>
+```
+
+If we hadn’t named blocks, we would certainly have to pass components as `args` to the popover. But this is much more practical!
+
+Here’s how we would call it:
+
+```handlebars
+<Popover>
+  <:trigger as |open|>
+    <button>Click to {{if open "close" "open"}}  the popover!</button>
+  </:trigger>
+  <:content>
+      This is what is showed when I'm opened!
+  </:content>
+</Popover>
+```
+
+We know the state of the popover because we passed it as an argument to the `yield`. To access its value, use the block parameters at the named block scope. It will not be accessible at the `Popover` level, so if you want the value to be available for all the blocks, you will have to pass it for each of them.
+
+That would give this result:
+
+```html
+<!-- rendered -->
+<div class="popover">
+  <div class="popover__trigger">
+    <button>Click to open the popover!</button>
+  </div>
+  <div class="popover__content">
+     This is what is showed when I'm opened!
+  </div>
+</div>
+```
+
+Don't worry, you can also still use `yield` by itself, and mix it with named blocks. Let’s take a card example:
+
+```handlebars {data-filename=app/components/card.hbs}
+<div class="card">
+  {{#if (has-block "title")}}
+    <div class="card__title">
+      {{yield to="title"}}
+    </div>
+  {{/if}}
+  <div class="card__content">
+    {{yield}}
+  </div>
+</div>
+```
+
+A yielded block without a name is called `default`. So to access it, it’s like any other named blocks.
+
+```handlebars
+<Card>
+  <:title>
+    <h3>It's nice to have me. Sometimes</h3>
+  </:title>
+  <:default>
+    The card content will appear here!
+  </:default>
+</Card>
+```
+
+The title being optional when you create a card, you can use the `(has-block)` helper with the named block by adding its name as a first parameter. That means you could also create this card:
+
+```handlebars
+<Card>
+  I don't want any title, and I only have a default content!
+</Card>
+```
+
+As you are not using named blocks, you can simply yield the content you would like to add.
+
+
+
 <!-- eof - needed for pages that end in a code block  -->
