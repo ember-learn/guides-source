@@ -345,9 +345,9 @@ You could also want to pass some values. This is the same process as the default
   </div>
 ```
 
-If we hadn’t named blocks, we would certainly have to pass components as `args` to the popover. But this is much more practical!
+Without named blocks, we would certainly have to pass components as `args` to the popover. But this is much more practical!
 
-Here’s how we would call it:
+Here’s how we would call our named blocks as a consumer:
 
 ```handlebars
 <Popover>
@@ -355,7 +355,7 @@ Here’s how we would call it:
     <button type="button">Click to {{if open "close" "open"}}  the popover!</button>
   </:trigger>
   <:content>
-      This is what is showed when I'm opened!
+      This is what is shown when I'm opened!
   </:content>
 </Popover>
 ```
@@ -412,7 +412,7 @@ The title being optional when you create a card, you can use the `(has-block)` h
 </Card>
 ```
 
-As you are not using named blocks, you can simply yield the content you would like to add.
+As you are not using named blocks, you can simply yield the content you would like to add, which becomes the default yield block.
 
 
 
