@@ -81,7 +81,7 @@ Since we know that we're linking to the `rental` route that we just created, we 
 
 Let's see this in action. If we go back to our browser and refresh the page, we should see our links, but something isn't quite right yet!
 
-<img src="/images/tutorial/part-2/route-params/broken-links@2x.png" alt="Broken links" width="1024" height="100">
+<img src="/images/tutorial/part-2/route-params/broken-links@2x.png" alt="Broken links" width="1024" height="1130">
 
 The links are all pointing to `/rentals/undefined`. Yikes! This is because `<LinkTo>` tries to use the `id` property from our model in order to replace the dynamic segment and generate the URL.
 
