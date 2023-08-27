@@ -249,6 +249,11 @@
   pages:
     - title: "Managing Dependencies"
       url: "index"
+- title: "Using TypeScript"
+  url: "using-typescript"
+  pages:
+    - title: "Getting Started With TypeScript"
+      url: "index"
 - title: "Developer Tools"
   url: "toc-heading_developer-tools"
   is_heading: true
