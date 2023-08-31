@@ -7,12 +7,13 @@ many of which are created and maintained by the developer community:
 Visual Studio Code is a code editor optimized for building and debugging modern web applications.
 Visual Studio Code is one of the most popular text editors among Ember developers.
 
+### Extension Pack
+
+Install the extension pack to get everything you need to work on Ember.js projects.
+
+[Ember.js Extension Pack](https://marketplace.visualstudio.com/items?itemName=EmberTooling.emberjs) - It will install the following addons
+
 ### Syntax Highlighting
-
-Only one of these is needed.
-
-[VSCode Glimmer](https://marketplace.visualstudio.com/items?itemName=chiragpat.vscode-glimmer) -
-Provides embedded template highlighting support.
 
 [Glimmer Templates Syntax](https://marketplace.visualstudio.com/items?itemName=lifeart.vscode-glimmer-syntax) -
 Syntax formatting for glimmer templates.
@@ -22,10 +23,9 @@ Syntax formatting for glimmer templates.
 [Stable Ember Language Server](https://marketplace.visualstudio.com/items?itemName=lifeart.vscode-ember-unstable) -
 Stable Ember Language Server is a stable, full-featured language server. Its name comes from its history as a fork of Ember Language Server and the efforts to keep up with changes in Ember.
 
-### Snippets / Workflow
+### Workflow
 
-[Ember JS (ES6) and Handlebars code snippets](https://marketplace.visualstudio.com/items?itemName=phanitejakomaravolu.EmberES6Snippets) -
-Enables Ember.js and Handlebars snippets to let you to type less and code more.
+[ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) - Integrates ESLint into VS Code. 
 
 [EditorConfig for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig) -
 Attempts to override user/workspace settings with settings found in `.editorconfig` files.
@@ -35,7 +35,20 @@ and maintain consistent coding styles between different editors and IDEs.
 [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) -
 Prettier is an opinionated code formatting tool. It enforces a consistent style by parsing your code and re-printing it with its own rules that take the maximum line length into account, wrapping code when necessary. Prettier supports Handlebars, Ember and Glimmer out of the box.
 
-### Glimmer templates
+### Typed Glimmer Templates
+
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+        This is not installed as part of the extension pack but should be considered for Ember projects built with TypeScript. Learn more about <a href="https://typed-ember.gitbook.io/glint/">Glint here</a>.
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
+  </div>
+</div>
+
 
 [Glint](https://marketplace.visualstudio.com/items?itemName=typed-ember.glint-vscode) is a set of tools to aid in developing code that uses the Glimmer VM for rendering, such as Ember.js v3.24+ and GlimmerX projects. 
 
