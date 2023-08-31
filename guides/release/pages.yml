@@ -252,8 +252,14 @@
 - title: "Using TypeScript"
   url: "using-typescript"
   pages:
-    - title: "Getting Started With TypeScript"
+    - title: "TypeScript: Introduction"
       url: "index"
+    - title: "Getting Started with TypeScript"
+      url: "getting-started"
+    - title: "TypeScript Configuration"
+      url: "configuration"
+    - title: "TypeScript and Ember"
+      url: "ts-and-ember"
 - title: "Developer Tools"
   url: "toc-heading_developer-tools"
   is_heading: true
