@@ -1,4 +1,7 @@
+**Note:** 🚧 This section is under construction! 🏗️ The content here may not be fully up to date!
+
 This guide is designed to help you get up and running with TypeScript in an Ember app.
+
 
 <div class="cta">
   <div class="cta-note">

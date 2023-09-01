@@ -1,4 +1,4 @@
-<!-- FIXME: This is copy-pasta from ember-cli-typescript docs and needs updates -->
+**Note:** 🚧 This section is under construction! 🏗️ The content here may not be fully up to date!
 
 ## `tsconfig.json`
 
@@ -40,4 +40,4 @@ return require('@embroider/compat').compatBuild(app, Webpack, {
 }
 ```
 
-If you're updating from an older version of the addon, you may also need to update your `tsconfig.json`. (Current versions generate the correct config at installation.) Either run `ember generate ember-cli-typescript` or verify you have the same sourcemap settings in your `tscsonfig.json` that appear in [the blueprint](https://github.com/typed-ember/ember-cli-typescript/blob/master/blueprint-files/ember-cli-typescript/files/tsconfig.json).
+If you're migrating from `ember-cli-typescript`, particularly an older version, to Ember's out-of-the-box TypeScript support, you may also need to update your `tsconfig.json`. Current versions of `ember-cli-typescript` generate the correct config at installation. You do *not* need to install `ember-cli-typescript` for new apps or adding.

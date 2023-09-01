@@ -1,3 +1,5 @@
+**Note:** 🚧 This section is under construction! 🏗️ The content here may not be fully up to date!
+
 To start a new Ember project with TypeScript, you can add the `--typescript` flag when you run [`ember new`](../../getting-started/quick-start):
 
 ```bash
@@ -10,7 +12,8 @@ Using the `--typescript` flag changes the output of `ember new` in a few ways:
 
 - project files will be generated with `.ts` extensions instead of `.js`
 - packages will be installed and files will be generated to make TypeScript work in your project
-- TypeScript-specific config is set
+- We configure Babel to transpile TypeScript files.
+- We configure TypeScript to type check your project.
 
 ## Packages
 
@@ -24,7 +27,17 @@ When `ember new` is run with the `--typescript` flag set, we install all of the 
 - `@types/qunit`
 - `@types/rsvp`
 
-<!-- FIXME: Zoey says note about preview types and how you can probably use them if you're not using EmberData -->
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+        Ember also includes its own types compiled directly from its source code, as described <a href="https://blog.emberjs.com/stable-typescript-types-in-ember-5-1/">in this blog post</a>. We still use the <code>@types</code> packages by default for the sake of compatibility with Ember Data, because Ember Data is not yet compatible with Ember’s native official types. However, if you only do not use Ember Data, we recommend following the instructions in that blog post to switch to the native types, which are guaranteed to always be 100% correct and 100% up to date!
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
+  </div>
+</div>
 
 ## Files
 
