@@ -79,3 +79,31 @@ Add entries for `<addon-name>` and `<addon-name>/*` in your `tsconfig.json` like
 ```
 
 One difference as compared to regular published addons: you know whether or not the host app is using `ember-cli-typescript`, and if it is, you can safely put `.ts` files in an in-repo addon's `app/` folder.
+
+### Templates
+
+<!-- FIXME: Glint mention -->
+
+Templates are currently totally non-type-checked. This means that you lose any safety when moving into a template context, even if using a Glimmer `Component` in Ember Octane.
+
+Addons need to import templates from the associated `.hbs` file to bind to the layout of any components they export. The TypeScript compiler will report that it cannot resolve the module, since it does not know how to resolve files ending in `.hbs`. To resolve this, you can provide this set of definitions to `my-addon/types/global.d.ts`, which will allow the import to succeed:
+
+```typescript {data-filename="my-addon/types/global.d.ts"}
+declare module '*/template' {
+  import { TemplateFactory } from 'ember-cli-htmlbars';
+  const template: TemplateFactory;
+  export default template;
+}
+
+declare module 'app/templates/*' {
+  import { TemplateFactory } from 'ember-cli-htmlbars';
+  const template: TemplateFactory;
+  export default template;
+}
+
+declare module 'addon/templates/*' {
+  import { TemplateFactory } from 'ember-cli-htmlbars';
+  const template: TemplateFactory;
+  export default template;
+}
+```
