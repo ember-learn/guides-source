@@ -1,3 +1,5 @@
+**Note:** 🚧 This section is under construction! 🏗️ The content here may not be fully up to date!
+
 <!-- FIXME: Copy pasta needs vetting -->
 
 Building addons in TypeScript offers many of the same benefits as building apps that way: it puts an extra tool at your disposal to help document your code and ensure its correctness. For addons, though, there's one additional bonus: publishing type information for your addons enables autocomplete and inline documentation for your consumers, even if they're not using TypeScript themselves.
