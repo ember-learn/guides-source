@@ -24,7 +24,7 @@ The type returned by the `@attr` decorator is whatever [Transform](https://api.e
 
 So, for example, you might write a class like this:
 
-```typescript
+```typescript {data-filename="app/models/user.ts"}
 import Model, { attr } from '@ember-data/model';
 import CustomType from '../transforms/custom-transform';
 
@@ -49,7 +49,7 @@ The _safest_ type you can write for an Ember Data model, therefore, leaves every
 
 One way to make this safer is to supply a default value using the `defaultValue` on the options hash for the attribute:
 
-```typescript
+```typescript {data-filename="app/models/user.ts"}
 import Model, { attr } from '@ember-data/model';
 
 export default class User extends Model {
@@ -70,7 +70,7 @@ Relationships between models in Ember Data rely on importing the related models,
 
 To avoid these errors, use [type-only imports](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-8.html), available since TypeScript 3.8:
 
-```ts
+```typescript
 import type User from './user';
 ```
 
@@ -83,7 +83,7 @@ The type returned by the `@belongsTo` decorator depends on whether the relations
 
 So, for example, you might define a class like this:
 
-```typescript
+```typescript {data-filename="app/models/post.ts"}
 import Model, { belongsTo, type AsyncBelongsTo } from '@ember-data/model';
 import type User from './user';
 import type Site from './site';
@@ -113,7 +113,7 @@ The type returned by the `@hasMany` decorator depends on whether the relationshi
 
 So, for example, you might define a class like this:
 
-```typescript
+```typescript {data-filename="app/models/thread.ts"}
 import Model, {
   hasMany,
   type AsyncHasMany,
@@ -146,8 +146,7 @@ The return type of `deserialize` method becomes type of the model class property
 
 You may define your own transforms in TypeScript like so:
 
-```typescript
-## app/transforms/coordinate-point.ts
+```typescript {data-filename="app/transforms/coordinate-point.ts"}
 import Transform from '@ember-data/serializer/transform';
 
 declare module 'ember-data/types/registries/transform' {

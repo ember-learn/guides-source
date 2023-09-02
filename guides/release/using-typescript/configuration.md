@@ -1,5 +1,7 @@
 **Note:** 🚧 This section is under construction! 🏗️ The content here may not be fully up to date!
 
+<!-- FIXME: Re-org this section -->
+
 ## `tsconfig.json`
 
 We generate a good default [`tsconfig.json`](https://github.com/typed-ember/ember-cli-typescript/blob/master/blueprint-files/ember-cli-typescript/tsconfig.json), which will usually make everything _Just Work™_. In general, you may customize your TypeScript build process as usual using the `tsconfig.json` file.
@@ -18,7 +20,7 @@ However, there are a few things worth noting if you're already familiar with Typ
 
 To enable TypeScript sourcemaps, you'll need to add the corresponding configuration for Babel to your `ember-cli-build.js` file:
 
-```typescript
+```javascript {data-filename="ember-cli-build.js" data-diff="+2,+3,+4"}
 const app = new EmberApp(defaults, {
   babel: {
     sourceMaps: 'inline',
@@ -30,7 +32,7 @@ const app = new EmberApp(defaults, {
 
 If you are using [Embroider](https://github.com/embroider-build/embroider), you might need to include [devtool](https://webpack.js.org/configuration/devtool/) in your webpack configuration:
 
-```ts
+```javascript {data-filename="ember-cli-build.js" data-diff="+4"}
 return require('@embroider/compat').compatBuild(app, Webpack, {
   packagerOptions: {
     webpackConfig: {
@@ -40,4 +42,4 @@ return require('@embroider/compat').compatBuild(app, Webpack, {
 }
 ```
 
-If you're migrating from `ember-cli-typescript`, particularly an older version, to Ember's out-of-the-box TypeScript support, you may also need to update your `tsconfig.json`. Current versions of `ember-cli-typescript` generate the correct config at installation. You do *not* need to install `ember-cli-typescript` for new apps or adding.
+If you're migrating from `ember-cli-typescript`, particularly an older version, to Ember's out-of-the-box TypeScript support, you may also need to update your `tsconfig.json`. Current versions of `ember-cli-typescript` generate the correct config at installation. You do _not_ need to install `ember-cli-typescript` for new apps or adding.

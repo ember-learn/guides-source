@@ -1,8 +1,10 @@
 **Note:** 🚧 This section is under construction! 🏗️ The content here may not be fully up to date!
 
+<!-- FIXME: Merge this section with previous. -->
+
 To start a new Ember project with TypeScript, you can add the `--typescript` flag when you run [`ember new`](../../getting-started/quick-start):
 
-```bash
+```shell
 ember new my-typescript-app --typescript
 ```
 

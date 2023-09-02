@@ -25,13 +25,13 @@ Glimmer Components are defined in one of three ways: with templates only, with a
 
 A _very_ simple Glimmer component which lets you change the count of a value might look like this:
 
-```text
-<button {{on "click" this.minus}}>&minus;</button>
+```handlebars {data-filename="app/components/counter.hbs"}
+<button {{on 'click' this.minus}}>&minus;</button>
 {{this.count}}
-<button {{on "click" this.plus}}>+</button>
+<button {{on 'click' this.plus}}>+</button>
 ```
 
-```typescript
+```typescript {data-filename="app/components/counter.ts"}
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
@@ -63,13 +63,13 @@ Since the implementation of [RFC 748], Glimmer and Ember components accept a `Si
 
 `Args` represents the arguments your component accepts. Typically this will be an object type mapping the names of your args to their expected type. For example:
 
-```
+```typescript
 export interface MySignature {
   Args: {
     arg1: string;
     arg2: number;
     arg3: boolean;
-  }
+  };
 }
 ```
 
@@ -77,7 +77,7 @@ If no `Args` key is specified, it will be a type error to pass any arguments to 
 
 Let’s imagine a component which just logs the names of its arguments when it is first constructed. First, we must define the Signature and pass it into our component, then we can use the `Args` member in our Signature to set the type of `args` in the constructor:
 
-```typescript
+```typescript {data-filename="app/components/args-display.ts"}
 import Component from '@glimmer/component';
 
 const log = console.log.bind(console);
@@ -116,7 +116,7 @@ The types for `owner` here and `args` line up with what the `constructor` for Gl
 
 The `args` passed to a Glimmer Component [are available on `this`](https://github.com/glimmerjs/glimmer.js/blob/2f840309f013898289af605abffe7aee7acc6ed5/packages/%40glimmer/component/src/component.ts#L12), so we could change our definition to return the names of the arguments from a getter:
 
-```typescript
+```typescript {data-filename="app/components/args-display.ts"}
 import Component from '@glimmer/component';
 
 export interface ArgsDisplaySignature {
@@ -134,7 +134,7 @@ export default class ArgsDisplay extends Component<ArgsDisplaySignature> {
 }
 ```
 
-```text
+```handlebars {data-filename="app/components/args-display.hbs"}
 <p>The names of the <code>@args</code> are:</p>
 <ul>
   {{#each this.argNames as |argName|}}
@@ -178,10 +178,10 @@ In the case of the Component, we have the types the way we do so that you can’
 
 Now let’s put this to use. Imagine we’re constructing a user profile component which displays the user’s name and optionally an avatar and bio. The template might look something like this:
 
-```text
+```handlebars {data-filename="app/components/user-profile.hbs"}
 <div class='user-profile' ...attributes>
   {{#if this.avatar}}
-    <img src={{this.avatar}} class='user-profile__avatar'>
+    <img src={{this.avatar}} class='user-profile__avatar' />
   {{/if}}
   <p class='user-profile__bio'>{{this.userInfo}}</p>
 </div>
@@ -189,7 +189,7 @@ Now let’s put this to use. Imagine we’re constructing a user profile compone
 
 Then we could capture the types for the profile with an interface representing the _arguments_:
 
-```typescript
+```typescript {data-filename="app/components/user-profile.ts"}
 import Component from '@glimmer/component';
 import { generateUrl } from '../lib/generate-avatar';
 
@@ -222,7 +222,7 @@ If you'd like to make your _own_ component subclass-able, you need to make it ge
 Are you sure you want to provide an inheritance-based API? Oftentimes, it's easier to maintain \(and involves less TypeScript hoop-jumping\) to use a compositional API instead. If you're sure, here's how!
 {% endhint %}
 
-```typescript
+```typescript {data-filename="app/components/fancy-input-args.ts"}
 import Component from '@glimmer/component';
 
 export interface FancyInputArgs {
@@ -250,7 +250,7 @@ If you are not familiar with Services in Ember, first make sure you have read an
 
 Let's take this example from the [Ember Guide](https://guides.emberjs.com/release/services/):
 
-```typescript
+```typescript {data-filename="app/services/shopping-cart.ts"}
 import { A } from '@ember/array';
 import Service from '@ember/service';
 
@@ -276,7 +276,7 @@ Just making this a TypeScript file gives us some type safety without having to a
 {% hint style="info" %}
 When working in Octane, you're better off using a `TrackedArray` from [tracked-built-ins](https://github.com/pzuraq/tracked-built-ins) instead of the classic EmberArray:
 
-```typescript
+```typescript {data-filename="app/services/shopping-cart.ts"}
 import { TrackedArray } from 'tracked-built-ins';
 import Service from '@ember/service';
 
@@ -309,7 +309,7 @@ You can use a service in any container-resolved object such as a component or an
 
 Here's an example of using the `ShoppingCartService` we defined above in a component:
 
-```typescript
+```typescript {data-filename="app/components/cart-contents.ts"}
 import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
@@ -328,7 +328,7 @@ export default class CartContentsComponent extends Component {
 
 Any attempt to access a property or method not defined on the service will fail type-checking:
 
-```typescript
+```typescript {data-filename="app/components/cart-contents.ts"}
 import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
@@ -348,7 +348,7 @@ export default class CartContentsComponent extends Component {
 
 Services can also be loaded from the dependency injection container manually:
 
-```typescript
+```typescript {data-filename="app/components/cart-contents.ts"}
 import Component from '@glimmer/component';
 import { getOwner } from '@ember/owner';
 import { action } from '@ember/object';
@@ -387,7 +387,7 @@ However, there is one thing to watch out for: the types of the arguments passed 
 
 Accordingly, and because the `Transition` type is not currently exported as a public type, you may find it convenient to define it using TypeScript's `ReturnType` utility type, which does exactly what it sounds like and gives us a local type which is the type returned by some function. The `RouterService.transitionTo` returns a `Transition`, so we can rely on that as stable public API to define `Transition` locally ourselves:
 
-```typescript
+```typescript {data-filename="app/routes/my.ts"}
 import Route from '@ember/routing/route';
 import type RouterService from '@ember/routing/router-service';
 type Transition = ReturnType<RouterService['transitionTo']>;
@@ -401,7 +401,7 @@ export default class MyRoute extends Route {
 
 This inconsistency will be solved in the future. For now, this workaround gets the job done, and also shows the way to using this information to provide the type of the route's model to other consumers: see [Working with Route Models](../cookbook/working-with-route-models.md) for details!
 
-```typescript
+```typescript {data-filename="app/routes/my.ts"}
 import Route from '@ember/routing/route';
 
 type Resolved<P> = P extends Promise<infer T> ? T : P;
@@ -419,7 +419,7 @@ The `Resolved<T>` utility type takes in any type, and if the type is a `Promise`
 
 This in turn allows us to use the route class to define the type of the model on an associated controller.
 
-```typescript
+```typescript {data-filename="app/controllers/my.ts"}
 import Controller from '@ember/controller';
 import type { MyRouteModel } from '../routes/my-route';
 
@@ -438,7 +438,7 @@ We often use routes’ models throughout our application, since they’re a core
 
 We can start by defining some type utilities to let us get the resolved value returned by a route’s model hook:
 
-```typescript
+```typescript {data-filename="app/lib/type-utils.ts"}
 import Route from '@ember/routing/route';
 
 /**
@@ -469,10 +469,10 @@ type MyRouteModel = ModelFrom<MyRoute>;
 
 We can use this functionality to guarantee that the `model` on a `Controller` is always exactly the type returned by `Route::model` by writing something like this:
 
-```typescript
+```typescript {data-filename="app/controllers/controller-with-model.ts"}
 import Controller from '@ember/controller';
-import MyRoute from '../routes/my-route';
-import { ModelFrom } from '../lib/type-utils';
+import MyRoute from 'my-app/routes/my-route';
+import { ModelFrom } from 'my-app/lib/type-utils';
 
 export default class ControllerWithModel extends Controller {
   declare model: ModelFrom<MyRoute>;
@@ -489,7 +489,7 @@ Like [routes](./routes.md), controllers are just normal classes with a few speci
 
 The main thing you need to be aware of is special handling around query params. In order to provide type safety for query param configuration, Ember's types specify that when defining a query param's `type` attribute, you must supply one of the allowed types: `'boolean'`, `'number'`, `'array'`, or `'string'` \(the default\). However, if you supply these types as you would in JS, like this:
 
-```typescript
+```typescript {data-filename="app/controllers/heyo.ts"}
 import Controller from '@ember/controller';
 
 export default class HeyoController extends Controller {
@@ -517,16 +517,14 @@ Property 'queryParams' in type 'HeyoController' is not assignable to the same pr
 
 This is because TS currently infers the type of `type: "array"` as `type: string`. You can work around this by supplying `as const` after the declaration:
 
-<!-- FIXME: Re-add diff -->
-
-```typescript
-import Controller from "@ember/controller";
+```typescript {data-filename="app/controllers/heyo.ts", data-diff="-6,+7"}
+import Controller from '@ember/controller';
 
 export default class HeyoController extends Controller {
   queryParams = [
     {
--     category: { type: "array" },
-+     category: { type: "array" as const },
+      category: { type: 'array' },
+      category: { type: 'array' as const },
     },
   ];
 }
@@ -628,7 +626,7 @@ export default helper(showAll);
 
 Given those constraints, let’s see what a \(very contrived\) actual helper might look like in practice. Let’s imagine we want to take a pair of strings and join them with a required separator and optional prefix and postfixes:
 
-```typescript
+```typescript {data-filename="app/helpers/join.ts"}
 import { helper } from '@ember/component/helper';
 import { assert } from '@ember/debug';
 import { is } from '../../type-utils';
@@ -671,7 +669,7 @@ interface ClassBasedHelper {
 
 Notice that the signature of `compute` is the same as the signature for the function-based helper! This means that everything we said above applies in exactly the same way here. The only differences are that we can have local state and, by extending from Ember’s `Helper` class, we can hook into the dependency injection system and use services.
 
-```typescript
+```typescript {data-filename="app/helpers/greet.ts"}
 import Helper from '@ember/component/helper';
 import { inject as service } from '@ember/service';
 import Authentication from 'my-app/services/authentication';
@@ -704,9 +702,7 @@ First, the function we're testing might look like this.
 Here we’re using the `assert` from `@ember/debug`. If you’re not familiar with it, you might want to take a look at its [API docs](https://api.emberjs.com/ember/3.14/functions/@ember%2Fdebug/assert)! It’s a development-and-test-only helper that gets stripped from production builds, and is very helpful for this kind of thing!
 {% endhint %}
 
-```javascript
-// app/utils/math.js
-
+```javascript {data-filename="app/utils/math.js"}
 export function add(a, b) {
   assert(
     'arguments must be numbers',
@@ -719,9 +715,7 @@ export function add(a, b) {
 
 Then the test for it might look something like this:
 
-```javascript
-// tests/unit/utils/math-test.js
-
+```javascript {data-filename="tests/unit/utils/math-test.js"}
 import { module, test } from 'qunit';
 import { add } from 'app/utils/math';
 
@@ -746,9 +740,7 @@ module('the `add` function', function (hooks) {
 
 In TypeScript, that wouldn't make any sense at all, because we'd simply add the types to the function declaration:
 
-```typescript
-// app/utils/math.ts
-
+```typescript {data-filename="app/utils/math.ts"}
 export function add(a: number, b: number): number {
   assert(
     'arguments must be numbers',
@@ -761,9 +753,7 @@ export function add(a: number, b: number): number {
 
 We might still write tests to make sure what we actually got back was what we expected—
 
-```typescript
-// tests/unit/utils/math-test.ts
-
+```typescript {data-filename="tests/unit/utils/math-test.ts"}
 import { module, test } from 'qunit';
 import { add } from 'app/utils/math';
 
@@ -778,9 +768,7 @@ module('the `add` function', function (hooks) {
 
 —but there are a bunch of things we _don't_ need to test. All of those special bits of handling for the case where we pass in a `string` or `undefined` or whatever else? We can drop that. Notice, too, that we can drop the assertion from our function definition, because the _compiler_ will check this for us:
 
-```typescript
-// app/utils/math.ts
-
+```typescript {data-filename="app/utils/math.ts"}
 export function add(a: number, b: number): number {
   return a + b;
 }
@@ -794,7 +782,7 @@ Let's return to our silly example with an `add` function. Our setup will look a 
 
 First, notice that in this case we’ve added back in our `assert` in the body of the function. The inputs to our function here will get checked for us by any TypeScript users, but this way we are still doing the work of helping out our JavaScript users.
 
-```typescript
+```typescript {data-filename="app/utils/math.ts"}
 function add(a: number, b: number): number {
   assert(
     'arguments must be numbers',
@@ -807,9 +795,7 @@ function add(a: number, b: number): number {
 
 Now, back in our test file, we’re similarly back to testing all those extra scenarios, but here TypeScript would actually stop us from even having these tests work _at all_ if we didn’t use the `as` operator to throw away what TypeScript knows about our code!
 
-```javascript
-// tests/unit/utils/math-test.js
-
+```javascript {data-filename="tests/unit/utils/math-test.ts"}
 import { module, test } from 'qunit';
 import { add } from 'app/utils/math';
 
@@ -847,9 +833,7 @@ We’re going to start by defining a basic `User` and `Profile` so that we have 
 
 The `User` type is very simple, just an `interface`:
 
-```typescript
-// app/types/user.ts
-
+```typescript {data-filename="app/types/user.ts"}
 export default interface User {
   displayName: string;
   avatarUrl?: string;
@@ -858,9 +842,7 @@ export default interface User {
 
 Then our component might be defined like this:
 
-```text
-{{! app/components/profile.hbs }}
-
+```handlebars {data-filename="app/components/profile.hbs"}
 <div class='user-profile' ...attributes>
   <img
     src={{this.avatar}}
@@ -872,7 +854,7 @@ Then our component might be defined like this:
 </div>
 ```
 
-```typescript
+```typescript {data-filename="app/components/profile.ts"}
 import Component from '@glimmer/component';
 import User from 'app/types/user';
 import { randomAvatarURL } from 'app/utils/avatar';
@@ -896,7 +878,7 @@ Not familiar with how we define a Glimmer `Component` and its arguments? Check o
 
 Now, with that setup out of the way, let’s get back to talking about the text context! We need to set up a `User` to pass into the test. With TypeScript on our side, we can even make sure that it actually matches up to the type we want to use!
 
-```typescript
+```typescript {data-filename="tests/integration/components/profile.ts"}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
@@ -962,7 +944,7 @@ test('...', function (this: Context, assert) {});
 
 Putting it all together, this is what our updated test definition would look like:
 
-```typescript
+```typescript {data-filename="tests/integration/components/profile.ts"}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render, TestContext } from '@ember/test-helpers';

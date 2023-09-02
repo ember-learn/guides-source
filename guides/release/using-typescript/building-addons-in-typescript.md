@@ -35,10 +35,10 @@ You could run `ember ts:precompile` in your addon any time you change a file, bu
 
 Add entries for `<addon-name>` and `<addon-name>/*` in your `tsconfig.json` like so:
 
-```javascript
-compilerOptions: {
+```json {data-filename="tsconfig.json"}
+"compilerOptions": {
   // ...other options
-  paths: {
+  "paths": {
     // ...other paths, e.g. for your app/ and tests/ trees
     // resolve: import x from 'my-addon';
     "my-addon": [
@@ -56,10 +56,10 @@ compilerOptions: {
 
 [In-repo addons](https://ember-cli.com/extending/#detailed-list-of-blueprints-and-their-use) work in much the same way as linked ones. Their `.ts` files are managed automatically by `ember-cli-typescript` in their `dependencies`, and you can ensure imports resolve correctly from the host by adding entries in `paths` in the base `tsconfig.json` file.
 
-```javascript
-compilerOptions: {
+```json {data-filename="tsconfig.json"}
+"compilerOptions": {
   // ...other options
-  paths: {
+  "paths": {
     // ...other paths, e.g. for your tests/ tree
     "my-app": [
       "app/*",
