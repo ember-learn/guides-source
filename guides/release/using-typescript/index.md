@@ -2,7 +2,6 @@
 
 This guide is designed to help you get up and running with TypeScript in an Ember app.
 
-
 <div class="cta">
   <div class="cta-note">
     <div class="cta-note-body">
@@ -28,6 +27,7 @@ To get started, check out the instructions in [Getting Started with TypeScript](
 - If you're working with legacy (pre-Octane) Ember and TypeScript together, you should read [the Legacy Guide](./legacy/README.md).
 <!-- TODO: Bring in glint docs once glint advances to recommended. -->
 - Looking for type-checking in Glimmer templates? Check out [Glint](https://typed-ember.gitbook.io/glint/).
+<!-- FIXME: Link to gts docs? -->
 
 ## Why TypeScript?
 

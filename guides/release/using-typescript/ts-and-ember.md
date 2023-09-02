@@ -1,7 +1,5 @@
 **Note:** 🚧 This section is under construction! 🏗️ The content here may not be fully up to date!
 
-# TypeScript and Ember
-
 This guide covers the common details and "gotchas" of using TypeScript with Ember. Note that we do _not_ cover the use of TypeScript _or_ Ember in general—for those, you should refer to the corresponding documentation:
 
 - [TypeScript docs](https://www.typescriptlang.org/docs/index.html)
@@ -166,7 +164,7 @@ This definition allows for type-safe lookups with other Ember dependency injecti
 ```typescript
 function dynamicLookup(owner: Owner) {
   let mySession = owner.lookup('service:my-session');
-  mySession.login("tom@example.com", "password123");
+  mySession.login('tom@example.com', 'password123');
 }
 ```
 
@@ -284,3 +282,98 @@ This works because (a) we include things in your types directory automatically a
 
 If you're developing an addon and concerned that this might affect consumers, it won't. Your types directory will never be referenced by consumers at all!
 
+<!-- FIXME: Content below is copy-pasta and needs vetting. -->
+
+# Decorators
+
+Ember makes heavy use of decorators, and TypeScript does not currently support deriving type information from decorators.
+
+As a result, there are three important points that apply to _all_ decorator usage in Ember:
+
+1. Whenever using a decorator to declare a class field the framework sets up for you, you should mark it with `declare`. That includes all service and controller injections as well as all Ember Data attributes and relationships.
+
+   Normally, TypeScript determines whether a property is definitely not `null` or `undefined` by checking what you do in the constructor. In the case of service injections, controller injections, or Ember Data model decorations, though, TypeScript does not have visibility into how instances of the class are _initialized_. The `declare` annotation informs TypeScript that a declaration is defined somewhere else, outside its scope.
+
+2. For Ember Data Models, you will need to use the optional `?` operator on field declarations if the field is optional \(`?`\). See the Ember Data section of the guide for more details!
+
+3. You are responsible to write the type correctly. TypeScript does not currently use decorator information at all in its type information. If you write `@service foo` or even `@service('foo') foo`, _Ember_ knows that this resolves at runtime to the service `Foo`, but TypeScript does not and—for now—_cannot_.
+
+   This means that you are responsible to provide this type information, and that you are responsible to make sure that the information remains correct and up to date
+
+For examples, see the detailed discussions of the two main places decorators are used in the framework:
+
+- [Services](../ember/services.md)
+- [Ember Data Models](../ember-data/models.md)
+
+# Current Limitations
+
+While TS already works nicely for many things in Ember, there are a number of corners where it _won't_ help you out. Some of them are just a matter of further work on updating the [existing typings](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/ember); others are a matter of further support landing in TypeScript itself, or changes to Ember's object model.
+
+## Some `import`s don't resolve
+
+You'll frequently see errors for imports which TypeScript doesn't know how to resolve. **These won't stop the build from working;** they just mean TypeScript doesn't know where to find those.
+
+Writing these missing type definitions is a great way to pitch in! Jump in `#topic-typescript` on the [Ember Community Discord server](https://discord.gg/zT3asNS) and we'll be happy to help you.
+
+## Templates
+
+Templates are currently totally non-type-checked. This means that you lose any safety when moving into a template context, even if using a Glimmer `Component` in Ember Octane.
+
+Addons need to import templates from the associated `.hbs` file to bind to the layout of any components they export. The TypeScript compiler will report that it cannot resolve the module, since it does not know how to resolve files ending in `.hbs`. To resolve this, you can provide this set of definitions to `my-addon/types/global.d.ts`, which will allow the import to succeed:
+
+```ts
+declare module '*/template' {
+  import { TemplateFactory } from 'ember-cli-htmlbars';
+  const template: TemplateFactory;
+  export default template;
+}
+
+declare module 'app/templates/*' {
+  import { TemplateFactory } from 'ember-cli-htmlbars';
+  const template: TemplateFactory;
+  export default template;
+}
+
+declare module 'addon/templates/*' {
+  import { TemplateFactory } from 'ember-cli-htmlbars';
+  const template: TemplateFactory;
+  export default template;
+}
+```
+
+## Invoking actions
+
+TypeScript won't detect a mismatch between this action and the corresponding call in the template:
+
+```ts
+import Component from '@ember/component';
+import { action } from '@ember/object';
+
+export default class MyGame extends Component {
+  @action turnWheel(degrees: number) {
+    // ...
+  }
+}
+```
+
+```hbs
+<button {{on 'click' (fn this.turnWheel 'potato')}}>
+  Click Me
+</button>
+```
+
+Likewise, it won't notice a problem when you use the `send` method:
+
+```ts
+// TypeScript compiler won't detect this type mismatch
+this.send\('turnWheel', 'ALSO-NOT-A-NUMBER'\);
+```
+
+# Understanding the `@types` Package Names
+
+You may be wondering why the packages added to your `package.json` and described in [**Installation: Other packages this addon installs**](https://github.com/typed-ember/ember-cli-typescript/tree/3a434def8b8c8214853cea0762940ccedb2256e8/docs/README.md#other-packages-this-addon-installs) are named things like `@types/ember__object` instead of something like `@types/@ember/object`. This is a conventional name used to allow both the compiler and the [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) publishing infrastructure \([types-publisher](https://github.com/Microsoft/types-publisher)\) to handle scoped packages, documented under [**What about scoped packages?**](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master#what-about-scoped-packages) in [the DefinitelyTyped README](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master).
+
+See also:
+
+- [Microsoft/types-publisher\#155](https://github.com/Microsoft/types-publisher/issues/155)
+- [Microsoft/Typescript\#14819](https://github.com/Microsoft/TypeScript/issues/14819)
