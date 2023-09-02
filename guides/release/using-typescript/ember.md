@@ -1,23 +1,10 @@
 **Note:** 🚧 This section is under construction! 🏗️ The content here may not be fully up to date!
 
-In this section, we cover how to use TypeScript effectively with specific Ember APIs \(anything you'd find under the `@ember` package namespace\).
+In this section, we cover how to use TypeScript effectively with specific Ember.js APIs.
 
-We do _not_ cover general usage of Ember; instead, we assume that as background knowledge. Please see the Ember [Guides](https://guides.emberjs.com/release/) and [API docs](https://api.emberjs.com/ember/release)!
-
-## Outline
-
-- [Components](./components.md)
-- [Services](./services.md)
-- [Routes](./routes.md)
-- [Controllers](./controllers.md)
-- [Helpers](./helpers.md)
-- [Testing](./testing.md)
+We do _not_ cover general usage of Ember; instead, we assume that as background knowledge. Please see the [Ember Guides](../..) and [API docs](https://api.emberjs.com)!
 
 ## Components
-
-{% hint style="info" %}
-New to Ember or the Octane edition specifically? You may want to read [the Ember Guides’ material on `Component`s](https://guides.emberjs.com/release/components/) first!
-{% endhint %}
 
 Glimmer Components are defined in one of three ways: with templates only, with a template and a backing class, or with only a backing class \(i.e. a `yield`-only component\). When using a backing class, you get a first-class experience using TypeScript! For type-checking Glimmer templates as well, see [Glint](https://typed-ember.gitbook.io/glint/).
 
