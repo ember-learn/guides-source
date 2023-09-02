@@ -20,11 +20,10 @@ However, there are a few things worth noting if you're already familiar with Typ
 
 To enable TypeScript sourcemaps, you'll need to add the corresponding configuration for Babel to your `ember-cli-build.js` file:
 
-```javascript {data-filename="ember-cli-build.js" data-diff="+2,+3,+4"}
+```javascript {data-filename="ember-cli-build.js" data-diff="+3"}
 const app = new EmberApp(defaults, {
-  babel: {
-    sourceMaps: 'inline',
-  },
+  'ember-cli-babel': { enableTypeScriptTransform: true },
+  babel: { sourceMaps: 'inline' },
 });
 ```
 
