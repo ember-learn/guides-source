@@ -4,13 +4,13 @@ In this section, we cover how to use TypeScript effectively with specific Ember 
 
 We do _not_ cover general usage of Ember Data; instead, we assume that as background knowledge. Please see the Ember Data [Guides](https://guides.emberjs.com/release/models) and [API docs](https://api.emberjs.com/ember-data/release)!
 
-# Models
+## Models
 
 Ember Data models are normal TypeScript classes, but with properties decorated to define how the model represents an API resource and relationships to other resources. The decorators the library supplies "just work" with TypeScript at runtime, but require type annotations to be useful with TypeScript.
 
 For details about decorator usage, see [our overview of how Ember's decorators work with TypeScript](../ts/decorators.md).
 
-## `@attr`
+### `@attr`
 
 The type returned by the `@attr` decorator is whatever [Transform](https://api.emberjs.com/ember-data/release/classes/Transform) is applied via the invocation. See [our overview of Transforms for more information](./transforms.md).
 
@@ -64,7 +64,7 @@ export default class User extends Model {
 }
 ```
 
-## Relationships
+### Relationships
 
 Relationships between models in Ember Data rely on importing the related models, like `import User from './user';`. This, naturally, can cause a recursive loop, as `/app/models/post.ts` imports `User` from `/app/models/user.ts`, and `/app/models/user.ts` imports `Post` from `/app/models/post.ts`. Recursive importing triggers an [`import/no-cycle`](https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-cycle.md) error from eslint.
 
@@ -74,7 +74,7 @@ To avoid these errors, use [type-only imports](https://www.typescriptlang.org/do
 import type User from './user';
 ```
 
-### `@belongsTo`
+#### `@belongsTo`
 
 The type returned by the `@belongsTo` decorator depends on whether the relationship is `{ async: true }` \(which it is by default\).
 
@@ -104,7 +104,7 @@ These are _type_-safe to define as always present, that is to leave off the `?` 
 
 Note, however, that this type-safety is not a guarantee of there being no runtime error: you still need to uphold the contract for non-async relationships \(that is: loading the data first, or side-loading it with the request\) to avoid throwing an error!
 
-### `@hasMany`
+#### `@hasMany`
 
 The type returned by the `@hasMany` decorator depends on whether the relationship is `{ async: true }` \(which it is by default\).
 
@@ -133,7 +133,7 @@ export default class Thread extends Model {
 
 The same basic rules about the safety of these lookups as with `@belongsTo` apply to these types. The difference is just that in `@hasMany` the resulting types are _arrays_ rather than single objects.
 
-# Transforms
+## Transforms
 
 In Ember Data, `attr` defines an attribute on a [Model](https://guides.emberjs.com/release/models/defining-models/).
 By default, attributes are passed through as-is, however you can specify an
@@ -147,7 +147,7 @@ The return type of `deserialize` method becomes type of the model class property
 You may define your own transforms in TypeScript like so:
 
 ```typescript
-# app/transforms/coordinate-point.ts
+## app/transforms/coordinate-point.ts
 import Transform from '@ember-data/serializer/transform';
 
 declare module 'ember-data/types/registries/transform' {
@@ -171,7 +171,7 @@ export default class CoordinatePointTransform extends Transform {
   }
 }
 
-# app/models/cursor.ts
+## app/models/cursor.ts
 import Model, { attr } from '@ember-data/model';
 import { CoordinatePoint } from 'agwa-data/transforms/coordinate-point';
 

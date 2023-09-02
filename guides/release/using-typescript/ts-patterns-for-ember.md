@@ -13,7 +13,7 @@ We do _not_ cover general usage of Ember; instead, we assume that as background 
 - [Helpers](./helpers.md)
 - [Testing](./testing.md)
 
-# Components
+## Components
 
 {% hint style="info" %}
 New to Ember or the Octane edition specifically? You may want to read [the Ember Guides’ material on `Component`s](https://guides.emberjs.com/release/components/) first!
@@ -21,7 +21,7 @@ New to Ember or the Octane edition specifically? You may want to read [the Ember
 
 Glimmer Components are defined in one of three ways: with templates only, with a template and a backing class, or with only a backing class \(i.e. a `yield`-only component\). When using a backing class, you get a first-class experience using TypeScript! For type-checking Glimmer templates as well, see [Glint](https://typed-ember.gitbook.io/glint/).
 
-## A simple component
+### A simple component
 
 A _very_ simple Glimmer component which lets you change the count of a value might look like this:
 
@@ -51,7 +51,7 @@ export default class Counter extends Component {
 
 Notice that there are no type declarations here – but this _is_ actually a well-typed component. The type of `count` is `number`, and if we accidentally wrote something like `this.count = "hello"` the compiler would give us an error.
 
-## Adding arguments and giving them a type
+### Adding arguments and giving them a type
 
 So far so good, but of course most components aren’t quite this simple! Instead, they’re invoked by other templates and they can invoke other components themselves in their own templates.
 
@@ -143,7 +143,7 @@ export default class ArgsDisplay extends Component<ArgsDisplaySignature> {
 </ul>
 ```
 
-### Understanding `args`
+#### Understanding `args`
 
 Now, looking at that bit of code, you might be wondering how it knows what the type of `this.args` is. In the `constructor` version, we explicitly _named_ the type of the `args` argument. Here, it seems to just work automatically. This works because the type definition for a Glimmer component looks roughly like this:
 
@@ -174,7 +174,7 @@ let b = ['hello', 'goodbye']; // Array<string>
 
 In the case of the Component, we have the types the way we do so that you can’t accidentally define `args` as a string, or `undefined` , or whatever: it _has_ to be an object. Thus, `Component<Args extends {}>` . But we also want to make it so that you can just write `extends Component` , so that needs to have a default value. Thus, `Component<Args extends {} = {}>`.
 
-### Giving `args` a type
+#### Giving `args` a type
 
 Now let’s put this to use. Imagine we’re constructing a user profile component which displays the user’s name and optionally an avatar and bio. The template might look something like this:
 
@@ -214,7 +214,7 @@ export default class UserProfile extends Component<User> {
 
 Assuming the default `tsconfig.json` settings \(with `strictNullChecks: true`\), this wouldn't type-check if we didn't _check_ whether the `bio` argument were set.
 
-## Generic subclasses
+### Generic subclasses
 
 If you'd like to make your _own_ component subclass-able, you need to make it generic as well.
 
@@ -238,7 +238,7 @@ export default class FancyInput<
 
 Requiring that `Args extends FancyInputArgs` means that subclasses can have _more_ than these args, but not _fewer_. Specifying that the `Args = FancyInputArgs` means that they _default_ to just being `FancyInputArgs`, so users don't need to supply an explicit generic type parameter here unless they're adding more arguments to the class.
 
-# Services
+## Services
 
 Ember Services are global singleton classes that can be made available to different parts of an Ember application via dependency injection. Due to their global, shared nature, writing services in TypeScript gives you a build-time-enforcable API for some of the most central parts of your application.
 
@@ -246,7 +246,7 @@ Ember Services are global singleton classes that can be made available to differ
 If you are not familiar with Services in Ember, first make sure you have read and understood the [Ember Guide on Services](https://guides.emberjs.com/release/services/)!
 {% endhint %}
 
-## A basic service
+### A basic service
 
 Let's take this example from the [Ember Guide](https://guides.emberjs.com/release/services/):
 
@@ -303,7 +303,7 @@ export default class ShoppingCartService extends Service {
 Notice that here we are using only built-in array operations, not Ember's custom array methods.
 {% endhint %}
 
-## Using services
+### Using services
 
 You can use a service in any container-resolved object such as a component or another service. Services are injected into these objects by decorating a property with the `inject` decorator. Because decorators can't affect the type of the property they decorate, we must manually type the property. Also, we must use `declare` modifier to tell the TypeScript compiler to trust that this property will be set up by something outside this component—namely, the decorator.
 
@@ -379,7 +379,7 @@ There is a merged \(but not yet implemented\) [RFC](https://emberjs.github.io/rf
 For now, however, remember that _the cast is unsafe_!
 {% endhint %}
 
-# Routes
+## Routes
 
 Working with Routes is in general just working normal TypeScript classes. Ember's types supply the definitions for the various lifecycle events available within route subclasses, which will provide autocomplete and type-checking along the way in general.
 
@@ -432,7 +432,7 @@ export default class MyController extends Controller {
 
 Notice here that the `model` is declared as optional. That’s intentional: the `model` for a given controller is _not_ set when the controller is constructed (that actually happens _either_ when the page corresponding to the controller is created _or_ the first time a `<LinkTo>` which links to that page is rendered). Instead, the `model` is set on the controller when the corresponding route is successfully entered, via its `setupController` hook.
 
-# Working with route models
+## Working with route models
 
 We often use routes’ models throughout our application, since they’re a core ingredient of our application’s data. As such, we want to make sure that we have good types for them!
 
@@ -465,7 +465,7 @@ Putting those all together, `ModelFrom<Route>` ends up giving you the resolved v
 type MyRouteModel = ModelFrom<MyRoute>;
 ```
 
-## `model` on the controller
+### `model` on the controller
 
 We can use this functionality to guarantee that the `model` on a `Controller` is always exactly the type returned by `Route::model` by writing something like this:
 
@@ -483,7 +483,7 @@ Now, our controller’s `model` property will _always_ stay in sync with the cor
 
 **Note:** this _only_ works if you do not mutate the `model` in either the `afterModel` or `setupController` hooks on the route! That's generally considered to be a bad practice anyway. If you do change the type there, you'll need to define the type in some other way and make sure your route's model is defined another way.
 
-# Controllers
+## Controllers
 
 Like [routes](./routes.md), controllers are just normal classes with a few special Ember lifecycle hooks and properties available.
 
@@ -534,7 +534,7 @@ export default class HeyoController extends Controller {
 
 Now it will type-check.
 
-# Helpers
+## Helpers
 
 Helpers in Ember are just functions or classes with a well-defined interface, which means they largely Just Work™ with TypeScript. However, there are a couple things you’ll want to watch out for.
 
@@ -542,7 +542,7 @@ Helpers in Ember are just functions or classes with a well-defined interface, wh
 As always, you should start by reading and understanding the [Ember Guide on Helpers](https://guides.emberjs.com/release/templates/writing-helpers/)!
 {% endhint %}
 
-## Function-based helpers
+### Function-based helpers
 
 The basic type of a helper function in Ember is:
 
@@ -563,7 +563,7 @@ There are three important points about this definition:
 
 Let’s walk through each of these.
 
-### Handling `positional` arguments
+#### Handling `positional` arguments
 
 The type is an array of `unknown` because we don’t \(yet!\) have any way to make templates aware of the information in this definition—so users could pass in _anything_. We can work around this using [type narrowing](https://microsoft.github.io/TypeScript-New-Handbook/chapters/narrowing/)—TypeScript’s way of using runtime checks to inform the types at runtime.
 
@@ -580,13 +580,13 @@ function totalLength(positional: unknown[]) {
 }
 ```
 
-### Handling `named` arguments
+#### Handling `named` arguments
 
 We specified the type of `named` as a `Record<string, unknown>`. `Record` is a built-in TypeScript type representing a fairly standard type in JavaScript: an object being used as a simple map of keys to values. Here we set the values to `unknown` and the keys to `string`, since that accurately represents what callers may actually pass to a helper.
 
 \(As with `positional`, we specify the type here as `unknown` to account for the fact that the template layer isn’t aware of types yet.\)
 
-### `positional` and `named` presence
+#### `positional` and `named` presence
 
 Note that even if the user passes _no_ arguments, both `positional` and `named` are always present. They will just be _empty_ in that case. For example:
 
@@ -624,7 +624,7 @@ export function showAll(positional: unknown[], named: Record<string, unknown>) {
 export default helper(showAll);
 ```
 
-### Putting it all together
+#### Putting it all together
 
 Given those constraints, let’s see what a \(very contrived\) actual helper might look like in practice. Let’s imagine we want to take a pair of strings and join them with a required separator and optional prefix and postfixes:
 
@@ -656,7 +656,7 @@ export function join(positional: [unknown, unknown], named: Dict<unknown>) {
 export default helper(join);
 ```
 
-## Class-based helpers
+### Class-based helpers
 
 The basic type of a class-based helper function in Ember is:
 
@@ -688,13 +688,13 @@ export default class Greet extends Helper {
 
 For more details on using decorators, see our [guide to using decorators](https://github.com/typed-ember/ember-cli-typescript/tree/3a434def8b8c8214853cea0762940ccedb2256e8/docs/ember/%28../ts/decorators/%29/README.md). For details on using services, see our [guide to services](https://github.com/typed-ember/ember-cli-typescript/tree/3a434def8b8c8214853cea0762940ccedb2256e8/docs/ember/%28./services/%29/README.md).
 
-# Testing
+## Testing
 
 Testing with TypeScript mostly works just the same as you'd expect in a non-TypeScript Ember application—so if you're just starting out with Ember, we recommend you read the official Ember [Testing Guides](https://guides.emberjs.com/release/testing/) first. The rest of this guide assumes you're already comfortable with testing in Ember!
 
 When working with TypeScript in Ember tests, there are a few differences in your experience, and there are also differences in how you should handle testing app code vs. addon code.
 
-## App tests
+### App tests
 
 One major difference when working with TypeScript in _app_ code is that once your app is fully converted, there are a bunch of kinds of tests you just don't need to write any more: things like testing bad inputs to functions. We'll use an admittedly silly and contrived example here, an `add` function to add two numbers together, so that we can focus on the differences between JavaScript and TypeScript, rather than getting hung up on the details of this particular function.
 
@@ -786,7 +786,7 @@ export function add(a: number, b: number): number {
 }
 ```
 
-## Addon tests
+### Addon tests
 
 Note, however, that this _only_ applies to _app code_. If you're writing an Ember addon \(or any other library\), you cannot assume that everyone consuming your code is using TypeScript. You still need to account for these kinds of cases. This will require you to do something that probably feels a bit gross: casting a bunch of values `as any` for your tests, so that you can test what happens when people feed bad data to your addon!
 
@@ -837,9 +837,9 @@ module('the `add` function', function(hooks) {
 });
 ```
 
-## Gotchas
+### Gotchas
 
-### The `TestContext`
+#### The `TestContext`
 
 A common scenario in Ember tests, especially integration tests, is setting some value on the `this` context of the tests, so that it can be used in the context of the test. For example, we might need to set up a `User` type to pass into a `Profile` component.
 

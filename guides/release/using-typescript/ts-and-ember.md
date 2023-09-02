@@ -16,9 +16,9 @@ This guide covers the common details and "gotchas" of using TypeScript with Embe
 
 <!-- FIXME: This is copy-pasta from ember-cli-typescript docs and needs updates -->
 
-# Using TypeScript With Ember Effectively
+## Using TypeScript With Ember Effectively
 
-## Incremental adoption
+### Incremental adoption
 
 If you are porting an existing app to TypeScript, you can install this addon and migrate your files incrementally by changing their extensions from `.js` to `.ts`. As TypeScript starts to find errors (and it usually does!), make sure to celebrate your wins—even if they're small!—with your team, especially if some people are not convinced yet. We would also love to hear your stories!
 
@@ -53,7 +53,7 @@ Finally, leave `"noEmitOnError": true` (the default) in the `"compilerOptions"` 
 
 ![example of a build error during live reload](https://user-images.githubusercontent.com/108688/38774630-7d9224d4-403b-11e8-8dbc-87dad977a4c4.gif)
 
-## What about missing types?
+### What about missing types?
 
 There are two schools of thought on how to handle things you don't have types for as you go:
 
@@ -63,11 +63,11 @@ There are two schools of thought on how to handle things you don't have types fo
 
 There is an inherent tradeoff between these two approaches; which works best will depend on your team and your app.
 
-## Install other types
+### Install other types
 
 You'll want to use other type definitions as much as possible. Many packages ship their own type definitions, and many others have community-maintained definitions from [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped), available in the `@types` name space. The first thing you should do is to look for types from other addons: it will mean writing `any` a lot less and getting a lot more help both from your editor and from the compiler.
 
-## The `types` directory
+### The `types` directory
 
 During installation, we create a `types` directory in the root of your application and add a `"paths"` mapping that includes that directory in any type lookups TypeScript tries to do. This is convenient for a few things:
 
@@ -77,31 +77,31 @@ During installation, we create a `types` directory in the root of your applicati
 
 These are all fallbacks, of course, you should use the types supplied directly with a package
 
-### Global types for your package
+#### Global types for your package
 
 At the root of your application or addon, we include a `types/<your app>` directory with an `index.d.ts` file in it. Anything which is part of your application but which must be declared globally can go in this file. For example, if you have data attached to the `Window` object when the page is loaded (for bootstrapping or whatever other reason), this is a good place to declare it.
 
 In the case of applications (but not for addons), we also automatically include declarations for Ember's prototype extensions in this `index.d.ts` file, with the `Array` prototype extensions enabled and the `Function` prototype extensions commented out. You should configure them to match your own config (which we cannot check during installation). If you are [disabling Ember's prototype extensions](https://guides.emberjs.com/v2.18.0/configuring-ember/disabling-prototype-extensions/), you can remove these declarations entirely; we include them because they're enabled in most Ember applications today.
 
-### Environment configuration typings
+#### Environment configuration typings
 
 Along with the @types/ files mentioned above, ember-cli-typescript adds a starter interface for `config/environment.js` in `app/config/environment.d.ts`. This interface will likely require some changes to match your app.
 
 We install this file because the actual `config/environment.js` is (a) not actually identical with the types as you inherit them in the content of an application, but rather a superset of what an application has access to, and (b) not in a the same location as the path at which you look it up. The actual `config/environment.js` file executes in Node during the build, and Ember CLI writes its result as `<my-app>/config/environment` into your build for consumption at runtime.
 
-## String-keyed lookups
+### String-keyed lookups
 
 Ember makes heavy use of string-based APIs to allow for a high degree of dynamicism. With some limitations, you can nonetheless use TypeScript very effectively to get auto-complete/IntelliSense as well as to accurately type-check your applications.
 
 A few of the most common speed-bumps are listed here to help make this easier:
 
-### Classic `get` or `set` methods
+#### Classic `get` or `set` methods
 
 In general, the `this.get` and `this.set` methods on `EmberObject` subclasses and the standalone `get` and `set` functions will work as you'd expect _if_ you're doing lookups only a single layer deep. We do not provide support for deep key lookups like `get(someObj, 'a.b.c')`, because normal property access can works correctly across the whole Ember ecosystem since at least Ember and Ember Data 3.28.
 
 Since regular property access “just works”, and has for a very long time, you should migrate to using normal property access instead. TypeScript will help make this a smooth process by identifying where you need to handle null and undefined intermediate properties.
 
-### Service and controller injections
+#### Service and controller injections
 
 Ember looks up services with the `@service` decorator at runtime, using the name of the service being injected up as the default value—a clever bit of metaprogramming that makes for a nice developer experience. TypeScript cannot do this, because the name of the service to inject isn't available at compile time in the same way. (These same considerations apply to controller injections using the `@inject` decorator from `@ember/controller`.)
 
@@ -168,7 +168,7 @@ function dynamicLookup(owner: Owner) {
 }
 ```
 
-### Ember Data lookups
+#### Ember Data lookups
 
 We use the same basic approach for Ember Data type lookups with string keys as we do for service injections, but here we take advantage of the string "type registration" for the runtime code as well. As a result, once you add the module and interface definitions for each model, serializer, and adapter in your app, you will automatically get type-checking and autocompletion and the correct return types for functions like `findRecord`, `queryRecord`, `adapterFor`, `serializerFor`, etc. No need to try to write out those (admittedly kind of hairy!) types; just write your Ember Data calls like normal and everything _should_ just work. That is, writing `this.store.findRecord('user', 1)` will give you back a `Promise<User | undefined>`.
 
@@ -230,7 +230,7 @@ The declarations and changes you need to add to your existing files are:
   }
   ```
 
-#### Opt-in unsafety
+##### Opt-in unsafety
 
 Also notice that unlike with service and controller injections, there is no unsafe fallback method by default, because there isn't an argument-less variant of the functions to use as there is for `Service` and `Controller` injection. If for some reason you want to opt _out_ of the full type-safe lookup for the strings you pass into methods like `findRecord`, `adapterFor`, and `serializerFor`, you can add these declarations somewhere in your project:
 
@@ -258,7 +258,7 @@ declare module 'ember-data/types/registries/serializer' {
 
 However, we _**strongly**_ recommend that you simply take the time to add the few lines of declarations to each of your `Model`, `Adapter`, and `Serializer` instances instead. It will save you time in even the short run!
 
-#### Fixing the Ember Data `error TS2344` problem
+##### Fixing the Ember Data `error TS2344` problem
 
 If you're developing an Ember app or addon and _not_ using Ember Data (and accordingly not even have the Ember Data types installed), you may see an error like this and be confused:
 
@@ -284,7 +284,7 @@ If you're developing an addon and concerned that this might affect consumers, it
 
 <!-- FIXME: Content below is copy-pasta and needs vetting. -->
 
-# Decorators
+## Decorators
 
 Ember makes heavy use of decorators, and TypeScript does not currently support deriving type information from decorators.
 
@@ -305,17 +305,17 @@ For examples, see the detailed discussions of the two main places decorators are
 - [Services](../ember/services.md)
 - [Ember Data Models](../ember-data/models.md)
 
-# Current Limitations
+## Current Limitations
 
 While TS already works nicely for many things in Ember, there are a number of corners where it _won't_ help you out. Some of them are just a matter of further work on updating the [existing typings](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/ember); others are a matter of further support landing in TypeScript itself, or changes to Ember's object model.
 
-## Some `import`s don't resolve
+### Some `import`s don't resolve
 
 You'll frequently see errors for imports which TypeScript doesn't know how to resolve. **These won't stop the build from working;** they just mean TypeScript doesn't know where to find those.
 
 Writing these missing type definitions is a great way to pitch in! Jump in `#topic-typescript` on the [Ember Community Discord server](https://discord.gg/zT3asNS) and we'll be happy to help you.
 
-## Templates
+### Templates
 
 Templates are currently totally non-type-checked. This means that you lose any safety when moving into a template context, even if using a Glimmer `Component` in Ember Octane.
 
@@ -341,7 +341,7 @@ declare module 'addon/templates/*' {
 }
 ```
 
-## Invoking actions
+### Invoking actions
 
 TypeScript won't detect a mismatch between this action and the corresponding call in the template:
 
@@ -369,7 +369,7 @@ Likewise, it won't notice a problem when you use the `send` method:
 this.send\('turnWheel', 'ALSO-NOT-A-NUMBER'\);
 ```
 
-# Understanding the `@types` Package Names
+## Understanding the `@types` Package Names
 
 You may be wondering why the packages added to your `package.json` and described in [**Installation: Other packages this addon installs**](https://github.com/typed-ember/ember-cli-typescript/tree/3a434def8b8c8214853cea0762940ccedb2256e8/docs/README.md#other-packages-this-addon-installs) are named things like `@types/ember__object` instead of something like `@types/@ember/object`. This is a conventional name used to allow both the compiler and the [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) publishing infrastructure \([types-publisher](https://github.com/Microsoft/types-publisher)\) to handle scoped packages, documented under [**What about scoped packages?**](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master#what-about-scoped-packages) in [the DefinitelyTyped README](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master).
 
