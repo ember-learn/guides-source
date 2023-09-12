@@ -631,7 +631,13 @@ Accordingly, the best practice is to keep the types matching.
 
 ## Advanced signature techniques
 
-We can also define signatures in more complicated ways, using TypeScript features like generics and union types, to [make illegal states unrepresentable][illegal]. For example, a list component might need to yield back out instances of the same type it provides, and provide the appropriate element target based on a `type` argument.
+We can also define signatures in more complicated ways using more advanced TypeScript features.
+Nearly anything you can do with a “regular” TypeScript function or class, you can also do with signatures for Glimmer invokables.
+We can make a component accept a generic type, or use union types.
+With these tools at our disposal, we can even define our signatures to [make illegal states unrepresentable][illegal].
+
+To see this in practice, consider a list component which yields back out instances of the same type it provides, and provide the appropriate element target based on a `type` argument.
+Yielding back out the same type passed in will use generics, and providing an appropriate element target for `...attributes` can use a union type.
 
 [illegal]: https://v5.chriskrycho.com/journal/making-illegal-states-unrepresentable-in-ts/
 
