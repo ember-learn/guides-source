@@ -256,6 +256,8 @@
       url: 'index'
     - title: 'Getting Started with TypeScript'
       url: 'getting-started'
+    - title: 'Signatures'
+      url: 'signatures'
     - title: 'TypeScript and Ember'
       url: 'ember'
     - title: 'TypeScript and EmberData'
