@@ -702,6 +702,11 @@ When this component is invoked, the `@type` argument will determine what kinds o
 </List>
 ```
 
+The same approach with generics works for class-based helpers and class-based modifiers.
+Function-based helpers as and modifiers can also use generics, but by using them on the function definition rather than via a signature.
+One caveat: particularly complicated union types in signatures can sometimes become too complex for Glint/TypeScript to resolve when invoking in a template.
+In those cases, your best bet is to find a simpler way to structure the types while preserving safety.
+
 ## Classic Ember components
 
 Many of the some considerations apply to classic Ember components. However, there are several additional considerations:
