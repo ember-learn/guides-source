@@ -270,6 +270,8 @@
       url: 'configuration'
     - title: 'Building Addons in TypeScript'
       url: 'building-addons-in-typescript'
+    - title: 'Working with Ember Classic'
+      url: 'legacy'
     - title: 'TypeScript FAQ'
       url: 'faq'
 - title: 'Developer Tools'
