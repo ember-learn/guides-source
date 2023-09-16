@@ -26,6 +26,7 @@ Project files will be generated with `.ts` extensions instead of `.js`.
 In addition to the usual packages added with `ember new`, the following packages will be added at their current "latest" value:
 
 - `typescript`
+- `@typescript-eslint/*`
 - `@types/ember`
 - `@types/ember-data`
 - `@types/ember__*` – `@types/ember__object` for `@ember/object`, etc.
@@ -61,5 +62,6 @@ In addition to the usual files added with `ember new`, we also add:
 
 Additionally:
 
+- `ember-cli-build.js` will be configured to transform TypeScript at build-time.
 - `.ember-cli` has `isTypeScriptProject` set to true, which will force the blueprint generators to generate TypeScript rather than JavaScript by default.
 - `.eslintrc.js` will be configured for TypeScript.

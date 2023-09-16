@@ -20,14 +20,17 @@ To get started, check out the instructions in [Getting Started with TypeScript](
 
 <!-- FIXME: Link -->
 
-- If you're totally new to using TypeScript with Ember, start with [TypeScript and Ember](./ts/README.md).
+- If you're totally new to using TypeScript with Ember, start with [TypeScript and Ember](./ember).
 <!-- FIXME: Link -->
 - Once you have a good handle on the basics, you can dive into the guides to working with the APIs specific to [Ember](./ember/README.md) and [Ember Data](./ember-data/README.md).
 <!-- FIXME: Link -->
 - If you're working with legacy (pre-Octane) Ember and TypeScript together, you should read [the Legacy Guide](./legacy).
 <!-- TODO: Bring in glint docs once glint advances to recommended. -->
 - Looking for type-checking in Glimmer templates? Check out [Glint](https://typed-ember.gitbook.io/glint/).
+- Not ready to switch to TypeScript? You can get many of TypeScript's benefits by [adding types with JSDoc comments][types-with-jsdoc]. We'll talk a bit about this over in the [Signatures](./signatures) section.
 <!-- FIXME: Link to gts docs? -->
+
+[types-with-jsdoc]: https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html
 
 ## Why TypeScript?
 
