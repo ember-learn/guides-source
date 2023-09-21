@@ -67,7 +67,8 @@ allVersions:
   - "v5.0.0"
   - "v5.1.0"
   - "v5.2.0"
-currentVersion: "v5.2.0"
+  - "v5.3.0"
+currentVersion: "v5.3.0"
 ltsVersions:
   - "v4.8.0"
   - "v4.12.0"
