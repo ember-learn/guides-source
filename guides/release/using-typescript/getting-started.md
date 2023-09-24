@@ -65,3 +65,9 @@ Additionally:
 - `ember-cli-build.js` will be configured to transform TypeScript at build-time.
 - `.ember-cli` has `isTypeScriptProject` set to true, which will force the blueprint generators to generate TypeScript rather than JavaScript by default.
 - `.eslintrc.js` will be configured for TypeScript.
+
+## Using TypeScript with Ember
+
+In the next sections, we will cover how to use TypeScript effectively with specific Ember.js APIs.
+
+We do _not_ cover general usage of Ember; instead, we assume that as background knowledge. Please see the [Ember Guides](../..) and [API docs](https://api.emberjs.com)!
