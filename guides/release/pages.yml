@@ -274,10 +274,10 @@
       pages:
         - title: 'Testing'
           url: 'testing'
-        - title: 'Converting an Existing Ember App to TypeScript'
-          url: 'converting-an-app'
         - title: 'Configuration'
           url: 'configuration'
+        - title: 'Converting an Existing Ember App to TypeScript'
+          url: 'converting-an-app'
         - title: 'Building Addons in TypeScript'
           url: 'building-addons-in-typescript'
     - title: 'Additional Resources'
