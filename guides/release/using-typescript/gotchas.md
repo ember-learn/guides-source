@@ -256,3 +256,34 @@ Likewise, it won't notice a problem when you use the `send` method:
 // TypeScript compiler won't detect this type mismatch
 this.send('turnWheel', 'ALSO-NOT-A-NUMBER');
 ```
+
+### Hook Types
+
+Let’s imagine a component which just logs the names of its arguments when it is first constructed. First, we must define the Signature and pass it into our component, then we can use the `Args` member in our Signature to set the type of `args` in the constructor:
+
+```typescript {data-filename="app/components/args-display.ts"}
+import Component from '@glimmer/component';
+import
+
+const log = console.log.bind(console);
+
+export interface ArgsDisplaySignature {
+  Args: {
+    arg1: string;
+    arg2: number;
+    arg3: boolean;
+  };
+}
+
+export default class ArgsDisplay extends Component<ArgsDisplaySignature> {
+  constructor(owner: unknown, args: ArgsDisplaySignature['Args']) {
+    super(owner, args);
+
+    Object.keys(args).forEach(log);
+  }
+}
+```
+
+Notice that we have to start by calling `super` with `owner` and `args`. This may be a bit different from what you’re used to in Ember or other frameworks, but is normal for sub-classes in TypeScript today. If the compiler just accepted any `...arguments`, a lot of potentially _very_ unsafe invocations would go through. So, instead of using `...arguments`, we explicitly pass the _specific_ arguments and make sure their types match up with what the super-class expects.
+
+The types for `owner` here and `args` line up with what the `constructor` for Glimmer components expects. The `owner` is specified as `unknown` because this is a detail we explicitly _don’t_ need to know about. The `args` are the `Args` from the Signature we defined.

@@ -1,21 +1,25 @@
 **Note:** 🚧 This section is under construction! 🏗️ The content here may undergo significant revision in the months ahead!
 
-To provide improved editor support, hooks for documentation tooling, and type checking for templates, Ember defines the idea of a _signature_.
+In Ember templates, **“invokables”** are things you can _invoke_ in a template. These include [components], [helpers], and [modifiers].
 
-## What is a signature?
+[components]: ../../components/introducing-components
+[helpers]: ../../components/helper-functions
+[modifiers]: ../../components/template-lifecycle-dom-and-modifiers
 
-The same way that functions have [function signatures][fn-sig] which define the arguments they take and the values they return, so do helpers, modifiers, and components in Glimmer templates. In Glimmer templates, we call these “invokables” because they are things you can _invoke_ in a template.
+The same way that functions have [signatures][fn-sig] which define the arguments they take and the values they return, so do Ember template invokables.
 
 [fn-sig]: https://developer.mozilla.org/en-US/docs/Glossary/Signature/Function
 
-Glimmer’s invokables have a shared set of potential API features:
+In this chapter, we will walk through how to use TypeScript with each type of invokable. But first, we'll discuss signatures in more detail.
 
-- the arguments the invokable accepts (which may be positional or named)
-- the values they return
-- the element associated with the invokable
-- the blocks they yield
+## Signature Basics
 
-The possible signature for an invokable is an interface which captures _all_ of these details, with `Args`, `Return`, `Blocks`, and `Element` naming the various aspects of the API.
+Ember template invokables have a shared set of potential API features, each of which is captured in the signature:
+
+- `Args`—the arguments the invokable accepts (which may be positional or named)
+- `Return`—the value(s) the invokable returns
+- `Blocks`—the block(s) yielded by the invokable
+- `Element`—the element associated with the invokable
 
 ```typescript
 interface InvokableSignature {
@@ -37,7 +41,7 @@ interface InvokableSignature {
 }
 ```
 
-We use the signature to provide both editor support for the invokable with TypeScript and [Glint][glint] and documentation using any tool which understands type annotations or JSDoc. Note that the `Blocks` and `Element` keys will currently only be used if you are type-checking your templates using [Glint][glint], but we recommend adding them now in order to be Glint-ready in the future.
+Ember uses the signature to provide both editor support for the invokable with TypeScript and [Glint][glint] and documentation using any tool which understands type annotations or JSDoc.
 
 [glint]: https://github.com/typed-ember/glint
 
@@ -58,6 +62,16 @@ And last, a signature can be defined in both TypeScript types and JSDoc annotati
 
 ## Components
 
+Glimmer Components are defined in one of three ways:
+
+- with templates only,
+- with a template and a backing class,
+- or with only a backing class (i.e. a [provider component][provider-component]).
+
+[provider-component]: ../../tutorial/part-2/provider-components/ 'As always, you should start by reading and understanding the [Ember Guide on Components][components]!'
+
+When using a backing class, you get a first-class experience using TypeScript with a component signature. For type-checking Glimmer templates as well, see [Glint](https://typed-ember.gitbook.io/glint/).
+
 The normal form of a Glimmer component signature is:
 
 ```typescript
@@ -72,7 +86,7 @@ interface ComponentSignature {
 }
 ```
 
-This shorter form handles all aspects of a Glimmer component: its arguments, any blocks it yields, and the element to which it will apply `...attributes`.
+This signature handles all aspects of a Glimmer component: its arguments, any blocks it yields, and the element to which it will apply `...attributes`.
 
 For example, consider the `AudioPlayer` described in the
 [Communicating Between Elements in a Component][section] of the [Template Lifecycle, DOM, and Modifiers guide][guide].
@@ -283,7 +297,7 @@ export default class AudioPlayer extends Component<AudioPlayerSignature> {
 }
 ```
 
-### JavaScript
+### Types in JavaScript with JSDoc
 
 When working in JavaScript, we can provide the exact same information using JSDoc comments. Here is how our final component definition would look if it were written in JavaScript rather than TypeScript, and using comments for this documentation information:
 
@@ -329,6 +343,10 @@ export default class AudioPlayer extends Component {
 ```
 
 ## Modifiers
+
+Modifiers in Ember are just functions or classes with a well-defined interface, which means they largely Just Work™ with TypeScript. However, there are a couple things you’ll want to watch out for.
+
+(As always, you should start by reading and understanding the [Ember Guide on Modifiers][modifiers]!)
 
 The signature for a modifier consists of any named or positional arguments along with the kind of element it can be applied to. The arguments are optional, but the element is required.
 
@@ -446,6 +464,10 @@ export default class DidIntersect extends Modifier<DidIntersectSignature> {
 Notice that we can just skip the positional arguments entirely in this case, and give them a name like `_` to indicate we are doing nothing with it. If we had positional arguments, we would supply them like normal.
 
 ## Helpers
+
+Helpers in Ember are just functions or classes with a well-defined interface, which means they largely Just Work™ with TypeScript. However, there are a couple things you’ll want to watch out for.
+
+(As always, you should start by reading and understanding the [Ember Guide on Helpers][helpers]!)
 
 The signature for a helper includes its named and/or positional arguments and its return type:
 
