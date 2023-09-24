@@ -2,8 +2,8 @@
 
 We emphasize the happy path of working with Ember in the [Octane Edition](https://emberjs.com/editions/octane/). However, there are times you’ll need to understand these details:
 
-1. Most existing applications make heavy use of the pre-Octane \(“legacy”\) Ember programming model, and we support that model—with caveats.
-2. Several parts of Ember Octane \(specifically: routes, controllers, services, and class-based helpers\) continue to use these concepts under the hood, and our types support that—so understanding them may be important at times.
+1. Most existing applications make heavy use of the pre-Octane (“legacy”) Ember programming model, and we support that model—with caveats.
+2. Several parts of Ember Octane (specifically: routes, controllers, services, and class-based helpers) continue to use these concepts under the hood, and our types support that—so understanding them may be important at times.
 
 The rest of this guide is dedicated to helping you understand how `ember-cli-typescript` and the classic Ember system interact.
 
@@ -29,7 +29,7 @@ In the future, some of these may be able to drop their `EmberObject` base class 
 
 The Ember mixin system is the legacy Ember construct TypeScript supports _least_ well, as described in [Mixins](https://github.com/typed-ember/ember-cli-typescript/tree/3a434def8b8c8214853cea0762940ccedb2256e8/docs/legacy/mixins/README.md). While this may not be intuitively obvious, the classic class syntax simply _is_ the mixin system. Every classic class creation is a case of mixing together multiple objects to create a new base class with a shared prototype. The result is that any time you see the classic `.extend({ ... })` syntax, regardless of whether there is a named mixin involved, you are dealing with Ember's legacy mixin system. This in turn means that you are dealing with the parts of Ember which TypeScript is _least_ able to handle well.
 
-While we describe here how to use types with classic \(mixin-based\) classes insofar as they _do_ work, there are many failure modes. As a result, we strongly recommend moving away from both classic classes and mixins, and as quickly as possible. This is the direction the Ember ecosystem as a whole is moving, but it is _especially_ important for TypeScript users.
+While we describe here how to use types with classic (mixin-based) classes insofar as they _do_ work, there are many failure modes. As a result, we strongly recommend moving away from both classic classes and mixins, and as quickly as possible. This is the direction the Ember ecosystem as a whole is moving, but it is _especially_ important for TypeScript users.
 
 {% hint style="info" %}
 The [Ember Atlas](https://emberatlas.com) includes guides for migrating [from classic classes to native classes](https://www.notion.so/Native-Classes-55bd67b580ca49f999660caf98aa1897), along with [a variety of patterns](https://www.notion.so/Converting-Classes-with-Mixins-5dc68c0ac3044e51a218fa7aec71c2db) for dealing with specific kinds of mixins in your codebase.
@@ -47,11 +47,11 @@ Finally, when you have "zebra-striping" of your classes between classic classes 
 
 #### `EmberObject`
 
-In general, we recommend \(following the Ember Octane guides\) that any class which extends directly from the `EmberObject` base class eliminate any use of `EmberObject`-specific API and convert to standalone class, with no base class at all. You can follow the [ember-classic-decorator](https://github.com/emberjs/ember-classic-decorator) workflow to eliminate the base class—switching from `init` to `constructor`, getting rid of uses of methods like `this.set` and `this.get` in favor of using standalone `set` and `get`, and so on.
+In general, we recommend (following the Ember Octane guides) that any class which extends directly from the `EmberObject` base class eliminate any use of `EmberObject`-specific API and convert to standalone class, with no base class at all. You can follow the [ember-classic-decorator](https://github.com/emberjs/ember-classic-decorator) workflow to eliminate the base class—switching from `init` to `constructor`, getting rid of uses of methods like `this.set` and `this.get` in favor of using standalone `set` and `get`, and so on.
 
 #### `EmberObject`-descended classes
 
-The framework base classes which depend on `EmberObject` cannot follow the exact same path. However, as long as you are using native class syntax, all of these \(`Component`, `Controller`, `Helper`, etc.\) work nicely and safely with TypeScript. In each of these cases, the same caveats apply as with `EmberObject` itself, and you should follow the [ember-classic-decorator](https://github.com/emberjs/ember-classic-decorator) workflow with them as well if you are converting an existing app or addon. However, because these base classes themselves descend from `EmberObject`, you will not be able to remove the base classes as you can with your _own_ classes which descend _directly_ from `EmberObject`. Instead, you will continue to extend from the Ember base classes:
+The framework base classes which depend on `EmberObject` cannot follow the exact same path. However, as long as you are using native class syntax, all of these (`Component`, `Controller`, `Helper`, etc.) work nicely and safely with TypeScript. In each of these cases, the same caveats apply as with `EmberObject` itself, and you should follow the [ember-classic-decorator](https://github.com/emberjs/ember-classic-decorator) workflow with them as well if you are converting an existing app or addon. However, because these base classes themselves descend from `EmberObject`, you will not be able to remove the base classes as you can with your _own_ classes which descend _directly_ from `EmberObject`. Instead, you will continue to extend from the Ember base classes:
 
 ```typescript
 import Component from '@ember/component';
@@ -92,8 +92,8 @@ export default class User extends Model {}
 
 There are two variants of Ember’s computed properties you may encounter:
 
-- the decorator form used with native \(ES6\) classes
-- the callback form used with classic classes \(based on EmberObject\)
+- the decorator form used with native (ES6) classes
+- the callback form used with classic classes (based on EmberObject)
 
 ### Decorator form
 
@@ -169,8 +169,8 @@ As a stopgap, you can refer to the type of a mixin using the `typeof` operator.
 In general, however, prefer to use one of the following four strategies for migrating _away_ from mixins before attempting to convert code which relies on them to TypeScript:
 
 1. For functionality which encapsulates DOM modification, rewrite as a custom modifier using [ember-modifier](https://github.com/emeber-modifier/ember-modifier).
-2. If the mixin is a way of supplying shared behavior \(not data\), extract it to utility functions, usually just living in module scope and imported and exported as needed.
-3. If the mixin is a way of supplying non-shared state which follows the lifecycle of a given object, replace it with a utility class instantiated in the owning class's `constructor` \(or `init` for legacy classes\).
+2. If the mixin is a way of supplying shared behavior (not data), extract it to utility functions, usually just living in module scope and imported and exported as needed.
+3. If the mixin is a way of supplying non-shared state which follows the lifecycle of a given object, replace it with a utility class instantiated in the owning class's `constructor` (or `init` for legacy classes).
 4. If the mixin is a way of supplying long-lived, shared state, replace it with a service and inject it where it was used before. This pattern is uncommon, but sometimes appears when mixing functionality into multiple controllers or services.
 
 You can also use inheritance and class decorators to accomplish some of the same semantics as mixins classically supplied. However, these patterns are more fragile and therefore not recommended.

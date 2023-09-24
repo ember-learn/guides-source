@@ -37,7 +37,7 @@ interface InvokableSignature {
 }
 ```
 
-We use the signature to provide both editor support for the invokable with TypeScript and [Glint][glint] and documentation using any tool which understands type annotations or JSDoc. Note that the `Blocks` and `Element` keys will only be used if you are type-checking your templates using [Glint][glint], but we recommend adding them now in order to be Glint-ready in the future.
+We use the signature to provide both editor support for the invokable with TypeScript and [Glint][glint] and documentation using any tool which understands type annotations or JSDoc. Note that the `Blocks` and `Element` keys will currently only be used if you are type-checking your templates using [Glint][glint], but we recommend adding them now in order to be Glint-ready in the future.
 
 [glint]: https://github.com/typed-ember/glint
 

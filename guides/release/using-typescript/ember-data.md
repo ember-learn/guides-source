@@ -1,6 +1,6 @@
 **Note:** 🚧 This section is under construction! 🏗️ The content here may not be fully up to date!
 
-In this section, we cover how to use TypeScript effectively with specific Ember Data APIs \(anything you'd find under the `@ember-data` package namespace\).
+In this section, we cover how to use TypeScript effectively with specific Ember Data APIs (anything you'd find under the `@ember-data` package namespace).
 
 We do _not_ cover general usage of Ember Data; instead, we assume that as background knowledge. Please see the Ember Data [Guides](https://guides.emberjs.com/release/models) and [API docs](https://api.emberjs.com/ember-data/release)!
 
@@ -43,7 +43,7 @@ export default class User extends Model {
 }
 ```
 
-**Very important:** Even more than with decorators in general, you should be careful when deciding whether to mark a property as optional `?` or definitely present \(no annotation\): Ember Data will default to leaving a property empty if it is not supplied by the API or by a developer when creating it. That is: the _default_ for Ember corresponds to an optional field on the model.
+**Very important:** Even more than with decorators in general, you should be careful when deciding whether to mark a property as optional `?` or definitely present (no annotation): Ember Data will default to leaving a property empty if it is not supplied by the API or by a developer when creating it. That is: the _default_ for Ember corresponds to an optional field on the model.
 
 The _safest_ type you can write for an Ember Data model, therefore, leaves every property optional: this is how models _actually_ behave. If you choose to mark properties as definitely present by leaving off the `?`, you should take care to guarantee that this is a guarantee your API upholds, and that ever time you create a record from within the app, _you_ uphold those guarantees.
 
@@ -76,7 +76,7 @@ import type User from './user';
 
 #### `@belongsTo`
 
-The type returned by the `@belongsTo` decorator depends on whether the relationship is `{ async: true }` \(which it is by default\).
+The type returned by the `@belongsTo` decorator depends on whether the relationship is `{ async: true }` (which it is by default).
 
 - If the value is `true`, the type you should use is `AsyncBelongsTo<Model>`, where `Model` is the type of the model you are creating a relationship to.
 - If the value is `false`, the type is `Model`, where `Model` is the type of the model you are creating a relationship to.
@@ -102,11 +102,11 @@ These are _type_-safe to define as always present, that is to leave off the `?` 
 - accessing an async relationship will always return an `AsyncBelongsTo<Model>` object, which itself may or may not ultimately resolve to a value—depending on the API response—but will always be present itself.
 - accessing a non-async relationship which is known to be associated but has not been loaded will trigger an error, so all access to the property will be safe _if_ it resolves at all.
 
-Note, however, that this type-safety is not a guarantee of there being no runtime error: you still need to uphold the contract for non-async relationships \(that is: loading the data first, or side-loading it with the request\) to avoid throwing an error!
+Note, however, that this type-safety is not a guarantee of there being no runtime error: you still need to uphold the contract for non-async relationships (that is: loading the data first, or side-loading it with the request) to avoid throwing an error!
 
 #### `@hasMany`
 
-The type returned by the `@hasMany` decorator depends on whether the relationship is `{ async: true }` \(which it is by default\).
+The type returned by the `@hasMany` decorator depends on whether the relationship is `{ async: true }` (which it is by default).
 
 - If the value is `true`, the type you should use is `AsyncHasMany<Model>`, where `Model` is the type of the model you are creating a relationship to.
 - If the value is `false`, the type is `SyncHasMany<Model>`, where `Model` is the type of the model you are creating a relationship to.

@@ -262,6 +262,8 @@
       url: 'ember'
     - title: 'TypeScript and EmberData'
       url: 'ember-data'
+    - title: 'Testing with TypeScript'
+      url: 'testing'
     - title: 'TypeScript Gotchas in Ember'
       url: 'gotchas'
     - title: 'Converting an Existing Ember App to TypeScript'

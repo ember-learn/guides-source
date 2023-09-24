@@ -6,7 +6,15 @@ We do _not_ cover general usage of Ember; instead, we assume that as background 
 
 ## Components
 
-Glimmer Components are defined in one of three ways: with templates only, with a template and a backing class, or with only a backing class \(i.e. a `yield`-only component\). When using a backing class, you get a first-class experience using TypeScript! For type-checking Glimmer templates as well, see [Glint](https://typed-ember.gitbook.io/glint/).
+Glimmer Components are defined in one of three ways:
+
+- with templates only,
+- with a template and a backing class,
+- or with only a backing class (i.e. a [provider component][provider-component]).
+
+[provider-component]: ../../tutorial/part-2/provider-components/
+
+When using a backing class, you get a first-class experience using TypeScript! For type-checking Glimmer templates as well, see [Glint](https://typed-ember.gitbook.io/glint/).
 
 ### A simple component
 
@@ -44,9 +52,9 @@ So far so good, but of course most components aren’t quite this simple! Instea
 
 Glimmer components can receive both _arguments_ and _attributes_ when they are invoked. When you are working with a component’s backing class, you have access to the arguments but _not_ to the attributes. The arguments are passed to the constructor, and then available as `this.args` on the component instance afterward.
 
-Since the implementation of [RFC 748], Glimmer and Ember components accept a `Signature` type parameter as part of their definition. This parameter is expected to be an object type with (up to) three members: `Args`, `Element` and `Blocks`.
+To track this sort of information, Glimmer and Ember components accept a [`Signature`][signatures] type parameter as part of their definition. This parameter is expected to be an object type with (up to) three members: `Args`, `Element` and `Blocks`.
 
-[rfc 748]: https://github.com/emberjs/rfcs/pull/748
+[signatures]: ../signatures
 
 `Args` represents the arguments your component accepts. Typically this will be an object type mapping the names of your args to their expected type. For example:
 
@@ -60,12 +68,13 @@ export interface MySignature {
 }
 ```
 
-If no `Args` key is specified, it will be a type error to pass any arguments to your component. You can read more about `Element` and `Block` in the Glint [Component Signatures documentation](https://typed-ember.gitbook.io/glint/using-glint/ember/component-signatures).
+If no `Args` key is specified, it will be a type error to pass any arguments to your component. You can read more about `Element` and `Block` in the [Signatures documentation][signatures].
 
 Let’s imagine a component which just logs the names of its arguments when it is first constructed. First, we must define the Signature and pass it into our component, then we can use the `Args` member in our Signature to set the type of `args` in the constructor:
 
 ```typescript {data-filename="app/components/args-display.ts"}
 import Component from '@glimmer/component';
+import
 
 const log = console.log.bind(console);
 
@@ -74,11 +83,11 @@ export interface ArgsDisplaySignature {
     arg1: string;
     arg2: number;
     arg3: boolean;
-  }
+  };
 }
 
 export default class ArgsDisplay extends Component<ArgsDisplaySignature> {
-  constructor(owner: unknown, args: ArgsDisplaySignature['Args]) {
+  constructor(owner: unknown, args: ArgsDisplaySignature['Args']) {
     super(owner, args);
 
     Object.keys(args).forEach(log);
@@ -86,20 +95,9 @@ export default class ArgsDisplay extends Component<ArgsDisplaySignature> {
 }
 ```
 
-{% hint style="info" %}
-If you’re used to the classic Ember Object model, there are two important differences in the constructor itself:
-
-- we use `super` instead of `this._super`
-- we _must_ call `super` before we do anything else with `this`, because in a subclass `this` is set up by running the superclass's constructor first \(as implied by [the JavaScript spec](https://tc39.es/ecma262/#sec-runtime-semantics-classdefinitionevaluation)\)
-  {% endhint %}
-
 Notice that we have to start by calling `super` with `owner` and `args`. This may be a bit different from what you’re used to in Ember or other frameworks, but is normal for sub-classes in TypeScript today. If the compiler just accepted any `...arguments`, a lot of potentially _very_ unsafe invocations would go through. So, instead of using `...arguments`, we explicitly pass the _specific_ arguments and make sure their types match up with what the super-class expects.
 
-{% hint style="info" %}
-This might change in the future! If TypeScript eventually adds [support for “variadic kinds”](https://github.com/Microsoft/TypeScript/issues/5453), using `...arguments` could become safe.
-{% endhint %}
-
-The types for `owner` here and `args` line up with what the `constructor` for Glimmer components expect. The `owner` is specified as `unknown` because this is a detail we explicitly _don’t_ need to know about. The `args` are the `Args` from the Signature we defined.
+The types for `owner` here and `args` line up with what the `constructor` for Glimmer components expects. The `owner` is specified as `unknown` because this is a detail we explicitly _don’t_ need to know about. The `args` are the `Args` from the Signature we defined.
 
 The `args` passed to a Glimmer Component [are available on `this`](https://github.com/glimmerjs/glimmer.js/blob/2f840309f013898289af605abffe7aee7acc6ed5/packages/%40glimmer/component/src/component.ts#L12), so we could change our definition to return the names of the arguments from a getter:
 
@@ -141,10 +139,6 @@ export default class Component<Args extends {} = {}> {
   constructor(owner: unknown, args: Args);
 }
 ```
-
-{% hint style="info" %}
-Not sure what’s up with `<Args>` _at all_? We highly recommend the [TypeScript Deep Dive](https://basarat.gitbooks.io/typescript/) book’s [chapter on generics](https://basarat.gitbooks.io/typescript/docs/types/generics.html) to be quite helpful in understanding this part.
-{% endhint %}
 
 The type signature for Component, with `Args extends {} = {}`, means that the component _always_ has a property named `args` —
 
@@ -199,15 +193,25 @@ export default class UserProfile extends Component<User> {
 }
 ```
 
-Assuming the default `tsconfig.json` settings \(with `strictNullChecks: true`\), this wouldn't type-check if we didn't _check_ whether the `bio` argument were set.
+Assuming the default `tsconfig.json` settings (with `strictNullChecks: true`), this wouldn't type-check if we didn't _check_ whether the `bio` argument were set.
 
 ### Generic subclasses
 
 If you'd like to make your _own_ component subclass-able, you need to make it generic as well.
 
-{% hint style="warning" %}
-Are you sure you want to provide an inheritance-based API? Oftentimes, it's easier to maintain \(and involves less TypeScript hoop-jumping\) to use a compositional API instead. If you're sure, here's how!
-{% endhint %}
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+        <p>
+        Are you sure you want to provide an inheritance-based API? Oftentimes, it's easier to maintain (and involves less TypeScript hoop-jumping) to use a compositional API instead. If you're sure, here's how!
+        </p>
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
+  </div>
+</div>
 
 ```typescript {data-filename="app/components/fancy-input-args.ts"}
 import Component from '@glimmer/component';
@@ -229,27 +233,25 @@ Requiring that `Args extends FancyInputArgs` means that subclasses can have _mor
 
 Ember Services are global singleton classes that can be made available to different parts of an Ember application via dependency injection. Due to their global, shared nature, writing services in TypeScript gives you a build-time-enforcable API for some of the most central parts of your application.
 
-{% hint style="info" %}
-If you are not familiar with Services in Ember, first make sure you have read and understood the [Ember Guide on Services](https://guides.emberjs.com/release/services/)!
-{% endhint %}
+(If you are not familiar with Services in Ember, first make sure you have read and understood the [Ember Guide on Services](../../services/)!)
 
 ### A basic service
 
-Let's take this example from the [Ember Guide](https://guides.emberjs.com/release/services/):
+Let's take this example from the [Ember Guide](../../services/):
 
 ```typescript {data-filename="app/services/shopping-cart.ts"}
-import { A } from '@ember/array';
 import Service from '@ember/service';
+import { TrackedSet } from 'tracked-built-ins';
 
 export default class ShoppingCartService extends Service {
-  items = A([]);
+  items = new TrackedSet();
 
   add(item) {
-    this.items.pushObject(item);
+    this.items.add(item);
   }
 
   remove(item) {
-    this.items.removeObject(item);
+    this.items.remove(item);
   }
 
   empty() {
@@ -260,45 +262,15 @@ export default class ShoppingCartService extends Service {
 
 Just making this a TypeScript file gives us some type safety without having to add any additional type information. We'll see this when we use the service elsewhere in the application.
 
-{% hint style="info" %}
-When working in Octane, you're better off using a `TrackedArray` from [tracked-built-ins](https://github.com/pzuraq/tracked-built-ins) instead of the classic EmberArray:
-
-```typescript {data-filename="app/services/shopping-cart.ts"}
-import { TrackedArray } from 'tracked-built-ins';
-import Service from '@ember/service';
-
-export default class ShoppingCartService extends Service {
-  items = new TrackedArray();
-
-  add(item) {
-    this.items.push(item);
-  }
-
-  remove(item) {
-    this.items.splice(
-      1,
-      this.items.findIndex((i) => i === item)
-    );
-  }
-
-  empty() {
-    this.items.clear();
-  }
-}
-```
-
-Notice that here we are using only built-in array operations, not Ember's custom array methods.
-{% endhint %}
-
 ### Using services
 
-You can use a service in any container-resolved object such as a component or another service. Services are injected into these objects by decorating a property with the `inject` decorator. Because decorators can't affect the type of the property they decorate, we must manually type the property. Also, we must use `declare` modifier to tell the TypeScript compiler to trust that this property will be set up by something outside this component—namely, the decorator.
+You can use a service in any container-resolved object such as a component or another service. Services are injected into these objects by decorating a property with the `service` decorator. Because legacy decorators can't affect the type of the property they decorate, we must manually type the property. Also, we must use the `declare` modifier to tell the TypeScript compiler to trust that this property will be set up by something outside this component—namely, the decorator.
 
-Here's an example of using the `ShoppingCartService` we defined above in a component:
+Here's an example using the `ShoppingCartService` we defined above in a component:
 
 ```typescript {data-filename="app/components/cart-contents.ts"}
 import Component from '@glimmer/component';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 import { action } from '@ember/object';
 
 import ShoppingCartService from 'my-app/services/shopping-cart';
@@ -317,7 +289,7 @@ Any attempt to access a property or method not defined on the service will fail 
 
 ```typescript {data-filename="app/components/cart-contents.ts"}
 import Component from '@glimmer/component';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 import { action } from '@ember/object';
 
 import ShoppingCartService from 'my-app/services/shopping-cart';
@@ -356,15 +328,29 @@ export default class CartContentsComponent extends Component {
 }
 ```
 
-Here we need to cast the lookup result to `ShoppingCartService` in order to get any type-safety because the lookup return type is `any` \(see caution below\).
+Here we need to [cast] the lookup result to `ShoppingCartService` in order to get any type-safety because the lookup return type is `any` (see caution below).
 
-{% hint style="danger" %}
-This type-cast provides no guarantees that what is returned by the lookup is actually the service you are expecting. Because TypeScript cannot resolve the lookup micro-syntax \(`service:<name>`\) to the service class, a typo would result in returning something other than the specified type. It only gurantees that _if_ the expected service is returned that you are using it correctly.
+[cast]: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#type-assertions
 
-There is a merged \(but not yet implemented\) [RFC](https://emberjs.github.io/rfcs/0585-improved-ember-registry-apis.html) which improves this design and makes it straightforward to type-check. Additionally, TypeScript 4.1's introduction of [template types](https://devblogs.microsoft.com/typescript/announcing-typescript-4-1/#template-literal-types) may allow us to supply types that work with the microsyntax.
-
-For now, however, remember that _the cast is unsafe_!
-{% endhint %}
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+        <p>
+        This type-cast provides no guarantees that what is returned by the lookup is actually the service you are expecting. Because the Ember TypeScript types do not resolve the lookup micro-syntax (<code>'service:&lt;name&gt;'</code>) to the service class, a typo would result in returning something other than the specified type. It only guarantees that <i>if</i> the expected service is returned that you are using it correctly.
+        </p>
+        <p>
+        There is a merged (but not yet implemented) <a href="https://emberjs.github.io/rfcs/0585-improved-ember-registry-apis.html">RFC</a> which improves this design and makes it straightforward to type-check.
+        </p>
+        <p>
+        For now, however, remember that <i>the cast is unsafe</i>!
+        </p>
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
+  </div>
+</div>
 
 ## Routes
 
@@ -372,12 +358,11 @@ Working with Routes is in general just working normal TypeScript classes. Ember'
 
 However, there is one thing to watch out for: the types of the arguments passed to methods will _not_ autocomplete as you may expect. This is because in _general_ a subclass may override a superclass method as long as it calls its superclass's method correctly. This is very bad practice, but it is legal JavaScript! This is never a concern for lifecycle hooks in Ember, because they are called by the framework itself. However, TypeScript does not and cannot know that, so we have to provide the types directly.
 
-Accordingly, and because the `Transition` type is not currently exported as a public type, you may find it convenient to define it using TypeScript's `ReturnType` utility type, which does exactly what it sounds like and gives us a local type which is the type returned by some function. The `RouterService.transitionTo` returns a `Transition`, so we can rely on that as stable public API to define `Transition` locally ourselves:
+Accordingly, we have to provide the types for hooks ourselves:
 
 ```typescript {data-filename="app/routes/my.ts"}
 import Route from '@ember/routing/route';
-import type RouterService from '@ember/routing/router-service';
-type Transition = ReturnType<RouterService['transitionTo']>;
+import Transition from '@ember/routing/transition';
 
 export default class MyRoute extends Route {
   beforeModel(transition: Transition) {
@@ -386,42 +371,9 @@ export default class MyRoute extends Route {
 }
 ```
 
-This inconsistency will be solved in the future. For now, this workaround gets the job done, and also shows the way to using this information to provide the type of the route's model to other consumers: see [Working with Route Models](../cookbook/working-with-route-models.md) for details!
+### Working with route models
 
-```typescript {data-filename="app/routes/my.ts"}
-import Route from '@ember/routing/route';
-
-type Resolved<P> = P extends Promise<infer T> ? T : P;
-
-export type MyRouteModel = Resolved<ReturnType<MyRoute['model']>>;
-
-export default class MyRoute extends Route {
-  model() {
-    // ...
-  }
-}
-```
-
-The `Resolved<T>` utility type takes in any type, and if the type is a `Promise` it transforms the type into whatever the `Promise` resolves to; otherwise it just returns the same type. (If you’re using TypeScript 4.5 or later, you can use the built-in `Awaited<T>` type, which does the same thing but more robustly: it also handles nested promises.) As we saw above, `ReturnType` gets us the return type of the function. So our final `MyRouteModel` type takes the return type from our `model` hook, and uses the `Resolved` type to get the type the promise will resolve to—that is, exactly the type we will have available as `@model` in the template and as `this.model` on a controller.&#x20;
-
-This in turn allows us to use the route class to define the type of the model on an associated controller.
-
-```typescript {data-filename="app/controllers/my.ts"}
-import Controller from '@ember/controller';
-import type { MyRouteModel } from '../routes/my-route';
-
-export default class MyController extends Controller {
-  declare model?: MyRouteModel;
-
-  // ...
-}
-```
-
-Notice here that the `model` is declared as optional. That’s intentional: the `model` for a given controller is _not_ set when the controller is constructed (that actually happens _either_ when the page corresponding to the controller is created _or_ the first time a `<LinkTo>` which links to that page is rendered). Instead, the `model` is set on the controller when the corresponding route is successfully entered, via its `setupController` hook.
-
-## Working with route models
-
-We often use routes’ models throughout our application, since they’re a core ingredient of our application’s data. As such, we want to make sure that we have good types for them!
+We often use routes' models throughout our application, since they’re a core ingredient of our application’s data. As such, we want to make sure that we have good types for them!
 
 We can start by defining some type utilities to let us get the resolved value returned by a route’s model hook:
 
@@ -443,18 +395,13 @@ export type ModelFrom<R extends Route> = Resolved<ReturnType<R['model']>>;
 How that works:
 
 - `Resolved<P>` says "if this is a promise, the type here is whatever the promise resolves to; otherwise, it's just the value"
-- `ReturnType<T>` gets the return value of a given function
-- `R['model']` \(where `R` has to be `Route` itself or a subclass\) uses TS's mapped types to say "the property named `model` on `R`
+- [`ReturnType<T>`][return-type] gets the return value of a given function
+- `R['model']` (where `R` has to be `Route` itself or a subclass) uses TypeScript's [mapped types] to say "the property named `model` on `R`"
 
-Putting those all together, `ModelFrom<Route>` ends up giving you the resolved value returned from the `model` hook for a given route:
+[return-type]: https://www.typescriptlang.org/docs/handbook/utility-types.html#returntypetype
+[mapped types]: https://www.typescriptlang.org/docs/handbook/2/mapped-types.html
 
-```typescript
-type MyRouteModel = ModelFrom<MyRoute>;
-```
-
-### `model` on the controller
-
-We can use this functionality to guarantee that the `model` on a `Controller` is always exactly the type returned by `Route::model` by writing something like this:
+`ModelFrom<Route>` ends up giving you the resolved value returned from the `model` hook for a given route. We can use this functionality to guarantee that the `model` on a `Controller` is always exactly the type returned by `Route::model` by writing something like this:
 
 ```typescript {data-filename="app/controllers/controller-with-model.ts"}
 import Controller from '@ember/controller';
@@ -468,13 +415,25 @@ export default class ControllerWithModel extends Controller {
 
 Now, our controller’s `model` property will _always_ stay in sync with the corresponding route’s model hook.
 
-**Note:** this _only_ works if you do not mutate the `model` in either the `afterModel` or `setupController` hooks on the route! That's generally considered to be a bad practice anyway. If you do change the type there, you'll need to define the type in some other way and make sure your route's model is defined another way.
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+        <p>
+        The <code>ModelFrom</code> type utility <i>only</i> works if you do not mutate the <code>model</code> in either the <code>afterModel</code> or <code>setupController</code> hooks on the route! That's generally considered to be a bad practice anyway.
+        </p>
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
+  </div>
+</div>
 
 ## Controllers
 
-Like [routes](./routes.md), controllers are just normal classes with a few special Ember lifecycle hooks and properties available.
+Like routes, controllers are just normal classes with a few special Ember lifecycle hooks and properties available.
 
-The main thing you need to be aware of is special handling around query params. In order to provide type safety for query param configuration, Ember's types specify that when defining a query param's `type` attribute, you must supply one of the allowed types: `'boolean'`, `'number'`, `'array'`, or `'string'` \(the default\). However, if you supply these types as you would in JS, like this:
+The main thing to be aware of is special handling around query params. In order to provide type safety for query param configuration, Ember's types specify that when defining a query param's `type` attribute, you must supply one of the allowed types: `'boolean'`, `'number'`, `'array'`, or `'string'` (the default). However, if you supply these types as you would in JS, like this:
 
 ```typescript {data-filename="app/controllers/heyo.ts"}
 import Controller from '@ember/controller';
@@ -523,11 +482,11 @@ Now it will type-check.
 
 Helpers in Ember are just functions or classes with a well-defined interface, which means they largely Just Work™ with TypeScript. However, there are a couple things you’ll want to watch out for.
 
-{% hint style="info" %}
-As always, you should start by reading and understanding the [Ember Guide on Helpers](https://guides.emberjs.com/release/templates/writing-helpers/)!
-{% endhint %}
+(As always, you should start by reading and understanding the [Ember Guide on Helpers](../../templates/writing-helpers/)!)
 
 ### Function-based helpers
+
+<!-- FIXME: This section can be largely replaced with the Helper section in the Signatures chapter -->
 
 The basic type of a helper function in Ember is:
 
@@ -550,26 +509,29 @@ Let’s walk through each of these.
 
 #### Handling `positional` arguments
 
-The type is an array of `unknown` because we don’t \(yet!\) have any way to make templates aware of the information in this definition—so users could pass in _anything_. We can work around this using [type narrowing](https://microsoft.github.io/TypeScript-New-Handbook/chapters/narrowing/)—TypeScript’s way of using runtime checks to inform the types at runtime.
+The type is an array of `unknown` because, unless you are using Glint, we don’t have any way to make templates aware of the information in this definition—so users could pass in _anything_. We can work around this using [type narrowing](https://www.typescriptlang.org/docs/handbook/2/narrowing.html)—TypeScript’s process of refining types to more specific types than originally declared.
 
 ```typescript
+import { assert } from '@ember/debug';
+
 function totalLength(positional: unknown[]) {
-  // Account for case where user passes no arguments
   assert(
     'all positional args to `total-length` must be strings',
-    positional.every((arg) => typeof arg === 'string')
+    positional.every((arg): arg is string => typeof arg === 'string')
   );
 
-  // safety: we can cast `positional as string[]` because we asserted above
-  return (positional as string[]).reduce((sum, s) => sum + s.length, 0);
+  // TypeScript now knows that `positional` is a `string[]` because we asserted above
+  return positional.reduce((sum, s) => sum + s.length, 0);
 }
 ```
 
 #### Handling `named` arguments
 
-We specified the type of `named` as a `Record<string, unknown>`. `Record` is a built-in TypeScript type representing a fairly standard type in JavaScript: an object being used as a simple map of keys to values. Here we set the values to `unknown` and the keys to `string`, since that accurately represents what callers may actually pass to a helper.
+We specified the type of `named` as a `Record<string, unknown>`. [`Record`][record] is a built-in TypeScript type representing a fairly standard type in JavaScript: an object being used as a simple map of keys to values. Here we set the values to `unknown` and the keys to `string`, since that accurately represents what callers may actually pass to a helper.
 
-\(As with `positional`, we specify the type here as `unknown` to account for the fact that the template layer isn’t aware of types yet.\)
+[record]: https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type
+
+\(As with `positional`, we specify the type here as `unknown` to account for the fact that, without Glint, the template layer isn’t aware of types.)
 
 #### `positional` and `named` presence
 
@@ -611,7 +573,7 @@ export default helper(showAll);
 
 #### Putting it all together
 
-Given those constraints, let’s see what a \(very contrived\) actual helper might look like in practice. Let’s imagine we want to take a pair of strings and join them with a required separator and optional prefix and postfixes:
+Given those constraints, let’s see what a (very contrived) actual helper might look like in practice. Let’s imagine we want to take a pair of strings and join them with a required separator and optional prefix and postfixes:
 
 ```typescript {data-filename="app/helpers/join.ts"}
 import { helper } from '@ember/component/helper';
@@ -658,7 +620,7 @@ Notice that the signature of `compute` is the same as the signature for the func
 
 ```typescript {data-filename="app/helpers/greet.ts"}
 import Helper from '@ember/component/helper';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 import Authentication from 'my-app/services/authentication';
 
 export default class Greet extends Helper {
@@ -671,318 +633,6 @@ export default class Greet extends Helper {
 }
 ```
 
-For more details on using decorators, see our [guide to using decorators](https://github.com/typed-ember/ember-cli-typescript/tree/3a434def8b8c8214853cea0762940ccedb2256e8/docs/ember/%28../ts/decorators/%29/README.md). For details on using services, see our [guide to services](https://github.com/typed-ember/ember-cli-typescript/tree/3a434def8b8c8214853cea0762940ccedb2256e8/docs/ember/%28./services/%29/README.md).
+For more details on using decorators, see our [guide to using decorators](../gotchas/#toc_decorators). For details on using services, see our [guide to services](../ember#toc_services).
 
-## Testing
-
-Testing with TypeScript mostly works just the same as you'd expect in a non-TypeScript Ember application—so if you're just starting out with Ember, we recommend you read the official Ember [Testing Guides](https://guides.emberjs.com/release/testing/) first. The rest of this guide assumes you're already comfortable with testing in Ember!
-
-When working with TypeScript in Ember tests, there are a few differences in your experience, and there are also differences in how you should handle testing app code vs. addon code.
-
-### App tests
-
-One major difference when working with TypeScript in _app_ code is that once your app is fully converted, there are a bunch of kinds of tests you just don't need to write any more: things like testing bad inputs to functions. We'll use an admittedly silly and contrived example here, an `add` function to add two numbers together, so that we can focus on the differences between JavaScript and TypeScript, rather than getting hung up on the details of this particular function.
-
-First, the function we're testing might look like this.
-
-{% hint style="info" %}
-Here we’re using the `assert` from `@ember/debug`. If you’re not familiar with it, you might want to take a look at its [API docs](https://api.emberjs.com/ember/3.14/functions/@ember%2Fdebug/assert)! It’s a development-and-test-only helper that gets stripped from production builds, and is very helpful for this kind of thing!
-{% endhint %}
-
-```javascript {data-filename="app/utils/math.js"}
-export function add(a, b) {
-  assert(
-    'arguments must be numbers',
-    typeof a === number && typeof b === number
-  );
-
-  return a + b;
-}
-```
-
-Then the test for it might look something like this:
-
-```javascript {data-filename="tests/unit/utils/math-test.js"}
-import { module, test } from 'qunit';
-import { add } from 'app/utils/math';
-
-module('the `add` function', function (hooks) {
-  test('adds numbers correctly', function (assert) {
-    assert.equal('2 + 2 is 4', add(2, 2), 4);
-    assert.notEqual('2 + 2 is a number', add(2, 2), NaN);
-    assert.notEqual('2 + 2 is not infinity', add(2, 2), Infinity);
-  });
-
-  test('throws an error with strings', function (assert) {
-    assert.throws('when the first is a string and the second is a number', () =>
-      add('hello', 1)
-    );
-    assert.throws('when the first is a number and the second is a string', () =>
-      add(0, 'hello')
-    );
-    assert.throws('when both are strings', () => add('hello', 'goodbye'));
-  });
-});
-```
-
-In TypeScript, that wouldn't make any sense at all, because we'd simply add the types to the function declaration:
-
-```typescript {data-filename="app/utils/math.ts"}
-export function add(a: number, b: number): number {
-  assert(
-    'arguments must be numbers',
-    typeof a === number && typeof b === number
-  );
-
-  return a + b;
-}
-```
-
-We might still write tests to make sure what we actually got back was what we expected—
-
-```typescript {data-filename="tests/unit/utils/math-test.ts"}
-import { module, test } from 'qunit';
-import { add } from 'app/utils/math';
-
-module('the `add` function', function (hooks) {
-  test('adds numbers correctly', function (assert) {
-    assert.equal('2 + 2 is 4', add(2, 2), 4);
-    assert.notEqual('2 + 2 is a number', add(2, 2), NaN);
-    assert.notEqual('2 + 2 is not infinity', add(2, 2), Infinity);
-  });
-});
-```
-
-—but there are a bunch of things we _don't_ need to test. All of those special bits of handling for the case where we pass in a `string` or `undefined` or whatever else? We can drop that. Notice, too, that we can drop the assertion from our function definition, because the _compiler_ will check this for us:
-
-```typescript {data-filename="app/utils/math.ts"}
-export function add(a: number, b: number): number {
-  return a + b;
-}
-```
-
-### Addon tests
-
-Note, however, that this _only_ applies to _app code_. If you're writing an Ember addon \(or any other library\), you cannot assume that everyone consuming your code is using TypeScript. You still need to account for these kinds of cases. This will require you to do something that probably feels a bit gross: casting a bunch of values `as any` for your tests, so that you can test what happens when people feed bad data to your addon!
-
-Let's return to our silly example with an `add` function. Our setup will look a lot like it did in the JavaScript-only example—but with some extra type coercions along the way so that we can invoke it the way JavaScript-only users might.
-
-First, notice that in this case we’ve added back in our `assert` in the body of the function. The inputs to our function here will get checked for us by any TypeScript users, but this way we are still doing the work of helping out our JavaScript users.
-
-```typescript {data-filename="app/utils/math.ts"}
-function add(a: number, b: number): number {
-  assert(
-    'arguments must be numbers',
-    typeof a === number && typeof b === number
-  );
-
-  return a + b;
-}
-```
-
-Now, back in our test file, we’re similarly back to testing all those extra scenarios, but here TypeScript would actually stop us from even having these tests work _at all_ if we didn’t use the `as` operator to throw away what TypeScript knows about our code!
-
-```javascript {data-filename="tests/unit/utils/math-test.ts"}
-import { module, test } from 'qunit';
-import { add } from 'app/utils/math';
-
-module('the `add` function', function(hooks) {
-  test('adds numbers correctly', function(assert) {
-    assert.equal('2 + 2 is 4', add(2, 2), 4);
-    assert.notEqual('2 + 2 is a number', add(2, 2), NaN);
-    assert.notEqual('2 + 2 is not infinity', add(2, 2), Infinity);
-  });
-
-  test('throws an error with strings', function(assert) {
-    assert.throws(
-      'when the first is a string and the second is a number',
-      () => add('hello' as any, 1)
-    );
-    assert.throws(
-      'when the first is a number and the second is a string',
-      () => add(0, 'hello' as any)
-    );
-    assert.throws(
-      'when both are strings',
-      () => add('hello' as any, 'goodbye' as any)
-    );
-  })
-});
-```
-
-### Gotchas
-
-#### The `TestContext`
-
-A common scenario in Ember tests, especially integration tests, is setting some value on the `this` context of the tests, so that it can be used in the context of the test. For example, we might need to set up a `User` type to pass into a `Profile` component.
-
-We’re going to start by defining a basic `User` and `Profile` so that we have a good idea of what we’re testing.
-
-The `User` type is very simple, just an `interface`:
-
-```typescript {data-filename="app/types/user.ts"}
-export default interface User {
-  displayName: string;
-  avatarUrl?: string;
-}
-```
-
-Then our component might be defined like this:
-
-```handlebars {data-filename="app/components/profile.hbs"}
-<div class='user-profile' ...attributes>
-  <img
-    src={{this.avatar}}
-    alt={{this.description}}
-    class='avatar'
-    data-test-avatar
-  />
-  <span class='name' data-test-name>{{@displayName}}</span>
-</div>
-```
-
-```typescript {data-filename="app/components/profile.ts"}
-import Component from '@glimmer/component';
-import User from 'app/types/user';
-import { randomAvatarURL } from 'app/utils/avatar';
-
-export default class Profile extends Component<User> {
-  get avatar() {
-    return this.args.avatar ?? randomAvatarURL();
-  }
-
-  get description() {
-    return this.args.avatar
-      ? `${this.args.displayName}'s custom profile picture`
-      : 'a randomly generated placeholder avatar';
-  }
-}
-```
-
-{% hint style="info" %}
-Not familiar with how we define a Glimmer `Component` and its arguments? Check out [our guide](https://github.com/typed-ember/ember-cli-typescript/tree/3a434def8b8c8214853cea0762940ccedb2256e8/docs/ember/components/README.md)!
-{% endhint %}
-
-Now, with that setup out of the way, let’s get back to talking about the text context! We need to set up a `User` to pass into the test. With TypeScript on our side, we can even make sure that it actually matches up to the type we want to use!
-
-```typescript {data-filename="tests/integration/components/profile.ts"}
-import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
-import { render } from '@ember/test-helpers';
-import { hbs } from 'ember-cli-htmlbars';
-
-import User from 'app/types/user';
-
-module('Integration | Component | Profile', function(hooks) {
-  setupRenderingTest(hooks);
-
-  test('given a user with an avatar', async function(assert) {
-    this.user: User = {
-      displayName: 'Rey',
-      avatar: 'https://example.com/star-wars/rey',
-    };
-
-    await render(hbs`<Profile @user={{this.user}}`);
-
-    assert.dom('[data-test-name]').hasText(this.user.displayName);
-
-    assert.dom('[data-test-avatar]')
-      .hasAttribute('src', this.user.avatar);
-    assert.dom('[data-test-avatar]')
-      .hasAttribute('alt', `${this.user.displayName}'s custom profile picture`);
-  });
-
-  test('given a user without an avatar', async function(assert) {
-    this.user: User = {
-      displayName: 'Rey',
-    };
-
-    await render(hbs`<Profile @user={{this.user}}`);
-
-    assert.dom('[data-test-name]').hasText(this.user.displayName);
-
-    assert.dom('[data-test-avatar]')
-      .hasAttribute('src', /rando-avatars-yo/);
-    assert.dom('[data-test-avatar]')
-      .hasAttribute('alt', 'a randomly generated placeholder avatar');
-  });
-});
-```
-
-This is a decent test, and TypeScript actually makes the experience of writing certain parts of it pretty nice. Unfortunately, though, it won’t type-check. TypeScript reports that the `user` field doesn't exist on the `TestContext`. Now, TypeScript _does_ know that QUnit sets up that helpfully-named `TestContext`—so a lot of the things we can do in tests work out of the box—but we haven’t told TypeScript that `this` now has a `user` property on it.
-
-To inform TypeScript about this, we need to tell it that the type of `this` in each test assertion includes the `user` property, of type `User`. We’ll start by importing the `TestContext` defined by Ember’s test helpers, and extending it:
-
-```typescript
-import { TestContext } from '@ember/test-helpers';
-
-import User from 'app/types/user';
-
-interface Context extends TestContext {
-  user: User;
-}
-```
-
-Then, in every `test` callback, we need to [specify the `this` type](https://www.typescriptlang.org/docs/handbook/functions.html#this):
-
-```typescript
-test('...', function (this: Context, assert) {});
-```
-
-Putting it all together, this is what our updated test definition would look like:
-
-```typescript {data-filename="tests/integration/components/profile.ts"}
-import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
-import { render, TestContext } from '@ember/test-helpers';
-import { hbs } from 'ember-cli-htmlbars';
-
-import User from 'app/types/user';
-
-interface Context extends TestContext {
-  user: User;
-}
-
-module('Integration | Component | Profile', function(hooks) {
-  setupRenderingTest(hooks);
-
-  test('given a user with an avatar', async function(this: Context, assert) {
-    this.user: User = {
-      displayName: 'Rey',
-      avatar: 'https://example.com/star-wars/rey',
-    };
-
-    await render(hbs`<Profile @user={{this.user}}`);
-
-    assert.dom('[data-test-name]').hasText(this.user.displayName);
-
-    assert.dom('[data-test-avatar]')
-      .hasAttribute('src', this.user.avatar);
-    assert.dom('[data-test-avatar]')
-      .hasAttribute('alt', `${this.user.displayName}'s custom profile picture`);
-  });
-
-  test('given a user without an avatar', async function(this: Context, assert) {
-    this.user: User = {
-      displayName: 'Rey',
-    };
-
-    await render(hbs`<Profile @user={{this.user}}`);
-
-    assert.dom('[data-test-name]').hasText(this.user.displayName);
-
-    assert.dom('[data-test-avatar]')
-      .hasAttribute('src', /rando-avatars-yo/);
-    assert.dom('[data-test-avatar]')
-      .hasAttribute('alt', 'a randomly generated placeholder avatar');
-  });
-});
-```
-
-Now everything type-checks again, and we get the nice auto-completion we’re used to when dealing with `this.user` in the test body.
-
-{% hint style="info" %}
-If you’ve been around TypeScript a little, and you look up the type of the `TestContext` and realize its an interface, you might be tempted to reach for declaration merging here. Don’t! If you do that, _every single test in your entire application_ will now have a `user: User` property on it!
-{% endhint %}
-
-There are still a couple things to be careful about here, however. First, we didn’t specify that the `this.user` property was _optional_. That means that TypeScript won’t complain if you do `this.user` _before_ assigning to it. Second, every test in our module gets the same `Context`. Depending on what you’re doing, that may be fine, but you may end up needing to define multiple distinct test context extensions. If you _do_ end up needing to define a bunch of different test context extension, that may be a sign that this particular set of tests is doing too much. That in turn is probably a sign that this particular _component_ is doing too much!
+<!-- TODO: assert from @ember/debug -->
