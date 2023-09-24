@@ -36,30 +36,6 @@ Along with the @types/ files mentioned above, ember-cli-typescript adds a starte
 
 We install this file because the actual `config/environment.js` is (a) not actually identical with the types as you inherit them in the content of an application, but rather a superset of what an application has access to, and (b) not in a the same location as the path at which you look it up. The actual `config/environment.js` file executes in Node during the build, and Ember CLI writes its result as `<my-app>/config/environment` into your build for consumption at runtime.
 
-## Fixing the Ember Data `error TS2344` problem
-
-If you're developing an Ember app or addon and _not_ using Ember Data (and accordingly not even have the Ember Data types installed), you may see an error like this and be confused:
-
-```text
-node_modules/@types/ember-data/index.d.ts(920,56): error TS2344: Type 'any' does not satisfy the constraint 'never'.
-```
-
-This happens because the types for Ember's _test_ tooling includes the types for Ember Data because the `this` value in several of Ember's test types can include a reference to the Ember Data `Store` class.
-
-**The fix:** add a declaration like this in a new file named `ember-data.d.ts` in your `types` directory:
-
-```typescript {data-filename="types/ember-data.d.ts"}
-declare module 'ember-data/types/registries/model' {
-  export default interface ModelRegistry {
-    [key: string]: unknown;
-  }
-}
-```
-
-This works because (a) we include things in your types directory automatically and (b) TypeScript will merge this module and interface declaration with the main definitions for Ember Data from DefinitelyTyped behind the scenes.
-
-If you're developing an addon and concerned that this might affect consumers, it won't. Your types directory will never be referenced by consumers at all!
-
 ## Type Narrowing with Ember Debug Assert
 
 <!-- TODO: assert from @ember/debug -->

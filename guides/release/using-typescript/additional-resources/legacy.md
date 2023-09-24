@@ -227,3 +227,9 @@ In general, however, prefer to use one of the following four strategies for migr
 4. If the mixin is a way of supplying long-lived, shared state, replace it with a service and inject it where it was used before. This pattern is uncommon, but sometimes appears when mixing functionality into multiple controllers or services.
 
 You can also use inheritance and class decorators to accomplish some of the same semantics as mixins classically supplied. However, these patterns are more fragile and therefore not recommended.
+
+## Classic `get` or `set` methods
+
+In general, the `this.get` and `this.set` methods on `EmberObject` subclasses and the standalone `get` and `set` functions will work as you'd expect _if_ you're doing lookups only a single layer deep. We do not provide support for deep key lookups like `get(someObj, 'a.b.c')`, because normal property access can works correctly across the whole Ember ecosystem since at least Ember and Ember Data 3.28.
+
+Since regular property access “just works”, and has for a very long time, you should migrate to using normal property access instead. TypeScript will help make this a smooth process by identifying where you need to handle null and undefined intermediate properties.

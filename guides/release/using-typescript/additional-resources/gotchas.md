@@ -24,14 +24,6 @@ Ember makes heavy use of string-based APIs to allow for a high degree of dynamic
 
 A few of the most common speed-bumps are listed here to help make this easier:
 
-#### Classic `get` or `set` methods
-
-<!-- FIXME: Mention gotchas about classic patterns, period. -->
-
-In general, the `this.get` and `this.set` methods on `EmberObject` subclasses and the standalone `get` and `set` functions will work as you'd expect _if_ you're doing lookups only a single layer deep. We do not provide support for deep key lookups like `get(someObj, 'a.b.c')`, because normal property access can works correctly across the whole Ember ecosystem since at least Ember and Ember Data 3.28.
-
-Since regular property access “just works”, and has for a very long time, you should migrate to using normal property access instead. TypeScript will help make this a smooth process by identifying where you need to handle null and undefined intermediate properties.
-
 #### Service and controller injections
 
 Ember looks up services with the `@service` decorator at runtime, using the name of the service being injected up as the default value—a clever bit of metaprogramming that makes for a nice developer experience. TypeScript cannot do this, because the name of the service to inject isn't available at compile time in the same way. (These same considerations apply to controller injections using the `@inject` decorator from `@ember/controller`.)
@@ -287,3 +279,27 @@ export default class ArgsDisplay extends Component<ArgsDisplaySignature> {
 Notice that we have to start by calling `super` with `owner` and `args`. This may be a bit different from what you’re used to in Ember or other frameworks, but is normal for sub-classes in TypeScript today. If the compiler just accepted any `...arguments`, a lot of potentially _very_ unsafe invocations would go through. So, instead of using `...arguments`, we explicitly pass the _specific_ arguments and make sure their types match up with what the super-class expects.
 
 The types for `owner` here and `args` line up with what the `constructor` for Glimmer components expects. The `owner` is specified as `unknown` because this is a detail we explicitly _don’t_ need to know about. The `args` are the `Args` from the Signature we defined.
+
+## Fixing the Ember Data `error TS2344` problem
+
+If you're developing an Ember app or addon and _not_ using Ember Data (and accordingly not even have the Ember Data types installed), you may see an error like this and be confused:
+
+```text
+node_modules/@types/ember-data/index.d.ts(920,56): error TS2344: Type 'any' does not satisfy the constraint 'never'.
+```
+
+This happens because the types for Ember's _test_ tooling includes the types for Ember Data because the `this` value in several of Ember's test types can include a reference to the Ember Data `Store` class.
+
+**The fix:** add a declaration like this in a new file named `ember-data.d.ts` in your `types` directory:
+
+```typescript {data-filename="types/ember-data.d.ts"}
+declare module 'ember-data/types/registries/model' {
+  export default interface ModelRegistry {
+    [key: string]: unknown;
+  }
+}
+```
+
+This works because (a) we include things in your types directory automatically and (b) TypeScript will merge this module and interface declaration with the main definitions for Ember Data from DefinitelyTyped behind the scenes.
+
+If you're developing an addon and concerned that this might affect consumers, it won't. Your types directory will never be referenced by consumers at all!
