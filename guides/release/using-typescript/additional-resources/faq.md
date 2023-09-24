@@ -59,3 +59,23 @@ declare module 'ember-data/types/registries/model' {
 This works because (a) we include things in your types directory automatically and (b) TypeScript will merge this module and interface declaration with the main definitions for Ember Data from DefinitelyTyped behind the scenes.
 
 If you're developing an addon and concerned that this might affect consumers, it won't. Your types directory will never be referenced by consumers at all!
+
+## Type Narrowing with Ember Debug Assert
+
+<!-- TODO: assert from @ember/debug -->
+
+The type is an array of `unknown` because, unless you are using Glint, we don’t have any way to make templates aware of the information in this definition—so users could pass in _anything_. We can work around this using [type narrowing](https://www.typescriptlang.org/docs/handbook/2/narrowing.html)—TypeScript’s process of refining types to more specific types than originally declared.
+
+```typescript
+import { assert } from '@ember/debug';
+
+function totalLength(positional: unknown[]) {
+  assert(
+    'all positional args to `total-length` must be strings',
+    positional.every((arg): arg is string => typeof arg === 'string')
+  );
+
+  // TypeScript now knows that `positional` is a `string[]` because we asserted above
+  return positional.reduce((sum, s) => sum + s.length, 0);
+}
+```
