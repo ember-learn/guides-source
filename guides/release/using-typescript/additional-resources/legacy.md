@@ -7,6 +7,59 @@ We emphasize the happy path of working with Ember in the [Octane Edition](https:
 
 The rest of this guide is dedicated to helping you understand how `ember-cli-typescript` and the classic Ember system interact.
 
+## Classic Ember components
+
+Many of the some considerations as discussed in the [TypeScript Guides for Ember Components](../core-concepts/invokables.md#toc_components) apply to classic Ember components. However, there are several additional considerations:
+
+- Classic components support both named and positional arguments, so the signature for an Ember component must specify which kind of arguments something is when using both together. If you supply `Args` as an object shape the same way you would for a Glimmer component, those will be treated as named arguments.
+
+- Classic components' arguments are merged with the properties on the class, rather than being supplied separately. As a result, they require more boilerplate to incorporate: we must use [interface merging][merge] to represent that the arguments and the properties of the class are the same. This also means that there is no support for type-powered completion with JSDoc for classic Ember components, because TypeScript does not support interface merging with JSDoc.
+
+- The `Element` for a classic Ember component should be the same as [the `tagName`][tagName] for the component—but this is not type checked by Glint.
+
+[merge]: https://www.typescriptlang.org/docs/handbook/declaration-merging.html#merging-interfaces
+[tagName]: https://api.emberjs.com/ember/5.2/classes/Component#43-property
+
+If the `AudioPlayer` component shown above were a classic component, we would define its signature and backing class like this:
+
+```typescript
+import Component from '@ember/component';
+
+import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
+
+interface AudioPlayerArgs {
+  /** The url for the audio to be played */
+  srcUrl: string;
+}
+
+interface AudioPlayerSignature {
+  Args: AudioPlayerArgs;
+  Blocks: {
+    fallback: [srcUrl: string];
+    title: [];
+  };
+  Element: HTMLAudioElement;
+}
+
+export default interface AudioPlayer extends AudioPlayerArgs {}
+export default class AudioPlayer extends Component<AudioPlayerSignature> {
+  @tracked isPlaying = false;
+
+  @action
+  play() {
+    this.isPlaying = true;
+  }
+
+  @action
+  pause() {
+    this.isPlaying = false;
+  }
+}
+```
+
+In general, while we do support classic Ember components for the sake of backwards compatibility and migration, we strongly recommend that you move to Glimmer components.
+
 ## EmberObject
 
 When working with the legacy Ember object model, `EmberObject`, there are a number of caveats and limitations you need to be aware of. For today, these caveats and limitations apply to any classes which extend directly from `EmberObject`, or which extend classes which _themselves_ extend `EmberObject`:
