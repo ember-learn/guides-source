@@ -4,38 +4,6 @@ In this section, we cover how to use TypeScript effectively with specific Ember.
 
 We do _not_ cover general usage of Ember; instead, we assume that as background knowledge. Please see the [Ember Guides](../..) and [API docs](https://api.emberjs.com)!
 
-If you'd like to make your _own_ component subclass-able, you need to make it generic as well.
-
-<div class="cta">
-  <div class="cta-note">
-    <div class="cta-note-body">
-      <div class="cta-note-heading">Zoey says...</div>
-      <div class="cta-note-message">
-        <p>
-        Are you sure you want to provide an inheritance-based API? Oftentimes, it's easier to maintain (and involves less TypeScript hoop-jumping) to use a compositional API instead. If you're sure, here's how!
-        </p>
-      </div>
-    </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="">
-  </div>
-</div>
-
-```typescript {data-filename="app/components/fancy-input-args.ts"}
-import Component from '@glimmer/component';
-
-export interface FancyInputArgs {
-  // ...
-}
-
-export default class FancyInput<
-  Args extends FancyInputArgs = FancyInputArgs
-> extends Component<Args> {
-  // ...
-}
-```
-
-Requiring that `Args extends FancyInputArgs` means that subclasses can have _more_ than these args, but not _fewer_. Specifying that the `Args = FancyInputArgs` means that they _default_ to just being `FancyInputArgs`, so users don't need to supply an explicit generic type parameter here unless they're adding more arguments to the class.
-
 ## Services
 
 Ember Services are global singleton classes that can be made available to different parts of an Ember application via dependency injection. Due to their global, shared nature, writing services in TypeScript gives you a build-time-enforcable API for some of the most central parts of your application.

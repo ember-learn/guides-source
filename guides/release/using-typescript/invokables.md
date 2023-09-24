@@ -342,127 +342,6 @@ export default class AudioPlayer extends Component {
 }
 ```
 
-## Modifiers
-
-Modifiers in Ember are just functions or classes with a well-defined interface, which means they largely Just Work™ with TypeScript. However, there are a couple things you’ll want to watch out for.
-
-(As always, you should start by reading and understanding the [Ember Guide on Modifiers][modifiers]!)
-
-The signature for a modifier consists of any named or positional arguments along with the kind of element it can be applied to. The arguments are optional, but the element is required.
-
-```typescript
-interface ModifierSignature {
-  Args?: {
-    Positional?: Array<unknown>;
-    Named?: {
-      [argName: string]: unknown;
-    };
-  };
-  Element: Element;
-}
-```
-
-### Function-based modifiers
-
-Function-based modifiers do not require writing out a signature manually. Instead, you can—and should!—write the types directly on the function which defines them.
-
-Using our `play-when` modifier example used with the `AudioPlayer` above, we might define the modifier like this:
-
-- In TypeScript:
-
-      ```typescript {data-filename="app/modifiers/play-when.ts"}
-      import { modifier } from 'ember-modifier';
-
-      export default modifier(function playWhen(
-        element: HTMLAudioElement,
-        positional: [shouldPlay: boolean]
-      ): void {
-        let [shouldPlay] = positional;
-        if (shouldPlay) {
-          element.play();
-        } else {
-          element.pause();
-        }
-      });
-      ```
-
-- With JSDoc:
-
-      ```js {data-filename="app/modifiers/play-when.js"}
-      import { modifier } from 'ember-modifier';
-
-      export default modifier(
-        /**
-         * @param {HTMLAudioElement} element
-         * @param {[shouldPlay: boolean]} positional
-         */
-        (element, positional): void => {
-          let [shouldPlay] = positional;
-          if (shouldPlay) {
-            element.play();
-          } else {
-            element.pause();
-          }
-        }
-      );
-      ```
-
-For the sake of backward compatibility and completeness, using a signature explicitly as a type parameter to `modifier()` is also supported. In that case, we could write the modifier like this:
-
-```typescript {data-filename="app/modifiers/play-when.ts"}
-import { modifier } from 'ember-modifier';
-
-interface Signature {
-  Args: {
-    Positional: [shouldPlay: boolean];
-  };
-  Element: HTMLAudioElement;
-}
-
-export default modifier<Signature>((element, positional) => {
-  let [shouldPlay] = positional;
-  if (shouldPlay) {
-    element.play();
-  } else {
-    element.pause();
-  }
-});
-```
-
-### Class-based modifiers
-
-Signatures are more useful for class-based modifiers, where they are the only way to provide the type information for Glint/TypeScript. For example, when using `IntersectionObserver`s, you might want to improve your app’s performance by `.observe()`-ing multiple elements in the same `IntersectionObserver`, all coordinated by a service.
-
-Given an `IntersectionObserverManager` service with an `observe` method, we might provide a signature defining `onEnter` and `onExit` callbacks and an `options` object to specify the `IntersectionObserver` options. Then we would supply the signature on the class definition with a type parameter to the super class. With all the pieces put together, we would have this:
-
-```typescript {data-filename="app/modifiers/did-intersect.ts"}
-import Modifier from 'ember-modifier';
-import { service } from '@ember/service';
-import type IntersectionObserverManager from '../services/intersection-observer-manager';
-
-interface DidIntersectSignature {
-  Args: {
-    Named: {
-      onEnter: (entry: IntersectionObserverEntry) => void;
-      onExit: (entry: IntersectionObserverEntry) => void;
-      options: IntersectionObserverInit;
-    };
-  };
-  Element: Element;
-}
-
-export default class DidIntersect extends Modifier<DidIntersectSignature> {
-  @service declare manager: IntersectionObserverManager;
-
-  modify(el: Element, _: [], named: DidIntersectSignature['Args']['Named']) {
-    let { onEnter, onExit, options } = named;
-    this.manager.observe(el, options, { onEnter, onExit });
-  }
-}
-```
-
-Notice that we can just skip the positional arguments entirely in this case, and give them a name like `_` to indicate we are doing nothing with it. If we had positional arguments, we would supply them like normal.
-
 ## Helpers
 
 Helpers in Ember are just functions or classes with a well-defined interface, which means they largely Just Work™ with TypeScript. However, there are a couple things you’ll want to watch out for.
@@ -650,6 +529,127 @@ Because the signature set on the class, callers would still have to pass a singl
 [narrowing]: http://www.typescriptlang.org/docs/handbook/2/narrowing.html
 
 Accordingly, the best practice is to keep the types matching.
+
+## Modifiers
+
+Modifiers in Ember are just functions or classes with a well-defined interface, which means they largely Just Work™ with TypeScript. However, there are a couple things you’ll want to watch out for.
+
+(As always, you should start by reading and understanding the [Ember Guide on Modifiers][modifiers]!)
+
+The signature for a modifier consists of any named or positional arguments along with the kind of element it can be applied to. The arguments are optional, but the element is required.
+
+```typescript
+interface ModifierSignature {
+  Args?: {
+    Positional?: Array<unknown>;
+    Named?: {
+      [argName: string]: unknown;
+    };
+  };
+  Element: Element;
+}
+```
+
+### Function-based modifiers
+
+Function-based modifiers do not require writing out a signature manually. Instead, you can—and should!—write the types directly on the function which defines them.
+
+Using our `play-when` modifier example used with the `AudioPlayer` above, we might define the modifier like this:
+
+- In TypeScript:
+
+      ```typescript {data-filename="app/modifiers/play-when.ts"}
+      import { modifier } from 'ember-modifier';
+
+      export default modifier(function playWhen(
+        element: HTMLAudioElement,
+        positional: [shouldPlay: boolean]
+      ): void {
+        let [shouldPlay] = positional;
+        if (shouldPlay) {
+          element.play();
+        } else {
+          element.pause();
+        }
+      });
+      ```
+
+- With JSDoc:
+
+      ```js {data-filename="app/modifiers/play-when.js"}
+      import { modifier } from 'ember-modifier';
+
+      export default modifier(
+        /**
+         * @param {HTMLAudioElement} element
+         * @param {[shouldPlay: boolean]} positional
+         */
+        (element, positional): void => {
+          let [shouldPlay] = positional;
+          if (shouldPlay) {
+            element.play();
+          } else {
+            element.pause();
+          }
+        }
+      );
+      ```
+
+For the sake of backward compatibility and completeness, using a signature explicitly as a type parameter to `modifier()` is also supported. In that case, we could write the modifier like this:
+
+```typescript {data-filename="app/modifiers/play-when.ts"}
+import { modifier } from 'ember-modifier';
+
+interface Signature {
+  Args: {
+    Positional: [shouldPlay: boolean];
+  };
+  Element: HTMLAudioElement;
+}
+
+export default modifier<Signature>((element, positional) => {
+  let [shouldPlay] = positional;
+  if (shouldPlay) {
+    element.play();
+  } else {
+    element.pause();
+  }
+});
+```
+
+### Class-based modifiers
+
+Signatures are more useful for class-based modifiers, where they are the only way to provide the type information for Glint/TypeScript. For example, when using `IntersectionObserver`s, you might want to improve your app’s performance by `.observe()`-ing multiple elements in the same `IntersectionObserver`, all coordinated by a service.
+
+Given an `IntersectionObserverManager` service with an `observe` method, we might provide a signature defining `onEnter` and `onExit` callbacks and an `options` object to specify the `IntersectionObserver` options. Then we would supply the signature on the class definition with a type parameter to the super class. With all the pieces put together, we would have this:
+
+```typescript {data-filename="app/modifiers/did-intersect.ts"}
+import Modifier from 'ember-modifier';
+import { service } from '@ember/service';
+import type IntersectionObserverManager from '../services/intersection-observer-manager';
+
+interface DidIntersectSignature {
+  Args: {
+    Named: {
+      onEnter: (entry: IntersectionObserverEntry) => void;
+      onExit: (entry: IntersectionObserverEntry) => void;
+      options: IntersectionObserverInit;
+    };
+  };
+  Element: Element;
+}
+
+export default class DidIntersect extends Modifier<DidIntersectSignature> {
+  @service declare manager: IntersectionObserverManager;
+
+  modify(el: Element, _: [], named: DidIntersectSignature['Args']['Named']) {
+    let { onEnter, onExit, options } = named;
+    this.manager.observe(el, options, { onEnter, onExit });
+  }
+}
+```
+
+Notice that we can just skip the positional arguments entirely in this case, and give them a name like `_` to indicate we are doing nothing with it. If we had positional arguments, we would supply them like normal.
 
 ## Advanced signature techniques
 
