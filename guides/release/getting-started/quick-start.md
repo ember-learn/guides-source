@@ -254,7 +254,7 @@ In the rest of the code examples in this tutorial, whenever we add or remove cod
 
 Let's replace all our old code with our new componentized version:
 
-```handlebars {data-filename="app/templates/scientists.hbs" data-diff="-1,-2,-3,-4,-5,-6,-7,+8,+9,+10,+11"}
+```handlebars {data-filename="app/templates/scientists.hbs" data-diff="-0,-1,-2,-3,-4,-5,-6,-7,+8,+9,+10,+11"}
 <h2>List of Scientists</h2>
 
 <ul>
