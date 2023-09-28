@@ -254,7 +254,7 @@
   pages:
     - title: 'Introduction'
       url: 'index'
-    - title: 'Getting Started with TypeScript'
+    - title: 'Getting Started'
       url: 'getting-started'
     - title: 'Core Concepts'
       url: 'core-concepts'
