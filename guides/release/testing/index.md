@@ -34,7 +34,7 @@ ember t -s
 
 When you are working on a single component or page, you will want only a small subset of tests to run after every file change. To specify which tests to run, you can add `--module` or `--filter` option to your command.
 
-The `--module` option allows you to select a **module**—a group of tests that you specified in `module()` in QUnit, or `describe()` in Mocha.
+The `--module` option allows you to select a **module**—a group of tests that you specified in `module()` in QUnit.
 
 ```bash
 # Button component example
@@ -44,7 +44,7 @@ ember test --server --module="Integration | Component | simple-button"
 ember t -s -m="Unit | Service | location"
 ```
 
-The `--filter` option is more versatile. You can provide a phrase to match against the modules and test descriptions. A test description is what appears in `test()` in QUnit, or `it()` in Mocha.
+The `--filter` option is more versatile. You can provide a phrase to match against the modules and test descriptions. A test description is what appears in `test()` in QUnit.
 
 ```bash
 # Button component example
@@ -57,7 +57,7 @@ ember t -s -f="Dashboard"
 ember t -s -f="Integration"
 ```
 
-In QUnit, you can exclude tests by adding an exclamation point to the beginning of the filter, e.g. `ember test --filter="!Acceptance"`. In Mocha, `ember test --filter="Acceptance" --invert`.
+In QUnit, you can exclude tests by adding an exclamation point to the beginning of the filter, e.g. `ember test --filter="!Acceptance"`.
 
 To learn more about options for testing, you can visit [Ember CLI Documentation](https://ember-cli.com/testing) or type `ember help test` in the command line.
 
