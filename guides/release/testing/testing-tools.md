@@ -164,6 +164,6 @@ While we don't recommend this practice in general, you might also use Percy in l
 
 ## Summary
 
-Ember provides easy paths to integrate QUnit and Mocha, also it supports a variety of addons and debugging tools to improve your developer experience in testing.
+Ember provides easy paths to integrate QUnit and it also supports a variety of addons and debugging tools to improve your developer experience in testing.
 
 In the next section, we will study 3 types of tests that Ember supports—unit, rendering, and application tests. We will look at each type and when you might use one over another.
