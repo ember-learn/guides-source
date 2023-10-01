@@ -321,3 +321,7 @@ export default class MyRoute extends Route {
   }
 }
 ```
+
+## ember-cli-typescript
+
+If you're migrating from `ember-cli-typescript`, particularly an older version, to Ember's out-of-the-box TypeScript support, you may also need to update your `tsconfig.json`. Current versions of `ember-cli-typescript` generate the correct config at installation. You do _not_ need to install `ember-cli-typescript` for new apps or addons.

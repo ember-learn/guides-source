@@ -272,10 +272,10 @@
     - title: 'Application Development'
       url: 'application-development'
       pages:
-        - title: 'Testing'
-          url: 'testing'
         - title: 'Configuration'
           url: 'configuration'
+        - title: 'Testing'
+          url: 'testing'
         - title: 'Converting an Existing Ember App to TypeScript'
           url: 'converting-an-app'
         - title: 'Building Addons in TypeScript'

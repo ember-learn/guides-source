@@ -1,3 +1,3 @@
 ---
-redirect: using-typescript/application-development/testing
+redirect: using-typescript/application-development/configuration
 ---

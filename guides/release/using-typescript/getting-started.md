@@ -12,11 +12,6 @@ ember new my-typescript-app --typescript
 
 Using the `--typescript` flag changes the output of `ember new` in a few ways:
 
-<!-- - Project files will be generated with `.ts` extensions instead of `.js`.
-- Packages will be installed and files will be generated to make TypeScript work in your project.
-- We configure Babel to transpile TypeScript files.
-- We configure TypeScript to type check your project. -->
-
 ## TypeScript Project Files
 
 Project files will be generated with `.ts` extensions instead of `.js`.
@@ -54,7 +49,7 @@ You may be wondering why the `@types` packages are named things like `@types/emb
 
 In addition to the usual files added with `ember new`, we also add:
 
-- [`tsconfig.json`](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html)
+- [`tsconfig.json`](../application-development/configuration/#toc_tsconfig)
 <!-- FIXME: Link -->
 - `types/<app name>/index.d.ts` – the location for any global type declarations you need to write for you own application; see [**Using TS Effectively: Global types for your package**](https://github.com/typed-ember/ember-cli-typescript/tree/3a434def8b8c8214853cea0762940ccedb2256e8/docs/getting-started/docs/ts/using-ts-effectively/README.md#global-types-for-your-package) for information on its default contents and how to use it effectively
 <!-- FIXME: Link -->
@@ -65,3 +60,4 @@ Additionally:
 - `ember-cli-build.js` will be configured to transform TypeScript at build-time.
 - `.ember-cli` has `isTypeScriptProject` set to true, which will force the blueprint generators to generate TypeScript rather than JavaScript by default.
 - `.eslintrc.js` will be configured for TypeScript.
+- `lint:types` is added as a script to check types with the command line.

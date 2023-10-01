@@ -2,6 +2,16 @@
 
 <!-- FIXME: BIG TODOS HERE -->
 
+## `ember-cli-build.js`
+
+To enable TypeScript transpilation in your app, simply add the corresponding configuration for Babel to your `ember-cli-build.js` file.
+
+```javascript {data-filename="ember-cli-build.js" data-diff="+2"}
+const app = new EmberApp(defaults, {
+  'ember-cli-babel': { enableTypeScriptTransform: true },
+});
+```
+
 ### Incremental adoption
 
 If you are porting an existing app to TypeScript, you can install this addon and migrate your files incrementally by changing their extensions from `.js` to `.ts`. As TypeScript starts to find errors (and it usually does!), make sure to celebrate your wins—even if they're small!—with your team, especially if some people are not convinced yet. We would also love to hear your stories!
