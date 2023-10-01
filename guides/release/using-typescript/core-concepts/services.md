@@ -1,12 +1,12 @@
-## Services
+**Note:** 🚧 This section is under construction! 🏗️ The content here may undergo significant revision in the months ahead!
 
-Ember Services are global singleton classes that can be made available to different parts of an Ember application via dependency injection. Due to their global, shared nature, writing services in TypeScript gives you a build-time-enforcable API for some of the most central parts of your application.
+Ember [Services][services] are global singleton classes that can be made available to different parts of an Ember application via dependency injection. Due to their global, shared nature, writing services in TypeScript gives you a build-time-enforcable API for some of the most central parts of your application.
 
-(If you are not familiar with Services in Ember, first make sure you have read and understood the [Ember Guide on Services](../../services/)!)
+[services]: ../../../services/
 
 ### A basic service
 
-Let's take this example from the [Ember Guide](../../services/):
+Let's take this example from the [Ember Guide](../../services/#toc_defining-services):
 
 ```typescript {data-filename="app/services/shopping-cart.ts"}
 import Service from '@ember/service';
