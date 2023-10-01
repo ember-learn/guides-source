@@ -259,7 +259,7 @@
     - title: 'Core Concepts'
       url: 'core-concepts'
       pages:
-        - title: 'Using TypeScript with Ember'
+        - title: 'TypeScript and Ember'
           url: 'index'
         - title: 'Invokables'
           url: 'invokables'
