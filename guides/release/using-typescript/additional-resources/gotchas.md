@@ -93,6 +93,7 @@ function dynamicLookup(owner: Owner) {
 #### Ember Data lookups
 
 <!-- FIXME: Move to Ember Data section? -->
+<!-- FIXME: Ensure all examples show registry entries when necessary -->
 
 We use the same basic approach for Ember Data type lookups with string keys as we do for service injections, but here we take advantage of the string "type registration" for the runtime code as well. As a result, once you add the module and interface definitions for each model, serializer, and adapter in your app, you will automatically get type-checking and autocompletion and the correct return types for functions like `findRecord`, `queryRecord`, `adapterFor`, `serializerFor`, etc. No need to try to write out those (admittedly kind of hairy!) types; just write your Ember Data calls like normal and everything _should_ just work. That is, writing `this.store.findRecord('user', 1)` will give you back a `Promise<User | undefined>`.
 
