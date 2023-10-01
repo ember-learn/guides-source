@@ -303,3 +303,20 @@ declare module 'ember-data/types/registries/model' {
 This works because (a) we include things in your types directory automatically and (b) TypeScript will merge this module and interface declaration with the main definitions for Ember Data from DefinitelyTyped behind the scenes.
 
 If you're developing an addon and concerned that this might affect consumers, it won't. Your types directory will never be referenced by consumers at all!
+
+## Lifecycle hooks and autocomplete
+
+However, there is one thing to watch out for: the types of the arguments passed to subclassed methods will _not_ autocomplete as you may expect. This is because in JavaScript, a subclass may legally override a superclass method to accept different arguments. Ember's lifecycle hooks, however, are called by the framework itself, and thus the arguments and return type should always match the superclass. Unfortunately, TypeScript does not and _cannot_ know that, so we have to provide the types directly.
+
+Accordingly, we have to provide the types for hooks ourselves:
+
+```typescript {data-filename="app/routes/my.ts"}
+import Route from '@ember/routing/route';
+import Transition from '@ember/routing/transition';
+
+export default class MyRoute extends Route {
+  beforeModel(transition: Transition) {
+    // ...
+  }
+}
+```
