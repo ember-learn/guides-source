@@ -1,10 +1,10 @@
-Testing with TypeScript mostly works just the same as you'd expect in a non-TypeScript Ember application—so if you're just starting out with Ember, we recommend you read the official Ember [Testing Guides](https://guides.emberjs.com/release/testing/) first. The rest of this guide assumes you're already comfortable with testing in Ember!
+**Note:** 🚧 This section is under construction! 🏗️ The content here may not be fully up to date!
 
-When working with TypeScript in Ember tests, there are a few differences in your experience, and there are also differences in how you should handle testing app code vs. addon code.
+When working with TypeScript in [Ember tests][testing], there are a few differences in your experience, and there are also differences in how you should handle testing app code vs. addon code.
 
-### App tests
+## App tests
 
-One major difference when working with TypeScript in _app_ code is that once your app is fully converted, there are a bunch of kinds of tests you just don't need to write any more: things like testing bad inputs to functions. We'll use an admittedly silly and contrived example here, an `add` function to add two numbers together, so that we can focus on the differences between JavaScript and TypeScript, rather than getting hung up on the details of this particular function.
+One major difference when working with TypeScript in _app_ code is that once your app is _fully_ converted, there are several kinds of tests you just don't need to write any more: things like testing bad inputs to functions. We'll use an admittedly silly and contrived example here, an `add` function to add two numbers together, so that we can focus on the differences between JavaScript and TypeScript, rather than getting hung up on the details of this particular function.
 
 First, the function we're testing might look like this.
 
@@ -84,7 +84,7 @@ export function add(a: number, b: number): number {
 }
 ```
 
-### Addon tests
+## Addon tests
 
 Note, however, that this _only_ applies to _app code_. If you're writing an Ember addon (or any other library), you cannot assume that everyone consuming your code is using TypeScript. You still need to account for these kinds of cases. This will require you to do something that probably feels a bit gross: casting a bunch of values `as any` for your tests, so that you can test what happens when people feed bad data to your addon!
 
@@ -133,9 +133,7 @@ module('the `add` function', function(hooks) {
 });
 ```
 
-### Gotchas
-
-#### The `TestContext`
+## The `TestContext`
 
 A common scenario in Ember tests, especially integration tests, is setting some value on the `this` context of the tests, so that it can be used in the context of the test. For example, we might need to set up a `User` type to pass into a `Profile` component.
 
@@ -309,3 +307,5 @@ If you’ve been around TypeScript a little, and you look up the type of the `Te
 {% endhint %}
 
 There are still a couple things to be careful about here, however. First, we didn’t specify that the `this.user` property was _optional_. That means that TypeScript won’t complain if you do `this.user` _before_ assigning to it. Second, every test in our module gets the same `Context`. Depending on what you’re doing, that may be fine, but you may end up needing to define multiple distinct test context extensions. If you _do_ end up needing to define a bunch of different test context extension, that may be a sign that this particular set of tests is doing too much. That in turn is probably a sign that this particular _component_ is doing too much!
+
+[testing]: ../../../testing/
