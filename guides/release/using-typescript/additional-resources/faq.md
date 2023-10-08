@@ -60,3 +60,5 @@ function totalLength(positional: unknown[]) {
   return positional.reduce((sum, s) => sum + s.length, 0);
 }
 ```
+
+Here we’re using the `assert` from `@ember/debug`. If you’re not familiar with it, you might want to take a look at its [API docs](https://api.emberjs.com/ember/3.14/functions/@ember%2Fdebug/assert)! It’s a development-and-test-only helper that gets stripped from production builds, and is very helpful for this kind of thing!
