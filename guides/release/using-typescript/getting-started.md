@@ -1,7 +1,5 @@
 **Note:** 🚧 This section is under construction! 🏗️ The content here may not be fully up to date!
 
-<!-- FIXME: Merge this section with previous? -->
-
 ## Create a New TypeScript Application
 
 To start a new Ember project with TypeScript, add the `--typescript` flag when you run [`ember new`](../../getting-started/quick-start):
@@ -12,11 +10,11 @@ ember new my-typescript-app --typescript
 
 Using the `--typescript` flag changes the output of `ember new` in a few ways:
 
-## TypeScript Project Files
+### TypeScript Project Files
 
 Project files will be generated with `.ts` extensions instead of `.js`.
 
-## Packages to Support TypeScript
+### Packages to Support TypeScript
 
 In addition to the usual packages added with `ember new`, the following packages will be added at their current "latest" value:
 
@@ -43,9 +41,7 @@ The `typescript` package provides tooling to support TypeScript type checking an
   </div>
 </div>
 
-You may be wondering why the `@types` packages are named things like `@types/ember__object` instead of something like `@types/@ember/object`. This is a conventional name used to allow both the compiler and the DefinitelyTyped publishing infrastructure to handle scoped packages, as described in [the DefinitelyTyped README](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master#what-about-scoped-packages).
-
-## Files and Config to Support TypeScript
+### Files and Config to Support TypeScript
 
 In addition to the usual files added with `ember new`, we also add:
 
@@ -61,3 +57,9 @@ Additionally:
 - `.ember-cli` has `isTypeScriptProject` set to true, which will force the blueprint generators to generate TypeScript rather than JavaScript by default.
 - `.eslintrc.js` will be configured for TypeScript.
 - `lint:types` is added as a script to check types with the command line.
+
+## Convert an Existing App to TypeScript
+
+To convert an existing app to TypeScript, you'll need to make the changes described above manually (for now). To facilitate this, we've included a guide [here][converting].
+
+[converting]: ../application-development/converting-an-app/
