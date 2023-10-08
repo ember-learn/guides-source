@@ -47,8 +47,6 @@ Ember uses the signature to provide both editor support for the invokable with T
 
 A few things to note about these signatures:
 
-<!-- TODO: This was an ordered list, but nested list formatting is a bit funky currently, so I converted it to paragraphs. Would be nice to revert. -->
-
 First, while you _can_ write a full signature like this for any invokable, you never _need_ to. Different kinds of invokables care about different subsets of this set of features:
 
 - Helpers may have arguments and return values, but do not yield blocks and do not have an associated element.
@@ -242,7 +240,7 @@ export default class AudioPlayer extends Component<AudioPlayerSignature> {
 <button type='button' {{on 'click' this.pause}}>Pause</button>
 ```
 
-Let’s go one step further and switch to supporting for two [named blocks][nb]: a optional `title` block for a caption for the audio element, and a `fallback` block for the audio fallback where we previously used a `default` block.
+Let’s go one step further and switch to supporting for two [named blocks][nb]: an optional `title` block for a caption for the audio element, and a `fallback` block for the audio fallback where we previously used a `default` block.
 
 ```handlebars {data-filename="app/components/audio-player.hbs" data-diff="+1,+2,+3,+4,+5,-7,+8"}
 <figure>

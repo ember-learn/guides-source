@@ -30,6 +30,11 @@ At the root of your application or addon, we include a `types/<your app>` direct
 
 In the case of applications (but not for addons), we also automatically include declarations for Ember's prototype extensions in this `index.d.ts` file, with the `Array` prototype extensions enabled and the `Function` prototype extensions commented out. You should configure them to match your own config (which we cannot check during installation). If you are [disabling Ember's prototype extensions](https://guides.emberjs.com/v2.18.0/configuring-ember/disabling-prototype-extensions/), you can remove these declarations entirely; we include them because they're enabled in most Ember applications today.
 
+We also automatically configure this to support [Glint], which makes type checking work with Ember's templates. The default configuration only supports Ember's classic pairing of separate `.ts` and `.hbs` files, but Glint also supports the `<template>` format with `.gts` files. See the [corresponding package README][glint-environment-ember-template-imports] for more details. (Once Ember enables `<template>` by default, so will our Glint configuration!)
+
+[glint]: https://typed-ember.gitbook.io/glint
+[glint-environment-ember-template-imports]: https://github.com/typed-ember/glint/tree/main/packages/environment-ember-template-imports#readme
+
 #### Environment configuration typings
 
 Along with the @types/ files mentioned above, ember-cli-typescript adds a starter interface for `config/environment.js` in `app/config/environment.d.ts`. This interface will likely require some changes to match your app.
