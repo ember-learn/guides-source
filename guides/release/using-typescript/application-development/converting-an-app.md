@@ -72,21 +72,21 @@ Use the [_strictest_ strictness][strictness] settings that our typings allow. Wh
 
 Many of your files might reference types in other files that haven't been converted yet. There are several strategies you can employ to avoid a chain-reaction resulting in having to convert your entire app at once:
 
-TypeScript [declaration files][dts] (`.d.ts`)—These files are a way to document TypeScript types for JavaScript files without converting them. One downside of declaration files, however, is that they can easily get out-of-sync with the corresponding JavaScript file, so we only recommend this option as a temporary step.
+The [`unknown`][unknown] type—You can sometimes get pretty far just by annotating types as `unknown`. If `unknown` is too wide of a type, however, you'll need a more robust solution.
+
+[unknown]: https://www.typescriptlang.org/docs/handbook/2/functions.html
+
+[TypeScript declaration files][dts] (`.d.ts`)—These files are a straightforward way to document TypeScript types for JavaScript files without converting them. One downside of declaration files, however, is that they can easily get out-of-sync with the corresponding JavaScript file, so we only recommend this option as a temporary step.
 
 [dts]: https://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html
 
-JSDoc and `allowJs`—Another way to document TypeScript types for JavaScript files without converting them is to add [JSDoc type hints][JSDoc] to the files and enable the [`allowJs`][allowJs] compiler option in your `tsconfig.json`. While the JSDoc type syntax can be a bit cumbersome, it is much more likely to stay in sync. You can even type-check your JavaScript files using JSDoc and the [`@ts-check`][ts-check] directive.
+[JSDoc] and [`allowJs`][allowJs]—Another way to document TypeScript types for JavaScript files without converting them is to add JSDoc "type hints" to the files and enable the `allowJs` compiler option in your `tsconfig.json`. While the JSDoc type syntax can be a bit cumbersome, it is much more likely to stay in sync. You can even type-check your JavaScript files using the [`@ts-check`][ts-check] directive.
 
 [JSDoc]: https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html#handbook-content
 [allowJs]: https://www.typescriptlang.org/tsconfig/#allowJs
 [ts-check]: https://www.typescriptlang.org/docs/handbook/intro-to-js-ts.html#ts-check
 
-The [`unknown`][unknown] type—You can sometimes get pretty far just by annotating types as `unknown`.
-
-[unknown]: https://www.typescriptlang.org/docs/handbook/2/functions.html
-
-The [`any`][any] type—Opt out of type checking for a value by annotating it as `any`.
+The [`any`][any] type—Opt out of type checking altogether for a value by annotating it as `any`.
 
 [any]: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#any
 
@@ -94,13 +94,8 @@ The [`@ts-expect-error`][ts-expect-error] directive—A better strategy than `an
 
 [ts-expect-error]: https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-9.html
 
-\(Experienced TypeScript users may already be familiar with `@ts-ignore`. The difference is that `@ts-ignore` won't let you know when the code stops triggering the error. You can use ESLint to [disallow `@ts-ignore`][ban-ts-comment] in favor of `@ts-expect-error`. If you really want to dig into it, the TypeScript team provided guidelines about when to choose one over the other [here][ts-ignore-vs-expect].)
-
-[ban-ts-comment]: https://typescript-eslint.io/rules/ban-ts-comment/
-[ts-ignore-vs-expect]: https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-9.html?ref=blog.skylight.io#ts-ignore-or-ts-expect-error
-
 ### Outer Leaves First
 
-A good approach is to start at your outer "leaf" modules (the ones that don't import anything else from your app, only Ember or third-party types) and then work your way "inward" (toward the modules with many internal imports). Often the highest-value modules are your Ember Data models and any core services that are used everywhere else in the app–and those are also the ones that tend to have the most cascading effects (having to update _tons_ of other places in your app) when you type them later in the process.
+A good approach to gradual typing is to start at your outer "leaf" modules (the ones that don't import anything else from your app, only from Ember or third-party libraries) and then work your way "inward" (toward the modules with many internal imports). Often the highest-value modules are your Ember Data models and any core services that are used everywhere else in the app–and those are also the ones that tend to have the most cascading effects (having to update _tons_ of other places in your app) when you type them later in the process. By starting with the outer leaves, you won't have to use as many of our gradual typing hacks.
 
 [getting started]: ../application-development/getting-started/
