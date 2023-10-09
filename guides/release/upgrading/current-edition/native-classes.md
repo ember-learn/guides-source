@@ -432,10 +432,11 @@ support Ember mixins at all. In the future, mixins will be removed from the
 framework, and will not be replaced directly. For apps that use mixins, the
 recommended path is to refactor the mixins to other patterns, including:
 
-* Pure native classes, sharing functionality via class inheritance.
-* Utility functions which can be imported and used in multiple classes.
-* Services which can be injected into multiple classes, sharing functionality
-  and state between them.
+1. For functionality which encapsulates DOM modification, rewrite as a custom modifier using [ember-modifier](https://github.com/ember-modifier/ember-modifier).
+1. If the mixin is a way of supplying shared behavior (not data), extract the behavior to utility functions, usually just living in module scope and imported and exported as needed.
+1. If the mixin is a way of supplying long-lived, shared state, replace it with a service and inject it where it was used before. This pattern is uncommon, but sometimes appears when mixing functionality into multiple controllers or services.
+1. If the mixin is a way of supplying non-shared state which follows the lifecycle of a given object, replace it with a utility class instantiated in the owning class's `constructor` (or `init` for legacy classes).
+1. If none of the above, extract to pure native classes, sharing functionality via class inheritance.
 
 ## Cheatsheet
 

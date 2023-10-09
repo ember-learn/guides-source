@@ -58,7 +58,7 @@ Second, any given component, modifier, or helper may only use a subset of the it
 
 And last, a signature can be defined in both TypeScript types and JSDoc annotations. The examples below will show each.
 
-## Components
+## Glimmer Components
 
 Glimmer Components are defined in one of three ways:
 
@@ -339,6 +339,12 @@ export default class AudioPlayer extends Component {
   }
 }
 ```
+
+## Classic Ember Components
+
+See ["Working With Ember Classic"][classic-components].
+
+[classic-components]: ../../additional-resources/legacy/#toc_classic-ember-components
 
 ## Helpers
 
