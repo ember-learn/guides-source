@@ -19,6 +19,7 @@ Project files will be generated with `.ts` extensions instead of `.js`.
 In addition to the usual packages added with `ember new`, the following packages will be added at their current "latest" value:
 
 - `typescript`
+- `@tsconfig/ember`
 - `@typescript-eslint/*`
 - `@types/ember`
 - `@types/ember-data`
@@ -47,16 +48,16 @@ In addition to the usual files added with `ember new`, we also add:
 
 - [`tsconfig.json`](../application-development/configuration/#toc_tsconfig)
 <!-- FIXME: Link -->
-- `types/<app name>/index.d.ts` – the location for any global type declarations you need to write for you own application; see [**Using TS Effectively: Global types for your package**](https://github.com/typed-ember/ember-cli-typescript/tree/3a434def8b8c8214853cea0762940ccedb2256e8/docs/getting-started/docs/ts/using-ts-effectively/README.md#global-types-for-your-package) for information on its default contents and how to use it effectively
+- `types/global.d.ts` – the location for any global type declarations you need to write for your own application; see [**Using TS Effectively: Global types for your package**](https://github.com/typed-ember/ember-cli-typescript/tree/3a434def8b8c8214853cea0762940ccedb2256e8/docs/getting-started/docs/ts/using-ts-effectively/README.md#global-types-for-your-package) for information on its default contents and how to use it effectively
 <!-- FIXME: Link -->
 - `app/config/environment.d.ts` – a basic set of types defined for the contents of the `config/environment.js` file in your app; see [Environment and configuration typings](installation.md#environment-and-configuration-typings) for details
 
 Additionally:
 
+- `package.json` will have a `lint:types` script to check types with the command line.
 - `ember-cli-build.js` will be configured to transform TypeScript at build-time.
 - `.ember-cli` has `isTypeScriptProject` set to true, which will force the blueprint generators to generate TypeScript rather than JavaScript by default.
 - `.eslintrc.js` will be configured for TypeScript.
-- `lint:types` is added as a script to check types with the command line.
 
 ## Convert an Existing App to TypeScript
 
