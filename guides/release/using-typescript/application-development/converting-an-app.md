@@ -105,3 +105,7 @@ A good approach to gradual typing is to start at your outer "leaf" modules (the 
 In general, we recommend migrating to Octane idioms before, or in conjunction with, your migration to TypeScript. See ["Working With Ember Classic"][legacy] for more details.
 
 [legacy]: ../../additional-resources/legacy/
+
+## ember-cli-typescript
+
+If you're migrating from `ember-cli-typescript`, particularly an older version, to Ember's out-of-the-box TypeScript support, you may also need to update your `tsconfig.json`. Current versions of `ember-cli-typescript` generate the correct config at installation. You do _not_ need `ember-cli-typescript` installed for new apps or addons.

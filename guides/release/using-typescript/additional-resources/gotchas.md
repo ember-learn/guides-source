@@ -1,41 +1,24 @@
 **Note:** 🚧 This section is under construction! 🏗️ The content here may not be fully up to date!
 
-This guide covers the common details and "gotchas" of using TypeScript with Ember. Note that we do _not_ cover the use of TypeScript _or_ Ember in general—for those, you should refer to the corresponding documentation:
+This section covers the common details and "gotchas" of using TypeScript with Ember.
 
-- [TypeScript docs](https://www.typescriptlang.org/docs/index.html)
-- [TypeScript Deep Dive](https://basarat.gitbook.io/typescript/)
-- [Ember docs](https://emberjs.com/learn/)
-
-## Outline
-
-- [Using TypeScript With Ember Effectively](using-ts-effectively.md)
-- [Decorators](decorators.md)
-- [Current limitations](current-limitations.md)
-- [Building Addons in TypeScript](with-addons.md)
-- [Understanding the `@types` Package Names](package-names.md)
-
-<!-- FIXME: This is copy-pasta from ember-cli-typescript docs and needs updates -->
-
-## Using TypeScript With Ember Effectively
-
-### String-keyed lookups
+## String-keyed lookups
 
 Ember makes heavy use of string-based APIs to allow for a high degree of dynamicism. With some limitations, you can nonetheless use TypeScript very effectively to get auto-complete/IntelliSense as well as to accurately type-check your applications.
 
 A few of the most common speed-bumps are listed here to help make this easier:
 
-#### Service and controller injections
+### Service and Controller Injections
 
-Ember looks up services with the `@service` decorator at runtime, using the name of the service being injected up as the default value—a clever bit of metaprogramming that makes for a nice developer experience. TypeScript cannot do this, because the name of the service to inject isn't available at compile time in the same way. (These same considerations apply to controller injections using the `@inject` decorator from `@ember/controller`.)
+Ember looks up services with the `@service` decorator at runtime, using the name of the service being injected as the default value—a clever bit of metaprogramming that makes for a nice developer experience. TypeScript cannot do this, because the name of the service to inject isn't available at compile time in the same way. (These same considerations apply to controller injections using the `@inject` decorator from `@ember/controller`.)
 
-Since decorators do not currently have access to enough information to produce an appropriate type by themselves, we need to import and name the type explicitly. For example, we might have `MySession` service which defines a `login` method, defined as usual:
+Since legacy decorators do not have access to enough information to produce an appropriate type by themselves, we need to import and name the type explicitly. For example, we might have `MySession` service which defines a `login` method, defined as usual:
 
 ```typescript {data-filename="app/services/my-session.ts"}
 import Service from '@ember/service';
-import RSVP from 'rsvp';
 
 export default class MySession extends Service {
-  login(email: string, password: string): RSVP.Promise<string> {
+  login(email: string, password: string): Promise<string> {
     // login and return the confirmation message
   }
 }
@@ -51,7 +34,7 @@ Then we can use the service as we usually would with a decorator, but adding a t
 
 ```typescript {data-filename="app/components/user-profile.ts"}
 import Component from '@ember/component';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 
 import type MySession from 'my-app/services/my-session';
 
@@ -64,11 +47,13 @@ export default class UserProfile extends Component {
 }
 ```
 
-Note that we need the `MySession` type annotation this way, but we _don't_ need the string lookup (unless we're giving the service a different name than the usual on the class, as in Ember injections in general). Without the type annotation, the type of `session` would just be `any`. This is because decorators are not allowed to modify the types of whatever they decorate. As a result, we wouldn't get any type-checking on that `session.login` call, and we wouldn't get any auto-completion either. Which would be really sad and take away a lot of the reason we're using TypeScript in the first place!
+Note that we need the `MySession` type annotation this way, but we _don't_ need the string lookup (unless we're giving the service a different name than the usual on the class, as in Ember injections in general). Without the type annotation, the type of `session` would just be `any`. This is because legacy decorators do not modify the types of whatever they decorate. As a result, we wouldn't get any type-checking on that `session.login` call, and we wouldn't get any auto-completion either. Which would be really sad and take away a lot of the reason we're using TypeScript in the first place!
 
-Also notice [the `declare` property modifier](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#the-usedefineforclassfields-flag-and-the-declare-property-modifier). This tells TypeScript that the property will be configured by something outside the class (in this case, the decorator), and guarantees it emits spec-compliant JavaScript.
+Also notice [the `declare` property modifier][declare]. It tells TypeScript that the property will be configured by something outside the class (in this case, the decorator), and guarantees it emits spec-compliant JavaScript.
 
-(This also holds true for all other service injections, computed property macros, and Ember Data model attributes and relationships.)
+[declare]: https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#the-usedefineforclassfields-flag-and-the-declare-property-modifier
+
+\(This also holds true for all other service injections, computed property macros, and Ember Data model attributes and relationships.)
 
 Finally, you may have noticed the `declare module` at the bottom of the example `MySession` definition:
 
@@ -81,7 +66,9 @@ declare module '@ember/service' {
 }
 ```
 
-This definition allows for type-safe lookups with other Ember dependency injection APIs. For example, [the `Owner.lookup` method](https://api.emberjs.com/ember/5.2/classes/Owner#2-method) uses this "registration"—a mapping from the string `'my-session'` to the service type, `MySession`—to provide the correct type:
+This definition allows for type-safe lookups with other Ember dependency injection APIs. For example, [the `Owner.lookup` method][owner-lookup] uses this "registration"—a mapping from the string `'my-session'` to the service type, `MySession`—to provide the correct type:
+
+[owner-lookup]: https://api.emberjs.com/ember/release/classes/Owner/methods/lookup?anchor=lookup
 
 ```typescript
 function dynamicLookup(owner: Owner) {
@@ -90,7 +77,7 @@ function dynamicLookup(owner: Owner) {
 }
 ```
 
-#### Ember Data lookups
+### Ember Data lookups
 
 <!-- FIXME: Move to Ember Data section? -->
 <!-- FIXME: Ensure all examples show registry entries when necessary -->
@@ -155,25 +142,27 @@ The declarations and changes you need to add to your existing files are:
   }
   ```
 
-##### Opt-in unsafety
+#### Opt-in unsafety
 
 Also notice that unlike with service and controller injections, there is no unsafe fallback method by default, because there isn't an argument-less variant of the functions to use as there is for `Service` and `Controller` injection. If for some reason you want to opt _out_ of the full type-safe lookup for the strings you pass into methods like `findRecord`, `adapterFor`, and `serializerFor`, you can add these declarations somewhere in your project:
 
 ```typescript {data-filename="types/ember-data.d.ts"}
-import Model from '@ember-data/model';
-import Adapter from '@ember-data/adapter';
-import Serializer from '@ember-data/serializer';
+import type Model from '@ember-data/model';
+import type Adapter from '@ember-data/adapter';
+import type Serializer from '@ember-data/serializer';
 
 declare module 'ember-data/types/registries/model' {
   export default interface ModelRegistry {
     [key: string]: Model;
   }
 }
+
 declare module 'ember-data/types/registries/adapter' {
   export default interface AdapterRegistry {
     [key: string]: Adapter;
   }
 }
+
 declare module 'ember-data/types/registries/serializer' {
   export default interface SerializerRegistry {
     [key: string]: Serializer;
@@ -185,19 +174,19 @@ However, we _**strongly**_ recommend that you simply take the time to add the fe
 
 ## Decorators
 
-Ember makes heavy use of decorators, and TypeScript does not currently support deriving type information from decorators.
+Ember makes heavy use of decorators, and TypeScript does not support deriving type information from Ember's legacy decorators.
 
 As a result, there are three important points that apply to _all_ decorator usage in Ember:
 
-1. Whenever using a decorator to declare a class field the framework sets up for you, you should mark it with `declare`. That includes all service and controller injections as well as all Ember Data attributes and relationships.
+First, whenever using a decorator to declare a class field the framework sets up for you, you should mark it with [`declare`][declare]. That includes all service and controller injections as well as all Ember Data attributes and relationships.
 
-   Normally, TypeScript determines whether a property is definitely not `null` or `undefined` by checking what you do in the constructor. In the case of service injections, controller injections, or Ember Data model decorations, though, TypeScript does not have visibility into how instances of the class are _initialized_. The `declare` annotation informs TypeScript that a declaration is defined somewhere else, outside its scope.
+Normally, `TypeScript` determines whether a property is definitely not `null` or `undefined` by checking what you do in the constructor. In the case of service injections, controller injections, or Ember Data model decorations, though, TypeScript does not have visibility into how instances of the class are _initialized_. The `declare` annotation informs TypeScript that a declaration is defined somewhere else, outside its scope.
 
-2. For Ember Data Models, you will need to use the optional `?` operator on field declarations if the field is optional (`?`). See the Ember Data section of the guide for more details!
+Second, ror Ember Data Models, you will need to use the optional `?` operator on field declarations if the field is optional (`?`). See the Ember Data section of the guide for more details!
 
-3. You are responsible to write the type correctly. TypeScript does not currently use decorator information at all in its type information. If you write `@service foo` or even `@service('foo') foo`, _Ember_ knows that this resolves at runtime to the service `Foo`, but TypeScript does not and—for now—_cannot_.
+Third, _you_ are responsible to write the type correctly. TypeScript does not currently use decorator information at all in its type information. If you write `@service foo` or even `@service('foo') foo`, _Ember_ knows that this resolves at runtime to the service `Foo`, but TypeScript does not and—for now—_cannot_.
 
-   This means that you are responsible to provide this type information, and that you are responsible to make sure that the information remains correct and up to date
+This means that you are responsible to provide this type information, and that you are responsible to make sure that the information remains correct and up-to-date.
 
 For examples, see the detailed discussions of the two main places decorators are used in the framework:
 
@@ -206,7 +195,7 @@ For examples, see the detailed discussions of the two main places decorators are
 
 ## Current Limitations
 
-While TS already works nicely for many things in Ember, there are a number of corners where it _won't_ help you out. Some of them are just a matter of further work on updating the [existing typings](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/ember); others are a matter of further support landing in TypeScript itself, or changes to Ember's object model.
+While TS already works nicely for many things in Ember, there are a number of corners where it _won't_ help you out. Some of them are just a matter of further work on updating the existing typings; others are a matter of further support landing in TypeScript itself, or changes to Ember's object model.
 
 ### Some `import`s don't resolve
 
@@ -216,15 +205,11 @@ Writing these missing type definitions is a great way to pitch in! Jump in `#top
 
 ### Templates
 
-Templates are currently totally non-type-checked. This means that you lose any safety when moving into a template context, even if using a Glimmer `Component` in Ember Octane.
+Templates are currently totally non-type-checked. This means that you lose any safety when moving into a template context, even if using a Glimmer `Component` in Ember Octane. (Looking for type-checking in templates? Try [Glint]!)
 
-<!-- FIXME: Glint mention -->
+[glint]: https://typed-ember.gitbook.io/glint/
 
-### Invoking actions
-
-<!-- FIXME: Glint mention -->
-
-TypeScript won't detect a mismatch between this action and the corresponding call in the template:
+For example, TypeScript won't detect a mismatch between this action and the corresponding call in the template:
 
 ```typescript {data-filename="app/components/my-game.ts"}
 import Component from '@ember/component';
@@ -250,13 +235,14 @@ Likewise, it won't notice a problem when you use the `send` method:
 this.send('turnWheel', 'ALSO-NOT-A-NUMBER');
 ```
 
-### Hook Types
+### Hook Types and Autocomplete
 
 Let’s imagine a component which just logs the names of its arguments when it is first constructed. First, we must define the Signature and pass it into our component, then we can use the `Args` member in our Signature to set the type of `args` in the constructor:
 
+<!-- FIXME: Link to "Signatures" definition. -->
+
 ```typescript {data-filename="app/components/args-display.ts"}
 import Component from '@glimmer/component';
-import
 
 const log = console.log.bind(console);
 
@@ -271,7 +257,6 @@ export interface ArgsDisplaySignature {
 export default class ArgsDisplay extends Component<ArgsDisplaySignature> {
   constructor(owner: unknown, args: ArgsDisplaySignature['Args']) {
     super(owner, args);
-
     Object.keys(args).forEach(log);
   }
 }
@@ -280,6 +265,21 @@ export default class ArgsDisplay extends Component<ArgsDisplaySignature> {
 Notice that we have to start by calling `super` with `owner` and `args`. This may be a bit different from what you’re used to in Ember or other frameworks, but is normal for sub-classes in TypeScript today. If the compiler just accepted any `...arguments`, a lot of potentially _very_ unsafe invocations would go through. So, instead of using `...arguments`, we explicitly pass the _specific_ arguments and make sure their types match up with what the super-class expects.
 
 The types for `owner` here and `args` line up with what the `constructor` for Glimmer components expects. The `owner` is specified as `unknown` because this is a detail we explicitly _don’t_ need to know about. The `args` are the `Args` from the Signature we defined.
+
+Additionally, the types of the arguments passed to subclassed methods will _not_ autocomplete as you may expect. This is because in JavaScript, a subclass may legally override a superclass method to accept different arguments. Ember's lifecycle hooks, however, are called by the framework itself, and thus the arguments and return type should always match the superclass. Unfortunately, TypeScript does not and _cannot_ know that, so we have to provide the types directly.
+
+Accordingly, we have to provide the types for hooks ourselves:
+
+```typescript {data-filename="app/routes/my.ts"}
+import Route from '@ember/routing/route';
+import Transition from '@ember/routing/transition';
+
+export default class MyRoute extends Route {
+  beforeModel(transition: Transition) {
+    // ...
+  }
+}
+```
 
 ## Fixing the Ember Data `error TS2344` problem
 
@@ -304,24 +304,3 @@ declare module 'ember-data/types/registries/model' {
 This works because (a) we include things in your types directory automatically and (b) TypeScript will merge this module and interface declaration with the main definitions for Ember Data from DefinitelyTyped behind the scenes.
 
 If you're developing an addon and concerned that this might affect consumers, it won't. Your types directory will never be referenced by consumers at all!
-
-## Lifecycle hooks and autocomplete
-
-However, there is one thing to watch out for: the types of the arguments passed to subclassed methods will _not_ autocomplete as you may expect. This is because in JavaScript, a subclass may legally override a superclass method to accept different arguments. Ember's lifecycle hooks, however, are called by the framework itself, and thus the arguments and return type should always match the superclass. Unfortunately, TypeScript does not and _cannot_ know that, so we have to provide the types directly.
-
-Accordingly, we have to provide the types for hooks ourselves:
-
-```typescript {data-filename="app/routes/my.ts"}
-import Route from '@ember/routing/route';
-import Transition from '@ember/routing/transition';
-
-export default class MyRoute extends Route {
-  beforeModel(transition: Transition) {
-    // ...
-  }
-}
-```
-
-## ember-cli-typescript
-
-If you're migrating from `ember-cli-typescript`, particularly an older version, to Ember's out-of-the-box TypeScript support, you may also need to update your `tsconfig.json`. Current versions of `ember-cli-typescript` generate the correct config at installation. You do _not_ need to install `ember-cli-typescript` for new apps or addons.
