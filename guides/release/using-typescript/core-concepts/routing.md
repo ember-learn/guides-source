@@ -106,3 +106,27 @@ Now, our controller’s `model` property will _always_ stay in sync with the cor
     <img src="/images/mascots/zoey.png" role="presentation" alt="">
   </div>
 </div>
+
+## Controller Injections and Lookups
+
+If you are using controller injections via the `@inject` decorator from `@ember/controller`, see the ["Decorators"][decorators] documentation.
+
+[decorators]: ../../additional-resources/gotchas/#toc_decorators
+
+If you need to lookup a controller with `Owner.lookup`, you'll need to first register your controller in Ember's TypeScript Controller registry as described in ["Registries"][registries]:
+
+[registries]: ../../additional-resources/gotchas/#toc_registries
+
+```typescript {data-filename="app/controllers/heyo.ts"}
+import Controller from '@ember/controller';
+
+export default class HeyoController extends Controller {
+  //...
+}
+
+declare module '@ember/controller' {
+  interface Registry {
+    heyo: HeyoController;
+  }
+}
+```

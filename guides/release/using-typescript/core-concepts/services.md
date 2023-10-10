@@ -4,7 +4,7 @@ Ember [Services][services] are global singleton classes that can be made availab
 
 [services]: ../../../services/
 
-### A basic service
+## A Basic Service
 
 Let's take this example from the [Ember Guide](../../services/#toc_defining-services):
 
@@ -31,11 +31,14 @@ export default class ShoppingCartService extends Service {
 
 Just making this a TypeScript file gives us some type safety without having to add any additional type information. We'll see this when we use the service elsewhere in the application.
 
-### Using services
+## Using Services
 
-You can use a service in any container-resolved object such as a component or another service. Services are injected into these objects by decorating a property with the `service` decorator. Because legacy decorators can't affect the type of the property they decorate, we must manually type the property. Also, we must use the `declare` modifier to tell the TypeScript compiler to trust that this property will be set up by something outside this component—namely, the decorator.
+Ember looks up services with the `@service` decorator at runtime, using the name of the service being injected as the default value—a clever bit of metaprogramming that makes for a nice developer experience. TypeScript cannot do this, because the name of the service to inject isn't available at compile time in the same way.
 
-Here's an example using the `ShoppingCartService` we defined above in a component:
+Since legacy decorators do not have access to enough information to produce an appropriate type by themselves, we need to import and add the type explicitly. Also, we must use the [`declare`][declare] property modifier to tell the TypeScript compiler to trust that this property will be set up by something outside this component—namely, the decorator. (Learn more about using Ember's decorators with TypeScript [here][decorators].) Here's an example using the `ShoppingCartService` we defined above in a component:
+
+[declare]: https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#the-usedefineforclassfields-flag-and-the-declare-property-modifier
+[decorators]: ../../additional-resources/gotchas/#toc_decorators
 
 ```typescript {data-filename="app/components/cart-contents.ts"}
 import Component from '@glimmer/component';
@@ -81,13 +84,9 @@ import Component from '@glimmer/component';
 import { getOwner } from '@ember/owner';
 import { action } from '@ember/object';
 
-import ShoppingCartService from 'my-app/services/shopping-cart';
-
 export default class CartContentsComponent extends Component {
   get cart() {
-    return getOwner(this)?.lookup(
-      'service:shopping-cart'
-    ) as ShoppingCartService;
+    return getOwner(this)?.lookup('service:shopping-cart');
   }
 
   @action
@@ -97,26 +96,18 @@ export default class CartContentsComponent extends Component {
 }
 ```
 
-Here we need to [cast] the lookup result to `ShoppingCartService` in order to get any type-safety because the lookup return type is `any` (see caution below).
+In order for TypeScript to infer the correct type for the `ShoppingCartService` from the call to `Owner.lookup`, we must first [register][registries] the `ShoppingCartService` type with `declare module`:
 
-[cast]: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#type-assertions
+[registries]: ../../additional-resources/gotchas/#toc_registries
 
-<div class="cta">
-  <div class="cta-note">
-    <div class="cta-note-body">
-      <div class="cta-note-heading">Zoey says...</div>
-      <div class="cta-note-message">
-        <p>
-        This type-cast provides no guarantees that what is returned by the lookup is actually the service you are expecting. Because the Ember TypeScript types do not resolve the lookup micro-syntax (<code>'service:&lt;name&gt;'</code>) to the service class, a typo would result in returning something other than the specified type. It only guarantees that <i>if</i> the expected service is returned that you are using it correctly.
-        </p>
-        <p>
-        There is a merged (but not yet implemented) <a href="https://emberjs.github.io/rfcs/0585-improved-ember-registry-apis.html">RFC</a> which improves this design and makes it straightforward to type-check.
-        </p>
-        <p>
-        For now, however, remember that <i>the cast is unsafe</i>!
-        </p>
-      </div>
-    </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="">
-  </div>
-</div>
+```typescript {data-filename="app/services/shopping-cart.ts"}
+export default class ShoppingCartService extends Service {
+  //...
+}
+
+declare module '@ember/service' {
+  interface Registry {
+    'shopping-cart': ShoppingCartService;
+  }
+}
+```

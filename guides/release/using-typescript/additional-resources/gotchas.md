@@ -2,78 +2,36 @@
 
 This section covers the common details and "gotchas" of using TypeScript with Ember.
 
-## String-keyed lookups
+## Registries
 
-Ember makes heavy use of string-based APIs to allow for a high degree of dynamicism. With some limitations, you can nonetheless use TypeScript very effectively to get auto-complete/IntelliSense as well as to accurately type-check your applications.
+Ember makes heavy use of string-based APIs to allow for a high degree of dynamicism. With some [limitations][get-set], you can nonetheless use TypeScript very effectively to get auto-complete/IntelliSense as well as to accurately type-check your applications by using **registries**.
 
-A few of the most common speed-bumps are listed here to help make this easier:
+[get-set]: ../../additional-resources/legacy/#toc_classic-get-or-set-methods
 
-### Service and Controller Injections
+Here's an example defining a Shopping Cart Service in the Ember Service registry:
 
-Ember looks up services with the `@service` decorator at runtime, using the name of the service being injected as the default value—a clever bit of metaprogramming that makes for a nice developer experience. TypeScript cannot do this, because the name of the service to inject isn't available at compile time in the same way. (These same considerations apply to controller injections using the `@inject` decorator from `@ember/controller`.)
-
-Since legacy decorators do not have access to enough information to produce an appropriate type by themselves, we need to import and name the type explicitly. For example, we might have `MySession` service which defines a `login` method, defined as usual:
-
-```typescript {data-filename="app/services/my-session.ts"}
-import Service from '@ember/service';
-
-export default class MySession extends Service {
-  login(email: string, password: string): Promise<string> {
-    // login and return the confirmation message
-  }
+```typescript {data-filename="app/services/shopping-cart.ts"}
+export default class ShoppingCartService extends Service {
+  //...
 }
 
 declare module '@ember/service' {
   interface Registry {
-    'my-session': MySession;
+    'shopping-cart': ShoppingCartService;
   }
 }
 ```
 
-Then we can use the service as we usually would with a decorator, but adding a type annotation to it so TypeScript knows what it's looking at:
-
-```typescript {data-filename="app/components/user-profile.ts"}
-import Component from '@ember/component';
-import { service } from '@ember/service';
-
-import type MySession from 'my-app/services/my-session';
-
-export default class UserProfile extends Component {
-  @service declare mySession: MySession;
-
-  login(email: string, password: string) {
-    this.mySession.login(email, password);
-  }
-}
-```
-
-Note that we need the `MySession` type annotation this way, but we _don't_ need the string lookup (unless we're giving the service a different name than the usual on the class, as in Ember injections in general). Without the type annotation, the type of `session` would just be `any`. This is because legacy decorators do not modify the types of whatever they decorate. As a result, we wouldn't get any type-checking on that `session.login` call, and we wouldn't get any auto-completion either. Which would be really sad and take away a lot of the reason we're using TypeScript in the first place!
-
-Also notice [the `declare` property modifier][declare]. It tells TypeScript that the property will be configured by something outside the class (in this case, the decorator), and guarantees it emits spec-compliant JavaScript.
-
-[declare]: https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#the-usedefineforclassfields-flag-and-the-declare-property-modifier
-
-\(This also holds true for all other service injections, computed property macros, and Ember Data model attributes and relationships.)
-
-Finally, you may have noticed the `declare module` at the bottom of the example `MySession` definition:
-
-```typescript {data-filename="app/services/my-session.ts"}
-// ...
-declare module '@ember/service' {
-  interface Registry {
-    'my-session': MySession;
-  }
-}
-```
-
-This definition allows for type-safe lookups with other Ember dependency injection APIs. For example, [the `Owner.lookup` method][owner-lookup] uses this "registration"—a mapping from the string `'my-session'` to the service type, `MySession`—to provide the correct type:
+This registry definition allows for type-safe lookups with other Ember dependency injection APIs. For example, [the `Owner.lookup` method][owner-lookup] uses this "registration"—a mapping from the string `'shopping-cart'` to the service type, `ShoppingCartService`—to provide the correct type:
 
 [owner-lookup]: https://api.emberjs.com/ember/release/classes/Owner/methods/lookup?anchor=lookup
 
 ```typescript
+import type Owner from '@ember/owner';
+
 function dynamicLookup(owner: Owner) {
-  let mySession = owner.lookup('service:my-session');
-  mySession.login('tom@example.com', 'password123');
+  let cart = owner.lookup('service:shopping-cart');
+  cart.add('hamster feed');
 }
 ```
 
