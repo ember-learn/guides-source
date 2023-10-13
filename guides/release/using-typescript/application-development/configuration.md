@@ -1,4 +1,4 @@
-**Note:** 🚧 This section is under construction! 🏗️ The content here may not be fully up to date!
+**Note:** 🚧 This page is under construction! 🏗️
 
 ## `tsconfig.json`
 
@@ -20,7 +20,7 @@ If you use the `--typescript` flag when generating your Ember app, we generate a
 
 The default `tsconfig.json` extends the [`"@tsconfig/ember/tsconfig.json"`][ember-tsconfig] base, which includes TypeScript compiler options to enable TypeScript development in an Ember app plus some useful default configurations for strictness to ensure type-safety and compatibility with Ember's types.
 
-Additionally, the generated `tsconfig.json` includes [`baseUrl`][tsconfig-baseUrl] and [`paths`][tsconfig-paths] configuration specific to your app. This configuration allows Ember's classic package layout, which is not resolvable with the Node resolution algorithm, to work with TypeScript.
+Additionally, the generated `tsconfig.json` includes [`"baseUrl"`][tsconfig-baseUrl] and [`"paths"`][tsconfig-paths] configuration specific to your app. This configuration allows Ember's classic package layout, which is not resolvable with the Node resolution algorithm, to work with TypeScript.
 
 In general, you may customize your TypeScript build process as usual using the `tsconfig.json` file. There are a few things worth noting, however, if you're looking to make further or more advanced customizations (but _most_ users can just ignore this section!):
 

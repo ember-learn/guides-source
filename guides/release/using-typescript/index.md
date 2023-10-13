@@ -1,4 +1,4 @@
-**Note:** 🚧 This section is under construction! 🏗️ The content here may not be fully up to date!
+**Note:** 🚧 This page is under construction! 🏗️
 
 This guide is designed to help you get up and running with TypeScript in an Ember app.
 

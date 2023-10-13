@@ -283,12 +283,12 @@
     - title: 'Additional Resources'
       url: 'additional-resources'
       pages:
+        - title: 'Gotchas and Troubleshooting'
+          url: 'gotchas'
+        - title: 'FAQ and Tips'
+          url: 'faq'
         - title: 'Working with Ember Classic'
           url: 'legacy'
-        - title: 'TypeScript Gotchas and Troubleshooting'
-          url: 'gotchas'
-        - title: 'TypeScript FAQ and Tips'
-          url: 'faq'
 - title: 'Developer Tools'
   url: 'toc-heading_developer-tools'
   is_heading: true

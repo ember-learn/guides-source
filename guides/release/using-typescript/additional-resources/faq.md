@@ -1,51 +1,53 @@
-**Note:** 🚧 This section is under construction! 🏗️ The content here may not be fully up to date!
+**Note:** 🚧 This page is under construction! 🏗️
 
 ## What about missing types?
 
-There are two schools of thought on how to handle things you don't have types for as you go:
+### Gradually typing your app
 
-- Liberally use `any` for them and come back and fill them in later. This will let you do the strictest strictness settings but with an escape hatch that lets you say "We will come back to this when we have more idea how to handle it." This approach lets you move faster, but means you will still have lots of runtime type errors: `any` just turns the type-checker _off_ for anything touching those modules. You’ll have to come back later and clean those up, and you’ll likely have more difficult refactorings to do at that time.
+See ["Gradual Typing Hacks"][gradual-typing-hacks] for strategies for incrementally adding types to your app.
 
-- Go more slowly, but write down at least minimally accurate types as you go. (This is easier if you follow the leaves-first strategy recommended above.) This is much slower going, and can feel harder because you can’t just skip over things. Once you complete the work for any given module, though, you can be confident that everything is solid and you won’t have to revisit it in the future.
+[gradual-typing-hacks]: ../../application-development/converting-an-app/#toc_gradual-typing-hacks
 
-There is an inherent tradeoff between these two approaches; which works best will depend on your team and your app.
+### Install types for libraries
 
-### Install other types
-
-You'll want to use other type definitions as much as possible. Many packages ship their own type definitions, and many others have community-maintained definitions from [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped), available in the `@types` name space. The first thing you should do is to look for types from other addons: it will mean writing `any` a lot less and getting a lot more help both from your editor and from the compiler.
+You'll want to use library type definitions as much as possible. Many packages ship their own type definitions, and many others have community-maintained definitions from [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped), available in the `@types` name space. The first thing you should do is to look for types from other libraries: it will mean using fewer ["Gradual Typing Hacks"][gradual-typing-hacks] and getting a lot more help both from your editor and from the compiler.
 
 ### The `types` directory
 
-During installation, we create a `types` directory in the root of your application and add a `"paths"` mapping that includes that directory in any type lookups TypeScript tries to do. This is convenient for a few things:
+During installation, we create a `types` directory in the root of your application and add a [`"paths"`][tsconfig-paths] mapping to your `tsconfig.json` that includes that directory in any type lookups TypeScript tries to do. This is convenient for a few things:
 
-- global types for your package (see the next section)
-- writing types for third-party/`vendor` packages which do not have any types
-- developing types for an addon which you intend to upstream later
+[tsconfig-paths]: https://www.typescriptlang.org/tsconfig#paths
 
-These are all fallbacks, of course, you should use the types supplied directly with a package
+- global types for your project (see the next section)
+- writing types for libraries that do not have any types
 
-#### Global types for your package
+These are all fallbacks, of course, you should use the types supplied directly with a package when possible.
 
-At the root of your application or addon, we include a `types/<your app>` directory with an `index.d.ts` file in it. Anything which is part of your application but which must be declared globally can go in this file. For example, if you have data attached to the `Window` object when the page is loaded (for bootstrapping or whatever other reason), this is a good place to declare it.
+#### Global types for your project
 
-In the case of applications (but not for addons), we also automatically include declarations for Ember's prototype extensions in this `index.d.ts` file, with the `Array` prototype extensions enabled and the `Function` prototype extensions commented out. You should configure them to match your own config (which we cannot check during installation). If you are [disabling Ember's prototype extensions](https://guides.emberjs.com/v2.18.0/configuring-ember/disabling-prototype-extensions/), you can remove these declarations entirely; we include them because they're enabled in most Ember applications today.
+At the root of your application or addon, we include a `types/<your project>` directory with an `index.d.ts` file in it. Anything which is part of your project but which must be declared globally can go in this file. For example, if you have data attached to the `Window` object when the page is loaded (for bootstrapping or whatever other reason), this is a good place to declare it.
 
-We also automatically configure this to support [Glint], which makes type checking work with Ember's templates. The default configuration only supports Ember's classic pairing of separate `.ts` and `.hbs` files, but Glint also supports the `<template>` format with `.gts` files. See the [corresponding package README][glint-environment-ember-template-imports] for more details. (Once Ember enables `<template>` by default, so will our Glint configuration!)
+We automatically configure `index.d.ts` to be ready for [Glint], which will make type checking work with Ember's templates. The default configuration only supports Ember's classic pairing of separate `.ts` and `.hbs` files, but Glint also supports the `<template>` format with `.gts` files. See the [corresponding package README][glint-environment-ember-template-imports] for more details. (Once Ember enables `<template>` by default, so will our Glint configuration!)
 
 [glint]: https://typed-ember.gitbook.io/glint
 [glint-environment-ember-template-imports]: https://github.com/typed-ember/glint/tree/main/packages/environment-ember-template-imports#readme
 
-#### Environment configuration typings
+### Environment configuration typings
 
-Along with the @types/ files mentioned above, ember-cli-typescript adds a starter interface for `config/environment.js` in `app/config/environment.d.ts`. This interface will likely require some changes to match your app.
+Along with the `@types/` files mentioned above, we add a starter interface for `config/environment.js` in `app/config/environment.d.ts`. This interface will likely require some changes to match your app.
 
 We install this file because the actual `config/environment.js` is (a) not actually identical with the types as you inherit them in the content of an application, but rather a superset of what an application has access to, and (b) not in a the same location as the path at which you look it up. The actual `config/environment.js` file executes in Node during the build, and Ember CLI writes its result as `<my-app>/config/environment` into your build for consumption at runtime.
 
 ## Type Narrowing with Ember Debug Assert
 
-<!-- TODO: assert from @ember/debug -->
+Ember's `assert` function from `@ember/debug` is super useful for "type narrowing"[type-narrowing]—TypeScript’s process of refining types to more specific types than originally declared. If you’re not familiar with `assert`, you might want to take a look at its [API docs][debug-assert]! It’s a development-and-test-only helper that gets stripped from production builds, and is very helpful for this kind of thing!
 
-The type is an array of `unknown` because, unless you are using Glint, we don’t have any way to make templates aware of the information in this definition—so users could pass in _anything_. We can work around this using [type narrowing](https://www.typescriptlang.org/docs/handbook/2/narrowing.html)—TypeScript’s process of refining types to more specific types than originally declared.
+[type-narrowing]: https://www.typescriptlang.org/docs/handbook/2/narrowing.html
+[debug-assert]: https://api.emberjs.com/ember/release/functions/@ember%2Fdebug/assert
+
+For example, let's pretend we're writing an addon that provides a `totalLength` helper to tally up the total length of an array of strings passed to it. Because addon authors cannot guarantee that their users will be using TypeScript, we've typed the positional arguments as an array of `unknown` so that TypeScript will ensure we've handled every possible valid or invalid argument a user might pass.
+
+We can use `assert` to ensure that if a user passes an array containing non-string values, our addon will error in tests and development.
 
 ```typescript
 import { assert } from '@ember/debug';
@@ -61,9 +63,18 @@ function totalLength(positional: unknown[]) {
 }
 ```
 
-Here we’re using the `assert` from `@ember/debug`. If you’re not familiar with it, you might want to take a look at its [API docs](https://api.emberjs.com/ember/3.14/functions/@ember%2Fdebug/assert)! It’s a development-and-test-only helper that gets stripped from production builds, and is very helpful for this kind of thing!
+And, the types for `assert` ensure that TypeScript can use the condition you pass to properly narrow the types, because `assert` is typed as an [assertion function][assertion-function].
 
-### Strictness
+```typescript
+export interface AssertFunc {
+  (desc: string, condition: unknown): asserts condition;
+  (desc: string): never;
+}
+```
+
+[assertion-function]: https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#assertion-functions
+
+## Strictness
 
 You can enable TypeScript's current strictest configuration by including the `@tsconfig/strictest` base _before_ the `@tsconfig/ember` base in your `tsconfig.json`:
 

@@ -1,4 +1,4 @@
-**Note:** 🚧 This section is under construction! 🏗️ The content here may undergo significant revision in the months ahead!
+**Note:** 🚧 This page is under construction! 🏗️ The content here may undergo significant revision in the months ahead!
 
 In Ember templates, **“invokables”** are things you can _invoke_ in a template. These include [components], [helpers], and [modifiers].
 

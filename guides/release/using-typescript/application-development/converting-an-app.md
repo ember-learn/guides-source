@@ -1,4 +1,4 @@
-**Note:** 🚧 This section is under construction! 🏗️ The content here may not be fully up to date!
+**Note:** 🚧 This page is under construction! 🏗️
 
 These directions are for converting an _existing_ Ember app to TypeScript. If you are starting a new app, you can use the directions in [Getting Started].
 

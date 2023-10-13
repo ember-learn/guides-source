@@ -1,4 +1,4 @@
-**Note:** 🚧 This section is under construction! 🏗️ The content here may not be fully up to date!
+**Note:** 🚧 This page is under construction! 🏗️
 
 In the rest of this guide, we emphasize the happy path of working with Ember in the [Octane Edition](https://emberjs.com/editions/octane/). However, there are times you’ll need to understand these details:
 
@@ -191,3 +191,16 @@ In general, the `this.get` and `this.set` methods on `EmberObject` subclasses an
 Since regular property access “just works”, you should migrate to using normal property access instead. TypeScript will help make this a smooth process by identifying where you need to handle null and undefined intermediate properties.
 
 In the few cases where you _do_ need to use `get`, you can chain `get` calls instead of using deep key lookups. So `this.get('a.b.c')` becomes `this.get('a').get('b').get('c')`. In reality, though, it's unlikely you've got that many nested proxies, so the code might end up looking more like `this.get('a').b.c`.
+
+## Prototype Extensions
+
+You can enable types for Ember's prototype extensions by adding the following to your [global types][global-types]:
+
+```typescript {data-filename="types/global.d.ts"}
+declare global {
+  interface Array<T> extends Ember.ArrayPrototypeExtensions<T> {}
+  interface Function extends Ember.FunctionPrototypeExtensions {}
+}
+```
+
+[global-types]: ../../additional-resources/faq/#toc_global-types-for-your-project

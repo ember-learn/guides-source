@@ -1,4 +1,4 @@
-**Note:** 🚧 This section is under construction! 🏗️ The content here may undergo significant revision in the months ahead!
+**Note:** 🚧 This page is under construction! 🏗️ The content here may undergo significant revision in the months ahead!
 
 In the next sections, we will cover how to use TypeScript effectively with specific Ember.js APIs.
 
