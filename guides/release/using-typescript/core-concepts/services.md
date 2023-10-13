@@ -1,12 +1,10 @@
-**Note:** 🚧 This page is under construction! 🏗️ The content here may undergo significant revision in the months ahead!
+**Note:** 🚧 This page is under construction! 🏗️
 
-Ember [Services][services] are global singleton classes that can be made available to different parts of an Ember application via dependency injection. Due to their global, shared nature, writing services in TypeScript gives you a build-time-enforcable API for some of the most central parts of your application.
-
-[services]: ../../../services/
+Ember [Services] are global singleton classes that can be made available to different parts of an Ember application via dependency injection. Due to their global, shared nature, writing services in TypeScript gives you a build-time-enforceable API for some of the most central parts of your application.
 
 ## A Basic Service
 
-Let's take this example from the [Ember Guide](../../services/#toc_defining-services):
+Let's take this example from the [Ember Guide][example-location]:
 
 ```typescript {data-filename="app/services/shopping-cart.ts"}
 import Service from '@ember/service';
@@ -36,9 +34,6 @@ Just making this a TypeScript file gives us some type safety without having to a
 Ember looks up services with the `@service` decorator at runtime, using the name of the service being injected as the default value—a clever bit of metaprogramming that makes for a nice developer experience. TypeScript cannot do this, because the name of the service to inject isn't available at compile time in the same way.
 
 Since legacy decorators do not have access to enough information to produce an appropriate type by themselves, we need to import and add the type explicitly. Also, we must use the [`declare`][declare] property modifier to tell the TypeScript compiler to trust that this property will be set up by something outside this component—namely, the decorator. (Learn more about using Ember's decorators with TypeScript [here][decorators].) Here's an example using the `ShoppingCartService` we defined above in a component:
-
-[declare]: https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#the-usedefineforclassfields-flag-and-the-declare-property-modifier
-[decorators]: ../../additional-resources/gotchas/#toc_decorators
 
 ```typescript {data-filename="app/components/cart-contents.ts"}
 import Component from '@glimmer/component';
@@ -98,8 +93,6 @@ export default class CartContentsComponent extends Component {
 
 In order for TypeScript to infer the correct type for the `ShoppingCartService` from the call to `Owner.lookup`, we must first [register][registries] the `ShoppingCartService` type with `declare module`:
 
-[registries]: ../../additional-resources/gotchas/#toc_registries
-
 ```typescript {data-filename="app/services/shopping-cart.ts"}
 export default class ShoppingCartService extends Service {
   //...
@@ -111,3 +104,14 @@ declare module '@ember/service' {
   }
 }
 ```
+
+<!-- Internal links -->
+
+[example-location]: ../../../services/#toc_defining-services
+[decorators]: ../../additional-resources/gotchas/#toc_decorators
+[registries]: ../../additional-resources/gotchas/#toc_registries
+[services]: ../../../services/
+
+<!-- External links -->
+
+[declare]: https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#the-usedefineforclassfields-flag-and-the-declare-property-modifier

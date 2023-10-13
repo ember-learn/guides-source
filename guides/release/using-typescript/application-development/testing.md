@@ -116,8 +116,6 @@ interface Context extends TestContext {
 
 Then, in every `test` callback, we need to specify the [`this` type][this]:
 
-[this]: https://www.typescriptlang.org/docs/handbook/2/functions.html#declaring-this-in-a-function
-
 ```typescript
 test('...', function (this: Context, assert) {});
 ```
@@ -198,8 +196,6 @@ export function add(a, b) {
 
 Note that before we add `b` to `a`, we first check that both values are numbers using [`assert` from `@ember/debug`][assert].
 
-[assert]: ../../additional-resources/faq/#toc_type-narrowing-with-ember-debug-assert
-
 The test for our function might look something like this:
 
 ```javascript {data-filename="tests/unit/utils/math-test.js"}
@@ -253,8 +249,6 @@ module('the `add` function', function (hooks) {
 
 Note, however, that only _app code_ can omit this category of tests. If you're writing an Ember addon (or any other library), you cannot assume that everyone consuming your code is using TypeScript, so you still need to account for these kinds of cases.
 
-[any]: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#any
-
 Let's return to our silly example with an `add` function. Our setup will look a lot like it did in the JavaScript-only example—but with some extra type coercions along the way so that we can invoke it the way JavaScript-only users might.
 
 First, notice that in this case we’ve added back in our `assert` in the body of the function. The inputs to our function here will get checked for us by any TypeScript users, but this way we are still doing the work of helping out our JavaScript users.
@@ -300,4 +294,12 @@ module('the `add` function', function (hooks) {
 });
 ```
 
+<!-- Internal links -->
+
+[assert]: ../../additional-resources/faq/#toc_type-narrowing-with-ember-debug-assert
 [testing]: ../../../testing/
+
+<!-- External links -->
+
+[any]: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#any
+[this]: https://www.typescriptlang.org/docs/handbook/2/functions.html#declaring-this-in-a-function

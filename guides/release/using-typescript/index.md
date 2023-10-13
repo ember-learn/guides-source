@@ -2,35 +2,16 @@
 
 This guide is designed to help you get up and running with TypeScript in an Ember app.
 
-<div class="cta">
-  <div class="cta-note">
-    <div class="cta-note-body">
-      <div class="cta-note-heading">Zoey says...</div>
-      <div class="cta-note-message">
-        <p>
-        This is <i>not</i> an introduction to TypeScript <i>or</i> Ember. Throughout this guide, we’ll link back to <a href="https://www.typescriptlang.org/docs/">the TypeScript docs</a> and <a href="../getting-started">the Ember Guides</a> when there are specific concepts that we will not explain here but which are important for understanding what we’re covering!
-        </p>
-      </div>
-    </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="">
-  </div>
-</div>
+This is _not_ an introduction to TypeScript _or_ Ember. Throughout this guide, we’ll link back to [the TypeScript docs][typescript-docs] and [the Ember Guides][ember-guides] when there are specific concepts that we will not explain here but which are important for understanding what we’re covering!
 
-To get started, check out the instructions in [Getting Started with TypeScript](./getting-started)
+Not sure where to get started? Here's an overview of the content within:
 
-<!-- FIXME: Link -->
-
-- If you're totally new to using TypeScript with Ember, start with [TypeScript and Ember](./ember).
-<!-- FIXME: Link -->
-- Once you have a good handle on the basics, you can dive into the guides to working with the APIs specific to [Ember](./ember/README.md) and [EmberData](./ember-data/README.md).
-<!-- FIXME: Link -->
-- If you're working with legacy (pre-Octane) Ember and TypeScript together, you should read [the Legacy Guide](./legacy).
-<!-- TODO: Bring in glint docs once glint advances to recommended. -->
-- Looking for type-checking in Glimmer templates? Check out [Glint](https://typed-ember.gitbook.io/glint/).
-- Not ready to switch to TypeScript? You can get many of TypeScript's benefits by [adding types with JSDoc comments][types-with-jsdoc]. We'll talk a bit about this over in the [Signatures](./signatures) section.
-<!-- FIXME: Link to gts docs? -->
-
-[types-with-jsdoc]: https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html
+- If you're totally new to using TypeScript with Ember, start with [Core Concepts: TypeScript and Ember][core-concepts].
+- To create a new Ember app or addon with TypeScript, check out [Getting Started with TypeScript][getting-started] and [Building Addons in TypeScript][addons].
+- If you're looking to convert an existing Ember app to TypeScript, check out [Converting an Existing Ember App to TypeScript][converting-an-app].
+- If you're working with legacy (pre-Octane) Ember and TypeScript together, you should read [TypeScript and Ember Classic][legacy].
+- Not ready to switch to TypeScript? You can get many of TypeScript's benefits by [adding types with JSDoc comments][types-with-jsdoc]. We'll talk a bit about this over in the [Signatures] section.
+- Looking for type-checking in Ember templates? Check out [Glint].
 
 ## Why TypeScript?
 
@@ -38,10 +19,27 @@ What is TypeScript, and why should you adopt it?
 
 > TypeScript is a strongly typed programming language that builds on JavaScript, giving you better tooling at any scale.
 >
-> — [typescriptlang.org](http://www.typescriptlang.org)
+> — [typescriptlang.org][typescript]
 
 TypeScript lets you build _ambitious web applications_ with confidence—so it’s a perfect fit for Ember apps!
 
 - Get rid of `undefined is not a function` and `null is not an object` once and for all.
 - Enjoy API docs… that are always up-to-date.
 - Experience better developer productivity through top-notch editor support, including incredible autocomplete, guided refactoring, automatic imports, and more.
+
+<!-- Internal links -->
+
+[addons]: ./application-development/addons/
+[converting-an-app]: ./application-development/converting-an-app
+[core-concepts]: ./core-concepts
+[ember-guides]: ..
+[getting-started]: ./getting-started
+[legacy]: ./additional-resources/legacy
+[signatures]: ./core-concepts/invokables/#toc_signature-basics
+
+<!-- External links -->
+
+[glint]: https://typed-ember.gitbook.io/glint/
+[types-with-jsdoc]: https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html
+[typescript]: http://www.typescriptlang.org
+[typescript-docs]: https://www.typescriptlang.org/docs/

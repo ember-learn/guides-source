@@ -2,7 +2,7 @@
 
 ## Create a New TypeScript Application
 
-To start a new Ember project with TypeScript, add the `--typescript` flag when you run [`ember new`](../../getting-started/quick-start):
+To start a new Ember project with TypeScript, add the `--typescript` flag when you run [`ember new`][ember-new]:
 
 ```shell
 ember new my-typescript-app --typescript
@@ -28,7 +28,7 @@ In addition to the usual packages added with `ember new`, the following packages
 - `@types/qunit`
 - `@types/rsvp`
 
-The `typescript` package provides tooling to support TypeScript type checking and compilation. The `@types` packages from [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) provide TypeScript type definitions for all of the Ember and EmberData modules.
+The `typescript` package provides tooling to support TypeScript type checking and compilation. The `@types` packages from [DefinitelyTyped] provide TypeScript type definitions for all of the Ember and EmberData modules.
 
 <div class="cta">
   <div class="cta-note">
@@ -46,11 +46,9 @@ The `typescript` package provides tooling to support TypeScript type checking an
 
 In addition to the usual files added with `ember new`, we also add:
 
-- [`tsconfig.json`](../application-development/configuration/#toc_tsconfig)
-<!-- FIXME: Link -->
-- `types/global.d.ts` – the location for any global type declarations you need to write for your own application; see [**Using TS Effectively: Global types for your package**](https://github.com/typed-ember/ember-cli-typescript/tree/3a434def8b8c8214853cea0762940ccedb2256e8/docs/getting-started/docs/ts/using-ts-effectively/README.md#global-types-for-your-package) for information on its default contents and how to use it effectively
-<!-- FIXME: Link -->
-- `app/config/environment.d.ts` – a basic set of types defined for the contents of the `config/environment.js` file in your app; see [Environment and configuration typings](installation.md#environment-and-configuration-typings) for details
+- [`tsconfig.json`][tsconfig] – configuration to set up TypeScript for your project
+- [`types/global.d.ts`][global-types] – the location for any global type declarations you need to write
+- [`app/config/environment.d.ts`][environment-types] – a basic set of types defined for the contents of your `config/environment.js` file
 
 Additionally:
 
@@ -63,4 +61,14 @@ Additionally:
 
 To convert an existing app to TypeScript, you'll need to make the changes described above manually (for now). To facilitate this, we've included a guide [here][converting].
 
+<!-- Internal links -->
+
 [converting]: ../application-development/converting-an-app/
+[ember-new]: ../../getting-started/quick-start
+[environment-types]: ../additional-resources/faq/#toc_environment-configuration-typings
+[global-types]: ../additional-resources/faq/#toc_global-types-for-your-project
+[tsconfig]: ../application-development/configuration/#toc_tsconfigjson
+
+<!-- External links -->
+
+[DefinitelyTyped]: https://github.com/DefinitelyTyped/DefinitelyTyped

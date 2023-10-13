@@ -1,6 +1,6 @@
 **Note:** 🚧 This page is under construction! 🏗️
 
-In the rest of this guide, we emphasize the happy path of working with Ember in the [Octane Edition](https://emberjs.com/editions/octane/). However, there are times you’ll need to understand these details:
+In the rest of this guide, we emphasize the happy path of working with Ember in the [Octane Edition][octane]. However, there are times you’ll need to understand these details:
 
 1. Most existing applications make heavy use of the pre-Octane (“legacy”) Ember programming model, and we support that model—with caveats.
 2. Several parts of Ember Octane (specifically: routes, controllers, services, and class-based helpers) continue to use these concepts under the hood, and our types support that—so understanding them may be important at times.
@@ -11,16 +11,11 @@ The rest of this page is dedicated to helping you understand how Ember's types a
 
 Many of the same considerations as discussed in the [TypeScript Guides for Glimmer Components][components] apply to classic Ember Components. However, there are several additional considerations:
 
-[components]: ../../core-concepts/invokables/#toc_glimmer_components
-
 - Classic Ember Components support both named and positional arguments. If you supply `Args` in the component signature as an object shape the same way you would for a Glimmer component, those arguments will be treated as _named_ arguments. If you are using _positional_ arguments, you must specify the `Positional` key in the `Args` interface and specify any named arguments under the `Named` key.
 
 - Classic Ember component arguments are merged with the properties on the class, rather than being supplied separately as `this.args`. As a result, they require more boilerplate to incorporate: we must use [interface merging][merge] to represent that the arguments and the properties of the class are the same. (This also means that there is no support for type-powered completion with JSDoc for classic Ember Components, because TypeScript does not support interface merging with JSDoc.)
 
-- The `Element` for a classic Ember component should be the same as [the `tagName`][tagName] for the component—but this is not type-checked.
-
-[merge]: https://www.typescriptlang.org/docs/handbook/declaration-merging.html#merging-interfaces
-[tagName]: https://api.emberjs.com/ember/5.2/classes/Component#43-property
+- The `Element` for a classic Ember component should be the same as the [`tagName`][tagName] for the component—but this is not type-checked.
 
 If the `AudioPlayer` component shown above were a classic Ember component, we would define its signature and backing class like this:
 
@@ -97,8 +92,6 @@ export default class AudioPlayer extends Component<AudioPlayerSignature> {
 
 In general, while we do support classic Ember Components for the sake of backwards compatibility and migration, we strongly recommend that you [migrate away from classic Ember Components][migrating-from-classic-components] to Glimmer Components.
 
-[migrating-from-classic-components]: ../../../upgrading/current-edition/glimmer-components/
-
 ## EmberObject
 
 When working with the legacy Ember object model, `EmberObject`, there are a number of caveats and limitations you need to be aware of. For today, these caveats and limitations apply to any classes which extend directly from `EmberObject`, or which extend classes which _themselves_ extend `EmberObject`.
@@ -119,15 +112,11 @@ The Ember mixin system is the legacy Ember construct TypeScript supports _least_
 
 As a stopgap, you can refer to the type of a mixin using the `typeof` operator. In general, however, we strongly recommend you [migrate away from mixins][migrate-from-mixins] before attempting to convert code which relies on them to TypeScript.
 
-[migrate-from-mixins]: ../../../upgrading/current-edition/native-classes/#toc_mixins
-
 ### Classic Class Syntax
 
 While this may not be intuitively obvious, the classic class syntax simply _is_ the mixin system. Every classic class creation is a case of mixing together multiple objects to create a new base class with a shared prototype. The result is that any time you see the classic `.extend({ ... })` syntax, regardless of whether there is a named mixin involved, you are dealing with Ember's legacy mixin system. This in turn means that you are dealing with the parts of Ember which TypeScript is _least_ able to handle well.
 
 While we describe here how to use types with classic (mixin-based) classes insofar as they _do_ work, there are many failure modes. As a result, we strongly recommend you [migrate away from classic classes][migrating-from-classic-classes] as quickly as possible. This is the direction the Ember ecosystem as a whole is moving, but it is _especially_ important for TypeScript users.
-
-[migrating-from-classic-classes]: http://localhost:4200/release/upgrading/current-edition/native-classes/
 
 ## Computed Properties
 
@@ -154,8 +143,6 @@ export default class UserProfile extends Component {
 ```
 
 Note that it is impossible for `@computed` to know whether the keys you pass to it are allowed or not. For this reason, we recommend you [migrate away from computed properties][migrate-from-computed].
-
-[migrate-from-computed]: ../../../upgrading/current-edition/tracked-properties/
 
 ### Callback form
 
@@ -203,4 +190,17 @@ declare global {
 }
 ```
 
+<!-- Internal links -->
+
+[components]: ../../core-concepts/invokables/#toc_glimmer-components
 [global-types]: ../../additional-resources/faq/#toc_global-types-for-your-project
+[migrate-from-computed]: ../../../upgrading/current-edition/tracked-properties/
+[migrate-from-mixins]: ../../../upgrading/current-edition/native-classes/#toc_mixins
+[migrating-from-classic-classes]: http://localhost:4200/release/upgrading/current-edition/native-classes/
+[migrating-from-classic-components]: ../../../upgrading/current-edition/glimmer-components/
+
+<!-- External links -->
+
+[merge]: https://www.typescriptlang.org/docs/handbook/declaration-merging.html#merging-interfaces
+[octane]: https://emberjs.com/editions/octane/
+[tagName]: https://api.emberjs.com/ember/release/classes/Component#html-tag

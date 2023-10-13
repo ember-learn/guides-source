@@ -6,17 +6,13 @@
 
 See ["Gradual Typing Hacks"][gradual-typing-hacks] for strategies for incrementally adding types to your app.
 
-[gradual-typing-hacks]: ../../application-development/converting-an-app/#toc_gradual-typing-hacks
-
 ### Install types for libraries
 
-You'll want to use library type definitions as much as possible. Many packages ship their own type definitions, and many others have community-maintained definitions from [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped), available in the `@types` name space. The first thing you should do is to look for types from other libraries: it will mean using fewer ["Gradual Typing Hacks"][gradual-typing-hacks] and getting a lot more help both from your editor and from the compiler.
+You'll want to use library type definitions as much as possible. Many packages ship their own type definitions, and many others have community-maintained definitions from [DefinitelyTyped], available in the `@types` name space. The first thing you should do is to look for types from other libraries: it will mean using fewer ["Gradual Typing Hacks"][gradual-typing-hacks] and getting a lot more help both from your editor and from the compiler.
 
 ### The `types` directory
 
 During installation, we create a `types` directory in the root of your application and add a [`"paths"`][tsconfig-paths] mapping to your `tsconfig.json` that includes that directory in any type lookups TypeScript tries to do. This is convenient for a few things:
-
-[tsconfig-paths]: https://www.typescriptlang.org/tsconfig#paths
 
 - global types for your project (see the next section)
 - writing types for libraries that do not have any types
@@ -29,9 +25,6 @@ At the root of your application or addon, we include a `types/<your project>` di
 
 We automatically configure `index.d.ts` to be ready for [Glint], which will make type checking work with Ember's templates. The default configuration only supports Ember's classic pairing of separate `.ts` and `.hbs` files, but Glint also supports the `<template>` format with `.gts` files. See the [corresponding package README][glint-environment-ember-template-imports] for more details. (Once Ember enables `<template>` by default, so will our Glint configuration!)
 
-[glint]: https://typed-ember.gitbook.io/glint
-[glint-environment-ember-template-imports]: https://github.com/typed-ember/glint/tree/main/packages/environment-ember-template-imports#readme
-
 ### Environment configuration typings
 
 Along with the `@types/` files mentioned above, we add a starter interface for `config/environment.js` in `app/config/environment.d.ts`. This interface will likely require some changes to match your app.
@@ -40,10 +33,7 @@ We install this file because the actual `config/environment.js` is (a) not actua
 
 ## Type Narrowing with Ember Debug Assert
 
-Ember's `assert` function from `@ember/debug` is super useful for "type narrowing"[type-narrowing]—TypeScript’s process of refining types to more specific types than originally declared. If you’re not familiar with `assert`, you might want to take a look at its [API docs][debug-assert]! It’s a development-and-test-only helper that gets stripped from production builds, and is very helpful for this kind of thing!
-
-[type-narrowing]: https://www.typescriptlang.org/docs/handbook/2/narrowing.html
-[debug-assert]: https://api.emberjs.com/ember/release/functions/@ember%2Fdebug/assert
+Ember's `assert` function from `@ember/debug` is super useful for ["type narrowing"][type-narrowing]—TypeScript’s process of refining types to more specific types than originally declared. If you’re not familiar with `assert`, you might want to take a look at its [API docs][debug-assert]! It’s a development-and-test-only helper that gets stripped from production builds, and is very helpful for this kind of thing!
 
 For example, let's pretend we're writing an addon that provides a `totalLength` helper to tally up the total length of an array of strings passed to it. Because addon authors cannot guarantee that their users will be using TypeScript, we've typed the positional arguments as an array of `unknown` so that TypeScript will ensure we've handled every possible valid or invalid argument a user might pass.
 
@@ -72,8 +62,6 @@ export interface AssertFunc {
 }
 ```
 
-[assertion-function]: https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#assertion-functions
-
 ## Strictness
 
 You can enable TypeScript's current strictest configuration by including the `@tsconfig/strictest` base _before_ the `@tsconfig/ember` base in your `tsconfig.json`:
@@ -87,3 +75,17 @@ You can enable TypeScript's current strictest configuration by including the `@t
   // ...
 }
 ```
+
+<!-- Internal links -->
+
+[gradual-typing-hacks]: ../../application-development/converting-an-app/#toc_gradual-typing-hacks
+
+<!-- External links -->
+
+[assertion-function]: https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#assertion-functions
+[debug-assert]: https://api.emberjs.com/ember/release/functions/@ember%2Fdebug/assert
+[DefinitelyTyped]: https://github.com/DefinitelyTyped/DefinitelyTyped
+[glint-environment-ember-template-imports]: https://github.com/typed-ember/glint/tree/main/packages/environment-ember-template-imports#readme
+[glint]: https://typed-ember.gitbook.io/glint
+[tsconfig-paths]: https://www.typescriptlang.org/tsconfig#paths
+[type-narrowing]: https://www.typescriptlang.org/docs/handbook/2/narrowing.html

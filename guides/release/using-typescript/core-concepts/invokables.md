@@ -1,14 +1,8 @@
-**Note:** 🚧 This page is under construction! 🏗️ The content here may undergo significant revision in the months ahead!
+**Note:** 🚧 This page is under construction! 🏗️
 
 In Ember templates, **“invokables”** are things you can _invoke_ in a template. These include [components], [helpers], and [modifiers].
 
-[components]: ../../components/introducing-components
-[helpers]: ../../components/helper-functions
-[modifiers]: ../../components/template-lifecycle-dom-and-modifiers
-
 The same way that functions have [signatures][fn-sig] which define the arguments they take and the values they return, so do Ember template invokables.
-
-[fn-sig]: https://developer.mozilla.org/en-US/docs/Glossary/Signature/Function
 
 In this chapter, we will walk through how to use TypeScript with each type of invokable. But first, we'll discuss signatures in more detail.
 
@@ -41,9 +35,7 @@ interface InvokableSignature {
 }
 ```
 
-Ember uses the signature to provide both editor support for the invokable with TypeScript and [Glint][glint] and documentation using any tool which understands type annotations or JSDoc.
-
-[glint]: https://github.com/typed-ember/glint
+Ember uses the signature to provide both editor support for the invokable with TypeScript and [Glint] and documentation using any tool which understands type annotations or JSDoc.
 
 A few things to note about these signatures:
 
@@ -66,9 +58,9 @@ Glimmer Components are defined in one of three ways:
 - with a template and a backing class,
 - or with only a backing class (i.e. a [provider component][provider-component]).
 
-[provider-component]: ../../tutorial/part-2/provider-components/ 'As always, you should start by reading and understanding the [Ember Guide on Components][components]!'
+As always, you should start by reading and understanding the [Ember Guide on Components][components]!
 
-When using a backing class, you get a first-class experience using TypeScript with a component signature. For type-checking Glimmer templates as well, see [Glint](https://typed-ember.gitbook.io/glint/).
+When using a backing class, you get a first-class experience using TypeScript with a component signature. For type-checking Glimmer templates as well, see [Glint].
 
 The normal form of a Glimmer component signature is:
 
@@ -87,10 +79,7 @@ interface ComponentSignature {
 This signature handles all aspects of a Glimmer component: its arguments, any blocks it yields, and the element to which it will apply `...attributes`.
 
 For example, consider the `AudioPlayer` described in the
-[Communicating Between Elements in a Component][section] of the [Template Lifecycle, DOM, and Modifiers guide][guide].
-
-[section]: ../../components/template-lifecycle-dom-and-modifiers/#toc_communicating-between-elements-in-a-component
-[guide]: ../../components/template-lifecycle-dom-and-modifiers/
+[Communicating Between Elements in a Component][audio-player-section] of the [Template Lifecycle, DOM, and Modifiers guide][modifiers].
 
 There, we defined component which accepted a `srcUrl` argument and used a `play-when` modifier to manage the behavior of the element:
 
@@ -197,8 +186,6 @@ export default class AudioPlayer extends Component<AudioPlayerSignature> {
 
 We can also let the user provide a fallback for the case where the audio element does not load, using the default block. We have to name the default block explicitly in the new `Blocks` type we add to our signature. Since blocks yield out a list of items, we can use a [tuple type][tuple] to represent them. In this case, we will just yield out the same URL we loaded, to let the caller use it for the fallback.
 
-[tuple]: https://www.typescriptlang.org/docs/handbook/2/objects.html#tuple-types
-
 ```typescript {data-filename="app/components/audio-player.ts" data-diff="+10,+11,+12"}
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
@@ -240,7 +227,7 @@ export default class AudioPlayer extends Component<AudioPlayerSignature> {
 <button type='button' {{on 'click' this.pause}}>Pause</button>
 ```
 
-Let’s go one step further and switch to supporting for two [named blocks][nb]: an optional `title` block for a caption for the audio element, and a `fallback` block for the audio fallback where we previously used a `default` block.
+Let’s go one step further and switch to supporting for two [named blocks][named-blocks]: an optional `title` block for a caption for the audio element, and a `fallback` block for the audio fallback where we previously used a `default` block.
 
 ```handlebars {data-filename="app/components/audio-player.hbs" data-diff="+1,+2,+3,+4,+5,-7,+8"}
 <figure>
@@ -259,8 +246,6 @@ Let’s go one step further and switch to supporting for two [named blocks][nb]:
 ```
 
 To represent this, we will update the `default` block to be named `fallback` instead and add the `title` block. We do not yield anything to the `title` block, so we use an empty tuple, `[]`, to represent it.
-
-[nb]: ../../components/block-content/
 
 ```typescript {data-filename="app/components/audio-player.ts" data-diff="-11,+12,+13"}
 import Component from '@glimmer/component';
@@ -343,8 +328,6 @@ export default class AudioPlayer extends Component {
 ## Classic Ember Components
 
 See ["Working With Ember Classic"][classic-components].
-
-[classic-components]: ../../additional-resources/legacy/#toc_classic-ember-components
 
 ## Helpers
 
@@ -518,7 +501,9 @@ export default class Format extends Helper<FormatSignature> {
 
 Unfortunately, TypeScript does not infer the types for class methods like this. As a result, we have to write out the full types for the method, and have to keep these definitions in sync manually.
 
-From a type checking perspective, these types must be _compatible_ with the types in the signature, though they do not have to be identical. Glint will type check that any types you write to make sure they are compatible. The rule for “compatibility” here is that your function signature types must be more general (“wider” in TypeScript terms) than the corresponding parts of the signature type.
+From a type checking perspective, these types must be _compatible_ with the types in the signature, though they do not have to be identical. The rule for “compatibility” here is that your function signature types must be more general (“wider” in TypeScript terms) than the corresponding parts of the signature type.
+
+<!-- TODO: Glint will type check that any types you write to make sure they are compatible. -->
 
 For example, we could define the type of the positional arguments in the method body as `Array<unknown>` instead of `[string]`, while keeping the original signature’s `Positional: [string]`:
 
@@ -529,8 +514,6 @@ For example, we could define the type of the positional arguments in the method 
 ```
 
 Because the signature set on the class, callers would still have to pass a single string argument, but we would need to change the behavior of the body to [narrow the type][narrowing] for the first item in the array.
-
-[narrowing]: http://www.typescriptlang.org/docs/handbook/2/narrowing.html
 
 Accordingly, the best practice is to keep the types matching.
 
@@ -660,14 +643,10 @@ Notice that we can just skip the positional arguments entirely in this case, and
 We can also define signatures in more complicated ways using more advanced TypeScript features.
 Nearly anything you can do with a “regular” TypeScript function or class, you can also do with signatures for Glimmer invokables.
 We can make a component accept a [generic][generic] type, or use [union][union] types.
-With these tools at our disposal, we can even define our signatures to [make illegal states unrepresentable][illegal].
+With these tools at our disposal, we can even define our signatures to [make illegal states un-representable][illegal].
 
 To see this in practice, consider a list component which yields back out instances of the same type it provides, and provides the appropriate element target based on a `type` argument.
 Yielding back out the same type passed in will use generics, and providing an appropriate element target for `...attributes` can use a union type.
-
-[generic]: https://www.typescriptlang.org/docs/handbook/2/generics.html
-[union]: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#union-types
-[illegal]: https://v5.chriskrycho.com/journal/making-illegal-states-unrepresentable-in-ts/
 
 Here is how that might look, using a class-backed component rather than a template-only component, since the only places TypeScript allows us to name new generic types are on functions and classes:
 
@@ -734,3 +713,23 @@ The same approach with generics works for class-based helpers and class-based mo
 Function-based helpers as and modifiers can also use generics, but by using them on the function definition rather than via a signature.
 One caveat: particularly complicated union types in signatures can sometimes become too complex for Glint/TypeScript to resolve when invoking in a template.
 In those cases, your best bet is to find a simpler way to structure the types while preserving type safety.
+
+<!-- Internal links -->
+
+[audio-player-section]: ../../../components/template-lifecycle-dom-and-modifiers/#toc_communicating-between-elements-in-a-component
+[classic-components]: ../../additional-resources/legacy/#toc_classic-ember-components
+[components]: ../../../components/introducing-components
+[helpers]: ../../../components/helper-functions
+[modifiers]: ../../../components/template-lifecycle-dom-and-modifiers
+[named-blocks]: ../../../components/block-content/
+[provider-component]: ../../../tutorial/part-2/provider-components/
+
+<!-- External links -->
+
+[fn-sig]: https://developer.mozilla.org/en-US/docs/Glossary/Signature/Function
+[generic]: https://www.typescriptlang.org/docs/handbook/2/generics.html
+[glint]: https://github.com/typed-ember/glint
+[illegal]: https://v5.chriskrycho.com/journal/making-illegal-states-unrepresentable-in-ts/
+[narrowing]: http://www.typescriptlang.org/docs/handbook/2/narrowing.html
+[tuple]: https://www.typescriptlang.org/docs/handbook/2/objects.html#tuple-types
+[union]: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#union-types

@@ -4,7 +4,7 @@ Building addons in TypeScript offers many of the same benefits as building apps 
 
 ## Create a New TypeScript Addon
 
-To start a new Ember addon with TypeScript, add the `--typescript` flag when you run [`ember addon`](../../getting-started/quick-start):
+To start a new Ember addon with TypeScript, add the `--typescript` flag when you run [`ember addon`][ember-addon]:
 
 ```shell
 ember addon my-typescript-addon --typescript
@@ -30,7 +30,7 @@ In addition to the usual packages added with `ember addon`, the following packag
 - `@types/qunit`
 - `@types/rsvp`
 
-The `typescript` package provides tooling to support TypeScript type checking and compilation. The `@types` packages from [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) provide TypeScript type definitions for all of the Ember and EmberData modules.
+The `typescript` package provides tooling to support TypeScript type checking and compilation. The `@types` packages from [DefinitelyTyped] provide TypeScript type definitions for all of the Ember and EmberData modules.
 
 <div class="cta">
   <div class="cta-note">
@@ -48,10 +48,9 @@ The `typescript` package provides tooling to support TypeScript type checking an
 
 In addition to the usual files added with `ember addon`, we also add:
 
-- [`tsconfig.json`](../../application-development/configuration/#toc_tsconfig)
-- `tsconfig.declarations.json` (v1 addons only) – configures the compiler options for emitting declaration files as described below in [Publishing]
-<!-- FIXME: Link -->
-- `types/global.d.ts` (v1 addons only) or `unpublished-development-types/index.d.ts` (v2 addons only) – the location for any global type declarations you need to write for your addon; see [**Using TS Effectively: Global types for your package**](https://github.com/typed-ember/ember-cli-typescript/tree/3a434def8b8c8214853cea0762940ccedb2256e8/docs/getting-started/docs/ts/using-ts-effectively/README.md#global-types-for-your-package) for information on its default contents and how to use it effectively
+- [`tsconfig.json`][tsconfig] – configuration to set up TypeScript for your project
+- `tsconfig.declarations.json` (v1 addons only) – configures the compiler options for emitting declaration files as described below in ["Publishing Notes for V1 Addons"][publishing-v1]
+- [`types/global.d.ts`][global-types] (v1 addons only) or `unpublished-development-types/index.d.ts` (v2 addons only) – the location for any global type declarations you need to write
 
 Additionally:
 
@@ -60,9 +59,6 @@ Additionally:
 - `ember-cli-build.js` (v1 addons) or `babel.config.json` (v2 addons) will be configured to transform TypeScript at build-time.
 - `.ember-cli` has `isTypeScriptProject` set to true, which will force the blueprint generators to generate TypeScript rather than JavaScript by default.
 - `.eslintrc.js` will be configured for TypeScript.
-
-[publishing-v1]: ./#toc_publishing_notes_for_v1_addons
-[typesVersions]: https://www.typescriptlang.org/docs/handbook/declaration-files/publishing.html#version-selection-with-typesversions
 
 ## Publishing
 
@@ -76,8 +72,6 @@ Because addons have no control over how files in `app/` are transpiled, **you ca
 
 In order for your addon's users to benefit from type information from your addon, you need to put [`.d.ts` _declaration files_][dts] at the location on disk where the compiler expects to find them. This addon provides two scripts to help with that: `prepack` and `postpack`. Additionally, the entry for [`typesVersions`][typesVersions] added to your `package.json` tell consuming apps where to find the types for the addon.
 
-[dts]: https://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html
-
 The `prepack` script will populate the overall structure of your package with `.d.ts` files laid out to match their import paths. For example, `addon/index.ts` would produce an `index.d.ts` file in the root of your package.
 
 The `postpack` script will remove the generated `.d.ts` files, leaving your working directory back in a pristine state.
@@ -86,7 +80,7 @@ The TypeScript compiler has very particular rules when generating declaration fi
 
 ## Linking V1 Addons
 
-Often when developing an addon, it can be useful to run that addon in the context of some other host app so you can make sure it will integrate the way you expect, e.g. using [`yarn link`](https://yarnpkg.com/en/docs/cli/link#search) or [`npm link`](https://docs.npmjs.com/cli/link).
+Often when developing an addon, it can be useful to run that addon in the context of some other host app so you can make sure it will integrate the way you expect, e.g. using [`yarn link`][yarn-link] or [`npm link`][npm-link].
 
 When you do this for a TypeScript addon, the source files will be picked up in the host app build and everything will execute at runtime as you'd expect. If the host app is also using TypeScript, though, it won't be able to resolve imports from your addon by default, for the reasons outlined above in the ["Publishing Notes for V1 Addons"][publishing-v1] section.
 
@@ -115,8 +109,6 @@ Add entries for `<addon-name>` and `<addon-name>/*` in your `tsconfig.json` like
 
 [In-repo addons] work in much the same way as linked ones. Their `.ts` files are managed automatically by `ember-cli-typescript` in their `dependencies`, and you can ensure imports resolve correctly from the host by adding entries in `paths` in the base `tsconfig.json` file.
 
-[In-repo addons]: https://cli.emberjs.com/release/writing-addons/in-repo-addons/
-
 ```json {data-filename="tsconfig.json"}
 {
   // ...other options
@@ -144,8 +136,6 @@ One difference as compared to regular published addons: you know whether or not 
 
 Templates are _currently_ totally non-type-checked. (Looking for type-checking in templates? Try [Glint]!) This means that you lose any safety when moving into a template context.
 
-[glint]: https://typed-ember.gitbook.io/glint/
-
 Addons need to import templates from the associated `.hbs` file to bind to the layout of any components they export. The TypeScript compiler will report that it cannot resolve the module, since it does not know how to resolve files ending in `.hbs`. To resolve this, you can provide this set of definitions to `my-addon/types/global.d.ts`, which will allow the import to succeed:
 
 ```typescript {data-filename="my-addon/types/global.d.ts"}
@@ -167,3 +157,20 @@ declare module 'addon/templates/*' {
   export default template;
 }
 ```
+
+<!-- Internal links -->
+
+[global-types]: ../../additional-resources/faq/#toc_global-types-for-your-project
+[publishing-v1]: ./#toc_publishing-notes-for-v1-addons
+[tsconfig]: ../configuration/#toc_tsconfigjson
+
+<!-- External links -->
+
+[DefinitelyTyped]: https://github.com/DefinitelyTyped/DefinitelyTyped
+[dts]: https://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html
+[ember-addon]: https://cli.emberjs.com/release/writing-addons/
+[glint]: https://typed-ember.gitbook.io/glint/
+[In-repo addons]: https://cli.emberjs.com/release/writing-addons/in-repo-addons/
+[npm-link]: https://docs.npmjs.com/cli/link
+[typesVersions]: https://www.typescriptlang.org/docs/handbook/declaration-files/publishing.html#version-selection-with-typesversions
+[yarn-link]: https://classic.yarnpkg.com/en/docs/cli/link

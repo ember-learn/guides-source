@@ -59,6 +59,10 @@ return require('@embroider/compat').compatBuild(app, Webpack, {
 }
 ```
 
+<!-- Internal links -->
+
+<!-- External links -->
+
 [devtool]: https://webpack.js.org/configuration/devtool/
 [ember-tsconfig]: https://www.npmjs.com/package/@tsconfig/ember
 [embroider]: https://github.com/embroider-build/embroider

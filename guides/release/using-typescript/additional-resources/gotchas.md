@@ -6,8 +6,6 @@ This section covers the common details and "gotchas" of using TypeScript with Em
 
 Ember makes heavy use of string-based APIs to allow for a high degree of dynamicism. With some [limitations][get-set], you can nonetheless use TypeScript very effectively to get auto-complete/IntelliSense as well as to accurately type-check your applications by using **registries**.
 
-[get-set]: ../../additional-resources/legacy/#toc_classic-get-or-set-methods
-
 Here's an example defining a Shopping Cart Service in the Ember Service registry:
 
 ```typescript {data-filename="app/services/shopping-cart.ts"}
@@ -24,8 +22,6 @@ declare module '@ember/service' {
 
 This registry definition allows for type-safe lookups in string-based APIs. For example, [the `Owner.lookup` method][owner-lookup] uses this "registration"—a mapping from the string `'shopping-cart'` to the service type, `ShoppingCartService`—to provide the correct type:
 
-[owner-lookup]: https://api.emberjs.com/ember/release/classes/Owner/methods/lookup?anchor=lookup
-
 ```typescript
 import type Owner from '@ember/owner';
 
@@ -37,20 +33,18 @@ function dynamicLookup(owner: Owner) {
 
 For examples, see:
 
-- [Service](../../core-concepts/services/#toc_using-services) registry
-- [Controller](../../core-concepts/routing/#toc_controller-injections-and-lookups) registry
-- EmberData [Model](../../core-concepts/ember-data/#toc_models) registry
-- EmberData [Transform](../../core-concepts/ember-data/#toc_transforms) registry
-- EmberData [Serializer](../../core-concepts/ember-data/#toc_serializers-and-adapters) registry
-- EmberData [Adapter](../../core-concepts/ember-data/#toc_serializers-and-adapters) registry
+- [Service][service] registry
+- [Controller][controller] registry
+- EmberData [Model][model] registry
+- EmberData [Transform][transform] registry
+- EmberData [Serializer][serializers-and-adapters] registry
+- EmberData [Adapter][serializers-and-adapters] registry
 
 ## Decorators
 
 Ember makes heavy use of decorators, and TypeScript does not support deriving type information from Ember's legacy decorators.
 
 As a result, whenever using a decorator to declare a class field the framework sets up for you, you should mark it with [`declare`][declare]. That includes all service injections (`@service`), controller injections (`@inject`) as well as all EmberData attributes (`@attr`) and relationships (`@belongsTo` and `@hasMany`).
-
-[declare]: https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#the-usedefineforclassfields-flag-and-the-declare-property-modifier
 
 Normally, `TypeScript` determines whether a property is definitely not `null` or `undefined` by checking what you do in the constructor. In the case of legacy decorators, though, TypeScript does not have visibility into how the decorated properties are initialized. The `declare` annotation informs TypeScript that a declaration is defined somewhere else, outside its scope.
 
@@ -60,17 +54,15 @@ This means that you are responsible to provide this type information, and that y
 
 For examples, see:
 
-- [`@service`](../../core-concepts/services/#toc_using-services)
-- [`@inject`](../../core-concepts/routing/#toc_controller-injections-and-lookups)
-- EmberData [`@attr`](../../core-concepts/ember-data/#toc_attr)
-- EmberData [`@belongsTo`](../../core-concepts/ember-data/#toc_belongsto)
-- EmberData [`@hasMany`](../../core-concepts/ember-data/#toc_hasMany)
+- [`@service`][service]
+- [`@inject`][controller]
+- EmberData [`@attr`][model-attr]
+- EmberData [`@belongsTo`][model-belongsto]
+- EmberData [`@hasMany`][model-hasmany]
 
 ## Templates
 
 Templates are currently totally non-type-checked. This means that you lose any safety when moving into a template context, even if using a Glimmer `Component` in Ember Octane. (Looking for type-checking in templates? Try [Glint]!)
-
-[glint]: https://typed-ember.gitbook.io/glint/
 
 For example, TypeScript won't detect a mismatch between this action and the corresponding call in the template:
 
@@ -94,8 +86,6 @@ export default class MyGame extends Component {
 ## Hook Types and Autocomplete
 
 Let’s imagine a component which just logs the names of its arguments when it is first constructed. First, we must define the [Signature] and pass it into our component, then we can use the `Args` member in our Signature to set the type of `args` in the constructor:
-
-[signature]: ../../core-concepts/invokables/#toc_signature-basics
 
 ```typescript {data-filename="app/components/args-display.ts"}
 import Component from '@glimmer/component';
@@ -160,3 +150,22 @@ declare module 'ember-data/types/registries/model' {
 This works because (a) we include things in your types directory automatically and (b) TypeScript will merge this module and interface declaration with the main definitions for EmberData from DefinitelyTyped behind the scenes.
 
 If you're developing an addon and concerned that this might affect consumers, it won't. Your types directory will never be referenced by consumers at all!
+
+<!-- Internal links -->
+
+[controller]: ../../core-concepts/routing/#toc_controller-injections-and-lookups
+[get-set]: ../../additional-resources/legacy/#toc_classic-get-or-set-methods
+[model-attr]: ../../core-concepts/ember-data/#toc_attr
+[model-belongsto]: ../../core-concepts/ember-data/#toc_belongsto
+[model-hasmany]: ../../core-concepts/ember-data/#toc_hasMany
+[model]: ../../core-concepts/ember-data/#toc_models
+[owner-lookup]: https://api.emberjs.com/ember/release/classes/Owner/methods/lookup?anchor=lookup
+[serializers-and-adapters]: ../../core-concepts/ember-data/#toc_serializers-and-adapters
+[service]: ../../core-concepts/services/#toc_using-services
+[signature]: ../../core-concepts/invokables/#toc_signature-basics
+[transform]: ../../core-concepts/ember-data/#toc_transforms
+
+<!-- External links -->
+
+[declare]: https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#the-usedefineforclassfields-flag-and-the-declare-property-modifier
+[glint]: https://typed-ember.gitbook.io/glint/

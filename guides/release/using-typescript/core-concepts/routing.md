@@ -1,14 +1,12 @@
-**Note:** 🚧 This page is under construction! 🏗️ The content here may undergo significant revision in the months ahead!
+**Note:** 🚧 This page is under construction! 🏗️
 
 ## Routes
 
-Since Ember [Routes][routes] are just regular JavaScript classes with a few special Ember lifecycle hooks and properties available, TypeScript should JustWork™️. Ember's types supply the definitions for the various methods available within route subclasses, which will provide autocomplete and type-checking along the way.
-
-[routes]: ../../routing/defining-your-routes/
+Since Ember [Routes] are just regular JavaScript classes with a few special Ember lifecycle hooks and properties available, TypeScript should JustWork™️. Ember's types supply the definitions for the various methods available within route subclasses, which will provide autocomplete and type-checking along the way.
 
 ## Controllers
 
-Like routes, controllers are just normal JavaScript classes with a few special Ember lifecycle hooks and properties available.
+Like routes, [Controllers] are just normal JavaScript classes with a few special Ember lifecycle hooks and properties available.
 
 The main thing to be aware of is special handling around query params. In order to provide type safety for query param configuration, Ember's types specify that when defining a query param's `type` attribute, you must supply one of the allowed types: `'boolean'`, `'number'`, `'array'`, or `'string'` (the default). However, if you supply these types as you would in JS, like this:
 
@@ -39,8 +37,6 @@ Property 'queryParams' in type 'HeyoController' is not assignable to the same pr
 ```
 
 This is because TS currently infers the type of `type: "array"` as `type: string`. You can work around this by supplying [`as const`][const-assertions] after the declaration:
-
-[const-assertions]: https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-4.html#const-assertions
 
 ```typescript {data-filename="app/controllers/heyo.ts", data-diff="-6,+7"}
 import Controller from '@ember/controller';
@@ -76,9 +72,6 @@ How that works:
 - [`ReturnType<T>`][return-type] gets the return value of a given function
 - `R['model']` (where `R` has to be `Route` itself or a subclass) says "the property named `model` on Route `R`"
 
-[awaited]: https://www.typescriptlang.org/docs/handbook/utility-types.html#awaitedtype
-[return-type]: https://www.typescriptlang.org/docs/handbook/utility-types.html#returntypetype
-
 `ModelFrom<Route>` ends up giving you the resolved value returned from the `model` hook for a given route. We can use this functionality to guarantee that the `model` on a `Controller` is always exactly the type returned by `Route::model` by writing something like this:
 
 ```typescript {data-filename="app/controllers/controller-with-model.ts"}
@@ -111,11 +104,7 @@ Now, our controller’s `model` property will _always_ stay in sync with the cor
 
 If you are using controller injections via the `@inject` decorator from `@ember/controller`, see the ["Decorators"][decorators] documentation.
 
-[decorators]: ../../additional-resources/gotchas/#toc_decorators
-
 If you need to lookup a controller with `Owner.lookup`, you'll need to first register your controller in Ember's TypeScript Controller registry as described in ["Registries"][registries]:
-
-[registries]: ../../additional-resources/gotchas/#toc_registries
 
 ```typescript {data-filename="app/controllers/heyo.ts"}
 import Controller from '@ember/controller';
@@ -130,3 +119,16 @@ declare module '@ember/controller' {
   }
 }
 ```
+
+<!-- Internal links -->
+
+[controllers]: ../../../routing/controllers/
+[decorators]: ../../additional-resources/gotchas/#toc_decorators
+[registries]: ../../additional-resources/gotchas/#toc_registries
+[routes]: ../../../routing/defining-your-routes/
+
+<!-- External links -->
+
+[awaited]: https://www.typescriptlang.org/docs/handbook/utility-types.html#awaitedtype
+[const-assertions]: https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-4.html#const-assertions
+[return-type]: https://www.typescriptlang.org/docs/handbook/utility-types.html#returntypetype

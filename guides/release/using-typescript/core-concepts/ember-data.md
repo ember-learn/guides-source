@@ -2,19 +2,15 @@
 
 In this section, we cover how to use TypeScript effectively with specific EmberData APIs (anything you'd find under the `@ember-data` package namespace).
 
-We do _not_ cover general usage of EmberData; instead, we assume that as background knowledge. Please see the EmberData [Guides](../../../models) and [API docs](https://api.emberjs.com/ember-data/release)!
+We do _not_ cover general usage of EmberData; instead, we assume that as background knowledge. Please see the [EmberData Guides][ED-guides] and [API docs][ED-api-docs]!
 
 ## Models
 
 EmberData models are normal TypeScript classes, but with properties decorated to define how the model represents an API resource and relationships to other resources. The decorators the library supplies "just work" with TypeScript at runtime, but require type annotations to be useful with TypeScript. Additionally, you must register each model with the [`ModelRegistry`][ED-registry] as shown in the examples below.
 
-[ED-registry]: ./#toc_emberdata-registries
-
 ### `@attr`
 
-The type returned by the `@attr` [decorator] is whatever [Transform](https://api.emberjs.com/ember-data/release/classes/Transform) is applied via the invocation. See [our overview of Transforms for more information](./transforms.md).
-
-[decorator]: ../../additional-resources/gotchas/#toc_decorators
+The type returned by the `@attr` [decorator] is whatever [Transform][transform-api-docs] is applied via the invocation. See our [overview of Transforms][transforms] for more information.
 
 If you supply no argument to `@attr`, the value is passed through without transformation.
 
@@ -58,8 +54,6 @@ declare module 'ember-data/types/registries/model' {
 
 Even more than with decorators in general, you should be careful when deciding whether to mark a property as [optional `?`][optional] or definitely present (no annotation): EmberData will default to leaving a property empty if it is not supplied by the API or by a developer when creating it. That is: the _default_ for EmberData corresponds to an optional field on the model.
 
-[optional]: https://www.typescriptlang.org/docs/handbook/2/objects.html#optional-properties
-
 The _safest_ type you can write for an EmberData model, therefore, leaves every property optional: this is how models _actually_ behave. If you choose to mark properties as definitely present by leaving off the `?`, you should take care to guarantee that this is a guarantee your API upholds, and that ever time you create a record from within the app, _you_ uphold those guarantees.
 
 One way to make this safer is to supply a default value using the `defaultValue` on the options hash for the attribute:
@@ -87,9 +81,9 @@ declare module 'ember-data/types/registries/model' {
 
 ### Relationships
 
-Relationships between models in EmberData rely on importing the related models, like `import User from './user';`. This, naturally, can cause a recursive loop, as `/app/models/post.ts` imports `User` from `/app/models/user.ts`, and `/app/models/user.ts` imports `Post` from `/app/models/post.ts`. Recursive importing triggers an [`import/no-cycle`](https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-cycle.md) error from eslint.
+Relationships between models in EmberData rely on importing the related models, like `import User from './user';`. This, naturally, can cause a recursive loop, as `/app/models/post.ts` imports `User` from `/app/models/user.ts`, and `/app/models/user.ts` imports `Post` from `/app/models/post.ts`. Recursive importing triggers an [`import/no-cycle`][import-no-cycle] error from eslint.
 
-To avoid these errors, use [type-only imports](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-8.html):
+To avoid these errors, use [type-only imports][type-only-imports]:
 
 ```typescript
 import type User from './user';
@@ -168,14 +162,9 @@ The same basic rules about the safety of these lookups as with `@belongsTo` appl
 
 ## Transforms
 
-In EmberData, `@attr` defines an attribute on a [Model](../../../models/defining-models/).
-By default, attributes are passed through as-is, however you can specify an
-optional type to have the value automatically transformed.
-EmberData ships with four basic transform types: `string`, `number`, `boolean` and `date`.
+In EmberData, `@attr` defines an [attribute on a Model][model-attrs]. By default, attributes are passed through as-is, however you can specify an optional type to have the value automatically transformed. EmberData ships with four basic transform types: `string`, `number`, `boolean` and `date`.
 
-You can define your own transforms by subclassing [Transform](../../../models/defining-models/#toc_custom-transforms).
-EmberData transforms are normal TypeScript classes.
-The return type of `deserialize` method becomes type of the model class property.
+You can define your own transforms by sub-classing [Transform][transform-guides]. EmberData transforms are normal TypeScript classes. The return type of `deserialize` method becomes type of the model class property.
 
 You may define your own transforms in TypeScript like so:
 
@@ -252,3 +241,20 @@ declare module 'ember-data/types/registries/adapter' {
 ## EmberData Registries
 
 We use [registry] approach for EmberData type lookups with string keys. As a result, once you add the module and interface definitions for each model, transform, serializer, and adapter in your app, you will automatically get type-checking and autocompletion and the correct return types for functions like `findRecord`, `queryRecord`, `adapterFor`, `serializerFor`, etc. No need to try to write out those types; just write your EmberData calls like normal and everything _should_ just work. That is, writing `this.store.findRecord('user', 1)` will give you back a `Promise<User | undefined>`.
+
+<!-- Internal links -->
+
+[decorator]: ../../additional-resources/gotchas/#toc_decorators
+[ED-guides]: ../../../models
+[ED-registry]: ./#toc_emberdata-registries
+[model-attrs]: ../../../models/defining-models/
+[transforms]: ./#toc_transforms
+[transform-guides]: ../../../models/defining-models/#toc_custom-transforms
+
+<!-- External links -->
+
+[ED-api-docs]: https://api.emberjs.com/ember-data/release
+[import-no-cycle]: https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-cycle.md
+[optional]: https://www.typescriptlang.org/docs/handbook/2/objects.html#optional-properties
+[transform-api-docs]: https://api.emberjs.com/ember-data/release/classes/Transform
+[type-only-imports]: https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-8.html
