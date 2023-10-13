@@ -19,7 +19,7 @@ Many of the same considerations as discussed in the [TypeScript Guides for Glimm
 
 If the `AudioPlayer` component shown above were a classic Ember component, we would define its signature and backing class like this:
 
-```typescript
+```typescript {data-filename="app/components/audio-player.ts"}
 import Component from '@ember/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
@@ -58,7 +58,7 @@ export default class AudioPlayer extends Component<AudioPlayerSignature> {
 
 And if we add a positional argument, things get even funkier because there isn't a way to splat the `Positional` arguments tuple onto the class interface:
 
-```typescript
+```typescript {data-filename="app/components/audio-player.ts"}
 import Component from '@ember/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
@@ -127,7 +127,7 @@ There are two variants of Ember’s computed properties you may encounter:
 
 ### Decorator form
 
-```typescript
+```typescript {data-filename="app/components/user-profile.ts"}
 import Component from '@ember/component';
 import { computed } from '@ember/object/computed';
 
@@ -148,7 +148,7 @@ Note that it is impossible for `@computed` to know whether the keys you pass to 
 
 Computed properties in the classic object model take a callback instead. In these cases, you will need to explicitly write out a `this` type for computed property callbacks for `get` and `set` to type-check correctly:
 
-```typescript
+```typescript {data-filename="app/components/user-profile.ts" data-diff="-8,+9"}
 import Component from '@ember/component';
 import { computed } from '@ember/object/computed';
 
