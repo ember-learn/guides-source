@@ -28,14 +28,14 @@ In addition to the usual packages added with `ember new`, the following packages
 - `@types/qunit`
 - `@types/rsvp`
 
-The `typescript` package provides tooling to support TypeScript type checking and compilation. The `@types` packages from [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) provide TypeScript type definitions for all of the Ember and Ember Data modules.
+The `typescript` package provides tooling to support TypeScript type checking and compilation. The `@types` packages from [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) provide TypeScript type definitions for all of the Ember and EmberData modules.
 
 <div class="cta">
   <div class="cta-note">
     <div class="cta-note-body">
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
-        Ember also publishes its own native types compiled directly from its source code, as described <a href="https://blog.emberjs.com/stable-typescript-types-in-ember-5-1/">in this blog post</a>. For now, we continue to use the <code>@types</code> packages by default for the sake of compatibility with Ember Data, because Ember Data is not yet compatible with Ember’s native official types. However, if you do not use Ember Data, we <i>highly</i> recommend following the instructions in that blog post to switch to the native types, which are guaranteed to always be 100% correct and 100% up to date!
+        Ember also publishes its own native types compiled directly from its source code, as described <a href="https://blog.emberjs.com/stable-typescript-types-in-ember-5-1/">in this blog post</a>. For now, we continue to use the <code>@types</code> packages by default for the sake of compatibility with EmberData, because EmberData is not yet compatible with Ember’s native official types. However, if you do not use EmberData, we <i>highly</i> recommend following the instructions in that blog post to switch to the native types, which are guaranteed to always be 100% correct and 100% up to date!
       </div>
     </div>
     <img src="/images/mascots/zoey.png" role="presentation" alt="">

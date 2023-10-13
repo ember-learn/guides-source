@@ -186,7 +186,7 @@ For this reason, we strongly recommend you [migrate away from computed propertie
 
 ## Classic `get` or `set` methods
 
-In general, the `this.get` and `this.set` methods on `EmberObject` subclasses and the standalone `get` and `set` functions will work as you'd expect _if_ you're doing lookups only a single layer deep. We do not provide support for deep key lookups like `get(someObj, 'a.b.c')`, because normal property access works correctly across the whole Ember ecosystem since at least Ember and Ember Data 3.28.
+In general, the `this.get` and `this.set` methods on `EmberObject` subclasses and the standalone `get` and `set` functions will work as you'd expect _if_ you're doing lookups only a single layer deep. We do not provide support for deep key lookups like `get(someObj, 'a.b.c')`, because normal property access works correctly across the whole Ember ecosystem since at least Ember and EmberData 3.28.
 
 Since regular property access “just works”, you should migrate to using normal property access instead. TypeScript will help make this a smooth process by identifying where you need to handle null and undefined intermediate properties.
 

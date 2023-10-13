@@ -22,7 +22,7 @@ To get started, check out the instructions in [Getting Started with TypeScript](
 
 - If you're totally new to using TypeScript with Ember, start with [TypeScript and Ember](./ember).
 <!-- FIXME: Link -->
-- Once you have a good handle on the basics, you can dive into the guides to working with the APIs specific to [Ember](./ember/README.md) and [Ember Data](./ember-data/README.md).
+- Once you have a good handle on the basics, you can dive into the guides to working with the APIs specific to [Ember](./ember/README.md) and [EmberData](./ember-data/README.md).
 <!-- FIXME: Link -->
 - If you're working with legacy (pre-Octane) Ember and TypeScript together, you should read [the Legacy Guide](./legacy).
 <!-- TODO: Bring in glint docs once glint advances to recommended. -->

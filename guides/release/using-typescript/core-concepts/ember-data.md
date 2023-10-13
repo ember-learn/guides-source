@@ -6,13 +6,15 @@ We do _not_ cover general usage of EmberData; instead, we assume that as backgro
 
 ## Models
 
-EmberData models are normal TypeScript classes, but with properties decorated to define how the model represents an API resource and relationships to other resources. The decorators the library supplies "just work" with TypeScript at runtime, but require type annotations to be useful with TypeScript.
+EmberData models are normal TypeScript classes, but with properties decorated to define how the model represents an API resource and relationships to other resources. The decorators the library supplies "just work" with TypeScript at runtime, but require type annotations to be useful with TypeScript. Additionally, you must register each model with the [`ModelRegistry`][ED-registry] as shown in the examples below.
 
-For details about decorator usage, see [our overview of how Ember's decorators work with TypeScript](../ts/decorators.md).
+[ED-registry]: ./#toc_emberdata-registries
 
 ### `@attr`
 
-The type returned by the `@attr` decorator is whatever [Transform](https://api.emberjs.com/ember-data/release/classes/Transform) is applied via the invocation. See [our overview of Transforms for more information](./transforms.md).
+The type returned by the `@attr` [decorator] is whatever [Transform](https://api.emberjs.com/ember-data/release/classes/Transform) is applied via the invocation. See [our overview of Transforms for more information](./transforms.md).
+
+[decorator]: ../../additional-resources/gotchas/#toc_decorators
 
 If you supply no argument to `@attr`, the value is passed through without transformation.
 
@@ -44,6 +46,12 @@ export default class User extends Model {
   @attr('custom-transform')
   declare myCustomThing: CustomType;
 }
+
+declare module 'ember-data/types/registries/model' {
+  export default interface ModelRegistry {
+    user: User;
+  }
+}
 ```
 
 #### Type Safety for Model Attributes
@@ -68,6 +76,12 @@ export default class User extends Model {
 
   @attr('boolean', { defaultValue: false })
   declare isAdmin: boolean;
+}
+
+declare module 'ember-data/types/registries/model' {
+  export default interface ModelRegistry {
+    user: User;
+  }
 }
 ```
 
@@ -102,6 +116,12 @@ export default class Post extends Model {
   @belongsTo('site', { async: false })
   declare site: Site;
 }
+
+declare module 'ember-data/types/registries/model' {
+  export default interface ModelRegistry {
+    post: Post;
+  }
+}
 ```
 
 These are _type_-safe to define as always present, that is to leave off the `?` optional marker:
@@ -135,6 +155,12 @@ export default class Thread extends Model {
 
   @hasMany('user', { async: false })
   declare participants: SyncHasMany<User>;
+}
+
+declare module 'ember-data/types/registries/model' {
+  export default interface ModelRegistry {
+    thread: Thread;
+  }
 }
 ```
 
@@ -193,4 +219,36 @@ declare module 'ember-data/types/registries/model' {
 }
 ```
 
-Note that you should declare your own transform under `TransformRegistry` to make `@attr` to work with your transform.
+Note that you should declare your own transform under [`TransformRegistry`][ED-registry] to make `@attr` to work with your transform.
+
+## Serializers and Adapters
+
+EmberData serializers and adapters are normal TypeScript classes. The only related gotcha is that you must [register][ED-registry] your them with a declaration:
+
+```typescript {data-filename="app/serializers/user-meta.ts"}
+import Serializer from '@ember-data/serializer';
+
+export default class UserMeta extends Serializer {}
+
+declare module 'ember-data/types/registries/serializer' {
+  export default interface SerializerRegistry {
+    'user-meta': UserMeta;
+  }
+}
+```
+
+```typescript {data-filename="app/adapters/user.ts"}
+import Adapter from '@ember-data/adapter';
+
+export default class User extends Adapter {}
+
+declare module 'ember-data/types/registries/adapter' {
+  export default interface AdapterRegistry {
+    user: User;
+  }
+}
+```
+
+## EmberData Registries
+
+We use [registry] approach for EmberData type lookups with string keys. As a result, once you add the module and interface definitions for each model, transform, serializer, and adapter in your app, you will automatically get type-checking and autocompletion and the correct return types for functions like `findRecord`, `queryRecord`, `adapterFor`, `serializerFor`, etc. No need to try to write out those types; just write your EmberData calls like normal and everything _should_ just work. That is, writing `this.store.findRecord('user', 1)` will give you back a `Promise<User | undefined>`.

@@ -96,7 +96,7 @@ The [`@ts-expect-error`][ts-expect-error] directive—A better strategy than `an
 
 ### Outer Leaves First
 
-A good approach to gradual typing is to start at your outer "leaf" modules (the ones that don't import anything else from your app, only from Ember or third-party libraries) and then work your way "inward" (toward the modules with many internal imports). Often the highest-value modules are your Ember Data models and any core services that are used everywhere else in the app–and those are also the ones that tend to have the most cascading effects (having to update _tons_ of other places in your app) when you type them later in the process. By starting with the outer leaves, you won't have to use as many of our gradual typing hacks.
+A good approach to gradual typing is to start at your outer "leaf" modules (the ones that don't import anything else from your app, only from Ember or third-party libraries) and then work your way "inward" (toward the modules with many internal imports). Often the highest-value modules are your EmberData models and any core services that are used everywhere else in the app–and those are also the ones that tend to have the most cascading effects (having to update _tons_ of other places in your app) when you type them later in the process. By starting with the outer leaves, you won't have to use as many of our gradual typing hacks.
 
 [getting started]: ../application-development/getting-started/
 
