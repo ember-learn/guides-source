@@ -251,6 +251,7 @@
       url: "index"
 - title: "Using TypeScript"
   url: "using-typescript"
+  skip_toc: true
   pages:
     - title: "Introduction"
       url: "index"
