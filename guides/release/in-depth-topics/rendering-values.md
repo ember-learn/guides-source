@@ -80,7 +80,7 @@ export default class MyComponent extends Component {
   @tracked status: string;
 
   get someComponent(): ComponentLike<MyComponentArgs> {
-    // any returned component must have been defined as
+    // if you're using typescript, any returned component must have been defined as
     // class MyComponent extends Component<MyComponentArgs> {}
     if (this.status == 'success') {
       return MySuccessComponent;
