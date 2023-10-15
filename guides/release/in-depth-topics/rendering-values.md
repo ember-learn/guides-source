@@ -71,6 +71,22 @@ or via a property on some object
 ```handlebars
 <this.someComponent />
 ```
+```ts
+import MyOtherComponent from 'my-app/components/my-other-component';
+import MySuccessComponent from 'my-app/components/my-success-component';
+
+export default class MyComponent extends Component {
+  @tracked status: string;
+
+  get someComponent(): typeof Component<any> {
+    if (this.status == 'success') {
+      return MySuccessComponent;
+    } else {
+      return MyOtherComponent;
+    }
+  }
+}
+```
 or via an argument passed to a component
 ```handlebars
 <@someComponent />
