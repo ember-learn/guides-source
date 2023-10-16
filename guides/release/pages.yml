@@ -272,6 +272,8 @@
     - title: "TypeScript: Application Development"
       url: "application-development"
       pages:
+        - title: "Introduction"
+          url: "index"
         - title: "TypeScript: Configuration"
           url: "configuration"
         - title: "TypeScript: Testing"
@@ -283,6 +285,8 @@
     - title: "TypeScript: Additional Resources"
       url: "additional-resources"
       pages:
+        - title: "Introduction"
+          url: "index"
         - title: "TypeScript: Gotchas and Troubleshooting"
           url: "gotchas"
         - title: "TypeScript: FAQ and Tips"
