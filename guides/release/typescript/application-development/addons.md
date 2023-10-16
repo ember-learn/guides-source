@@ -170,5 +170,6 @@ declare module 'addon/templates/*' {
 [glint]: https://typed-ember.gitbook.io/glint/
 [In-repo addons]: https://cli.emberjs.com/release/writing-addons/in-repo-addons/
 [npm-link]: https://docs.npmjs.com/cli/link
+[this]: https://www.typescriptlang.org/docs/handbook/2/functions.html#declaring-this-in-a-function
 [typesVersions]: https://www.typescriptlang.org/docs/handbook/declaration-files/publishing.html#version-selection-with-typesversions
 [yarn-link]: https://classic.yarnpkg.com/en/docs/cli/link

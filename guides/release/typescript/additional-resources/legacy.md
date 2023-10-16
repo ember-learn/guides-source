@@ -163,7 +163,7 @@ const UserProfile = Component.extend({
 export default UserProfile;
 ```
 
-The `this` type, tells TS to use `UserProfile` for `get` and `set` lookups; otherwise `this.get` would not know the types of `'name'` or `'age'` or even be able to suggest them for autocompletion.
+The [`this` type][this], tells TS to use `UserProfile` for `get` and `set` lookups; otherwise `this.get` would not know the types of `'name'` or `'age'` or even be able to suggest them for autocompletion.
 
 Note that this _does not always work_: you may get warnings from TypeScript about the item being defined in terms of itself.
 
