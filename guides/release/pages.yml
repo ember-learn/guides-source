@@ -250,7 +250,7 @@
     - title: "Managing Dependencies"
       url: "index"
 - title: "Using TypeScript"
-  url: "using-typescript"
+  url: "typescript"
   pages:
     - title: "Using TypeScript with Ember"
       url: "index"
