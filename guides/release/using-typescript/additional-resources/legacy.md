@@ -194,7 +194,7 @@ declare global {
 [global-types]: ../../additional-resources/faq/#toc_global-types-for-your-project
 [migrate-from-computed]: ../../../upgrading/current-edition/tracked-properties/
 [migrate-from-mixins]: ../../../upgrading/current-edition/native-classes/#toc_mixins
-[migrating-from-classic-classes]: http://localhost:4200/release/upgrading/current-edition/native-classes/
+[migrating-from-classic-classes]: ../../../upgrading/current-edition/native-classes/
 [migrating-from-classic-components]: ../../../upgrading/current-edition/glimmer-components/
 
 <!-- External links -->
