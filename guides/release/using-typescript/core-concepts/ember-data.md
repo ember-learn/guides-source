@@ -1,5 +1,3 @@
-**Note:** 🚧 This page is under construction! 🏗️
-
 In this section, we cover how to use TypeScript effectively with specific EmberData APIs (anything you'd find under the `@ember-data` package namespace).
 
 We do _not_ cover general usage of EmberData; instead, we assume that as background knowledge. Please see the [EmberData Guides][ED-guides] and [API docs][ED-api-docs]!

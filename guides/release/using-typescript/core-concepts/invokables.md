@@ -1,5 +1,3 @@
-**Note:** 🚧 This page is under construction! 🏗️
-
 In Ember templates, **“invokables”** are things you can _invoke_ in a template. These include [components], [helpers], and [modifiers].
 
 The same way that functions have [signatures][fn-sig] which define the arguments they take and the values they return, so do Ember template invokables.

@@ -1,5 +1,3 @@
-**Note:** 🚧 This page is under construction! 🏗️
-
 ## Routes
 
 Since Ember [Routes] are just regular JavaScript classes with a few special Ember lifecycle hooks and properties available, TypeScript should JustWork™️. Ember's types supply the definitions for the various methods available within route subclasses, which will provide autocomplete and type-checking along the way.

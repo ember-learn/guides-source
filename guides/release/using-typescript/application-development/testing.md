@@ -1,5 +1,3 @@
-**Note:** 🚧 This page is under construction! 🏗️
-
 When working with TypeScript in [Ember tests][testing], your workflow will be essentially the same as testing with JavaScript. There will be a few differences in your testing experience, however, and there will also be differences in how you should handle testing app code vs. addon code.
 
 ## Testing Experience

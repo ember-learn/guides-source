@@ -1,5 +1,3 @@
-**Note:** 🚧 This page is under construction! 🏗️
-
 ## `tsconfig.json`
 
 If you use the `--typescript` flag when generating your Ember app, we generate a good default [`tsconfig.json`][tsconfig], which will usually make everything _Just Work™_:

@@ -1,5 +1,3 @@
-**Note:** 🚧 This page is under construction! 🏗️
-
 ## Create a New TypeScript Application
 
 To start a new Ember project with TypeScript, add the `--typescript` flag when you run [`ember new`][ember-new]:

@@ -1,5 +1,3 @@
-**Note:** 🚧 This page is under construction! 🏗️
-
 In the rest of this guide, we emphasize the happy path of working with Ember in the [Octane Edition][octane]. However, there are times you’ll need to understand these details:
 
 1. Most existing applications make heavy use of the pre-Octane (“legacy”) Ember programming model, and we support that model—with caveats.

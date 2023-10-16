@@ -1,5 +1,3 @@
-**Note:** 🚧 This page is under construction! 🏗️
-
 ## What about missing types?
 
 ### Gradually typing your app

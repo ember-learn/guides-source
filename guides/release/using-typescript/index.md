@@ -1,5 +1,3 @@
-**Note:** 🚧 This page is under construction! 🏗️
-
 This guide is designed to help you get up and running with TypeScript in an Ember app.
 
 This is _not_ an introduction to TypeScript _or_ Ember. Throughout this guide, we’ll link back to [the TypeScript docs][typescript-docs] and [the Ember Guides][ember-guides] when there are specific concepts that we will not explain here but which are important for understanding what we’re covering!
