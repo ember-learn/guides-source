@@ -197,7 +197,7 @@ With the exception of `@value` argument, you can use any [attribute](https://dev
   Move this section to a dedicated page for how to build forms.
   Please present a solution that does not use `{{mut}}`.
 -->
-## Binding dynamic attribute
+## Binding dynamic attributes
 
 You might need to bind a property dynamically to an input if you're building a
 flexible form, for example. To achieve this you need to use the
