@@ -708,7 +708,7 @@ If you are using Glint, when this component is invoked, the `@type` argument wil
 ```
 
 The same approach with generics works for class-based helpers and class-based modifiers.
-Function-based helpers as and modifiers can also use generics, but by using them on the function definition rather than via a signature.
+Function-based helpers and modifiers can also use generics, but by using them on the function definition rather than via a signature.
 One caveat: particularly complicated union types in signatures can sometimes become too complex for Glint/TypeScript to resolve when invoking in a template.
 In those cases, your best bet is to find a simpler way to structure the types while preserving type safety.
 

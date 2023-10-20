@@ -60,7 +60,7 @@ One way to make this safer is to supply a default value using the `defaultValue`
 import Model, { attr } from '@ember-data/model';
 
 export default class User extends Model {
-  @attr()
+  @attr
   declare name?: string;
 
   @attr('number', { defaultValue: 13 })
@@ -210,7 +210,7 @@ Note that you should declare your own transform under [`TransformRegistry`][ED-r
 
 ## Serializers and Adapters
 
-EmberData serializers and adapters are normal TypeScript classes. The only related gotcha is that you must [register][ED-registry] your them with a declaration:
+EmberData serializers and adapters are normal TypeScript classes. The only related gotcha is that you must [register][ED-registry] them with a declaration:
 
 ```typescript {data-filename="app/serializers/user-meta.ts"}
 import Serializer from '@ember-data/serializer';
