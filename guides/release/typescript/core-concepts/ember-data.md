@@ -28,7 +28,7 @@ import Model, { attr } from '@ember-data/model';
 import CustomType from '../transforms/custom-transform';
 
 export default class User extends Model {
-  @attr()
+  @attr
   declare name?: string;
 
   @attr('number')
