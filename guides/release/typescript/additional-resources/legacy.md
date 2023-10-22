@@ -1,4 +1,4 @@
-In the rest of this guide, we emphasize the happy path of working with Ember in the [Octane Edition][octane]. However, there are times you’ll need to understand these details:
+In the rest of this guide, we emphasize the happy path of working with Ember in the [Octane Edition][octane]. However, there are times you'll need to understand these details:
 
 1. Most existing applications make heavy use of the pre-Octane (“legacy”) Ember programming model, and we support that model—with caveats.
 2. Several parts of Ember Octane (specifically: routes, controllers, services, and class-based helpers) continue to use these concepts under the hood, and our types support that—so understanding them may be important at times.
@@ -94,7 +94,7 @@ In general, while we do support classic Ember Components for the sake of backwar
 
 When working with the legacy Ember object model, `EmberObject`, there are a number of caveats and limitations you need to be aware of. For today, these caveats and limitations apply to any classes which extend directly from `EmberObject`, or which extend classes which _themselves_ extend `EmberObject`.
 
-Additionally, Ember’s mixin system is deeply linked to the semantics and implementation details of `EmberObject`, and it has the most caveats and limitations.
+Additionally, Ember's mixin system is deeply linked to the semantics and implementation details of `EmberObject`, and it has the most caveats and limitations.
 
 ### Failure Modes
 
@@ -118,7 +118,7 @@ While we describe here how to use types with classic (mixin-based) classes insof
 
 ## Computed Properties
 
-There are two variants of Ember’s computed properties you may encounter:
+There are two variants of Ember's computed properties you may encounter:
 
 - the decorator form used with native classes
 - the callback form used with classic classes (based on `EmberObject`)
@@ -202,3 +202,4 @@ declare global {
 [merge]: https://www.typescriptlang.org/docs/handbook/declaration-merging.html#merging-interfaces
 [octane]: https://emberjs.com/editions/octane/
 [tagName]: https://api.emberjs.com/ember/release/classes/Component#html-tag
+[this]: https://www.typescriptlang.org/docs/handbook/2/functions.html#declaring-this-in-a-function

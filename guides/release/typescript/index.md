@@ -1,6 +1,6 @@
 This guide is designed to help you get up and running with TypeScript in an Ember app.
 
-This is _not_ an introduction to TypeScript _or_ Ember. Throughout this guide, we’ll link back to [the TypeScript docs][typescript-docs] and to other sections of [the Ember Guides][ember-guides] when there are specific concepts that we will not explain here but which are important for understanding what we’re covering!
+This is _not_ an introduction to TypeScript _or_ Ember. Throughout this guide, we'll link back to [the TypeScript docs][typescript-docs] and to other sections of [the Ember Guides][ember-guides] when there are specific concepts that we will not explain here but which are important for understanding what we're covering!
 
 Not sure where to get started? Here's an overview of the content within:
 
@@ -8,8 +8,8 @@ Not sure where to get started? Here's an overview of the content within:
 - To create a new Ember app or addon with TypeScript, check out [Getting Started with TypeScript][getting-started] and [Building Addons in TypeScript][addons].
 - If you're looking to convert an existing Ember app to TypeScript, check out [Converting an Existing Ember App to TypeScript][converting-an-app].
 - If you're working with legacy (pre-Octane) Ember and TypeScript together, you should read [TypeScript and Ember Classic][legacy].
-- Not ready to switch to TypeScript? You can get many of TypeScript's benefits by [adding types with JSDoc comments][types-with-jsdoc]. We'll talk a bit about this over in the [Signatures] section.
-- Looking for type-checking in Ember templates? Check out [Glint].
+- Not ready to switch to TypeScript? You can get many of TypeScript's benefits by [adding types with JSDoc comments][types-with-jsdoc]. We'll talk a bit about this over in the [Signatures][] section.
+- Looking for type-checking in Ember templates? Check out [Glint][].
 
 ## Why TypeScript?
 
@@ -19,7 +19,7 @@ What is TypeScript, and why should you adopt it?
 >
 > — [typescriptlang.org][typescript]
 
-TypeScript lets you build _ambitious web applications_ with confidence—so it’s a perfect fit for Ember apps!
+TypeScript lets you build _ambitious web applications_ with confidence—so it's a perfect fit for Ember apps!
 
 - Get rid of `undefined is not a function` and `null is not an object` once and for all.
 - Enjoy API docs… that are always up-to-date.

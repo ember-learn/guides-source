@@ -6,7 +6,7 @@ See ["Gradual Typing Hacks"][gradual-typing-hacks] for strategies for incrementa
 
 ### Install types for libraries
 
-You'll want to use library type definitions as much as possible. Many packages ship their own type definitions, and many others have community-maintained definitions from [DefinitelyTyped], available in the `@types` name space. The first thing you should do is to look for types from other libraries: it will mean using fewer ["Gradual Typing Hacks"][gradual-typing-hacks] and getting a lot more help both from your editor and from the compiler.
+You'll want to use library type definitions as much as possible. Many packages ship their own type definitions, and many others have community-maintained definitions from [DefinitelyTyped][], available in the `@types` name space. The first thing you should do is to look for types from other libraries: it will mean using fewer ["Gradual Typing Hacks"][gradual-typing-hacks] and getting a lot more help both from your editor and from the compiler.
 
 ### The `types` directory
 
@@ -21,7 +21,7 @@ These are all fallbacks, of course, you should use the types supplied directly w
 
 At the root of your application or addon, we include a `types/<your project>` directory with an `index.d.ts` file in it. Anything which is part of your project but which must be declared globally can go in this file. For example, if you have data attached to the `Window` object when the page is loaded (for bootstrapping or whatever other reason), this is a good place to declare it.
 
-We automatically configure `index.d.ts` to be ready for [Glint], which will make type checking work with Ember's templates. The default configuration only supports Ember's classic pairing of separate `.ts` and `.hbs` files, but Glint also supports the `<template>` format with `.gts` files. See the [corresponding package README][glint-environment-ember-template-imports] for more details. (Once Ember enables `<template>` by default, so will our Glint configuration!)
+We automatically configure `index.d.ts` to be ready for [Glint][], which will make type checking work with Ember's templates. The default configuration only supports Ember's classic pairing of separate `.ts` and `.hbs` files, but Glint also supports the `<template>` format with `.gts` files. See the [corresponding package README][glint-environment-ember-template-imports] for more details. (Once Ember enables `<template>` by default, so will our Glint configuration!)
 
 ### Environment configuration typings
 
@@ -31,7 +31,7 @@ We install this file because the actual `config/environment.js` is (a) not actua
 
 ## Type Narrowing with Ember Debug Assert
 
-Ember's `assert` function from `@ember/debug` is super useful for ["type narrowing"][type-narrowing]—TypeScript’s process of refining types to more specific types than originally declared. If you’re not familiar with `assert`, you might want to take a look at its [API docs][debug-assert]! It’s a development-and-test-only helper that gets stripped from production builds, and is very helpful for this kind of thing!
+Ember's `assert` function from `@ember/debug` is super useful for ["type narrowing"][type-narrowing]—TypeScript's process of refining types to more specific types than originally declared. If you're not familiar with `assert`, you might want to take a look at its [API docs][debug-assert]! It's a development-and-test-only helper that gets stripped from production builds, and is very helpful for this kind of thing!
 
 For example, let's pretend we're writing an addon that provides a `totalLength` helper to tally up the total length of an array of strings passed to it. Because addon authors cannot guarantee that their users will be using TypeScript, we've typed the positional arguments as an array of `unknown` so that TypeScript will ensure we've handled every possible valid or invalid argument a user might pass.
 

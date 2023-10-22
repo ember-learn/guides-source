@@ -1,4 +1,4 @@
-In Ember templates, **“invokables”** are things you can _invoke_ in a template. These include [components], [helpers], and [modifiers].
+In Ember templates, **“invokables”** are things you can _invoke_ in a template. These include [components][], [helpers][], and [modifiers][].
 
 The same way that functions have [signatures][fn-sig] which define the arguments they take and the values they return, so do Ember template invokables.
 
@@ -33,7 +33,7 @@ interface InvokableSignature {
 }
 ```
 
-Ember uses the signature to provide both editor support for the invokable with TypeScript and [Glint] and documentation using any tool which understands type annotations or JSDoc.
+Ember uses the signature to provide both editor support for the invokable with TypeScript and [Glint][] and documentation using any tool which understands type annotations or JSDoc.
 
 A few things to note about these signatures:
 
@@ -58,7 +58,7 @@ Glimmer Components are defined in one of three ways:
 
 As always, you should start by reading and understanding the [Ember Guide on Components][components]!
 
-When using a backing class, you get a first-class experience using TypeScript with a component signature. For type-checking Glimmer templates as well, see [Glint].
+When using a backing class, you get a first-class experience using TypeScript with a component signature. For type-checking Glimmer templates as well, see [Glint][].
 
 The normal form of a Glimmer component signature is:
 
@@ -144,7 +144,7 @@ export default class AudioPlayer extends Component<AudioPlayerSignature> {
 }
 ```
 
-Now, let’s expand on this example to give callers the ability to apply attributes to the audio element with an `Element`:
+Now, let's expand on this example to give callers the ability to apply attributes to the audio element with an `Element`:
 
 ```typescript {data-filename="app/components/audio-player.ts" data-diff="+10"}
 import Component from '@glimmer/component';
@@ -225,7 +225,7 @@ export default class AudioPlayer extends Component<AudioPlayerSignature> {
 <button type='button' {{on 'click' this.pause}}>Pause</button>
 ```
 
-Let’s go one step further and switch to supporting for two [named blocks][named-blocks]: an optional `title` block for a caption for the audio element, and a `fallback` block for the audio fallback where we previously used a `default` block.
+Let's go one step further and switch to supporting for two [named blocks][named-blocks]: an optional `title` block for a caption for the audio element, and a `fallback` block for the audio fallback where we previously used a `default` block.
 
 ```handlebars {data-filename="app/components/audio-player.hbs" data-diff="+1,+2,+3,+4,+5,-7,+8"}
 <figure>
@@ -329,7 +329,7 @@ See ["Working With Ember Classic"][classic-components].
 
 ## Helpers
 
-Helpers in Ember are just functions or classes with a well-defined interface, which means they largely Just Work™ with TypeScript. However, there are a couple things you’ll want to watch out for.
+Helpers in Ember are just functions or classes with a well-defined interface, which means they largely Just Work™ with TypeScript. However, there are a couple things you'll want to watch out for.
 
 (As always, you should start by reading and understanding the [Ember Guide on Helpers][helpers]!)
 
@@ -503,7 +503,7 @@ From a type checking perspective, these types must be _compatible_ with the type
 
 <!-- TODO: Glint will type check that any types you write to make sure they are compatible. -->
 
-For example, we could define the type of the positional arguments in the method body as `Array<unknown>` instead of `[string]`, while keeping the original signature’s `Positional: [string]`:
+For example, we could define the type of the positional arguments in the method body as `Array<unknown>` instead of `[string]`, while keeping the original signature's `Positional: [string]`:
 
 ```typescript
   compute(positional: Array<unknown>, named: { locale?: string }): string {
@@ -517,7 +517,7 @@ Accordingly, the best practice is to keep the types matching.
 
 ## Modifiers
 
-Modifiers in Ember are just functions or classes with a well-defined interface, which means they largely Just Work™ with TypeScript. However, there are a couple things you’ll want to watch out for.
+Modifiers in Ember are just functions or classes with a well-defined interface, which means they largely Just Work™ with TypeScript. However, there are a couple things you'll want to watch out for.
 
 (As always, you should start by reading and understanding the [Ember Guide on Modifiers][modifiers]!)
 
@@ -604,7 +604,7 @@ export default modifier<Signature>((element, positional) => {
 
 ### Class-based modifiers
 
-Signatures are more useful for class-based modifiers, where they are the only way to provide the type information for Glint/TypeScript. For example, when using `IntersectionObserver`s, you might want to improve your app’s performance by `.observe()`-ing multiple elements in the same `IntersectionObserver`, all coordinated by a service.
+Signatures are more useful for class-based modifiers, where they are the only way to provide the type information for Glint/TypeScript. For example, when using `IntersectionObserver`s, you might want to improve your app's performance by observing (`.observe()`) multiple elements in the same `IntersectionObserver`, all coordinated by a service.
 
 Given an `IntersectionObserverManager` service with an `observe` method, we might provide a signature defining `onEnter` and `onExit` callbacks and an `options` object to specify the `IntersectionObserver` options. Then we would supply the signature on the class definition with a type parameter to the super class. With all the pieces put together, we would have this:
 

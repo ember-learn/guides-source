@@ -1,7 +1,7 @@
 Once you've got your Ember project up and running with TypeScript, this chapter can help you with:
 
-- Advanced [configuration] of your TypeScript project.
-- [Testing] of your TypeScript project.
+- Advanced [configuration][] of your TypeScript project.
+- [Testing][] of your TypeScript project.
 
 Alternatively, you may have an existing Ember project, and you're wondering how to convert it to TypeScript. In that case, check out ["Converting an Existing Ember App to TypeScript"][converting-an-app].
 

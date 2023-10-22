@@ -5,7 +5,7 @@ Here are some additional resources that should be useful for using Ember with Ty
 - [Troubleshooting][gotchas] common issues when using TypeScript with Ember.
 - [Frequently Asked Questions][faq] users have when using TypeScript with Ember.
 - Miscellaneous [tips][faq] for using TypeScript with Ember.
-- Looking for type-checking in Ember templates? Check out [Glint].
+- Looking for type-checking in Ember templates? Check out [Glint][].
 
 <!-- Internal links -->
 

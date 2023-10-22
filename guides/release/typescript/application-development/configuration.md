@@ -45,7 +45,7 @@ const app = new EmberApp(defaults, {
 
 (Note that this _will_ noticeably slow down your app rebuilds.)
 
-If you are using [Embroider], you might need to include [devtool] in your webpack configuration:
+If you are using [Embroider][], you might need to include [`devtool`][devtool] in your webpack configuration:
 
 ```javascript {data-filename="ember-cli-build.js" data-diff="+4"}
 return require('@embroider/compat').compatBuild(app, Webpack, {

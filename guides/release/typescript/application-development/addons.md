@@ -28,14 +28,14 @@ In addition to the usual packages added with `ember addon`, the following packag
 - `@types/qunit`
 - `@types/rsvp`
 
-The `typescript` package provides tooling to support TypeScript type checking and compilation. The `@types` packages from [DefinitelyTyped] provide TypeScript type definitions for all of the Ember and EmberData modules.
+The `typescript` package provides tooling to support TypeScript type checking and compilation. The `@types` packages from [DefinitelyTyped][] provide TypeScript type definitions for all of the Ember and EmberData modules.
 
 <div class="cta">
   <div class="cta-note">
     <div class="cta-note-body">
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
-        Ember also publishes its own native types compiled directly from its source code, as described <a href="https://blog.emberjs.com/stable-typescript-types-in-ember-5-1/">in this blog post</a>. For now, we continue to use the <code>@types</code> packages by default for the sake of compatibility with EmberData, because EmberData is not yet compatible with Ember’s native official types. However, if you do not use EmberData, we <i>highly</i> recommend following the instructions in that blog post to switch to the native types, which are guaranteed to always be 100% correct and 100% up to date!
+        Ember also publishes its own native types compiled directly from its source code, as described <a href="https://blog.emberjs.com/stable-typescript-types-in-ember-5-1/">in this blog post</a>. For now, we continue to use the <code>@types</code> packages by default for the sake of compatibility with EmberData, because EmberData is not yet compatible with Ember's native official types. However, if you do not use EmberData, we <i>highly</i> recommend following the instructions in that blog post to switch to the native types, which are guaranteed to always be 100% correct and 100% up to date!
       </div>
     </div>
     <img src="/images/mascots/zoey.png" role="presentation" alt="">
@@ -105,7 +105,7 @@ Add entries for `<addon-name>` and `<addon-name>/*` in your `tsconfig.json` like
 
 ## In-Repo V1 Addons
 
-[In-repo addons] work in much the same way as linked ones. Their `.ts` files are managed automatically by `ember-cli-typescript` in their `dependencies`, and you can ensure imports resolve correctly from the host by adding entries in `paths` in the base `tsconfig.json` file.
+[In-repo addons][] work in much the same way as linked ones. Their `.ts` files are managed automatically by `ember-cli-typescript` in their `dependencies`, and you can ensure imports resolve correctly from the host by adding entries in `paths` in the base `tsconfig.json` file.
 
 ```json {data-filename="tsconfig.json"}
 {
@@ -132,7 +132,7 @@ One difference as compared to regular published addons: you know whether or not 
 
 ## Templates
 
-Templates are _currently_ totally non-type-checked. (Looking for type-checking in templates? Try [Glint]!) This means that you lose any safety when moving into a template context.
+Templates are _currently_ totally non-type-checked. (Looking for type-checking in templates? Try [Glint][]!) This means that you lose any safety when moving into a template context.
 
 Addons need to import templates from the associated `.hbs` file to bind to the layout of any components they export. The TypeScript compiler will report that it cannot resolve the module, since it does not know how to resolve files ending in `.hbs`. To resolve this, you can provide this set of definitions to `my-addon/types/global.d.ts`, which will allow the import to succeed:
 
@@ -170,6 +170,5 @@ declare module 'addon/templates/*' {
 [glint]: https://typed-ember.gitbook.io/glint/
 [In-repo addons]: https://cli.emberjs.com/release/writing-addons/in-repo-addons/
 [npm-link]: https://docs.npmjs.com/cli/link
-[this]: https://www.typescriptlang.org/docs/handbook/2/functions.html#declaring-this-in-a-function
 [typesVersions]: https://www.typescriptlang.org/docs/handbook/declaration-files/publishing.html#version-selection-with-typesversions
 [yarn-link]: https://classic.yarnpkg.com/en/docs/cli/link

@@ -6,7 +6,7 @@ When working with TypeScript in [Ember tests][testing], your workflow will be es
 
 A common scenario in Ember tests, especially integration tests, is setting some value on the `this` context of the tests, so that it can be used in the context of the test. The Ember types refer to this as the `TestContext`.
 
-For example, we might need to set up a `User` type to pass into a `Profile` component. We’re going to start by defining a basic `User` and `Profile` so that we have a good idea of what we’re testing. The `User` type is very simple, just an `interface`:
+For example, we might need to set up a `User` type to pass into a `Profile` component. We're going to start by defining a basic `User` and `Profile` so that we have a good idea of what we're testing. The `User` type is very simple, just an `interface`:
 
 ```typescript {data-filename="app/types/user.ts"}
 export default interface User {
@@ -99,9 +99,9 @@ module('Integration | Component | Profile', function (hooks) {
 });
 ```
 
-This is a lovely test. Unfortunately, though, it won’t type-check. TypeScript reports that `Property 'user' does not exist on type 'TestContext'`. Now, TypeScript _does_ know that QUnit sets up that helpfully-named `TestContext`—so a lot of the things we can do in tests work out of the box—but we haven’t told TypeScript that `this` now has a `user` property on it.
+This is a lovely test. Unfortunately, though, it won't type-check. TypeScript reports that `Property 'user' does not exist on type 'TestContext'`. Now, TypeScript _does_ know that QUnit sets up that helpfully-named `TestContext`—so a lot of the things we can do in tests work out of the box—but we haven't told TypeScript that `this` now has a `user` property on it.
 
-To inform TypeScript about this, we need to tell it that the type of `this` in each test assertion includes the `user` property, of type `User`. We’ll start by importing the `TestContext` defined by Ember’s test helpers, and extending it:
+To inform TypeScript about this, we need to tell it that the type of `this` in each test assertion includes the `user` property, of type `User`. We'll start by importing the `TestContext` defined by Ember's test helpers, and extending it:
 
 ```typescript {data-filename="tests/integration/components/profile.ts"}
 import type { TestContext } from '@ember/test-helpers';
@@ -167,9 +167,9 @@ module('Integration | Component | Profile', function (hooks) {
 });
 ```
 
-Now everything type-checks, and we get the nice auto-completion we’re used to when dealing with `this.user` in the test body.
+Now everything type-checks, and we get the nice auto-completion we're used to when dealing with `this.user` in the test body.
 
-There are still a couple things to be careful about here, however. First, we didn’t specify that the `this.user` property was _optional_. That means that TypeScript won’t warn you if you do `this.user` _before_ assigning to it. Second, every test in our module gets the same `Context`. Depending on what you’re doing, that may be fine, but you may end up needing to define multiple distinct test context extensions. If you _do_ end up needing to define a bunch of different test context extensions, that may be a sign that this particular set of tests is doing too much. That in turn is probably a sign that this particular _component_ is doing too much!
+There are still a couple things to be careful about here, however. First, we didn't specify that the `this.user` property was _optional_. That means that TypeScript won't warn you if you do `this.user` _before_ assigning to it. Second, every test in our module gets the same `Context`. Depending on what you're doing, that may be fine, but you may end up needing to define multiple distinct test context extensions. If you _do_ end up needing to define a bunch of different test context extensions, that may be a sign that this particular set of tests is doing too much. That in turn is probably a sign that this particular _component_ is doing too much!
 
 ## Testing Philosophy
 
@@ -247,9 +247,9 @@ module('the `add` function', function (hooks) {
 
 Note, however, that only _app code_ can omit this category of tests. If you're writing an Ember addon (or any other library), you cannot assume that everyone consuming your code is using TypeScript, so you still need to account for these kinds of cases.
 
-Let's return to our silly example with an `add` function. Our setup will look a lot like it did in the JavaScript-only example—but with some extra type coercions along the way so that we can invoke it the way JavaScript-only users might.
+Let's return to our silly example with an `add` function. Our setup will look a lot like it did in the JavaScript-only example—but with some extra type coercion along the way so that we can invoke it the way JavaScript-only users might.
 
-First, notice that in this case we’ve added back in our `assert` in the body of the function. The inputs to our function here will get checked for us by any TypeScript users, but this way we are still doing the work of helping out our JavaScript users.
+First, notice that in this case we've added back in our `assert` in the body of the function. The inputs to our function here will get checked for us by any TypeScript users, but this way we are still doing the work of helping out our JavaScript users.
 
 ```typescript {data-filename="app/utils/math.ts"}
 import { assert } from '@ember/debug';
@@ -264,7 +264,7 @@ function add(a: number, b: number): number {
 }
 ```
 
-Now, in our test file, we’re similarly back to testing all those extra scenarios, but here TypeScript would actually stop us from passing the bad inputs _at all_. Working around this will require you to do something that might feel uncomfortable for some enthusiastic TypeScript users: casting a bunch of values [`as any`][any] for your tests to throw away what TypeScript knows about our code!
+Now, in our test file, we're similarly back to testing all those extra scenarios, but here TypeScript would actually stop us from passing the bad inputs _at all_. Working around this will require you to do something that might feel uncomfortable for some enthusiastic TypeScript users: casting a bunch of values [`as any`][any] for your tests to throw away what TypeScript knows about our code!
 
 ```typescript {data-filename="tests/unit/utils/math-test.ts"}
 import { module, test } from 'qunit';

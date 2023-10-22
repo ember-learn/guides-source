@@ -1,17 +1,17 @@
 ## Routes
 
-Since Ember [Routes] are just regular JavaScript classes with a few special Ember lifecycle hooks and properties available, TypeScript should JustWork™️. Ember's types supply the definitions for the various methods available within route subclasses, which will provide autocomplete and type-checking along the way.
+Since Ember [Routes][] are just regular JavaScript classes with a few special Ember lifecycle hooks and properties available, TypeScript should "Just Work." Ember's types supply the definitions for the various methods available within route subclasses, which will provide autocomplete and type-checking along the way.
 
 ## Controllers
 
-Like routes, [Controllers] are just normal JavaScript classes with a few special Ember lifecycle hooks and properties available.
+Like routes, [Controllers][] are just normal JavaScript classes with a few special Ember lifecycle hooks and properties available.
 
 The main thing to be aware of is special handling around query params. In order to provide type safety for query param configuration, Ember's types specify that when defining a query param's `type` attribute, you must supply one of the allowed types: `'boolean'`, `'number'`, `'array'`, or `'string'` (the default). However, if you supply these types as you would in JS, like this:
 
-```typescript {data-filename="app/controllers/heyo.ts"}
+```typescript {data-filename="app/controllers/my.ts"}
 import Controller from '@ember/controller';
 
-export default class HeyoController extends Controller {
+export default class MyController extends Controller {
   queryParams = [
     {
       category: { type: 'array' },
@@ -23,7 +23,7 @@ export default class HeyoController extends Controller {
 Then you will see a type error like this:
 
 ```text
-Property 'queryParams' in type 'HeyoController' is not assignable to the same property in base type 'Controller'.
+Property 'queryParams' in type 'MyController' is not assignable to the same property in base type 'Controller'.
   Type '{ category: { type: string; }; }[]' is not assignable to type '(string | Record<string, string | QueryParamConfig | undefined>)[]'.
     Type '{ category: { type: string; }; }' is not assignable to type 'string | Record<string, string | QueryParamConfig | undefined>'.
       Type '{ category: { type: string; }; }' is not assignable to type 'Record<string, string | QueryParamConfig | undefined>'.
@@ -36,10 +36,10 @@ Property 'queryParams' in type 'HeyoController' is not assignable to the same pr
 
 This is because TS currently infers the type of `type: "array"` as `type: string`. You can work around this by supplying [`as const`][const-assertions] after the declaration:
 
-```typescript {data-filename="app/controllers/heyo.ts", data-diff="-6,+7"}
+```typescript {data-filename="app/controllers/my.ts", data-diff="-6,+7"}
 import Controller from '@ember/controller';
 
-export default class HeyoController extends Controller {
+export default class MyController extends Controller {
   queryParams = [
     {
       category: { type: 'array' },
@@ -53,9 +53,9 @@ Now it will type-check.
 
 ## Working with Route Models
 
-We often use routes' models throughout our application, since they’re a core ingredient of our application’s data. As such, we want to make sure that we have good types for them!
+We often use routes' models throughout our application, since they're a core ingredient of our application's data. As such, we want to make sure that we have good types for them!
 
-We can start by defining a type utility to let us get the resolved value returned by a route’s model hook:
+We can start by defining a type utility to let us get the resolved value returned by a route's model hook:
 
 ```typescript {data-filename="app/lib/type-utils.ts"}
 import type Route from '@ember/routing/route';
@@ -82,7 +82,7 @@ export default class ControllerWithModel extends Controller {
 }
 ```
 
-Now, our controller’s `model` property will _always_ stay in sync with the corresponding route’s model hook.
+Now, our controller's `model` property will _always_ stay in sync with the corresponding route's model hook.
 
 <div class="cta">
   <div class="cta-note">
@@ -104,16 +104,16 @@ If you are using controller injections via the `@inject` decorator from `@ember/
 
 If you need to lookup a controller with `Owner.lookup`, you'll need to first register your controller in Ember's TypeScript Controller registry as described in ["Registries"][registries]:
 
-```typescript {data-filename="app/controllers/heyo.ts"}
+```typescript {data-filename="app/controllers/my.ts"}
 import Controller from '@ember/controller';
 
-export default class HeyoController extends Controller {
+export default class MyController extends Controller {
   //...
 }
 
 declare module '@ember/controller' {
   interface Registry {
-    heyo: HeyoController;
+    my: MyController;
   }
 }
 ```

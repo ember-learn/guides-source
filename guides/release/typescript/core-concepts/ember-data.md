@@ -8,7 +8,7 @@ EmberData models are normal TypeScript classes, but with properties decorated to
 
 ### `@attr`
 
-The type returned by the `@attr` [decorator] is whatever [Transform][transform-api-docs] is applied via the invocation. See our [overview of Transforms][transforms] for more information.
+The type returned by the `@attr` [decorator][] is whatever [Transform][transform-api-docs] is applied via the invocation. See our [overview of Transforms][transforms] for more information.
 
 If you supply no argument to `@attr`, the value is passed through without transformation.
 
@@ -79,7 +79,7 @@ declare module 'ember-data/types/registries/model' {
 
 ### Relationships
 
-Relationships between models in EmberData rely on importing the related models, like `import User from './user';`. This, naturally, can cause a recursive loop, as `/app/models/post.ts` imports `User` from `/app/models/user.ts`, and `/app/models/user.ts` imports `Post` from `/app/models/post.ts`. Recursive importing triggers an [`import/no-cycle`][import-no-cycle] error from eslint.
+Relationships between models in EmberData rely on importing the related models, like `import User from './user';`. This, naturally, can cause a recursive loop, as `/app/models/post.ts` imports `User` from `/app/models/user.ts`, and `/app/models/user.ts` imports `Post` from `/app/models/post.ts`. Recursive importing triggers an [`import/no-cycle`][import-no-cycle] error from ESLint.
 
 To avoid these errors, use [type-only imports][type-only-imports]:
 
@@ -238,7 +238,7 @@ declare module 'ember-data/types/registries/adapter' {
 
 ## EmberData Registries
 
-We use [registry] approach for EmberData type lookups with string keys. As a result, once you add the module and interface definitions for each model, transform, serializer, and adapter in your app, you will automatically get type-checking and autocompletion and the correct return types for functions like `findRecord`, `queryRecord`, `adapterFor`, `serializerFor`, etc. No need to try to write out those types; just write your EmberData calls like normal and everything _should_ just work. That is, writing `this.store.findRecord('user', 1)` will give you back a `Promise<User | undefined>`.
+We use [registry][] approach for EmberData type lookups with string keys. As a result, once you add the module and interface definitions for each model, transform, serializer, and adapter in your app, you will automatically get type-checking and autocompletion and the correct return types for functions like `findRecord`, `queryRecord`, `adapterFor`, `serializerFor`, etc. No need to try to write out those types; just write your EmberData calls like normal and everything _should_ just work. That is, writing `this.store.findRecord('user', 1)` will give you back a `Promise<User | undefined>`.
 
 <!-- Internal links -->
 
@@ -246,6 +246,7 @@ We use [registry] approach for EmberData type lookups with string keys. As a res
 [ED-guides]: ../../../models
 [ED-registry]: ./#toc_emberdata-registries
 [model-attrs]: ../../../models/defining-models/
+[registry]: ../../additional-resources/gotchas/#toc_registries
 [transforms]: ./#toc_transforms
 [transform-guides]: ../../../models/defining-models/#toc_custom-transforms
 

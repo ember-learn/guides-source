@@ -1,4 +1,4 @@
-These directions are for converting an _existing_ Ember app to TypeScript. If you are starting a new app, you can use the directions in [Getting Started].
+These directions are for converting an _existing_ Ember app to TypeScript. If you are starting a new app, you can use the directions in [Getting Started][].
 
 ## Enable TypeScript Features
 
@@ -10,7 +10,7 @@ Since `ember-cli` _currently_ has no flag to convert your project to TypeScript,
 ember install ember-cli-typescript@latest
 ```
 
-The `ember-cli-typescript` addon will install _most_ of the necessary packages and create or update _most_ of the necessary files as described in [Getting Started].
+The `ember-cli-typescript` addon will install _most_ of the necessary packages and create or update _most_ of the necessary files as described in [Getting Started][].
 
 You can then immediately remove the `ember-cli-typescript` dependency and follow the rest of this guide.
 
@@ -47,7 +47,7 @@ With the following configuration, project files will be generated with `.ts` ext
 npm add --save-dev @typescript-eslint/eslint-plugin @typescript-eslint/parser
 ```
 
-Then, update your `.eslintrc.js` to include the [current output from the Ember CLI blueprints][eslintrc]. You might consider using ESLint [overrides] configuration to separately configure your JavaScript and TypeScript files during the migration.
+Then, update your `.eslintrc.js` to include the [current output from the Ember CLI blueprints][eslintrc]. You might consider using ESLint [overrides][] configuration to separately configure your JavaScript and TypeScript files during the migration.
 
 ## Migrate Existing Code to TypeScript
 
@@ -67,7 +67,7 @@ The [`unknown`][unknown] type—You can sometimes get pretty far just by annotat
 
 [TypeScript declaration files][dts] (`.d.ts`)—These files are a straightforward way to document TypeScript types for JavaScript files without converting them. One downside of declaration files, however, is that they can easily get out-of-sync with the corresponding JavaScript file, so we only recommend this option as a temporary step.
 
-[JSDoc] and [`allowJs`][allowJs]—Another way to document TypeScript types for JavaScript files without converting them is to add JSDoc "type hints" to the files and enable the `allowJs` compiler option in your `tsconfig.json`. While the JSDoc type syntax can be a bit cumbersome, it is much more likely to stay in sync. You can even type-check your JavaScript files using the [`@ts-check`][ts-check] directive.
+[JSDoc][] and [`allowJs`][allowJs]—Another way to document TypeScript types for JavaScript files without converting them is to add JSDoc "type hints" to the files and enable the `allowJs` compiler option in your `tsconfig.json`. While the JSDoc type syntax can be a bit cumbersome, it is much more likely to stay in sync. You can even type-check your JavaScript files using the [`@ts-check`][ts-check] directive.
 
 The [`any`][any] type—Opt out of type checking altogether for a value by annotating it as `any`.
 
