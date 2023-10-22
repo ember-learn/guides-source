@@ -2,7 +2,7 @@ Ember [Services] are global singleton classes that can be made available to diff
 
 ## A Basic Service
 
-Let's take this example from the [Ember Guide][example-location]:
+Let's take this example from elsewhere in the [Ember Guides][example-location]:
 
 ```typescript {data-filename="app/services/shopping-cart.ts"}
 import Service from '@ember/service';
