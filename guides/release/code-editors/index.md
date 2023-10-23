@@ -25,7 +25,7 @@ Stable Ember Language Server is a stable, full-featured language server. Its nam
 
 ### Workflow
 
-[ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) - Integrates ESLint into VS Code. 
+[ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) - Integrates ESLint into VS Code.
 
 [EditorConfig for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig) -
 Attempts to override user/workspace settings with settings found in `.editorconfig` files.
@@ -49,8 +49,7 @@ Prettier is an opinionated code formatting tool. It enforces a consistent style 
   </div>
 </div>
 
-
-[Glint](https://marketplace.visualstudio.com/items?itemName=typed-ember.glint-vscode) is a set of tools to aid in developing code that uses the Glimmer VM for rendering, such as Ember.js v3.24+ and GlimmerX projects. 
+[Glint](https://marketplace.visualstudio.com/items?itemName=typed-ember.glint-vscode) is a set of tools to aid in developing code that uses the Glimmer VM for rendering, such as Ember.js v3.24+ and GlimmerX projects.
 
 ## Vim and Neovim
 
@@ -76,9 +75,9 @@ or
 [vim-ember-hbs](https://github.com/joukevandermaas/vim-ember-hbs) -
 Add Ember template syntax highlighting and indentation to Vim.
 To get embedded highlighting will involve these additional plugins:
+
 - [vim-javascript](https://github.com/pangloss/vim-javascript)
 - [vim-js-pretty-template](https://github.com/Quramy/vim-js-pretty-template)
-
 
 ### Language Server
 
@@ -91,20 +90,17 @@ Example mason+LSP config [can be found here](https://github.com/NullVoxPopuli/do
 or
 
 [Conquer for Completion (COC) for Neovim](https://github.com/neoclide/coc.nvim) -
-An Intellisense engine which takes control over all linting, hinting, and language-server integration.
+An IntelliSense engine which takes control over all linting, hinting, and language-server integration.
 With the ember plugin [coc-ember](https://github.com/NullVoxPopuli/coc-ember) -
 Ember.js language server extension including useful configuration instructions.
 
 ### Snippets / Workflow
 
-
 [ember.vim](https://github.com/dsawardekar/ember.vim) -
 Shortcuts to navigate related files with Ember.js projects.
 
-
 [Ember Tools](https://github.com/AndrewRadev/ember_tools.vim) -
 Various tools for working with Ember.js projects.
-
 
 ## Atom
 
