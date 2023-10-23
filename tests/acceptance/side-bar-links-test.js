@@ -24,7 +24,7 @@ module('Acceptance | side bar links', function (hooks) {
   setupApplicationTest(hooks);
 
   test('release links go to correct page', async function (assert) {
-    assert.expect(114);
+    assert.expect(130);
     await visit('/release');
 
     let store = this.owner.lookup('service:store');
