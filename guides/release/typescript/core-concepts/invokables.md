@@ -716,9 +716,9 @@ In those cases, your best bet is to find a simpler way to structure the types wh
 
 [audio-player-section]: ../../../components/template-lifecycle-dom-and-modifiers/#toc_communicating-between-elements-in-a-component
 [classic-components]: ../../additional-resources/legacy/#toc_classic-ember-components
-[components]: ../../../components/introducing-components
-[helpers]: ../../../components/helper-functions
-[modifiers]: ../../../components/template-lifecycle-dom-and-modifiers
+[components]: ../../../components/introducing-components/
+[helpers]: ../../../components/helper-functions/
+[modifiers]: ../../../components/template-lifecycle-dom-and-modifiers/
 [named-blocks]: ../../../components/block-content/
 [provider-component]: ../../../tutorial/part-2/provider-components/
 

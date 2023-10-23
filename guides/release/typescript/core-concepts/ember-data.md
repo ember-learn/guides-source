@@ -243,7 +243,7 @@ We use [registry][] approach for EmberData type lookups with string keys. As a r
 <!-- Internal links -->
 
 [decorator]: ../../additional-resources/gotchas/#toc_decorators
-[ED-guides]: ../../../models
+[ED-guides]: ../../../models/
 [ED-registry]: ./#toc_emberdata-registries
 [model-attrs]: ../../../models/defining-models/
 [registry]: ../../additional-resources/gotchas/#toc_registries

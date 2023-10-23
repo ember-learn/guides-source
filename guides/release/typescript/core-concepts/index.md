@@ -4,7 +4,7 @@ We do _not_ cover general usage of Ember; instead, we assume that as background 
 
 <!-- Internal links -->
 
-[ember-guides]: ../..
+[ember-guides]: ../../
 
 <!-- External links -->
 

@@ -62,7 +62,7 @@ To convert an existing app to TypeScript, you'll need to make the changes descri
 <!-- Internal links -->
 
 [converting]: ../application-development/converting-an-app/
-[ember-new]: ../../getting-started/quick-start
+[ember-new]: ../../getting-started/quick-start/
 [environment-types]: ../additional-resources/faq/#toc_environment-configuration-typings
 [global-types]: ../additional-resources/faq/#toc_global-types-for-your-project
 [tsconfig]: ../application-development/configuration/#toc_tsconfigjson
