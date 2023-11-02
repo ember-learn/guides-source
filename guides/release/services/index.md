@@ -243,7 +243,7 @@ In this situation, when the component's `@foo` argument changes (accessed in Jav
 Sometimes you'll want `@tracked` state to retain its reactivity when passing to a native class, so for that you'll need to use an anonymous arrow function.
 
 
-```javascript {data-filename=app/components/cart-content/index.js}
+```javascript {data-filename=app/components/cart-contents/index.js}
 import { setOwner, getOwner } from '@ember/owner';
 
 import { VanillaClass } from './vanilla-class';
