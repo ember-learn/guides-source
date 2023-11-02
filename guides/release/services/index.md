@@ -203,6 +203,8 @@ The exact way in which the wiring ceremony is done is up to you, but it often de
 If your native class needs arguments, we can change the above example to instantiate the class like this:
 
 ```javascript {data-filename=app/components/cart-content/index.js}
+import { setOwner, getOwner } from '@ember/owner';
+
 import { VanillaClass } from './vanilla-class';
 
 export default class CartContentsComponent extends Component {
