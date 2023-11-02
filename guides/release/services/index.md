@@ -169,7 +169,7 @@ import { VanillaClass } from './vanilla-class';
 export default class CartContentsComponent extends Component {
   @cached
   get vanillaClass() {
-    let instance = new VanillaClass();
+    const instance = new VanillaClass();
 
     setOwner(instance, getOwner(this));
 
