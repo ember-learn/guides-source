@@ -242,6 +242,8 @@ Sometimes you'll want `@tracked` state to retain its reactivity when passing to 
 
 
 ```javascript {data-filename=app/components/cart-content/index.js}
+import { setOwner, getOwner } from '@ember/owner';
+
 import { VanillaClass } from './vanilla-class';
 
 export default class CartContentsComponent extends Component {
