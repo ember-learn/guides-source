@@ -221,7 +221,7 @@ export default class CartContentsComponent extends Component {
 
 Back in the `VanillaClass` itself, you must store the value somewhere, via the constructor:
 
-```javascript {data-filename=app/components/cart-content/vanilla-class.js}
+```javascript {data-filename=app/components/cart-contents/vanilla-class.js}
 import { getOwner } from '@ember/owner';
 import { service } from '@ember/service';
 
