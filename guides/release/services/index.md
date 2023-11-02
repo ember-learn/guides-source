@@ -251,7 +251,7 @@ import { VanillaClass } from './vanilla-class';
 export default class CartContentsComponent extends Component {
   @cached
   get vanillaClass() {
-    let instance = new VanillaClass(() => this.args.foo);
+    const instance = new VanillaClass(() => this.args.foo);
 
     setOwner(instance, getOwner(this));
 
