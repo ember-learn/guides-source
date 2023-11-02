@@ -145,7 +145,7 @@ Note `cart` being used below to get data from the cart.
 
 If you want to access a service from a plain JavaScript class, you'll need to get a reference to the "[owner](https://api.emberjs.com/ember/release/modules/@ember%2Fowner)" object, which is responsible for managing services.
 
-First, we can define a class that accesses services as described above
+First, we can define a class that accesses services as described above:
 
 ```javascript {data-filename=app/components/cart-content/vanilla-class.js}
 import { getOwner } from '@ember/owner';
