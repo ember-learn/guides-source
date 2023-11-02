@@ -162,7 +162,7 @@ export class VanillaClass {
 
 And then to wire up `VanillaClass` to work with `@service`, you'll need to implement a ceremony:
 
-```javascript {data-filename=app/components/cart-content/index.js}
+```javascript {data-filename=app/components/cart-contents/index.js}
 import { getOwner, setOwner } from '@ember/owner';
 import { VanillaClass } from './vanilla-class';
 
