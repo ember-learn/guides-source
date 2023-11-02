@@ -114,7 +114,7 @@
     "walk-sync": "^2.0.2"
   },
   "engines": {
-    "node": "12.* || 14.* || >= 16"
+    "node": "16.* || 18.* || >= 20"
   },
   "ember": {
     "edition": "octane"
