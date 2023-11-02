@@ -147,7 +147,7 @@ If you want to access a service from a plain JavaScript class, you'll need to ge
 
 First, we can define a class that accesses services as described above:
 
-```javascript {data-filename=app/components/cart-content/vanilla-class.js}
+```javascript {data-filename=app/components/cart-contents/vanilla-class.js}
 import { service } from '@ember/service';
 
 export class VanillaClass {
