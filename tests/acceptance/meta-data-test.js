@@ -9,7 +9,7 @@ module('Acceptance | meta data', function (hooks) {
     await visit('/release/');
 
     await click('[data-test-toc-link="Routing"]');
-    assert.equal(currentURL(), '/release/routing');
+    assert.strictEqual(currentURL(), '/release/routing');
 
     // look up the og:title instead of title because testem modifies title https://github.com/testem/testem/issues/195
     assert
@@ -23,7 +23,7 @@ module('Acceptance | meta data', function (hooks) {
       );
 
     await click('[data-test-toc-link="Defining Your Routes"]');
-    assert.equal(currentURL(), '/release/routing/defining-your-routes');
+    assert.strictEqual(currentURL(), '/release/routing/defining-your-routes');
 
     assert
       .dom('head meta[property="og:title"]', document)
