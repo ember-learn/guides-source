@@ -16,6 +16,28 @@ npm add --save-dev ember-template-imports
 
 For integration with tools like Prettier and Glint, and information on version compatibility, refer to the addon's readme.
 
+## Editor Integrations
+
+To get syntax highlighting inside embedded templates and support for the GJS file extension, you may need to configure your editor.
+
+### Visual Studio Code
+
+The [Ember.js extension pack](https://marketplace.visualstudio.com/items?itemName=EmberTooling.emberjs) bundles everything you need to get started. More specifically, the [vscode-glimmer-syntax](https://marketplace.visualstudio.com/items?itemName=lifeart.vscode-glimmer-syntax) extension will add support for `glimmer-js` and `glimmer-ts` languages.
+
+### Neovim
+
+Here's an [example Neovim Config](https://github.com/NullVoxPopuli/dotfiles/blob/main/home/.config/nvim/lua/plugins/syntax.lua#L52) with support for good highlighting of embedded templates in JS and TS, using:
+
+- [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
+- [tree-sitter-glimmer](https://github.com/alexlafroscia/tree-sitter-glimmer)
+
+### Other editors
+
+For other editors, you may be able to get support using one of these other syntax definitions:
+
+- [TextMate](https://github.com/IgnaceMaes/glimmer-textmate-grammar)
+- [TreeSitter](https://github.com/alexlafroscia/tree-sitter-glimmer)
+
 ## Using Template Tags and `.gjs`/`.gts` Files
 
 The new `<template>` tag format is available in `.gjs` and `.gts` files. These file extensions represent a new file format "GlimmerJS" and "GlimmerTS", which are supersets of standard JavaScript and TypeScript respectively. In this syntax, templates are defined in JavaScript files directly.
