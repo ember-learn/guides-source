@@ -8,7 +8,7 @@ Template tag components address a number of pain points when defining a template
 
 ## Installation
 
-To use template tag components, you must install the [ember-template-imports](https://github.com/ember-template-imports/ember-template-imports) addon:
+To use template tag components, install the [ember-template-imports](https://github.com/ember-template-imports/ember-template-imports) addon:
 
 ```bash
 npm add --save-dev ember-template-imports
