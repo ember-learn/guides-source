@@ -127,3 +127,10 @@ Ember CLI snippets for Sublime Text 3.
 
 [ember-component-template-split-view](https://github.com/mmitchellgarcia/ember-component-template-split-view) -
 Super simple Sublime Text plugin that will let you open corresponding template or route files with Ember.js components.
+
+## CodeLobster IDE
+
+A cross-platform IDE with many plug-ins for all popular frameworks.
+
+[EmberJS plug-in](https://codelobster.com/emberjs.html) -
+EmberJS plug-in for CodeLobster IDE: EmberJS download, Autocomplete for EmberJS functions, Tooltips for EmberJS functions, Context and Dynamic help.
