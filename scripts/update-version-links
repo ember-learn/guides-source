@@ -1,4 +1,4 @@
-#!/usr/bin/node
+#!/usr/bin/env node
 
 /**
  * Search & Replace previous release numbers
@@ -26,6 +26,16 @@
  */
 
 const fs = require('fs');
+const { Command } = require('commander');
+const program = new Command();
+program.option('--tests')
+       .option('--dry-run')
+       .option('--verbose')
+       .option('--silent')
+       .argument('[currentFolder]')
+       .argument('[newVersionNumber]');
+program.parse(process.argv);
+const options = program.opts();
 
 const replaceURLsVersions = (str, version) => {
   let output;
@@ -88,24 +98,17 @@ const runTests = () => {
   console.log(test === 'https://guides.emberjs.com/v3.16.0/getting-started/' ? '✅' : '❌', test);
 };
 
-if (process.argv[2] === '--tests') {
+if (options.tests) {
   runTests();
   process.exit(0);
 }
 
-const currentFolder = fs.realpathSync(process.argv[2]);
-const newVersionNumber = process.argv[3];
+const currentFolder = fs.realpathSync(program.args[0]);
+const newVersionNumber = program.args[1];
 
-let dryRun = false;
-let verbose = false;
-let silent = false;
-
-if (process.argv.length > 4) {
-  const options = process.argv.slice(4);
-  dryRun = options.includes('--dry-run');
-  verbose = options.includes('--verbose');
-  silent = options.includes('--silent');
-}
+let dryRun = options.dryRun;
+let verbose = options.verbose;
+let silent = options.silent;
 
 let filesFound = [];
 let filesUpdated = [];
