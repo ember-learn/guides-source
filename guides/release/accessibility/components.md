@@ -57,13 +57,15 @@ However, the most common methods for providing accessible names can be reviewed 
 
 ### Adding a label to an input element
 
-Every `<input>` element should have an associated `<label>` element. To do this, the `<input>` element's `id` attribute value should be the same as the `for` attribute value on the `<label>`, like this:
+Every `<input>` element should have an associated `<label>` element. To do this, the `<input>` element's `id` attribute value should be the same as the `for` attribute value on the `<label>`. Ember has a built-in `unique-id` helper that can generate unique ids that you can use like this:
 
 ![Separate input and label elements with a connection established by matching for and id attributes](/images/accessibility/component-considerations/input-for-id.png)
 
 ```html
-<label for="input-name">Name:</label>
-<input id="input-name" name="name" value="" type="text" />
+{{#let (unique-id) as |id|}}
+  <label for={{id}}>Name:</label>
+  <input id={{id}} name="name" value="" type="text" />
+{{/let}}
 ```
 
 It is also valid to wrap the `<label>` element around the `<input />` element: 
