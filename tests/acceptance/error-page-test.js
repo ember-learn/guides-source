@@ -8,7 +8,7 @@ module('Acceptance | error page', function (hooks) {
   test('visiting a non-existent page shows the 404 error-page', async function (assert) {
     await visit('/v1.12.0/nonsense/route/');
 
-    assert.equal(currentURL(), '/v1.12.0/nonsense/route/');
+    assert.strictEqual(currentURL(), '/v1.12.0/nonsense/route/');
     assert.dom('[data-test-error-page]').exists();
     // todo make this pass again and add a test to the template
     // assert.dom('[data-test-error-message]').hasText(`Ack! 404 friend, you're in the wrong place`);

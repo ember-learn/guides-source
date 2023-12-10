@@ -22,7 +22,7 @@ module('Acceptance | current url', function (hooks) {
   test('visiting / redirects you to /release', async function (assert) {
     await visit('/');
     let page = this.owner.lookup('service:page');
-    assert.equal(currentURL(), '/release');
+    assert.strictEqual(currentURL(), '/release');
 
     let currentVersion = page.get('currentVersion');
     currentVersion = currentVersion.slice(
