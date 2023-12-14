@@ -46,6 +46,13 @@ describe('replace url versions', function () {
     ).to.equal('https://api.emberjs.com/ember-data/3.15');
     expect(
       replaceURLVersions(
+        'https://api.emberjs.com/ember-data/release',
+        '3.15',
+        '3.12'
+      )
+    ).to.equal('https://api.emberjs.com/ember-data/3.12');
+    expect(
+      replaceURLVersions(
         'https://api.emberjs.com/ember-data/release/classes/Model/',
         '3.15',
         '3.15'
@@ -58,6 +65,13 @@ describe('replace url versions', function () {
         '3.15'
       )
     ).to.equal('https://api.emberjs.com/ember-data/3.15/classes/Model/');
+    expect(
+      replaceURLVersions(
+        'https://api.emberjs.com/ember-data/3.20/classes/Model/',
+        '3.15',
+        '3.12'
+      )
+    ).to.equal('https://api.emberjs.com/ember-data/3.12/classes/Model/');
     expect(
       replaceURLVersions(
         'https://api.emberjs.com/ember/release/classes/@ember%2Fapplication/methods/getOwner',
