@@ -8,7 +8,7 @@ on:
 
 env:
   NODE_VERSION: 14
-  NODE_OPTIONS: "--max_old_space_size=4096"
+  NODE_OPTIONS: '--max_old_space_size=4096'
 
 jobs:
   lint:
@@ -30,7 +30,6 @@ jobs:
 
       - name: Lint
         run: npm run lint
-
 
   test-app:
     name: Test app
@@ -55,7 +54,6 @@ jobs:
           custom-command: npm run test:ember
         env:
           PERCY_TOKEN: 877df6aad8486060f69a34864b6cd33f870633743b23411343737c46a875a762
-
 
   test-node:
     name: Test node-tests

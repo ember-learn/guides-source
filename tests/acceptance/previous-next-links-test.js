@@ -7,12 +7,12 @@ module('Acceptance | previous next links', function (hooks) {
 
   test('navigation by previous and next links', async function (assert) {
     await visit('/v2.17.0/models/');
-    assert.equal(currentURL(), '/v2.17.0/models/');
+    assert.strictEqual(currentURL(), '/v2.17.0/models/');
     await click('.next-guide');
-    assert.equal(currentURL(), '/v2.17.0/models/defining-models');
+    assert.strictEqual(currentURL(), '/v2.17.0/models/defining-models');
     await click('.next-guide');
-    assert.equal(currentURL(), '/v2.17.0/models/finding-records');
+    assert.strictEqual(currentURL(), '/v2.17.0/models/finding-records');
     await click('.previous-guide');
-    assert.equal(currentURL(), '/v2.17.0/models/defining-models');
+    assert.strictEqual(currentURL(), '/v2.17.0/models/defining-models');
   });
 });

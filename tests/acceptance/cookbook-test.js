@@ -12,15 +12,15 @@ module('Acceptance | cookbook', function (hooks) {
 
   test('visiting /cookbook', async function (assert) {
     await visit('/v1.10.0/cookbook/');
-    assert.equal(currentURL(), '/v1.10.0/cookbook/');
+    assert.strictEqual(currentURL(), '/v1.10.0/cookbook/');
     await click('.next-guide');
-    assert.equal(currentURL(), '/v1.10.0/cookbook/contributing');
+    assert.strictEqual(currentURL(), '/v1.10.0/cookbook/contributing');
     await click('.next-guide');
-    assert.equal(
+    assert.strictEqual(
       currentURL(),
       '/v1.10.0/cookbook/contributing/understanding_the_cookbook_format'
     );
     await click('.previous-guide');
-    assert.equal(currentURL(), '/v1.10.0/cookbook/contributing');
+    assert.strictEqual(currentURL(), '/v1.10.0/cookbook/contributing');
   });
 });
