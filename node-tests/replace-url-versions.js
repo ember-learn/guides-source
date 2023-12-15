@@ -53,6 +53,13 @@ describe('replace url versions', function () {
     ).to.equal('https://api.emberjs.com/ember-data/3.12');
     expect(
       replaceURLVersions(
+        'https://api.emberjs.com/ember/release',
+        '3.15',
+        '3.12'
+      )
+    ).to.equal('https://api.emberjs.com/ember/3.15');
+    expect(
+      replaceURLVersions(
         'https://api.emberjs.com/ember-data/release/classes/Model/',
         '3.15',
         '3.15'
