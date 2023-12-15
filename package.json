@@ -50,6 +50,7 @@
     "babel-eslint": "^10.1.0",
     "broccoli-asset-rev": "^3.0.0",
     "chai": "^4.3.4",
+    "commander": "^11.1.0",
     "compare-versions": "^6.0.0-rc.2",
     "ember-auto-import": "^2.6.1",
     "ember-cli": "~4.0.1",
