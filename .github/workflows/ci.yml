@@ -17,10 +17,10 @@ jobs:
     timeout-minutes: 7
     steps:
       - name: Check out a copy of the repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Use Node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           cache: 'npm'
           node-version: ${{ env.NODE_VERSION }}
@@ -37,10 +37,10 @@ jobs:
     timeout-minutes: 7
     steps:
       - name: Check out a copy of the repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Use Node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           cache: 'npm'
           node-version: ${{ env.NODE_VERSION }}
