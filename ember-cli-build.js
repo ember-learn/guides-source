@@ -15,7 +15,7 @@ if (!process.env.ALL_VERSIONS) {
 }
 
 module.exports = function (defaults) {
-  let app = new EmberApp(defaults, {
+  const app = new EmberApp(defaults, {
     fingerprint: {
       extensions: ['js', 'css', 'map'],
       exclude: ['downloads'],
