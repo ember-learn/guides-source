@@ -31,7 +31,7 @@ module('Acceptance | side bar links', function (hooks) {
     let pages = await store.peekAll('page');
 
     await visitPages(
-      pages.toArray().filter((page) => !page.id.includes('toc-heading')),
+      pages.slice().filter((page) => !page.id.includes('toc-heading')),
       assert
     );
   });
