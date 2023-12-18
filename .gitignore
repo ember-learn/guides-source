@@ -34,3 +34,5 @@
 config/credentials.json
 
 /code
+# broccoli-debug
+/DEBUG/
