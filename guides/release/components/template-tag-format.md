@@ -18,7 +18,7 @@ The following template-only component was created in a previous section to extra
 </aside>
 ```
 
-This layout can be turned into a template tag component simply by wrapping the code in a `<template>` tag and changing the file extension to `.gjs`.
+This layout can be turned into a template tag component by wrapping the code in a `<template>` tag and changing the file extension to `.gjs`.
 
 ```text {data-filename="app/components/avatar.gjs"}
 <template>
@@ -189,7 +189,7 @@ This can be a powerful refactoring technique to break up large components into s
 
 ## Testing
 
-Historically, Ember's integration tests have been written using the `hbs` tagged template literal. This is no longer necessary with the template tag format. Instead, simply use the `<template>` tag to define a template to render.
+Historically, Ember's integration tests have been written using the `hbs` tagged template literal. This is no longer necessary with the template tag format. Instead, use the `<template>` tag to define a template to render.
 
 The following example showcases how the "Avatar" component can be tested using the template tag format.
 
