@@ -112,7 +112,7 @@ For example, when moving the "Avatar" component to the `app/components/messages`
 This quirk is no longer necessary with the template tag format. Instead, importing now works the same as importing any other JavaScript module.
 
 ```text {data-filename="app/components/avatar-usage.gjs"}
-import Avatar from 'app/components/message/avatar';
+import Avatar from 'app/components/messages/avatar';
 
 <template>
   <Avatar
