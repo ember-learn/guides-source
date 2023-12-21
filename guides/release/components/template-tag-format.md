@@ -96,6 +96,34 @@ The example above demonstrates defining a "Message" template-only component. The
   </div>
 </div>
 
+#### Nested components
+
+Component files can be organized in nested directory structures on the file system. Prior to the template tag format, the file path from the root component directory had be specified before to the component name, separated with `::`.
+
+For example, when moving the "Avatar" component to the `app/components/messages` namespace, referencing it using double collons would be done as follows.
+
+```handlebars {data-filename="app/components/avatar-usage.hbs"}
+<Messages::Avatar
+  @title="Picture of Zoey"
+  @initial="Zoey"
+/>
+```
+
+This quirk is no longer necessary with the template tag format. Instead, importing now works the same as importing any other JavaScript module.
+
+```text {data-filename="app/components/avatar-usage.gjs"}
+import Avatar from 'app/components/message/avatar';
+
+<template>
+  <Avatar
+    @title="Picture of Zoey"
+    @initial="Zoey"
+  />
+</template>
+```
+
+#### Helpers and modifiers
+
 Importing helpers and modifiers from the own app also follows the same principle of using standard JavaScript import syntax. Instead of importing from `app/components`, the path to import from is `app/helpers` and `app/modifiers` respectively.
 
 ### Importing from addons
@@ -206,7 +234,7 @@ module('Integration | Component | avatar', function (hooks) {
     const initial = 'Zoey';
     await render(
       <template>
-        <Avatar @title={{"Picture of Zoey"}} @initial={{initial}} />
+        <Avatar @title="Picture of Zoey" @initial={{initial}} />
       </template>
     );
     assert.dom().hasText(initial);
