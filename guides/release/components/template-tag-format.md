@@ -6,7 +6,7 @@ This new format is the official future of Ember's component authoring story, and
 
 ## Writing template tag components
 
-Just like with separate JavaScript and Glimmer template files, the template tag format has the concept of template-only components and class-based components. Let's take a closer look at how they compare between both component formats in the next sections.
+Just like with separate JavaScript and Glimmer template files, the template tag format has the concept of template-only components and class-based components. Let's take a closer look at how they compare between both component formats in the next section.
 
 ### Template-only components
 
@@ -191,7 +191,7 @@ This can be a powerful refactoring technique to break up large components into s
 
 Historically, Ember's integration tests have been written using the `hbs` tagged template literal. This is no longer necessary with the template tag format. Instead, simply use the `<template>` tag to define a template to render.
 
-The following example showacases how the "Avatar" component can be tested using the template tag format.
+The following example showcases how the "Avatar" component can be tested using the template tag format.
 
 ```text {data-filename="tests/integration/components/avatar-test.gjs"}
 import Avatar from 'app/components/avatar';
