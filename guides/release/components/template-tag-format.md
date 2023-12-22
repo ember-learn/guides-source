@@ -100,7 +100,7 @@ The example above demonstrates defining a "Message" template-only component. The
 
 Component files can be organized in nested directory structures on the file system. Prior to the template tag format, the file path from the root component directory had be specified before to the component name, separated with `::`.
 
-For example, when moving the "Avatar" component to the `app/components/messages` namespace, referencing it using double collons would be done as follows.
+For example, when moving the "Avatar" component to the `app/components/messages` namespace, referencing it using double colons would be done as follows.
 
 ```handlebars {data-filename="app/components/avatar-usage.hbs"}
 <Messages::Avatar
