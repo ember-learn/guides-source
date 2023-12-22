@@ -62,7 +62,7 @@ export default class Avatar extends Component {
 
 The template tag format uses strict template semantics. This means that you can only use components, helpers, and modifiers that are explicitly imported. This makes it easier to understand where things come from and what they do, as well as unlocks build optimizations.
 
-### Importing invokables from the own app
+### Importing invokables from your own app
 
 When making use of the "Avatar" component as defined before in a different component file, it first needs to be imported. This is done using the `import` statement, just like you would import any other JavaScript module.
 
@@ -124,11 +124,11 @@ import Avatar from 'app/components/messages/avatar';
 
 #### Helpers and modifiers
 
-Importing helpers and modifiers from the own app also follows the same principle of using standard JavaScript import syntax. Instead of importing from `app/components`, the path to import from is `app/helpers` and `app/modifiers` respectively.
+Importing helpers and modifiers from your own app also follows the same principle of using standard JavaScript import syntax. Instead of importing from `app/components`, the path to import from is `app/helpers` and `app/modifiers` respectively.
 
 ### Importing from addons
 
-Just as with components, helpers, and modifiers from the own app, external invokables from addons also have to be imported. This is done using the same `import` statement, but with a path referencing the addon.
+Just as with components, helpers, and modifiers from your own app, external invokables from addons also have to be imported. This is done using the same `import` statement, but with a path referencing the addon.
 
 The structure of files within Ember addons is mostly standardized. This means that the path to import from can be derived from the addon's name. For example, an addon that is named `ember-foo` will have its components, helpers, and modifiers available as default import from `ember-foo/components/<component-name>`, `ember-foo/helpers/<helper-name>` and `ember-foo/modifiers/<modifier-name>` respectively.
 
@@ -242,7 +242,7 @@ module('Integration | Component | avatar', function (hooks) {
 });
 ```
 
-Notice how the same semantics now apply to tests as well: local values in scope can be referenced directly, and invokables from the own app or addons need to be imported.
+Notice how the same semantics now apply to tests as well: local values in scope can be referenced directly, and invokables from your own app or addons need to be imported.
 
 ## Installation
 
