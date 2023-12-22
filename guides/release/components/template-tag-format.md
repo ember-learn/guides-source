@@ -6,7 +6,7 @@ This new format is the official future of Ember's component authoring story, and
 
 ## Writing template tag components
 
-Just like with separate JavaScript and Glimmer template files, the template tag format has the concept of template-only components and class-based components. Let's take a closer look at how they compare between both component formats in the next section.
+Just like with separate JavaScript and Glimmer template files, the template tag format has the concept of template-only components and class-based components. Let's take a closer look at how these concepts compare between both component formats in the next section.
 
 ### Template-only components
 
