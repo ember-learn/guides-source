@@ -89,7 +89,7 @@ The example above demonstrates defining a "Message" template-only component. The
       <div class="cta-note-message">
         The components that are imported are not required to use the new template tag format. This is intentional, and very powerful, as it <strong>allows incremental adoption</strong> of the new format.
         <br><br>
-        The only prerequisite is that the component is defined using the template-colocation structure instead of splitting up the JavaScript and Glimmer template files into separate folders.
+        The only prerequisite is that the component is defined using the <a href="https://rfcs.emberjs.com/id/0481-component-templates-co-location">template-colocation structure</a> instead of splitting up the JavaScript and Glimmer template files into separate folders.
       </div>
     </div>
     <img src="/images/mascots/zoey.png" role="presentation" alt="">
