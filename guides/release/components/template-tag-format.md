@@ -10,7 +10,7 @@ Just like with separate JavaScript and Glimmer template files, the template tag 
 
 ### Template-only components
 
-The following template-only component was created in a previous section to extract an avatar layout into a reusable component.
+The following template-only component was created in a [previous section](../component-arguments-and-html-attributes) to extract an avatar layout into a reusable component.
 
 ```handlebars {data-filename="app/components/avatar.hbs"}
 <aside>
