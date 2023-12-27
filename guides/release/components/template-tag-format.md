@@ -175,9 +175,9 @@ In the following example, a "Square" component is defined that calculates the sq
 ```text {data-filename="app/components/square.gjs"}
 const value = 2;
 
-const square = (number) => {
+function square(number) {
   return number * number;
-};
+}
 
 <template>
   The square of {{value}} equals {{square value}}
