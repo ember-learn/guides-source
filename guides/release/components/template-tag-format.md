@@ -2,7 +2,7 @@ The template tag format is a powerful, new way to write components in Ember. It'
 
 Template tag components use the file extension `.gjs`. This abbreviation is short for "Glimmer JavaScript". The file extension `.gts` is also supported for TypeScript components.
 
-This new format is the official future of Ember's component authoring story, and is stable and usable today. We expect it to become the recommended way of authoring all Ember apps in the near future, once we are satisfied that we have sufficiently polished up all the corners of the implementation.
+This new format is the official future of Ember's component authoring story, and is stable and usable today. We expect it to become the recommended and default way of authoring all Ember apps in the near future, once we are satisfied that we have sufficiently polished up all the corners of the implementation.
 
 ## Writing template tag components
 
@@ -258,7 +258,7 @@ You may need to upgrade dependency versions or install additional plugins to hav
 
 - [ember-template-lint](https://github.com/ember-template-lint/ember-template-lint): Versions 5.8.0 and up.
 - [eslint-plugin-ember](https://github.com/ember-cli/eslint-plugin-ember): Versions 11.6.0 and up.
-- [Prettier](https://github.com/prettier/prettier): Versions 3.0.0 and up. This requires installing the [prettier-plugin-ember-template-tag](https://github.com/gitKrystan/prettier-plugin-ember-template-tag).
+- [Prettier](https://github.com/prettier/prettier): Versions 3.1.0 and up. This requires installing the [prettier-plugin-ember-template-tag](https://github.com/gitKrystan/prettier-plugin-ember-template-tag).
 - [Glint](https://github.com/typed-ember/glint): Requires installing the [environment-ember-template-imports](https://github.com/typed-ember/glint/tree/main/packages/environment-ember-template-imports) plugin.
 
 ## Editor Integrations
