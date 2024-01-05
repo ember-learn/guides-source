@@ -166,10 +166,14 @@ We'll learn about the purposes of these files and folders as we go. For now, jus
 
 ## Starting and Stopping the Development Server
 
-Ember CLI comes with a lot of different commands for a variety of development tasks, such as the `ember new` command that we saw earlier. It also comes with a _development server_, which we can launch with the `ember serve` command:
+Ember CLI comes with a lot of different commands for a variety of development tasks, such as the `ember new` command that we saw earlier. It also comes with a _development server_, which we can launch within the project with the `npm start` command:
 
 ```shell
-$ ember serve
+$ npm start
+
+> super-rentals@0.0.0 start
+> ember serve
+
 building... 
 
 Build successful (9761ms) – Serving on http://localhost:4200/
@@ -191,7 +195,7 @@ The development server is responsible for compiling our app and serving it to th
   </div>
 </div>
 
-You can exit out of the development server at any time by typing `Ctrl + C` into the terminal window where `ember serve` is running. That is, typing the "C" key on your keyboard _while_ holding down the "Ctrl" key at the same time. Once it has stopped, you can start it back up again with the same `ember server` command. We recommend having two terminal windows open: one to run the server in background, another to type other Ember CLI commands.
+You can exit out of the development server at any time by typing `Ctrl + C` into the terminal window where `npm start` is running. That is, typing the "C" key on your keyboard _while_ holding down the "Ctrl" key at the same time. Once it has stopped, you can start it back up again with the same `npm start` command. We recommend having two terminal windows open: one to run the server in background, another to type other Ember CLI commands.
 
 ## Editing Files and Live Reload
 
