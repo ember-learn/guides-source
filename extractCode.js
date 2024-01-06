@@ -11,7 +11,7 @@ const { readFileSync, writeFileSync, mkdirSync, existsSync } = require('fs');
 // the language. If you only want to check certain types then you should change
 // this line
 const templatesMatch =
-  /^(handlebars|html|text|javascript|bash|sh|css|hbs|json|apacheconf)/;
+  /^(handlebars|html|text|javascript|bash|sh|css|hbs|json|apache)/;
 
 const mdFiles = _.chain(walkSync('guides/release'))
   .filter((path) => extname(path) === '.md')
