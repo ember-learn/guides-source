@@ -85,7 +85,7 @@
     "eslint-plugin-qunit": "^7.2.0",
     "gfm-code-blocks": "^1.0.0",
     "guidemaker": "^3.3.0",
-    "guidemaker-ember-template": "https://github.com/IgnaceMaes/guidemaker-ember-template.git#shikiji",
+    "guidemaker-ember-template": "https://github.com/IgnaceMaes/guidemaker-ember-template.git#14eec8c98b0d32010078f6981d03a589aa9c44b2",
     "loader.js": "^4.7.0",
     "lodash": "^4.17.21",
     "markdown-link-extractor": "^1.2.2",
