@@ -169,10 +169,17 @@ code[data-diff] .diff-insertion::before {
 
 .chapter pre, .chapter pre[class*=language-],
 .chapter code, .chapter code[class*=language-] {
-  line-height: 1.4;
+  line-height: 1.6;
 }
 .chapter .filename, .chapter pre, .chapter pre[class*=language-] {
   font-size: 85%;
+}
+
+.chapter .filename {
+  padding: var(--spacing-1) var(--spacing-2);
+}
+.chapter pre code {
+  padding: var(--spacing-1) 0;
 }
 
 /* ToC heading styles */
