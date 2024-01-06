@@ -20,7 +20,7 @@ The following template-only component was created in a [previous section](../com
 
 This layout can be turned into a template tag component by wrapping the code in a `<template>` tag and changing the file extension to `.gjs`.
 
-```text {data-filename="app/components/avatar.gjs"}
+```gjs {data-filename="app/components/avatar.gjs"}
 <template>
   <aside>
     <div class="avatar" title={{@title}}>{{@initial}}</div>
@@ -30,7 +30,7 @@ This layout can be turned into a template tag component by wrapping the code in 
 
 The top-level template tag is exported as default component from the file. You *can* write this export explicitly, but it's not necessary. The following example is equivalent to the previous one.
 
-```text {data-filename="app/components/avatar.gjs"}
+```gjs {data-filename="app/components/avatar.gjs"}
 export default <template>
   <aside>
     <div class="avatar" title={{@title}}>{{@initial}}</div>
@@ -42,7 +42,7 @@ export default <template>
 
 A `<template>` tag can also be embedded inside a class definition of a component. This is useful when you need to add state or other logic to your component. Take for example the following "Avatar" component, where a default title is added when the `title` argument is not provided.
 
-```text {data-filename="app/components/avatar.gjs"}
+```gjs {data-filename="app/components/avatar.gjs"}
 import Component from '@glimmer/component';
 
 export default class Avatar extends Component {
@@ -66,7 +66,7 @@ The template tag format uses strict template semantics. This means that you can 
 
 When making use of the "Avatar" component as defined before in a different component file, it first needs to be imported. This is done using the `import` statement, just like you would import any other JavaScript module.
 
-```text {data-filename="app/components/message.gjs"}
+```gjs {data-filename="app/components/message.gjs"}
 import Avatar from './avatar';
 
 <template>
@@ -107,11 +107,12 @@ For example, when moving the "Avatar" component to the `app/components/messages`
   @title="Picture of Zoey"
   @initial="Zoey"
 />
+
 ```
 
 This quirk is no longer necessary with the template tag format. Instead, importing now works the same as importing any other JavaScript module.
 
-```text {data-filename="app/components/avatar-usage.gjs"}
+```gjs {data-filename="app/components/avatar-usage.gjs"}
 import Avatar from './messages/avatar';
 
 <template>
@@ -172,7 +173,7 @@ The template tag format follows JavaScript module syntax. Any value that isn't e
 
 In the following example, a "Square" component is defined that calculates the square of a number. The `value` constant is defined locally, and the `square` helper function is only available within the component.
 
-```text {data-filename="app/components/square.gjs"}
+```gjs {data-filename="app/components/square.gjs"}
 const value = 2;
 
 function square(number) {
@@ -192,7 +193,7 @@ The template tag format allows defining multiple components within a single file
 
 The following example defines a "CustomSelect" component that renders a `<select>` element with a list of options. The locally-defined "Option" component is used to render each option in the list.
 
-```text {data-filename="app/components/custom-select.gjs"}
+```gjs {data-filename="app/components/custom-select.gjs"}
 const Option = <template>
   <option selected={{@selected}} value={{@value}}>
     {{@value}}
@@ -221,7 +222,7 @@ Historically, Ember's integration tests have been written using the `hbs` tagged
 
 The following example showcases how the "Avatar" component can be tested using the template tag format.
 
-```text {data-filename="tests/integration/components/avatar-test.gjs"}
+```gjs {data-filename="tests/integration/components/avatar-test.gjs"}
 import Avatar from 'app/components/avatar';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
