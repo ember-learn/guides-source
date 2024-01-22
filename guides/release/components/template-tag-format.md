@@ -28,7 +28,7 @@ This layout can be turned into a template tag component by wrapping the code in 
 </template>
 ```
 
-The top-level template tag is exported as default component from the file. You *can* write this export explicitly, but it's not necessary. The following example is equivalent to the previous one.
+The top-level template tag is exported as the default component from the file. You *can* write this export explicitly, but it's not necessary. The following example is equivalent to the previous one.
 
 ```text {data-filename="app/components/avatar.gjs"}
 export default <template>
