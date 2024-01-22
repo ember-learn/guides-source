@@ -2,7 +2,7 @@ The template tag format is a powerful, new way to write components in Ember. It'
 
 Template tag components use the file extension `.gjs`. This abbreviation is short for "Glimmer JavaScript". The file extension `.gts` is also supported for TypeScript components.
 
-This new format is the official future of Ember's component authoring story, and is stable and usable today. We expect it to become the recommended and default way of authoring all Ember apps in the near future, once we are satisfied that we have sufficiently polished up all the corners of the implementation.
+This new format is the [official future of Ember's component authoring story](https://rfcs.emberjs.com/id/0779-first-class-component-templates/), and is stable and usable today. We expect it to become the recommended and default way of authoring all Ember apps in the near future, once we are satisfied that we have sufficiently polished up all the corners of the implementation.
 
 ## Writing template tag components
 
