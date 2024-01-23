@@ -4,7 +4,7 @@ Template tag components use the file extension `.gjs`. This abbreviation is shor
 
 This new format is [the official future of Ember's component authoring story](https://rfcs.emberjs.com/id/0779-first-class-component-templates/), and is stable and usable today. The RFC is currently in the "Accepted" stage, and work is ongoing to get it to "Ready for Release". We expect it to become the recommended and default way of authoring all Ember apps in the near future, once we are satisfied that we have sufficiently polished up all the corners of the implementation.
 
-> Can't wait to get started? Head over to the [installation section](#installation) to start using template tag components in your apps and addons today.
+> Can't wait to get your hands on it? Head over to the [installation section](#toc_installation) to start using template tag components in your apps and addons today.
 
 ## Writing template tag components
 
