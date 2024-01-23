@@ -148,7 +148,7 @@ To import the "ExampleComponent" component from the `ember-foo` addon, the follo
 import ExampleComponent from 'ember-foo/components/example-component';
 ```
 
-Some addons may choose to re-export their invokables from the root index as named exports. (This is known as the barrel file pattern) Usually addons will document this usage in their README, if supported, which may look like:
+Some addons may choose to re-export their invokables from the root index as named exports. Usually addons will document this usage in their README, if supported, which may look like:
 
 ```js
 import { ExampleComponent } from 'ember-foo';
