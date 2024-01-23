@@ -130,7 +130,7 @@ Importing helpers and modifiers from your own app also follows the same principl
 
 Just as with components, helpers, and modifiers from your own app, external invokables from addons also have to be imported. This is done using the same `import` statement, but with a path referencing the addon.
 
-The structure of files within Ember addons is mostly standardized. This means that the path to import from can be derived from the addon's name. For example, an addon that is named `ember-foo` will have its components, helpers, and modifiers available as default import from `ember-foo/components/<component-name>`, `ember-foo/helpers/<helper-name>` and `ember-foo/modifiers/<modifier-name>` respectively.
+The structure of files within Ember addons is mostly standardized. This means that the path to import from can be derived from the addon's name. For example, an addon that is named `ember-foo` will likely have its components, helpers, and modifiers available as default import from `ember-foo/components/<component-name>`, `ember-foo/helpers/<helper-name>` and `ember-foo/modifiers/<modifier-name>` respectively.
 
 Some addons may choose to re-export their invokables from the root index as named exports. (This is known as the barrel file pattern) Usually addons will document this usage in their README, which may look like `import { ComponentName } from 'ember-foo';`, if supported.
 
