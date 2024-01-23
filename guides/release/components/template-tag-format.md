@@ -170,15 +170,22 @@ import { ExampleComponent } from 'ember-foo';
 
 The Ember built-in helpers, modifiers, and components are available for import from the following locations.
 
-- `array` (`import { array } from '@ember/helper';`)
-- `concat` (`import { concat } from '@ember/helper';`)
-- `fn` (`import { fn } from '@ember/helper';`)
-- `get` (`import { get } from '@ember/helper';`)
-- `hash` (`import { hash } from '@ember/helper';`)
-- `on` (`import { on } from '@ember/modifier';`)
-- `Input` (`import { Input } from '@ember/component';`)
-- `LinkTo` (`import { LinkTo } from '@ember/routing';`)
-- `Textarea` (`import { Textarea } from '@ember/component';`)
+```js
+// Built-in helpers
+import { array } from '@ember/helper';
+import { concat } from '@ember/helper';
+import { fn } from '@ember/helper';
+import { get } from '@ember/helper';
+import { hash } from '@ember/helper';
+
+// Built-in modifiers
+import { on } from '@ember/modifier';
+
+// Built-in components
+import { Input } from '@ember/component';
+import { LinkTo } from '@ember/routing';
+import { Textarea } from '@ember/component';
+```
 
 <div class="cta">
   <div class="cta-note">
