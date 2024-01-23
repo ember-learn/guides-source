@@ -132,7 +132,7 @@ import Avatar from './messages/avatar';
 
 Importing helpers and modifiers from your own app also follows the same principle of using standard JavaScript import syntax. Instead of importing from `app/components`, the path to import from is `app/helpers` and `app/modifiers` respectively.
 
-Prior to the template tag format, helpers and modifiers were referenced based on their name in the "kebal-case" convention. For example, a `randomNumber` function as helper would be referenced as `{{random-number}}` in a template. In the new way of doing things, ES import standards and conventions are used instead. This means that the helper is referenced using the name it is exported as, which is `randomNumber` in this case.
+Prior to the template tag format, helpers and modifiers were referenced based on their name in the "kebab-case" convention. For example, a `randomNumber` function as helper would be referenced as `{{random-number}}` in a template. In the new way of doing things, ES import standards and conventions are used instead. This means that the helper is referenced using the name it is exported as, which is `randomNumber` in this case.
 
 ```text {data-filename="app/components/random-number.gjs"}
 import randomNumber from '../helpers/random-number';
