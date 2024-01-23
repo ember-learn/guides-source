@@ -60,7 +60,11 @@ export default class Avatar extends Component {
 
 ## Importing components, helpers, and modifiers
 
-The template tag format uses strict template semantics. This means that you can only use components, helpers, and modifiers that are explicitly imported. This makes it easier to understand where things come from and what they do, as well as unlocks build optimizations.
+In Ember templates, **“invokables”** are things you can _invoke_ in a template. These include [components][], [helpers][], and [modifiers][]. In the template tag format, these invokables need to be imported before they can be used. This makes it easier to understand where values come from and what they do, as well as unlocks build optimizations.
+
+[components]: ../../../components/introducing-components/
+[helpers]: ../../../components/helper-functions/
+[modifiers]: ../../../components/template-lifecycle-dom-and-modifiers/
 
 ### Importing invokables from your own app
 
