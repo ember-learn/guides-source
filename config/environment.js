@@ -29,6 +29,24 @@ module.exports = function (environment) {
         'Ember.js helps developers be more productive out of the box. Designed with developer ergonomics in mind, its friendly APIs help you get your job done—fast.',
     },
 
+    'ember-showdown-shikiji': {
+      languages: [
+        'bash',
+        'css',
+        'http',
+        'javascript',
+        'json',
+        'json5',
+        'ruby',
+        'scss',
+        'yaml',
+        'typescript',
+        'glimmer-js',
+        'glimmer-ts',
+        'handlebars',
+      ],
+    },
+
     guidemaker: {
       title: 'Ember Guides',
       sourceRepo: 'https://github.com/ember-learn/guides-source',
