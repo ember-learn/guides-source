@@ -182,7 +182,7 @@ code[data-diff] .diff-insertion::before {
 .chapter .filename {
   padding: var(--spacing-1) var(--spacing-2);
 }
-.chapter pre code {
+.chapter .filename + pre code {
   padding: var(--spacing-1) 0;
 }
 
