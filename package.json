@@ -113,6 +113,9 @@
     "unified": "^9.2.1",
     "walk-sync": "^2.0.2"
   },
+  "overrides": {
+    "ember-cli-showdown": "^7.0.0"
+  },
   "engines": {
     "node": "12.* || 14.* || >= 16"
   },
