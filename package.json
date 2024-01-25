@@ -111,6 +111,9 @@
     "walk-sync": "^2.0.2",
     "webpack": "^5.72.1"
   },
+  "overrides": {
+    "ember-cli-showdown": "^7.0.0"
+  },
   "engines": {
     "node": "12.* || 14.* || >= 16"
   },
