@@ -148,7 +148,7 @@ During the development of your tests or when you refactor your application's cod
 To try them out, do the following steps:
 
 1. Add `await pauseTest();` in your test code.
-2. Run `ember server`.
+2. Run `npm start`.
 3. Visit `http://localhost:4200/tests` in your browser
 
 When the execution of the test come upon `await pauseTest()`, the test will be paused, allowing you to inspect the state of your application.

@@ -16,18 +16,12 @@ You have a few options for running tests.
 
 First, you can run the test suite by entering the command `ember test`, or `ember t`, in your terminal. This will run the suite just once.
 
-Suppose, instead, you want the suite to run after every file change. You can enter `ember test --server`, or `ember t -s`.
-
-Lastly, if you are already running a local development server (through `ember server`), you can visit the `/tests` URI. This will render the `tests/index.html` template.
+Running a local development server (through `npm start`), you can visit the `/tests` URI. This will render the `tests/index.html` template. This will also auto-update as you are changing files in your app.
 
 ```bash
 # Run all tests once
 ember test
 ember t
-
-# Run all tests after every file change
-ember test --server
-ember t -s
 ```
 
 ### How to Filter Tests
@@ -38,23 +32,23 @@ The `--module` option allows you to select a **module**—a group of tests that 
 
 ```bash
 # Button component example
-ember test --server --module="Integration | Component | simple-button"
+ember test --module="Integration | Component | simple-button"
 
 # Run tests for a location service
-ember t -s -m="Unit | Service | location"
+ember t -m="Unit | Service | location"
 ```
 
 The `--filter` option is more versatile. You can provide a phrase to match against the modules and test descriptions. A test description is what appears in `test()` in QUnit.
 
 ```bash
 # Button component example
-ember test --server --filter="should show icon and label"
+ember test --filter="should show icon and label"
 
 # Test everything related to your dashboard
-ember t -s -f="Dashboard"
+ember t -f="Dashboard"
 
 # Run integration tests
-ember t -s -f="Integration"
+ember t -f="Integration"
 ```
 
 In QUnit, you can exclude tests by adding an exclamation point to the beginning of the filter, e.g. `ember test --filter="!Acceptance"`.
