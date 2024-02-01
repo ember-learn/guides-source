@@ -26,7 +26,7 @@
  */
 
 const fs = require('fs');
-const replaceURLsVersions = require('./helpers/replace-url-versions')
+const replaceURLVersions = require('./helpers/replace-url-versions');
 const { Command } = require('commander');
 const program = new Command();
       program.option('--dry-run')
@@ -39,7 +39,8 @@ program.parse(process.argv);
 const options = program.opts();
 
 const currentFolder = fs.realpathSync(program.args[0]);
-const newVersionNumber = program.args[1];
+const newEmberVersionNumber = program.args[1];
+const newEmberDataVersionNumber = program.args[2];
 
 let dryRun = options.dryRun;
 let verbose = options.verbose;
@@ -57,7 +58,11 @@ const recursion = (path) => {
       recursion(filePath);
     } else if (fileName.endsWith('.md')) {
       const currentOutput = fs.readFileSync(filePath).toString();
-      const newOutput = replaceURLsVersions(currentOutput, newVersionNumber);
+      const newOutput = replaceURLVersions(
+        currentOutput,
+        newEmberVersionNumber,
+        newEmberDataVersionNumber
+      );
 
       if (currentOutput !== newOutput) {
         if (!dryRun) {
