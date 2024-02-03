@@ -29,7 +29,7 @@ module.exports = function (environment) {
         'Ember.js helps developers be more productive out of the box. Designed with developer ergonomics in mind, its friendly APIs help you get your job done—fast.',
     },
 
-    'ember-showdown-shikiji': {
+    'ember-showdown-shiki': {
       languages: [
         'bash',
         'css',
