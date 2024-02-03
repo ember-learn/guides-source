@@ -171,12 +171,13 @@ code[data-diff] .diff-insertion::before {
 .chapter code, .chapter code[class*=language-] {
   line-height: 1.6;
 }
-.chapter .filename, .chapter pre, .chapter pre[class*=language-] {
+.chapter .filename, .chapter pre, .chapter pre[class*=language-], .filename::after {
   font-size: 85%;
 }
 
 .filename::after {
-  font-size: 85%!important;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .chapter .filename {
