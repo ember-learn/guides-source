@@ -319,6 +319,6 @@ Here's an [example Neovim Config](https://github.com/NullVoxPopuli/dotfiles/blob
 
 For other editors, you may be able to get support using one of these other syntax definitions:
 
-- [TextMate](https://github.com/IgnaceMaes/glimmer-textmate-grammar)
+- [TextMate](https://github.com/lifeart/vsc-ember-syntax/tree/master/syntaxes)
 - [TreeSitter](https://github.com/alexlafroscia/tree-sitter-glimmer)
 
