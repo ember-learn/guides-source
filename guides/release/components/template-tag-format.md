@@ -62,7 +62,7 @@ export default class Avatar extends Component {
 
 ## Importing components, helpers, and modifiers
 
-In Ember templates, **“invokables”** are things you can _invoke_ in a template. These include [components][], [helpers][], and [modifiers][]. In the template tag format, these invokables need to be imported before they can be used. This makes it easier to understand where values come from and what they do, as well as unlocks build optimizations.
+In Ember templates, **“invokables”** are things you can *invoke* in a template. These include [components][], [helpers][], and [modifiers][]. In the template tag format, these invokables need to be imported before they can be used. This makes it easier to understand where values come from and what they do, as well as unlocks build optimizations.
 
 [components]: ../../../components/introducing-components/
 [helpers]: ../../../components/helper-functions/
@@ -189,11 +189,11 @@ import { Textarea } from '@ember/component';
 
 #### Keywords
 
-While most items should be imported into scope explicitly, some of the existing constructs in the language are unimportable and are available as keywords instead:
+While most items should be imported into scope explicitly, some of the existing constructs in the language are not importable and are available as keywords instead:
 
 `action`, `debugger`, `each-in`, `each`, `has-block-params`, `has-block`, `hasBlock`, `if`, `in-element`, `let`, `link-to`  (non-block form curly invocations), `loc`, `log`, `mount`, `mut`, `outlet`, `query-params`, `readonly`, `unbound`, `unless`, `with`, and `yield`
 
-These keywords do not have to be imported into scope and will always be ambiently available.
+These keywords do not have to be imported into scope and will always be available.
 
 <div class="cta">
   <div class="cta-note">
