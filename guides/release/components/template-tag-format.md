@@ -187,6 +187,14 @@ import { LinkTo } from '@ember/routing';
 import { Textarea } from '@ember/component';
 ```
 
+#### Keywords
+
+While most items should be imported into scope explicitly, some of the existing constructs in the language are unimportable and are available as keywords instead:
+
+`action`, `debugger`, `each-in`, `each`, `has-block-params`, `has-block`, `hasBlock`, `if`, `in-element`, `let`, `link-to`  (non-block form curly invocations), `loc`, `log`, `mount`, `mut`, `outlet`, `query-params`, `readonly`, `unbound`, `unless`, `with`, and `yield`
+
+These keywords do not have to be imported into scope and will always be ambiently available.
+
 <div class="cta">
   <div class="cta-note">
     <div class="cta-note-body">
