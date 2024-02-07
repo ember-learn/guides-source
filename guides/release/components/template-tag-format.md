@@ -12,7 +12,7 @@ Just like with separate JavaScript and Glimmer template files, the template tag 
 
 ### Template-only components
 
-The following template-only component was created in a [previous section](../component-arguments-and-html-attributes) to extract an avatar layout into a reusable component.
+The following template-only component was created in a [previous section](../component-arguments-and-html-attributes/) to extract an avatar layout into a reusable component.
 
 ```handlebars {data-filename="app/components/avatar.hbs"}
 <aside>
@@ -62,11 +62,8 @@ export default class Avatar extends Component {
 
 ## Importing components, helpers, and modifiers
 
-In Ember templates, **“invokables”** are things you can *invoke* in a template. These include [components][], [helpers][], and [modifiers][]. In the template tag format, these invokables need to be imported before they can be used. This makes it easier to understand where values come from and what they do, as well as unlocks build optimizations.
+In Ember templates, **“invokables”** are things you can *invoke* in a template. These include [components](./introducing-components/), [helpers](./helper-functions/), and [modifiers](./template-lifecycle-dom-and-modifiers/). In the template tag format, these invokables need to be imported before they can be used. This makes it easier to understand where values come from and what they do, as well as unlocks build optimizations.
 
-[components]: ../../../components/introducing-components/
-[helpers]: ../../../components/helper-functions/
-[modifiers]: ../../../components/template-lifecycle-dom-and-modifiers/
 
 ### Importing invokables from your own app
 
