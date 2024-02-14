@@ -63,6 +63,6 @@ With this feature disabled, Ember will automatically load a route's model if the
 
 2. As a fallback, it will attempt to define a `find` method and use your Model instance's `find` method to fetch. If a Model cannot be found or if the found Model does not have a find method, an assertion is thrown.
 
-Enabling this optional feature will remove this implicit model loading behaviour and leave it to you to implement if and when you need it.
+Enabling this optional feature will remove this implicit model loading behavior and leave it to you to implement if and when you need it.
 
 <!-- eof - needed for pages that end in a code block  -->
