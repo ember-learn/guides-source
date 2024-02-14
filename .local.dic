@@ -109,6 +109,7 @@ instantiation
 Intellisense
 IntelliSense
 interop
+integrations
 interoperable
 invokable
 invokables
@@ -137,6 +138,7 @@ nav
 nav-bar
 Neovim
 NVDA
+nvim-treesitter
 onboarding
 Orca
 page-crafter
@@ -207,6 +209,7 @@ TalkBack
 teardown
 template-lifecycle-dom-and-modifiers
 templating
+TextMate
 todo
 todos
 tooltip
@@ -237,6 +240,7 @@ VM
 VoiceOver
 voilà
 Voilà
+vscode-glimmer-syntax
 websocket
 working-with-html-css-and-javascript
 yay

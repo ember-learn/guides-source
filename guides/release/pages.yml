@@ -86,6 +86,8 @@
       url: template-lifecycle-dom-and-modifiers
     - title: "Built-in Components"
       url: "built-in-components"
+    - title: "Template Tag Format"
+      url: "template-tag-format"
 - title: "Routing"
   url: "routing"
   pages:
