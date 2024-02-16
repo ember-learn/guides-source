@@ -48,6 +48,8 @@ NEXT_VERSION=$MAJOR_VERSION.$(($MINOR_VERSION+1)).$PATCH_VERSION
 
 # Copy the current release guides into the appropriate version-numbered folder.
 # `-r` is for recursive, so all directory content is copied.
+echo "🤖 Removing any directories for $CURRENT_VERSION"
+rm -rf guides/$CURRENT_VERSION
 echo "🤖 Copying release to $CURRENT_VERSION"
 cp -r guides/release guides/$CURRENT_VERSION
 echo "  DONE"
