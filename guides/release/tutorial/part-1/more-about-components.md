@@ -201,10 +201,7 @@ module('Integration | Component | rental/image', function (hooks) {
     // Template block usage:
   test('it renders the given image', async function (assert) {
     await render(hbs`
-      <Rental::Image>
-        template block text
-      </Rental::Image>
-      <Rental::Image
+       <Rental::Image
         src="/assets/images/teaching-tomster.png"
         alt="Teaching Tomster"
       />
