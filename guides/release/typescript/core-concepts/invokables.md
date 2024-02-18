@@ -648,7 +648,7 @@ Yielding back out the same type passed in will use generics, and providing an ap
 
 Here is how that might look, using a class-backed component rather than a template-only component, since the only places TypeScript allows us to name new generic types are on functions and classes:
 
-```typescript
+```gts
 import Component from '@glimmer/component';
 
 interface OrderedList<T> {
