@@ -378,7 +378,8 @@ class Photo {
 
   @cached
   get aspectRatio() {
-    return getValue(this.#aspectRatioCache);
+    count++;
+    return this.width / this.height;
   }
 }
 
