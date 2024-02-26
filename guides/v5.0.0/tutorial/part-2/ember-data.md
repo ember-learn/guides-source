@@ -2,7 +2,7 @@
 
 In this chapter, we will work on removing some code duplication in our route handlers, by switching to using Ember Data to manage our data. The end result looks exactly the same as before:
 
-<img src="/images/tutorial/part-2/ember-data/homepage@2x.png" alt="The Super Rentals app by the end of the chapter" width="1024" height="1129">
+<img src="/images/tutorial/part-2/ember-data/homepage@2x.png" alt="The Super Rentals app by the end of the chapter" width="1024" height="1130">
 
 During this refactor, you will learn about:
 
@@ -147,6 +147,8 @@ So far, we haven't had a good place to write tests for the rental property's `ty
 $ ember generate model-test rental
 installing model-test
   create tests/unit/models/rental-test.js
+
+Running "lint:fix" script...
 ```
 
 <div class="cta">
@@ -163,8 +165,9 @@ installing model-test
 
 The generator created some boilerplate code for us, which serves as a pretty good starting point for writing our test:
 
-```js { data-filename="tests/unit/models/rental-test.js" data-diff="-7,-8,+9,-11,-12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33,+34,+35,+36,+37,+38,+39,+40,+41,+42" }
+```js { data-filename="tests/unit/models/rental-test.js" data-diff="-8,-9,+10,-12,-13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33,+34,+35,+36,+37,+38,+39,+40,+41,+42,+43" }
 import { module, test } from 'qunit';
+
 import { setupTest } from 'super-rentals/tests/helpers';
 
 module('Unit | Model | rental', function (hooks) {
@@ -348,8 +351,8 @@ With our adapter and serializer in place, all our tests should pass again.
 
 The UI works exactly the same as before as well, just with much less code!
 
-<img src="/images/tutorial/part-2/ember-data/homepage@2x.png" alt="The homepage works exactly the same as before, but with much less code!" width="1024" height="1129">
+<img src="/images/tutorial/part-2/ember-data/homepage@2x.png" alt="The homepage works exactly the same as before, but with much less code!" width="1024" height="1130">
 
-<img src="/images/tutorial/part-2/ember-data/detailed@2x.png" alt="The details page works exactly the same as before, but with much less code!" width="1024" height="1381">
+<img src="/images/tutorial/part-2/ember-data/detailed@2x.png" alt="The details page works exactly the same as before, but with much less code!" width="1024" height="1382">
 
 Ember Data offers many, many features (like managing the _relationships_ between different models) and there's a lot more we can learn about it. For example, if your backend's have some inconsistencies across different endpoints, Ember Data allows you to define more specific, per-model adapters and serializers too! We are just scratching the surface here. If you want to learn more about Ember Data, check out [its own dedicated section](../../../models/) in the guides!
