@@ -4,7 +4,7 @@ In this chapter, you will add interactivity to the page, allowing the user to cl
 
 <!-- TODO: make this a gif instead -->
 
-<img src="/images/tutorial/part-1/interactive-components/rental-image-default@2x.png" alt="The Super Rentals app by the end of the chapter (default image size)" width="1024" height="1129">
+<img src="/images/tutorial/part-1/interactive-components/rental-image-default@2x.png" alt="The Super Rentals app by the end of the chapter (default image size)" width="1024" height="1130">
 
 <img src="/images/tutorial/part-1/interactive-components/rental-image-large@2x.png" alt="The Super Rentals app by the end of the chapter (large image size)" width="1024" height="1500">
 
@@ -34,6 +34,8 @@ Ember optionally allows us to associate JavaScript code with a component for exa
 $ ember generate component-class rental/image
 installing component-class
   create app/components/rental/image.js
+
+Running "lint:fix" script...
 ```
 
 This generated a JavaScript file with the same name as our component's template at `app/components/rental/image.js`. It contains a _[JavaScript class](https://javascript.info/class)_, _[inheriting](https://javascript.info/class-inheritance)_ from `@glimmer/component`.
@@ -199,7 +201,7 @@ With that, we have created our first _interactive_ component. Go ahead and try i
 
 <!-- TODO: make this a gif instead -->
 
-<img src="/images/tutorial/part-1/interactive-components/rental-image-default@2x.png" alt="&lt;Rental::Image&gt; (default size)" width="1024" height="1129">
+<img src="/images/tutorial/part-1/interactive-components/rental-image-default@2x.png" alt="&lt;Rental::Image&gt; (default size)" width="1024" height="1130">
 
 <img src="/images/tutorial/part-1/interactive-components/rental-image-large@2x.png" alt="&lt;Rental::Image&gt; (large size)" width="1024" height="1500">
 
