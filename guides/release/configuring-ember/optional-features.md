@@ -33,7 +33,7 @@ Usage:
 
 Available features:
 
-  no-implicit-route-model (Default: false)
+  no-implicit-route-model (Default: true)
     Removes the default record loading behavior on Ember's Route.
     More information: https://rfcs.emberjs.com/id/0774-implicit-record-route-loading
 ```
