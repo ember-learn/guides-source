@@ -120,8 +120,5 @@
   "volta": {
     "node": "20.11.0",
     "npm": "9.6.3"
-  },
-  "dependencies": {
-    "execa": "^8.0.1"
   }
 }
