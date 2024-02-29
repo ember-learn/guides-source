@@ -2,7 +2,7 @@
 
 It's time to finally work on the rentals listing:
 
-<img src="/images/tutorial/part-1/more-about-components/rental-image@2x.png" alt="The Super Rentals app by the end of the chapter" width="1024" height="1129">
+<img src="/images/tutorial/part-1/more-about-components/rental-image@2x.png" alt="The Super Rentals app by the end of the chapter" width="1024" height="1130">
 
 While building this list of rental properties, you will learn about:
 
@@ -19,10 +19,12 @@ Let's start by creating the `<Rental>` component. This time, we will use the com
 $ ember generate component rental
 installing component
   create app/components/rental.hbs
-  skip app/components/rental.js
+  skip app/components/rental.ts
   tip to add a class, run `ember generate component-class rental`
 installing component-test
   create tests/integration/components/rental-test.js
+
+Running "lint:fix" script...
 ```
 
 The generator created two new files for us, a component template at `app/components/rental.hbs`, and a component test file at `tests/integration/components/rental-test.js`.
@@ -68,7 +70,7 @@ module('Integration | Component | rental', function (hooks) {
   test('it renders information about a rental property', async function (assert) {
     await render(hbs`<Rental />`);
 
-    assert.dom(this.element).hasText('');
+    assert.dom().hasText('');
 
     // Template block usage:
     await render(hbs`
@@ -77,7 +79,7 @@ module('Integration | Component | rental', function (hooks) {
       </Rental>
     `);
 
-    assert.dom(this.element).hasText('template block text');
+    assert.dom().hasText('template block text');
     assert.dom('article').hasClass('rental');
     assert.dom('article h3').hasText('Grand Old Mansion');
     assert.dom('article .detail.owner').includesText('Veruca Salt');
@@ -112,7 +114,7 @@ Finally, let's invoke this a couple of times from our index template to populate
 
 With that, we should see the `<Rental>` component showing our Grand Old Mansion three times on the page:
 
-<img src="/images/tutorial/part-1/more-about-components/three-old-mansions@2x.png" alt="Three Grand Old Mansions" width="1024" height="1129">
+<img src="/images/tutorial/part-1/more-about-components/three-old-mansions@2x.png" alt="Three Grand Old Mansions" width="1024" height="1130">
 
 Things are looking pretty convincing already; not bad for just a little bit of work!
 
@@ -124,10 +126,12 @@ Next, let's add the image for the rental property. We will use the component gen
 $ ember generate component rental/image
 installing component
   create app/components/rental/image.hbs
-  skip app/components/rental/image.js
+  skip app/components/rental/image.ts
   tip to add a class, run `ember generate component-class rental/image`
 installing component-test
   create tests/integration/components/rental/image-test.js
+
+Running "lint:fix" script...
 ```
 
 This time, we had a `/` in the component's name. This resulted in the component being created at `app/components/rental/image.hbs`, which can be invoked as `<Rental::Image>`.
@@ -173,7 +177,7 @@ Instead of hard-coding specific values for the `src` and `alt` attributes on the
 
 We specified a `src` and an `alt` HTML attribute here, which will be passed along to the component and attached to the element where `...attributes` is applied in the component template. You can think of this as being similar to `{{yield}}`, but for HTML attributes specifically, rather than displayed content. In fact, we have already used this feature [earlier](../building-pages/) when we passed a `class` attribute to `<LinkTo>`.
 
-<img src="/images/tutorial/part-1/more-about-components/rental-image@2x.png" alt="The &lt;Rental::Image&gt; component in action" width="1024" height="1129">
+<img src="/images/tutorial/part-1/more-about-components/rental-image@2x.png" alt="The &lt;Rental::Image&gt; component in action" width="1024" height="1130">
 
 This way, our `<Rental::Image>` component is not coupled to any specific rental property on the site. Of course, the hard-coding problem still exists (we simply moved it to the `<Rental>` component), but we will deal with that soon. We will limit all the hard-coding to the `<Rental>` component, so that we will have an easier time cleaning it up when we switch to fetching real data.
 
@@ -196,7 +200,7 @@ module('Integration | Component | rental/image', function (hooks) {
 
     await render(hbs`<Rental::Image />`);
 
-    assert.dom(this.element).hasText('');
+    assert.dom().hasText('');
 
     // Template block usage:
   test('it renders the given image', async function (assert) {
@@ -210,7 +214,7 @@ module('Integration | Component | rental/image', function (hooks) {
       />
     `);
 
-    assert.dom(this.element).hasText('template block text');
+    assert.dom().hasText('template block text');
     assert
       .dom('.image img')
       .exists()
