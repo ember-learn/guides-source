@@ -186,7 +186,7 @@ know HTML and CSS, you know how to build a basic Ember application!
 You can even use SVG or web components without any changes. As long as your HTML
 is valid, Ember will render it.
 
-# Self-Closing Tags
+## Self-Closing Tags
 
 In addition to normal HTML syntax, Ember allows you to use self-closing syntax
 (`<div />`) as a shorthand for an opening and closing tag (`<div></div>`).
@@ -206,7 +206,7 @@ In addition to normal HTML syntax, Ember allows you to use self-closing syntax
   </div>
 </div>
 
-# Supported Features
+## Supported Features
 
 This means that all of the following HTML features work as-is:
 
@@ -216,7 +216,7 @@ This means that all of the following HTML features work as-is:
 - White space (following the same rules as normal HTML)
 - Special HTML elements like `<table>` and `<select>`
 
-# Restrictions
+## Restrictions
 
 There are a handful of restrictions on the HTML that you can put in an Ember
 template:
