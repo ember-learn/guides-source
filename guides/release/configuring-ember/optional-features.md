@@ -65,4 +65,3 @@ With this feature disabled, Ember will automatically load a route's model if the
 
 Enabling this optional feature will remove this implicit model loading behavior and leave it to you to implement if and when you need it.
 
-<!-- eof - needed for pages that end in a code block  -->
