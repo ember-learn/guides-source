@@ -33,9 +33,9 @@ Usage:
 
 Available features:
 
-  some-example-feature (Default: true)
-    A description of the feature goes here
-    More information: <link to an RFC>
+  no-implicit-route-model (Default: true)
+    Removes the default record loading behavior on Ember's Route.
+    More information: https://rfcs.emberjs.com/id/0774-implicit-record-route-loading
 ```
 
 ## Features
@@ -46,11 +46,22 @@ Let us disable an optional feature to see what happens. Substitute `some-example
 for a real feature name when you run this command.
 
 ```bash
-$ ember feature:disable some-example-feature
-Disabled some-example-feature. Be sure to commit config/optional-features.json to source control!
+$ ember feature:disable no-implicit-route-model
+Disabled no-implicit-route-model. Be sure to commit config/optional-features.json to source control!
 ```
 
 As we can see from the warning, `@ember/optional-features` has created a file in `config/optional-features.json` to store the configuration for your project.
 We commit it to our repository and we are off to the races!
 
-<!-- eof - needed for pages that end in a code block  -->
+### no-implicit-route-model
+
+This feature is related to esoteric features of route model loading that you likely do not use, or know exist, and [have been deprecated](https://deprecations.emberjs.com/id/deprecate-implicit-route-model/) in `5.3.0`. They are due to be removed in `6.0.0`. To clear the deprecation, you can enable this feature.
+
+With this feature disabled, Ember will automatically load a route's model if the `model` hook has not been implemented. In this case, Ember will attempt to try a few things before rendering this route's template.
+
+1. If there is a `store` property on your route, it will attempt to call its `find` method. Assuming you have ember-data installed, you may be expecting this. The arguments will be extracted from the params. For example, if a dynamic segment is `:post_id`, there exists logic to split on the underscore and find a record of type post.
+
+2. As a fallback, it will attempt to define a `find` method and use your Model instance's `find` method to fetch. If a Model cannot be found or if the found Model does not have a find method, an assertion is thrown.
+
+Enabling this optional feature will remove this implicit model loading behavior and leave it to you to implement if and when you need it.
+
