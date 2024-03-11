@@ -192,7 +192,7 @@ This includes all of Ember's major framework classes, such as components, helper
 
 Dependency injections can also be declared directly on Ember classes using `inject`.
 Currently, `inject` supports injecting controllers (via `import { inject } from '@ember/controller';`)
-and services (via `import { inject } from '@ember/service';`).
+and services (via `import { service } from '@ember/service';`).
 
 The following code injects the `shopping-cart` service on the `cart-contents` component as the property `cart`:
 
