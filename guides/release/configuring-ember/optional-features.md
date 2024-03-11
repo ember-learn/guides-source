@@ -55,7 +55,7 @@ We commit it to our repository and we are off to the races!
 
 ### no-implicit-route-model
 
-This feature is related to esoteric features of route model loading that you likely do not use, or know exist, and [have been deprecated](https://deprecations.emberjs.com/v5.x#toc_deprecate-implicit-route-model) in `5.3.0`. They are due to be removed in `6.0.0`. To clear the deprecation, you can enable this feature.
+This feature is related to esoteric features of route model loading that you likely do not use, or know exist, and [have been deprecated](https://deprecations.emberjs.com/id/deprecate-implicit-route-model/) in `5.3.0`. They are due to be removed in `6.0.0`. To clear the deprecation, you can enable this feature.
 
 With this feature disabled, Ember will automatically load a route's model if the `model` hook has not been implemented. In this case, Ember will attempt to try a few things before rendering this route's template.
 
