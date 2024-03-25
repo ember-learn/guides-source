@@ -30,6 +30,7 @@ module.exports = function (environment) {
     },
 
     'ember-showdown-shiki': {
+      theme: 'github-dark',
       languages: [
         'bash',
         'css',

@@ -84,7 +84,7 @@
     "eslint-plugin-qunit": "^7.2.0",
     "gfm-code-blocks": "^1.0.0",
     "guidemaker": "^3.3.0",
-    "guidemaker-ember-template": "https://github.com/IgnaceMaes/guidemaker-ember-template#upgrade-shiki",
+    "guidemaker-ember-template": "https://github.com/ember-learn/guidemaker-ember-template",
     "loader.js": "^4.7.0",
     "lodash": "^4.17.21",
     "markdown-link-extractor": "^1.2.2",
@@ -124,5 +124,8 @@
   "volta": {
     "node": "20.11.0",
     "npm": "9.6.3"
+  },
+  "dependencies": {
+    "shiki": "^1.2.0"
   }
 }
