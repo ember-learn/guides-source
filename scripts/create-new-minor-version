@@ -48,6 +48,8 @@ NEXT_VERSION=$MAJOR_VERSION.$(($MINOR_VERSION+1)).$PATCH_VERSION
 
 # Copy the current release guides into the appropriate version-numbered folder.
 # `-r` is for recursive, so all directory content is copied.
+echo "🤖 Removing any directories for $CURRENT_VERSION"
+rm -rf guides/$CURRENT_VERSION
 echo "🤖 Copying release to $CURRENT_VERSION"
 cp -r guides/release guides/$CURRENT_VERSION
 echo "  DONE"
@@ -66,9 +68,12 @@ sed -i .bak -e "/currentVersion/i \\
 rm guides/versions.yml.bak
 echo "  DONE"
 
+echo "What version of EmberData is being released (e.g. 5.3.0)? Double check this as it might not be the same version as Ember."
+read -r EMBER_DATA_CURRENT_VERSION
+
 # Update version numbers in links
 echo "🤖 Updating version number for links in /guides/$CURRENT_VERSION/**/*.md"
-node scripts/update-version-links guides/$CURRENT_VERSION $(echo $CURRENT_VERSION | cut -d "v" -f2) --silent
+node scripts/update-version-links guides/$CURRENT_VERSION $(echo $CURRENT_VERSION | cut -d "v" -f2) $(echo $EMBER_DATA_CURRENT_VERSION | cut -d "v" -f2) --silent
 echo "  DONE"
 
 echo

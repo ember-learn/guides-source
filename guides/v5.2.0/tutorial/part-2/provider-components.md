@@ -4,7 +4,7 @@ In this chapter, we'll work on adding a new search feature, and refactor our `in
 
 <!-- TODO: make this a gif instead -->
 
-<img src="/images/tutorial/part-2/provider-components/filtered-results@2x.png" alt="The Super Rentals app by the end of the chapter" width="1024" height="797">
+<img src="/images/tutorial/part-2/provider-components/filtered-results@2x.png" alt="The Super Rentals app by the end of the chapter" width="1024" height="798">
 
 During this refactor, you will learn about:
 
@@ -42,7 +42,7 @@ Well, we can start simple. Before we worry about implementing the "search" part 
 
 Now if we refresh the UI, it has an `<input>` element on the page.
 
-<img src="/images/tutorial/part-2/provider-components/homepage-with-inert-search@2x.png" alt="The homepage with a search box, but it doesn't work yet." width="1024" height="1327">
+<img src="/images/tutorial/part-2/provider-components/homepage-with-inert-search@2x.png" alt="The homepage with a search box, but it doesn't work yet." width="1024" height="1328">
 
 Awesome, one step done. Now, this input looks great, but it doesn't actually _do_ anything.
 
@@ -99,7 +99,7 @@ Remember the small change we made in the markup when we extracted our `<Rentals>
 
 Let's check our UI as well to make sure that we didn't break anything during this refactor...
 
-<img src="/images/tutorial/part-2/provider-components/homepage-with-rentals-component@2x.png" alt="The homepage looks exactly the same as before!" width="1024" height="1327">
+<img src="/images/tutorial/part-2/provider-components/homepage-with-rentals-component@2x.png" alt="The homepage looks exactly the same as before!" width="1024" height="1328">
 
 Awesome, it looks exactly the same!
 
@@ -330,7 +330,7 @@ This is called the _provider component pattern_, which we see in action with one
 
 Okay, now that we have a better sense of which component is rendering what and the theory behind why all of this is happening, let's answer the big unanswered question: does this even work? If we try out our search box in the UI, what happens?
 
-<img src="/images/tutorial/part-2/provider-components/filtered-results@2x.png" alt="Trying out the search box." width="1024" height="797">
+<img src="/images/tutorial/part-2/provider-components/filtered-results@2x.png" alt="Trying out the search box." width="1024" height="798">
 
 Hooray, it works! Awesome. Now that we've tried this out manually in the UI, let's write a test for this new behavior as well.
 

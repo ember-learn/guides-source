@@ -17,12 +17,13 @@ describe('replace url versions', function () {
         '3.15'
       )
     ).to.equal('https://api.emberjs.com/ember/3.15');
+    // the script is idempotent now so will only replace /release/ links
     expect(
       replaceURLVersions('https://api.emberjs.com/ember/3.20/', '3.15', '3.15')
-    ).to.equal('https://api.emberjs.com/ember/3.15/');
+    ).to.equal('https://api.emberjs.com/ember/3.20/');
     expect(
       replaceURLVersions('https://api.emberjs.com/ember/3.20', '3.15', '3.15')
-    ).to.equal('https://api.emberjs.com/ember/3.15');
+    ).to.equal('https://api.emberjs.com/ember/3.20');
     expect(
       replaceURLVersions(
         'https://api.emberjs.com/ember/release/classes/Application',
@@ -65,20 +66,22 @@ describe('replace url versions', function () {
         '3.15'
       )
     ).to.equal('https://api.emberjs.com/ember-data/3.15/classes/Model/');
+
+    // the script is idempotent now so will only replace /release/ links
     expect(
       replaceURLVersions(
         'https://api.emberjs.com/ember-data/3.20/classes/Model/',
         '3.15',
         '3.15'
       )
-    ).to.equal('https://api.emberjs.com/ember-data/3.15/classes/Model/');
+    ).to.equal('https://api.emberjs.com/ember-data/3.20/classes/Model/');
     expect(
       replaceURLVersions(
         'https://api.emberjs.com/ember-data/3.20/classes/Model/',
         '3.15',
         '3.12'
       )
-    ).to.equal('https://api.emberjs.com/ember-data/3.12/classes/Model/');
+    ).to.equal('https://api.emberjs.com/ember-data/3.20/classes/Model/');
     expect(
       replaceURLVersions(
         'https://api.emberjs.com/ember/release/classes/@ember%2Fapplication/methods/getOwner',
