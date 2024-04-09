@@ -107,7 +107,7 @@ export default class RentalModel extends Model {
 }
 ```
 
-Here, we created a `RentalModel` class that extends EmberData's `Model` superclass. When fetching the listing data from the server, each individual rental property will be represented by an instance (also known as a _[record](../../../models/finding-records/)_ of our `RentalModel` class.
+Here, we created a `RentalModel` class that extends EmberData's `Model` superclass. When fetching the listing data from the server, each individual rental property will be represented by an instance (also known as a _[record](../../../models/finding-records/)_) of our `RentalModel` class.
 
 We used the `@attr` decorator to declare the attributes of a rental property. These attributes correspond directly to the `attributes` data we expect the server to provide in its responses:
 
