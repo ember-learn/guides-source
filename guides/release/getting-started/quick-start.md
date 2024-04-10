@@ -51,7 +51,7 @@ Let's make sure everything is working properly.
 
 ```bash
 cd ember-quickstart
-ember serve
+npm start
 ```
 
 After a few seconds, you should see output that looks like this:
