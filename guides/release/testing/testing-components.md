@@ -235,7 +235,7 @@ export default class CommentFormComponent extends Component {
 Here's an example test that asserts that the specified `externalAction` function is invoked when the component's internal `submitComment` action is triggered by making use of a test double (dummy function).
 The value from the external action is captured in a shared variable (if and when it is called),
 so that it can be explicitly asserted directly in the test function at the time where we
-expect the closure to have been called.
+expect the closure action to have been called.
 
 ```javascript {data-filename="tests/integration/components/comment-form-test.js"}
 import { module, test } from 'qunit';
