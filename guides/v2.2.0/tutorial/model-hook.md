@@ -29,7 +29,7 @@ var rentals = [{
   city: 'Seattle',
   type: 'Condo',
   bedrooms: 1,
-  image: 'https://upload.wikimedia.org/wikipedia/commons/0/0e/Alfonso_13_Highrise_Tegucigalpa.jpg'
+  image: 'https://upload.wikimedia.org/wikipedia/commons/2/20/Seattle_-_Barnes_and_Bell_Buildings.jpg'
 }, {
   id: 3,
   title: 'Downtown Charm',
