@@ -25,7 +25,7 @@ To verify that your installation was successful, run:
 ```shell
 $ ember --version
 ember-cli: 5.8.0
-node: 18.20.1
+node: 18.20.2
 os: linux x64
 ```
 
