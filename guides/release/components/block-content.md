@@ -333,16 +333,16 @@ If you want to yield content to different spots in the same component, you can u
 You could also want to pass some values. This is the same process as the default `yield`, but you just have to pass `to` as the last argument. An example would be the popover:
 
 ```handlebars {data-filename=app/components/popover.hbs}
-  <div class="popover">
-    <div class="popover__trigger">
-      {{yield this.isOpen to="trigger"}}
-    </div>
-    {{#if this.isOpen}}
-      <div class="popover__content">
-        {{yield to="content"}}
-      </div>
-    {{/if}}
+<div class="popover">
+  <div class="popover__trigger">
+    {{yield this.isOpen to="trigger"}}
   </div>
+  {{#if this.isOpen}}
+    <div class="popover__content">
+      {{yield to="content"}}
+    </div>
+  {{/if}}
+</div>
 ```
 
 Without named blocks, we would certainly have to pass components as `args` to the popover. But this is much more practical!
@@ -355,14 +355,14 @@ Here’s how we would call our named blocks as a consumer:
     <button type="button">Click to {{if open "close" "open"}}  the popover!</button>
   </:trigger>
   <:content>
-      This is what is shown when I'm opened!
+     This is what is shown when I'm opened!
   </:content>
 </Popover>
 ```
 
 We know the state of the popover because we passed it as an argument to the `yield`. To access its value, use the block parameters at the named block scope. It will not be accessible at the `Popover` level, so if you want the value to be available for all the blocks, you will have to pass it for each of them.
 
-That would give this result:
+Rendering the previous code example would give this as result:
 
 ```html
 <!-- rendered -->
@@ -371,7 +371,7 @@ That would give this result:
     <button type="button">Click to close the popover!</button>
   </div>
   <div class="popover__content">
-     This is what is showed when I'm opened!
+    This is what is showed when I'm opened!
   </div>
 </div>
 ```
