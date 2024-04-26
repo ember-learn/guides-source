@@ -160,7 +160,7 @@ Ember Exam also lets you randomize how the tests are run. Why would you want to 
 
 Last but not least, [Percy](https://percy.io/) is a **visual regression testing** tool that ensures consistent user interfaces across different browsers and devices by identifying visual bugs. It captures screenshots of web pages at different development stages and compares them pixel-by-pixel to detect any visual differences.
 
-This tool is invaluable for maintaining visual consistency and quality in web applications. By providing faster feedback cycles early in the development process, Percy enables teams to promptly identify and address bugs, contributing to the overall quality and stability of the deployed UI, and ultimately delivering better user experiences.
+This tool is invaluable for maintaining visual consistency and quality in web applications. By providing faster feedback cycles early in the development process, Percy enables teams to promptly identify and address bugs, contributing to the overall quality and stability of the deployed UI, and ultimately delivering better user experiences. [Learn more](https://www.browserstack.com/docs/percy/integrate/ember)
 
 ## Summary
 
