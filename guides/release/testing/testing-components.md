@@ -71,8 +71,6 @@ module('Integration | Component | pretty-color', function(hooks) {
   setupRenderingTest(hooks);
 
   test('should change colors', async function(assert) {
-    assert.expect(1);
-
     // set the outer context to red
     this.set('colorValue', 'red');
 
@@ -102,8 +100,6 @@ module('Integration | Component | pretty-color', function(hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function(assert) {
-    assert.expect(2);
-
     // set the outer context to red
     this.set('colorValue', 'red');
 
@@ -129,8 +125,6 @@ module('Integration | Component | pretty-color', function(hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function(assert) {
-    assert.expect(2);
-
     this.set('colorValue', 'orange');
 
     await render(hbs`<PrettyColor @name={{this.colorValue}} />`);
@@ -189,8 +183,6 @@ module('Integration | Component | magic-title', function(hooks) {
   setupRenderingTest(hooks);
 
   test('should update title on button click', async function(assert) {
-    assert.expect(2);
-
     await render(hbs`<MagicTitle />`);
 
     assert.equal(this.element.querySelector('h2').textContent.trim(), 'Hello World', 'initial text is hello world');
@@ -241,8 +233,9 @@ export default class CommentFormComponent extends Component {
 ```
 
 Here's an example test that asserts that the specified `externalAction` function is invoked when the component's internal `submitComment` action is triggered by making use of a test double (dummy function).
-`assert.expect(1)` at the top of the test makes sure that the assertion inside the
-external action is called:
+The value from the external action is captured in a shared variable (if and when it is called),
+so that it can be explicitly asserted directly in the test function at the time where we
+expect the closure action to have been called.
 
 ```javascript {data-filename="tests/integration/components/comment-form-test.js"}
 import { module, test } from 'qunit';
@@ -254,12 +247,10 @@ module('Integration | Component | comment-form', function(hooks) {
   setupRenderingTest(hooks);
 
   test('should trigger external action on form submit', async function(assert) {
-    assert.expect(1);
-
     // test double for the external action
-    this.set('externalAction', (actual) => {
-      let expected = { comment: 'You are not a wizard!' };
-      assert.deepEqual(actual, expected, 'submitted value is passed to external action');
+    let actual;
+    this.set('externalAction', (data) => {
+      actual = data;
     });
 
     await render(hbs`<CommentForm @submitComment={{this.externalAction}} />`);
@@ -269,6 +260,9 @@ module('Integration | Component | comment-form', function(hooks) {
 
     // click the button to submit the form
     await click('.comment-input');
+
+    let expected = { comment: 'You are not a wizard!' };
+    assert.deepEqual(actual, expected, 'submitted value is passed to external action');
   });
 });
 ```
@@ -522,11 +516,11 @@ module('Integration | Component | delayed-typeahead', function(hooks) {
   ];
 
   test('should render results after typing a term', async function(assert) {
-    assert.expect(2);
-
     this.set('results', []);
-    this.set('fetchResults', (value) => {
-      assert.equal(value, 'test', 'fetch closure action called with search value');
+
+    let value;
+    this.set('fetchResults', (data) => {
+      value = data;
       this.set('results', stubResults);
     });
 
@@ -535,6 +529,7 @@ module('Integration | Component | delayed-typeahead', function(hooks) {
     this.element.querySelector('input').dispatchEvent(new Event('keyup'));
 
     await settled();
+    assert.equal(value, 'test', 'fetch closure action called with search value');
 
     assert.equal(this.element.querySelectorAll('.result').length, 2, 'two results rendered');
   });
