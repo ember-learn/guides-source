@@ -66,13 +66,12 @@ Ember.ENV.RAISE_ON_DEPRECATION = true;
 Ember.ENV.LOG_STACKTRACE_ON_DEPRECATION = true;
 ```
 
-### Implement an Ember.onerror hook to log all errors in production
+### Implement a window error event listener to log all errors in production
 
 ```javascript {data-filename=app/app.js}
-import Ember from 'ember';
 import fetch from 'fetch';
 // ...
-Ember.onerror = function(error) {
+window.addEventListener('error', function(error) {
   fetch('/error-notification', {
     method: 'POST',
     body: JSON.stringify({
@@ -80,21 +79,7 @@ Ember.onerror = function(error) {
       otherInformation: 'exception message'
     })
   });
-}
-```
-
-### Import the console
-
-If you are using imports with Ember, be sure to import the console:
-
-```javascript
-Ember = {
-  imports: {
-    Handlebars: Handlebars,
-    jQuery: $,
-    console: window.console
-  }
-};
+});
 ```
 
 ### Errors within `Ember.run.later` Backburner
