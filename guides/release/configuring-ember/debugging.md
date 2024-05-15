@@ -66,7 +66,7 @@ Ember.ENV.RAISE_ON_DEPRECATION = true;
 Ember.ENV.LOG_STACKTRACE_ON_DEPRECATION = true;
 ```
 
-### Implement an window error event listener to log all errors in production
+### Implement a window error event listener to log all errors in production
 
 ```javascript {data-filename=app/app.js}
 import fetch from 'fetch';
