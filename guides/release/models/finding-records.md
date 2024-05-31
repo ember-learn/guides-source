@@ -2,15 +2,17 @@ The EmberData store provides an interface for retrieving records of a single typ
 
 ### Retrieving a Single Record
 
-Use [`store.findRecord()`](https://api.emberjs.com/ember-data/release/classes/Store/methods/findRecord?anchor=findRecord) to retrieve a record by its type and ID.
-This will return a promise that fulfills with the requested record:
+Use [`findRecord()`](https://api.emberjs.com/ember-data/5.3/functions/@ember-data%2Fjson-api%2Frequest/findRecord) to retrieve a record by its type and ID.
+This will return a response from the server which has a requested record:
 
 ```javascript
-// GET /blog-posts/1
-this.store.findRecord('blog-post', 1)  // => GET /blog-posts/1
-  .then(function(blogPost) {
-      // Do something with `blogPost`
-  });
+// GET /blog-post/1
+import { service } from '@ember/service';
+import { findRecord } from '@ember-data/json-api/request';
+
+@service store
+const result = await this.store.request(findRecord('blog-post', '1'));
+const blog-post = result.content.data;
 ```
 
 Use [`store.peekRecord()`](https://api.emberjs.com/ember-data/release/classes/Store/methods/peekRecord?anchor=peekRecord) to retrieve a record by its type and ID, without making a network request.
@@ -22,14 +24,14 @@ let blogPost = this.store.peekRecord('blog-post', 1); // => no network request
 
 ### Retrieving Multiple Records
 
-Use [`store.findAll()`](https://api.emberjs.com/ember-data/release/classes/Store/methods/findAll?anchor=findAll) to retrieve all of the records for a given type:
+Use [`query()`](https://api.emberjs.com/ember-data/5.3/functions/@ember-data%2Fjson-api%2Frequest/query) to retrieve all of the records for a given type:
 
 ```javascript
 // GET /blog-posts
-this.store.findAll('blog-post') // => GET /blog-posts
-  .then(function(blogPosts) {
-    // Do something with `blogPosts`
-  });
+import { query } from '@ember-data/json-api/request';
+
+const result = await store.request(query('blog-post'));
+const blog-posts = result.content.data;
 ```
 
 Use [`store.peekAll()`](https://api.emberjs.com/ember-data/release/classes/Store/methods/peekAll?anchor=peekAll) to retrieve all of the records for a given type that are already loaded into the store, without making a network request:
@@ -38,7 +40,7 @@ Use [`store.peekAll()`](https://api.emberjs.com/ember-data/release/classes/Store
 let blogPosts = this.store.peekAll('blog-post'); // => no network request
 ```
 
-`store.findAll()` returns a `PromiseArray` that fulfills to a `RecordArray` and `store.peekAll` directly returns a `RecordArray`.
+`findRecord()` returns a `PromiseArray` that fulfills to a `RecordArray` and `store.peekAll` directly returns a `RecordArray`.
 
 It's important to note that `RecordArray` is not a JavaScript array, it's an object that implements [`MutableArray`](https://api.emberjs.com/ember/release/classes/MutableArray).
 This is important because, for example, if you want to retrieve records by index,
@@ -47,21 +49,22 @@ the `[]` notation will not work--you'll have to use `objectAt(index)` instead.
 ### Querying for Multiple Records
 
 EmberData provides the ability to query for records that meet certain criteria.
-Calling [`store.query()`](https://api.emberjs.com/ember-data/release/classes/Store/methods/query?anchor=query) will make a `GET` request with the passed object serialized as query params.
-This method returns a `PromiseArray` in the same way as `findAll`.
+Calling [`query()`](https://api.emberjs.com/ember-data/5.3/functions/@ember-data%2Fjson-api%2Frequest/query) will make a `GET` request with the passed object serialized as query params.
+This method returns a respone from the server in the same way as `findRecord`.
 
 For example, we could search for all `person` models who have the name of
 `Peter`:
 
 ```javascript
 // GET to /persons?filter[name]=Peter
-this.store.query('person', {
+import { query } from '@ember-data/json-api/request';
+
+const result = await store.request(query('person', {
   filter: {
     name: 'Peter'
   }
-}).then(function(peters) {
-  // Do something with `peters`
-});
+}));
+const person = result.content.data;
 ```
 
 ### Querying for A Single Record
