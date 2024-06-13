@@ -209,3 +209,9 @@ li.toc-heading.toc-level-0:first-of-type {
 li.toc-group.toc-level-0 {
   padding-left: 1em;
 }
+
+/* Override dark background from styleguide */
+code:not([class*="language-"]) {
+  background-color: var(--color-gray-200);
+  border: 1px solid var(--color-gray-300);
+}
