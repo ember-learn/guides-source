@@ -10,9 +10,9 @@ This will return a response from the server which has a requested record:
 import { service } from '@ember/service';
 import { findRecord } from '@ember-data/json-api/request';
 
-@service store
+// somewhere in the app
 const result = await this.store.request(findRecord('blog-post', '1'));
-const blog-post = result.content.data;
+const blogPost = result.content.data;
 ```
 
 Use [`store.peekRecord()`](https://api.emberjs.com/ember-data/release/classes/Store/methods/peekRecord?anchor=peekRecord) to retrieve a record by its type and ID, without making a network request.
@@ -31,7 +31,7 @@ Use [`query()`](https://api.emberjs.com/ember-data/5.3/functions/@ember-data%2Fj
 import { query } from '@ember-data/json-api/request';
 
 const result = await store.request(query('blog-post'));
-const blog-posts = result.content.data;
+const blogPosts = result.content.data;
 ```
 
 Use [`store.peekAll()`](https://api.emberjs.com/ember-data/release/classes/Store/methods/peekAll?anchor=peekAll) to retrieve all of the records for a given type that are already loaded into the store, without making a network request:
@@ -69,9 +69,9 @@ const person = result.content.data;
 
 ### Querying for A Single Record
 
-If you are using an adapter that supports server requests capable of returning a single model object,
-EmberData provides a convenience method [`store.queryRecord()`](https://api.emberjs.com/ember-data/release/classes/Store/methods/queryRecord?anchor=queryRecord) that will return a promise that resolves with that single record.
-The request is made via a method `queryRecord()` defined by the adapter.
+If you are using an builder that supports server requests capable of returning a single model object,
+EmberData provides a convenience method [`findRecord()`](https://api.emberjs.com/ember-data/5.3/functions/@ember-data%2Fjson-api%2Frequest/findRecord) that will return a record.
+The request is made via a method `findRecord()` defined by the builders.
 
 For example, if your server API provides an endpoint for the currently logged in user:
 
@@ -85,43 +85,43 @@ For example, if your server API provides an endpoint for the currently logged in
 }
 ```
 
-And if the adapter for the `User` model defines a `queryRecord()` method that targets that endpoint:
+And if the builders for the `User` model defines a `queryData()` method that targets that endpoint:
 
-```javascript {data-filename=app/adapters/user.js}
-import Adapter from '@ember-data/adapter';
-import fetch from 'fetch';
-
-export default class UserAdapter extends Adapter {
-  queryRecord(store, type, query) {
-    return fetch('/api/current_user');
-  }
+```javascript {data-filename=app/builders/user.js}
+export function queryData() {
+    return {
+        url: `/api/current_user`,
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    }
 }
 ```
 
-Then, calling [`store.queryRecord()`](https://api.emberjs.com/ember-data/release/classes/Store/methods/queryRecord?anchor=queryRecord) will retrieve that object from the server:
+Then, calling `queryData()` will retrieve that object from the server:
 
 ```javascript
-store.queryRecord('user', {}).then(function(user) {
-  let username = user.get('username');
-  console.log(`Currently logged in as ${username}`);
-});
+import { queryData } from './builders';
+
+const user = await this.requestManager.request(queryData())
+let username = user.get('username');
+console.log(`Currently logged in as ${username}`);
 ```
 
-As in the case of `store.query()`, a query object can also be passed to `store.queryRecord()` and is available for the adapter's `queryRecord()` to use to qualify the request.
-However the adapter must return a single model object, not an array containing one element,
+As in the case of `query()`, a query object can also be passed to `query()` and is available for the builder's `query()` to use to qualify the request.
+However the builder must return a single model object, not an array containing one element,
 otherwise EmberData will throw an exception.
 
-Note that Ember's default [JSON:API adapter](https://api.emberjs.com/ember-data/release/classes/JSONAPIAdapter) does not provide the functionality needed to support `queryRecord()` directly as it relies on REST request definitions that return result data in the form of an array.
-
-If your server API or your adapter only provides array responses but you wish to retrieve just a single record, you can alternatively use the `query()` method as follows:
+If your server API or your builder only provides array responses but you wish to retrieve just a single record, you can alternatively use the `query()` method as follows:
 
 ```javascript
 // GET to /users?filter[email]=tomster@example.com
-tom = store.query('user', {
+tom = requestManager.request(queryData('user', {
   filter: {
     email: 'tomster@example.com'
   }
-}).then(function(users) {
+})).then(function(users) {
   return users[0]; // the first object
 });
 ```
