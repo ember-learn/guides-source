@@ -2,6 +2,23 @@ In this section, we cover how to use TypeScript effectively with specific EmberD
 
 We do _not_ cover general usage of EmberData; instead, we assume that as background knowledge. Please see the [EmberData Guides][ED-guides] and [API docs][ED-api-docs]!
 
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+        <p>
+          These guides currently assume you are using the EmberData <code>@types</code> packages in conjunction with the Ember <code>@types</code> packages.
+        </p>
+        <p>
+          For improved (albeit less stable) types, you can switch to <a href="https://github.com/emberjs/data/blob/main/guides/typescript/index.md">EmberData's alpha native types, documented at this link</a>. Using the EmberData alpha native types will also require <a href="https://blog.emberjs.com/stable-typescript-types-in-ember-5-1/">switching to the Ember native types</a>, which are guaranteed to always be 100% correct and 100% up to date!
+        </p>
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
+  </div>
+</div>
+
 ## Models
 
 EmberData models are normal TypeScript classes, but with properties decorated to define how the model represents an API resource and relationships to other resources. The decorators the library supplies "just work" with TypeScript at runtime, but require type annotations to be useful with TypeScript. Additionally, you must register each model with the [`ModelRegistry`][ED-registry] as shown in the examples below.
