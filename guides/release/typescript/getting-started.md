@@ -33,7 +33,12 @@ The `typescript` package provides tooling to support TypeScript type checking an
     <div class="cta-note-body">
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
-        Ember also publishes its own native types compiled directly from its source code, as described <a href="https://blog.emberjs.com/stable-typescript-types-in-ember-5-1/">in this blog post</a>. For now, we continue to use the <code>@types</code> packages by default for the sake of compatibility with EmberData, because EmberData is not yet compatible with Ember's native official types. However, if you do not use EmberData, we <i>highly</i> recommend following the instructions in that blog post to switch to the native types, which are guaranteed to always be 100% correct and 100% up to date!
+        <p>
+          Ember also publishes its own native types compiled directly from its source code. For now, we continue to use the <code>@types</code> packages in these guides for the sake of compatibility with EmberData, because the EmberData <code>@types</code> packages are not compatible with Ember's native official types.
+        </p>
+        <p>
+          If you do not use EmberData, or if you use <a href="https://github.com/emberjs/data/blob/main/guides/typescript/index.md">EmberData's alpha native types</a>, we <i>highly</i> recommend following the instructions <a href="https://blog.emberjs.com/stable-typescript-types-in-ember-5-1/">in this blog post</a> to switch to the native types, which are guaranteed to always be 100% correct and 100% up to date!
+        </p>
       </div>
     </div>
     <img src="/images/mascots/zoey.png" role="presentation" alt="">
