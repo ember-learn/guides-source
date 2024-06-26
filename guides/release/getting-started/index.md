@@ -12,7 +12,7 @@ Some of these features that you'll learn about in the guides are:
 * [Routing](../routing/) - A central part of an Ember application. Enables developers to drive the application state from the URL.
 * [Services](../services/) - The way to store long-term state in your application and pass it around.
 * [EmberData](../models/) - EmberData provides a consistent way to communicate with external APIs and manage application state
-* [Ember Inspector](../ember-inspector/) - A browser extension, or bookmarklet, to inspect your application live. It's also useful for spotting Ember applications in the wild, try to install it and open up the [NASA website](https://www.nasa.gov/)!
+* [Ember Inspector](../ember-inspector/) - A browser extension, or bookmarklet, to inspect your application live. It's also useful for spotting Ember applications in the wild.
 
 ## Organization
 
