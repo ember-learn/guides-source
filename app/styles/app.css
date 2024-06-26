@@ -169,23 +169,27 @@ code[data-diff] .diff-insertion::before {
 
 .chapter pre, .chapter pre[class*=language-],
 .chapter code, .chapter code[class*=language-] {
-  line-height: 1.4;
+  line-height: 1.6;
 }
-.chapter pre, .chapter pre[class*=language-] {
+.chapter .filename, .chapter pre, .chapter pre[class*=language-], .filename::after {
   font-size: 85%;
-  padding: 0.75em;
 }
 
-/* Make the line number "gutter" narrower and more balanced */
-
-.chapter pre.line-numbers,
-.chapter pre[class*=language-].line-numbers {
-  padding-left: 3.6em;
+.filename::after {
+  margin-top: 0;
+  margin-bottom: 0;
 }
-.chapter pre.line-numbers code,
-.chapter pre[class*=language-].line-numbers code {
-  display: inline-block;
-  margin-left: 0.05em;
+
+.chapter .filename {
+  padding-top: var(--spacing-1);
+  padding-bottom: var(--spacing-1);
+}
+.chapter .filename + pre code {
+  padding: var(--spacing-1) 0;
+}
+
+.shiki code {
+  font-size: 1em !important;
 }
 
 /* ToC heading styles */
