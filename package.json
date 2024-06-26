@@ -82,7 +82,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-qunit": "^7.2.0",
     "gfm-code-blocks": "^1.0.0",
-    "guidemaker": "^4.0.2",
+    "guidemaker": "^4.0.3",
     "guidemaker-ember-template": "^4.0.1",
     "loader.js": "^4.7.0",
     "lodash": "^4.17.21",
