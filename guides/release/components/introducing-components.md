@@ -4,7 +4,7 @@ In Ember, those smaller pieces are called _components_.
 
 Let's start with the sample HTML for a messaging app (that we introduced in the previous chapter, if you're reading the guides in order):
 
-```html {data-filename="app/templates/application.hbs"}
+```handlebars {data-filename="app/templates/application.hbs"}
 <div class="messages">
   <aside>
     <div class="avatar is-active" title="Tomster's avatar">T</div>
