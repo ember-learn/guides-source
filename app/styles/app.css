@@ -150,6 +150,9 @@ code[data-diff] .diff-insertion::before {
 .chapter .cta .cta-note {
   width: 100%;
 }
+.cta-note .cta-note-body {
+  padding-top: var(--spacing-4); /* Can be removed once changed in styleguide (https://github.com/ember-learn/ember-styleguide/pull/514) */
+}
 .chapter .cta .cta-note .cta-note-body .cta-note-message p {
   font-size: 95%;
   line-height: 1.75em;
