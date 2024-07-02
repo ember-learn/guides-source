@@ -96,7 +96,7 @@ The test should pass.
 
 Finally, let's invoke this a couple of times from our index template to populate the page.
 
-```js { data-filename="app/templates/index.hbs" data-diff="+6,+7,+8,+9,+10,+11,+12,+13" }
+```handlebars { data-filename="app/templates/index.hbs" data-diff="+6,+7,+8,+9,+10,+11,+12,+13" }
 <Jumbo>
   <h2>Welcome to Super Rentals!</h2>
   <p>We hope you find exactly what you're looking for in a place to stay.</p>

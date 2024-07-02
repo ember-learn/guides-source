@@ -40,7 +40,7 @@ Notice that we are doing something a little different here. Instead of using the
 
 Now that we have this route in place, we can update our `<Rental>` component to actually _link_ to each of our detailed rental properties!
 
-```js { data-filename="app/components/rental.hbs" data-diff="-7,+8,+9,+10,+11,+12" }
+```handlebars { data-filename="app/components/rental.hbs" data-diff="-7,+8,+9,+10,+11,+12" }
 <article class="rental">
   <Rental::Image
     src={{@rental.image}}

@@ -58,7 +58,7 @@ When invoking a component, Ember will replace the component tag with the content
 
 Let's try it out by editing the index template:
 
-```js { data-filename="app/templates/index.hbs" data-diff="-1,-2,+3,-7,+8" }
+```handlebars { data-filename="app/templates/index.hbs" data-diff="-1,-2,+3,-7,+8" }
 <div class="jumbo">
   <div class="right tomster"></div>
 <Jumbo>
@@ -79,7 +79,7 @@ After saving the changes, your page should automatically reload, and, _voilà_..
 
 Let's do the same for our other two pages as well.
 
-```js { data-filename="app/templates/about.hbs" data-diff="-1,-2,+3,-11,+12" }
+```handlebars { data-filename="app/templates/about.hbs" data-diff="-1,-2,+3,-11,+12" }
 <div class="jumbo">
   <div class="right tomster"></div>
 <Jumbo>
@@ -94,7 +94,7 @@ Let's do the same for our other two pages as well.
 </Jumbo>
 ```
 
-```js { data-filename="app/templates/contact.hbs" data-diff="-1,-2,+3,-19,+20" }
+```handlebars { data-filename="app/templates/contact.hbs" data-diff="-1,-2,+3,-19,+20" }
 <div class="jumbo">
   <div class="right tomster"></div>
 <Jumbo>
@@ -205,7 +205,7 @@ We can create a `<NavBar>` component at `app/components/nav-bar.hbs`:
 
 Next, we will add our `<NavBar>` component to the top of each page:
 
-```js { data-filename="app/templates/about.hbs" data-diff="+1" }
+```habdlebars { data-filename="app/templates/about.hbs" data-diff="+1" }
 <NavBar />
 <Jumbo>
   <h2>About Super Rentals</h2>
@@ -218,7 +218,7 @@ Next, we will add our `<NavBar>` component to the top of each page:
 </Jumbo>
 ```
 
-```js { data-filename="app/templates/contact.hbs" data-diff="+1" }
+```habdlebars { data-filename="app/templates/contact.hbs" data-diff="+1" }
 <NavBar />
 <Jumbo>
   <h2>Contact Us</h2>
@@ -239,7 +239,7 @@ Next, we will add our `<NavBar>` component to the top of each page:
 </Jumbo>
 ```
 
-```js { data-filename="app/templates/index.hbs" data-diff="+1" }
+```handlebars { data-filename="app/templates/index.hbs" data-diff="+1" }
 <NavBar />
 <Jumbo>
   <h2>Welcome to Super Rentals!</h2>
@@ -363,7 +363,7 @@ While we are at it, we will also add a container element that wraps around the w
 </div>
 ```
 
-```js { data-filename="app/templates/index.hbs" data-diff="-1" }
+```handlebars { data-filename="app/templates/index.hbs" data-diff="-1" }
 <NavBar />
 <Jumbo>
   <h2>Welcome to Super Rentals!</h2>
@@ -372,7 +372,7 @@ While we are at it, we will also add a container element that wraps around the w
 </Jumbo>
 ```
 
-```js { data-filename="app/templates/contact.hbs" data-diff="-1" }
+```handlebars { data-filename="app/templates/contact.hbs" data-diff="-1" }
 <NavBar />
 <Jumbo>
   <h2>Contact Us</h2>
@@ -393,7 +393,7 @@ While we are at it, we will also add a container element that wraps around the w
 </Jumbo>
 ```
 
-```js { data-filename="app/templates/about.hbs" data-diff="-1" }
+```handlebars { data-filename="app/templates/about.hbs" data-diff="-1" }
 <NavBar />
 <Jumbo>
   <h2>About Super Rentals</h2>

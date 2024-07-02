@@ -165,10 +165,9 @@ Running "lint:fix" script...
 
 The generator created some boilerplate code for us, which serves as a pretty good starting point for writing our test:
 
-```js { data-filename="tests/unit/models/rental-test.js" data-diff="-8,-9,+10,-12,-13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33,+34,+35,+36,+37,+38,+39,+40,+41,+42,+43" }
-import { module, test } from 'qunit';
-
+```js { data-filename="tests/unit/models/rental-test.js" data-diff="-7,-8,+9,-11,-12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33,+34,+35,+36,+37,+38,+39,+40,+41,+42" }
 import { setupTest } from 'super-rentals/tests/helpers';
+import { module, test } from 'qunit';
 
 module('Unit | Model | rental', function (hooks) {
   setupTest(hooks);
@@ -176,9 +175,9 @@ module('Unit | Model | rental', function (hooks) {
   // Replace this with your real tests.
   test('it exists', function (assert) {
   test('it has the right type', function (assert) {
-    let store = this.owner.lookup('service:store');
-    let model = store.createRecord('rental', {});
-    assert.ok(model);
+    const store = this.owner.lookup('service:store');
+    const model = store.createRecord('rental', {});
+    assert.ok(model, 'model exists');
     let rental = store.createRecord('rental', {
       id: 'grand-old-mansion',
       title: 'Grand Old Mansion',
