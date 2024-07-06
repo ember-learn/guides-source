@@ -24,6 +24,7 @@ bookmarklet
 Browserlist
 callouts
 camelize
+centric
 Chai
 chainable
 cheatsheet
@@ -173,6 +174,7 @@ repos
 rerender
 rerendering
 rerenders
+RequestManager
 routable
 RunDOC
 runnable
