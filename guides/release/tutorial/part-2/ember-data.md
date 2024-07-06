@@ -356,7 +356,7 @@ loadInitializers(App, config.modulePrefix);
 
 Adding the `.json` extension is a bit less common, and doesn't have a declarative configuration API of its own. We could just modify request options directly in place of use, but that would be a bit messy. Instead, let's create a handler to do this for us.
 
-```
+```js { data-filename="app/utils/handlers.js" }
 export const JsonSuffixHandler = {
   request(context, next) {
     const { request } = context;
@@ -373,7 +373,7 @@ As you can see, the handler appends `.json` to the URL of each request. Pretty s
 
 The next step that we need to do, is to configure `RequestManager` to use this handler. Let's create the request-manager service.
 
-```
+```js { data-filename="app/services/request-manager.js" }
 import BaseRequestManager from '@ember-data/request';
 import Fetch from '@ember-data/request/fetch';
 import { JsonSuffixHandler } from 'super-rentals/utils/handlers';
