@@ -228,7 +228,7 @@ This model test is also known as a _[unit test](../../../testing/testing-models/
 
 It is worth pointing out that EmberData provides a `store` _[service](../../../services/)_, also known as the EmberData store. In our test, we used the `this.owner.lookup('service:store')` API to get access to the EmberData store. The store provides a `createRecord` method to instantiate our model object for us. To make this `store` service available, we must add the following file:
 
-```
+```js { data-filename="app/services/store.js" }
 export { default } from 'ember-data/store';
 ```
 
