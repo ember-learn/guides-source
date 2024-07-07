@@ -205,7 +205,7 @@ We can create a `<NavBar>` component at `app/components/nav-bar.hbs`:
 
 Next, we will add our `<NavBar>` component to the top of each page:
 
-```habdlebars { data-filename="app/templates/about.hbs" data-diff="+1" }
+```handlebars { data-filename="app/templates/about.hbs" data-diff="+1" }
 <NavBar />
 <Jumbo>
   <h2>About Super Rentals</h2>
@@ -218,7 +218,7 @@ Next, we will add our `<NavBar>` component to the top of each page:
 </Jumbo>
 ```
 
-```habdlebars { data-filename="app/templates/contact.hbs" data-diff="+1" }
+```handlebars { data-filename="app/templates/contact.hbs" data-diff="+1" }
 <NavBar />
 <Jumbo>
   <h2>Contact Us</h2>
