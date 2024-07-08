@@ -9,8 +9,8 @@ During this refactor, you will learn about:
 - EmberData models
 - Testing models
 - Loading models in routes
-- The EmberData store
-- Working with adapters and serializers
+- The EmberData Store and RequestManager
+- Working with Request builders and handlers
 
 ## What is EmberData?
 
@@ -76,6 +76,18 @@ Fortunately, we're not going to do any of that. As it turns out, there's a much 
 
 There's a lot to learn about EmberData, but let's start by uncovering features that help with our immediate problem.
 
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+        <p>RequestManager is available starting with the EmberData 4.12 LTS release. EmberData works with multiple versions of Ember, please refer to the Compatibility section of the <a href="https://github.com/emberjs/data/blob/main/README.md#compatibility">EmberData README</a> while doing your application upgrade.</p>
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
+  </div>
+</div>
+
 ## EmberData Models
 
 EmberData is built around the idea of organizing your app's data into _[model objects](../../../models/defining-models/)_. These objects represent units of information that our application presents to the user. For example, the rental property data we have been working with would be a good candidate.
@@ -114,7 +126,7 @@ We used the `@attr` decorator to declare the attributes of a rental property. Th
 ```json { data-filename="public/api/rentals/grand-old-mansion.json" }
 {
   "data": {
-    "type": "rentals",
+    "type": "rental",
     "id": "grand-old-mansion",
     "attributes": {
       "title": "Grand Old Mansion",
@@ -216,7 +228,7 @@ This model test is also known as a _[unit test](../../../testing/testing-models/
 
 It is worth pointing out that EmberData provides a `store` _[service](../../../services/)_, also known as the EmberData store. In our test, we used the `this.owner.lookup('service:store')` API to get access to the EmberData store. The store provides a `createRecord` method to instantiate our model object for us. To make this `store` service available, we must add the following file:
 
-```
+```js { data-filename="app/services/store.js" }
 export { default } from 'ember-data/store';
 ```
 
@@ -228,11 +240,12 @@ Running the tests in the browser confirms that everything is working as intended
 
 Alright, now that we have our model set up, it's time to refactor our route handlers to use EmberData and remove the duplication!
 
-```js { data-filename="app/routes/index.js" data-diff="-2,-3,+4,-7,-8,-9,-10,-11,-12,-13,+14,-16,-17,-18,-19,-20,-21,-22,-23,+24,+25" }
+```js { data-filename="app/routes/index.js" data-diff="-2,-3,+4,+5,-8,-9,-10,-11,-12,-13,-14,+15,-17,-18,-19,-20,-21,-22,-23,-24,+25,+26,+27" }
 import Route from '@ember/routing/route';
 
 const COMMUNITY_CATEGORIES = ['Condo', 'Townhouse', 'Apartment'];
 import { service } from '@ember/service';
+import { query } from '@ember-data/json-api/request';
 
 export default class IndexRoute extends Route {
   async model() {
@@ -253,16 +266,18 @@ export default class IndexRoute extends Route {
       return { id, type, ...attributes };
     });
   async model() {
-    return this.store.findAll('rental');
+    const { content } = await this.store.request(query('rental'));
+    return content.data;
   }
 }
 ```
 
-```js { data-filename="app/routes/rental.js" data-diff="-2,-3,+4,-7,-8,-9,-10,-11,-12,+13,-15,-16,-17,-18,-19,-20,-21,+22,+23" }
+```js { data-filename="app/routes/rental.js" data-diff="-2,-3,+4,+5,-8,-9,-10,-11,-12,-13,+14,-16,-17,-18,-19,-20,-21,-22,+23,+24,+25,+26,+27" }
 import Route from '@ember/routing/route';
 
 const COMMUNITY_CATEGORIES = ['Condo', 'Townhouse', 'Apartment'];
 import { service } from '@ember/service';
+import { findRecord } from '@ember-data/json-api/request';
 
 export default class RentalRoute extends Route {
   async model(params) {
@@ -281,7 +296,10 @@ export default class RentalRoute extends Route {
 
     return { id, type, ...attributes };
   async model(params) {
-    return this.store.findRecord('rental', params.rental_id);
+    const { content } = await this.store.request(
+      findRecord('rental', params.rental_id),
+    );
+    return content.data;
   }
 }
 ```
@@ -290,9 +308,9 @@ Wow... that removed a lot of code! This is all possible thanks to the power of c
 
 ## The EmberData Store
 
-As mentioned above, EmberData provides a `store` service, which we can inject into our route using the `@service store;` declaration, making the EmberData store available as `this.store`. It provides the `find` and `findAll` methods for loading records. Specifically, the [`findRecord` method](../../../models/finding-records/#toc_retrieving-a-single-record) takes a model type (`rental` in our case) and a model ID (for us, that would be `params.rental_id` from the URL) as arguments and fetches a single record from the store. On the other hand, the [`findAll` method](../../../models/finding-records/#toc_retrieving-multiple-records) takes the model type as an argument and fetches all records of that type from the store.
+As mentioned above, EmberData provides a `store` service, which we can inject into our route using the `@service store;` declaration, making the EmberData store available as `this.store`. It provides the `request` method for making fetch requests using `RequestManager`. As its name implies: the `RequestManager` is request centric. Instead of answering questions about specific records or types of records, we ask it about the status of a specific request. To initiate a request, we use the `request` method on the store, passing in a request object. The request object is created using builders from `@ember-data/json-api/request`. Specifically, the [`findRecord` builder](../../../models/finding-records/#toc_retrieving-a-single-record) takes a model type (`rental` in our case) and a model ID (for us, that would be `params.rental_id` from the URL) as arguments and builds fetch options for a single record. On the other hand, the [`query` builder](../../../models/finding-records/#toc_retrieving-multiple-records) takes the model type as an argument and builds fetch options to query for all records of that type.
 
-The EmberData store acts as a kind of intermediary between our app and the server; it does many important things, including caching the responses that were fetched from the server. If we request some records (instances of model classes) that we had _already_ fetched from the server in the past, EmberData's store ensures that we can access the records immediately, without having to fetch them again unnecessarily and wait for the server to respond. But, if we don't already have that response cached in our store, then it will go off and fetches it from the server. Pretty nice, right?
+EmberData can do many things, and in default setup it provides caching. EmberData's store caches server responses, allowing instant access to previously fetched data. If the data is already cached, you don't need to wait for the server to respond again. If not, the store fetches it for you.
 
 That's a lot of theory, but is this going to work in our app? Let's run the tests and find out!
 
@@ -302,53 +320,89 @@ Darn, there were a couple of failing tests! At the same time, it's great that we
 
 Looking at the failure messages, the problem appears to be that the store went to the wrong URLs when fetching data from the server, resulting in some 404 errors. Specifically:
 
-- When performing the `findAll('rental')` query, it requested the data from `/rentals`, instead of `/api/rentals.json`.
-- When performing the `find('rental', 'grand-old-mansion')` query, it requested the data from `/rentals/grand-old-mansion`, instead of `/api/rentals/grand-old-mansion.json`.
+- When building the `query('rental')` request, the resulted `url` in request options was `/rentals`, instead of `/api/rentals.json`.
+- When building the `findRecord('rental', 'grand-old-mansion')` request, the resulted `url` in request options was `/rentals/grand-old-mansion`, instead of `/api/rentals/grand-old-mansion.json`.
 
 Hm, okay, so we have to teach EmberData to fetch data from the correct location. But how does EmberData know how to fetch data from our server in the first place?
 
-## Working with Adapters and Serializers
+## Working with Request builders and Handlers
 
-EmberData uses an _[adapter](../../../models/customizing-adapters/)_ and _[serializer](../../../models/customizing-serializers/)_ architecture. Adapters deal with _how_ and _where_ EmberData should fetch data from your servers, such as whether to use HTTP, HTTPS, WebSockets or local storage, as well as the URLs, headers and parameters to use for these requests. On the other hand, serializers are in charge of converting the data returned by the server into a format EmberData can understand.
-
-The idea is that, provided that your backend exposes a _consistent_ protocol and interchange format to access its data, we can write a single adapter-serializer pair to handle all data fetches for the entire application.
-
-As it turns out, JSON:API just happens to be EmberData's default data protocol and interchange format. Out of the box, EmberData provides a default JSON:API adapter and serializer. This is great news for us, since that is also what our server has implemented. What a wonderful coincidence!
-
-However, as mentioned above, there are some minor differences between how our server works and EmberData's default assumptions. We can customize the default behavior by defining our own adapter and serializer:
-
-```js { data-filename="app/adapters/application.js" }
-import JSONAPIAdapter from '@ember-data/adapter/json-api';
-
-export default class ApplicationAdapter extends JSONAPIAdapter {
-  namespace = 'api';
-
-  buildURL(...args) {
-    return `${super.buildURL(...args)}.json`;
-  }
-}
-```
-
-```js { data-filename="app/serializers/application.js" }
-import JSONAPISerializer from '@ember-data/serializer/json-api';
-
-export default class ApplicationSerializer extends JSONAPISerializer {}
-```
-
-By convention, adapters are located at `app/adapters`. Furthermore, the adapter named `application` is called the _application adapter_, which will be used to fetch data for all models in our app.
-
-Inside this newly created file, we defined an `ApplicationAdapter` class, inheriting from the built-in [`JSONAPIAdapter`](https://api.emberjs.com/ember-data/release/classes/JSONAPIAdapter). This allows us to inherit all the default JSON:API functionalities, while customizing the things that didn't work for us by default. Specifically:
+Let's start customizing the things that didn't work for us by default. Specifically:
 
 - Our resource URLs have an extra `/api` _namespace_ prefix.
 - Our resource URLs have a `.json` extension at the end.
 
-Adding a namespace prefix happens to be pretty common across Ember apps, so the `JSONAPIAdapter` has an API to do just that. All we need to do is to set the  `namespace` property to the prefix we want, which is `api` in our case.
+The first thing we want to do is have our builder respect a configurable default host and/or namespace. Adding a namespace prefix happens to be pretty common across Ember apps, so EmberData provides a global config mechanism for host and namespace. Typically you will want to do this either in your store file or app file.
 
-Adding the `.json` extension is a bit less common, and doesn't have a declarative configuration API of its own. Instead, we will need to _override_ EmberData's [`buildURL`](https://api.emberjs.com/ember-data/release/classes/JSONAPIAdapter/methods/buildURL?anchor=buildURL) method. Inside of `buildURL`, we will call `super.buildURL(...args)` to invoke the `JSONAPIAdapter` default implementation of `buildURL`. This will give us the URL that the adapter _would have built_, which would be something like `/api/rentals` and `/api/rentals/grand-old-mansion` after configuring the `namespace` above. All we have to do is to append `.json` to this URL and return it.
+```js { data-filename="app/app.js" data-diff="+5,+6,+7,+8,+9" }
+import Application from '@ember/application';
+import Resolver from 'ember-resolver';
+import loadInitializers from 'ember-load-initializers';
+import config from 'super-rentals/config/environment';
+import { setBuildURLConfig } from '@ember-data/request-utils';
 
-Similarly, serializers are located at `app/serializers`. Adapters and serializers are always added together as a pair. We added an `application` adapter, so we also added a corresponding serializer to go with it as well. Since the JSON data returned by our server is JSON:API-compliant, the default [`JSONAPISerializer`](https://api.emberjs.com/ember-data/release/classes/JSONAPISerializer) work just fine for us without further customization.
+setBuildURLConfig({
+  namespace: 'api',
+});
 
-With our adapter and serializer in place, all our tests should pass again.
+export default class App extends Application {
+  modulePrefix = config.modulePrefix;
+  podModulePrefix = config.podModulePrefix;
+  Resolver = Resolver;
+}
+
+loadInitializers(App, config.modulePrefix);
+```
+
+Adding the `.json` extension is a bit less common, and doesn't have a declarative configuration API of its own. We could just modify request options directly in place of use, but that would be a bit messy. Instead, let's create a handler to do this for us.
+
+```js { data-filename="app/utils/handlers.js" }
+export const JsonSuffixHandler = {
+  request(context, next) {
+    const { request } = context;
+    const updatedRequest = Object.assign({}, request, {
+      url: request.url + '.json',
+    });
+
+    return next(updatedRequest);
+  },
+};
+```
+
+As you can see, the handler appends `.json` to the URL of each request. Pretty simple, right? Then it calls the `next` function with the modified copy of the request object (because it is immutable). This is how we can chain multiple handlers together to build up a request.
+
+The next step that we need to do, is to configure `RequestManager` to use this handler. Let's create the request-manager service.
+
+```js { data-filename="app/services/request-manager.js" }
+import BaseRequestManager from '@ember-data/request';
+import Fetch from '@ember-data/request/fetch';
+import { JsonSuffixHandler } from 'super-rentals/utils/handlers';
+
+export default class RequestManager extends BaseRequestManager {
+  constructor(args) {
+    super(args);
+
+    this.use([JsonSuffixHandler, Fetch]);
+  }
+}
+```
+
+Notice that we are using the `JsonSuffixHandler` we created earlier. We also use the `Fetch` handler, which is a built-in handler that makes the actual fetch request. The `use` method is used to add handlers to the request manager. The order in which handlers are added is important, as they will be executed in the order they were added.
+
+Lastly, let's update our `store` service to use the new `RequestManager` we created.
+
+```js { data-filename="app/services/store.js" data-diff="-1,+2,+3,+4,+5,+6,+7,+8" }
+export { default } from 'ember-data/store';
+// eslint-disable-next-line ember/use-ember-data-rfc-395-imports
+import BaseStore from 'ember-data/store';
+import { service } from '@ember/service';
+
+export default class Store extends BaseStore {
+  @service requestManager;
+}
+```
+
+With our new EmberData configuration in place, all our tests should pass again.
 
 <img src="/images/tutorial/part-2/ember-data/pass-2@2x.png" alt="Once again, all the tests are passing again!" width="1024" height="1024">
 
@@ -358,4 +412,4 @@ The UI works exactly the same as before as well, just with much less code!
 
 <img src="/images/tutorial/part-2/ember-data/detailed@2x.png" alt="The details page works exactly the same as before, but with much less code!" width="1024" height="1382">
 
-EmberData offers many, many features (like managing the _relationships_ between different models) and there's a lot more we can learn about it. For example, if your backend's have some inconsistencies across different endpoints, EmberData allows you to define more specific, per-model adapters and serializers too! We are just scratching the surface here. If you want to learn more about EmberData, check out [its own dedicated section](../../../models/) in the guides!
+EmberData offers many, many features (like managing the _relationships_ between different models) and there's a lot more we can learn about it. For example, if your backend's have some inconsistencies across different endpoints, EmberData allows you to define request specific handlers and builders! We are just scratching the surface here. If you want to learn more about EmberData, check out [its own dedicated section](../../../models/) in the guides!

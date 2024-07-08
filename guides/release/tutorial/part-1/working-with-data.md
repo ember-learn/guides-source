@@ -298,7 +298,7 @@ Before we go any further, let's pause for a second to look at the server's data 
 {
   "data": [
     {
-      "type": "rentals",
+      "type": "rental",
       "id": "grand-old-mansion",
       "attributes": {
         "title": "Grand Old Mansion",
@@ -315,7 +315,7 @@ Before we go any further, let's pause for a second to look at the server's data 
       }
     },
     {
-      "type": "rentals",
+      "type": "rental",
       "id": "urban-living",
       "attributes": {
         "title": "Urban Living",
@@ -332,7 +332,7 @@ Before we go any further, let's pause for a second to look at the server's data 
       }
     },
     {
-      "type": "rentals",
+      "type": "rental",
       "id": "downtown-charm",
       "attributes": {
         "title": "Downtown Charm",
