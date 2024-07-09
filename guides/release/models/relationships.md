@@ -358,7 +358,7 @@ with the post as well.
 The [JSON:API specification allows](http://jsonapi.org/format/#fetching-includes)
 servers to accept a query parameter with the key `include` as a request to
 include those related records in the response returned to the client.
-The value of the parameter should be a comma-separated list of names of the
+The value of the parameter should be an array of names of the
 relationships required.
 
 If you are using an adapter that supports JSON:API, such as Ember's default [`JSONAPIAdapter`](https://api.emberjs.com/ember-data/release/classes/JSONAPIAdapter),
@@ -380,7 +380,7 @@ export default class PostRoute extends Route {
   @service store;
   model(params) {
     return this.store.findRecord('post', params.post_id, {
-      include: 'comments'
+      include: ['comments']
     });
   }
 }
@@ -400,7 +400,7 @@ export default class PostRoute extends Route {
   @service store;
   model(params) {
     return this.store.findRecord('post', params.post_id, {
-      include: 'comments,comments.author'
+      include: ['comments', 'comments.author']
     });
   }
 }
@@ -422,7 +422,7 @@ export default class AdeleRoute extends Route {
     return this.store
       .query('artist', {
         filter: { name: 'Adele' },
-        include: 'albums'
+        include: ['albums']
       })
       .then(function(artists) {
         return artists[0];
