@@ -158,7 +158,9 @@ Ember Exam also lets you randomize how the tests are run. Why would you want to 
 
 ### Percy
 
-Last but not least, [Percy](https://percy.io/) is a **visual regression testing** tool that helps you catch accidental style changes. You can try it out for free and pay for additional service.
+Last but not least, [Percy](https://percy.io/) is a **visual regression testing** tool that ensures consistent user interfaces across different browsers and devices by identifying visual bugs. It captures screenshots of web pages at different development stages and compares them pixel-by-pixel to detect any visual differences.
+
+Visual regression testing is useful for maintaining visual consistency and quality in your app. Check out the [Percy documentation](https://www.browserstack.com/docs/percy/integrate/ember) to set it up in an Ember app.
 
 While we don't recommend this practice in general, you might also use Percy in lieu of application tests to capture complex workflows.
 
