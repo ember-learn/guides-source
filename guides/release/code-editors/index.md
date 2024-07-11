@@ -132,5 +132,4 @@ Super simple Sublime Text plugin that will let you open corresponding template o
 
 CodeLobster IDE is a smart free cross-platform editor.
 
-[http://www.codelobster.com/emberjs.html](http://www.codelobster.com/emberjs.html)
-CodeLobster IDE plug-in for EmberJS download, autocomplete and tooltips for EmberJS functions, context and dynamic help.
+[CodeLobster IDE plug-in for Ember](http://www.codelobster.com/emberjs.html) gives autocomplete and tooltips for Ember.js functions, context and dynamic help.
