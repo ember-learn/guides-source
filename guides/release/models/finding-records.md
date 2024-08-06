@@ -19,7 +19,7 @@ Use [`store.peekRecord()`](https://api.emberjs.com/ember-data/release/classes/St
 This will return the record only if it is already present in the store:
 
 ```javascript
-let blogPost = this.store.peekRecord('blog-post', 1); // => no network request
+let blogPost = this.store.peekRecord('blog-post', '1'); // => no network request
 ```
 
 ### Retrieving Multiple Records
@@ -40,7 +40,7 @@ Use [`store.peekAll()`](https://api.emberjs.com/ember-data/release/classes/Store
 let blogPosts = this.store.peekAll('blog-post'); // => no network request
 ```
 
-`findRecord()` returns a `PromiseArray` that fulfills to a `RecordArray` and `store.peekAll` directly returns a `RecordArray`.
+`findRecord()` returns a `response` which has the record and `store.peekAll` directly returns a `RecordArray`.
 
 It's important to note that `RecordArray` is not a JavaScript array, it's an object that implements [`MutableArray`](https://api.emberjs.com/ember/release/classes/MutableArray).
 This is important because, for example, if you want to retrieve records by index,
@@ -104,8 +104,9 @@ Then, calling `queryData()` will retrieve that object from the server:
 ```javascript
 import { queryData } from './builders';
 
-const user = await this.requestManager.request(queryData())
+const user = await this.requestManager.request(queryData());
 let username = user.get('username');
+
 console.log(`Currently logged in as ${username}`);
 ```
 
