@@ -3,7 +3,7 @@ The EmberData store provides an interface for retrieving records of a single typ
 ### Retrieving a Single Record
 
 Use [`findRecord()`](https://api.emberjs.com/ember-data/5.3/functions/@ember-data%2Fjson-api%2Frequest/findRecord) to retrieve a record by its type and ID.
-This will return a response from the server which has a requested record:
+This will return a single `record` or a `array` depends upon the response from server:
 
 ```javascript
 // GET /blog-post/1
