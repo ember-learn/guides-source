@@ -206,7 +206,7 @@ Now that we have our component all set up, we can finally wire up our search box
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
-export default class RentalsComponent extends Component {
+export default class Rentals extends Component {
   @tracked query = '';
 }
 ```
@@ -252,7 +252,7 @@ Now that our search query is wired up to our `<Rentals>` component, we can get i
 ```js { data-filename="app/components/rentals/filter.js" }
 import Component from '@glimmer/component';
 
-export default class RentalsFilterComponent extends Component {
+export default class RentalsFilter extends Component {
   get results() {
     let { rentals, query } = this.args;
 
