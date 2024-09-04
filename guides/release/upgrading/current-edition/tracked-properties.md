@@ -166,12 +166,14 @@ continue to use `EmberArray`, which will continue to work with tracking and will
 cause any dependencies that use it to invalidate correctly.
 
 ```js
+// APE
 import { A } from '@ember/array';
 
 class ShoppingList {
   items = A([]);
 
   addItem(item) {
+    // APE
     this.items.pushObject(item);
   }
 }
