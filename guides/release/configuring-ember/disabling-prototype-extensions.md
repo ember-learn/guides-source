@@ -32,7 +32,7 @@ There are two major differences to how arrays will behave after you disable arra
 
 ### No more non-standard methods
 
-Arrays no longer have the non-standard methods listed in the [deprecation guide](https://deprecations.emberjs.com/id/deprecate-array-prototype-extensions) like `pushObject`, etc. Follow the deprecation guide to replace each usage with a standard Javascript alternative.
+Arrays no longer have the non-standard methods listed in the [deprecation guide](https://deprecations.emberjs.com/id/deprecate-array-prototype-extensions) like `pushObject`, etc. Follow the deprecation guide to replace each usage with a standard JavaScript alternative.
 
 ### Tracking of Changes in Arrays
 
