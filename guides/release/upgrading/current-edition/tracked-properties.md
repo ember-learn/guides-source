@@ -71,11 +71,8 @@ Tracked properties have subtler benefits as well:
   to anything external to your class.
 
 Most computed properties should be fairly straightforward to convert to tracked
-properties. It's important to note that in these new components, arguments are
-automatically tracked, but in classic components they are _not_. This is because
-arguments are put on the `args` hash, which is tracked
-property. Since they are assigned to arbitrary properties on classic components,
-they can't be instrumented ahead of time, so you must decorate them manually.
+properties. It's important to note that on `@glimmer/component`, arguments are
+automatically tracked, but in classic `@ember/component` they are not. 
 
 #### Plain Old JavaScript Objects (POJOs)
 
@@ -130,52 +127,49 @@ class Person {
 }
 ```
 
-In some cases, if your usage of properties on POJOs is too dynamic, you may not
-be able to enumerate every single property that could be tracked. There could be
-a prohibitive number of possible properties, or there could be no way to know
-them in advance. In this case, it's recommended that you _reset_ the value
-wherever it is updated:
+Generally, you should try to create classes with their tracked properties
+enumerated and decorated with `@tracked`, instead of relying on dynamically
+created POJOs. In some cases however, if your usage of properties on POJOs is
+too dynamic, you may not be able to enumerate every single property that could
+be tracked. In this case, you can use `TrackedObject` from `tracked-built-ins`:
 
 ```js
-class SimpleCache {
-  @tracked _cache = {};
+import { TrackedObject } from 'tracked-built-ins';
 
-  set(key, value) {
-    this._cache[key] = value;
+let obj = new TrackedObject({
+  a: 1,
+  b: 2,
+})
 
-    // trigger an update
-    this._cache = this._cache;
-  }
-
-  get(key) {
-    return this._cache[key];
-  }
-}
+// This change is tracked
+obj.c = 3;
 ```
 
-Triggering an update like this will cause any getters that used the `_cache` to
-recalculate. Note that we can use the `get` method to access the cache, and it
-will still push the `_cache` tracked property.
+All property reading and writing on this object is automatically tracked.
+`TrackedObject` is "shallowly" tracked. `obj.c = 4` would be tracked, but
+`obj.c.somethingDeeper = 5` would not be tracked unless you've also made sure
+that the contents of `obj.c` is itself another `TrackedObject`.
+
 
 #### Arrays
 
-Arrays are another example of a type of object where you can't enumerate every
-possible value - after all, there are an infinite number of integers (though you
-_may_ run out of bits in your computer at some point!). Instead, you can
-continue to use `EmberArray`, which will continue to work with tracking and will
-cause any dependencies that use it to invalidate correctly.
+When you want to track the contents of an Array, you can use `TrackedArray` from
+`tracked-built-ins`:
 
 ```js
-import { A } from '@ember/array';
+import { TrackedArray } from 'tracked-built-ins';
 
 class ShoppingList {
-  items = A([]);
+  items = new TrackedArray([]);
 
   addItem(item) {
-    this.items.pushObject(item);
+    this.items.push(item);
   }
 }
 ```
+
+`TrackedArray` supports all the normal native `Array` methods, ensuring that
+their reads and writes are tracked.
 
 ### Backwards Compatibility
 

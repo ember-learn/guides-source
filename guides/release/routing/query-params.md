@@ -64,7 +64,7 @@ export default class ArticlesController extends Controller {
     let articles = this.model;
 
     if (category) {
-      return articles.filterBy('category', category);
+      return articles.filter((article) => article.category === category);
     } else {
       return articles;
     }

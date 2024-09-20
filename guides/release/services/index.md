@@ -33,22 +33,22 @@ Like any Ember object, a service is initialized and can have properties and meth
 Below, the shopping cart service manages an items array that represents the items currently in the shopping cart.
 
 ```javascript {data-filename=app/services/shopping-cart.js}
-import { A } from '@ember/array';
+import { TrackedArray } from 'tracked-built-ins';
 import Service from '@ember/service';
 
 export default class ShoppingCartService extends Service {
-  items = A([]);
+  items = new TrackedArray([]);
 
   add(item) {
-    this.items.pushObject(item);
+    this.items.push(item);
   }
 
-  remove(item) {
-    this.items.removeObject(item);
+  remove(item) 
+    this.items.splice(this.items.indexOf(item), 1);
   }
 
   empty() {
-    this.items.clear();
+    this.items.splice(0, this.items.length);
   }
 }
 ```
