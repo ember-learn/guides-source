@@ -58,8 +58,8 @@ Ember will create an _instance_ of the class whenever our component is invoked. 
 ```js { data-filename="app/components/rental/image.js" data-diff="-3,+4,+5,+6,+7,+8,+9" }
 import Component from '@glimmer/component';
 
-export default class RentalImageComponent extends Component {}
-export default class RentalImageComponent extends Component {
+export default class RentalImage extends Component {}
+export default class RentalImage extends Component {
   constructor(...args) {
     super(...args);
     this.isLarge = false;
@@ -103,7 +103,7 @@ Since this pattern of initializing instance variables in the constructor is pret
 ```js { data-filename="app/components/rental/image.js" data-diff="-4,-5,-6,-7,+8" }
 import Component from '@glimmer/component';
 
-export default class RentalImageComponent extends Component {
+export default class RentalImage extends Component {
   constructor(...args) {
     super(...args);
     this.isLarge = false;
@@ -125,7 +125,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
-export default class RentalImageComponent extends Component {
+export default class RentalImage extends Component {
   isLarge = false;
   @tracked isLarge = false;
 

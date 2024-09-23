@@ -4,11 +4,11 @@ In this chapter, we'll work on adding a new search feature, and refactor our `in
 
 <!-- TODO: make this a gif instead -->
 
-<img src="/images/tutorial/part-2/provider-components/filtered-results@2x.png" alt="The Super Rentals app by the end of the chapter" width="1024" height="798">
+<img src="/images/tutorial/part-2/provider-components/filtered-results@2x.png" alt="The Super Rentals app by the end of the chapter" width="1024" height="833">
 
 During this refactor, you will learn about:
 
-- Using Ember's built-in `<Input>` component
+- Using forms
 - The provider component pattern
 - Using block parameters when invoking components
 - Yielding data to caller components
@@ -17,9 +17,9 @@ During this refactor, you will learn about:
 
 As our app grows and as we add more features to it, one thing that would be really nice to have is some search functionality. It would be great if our users could just type a word into a search box and our app could just respond with matching and relevant rentals. So how could we go about implementing this feature?
 
-Well, we can start simple. Before we worry about implementing the "search" part of this feature, let's just get something on the page. The first step is to add an `<input>` tag to our `index` page, and make it look pretty with a class.
+Well, we can start simple. Before we worry about implementing the "search" part of this feature, let's just get something on the page. The first step is to add a form with an `<input>` tag to our `index` page, and make it look pretty with a class.
 
-```handlebars { data-filename="app/templates/index.hbs" data-diff="+8,+9,+10,+11,+12" }
+```handlebars { data-filename="app/templates/index.hbs" data-diff="+8,+9,+10,+11,+12,+13,+14" }
 <Jumbo>
   <h2>Welcome to Super Rentals!</h2>
   <p>We hope you find exactly what you're looking for in a place to stay.</p>
@@ -27,10 +27,12 @@ Well, we can start simple. Before we worry about implementing the "search" part 
 </Jumbo>
 
 <div class="rentals">
-  <label>
-    <span>Where would you like to stay?</span>
-    <input class="light">
-  </label>
+  <form>
+    <label>
+      <span>Where would you like to stay?</span>
+      <input class="light">
+    </label>
+  </form>
 
   <ul class="results">
     {{#each @model as |rental|}}
@@ -58,10 +60,12 @@ Let's start simple again and begin our refactor by creating a new template for o
 
 ```handlebars { data-filename="app/components/rentals.hbs" }
 <div class="rentals">
-  <label>
-    <span>Where would you like to stay?</span>
-    <input class="light">
-  </label>
+  <form>
+    <label>
+      <span>Where would you like to stay?</span>
+      <input class="light">
+    </label>
+  </form>
 
   <ul class="results">
     {{#each @rentals as |rental|}}
@@ -73,7 +77,7 @@ Let's start simple again and begin our refactor by creating a new template for o
 
 There is one minor change to note here: while extracting our markup into a component, we also renamed the `@model` argument to be `@rentals` instead, just in order to be a little more specific about what we're iterating over in our `{{#each}}` loop. Otherwise, all we're doing here is copy-pasting what was on our `index.hbs` page into our new component template. Now we just need to actually use our new component in the index template where we started this whole refactor! Let's render our `<Rentals>` component in our `index.hbs` template.
 
-```handlebars { data-filename="app/templates/index.hbs" data-diff="-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,+19" }
+```handlebars { data-filename="app/templates/index.hbs" data-diff="-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,+21" }
 <Jumbo>
   <h2>Welcome to Super Rentals!</h2>
   <p>We hope you find exactly what you're looking for in a place to stay.</p>
@@ -81,10 +85,12 @@ There is one minor change to note here: while extracting our markup into a compo
 </Jumbo>
 
 <div class="rentals">
-  <label>
-    <span>Where would you like to stay?</span>
-    <input class="light">
-  </label>
+  <form>
+    <label>
+      <span>Where would you like to stay?</span>
+      <input class="light">
+    </label>
+  </form>
 
   <ul class="results">
     {{#each @model as |rental|}}
@@ -198,28 +204,45 @@ Now, if we try running our tests, they should all pass after making this change.
 
 <img src="/images/tutorial/part-2/provider-components/pass-1@2x.png" alt="The new test is passing." width="1024" height="1024">
 
-## Using Ember's `<Input>`
+## Using a `form`
 
-Now that we have our component all set up, we can finally wire up our search box and store our search query! First things first: let's create a component class to store our query state.
+Now that we have our component all set up, we can finally wire up our search box and store our search query! First things first: let's create a component class to store our query state and handle events from the `form` element:
 
 ```js { data-filename="app/components/rentals.js" }
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
 
-export default class RentalsComponent extends Component {
+export default class Rentals extends Component {
   @tracked query = '';
+
+  @action
+  updateQuery(event) {
+    let formData = new FormData(event.currentTarget);
+    this.query = formData.get('rental-search-term');
+  }
+
+  @action
+  handleSubmit(event) {
+    event.preventDefault();
+    this.updateQuery(event);
+  }
 }
 ```
 
 Next, we'll wire up our query state in the component template.
 
-```handlebars { data-filename="app/components/rentals.hbs" data-diff="-4,+5" }
+```handlebars { data-filename="app/components/rentals.hbs" data-diff="-2,+3,-6,+7,+9" }
 <div class="rentals">
-  <label>
-    <span>Where would you like to stay?</span>
-    <input class="light">
-    <Input @value={{this.query}} class="light" />
-  </label>
+  <form>
+  <form {{on "input" this.updateQuery}} {{on "submit" this.handleSubmit}}>
+    <label>
+      <span>Where would you like to stay?</span>
+      <input class="light">
+      <input name="rental-search-term" class="light">
+    </label>
+    <p>The results below will update as you type.</p>
+  </form>
 
   <ul class="results">
     {{#each @rentals as |rental|}}
@@ -229,9 +252,7 @@ Next, we'll wire up our query state in the component template.
 </div>
 ```
 
-Interesting! There are a few things happening in this one-line template change. First, we're moving from using a plain HTML `<input>` tag to using an `<Input>` tag instead! As it turns out, Ember provides us with a helpful little _[`<Input>` component](../../../components/built-in-components/#toc_input)_ for this exact use case. The `<Input>` component is actually just a wrapper around the `<input>` element.
-
-Ember's `<Input>` component is pretty neat; it will wire up things behind the scenes such that, whenever the user types something into the input box, `this.query` changes accordingly. In other words, `this.query` is kept in sync with the value of what is being searched; we finally have the perfect way of storing the state of our search query!
+[`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) is a built-in JavaScript object for handling forms. It requires the `name` attribute on the `input`. We handle both `submit` and `input` events for the form so that the query updates both when the user types into the input and when they submit the form.
 
 <div class="cta">
   <div class="cta-note">
@@ -252,7 +273,7 @@ Now that our search query is wired up to our `<Rentals>` component, we can get i
 ```js { data-filename="app/components/rentals/filter.js" }
 import Component from '@glimmer/component';
 
-export default class RentalsFilterComponent extends Component {
+export default class RentalsFilter extends Component {
   get results() {
     let { rentals, query } = this.args;
 
@@ -275,12 +296,15 @@ In our component template, we are not actually _rendering_ anything. Instead, we
 
 Well, in order to answer this question, let's look at how the data that we're yielding is being used in the `<Rentals>` component.
 
-```handlebars { data-filename="app/components/rentals.hbs" data-diff="-8,-9,-10,+11,+12,+13,+14,+15" }
+```handlebars { data-filename="app/components/rentals.hbs" data-diff="-11,-12,-13,+14,+15,+16,+17,+18" }
 <div class="rentals">
-  <label>
-    <span>Where would you like to stay?</span>
-    <Input @value={{this.query}} class="light" />
-  </label>
+  <form {{on "input" this.updateQuery}} {{on "submit" this.handleSubmit}}>
+    <label>
+      <span>Where would you like to stay?</span>
+      <input name="rental-search-term" class="light">
+    </label>
+    <p>The results below will update as you type.</p>
+  </form>
 
   <ul class="results">
     {{#each @rentals as |rental|}}
@@ -330,7 +354,7 @@ This is called the _provider component pattern_, which we see in action with one
 
 Okay, now that we have a better sense of which component is rendering what and the theory behind why all of this is happening, let's answer the big unanswered question: does this even work? If we try out our search box in the UI, what happens?
 
-<img src="/images/tutorial/part-2/provider-components/filtered-results@2x.png" alt="Trying out the search box." width="1024" height="798">
+<img src="/images/tutorial/part-2/provider-components/filtered-results@2x.png" alt="Trying out the search box." width="1024" height="833">
 
 Hooray, it works! Awesome. Now that we've tried this out manually in the UI, let's write a test for this new behavior as well.
 

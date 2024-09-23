@@ -148,15 +148,15 @@ Let's start with our JavaScript file:
 import Component from '@glimmer/component';
 import ENV from 'super-rentals/config/environment';
 
-export default class MapComponent extends Component {}
-export default class MapComponent extends Component {
+export default class Map extends Component {}
+export default class Map extends Component {
   get token() {
     return encodeURIComponent(ENV.MAPBOX_ACCESS_TOKEN);
   }
 }
 ```
 
-Here, we import the access token from the config file and return it from a `token` _[getter](https://javascript.info/property-accessors)_. This allows us to access our token as `this.token` both inside the `MapComponent` class body, as well as the component's template. It is also important to [URL-encode](https://javascript.info/url#encoding-strings) the token, just in case it contains any special characters that are not URL-safe.
+Here, we import the access token from the config file and return it from a `token` _[getter](https://javascript.info/property-accessors)_. This allows us to access our token as `this.token` both inside the `Map` class body, as well as the component's template. It is also important to [URL-encode](https://javascript.info/url#encoding-strings) the token, just in case it contains any special characters that are not URL-safe.
 
 ## Interpolating Values in Templates
 
@@ -404,7 +404,7 @@ import ENV from 'super-rentals/config/environment';
 
 const MAPBOX_API = 'https://api.mapbox.com/styles/v1/mapbox/streets-v11/static';
 
-export default class MapComponent extends Component {
+export default class Map extends Component {
   get src() {
     let { lng, lat, width, height, zoom } = this.args;
 

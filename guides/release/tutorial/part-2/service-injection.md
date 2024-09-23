@@ -83,10 +83,10 @@ Whew! Let's look at the JavaScript class next.
 ```js { data-filename="app/components/share-button.js" data-diff="-3,+4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30" }
 import Component from '@glimmer/component';
 
-export default class ShareButtonComponent extends Component {}
+export default class ShareButton extends Component {}
 const TWEET_INTENT = 'https://twitter.com/intent/tweet';
 
-export default class ShareButtonComponent extends Component {
+export default class ShareButton extends Component {
   get currentURL() {
     return window.location.href;
   }
@@ -324,7 +324,7 @@ import Component from '@glimmer/component';
 
 const TWEET_INTENT = 'https://twitter.com/intent/tweet';
 
-export default class ShareButtonComponent extends Component {
+export default class ShareButton extends Component {
   @service router;
 
   get currentURL() {
