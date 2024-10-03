@@ -468,7 +468,7 @@ It is also possible to remove a record from a `hasMany` relationship:
 let blogPost = this.store.peekRecord('blog-post', 1);
 let commentToRemove = this.store.peekRecord('comment', 1);
 let comments = await blogPost.comments;
-blockPost.comments = comments.filter((comment) => comment !== commentToRemove);
+blogPost.comments = comments.filter((comment) => comment !== commentToRemove);
 blogPost.save();
 ```
 
