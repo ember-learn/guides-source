@@ -29,9 +29,6 @@ export function initialize() {
 export default { initialize };
 ```
 
-The deprecation handler API was released in Ember 2.1.
-If you would like to leverage this API in a prior release of Ember you can install the [ember-debug-handlers-polyfill](http://emberobserver.com/addons/ember-debug-handlers-polyfill) addon into your project.
-
 ## Deprecation Workflow
 
 Once you've removed deprecations that you may not need to immediately address, you may still be left with many deprecations.
