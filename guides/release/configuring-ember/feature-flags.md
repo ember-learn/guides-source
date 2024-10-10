@@ -21,7 +21,7 @@ were enabled during the beta cycle. At this point the feature flags will be remo
 the canary and future beta branches, and the feature becomes part of the framework.
 
 ## Flagging Details
-The flag status in the generated build is controlled by the [`@ember/canary-features`](https://github.com/emberjs/ember.js/blob/master/packages/@ember/canary-features/index.ts)
+The flag status in the generated build is controlled by the [`@ember/canary-features`](https://github.com/emberjs/ember.js/blob/main/packages/@ember/canary-features/index.ts)
 package. This package exports a list of all available features and their current status.
 
 A feature can have one of a three flags:
@@ -36,10 +36,10 @@ A feature can have one of a three flags:
 The process of removing the feature flags from the resulting build output is
 handled by [`defeatureify`](https://github.com/thomasboyt/defeatureify).
 
-## Feature Listing ([`FEATURES.md`](https://github.com/emberjs/ember.js/blob/master/FEATURES.md))
+## Feature Listing ([`FEATURES.md`](https://github.com/emberjs/ember.js/blob/main/FEATURES.md))
 
-When a developer adds a new feature to the `canary` channel (i.e. the `master` branch on GitHub), they
-also add an entry to [`FEATURES.md`](https://github.com/emberjs/ember.js/blob/master/FEATURES.md)
+When a developer adds a new feature to the `canary` channel (i.e. the `main` branch on GitHub), they
+also add an entry to [`FEATURES.md`](https://github.com/emberjs/ember.js/blob/main/FEATURES.md)
 explaining what the feature does, and linking to their originating pull request.
 This list is kept current, and reflects what is available in each channel
 (`release`, `beta`, and `canary`).
