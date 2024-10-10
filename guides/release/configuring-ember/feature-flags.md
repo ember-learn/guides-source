@@ -52,7 +52,7 @@ feature by setting its flag value to `true` before your application boots:
 let ENV = {
   EmberENV: {
     FEATURES: {
-      'link-to': true
+      'LINK_TO': true
     }
   }
 };
