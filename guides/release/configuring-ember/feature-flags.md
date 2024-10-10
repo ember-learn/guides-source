@@ -9,22 +9,22 @@ Ember.js community considers them ready for production use.
 A newly-flagged feature is only available in canary builds and can be enabled
 at runtime through your project's configuration file.
 
-At the start of a beta cycle the Ember core team evaluates each new feature.
+At the start of a beta cycle, the Ember core team evaluates each new feature.
 Features deemed stable are made available in the next beta and enabled by default.
 
 Beta features that receive negative feedback from the community are disabled in the next beta point
-release, and are not included in the next stable release. They may still be included
+release and are not included in the next stable release. They may still be included
 in the next beta cycle if the issues/concerns are resolved.
 
-Once the beta cycle has completed, the next stable release will include any features that
-were enabled during the beta cycle. At this point the feature flags will be removed from
+Once the beta cycle has been completed, the next stable release will include any features that
+were enabled during the beta cycle. At this point, the feature flags will be removed from
 the canary and future beta branches, and the feature becomes part of the framework.
 
 ## Flagging Details
 The flag status in the generated build is controlled by the [`@ember/canary-features`](https://github.com/emberjs/ember.js/blob/main/packages/@ember/canary-features/index.ts)
 package. This package exports a list of all available features and their current status.
 
-A feature can have one of a three flags:
+A feature can have one of three flags:
 
 * `true` - The feature is **present** and **enabled**: the code behind the flag is always enabled in
   the generated build.
@@ -41,7 +41,7 @@ handled by [`defeatureify`](https://github.com/thomasboyt/defeatureify).
 When a developer adds a new feature to the `canary` channel (i.e. the `main` branch on GitHub), they
 also add an entry to [`FEATURES.md`](https://github.com/emberjs/ember.js/blob/main/FEATURES.md)
 explaining what the feature does, and linking to their originating pull request.
-This list is kept current, and reflects what is available in each channel
+This list is kept current and reflects what is available in each channel
 (`release`, `beta`, and `canary`).
 
 ## Enabling At Runtime
