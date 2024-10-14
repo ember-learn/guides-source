@@ -1,3 +1,5 @@
+<!-- FIXME: Update this. -->
+
 This section covers the common details and "gotchas" of using TypeScript with Ember.
 
 ## Registries
