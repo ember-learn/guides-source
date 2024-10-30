@@ -83,6 +83,8 @@ Congratulations! You just created and booted your first Ember app.
 
 ## Write some HTML in a template
 
+<div data-template-tag="off" markdown="1">
+
 We will start by editing the `application` template.
 This template is always on screen while the user has your application loaded.
 In your editor, open `app/templates/application.hbs` and change it to the following:
@@ -92,6 +94,24 @@ In your editor, open `app/templates/application.hbs` and change it to the follow
 
 {{outlet}}
 ```
+
+</div>
+
+<div data-template-tag="on" markdown="1">
+
+We will start by editing the `application` template.
+This template is always on screen while the user has your application loaded.
+In your editor, open `app/templates/application.gjs` and change it to the following:
+
+```gjs {data-filename=app/templates/application.gjs}
+<template>
+  <h1>PeopleTracker</h1>
+
+  {{outlet}}
+</template>
+```
+
+</div>
 
 Ember detects the changed file and automatically reloads the page for you in the background.
 You should see that the welcome page has been replaced by "PeopleTracker".
