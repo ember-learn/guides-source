@@ -246,19 +246,10 @@ decreasing the coupling of our component to where it's used.
 
 Our component is called `<PeopleList>`, based on its name on the file system. Please note that the letters P and L are capitalized.
 
-<div class="cta">
-  <div class="cta-note">
-    <div class="cta-note-body">
-      <div class="cta-note-heading">Zoey says...</div>
-      <div class="cta-note-message">
-        A component's name is derived from its file name.
-        We capitalize the first letter and every letter after <code>-</code>, then remove the hyphens.
-        This is known as pascal case.
-      </div>
-    </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="">
-  </div>
-</div>
+<zoey-says>
+  If you are having trouble getting this running, other Ember developers would be happy to help!    
+  Visit [The Ember Community Page](https://emberjs.com/community/) to join chat groups or forums.
+</zoey-says>
 
 Save this template and switch back to the `scientists` template.
 
