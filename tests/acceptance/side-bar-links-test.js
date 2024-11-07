@@ -15,7 +15,9 @@ async function visitPages(pages, assert) {
     } else {
       await visit(`/release/${url}`);
 
-      assert.dom('h1').hasText(title, 'We see the correct title in h1 tag.');
+      assert
+        .dom('h1')
+        .hasText(title, `We see the correct title in h1 tag on ${url}`);
     }
   }
 }

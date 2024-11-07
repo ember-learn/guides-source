@@ -1,0 +1,24 @@
+name: Setup node and pnpm
+description: Setup node and install dependencies using pnpm
+inputs:
+  use_lockfile:
+    description: 'Whether to use the lockfile vs latest floating dependencies'
+    required: false
+    default: 'true'
+  use_pinned_node:
+    description: 'Whether to use the node version defined in .npmrc'
+    required: false
+    default: 'false'
+runs:
+  using: 'composite'
+  steps:
+    - uses: pnpm/action-setup@v4
+      name: Install pnpm
+      with:
+        run_install: false
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: pnpm
+    - run: pnpm install ${{ fromJSON('{"false":"--no-lockfile", "true":"--frozen-lockfile"}')[inputs.use_lockfile] }}
+      shell: bash
