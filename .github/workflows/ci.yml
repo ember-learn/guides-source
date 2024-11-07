@@ -7,7 +7,6 @@ on:
   pull_request:
 
 env:
-  NODE_VERSION: 20
   NODE_OPTIONS: '--max_old_space_size=4096'
 
 jobs:
@@ -17,19 +16,10 @@ jobs:
     timeout-minutes: 7
     steps:
       - name: Check out a copy of the repo
-        uses: actions/checkout@v3
-
-      - name: Use Node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v3
-        with:
-          cache: 'npm'
-          node-version: ${{ env.NODE_VERSION }}
-
-      - run: npm i -g npm@9
-      - run: npm ci
-
+        uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
       - name: Lint
-        run: npm run lint
+        run: pnpm run lint
 
   test-app:
     name: Test app
@@ -37,21 +27,12 @@ jobs:
     timeout-minutes: 7
     steps:
       - name: Check out a copy of the repo
-        uses: actions/checkout@v3
-
-      - name: Use Node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v3
-        with:
-          cache: 'npm'
-          node-version: ${{ env.NODE_VERSION }}
-
-      - run: npm i -g npm@9
-      - run: npm ci
-
+        uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
       - name: Test
         uses: percy/exec-action@v0.3.1
         with:
-          custom-command: npm run test:ember
+          custom-command: pnpm run test:ember
         env:
           PERCY_TOKEN: 877df6aad8486060f69a34864b6cd33f870633743b23411343737c46a875a762
 
@@ -61,16 +42,7 @@ jobs:
     timeout-minutes: 7
     steps:
       - name: Check out a copy of the repo
-        uses: actions/checkout@v2
-
-      - name: Use Node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v2
-        with:
-          cache: 'npm'
-          node-version: ${{ env.NODE_VERSION }}
-
-      - run: npm i -g npm@9
-      - run: npm ci
-
+        uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
       - name: Test
-        run: npm run test:node
+        run: pnpm run test:node
