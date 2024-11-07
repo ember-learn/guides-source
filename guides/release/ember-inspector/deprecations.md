@@ -15,8 +15,6 @@ list of sources for each deprecation. If you are using Chrome or Firefox,
 clicking on the source opens the sources panel and takes you to
 the code that caused the deprecation message to be displayed.
 
-<img src="/images/guides/ember-inspector/v4.3.4/deprecations-source.png" />
-
 <img src="/images/guides/ember-inspector/v4.3.4/deprecations-sources-panel.png" width="680"/>
 
 You can send the deprecation message's stack trace to the
