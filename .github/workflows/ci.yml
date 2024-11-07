@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v4
       - uses: ./.github/actions/setup
       - name: Lint
-        run: npm run lint
+        run: pnpm run lint
 
   test-app:
     name: Test app
@@ -32,7 +32,7 @@ jobs:
       - name: Test
         uses: percy/exec-action@v0.3.1
         with:
-          custom-command: npm run test:ember
+          custom-command: pnpm run test:ember
         env:
           PERCY_TOKEN: 877df6aad8486060f69a34864b6cd33f870633743b23411343737c46a875a762
 
