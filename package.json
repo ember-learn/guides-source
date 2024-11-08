@@ -110,6 +110,7 @@
     "retext-spell": "^4.0.0",
     "retext-syntax-urls": "^2.0.0",
     "shelljs": "^0.8.5",
+    "showdown": "^2.1.0",
     "unified": "^9.2.1",
     "walk-sync": "^2.0.2",
     "webpack": "^5.72.1"
