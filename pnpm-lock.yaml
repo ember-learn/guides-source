@@ -218,6 +218,9 @@ devDependencies:
   shelljs:
     specifier: ^0.8.5
     version: 0.8.5
+  showdown:
+    specifier: ^2.1.0
+    version: 2.1.0
   unified:
     specifier: ^9.2.1
     version: 9.2.2
