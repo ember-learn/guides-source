@@ -23,6 +23,30 @@
   <body>
     {{content-for "body"}}
 
+    <div id="template-tag-toggle" style="border: 1px solid black; background-color: white; position: sticky; top: 0; z-index: 10; padding-left: 1rem">
+      <label>Template Tag: <input type="checkbox"></label>
+    </div>
+    <style id="template-tag-toggle-styles"></style>
+    <script>
+      function updateTemplateTagToggle(event) {
+        if (event?.target.checked) {
+          document.querySelector('#template-tag-toggle-styles').innerHTML = `
+            [data-template-tag="off"] {
+              display: none;
+            }
+          `;
+        } else {
+          document.querySelector('#template-tag-toggle-styles').innerHTML = `
+            [data-template-tag="on"] {
+              display: none;
+            }
+          `;
+        }
+      }
+      updateTemplateTagToggle();
+      document.querySelector('#template-tag-toggle').addEventListener('change', updateTemplateTagToggle)
+    </script>
+
     <script src="{{rootURL}}assets/vendor.js"></script>
     <script src="{{rootURL}}assets/ember-guides.js"></script>
 

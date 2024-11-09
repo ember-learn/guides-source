@@ -83,6 +83,8 @@ Congratulations! You just created and booted your first Ember app.
 
 ## Write some HTML in a template
 
+<div data-template-tag="off" markdown="1">
+
 We will start by editing the `application` template.
 This template is always on screen while the user has your application loaded.
 In your editor, open `app/templates/application.hbs` and change it to the following:
@@ -92,6 +94,24 @@ In your editor, open `app/templates/application.hbs` and change it to the follow
 
 {{outlet}}
 ```
+
+</div>
+
+<div data-template-tag="on" markdown="1">
+
+We will start by editing the `application` template.
+This template is always on screen while the user has your application loaded.
+In your editor, open `app/templates/application.gjs` and change it to the following:
+
+```gjs {data-filename=app/templates/application.gjs}
+<template>
+  <h1>PeopleTracker</h1>
+
+  {{outlet}}
+</template>
+```
+
+</div>
 
 Ember detects the changed file and automatically reloads the page for you in the background.
 You should see that the welcome page has been replaced by "PeopleTracker".
@@ -226,19 +246,10 @@ decreasing the coupling of our component to where it's used.
 
 Our component is called `<PeopleList>`, based on its name on the file system. Please note that the letters P and L are capitalized.
 
-<div class="cta">
-  <div class="cta-note">
-    <div class="cta-note-body">
-      <div class="cta-note-heading">Zoey says...</div>
-      <div class="cta-note-message">
-        A component's name is derived from its file name.
-        We capitalize the first letter and every letter after <code>-</code>, then remove the hyphens.
-        This is known as pascal case.
-      </div>
-    </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="">
-  </div>
-</div>
+<zoey-says>
+  If you are having trouble getting this running, other Ember developers would be happy to help!    
+  Visit [The Ember Community Page](https://emberjs.com/community/) to join chat groups or forums.
+</zoey-says>
 
 Save this template and switch back to the `scientists` template.
 
