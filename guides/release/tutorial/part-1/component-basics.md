@@ -113,8 +113,8 @@ Let's do the same for our other two pages as well.
     <a href="mailto:superrentalsrep@emberjs.com">superrentalsrep@emberjs.com</a>
   </address>
   <LinkTo @route="about" class="button">About</LinkTo>
-</div>
 </Jumbo>
+</div>
 ```
 
 After saving, everything should look exactly the same as before, and all the tests should still pass. Very nice!
