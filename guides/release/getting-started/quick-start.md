@@ -83,6 +83,16 @@ Congratulations! You just created and booted your first Ember app.
 
 ## Write some HTML in a template
 
+<template-tag-on>
+TEMPLATE tagggg
+</template-tag-on>
+<template-tag-off>
+No template tags 
+# Title
+
+- bullet
+</template-tag-off>
+
 <div data-template-tag="off" markdown="1">
 
 We will start by editing the `application` template.
@@ -249,6 +259,13 @@ Our component is called `<PeopleList>`, based on its name on the file system. Pl
 <zoey-says>
   If you are having trouble getting this running, other Ember developers would be happy to help!    
   Visit [The Ember Community Page](https://emberjs.com/community/) to join chat groups or forums.
+
+```handlebars {data-filename=app/templates/application.hbs}
+<h1>What even am I doing?</h1>
+<p> Why does this render outside of the zoey-says custom element? Are we better off doing this as a showdown extension?</p>
+
+{{outlet}}
+```
 </zoey-says>
 
 Save this template and switch back to the `scientists` template.
