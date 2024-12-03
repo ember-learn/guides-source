@@ -93,7 +93,7 @@
     "eslint-plugin-qunit": "^8.1.2",
     "gfm-code-blocks": "^1.0.0",
     "guidemaker": "^4.0.3",
-    "guidemaker-ember-template": "^4.0.1",
+    "guidemaker-ember-template": "^4.1.0",
     "loader.js": "^4.7.0",
     "lodash": "^4.17.21",
     "markdown-link-extractor": "1.2.3",
