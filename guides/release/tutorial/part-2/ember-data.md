@@ -391,9 +391,8 @@ Notice that we are using the `JsonSuffixHandler` we created earlier. We also use
 
 Lastly, let's update our `store` service to use the new `RequestManager` we created.
 
-```js { data-filename="app/services/store.js" data-diff="-1,+2,+3,+4,+5,+6,+7,+8" }
+```js { data-filename="app/services/store.js" data-diff="-1,+2,+3,+4,+5,+6,+7" }
 export { default } from 'ember-data/store';
-// eslint-disable-next-line ember/use-ember-data-rfc-395-imports
 import BaseStore from 'ember-data/store';
 import { service } from '@ember/service';
 
