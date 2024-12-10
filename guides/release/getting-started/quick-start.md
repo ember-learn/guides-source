@@ -56,9 +56,13 @@ npm start
 
 After a few seconds, you should see output that looks like this:
 
-```text
-Livereload server on http://localhost:7020
-Serving on http://localhost:4200/
+```shell
+> ember-quickstart@0.0.0 start
+> ember serve
+
+building... 
+
+Build successful (9761ms) – Serving on http://localhost:4200/
 ```
 
 (To stop the server at any time, type Ctrl-C in your terminal.)
