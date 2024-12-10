@@ -21,7 +21,7 @@ function setupCustomAssertions(assert) {
         .dom(tocLink)
         .hasText(
           expectedLinks[index],
-          `We see the correct link. (${index + 1})`
+          `We see the correct link. (${index + 1})`,
         );
     });
   };
@@ -41,7 +41,7 @@ function setupCustomAssertions(assert) {
         .dom(tocTitle)
         .hasText(
           expectedTitles[index],
-          `We see the correct title. (${index + 1})`
+          `We see the correct title. (${index + 1})`,
         );
     });
   };

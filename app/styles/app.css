@@ -1,13 +1,14 @@
 /* resetting image rules that crept in from bootstrap */
-svg, img {
+svg,
+img {
   vertical-align: inherit !important;
   height: auto;
 }
 
 /* resetting code rules that came from bootstrap */
 code {
-    color: inherit !important;
-    word-break: inherit !important;
+  color: inherit !important;
+  word-break: inherit !important;
 }
 
 @media only percy {
@@ -18,7 +19,6 @@ code {
 
 .list-cards {
   flex-flow: row wrap;
-  max-width: 100%;
   padding: 1em 0;
   display: flex;
   justify-content: space-evenly;
@@ -26,66 +26,74 @@ code {
   margin: 2em auto;
   max-width: 100%;
 }
+
 .list-cards .list-item-card {
   background: #e04e39;
   position: relative;
   margin: 1em;
   border-radius: 3px;
-  box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 2px 1px rgb(0 0 0 / 20%);
   transition: 0.6s ease-in-out;
-  transition-property: box-shadow, -webkit-transform;
+  transition-property:
+    box-shadow,
+    -webkit-transform;
   transition-property: transform, box-shadow;
-  transition-property: transform, box-shadow, -webkit-transform;
-  -webkit-transform: scale(1);
-          transform: scale(1);
+  transition-property:
+    transform,
+    box-shadow,
+    -webkit-transform;
+  transform: scale(1);
   overflow: hidden;
   padding: 0;
   min-width: 250px;
   max-width: 100%;
 }
-@media screen and (min-width: 768px) {
+
+@media screen and (width >= 768px) {
   .list-cards .list-item-card {
     min-width: 250px;
     max-width: 25%;
   }
 }
+
 .list-cards .list-item-card:hover {
-  -webkit-transform: scale(1.1);
-          transform: scale(1.1);
-  box-shadow: 0 10px 30px 5px rgba(0, 0, 0, 0.3);
+  transform: scale(1.1);
+  box-shadow: 0 10px 30px 5px rgb(0 0 0 / 30%);
 }
+
 .list-cards .list-item-card .shape {
   position: absolute;
   z-index: 0;
-  border: 2px solid #ffffff;
+  border: 2px solid #fff;
 }
+
 .list-cards .list-item-card .shape--dark {
   right: -5%;
   top: -68%;
   width: 50%;
   padding-bottom: 100%;
-  -webkit-transform: rotate(-49deg);
-          transform: rotate(-49deg);
+  transform: rotate(-49deg);
   background-color: #1f1f1f;
 }
+
 .list-cards .list-item-card .shape--accent {
   top: -44%;
   left: -30%;
   width: 100%;
   padding-bottom: 50%;
-  -webkit-transform: rotate(-30deg);
-          transform: rotate(-30deg);
-  background-color: #999999;
+  transform: rotate(-30deg);
+  background-color: #999;
 }
+
 .list-cards .list-item-card .shape--light {
   bottom: -16%;
   left: -23%;
   width: 100%;
   padding-top: 25%;
-  -webkit-transform: rotate(15deg);
-          transform: rotate(15deg);
+  transform: rotate(15deg);
   background-color: #454545;
 }
+
 .list-cards .list-item-card a {
   -webkit-font-smoothing: antialiased;
   font-size: 24px;
@@ -108,31 +116,36 @@ code {
 /* Fix diff formatting */
 
 code[data-diff] .diff-deletion {
-  background-color: rgba(144,84,84,.7);
+  background-color: rgb(144 84 84 / 70%);
 }
+
 code[data-diff] .diff-insertion {
-  background-color: rgba(93,125,93,.5);
+  background-color: rgb(93 125 93 / 50%);
 }
+
 code[data-diff] .diff-deletion .diff-deletion,
 code[data-diff] .diff-deletion .diff-insertion,
 code[data-diff] .diff-insertion .diff-deletion,
 code[data-diff] .diff-insertion .diff-insertion {
   background-color: transparent;
 }
+
 code[data-diff] .diff-deletion > .diff-operator,
 code[data-diff] .diff-insertion > .diff-operator {
   display: none;
 }
+
 code[data-diff] .diff-deletion::before {
   content: "-";
   margin-left: -1ch;
-  background-color: rgba(144,84,84,.7);
+  background-color: rgb(144 84 84 / 70%);
   color: #f8f8f2;
 }
+
 code[data-diff] .diff-insertion::before {
   content: "+";
   margin-left: -1ch;
-  background-color: rgba(93,125,93,.5);
+  background-color: rgb(93 125 93 / 50%);
   color: #f8f8f2;
 }
 
@@ -147,19 +160,23 @@ code[data-diff] .diff-insertion::before {
 .chapter .cta {
   max-width: 95%;
 }
+
 .chapter .cta .cta-note {
   width: 100%;
 }
+
 .chapter .cta .cta-note .cta-note-body .cta-note-message p {
   font-size: 95%;
   line-height: 1.75em;
   margin: 0.5em 0;
 }
+
 .chapter .cta-note-body code {
   padding: 0;
   background-color: transparent;
 }
-@media screen and (min-width: 768px) {
+
+@media screen and (width >= 768px) {
   .chapter .cta .cta-note img {
     padding-bottom: 10px;
   }
@@ -167,11 +184,17 @@ code[data-diff] .diff-insertion::before {
 
 /* Make code blocks denser */
 
-.chapter pre, .chapter pre[class*=language-],
-.chapter code, .chapter code[class*=language-] {
+.chapter pre,
+.chapter pre[class*="language-"],
+.chapter code,
+.chapter code[class*="language-"] {
   line-height: 1.6;
 }
-.chapter .filename, .chapter pre, .chapter pre[class*=language-], .filename::after {
+
+.chapter .filename,
+.chapter pre,
+.chapter pre[class*="language-"],
+.filename::after {
   font-size: 85%;
 }
 
@@ -184,6 +207,7 @@ code[data-diff] .diff-insertion::before {
   padding-top: var(--spacing-1);
   padding-bottom: var(--spacing-1);
 }
+
 .chapter .filename + pre code {
   padding: var(--spacing-1) 0;
 }
@@ -197,7 +221,7 @@ code[data-diff] .diff-insertion::before {
 li.toc-heading.toc-level-0 {
   font-size: 0.8em;
   text-transform: uppercase;
-  color: rgb(155, 41, 24, 0.76);
+  color: rgb(155 41 24 / 76%);
   font-weight: bold;
   margin: 2em 0 1em;
 }

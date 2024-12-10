@@ -20,7 +20,7 @@ const mdFiles = _.chain(walkSync('guides/release'))
 mdFiles.forEach((filename) => {
   const source = readFileSync(
     join(__dirname, 'guides', 'release', filename),
-    'utf-8'
+    'utf-8',
   );
   // console.log(filename);
   const blocks = codeBlocks(source);

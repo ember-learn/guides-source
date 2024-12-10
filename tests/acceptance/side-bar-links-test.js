@@ -34,7 +34,7 @@ module('Acceptance | side bar links', function (hooks) {
 
     await visitPages(
       pages.toArray().filter((page) => !page.id.includes('toc-heading')),
-      assert
+      assert,
     );
   });
 });
