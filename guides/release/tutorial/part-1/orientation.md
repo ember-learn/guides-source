@@ -24,8 +24,8 @@ To verify that your installation was successful, run:
 
 ```shell
 $ ember --version
-ember-cli: 5.12.0
-node: 18.20.4
+ember-cli: 6.0.1
+node: 18.20.5
 os: linux x64
 ```
 
@@ -38,7 +38,7 @@ We can create a new project using Ember CLI's `new` command. It follows the patt
 ```shell
 $ ember new super-rentals --lang en
 installing app
-Ember CLI v5.12.0
+Ember CLI v6.0.1
 
 Creating a new Ember app in /home/runner/work/super-rentals-tutorial/super-rentals-tutorial/dist/code/super-rentals:
   create .editorconfig
