@@ -429,6 +429,8 @@ First you need to [sign up for a Netlify account](https://app.netlify.com/signup
 
 ![deploying to Netlify](/images/quick-guide/netlify/create-netlify-account.png)
 
+**Configuring Netlify URL handling**
+
 The next step is to let the web app server know how to handle URLs. There are 2 ways to do so.
 
 One, you can create a file in your `ember-quickstart/public` folder called
