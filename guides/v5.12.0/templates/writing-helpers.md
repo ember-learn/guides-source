@@ -1,0 +1,3 @@
+---
+redirect: components/helper-functions
+---
