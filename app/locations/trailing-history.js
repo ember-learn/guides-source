@@ -14,6 +14,8 @@ export default HistoryLocation.extend({
 
 export function formatURL(url) {
   let modifiedURL = new URL(url, 'http://example.com');
-  modifiedURL.pathname += '/';
+  if (!modifiedURL.pathname.endsWith('/')) {
+    modifiedURL.pathname += '/';
+  }
   return `${modifiedURL.pathname}${modifiedURL.search}${modifiedURL.hash}`;
 }
