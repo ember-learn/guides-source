@@ -1,4 +1,4 @@
-<!-- FIXME: Rewrite this. -->
+<!-- TODO: @gitKrystan Rewrite this. -->
 
 In this section, we cover how to use TypeScript effectively with specific EmberData APIs (anything you'd find under the `@ember-data` package namespace).
 
