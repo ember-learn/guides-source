@@ -17,6 +17,10 @@ Project files will be generated with `.ts` extensions instead of `.js`.
 In addition to the usual packages added with `ember new`, the following packages will be added at their current "latest" value:
 
 - `typescript` – tooling to support TypeScript type checking and compilation.
+<!--
+TODO: Uncomment this line when we add Glint docs
+- `@glint/*` – a set of packages to support type-checking in templates.
+  -->
 - `@tsconfig/ember` – a shared TypeScript configuration for Ember apps.
 - `@typescript-eslint/*` – ESLint support for TypeScript.
 - `@types/qunit` - TypeScript type definitions for QUnit.
