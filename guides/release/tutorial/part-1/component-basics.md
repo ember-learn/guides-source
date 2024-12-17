@@ -65,8 +65,9 @@ Let's try it out by editing the index template:
   <h2>Welcome to Super Rentals!</h2>
   <p>We hope you find exactly what you're looking for in a place to stay.</p>
   <LinkTo @route="about" class="button">About Us</LinkTo>
-</div>
 </Jumbo>
+</div>
+
 ```
 
 ## Refactoring Existing Code
@@ -90,8 +91,8 @@ Let's do the same for our other two pages as well.
     AND building Ember applications.
   </p>
   <LinkTo @route="contact" class="button">Contact Us</LinkTo>
-</div>
 </Jumbo>
+</div>
 ```
 
 ```handlebars { data-filename="app/templates/contact.hbs" data-diff="-1,-2,+3,-19,+20" }
@@ -113,8 +114,8 @@ Let's do the same for our other two pages as well.
     <a href="mailto:superrentalsrep@emberjs.com">superrentalsrep@emberjs.com</a>
   </address>
   <LinkTo @route="about" class="button">About</LinkTo>
-</div>
 </Jumbo>
+</div>
 ```
 
 After saving, everything should look exactly the same as before, and all the tests should still pass. Very nice!
