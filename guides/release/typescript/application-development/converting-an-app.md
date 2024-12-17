@@ -1,4 +1,4 @@
-<!-- FIXME: Update this. -->
+<!-- TODO: @gitKrystan Update this. -->
 
 These directions are for converting an _existing_ Ember app to TypeScript. If you are starting a new app, you can use the directions in [Getting Started][].
 
