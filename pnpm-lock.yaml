@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  guidemaker@4.0.3:
+    hash: 2g7iq532iiej2nho6iusygpuwq
+    path: patches/guidemaker.patch
+
 importers:
 
   .:
@@ -163,10 +168,10 @@ importers:
         version: 1.0.0
       guidemaker:
         specifier: ^4.0.3
-        version: 4.0.3(@ember-data/adapter@4.12.8(@ember-data/store@4.12.8)(@ember/string@4.0.0)(ember-inflector@4.0.3(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5)(webpack@5.96.1))))(@ember-data/model@4.12.8)(@ember-data/serializer@4.12.8(@ember-data/store@4.12.8)(@ember/string@4.0.0)(ember-inflector@4.0.3(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5)(webpack@5.96.1))))(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5)(webpack@5.96.1))(showdown@2.1.0)(webpack@5.96.1)
+        version: 4.0.3(patch_hash=2g7iq532iiej2nho6iusygpuwq)(@ember-data/adapter@4.12.8(@ember-data/store@4.12.8)(@ember/string@4.0.0)(ember-inflector@4.0.3(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5)(webpack@5.96.1))))(@ember-data/model@4.12.8)(@ember-data/serializer@4.12.8(@ember-data/store@4.12.8)(@ember/string@4.0.0)(ember-inflector@4.0.3(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5)(webpack@5.96.1))))(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5)(webpack@5.96.1))(showdown@2.1.0)(webpack@5.96.1)
       guidemaker-ember-template:
         specifier: ^4.1.0
-        version: 4.1.0(@babel/core@7.26.0)(@glimmer/tracking@1.1.2)(ember-cli-head@2.0.0)(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5)(webpack@5.96.1))(guidemaker@4.0.3(@ember-data/adapter@4.12.8(@ember-data/store@4.12.8)(@ember/string@4.0.0)(ember-inflector@4.0.3(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5)(webpack@5.96.1))))(@ember-data/model@4.12.8)(@ember-data/serializer@4.12.8(@ember-data/store@4.12.8)(@ember/string@4.0.0)(ember-inflector@4.0.3(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5)(webpack@5.96.1))))(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5)(webpack@5.96.1))(showdown@2.1.0)(webpack@5.96.1))(showdown@2.1.0)(webpack@5.96.1)
+        version: 4.1.0(@babel/core@7.26.0)(@glimmer/tracking@1.1.2)(ember-cli-head@2.0.0)(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5)(webpack@5.96.1))(guidemaker@4.0.3(patch_hash=2g7iq532iiej2nho6iusygpuwq)(@ember-data/adapter@4.12.8(@ember-data/store@4.12.8)(@ember/string@4.0.0)(ember-inflector@4.0.3(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5)(webpack@5.96.1))))(@ember-data/model@4.12.8)(@ember-data/serializer@4.12.8(@ember-data/store@4.12.8)(@ember/string@4.0.0)(ember-inflector@4.0.3(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5)(webpack@5.96.1))))(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5)(webpack@5.96.1))(showdown@2.1.0)(webpack@5.96.1))(showdown@2.1.0)(webpack@5.96.1)
       loader.js:
         specifier: ^4.7.0
         version: 4.7.0
@@ -14708,7 +14713,7 @@ snapshots:
 
   growly@1.3.0: {}
 
-  guidemaker-ember-template@4.1.0(@babel/core@7.26.0)(@glimmer/tracking@1.1.2)(ember-cli-head@2.0.0)(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5)(webpack@5.96.1))(guidemaker@4.0.3(@ember-data/adapter@4.12.8(@ember-data/store@4.12.8)(@ember/string@4.0.0)(ember-inflector@4.0.3(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5)(webpack@5.96.1))))(@ember-data/model@4.12.8)(@ember-data/serializer@4.12.8(@ember-data/store@4.12.8)(@ember/string@4.0.0)(ember-inflector@4.0.3(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5)(webpack@5.96.1))))(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5)(webpack@5.96.1))(showdown@2.1.0)(webpack@5.96.1))(showdown@2.1.0)(webpack@5.96.1):
+  guidemaker-ember-template@4.1.0(@babel/core@7.26.0)(@glimmer/tracking@1.1.2)(ember-cli-head@2.0.0)(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5)(webpack@5.96.1))(guidemaker@4.0.3(patch_hash=2g7iq532iiej2nho6iusygpuwq)(@ember-data/adapter@4.12.8(@ember-data/store@4.12.8)(@ember/string@4.0.0)(ember-inflector@4.0.3(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5)(webpack@5.96.1))))(@ember-data/model@4.12.8)(@ember-data/serializer@4.12.8(@ember-data/store@4.12.8)(@ember/string@4.0.0)(ember-inflector@4.0.3(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5)(webpack@5.96.1))))(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5)(webpack@5.96.1))(showdown@2.1.0)(webpack@5.96.1))(showdown@2.1.0)(webpack@5.96.1):
     dependencies:
       '@embroider/addon-shim': 1.9.0
       algoliasearch: 4.24.0
@@ -14725,7 +14730,7 @@ snapshots:
       ember-styleguide: 11.0.3(@babel/core@7.26.0)(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5)(webpack@5.96.1))
       ember-tether: https://codeload.github.com/mansona/ember-tether/tar.gz/2350880b88a684606ebb09ca22f9be77f26e8cae(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5)(webpack@5.96.1))(webpack@5.96.1)
       ember-truth-helpers: 4.0.3(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5)(webpack@5.96.1))
-      guidemaker: 4.0.3(@ember-data/adapter@4.12.8(@ember-data/store@4.12.8)(@ember/string@4.0.0)(ember-inflector@4.0.3(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5)(webpack@5.96.1))))(@ember-data/model@4.12.8)(@ember-data/serializer@4.12.8(@ember-data/store@4.12.8)(@ember/string@4.0.0)(ember-inflector@4.0.3(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5)(webpack@5.96.1))))(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5)(webpack@5.96.1))(showdown@2.1.0)(webpack@5.96.1)
+      guidemaker: 4.0.3(patch_hash=2g7iq532iiej2nho6iusygpuwq)(@ember-data/adapter@4.12.8(@ember-data/store@4.12.8)(@ember/string@4.0.0)(ember-inflector@4.0.3(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5)(webpack@5.96.1))))(@ember-data/model@4.12.8)(@ember-data/serializer@4.12.8(@ember-data/store@4.12.8)(@ember/string@4.0.0)(ember-inflector@4.0.3(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5)(webpack@5.96.1))))(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5)(webpack@5.96.1))(showdown@2.1.0)(webpack@5.96.1)
       sanitize-html: 2.13.1
       showdown: 2.1.0
     transitivePeerDependencies:
@@ -14738,7 +14743,7 @@ snapshots:
       - supports-color
       - webpack
 
-  guidemaker@4.0.3(@ember-data/adapter@4.12.8(@ember-data/store@4.12.8)(@ember/string@4.0.0)(ember-inflector@4.0.3(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5)(webpack@5.96.1))))(@ember-data/model@4.12.8)(@ember-data/serializer@4.12.8(@ember-data/store@4.12.8)(@ember/string@4.0.0)(ember-inflector@4.0.3(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5)(webpack@5.96.1))))(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5)(webpack@5.96.1))(showdown@2.1.0)(webpack@5.96.1):
+  guidemaker@4.0.3(patch_hash=2g7iq532iiej2nho6iusygpuwq)(@ember-data/adapter@4.12.8(@ember-data/store@4.12.8)(@ember/string@4.0.0)(ember-inflector@4.0.3(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5)(webpack@5.96.1))))(@ember-data/model@4.12.8)(@ember-data/serializer@4.12.8(@ember-data/store@4.12.8)(@ember/string@4.0.0)(ember-inflector@4.0.3(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5)(webpack@5.96.1))))(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5)(webpack@5.96.1))(showdown@2.1.0)(webpack@5.96.1):
     dependencies:
       '@babel/core': 7.26.0
       '@ember-data/adapter': 4.12.8(@ember-data/store@4.12.8)(@ember/string@4.0.0)(ember-inflector@4.0.3(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5)(webpack@5.96.1)))
