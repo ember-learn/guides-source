@@ -19,7 +19,7 @@ Add a `tsconfig.json` file to the root of your project. Copy its contents from t
 
 ### Set Up TypeScript for EmberData
 
-<!-- FIXME: @gitKrystan Link -->
+Follow the instructions in the [EmberData Typescript Guides][ED-ts-guides].
 
 ### Enable TypeScript Transpilation for Builds
 
@@ -122,6 +122,7 @@ If you're migrating from `ember-cli-typescript` to Ember's native TypeScript sup
 
 <!-- Internal links -->
 
+[ED-ts-guides]: ../../core-concepts/ember-data/#toc_adding-emberdata-types-to-an-existing-typescript-app
 [getting started]: ../../getting-started/
 [legacy]: ../../additional-resources/legacy/
 [packages]: ../../getting-started/#toc_packages-to-support-typescript
