@@ -11,7 +11,12 @@ If you use the `--typescript` flag when generating your Ember app, we generate a
       "my-app/tests/*": ["tests/*"],
       "my-app/*": ["app/*"],
       "*": ["types/*"]
-    }
+    },
+    "types": [
+      "ember-source/types",
+      "./node_modules/ember-data/unstable-preview-types",
+      // ...more ember-data types...
+      "./node_modules/@warp-drive/core-types/unstable-preview-types"
   }
 }
 ```
