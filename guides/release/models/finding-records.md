@@ -11,7 +11,7 @@ import { service } from '@ember/service';
 import { findRecord } from '@ember-data/json-api/request';
 
 // somewhere in the app
-const result = await this.store.request(findRecord('blog-post', '1'));
+const result = await store.request(findRecord('blog-post', '1'));
 const blogPost = result.content.data;
 ```
 
@@ -104,7 +104,7 @@ Then, calling `queryData()` will retrieve that object from the server:
 ```javascript
 import { queryData } from './builders';
 
-const user = await this.requestManager.request(queryData());
+const user = await requestManager.request(queryData());
 let username = user.get('username');
 
 console.log(`Currently logged in as ${username}`);
