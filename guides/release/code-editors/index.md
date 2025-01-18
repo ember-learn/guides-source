@@ -20,8 +20,8 @@ Syntax formatting for glimmer templates.
 
 ### Language Server
 
-[Stable Ember Language Server](https://marketplace.visualstudio.com/items?itemName=lifeart.vscode-ember-unstable) -
-Stable Ember Language Server is a stable, full-featured language server. Its name comes from its history as a fork of Ember Language Server and the efforts to keep up with changes in Ember.
+[Ember Language Server](https://marketplace.visualstudio.com/items?itemName=EmberTooling.vscode-ember) -
+Adds enhanced editor features like auto completion and go to definition.
 
 ### Workflow
 
