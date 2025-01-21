@@ -92,7 +92,7 @@
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-qunit": "^8.1.2",
     "gfm-code-blocks": "^1.0.0",
-    "guidemaker": "^4.0.3",
+    "guidemaker": "^4.0.4",
     "guidemaker-ember-template": "^4.1.0",
     "loader.js": "^4.7.0",
     "lodash": "^4.17.21",
@@ -138,10 +138,5 @@
   "fastbootDependencies": [
     "crypto"
   ],
-  "packageManager": "pnpm@9.12.3+sha512.cce0f9de9c5a7c95bef944169cc5dfe8741abfb145078c0d508b868056848a87c81e626246cb60967cbd7fd29a6c062ef73ff840d96b3c86c40ac92cf4a813ee",
-  "pnpm": {
-    "patchedDependencies": {
-      "guidemaker@4.0.3": "patches/guidemaker.patch"
-    }
-  }
+  "packageManager": "pnpm@9.12.3+sha512.cce0f9de9c5a7c95bef944169cc5dfe8741abfb145078c0d508b868056848a87c81e626246cb60967cbd7fd29a6c062ef73ff840d96b3c86c40ac92cf4a813ee"
 }
