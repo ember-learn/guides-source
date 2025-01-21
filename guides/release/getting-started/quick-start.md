@@ -135,6 +135,7 @@ ember generate route scientists
 
 You'll see output like this:
 
+<feature-flag-off-template-tag>
 ```text
 installing route
   create app/routes/scientists.js
@@ -144,6 +145,20 @@ updating router
 installing route-test
   create tests/unit/routes/scientists-test.js
 ```
+</feature-flag-off-template-tag>
+<feature-flag-on-template-tag>
+```bash
+# 🚧 Under construction 🚧
+# `ember generate route` has not been updated to produce GJS files yet.
+installing route
+  create app/routes/scientists.js
+  create app/templates/scientists.gjs
+updating router
+  add route scientists
+installing route-test
+  create tests/unit/routes/scientists-test.js
+```
+</feature-flag-on-template-tag>
 
 That is Ember telling you that it has created:
 
@@ -152,6 +167,7 @@ That is Ember telling you that it has created:
 3. An entry in the application's router (located in `app/router.js`).
 4. A unit test for this route.
 
+<feature-flag-off-template-tag>
 Open the newly-created template in `app/templates/scientists.hbs` and add the following HTML:
 
 ```handlebars {data-filename=app/templates/scientists.hbs}
@@ -161,6 +177,24 @@ Open the newly-created template in `app/templates/scientists.hbs` and add the fo
 
 In your browser, open [`http://localhost:4200/scientists`](http://localhost:4200/scientists).
 You should see the `<h2>` we put in the `scientists.hbs` template right below the `<h1>` from our `application.hbs` template.
+
+</feature-flag-off-template-tag>
+<feature-flag-on-template-tag>
+Open the newly-created template in `app/templates/scientists.gjs` and add the following HTML:
+
+```gjs {data-filename=app/templates/scientists.gjs}
+import { pageTitle } from 'ember-page-title';
+
+<template>
+  {{pageTitle "Scientists"}}
+  <h2>List of Scientists</h2>
+</template>
+```
+
+In your browser, open [`http://localhost:4200/scientists`](http://localhost:4200/scientists).
+You should see the `<h2>` we put in the `scientists.gjs` template right below the `<h1>` from our `application.gjs` template.
+
+</feature-flag-on-template-tag>
 
 Since the scientist route is nested under the application route, Ember will render its content inside the application route template's `{{outlet}}` directive.
 
@@ -191,6 +225,7 @@ the `model()` method supports any library that uses [JavaScript Promises](https:
 Now let's tell Ember how to turn that array of strings into HTML.
 Open the `scientists` template and add the following code to loop through the array and print it:
 
+<feature-flag-off-template-tag>
 ```handlebars {data-filename="app/templates/scientists.hbs"}
 <h2>List of Scientists</h2>
 
@@ -200,6 +235,23 @@ Open the `scientists` template and add the following code to loop through the ar
   {{/each}}
 </ul>
 ```
+</feature-flag-off-template-tag>
+
+<feature-flag-on-template-tag>
+```gjs {data-filename="app/templates/scientists.gjs"}
+import { pageTitle } from 'ember-page-title';
+
+<template>
+  {{pageTitle "Scientists"}}
+  <h2>List of Scientists</h2>
+  <ul>
+    {{#each @model as |scientist|}}
+      <li>{{scientist}}</li>
+    {{/each}}
+  </ul>
+</template>
+```
+</feature-flag-on-template-tag>
 
 Here, we use the `each` _helper_ to loop over each item in the array we
 provided from the `model()` hook. Ember will render the _block_ contained
@@ -217,16 +269,21 @@ As your application grows, you will notice you are sharing UI elements between m
 or using them multiple times on the same page.
 Ember makes it easy to refactor your templates into reusable components.
 
-Let's create a `<PeopleList>` component that we can use in multiple places to show a list of people.
+Let's create a `PeopleList` component that we can use in multiple places to show a list of people.
 
 As usual, there's a generator that makes this easy for us.
 Make a new component by typing:
 
 ```bash
+<feature-flag-on-template-tag>
+# 🚧 Under construction 🚧
+# `ember generate component` has not been updated to produce GJS files yet.
+</feature-flag-on-template-tag>
 ember generate component people-list
 ```
 
-Copy and paste the `scientists` template into the `<PeopleList>` component's template and edit it to look as follows:
+<feature-flag-off-template-tag>
+Copy and paste the `scientists` template into the `PeopleList` component's template and edit it to look as follows:
 
 ```handlebars {data-filename=app/components/people-list.hbs}
 <h2>{{@title}}</h2>
@@ -238,6 +295,25 @@ Copy and paste the `scientists` template into the `<PeopleList>` component's tem
 </ul>
 ```
 
+</feature-flag-off-template-tag>
+
+<feature-flag-on-template-tag>
+Copy and paste this part of the `scientists` template into the `PeopleList` component and edit it to look as follows:
+
+```gjs {data-filename=app/components/people-list.gjs}
+<template>
+  <h2>{{@title}}</h2>
+
+  <ul>
+    {{#each @people as |person|}}
+      <li>{{person}}</li>
+    {{/each}}
+  </ul>
+</template>
+```
+
+</feature-flag-on-template-tag>
+
 Note that we've changed the title from a hard-coded string ("List of Scientists")
 to `{{@title}}`. The `@` indicates that `@title` is an argument that will be
 passed into the component, which makes it easier to reuse the same component in
@@ -246,7 +322,8 @@ other parts of the app we are building.
 We've also renamed `scientist` to the more-generic `person`,
 decreasing the coupling of our component to where it's used.
 
-Our component is called `<PeopleList>`, based on its name on the file system. Please note that the letters P and L are capitalized.
+<feature-flag-off-template-tag>
+Our component is called `PeopleList`, based on its name on the file system. Please note that the letters P and L are capitalized.
 
 <div class="cta">
   <div class="cta-note">
@@ -261,6 +338,7 @@ Our component is called `<PeopleList>`, based on its name on the file system. Pl
     <img src="/images/mascots/zoey.png" role="presentation" alt="">
   </div>
 </div>
+</feature-flag-off-template-tag>
 
 Save this template and switch back to the `scientists` template.
 
@@ -276,6 +354,7 @@ In the rest of the code examples in this tutorial, whenever we add or remove cod
 
 Let's replace all our old code with our new componentized version:
 
+<feature-flag-off-template-tag>
 ```handlebars {data-filename="app/templates/scientists.hbs" data-diff="-1,-2,-3,-4,-5,-6,-7,+8,+9,+10,+11"}
 <h2>List of Scientists</h2>
 
@@ -289,6 +368,28 @@ Let's replace all our old code with our new componentized version:
   @people={{@model}} 
 />
 ```
+</feature-flag-off-template-tag>
+
+<feature-flag-on-template-tag>
+```gjs {data-filename="app/templates/scientists.gjs" data-diff="+2,-6,-7,-8,-9,-10,-11,+12,+13,+14,+15"}
+import { pageTitle } from 'ember-page-title';
+import PeopleList from '../components/people-list';
+
+<template>
+  {{pageTitle "Scientists"}}
+  <h2>List of Scientists</h2>
+  <ul>
+    {{#each @model as |scientist|}}
+      <li>{{scientist}}</li>
+    {{/each}}
+  </ul>
+  <PeopleList 
+    @title="List of Scientists" 
+    @people={{@model}} 
+  />
+</template>
+```
+</feature-flag-on-template-tag>
 
 Go back to your browser and you should see that the UI looks identical.
 The only difference is that now we've componentized our list into a version that's more reusable and more maintainable.
