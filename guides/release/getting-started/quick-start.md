@@ -397,7 +397,7 @@ The only difference is that now we've componentized our list into a version that
 You can see this in action if you create a new route that shows a different list of people.
 As an additional exercise (that we won't cover),
 you can try to create a `programmers` route that shows a list of famous programmers.
-If you re-use the `<PeopleList>` component, you can do it with almost no code at all.
+If you re-use the `PeopleList` component, you can do it with almost no code at all.
 
 ## Responding to user interactions
 
@@ -405,8 +405,9 @@ So far, our application is listing data, but there is no way for the user to
 interact with the information. In web applications we often want to respond to
 user actions like clicks or hovers. Ember makes this easy to do.
 
-First, we can modify the `<PeopleList>` component to include a button:
+First, we can modify the `PeopleList` component to include a button:
 
+<feature-flag-off-template-tag>
 ```handlebars {data-filename="app/components/people-list.hbs"}
 <h2>{{@title}}</h2>
 
@@ -418,16 +419,34 @@ First, we can modify the `<PeopleList>` component to include a button:
   {{/each}}
 </ul>
 ```
+</feature-flag-off-template-tag>
+<feature-flag-on-template-tag>
+```gjs {data-filename="app/components/people-list.gjs"}
+<template>
+  <h2>{{@title}}</h2>
+
+  <ul>
+    {{#each @people as |person|}}
+      <li>
+        <button type="button">{{person}}</button>
+      </li>
+    {{/each}}
+  </ul>
+</template>
+```
+</feature-flag-on-template-tag>
+
 
 Now that we have a button, we need to wire it up to do _something_ when a user
 clicks on it. For simplicity, let's say we want to show an `alert` dialog with
 the person's name when the button is clicked.
 
-So far, our `<PeopleList>` component is purely presentational – it takes some
+So far, our `PeopleList` component is purely presentational – it takes some
 inputs as arguments and renders them using a template. To introduce _behavior_
 to our component – handling the button click in this case, we will need to
-attach some _code_ to the component.
+attach some JavaScript to the component.
 
+<feature-flag-off-template-tag>
 In addition to the template, a component can also have a JavaScript file for
 this exact purpose. Go ahead and create a `.js` file with the same name and in
 the same directory as our template (`app/components/people-list.js`),
@@ -496,6 +515,95 @@ helper to pass the `person` as an argument which our action expects.
 
 Feel free to try this in the browser. Finally, everything should behave exactly
 as we hoped!
+</feature-flag-off-template-tag>
+
+<feature-flag-on-template-tag>
+
+Let's use the [`on` modifier](../../components/template-lifecycle-dom-and-modifiers/#toc_event-handlers) to handle click events on the button:
+
+```gjs {data-filename="app/components/people-list.gjs"}
+import { on } from '@ember/modifier'
+
+function showPerson(clickEvent) {
+  alert(`You clicked on a button labeled ${clickEvent.target.innerHTML}`);
+}
+
+<template>
+  <h2>{{@title}}</h2>
+
+  <ul>
+    {{#each @people as |person|}}
+      <li>
+        <button type="button" {{on "click" showPerson}}>{{person}}</button>
+      </li>
+    {{/each}}
+  </ul>
+</template>
+```
+
+Now let's extend our example to pass the Person to our event handler as an argument. We can use the [`fn` helper](../../components/component-state-and-actions/#toc_passing-arguments-to-actions):
+
+```gjs {data-filename="app/components/people-list.gjs"}
+import { on } from '@ember/modifier'
+import { fn } from '@ember/helper';
+
+function showPerson(person) {
+  alert(`You clicked on ${person}`);
+}
+
+<template>
+  <h2>{{@title}}</h2>
+
+  <ul>
+    {{#each @people as |person|}}
+      <li>
+        <button type="button" {{on "click" (fn showPerson person) }}>{{person}}</button>
+      </li>
+    {{/each}}
+  </ul>
+</template>
+```
+
+Many components will need to maintain some state. Let's introduce a `currentPerson` that keeps track of which Person the user clicked on last. The idiomatic way to keep state in an Ember component is to use [`@tracked`](../../in-depth-topics/autotracking-in-depth/) on a component class:
+
+```gjs {data-filename="app/components/people-list.gjs"}
+import { on } from '@ember/modifier'
+import { fn } from '@ember/helper';
+import { tracked } from '@glimmer/tracking';
+import Component from '@glimmer/component';
+
+export default class extends Component {
+  @tracked currentPerson;
+
+  showPerson = (person) => {
+    this.currentPerson = person;
+  };
+
+  isCurrentPerson = (person) => {
+    return this.currentPerson === person;
+  };
+
+  <template>
+    <h2>{{@title}}</h2>
+
+    <ul>
+      {{#each @people as |person|}}
+        <li>
+          <button type="button" {{on "click" (fn this.showPerson person) }}>{{person}}</button>
+          {{#if (this.isCurrentPerson person) }}
+            ⬅️
+          {{/if}}
+        </li>
+      {{/each}}
+    </ul>
+  </template>
+}
+```
+
+</feature-flag-on-template-tag>
+
+
+
 
 ## Building For Production
 
