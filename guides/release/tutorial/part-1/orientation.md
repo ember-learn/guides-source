@@ -24,7 +24,7 @@ To verify that your installation was successful, run:
 
 ```shell
 $ ember --version
-ember-cli: 6.0.1
+ember-cli: 6.1.0
 node: 18.20.5
 os: linux x64
 ```
@@ -38,13 +38,11 @@ We can create a new project using Ember CLI's `new` command. It follows the patt
 ```shell
 $ ember new super-rentals --lang en
 installing app
-Ember CLI v6.0.1
+Ember CLI v6.1.0
 
 Creating a new Ember app in /home/runner/work/super-rentals-tutorial/super-rentals-tutorial/dist/code/super-rentals:
   create .editorconfig
   create .ember-cli
-  create .eslintignore
-  create .eslintrc.js
   create .github/workflows/ci.yml
   create .prettierignore
   create .prettierrc.js
@@ -53,6 +51,7 @@ Creating a new Ember app in /home/runner/work/super-rentals-tutorial/super-renta
   create .template-lintrc.js
   create .watchmanconfig
   create README.md
+  create /home/runner/work/super-rentals-tutorial/super-rentals-tutorial/dist/code/super-rentals/eslint.config.mjs
   create app/app.js
   create app/components/.gitkeep
   create app/controllers/.gitkeep
@@ -144,8 +143,6 @@ super-rentals
 ├── .editorconfig
 ├── .ember-cli
 ├── .eslintcache
-├── .eslintignore
-├── .eslintrc.js
 ├── .gitignore
 ├── .prettierignore
 ├── .prettierrc.js
@@ -155,11 +152,12 @@ super-rentals
 ├── .watchmanconfig
 ├── README.md
 ├── ember-cli-build.js
+├── eslint.config.mjs
 ├── package.json
 ├── package-lock.json
 └── testem.js
 
-16 directories, 37 files
+16 directories, 36 files
 ```
 
 We'll learn about the purposes of these files and folders as we go. For now, just know that we'll spend most of our time working within the `app` folder.
