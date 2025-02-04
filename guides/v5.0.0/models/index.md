@@ -238,7 +238,7 @@ example, an `order` may have many `line-items`, and a
 import Model, { hasMany } from "@ember-data/model";
 
 export default class OrderModel extends Model {
-  @hasMany("line-item") lineItems;
+  @hasMany("line-item", { async: false, inverse: 'order' }) lineItems;
 }
 ```
 
@@ -246,7 +246,7 @@ export default class OrderModel extends Model {
 import Model, { belongsTo } from "@ember-data/model";
 
 export default class LineItemModel extends Model {
-  @belongsTo("order") order;
+  @belongsTo("order", { async: false, inverse: 'lineItems' }) order;
 }
 ```
 

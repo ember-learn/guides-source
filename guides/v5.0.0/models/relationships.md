@@ -10,7 +10,7 @@ To declare a one-to-one relationship between two models, use
 import Model, { belongsTo } from '@ember-data/model';
 
 export default class UserModel extends Model {
-  @belongsTo('profile') profile;
+  @belongsTo('profile', { async: true, inverse: 'user' }) profile;
 }
 ```
 
@@ -18,7 +18,7 @@ export default class UserModel extends Model {
 import Model, { belongsTo } from '@ember-data/model';
 
 export default class ProfileModel extends Model {
-  @belongsTo('user') user;
+  @belongsTo('user', { async: true, inverse: 'profile' }) user;
 }
 ```
 
@@ -31,7 +31,7 @@ To declare a one-to-many relationship between two models, use
 import Model, { hasMany } from '@ember-data/model';
 
 export default class BlogPostModel extends Model {
-  @hasMany('comment') comments;
+  @hasMany('comment', { async: true, inverse: 'blogPost' }) comments;
 }
 ```
 
@@ -39,7 +39,7 @@ export default class BlogPostModel extends Model {
 import Model, { belongsTo } from '@ember-data/model';
 
 export default class CommentModel extends Model {
-  @belongsTo('blog-post') blogPost;
+  @belongsTo('blog-post', { async: true, inverse: 'comments' }) blogPost;
 }
 ```
 
@@ -52,7 +52,7 @@ To declare a many-to-many relationship between two models, use
 import Model, { hasMany } from '@ember-data/model';
 
 export default class BlogPostModel extends Model {
-  @hasMany('tag') tags;
+  @hasMany('tag', { async: true, inverse: 'blogPosts' }) tags;
 }
 ```
 
@@ -60,32 +60,22 @@ export default class BlogPostModel extends Model {
 import Model, { hasMany } from '@ember-data/model';
 
 export default class TagModel extends Model {
-  @hasMany('blog-post') blogPosts;
+  @hasMany('blog-post', { async: true, inverse: 'tags' }) blogPosts;
 }
 ```
 
-### Explicit Inverses
+### No Inverse Relations
 
-EmberData will do its best to discover which relationships map to one
-another. In the one-to-many code above, for example, EmberData can figure out that
-changing the `comments` relationship should update the `blogPost`
-relationship on the inverse because `blogPost` is the only relationship to
-that model.
-
-However, sometimes you may have multiple `belongsTo`/`hasMany`s for
-the same type. You can specify which property on the related model is
-the inverse using `belongsTo` or `hasMany`'s `inverse`
-option. Relationships without an inverse can be indicated as such by
-including `{ inverse: null }`.
+If an inverse relationship exists and you wish changes on one side
+to reflect onto the other side, use the inverse key. 
+If you wish to not have changes reflected or 
+no inverse relationship exists, specify `{inverse: null }`.
 
 ```javascript {data-filename=app/models/comment.js}
 import Model, { belongsTo } from '@ember-data/model';
 
 export default class CommentModel extends Model {
-  @belongsTo('blog-post', { inverse: null }) onePost;
-  @belongsTo('blog-post') twoPost;
-  @belongsTo('blog-post') redPost;
-  @belongsTo('blog-post') bluePost;
+  @belongsTo('blog-post', { async: true, inverse: null }) blogPost;
 }
 ```
 
@@ -93,18 +83,13 @@ export default class CommentModel extends Model {
 import Model, { hasMany } from '@ember-data/model';
 
 export default class BlogPostModel extends Model {
-  @hasMany('comment', {
-    inverse: 'redPost'
-  })
-  comments;
 }
 ```
 
 ### Reflexive Relations
 
-When you want to define a reflexive relation (a model that has a relationship to
-itself), you must explicitly define the inverse relationship. If there
-is no inverse relationship then you can set the inverse to `null`.
+If you want to define a reflexive relation (a model that has a relationship to
+itself), you can do it via specifying `inverse`.
 
 Here's an example of a one-to-many reflexive relationship:
 
@@ -112,8 +97,8 @@ Here's an example of a one-to-many reflexive relationship:
 import Model, { belongsTo, hasMany } from '@ember-data/model';
 
 export default class FolderModel extends Model {
-  @hasMany('folder', { inverse: 'parent' }) children;
-  @belongsTo('folder', { inverse: 'children' }) parent;
+  @hasMany('folder', { async: true, inverse: 'parent' }) children;
+  @belongsTo('folder', { async: true, inverse: 'children' }) parent;
 }
 ```
 
@@ -124,7 +109,7 @@ import Model, { attr, belongsTo } from '@ember-data/model';
 
 export default class UserModel extends Model {
   @attr('string') name;
-  @belongsTo('user', { inverse: 'bestFriend' }) bestFriend;
+  @belongsTo('user', { async: true, inverse: 'bestFriend' }) bestFriend;
 }
 ```
 
@@ -134,7 +119,7 @@ You can also define a reflexive relationship that doesn't have an inverse:
 import Model, { belongsTo } from '@ember-data/model';
 
 export default class FolderModel extends Model {
-  @belongsTo('folder', { inverse: null }) parent;
+  @belongsTo('folder', { async: true, inverse: null }) parent;
 }
 ```
 
@@ -156,7 +141,7 @@ First, let's look at the model definitions:
 import Model, { hasMany } from '@ember-data/model';
 
 export default class UserModel extends Model {
-  @hasMany('payment-method', { polymorphic: true }) paymentMethods;
+  @hasMany('payment-method', { async: true, inverse: 'user', polymorphic: true }) paymentMethods;
 }
 ```
 
@@ -164,7 +149,7 @@ export default class UserModel extends Model {
 import Model, { belongsTo } from '@ember-data/model';
 
 export default class PaymentMethodModel extends Model {
-  @belongsTo('user', { inverse: 'paymentMethods' }) user;
+  @belongsTo('user', { async: true, inverse: 'paymentMethods' }) user;
 }
 ```
 
@@ -277,7 +262,7 @@ Let's assume that we have a `blog-post` and a `comment` model. A single blog pos
 import Model, { hasMany } from '@ember-data/model';
 
 export default class BlogPostModel extends Model {
-  @hasMany('comment') comments;
+  @hasMany('comment', { async: true, inverse: 'blogPost' }) comments;
 }
 ```
 
@@ -285,7 +270,7 @@ export default class BlogPostModel extends Model {
 import Model, { belongsTo } from '@ember-data/model';
 
 export default class CommentModel extends Model {
-  @belongsTo('blog-post') blogPost;
+  @belongsTo('blog-post', { async: true, inverse: 'comments' }) blogPost;
 }
 ```
 
