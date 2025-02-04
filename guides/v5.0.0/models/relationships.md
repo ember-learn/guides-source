@@ -10,7 +10,7 @@ To declare a one-to-one relationship between two models, use
 import Model, { belongsTo } from '@ember-data/model';
 
 export default class UserModel extends Model {
-  @belongsTo('profile', { async: true, inverse: 'user' }) profile;
+  @belongsTo('profile', { async: false, inverse: 'user' }) profile;
 }
 ```
 
@@ -18,7 +18,7 @@ export default class UserModel extends Model {
 import Model, { belongsTo } from '@ember-data/model';
 
 export default class ProfileModel extends Model {
-  @belongsTo('user', { async: true, inverse: 'profile' }) user;
+  @belongsTo('user', { async: false, inverse: 'profile' }) user;
 }
 ```
 
@@ -31,7 +31,7 @@ To declare a one-to-many relationship between two models, use
 import Model, { hasMany } from '@ember-data/model';
 
 export default class BlogPostModel extends Model {
-  @hasMany('comment', { async: true, inverse: 'blogPost' }) comments;
+  @hasMany('comment', { async: false, inverse: 'blogPost' }) comments;
 }
 ```
 
@@ -39,7 +39,7 @@ export default class BlogPostModel extends Model {
 import Model, { belongsTo } from '@ember-data/model';
 
 export default class CommentModel extends Model {
-  @belongsTo('blog-post', { async: true, inverse: 'comments' }) blogPost;
+  @belongsTo('blog-post', { async: false, inverse: 'comments' }) blogPost;
 }
 ```
 
@@ -52,7 +52,7 @@ To declare a many-to-many relationship between two models, use
 import Model, { hasMany } from '@ember-data/model';
 
 export default class BlogPostModel extends Model {
-  @hasMany('tag', { async: true, inverse: 'blogPosts' }) tags;
+  @hasMany('tag', { async: false, inverse: 'blogPosts' }) tags;
 }
 ```
 
@@ -60,7 +60,7 @@ export default class BlogPostModel extends Model {
 import Model, { hasMany } from '@ember-data/model';
 
 export default class TagModel extends Model {
-  @hasMany('blog-post', { async: true, inverse: 'tags' }) blogPosts;
+  @hasMany('blog-post', { async: false, inverse: 'tags' }) blogPosts;
 }
 ```
 
@@ -75,7 +75,7 @@ no inverse relationship exists, specify `{inverse: null }`.
 import Model, { belongsTo } from '@ember-data/model';
 
 export default class CommentModel extends Model {
-  @belongsTo('blog-post', { async: true, inverse: null }) blogPost;
+  @belongsTo('blog-post', { async: false, inverse: null }) blogPost;
 }
 ```
 
@@ -97,8 +97,8 @@ Here's an example of a one-to-many reflexive relationship:
 import Model, { belongsTo, hasMany } from '@ember-data/model';
 
 export default class FolderModel extends Model {
-  @hasMany('folder', { async: true, inverse: 'parent' }) children;
-  @belongsTo('folder', { async: true, inverse: 'children' }) parent;
+  @hasMany('folder', { async: false, inverse: 'parent' }) children;
+  @belongsTo('folder', { async: false, inverse: 'children' }) parent;
 }
 ```
 
@@ -109,7 +109,7 @@ import Model, { attr, belongsTo } from '@ember-data/model';
 
 export default class UserModel extends Model {
   @attr('string') name;
-  @belongsTo('user', { async: true, inverse: 'bestFriend' }) bestFriend;
+  @belongsTo('user', { async: false, inverse: 'bestFriend' }) bestFriend;
 }
 ```
 
@@ -119,7 +119,7 @@ You can also define a reflexive relationship that doesn't have an inverse:
 import Model, { belongsTo } from '@ember-data/model';
 
 export default class FolderModel extends Model {
-  @belongsTo('folder', { async: true, inverse: null }) parent;
+  @belongsTo('folder', { async: false, inverse: null }) parent;
 }
 ```
 
@@ -141,7 +141,7 @@ First, let's look at the model definitions:
 import Model, { hasMany } from '@ember-data/model';
 
 export default class UserModel extends Model {
-  @hasMany('payment-method', { async: true, inverse: 'user', polymorphic: true }) paymentMethods;
+  @hasMany('payment-method', { async: false, inverse: 'user', polymorphic: true }) paymentMethods;
 }
 ```
 
@@ -149,7 +149,7 @@ export default class UserModel extends Model {
 import Model, { belongsTo } from '@ember-data/model';
 
 export default class PaymentMethodModel extends Model {
-  @belongsTo('user', { async: true, inverse: 'paymentMethods' }) user;
+  @belongsTo('user', { async: false, inverse: 'paymentMethods' }) user;
 }
 ```
 
@@ -262,7 +262,7 @@ Let's assume that we have a `blog-post` and a `comment` model. A single blog pos
 import Model, { hasMany } from '@ember-data/model';
 
 export default class BlogPostModel extends Model {
-  @hasMany('comment', { async: true, inverse: 'blogPost' }) comments;
+  @hasMany('comment', { async: false, inverse: 'blogPost' }) comments;
 }
 ```
 
@@ -270,7 +270,7 @@ export default class BlogPostModel extends Model {
 import Model, { belongsTo } from '@ember-data/model';
 
 export default class CommentModel extends Model {
-  @belongsTo('blog-post', { async: true, inverse: 'comments' }) blogPost;
+  @belongsTo('blog-post', { async: false, inverse: 'comments' }) blogPost;
 }
 ```
 
