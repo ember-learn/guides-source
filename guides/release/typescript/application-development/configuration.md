@@ -14,9 +14,9 @@ If you use the `--typescript` flag when generating your Ember app, we generate a
     },
     "types": [
       "ember-source/types",
-      "./node_modules/ember-data/unstable-preview-types",
+      "ember-data/unstable-preview-types",
       // ...more ember-data types...
-      "./node_modules/@warp-drive/core-types/unstable-preview-types"
+      "@warp-drive/core-types/unstable-preview-types"
   }
 }
 ```
@@ -43,8 +43,8 @@ To enable TypeScript sourcemaps, you'll need to add the corresponding configurat
 
 ```javascript {data-filename="ember-cli-build.js" data-diff="+3"}
 const app = new EmberApp(defaults, {
-  'ember-cli-babel': { enableTypeScriptTransform: true },
-  babel: { sourceMaps: 'inline' },
+  "ember-cli-babel": { enableTypeScriptTransform: true },
+  babel: { sourceMaps: "inline" },
 });
 ```
 
