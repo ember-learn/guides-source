@@ -76,7 +76,7 @@ With the following configuration, project files will be generated with `.ts` ext
 
 ### Configure ESLint
 
-Then, update your `.eslintrc.js` to include the [current output from the Ember CLI blueprints][eslintrc]. You might consider using ESLint [overrides][] configuration to separately configure your JavaScript and TypeScript files during the migration.
+Then, update your `eslint.config.mjs` to include the [current output from the Ember CLI blueprints][eslintrc]. You might consider using ESLint [overrides][] configuration to separately configure your JavaScript and TypeScript files during the migration.
 
 ### Add Initial Type Declarations
 
@@ -134,7 +134,7 @@ If you're migrating from `ember-cli-typescript` to Ember's native TypeScript sup
 [any]: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#any
 [dts]: https://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html
 [environment.d.ts]: https://github.com/ember-cli/editor-output/blob/stackblitz-app-output-typescript/app/config/environment.d.ts
-[eslintrc]: https://github.com/ember-cli/editor-output/blob/stackblitz-app-output-typescript/.eslintrc.js
+[eslintrc]: https://github.com/ember-cli/editor-output/blob/stackblitz-app-output-typescript/eslint.config.mjs
 [lint-types]: https://github.com/ember-cli/editor-output/blob/stackblitz-app-output-typescript/package.json
 [JSDoc]: https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html#handbook-content
 [overrides]: https://eslint.org/docs/latest/use/configure/configuration-files#configuration-based-on-glob-patterns
