@@ -28,7 +28,7 @@ To enable TypeScript transpilation in your app, simply add the corresponding con
 ```javascript {data-filename="ember-cli-build.js" data-diff="+3"}
 module.exports = function (defaults) {
   const app = new EmberApp(defaults, {
-    'ember-cli-babel': { enableTypeScriptTransform: true },
+    "ember-cli-babel": { enableTypeScriptTransform: true },
     // ...
   });
 
@@ -135,7 +135,6 @@ If you're migrating from `ember-cli-typescript` to Ember's native TypeScript sup
 [dts]: https://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html
 [environment.d.ts]: https://github.com/ember-cli/editor-output/blob/stackblitz-app-output-typescript/app/config/environment.d.ts
 [eslintrc]: https://github.com/ember-cli/editor-output/blob/stackblitz-app-output-typescript/.eslintrc.js
-[global.d.ts]: https://github.com/ember-cli/editor-output/blob/stackblitz-app-output-typescript/types/global.d.ts
 [lint-types]: https://github.com/ember-cli/editor-output/blob/stackblitz-app-output-typescript/package.json
 [JSDoc]: https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html#handbook-content
 [overrides]: https://eslint.org/docs/latest/use/configure/configuration-files#configuration-based-on-glob-patterns

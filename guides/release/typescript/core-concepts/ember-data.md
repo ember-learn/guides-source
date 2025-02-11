@@ -23,11 +23,11 @@ EmberData models are normal TypeScript classes, but with properties decorated to
 For example, here we add the `Type` brand to the `user` model:
 
 ```ts {data-filename="app/models/user.ts" data-diff="+2,+5"}
-import Model from '@ember-data/model';
-import type { Type } from '@warp-drive/core-types/symbols';
+import Model from "@ember-data/model";
+import type { Type } from "@warp-drive/core-types/symbols";
 
 export default class User extends Model {
-  declare [Type]: 'user';
+  declare [Type]: "user";
 }
 ```
 
@@ -51,20 +51,20 @@ If you supply a custom transform, you will get back the type returned by your tr
 So, for example, you might write a class like this:
 
 ```typescript {data-filename="app/models/user.ts"}
-import Model, { attr } from '@ember-data/model';
-import type { Type } from '@warp-drive/core-types/symbols';
-import CustomType from '@my-app/transforms/custom-transform';
+import Model, { attr } from "@ember-data/model";
+import type { Type } from "@warp-drive/core-types/symbols";
+import CustomType from "@my-app/transforms/custom-transform";
 
 export default class User extends Model {
   @attr declare name?: string;
 
-  @attr('number') declare age?: number | null;
+  @attr("number") declare age?: number | null;
 
-  @attr('boolean') declare isAdmin?: boolean | null;
+  @attr("boolean") declare isAdmin?: boolean | null;
 
-  @attr('custom-transform') declare myCustomThing?: CustomType;
+  @attr("custom-transform") declare myCustomThing?: CustomType;
 
-  declare [Type]: 'user';
+  declare [Type]: "user";
 }
 ```
 
@@ -75,18 +75,18 @@ The _safest_ type you can write for an EmberData model, therefore, leaves every 
 One way to make this safer is to supply a default value using the `defaultValue` on the options hash for the attribute:
 
 ```typescript {data-filename="app/models/user.ts"}
-import Model, { attr } from '@ember-data/model';
-import type { Type } from '@warp-drive/core-types/symbols';
-import CustomType from '@my-app/transforms/custom-transform';
+import Model, { attr } from "@ember-data/model";
+import type { Type } from "@warp-drive/core-types/symbols";
+import CustomType from "@my-app/transforms/custom-transform";
 
 export default class User extends Model {
   @attr declare name?: string;
 
-  @attr('number', { defaultValue: 13 }) declare age: number;
+  @attr("number", { defaultValue: 13 }) declare age: number;
 
-  @attr('boolean', { defaultValue: false }) declare isAdmin: boolean;
+  @attr("boolean", { defaultValue: false }) declare isAdmin: boolean;
 
-  declare [Type]: 'user';
+  declare [Type]: "user";
 }
 ```
 
@@ -95,15 +95,15 @@ export default class User extends Model {
 If the `@belongsTo` is `{ async: true }` (the default), the type is `AsyncBelongsTo<Model>`, where `Model` is the type of the model you are creating a relationship to. Additionally, pass the `Model` type as a generic to the `@belongsTo` decorator to ensure that the inverse relationship is validated.
 
 ```ts {data-filename="app/models/user.ts"}
-import Model, { belongsTo, AsyncBelongsTo } from '@ember-data/model';
-import type Address from './address';
-import type { Type } from '@warp-drive/core-types/symbols';
+import Model, { belongsTo, AsyncBelongsTo } from "@ember-data/model";
+import type Address from "./address";
+import type { Type } from "@warp-drive/core-types/symbols";
 
 export default class User extends Model {
-  @belongsTo<Address>('address', { async: true, inverse: null })
+  @belongsTo<Address>("address", { async: true, inverse: null })
   declare address: AsyncBelongsTo<Address>;
 
-  declare [Type]: 'user';
+  declare [Type]: "user";
 }
 ```
 
@@ -114,15 +114,15 @@ Async BelongsTo relationships are type-safe to define as always present. Accessi
 If the `@belongsTo` is `{ async: false }`, the type you should use is `Model | null`, where `Model` is the type of the model you are creating a relationship to. Again, you should pass the `Model` type as a generic to the `@belongsTo` decorator to ensure that the inverse relationship is validated.
 
 ```ts {data-filename="app/models/user.ts"}
-import Model, { belongsTo } from '@ember-data/model';
-import type Address from './address';
-import type { Type } from '@warp-drive/core-types/symbols';
+import Model, { belongsTo } from "@ember-data/model";
+import type Address from "./address";
+import type { Type } from "@warp-drive/core-types/symbols";
 
 export default class User extends Model {
-  @belongsTo<Address>('address', { async: false, inverse: null })
+  @belongsTo<Address>("address", { async: false, inverse: null })
   declare address: Address | null;
 
-  declare [Type]: 'user';
+  declare [Type]: "user";
 }
 ```
 
@@ -131,15 +131,15 @@ export default class User extends Model {
 If the `@hasMany` is `{ async: true }` (the default), the type is `AsyncHasMany<Model>`, where `Model` is the type of the model you are creating a relationship to. Additionally, pass the `Model` type as a generic to the `@hasMany` decorator to ensure that the inverse relationship is validated.
 
 ```ts {data-filename="app/models/user.ts"}
-import Model, { hasMany, AsyncHasMany } from '@ember-data/model';
-import type Post from './post';
-import type { Type } from '@warp-drive/core-types/symbols';
+import Model, { hasMany, AsyncHasMany } from "@ember-data/model";
+import type Post from "./post";
+import type { Type } from "@warp-drive/core-types/symbols";
 
 export default class User extends Model {
-  @hasMany<Post>('post', { async: true, inverse: 'author' })
+  @hasMany<Post>("post", { async: true, inverse: "author" })
   declare posts: AsyncHasMany<Post>;
 
-  declare [Type]: 'user';
+  declare [Type]: "user";
 }
 ```
 
@@ -148,15 +148,15 @@ export default class User extends Model {
 If the `@hasMany` is `{ async: false }`, the type is `HasMany<Model>`, where `Model` is the type of the model you are creating a relationship to. Additionally, pass the `Model` type as a generic to the `@hasMany` decorator to ensure that the inverse relationship is validated.
 
 ```ts {data-filename="app/models/user.ts"}
-import Model, { hasMany, HasMany } from '@ember-data/model';
-import type Post from './post';
-import type { Type } from '@warp-drive/core-types/symbols';
+import Model, { hasMany, HasMany } from "@ember-data/model";
+import type Post from "./post";
+import type { Type } from "@warp-drive/core-types/symbols";
 
 export default class User extends Model {
-  @hasMany<Post>('post', { async: false, inverse: 'author' })
+  @hasMany<Post>("post", { async: false, inverse: "author" })
   declare posts: HasMany<Post>;
 
-  declare [Type]: 'user';
+  declare [Type]: "user";
 }
 ```
 
@@ -167,7 +167,7 @@ Relationships between models in EmberData rely on importing the related models, 
 To avoid these errors, use [type-only imports][type-only-imports]:
 
 ```typescript
-import type User from './user';
+import type User from "./user";
 ```
 
 ### A Note About Open Types
@@ -175,19 +175,19 @@ import type User from './user';
 When accessing `this.belongsTo` or `this.hasMany` from within a model, you'll need to pass the relationship `Model` type and the string key as generics, like so:
 
 ```ts {data-filename="app/models/user.ts"}
-import Model, { hasMany, AsyncHasMany } from '@ember-data/model';
-import type Post from './post';
-import type { Type } from '@warp-drive/core-types/symbols';
+import Model, { hasMany, AsyncHasMany } from "@ember-data/model";
+import type Post from "./post";
+import type { Type } from "@warp-drive/core-types/symbols";
 
 export default class User extends Model {
-  @hasMany<Post>('post', { async: true, inverse: 'author' })
+  @hasMany<Post>("post", { async: true, inverse: "author" })
   declare posts: AsyncHasMany<Post>;
 
   get postIdList(): string[] {
-    return this.hasMany<Post, 'posts'>('posts').ids();
+    return this.hasMany<Post, "posts">("posts").ids();
   }
 
-  declare [Type]: 'user';
+  declare [Type]: "user";
 }
 ```
 
@@ -197,24 +197,24 @@ The reason is that `this.belongsTo` and `this.hasMany` will infer an 'open' type
 
 In EmberData, `@attr` defines an [attribute on a Model][model-attrs]. By default, attributes are passed through as-is, however you can specify an optional type to have the value automatically transformed. EmberData ships with four basic transform types: `string`, `number`, `boolean` and `date`.
 
-EmberData Transforms[transform-guides] are normal TypeScript classes. The return type of `deserialize` method becomes type of the model class property.
+EmberData [Transforms][transform-guides] are normal TypeScript classes. The return type of `deserialize` method becomes type of the model class property.
 
 Transforms with a `Type` brand will have their type and options validated.
 
 ### Example: Typing a Transform
 
 ```ts {data-filename="app/transforms/big-int.ts"}
-import type { Type } from '@warp-drive/core-types/symbols';
+import type { Type } from "@warp-drive/core-types/symbols";
 
 export default class BigIntTransform {
   deserialize(serialized: string): BigInt | null {
-    return !serialized || serialized === '' ? null : BigInt(serialized + 'n');
+    return !serialized || serialized === "" ? null : BigInt(serialized + "n");
   }
   serialize(deserialized: BigInt | null): string | null {
     return !deserialized ? null : String(deserialized);
   }
 
-  declare [Type]: 'big-int';
+  declare [Type]: "big-int";
 
   static create() {
     return new this();
@@ -225,14 +225,14 @@ export default class BigIntTransform {
 ### Example: Using Transforms
 
 ```ts {data-filename="app/models/user.ts"}
-import Model, { attr } from '@ember-data/model';
-import type { StringTransform } from '@ember-data/serializer/transforms';
-import type { Type } from '@warp-drive/core-types/symbols';
+import Model, { attr } from "@ember-data/model";
+import type { StringTransform } from "@ember-data/serializer/transforms";
+import type { Type } from "@warp-drive/core-types/symbols";
 
 export default class User extends Model {
-  @attr<StringTransform>('string') declare name: string;
+  @attr<StringTransform>("string") declare name: string;
 
-  declare [Type]: 'user';
+  declare [Type]: "user";
 }
 ```
 
@@ -241,13 +241,13 @@ export default class User extends Model {
 EmberData serializers and adapters are normal TypeScript classes.
 
 ```typescript {data-filename="app/serializers/user-meta.ts"}
-import Serializer from '@ember-data/serializer';
+import Serializer from "@ember-data/serializer";
 
 export default class UserMeta extends Serializer {}
 ```
 
 ```typescript {data-filename="app/adapters/user.ts"}
-import Adapter from '@ember-data/adapter';
+import Adapter from "@ember-data/adapter";
 
 export default class User extends Adapter {}
 ```
