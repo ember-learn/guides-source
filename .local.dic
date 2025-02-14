@@ -18,6 +18,7 @@ autotracking
 aXe
 backticks
 beforeEach
+BelongsTo
 blockquote
 blogPost
 bookmarklet
@@ -101,6 +102,7 @@ hackable
 HammerJS
 hardcode
 hashchange
+HasMany
 Hm
 Hoc
 htmlbars
@@ -245,6 +247,7 @@ VoiceOver
 voilà
 Voilà
 vscode-glimmer-syntax
+WarpDrive
 websocket
 working-with-html-css-and-javascript
 yay

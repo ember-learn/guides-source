@@ -18,24 +18,19 @@ Project files will be generated with `.ts` extensions instead of `.js`.
 
 In addition to the usual packages added with `ember addon`, the following packages will be added at their current "latest" value:
 
-- `typescript`
-- `@tsconfig/ember`
-- `@typescript-eslint/*`
-- `@types/ember`
-- `@types/ember-data`
-- `@types/ember__*` – `@types/ember__object` for `@ember/object`, etc.
-- `@types/ember-data__*` – `@types/ember-data__model` for `@ember-data/model`, etc.
-- `@types/qunit`
-- `@types/rsvp`
-
-The `typescript` package provides tooling to support TypeScript type checking and compilation. The `@types` packages from [DefinitelyTyped][] provide TypeScript type definitions for all of the Ember and EmberData modules.
+- `typescript` – tooling to support TypeScript type checking and compilation.
+- `@tsconfig/ember` – a shared TypeScript configuration for Ember apps.
+- `@typescript-eslint/*` – ESLint support for TypeScript.
+- `@types/qunit` - TypeScript type definitions for QUnit.
+- `@types/rsvp` - TypeScript type definitions for RSVP.
+- `@warp-drive/core-types` - shared core types, type utilities and constants for the WarpDrive and EmberData packages.
 
 <div class="cta">
   <div class="cta-note">
     <div class="cta-note-body">
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
-        Ember also publishes its own native types compiled directly from its source code, as described <a href="https://blog.emberjs.com/stable-typescript-types-in-ember-5-1/">in this blog post</a>. For now, we continue to use the <code>@types</code> packages by default for the sake of compatibility with EmberData, because EmberData is not yet compatible with Ember's native official types. However, if you do not use EmberData, we <i>highly</i> recommend following the instructions in that blog post to switch to the native types, which are guaranteed to always be 100% correct and 100% up to date!
+        Ember and EmberData publish their own native types compiled directly from their source code, so you do not need to install any <code>@types/ember</code> or <code>@types/ember-data</code> packages. These packages should be considered legacy, are only lightly maintained, and will conflict with the native types.
       </div>
     </div>
     <img src="/images/mascots/zoey.png" role="presentation" alt="">
@@ -164,7 +159,6 @@ declare module 'addon/templates/*' {
 
 <!-- External links -->
 
-[DefinitelyTyped]: https://github.com/DefinitelyTyped/DefinitelyTyped
 [dts]: https://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html
 [ember-addon]: https://cli.emberjs.com/release/writing-addons/
 [glint]: https://typed-ember.gitbook.io/glint/
