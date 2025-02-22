@@ -70,7 +70,7 @@ const person = result.content.data;
 ### Querying for A Single Record
 
 If you are using an builder that supports server requests capable of returning a single model object,
-EmberData provides a convenience method [`findRecord()`](https://api.emberjs.com/ember-data/5.3/functions/@ember-data%2Fjson-api%2Frequest/findRecord) that will return a record.
+EmberData provides a convenience method [`findRecord()`](https://api.emberjs.com/ember-data/release/functions/@ember-data%2Fjson-api%2Frequest/findRecord) that will return a record.
 The request is made via a method `findRecord()` defined by the builders.
 
 For example, if your server API provides an endpoint for the currently logged in user:
