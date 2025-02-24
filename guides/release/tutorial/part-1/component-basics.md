@@ -58,7 +58,7 @@ When invoking a component, Ember will replace the component tag with the content
 
 Let's try it out by editing the index template:
 
-```handlebars { data-filename="app/templates/index.hbs" data-diff="-1,-2,+3,-7,+8" }
+```handlebars { data-filename="app/templates/index.hbs" data-diff="-1,-2,+3,+7,-8" }
 <div class="jumbo">
   <div class="right tomster"></div>
 <Jumbo>
@@ -80,7 +80,7 @@ After saving the changes, your page should automatically reload, and, _voilà_..
 
 Let's do the same for our other two pages as well.
 
-```handlebars { data-filename="app/templates/about.hbs" data-diff="-1,-2,+3,-11,+12" }
+```handlebars { data-filename="app/templates/about.hbs" data-diff="-1,-2,+3,+11,-12" }
 <div class="jumbo">
   <div class="right tomster"></div>
 <Jumbo>
@@ -95,7 +95,7 @@ Let's do the same for our other two pages as well.
 </div>
 ```
 
-```handlebars { data-filename="app/templates/contact.hbs" data-diff="-1,-2,+3,-19,+20" }
+```handlebars { data-filename="app/templates/contact.hbs" data-diff="-1,-2,+3,+19,-20" }
 <div class="jumbo">
   <div class="right tomster"></div>
 <Jumbo>
