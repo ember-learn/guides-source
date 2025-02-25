@@ -4,7 +4,7 @@ The next edition, which is a work-in-progress, is called [Polaris](https://ember
 
 ## How do I migrate to Octane?
 
-If you have an older app that you are trying to upgrade, there is a [step by step guide in an earlier version of the Ember Guides](https://guides.emberjs.com/v5.12.0/upgrading/current-edition/).
+If you have an older app that you are trying to upgrade, there is a [step by step guide in an earlier version of the Ember Guides](/v5.12.0/upgrading/current-edition/).
 
 If you are generating a new app, congratulations, you are already using Ember Octane! Follow the [Quick start and Tutorials](https://emberjs.com/learn) to get started writing your Ember app.
 
