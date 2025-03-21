@@ -59,7 +59,7 @@ Additionally:
 
 ## Convert an Existing App to TypeScript
 
-To convert an existing app to TypeScript, you'll need to make the changes described above manually (for now). To facilitate this, we've included a guide [here][converting].
+To convert an existing app to TypeScript, you'll need to make the changes described above manually (for now). To facilitate this, we've included a [converting guide][converting].
 
 <!-- Internal links -->
 
