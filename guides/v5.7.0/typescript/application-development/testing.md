@@ -73,7 +73,7 @@ module('Integration | Component | Profile', function (hooks) {
     };
     this.user = user;
 
-    await render(hbs`<Profile @user={{this.user}}`);
+    await render(hbs`<Profile @user={{this.user}} />`);
 
     assert.dom('[data-test-name]').hasText(this.user.displayName);
     assert
@@ -142,7 +142,7 @@ module('Integration | Component | Profile', function (hooks) {
       avatarUrl: 'https://example.com/star-wars/rey',
     };
 
-    await render(hbs`<Profile @user={{this.user}}`);
+    await render(hbs`<Profile @user={{this.user}} />`);
 
     assert.dom('[data-test-name]').hasText(this.user.displayName);
     assert
