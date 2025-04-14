@@ -200,6 +200,9 @@ importers:
       remark-lint:
         specifier: ^7.0.0
         version: 7.0.1
+      remark-lint-heading-increment:
+        specifier: ^2.0.0
+        version: 2.0.1
       remark-preset-lint-consistent:
         specifier: ^3.0.0
         version: 3.0.1
@@ -6652,6 +6655,9 @@ packages:
 
   remark-lint-hard-break-spaces@2.0.1:
     resolution: {integrity: sha512-Qfn/BMQFamHhtbfLrL8Co/dbYJFLRL4PGVXZ5wumkUO5f9FkZC2RsV+MD9lisvGTkJK0ZEJrVVeaPbUIFM0OAw==}
+
+  remark-lint-heading-increment@2.0.1:
+    resolution: {integrity: sha512-bYDRmv/lk3nuWXs2VSD1B4FneGT6v7a74FuVmb305hyEMmFSnneJvVgnOJxyKlbNlz12pq1IQ6MhlJBda/SFtQ==}
 
   remark-lint-heading-style@2.0.1:
     resolution: {integrity: sha512-IrFLNs0M5Vbn9qg51AYhGUfzgLAcDOjh2hFGMz3mx664dV6zLcNZOPSdJBBJq3JQR4gKpoXcNwN1+FFaIATj+A==}
@@ -17030,6 +17036,12 @@ snapshots:
       unified-lint-rule: 1.0.6
       unist-util-generated: 1.1.6
       unist-util-position: 3.1.0
+      unist-util-visit: 2.0.3
+
+  remark-lint-heading-increment@2.0.1:
+    dependencies:
+      unified-lint-rule: 1.0.6
+      unist-util-generated: 1.1.6
       unist-util-visit: 2.0.3
 
   remark-lint-heading-style@2.0.1:
