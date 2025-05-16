@@ -80,7 +80,8 @@ allVersions:
   - "v6.0.0"
   - "v6.1.0"
   - "v6.2.0"
-currentVersion: "v6.2.0"
+  - "v6.3.0"
+currentVersion: "v6.3.0"
 ltsVersions:
   - "v5.8.0"
   - "v5.12.0"
