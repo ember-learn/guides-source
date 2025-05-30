@@ -369,7 +369,7 @@ export default class SomeComponent extends Component {
 </ul>
 ```
 
-### Empty Lists
+### Empty Objects
 
 The [`{{#each}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/each?anchor=each)
 helper can also have a corresponding `{{else}}`. The contents of this block will
