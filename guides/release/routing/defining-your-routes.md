@@ -109,7 +109,7 @@ ember generate route posts/new
 And then add the `{{outlet}}` helper to your template where you want the nested
 template to display. You can also add a page title with the current page name (using [page-title helper](../../accessibility/page-template-considerations/#toc_page-title)), this will help users with assistive technology know where they are in the website.
 
-```handlebars {data-filename=templates/posts.gjs}
+```gjs {data-filename=templates/posts.gjs}
 import { pageTitle } from 'ember-page-title'
 
 <template>
@@ -219,7 +219,7 @@ The index route is most helpful for rendering a view when the route has [dynamic
 
 A `templates/posts.gjs` file has the following:
 
-```handlebars {data-filename=templates/posts.gjs}
+```gjs {data-filename=templates/posts.gjs}
 
 import { pageTitle } from 'ember-page-title'
 
@@ -232,7 +232,7 @@ import { pageTitle } from 'ember-page-title'
 
 The `templates/posts/index.gjs` file has the following:
 
-```handlebars {data-filename=templates/posts/index.gjs}
+```gjs {data-filename=templates/posts/index.gjs}
 import { pageTitle } from 'ember-page-title'
 
 <template>
@@ -243,7 +243,7 @@ import { pageTitle } from 'ember-page-title'
 
 The `templates/posts/post.gjs` file has the following:
 
-```handlebars {data-filename=templates/posts/post.gjs}
+```gjs {data-filename=templates/posts/post.gjs}
 import { pageTitle } from 'ember-page-title'
 
 <template>
@@ -265,7 +265,7 @@ Router.map(function() {
 
 When the user navigates to `/posts/123`, the following markup will be seen:
 
-```handlebars {data-filename=templates/posts/post.gjs}
+```gjs {data-filename=templates/posts/post.gjs}
 import { pageTitle } from 'ember-page-title'
 
 <template>
@@ -277,7 +277,7 @@ import { pageTitle } from 'ember-page-title'
 
 When the user navigates to `/posts/`, the following markup will be seen:
 
-```handlebars {data-filename=templates/posts/index.gjs}
+```gjs {data-filename=templates/posts/index.gjs}
 import { pageTitle } from 'ember-page-title'
 
 <template>
@@ -348,7 +348,7 @@ Router.map(function() {
 });
 ```
 
-```handlebars {data-filename=app/templates/not-found.gjs}
+```gjs {data-filename=app/templates/not-found.gjs}
 import { pageTitle } from 'ember-page-title'
 
 <template>
