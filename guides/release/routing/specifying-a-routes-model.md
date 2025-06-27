@@ -1,3 +1,17 @@
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+        <p>This document has been updated to use the <a href="../../components/template-tag-format/">Template Tag Format</a> and assumes that you have generated your application using the <code style="white-space: nowrap">--strict</code> argument.</p>
+
+        <p>The Ember Guides are being gradually updated at the moment so you might find some pages using the older hbs format.</p>
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
+  </div>
+</div>
+
 A route's JavaScript file is one of the best places in an app to make requests to an API.
 In this section of the guides, you'll learn how to use the
 [`model`](https://api.emberjs.com/ember/release/classes/Route/methods/model?anchor=model)
