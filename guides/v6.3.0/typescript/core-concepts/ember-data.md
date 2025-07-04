@@ -267,9 +267,9 @@ The process for adding EmberData types to an existing TypeScript app is a work i
 <!-- External links -->
 
 [brand]: https://github.com/emberjs/data/blob/main/guides/typescript/2-why-brands.md
-[ED-api-docs]: https://api.emberjs.com/ember-data/5.4.0
+[ED-api-docs]: https://api.emberjs.com/ember-data/5.3.12
 [ED-ts-guides]: https://github.com/emberjs/data/blob/main/guides/typescript/index.md
 [import-no-cycle]: https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-cycle.md
 [optional]: https://www.typescriptlang.org/docs/handbook/2/objects.html#optional-properties
-[transform-api-docs]: https://api.emberjs.com/ember-data/5.4.0/classes/Transform
+[transform-api-docs]: https://api.emberjs.com/ember-data/5.3.12/classes/Transform
 [type-only-imports]: https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-8.html
