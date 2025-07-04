@@ -24,8 +24,8 @@ To verify that your installation was successful, run:
 
 ```shell
 $ ember --version
-ember-cli: 6.0.1
-node: 18.20.5
+ember-cli: 6.4.0
+node: 18.20.8
 os: linux x64
 ```
 
@@ -38,13 +38,11 @@ We can create a new project using Ember CLI's `new` command. It follows the patt
 ```shell
 $ ember new super-rentals --lang en
 installing app
-Ember CLI v6.0.1
+Ember CLI v6.4.0
 
 Creating a new Ember app in /home/runner/work/super-rentals-tutorial/super-rentals-tutorial/dist/code/super-rentals:
   create .editorconfig
   create .ember-cli
-  create .eslintignore
-  create .eslintrc.js
   create .github/workflows/ci.yml
   create .prettierignore
   create .prettierrc.js
@@ -53,9 +51,11 @@ Creating a new Ember app in /home/runner/work/super-rentals-tutorial/super-renta
   create .template-lintrc.js
   create .watchmanconfig
   create README.md
+  create /home/runner/work/super-rentals-tutorial/super-rentals-tutorial/dist/code/super-rentals/eslint.config.mjs
   create app/app.js
   create app/components/.gitkeep
   create app/controllers/.gitkeep
+  create app/deprecation-workflow.js
   create app/helpers/.gitkeep
   create app/index.html
   create app/models/.gitkeep
@@ -123,6 +123,7 @@ super-rentals
 │   ├── templates
 │   │   └── application.hbs
 │   ├── app.js
+│   ├── deprecation-workflow.js
 │   ├── index.html
 │   └── router.js
 ├── config
@@ -144,8 +145,6 @@ super-rentals
 ├── .editorconfig
 ├── .ember-cli
 ├── .eslintcache
-├── .eslintignore
-├── .eslintrc.js
 ├── .gitignore
 ├── .prettierignore
 ├── .prettierrc.js
@@ -155,6 +154,7 @@ super-rentals
 ├── .watchmanconfig
 ├── README.md
 ├── ember-cli-build.js
+├── eslint.config.mjs
 ├── package.json
 ├── package-lock.json
 └── testem.js

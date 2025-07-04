@@ -334,16 +334,21 @@ Let's start customizing the things that didn't work for us by default. Specifica
 
 The first thing we want to do is have our builder respect a configurable default host and/or namespace. Adding a namespace prefix happens to be pretty common across Ember apps, so EmberData provides a global config mechanism for host and namespace. Typically you will want to do this either in your store file or app file.
 
-```js { data-filename="app/app.js" data-diff="+5,+6,+7,+8,+9" }
+```js { data-filename="app/app.js" data-diff="+6,+7,+8,+9,+10" }
 import Application from '@ember/application';
 import Resolver from 'ember-resolver';
 import loadInitializers from 'ember-load-initializers';
 import config from 'super-rentals/config/environment';
+import { importSync, isDevelopingApp, macroCondition } from '@embroider/macros';
 import { setBuildURLConfig } from '@ember-data/request-utils';
 
 setBuildURLConfig({
   namespace: 'api',
 });
+
+if (macroCondition(isDevelopingApp())) {
+  importSync('./deprecation-workflow');
+}
 
 export default class App extends Application {
   modulePrefix = config.modulePrefix;
