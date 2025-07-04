@@ -51,17 +51,17 @@ export default class PostAdapter extends JSONAPIAdapter {
 EmberData comes with several built-in adapters.
 Feel free to use these adapters as a starting point for creating your own custom adapter.
 
-- [`Adapter`](https://api.emberjs.com/ember-data/5.5.0/classes/Adapter) is the basic adapter
+- [`Adapter`](https://api.emberjs.com/ember-data/5.4.1/classes/Adapter) is the basic adapter
 with no functionality. It is generally a good starting point if you
 want to create an adapter that is radically different from the other
 Ember adapters.
 
-- [`JSONAPIAdapter`](https://api.emberjs.com/ember-data/5.5.0/classes/JSONAPIAdapter)
+- [`JSONAPIAdapter`](https://api.emberjs.com/ember-data/5.4.1/classes/JSONAPIAdapter)
 The `JSONAPIAdapter` is the default adapter and follows JSON:API
 conventions to communicate with an HTTP server by transmitting JSON
 via XHR.
 
-- [`RESTAdapter`](https://api.emberjs.com/ember-data/5.5.0/classes/RESTAdapter)
+- [`RESTAdapter`](https://api.emberjs.com/ember-data/5.4.1/classes/RESTAdapter)
 The `RESTAdapter` allows your store to communicate with an HTTP server
 by transmitting JSON via XHR. Before EmberData 2.0 this adapter was the default.
 
@@ -69,7 +69,7 @@ by transmitting JSON via XHR. Before EmberData 2.0 this adapter was the default.
 ## Customizing the JSONAPIAdapter
 
 The
-[JSONAPIAdapter](https://api.emberjs.com/ember-data/5.5.0/classes/JSONAPIAdapter)
+[JSONAPIAdapter](https://api.emberjs.com/ember-data/5.4.1/classes/JSONAPIAdapter)
 has a handful of hooks that are commonly used to extend it to work
 with non-standard backends.
 
