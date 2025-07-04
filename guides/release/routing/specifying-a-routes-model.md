@@ -70,12 +70,9 @@ Let's compare some examples using the model hook to make asynchronous HTTP reque
 ### Fetch example
 
 First, here's an example using a core browser API called [`fetch`](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API), which returns a Promise.
-Install [`ember-fetch`](https://github.com/ember-cli/ember-fetch) with the command `ember install ember-fetch`, if it is not already in the app's `package.json`.
-Older browsers may not have `fetch`, but the `ember-fetch` library includes a polyfill, so we don't have to worry about backwards compatibility!
 
 ```javascript {data-filename=app/routes/photos.js}
 import Route from '@ember/routing/route';
-import fetch from 'fetch';
 
 export default class PhotosRoute extends Route {
   async model() {

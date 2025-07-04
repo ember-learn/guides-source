@@ -1,7 +1,7 @@
 module.exports = function replaceURLVersions(
   str,
   emberVersion,
-  emberDataVersion
+  emberDataVersion,
 ) {
   let output;
 
@@ -11,7 +11,7 @@ module.exports = function replaceURLVersions(
     : emberVersion + '.0';
   output = str.replace(
     /https:\/\/guides.emberjs.com\/(release)(\/?)/g,
-    `https://guides.emberjs.com/v${emberPatchVersion}$2`
+    `https://guides.emberjs.com/v${emberPatchVersion}$2`,
   );
 
   const emberDataPatchVersion = /\d+\.\d+.\d+/.test(emberDataVersion)
@@ -19,18 +19,18 @@ module.exports = function replaceURLVersions(
     : emberDataVersion + '.0';
   output = str.replace(
     /https:\/\/guides.emberjs.com\/(release)(\/?)/g,
-    `https://guides.emberjs.com/v${emberDataPatchVersion}$2`
+    `https://guides.emberjs.com/v${emberDataPatchVersion}$2`,
   );
 
   // apis use `3.20` version format
   output = output.replace(
     /https:\/\/api.emberjs.com\/(ember)\/(release)(\/?)/g,
-    `https://api.emberjs.com/$1/${emberVersion}$3`
+    `https://api.emberjs.com/$1/${emberVersion}$3`,
   );
 
   output = output.replace(
     /https:\/\/api.emberjs.com\/(ember-data)\/(release)(\/?)/g,
-    `https://api.emberjs.com/$1/${emberDataVersion}$3`
+    `https://api.emberjs.com/$1/${emberDataVersion}$3`,
   );
 
   return output;

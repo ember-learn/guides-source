@@ -33,10 +33,6 @@ For examples, see:
 
 - [Service][service] registry
 - [Controller][controller] registry
-- EmberData [Model][model] registry
-- EmberData [Transform][transform] registry
-- EmberData [Serializer][serializers-and-adapters] registry
-- EmberData [Adapter][serializers-and-adapters] registry
 
 ## Decorators
 
@@ -86,6 +82,7 @@ export default class MyGame extends Component {
 Let's imagine a component which just logs the names of its arguments when it is first constructed. First, we must define the [Signature][] and pass it into our component, then we can use the `Args` member in our Signature to set the type of `args` in the constructor:
 
 ```typescript {data-filename="app/components/args-display.ts"}
+import type Owner from '@ember/owner';
 import Component from '@glimmer/component';
 
 const log = console.log.bind(console);
@@ -99,7 +96,7 @@ export interface ArgsDisplaySignature {
 }
 
 export default class ArgsDisplay extends Component<ArgsDisplaySignature> {
-  constructor(owner: unknown, args: ArgsDisplaySignature['Args']) {
+  constructor(owner: Owner, args: ArgsDisplaySignature['Args']) {
     super(owner, args);
     Object.keys(args).forEach(log);
   }
@@ -108,7 +105,7 @@ export default class ArgsDisplay extends Component<ArgsDisplaySignature> {
 
 Notice that we have to start by calling `super` with `owner` and `args`. This may be a bit different from what you're used to in Ember or other frameworks, but is normal for sub-classes in TypeScript today. If the compiler just accepted any `...arguments`, a lot of potentially _very_ unsafe invocations would go through. So, instead of using `...arguments`, we explicitly pass the _specific_ arguments and make sure their types match up with what the super-class expects.
 
-The types for `owner` here and `args` line up with what the `constructor` for Glimmer components expects. The `owner` is specified as `unknown` because this is a detail we explicitly _don't_ need to know about. The `args` are the `Args` from the Signature we defined.
+The types for `owner` here and `args` line up with what the `constructor` for Glimmer components expects. The `owner` is specified as `Owner`, imported from the `@ember/owner` module. The `args` are the `Args` from the Signature we defined.
 
 Additionally, the types of the arguments passed to subclassed methods will _not_ autocomplete as you may expect. This is because in JavaScript, a subclass may legally override a superclass method to accept different arguments. Ember's lifecycle hooks, however, are called by the framework itself, and thus the arguments and return type should always match the superclass. Unfortunately, TypeScript does not and _cannot_ know that, so we have to provide the types directly.
 
@@ -125,30 +122,6 @@ export default class MyRoute extends Route {
 }
 ```
 
-## Fixing the EmberData `error TS2344` problem
-
-If you're developing an Ember app or addon and _not_ using EmberData (and accordingly not even have the EmberData types installed), you may see an error like this and be confused:
-
-```text
-node_modules/@types/ember-data/index.d.ts(920,56): error TS2344: Type 'any' does not satisfy the constraint 'never'.
-```
-
-This happens because the types for Ember's _test_ tooling includes the types for EmberData because the `this` value in several of Ember's test types can include a reference to the EmberData `Store` class.
-
-**The fix:** add a declaration like this in a new file named `ember-data.d.ts` in your `types` directory:
-
-```typescript {data-filename="types/ember-data.d.ts"}
-declare module 'ember-data/types/registries/model' {
-  export default interface ModelRegistry {
-    [key: string]: unknown;
-  }
-}
-```
-
-This works because (a) we include things in your types directory automatically and (b) TypeScript will merge this module and interface declaration with the main definitions for EmberData from DefinitelyTyped behind the scenes.
-
-If you're developing an addon and concerned that this might affect consumers, it won't. Your types directory will never be referenced by consumers at all!
-
 <!-- Internal links -->
 
 [controller]: ../../core-concepts/routing/#toc_controller-injections-and-lookups
@@ -156,12 +129,9 @@ If you're developing an addon and concerned that this might affect consumers, it
 [model-attr]: ../../core-concepts/ember-data/#toc_attr
 [model-belongsto]: ../../core-concepts/ember-data/#toc_belongsto
 [model-hasmany]: ../../core-concepts/ember-data/#toc_hasMany
-[model]: ../../core-concepts/ember-data/#toc_models
 [owner-lookup]: https://api.emberjs.com/ember/release/classes/Owner/methods/lookup?anchor=lookup
-[serializers-and-adapters]: ../../core-concepts/ember-data/#toc_serializers-and-adapters
 [service]: ../../core-concepts/services/#toc_using-services
 [signature]: ../../core-concepts/invokables/#toc_signature-basics
-[transform]: ../../core-concepts/ember-data/#toc_transforms
 
 <!-- External links -->
 

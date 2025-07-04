@@ -26,7 +26,8 @@ module('Acceptance | side bar links', function (hooks) {
   setupApplicationTest(hooks);
 
   test('release links go to correct page', async function (assert) {
-    assert.expect(131);
+    // Manually update this number when new pages are added or removed
+    assert.expect(125);
     await visit('/release');
 
     let store = this.owner.lookup('service:store');
@@ -34,7 +35,7 @@ module('Acceptance | side bar links', function (hooks) {
 
     await visitPages(
       pages.toArray().filter((page) => !page.id.includes('toc-heading')),
-      assert
+      assert,
     );
   });
 });

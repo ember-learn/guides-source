@@ -517,7 +517,7 @@ export default class SidebarComponent extends Component {
 }
 ```
 
-#### Modifiers and `...attributes`
+### Modifiers and `...attributes`
 
 Modifiers can also be applied to components, and when they are, they are also
 passed forward and applied to an element with `...attributes`:

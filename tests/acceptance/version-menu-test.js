@@ -25,7 +25,7 @@ module('Acceptance | version menu when changing versions', function (hooks) {
     await selectChoose('.ember-basic-dropdown-trigger', '3.1');
     assert.strictEqual(
       currentURL(),
-      '/v3.1.0/object-model/classes-and-instances'
+      '/v3.1.0/object-model/classes-and-instances',
     );
   });
 

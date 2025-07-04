@@ -19,7 +19,7 @@ module('Acceptance | meta data', function (hooks) {
       .dom('head meta[name="description"]', document)
       .hasAttribute(
         'content',
-        'Imagine we are writing a web app for managing a blog. At any given time, we should be able to answer questions like What post are they looking at? and Are they editing it? In Ember.js, the answer to these questions is determined by the URL. \n\nThe URL can be...'
+        'Imagine we are writing a web app for managing a blog. At any given time, we should be able to answer questions like What post are they looking at? and Are they editing it? In Ember.js, the answer to these questions is determined by the URL. \n\nThe URL can be...',
       );
 
     await click('[data-test-toc-link="Defining Your Routes"]');

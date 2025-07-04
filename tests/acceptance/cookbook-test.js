@@ -18,7 +18,7 @@ module('Acceptance | cookbook', function (hooks) {
     await click('.next-guide');
     assert.strictEqual(
       currentURL(),
-      '/v1.10.0/cookbook/contributing/understanding_the_cookbook_format'
+      '/v1.10.0/cookbook/contributing/understanding_the_cookbook_format',
     );
     await click('.previous-guide');
     assert.strictEqual(currentURL(), '/v1.10.0/cookbook/contributing');
