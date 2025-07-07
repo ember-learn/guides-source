@@ -68,7 +68,7 @@ sed -i .bak -e "/currentVersion/i \\
 rm guides/versions.yml.bak
 echo "  DONE"
 
-echo "What version of EmberData is being released (e.g. 5.3.0)? Double check this as it might not be the same version as Ember."
+echo "What version of EmberData is being released (e.g. 5.3.0)? NOTE: This is not the one that was released this week, it is the one we want the snapshotted previous release to point to. Double check this as it might not be the same version as Ember."
 read -r EMBER_DATA_CURRENT_VERSION
 
 # Update version numbers in links
