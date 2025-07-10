@@ -6,11 +6,13 @@ In most cases, the best way to think about your component's output is to assume 
 
 For example, consider an `Article` component that takes `@title` and `@body` arguments.
 
-```handlebars {data-filename=app/components/article/template.hbs}
-<article>
-  <header><h1>{{@title}}</h1></header>
-  <section>{{@body}}</section>
-</article>
+```gjs {data-filename=app/components/article.gjs}
+<template>
+  <article>
+    <header><h1>{{@title}}</h1></header>
+    <section>{{@body}}</section>
+  </article>
+</template>
 ```
 
 Assuming an `article` route with a model that looks like:
@@ -24,8 +26,12 @@ Assuming an `article` route with a model that looks like:
 
 This component would be invoked this way:
 
-```handlebars {data-filename=app/templates/article.hbs}
-<Article @title={{@model.title}} @body={{@model.body}}>
+```gjs {data-filename=app/templates/article.gjs}
+import Article from '../components/article.gjs';
+
+<template>
+  <Article @title={{@model.title}} @body={{@model.body}}>
+</template>
 ```
 
 The first time the `Article` component is rendered, it would produce this output:
@@ -81,11 +87,13 @@ The same philosophy that applies to changing text also applies to changing attri
 
 For example, let's say we want to enhance our `Article` component to include a `title` attribute on the `<article>` tag.
 
-```handlebars {data-filename=app/components/article/template.hbs}
-<article title="{{@title}}">
-  <header><h1>{{@title}}</h1></header>
-  <section>{{@body}}</section>
-</article>
+```gjs {data-filename=app/components/article.gjs}
+<template>
+  <article title="{{@title}}">
+    <header><h1>{{@title}}</h1></header>
+    <section>{{@body}}</section>
+  </article>
+</template>
 ```
 
 With the model:
@@ -137,10 +145,12 @@ is true, but `standard` if the `@isAdmin` variable is false.
 
 We could accomplish this requirement by using the `if` helper inside of an attribute:
 
-```handlebars
-<div class={{if @isAdmin "superuser" "standard"}}>
-  Welcome to my app.
-</div>
+```gjs
+<template>
+  <div class={{if @isAdmin "superuser" "standard"}}>
+    Welcome to my app.
+  </div>
+</template>
 ```
 
 Instead of thinking about changing the class imperatively when the `@isAdmin` variable changes, we
@@ -172,25 +182,24 @@ properties and other kinds of custom JavaScript.
 
 If you want to add an event handler to an HTML element, you can use the `{{on` element modifier.
 
-```js {data-filename="app/components/counter.js"}
+```gjs {data-filename="app/components/counter.gjs"}
 import Component from "@glimmer/component";
-import { action } from "@ember/object";
+import { on } from '@ember/modifier';
 import { tracked } from '@glimmer/tracking';
 
 export default class CounterComponent extends Component {
   @tracked count = 0;
 
-  @action
-  increment() {
+  increment = () => {
     this.count++;
-  }
+  };
+
+  <template>
+    <p>{{this.count}}</p>
+
+    <button type="button" {{on "click" this.increment}}>+</button>
+  </template>
 }
-```
-
-```handlebars {data-filename="app/components/counter.hbs"}
-<p>{{this.count}}</p>
-
-<button type="button" {{on "click" this.increment}}>+</button>
 ```
 
 <div class="cta">
@@ -227,8 +236,12 @@ For example, let's say you want to create an `<audio>` element, but pass it a bl
 
 Since `srcObject` is a property and not an HTML attribute, you can use the `prop` element modifier from [ember-prop-modifier][prop-modifier] like this:
 
-```handlebars
-<audio {{prop srcObject=this.blob}} />
+```gjs
+import prop from 'ember-prop-modifier/addon/modifiers/prop.js';
+
+<template>
+  <audio {{prop srcObject=@blob}} />
+</template>
 ```
 
 [prop-modifier]: https://www.npmjs.com/package/ember-prop-modifier
@@ -254,44 +267,7 @@ inputElement.focus();
 ```
 
 This code needs to run after the element is rendered.
-
-The simplest way to accomplish this is by using the `did-insert` modifier from [@ember/render-modifiers][render-modifiers].
-
-[render-modifiers]: https://github.com/emberjs/ember-render-modifiers
-
-```handlebars {app/components/edit-form.hbs}
-<form>
-  <input {{did-insert this.focus}}>
-</form>
-```
-
-```js {app/components/edit-form.js}
-import Component from '@glimmer/component';
-import { action } from '@ember/object';
-
-export default class EditFormComponent extends Component {
-  @action
-  focus(element) {
-    element.focus();
-  }
-}
-```
-
-The `did-insert` modifier will call a function after its element is added to the DOM. That function receives the element as a parameter.
-
-### Abstracting the Logic Into a Custom Modifier
-
-Using the `did-insert` modifier works well for one-off cases, but if you want to pull this logic into reusable functionality that you can use throughout your app, you can make your _own_ modifier.
-
-The modifier that we're going to build will allow us to say:
-
-```handlebars {data-filename="app/components/edit-form.hbs"}
-<form>
-  <input {{autofocus}}>
-</form>
-```
-
-Pretty nice, right?
+The simplest way to accomplish this is by using a modifier.
 
 New Ember apps ship with a dependency on
 [ember-modifier](https://github.com/ember-modifier/ember-modifier), which
@@ -300,6 +276,42 @@ in turn based on a low level API named _modifier managers_. Managers are a
 framework-development level feature, and not something most developers need to
 interact with. You'll see in the following examples that the modifier API is
 imported from the `ember-modifier` package.
+
+```gjs {app/components/edit-form.gjs}
+import Component from '@glimmer/component';
+import { modifier } from 'ember-modifier';
+
+export default class EditFormComponent extends Component {
+
+  focusElement = modifier((element) => {
+    element.focus();
+  });
+
+  <template>
+    <input {{focusElement}}>
+  </template>
+}
+```
+
+The `focusElement` modifier will call a function after its element is added to the DOM. That function receives the element as a parameter.
+
+### Abstracting the Logic Into a Shared Modifier
+
+If you want to pull this logic into reusable functionality that you can use throughout your app, you can put your modifier in a separate module and import it whereever you want.
+
+The modifier that we're going to build will allow us to say:
+
+```gjs {data-filename="app/components/edit-form.gjs"}
+import autofocus from '../modifiers/autofocus.js';
+
+<template>
+  <form>
+    <input {{autofocus}}>
+  </form>
+</template>
+```
+
+Pretty nice, right?
 
 First generate the `autofocus` modifier for your application:
 
@@ -315,7 +327,7 @@ import { modifier } from "ember-modifier";
 export default modifier(element => element.focus());
 ```
 
-And that's it! Now we can use our custom `{{autofocus}}` modifier throughout our application.
+And that's it! Now we can import and use our custom `{{autofocus}}` modifier throughout our application.
 
 Read more about the `ember-modifier` APIs at [ember-modifiers:
 Usage](https://github.com/ember-modifier/ember-modifier#usage).
@@ -324,16 +336,23 @@ Usage](https://github.com/ember-modifier/ember-modifier#usage).
 
 What if you want to handle an event in one part of your component by calling a DOM method on another part? For example, let's say you're creating an audio component:
 
-```handlebars {data-filename="app/components/audio-player.hbs"}
-<audio src={{@srcURL}} />
+```gjs {data-filename="app/components/audio-player.gjs"}
+import Component from "@glimmer/component";
 
-<button type="button">Play</button>
-<button type="button">Pause</button>
+export default class AudioPlayerComponent extends Component {
+
+  <template>
+    <audio src={{@srcURL}} />
+
+    <button type="button">Play</button>
+    <button type="button">Pause</button>
+  </template>
+}
 ```
 
 How should we connect clicking the "Play" and "Pause" to calling the audio tag's `play` and `pause` methods?
 
-While we _could_ manage these DOM interactions in the component class (for example, by using `{{did-render}}`), we're better off using a modifier here. It lets us cleanly separate our concerns: the component manages the _state_, and the modifier manages _interactions with the DOM_.
+While we _could_ manage these DOM interactions in the component class, we're better off using a modifier here. It lets us cleanly separate our concerns: the component manages the _state_, and the modifier manages _interactions with the DOM_.
 
 There are three reasons to reach for modifiers for DOM element interactions:
 
@@ -345,53 +364,57 @@ Now that we see _why_ we want to use a modifier for our audio component, let's w
 
 First, we add actions to handle the `click` events for the `Play` and `Pause` buttons:
 
-```handlebars {data-filename="app/components/audio-player.hbs" data-diff="-3,+4,-5,+6"}
-<audio src={{@srcURL}} />
-
-<button type="button">Play</button>
-<button type="button" {{on "click" this.play}}>Play</button>
-<button type="button">Pause</button>
-<button type="button" {{on "click" this.pause}}>Pause</button>
-```
-
-```js {data-filename="app/components/audio-player.js"}
+```gjs {data-filename="app/components/audio-player.gjs" data-diff="+2,+6,+7,+8,+10,+11,+12,-17,+18,-19,+20"}
 import Component from "@glimmer/component";
-import { action } from "@ember/object";
+import { on } from '@ember/modifier';
 
 export default class AudioPlayerComponent extends Component {
-  @action
-  play() {
-    // TODO
-  }
 
-  @action
-  pause() {
+  play = () => {
     // TODO
-  }
+  };
+
+  pause = () => {
+    // TODO
+  };
+
+  <template>
+    <audio src={{@srcURL}} />
+
+    <button type="button">Play</button>
+    <button type="button" {{on "click" this.play}}>Play</button>
+    <button type="button">Pause</button>
+    <button type="button" {{on "click" this.pause}}>Pause</button>
+  </template>
 }
 ```
 
 Recall that our modifier will manage the DOM (i.e. calling the audio element's `play` or `pause` method). All the component needs to do is to track whether the audio is playing:
 
-```js {data-filename="app/components/audio-player.js" data-diff="+2,+6,+7,-10,+11,-16,+17"}
+```gjs {data-filename="app/components/audio-player.gjs" data-diff="+3,+6,-9,+10,-14,+15"}
 import Component from "@glimmer/component";
-import { tracked } from "@glimmer/tracking";
-import { action } from "@ember/object";
+import { on } from '@ember/modifier';
+import { tracked } from '@glimmer/tracking';
 
 export default class AudioPlayerComponent extends Component {
   @tracked isPlaying = false;
 
-  @action
-  play() {
+  play = () => {
     // TODO
     this.isPlaying = true;
-  }
+  };
 
-  @action
-  pause() {
+  pause = () => {
     // TODO
     this.isPlaying = false;
-  }
+  };
+
+  <template>
+    <audio src={{@srcURL}} />
+
+    <button type="button" {{on "click" this.play}}>Play</button>
+    <button type="button" {{on "click" this.pause}}>Pause</button>
+  </template>
 }
 ```
 
@@ -417,12 +440,31 @@ export default modifier((element, [isPlaying]) => {
 
 Last but not least, we attach the modifier to the `audio` element:
 
-```handlebars {data-filename="app/components/audio-player.hbs" data-diff="-1,+2"}
-<audio src={{@srcURL}} />
-<audio src={{@srcURL}} {{play-when this.isPlaying}} />
+```gjs {data-filename="app/components/audio-player.gjs" data-diff="+4,-18,+19"}
+import Component from "@glimmer/component";
+import { on } from '@ember/modifier';
+import { tracked } from '@glimmer/tracking';
+import playWhen from '../modifiers/play-when.js';
 
-<button type="button" {{on "click" this.play}}>Play</button>
-<button type="button" {{on "click" this.pause}}>Pause</button>
+export default class AudioPlayerComponent extends Component {
+  @tracked isPlaying = false;
+
+  play = () => {
+    this.isPlaying = true;
+  };
+
+  pause = () => {
+    this.isPlaying = false;
+  };
+
+  <template>
+    <audio src={{@srcURL}} />
+    <audio src={{@srcURL}} {{playWhen this.isPlaying}} />
+
+    <button type="button" {{on "click" this.play}}>Play</button>
+    <button type="button" {{on "click" this.pause}}>Pause</button>
+  </template>
+}
 ```
 
 With that, we can now click the buttons to play and pause the audio!
@@ -437,10 +479,12 @@ In most cases, your component should restrict its behavior to its own elements. 
 
 Let's start with the DOM structure of a super-simple component that would remove its contents when a click occurs outside of the element.
 
-```handlebars {data-filename="app/components/modal.hbs"}
-<div class="modal">
-  {{yield}}
-</div>
+```gjs {data-filename="app/components/modal.gjs"}
+<template>
+  <div class="modal">
+    {{yield}}
+  </div>
+</template>
 ```
 
 We don't want to use `{{on "click"}}` here because we want the opposite behavior: do something whenever the user clicks _outside_ of the `<div>`. To accomplish that, we'll register a `click` handler on the entire document and then hit-test it, looking something like this:
@@ -455,7 +499,7 @@ document.addEventListener("click", event => {
 
 The most important difference between this example and the cases we've seen so far is that we need to remove the `click` event handler from the document when this element is destroyed.
 
-To accomplish this, we can use [`ember-modifier`](https://github.com/ember-modifier/ember-modifier) (which is already installed in newly generated Ember apps) to create a `on-click-outside` modifier that sets up the event listener after the element is first inserted and removes the event listener when the element is removed. 
+To accomplish this, we can create a `on-click-outside` modifier that sets up the event listener after the element is first inserted and removes the event listener when the element is removed. 
 
 Generate the new modifier:
 
@@ -485,42 +529,42 @@ export default modifier((element, [callback]) => {
 
 Now that we've created this modifier, we can use it in our `modal` component, and add some logic to invoke a passed-in action whenever the user clicks outside the modal.
 
-```handlebars {data-filename="app/components/modal.hbs"}
-<div class="modal" {{on-click-outside @clickedOutside}}>
+```gjs {data-filename="app/components/modal.gjs"}
+import onClickOutside from '../modifiers/on-clic-outside.js';
+
+<div class="modal" {{onClickOutside @clickedOutside}}>
   {{yield}}
 </div>
 ```
 
 We could then use the `modal` component this way:
 
-```handlebars {data-filename="app/components/sidebar.hbs"}
-<p class="help-icon" {{on "click" this.showHelp}}>?</p>
-
-{{#if this.showingHelp}}
-  <Modal @clickedOutside={{this.hideHelp}}>
-    Here's some interesting facts about the sidebar that you can learn.
-  </Modal>
-{{/if}}
-```
-
-```js {data-filename="app/components/sidebar.js"}
+```gjs {data-filename="app/components/sidebar.gjs"}
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
-import { action } from "@ember/object";
+import { on } from '@ember/modifier';
+import Modal from './modal.gjs';
 
 export default class SidebarComponent extends Component {
   @tracked showingHelp = false;
 
-  @action
-  showHelp() {
+  showHelp = () => {
     this.showingHelp = true;
-  }
+  };
 
-  @action
-  hideHelp() {
+  hideHelp = () => {
     this.showingHelp = false;
-  }
-}
+  };
+
+  <template>
+    <p class="help-icon" {{on "click" this.showHelp}}>?</p>
+
+    {{#if this.showingHelp}}
+      <Modal @clickedOutside={{this.hideHelp}}>
+        Here's some interesting facts about the sidebar that you can learn.
+      </Modal>
+    {{/if}}
+  </template>
 ```
 
 ### Modifiers and `...attributes`
@@ -528,15 +572,21 @@ export default class SidebarComponent extends Component {
 Modifiers can also be applied to components, and when they are, they are also
 passed forward and applied to an element with `...attributes`:
 
-```handlebars
-<Tooltip {{did-insert this.setupTooltip}}/>
+```gjs
+import doSomething from '../modifiers/do-something.js';
+
+<template>
+  <Tooltip {{doSomething}}/>
+</template>
 ```
 
-```handlebars {data-filename="app/components/tooltip.hbs"}
-<div ...attributes>
-  ...
-</div>
+```gjs {data-filename="app/components/tooltip.hbs"}
+<template>
+  <div ...attributes>
+    ...
+  </div>
+</template>
 ```
 
 In this example, the `div` within the Tooltip component will get the
-`did-insert` modifier applied to it.
+`doSomething` modifier applied to it.

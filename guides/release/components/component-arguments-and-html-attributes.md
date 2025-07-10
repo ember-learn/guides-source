@@ -3,16 +3,20 @@ Components become useful building blocks of our app if we make them _reusable_. 
 Let's start with two similar but not identical avatar components, that represent
 different users:
 
-```handlebars {data-filename="app/components/received-message/avatar.hbs"}
-<aside>
-  <div class="avatar" title="Tomster's avatar">T</div>
-</aside>
+```gjs {data-filename="app/components/received-message/avatar.gjs"}
+<template>
+  <aside>
+    <div class="avatar" title="Tomster's avatar">T</div>
+  </aside>
+</template>
 ```
 
-```handlebars {data-filename="app/components/sent-message/avatar.hbs"}
-<aside class="current-user">
-  <div class="avatar" title="Zoey's avatar">Z</div>
-</aside>
+```gjs {data-filename="app/components/sent-message/avatar.gjs"}
+<template>
+  <aside class="current-user">
+    <div class="avatar" title="Zoey's avatar">Z</div>
+  </aside>
+</template>
 ```
 
 The _structure_ of these components is identical, but they have somewhat
@@ -37,10 +41,12 @@ attributes).
 We can create a component that can be used in both situations by _templating_
 the parts of the HTML that are different.
 
-```handlebars {data-filename="app/components/avatar.hbs"}
-<aside>
-  <div class="avatar" title={{@title}}>{{@initial}}</div>
-</aside>
+```gjs {data-filename="app/components/avatar.gjs"}
+<template>
+  <aside>
+    <div class="avatar" title={{@title}}>{{@initial}}</div>
+  </aside>
+</template>
 ```
 
 The syntax `{{@initial}}` means that the contents inside the `<div>` tag are
@@ -49,8 +55,12 @@ _dynamic_ and will be specified by the `<Avatar>` tag. Likewise, the
 and will be specified in the same way. We can now replace the received message
 avatar by using the `<Avatar>` tag and providing it with some arguments.
 
-```handlebars {data-filename="app/components/received-message/avatar.hbs"}
-<Avatar @title="Tomster's avatar" @initial="T" />
+```gjs {data-filename="app/components/received-message/avatar.gjs"}
+import Avatar from "../..app/components/avatar.gjs";
+
+<template>
+  <Avatar @title="Tomster's avatar" @initial="T" />
+</template>
 ```
 
 This code includes the `<Avatar>` component, which expects two _arguments_:
@@ -80,13 +90,17 @@ the _browser_ what to do, it's telling your custom tag what to do.
 
 Let's try to use our `<Avatar>` component for the sent message avatar.
 
-```handlebars {data-filename="app/components/sent-message/avatar.hbs"}
-<Avatar @title="Zoey's avatar" @initial="Z" />
+```gjs {data-filename="app/components/sent-message/avatar.gjs"}
+import Avatar from "../..app/components/avatar.gjs";
+
+<template>
+  <Avatar @title="Zoey's avatar" @initial="Z" />
+</template>
 ```
 
 We're really, really close.
 
-```handlebars {data-filename="output" data-diff="-1,+2"}
+```html {data-filename="output" data-diff="-1,+2"}
 <aside class="current-user">
 <aside>
   <div class="avatar" title="Zoey's avatar">Z</div>
@@ -96,21 +110,27 @@ We're really, really close.
 We're just missing the `current-user` class on the HTML `<aside>` element. To
 make that work, we'll specify the HTML attribute `class` on the `<Avatar>` tag.
 
-```handlebars {data-filename="app/components/sent-message/avatar.hbs"}
-<Avatar
-  @title="Zoey's avatar"
-  @initial="Z"
-  class="current-user"
-/>
+```gjs {data-filename="app/components/sent-message/avatar.gjs"}
+import Avatar from "../..app/components/avatar.gjs";
+
+<template>
+  <Avatar
+    @title="Zoey's avatar"
+    @initial="Z"
+    class="current-user"
+  />
+</template>
 ```
 
 The avatar component also needs to specify where to put attributes that were
 specified on the tag.
 
-```handlebars {data-filename="app/components/avatar.hbs"}
-<aside ...attributes>
-  <div class="avatar" title={{@title}}>{{@initial}}</div>
-</aside>
+```gjs {data-filename="app/components/avatar.gjs"}
+<template>
+  <aside ...attributes>
+    <div class="avatar" title={{@title}}>{{@initial}}</div>
+  </aside>
+</template>
 ```
 
 The `...attributes` syntax determines where the attributes from a tag should

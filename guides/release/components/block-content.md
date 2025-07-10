@@ -2,24 +2,32 @@ Component templates can leave one or more placeholders that users can fill with 
 These are called blocks.
 Here's an example that provides a component with the implicit default block.
 
-```handlebars
-<ExampleComponent>
-  This is the default <b>block content</b> that will
-  replace `{{yield}}` (or `{{yield to="default"}}`)
-  in the `ExampleComponent` template.
-</ExampleComponent>
+```gjs
+import ExampleComponent from './example-component.gjs';
+
+<template>
+  <ExampleComponent>
+    This is the default <b>block content</b> that will
+    replace `{{yield}}` (or `{{yield to="default"}}`)
+    in the `ExampleComponent` template.
+  </ExampleComponent>
+</template>
 ```
 
 This is equivalent to explicitly naming the default block using the named block syntax.
 
-```handlebars
-<ExampleComponent>
-  <:default>
-    This is the default <b>block content</b> that will
-    replace `{{yield}}` (or `{{yield to="default"}}`)
-    in the `ExampleComponent` template.
-  </:default>
-</ExampleComponent>
+```gjs
+import ExampleComponent from './example-component.gjs';
+
+<template>
+  <ExampleComponent>
+    <:default>
+      This is the default <b>block content</b> that will
+      replace `{{yield}}` (or `{{yield to="default"}}`)
+      in the `ExampleComponent` template.
+    </:default>
+  </ExampleComponent>
+</template>
 ```
 
 Through Block Content, users of the component can add additional styling and
@@ -28,57 +36,61 @@ behavior by using HTML, modifiers, and other components within the block.
 To make that more concrete, let's take a look at two similar components
 representing different user's messages.
 
-```handlebars {data-filename="app/components/received-message.hbs"}
-<aside>
-  <div class="avatar is-active" title="Tomster's avatar">T</div>
-</aside>
-<section>
-  <h4 class="username">
-    Tomster
-    <span class="local-time">their local time is 4:56pm</span>
-  </h4>
+```gjs {data-filename="app/components/received-message.gjs"}
+<template>
+  <aside>
+    <div class="avatar is-active" title="Tomster's avatar">T</div>
+  </aside>
+  <section>
+    <h4 class="username">
+      Tomster
+      <span class="local-time">their local time is 4:56pm</span>
+    </h4>
 
-  <p>
-    Hey Zoey, have you had a chance to look at the EmberConf
-    brainstorming doc I sent you?
-  </p>
-</section>
+    <p>
+      Hey Zoey, have you had a chance to look at the EmberConf
+      brainstorming doc I sent you?
+    </p>
+  </section>
+</template>
 ```
 
-```handlebars {data-filename="app/components/sent-message.hbs"}
-<aside class="current-user">
-  <div class="avatar" title="Zoey's avatar">Z</div>
-</aside>
-<section>
-  <h4 class="username">Zoey</h4>
+```gjs {data-filename="app/components/sent-message.gjs"}
+<template>
+  <aside class="current-user">
+    <div class="avatar" title="Zoey's avatar">Z</div>
+  </aside>
+  <section>
+    <h4 class="username">Zoey</h4>
 
-  <p>Hey!</p>
+    <p>Hey!</p>
 
-  <p>
-    I love the ideas! I'm really excited about where this year's
-    EmberConf is going, I'm sure it's going to be the best one yet.
-    Some quick notes:
-  </p>
+    <p>
+      I love the ideas! I'm really excited about where this year's
+      EmberConf is going, I'm sure it's going to be the best one yet.
+      Some quick notes:
+    </p>
 
-  <ul>
-    <li>
-      Definitely agree that we should double the coffee budget this
-      year (it really is impressive how much we go through!)
-    </li>
-    <li>
-      A blimp would definitely make the venue very easy to find, but
-      I think it might be a bit out of our budget. Maybe we could
-      rent some spotlights instead?
-    </li>
-    <li>
-      We absolutely will need more hamster wheels, last year's line
-      was <em>way</em> too long. Will get on that now before rental
-      season hits its peak.
-    </li>
-  </ul>
+    <ul>
+      <li>
+        Definitely agree that we should double the coffee budget this
+        year (it really is impressive how much we go through!)
+      </li>
+      <li>
+        A blimp would definitely make the venue very easy to find, but
+        I think it might be a bit out of our budget. Maybe we could
+        rent some spotlights instead?
+      </li>
+      <li>
+        We absolutely will need more hamster wheels, last year's line
+        was <em>way</em> too long. Will get on that now before rental
+        season hits its peak.
+      </li>
+    </ul>
 
-  <p>Let me know when you've nailed down the dates!</p>
-</section>
+    <p>Let me know when you've nailed down the dates!</p>
+  </section>
+</template>
 ```
 
 Instead of having two different components, one for sent messages and one for
@@ -90,21 +102,26 @@ Their structure is pretty straightforward and similar, so we can use arguments
 and conditionals to handle the differences in content between them (see the
 previous chapters for details on how to do this).
 
-```handlebars {data-filename="app/components/message.hbs"}
-<Message::Avatar
-  @title={{@avatarTitle}}
-  @initial={{@avatarInitial}}
-  @isActive={{@userIsActive}}
-  class="{{if @isCurrentUser "current-user"}}"
-/>
-<section>
-  <Message::Username
-    @name={{@username}}
-    @localTime={{@userLocalTime}}
-  />
+```gjs {data-filename="app/components/message.gjs"}
+import MessageAvatar from './message/avatar.gjs';
+import MessageUsername from './message/username.gjs';
 
-  ...
-</section>
+<template>
+  <MessageAvatar
+    @title={{@avatarTitle}}
+    @initial={{@avatarInitial}}
+    @isActive={{@userIsActive}}
+    class="{{if @isCurrentUser "current-user"}}"
+  />
+  <section>
+    <MessageUsername
+      @name={{@username}}
+      @localTime={{@userLocalTime}}
+    />
+
+    ...
+  </section>
+</template>
 ```
 
 This works pretty well, but the message content is very different. It's also
@@ -114,21 +131,26 @@ supplied by the `<Message>` tag.
 
 The way to do this in Ember is by using the `{{yield}}` syntax.
 
-```handlebars {data-filename="app/components/message.hbs"}
-<Message::Avatar
-  @title={{@avatarTitle}}
-  @initial={{@avatarInitial}}
-  @isActive={{@userIsActive}}
-  class="{{if @isCurrentUser "current-user"}}"
-/>
-<section>
-  <Message::Username
-    @name={{@username}}
-    @localTime={{@userLocalTime}}
-  />
+```gjs {data-filename="app/components/message.gjs"}
+import MessageAvatar from './message/avatar.gjs';
+import MessageUsername from './message/username.gjs';
 
-  {{yield}}
-</section>
+<template>
+  <MessageAvatar
+    @title={{@avatarTitle}}
+    @initial={{@avatarInitial}}
+    @isActive={{@userIsActive}}
+    class="{{if @isCurrentUser "current-user"}}"
+  />
+  <section>
+    <MessageUsername
+      @name={{@username}}
+      @localTime={{@userLocalTime}}
+    />
+
+    {{yield}}
+  </section>
+</template>
 ```
 
 <div class="cta">
@@ -151,57 +173,65 @@ The way to do this in Ember is by using the `{{yield}}` syntax.
 You can think of using `{{yield}}` as leaving a placeholder for the content of the
 `<Message>` tag.
 
-```handlebars {data-filename="app/components/received-message.hbs"}
-<Message
-  @username="Tomster"
-  @userIsActive={{true}}
-  @userLocalTime="4:56pm"
+```gjs {data-filename="app/components/received-message.gjs"}
+import Message from './message.gjs';
 
-  @avatarTitle="Tomster's avatar"
-  @avatarInitial="T"
->
-  <p>
-    Hey Zoey, have you had a chance to look at the EmberConf
-    brainstorming doc I sent you?
-  </p>
-</Message>
+<template>
+  <Message
+    @username="Tomster"
+    @userIsActive={{true}}
+    @userLocalTime="4:56pm"
+
+    @avatarTitle="Tomster's avatar"
+    @avatarInitial="T"
+  >
+    <p>
+      Hey Zoey, have you had a chance to look at the EmberConf
+      brainstorming doc I sent you?
+    </p>
+  </Message>
+</template>
 ```
 
-```handlebars {data-filename="app/components/sent-message.hbs"}
-<Message
-  @username="Zoey"
-  @isCurrentUser={{true}}
+```gjs {data-filename="app/components/sent-message.gjs"}
+import Message from './message.gjs';
 
-  @avatarTitle="Zoey's avatar"
-  @avatarInitial="Z"
->
-  <p>Hey!</p>
+<template>
+  <Message
+    @username="Zoey"
+    @isCurrentUser={{true}}
 
-  <p>
-    I love the ideas! I'm really excited about where this year's
-    EmberConf is going, I'm sure it's going to be the best one yet.
-    Some quick notes:
-  </p>
+    @avatarTitle="Zoey's avatar"
+    @avatarInitial="Z"
+  >
+    <p>Hey!</p>
 
-  <ul>
-    <li>
-      Definitely agree that we should double the coffee budget this
-      year (it really is impressive how much we go through!)
-    </li>
-    <li>
-      A blimp would definitely make the venue very easy to find, but
-      I think it might be a bit out of our budget. Maybe we could
-      rent some spotlights instead?
-    </li>
-    <li>
-      We absolutely will need more hamster wheels, last year's line
-      was <em>way</em> too long. Will get on that now before rental
-      season hits its peak.
-    </li>
-  </ul>
+    <p>
+      I love the ideas! I'm really excited about where this year's
+      EmberConf is going, I'm sure it's going to be the best one yet.
+      Some quick notes:
+    </p>
 
-  <p>Let me know when you've nailed down the dates!</p>
-</Message>
+    <ul>
+      <li>
+        Definitely agree that we should double the coffee budget this
+        year (it really is impressive how much we go through!)
+      </li>
+      <li>
+        A blimp would definitely make the venue very easy to find, but
+        I think it might be a bit out of our budget. Maybe we could
+        rent some spotlights instead?
+      </li>
+      <li>
+        We absolutely will need more hamster wheels, last year's line
+        was <em>way</em> too long. Will get on that now before rental
+        season hits its peak.
+      </li>
+    </ul>
+
+    <p>Let me know when you've nailed down the dates!</p>
+  </Message>
+</template>
 ```
 
 As shown here, we can pass different content into the tag. The content
@@ -230,21 +260,27 @@ hasn't provided a block. For instance, consider an error message dialog that has
 a default message in cases where we don't know what error occurred. We could show
 the default message using the `(has-block)` syntax in an `ErrorDialog` component.
 
-```handlebars {data-filename=app/components/error-dialog.hbs}
-<dialog>
-  {{#if (has-block)}}
-    {{yield}}
-  {{else}}
-    An unknown error occurred!
-  {{/if}}
-</dialog>
+```gjs {data-filename="app/components/error-dialog.gjs"}
+<template>
+  <dialog>
+    {{#if (has-block)}}
+      {{yield}}
+    {{else}}
+      An unknown error occurred!
+    {{/if}}
+  </dialog>
+</template>
 ```
 
 Now, if we use our `ErrorDialog` component without a block, we'll get the
 default message.
 
-```handlebars
-<ErrorDialog/>
+```gjs
+import ErrorDialog from './error-dialog.gjs';
+
+<template>
+  <ErrorDialog/>
+</template>
 ```
 ```html
 <!-- rendered -->
@@ -256,11 +292,16 @@ default message.
 If we had a more detailed message, though, we could use the block to pass it to
 the dialog.
 
-```handlebars
-<ErrorDialog>
-  <Icon type="no-internet" />
-  <p>You are not connected to the internet!</p>
-</ErrorDialog>
+```gjs
+import ErrorDialog from './error-dialog.gjs';
+import Icon from './icon.gjs';
+
+<template>
+  <ErrorDialog>
+    <Icon type="no-internet" />
+    <p>You are not connected to the internet!</p>
+  </ErrorDialog>
+</template>
 ```
 
 ## Block Parameters
@@ -268,16 +309,22 @@ the dialog.
 Blocks can also pass values back into the template, similar to a callback
 function in JavaScript. Consider for instance a simple `BlogPost` component.
 
-```handlebars {data-filename=app/components/blog-post.hbs}
-<h1>{{@post.title}}</h1>
-<h2>{{@post.author}}</h2>
+```gjs {data-filename="app/components/blog-post.gjs"}
+<template>
+  <h1>{{@post.title}}</h1>
+  <h2>{{@post.author}}</h2>
 
-{{@post.body}}
+  {{@post.body}}
+</template>
 ```
 
-```handlebars
-<!-- usage -->
-<BlogPost @post={{@blogPost}} />
+```gjs
+import BlogPost from './blog-post.gjs';
+
+<template>
+  <!-- usage -->
+  <BlogPost @post={{@blogPost}} />
+</template>
 ```
 
 We may want to give the user the ability to put extra content before or after
@@ -285,79 +332,101 @@ the post, such as an image or a profile. Since we don't know what the
 user wants to do with the body of the post, we can instead pass the body back
 to them.
 
-```handlebars {data-filename=app/components/blog-post.hbs}
-<h1>{{@post.title}}</h1>
-<h2>{{@post.author}}</h2>
+```gjs {data-filename="app/components/blog-post.gjs"}
+<template>
+  <h1>{{@post.title}}</h1>
+  <h2>{{@post.author}}</h2>
 
-{{yield @post.body}}
+  {{yield @post.body}}
+</template>
 ```
 
-```handlebars
-<!-- usage -->
-<BlogPost @post={{@blogPost}} as |postBody|>
-  <img alt="" role="presentation" src="./blog-logo.png">
+```gjs
+import BlogPost from './blog-post.gjs';
+import AuthorBio from './author-bio.gjs';
 
-  {{postBody}}
+<template>
+  <!-- usage -->
+  <BlogPost @post={{@blogPost}} as |postBody|>
+    <img alt="" role="presentation" src="./blog-logo.png">
 
-  <AuthorBio @author={{@blogPost.author}} />
-</BlogPost>
+    {{postBody}}
+
+    <AuthorBio @author={{@blogPost.author}} />
+  </BlogPost>
+</template>
 ```
 
 We can yield back multiple values as well, separated by spaces.
 
-```handlebars {data-filename=app/components/blog-post.hbs}
-{{yield @post.title @post.author @post.body }}
+```gjs {data-filename="app/components/blog-post.gjs"}
+<template>
+  {{yield @post.title @post.author @post.body }}
+</template>
 ```
 
-```handlebars
-<!-- usage -->
-<BlogPost @post={{@blogPost}} as |postTitle postAuthor postBody|>
-  <img alt="" role="presentation" src="./blog-logo.png">
+```gjs
+import BlogPost from './blog-post.gjs';
+import AuthorBio from './author-bio.gjs';
 
-  {{postTitle}}
+<template>
+  <!-- usage -->
+  <BlogPost @post={{@blogPost}} as |postTitle postAuthor postBody|>
+    <img alt="" role="presentation" src="./blog-logo.png">
 
-  {{postBody}}
+    {{postTitle}}
 
-  <AuthorBio @author={{postAuthor}} />
-</BlogPost>
+    {{postBody}}
+
+    <AuthorBio @author={{postAuthor}} />
+  </BlogPost>
+</template>
 ```
 
 ## Named Blocks
 
 If you want to yield content to different spots in the same component, you can use named blocks. You just need to specify a name for the yielded block, like this:
 
-```handlebars
-{{yield to="somePlace"}}
+```gjs
+<template>
+  {{yield to="somePlace"}}
+</template>
 ```
 
 You could also want to pass some values. This is the same process as the default `yield`, but you just have to pass `to` as the last argument. An example would be the popover:
 
-```handlebars {data-filename=app/components/popover.hbs}
-<div class="popover">
-  <div class="popover__trigger">
-    {{yield this.isOpen to="trigger"}}
-  </div>
-  {{#if this.isOpen}}
-    <div class="popover__content">
-      {{yield to="content"}}
+```gjs {data-filename="app/components/popover.gjs"}
+<template>
+  <div class="popover">
+    <div class="popover__trigger">
+      {{yield this.isOpen to="trigger"}}
     </div>
-  {{/if}}
-</div>
+    {{#if this.isOpen}}
+      <div class="popover__content">
+        {{yield to="content"}}
+      </div>
+    {{/if}}
+  </div>
+</template>
 ```
 
 Without named blocks, we would certainly have to pass components as `args` to the popover. But this is much more practical!
 
 Here’s how we would call our named blocks as a consumer:
 
-```handlebars
-<Popover>
-  <:trigger as |open|>
-    <button type="button">Click to {{if open "close" "open"}}  the popover!</button>
-  </:trigger>
-  <:content>
-     This is what is shown when I'm opened!
-  </:content>
-</Popover>
+```gjs
+import Popover from './popover.gjs';
+
+<template>
+  <Popover>
+    <:trigger as |open|>
+      <button type="button">Click to {{if open "close" "open"}}  the popover!</button>
+    </:trigger>
+    <:content>
+       This is what is shown when I'm opened!
+    </:content>
+  </Popover>
+</template>
 ```
 
 We know the state of the popover because we passed it as an argument to the `yield`. To access its value, use the block parameters at the named block scope. It will not be accessible at the `Popover` level, so if you want the value to be available for all the blocks, you will have to pass it for each of them.
@@ -378,38 +447,48 @@ Rendering the previous code example would give this as result:
 
 Don't worry, you can also still use `yield` by itself, and mix it with named blocks. Let’s take a card example:
 
-```handlebars {data-filename=app/components/card.hbs}
-<div class="card">
-  {{#if (has-block "title")}}
-    <div class="card__title">
-      {{yield to="title"}}
+```gjs {data-filename="app/components/card.gjs"}
+<template>
+  <div class="card">
+    {{#if (has-block "title")}}
+      <div class="card__title">
+        {{yield to="title"}}
+      </div>
+    {{/if}}
+    <div class="card__content">
+      {{yield}}
     </div>
-  {{/if}}
-  <div class="card__content">
-    {{yield}}
   </div>
-</div>
+</template>
 ```
 
 A yielded block without a name is called `default`. So to access it, it’s like any other named blocks.
 
-```handlebars
-<Card>
-  <:title>
-    <h3>It's nice to have me. Sometimes</h3>
-  </:title>
-  <:default>
-    The card content will appear here!
-  </:default>
-</Card>
+```gjs
+import Card from './card.gjs';
+
+<template>
+  <Card>
+    <:title>
+      <h3>It's nice to have me. Sometimes</h3>
+    </:title>
+    <:default>
+      The card content will appear here!
+    </:default>
+  </Card>
+</template>
 ```
 
 The title being optional when you create a card, you can use the `(has-block)` helper with the named block by adding its name as a first parameter. That means you could also create this card:
 
-```handlebars
-<Card>
-  I don't want any title, and I only have a default content!
-</Card>
+```gjs
+import Card from './card.gjs';
+
+<template>
+  <Card>
+    I don't want any title, and I only have a default content!
+  </Card>
+</template>
 ```
 
 As you are not using named blocks, you can simply yield the content you would like to add, which becomes the default yield block.
