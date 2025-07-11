@@ -259,6 +259,18 @@ export default CustomSelect;
 
 This can be a powerful refactoring technique to break up large components into smaller ones. (where it makes sense!)
 
+## Runtime compiler
+
+```gjs
+import { template } from '@ember/template-compilation';
+
+const hello = 'Greetings';
+
+export default template(`{{hello}}`, {
+  scope: () => ({ hello }),
+});
+```
+
 ## Testing
 
 Historically, Ember's integration tests have been written using the `hbs` tagged template literal. This is no longer necessary with the template tag format. Instead, use the `<template>` tag to define a template to render.
