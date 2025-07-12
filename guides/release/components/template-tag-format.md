@@ -261,8 +261,10 @@ This can be a powerful refactoring technique to break up large components into s
 
 ## Runtime compiler
 
+Creating a template-only component via the runtime compiler:
+
 ```gjs
-import { template } from '@ember/template-compilation';
+import { template } from '@ember/template-compilation/runtime';
 
 const hello = 'Greetings';
 
@@ -270,6 +272,29 @@ export default template(`{{hello}}`, {
   scope: () => ({ hello }),
 });
 ```
+
+And a class-component:
+
+```gjs
+import { template } from "@ember/template-compiler";
+class Example extends Component {
+  static {
+    template(
+      "Hello {{message}}",
+      {
+        component: this,
+        scope: () => ({ message }),
+      },
+    );
+  }
+
+}
+```
+
+Omitting the `/runtime` at the end of the import allows ahead-of-time compilation to occur on components created with `template()`
+
+
+
 
 ## Testing
 
