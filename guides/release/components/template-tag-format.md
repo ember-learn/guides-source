@@ -259,12 +259,14 @@ export default CustomSelect;
 
 This can be a powerful refactoring technique to break up large components into smaller ones. (where it makes sense!)
 
-## Runtime compiler
+## Low-level format
+
+All of template-tag format can be represented in it's pure-javascript form using `template` from either `@ember/template-compiler` or `@ember/template-compiler/runtime`.
 
 Creating a template-only component via the runtime compiler:
 
 ```gjs
-import { template } from '@ember/template-compilation/runtime';
+import { template } from '@ember/template-compiler/runtime';
 
 const hello = 'Greetings';
 
@@ -277,6 +279,9 @@ And a class-component:
 
 ```gjs
 import { template } from "@ember/template-compiler";
+
+const message = "Hello there";
+
 class Example extends Component {
   static {
     template(
@@ -291,9 +296,7 @@ class Example extends Component {
 }
 ```
 
-Omitting the `/runtime` at the end of the import allows ahead-of-time compilation to occur on components created with `template()`
-
-
+If in an environment with compilation, omitting the `/runtime` at the end of the import allows ahead-of-time compilation to occur on components created with `template()` for better runtime performance.
 
 
 ## Testing
