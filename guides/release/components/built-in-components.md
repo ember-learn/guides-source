@@ -164,6 +164,7 @@ Starting with Ember Octane, we recommend using the `{{on}}` modifier to call an 
 import Component from "@glimmer/component";
 import { Input } from '@ember/component';
 import { tracked } from '@glimmer/tracking';
+import { on } from '@ember/modifier';
 
 export default class Example extends Component {
   @tracked name = '';
@@ -197,7 +198,6 @@ import { Input } from '@ember/component';
 import onKey from 'ember-keyboard/modifiers/on-key.js';
 
 export default class Example extends Component {
-
   doSomething = () => {
     alert('something');
   };
@@ -205,7 +205,6 @@ export default class Example extends Component {
   doSomethingElse = () => {
     alert('something else');
   };
-  
 
   <template>
     {{!-- Before --}}
