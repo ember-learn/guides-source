@@ -37,73 +37,73 @@ When Ember renders this template, you will see the following HTML code:
 
 Every input should be associated with a label. In HTML, there are a few ways to do this. With the built-in `<Input>` component,
 
-1. You can nest the input inside the label.
+#### 1. You can nest the input inside the label.
 
-  ```gjs
-  import Component from "@glimmer/component";
-  import { Input } from '@ember/component';
-  import { tracked } from '@glimmer/tracking';
+```gjs
+import Component from "@glimmer/component";
+import { Input } from '@ember/component';
+import { tracked } from '@glimmer/tracking';
 
-  export default class Example extends Component {
-    @tracked userQuestion = '';
+export default class Example extends Component {
+  @tracked userQuestion = '';
 
-    <template>
-      <label>
-        Ask a question about Ember:
-
-        <Input
-          @type="text"
-          @value={{this.userQuestion}}
-        />
-      </label>
-    </template>
-  }
-  ```
-
-2. You can create an ID (globally unique within the webpage), then associate the label to the input with `for` attribute and `id` attribute.
-
-  ```gjs
-  import Component from "@glimmer/component";
-  import { Input } from '@ember/component';
-  import { tracked } from '@glimmer/tracking';
-
-  export default class Example extends Component {
-    @tracked userQuestion = '';
-    myUniqueId = "this-is-a-unique-id";
-
-    <template>
-      <label for={{this.myUniqueId}}>
-        Ask a question about Ember:
-      </label>
+  <template>
+    <label>
+      Ask a question about Ember:
 
       <Input
-        id={{this.myUniqueId}}
         @type="text"
         @value={{this.userQuestion}}
       />
-    </template>
-  }
-  ```
+    </label>
+  </template>
+}
+```
 
-3. You can use the `aria-label` attribute to label the input with a string that is visually hidden but still available to assistive technology. 
+#### 2. You can create an ID (globally unique within the webpage), then associate the label to the input with `for` attribute and `id` attribute.
 
-   ```gjs
-  import Component from "@glimmer/component";
-  import { Input } from '@ember/component';
-  import { tracked } from '@glimmer/tracking';
+```gjs
+import Component from "@glimmer/component";
+import { Input } from '@ember/component';
+import { tracked } from '@glimmer/tracking';
 
-  export default class Example extends Component {
-    @tracked userQuestion = '';
+export default class Example extends Component {
+  @tracked userQuestion = '';
+  myUniqueId = "this-is-a-unique-id";
 
-    <template>
-      <Input
-        aria-label="Ask a question about Ember"
-        @type="text"
-        @value={{this.userQuestion}}
-      />
-    </template>
-  }
-  ```
+  <template>
+    <label for={{this.myUniqueId}}>
+      Ask a question about Ember:
+    </label>
+
+    <Input
+      id={{this.myUniqueId}}
+      @type="text"
+      @value={{this.userQuestion}}
+    />
+  </template>
+}
+```
+
+#### 3. You can use the `aria-label` attribute to label the input with a string that is visually hidden but still available to assistive technology. 
+
+  ```gjs
+import Component from "@glimmer/component";
+import { Input } from '@ember/component';
+import { tracked } from '@glimmer/tracking';
+
+export default class Example extends Component {
+  @tracked userQuestion = '';
+
+  <template>
+    <Input
+      aria-label="Ask a question about Ember"
+      @type="text"
+      @value={{this.userQuestion}}
+    />
+  </template>
+}
+```
 
 While it is more appropriate to use the `<label>` element, the `aria-label` attribute can be used in instances where visible text content is not possible.
 

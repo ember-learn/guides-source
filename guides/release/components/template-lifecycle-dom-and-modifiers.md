@@ -297,7 +297,7 @@ The `focusElement` modifier will call a function after its element is added to t
 
 ### Abstracting the Logic Into a Shared Modifier
 
-If you want to pull this logic into reusable functionality that you can use throughout your app, you can put your modifier in a separate module and import it whereever you want.
+If you want to pull this logic into reusable functionality that you can use throughout your app, you can put your modifier in a separate module and import it wherever you want.
 
 The modifier that we're going to build will allow us to say:
 
