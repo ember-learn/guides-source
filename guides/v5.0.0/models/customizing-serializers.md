@@ -365,7 +365,7 @@ have a model with a `hasMany` relationship:
 import Model, { hasMany } from '@ember-data/model';
 
 export default class PostModel extends Model {
-  @hasMany('comment', { async: true }) comments;
+  @hasMany('comment', { async: true, inverse: 'originalPost' }) comments;
 }
 ```
 
@@ -401,7 +401,7 @@ a model:
 import Model, { belongsTo } from '@ember-data/model';
 
 export default class CommentModel extends Model {
-  @belongsTo('post') originalPost
+  @belongsTo('post', { async: true, inverse: 'comments' }) originalPost
 }
 ```
 
@@ -713,8 +713,8 @@ import Model, { attr, hasMany } from '@ember-data/model';
 export default class Post extends Model {
   @attr('string') title;
   @attr('string') tag;
-  @hasMany('comment', { async: false }) comments;
-  @hasMany('post') relatedPosts;
+  @hasMany('comment', { async: true, inverse: 'post' }) comments;
+  @hasMany('post', { async: true, inverse: 'relatedPosts' }) relatedPosts;
 }
 ```
 
