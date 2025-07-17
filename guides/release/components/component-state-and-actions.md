@@ -6,7 +6,7 @@ JavaScript to make your application interactive.
     <div class="cta-note-body">
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
-        Until now, we've been using template-only components.  That is, our `.gjs` component files have consisted of a single `&lt;template&gt;` tag with our markup inside.  Now, we're going to begin using class-based components.  For a more thorough discussion of how `.gjs` files define components, see the section on <strong>template tag format</strong>.
+        Until now, we've been using template-only components. That is, our `.gjs` component files have consisted of a single `&lt;template&gt;` tag with our markup inside. Now, we're going to add a class. For a more thorough discussion of how `.gjs` files define components, see the section on <strong>template tag format</strong>.
       </div>
     </div>
     <img src="/images/mascots/zoey.png" role="presentation" alt="">
