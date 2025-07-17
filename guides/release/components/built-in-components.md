@@ -10,7 +10,7 @@ These components are similar in HTML markup to the native `<input>` or `<textare
 
 We mentioned that the built-in components are similar in HTML markup to their native counterparts. What does this mean?
 
-Consider the following example in a template file.
+Consider the following example in a component.
 
 ```gjs
 import { Input } from '@ember/component';
