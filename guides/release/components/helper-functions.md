@@ -306,7 +306,7 @@ discussing state in the next chapter), or requiring access to a [service](../../
     <div class="cta-note-body">
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
-        Unlike nearly everything else in `.gts` files, these helpers do not need to be explicitly imported.
+        Unlike nearly everything else in  template tag (`.gts`) files, these helpers do not need to be explicitly imported.
       </div>
     </div>
     <img src="/images/mascots/zoey.png" role="presentation" alt="">
