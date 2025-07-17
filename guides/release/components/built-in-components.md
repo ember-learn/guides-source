@@ -158,7 +158,7 @@ Recall that there were a few exceptions. The following input attributes must be 
 
 ### Actions
 
-Starting with Ember Octane, we recommend using the `{{on}}` modifier to call an action on specific events such as the [input event](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event).
+We recommend using the `{{on}}` modifier to call an action on specific events such as the [input event](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event).
 
 ```gjs
 import Component from "@glimmer/component";
