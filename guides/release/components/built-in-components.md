@@ -25,7 +25,7 @@ import { Input } from '@ember/component';
 </template>
 ```
 
-When Ember renders this template, you will see the following HTML code:
+When Ember renders this component, you will see the following HTML code:
 
 ```html
 <label for="user-question">Ask a question about Ember:</label>
