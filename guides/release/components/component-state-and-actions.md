@@ -17,7 +17,7 @@ Let's start with a small example, a counter component. When the user presses
 the `+1` button, the count will increase by 1. When the user presses the `-1`
 button, the count will decrease by 1.
 
-First, let's start with the HTML in an empty class-based component.
+First, let's start with the template and an empty class. You will see a lint-error with an unnecessary empty class, but this is a starting point.
 
 ```gjs {data-filename="app/components/counter.gjs"}
 import Component from '@glimmer/component';
