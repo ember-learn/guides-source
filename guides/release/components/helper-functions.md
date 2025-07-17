@@ -197,7 +197,7 @@ Since helper functions are plain JavaScript functions, we can define them anywhe
     <div class="cta-note-body">
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
-        Before `.gjs`, Ember applications defined reusable helper functions in `app/helpers` and made them automatically available to legacy components. You may still put shared functions there, but it is no longer a requirement.
+        Before template tag (`.gjs`), Ember applications defined reusable helper functions in `app/helpers`. Those helpers were made globally available in any template. You may still put shared functions there, but it is no longer a requirement.
       </div>
     </div>
     <img src="/images/mascots/zoey.png" role="presentation" alt="">
