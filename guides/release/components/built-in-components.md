@@ -195,7 +195,7 @@ There are [community-made addons](https://emberobserver.com/?query=keyboard) to 
 ```gjs
 import Component from "@glimmer/component";
 import { Input } from '@ember/component';
-import onKey from 'ember-keyboard/modifiers/on-key.js';
+import onKey from 'ember-keyboard/modifiers/on-key';
 
 export default class Example extends Component {
   doSomething = () => {

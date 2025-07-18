@@ -269,13 +269,8 @@ inputElement.focus();
 This code needs to run after the element is rendered.
 The simplest way to accomplish this is by using a modifier.
 
-Ember apps have a dependency on
-[ember-modifier](https://github.com/ember-modifier/ember-modifier), which
-provides a friendly API for writing your own element modifiers. This library is
-in turn based on a low level API named _modifier managers_. Managers are a
-framework-development level feature, and not something most developers need to
-interact with. You'll see in the following examples that the modifier API is
-imported from the `ember-modifier` package.
+New Ember apps ship with [ember-modifier](https://github.com/ember-modifier/ember-modifier), an official part of the framework that provides a friendly API for writing your own element modifiers.
+In the following examples, the modifier API is imported from the `ember-modifier` package.
 
 ```gjs {app/components/edit-form.gjs}
 import Component from '@glimmer/component';

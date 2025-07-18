@@ -1,4 +1,4 @@
-At its core, Ember's UIs are _HTML_ driven - every part of the UI that is shown to the user is defined in an component template somewhere in your application. Because of this, templates are central to Ember, and one of the most important parts of the framework.
+At its core, Ember's UIs are _HTML_ driven - every part of the UI that is shown to the user is defined in a component template somewhere in your application. Because of this, templates are central to Ember, and one of the most important parts of the framework.
 
 We'll discuss the capabilities and core concepts of templates in the following chapters, but before we do that, we should get started with the basics. The simplest way to get started on an Ember component is with some HTML!
 

@@ -73,9 +73,7 @@ by 1.
 To attach an event handler to an HTML tag, we use the `on` HTML modifier. HTML
 modifiers are an Ember syntax that allow us to attach logic to a tag.
 
-To make those event handlers do something, we will need to define _actions_ in
-the component JavaScript. An action is a JavaScript method that can be used from
-a template.
+To make those event handlers do something, we will need to define those methods in the component class. These are sometime referred to as actions.
 
 ```gjs {data-filename="app/components/counter.gjs" data-diff="+3,+8,+9,+10,+11,+12,+13,+14,-19,+20,-21,+22"}
 import Component from '@glimmer/component';
