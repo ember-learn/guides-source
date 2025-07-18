@@ -298,6 +298,14 @@ class Example extends Component {
 
 If in an environment with compilation, omitting the `/runtime` at the end of the import allows ahead-of-time compilation to occur on components created with `template()` for better runtime performance.
 
+Without specifying `/runtime`, there are additional restrictions required for the argument passed to `template()`:
+- it must be a string literal
+
+With the `/runtime`, the argument passed to `template()` can be an extpression, for example:
+```js
+/* someValue could be f rom anywhere */ 
+export default default template(someValue);
+```
 
 ## Testing
 
