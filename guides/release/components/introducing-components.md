@@ -78,7 +78,7 @@ We'll break apart the larger HTML file into files containing each of these parts
 
 ### The Received Message
 
-First, let's copy Tomster's message into its own component. Components go in the `app/components` directory. Again, we will use a `.gjs` file for this.
+First, let's copy Tomster's message into its own component. Components that are not Route components go in the `app/components` directory. Again, we will use a `.gjs` file for this.
 
 ```gjs {data-filename="app/components/received-message.gjs"}
 <template>
@@ -101,7 +101,7 @@ First, let's copy Tomster's message into its own component. Components go in the
 
 We've just created our first component!
 
-We can include our new component into our application by importing the component at the top of our `application.gjs` file and embedding it in the template.
+We can include our new component into our application by importing the component at the top of our  Application route component (`application.gjs`) and invoking it in the template.
 
 ```gjs {data-filename="app/templates/application.gjs" data-diff="+1,+2,-5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,+19"}
 import ReceivedMessage from '../components/received-message.gjs';
@@ -175,7 +175,7 @@ A _component_ is kind of like your own custom HTML tag. When we imported the com
     <div class="cta-note-body">
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
-        Importing a component like this is sometimes called "strict mode" because everything that is not HTML must be imported into a <code>.gjs</code> file before it can be used.
+        Importing a component like this is sometimes called "strict mode" because nearly everything that is not HTML must be imported into a <code>.gjs</code> file before it can be used.
       </div>
     </div>
     <img src="/images/mascots/zoey.png" role="presentation" alt="">
@@ -184,7 +184,7 @@ A _component_ is kind of like your own custom HTML tag. When we imported the com
 
 ### The Sent Message
 
-Let's do it again. We'll copy the sent message content into a new component, and then include it in our application template.
+Let's do it again. We'll copy the sent message content into a new component, and then include it in our application route component.
 
 ```gjs {data-filename="app/components/sent-message.gjs"}
 <template>

@@ -269,7 +269,7 @@ inputElement.focus();
 This code needs to run after the element is rendered.
 The simplest way to accomplish this is by using a modifier.
 
-New Ember apps ship with a dependency on
+Ember apps have a dependency on
 [ember-modifier](https://github.com/ember-modifier/ember-modifier), which
 provides a friendly API for writing your own element modifiers. This library is
 in turn based on a low level API named _modifier managers_. Managers are a

@@ -67,7 +67,7 @@ For the yielded content, since it's plain HTML, we can extract it as a string.
 
 Then, we can add an `{{each}}` helper to the template by passing
 `this.messages` to it. `{{each}}` will receive each message as its first block
-param, and we can use that item in the template block for the loop.
+param, and we can use that item in the block for the loop.
 
 
 ```gjs {data-filename="app/components/messages.gjs"}

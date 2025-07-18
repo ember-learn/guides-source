@@ -1,10 +1,10 @@
-At its core, Ember's UIs are _HTML_ driven - every part of the UI that is shown to the user is defined in an HTML template somewhere in your application. Because of this, templates are central to Ember, and one of the most important parts of the framework.
+At its core, Ember's UIs are _HTML_ driven - every part of the UI that is shown to the user is defined in an component template somewhere in your application. Because of this, templates are central to Ember, and one of the most important parts of the framework.
 
-We'll discuss the capabilities and core concepts of templates in the following chapters, but before we do that, we should get started with the basics. The simplest way to get started on an Ember template is with some HTML!
+We'll discuss the capabilities and core concepts of templates in the following chapters, but before we do that, we should get started with the basics. The simplest way to get started on an Ember component is with some HTML!
 
-## The Application Template
+## The Application Route Component
 
-The central template in an Ember application is the `app/templates/application.gjs` file. The `.gjs` extension is short for "Glimmer JavaScript" and it allows us to put both the JavaScript and template in the same file. We can copy HTML inside the `<template>` section of this file, and it will work without any changes. For instance, you can copy the following example HTML for a simple messaging app:
+The central component in an Ember application is the application route component found in `app/templates/application.gjs`. The `.gjs` extension is short for "Glimmer JavaScript" and it allows us to put both the JavaScript and template in the same file. We can copy HTML into the `<template>` section of this file, and it will work without any changes. For instance, you can copy the following example HTML for a simple messaging app:
 
 ```gjs {data-filename=app/templates/application.gjs}
 <template>
