@@ -81,31 +81,30 @@ For example, consider the `AudioPlayer` described in the
 
 There, we defined component which accepted a `srcUrl` argument and used a `play-when` modifier to manage the behavior of the element:
 
-```typescript {data-filename="app/components/audio-player.ts"}
+```gts {data-filename="app/components/audio-player.gts"}
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { action } from '@ember/object';
+import playWhen from '../modifiers/play-when.ts';
+import { on } from '@ember/modifier';
 
 export default class AudioPlayer extends Component {
   @tracked isPlaying = false;
 
-  @action
-  play() {
+  play = () => {
     this.isPlaying = true;
-  }
+  };
 
-  @action
-  pause() {
+  pause = () => {
     this.isPlaying = false;
-  }
+  };
+
+  <template>
+    <audio src={{@srcURL}} {{playWhen this.isPlaying}} />
+
+    <button type='button' {{on 'click' this.play}}>Play</button>
+    <button type='button' {{on 'click' this.pause}}>Pause</button>
+  </template>
 }
-```
-
-```handlebars {data-filename="app/components/audio-player.hbs"}
-<audio src={{@srcURL}} {{play-when this.isPlaying}} />
-
-<button type='button' {{on 'click' this.play}}>Play</button>
-<button type='button' {{on 'click' this.pause}}>Pause</button>
 ```
 
 What elements do we need to build a signature for this component?
@@ -116,10 +115,11 @@ What elements do we need to build a signature for this component?
 
 We can define a signature with those `Args` on it and apply it to the component definition by adding it as a type parameter to the `extends Component` clause:
 
-```typescript {data-filename="app/components/audio-player.ts" data-diff="+5,+6,+7,+8,+9,+10,+11,-12,+13"}
-import Component from "@glimmer/component";
-import { tracked } from "@glimmer/tracking";
-import { action } from "@ember/object";
+```gts {data-filename="app/components/audio-player.gts" }
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
+import playWhen from '../modifiers/play-when.ts';
+import { on } from '@ember/modifier';
 
 interface AudioPlayerSignature {
   Args: {
@@ -128,28 +128,32 @@ interface AudioPlayerSignature {
   };
 }
 
-export default class AudioPlayer extends Component {
 export default class AudioPlayer extends Component<AudioPlayerSignature> {
   @tracked isPlaying = false;
 
-  @action
-  play() {
+  play = () => {
     this.isPlaying = true;
-  }
+  };
 
-  @action
-  pause() {
+  pause = () => {
     this.isPlaying = false;
-  }
-}
+  };
+
+  <template>
+    <audio src={{@srcURL}} {{playWhen this.isPlaying}} />
+
+    <button type='button' {{on 'click' this.play}}>Play</button>
+    <button type='button' {{on 'click' this.pause}}>Pause</button>
+  </template>
 ```
 
 Now, let's expand on this example to give callers the ability to apply attributes to the audio element with an `Element`:
 
-```typescript {data-filename="app/components/audio-player.ts" data-diff="+10"}
+```gts {data-filename="app/components/audio-player.gts" }
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { action } from '@ember/object';
+import playWhen from '../modifiers/play-when.ts';
+import { on } from '@ember/modifier';
 
 interface AudioPlayerSignature {
   Args: {
@@ -157,37 +161,35 @@ interface AudioPlayerSignature {
     srcUrl: string;
   };
   Element: HTMLAudioElement;
+
 }
 
 export default class AudioPlayer extends Component<AudioPlayerSignature> {
   @tracked isPlaying = false;
 
-  @action
-  play() {
+  play = () => {
     this.isPlaying = true;
-  }
+  };
 
-  @action
-  pause() {
+  pause = () => {
     this.isPlaying = false;
-  }
-}
-```
+  };
 
-```handlebars {data-filename="app/components/audio-player.hbs" data-diff="-1,+2"}
-<audio src={{@srcURL}} {{play-when this.isPlaying}} />
-<audio ...attributes src={{@srcURL}} {{play-when this.isPlaying}} />
+  <template>
+    <audio ...attributes src={{@srcURL}} {{playWhen this.isPlaying}} />
 
-<button type='button' {{on 'click' this.play}}>Play</button>
-<button type='button' {{on 'click' this.pause}}>Pause</button>
+    <button type='button' {{on 'click' this.play}}>Play</button>
+    <button type='button' {{on 'click' this.pause}}>Pause</button>
+  </template>
 ```
 
 We can also let the user provide a fallback for the case where the audio element does not load, using the default block. We have to name the default block explicitly in the new `Blocks` type we add to our signature. Since blocks yield out a list of items, we can use a [tuple type][tuple] to represent them. In this case, we will just yield out the same URL we loaded, to let the caller use it for the fallback.
 
-```typescript {data-filename="app/components/audio-player.ts" data-diff="+10,+11,+12"}
+```gts {data-filename="app/components/audio-player.gts" }
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { action } from '@ember/object';
+import playWhen from '../modifiers/play-when.ts';
+import { on } from '@ember/modifier';
 
 interface AudioPlayerSignature {
   Args: {
@@ -203,52 +205,34 @@ interface AudioPlayerSignature {
 export default class AudioPlayer extends Component<AudioPlayerSignature> {
   @tracked isPlaying = false;
 
-  @action
-  play() {
+  play = () => {
     this.isPlaying = true;
-  }
+  };
 
-  @action
-  pause() {
+  pause = () => {
     this.isPlaying = false;
-  }
-}
+  };
+
+  <template>
+    <audio ...attributes src={{@srcURL}} {{playWhen this.isPlaying}}>
+      {{yield @srcUrl}}
+    </audio>
+
+    <button type='button' {{on 'click' this.play}}>Play</button>
+    <button type='button' {{on 'click' this.pause}}>Pause</button>
+  </template>
 ```
 
-```handlebars {data-filename="app/components/audio-player.hbs" data-diff="-1,+2,+3,+4"}
-<audio ...attributes src={{@srcURL}} {{play-when this.isPlaying}} />
-<audio ...attributes src={{@srcURL}} {{play-when this.isPlaying}}>
-  {{yield @srcUrl}}
-</audio>
-
-<button type='button' {{on 'click' this.play}}>Play</button>
-<button type='button' {{on 'click' this.pause}}>Pause</button>
-```
 
 Let's go one step further and switch to supporting for two [named blocks][named-blocks]: an optional `title` block for a caption for the audio element, and a `fallback` block for the audio fallback where we previously used a `default` block.
 
-```handlebars {data-filename="app/components/audio-player.hbs" data-diff="+1,+2,+3,+4,+5,-7,+8"}
-<figure>
-  {{#if (has-block 'title')}}
-    <figcaption>{{yield to='title'}}</figcaption>
-  {{/if}}
-
-  <audio ...attributes src={{@srcUrl}} {{play-when this.isPlaying}}>
-    {{yield @srcUrl}}
-    {{yield @srcUrl to='fallback'}}
-  </audio>
-</figure>
-
-<button type='button' {{on 'click' this.play}}>Play</button>
-<button type='button' {{on 'click' this.pause}}>Pause</button>
-```
-
 To represent this, we will update the `default` block to be named `fallback` instead and add the `title` block. We do not yield anything to the `title` block, so we use an empty tuple, `[]`, to represent it.
 
-```typescript {data-filename="app/components/audio-player.ts" data-diff="-11,+12,+13"}
+```gts {data-filename="app/components/audio-player.gts" }
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { action } from '@ember/object';
+import playWhen from '../modifiers/play-when.ts';
+import { on } from '@ember/modifier';
 
 interface AudioPlayerSignature {
   Args: {
@@ -256,7 +240,6 @@ interface AudioPlayerSignature {
     srcUrl: string;
   };
   Blocks: {
-    default: [srcUrl: string];
     fallback: [srcUrl: string];
     title: [];
   };
@@ -266,26 +249,38 @@ interface AudioPlayerSignature {
 export default class AudioPlayer extends Component<AudioPlayerSignature> {
   @tracked isPlaying = false;
 
-  @action
-  play() {
+  play = () => {
     this.isPlaying = true;
-  }
+  };
 
-  @action
-  pause() {
+  pause = () => {
     this.isPlaying = false;
-  }
-}
+  };
+
+  <template>
+    <figure>
+      {{#if (has-block 'title')}}
+        <figcaption>{{yield to='title'}}</figcaption>
+      {{/if}}
+      <audio ...attributes src={{@srcURL}} {{playWhen this.isPlaying}}>
+        {{yield @srcUrl to='fallback'}}
+      </audio>
+    </figure>
+
+    <button type='button' {{on 'click' this.play}}>Play</button>
+    <button type='button' {{on 'click' this.pause}}>Pause</button>
+  </template>
 ```
 
 ### Types in JavaScript with JSDoc
 
 When working in JavaScript, we can provide the exact same information using JSDoc comments. Here is how our final component definition would look if it were written in JavaScript rather than TypeScript, and using comments for this documentation information:
 
-```js {data-filename="app/components/audio-player.js"}
+```gjs {data-filename="app/components/audio-player.gjs"}
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { action } from '@ember/object';
+import playWhen from '../modifiers/play-when.ts';
+import { on } from '@ember/modifier';
 
 /**
  * @typedef AudioPlayerSignature
@@ -308,19 +303,30 @@ import { action } from '@ember/object';
 /**
  * @extends Component<AudioPlayerSignature>
  */
-export default class AudioPlayer extends Component {
+ export default class AudioPlayer extends Component {
   @tracked isPlaying = false;
 
-  @action
-  play() {
+  play = () => {
     this.isPlaying = true;
-  }
+  };
 
-  @action
-  pause() {
+  pause = () => {
     this.isPlaying = false;
-  }
-}
+  };
+
+  <template>
+    <figure>
+      {{#if (has-block 'title')}}
+        <figcaption>{{yield to='title'}}</figcaption>
+      {{/if}}
+      <audio ...attributes src={{@srcURL}} {{playWhen this.isPlaying}}>
+        {{yield @srcUrl to='fallback'}}
+      </audio>
+    </figure>
+
+    <button type='button' {{on 'click' this.play}}>Play</button>
+    <button type='button' {{on 'click' this.pause}}>Pause</button>
+  </template>
 ```
 
 ## Classic Ember Components
@@ -648,7 +654,7 @@ Yielding back out the same type passed in will use generics, and providing an ap
 
 Here is how that might look, using a class-backed component rather than a template-only component, since the only places TypeScript allows us to name new generic types are on functions and classes:
 
-```typescript
+```gts
 import Component from '@glimmer/component';
 
 interface OrderedList<T> {
