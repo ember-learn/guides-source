@@ -314,13 +314,12 @@ discussing state in the next chapter), or requiring access to a [service](../../
 </div>
 
 Below you will find some useful template helpers documented.
-For the full list of available helpers, you can check the [template helpers API documentation](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/).
+For the full list of available helpers, you can check the [template helpers API](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/) and [@ember/helpers](https://api.emberjs.com/ember/release/classes/@ember%2Fhelper) documentation.
 
 ### The `get` helper
 
-The [`{{get}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/get?anchor=get)
+The [`{{get}}`](https://api.emberjs.com/ember/release/classes/@ember%2Fhelper/methods/get?anchor=get)
 helper makes it easy to dynamically look up a property on an object or an element in an array. The second argument to `{{get}}` can be a string or a number, depending on the object being accessed.
-
 
 To access a property on an object with a string key:
 
@@ -362,12 +361,11 @@ let part = 'zip';
 If the `part` is "zip", this will display the result of `address.zip`.
 If it's "city", you get `address.city`.
 
-
 ### The `concat` helper
 
 We mentioned above that helpers can be nested. This can be
 combined with different dynamic helpers. For example, the
-[`{{concat}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/concat?anchor=concat)
+[`{{concat}}`](https://api.emberjs.com/ember/release/classes/@ember%2Fhelper/methods/concat?anchor=concat)
 helper makes it easy to dynamically send a number of parameters to a component
 or helper as a single parameter in the format of a concatenated string.
 
@@ -443,7 +441,7 @@ capitalized given name and family name as `givenName` and `familyName` instead o
 
 ### The `array` helper
 
-Using the [`{{array}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/array?anchor=array) helper,
+Using the [`{{array}}`](https://api.emberjs.com/ember/release/classes/@ember%2Fhelper/methods/concat?anchor=array) helper,
 you can pass arrays directly from the template as an argument to your components.
 
 ```gjs
@@ -477,7 +475,7 @@ In the component's template, you can then use the `people` argument as an array:
 
 ### The `hash` helper
 
-Using the [`{{hash}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/hash?anchor=hash)
+Using the [`{{hash}}`](https://api.emberjs.com/ember/release/classes/@ember%2Fhelper/methods/hash?anchor=hash)
 helper, you can pass objects directly from the template as an argument to your
 components.
 
@@ -496,6 +494,7 @@ import Greeting from './greeting.gjs';
 ```
 
 In the component's template, you can then use the `person` object:
+
 ```gjs {data-filename="app/components/greeting.gjs"}
 <template>
   Hello, {{@person.givenName}} {{@person.familyName}}
@@ -504,7 +503,7 @@ In the component's template, you can then use the `person` object:
 
 ### The `in-element` helper
 
-Using the [`{{in-element}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/in-element?anchor=in-element) helper, you can render content into a DOM element that is in a _different_ part of the page. 
+Using the [`{{in-element}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/in-element?anchor=in-element) helper, you can render content into a DOM element that is in a _different_ part of the page.
 
 Suppose we want to change the footer text of the page when a component is shown. In this example, the footer has static markup like this:
 
@@ -529,6 +528,7 @@ const destinationElement = document.querySelector('footer');
 This completely replaces the contents of the `<footer>` with whatever is in the body of the `in-element` block.
 
 Things to note:
+
 - The destination element needs to exist in the DOM before we use the helper. Otherwise, an error will be thrown if you are in development mode. The error is not thrown in production.
 - When the destination element changes, the content defined in `in-element` will re-render completely.
 - By default, the `in-element` helper replaces the destination element's existing content with the helper's block content. If you want to instead append the block content, you can pass `insertBefore=null`.
