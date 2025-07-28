@@ -54,34 +54,11 @@ For examples, see:
 - EmberData [`@belongsTo`][model-belongsto]
 - EmberData [`@hasMany`][model-hasmany]
 
-## Templates
-
-Templates are currently totally non-type-checked. This means that you lose any safety when moving into a template context, even if using a Glimmer `Component` in Ember Octane. (Looking for type-checking in templates? Try [Glint][]!)
-
-For example, TypeScript won't detect a mismatch between this action and the corresponding call in the template:
-
-```typescript {data-filename="app/components/my-game.ts"}
-import Component from '@ember/component';
-import { action } from '@ember/object';
-
-export default class MyGame extends Component {
-  @action turnWheel(degrees: number) {
-    // ...
-  }
-}
-```
-
-```handlebars {data-filename="app/components/my-game.hbs"}
-<button {{on 'click' (fn this.turnWheel 'potato')}}>
-  Click Me
-</button>
-```
-
 ## Hook Types and Autocomplete
 
 Let's imagine a component which just logs the names of its arguments when it is first constructed. First, we must define the [Signature][] and pass it into our component, then we can use the `Args` member in our Signature to set the type of `args` in the constructor:
 
-```typescript {data-filename="app/components/args-display.ts"}
+```gts {data-filename="app/components/args-display.gts"}
 import Component from '@glimmer/component';
 
 const log = console.log.bind(console);
@@ -99,6 +76,9 @@ export default class ArgsDisplay extends Component<ArgsDisplaySignature> {
     super(owner, args);
     Object.keys(args).forEach(log);
   }
+
+  <template>
+  </template>
 }
 ```
 
