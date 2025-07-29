@@ -115,7 +115,7 @@ What elements do we need to build a signature for this component?
 
 We can define a signature with those `Args` on it and apply it to the component definition by adding it as a type parameter to the `extends Component` clause:
 
-```gts {data-filename="app/components/audio-player.gts" }
+```gts { data-filename="app/components/audio-player.gts" data-diff="+6,+7,+8,+9,+10,+11,-13,+14" }
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import playWhen from '../modifiers/play-when.ts';
@@ -128,6 +128,7 @@ interface AudioPlayerSignature {
   };
 }
 
+export default class AudioPlayer extends Component {
 export default class AudioPlayer extends Component<AudioPlayerSignature> {
   @tracked isPlaying = false;
 
@@ -145,11 +146,12 @@ export default class AudioPlayer extends Component<AudioPlayerSignature> {
     <button type='button' {{on 'click' this.play}}>Play</button>
     <button type='button' {{on 'click' this.pause}}>Pause</button>
   </template>
+}
 ```
 
 Now, let's expand on this example to give callers the ability to apply attributes to the audio element with an `Element`:
 
-```gts {data-filename="app/components/audio-player.gts" }
+```gts { data-filename="app/components/audio-player.gts" data-diff="+11,-26,+27" }
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import playWhen from '../modifiers/play-when.ts';
@@ -161,7 +163,6 @@ interface AudioPlayerSignature {
     srcUrl: string;
   };
   Element: HTMLAudioElement;
-
 }
 
 export default class AudioPlayer extends Component<AudioPlayerSignature> {
@@ -176,16 +177,18 @@ export default class AudioPlayer extends Component<AudioPlayerSignature> {
   };
 
   <template>
+    <audio src={{@srcURL}} {{playWhen this.isPlaying}} />
     <audio ...attributes src={{@srcURL}} {{playWhen this.isPlaying}} />
 
     <button type='button' {{on 'click' this.play}}>Play</button>
     <button type='button' {{on 'click' this.pause}}>Pause</button>
   </template>
+}
 ```
 
 We can also let the user provide a fallback for the case where the audio element does not load, using the default block. We have to name the default block explicitly in the new `Blocks` type we add to our signature. Since blocks yield out a list of items, we can use a [tuple type][tuple] to represent them. In this case, we will just yield out the same URL we loaded, to let the caller use it for the fallback.
 
-```gts {data-filename="app/components/audio-player.gts" }
+```gts { data-filename="app/components/audio-player.gts" data-diff="+11,+12,+13,-29,+30,+31,+32" }
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import playWhen from '../modifiers/play-when.ts';
@@ -214,6 +217,7 @@ export default class AudioPlayer extends Component<AudioPlayerSignature> {
   };
 
   <template>
+    <audio ...attributes src={{@srcURL}} {{playWhen this.isPlaying}} />
     <audio ...attributes src={{@srcURL}} {{playWhen this.isPlaying}}>
       {{yield @srcUrl}}
     </audio>
@@ -221,6 +225,8 @@ export default class AudioPlayer extends Component<AudioPlayerSignature> {
     <button type='button' {{on 'click' this.play}}>Play</button>
     <button type='button' {{on 'click' this.pause}}>Pause</button>
   </template>
+}
+
 ```
 
 
@@ -228,7 +234,7 @@ Let's go one step further and switch to supporting for two [named blocks][named-
 
 To represent this, we will update the `default` block to be named `fallback` instead and add the `title` block. We do not yield anything to the `title` block, so we use an empty tuple, `[]`, to represent it.
 
-```gts {data-filename="app/components/audio-player.gts" }
+```gts {data-filename="app/components/audio-player.gts" data-diff="-12,+13,+14,-31,-32,-33,+34,+35,+36,+37,+38,+39,+40,+41" }
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import playWhen from '../modifiers/play-when.ts';
@@ -240,6 +246,7 @@ interface AudioPlayerSignature {
     srcUrl: string;
   };
   Blocks: {
+    default: [srcUrl: string];
     fallback: [srcUrl: string];
     title: [];
   };
@@ -258,6 +265,9 @@ export default class AudioPlayer extends Component<AudioPlayerSignature> {
   };
 
   <template>
+    <audio ...attributes src={{@srcURL}} {{playWhen this.isPlaying}}>
+      {{yield @srcUrl}}
+    </audio>
     <figure>
       {{#if (has-block 'title')}}
         <figcaption>{{yield to='title'}}</figcaption>
@@ -270,6 +280,7 @@ export default class AudioPlayer extends Component<AudioPlayerSignature> {
     <button type='button' {{on 'click' this.play}}>Play</button>
     <button type='button' {{on 'click' this.pause}}>Pause</button>
   </template>
+}
 ```
 
 ### Types in JavaScript with JSDoc
@@ -327,6 +338,7 @@ import { on } from '@ember/modifier';
     <button type='button' {{on 'click' this.play}}>Play</button>
     <button type='button' {{on 'click' this.pause}}>Pause</button>
   </template>
+}
 ```
 
 ## Classic Ember Components
