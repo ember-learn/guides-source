@@ -297,8 +297,6 @@ import Component from '@glimmer/component';
 import { on } from '@ember/modifier';
 import { fn } from '@ember/helper';
 
-// TODO: Q: Is this the right way to do stateful route components???
-//       Do we still need to use the RouteTemplate wrapper from 'ember-route-template'?
 export default class ApplicationRouteComponent extends Component {
   updateName = (title, name) => {
     this.args.model.title = title;
