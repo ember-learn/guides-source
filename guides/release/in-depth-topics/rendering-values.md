@@ -4,88 +4,122 @@ In Ember, rendering occurs via syntax, rather than by value -- so _anything_ can
 
 For Modifiers, there is a specific syntax that only modifiers may reside in
 
-```handlebars
-<div {{someModifier}}>
+```gjs
+<template>
+  <div {{someModifier}}>
+</template>
 ```
 or via property on some object
 
-```handlebars
-<div {{this.property.someModifier}}>
+```gjs
+<template>
+  <div {{this.property.someModifier}}>
+</template>
 ```
 or via an argument passed to a component
 
-```handlebars
-<div {{@someModifier}}>
+```gjs
+<template>
+  <div {{@someModifier}}>
+</template>
 ```
 
 Modifiers can be curried with the `modifier` helper:
 
-```handlebars
-{{! In a component called "Example" }}
-{{yield (modifier someModifier "arguments" "here")}}
+```gjs
+// TODO: is this the correct import for modifier helper?
+import { modifier } from '@ember/modifier';
+// ...
+<template>
+  {{! In a component called "Example" }}
+  {{yield (modifier someModifier "arguments" "here")}}
 
-{{! Usage: }}
-<Example as |theModifier|>
-  <div {{theModifier}}>
-</Example>
+  {{! Usage: }}
+  <Example as |theModifier|>
+    <div {{theModifier}}>
+  </Example>
+</template>
 ```
 
 
 ## Helpers
 
 For Helpers, there is a specific syntax that only helpers may reside in
-```handlebars
-{{ (theHelper) }}
+```gjs
+<template>
+  {{ (theHelper) }}
+</template>
 ```
 or nested in a sub-expression
-```handlebars
-{{yield (hash key=(theHelper) key2=(theHelper with args)) }}
+```gjs
+import { hash } from '@ember/helper';
+// ...
+<template>
+  {{yield (hash key=(theHelper) key2=(theHelper with args)) }}
+</template>
 ```
 or via property on some object
-```handlebars
-{{ (this.property.theHelper) }}
+```gjs
+<template>
+  {{ (this.property.theHelper) }}
+</template>
 ```
 or via an argument passed to a component
-```handlebars
-{{ (@theHelper) }}
+```gjs
+<template>
+  {{ (@theHelper) }}
+</template>
 ```
 
 Helpers can be curried with the `helper` helper:
-```handlebars
-{{! In a component called "Example" }}
-{{yield (helper someHelper "arguments" "here")}}
+```gjs
+// TODO: import for helper helper
+// ...
+<template>
+  {{! In a component called "Example" }}
+  {{yield (helper someHelper "arguments" "here")}}
 
-{{! Usage: }}
-<Example as |theHelper|>
-  {{ (theHelper) }}
-</Example>
+  {{! Usage: }}
+  <Example as |theHelper|>
+    {{ (theHelper) }}
+  </Example>
+</template>
 ```
 
 ## Components
 
 For Components, there is a specific syntax that only components may reside in
-```handlebars
-<AComponent />
+```gjs
+<template>
+  <AComponent />
+</template>
 ```
 or via a property on some object
-```handlebars
-<this.someComponent />
+```gjs
+<template>
+  <this.someComponent />
+</template>
 ```
 or via an argument passed to a component
-```handlebars
-<@someComponent />
+```gjs
+<template>
+  <@someComponent />
+</template>
 ```
 
 Components can be curried with the `component` helper:
-```handlebars
-{{!
+```gjs
+// TODO: import for component helper
+<template>
+  {{!
   In a component called "Example".
   Note that components may only receive named arguments
-}}
-{{yield (component someComponent foo="arguments" bar="here")}}
+  }}
+  {{yield (component someComponent foo="arguments" bar="here")}}
 
-{{! Usage: }}
-<Example as |theComponent|>
-  <theComponent />
-</Example>
+  {{! Usage: }}
+  <Example as |theComponent|>
+    <theComponent />
+  </Example>
+</template>
 ```
