@@ -24,16 +24,17 @@ or via an argument passed to a component
 </template>
 ```
 
-Modifiers can be curried with the `modifier` helper:
+Modifiers can be curried with the `modifier` helper keyword:
 
 ```gjs
-// TODO: is this the correct import for modifier helper?
-import { modifier } from '@ember/modifier';
-// ...
 <template>
   {{! In a component called "Example" }}
   {{yield (modifier someModifier "arguments" "here")}}
+</template>
+```
 
+```gjs
+<template>
   {{! Usage: }}
   <Example as |theModifier|>
     <div {{theModifier}}>
@@ -52,8 +53,6 @@ For Helpers, there is a specific syntax that only helpers may reside in
 ```
 or nested in a sub-expression
 ```gjs
-import { hash } from '@ember/helper';
-// ...
 <template>
   {{yield (hash key=(theHelper) key2=(theHelper with args)) }}
 </template>
@@ -71,14 +70,16 @@ or via an argument passed to a component
 </template>
 ```
 
-Helpers can be curried with the `helper` helper:
+Helpers can be curried with the `helper` helper keyword:
 ```gjs
-// TODO: import for helper helper
-// ...
 <template>
   {{! In a component called "Example" }}
   {{yield (helper someHelper "arguments" "here")}}
+</template>
+```
 
+```gjs
+<template>
   {{! Usage: }}
   <Example as |theHelper|>
     {{ (theHelper) }}
@@ -107,19 +108,23 @@ or via an argument passed to a component
 </template>
 ```
 
-Components can be curried with the `component` helper:
+Components can be curried with the `component` helper keyword:
 ```gjs
-// TODO: import for component helper
 <template>
   {{!
   In a component called "Example".
   Note that components may only receive named arguments
   }}
   {{yield (component someComponent foo="arguments" bar="here")}}
+</template>
+```
 
+```gjs
+<template>
   {{! Usage: }}
   <Example as |theComponent|>
     <theComponent />
   </Example>
 </template>
 ```
+<!-- eof - needed for pages that end in a code block  -->
