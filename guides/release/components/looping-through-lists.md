@@ -191,8 +191,8 @@ as a string.
         Be sure to sanitize the HTML before you render it.
         </p>
         <p>
-        We can use the <a href="https://api.emberjs.com/ember/release/functions/@ember%2Ftemplate/htmlSafe">htmlSafe</a>
-        function to mark a sanitized HTML as safe, then use double curly brackets to render the HTML.
+        We can use the <a href="https://api.emberjs.com/ember/release/functions/@ember%2Ftemplate/trustHTML">trustHTML</a>
+        function to mark a sanitized HTML as trusted, then use triple curly brackets to render the HTML.
         We can also create a <a href="../helper-functions">helper</a> that sanitizes the HTML, marks it as safe,
         and returns the output.
         </p>
