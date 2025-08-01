@@ -87,7 +87,7 @@ export default class Example extends Component {
 
 3. You can use the `aria-label` attribute to label the input with a string that is visually hidden but still available to assistive technology. 
 
-  ```gjs
+```gjs
 import Component from "@glimmer/component";
 import { Input } from '@ember/component';
 import { tracked } from '@glimmer/tracking';
