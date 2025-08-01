@@ -5,8 +5,8 @@ Ember's template syntax limits what you can express to keep the structure of you
 Let's take a look at a generic message component from a messaging app.
 
 ```gjs {data-filename="app/components/message.gjs"}
-import MessageAvatar from './message/avatar.gjs';
-import MessageUsername from './message/username.gjs';
+import MessageAvatar from 'my-app/components/message/avatar';
+import MessageUsername from 'my-app/components/message/username';
 
 <template>
   <MessageAvatar
@@ -27,7 +27,7 @@ import MessageUsername from './message/username.gjs';
 ```
 
 ```gjs
-import Message from './message.gjs';
+import Message from 'my-app/components/message';
 
 <template>
   <Message
@@ -52,8 +52,8 @@ Let's update the component to do that. It'll take a `@username` argument and cal
 Since the title is just the `@username` plus some extra stuff, we can replace `@avatarTitle` by _interpolating_ the `@username` argument in a string literal passed to `<Message::Avatar>`.
 
 ```gjs {data-filename="app/components/message.gjs" data-diff="-6,+7"}
-import MessageAvatar from './message/avatar.gjs';
-import MessageUsername from './message/username.gjs';
+import MessageAvatar from 'my-app/components/message/avatar';
+import MessageUsername from 'my-app/components/message/username';
 
 <template>
   <MessageAvatar
@@ -85,8 +85,8 @@ It's possible to use plain functions for helpers and modifiers. A plain helper f
 We can then use this helper in the component's template to get the first letter of the username.
 
 ```gjs {data-filename="app/components/message.gjs" data-diff="+4,+5,+6,+7,-12,+13"}
-import MessageAvatar from './message/avatar.gjs';
-import MessageUsername from './message/username.gjs';
+import MessageAvatar from 'my-app/components/message/avatar';
+import MessageUsername from 'my-app/components/message/username';
 
 // Regular JavaScript function to exctract a substring
 function substring(string, start, end) {
@@ -121,8 +121,8 @@ Using named arguments, we could make our template a lot clearer.
 Helpers take _named arguments_ as a JavaScript object. All named arguments are grouped into an "options object" as the last parameter.
 
 ```gjs {data-filename="app/components/message.gjs" data-diff="-5,-6,+7,+8,-14,+15"}
-import MessageAvatar from './message/avatar.gjs';
-import MessageUsername from './message/username.gjs';
+import MessageAvatar from 'my-app/components/message/avatar';
+import MessageUsername from 'my-app/components/message/username';
 
 // Regular JavaScript function to exctract a substring
 function substring(string, start, end) {
@@ -215,8 +215,8 @@ export default function substring(string, start, end) {
 We can then import this helper and use it in the component's template to get the first letter of the username.
 
 ```gjs {data-filename="app/components/message.gjs" data-diff="+3,-8,+9"}
-import MessageAvatar from './message/avatar.gjs';
-import MessageUsername from './message/username.gjs';
+import MessageAvatar from 'my-app/components/message/avatar';
+import MessageUsername from 'my-app/components/message/username';
 import substring from '../helpers/substring.js';
 
 <template>
@@ -446,7 +446,7 @@ you can pass arrays directly from the template as an argument to your components
 
 ```gjs
 import { array } from '@ember/helper';
-import MyComponent from './my-component.gjs';
+import MyComponent from 'my-app/components/my-component';
 
 const myOtherPerson = 'George Washington';
 
@@ -481,7 +481,7 @@ components.
 
 ```gjs
 import { hash } from '@ember/helper';
-import Greeting from './greeting.gjs';
+import Greeting from 'my-app/components/greeting';
 
 <template>
   <Greeting

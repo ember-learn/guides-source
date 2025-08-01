@@ -8,8 +8,8 @@ For instance, in a messaging app, we could have a `<Message>` component that we
 repeat for each message that the users have sent to each other.
 
 ```gjs {data-filename="app/components/messages.gjs"}
-import Message from './message.gjs';
-import NewMessageInput from './new-message-input.gjs';
+import Message from 'my-app/components/message';
+import NewMessageInput from 'my-app/components/new-message-input';
 
 <template>
   <div class="messages">
@@ -73,8 +73,8 @@ param, and we can use that item in the block for the loop.
 ```gjs {data-filename="app/components/messages.gjs"}
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import Message from './message.gjs';
-import NewMessageInput from './new-message-input.gjs';
+import Message from 'my-app/components/message';
+import NewMessageInput from 'my-app/components/new-message-input';
 
 export default class MessagesComponent extends Component {
   @tracked messages = [
@@ -223,8 +223,8 @@ gives us, and push it into the messages array.
 ```gjs {data-filename="app/components/messages.gjs" data-diff="+53,+54,+55,+56,+57,+58,+59,-74,+75"}
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import Message from './message.gjs';
-import NewMessageInput from './new-message-input.gjs';
+import Message from 'my-app/components/message';
+import NewMessageInput from 'my-app/components/new-message-input';
 
 export default class MessagesComponent extends Component {
   @tracked messages = [

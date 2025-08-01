@@ -104,7 +104,7 @@ We've just created our first component!
 We can include our new component into our application by importing the component at the top of our  Application route component (`application.gjs`) and invoking it in the template.
 
 ```gjs {data-filename="app/templates/application.gjs" data-diff="+1,+2,-5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,+19"}
-import ReceivedMessage from '../components/received-message.gjs';
+import ReceivedMessage from 'my-app/components/received-message';
 
 <template>
   <div class="messages">
@@ -175,7 +175,12 @@ A _component_ is kind of like your own custom HTML tag. When we imported the com
     <div class="cta-note-body">
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
+      <p>
         Importing a component like this is sometimes called "strict mode" because nearly everything that is not HTML must be imported into a <code>.gjs</code> file before it can be used.
+        </p>
+        <p>
+        It's also important to know that <code>my-app</code> in your import path is the same as the <code>"name"</code> field in your package.json file.
+        </p>
       </div>
     </div>
     <img src="/images/mascots/zoey.png" role="presentation" alt="">
@@ -224,8 +229,8 @@ Let's do it again. We'll copy the sent message content into a new component, and
 ```
 
 ```gjs {data-filename="app/templates/application.gjs" data-diff="+2,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,-33,-34,-35,-36,-37,-38,-39,+40"}
-import ReceivedMessage from '../components/received-message.gjs';
-import SentMessage from '../components/sent-message.gjs';
+import ReceivedMessage from 'my-app/components/received-message';
+import SentMessage from 'my-app/components/sent-message';
 
 <template>
   <div class="messages">
@@ -295,9 +300,9 @@ We have one last component to extract. Let's pull out the new message input.
 And include it in our `application.gjs` file.
 
 ```gjs {data-filename="app/templates/application.gjs" data-diff="+3,-11,-12,-13,-14,-15,-16,-17,+18"}
-import ReceivedMessage from '../components/received-message.gjs';
-import SentMessage from '../components/sent-message.gjs';
-import NewMessageInput from '../components/new-message-input.gjs';
+import ReceivedMessage from 'my-app/components/received-message';
+import SentMessage from 'my-app/components/sent-message';
+import NewMessageInput from 'my-app/components/new-message-input';
 
 <template>
   <div class="messages">
@@ -330,7 +335,7 @@ We can use components _within_ other components, so we can continue to break dow
 ```
 
 ```gjs {data-filename="app/components/received-message.gjs" data-diff="+1,+2,-4,-5,-6,+7"}
-import ReceivedMessageAvatar from './received-message-avatar.gjs';
+import ReceivedMessageAvatar from 'my-app/components/received-message-avatar';
 
 <template>
   <aside>
@@ -363,8 +368,8 @@ We could also extract the username from the message:
 ```
 
 ```gjs {data-filename="app/components/received-message.gjs" data-diff="+2,-7,-8,-9,-10,+11"}
-import ReceivedMessageAvatar from './received-message-avatar.gjs';
-import ReceivedMessageUsername from './received-message-username.gjs';
+import ReceivedMessageAvatar from 'my-app/components/received-message-avatar';
+import ReceivedMessageUsername from 'my-app/components/received-message-username';
 
 <template>
   <ReceivedMessageAvatar />
@@ -400,8 +405,8 @@ We can do the same for the `<SentMessage>` component:
 ```
 
 ```gjs {data-filename="app/components/sent-message.gjs"}
-import SentMessageAvatar from './sent-message-avatar.gjs';
-import SentMessageUsername from './sent-message-username.gjs';
+import SentMessageAvatar from 'my-app/components/sent-message-avatar';
+import SentMessageUsername from 'my-app/components/sent-message-username';
 
 <template>
   <SentMessageAvatar />
@@ -462,10 +467,10 @@ app/
 Then, only the import path needs to be changed to the new location.
 
 ```gjs {data-filename="app/components/received-message.gjs" data-diff="-1,+2,-3,+4"}
-import ReceivedMessageAvatar from './received-message-avatar.gjs';
-import ReceivedMessageAvatar from './received-message/avatar.gjs';
-import ReceivedMessageUsername from './received-message-username.gjs';
-import ReceivedMessageUsername from './received-message/username.gjs';
+import ReceivedMessageAvatar from 'my-app/components/received-message-avatar';
+import ReceivedMessageAvatar from 'my-app/components/received-message/avatar';
+import ReceivedMessageUsername from 'my-app/components/received-message-username';
+import ReceivedMessageUsername from 'my-app/components/received-message/username';
 
 <template>
   <ReceivedMessageAvatar />
@@ -485,10 +490,10 @@ import ReceivedMessageUsername from './received-message/username.gjs';
 ```
 
 ```gjs {data-filename="app/components/sent-message.gjs" data-diff="-1,+2,-3,+4"}
-import SentMessageAvatar from './sent-message-avatar.gjs';
-import SentMessageAvatar from './sent-message/avatar.gjs';
-import SentMessageUsername from './sent-message-username.gjs';
-import SentMessageUsername from './sent-message/username.gjs';
+import SentMessageAvatar from 'my-app/components/sent-message-avatar';
+import SentMessageAvatar from 'my-app/components/sent-message/avatar';
+import SentMessageUsername from 'my-app/components/sent-message-username';
+import SentMessageUsername from 'my-app/components/sent-message/username';
 
 <template>
   <SentMessageAvatar />

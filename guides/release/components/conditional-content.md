@@ -99,7 +99,7 @@ We can do this with an `if`.
 Now we can use this component like so:
 
 ```gjs
-import Username from './components/username.gjs';
+import Username from 'my-app/components/username';
 
 <template>
   {{!-- call it with @localTime  --}}
@@ -230,7 +230,7 @@ The component uses an inline `if` to conditionally apply the `is-active` class.
 Afterwards, we can refactor the initial components.
 
 ```gjs {data-filename="app/components/received-message/avatar.gjs"}
-import Avatar from '../avatar.gjs';
+import Avatar from 'my-app/components/avatar';
 
 <template>
   <Avatar
@@ -242,7 +242,7 @@ import Avatar from '../avatar.gjs';
 ```
 
 ```gjs {data-filename="app/components/sent-message/avatar.gjs"}
-import Avatar from '../avatar.gjs';
+import Avatar from 'my-app/components/avatar';
 
 <template>
   <Avatar

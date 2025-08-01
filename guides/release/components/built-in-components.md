@@ -37,7 +37,7 @@ When Ember renders this component, you will see the following HTML code:
 
 Every input should be associated with a label. In HTML, there are a few ways to do this. With the built-in `<Input>` component,
 
-#### 1. You can nest the input inside the label.
+1. You can nest the input inside the label.
 
 ```gjs
 import Component from "@glimmer/component";
@@ -60,7 +60,7 @@ export default class Example extends Component {
 }
 ```
 
-#### 2. You can create an ID (globally unique within the webpage), then associate the label to the input with `for` attribute and `id` attribute.
+2. You can create an ID (globally unique within the webpage), then associate the label to the input with `for` attribute and `id` attribute.
 
 ```gjs
 import Component from "@glimmer/component";
@@ -85,7 +85,7 @@ export default class Example extends Component {
 }
 ```
 
-#### 3. You can use the `aria-label` attribute to label the input with a string that is visually hidden but still available to assistive technology. 
+3. You can use the `aria-label` attribute to label the input with a string that is visually hidden but still available to assistive technology. 
 
   ```gjs
 import Component from "@glimmer/component";

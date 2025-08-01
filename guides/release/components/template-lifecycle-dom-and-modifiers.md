@@ -27,7 +27,7 @@ Assuming an `article` route with a model that looks like:
 This component would be invoked this way:
 
 ```gjs {data-filename=app/templates/article.gjs}
-import Article from '../components/article.gjs';
+import Article from 'my-app/components/components/article';
 
 <template>
   <Article @title={{@model.title}} @body={{@model.body}}>
@@ -269,7 +269,7 @@ inputElement.focus();
 This code needs to run after the element is rendered.
 The simplest way to accomplish this is by using a modifier.
 
-New Ember apps ship with [ember-modifier](https://github.com/ember-modifier/ember-modifier), an official part of the framework that provides a friendly API for writing your own element modifiers.
+Ember apps ship with [ember-modifier](https://github.com/ember-modifier/ember-modifier), an official part of the framework that provides a friendly API for writing your own element modifiers.
 In the following examples, the modifier API is imported from the `ember-modifier` package.
 
 ```gjs {app/components/edit-form.gjs}
@@ -297,7 +297,7 @@ If you want to pull this logic into reusable functionality that you can use thro
 The modifier that we're going to build will allow us to say:
 
 ```gjs {data-filename="app/components/edit-form.gjs"}
-import autofocus from '../modifiers/autofocus.js';
+import autofocus from 'my-app/modifiers/autofocus';
 
 <template>
   <form>
@@ -439,7 +439,7 @@ Last but not least, we attach the modifier to the `audio` element:
 import Component from "@glimmer/component";
 import { on } from '@ember/modifier';
 import { tracked } from '@glimmer/tracking';
-import playWhen from '../modifiers/play-when.js';
+import playWhen from 'my-app/modifiers/play-when';
 
 export default class AudioPlayerComponent extends Component {
   @tracked isPlaying = false;
@@ -525,7 +525,7 @@ export default modifier((element, [callback]) => {
 Now that we've created this modifier, we can use it in our `modal` component, and add some logic to invoke a passed-in action whenever the user clicks outside the modal.
 
 ```gjs {data-filename="app/components/modal.gjs"}
-import onClickOutside from '../modifiers/on-clic-outside.js';
+import onClickOutside from 'my-app/modifiers/on-click-outside';
 
 <div class="modal" {{onClickOutside @clickedOutside}}>
   {{yield}}
@@ -538,7 +538,7 @@ We could then use the `modal` component this way:
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { on } from '@ember/modifier';
-import Modal from './modal.gjs';
+import Modal from 'my-app/components/modal';
 
 export default class SidebarComponent extends Component {
   @tracked showingHelp = false;
@@ -568,7 +568,7 @@ Modifiers can also be applied to components, and when they are, they are also
 passed forward and applied to an element with `...attributes`:
 
 ```gjs
-import doSomething from '../modifiers/do-something.js';
+import doSomething from 'my-app/modifiers/do-something';
 
 <template>
   <Tooltip {{doSomething}}/>

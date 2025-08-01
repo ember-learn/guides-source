@@ -6,7 +6,7 @@ JavaScript to make your application interactive.
     <div class="cta-note-body">
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
-        Until now, we've been using template-only components. That is, our `.gjs` component files have consisted of a single `&lt;template&gt;` tag with our markup inside. Now, we're going to add a class. For a more thorough discussion of how `.gjs` files define components, see the section on <strong>template tag format</strong>.
+        Until now, we've been using template-only components. That is, our `.gjs` component files have consisted of a single `&lt;template&gt;` tag with our markup inside. Now, we're going to add a class. For a more thorough discussion of how `.gjs` files define components, see the section on <a href="../template-tag-format/">template tag format</a>.
       </div>
     </div>
     <img src="/images/mascots/zoey.png" role="presentation" alt="">
@@ -64,14 +64,14 @@ property that we defined in the JavaScript class.
 The output looks the same as before, but now the `0` comes from JavaScript, and
 after some more work, we can change its value with the buttons.
 
-## HTML Modifiers and Actions
+## Modifiers and Actions
 
 Next, we want to wire up the buttons. When the user presses `+1`, we want
 `this.count` to go up by 1. When the user presses `-1`, we want it to go down
 by 1.
 
-To attach an event handler to an HTML tag, we use the `on` HTML modifier. HTML
-modifiers are an Ember syntax that allow us to attach logic to a tag.
+To attach an event handler to an HTML tag, we use the `on` modifier. Modifiers
+are an Ember syntax that allow us to attach logic to a tag.
 
 To make those event handlers do something, we will need to define those methods in the component class. These are sometime referred to as actions.
 

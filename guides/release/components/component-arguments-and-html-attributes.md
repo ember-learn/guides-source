@@ -56,7 +56,7 @@ and will be specified in the same way. We can now replace the received message
 avatar by using the `<Avatar>` tag and providing it with some arguments.
 
 ```gjs {data-filename="app/components/received-message/avatar.gjs"}
-import Avatar from "../avatar.gjs";
+import Avatar from "my-app/components/avatar";
 
 <template>
   <Avatar @title="Tomster's avatar" @initial="T" />
@@ -91,7 +91,7 @@ the _browser_ what to do, it's telling your custom tag what to do.
 Let's try to use our `<Avatar>` component for the sent message avatar.
 
 ```gjs {data-filename="app/components/sent-message/avatar.gjs"}
-import Avatar from "../avatar.gjs";
+import Avatar from "my-app/components/avatar";
 
 <template>
   <Avatar @title="Zoey's avatar" @initial="Z" />
@@ -111,7 +111,7 @@ We're just missing the `current-user` class on the HTML `<aside>` element. To
 make that work, we'll specify the HTML attribute `class` on the `<Avatar>` tag.
 
 ```gjs {data-filename="app/components/sent-message/avatar.gjs"}
-import Avatar from "../avatar.gjs";
+import Avatar from "my-app/components/avatar";
 
 <template>
   <Avatar

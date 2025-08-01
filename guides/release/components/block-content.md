@@ -3,7 +3,7 @@ These are called blocks.
 Here's an example that provides a component with the implicit default block.
 
 ```gjs
-import ExampleComponent from './example-component.gjs';
+import ExampleComponent from 'my-app/components/example-component';
 
 <template>
   <ExampleComponent>
@@ -17,7 +17,7 @@ import ExampleComponent from './example-component.gjs';
 This is equivalent to explicitly naming the default block using the named block syntax.
 
 ```gjs
-import ExampleComponent from './example-component.gjs';
+import ExampleComponent from 'my-app/components/example-component';
 
 <template>
   <ExampleComponent>
@@ -103,8 +103,8 @@ and conditionals to handle the differences in content between them (see the
 previous chapters for details on how to do this).
 
 ```gjs {data-filename="app/components/message.gjs"}
-import MessageAvatar from './message/avatar.gjs';
-import MessageUsername from './message/username.gjs';
+import MessageAvatar from 'my-app/components/message/avatar';
+import MessageUsername from 'my-app/components/message/username';
 
 <template>
   <MessageAvatar
@@ -132,8 +132,8 @@ supplied by the `<Message>` tag.
 The way to do this in Ember is by using the `{{yield}}` syntax.
 
 ```gjs {data-filename="app/components/message.gjs"}
-import MessageAvatar from './message/avatar.gjs';
-import MessageUsername from './message/username.gjs';
+import MessageAvatar from 'my-app/components/message/avatar';
+import MessageUsername from 'my-app/components/message/username';
 
 <template>
   <MessageAvatar
@@ -174,7 +174,7 @@ You can think of using `{{yield}}` as leaving a placeholder for the content of t
 `<Message>` tag.
 
 ```gjs {data-filename="app/components/received-message.gjs"}
-import Message from './message.gjs';
+import Message from 'my-app/components/message';
 
 <template>
   <Message
@@ -194,7 +194,7 @@ import Message from './message.gjs';
 ```
 
 ```gjs {data-filename="app/components/sent-message.gjs"}
-import Message from './message.gjs';
+import Message from 'my-app/components/message';
 
 <template>
   <Message
@@ -276,7 +276,7 @@ Now, if we use our `ErrorDialog` component without a block, we'll get the
 default message.
 
 ```gjs
-import ErrorDialog from './error-dialog.gjs';
+import ErrorDialog from 'my-app/components/error-dialog';
 
 <template>
   <ErrorDialog/>
@@ -293,8 +293,8 @@ If we had a more detailed message, though, we could use the block to pass it to
 the dialog.
 
 ```gjs
-import ErrorDialog from './error-dialog.gjs';
-import Icon from './icon.gjs';
+import ErrorDialog from 'my-app/components/error-dialog';
+import Icon from 'my-app/components/icon';
 
 <template>
   <ErrorDialog>
@@ -319,7 +319,7 @@ function in JavaScript. Consider for instance a simple `BlogPost` component.
 ```
 
 ```gjs
-import BlogPost from './blog-post.gjs';
+import BlogPost from 'my-app/components/blog-post';
 
 <template>
   <!-- usage -->
@@ -342,8 +342,8 @@ to them.
 ```
 
 ```gjs
-import BlogPost from './blog-post.gjs';
-import AuthorBio from './author-bio.gjs';
+import BlogPost from 'my-app/components/blog-post';
+import AuthorBio from 'my-app/components/author-bio';
 
 <template>
   <!-- usage -->
@@ -366,8 +366,8 @@ We can yield back multiple values as well, separated by spaces.
 ```
 
 ```gjs
-import BlogPost from './blog-post.gjs';
-import AuthorBio from './author-bio.gjs';
+import BlogPost from 'my-app/components/blog-post';
+import AuthorBio from 'my-app/components/author-bio';
 
 <template>
   <!-- usage -->
@@ -415,7 +415,7 @@ Without named blocks, we would certainly have to pass components as `args` to th
 Here’s how we would call our named blocks as a consumer:
 
 ```gjs
-import Popover from './popover.gjs';
+import Popover from 'my-app/components/popover';
 
 <template>
   <Popover>
@@ -465,7 +465,7 @@ Don't worry, you can also still use `yield` by itself, and mix it with named blo
 A yielded block without a name is called `default`. So to access it, it’s like any other named blocks.
 
 ```gjs
-import Card from './card.gjs';
+import Card from 'my-app/components/card';
 
 <template>
   <Card>
@@ -482,7 +482,7 @@ import Card from './card.gjs';
 The title being optional when you create a card, you can use the `(has-block)` helper with the named block by adding its name as a first parameter. That means you could also create this card:
 
 ```gjs
-import Card from './card.gjs';
+import Card from 'my-app/components/card';
 
 <template>
   <Card>
