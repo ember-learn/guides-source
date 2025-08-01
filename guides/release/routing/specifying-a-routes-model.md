@@ -1,3 +1,17 @@
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+        <p>This document has been updated to use the <a href="../../components/template-tag-format/">Template Tag Format</a> and assumes that you have generated your application using the <code style="white-space: nowrap">--strict</code> argument.</p>
+
+        <p>The Ember Guides are being gradually updated at the moment so you might find some pages using the older hbs format.</p>
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
+  </div>
+</div>
+
 A route's JavaScript file is one of the best places in an app to make requests to an API.
 In this section of the guides, you'll learn how to use the
 [`model`](https://api.emberjs.com/ember/release/classes/Route/methods/model?anchor=model)
@@ -55,12 +69,14 @@ export default class FavoritePostsRoute extends Route {
 
 Now that data can be used in the `favorite-posts` template:
 
-```handlebars {data-filename=app/templates/favorite-posts.hbs}
-{{#each @model as |post|}}
-  <div>
-    {{post.title}}
-  </div>
-{{/each}}
+```gjs {data-filename=app/templates/favorite-posts.gjs}
+<template>
+  {{#each @model as |post|}}
+    <div>
+      {{post.title}}
+    </div>
+  {{/each}}
+</template>
 ```
 
 Behind the scenes, what is happening is that the [route's controller](https://api.emberjs.com/ember/release/classes/Route/methods/setupController?anchor=setupController) receives the results of the model hook, and Ember makes the model hook results available to the template. Your app may not have a controller file for the route, but the behavior is the same regardless.
@@ -133,22 +149,24 @@ export default class SongsRoute extends Route {
 In the `songs` template, we can specify both models and use the `{{#each}}` helper to display
 each record in the song model and album model:
 
-```handlebars {data-filename=app/templates/songs.hbs}
-<h1>Playlist</h1>
+```gjs {data-filename=app/templates/songs.gjs}
+<template>
+  <h1>Playlist</h1>
 
-<ul>
-  {{#each @model.songs as |song|}}
-    <li>{{song.name}} by {{song.artist}}</li>
-  {{/each}}
-</ul>
+  <ul>
+    {{#each @model.songs as |song|}}
+      <li>{{song.name}} by {{song.artist}}</li>
+    {{/each}}
+  </ul>
 
-<h1>Albums</h1>
+  <h1>Albums</h1>
 
-<ul>
-  {{#each @model.albums as |album|}}
-    <li>{{album.title}} by {{album.artist}}</li>
-  {{/each}}
-</ul>
+  <ul>
+    {{#each @model.albums as |album|}}
+      <li>{{album.title}} by {{album.artist}}</li>
+    {{/each}}
+  </ul>
+</template>
 ```
 
 ## Dynamic Models
@@ -216,12 +234,16 @@ instead.
 When you provide a string or number to the `<LinkTo>`, the dynamic segment's `model` hook will run when the app transitions to the new route.
 In this example, `photo.id` might have an id of `4`:
 
-```handlebars {data-filename=app/templates/photos.hbs}
-{{#each @model as |photo|}}
-  <LinkTo @route="photo" @model={{photo.id}}>
-    link text to display
-  </LinkTo>
-{{/each}}
+```gjs {data-filename=app/templates/photos.gjs}
+import { LinkTo } from '@ember/routing';
+
+<template>
+  {{#each @model as |photo|}}
+    <LinkTo @route="photo" @model={{photo.id}}>
+      link text to display
+    </LinkTo>
+  {{/each}}
+</template>
 ```
 
 However, if you provide the entire model context, the model hook for that URL segment will _not_ be run.
@@ -229,12 +251,16 @@ For this reason, many Ember developers choose to pass only ids to `<LinkTo>` so 
 
 Here's what it looks like to pass the entire `photo` record:
 
-```handlebars {data-filename=app/templates/photos.hbs}
-{{#each @model as |photo|}}
-  <LinkTo @route="photo" @model={{photo}}>
-    link text to display
-  </LinkTo>
-{{/each}}
+```gjs {data-filename=app/templates/photos.gjs}
+import { LinkTo } from '@ember/routing';
+
+<template>
+  {{#each @model as |photo|}}
+    <LinkTo @route="photo" @model={{photo}}>
+      link text to display
+    </LinkTo>
+  {{/each}}
+</template>
 ```
 
 If you decide to pass the entire model, be sure to cover this behavior in your [application tests](../../testing/testing-application/).
