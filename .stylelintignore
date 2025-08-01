@@ -4,6 +4,7 @@
 # compiled output
 /dist/
 /public/assets
+/public/downloads
 
 # addons
 /.node_modules.ember-try/
