@@ -116,4 +116,3 @@ export default class MyRoute extends Route {
 <!-- External links -->
 
 [declare]: https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#the-usedefineforclassfields-flag-and-the-declare-property-modifier
-[glint]: https://typed-ember.gitbook.io/glint/
