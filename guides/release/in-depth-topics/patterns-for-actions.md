@@ -68,7 +68,7 @@ import { action } from '@ember/object';
   }
 ```
 
-These two are functionaly equivalent and are used interchangably throughout these guides.
+These two are functionally equivalent and are used interchangeably throughout these guides.
 
 So, to hook up the button to toggle the `isConfirming` property, we'll define a `launchConfirmDialog` action:
 
