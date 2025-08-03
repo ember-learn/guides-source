@@ -1,83 +1,74 @@
-At its core, Ember's UIs are _HTML_ driven - every part of the UI that
-is shown to the user is defined in an HTML template somewhere in your
-application. Because of this, templates are central to Ember, and one of the
-most important parts of the framework.
+At its core, Ember's UIs are _HTML_ driven - every part of the UI that is shown to the user is defined in a component template somewhere in your application. Because of this, templates are central to Ember, and one of the most important parts of the framework.
 
-We'll discuss the capabilities and core concepts of templates in the following
-chapters, but before we do that, we should get started with the basics. The
-simplest way to get started on an Ember template is with some HTML!
+We'll discuss the capabilities and core concepts of templates in the following chapters, but before we do that, we should get started with the basics. The simplest way to get started on an Ember component is with some HTML!
 
-## The Application Template
+## The Application Route Component
 
-The central template in an Ember application is the `app/templates/application.hbs`
-file. We can copy HTML into this file, and it will work without any changes. For
-instance, you can copy the following example HTML for a simple messaging app:
+The central component in an Ember application is the application route component found in `app/templates/application.gjs`. The `.gjs` extension is short for "Glimmer JavaScript" and it allows us to put both the JavaScript and template in the same file. We can copy HTML into the `<template>` section of this file, and it will work without any changes. For instance, you can copy the following example HTML for a simple messaging app:
 
-```html {data-filename=app/templates/application.hbs}
-<div class="messages">
-  <aside>
-    <div class="avatar is-active" title="Tomster's avatar">T</div>
-  </aside>
-  <section>
-    <h4 class="username">
-      Tomster
-      <span class="local-time">their local time is 4:56pm</span>
-    </h4>
+```gjs {data-filename=app/templates/application.gjs}
+<template>
+  <div class="messages">
+    <aside>
+      <div class="avatar is-active" title="Tomster's avatar">T</div>
+    </aside>
+    <section>
+      <h4 class="username">
+        Tomster
+        <span class="local-time">their local time is 4:56pm</span>
+      </h4>
 
-    <p>
-      Hey Zoey, have you had a chance to look at the EmberConf brainstorming doc
-      I sent you?
-    </p>
-  </section>
+      <p>
+        Hey Zoey, have you had a chance to look at the EmberConf brainstorming doc
+        I sent you?
+      </p>
+    </section>
 
-  <aside class="current-user">
-    <div class="avatar" title="Zoey's avatar">Z</div>
-  </aside>
-  <section>
-    <h4 class="username">Zoey</h4>
+    <aside class="current-user">
+      <div class="avatar" title="Zoey's avatar">Z</div>
+    </aside>
+    <section>
+      <h4 class="username">Zoey</h4>
 
-    <p>Hey!</p>
+      <p>Hey!</p>
 
-    <p>
-      I love the ideas! I'm really excited about where this year's EmberConf is
-      going, I'm sure it's going to be the best one yet. Some quick notes:
-    </p>
+      <p>
+        I love the ideas! I'm really excited about where this year's EmberConf is
+        going, I'm sure it's going to be the best one yet. Some quick notes:
+      </p>
 
-    <ul>
-      <li>
-        Definitely agree that we should double the coffee budget this year (it
-        really is impressive how much we go through!)
-      </li>
-      <li>
-        A blimp would definitely make the venue very easy to find, but I think
-        it might be a bit out of our budget. Maybe we could rent some spotlights
-        instead?
-      </li>
-      <li>
-        We absolutely will need more hamster wheels, last year's line was
-        <em>way</em> too long. Will get on that now before rental season hits
-        its peak.
-      </li>
-    </ul>
+      <ul>
+        <li>
+          Definitely agree that we should double the coffee budget this year (it
+          really is impressive how much we go through!)
+        </li>
+        <li>
+          A blimp would definitely make the venue very easy to find, but I think
+          it might be a bit out of our budget. Maybe we could rent some spotlights
+          instead?
+        </li>
+        <li>
+          We absolutely will need more hamster wheels, last year's line was
+          <em>way</em> too long. Will get on that now before rental season hits
+          its peak.
+        </li>
+      </ul>
 
-    <p>Let me know when you've nailed down the dates!</p>
-  </section>
+      <p>Let me know when you've nailed down the dates!</p>
+    </section>
 
-  <form>
-    <label for="message">Message</label>
-    <input id="message" />
-    <button type="submit">
-      Send
-    </button>
-  </form>
-</div>
+    <form>
+      <label for="message">Message</label>
+      <input id="message" />
+      <button type="submit">Send</button>
+    </form>
+  </div>
+</template>
 ```
 
-You can _serve_ the app by running `ember s` in your terminal, which will make
-the local copy of your application available to view in your web browser.
+You can _serve_ the app by running `npm start` in your terminal, which will make the local copy of your application available to view in your web browser.
 
-If you serve the app and go to `localhost:4200` in your web browser, you'll see
-the HTML rendered. At this point, it will still be unstyled.
+If you serve the app and go to `localhost:4200` in your web browser, you'll see the HTML rendered. At this point, it will still be unstyled.
 
 To style the application, copy the following CSS into `app/styles/app.css`:
 
@@ -174,22 +165,19 @@ form > button {
   border-bottom-right-radius: 0.5em;
   border: 1px solid #cccccc;
   font-size: 1em;
-  grid-area: 2 / 2 / 3 / 3; 
+  grid-area: 2 / 2 / 3 / 3;
 }
 ```
 
 ![screenshot of styled message app](/images/ember-core-concepts/messaging-app-1.png)
 
-You start building parts of an Ember application using HTML, so if you already
-know HTML and CSS, you know how to build a basic Ember application!
+You start building parts of an Ember application using HTML, so if you already know HTML and CSS, you know how to build a basic Ember application!
 
-You can even use SVG or web components without any changes. As long as your HTML
-is valid, Ember will render it.
+You can even use SVG or web components without any changes. As long as your HTML is valid, Ember will render it.
 
 ## Self-Closing Tags
 
-In addition to normal HTML syntax, Ember allows you to use self-closing syntax
-(`<div />`) as a shorthand for an opening and closing tag (`<div></div>`).
+In addition to normal HTML syntax, Ember allows you to use self-closing syntax (`<div />`) as a shorthand for an opening and closing tag (`<div></div>`).
 
 <div class="cta">
   <div class="cta-note">
@@ -218,8 +206,7 @@ This means that all of the following HTML features work as-is:
 
 ## Restrictions
 
-There are a handful of restrictions on the HTML that you can put in an Ember
-template:
+There are a handful of restrictions on the HTML that you can put in an Ember template:
 
 - Only valid HTML elements in a `<body>` tag can be used
 - No `<script>` tags
