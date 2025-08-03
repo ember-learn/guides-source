@@ -174,6 +174,7 @@ import { concat } from '@ember/helper';
 import { fn } from '@ember/helper';
 import { get } from '@ember/helper';
 import { hash } from '@ember/helper';
+import { uniqueId } from '@ember/helper';
 
 // Built-in modifiers
 import { on } from '@ember/modifier';
