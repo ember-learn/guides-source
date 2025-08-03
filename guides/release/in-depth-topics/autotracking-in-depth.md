@@ -33,7 +33,7 @@ export default class HelloComponent extends Component {
 ```
 
 ```gjs {data-filename=app/templates/application.gjs}
-import '../components/hello.gjs';
+import 'my-app/components/hello';
 
 <template>
   <Hello @name="Jen Weber">
@@ -283,7 +283,7 @@ export default class Person {
 
 ```js {data-filename=app/routes/application.js}
 import Route from '@ember/routing/route';
-import Person from '../../../../utils/person';
+import Person from 'my-app/utils/person';
 
 export default class ApplicationRoute extends Route {
   model() {

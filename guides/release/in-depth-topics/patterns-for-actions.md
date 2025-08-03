@@ -165,7 +165,7 @@ delete their profile:
 
 ```gjs {data-filename=app/components/user-profile.gjs}
 import Component from '@glimmer/component';
-import ButtonWithConfirmation from './button-with-confirmation.gjs';
+import ButtonWithConfirmation from 'my-app/components/button-with-confirmation';
 
 export default class UserProfileComponent extends Component {
   <template>
@@ -188,7 +188,7 @@ that manages the user's login and information.
 ```gjs {data-filename=app/components/user-profile.gjs}
 import Component from '@glimmer/component';
 import { service } from '@ember/service';
-import ButtonWithConfirmation from './button-with-confirmation.gjs';
+import ButtonWithConfirmation from 'my-app/components/button-with-confirmation';
 
 export default class UserProfileComponent extends Component {
   @service login;
@@ -213,7 +213,7 @@ to it as an argument:
 ```gjs {data-filename=app/components/user-profile.gjs}
 import Component from '@glimmer/component';
 import { service } from '@ember/service';
-import ButtonWithConfirmation from './button-with-confirmation.gjs';
+import ButtonWithConfirmation from 'my-app/components/button-with-confirmation';
 
 export default class UserProfileComponent extends Component {
   @service login;
@@ -387,7 +387,7 @@ child. For example, if we want to use the button to send a message of type
 ```gjs {data-filename=app/components/send-message.gjs}
 import Component from '@glimmer/component';
 import { fn } from '@ember/helper';
-import ButtonWithConfirmation from './button-with-confirmation.gjs';
+import ButtonWithConfirmation from 'my-app/components/button-with-confirmation';
 
 export default class SendMessageComponent extends Component {
   sendMessage = async (messageType) => {
@@ -521,7 +521,7 @@ text input element whose `value` attribute is set to `confirmValue`:
 
 ```gjs {data-filename=app/components/send-message.gjs}
 import Component from '@glimmer/component';
-import ButtonWithConfirmation from './button-with-confirmation.gjs';
+import ButtonWithConfirmation from 'my-app/components/button-with-confirmation';
 import { Input } from '@ember/component';
 
 export default class SendMessageComponent extends Component {
@@ -558,7 +558,7 @@ messaging service.
 
 ```gjs {data-filename=app/components/send-message.gjs}
 import Component from '@glimmer/component';
-import ButtonWithConfirmation from './button-with-confirmation.gjs';
+import ButtonWithConfirmation from 'my-app/components/button-with-confirmation';
 import { Input } from '@ember/component';
 import { service } from '@ember/service';
 
@@ -643,7 +643,7 @@ only the user's account `id` string.
 ```gjs {data-filename=app/components/system-preferences-editor.gjs}
 import Component from '@glimmer/component';
 import { fn } from '@ember/helper';
-import UserProfile from './user-profile.gjs';
+import UserProfile from 'my-app/components/user-profile';
 
 export default class SystemPreferencesEditorComponent extends Component {
   // ...
@@ -679,7 +679,7 @@ the parent `system-preferences-editor.gjs` and pass the local `deleteUser` actio
 import Component from '@glimmer/component';
 import { service } from '@ember/service';
 import { fn } from '@ember/helper';
-import UserProfile from './user-profile.gjs';
+import UserProfile from 'my-app/components/user-profile';
 
 export default class SystemPreferencesEditorComponent extends Component {
   @service login;
@@ -706,7 +706,7 @@ In our `UserProfile` component we change our action to call
 ```gjs {data-filename=app/components/user-profile.gjs}
 import Component from '@glimmer/component';
 import { service } from '@ember/service';
-import ButtonWithConfirmation from './button-with-confirmation.gjs';
+import ButtonWithConfirmation from 'my-app/components/button-with-confirmation';
 
 export default class UserProfileComponent extends Component {
   // ...

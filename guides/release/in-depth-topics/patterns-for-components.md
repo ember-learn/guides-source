@@ -37,7 +37,7 @@ export default class TooltipComponent extends Component {
 Now when called like so:
 
 ```gjs
-import Tooltip from '../components/tooltip.gjs';
+import Tooltip from 'my-app/components/tooltip';
 
 <template>
   <Tooltip @content="I'm a tooltip!"/>
@@ -128,7 +128,7 @@ The most frequently used of these is `aria-describedby` and `aria-labelledby`.
 In these cases, make sure to declare _all_ of the relevant values in the correct order.
 
 ```gjs
-import MyInput from '../components/my-input.gjs';
+import MyInput from 'my-app/components/my-input';
 
 <template>
   <MyInput @input-label="Password" aria-describedby="text-help-0 text-help-1" />
@@ -161,8 +161,8 @@ displaying different kinds of posts.  First, define your two components:
 Then, you can choose which to render based on the data:
 
 ```gjs {data-filename=app/templates/index.gjs}
-import RootPost from '../components/root-post.gjs';
-import ReplyPost from '../components/reply-post.gjs';
+import RootPost from  'my-app/components/root-post';
+import ReplyPost from 'my-app/components/reply-post';
 
 // returns either RootPost or ReplyPost (default: RootPost)
 function getPostComponent(postType) {
@@ -182,8 +182,8 @@ function getPostComponent(postType) {
 This is great when `RootPost` and `ReplyPost` take the same arguments, like `author` and `body` in the above example. But what if the components accept different arguments? One way would be to move the selection conditional into the template, like so:
 
 ```gjs {data-filename=app/templates/index.gjs}
-import RootPost from '../components/root-post.gjs';
-import ReplyPost from '../components/reply-post.gjs';
+import RootPost from 'my-app/components/root-post';
+import ReplyPost from 'my-app/components/reply-post';
 
 const eq = (a, b) => a === b;
 
@@ -217,9 +217,9 @@ The first parameter of the helper is a component to render. So `{{component Blog
 The `component` helper is often used when yielding components to blocks. For example the layout for a SuperForm component might be implemented as:
 
 ```gjs {data-filename=app/components/super-form.gjs}
-import SuperInput from './super-input.gjs';
-import SuperTextarea from './super-input.gjs';
-import SuperSubmit from './super-input.gjs';
+import SuperInput from 'my-app/components/super-input';
+import SuperTextarea from 'my-app/components/super-textarea';
+import SuperSubmit from 'my-app/components/super-submit';
 
 <template>
   <form>
@@ -235,7 +235,7 @@ import SuperSubmit from './super-input.gjs';
 And be used as:
 
 ```gjs {data-filename=app/templates/index.gjs}
-import SuperForm from '../components/super-form.gjs';
+import SuperForm from 'my-app/components/super-form';
 
 <template>
   <SuperForm @model={{this.post}} as |f|>
@@ -253,12 +253,12 @@ The `{{component}}` helper is a powerful tool for improving code modularity.
 We can even use helpers and modifiers in the same way. Let's extend the SuperForm component:
 
 ```gjs {data-filename=app/components/super-form.gjs}
-import SuperInput from './super-input.gjs';
-import SuperTextarea from './super-input.gjs';
-import SuperSubmit from './super-input.gjs';
-import superIsValid from '../helpers/super-is-valid.js';
-import superErrorFor from '../helpers/super-error-for.js';
-import superAutoResize from '../modifiers/super-auto-resize.js';
+import SuperInput from 'my-app/components/super-input';
+import SuperTextarea from 'my-app/components/super-textarea';
+import SuperSubmit from 'my-app/components/super-submit';
+import superIsValid from 'my-app/helpers/super-is-valid';
+import superErrorFor from 'my-app/helpers/super-error-for';
+import superAutoResize from 'my-app/modifiers/super-auto-resize';
 
 <template>
   <form>
@@ -281,7 +281,7 @@ import superAutoResize from '../modifiers/super-auto-resize.js';
 And be used as:
 
 ```gjs {data-filename=app/templates/index.gjs}
-import SuperForm from '../components/super-form.gjs';
+import SuperForm from 'my-app/components/super-form';
 
 <template>
   <SuperForm @model={{this.post}} as |f|>
