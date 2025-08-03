@@ -20,7 +20,7 @@ Then our component might be defined like this:
 ```gts {data-filename="app/components/profile.gts"}
 import Component from '@glimmer/component';
 import type User from 'app/types/user';
-import { randomAvatarURL } from 'app/utils/avatar';
+import { randomAvatarURL } from 'my-app/utils/avatar';
 
 interface ProfileSignature {
   Args: {
@@ -59,8 +59,8 @@ To test the `Profile` component, we need to set up a `User` on `this` to pass in
 import { module, test } from 'qunit';
 import { render } from '@ember/test-helpers';
 
-import { setupRenderingTest } from 'app/tests/helpers';
-import type User from 'app/types/user';
+import { setupRenderingTest } from 'my-app/tests/helpers';
+import type User from 'my-app/types/user';
 
 module('Integration | Component | Profile', function (hooks) {
   setupRenderingTest(hooks);
@@ -104,7 +104,7 @@ To inform TypeScript about this, we need to tell it that the type of `this` in e
 
 ```typescript {data-filename="tests/integration/components/profile.ts"}
 import type { TestContext } from '@ember/test-helpers';
-import type User from 'app/types/user';
+import type User from 'my-app/types/user';
 
 interface Context extends TestContext {
   user: User;
@@ -124,8 +124,8 @@ import { module, test } from 'qunit';
 import { render } from '@ember/test-helpers';
 import type { TestContext } from '@ember/test-helpers';
 
-import { setupRenderingTest } from 'app/tests/helpers';
-import type User from 'app/types/user';
+import { setupRenderingTest } from 'my-app/tests/helpers';
+import type User from 'my-app/types/user';
 
 interface Context extends TestContext {
   user: User;
@@ -196,7 +196,7 @@ The test for our function might look something like this:
 
 ```javascript {data-filename="tests/unit/utils/math-test.js"}
 import { module, test } from 'qunit';
-import { add } from 'app/utils/math';
+import { add } from 'my-app/utils/math';
 
 module('the `add` function', function (hooks) {
   test('adds numbers correctly', function (assert) {
@@ -232,7 +232,7 @@ We can also drop the assertion from our function definition, because the _compil
 
 ```typescript {data-filename="tests/unit/utils/math-test.ts"}
 import { module, test } from 'qunit';
-import { add } from 'app/utils/math';
+import { add } from 'my-app/utils/math';
 
 module('the `add` function', function (hooks) {
   test('adds numbers correctly', function (assert) {
@@ -266,7 +266,7 @@ Now, in our test file, we're similarly back to testing all those extra scenarios
 
 ```typescript {data-filename="tests/unit/utils/math-test.ts"}
 import { module, test } from 'qunit';
-import { add } from 'app/utils/math';
+import { add } from 'my-app/utils/math';
 
 module('the `add` function', function (hooks) {
   test('adds numbers correctly', function (assert) {

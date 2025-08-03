@@ -84,7 +84,7 @@ There, we defined component which accepted a `srcUrl` argument and used a `play-
 ```gts {data-filename="app/components/audio-player.gts"}
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import playWhen from '../modifiers/play-when.ts';
+import playWhen from 'my-app/modifiers/play-when';
 import { on } from '@ember/modifier';
 
 export default class AudioPlayer extends Component {
@@ -118,7 +118,7 @@ We can define a signature with those `Args` on it and apply it to the component 
 ```gts { data-filename="app/components/audio-player.gts" data-diff="+6,+7,+8,+9,+10,+11,-13,+14" }
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import playWhen from '../modifiers/play-when.ts';
+import playWhen from 'my-app/modifiers/play-when';
 import { on } from '@ember/modifier';
 
 interface AudioPlayerSignature {
@@ -154,7 +154,7 @@ Now, let's expand on this example to give callers the ability to apply attribute
 ```gts { data-filename="app/components/audio-player.gts" data-diff="+11,-26,+27" }
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import playWhen from '../modifiers/play-when.ts';
+import playWhen from 'my-app/modifiers/play-when';
 import { on } from '@ember/modifier';
 
 interface AudioPlayerSignature {
@@ -191,7 +191,7 @@ We can also let the user provide a fallback for the case where the audio element
 ```gts { data-filename="app/components/audio-player.gts" data-diff="+11,+12,+13,-29,+30,+31,+32" }
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import playWhen from '../modifiers/play-when.ts';
+import playWhen from 'my-app/modifiers/play-when';
 import { on } from '@ember/modifier';
 
 interface AudioPlayerSignature {
@@ -237,7 +237,7 @@ To represent this, we will update the `default` block to be named `fallback` ins
 ```gts {data-filename="app/components/audio-player.gts" data-diff="-12,+13,+14,-31,-32,-33,+34,+35,+36,+37,+38,+39,+40,+41" }
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import playWhen from '../modifiers/play-when.ts';
+import playWhen from 'my-app/modifiers/play-when';
 import { on } from '@ember/modifier';
 
 interface AudioPlayerSignature {
@@ -290,7 +290,7 @@ When working in JavaScript, we can provide the exact same information using JSDo
 ```gjs {data-filename="app/components/audio-player.gjs"}
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import playWhen from '../modifiers/play-when.ts';
+import playWhen from 'my-app/modifiers/play-when';
 import { on } from '@ember/modifier';
 
 /**
@@ -478,7 +478,7 @@ Our helper will accept the same arguments, so we will use it like this:
 ```typescript {data-filename="app/helpers/format.ts"}
 import Helper from '@ember/component/helper';
 import { service } from '@ember/service';
-import type LocaleService from '../services/locale';
+import type LocaleService from ' my-app/services/locale';
 
 interface FormatSignature {
   Args: {
@@ -629,7 +629,7 @@ Given an `IntersectionObserverManager` service with an `observe` method, we migh
 ```typescript {data-filename="app/modifiers/did-intersect.ts"}
 import Modifier from 'ember-modifier';
 import { service } from '@ember/service';
-import type IntersectionObserverManager from '../services/intersection-observer-manager';
+import type IntersectionObserverManager from 'my-app/services/intersection-observer-manager';
 
 interface DidIntersectSignature {
   Args: {
