@@ -53,6 +53,8 @@ For Helpers, there is a specific syntax that only helpers may reside in
 ```
 or nested in a sub-expression
 ```gjs
+import { hash } from '@ember/helper';
+
 <template>
   {{yield (hash key=(theHelper) key2=(theHelper with args)) }}
 </template>

@@ -217,6 +217,7 @@ The first parameter of the helper is a component to render. So `{{component Blog
 The `component` helper is often used when yielding components to blocks. For example the layout for a SuperForm component might be implemented as:
 
 ```gjs {data-filename=app/components/super-form.gjs}
+import { hash } from '@ember/helper';
 import SuperInput from 'my-app/components/super-input';
 import SuperTextarea from 'my-app/components/super-textarea';
 import SuperSubmit from 'my-app/components/super-submit';
@@ -253,6 +254,7 @@ The `{{component}}` helper is a powerful tool for improving code modularity.
 We can even use helpers and modifiers in the same way. Let's extend the SuperForm component:
 
 ```gjs {data-filename=app/components/super-form.gjs}
+import { hash } from '@ember/helper';
 import SuperInput from 'my-app/components/super-input';
 import SuperTextarea from 'my-app/components/super-textarea';
 import SuperSubmit from 'my-app/components/super-submit';
