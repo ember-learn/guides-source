@@ -120,7 +120,7 @@ export default class ListOfDraftsComponent extends Component {
 This works great for the `ListOfDrafts` component. However, your app
 is likely made up of many different components. On another page you
 may want a component to display the number of drafts. You may be
-tempted to copy and paste your existing `willRender` code into the new
+tempted to copy and paste your existing `constructor` code into the new
 component.
 
 ```gjs {data-filename=app/components/drafts-button.gjs}
