@@ -77,9 +77,6 @@ export default class ArgsDisplay extends Component<ArgsDisplaySignature> {
     super(owner, args);
     Object.keys(args).forEach(log);
   }
-
-  <template>
-  </template>
 }
 ```
 

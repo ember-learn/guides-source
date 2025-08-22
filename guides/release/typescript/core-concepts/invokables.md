@@ -478,7 +478,7 @@ Our helper will accept the same arguments, so we will use it like this:
 ```typescript {data-filename="app/helpers/format.ts"}
 import Helper from '@ember/component/helper';
 import { service } from '@ember/service';
-import type LocaleService from ' my-app/services/locale';
+import type LocaleService from 'my-app/services/locale';
 
 interface FormatSignature {
   Args: {

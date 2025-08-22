@@ -90,7 +90,7 @@ writing the admin section of a blogging app, which has a feature that
 lists the drafts for the currently logged in user.
 
 You might be tempted to make the component responsible for fetching that
-data and storing it and showing the list of drafts, like this:
+data, storing it, and showing the list of drafts, like this:
 
 ```gjs {data-filename=app/components/list-of-drafts.gjs}
 import Component from "@glimmer/component";
