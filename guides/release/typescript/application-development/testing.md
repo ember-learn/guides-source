@@ -17,22 +17,10 @@ export default interface User {
 
 Then our component might be defined like this:
 
-```handlebars {data-filename="app/components/profile.hbs"}
-<div class='user-profile' ...attributes>
-  <img
-    src={{this.avatarUrl}}
-    alt={{this.description}}
-    class='avatar'
-    data-test-avatar
-  />
-  <span class='name' data-test-name>{{@user.displayName}}</span>
-</div>
-```
-
-```typescript {data-filename="app/components/profile.ts"}
+```gts {data-filename="app/components/profile.gts"}
 import Component from '@glimmer/component';
 import type User from 'app/types/user';
-import { randomAvatarURL } from 'app/utils/avatar';
+import { randomAvatarURL } from 'my-app/utils/avatar';
 
 interface ProfileSignature {
   Args: {
@@ -50,18 +38,29 @@ export default class Profile extends Component<ProfileSignature> {
       ? `${this.args.user.displayName}'s custom profile picture`
       : 'a randomly generated placeholder avatar';
   }
+
+  <template>
+    <div class='user-profile' ...attributes>
+      <img
+        src={{this.avatarUrl}}
+        alt={{this.description}}
+        class='avatar'
+        data-test-avatar
+      />
+      <span class='name' data-test-name>{{@user.displayName}}</span>
+    </div>
+  </template>
 }
 ```
 
 To test the `Profile` component, we need to set up a `User` on `this` to pass into the component as an argument. With TypeScript on our side, we can even make sure our user actually has the correct type!
 
-```typescript {data-filename="tests/integration/components/profile.ts"}
+```gts {data-filename="tests/integration/components/profile.gts"}
 import { module, test } from 'qunit';
 import { render } from '@ember/test-helpers';
-import { hbs } from 'ember-cli-htmlbars';
 
-import { setupRenderingTest } from 'app/tests/helpers';
-import type User from 'app/types/user';
+import { setupRenderingTest } from 'my-app/tests/helpers';
+import type User from 'my-app/types/user';
 
 module('Integration | Component | Profile', function (hooks) {
   setupRenderingTest(hooks);
@@ -73,7 +72,7 @@ module('Integration | Component | Profile', function (hooks) {
     };
     this.user = user;
 
-    await render(hbs`<Profile @user={{this.user}}`);
+    await render(<template><Profile @user={{this.user}} /></template>);
 
     assert.dom('[data-test-name]').hasText(this.user.displayName);
     assert
@@ -88,7 +87,7 @@ module('Integration | Component | Profile', function (hooks) {
     };
     this.user = user;
 
-    await render(hbs`<Profile @user={{this.user}}`);
+    await render(<template><Profile @user={{this.user}} /></template>);
 
     assert.dom('[data-test-name]').hasText(this.user.displayName);
     assert
@@ -105,7 +104,7 @@ To inform TypeScript about this, we need to tell it that the type of `this` in e
 
 ```typescript {data-filename="tests/integration/components/profile.ts"}
 import type { TestContext } from '@ember/test-helpers';
-import type User from 'app/types/user';
+import type User from 'my-app/types/user';
 
 interface Context extends TestContext {
   user: User;
@@ -120,14 +119,13 @@ test('...', function (this: Context, assert) {});
 
 Putting it all together, this is what our updated test definition would look like:
 
-```typescript {data-filename="tests/integration/components/profile.ts"}
+```gts {data-filename="tests/integration/components/profile.gts"}
 import { module, test } from 'qunit';
 import { render } from '@ember/test-helpers';
 import type { TestContext } from '@ember/test-helpers';
-import { hbs } from 'ember-cli-htmlbars';
 
-import { setupRenderingTest } from 'app/tests/helpers';
-import type User from 'app/types/user';
+import { setupRenderingTest } from 'my-app/tests/helpers';
+import type User from 'my-app/types/user';
 
 interface Context extends TestContext {
   user: User;
@@ -142,7 +140,7 @@ module('Integration | Component | Profile', function (hooks) {
       avatarUrl: 'https://example.com/star-wars/rey',
     };
 
-    await render(hbs`<Profile @user={{this.user}}`);
+    await render(<template><Profile @user={{this.user}} /></template>);
 
     assert.dom('[data-test-name]').hasText(this.user.displayName);
     assert
@@ -156,7 +154,7 @@ module('Integration | Component | Profile', function (hooks) {
       displayName: 'Rey',
     };
 
-    await render(hbs`<Profile @user={{this.user}}`);
+    await render(<template><Profile @user={{this.user}} /></template>);
 
     assert.dom('[data-test-name]').hasText(this.user.displayName);
     assert
@@ -198,7 +196,7 @@ The test for our function might look something like this:
 
 ```javascript {data-filename="tests/unit/utils/math-test.js"}
 import { module, test } from 'qunit';
-import { add } from 'app/utils/math';
+import { add } from 'my-app/utils/math';
 
 module('the `add` function', function (hooks) {
   test('adds numbers correctly', function (assert) {
@@ -234,7 +232,7 @@ We can also drop the assertion from our function definition, because the _compil
 
 ```typescript {data-filename="tests/unit/utils/math-test.ts"}
 import { module, test } from 'qunit';
-import { add } from 'app/utils/math';
+import { add } from 'my-app/utils/math';
 
 module('the `add` function', function (hooks) {
   test('adds numbers correctly', function (assert) {
@@ -268,7 +266,7 @@ Now, in our test file, we're similarly back to testing all those extra scenarios
 
 ```typescript {data-filename="tests/unit/utils/math-test.ts"}
 import { module, test } from 'qunit';
-import { add } from 'app/utils/math';
+import { add } from 'my-app/utils/math';
 
 module('the `add` function', function (hooks) {
   test('adds numbers correctly', function (assert) {
