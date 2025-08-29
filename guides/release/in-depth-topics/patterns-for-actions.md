@@ -12,27 +12,27 @@ to confirm in order to trigger some action.
 We'll call this the `ButtonWithConfirmation` component. We can start off with a
 normal component definition, like we've seen before:
 
-```handlebars {data-filename=app/components/button-with-confirmation.hbs}
-<button type="button">{{@text}}</button>
-
-{{#if this.isConfirming}}
-  <div class="confirm-dialog">
-    <button type="button" class="confirm-submit">
-      OK
-    </button>
-    <button type="button" class="confirm-cancel">
-      Cancel
-    </button>
-  </div>
-{{/if}}
-```
-
-```js {data-filename=app/components/button-with-confirmation.js}
+```gjs {data-filename=app/components/button-with-confirmation.gjs}
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
 export default class ButtonWithConfirmationComponent extends Component {
   @tracked isConfirming = false;
+
+  <template>
+    <button type="button">{{@text}}</button>
+
+    {{#if this.isConfirming}}
+      <div class="confirm-dialog">
+        <button type="button" class="confirm-submit">
+          OK
+        </button>
+        <button type="button" class="confirm-cancel">
+          Cancel
+        </button>
+      </div>
+    {{/if}}
+  </template>
 }
 ```
 
@@ -45,92 +45,117 @@ more about tracked properties in the [Autotracking In-Depth](../autotracking-in-
 guide.
 
 Next, we need to hook up the button to toggle that property. We'll
-do this with an _action_:
+do this with an _action_.
+An action is a function that is bound to the component instance. There are two common ways to bind a function to a component instance.  The first way is to assign an arrow function to a property, like this:
 
-```js {data-filename=app/components/button-with-confirmation.js}
+```js
 import Component from '@glimmer/component';
-import { tracked } from '@glimmer/tracking';
+
+export default class MyFancyActionComponent extends Component {
+  myAction = () => {
+    // do something here
+  };
+}
+```
+
+The second way is to import and use the `@action` decorator, like this:
+
+```js
 import { action } from '@ember/object';
+import Component from '@glimmer/component';
 
-export default class ButtonWithConfirmationComponent extends Component {
-  @tracked isConfirming = false;
-
+export default class MyFancyActionComponent extends Component {
   @action
-  launchConfirmDialog() {
-    this.isConfirming = true;
+  myAction() {
+    // do something here
   }
 }
 ```
 
-```handlebars
-<button type="button" {{on "click" this.launchConfirmDialog}}>
-  {{@text}}
-</button>
+These two are functionally equivalent and are used interchangeably throughout these guides.
 
-{{#if this.isConfirming}}
-  <div class="confirm-dialog">
-    <button type="button" class="confirm-submit">
-      OK
+So, to hook up the button to toggle the `isConfirming` property, we'll define a `launchConfirmDialog` action:
+
+```gjs {data-filename=app/components/button-with-confirmation.gjs}
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
+import { on } from '@ember/modifier';
+
+export default class ButtonWithConfirmationComponent extends Component {
+  @tracked isConfirming = false;
+
+  launchConfirmDialog = () => {
+    this.isConfirming = true;
+  };
+
+  <template>
+    <button type="button" {{on "click" this.launchConfirmDialog}}>
+      {{@text}}
     </button>
-    <button type="button" class="confirm-cancel">
-      Cancel
-    </button>
-  </div>
-{{/if}}
+
+    {{#if this.isConfirming}}
+      <div class="confirm-dialog">
+        <button type="button" class="confirm-submit">
+          OK
+        </button>
+        <button type="button" class="confirm-cancel">
+          Cancel
+        </button>
+      </div>
+    {{/if}}  
+  </template>
+}
 ```
 
 Now if we click the button, it will show the confirmation dialog - our first
 interactive component! We'll also want the modal to close when we click either
 of the modal buttons, so we can add a couple more actions to handle that:
 
-```js {data-filename=app/components/button-with-confirmation.js}
+```gjs {data-filename=app/components/button-with-confirmation.gjs}
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { action } from '@ember/object';
+import { on } from '@ember/modifier';
 
 export default class ButtonWithConfirmationComponent extends Component {
   @tracked isConfirming = false;
 
-  @action
-  launchConfirmDialog() {
+  launchConfirmDialog = () => {
     this.isConfirming = true;
-  }
+  };
 
-  @action
-  submitConfirm() {
+  submitConfirm = () => {
     this.isConfirming = false;
-  }
+  };
 
-  @action
-  cancelConfirm() {
+  cancelConfirm = () => {
     this.isConfirming = false;
-  }
+  };
+
+  <template>
+    <button type="button" {{on "click" this.launchConfirmDialog}}>
+      {{@text}}
+    </button>
+
+    {{#if this.isConfirming}}
+      <div class="confirm-dialog">
+        <button
+          type="button"
+          class="confirm-submit"
+          {{on "click" this.submitConfirm}}
+        >
+          OK
+        </button>
+        <button
+          type="submit"
+          class="confirm-cancel"
+          {{on "click" this.cancelConfirm}}
+        >
+          Cancel
+        </button>
+      </div>
+    {{/if}}
+  </template>
 }
-```
-
-```handlebars
-<button type="button" {{on "click" this.launchConfirmDialog}}>
-  {{@text}}
-</button>
-
-{{#if this.isConfirming}}
-  <div class="confirm-dialog">
-    <button
-      type="button"
-      class="confirm-submit"
-      {{on "click" this.submitConfirm}}
-    >
-      OK
-    </button>
-    <button
-      type="submit"
-      class="confirm-cancel"
-      {{on "click" this.cancelConfirm}}
-    >
-      Cancel
-    </button>
-  </div>
-{{/if}}
 ```
 
 Now we can open and close the modal dialog at will! Next, we'll setup the
@@ -142,10 +167,17 @@ buttons.
 Let's create a parent component, the `UserProfile` component, where the user can
 delete their profile:
 
-```handlebars {data-filename=app/components/user-profile.hbs}
-<ButtonWithConfirmation
-  @text="Click OK to delete your account."
-/>
+```gjs {data-filename=app/components/user-profile.gjs}
+import Component from '@glimmer/component';
+import ButtonWithConfirmation from 'my-app/components/button-with-confirmation';
+
+export default class UserProfileComponent extends Component {
+  <template>
+    <ButtonWithConfirmation
+      @text="Click OK to delete your account."
+    />
+  </template>
+}
 ```
 
 First we'll define what we want to happen when the user clicks the button and
@@ -157,18 +189,23 @@ We'll implement an action on the parent component called
 method. We'll go over services later on - for now, think of it as an API
 that manages the user's login and information.
 
-```javascript {data-filename=app/components/user-profile.js}
+```gjs {data-filename=app/components/user-profile.gjs}
 import Component from '@glimmer/component';
 import { service } from '@ember/service';
-import { action } from '@ember/object';
+import ButtonWithConfirmation from 'my-app/components/button-with-confirmation';
 
 export default class UserProfileComponent extends Component {
   @service login;
 
-  @action
-  deleteAccount() {
+  deleteAccount = () => {
     this.login.deleteUser();
   }
+
+  <template>
+    <ButtonWithConfirmation
+      @text="Click OK to delete your account."
+    />
+  </template>
 }
 ```
 
@@ -177,42 +214,78 @@ action to be triggered. In order to trigger the action when the user clicks "OK"
 in the `ButtonWithConfirmation` component, we'll need to pass the action _down_
 to it as an argument:
 
-```handlebars {data-filename=app/components/user-profile.hbs}
-<ButtonWithConfirmation
-  @text="Click OK to delete your account."
-  @onConfirm={{this.deleteAccount}}
-/>
+```gjs {data-filename=app/components/user-profile.gjs data-diff="+15"}
+import Component from '@glimmer/component';
+import { service } from '@ember/service';
+import ButtonWithConfirmation from 'my-app/components/button-with-confirmation';
+
+export default class UserProfileComponent extends Component {
+  @service login;
+
+  deleteAccount = () => {
+    this.login.deleteUser();
+  }
+
+  <template>
+    <ButtonWithConfirmation
+      @text="Click OK to delete your account."
+      @onConfirm={{this.deleteAccount}}
+    />
+  </template>
+}
 ```
 
 Next, in the child component we will implement the logic to confirm that the
 user wants to take the action they indicated by clicking the button:
 
-```javascript {data-filename=app/components/button-with-confirmation.js}
+```gjs {data-filename=app/components/button-with-confirmation.gjs}
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { action } from '@ember/object';
+import { on } from '@ember/modifier';
 
 export default class ButtonWithConfirmationComponent extends Component {
   @tracked isConfirming = false;
 
-  @action
-  launchConfirmDialog() {
+  launchConfirmDialog = () => {
     this.isConfirming = true;
-  }
+  };
 
-  @action
-  submitConfirm() {
+  submitConfirm = () => {
     if (this.args.onConfirm) {
       this.args.onConfirm();
     }
 
     this.isConfirming = false;
-  }
+  };
 
-  @action
-  cancelConfirm() {
+  cancelConfirm = () => {
     this.isConfirming = false;
-  }
+  };
+
+  <template>
+    <button type="button" {{on "click" this.launchConfirmDialog}}>
+      {{@text}}
+    </button>
+
+    {{#if this.isConfirming}}
+      <div class="confirm-dialog">
+        <button
+          type="button"
+          class="confirm-submit"
+          {{on "click" this.submitConfirm}}
+        >
+          OK
+        </button>
+        <button
+          type="submit"
+          class="confirm-cancel"
+          {{on "click" this.cancelConfirm}}
+        >
+          Cancel
+        </button>
+      </div>
+    {{/if}}
+  </template>
 }
 ```
 
@@ -235,33 +308,56 @@ accomplished by expecting a promise to be returned from `onConfirm`. Upon
 resolution of the promise, we set a property used to indicate the visibility of
 the confirmation modal. We can use an `async` function to handle that promise:
 
-```javascript {data-filename=app/components/button-with-confirmation.js}
+```gjs {data-filename=app/components/button-with-confirmation.gjs}
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { action } from '@ember/object';
+import { on } from '@ember/modifier';
 
 export default class ButtonWithConfirmationComponent extends Component {
   @tracked isConfirming = false;
 
-  @action
-  launchConfirmDialog() {
+  launchConfirmDialog = () => {
     this.isConfirming = true;
-  }
+  };
 
-  @action
-  async submitConfirm() {
+  submitConfirm = async () => {
     if (this.args.onConfirm) {
       await this.args.onConfirm();
     }
 
     this.isConfirming = false;
-  }
+  };
 
-  @action
-  cancelConfirm() {
+  cancelConfirm = () => {
     this.isConfirming = false;
-  }
+  };
+
+  <template>
+    <button type="button" {{on "click" this.launchConfirmDialog}}>
+      {{@text}}
+    </button>
+
+    {{#if this.isConfirming}}
+      <div class="confirm-dialog">
+        <button
+          type="button"
+          class="confirm-submit"
+          {{on "click" this.submitConfirm}}
+        >
+          OK
+        </button>
+        <button
+          type="submit"
+          class="confirm-cancel"
+          {{on "click" this.cancelConfirm}}
+        >
+          Cancel
+        </button>
+      </div>
+    {{/if}}
+  </template>
 }
+
 ```
 
 ## Passing Arguments
@@ -272,15 +368,13 @@ where the `ButtonWithConfirmation` component we've defined is used within
 `SendMessage`. The `sendMessage` action that we pass to the child component may
 expect a message type parameter to be provided as an argument:
 
-```javascript {data-filename=app/components/send-message.js}
+```gjs {data-filename=app/components/send-message.gjs}
 import Component from '@glimmer/component';
-import { action } from '@ember/object';
 
 export default class SendMessageComponent extends Component {
-  @action
-  async sendMessage(messageType) {
+  sendMessage = async (messageType) => {
     // send message here and return a promise
-  }
+  };
 }
 ```
 
@@ -290,17 +384,29 @@ template can provide the required parameter when the action is passed to the
 child. For example, if we want to use the button to send a message of type
 `"info"`:
 
-```handlebars {data-filename=app/components/send-message.hbs}
-<ButtonWithConfirmation
-  @text="Click to send your message."
-  @onConfirm={{fn this.sendMessage "info"}}
-/>
+```gjs {data-filename=app/components/send-message.gjs}
+import Component from '@glimmer/component';
+import { fn } from '@ember/helper';
+import ButtonWithConfirmation from 'my-app/components/button-with-confirmation';
+
+export default class SendMessageComponent extends Component {
+  sendMessage = async (messageType) => {
+    // send message here and return a promise
+  };
+
+  <template>
+    <ButtonWithConfirmation
+      @text="Click to send your message."
+      @onConfirm={{fn this.sendMessage "info"}}
+    />
+  </template>
+}
 ```
 
 Within `ButtonWithConfirmation`, the code in the `submitConfirm` action does not
 change. It will still invoke `onConfirm` without explicit arguments:
 
-```javascript {data-filename=app/components/button-with-confirmation.js}
+```js
 await this.args.onConfirm();
 ```
 
@@ -314,15 +420,13 @@ a function that accepts one argument, `messageType`. Suppose we want to extend
 this by allowing `sendMessage` to take a second argument, the actual text of the
 message the user is sending:
 
-```javascript {data-filename=app/components/send-message.js}
+```gjs {data-filename=app/components/send-message.gjs}
 import Component from '@glimmer/component';
-import { action } from '@ember/object';
 
 export default class SendMessageComponent extends Component {
-  @action
-  async sendMessage(messageType, messageText) {
+  sendMessage = async (messageType, messageText) => {
     // send message here and return a promise
-  }
+  };
 }
 ```
 
@@ -343,20 +447,18 @@ in a messaging application. Therefore within the component's JavaScript file, we
 will use a property `confirmValue` to represent that argument and pass it to
 `onConfirm` as shown here:
 
-```javascript {data-filename=app/components/button-with-confirmation.js}
+```gjs {data-filename=app/components/button-with-confirmation.gjs}
 import Component from '@glimmer/component';
-import { action } from '@ember/object';
 
 export default class ButtonWithConfirmationComponent extends Component {
-  @action
-  async submitConfirm() {
+  submitConfirm = async() => {
     if (this.args.onConfirm) {
       // call `onConfirm` with a second argument
       await this.args.onConfirm(this.confirmValue);
     }
 
     this.isConfirming = false;
-  }
+  };
 
   //...
 }
@@ -369,41 +471,71 @@ be used in block form and we will pass `confirmValue` as a
 [block parameter](../../components/block-content/) within the confirm dialog
 element:
 
-```handlebars {data-filename=app/components/button-with-confirmation.hbs}
-<button type="button" {{on "click" this.launchConfirmDialog}}>
-  {{this.text}}
-</button>
+```gjs {data-filename=app/components/button-with-confirmation.gjs}
+import Component from '@glimmer/component';
 
-{{#if this.isConfirming}}
-  <div class="confirm-dialog">
-    {{yield this.confirmValue}}
+export default class ButtonWithConfirmationComponent extends Component {
+  submitConfirm = async() => {
+    if (this.args.onConfirm) {
+      // call `onConfirm` with a second argument
+      await this.args.onConfirm(this.confirmValue);
+    }
 
-    <button type="button"
-      class="confirm-submit"
-      {{on "click" this.submitConfirm}}
-    >
-      OK
+    this.isConfirming = false;
+  };
+
+  <template>
+    <button type="button" {{on "click" this.launchConfirmDialog}}>
+      {{this.text}}
     </button>
-    <button type="button"
-      class="confirm-cancel"
-      {{on "click" this.cancelConfirm}}
-    >
-      Cancel
-    </button>
-  </div>
-{{/if}}
+
+    {{#if this.isConfirming}}
+      <div class="confirm-dialog">
+        {{yield this.confirmValue}}
+
+        <button type="button"
+          class="confirm-submit"
+          {{on "click" this.submitConfirm}}
+        >
+          OK
+        </button>
+        <button type="button"
+          class="confirm-cancel"
+          {{on "click" this.cancelConfirm}}
+        >
+          Cancel
+        </button>
+      </div>
+    {{/if}}
+  </template>
+}
+
 ```
 
 With this modification, we can now use the component in `SendMessage` to wrap a
 text input element whose `value` attribute is set to `confirmValue`:
 
-```handlebars {data-filename=app/components/send-message.hbs}
-<ButtonWithConfirmation
-  @text="Click to send your message."
-  @onConfirm={{fn this.sendMessage "info"}}
-as |confirmValue|>
-  <Input @value={{confirmValue}} />
-</ButtonWithConfirmation>
+```gjs {data-filename=app/components/send-message.gjs}
+import Component from '@glimmer/component';
+import ButtonWithConfirmation from 'my-app/components/button-with-confirmation';
+import { Input } from '@ember/component';
+
+export default class SendMessageComponent extends Component {
+  // ...
+
+  sendMessage = async (messageType, messageText) => {
+    // send message here and return a promise
+  };
+
+  <template>
+    <ButtonWithConfirmation
+      @text="Click to send your message."
+      @onConfirm={{fn this.sendMessage "info"}}
+    as |confirmValue|>
+      <Input @value={{confirmValue}} />
+    </ButtonWithConfirmation>
+  </template>
+}
 ```
 
 When the user enters their message into the input field, the message text will
@@ -417,32 +549,34 @@ with the provided `confirmValue`, thus invoking the `sendMessage` action in
 Actions can be invoked on objects other than the component directly from the
 template. For example, in our `SendMessage` component we might include a service
 that processes the `sendMessage` logic.
+We can tell the action to invoke the `sendMessage` action directly on the
+messaging service.
 
-```javascript {data-filename=app/components/send-message.js}
+```gjs {data-filename=app/components/send-message.gjs}
 import Component from '@glimmer/component';
+import ButtonWithConfirmation from 'my-app/components/button-with-confirmation';
+import { Input } from '@ember/component';
 import { service } from '@ember/service';
 
 export default class SendMessageComponent extends Component {
   @service messaging;
 
-  // component implementation
+  // ... component implementation
+
+  <template>
+    <ButtonWithConfirmation
+      @text="Click to send your message."
+      @onConfirm={{fn this.messaging.sendMessage "info"}}
+      as |confirmValue|
+    >
+      <Input @value={{confirmValue}} />
+    </ButtonWithConfirmation>
+  </template>
 }
 ```
 
-We can tell the action to invoke the `sendMessage` action directly on the
-messaging service.
-
-```handlebars {data-filename=app/components/send-message.hbs}
-<ButtonWithConfirmation
-  @text="Click to send your message."
-  @onConfirm={{fn this.messaging.sendMessage "info"}}
-as |confirmValue|>
-  <Input @value={{confirmValue}} />
-</ButtonWithConfirmation>
-```
-
-The interesting part is that the action from the service just works, because
-it's auto-bound to that service.
+The interesting part is that the action from the service just works, as long as
+it's bound to that service.
 
 ```javascript {data-filename=app/services/messaging.js}
 import Service from '@ember/service';
@@ -456,6 +590,18 @@ export default class Messaging extends Service {
 }
 ```
 
+or
+
+```javascript {data-filename=app/services/messaging.js}
+import Service from '@ember/service';
+
+export default class Messaging extends Service {
+  sendMessage = async (messageType, text) => {
+    // handle message send and return a promise
+  }
+}
+```
+
 ## Destructuring Objects Passed as Action Arguments
 
 A component will often not know what information a parent needs to process an
@@ -464,20 +610,22 @@ action, and will just pass all the information it has. For example, our
 `SystemPreferencesEditor`, that a user's account was deleted, and passes along
 with it the full user profile object.
 
-```javascript {data-filename=app/components/user-profile.js}
+```gjs {data-filename=app/components/user-profile.gjs}
 import Component from '@glimmer/component';
 import { service } from '@ember/service';
-import { action } from '@ember/object';
 
 export default class UserProfileComponent extends Component {
   @service login;
 
-  @action
-  async deleteAccount() {
+  deleteAccount = async () => {
     await this.login.deleteUser();
 
     this.args.didDelete(this.login.currentUserObj);
-  }
+  };
+
+  <template>
+    {{! user profile }}
+  </template>
 }
 ```
 
@@ -485,23 +633,24 @@ All our `SystemPreferencesEditor` component really needs to process a user
 deletion is an account ID. For this case, the `fn` helper provides the value
 via partial application to allow a parent component to dig into the passed
 object to pull out only what it needs.
-
-```handlebars {data-filename=app/components/system-preferences-editor.hbs}
-<UserProfile @didDelete={{fn this.userDeleted this.login.currentUser.id}} />
-```
-
 Now when the `SystemPreferencesEditor` handles the delete action, it receives
 only the user's account `id` string.
 
-```javascript {data-filename=app/components/system-preferences-editor.js}
+```gjs {data-filename=app/components/system-preferences-editor.gjs}
 import Component from '@glimmer/component';
-import { action } from '@ember/object';
+import { fn } from '@ember/helper';
+import UserProfile from 'my-app/components/user-profile';
 
 export default class SystemPreferencesEditorComponent extends Component {
-  @action
-  userDeleted(idStr /* , native clickEvent */) {
+  // ...
+
+  userDeleted = (idStr /* , native clickEvent */) => {
     // respond to deletion
-  }
+  };
+
+  <template>
+    <UserProfile @didDelete={{fn this.userDeleted this.login.currentUser.id}} />
+  </template>
 }
 ```
 
@@ -518,45 +667,50 @@ adding JavaScript code to those child components.
 For example, say we want to move account deletion from the `UserProfile`
 component to its parent `SystemPreferencesEditor`.
 
-First we would move the `deleteUser` action from `user-profile.js` to
-the parent `system-preferences-editor.js`.
+First we would move the `deleteUser` action from `user-profile.gjs` to
+the parent `system-preferences-editor.gjs` and pass the local `deleteUser` action into the `UserProfile` as that component's `deleteCurrentUser` argument.
 
-```javascript {data-filename=app/components/system-preferences-editor.js}
+
+```gjs {data-filename=app/components/system-preferences-editor.gjs}
 import Component from '@glimmer/component';
 import { service } from '@ember/service';
-import { action } from '@ember/object';
+import { fn } from '@ember/helper';
+import UserProfile from 'my-app/components/user-profile';
 
 export default class SystemPreferencesEditorComponent extends Component {
   @service login;
 
-  @action
-  deleteUser(idStr) {
+  deleteUser = (idStr) => {
     return this.login.deleteUserAccount(idStr);
-  }
+  };
+
+  <template>
+    <UserProfile
+      @deleteCurrentUser={{fn this.deleteUser this.login.currentUser.id}}
+    />
+  </template>
 }
-```
-
-Then our `SystemPreferencesEditor` template passes its local `deleteUser`
-action into the `UserProfile` as that component's `deleteCurrentUser` argument.
-
-```handlebars {data-filename=app/components/system-preferences-editor.hbs}
-<UserProfile
-  @deleteCurrentUser={{fn this.deleteUser this.login.currentUser.id}}
-/>
 ```
 
 The `deleteUser` action is prepended with `this.`, since
 `SystemPreferencesEditor` is where the action is defined now. If the action
 was passed from a parent, then it might have looked like `@deleteUser` instead.
 
-In our `user-profile.hbs` template we change our action to call
+In our `UserProfile` component we change our action to call
 `deleteCurrentUser` as passed above.
 
-```handlebars {data-filename=app/components/user-profile.hbs}
-<ButtonWithConfirmation
-  @text="Click OK to delete your account."
-  @onConfirm={{@deleteCurrentUser}}
-/>
+```gjs {data-filename=app/components/user-profile.gjs}
+import Component from '@glimmer/component';
+import ButtonWithConfirmation from 'my-app/components/button-with-confirmation';
+
+export default class UserProfileComponent extends Component {
+  <template>
+    <ButtonWithConfirmation
+      @text="Click OK to delete your account."
+      @onConfirm={{@deleteCurrentUser}}
+    />
+  </template>
+}
 ```
 
 Note that `deleteCurrentUser` is now prepended with `@` as opposed to `this.`
