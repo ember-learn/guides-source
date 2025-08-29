@@ -90,9 +90,9 @@ writing the admin section of a blogging app, which has a feature that
 lists the drafts for the currently logged in user.
 
 You might be tempted to make the component responsible for fetching that
-data and storing it:
+data, storing it, and showing the list of drafts, like this:
 
-```javascript {data-filename=app/components/list-of-drafts.js}
+```gjs {data-filename=app/components/list-of-drafts.gjs}
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import fetch from "fetch";
@@ -107,30 +107,27 @@ export default class ListOfDraftsComponent extends Component {
       this.drafts = data;
     });
   }
+  <template>
+    <ul>
+      {{#each this.drafts key="id" as |draft|}}
+        <li>{{draft.title}}</li>
+      {{/each}}
+    </ul>
+  </template>
 }
 ```
 
-You could then show the list of drafts in your component's template like
-this:
-
-```handlebars {data-filename=app/components/list-of-drafts.hbs}
-<ul>
-  {{#each this.drafts key="id" as |draft|}}
-    <li>{{draft.title}}</li>
-  {{/each}}
-</ul>
-```
-
-This works great for the `list-of-drafts` component. However, your app
+This works great for the `ListOfDrafts` component. However, your app
 is likely made up of many different components. On another page you
 may want a component to display the number of drafts. You may be
-tempted to copy and paste your existing `willRender` code into the new
+tempted to copy and paste your existing `constructor` code into the new
 component.
 
-```javascript {data-filename=app/components/drafts-button.js}
+```gjs {data-filename=app/components/drafts-button.gjs}
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import fetch from "fetch";
+import { LinkTo } from '@ember/routing';
 
 export default class DraftsButtonComponent extends Component {
   @tracked drafts;
@@ -142,13 +139,13 @@ export default class DraftsButtonComponent extends Component {
       this.drafts = data;
     });
   }
-}
-```
 
-```handlebars {data-filename=app/components/drafts-button.hbs}
-<LinkTo @route="drafts">
-  Drafts ({{this.drafts.length}})
-</LinkTo>
+  <template>
+    <LinkTo @route="drafts">
+      Drafts ({{this.drafts.length}})
+    </LinkTo>
+  </template>
+}
 ```
 
 Unfortunately, the app will now make two separate requests for the
