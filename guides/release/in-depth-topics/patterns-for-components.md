@@ -158,52 +158,50 @@ displaying different kinds of posts.  First, define your two components:
 </template>
 ```
 
-Then, you can choose which to render based on the data:
+Then, you can choose which to render based on the string data. We can pass the `@post` into our `ShowPostComponent` and it can render the correct type for us: 
 
-```gjs {data-filename=app/templates/index.gjs}
+```gjs {data-filename=app/components/show-post.gjs}
+import Component from '@glimmer/component';
+
 import RootPost from  'my-app/components/root-post';
 import ReplyPost from 'my-app/components/reply-post';
 
-// returns either RootPost or ReplyPost (default: RootPost)
-function getPostComponent(postType) {
-  return postType === 'reply' ? ReplyPost : RootPost;
-}
 
-<template>
-  {{#each this.myPosts as |post|}}
-    {{!-- Post is either RootPost or ReplyPost --}}
-    {{#let (getPostComponent post.postType) as |Post|}}
-      <Post @author={{post.author}} @body={{post.body}} />
-    {{/let}}
-  {{/each}}
-</template>
+export default class ShowPostComponent extends Component {
+  // returns either RootPost or ReplyPost (default: RootPost)
+  get postComponent(postType) {
+    return this.args.post?.postType === 'reply' ? ReplyPost : RootPost;
+  }
+
+  <template>
+    <this.postComponent @author={{@post.author}} @body={{@post.body}} />
+  </template>
+}
 ```
 
 This is great when `RootPost` and `ReplyPost` take the same arguments, like `author` and `body` in the above example. But what if the components accept different arguments? One way would be to move the selection conditional into the template, like so:
 
-```gjs {data-filename=app/templates/index.gjs}
+```gjs {data-filename=app/components/show-post.gjs}
 import RootPost from 'my-app/components/root-post';
 import ReplyPost from 'my-app/components/reply-post';
 
 const eq = (a, b) => a === b;
 
 <template>
-  {{#each this.myPosts as |post|}}
-    {{!-- Post is either RootPost or ReplyPost --}}
-    {{#if (eq post.postType "reply")}}
-      <ReplyPost
-        @author={{post.author}}
-        @body={{post.body}}
-        @replyTo={{post}}
-      />
-    {{else}}
-      <RootPost
-        @author={{post.author}}
-        @body={{post.body}}
-        @category={{post.topic}}
-      />
-    {{/if}}
-  {{/each}}
+  {{!-- Post is either RootPost or ReplyPost --}}
+  {{#if (eq @post.postType "reply")}}
+    <ReplyPost
+      @author={{post.author}}
+      @body={{post.body}}
+      @replyTo={{post}}
+    />
+  {{else}}
+    <RootPost
+      @author={{post.author}}
+      @body={{post.body}}
+      @category={{post.topic}}
+    />
+  {{/if}}
 </template>
 ```
 
@@ -217,20 +215,27 @@ The first parameter of the helper is a component to render. So `{{component Blog
 The `component` helper is often used when yielding components to blocks. For example the layout for a SuperForm component might be implemented as:
 
 ```gjs {data-filename=app/components/super-form.gjs}
+import Component from '@glimmer/component';
 import { hash } from '@ember/helper';
 import SuperInput from 'my-app/components/super-input';
 import SuperTextarea from 'my-app/components/super-textarea';
 import SuperSubmit from 'my-app/components/super-submit';
 
-<template>
-  <form>
-    {{yield (hash
-      Input=(component SuperInput form=this model=this.model)
-      Textarea=(component SuperTextarea form=this model=this.model)
-      Submit=(component SuperSubmit form=this model=this.model)
-    )}}
-  </form>
-</template>
+export default class SuperFormComponent extends Component {
+  get data() {
+    return this.args.post;
+  }
+
+  <template>
+    <form>
+      {{yield (hash
+        Input=(component SuperInput form=this model=this.data)
+        Textarea=(component SuperTextarea form=this model=this.data)
+        Submit=(component SuperSubmit form=this model=this.data)
+      )}}
+    </form>
+  </template>
+}
 ```
 
 And be used as:
@@ -239,7 +244,7 @@ And be used as:
 import SuperForm from 'my-app/components/super-form';
 
 <template>
-  <SuperForm @model={{this.post}} as |f|>
+  <SuperForm @post={{@model}} as |f|>
     <f.Input @name="title" />
     <f.Textarea @name="body" />
     <f.Submit />
@@ -254,6 +259,7 @@ The `{{component}}` helper is a powerful tool for improving code modularity.
 We can even use helpers and modifiers in the same way. Let's extend the SuperForm component:
 
 ```gjs {data-filename=app/components/super-form.gjs}
+import Component from '@glimmer/component';
 import { hash } from '@ember/helper';
 import SuperInput from 'my-app/components/super-input';
 import SuperTextarea from 'my-app/components/super-textarea';
@@ -262,22 +268,26 @@ import superIsValid from 'my-app/helpers/super-is-valid';
 import superErrorFor from 'my-app/helpers/super-error-for';
 import superAutoResize from 'my-app/modifiers/super-auto-resize';
 
-<template>
-  <form>
-    {{yield (hash
+export default class SuperFormComponent extends Component {
+  get data() {
+    return this.args.post;
+  }
 
-      Input=(component SuperInput form=this model=this.model)
-      Textarea=(component SuperTextarea form=this model=this.model)
-      Submit=(component SuperSubmit form=this model=this.model)
+  <template>
+    <form>
+      {{yield (hash
+        Input=(component SuperInput form=this model=this.data)
+        Textarea=(component SuperTextarea form=this model=this.data)
+        Submit=(component SuperSubmit form=this model=this.data)
 
-      is-valid=(helper superIsValid form=this model=this.model)
-      error-for=(helper superErrorFor form=this model=this.model)
+        is-valid=(helper superIsValid form=this model=this.data)
+        error-for=(helper superErrorFor form=this model=this.data)
 
-      auto-resize=(modifier superAutoResize)
-
-    )}}
-  </form>
-</template>
+        auto-resize=(modifier superAutoResize)
+      )}}
+    </form>
+  </template>
+}
 ```
 
 And be used as:

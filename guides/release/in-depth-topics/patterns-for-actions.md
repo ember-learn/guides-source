@@ -49,23 +49,27 @@ do this with an _action_.
 An action is a function that is bound to the component instance. There are two common ways to bind a function to a component instance.  The first way is to assign an arrow function to a property, like this:
 
 ```js
-  // in component
+import Component from '@glimmer/component';
+
+export default class MyFancyActionComponent extends Component {
   myAction = () => {
     // do something here
   };
+}
 ```
 
 The second way is to import and use the `@action` decorator, like this:
 
 ```js
 import { action } from '@ember/object';
-// ...
+import Component from '@glimmer/component';
 
-  // in component
+export default class MyFancyActionComponent extends Component {
   @action
   myAction() {
     // do something here
   }
+}
 ```
 
 These two are functionally equivalent and are used interchangeably throughout these guides.
@@ -210,7 +214,7 @@ action to be triggered. In order to trigger the action when the user clicks "OK"
 in the `ButtonWithConfirmation` component, we'll need to pass the action _down_
 to it as an argument:
 
-```gjs {data-filename=app/components/user-profile.gjs}
+```gjs {data-filename=app/components/user-profile.gjs data-diff="+15"}
 import Component from '@glimmer/component';
 import { service } from '@ember/service';
 import ButtonWithConfirmation from 'my-app/components/button-with-confirmation';
@@ -371,10 +375,6 @@ export default class SendMessageComponent extends Component {
   sendMessage = async (messageType) => {
     // send message here and return a promise
   };
-
-  <template>
-    {{! ... send message ... }}
-  </template>
 }
 ```
 
@@ -406,10 +406,8 @@ export default class SendMessageComponent extends Component {
 Within `ButtonWithConfirmation`, the code in the `submitConfirm` action does not
 change. It will still invoke `onConfirm` without explicit arguments:
 
-```gjs {data-filename=app/components/button-with-confirmation.gjs}
-  // ...
-  await this.args.onConfirm();
-  // ...
+```js
+await this.args.onConfirm();
 ```
 
 However the expression `{{fn this.sendMessage "info"}}` used in passing the
@@ -429,8 +427,6 @@ export default class SendMessageComponent extends Component {
   sendMessage = async (messageType, messageText) => {
     // send message here and return a promise
   };
-
-  // ...
 }
 ```
 
@@ -600,7 +596,7 @@ or
 import Service from '@ember/service';
 
 export default class Messaging extends Service {
-  sendMessage = async (messageType, text) {
+  sendMessage = async (messageType, text) => {
     // handle message send and return a promise
   }
 }
@@ -705,18 +701,16 @@ In our `UserProfile` component we change our action to call
 
 ```gjs {data-filename=app/components/user-profile.gjs}
 import Component from '@glimmer/component';
-import { service } from '@ember/service';
 import ButtonWithConfirmation from 'my-app/components/button-with-confirmation';
 
 export default class UserProfileComponent extends Component {
-  // ...
-
   <template>
     <ButtonWithConfirmation
       @text="Click OK to delete your account."
       @onConfirm={{@deleteCurrentUser}}
     />
   </template>
+}
 ```
 
 Note that `deleteCurrentUser` is now prepended with `@` as opposed to `this.`
