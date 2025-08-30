@@ -102,6 +102,22 @@ Shortcuts to navigate related files with Ember.js projects.
 [Ember Tools](https://github.com/AndrewRadev/ember_tools.vim) -
 Various tools for working with Ember.js projects.
 
+## Atom
+
+Atom is hackable text editor for the 21st Century.
+
+[atom-ide-ember](https://github.com/josa42/atom-ide-ember) -
+Atom package to use the Ember Language Server.
+
+[emberjs-atom](https://atom.io/packages/emberjs-atom) -
+Atom autocomplete and snippets for Ember.js.
+
+[atom-ember-snippets](https://github.com/mattmcmanus/atom-ember-snippets) -
+Ember.js ES6, EmberData & Handlebars snippets for Atom editor.
+
+[language-ember-htmlbars](https://atom.io/packages/language-ember-htmlbars) -
+Add Ember template syntax highlighting and indentation to Atom
+
 ## Sublime Text
 
 A sophisticated text editor for code, markup and prose.
@@ -111,3 +127,9 @@ Ember CLI snippets for Sublime Text 3.
 
 [ember-component-template-split-view](https://github.com/mmitchellgarcia/ember-component-template-split-view) -
 Super simple Sublime Text plugin that will let you open corresponding template or route files with Ember.js components.
+
+## CodeLobster IDE
+
+CodeLobster IDE is a smart free cross-platform editor.
+
+[CodeLobster IDE plug-in for Ember](http://www.codelobster.com/emberjs.html) gives autocomplete and tooltips for Ember.js functions, context and dynamic help.
