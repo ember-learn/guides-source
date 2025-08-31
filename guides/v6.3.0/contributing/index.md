@@ -31,7 +31,7 @@ At the top of the page (for the package, method, or class), you will find the wo
 
 You can open the link to find a comment block. Make a pull request to update the comment block. The API Guides may take a few weeks to update while the future release is finalized.
 
-Here is an example of updating a method. At the top of the section for [`store.createRecord()`](https://api.emberjs.com/ember-data/5.4.0/classes/Store/methods/createRecord?anchor=createRecord), you can find the words "Defined in."
+Here is an example of updating a method. At the top of the section for [`store.createRecord()`](https://api.emberjs.com/ember-data/5.3.12/classes/Store/methods/createRecord?anchor=createRecord), you can find the words "Defined in."
 
 Next to the words is, once again, the link to the source code [`ds-model-store.ts`](https://github.com/emberjs/data/blob/master/packages/store/addon/-private/system/ds-model-store.ts).
 

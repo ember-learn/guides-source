@@ -54,34 +54,12 @@ For examples, see:
 - EmberData [`@belongsTo`][model-belongsto]
 - EmberData [`@hasMany`][model-hasmany]
 
-## Templates
-
-Templates are currently totally non-type-checked. This means that you lose any safety when moving into a template context, even if using a Glimmer `Component` in Ember Octane. (Looking for type-checking in templates? Try [Glint][]!)
-
-For example, TypeScript won't detect a mismatch between this action and the corresponding call in the template:
-
-```typescript {data-filename="app/components/my-game.ts"}
-import Component from '@ember/component';
-import { action } from '@ember/object';
-
-export default class MyGame extends Component {
-  @action turnWheel(degrees: number) {
-    // ...
-  }
-}
-```
-
-```handlebars {data-filename="app/components/my-game.hbs"}
-<button {{on 'click' (fn this.turnWheel 'potato')}}>
-  Click Me
-</button>
-```
-
 ## Hook Types and Autocomplete
 
 Let's imagine a component which just logs the names of its arguments when it is first constructed. First, we must define the [Signature][] and pass it into our component, then we can use the `Args` member in our Signature to set the type of `args` in the constructor:
 
-```typescript {data-filename="app/components/args-display.ts"}
+```gts {data-filename="app/components/args-display.gts"}
+import type Owner from '@ember/owner';
 import Component from '@glimmer/component';
 
 const log = console.log.bind(console);
@@ -95,7 +73,7 @@ export interface ArgsDisplaySignature {
 }
 
 export default class ArgsDisplay extends Component<ArgsDisplaySignature> {
-  constructor(owner: unknown, args: ArgsDisplaySignature['Args']) {
+  constructor(owner: Owner, args: ArgsDisplaySignature['Args']) {
     super(owner, args);
     Object.keys(args).forEach(log);
   }
@@ -104,7 +82,7 @@ export default class ArgsDisplay extends Component<ArgsDisplaySignature> {
 
 Notice that we have to start by calling `super` with `owner` and `args`. This may be a bit different from what you're used to in Ember or other frameworks, but is normal for sub-classes in TypeScript today. If the compiler just accepted any `...arguments`, a lot of potentially _very_ unsafe invocations would go through. So, instead of using `...arguments`, we explicitly pass the _specific_ arguments and make sure their types match up with what the super-class expects.
 
-The types for `owner` here and `args` line up with what the `constructor` for Glimmer components expects. The `owner` is specified as `unknown` because this is a detail we explicitly _don't_ need to know about. The `args` are the `Args` from the Signature we defined.
+The types for `owner` here and `args` line up with what the `constructor` for Glimmer components expects. The `owner` is specified as `Owner`, imported from the `@ember/owner` module. The `args` are the `Args` from the Signature we defined.
 
 Additionally, the types of the arguments passed to subclassed methods will _not_ autocomplete as you may expect. This is because in JavaScript, a subclass may legally override a superclass method to accept different arguments. Ember's lifecycle hooks, however, are called by the framework itself, and thus the arguments and return type should always match the superclass. Unfortunately, TypeScript does not and _cannot_ know that, so we have to provide the types directly.
 
@@ -135,4 +113,3 @@ export default class MyRoute extends Route {
 <!-- External links -->
 
 [declare]: https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#the-usedefineforclassfields-flag-and-the-declare-property-modifier
-[glint]: https://typed-ember.gitbook.io/glint/
