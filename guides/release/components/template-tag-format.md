@@ -261,7 +261,7 @@ This can be a powerful refactoring technique to break up large components into s
 
 ## Low-level format
 
-All of template-tag format can be represented in it's pure-javascript form using `template` from either `@ember/template-compiler` or `@ember/template-compiler/runtime`.
+All of template-tag format can be represented in it's pure javascript form using `template` from either `@ember/template-compiler` or `@ember/template-compiler/runtime`.
 
 Creating a template-only component via the runtime compiler:
 
@@ -301,7 +301,7 @@ If in an environment with compilation, omitting the `/runtime` at the end of the
 Without specifying `/runtime`, there are additional restrictions required for the argument passed to `template()`:
 - it must be a string literal
 
-With the `/runtime`, the argument passed to `template()` can be an extpression, for example:
+With the `/runtime`, the argument passed to `template()` can be an expression, for example:
 ```js
 /* someValue could be from anywhere */ 
 export default default template(someValue);
