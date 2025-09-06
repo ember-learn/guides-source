@@ -303,7 +303,7 @@ Without specifying `/runtime`, there are additional restrictions required for th
 
 With the `/runtime`, the argument passed to `template()` can be an extpression, for example:
 ```js
-/* someValue could be f rom anywhere */ 
+/* someValue could be from anywhere */ 
 export default default template(someValue);
 ```
 
