@@ -58,16 +58,15 @@ When invoking a component, Ember will replace the component tag with the content
 
 Let's try it out by editing the index template:
 
-```handlebars { data-filename="app/templates/index.hbs" data-diff="-1,-2,+3,+7,-8" }
+```handlebars { data-filename="app/templates/index.hbs" data-diff="-1,-2,+3,-7,+8" }
 <div class="jumbo">
   <div class="right tomster"></div>
 <Jumbo>
   <h2>Welcome to Super Rentals!</h2>
   <p>We hope you find exactly what you're looking for in a place to stay.</p>
   <LinkTo @route="about" class="button">About Us</LinkTo>
-</Jumbo>
 </div>
-
+</Jumbo>
 ```
 
 ## Refactoring Existing Code
@@ -80,7 +79,7 @@ After saving the changes, your page should automatically reload, and, _voilà_..
 
 Let's do the same for our other two pages as well.
 
-```handlebars { data-filename="app/templates/about.hbs" data-diff="-1,-2,+3,+11,-12" }
+```handlebars { data-filename="app/templates/about.hbs" data-diff="-1,-2,+3,-11,+12" }
 <div class="jumbo">
   <div class="right tomster"></div>
 <Jumbo>
@@ -91,11 +90,11 @@ Let's do the same for our other two pages as well.
     AND building Ember applications.
   </p>
   <LinkTo @route="contact" class="button">Contact Us</LinkTo>
-</Jumbo>
 </div>
+</Jumbo>
 ```
 
-```handlebars { data-filename="app/templates/contact.hbs" data-diff="-1,-2,+3,+19,-20" }
+```handlebars { data-filename="app/templates/contact.hbs" data-diff="-1,-2,+3,-19,+20" }
 <div class="jumbo">
   <div class="right tomster"></div>
 <Jumbo>
@@ -114,8 +113,8 @@ Let's do the same for our other two pages as well.
     <a href="mailto:superrentalsrep@emberjs.com">superrentalsrep@emberjs.com</a>
   </address>
   <LinkTo @route="about" class="button">About</LinkTo>
-</Jumbo>
 </div>
+</Jumbo>
 ```
 
 After saving, everything should look exactly the same as before, and all the tests should still pass. Very nice!
