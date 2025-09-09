@@ -43,18 +43,20 @@ This adds a _[route](../../../routing/defining-your-routes/)_ named "about", whi
 
 ## Using Route Templates
 
-With that in place, we can create a new `app/templates/about.hbs` template with the following content:
+With that in place, we can create a new `app/templates/about.gjs` template with the following content:
 
-```handlebars { data-filename="app/templates/about.hbs" }
-<div class="jumbo">
-  <div class="right tomster"></div>
-  <h2>About Super Rentals</h2>
-  <p>
-    The Super Rentals website is a delightful project created to explore Ember.
-    By building a property rental site, we can simultaneously imagine traveling
-    AND building Ember applications.
-  </p>
-</div>
+```gjs { data-filename="app/templates/about.gjs" }
+<template>
+  <div class="jumbo">
+    <div class="right tomster"></div>
+    <h2>About Super Rentals</h2>
+    <p>
+      The Super Rentals website is a delightful project created to explore Ember.
+      By building a property rental site, we can simultaneously imagine traveling
+      AND building Ember applications.
+    </p>
+  </div>
+</template>
 ```
 
 To see this in action, navigate to `http://localhost:4200/about`.
@@ -86,26 +88,28 @@ Router.map(function () {
 
 Here, we added the `contact` route, but explicitly specified a path for the route. This allows us to keep the legacy URL, but use the new, shorter name for the route, as well as the template filename.
 
-Speaking of the template, let's create that as well. We'll add a `app/templates/contact.hbs` file:
+Speaking of the template, let's create that as well. We'll add a `app/templates/contact.gjs` file:
 
-```handlebars { data-filename="app/templates/contact.hbs" }
-<div class="jumbo">
-  <div class="right tomster"></div>
-  <h2>Contact Us</h2>
-  <p>
-    Super Rentals Representatives would love to help you<br>
-    choose a destination or answer any questions you may have.
-  </p>
-  <address>
-    Super Rentals HQ
+```gjs { data-filename="app/templates/contact.gjs" }
+<template>
+  <div class="jumbo">
+    <div class="right tomster"></div>
+    <h2>Contact Us</h2>
     <p>
-      1212 Test Address Avenue<br>
-      Testington, OR 97233
+      Super Rentals Representatives would love to help you<br>
+      choose a destination or answer any questions you may have.
     </p>
-    <a href="tel:503.555.1212">+1 (503) 555-1212</a><br>
-    <a href="mailto:superrentalsrep@emberjs.com">superrentalsrep@emberjs.com</a>
-  </address>
-</div>
+    <address>
+      Super Rentals HQ
+      <p>
+        1212 Test Address Avenue<br>
+        Testington, OR 97233
+      </p>
+      <a href="tel:503.555.1212">+1 (503) 555-1212</a><br>
+      <a href="mailto:superrentalsrep@emberjs.com">superrentalsrep@emberjs.com</a>
+    </address>
+  </div>
+</template>
 ```
 
 Ember comes with strong _conventions_ and sensible defaults—if we were starting from scratch, we wouldn't mind the default `/contact` URL. However, if the defaults don't work for us, it is no problem at all to customize Ember for our needs!
@@ -122,52 +126,64 @@ Since Ember offers great support for URLs out-of-the-box, we _could_ just link o
 
 With Ember, we can do better than that! Instead of the plain-old `<a>` tag, Ember provides an alternative called `<LinkTo>`. For example, here is how you would use it on the pages we just created:
 
-```handlebars { data-filename="app/templates/index.hbs" data-diff="+5" }
-<div class="jumbo">
-  <div class="right tomster"></div>
-  <h2>Welcome to Super Rentals!</h2>
-  <p>We hope you find exactly what you're looking for in a place to stay.</p>
-  <LinkTo @route="about" class="button">About Us</LinkTo>
-</div>
+```gjs { data-filename="app/templates/index.gjs" data-diff="+1,+2,+8" }
+import { LinkTo } from '@ember/routing'; 
+
+<template>
+  <div class="jumbo">
+    <div class="right tomster"></div>
+    <h2>Welcome to Super Rentals!</h2>
+    <p>We hope you find exactly what you're looking for in a place to stay.</p>
+    <LinkTo @route="about" class="button">About Us</LinkTo>
+  </div>
+</template>
 ```
 
-```handlebars { data-filename="app/templates/about.hbs" data-diff="+9" }
-<div class="jumbo">
-  <div class="right tomster"></div>
-  <h2>About Super Rentals</h2>
-  <p>
-    The Super Rentals website is a delightful project created to explore Ember.
-    By building a property rental site, we can simultaneously imagine traveling
-    AND building Ember applications.
-  </p>
-  <LinkTo @route="contact" class="button">Contact Us</LinkTo>
-</div>
-```
+```gjs { data-filename="app/templates/about.gjs" data-diff="+1,+2,+12" }
+import { LinkTo } from '@ember/routing'; 
 
-```handlebars { data-filename="app/templates/contact.hbs" data-diff="+17" }
-<div class="jumbo">
-  <div class="right tomster"></div>
-  <h2>Contact Us</h2>
-  <p>
-    Super Rentals Representatives would love to help you<br>
-    choose a destination or answer any questions you may have.
-  </p>
-  <address>
-    Super Rentals HQ
+<template>
+  <div class="jumbo">
+    <div class="right tomster"></div>
+    <h2>About Super Rentals</h2>
     <p>
-      1212 Test Address Avenue<br>
-      Testington, OR 97233
+      The Super Rentals website is a delightful project created to explore Ember.
+      By building a property rental site, we can simultaneously imagine traveling
+      AND building Ember applications.
     </p>
-    <a href="tel:503.555.1212">+1 (503) 555-1212</a><br>
-    <a href="mailto:superrentalsrep@emberjs.com">superrentalsrep@emberjs.com</a>
-  </address>
-  <LinkTo @route="about" class="button">About</LinkTo>
-</div>
+    <LinkTo @route="contact" class="button">Contact Us</LinkTo>
+  </div>
+</template>
+```
+
+```gjs { data-filename="app/templates/contact.gjs" data-diff="+1,+2,+20" }
+import { LinkTo } from '@ember/routing'; 
+
+<template>
+  <div class="jumbo">
+    <div class="right tomster"></div>
+    <h2>Contact Us</h2>
+    <p>
+      Super Rentals Representatives would love to help you<br>
+      choose a destination or answer any questions you may have.
+    </p>
+    <address>
+      Super Rentals HQ
+      <p>
+        1212 Test Address Avenue<br>
+        Testington, OR 97233
+      </p>
+      <a href="tel:503.555.1212">+1 (503) 555-1212</a><br>
+      <a href="mailto:superrentalsrep@emberjs.com">superrentalsrep@emberjs.com</a>
+    </address>
+    <LinkTo @route="about" class="button">About</LinkTo>
+  </div>
+</template>
 ```
 
 There is quite a bit going on here, so let's break it down.
 
-`<LinkTo>` is an example of a _[component](../../../components/introducing-components/)_ in Ember—you can tell them apart from regular HTML tags because they start with an uppercase letter. Along with regular HTML tags, components are a key building block that we can use to build up an app's user interface.
+`<LinkTo>` is an example of a _[component](../../../components/introducing-components/)_ in Ember. Along with regular HTML tags, components are a key building block that we can use to build up an app's user interface. Unlike regular HTML tags, components need to be imported before they can be used. In this case, `<LinkTo>` is imported from the `@ember/routing` package that is part of Ember.
 
 We have a lot more to say about components later, but for now, you can think of them as a way to provide _custom tags_ to supplement the built-in ones that came with the browser.
 
