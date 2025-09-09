@@ -159,7 +159,7 @@ super-rentals
 ├── package-lock.json
 └── testem.js
 
-16 directories, 37 files
+17 directories, 37 files
 ```
 
 We'll learn about the purposes of these files and folders as we go. For now, just know that we'll spend most of our time working within the `app` folder.
