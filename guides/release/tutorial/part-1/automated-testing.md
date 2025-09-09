@@ -125,7 +125,7 @@ If you watch really carefully, you can see our test robot roaming around our app
 
 It happens really quickly though—blink and you might miss it! In fact, I had to slow this animation down by a hundred times just so you can see it in action. I told you the robot has really, really fast hands!
 
-As much as I enjoy watching this robot hard at work, the important thing here is that the test we wrote has _passed_, meaning everything is working exactly as we expect and the test UI is all green and happy. If you want, you can go to `index.gjs`, delete the `<LinkTo>` component and see what things look like when we have _a failing test_.
+As much as I enjoy watching this robot hard at work, the important thing here is that the test we wrote has _passed_, meaning everything is working exactly as we expect and the test UI is all green and happy. If you want, you can go to `index.hbs`, delete the `<LinkTo>` component and see what things look like when we have _a failing test_.
 
 <img src="/images/tutorial/part-1/automated-testing/fail@2x.png" alt="A failing test" width="1024" height="768">
 

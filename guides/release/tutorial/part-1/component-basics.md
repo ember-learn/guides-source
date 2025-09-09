@@ -29,18 +29,28 @@ During the course of developing an app, it is pretty common to reuse the same UI
 
 Since it is not a lot of code, it may not seem like a big deal to duplicate this structure on each page. However, if our designer wanted us to make a change to the header, we would have to find and update every single copy of this code. As our app gets bigger, this will become even more of a problem.
 
-Components are the perfect solution to this. In its most basic form, a component is just a piece of template that can be referred to by name. Let's start by creating a new file at `app/components/jumbo.gjs` with markup for the "jumbo" header:
+Components are the perfect solution to this. In its most basic form, a component is just a piece of template that can be referred to by name. Let's start by creating a new file at `app/components/jumbo.hbs` with markup for the "jumbo" header:
 
-```gjs { data-filename="app/components/jumbo.gjs" }
-<template>
-  <div class="jumbo">
-    <div class="right tomster"></div>
-    {{yield}}
-  </div>
-</template>
+```handlebars { data-filename="app/components/jumbo.hbs" }
+<div class="jumbo">
+  <div class="right tomster"></div>
+  {{yield}}
+</div>
 ```
 
-That's it, we have created our first component! We can now _invoke_ this component anywhere in our app, by importing it and using it like we saw with `<LinkTo>` previously.
+That's it, we have created our first component! We can now _invoke_ this component anywhere in our app, using `<Jumbo>` as the tag name.
+
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+        <p>Remember, when invoking components, we need to capitalize their names so Ember can tell them apart from regular HTML elements. The <code>jumbo.hbs</code> template corresponds to the <code>&#x3C;Jumbo></code> tag, just like <code>super-awesome.hbs</code> corresponds to <code>&#x3C;SuperAwesome></code>.</p>
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
+  </div>
+</div>
 
 ## Passing Content to Components with `{{yield}}`
 
@@ -48,21 +58,15 @@ When invoking a component, Ember will replace the component tag with the content
 
 Let's try it out by editing the index template:
 
-```gjs { data-filename="app/templates/index.gjs" data-diff="-1,+2,+3,-6,-7,+8,-12,+13" }
-import { LinkTo } from '@ember/routing'; 
-import { LinkTo } from '@ember/routing';
-import Jumbo from 'super-rentals/components/jumbo';
-
-<template>
-  <div class="jumbo">
-    <div class="right tomster"></div>
-  <Jumbo>
-    <h2>Welcome to Super Rentals!</h2>
-    <p>We hope you find exactly what you're looking for in a place to stay.</p>
-    <LinkTo @route="about" class="button">About Us</LinkTo>
-  </div>
-  </Jumbo>
-</template>
+```handlebars { data-filename="app/templates/index.hbs" data-diff="-1,-2,+3,-7,+8" }
+<div class="jumbo">
+  <div class="right tomster"></div>
+<Jumbo>
+  <h2>Welcome to Super Rentals!</h2>
+  <p>We hope you find exactly what you're looking for in a place to stay.</p>
+  <LinkTo @route="about" class="button">About Us</LinkTo>
+</div>
+</Jumbo>
 ```
 
 ## Refactoring Existing Code
@@ -75,52 +79,42 @@ After saving the changes, your page should automatically reload, and, _voilà_..
 
 Let's do the same for our other two pages as well.
 
-```gjs { data-filename="app/templates/about.gjs" data-diff="+2,-5,-6,+7,-15,+16" }
-import { LinkTo } from '@ember/routing'; 
-import Jumbo from 'super-rentals/components/jumbo';
-
-<template>
-  <div class="jumbo">
-    <div class="right tomster"></div>
-  <Jumbo>
-    <h2>About Super Rentals</h2>
-    <p>
-      The Super Rentals website is a delightful project created to explore Ember.
-      By building a property rental site, we can simultaneously imagine traveling
-      AND building Ember applications.
-    </p>
-    <LinkTo @route="contact" class="button">Contact Us</LinkTo>
-  </div>
-  </Jumbo>
-</template>
+```handlebars { data-filename="app/templates/about.hbs" data-diff="-1,-2,+3,-11,+12" }
+<div class="jumbo">
+  <div class="right tomster"></div>
+<Jumbo>
+  <h2>About Super Rentals</h2>
+  <p>
+    The Super Rentals website is a delightful project created to explore Ember.
+    By building a property rental site, we can simultaneously imagine traveling
+    AND building Ember applications.
+  </p>
+  <LinkTo @route="contact" class="button">Contact Us</LinkTo>
+</div>
+</Jumbo>
 ```
 
-```gjs { data-filename="app/templates/contact.gjs" data-diff="+2,-5,-6,+7,-23,+24" }
-import { LinkTo } from '@ember/routing'; 
-import Jumbo from 'super-rentals/components/jumbo';
-
-<template>
-  <div class="jumbo">
-    <div class="right tomster"></div>
-  <Jumbo>
-    <h2>Contact Us</h2>
+```handlebars { data-filename="app/templates/contact.hbs" data-diff="-1,-2,+3,-19,+20" }
+<div class="jumbo">
+  <div class="right tomster"></div>
+<Jumbo>
+  <h2>Contact Us</h2>
+  <p>
+    Super Rentals Representatives would love to help you<br>
+    choose a destination or answer any questions you may have.
+  </p>
+  <address>
+    Super Rentals HQ
     <p>
-      Super Rentals Representatives would love to help you<br>
-      choose a destination or answer any questions you may have.
+      1212 Test Address Avenue<br>
+      Testington, OR 97233
     </p>
-    <address>
-      Super Rentals HQ
-      <p>
-        1212 Test Address Avenue<br>
-        Testington, OR 97233
-      </p>
-      <a href="tel:503.555.1212">+1 (503) 555-1212</a><br>
-      <a href="mailto:superrentalsrep@emberjs.com">superrentalsrep@emberjs.com</a>
-    </address>
-    <LinkTo @route="about" class="button">About</LinkTo>
-  </div>
-  </Jumbo>
-</template>
+    <a href="tel:503.555.1212">+1 (503) 555-1212</a><br>
+    <a href="mailto:superrentalsrep@emberjs.com">superrentalsrep@emberjs.com</a>
+  </address>
+  <LinkTo @route="about" class="button">About</LinkTo>
+</div>
+</Jumbo>
 ```
 
 After saving, everything should look exactly the same as before, and all the tests should still pass. Very nice!
@@ -140,7 +134,7 @@ Before we move on to the next component, let's write an automated test for our `
 ```shell
 $ ember generate component-test jumbo
 installing component-test
-  create tests/integration/components/jumbo-test.gjs
+  create tests/integration/components/jumbo-test.js
 
 Running "lint:fix" script...
 ```
@@ -149,38 +143,36 @@ Here, we used the generator to generate a _[component test](../../../testing/tes
 
 Let's replace the boilerplate code that was generated for us with our own test:
 
-```js { data-filename="tests/integration/components/jumbo-test.gjs" data-diff="-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,+20,-22,-23,-24,+25,-28,+29,+30,+31" }
+```js { data-filename="tests/integration/components/jumbo-test.js" data-diff="-9,-10,-11,+12,+13,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,+27,+28,+29" }
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'super-rentals/tests/helpers';
 import { render } from '@ember/test-helpers';
-import Jumbo from 'super-rentals/components/jumbo';
+import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Component | jumbo', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function (assert) {
-    // Updating values is achieved using autotracking, just like in app code. For example:
-    // class State { @tracked myProperty = 0; }; const state = new State();
-    // and update using state.myProperty = 1; await rerender();
-    // Handle any actions with function myAction(val) { ... };
+    // Set any properties with this.set('myProperty', 'value');
+    // Handle any actions with this.set('myAction', function(val) { ... });
+  test('it renders the content inside a jumbo header with a tomster', async function (assert) {
+    await render(hbs`<Jumbo>Hello World</Jumbo>`);
 
-    await render(<template><Jumbo /></template>);
+    await render(hbs`<Jumbo />`);
 
     assert.dom().hasText('');
 
     // Template block usage:
-  test('it renders the content inside a jumbo header with a tomster', async function (assert) {
-    await render(<template>
+    await render(hbs`
       <Jumbo>
         template block text
       </Jumbo>
-      <Jumbo>Hello World</Jumbo>
-    </template>);
+    `);
 
     assert.dom().hasText('template block text');
     assert.dom('.jumbo').exists();
     assert.dom('.jumbo').hasText('Hello World');
-    assert.dom('.jumbo .tomster').exists();  
+    assert.dom('.jumbo .tomster').exists();
   });
 });
 ```
@@ -193,89 +185,67 @@ Just like visit and click, which we used earlier, render is also an async step, 
 
 We've been refactoring our existing code for a while, so let's change gears and implement a new feature: the site-wide navigation bar.
 
-We can create a `<NavBar>` component at `app/components/nav-bar.gjs`:
+We can create a `<NavBar>` component at `app/components/nav-bar.hbs`:
 
-```gjs { data-filename="app/components/nav-bar.gjs" }
-import { LinkTo } from '@ember/routing'; 
-
-<template>
-  <nav class="menu">
-    <LinkTo @route="index" class="menu-index">
-      <h1>SuperRentals</h1>
+```handlebars { data-filename="app/components/nav-bar.hbs" }
+<nav class="menu">
+  <LinkTo @route="index" class="menu-index">
+    <h1>SuperRentals</h1>
+  </LinkTo>
+  <div class="links">
+    <LinkTo @route="about" class="menu-about">
+      About
     </LinkTo>
-    <div class="links">
-      <LinkTo @route="about" class="menu-about">
-        About
-      </LinkTo>
-      <LinkTo @route="contact" class="menu-contact">
-        Contact
-      </LinkTo>
-    </div>
-  </nav>
-</template>
+    <LinkTo @route="contact" class="menu-contact">
+      Contact
+    </LinkTo>
+  </div>
+</nav>
 ```
 
 Next, we will add our `<NavBar>` component to the top of each page:
 
-```gjs { data-filename="app/templates/about.gjs" data-diff="+3,+6" }
-import { LinkTo } from '@ember/routing'; 
-import Jumbo from 'super-rentals/components/jumbo';
-import NavBar from 'super-rentals/components/nav-bar';
-
-<template>
-  <NavBar />
-  <Jumbo>
-    <h2>About Super Rentals</h2>
-    <p>
-      The Super Rentals website is a delightful project created to explore Ember.
-      By building a property rental site, we can simultaneously imagine traveling
-      AND building Ember applications.
-    </p>
-    <LinkTo @route="contact" class="button">Contact Us</LinkTo>
-  </Jumbo>
-</template>
+```handlebars { data-filename="app/templates/about.hbs" data-diff="+1" }
+<NavBar />
+<Jumbo>
+  <h2>About Super Rentals</h2>
+  <p>
+    The Super Rentals website is a delightful project created to explore Ember.
+    By building a property rental site, we can simultaneously imagine traveling
+    AND building Ember applications.
+  </p>
+  <LinkTo @route="contact" class="button">Contact Us</LinkTo>
+</Jumbo>
 ```
 
-```gjs { data-filename="app/templates/contact.gjs" data-diff="+3,+6" }
-import { LinkTo } from '@ember/routing'; 
-import Jumbo from 'super-rentals/components/jumbo';
-import NavBar from 'super-rentals/components/nav-bar';
-
-<template>
-  <NavBar />
-  <Jumbo>
-    <h2>Contact Us</h2>
+```handlebars { data-filename="app/templates/contact.hbs" data-diff="+1" }
+<NavBar />
+<Jumbo>
+  <h2>Contact Us</h2>
+  <p>
+    Super Rentals Representatives would love to help you<br>
+    choose a destination or answer any questions you may have.
+  </p>
+  <address>
+    Super Rentals HQ
     <p>
-      Super Rentals Representatives would love to help you<br>
-      choose a destination or answer any questions you may have.
+      1212 Test Address Avenue<br>
+      Testington, OR 97233
     </p>
-    <address>
-      Super Rentals HQ
-      <p>
-        1212 Test Address Avenue<br>
-        Testington, OR 97233
-      </p>
-      <a href="tel:503.555.1212">+1 (503) 555-1212</a><br>
-      <a href="mailto:superrentalsrep@emberjs.com">superrentalsrep@emberjs.com</a>
-    </address>
-    <LinkTo @route="about" class="button">About</LinkTo>
-  </Jumbo>
-</template>
+    <a href="tel:503.555.1212">+1 (503) 555-1212</a><br>
+    <a href="mailto:superrentalsrep@emberjs.com">superrentalsrep@emberjs.com</a>
+  </address>
+  <LinkTo @route="about" class="button">About</LinkTo>
+</Jumbo>
 ```
 
-```gjs { data-filename="app/templates/index.gjs" data-diff="+3,+6" }
-import { LinkTo } from '@ember/routing';
-import Jumbo from 'super-rentals/components/jumbo';
-import NavBar from 'super-rentals/components/nav-bar';
-
-<template>
-  <NavBar />
-  <Jumbo>
-    <h2>Welcome to Super Rentals!</h2>
-    <p>We hope you find exactly what you're looking for in a place to stay.</p>
-    <LinkTo @route="about" class="button">About Us</LinkTo>
-  </Jumbo>
-</template>
+```handlebars { data-filename="app/templates/index.hbs" data-diff="+1" }
+<NavBar />
+<Jumbo>
+  <h2>Welcome to Super Rentals!</h2>
+  <p>We hope you find exactly what you're looking for in a place to stay.</p>
+  <LinkTo @route="about" class="button">About Us</LinkTo>
+</Jumbo>
 ```
 
 Voilà, we made another component!
@@ -378,84 +348,62 @@ All tests should pass at this point!
 
 Before we move on to the next feature, there is one more thing we could clean up. Since the `<NavBar>` is used for site-wide navigation, it really needs to be displayed on _every_ page in the app. So far, we have been adding the component on each page manually. This is a bit error-prone, as we could easily forget to do this the next time that we add a new page.
 
-We can solve this problem by moving the nav-bar into a special template called `application.gjs`. You may remember that it was generated for us when we first created the app but we deleted it. Now, it's time for us to bring it back!
+We can solve this problem by moving the nav-bar into a special template called `application.hbs`. You may remember that it was generated for us when we first created the app but we deleted it. Now, it's time for us to bring it back!
 
 This template is special in that it does not have its own URL and cannot be navigated to on its own. Rather, it is used to specify a common layout that is shared by every page in your app. This is a great place to put site-wide UI elements, like a nav-bar and a site footer.
 
 While we are at it, we will also add a container element that wraps around the whole page, as requested by our designer for styling purposes.
 
-```gjs { data-filename="app/templates/application.gjs" }
-import NavBar from 'super-rentals/components/nav-bar';
-
-<template>
-  <div class="container">
-    <NavBar />
-    <div class="body">
-      {{outlet}}
-    </div>
+```handlebars { data-filename="app/templates/application.hbs" }
+<div class="container">
+  <NavBar />
+  <div class="body">
+    {{outlet}}
   </div>
-</template>
+</div>
 ```
 
-```gjs { data-filename="app/templates/index.gjs" data-diff="-3,-6" }
-import { LinkTo } from '@ember/routing';
-import Jumbo from 'super-rentals/components/jumbo';
-import NavBar from 'super-rentals/components/nav-bar';
-
-<template>
-  <NavBar />
-  <Jumbo>
-    <h2>Welcome to Super Rentals!</h2>
-    <p>We hope you find exactly what you're looking for in a place to stay.</p>
-    <LinkTo @route="about" class="button">About Us</LinkTo>
-  </Jumbo>
-</template>
+```handlebars { data-filename="app/templates/index.hbs" data-diff="-1" }
+<NavBar />
+<Jumbo>
+  <h2>Welcome to Super Rentals!</h2>
+  <p>We hope you find exactly what you're looking for in a place to stay.</p>
+  <LinkTo @route="about" class="button">About Us</LinkTo>
+</Jumbo>
 ```
 
-```gjs { data-filename="app/templates/contact.gjs" data-diff="-3,-6" }
-import { LinkTo } from '@ember/routing'; 
-import Jumbo from 'super-rentals/components/jumbo';
-import NavBar from 'super-rentals/components/nav-bar';
-
-<template>
-  <NavBar />
-  <Jumbo>
-    <h2>Contact Us</h2>
+```handlebars { data-filename="app/templates/contact.hbs" data-diff="-1" }
+<NavBar />
+<Jumbo>
+  <h2>Contact Us</h2>
+  <p>
+    Super Rentals Representatives would love to help you<br>
+    choose a destination or answer any questions you may have.
+  </p>
+  <address>
+    Super Rentals HQ
     <p>
-      Super Rentals Representatives would love to help you<br>
-      choose a destination or answer any questions you may have.
+      1212 Test Address Avenue<br>
+      Testington, OR 97233
     </p>
-    <address>
-      Super Rentals HQ
-      <p>
-        1212 Test Address Avenue<br>
-        Testington, OR 97233
-      </p>
-      <a href="tel:503.555.1212">+1 (503) 555-1212</a><br>
-      <a href="mailto:superrentalsrep@emberjs.com">superrentalsrep@emberjs.com</a>
-    </address>
-    <LinkTo @route="about" class="button">About</LinkTo>
-  </Jumbo>
-</template>
+    <a href="tel:503.555.1212">+1 (503) 555-1212</a><br>
+    <a href="mailto:superrentalsrep@emberjs.com">superrentalsrep@emberjs.com</a>
+  </address>
+  <LinkTo @route="about" class="button">About</LinkTo>
+</Jumbo>
 ```
 
-```gjs { data-filename="app/templates/about.gjs" data-diff="-3,-6" }
-import { LinkTo } from '@ember/routing'; 
-import Jumbo from 'super-rentals/components/jumbo';
-import NavBar from 'super-rentals/components/nav-bar';
-
-<template>
-  <NavBar />
-  <Jumbo>
-    <h2>About Super Rentals</h2>
-    <p>
-      The Super Rentals website is a delightful project created to explore Ember.
-      By building a property rental site, we can simultaneously imagine traveling
-      AND building Ember applications.
-    </p>
-    <LinkTo @route="contact" class="button">Contact Us</LinkTo>
-  </Jumbo>
-</template>
+```handlebars { data-filename="app/templates/about.hbs" data-diff="-1" }
+<NavBar />
+<Jumbo>
+  <h2>About Super Rentals</h2>
+  <p>
+    The Super Rentals website is a delightful project created to explore Ember.
+    By building a property rental site, we can simultaneously imagine traveling
+    AND building Ember applications.
+  </p>
+  <LinkTo @route="contact" class="button">Contact Us</LinkTo>
+</Jumbo>
 ```
 
 The `{{outlet}}` keyword denotes the place where our site's pages should be rendered into, similar to the `{{yield}}` keyword we saw [earlier](#toc_passing-content-to-components-with-yield).
