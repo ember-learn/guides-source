@@ -36,7 +36,7 @@ If a version number is shown, you're ready to go.
 We can create a new project using Ember CLI's `new` command. It follows the pattern `ember new <project-name>`. In our case, the project name would be `super-rentals`. We will also include a `--lang en` option. This sets our app's primary language to English and improves the website's [accessibility](../../../accessibility/application-considerations/).
 
 ```shell
-$ ember new super-rentals --lang en
+$ ember new super-rentals --lang en --strict
 installing classic-build-app-blueprint
 @ember-tooling/classic-build-app-blueprint v6.7.0
 
@@ -62,7 +62,7 @@ Creating a new Ember app in /home/runner/work/super-rentals-tutorial/super-renta
   create app/router.js
   create app/routes/.gitkeep
   create app/styles/app.css
-  create app/templates/application.hbs
+  create /home/runner/work/super-rentals-tutorial/super-rentals-tutorial/dist/code/super-rentals/app/templates/application.gjs
   create config/ember-cli-update.json
   create config/environment.js
   create config/optional-features.json
@@ -121,7 +121,7 @@ super-rentals
 │   ├── styles
 │   │   └── app.css
 │   ├── templates
-│   │   └── application.hbs
+│   │   └── application.gjs
 │   ├── app.js
 │   ├── deprecation-workflow.js
 │   ├── index.html
@@ -201,40 +201,47 @@ You can exit out of the development server at any time by typing `Ctrl + C` into
 
 The development server has a feature called _live reload_, which monitors your app for file changes, automatically re-compiles everything, and refreshes any open browser pages. This comes in really handy during development, so let's give that a try!
 
-As text on the welcome page pointed out, the source code for the page is located in `app/templates/application.hbs`. Let's try to edit that file and replace it with our own content:
+As text on the welcome page pointed out, the source code for the page is located in `app/templates/application.gjs`. Let's try to edit that file and replace it with our own content:
 
-```handlebars { data-filename="app/templates/application.hbs" data-diff="-1,-2,-3,-4,-5,-6,-7,+8" }
-{{page-title "SuperRentals"}}
+```gjs { data-filename="app/templates/application.gjs" data-diff="-1,-2,-3,-5,-6,-7,-8,-9,-10,-11,+12" }
+import pageTitle from 'ember-page-title/helpers/page-title';
+import WelcomePage from 'ember-welcome-page/components/welcome-page';
 
-{{outlet}}
+<template>
+  {{pageTitle "SuperRentals"}}
 
-{{! The following component displays Ember's default welcome message. }}
-<WelcomePage />
-{{! Feel free to remove this! }}
-Hello World!!!
+  {{outlet}}
+
+  {{! The following component displays Ember's default welcome message. }}
+  <WelcomePage />
+  {{! Feel free to remove this! }}
+  Hello World!!!
+</template>
 ```
 
 Soon after saving the file, your browser should automatically refresh and render our greetings to the world. Neat!
 
 <img src="/images/tutorial/part-1/orientation/hello-world@2x.png" alt="Hello World!!!" width="1024" height="250">
 
-When you are done experimenting, go ahead and delete the `app/templates/application.hbs` file. We won't be needing this for a while, so let's start afresh. We can add it back later when we have a need for it.
+When you are done experimenting, go ahead and delete the `app/templates/application.gjs` file. We won't be needing this for a while, so let's start afresh. We can add it back later when we have a need for it.
 
 Again, if you still have your browser tab open, your tab will automatically re-render a blank page as soon as you delete the file. This reflects the fact that we no longer have an application template in our app.
 
 ## Working with HTML, CSS and Assets in an Ember App
 
-Create a `app/templates/index.hbs` file and paste the following markup.
+Create a `app/templates/index.gjs` file and paste the following markup.
 
-```handlebars { data-filename="app/templates/index.hbs" }
-<div class="jumbo">
-  <div class="right tomster"></div>
-  <h2>Welcome to Super Rentals!</h2>
-  <p>We hope you find exactly what you're looking for in a place to stay.</p>
-</div>
+```gjs { data-filename="app/templates/index.gjs" }
+<template>
+  <div class="jumbo">
+    <div class="right tomster"></div>
+    <h2>Welcome to Super Rentals!</h2>
+    <p>We hope you find exactly what you're looking for in a place to stay.</p>
+  </div>
+</template>
 ```
 
-If you are thinking, "Hey, that looks like HTML!", then you would be right! In their simplest form, Ember templates are really just HTML. If you are already familiar with HTML, you should feel right at home here.
+If you are thinking, "Hey, that looks like HTML!", then you would be right! In their simplest form, Ember templates are really just HTML wrapped in a `<template>` tag. If you are already familiar with HTML, you should feel right at home here.
 
 Of course, unlike HTML, Ember templates can do a lot more than just displaying static content. We will see that in action soon.
 
