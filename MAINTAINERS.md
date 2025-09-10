@@ -23,11 +23,11 @@ It is required that all maintainers use 2FA (two factor authentication). These a
 
 #### Minor versions
 
-To release a new minor version, you can use the `npm run release:guides:minor` command.
+To release a new minor version, you can use the `pnpm run release:guides:minor` command.
 The script will create and update the necessary files for you, showing you a URL at the end that you can use to create the PR.
 
-0. Run `npm install` to guarantee dependencies are installed.
-1. Run `npm run release:guides:minor`. The script is a mix of automated and manual steps, so follow the instructions carefully.
+0. Run `pnpm install` to guarantee dependencies are installed.
+1. Run `pnpm run release:guides:minor`. The script is a mix of automated and manual steps, so follow the instructions carefully.
 2. In the PR, mention that **the person who merges it must update the guides search ASAP**. Add a link to this page for instructions on updating the guides search. Look at the app in staging, get a review, and merge to `master`. This will trigger an auto deployment.
 3. Once it is deployed, follow the steps below to get the website search working for your new version.
 
