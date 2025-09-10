@@ -41,5 +41,5 @@ To make a major version release, please follow the steps in `scripts/create-new-
 
 Currently getting the new version indexed and put in Algolia is a semi-manual step. There is currently work going on to try to make this automatic, see the [tracking issue here](https://github.com/ember-learn/guides-source/issues/487) to follow along with progress.
 
-To proceed, run `npm run release:search` and you will be presented with instructions.
+To proceed, run `pnpm run release:search` and you will be presented with instructions.
 This will compile the search indices for the current release version and publish them to the Algolia instance.
