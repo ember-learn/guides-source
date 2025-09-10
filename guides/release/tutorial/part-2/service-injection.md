@@ -4,7 +4,7 @@ As promised, we will now work on implementing the share button!
 
 <!-- TODO: make this a gif instead -->
 
-<img src="/images/tutorial/part-2/service-injection/share-button@2x.png" alt="The working share button by the end of the chapter" width="1024" height="1390">
+<img src="/images/tutorial/part-2/service-injection/share-button@2x.png" alt="The working share button by the end of the chapter" width="1024" height="1382">
 
 While adding the share button, you will learn about:
 
@@ -174,7 +174,7 @@ Let's put this component to use by invoking it from the `<Rental::Detailed>` com
 
 With that, we should have a working share button!
 
-<img src="/images/tutorial/part-2/service-injection/share-button@2x.png" alt="A share button that works!" width="1024" height="1390">
+<img src="/images/tutorial/part-2/service-injection/share-button@2x.png" alt="A share button that works!" width="1024" height="1382">
 
 <div class="cta">
   <div class="cta-note">
