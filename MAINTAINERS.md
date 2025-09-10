@@ -28,8 +28,9 @@ The script will create and update the necessary files for you, showing you a URL
 
 0. Run `pnpm install` to guarantee dependencies are installed.
 1. Run `pnpm run release:guides:minor`. The script is a mix of automated and manual steps, so follow the instructions carefully.
-2. In the PR, mention that **the person who merges it must update the guides search ASAP**. Add a link to this page for instructions on updating the guides search. Look at the app in staging, get a review, and merge to `master`. This will trigger an auto deployment.
-3. Once it is deployed, follow the steps below to get the website search working for your new version.
+   1. This script will prompt you to pick the correct (remote) branch, make sure you pick the generated branch with the naming convention`create-new-guides-version-XXX`
+3. In the PR, mention that **the person who merges it must update the guides search ASAP**. Add a link to this page for instructions on updating the guides search. Look at the app in staging, get a review, and merge to `master`. This will trigger an auto deployment.
+4. Once it is deployed, follow the steps below to get the website search working for your new version.
 
 #### Major versions
 
