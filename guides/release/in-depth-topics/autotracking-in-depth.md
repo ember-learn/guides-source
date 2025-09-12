@@ -9,11 +9,7 @@ When Ember first renders a component, it renders the initial _state_ of that
 component - the state of the instance, and state of the arguments that are
 passed to it:
 
-```handlebars {data-filename=app/components/hello.hbs}
-{{this.greeting}}, {{@name}}!
-```
-
-```js {data-filename=app/components/hello.js}
+```gjs {data-filename=app/components/hello.gjs}
 import Component from '@glimmer/component';
 
 export default class HelloComponent extends Component {
@@ -29,11 +25,19 @@ export default class HelloComponent extends Component {
         return 'Hola';
     }
   }
+
+  <template>
+    {{this.greeting}}, {{@name}}!
+  </template>
 }
 ```
 
-```handlebars {data-filename=app/templates/application.hbs}
-<Hello @name="Jen Weber">
+```gjs {data-filename=app/templates/application.gjs}
+import 'my-app/components/hello';
+
+<template>
+  <Hello @name="Jen Weber">
+</template>
 ```
 
 When Ember renders this template, we get:
@@ -59,11 +63,12 @@ Trackable values are values that:
 
 We can do this by marking the field with the `@tracked` decorator:
 
-```js {data-filename=app/components/hello.js}
+```gjs {data-filename=app/components/hello.gjs data-diff="+2,-5,+6"}
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
 export default class HelloComponent extends Component {
+  language = 'en';
   @tracked language = 'en';
 
   get greeting() {
@@ -76,6 +81,10 @@ export default class HelloComponent extends Component {
         return 'Hola';
     }
   }
+
+  <template>
+    {{this.greeting}}, {{@name}}!
+  </template>
 }
 ```
 
@@ -95,20 +104,10 @@ Tracked properties can be updated like any other property, using standard
 JavaScript syntax. For instance, we could update a tracked property via an
 action, as in this example component.
 
-```handlebars {data-filename=app/components/hello.hbs}
-{{this.greeting}}, {{@name}}!
-
-<select {{on "change" this.updateLanguage}}>
-  <option value="en">English</option>
-  <option value="de">German</option>
-  <option value="sp">Spanish</option>
-</select>
-```
-
-```js {data-filename=app/components/hello.js}
+``` gjs { data-filename=app/components/hello.gjs data-diff="+3,+18,+19,+20,+21,+25,+26,+27,+28,+29,+30" }
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { action } from '@ember/object';
+import { on } from '@ember/modifier';
 
 export default class HelloComponent extends Component {
   @tracked language = 'en';
@@ -124,10 +123,19 @@ export default class HelloComponent extends Component {
     }
   }
 
-  @action
-  updateLanguage(event) {
+  updateLanguage = (event) => {
     this.language = event.target.value;
-  }
+  };
+
+  <template>
+    {{this.greeting}}, {{@name}}!
+
+    <select {{on "change" this.updateLanguage}}>
+      <option value="en">English</option>
+      <option value="de">German</option>
+      <option value="sp">Spanish</option>
+    </select>
+  </template>
 }
 ```
 
@@ -140,10 +148,10 @@ Another way that a tracked property could be updated is asynchronously, if
 you're sending a request to the server. For instance, maybe we would want to
 load the user's preferred language:
 
-```js
+``` gjs { data-filename=app/components/hello.gjs data-diff="+6,+7,+8,+9,+10,+11,+12,+13,+14,+15" }
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { action } from '@ember/object';
+import { on } from '@ember/modifier';
 
 export default class HelloComponent extends Component {
   constructor() {
@@ -168,6 +176,20 @@ export default class HelloComponent extends Component {
         return 'Hola';
     }
   }
+
+  updateLanguage = (event) => {
+    this.language = event.target.value;
+  };
+
+  <template>
+    {{this.greeting}}, {{@name}}!
+
+    <select {{on "change" this.updateLanguage}}>
+      <option value="en">English</option>
+      <option value="de">German</option>
+      <option value="sp">Spanish</option>
+    </select>
+  </template>
 }
 ```
 
@@ -180,16 +202,26 @@ app.
 So far we've only shown tracked properties working through getters, but tracking
 works through _methods_ or _functions_ as well:
 
-```js
+``` gjs { data-diff="+17,+18,+19,+20,+21,+24,+25,+26,+27" }
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { action } from '@ember/object';
+import { on } from '@ember/modifier';
 
 export default class HelloComponent extends Component {
+  constructor() {
+    super(...arguments);
+
+    fetch('/api/preferences')
+      .then(r => r.json()) // convert the response to a JS object
+      .then(response => {
+        this.language = response.preferredLanguage;
+      });
+  }
+
   @tracked language = 'en';
   @tracked supportedLanguages = ['en', 'de', 'es'];
 
-  isSupported(language) {
+  isSupported = (language) => {
     return this.supportedLanguages.includes(language);
   }
 
@@ -207,6 +239,20 @@ export default class HelloComponent extends Component {
         return 'Hola';
     }
   }
+
+  updateLanguage = (event) => {
+    this.language = event.target.value;
+  };
+
+  <template>
+    {{this.greeting}}, {{@name}}!
+
+    <select {{on "change" this.updateLanguage}}>
+      <option value="en">English</option>
+      <option value="de">German</option>
+      <option value="sp">Spanish</option>
+    </select>
+  </template>
 }
 ```
 
@@ -237,7 +283,7 @@ export default class Person {
 
 ```js {data-filename=app/routes/application.js}
 import Route from '@ember/routing/route';
-import Person from '../../../../utils/person';
+import Person from 'my-app/utils/person';
 
 export default class ApplicationRoute extends Route {
   model() {
@@ -246,25 +292,25 @@ export default class ApplicationRoute extends Route {
 }
 ```
 
-```js {data-filename=app/controllers/application.js}
-import Controller from '@ember/controller';
-import { action } from '@ember/object';
+```gjs {data-filename=app/templates/application.gjs}
+import Component from '@glimmer/component';
+import { on } from '@ember/modifier';
+import { fn } from '@ember/helper';
 
-export default class ApplicationController extends Controller {
-  @action
-  updateName(title, name) {
-    this.model.title = title;
-    this.model.name = name;
-  }
+export default class ApplicationRouteComponent extends Component {
+  updateName = (title, name) => {
+    this.args.model.title = title;
+    this.args.model.name = name;
+  };
+
+  <template>
+    {{@model.fullName}}
+
+    <button type="button" {{on "click" (fn this.updateName 'Prof.' 'Tomster')}}>
+      Update Name
+    </button>
+  </template>
 }
-```
-
-```handlebars {data-filename=app/templates/application.hbs}
-{{@model.fullName}}
-
-<button type="button" {{on "click" (fn this.updateName 'Prof.' 'Tomster')}}>
-  Update Name
-</button>
 ```
 
 As long as the properties are tracked, and accessed when rendering the template
@@ -362,7 +408,8 @@ you cache (or "memoize") a getter by simply marking it as `@cached`.
 
 With this in mind, let's introduce caching to `aspectRatio`:
 
-```js
+``` js { data-diff="-1,+2,+10,-22,+23,-28,+29" }
+import { tracked } from '@glimmer/tracking';
 import { cached, tracked } from '@glimmer/tracking';
 
 let count = 0;
@@ -383,11 +430,13 @@ let photo = new Photo();
 console.log(photo.aspectRatio); // 1.5
 console.log(count); // 1
 console.log(photo.aspectRatio); // 1.5
+console.log(count); // 2
 console.log(count); // 1
 
 photo.width = 800;
 
 console.log(photo.aspectRatio); // 2
+console.log(count); // 3
 console.log(count); // 2
 ```
 
