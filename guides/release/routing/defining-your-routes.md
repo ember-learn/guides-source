@@ -42,15 +42,19 @@ Router.map(function() {
 Inside your templates, you can use [`<LinkTo />`](https://api.emberjs.com/ember/release/classes/Ember.Templates.components/methods/LinkTo?anchor=LinkTo) to navigate between
 routes, using the name that you provided to the `route` method.
 
-```handlebars
-<LinkTo @route="index">
-  <img class="logo">
-</LinkTo>
+```gjs
+import { LinkTo } from '@ember/routing';
 
-<nav>
-  <LinkTo @route="about">About</LinkTo>
-  <LinkTo @route="favorites">Favorites</LinkTo>
-</nav>
+<template>
+  <LinkTo @route="index">
+    <img class="logo">
+  </LinkTo>
+
+  <nav>
+    <LinkTo @route="about">About</LinkTo>
+    <LinkTo @route="favorites">Favorites</LinkTo>
+  </nav>
+</template>
 ```
 
 The `<LinkTo />` component will also add an `active` class to the link that

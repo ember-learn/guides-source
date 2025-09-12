@@ -1,17 +1,3 @@
-<div class="cta">
-  <div class="cta-note">
-    <div class="cta-note-body">
-      <div class="cta-note-heading">Zoey says...</div>
-      <div class="cta-note-message">
-        <p>This document has been updated to use the <a href="../../components/template-tag-format/">Template Tag Format</a> and assumes that you have generated your application using the <code style="white-space: nowrap">--strict</code> argument.</p>
-
-        <p>The Ember Guides are being gradually updated at the moment so you might find some pages using the older hbs format.</p>
-      </div>
-    </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="">
-  </div>
-</div>
-
 A route's JavaScript file is one of the best places in an app to make requests to an API.
 In this section of the guides, you'll learn how to use the
 [`model`](https://api.emberjs.com/ember/release/classes/Route/methods/model?anchor=model)
@@ -219,13 +205,9 @@ export default class PostRoute extends Route {
 }
 ```
 
-Note that currently, if `model` is not specified, Ember will attempt
-to automatically find a store and use it for lookup. This behavior
-is a common source of confusion and will be removed in future Ember versions.
-
 ### Linking to a dynamic segment
 
-There are two ways to link to a dynamic segment from an `.hbs` template using [`<LinkTo>`](../../templates/links/).
+There are two ways to link to a dynamic segment from an `.gjs` template using [`<LinkTo>`](../../templates/links/).
 Depending on which approach you use, it will affect whether that route's `model` hook is run.
 To learn how to link to a dynamic segment from within the JavaScript file, see the API documentation on
 [`transitionTo`](https://api.emberjs.com/ember/release/classes/RouterService/methods/transitionTo?anchor=transitionTo)
@@ -267,10 +249,15 @@ If you decide to pass the entire model, be sure to cover this behavior in your [
 
 If a route you are trying to link to has multiple dynamic segments, like `/photos/4/comments/18`, be sure to specify all the necessary information for each segment:
 
-```handlebars
-<LinkTo @route="photos.photo.comments.comment" @models={{array 4 18}}>
-  link text to display
-</LinkTo>
+```gjs
+import { LinkTo } from '@ember/routing';
+import { array } from '@ember/helper';
+
+<template>
+  <LinkTo @route="photos.photo.comments.comment" @models={{array 4 18}}>
+    link text to display
+  </LinkTo>
+</template>
 ```
 
 Routes without dynamic segments will always execute the model hook.
