@@ -268,5 +268,5 @@ window.addEventListener('online', () => {
 
 ## Where can I find more information?
 
-Check out the [@ember/runloop](https://api.emberjs.com/ember/release/classes/@ember%2Frunloop) API documentation,
+Check out the [`@ember/runloop`](https://api.emberjs.com/ember/release/classes/@ember%2Frunloop) API documentation,
 as well as the [Backburner library](https://github.com/ebryn/backburner.js/) that powers the run loop.
