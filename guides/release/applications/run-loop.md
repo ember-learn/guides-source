@@ -100,9 +100,11 @@ class Image {
 and a template to display its attributes:
 
 ```gjs
+let profilePhoto = new Image({ width: 250, height: 500 });
+
 <template>
-  {{this.width}}
-  {{this.aspectRatio}}
+  {{profilePhoto.width}}
+  {{profilePhoto.aspectRatio}}
 </template>
 ```
 
@@ -187,8 +189,8 @@ which will make you a better Ember developer.
 
 You should begin a run loop when the callback fires.
 
-The `Ember.run` method can be used to create a run loop.
-In this example, `Ember.run` is used to handle an online
+The `run()` method, imported from `@ember/runloop`, can be used to create a run loop.
+In this example, `run()` is used to handle an online
 event (browser gains internet access) and run some Ember code.
 
 ```javascript
@@ -205,7 +207,7 @@ window.addEventListener('online', () => {
 
 ## What happens if I forget to start a run loop in an async handler?
 
-As mentioned above, you should wrap any non-Ember async callbacks in `Ember.run`.
+As mentioned above, you should wrap any non-Ember async callbacks in `run()`.
 If you don't, Ember will try to approximate a beginning and end for you.
 Consider the following callback:
 
@@ -266,5 +268,5 @@ window.addEventListener('online', () => {
 
 ## Where can I find more information?
 
-Check out the [Ember.run](https://api.emberjs.com/ember/release/classes/@ember%2Frunloop) API documentation,
+Check out the [@ember/runloop](https://api.emberjs.com/ember/release/classes/@ember%2Frunloop) API documentation,
 as well as the [Backburner library](https://github.com/ebryn/backburner.js/) that powers the run loop.
