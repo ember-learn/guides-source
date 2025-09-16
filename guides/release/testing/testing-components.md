@@ -56,7 +56,7 @@ module('Integration | Component | pretty-color', function(hooks) {
 ```
 
 Inside your `module` and after setting up the test, we can now start to create our first test case.
-Here, we can use the `QUnit.test` helper, and we can give it a descriptive name:
+Here, we can use the QUnit's `test` function, and we can give it a descriptive name:
 
 ```gjs {data-filename="tests/integration/components/pretty-color-test.gjs"}
 import { module, test } from 'qunit';
