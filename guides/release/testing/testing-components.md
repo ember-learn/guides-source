@@ -35,7 +35,7 @@ and cleaning up once your tests in this module are finished.
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
         If you generated your component using <code>ember generate component pretty-color</code> it will already have generated
-        this file for you with all the boilerplate needed to get started. We are describing the steps to build to that same
+        the following file for you with all the boilerplate needed to get started. We are describing the steps to build to that same
         boilerplate for educational purposes. 
       </div>
     </div>
@@ -54,6 +54,8 @@ module('Integration | Component | pretty-color', function(hooks) {
 
 });
 ```
+
+The first thing to notice about this file is the filename, we are creating a `.gjs` file for a rendering test because we will be using `<template></template>` to render our Component under test and this only works inside `.gjs` files.
 
 Inside your `module` and after setting up the test, we can now start to create our first test case.
 Here, we can use the QUnit's `test` function, and we can give it a descriptive name:
@@ -87,12 +89,11 @@ module('Integration | Component | pretty-color', function(hooks) {
   setupRenderingTest(hooks);
 
   test('should change colors', async function(assert) {
-    // set the outer context to red
-    this.set('colorValue', 'red');
+    let colorValue = 'red'
 
-    await render(<template> <PrettyColor @name={{this.colorValue}} /> </template>);
+    await render(<template> <PrettyColor @name={{colorValue}} /> </template>);
 
-    assert.equal(this.element.querySelector('div').getAttribute('style'), 'color: red', 'starts as red');
+    assert.strictEqual(this.element.querySelector('div').getAttribute('style'), 'color: red', 'starts as red');
   });
 });
 ```
@@ -104,56 +105,97 @@ Also notice, the keyword `await` in front of the call to `render`.
 It allows the test which we marked as `async` earlier to wait for any asynchronous behavior to complete before executing the rest of the code below.
 In this case our first assertion will correctly execute after the component has fully rendered.
 
-Next we can test that changing the component's `name` property updates the
-component's `style` attribute and is reflected in the rendered HTML:
+Next we can test to see if changing the component's `name` property updates the
+component's `style` attribute and is reflected in the rendered HTML. Note: we expect this to fail so continue reading after this example if you want to find out why this fails:
 
 ```gjs {data-filename="tests/integration/components/pretty-color-test.gjs"}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'my-app-name/tests/helpers';
 import { render } from '@ember/test-helpers';
-import { hbs } from 'ember-cli-htmlbars';
 import PrettyColor from 'my-app-name/components/pretty-color';
 
 module('Integration | Component | pretty-color', function(hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function(assert) {
-    // set the outer context to red
-    this.set('colorValue', 'red');
+    let colorValue = 'red'
 
-    await render(<template> <PrettyColor @name={{this.colorValue}} /> </template>);
+    await render(<template> <PrettyColor @name={{colorValue}} /> </template>);
 
-    assert.equal(this.element.querySelector('div').getAttribute('style'), 'color: red', 'starts as red');
+    assert.strictEqual(this.element.querySelector('div').getAttribute('style'), 'color: red', 'starts as red');
 
-    this.set('colorValue', 'blue');
+    colorValue = 'blue';
 
-    assert.equal(this.element.querySelector('div').getAttribute('style'), 'color: blue', 'updates to blue');  
+    assert.strictEqual(this.element.querySelector('div').getAttribute('style'), 'color: blue', 'updates to blue');  
   });
 });
 ```
 
-We might also test this component to ensure that the content of its template is being rendered properly:
+This test is now failing with the following error: 
+
+```
+Expected: "color: blue"
+Result: "color: red"
+```
+
+This means that the `name` attribute never updated the template after we update the value in `colorValue`. This happens because we need to mark data as `@tracked` before we can expect it to update templates automatically. You can read more about the tracking system on the [Autotracking In-Depth](../in-depth-topics/autotracking-in-depth/) topic.
+
+Also it's worth noting that currently we can only use `@tracked` in the context of a class field, so we need to create an inline class with the data in the test: 
+
+```gjs {data-filename="tests/integration/components/pretty-color-test.gjs"}
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-strict/tests/helpers';
+import { render, rerender } from '@ember/test-helpers';
+import { tracked } from '@glimmer/tracking';
+import PrettyColor from 'ember-strict/components/pretty-color';
+
+module('Integration | Component | pretty-color', function (hooks) {
+  setupRenderingTest(hooks);
+
+  test('it renders', async function (assert) {
+    const data = new class {
+      @tracked colorValue = 'red';
+    };
+
+    await render(<template> <PrettyColor @name={{data.colorValue}} /> </template>);
+
+    assert.strictEqual(this.element.querySelector('div').getAttribute('style'), 'color: red', 'starts as red');
+
+    data.colorValue = 'blue';
+    await rerender();
+
+    assert.strictEqual(this.element.querySelector('div').getAttribute('style'), 'color: blue', 'updates to blue');
+  });
+});
+```
+
+We also needed to add a call to `await rerender()` for this to work. This function returns a promise that will resolve when all the template updates have finished excecuting. We can await this promise to wait until all templates have updated before continuing to assert against the DOM.
+
+Now that we have data updating correctly in a test, we can start testing other things about this component e.g. we can also test this that the content of its template is being rendered properly:
 
 ```gjs {data-filename="tests/integration/components/pretty-color-test.gjs"}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'my-app-name/tests/helpers';
-import { render } from '@ember/test-helpers';
-import { hbs } from 'ember-cli-htmlbars';
+import { render, rerender } from '@ember/test-helpers';
+import { tracked } from '@glimmer/tracking';
 import PrettyColor from 'my-app-name/components/pretty-color';
 
 module('Integration | Component | pretty-color', function(hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function(assert) {
-    this.set('colorValue', 'orange');
+    const data = new class {
+      @tracked colorValue = 'red';
+    };
 
-    await render(<template> <PrettyColor @name={{this.colorValue}} /> </template>);
+    await render(<template> <PrettyColor @name={{data.colorValue}} /> </template>);
 
-    assert.equal(this.element.textContent.trim(), 'Pretty Color: orange', 'text starts as orange');
+    assert.strictEqual(this.element.textContent.trim(), 'Pretty Color: orange', 'text starts as orange');
 
-    this.set('colorValue', 'green');
+    data.colorValue = 'green';
+    await rerender();
 
-    assert.equal(this.element.textContent.trim(), 'Pretty Color: green', 'text switches to green');
+    assert.strictEqual(this.element.textContent.trim(), 'Pretty Color: green', 'text switches to green');
   });
 });
 ```
@@ -196,7 +238,6 @@ And our test might look like this:
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'my-app-name/tests/helpers';
 import { click, render } from '@ember/test-helpers';
-import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Component | magic-title', function(hooks) {
   setupRenderingTest(hooks);
@@ -204,12 +245,12 @@ module('Integration | Component | magic-title', function(hooks) {
   test('should update title on button click', async function(assert) {
     await render(<template><MagicTitle /></template>);
 
-    assert.equal(this.element.querySelector('h2').textContent.trim(), 'Hello World', 'initial text is hello world');
+    assert.strictEqual(this.element.querySelector('h2').textContent.trim(), 'Hello World', 'initial text is hello world');
 
     // Click on the button
     await click('.title-button');
 
-    assert.equal(this.element.querySelector('h2').textContent.trim(), 'This is Magic', 'title changes after click');
+    assert.strictEqual(this.element.querySelector('h2').textContent.trim(), 'This is Magic', 'title changes after click');
   });
 });
 ```
@@ -265,7 +306,6 @@ expect the closure action to have been called.
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'my-app-name/tests/helpers';
 import { click, fillIn, render } from '@ember/test-helpers';
-import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Component | comment-form', function(hooks) {
   setupRenderingTest(hooks);
@@ -273,11 +313,11 @@ module('Integration | Component | comment-form', function(hooks) {
   test('should trigger external action on form submit', async function(assert) {
     // test double for the external action
     let actual;
-    this.set('externalAction', (data) => {
+    let externalAction = (data) => {
       actual = data;
     });
 
-    await render(<template><CommentForm @submitComment={{this.externalAction}} /></template>);
+    await render(<template><CommentForm @submitComment={{externalAction}} /></template>);
 
     // fill out the form and force an onchange
     await fillIn('textarea', 'You are not a wizard!');
@@ -410,7 +450,7 @@ module('Integration | Component | location-indicator', function(hooks) {
 
   test('should reveal current location', async function(assert) {
     await render(<template><LocationIndicator /></template>);
-    assert.equal(this.element.textContent.trim(),
+    assert.strictEqual(this.element.textContent.trim(),
      'You currently are located in New York, USA');
   });
 });
@@ -422,8 +462,7 @@ values that can change in our subbed service!
 ```gjs {data-filename="tests/integration/components/location-indicator-test.gjs" data-diff="+38,+39,+40,+41,+42,+43,+44,+45,+46,+47,+48,+49,+50,+51,+52"}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'my-app-name/tests/helpers';
-import { render } from '@ember/test-helpers';
-import { hbs } from 'ember-cli-htmlbars';
+import { render, rerender } from '@ember/test-helpers';
 import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 
@@ -449,27 +488,29 @@ module('Integration | Component | location-indicator', function(hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(function(assert) {
-    this.owner.register('service:location-service', LocationStub);
+    this.owner.register('service:location', LocationStub);
   });
 
   test('should reveal current location', async function(assert) {
-    await render(hbs`<LocationIndicator />`);
-    assert.equal(this.element.textContent.trim(),
+    await render(<template><LocationIndicator /></template>);
+    assert.strictEqual(this.element.textContent.trim(),
      'You currently are located in New York, USA');
   });
 
   test('should change displayed location when current location changes', async function (assert) {
     await render(<template><LocationIndicator /></template>);
 
-    assert.equal(this.element.textContent.trim(),
+    assert.strictEqual(this.element.textContent.trim(),
      'You currently are located in New York, USA', 'origin location should display');
 
-    this.locationService = this.owner.lookup('service:location');
-    this.set('locationService.city', 'Beijing');
-    this.set('locationService.country', 'China');
-    this.set('locationService.currentLocation', { x: 11111, y: 222222 });
+    let locationService = this.owner.lookup('service:location');
+    locationService.city = 'Beijing';
+    locationService.country = 'China';
+    locationService.currentLocation = { x: 11111, y: 222222 };
 
-    assert.equal(this.element.textContent.trim(),
+    await rerender();
+
+    assert.strictEqual(this.element.textContent.trim(),
      'You currently are located in Beijing, China', 'location display should change');
   });
 });
@@ -483,7 +524,7 @@ To use them in your tests, you can `await` any of them to make sure that subsequ
 
 ```javascript
 await click('button.submit-button'); // clicks a button and waits for any async behavior initiated by the click to settle
-assert.equal(this.element.querySelector('.form-message').textContent, 'Your details have been submitted successfully.');
+assert.strictEqual(this.element.querySelector('.form-message').textContent, 'Your details have been submitted successfully.');
 ```
 
 Nearly all of the helpers for DOM interaction from `@ember/test-helpers` return a call to `settled` - a function
@@ -544,24 +585,26 @@ module('Integration | Component | delayed-typeahead', function(hooks) {
   ];
 
   test('should render results after typing a term', async function(assert) {
-    this.set('results', []);
+    const data = new class {
+      @tracked results = [];
+    };
 
     let value;
-    this.set('fetchResults', (data) => {
+    let fetchResults = (data) => {
       value = data;
-      this.set('results', stubResults);
-    });
+      data.results = stubResults;
+    };
 
-    await render(<template><DelayedTypeahead @fetchResults={{this.fetchResults}} @results={{this.results}} /></template>);
+    await render(<template><DelayedTypeahead @fetchResults={{fetchResults}} @results={{data.results}} /></template>);
     await fillIn('input', 'test')
     this.element.querySelector('input').dispatchEvent(new Event('keyup'));
 
     await settled();
-    assert.equal(value, 'test', 'fetch closure action called with search value');
+    assert.strictEqual(value, 'test', 'fetch closure action called with search value');
 
-    assert.equal(this.element.querySelectorAll('.result').length, 2, 'two results rendered');
+    assert.strictEqual(this.element.querySelectorAll('.result').length, 2, 'two results rendered');
   });
 });
 ```
 
-<!-- eof - needed for pages that end in a code block  -->
+Notice that we don't need to call `await rerender()` in this test to make sure the template has updated. This is because the work done in `await rerender()` is fully encapsulated in the `await settled()` so we don't need to call both.
