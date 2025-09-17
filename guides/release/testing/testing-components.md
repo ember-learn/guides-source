@@ -138,7 +138,7 @@ Expected: "color: blue"
 Result: "color: red"
 ```
 
-This means that the `name` attribute never updated the template after we update the value in `colorValue`. This happens because we need to mark data as `@tracked` before we can expect it to update templates automatically. You can read more about the tracking system on the [Autotracking In-Depth](../in-depth-topics/autotracking-in-depth/) topic.
+This means that the `name` attribute never updated the template after we update the value in `colorValue`. This happens because we need to mark data as `@tracked` before we can expect it to update templates automatically. You can read more about the tracking system on the [Autotracking In-Depth](../../in-depth-topics/autotracking-in-depth/) topic.
 
 Also it's worth noting that currently we can only use `@tracked` in the context of a class field, so we need to create an inline class with the data in the test: 
 
@@ -169,7 +169,7 @@ module('Integration | Component | pretty-color', function (hooks) {
 });
 ```
 
-We also needed to add a call to `await rerender()` for this to work. This function returns a promise that will resolve when all the template updates have finished excecuting. We can await this promise to wait until all templates have updated before continuing to assert against the DOM.
+We also needed to add a call to `await rerender()` for this to work. This function returns a promise that will resolve when all the template updates have finished executing. We can await this promise to wait until all templates have updated before continuing to assert against the DOM.
 
 Now that we have data updating correctly in a test, we can start testing other things about this component e.g. we can also test this that the content of its template is being rendered properly:
 
