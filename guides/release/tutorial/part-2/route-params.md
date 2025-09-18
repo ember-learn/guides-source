@@ -40,41 +40,47 @@ Notice that we are doing something a little different here. Instead of using the
 
 Now that we have this route in place, we can update our `<Rental>` component to actually _link_ to each of our detailed rental properties!
 
-```handlebars { data-filename="app/components/rental.hbs" data-diff="-7,+8,+9,+10,+11,+12" }
-<article class="rental">
-  <Rental::Image
-    src={{@rental.image}}
-    alt="A picture of {{@rental.title}}"
-  />
-  <div class="details">
-    <h3>{{@rental.title}}</h3>
-    <h3>
-      <LinkTo @route="rental" @model={{@rental}}>
-        {{@rental.title}}
-      </LinkTo>
-    </h3>
-    <div class="detail owner">
-      <span>Owner:</span> {{@rental.owner}}
+```gjs { data-filename="app/components/rental.gjs" data-diff="+3,-12,+13,+14,+15,+16,+17" }
+import RentalImage from 'super-rentals/components/rental/image';
+import Map from 'super-rentals/components/map';
+import { LinkTo } from '@ember/routing';
+
+<template>
+  <article class="rental">
+    <RentalImage
+      src={{@rental.image}}
+      alt="A picture of {{@rental.title}}"
+    />
+    <div class="details">
+      <h3>{{@rental.title}}</h3>
+      <h3>
+        <LinkTo @route="rental" @model={{@rental}}>
+          {{@rental.title}}
+        </LinkTo>
+      </h3>
+      <div class="detail owner">
+        <span>Owner:</span> {{@rental.owner}}
+      </div>
+      <div class="detail type">
+        <span>Type:</span> {{@rental.type}}
+      </div>
+      <div class="detail location">
+        <span>Location:</span> {{@rental.city}}
+      </div>
+      <div class="detail bedrooms">
+        <span>Number of bedrooms:</span> {{@rental.bedrooms}}
+      </div>
     </div>
-    <div class="detail type">
-      <span>Type:</span> {{@rental.type}}
-    </div>
-    <div class="detail location">
-      <span>Location:</span> {{@rental.city}}
-    </div>
-    <div class="detail bedrooms">
-      <span>Number of bedrooms:</span> {{@rental.bedrooms}}
-    </div>
-  </div>
-  <Map
-    @lat={{@rental.location.lat}}
-    @lng={{@rental.location.lng}}
-    @zoom="9"
-    @width="150"
-    @height="150"
-    alt="A map of {{@rental.title}}"
-  />
-</article>
+    <Map
+      @lat={{@rental.location.lat}}
+      @lng={{@rental.location.lng}}
+      @zoom="9"
+      @width="150"
+      @height="150"
+      alt="A map of {{@rental.title}}"
+    />
+  </article>
+</template>
 ```
 
 Since we know that we're linking to the `rental` route that we just created, we also know that this route requires a dynamic segment. Thus, we need to pass in a `@model` argument so that the `<LinkTo>` component can generate the appropriate URL for that model.
@@ -127,18 +133,19 @@ Now that we've included our model's `id`, we should see the correct URLs to each
 
 Alright, we have just one more step left here: updating the tests. We can add an `id` to the rental that we defined in our test using `setProperties` and add an assertion for the expected URL, too.
 
-```js { data-filename="tests/integration/components/rental-test.js" data-diff="+12,+34,+35,+36" }
+```gjs { data-filename="tests/integration/components/rental-test.gjs" data-diff="+13,+37,+38,+39" }
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'super-rentals/tests/helpers';
 import { render } from '@ember/test-helpers';
-import { hbs } from 'ember-cli-htmlbars';
+import Rental from 'super-rentals/components/rental';
+import { tracked } from '@glimmer/tracking';
 
 module('Integration | Component | rental', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders information about a rental property', async function (assert) {
-    this.setProperties({
-      rental: {
+    class State { 
+      @tracked rental = {
         id: 'grand-old-mansion',
         title: 'Grand Old Mansion',
         owner: 'Veruca Salt',
@@ -154,10 +161,12 @@ module('Integration | Component | rental', function (hooks) {
           'https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg',
         description:
           'This grand old mansion sits on over 100 acres of rolling hills and dense redwood forests.',
-      },
-    });
+      };
+    };
 
-    await render(hbs`<Rental @rental={{this.rental}} />`);
+    const state = new State();
+
+    await render(<template><Rental @rental={{state.rental}} /></template>);
 
     assert.dom('article').hasClass('rental');
     assert.dom('article h3').hasText('Grand Old Mansion');
@@ -218,66 +227,70 @@ Other than these minor differences though, the rest of the route is pretty much 
 
 ## Displaying Model Details with a Component
 
-Next, let's make a `<Rental::Detailed>` component.
+Next, let's make a `<RentalDetailed>` component.
 
 ```shell
 $ ember generate component rental/detailed
 installing component
-  create app/components/rental/detailed.hbs
-  skip app/components/rental/detailed.ts
-  tip to add a class, run `ember generate component-class rental/detailed`
+  create app/components/rental/detailed.gjs
 installing component-test
-  create tests/integration/components/rental/detailed-test.js
+  create tests/integration/components/rental/detailed-test.gjs
 
 Running "lint:fix" script...
 ```
 
-```handlebars { data-filename="app/components/rental/detailed.hbs" data-diff="-1,+2,+3,+4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33,+34,+35,+36,+37,+38,+39,+40,+41,+42,+43,+44,+45" }
-{{yield}}
-<Jumbo>
-  <h2>{{@rental.title}}</h2>
-  <p>Nice find! This looks like a nice place to stay near {{@rental.city}}.</p>
-  <a href="#" target="_blank" rel="external nofollow noopener noreferrer" class="share button">
-    Share on Twitter
-  </a>
-</Jumbo>
+```gjs { data-filename="app/components/rental/detailed.gjs" data-diff="+1,+2,+3,+4,-6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33,+34,+35,+36,+37,+38,+39,+40,+41,+42,+43,+44,+45,+46,+47,+48,+49,+50" }
+import Jumbo from 'super-rentals/components/jumbo';
+import RentalImage from 'super-rentals/components/rental/image';
+import Map from 'super-rentals/components/map';
 
-<article class="rental detailed">
-  <Rental::Image
-    src={{@rental.image}}
-    alt="A picture of {{@rental.title}}"
-  />
+<template>
+  {{yield}}
+  <Jumbo>
+    <h2>{{@rental.title}}</h2>
+    <p>Nice find! This looks like a nice place to stay near {{@rental.city}}.</p>
+    <a href="#" target="_blank" rel="external nofollow noopener noreferrer" class="share button">
+      Share on Twitter
+    </a>
+  </Jumbo>
 
-  <div class="details">
-    <h3>About {{@rental.title}}</h3>
+  <article class="rental detailed">
+    <RentalImage
+      src={{@rental.image}}
+      alt="A picture of {{@rental.title}}"
+    />
 
-    <div class="detail owner">
-      <span>Owner:</span> {{@rental.owner}}
-    </div>
-    <div class="detail type">
-      <span>Type:</span> {{@rental.type}} – {{@rental.category}}
-    </div>
-    <div class="detail location">
-      <span>Location:</span> {{@rental.city}}
-    </div>
-    <div class="detail bedrooms">
-      <span>Number of bedrooms:</span> {{@rental.bedrooms}}
-    </div>
-    <div class="detail description">
-      <p>{{@rental.description}}</p>
-    </div>
-  </div>
+    <div class="details">
+      <h3>About {{@rental.title}}</h3>
 
-  <Map
-    @lat={{@rental.location.lat}}
-    @lng={{@rental.location.lng}}
-    @zoom="12"
-    @width="894"
-    @height="600"
-    alt="A map of {{@rental.title}}"
-    class="large"
-  />
-</article>
+      <div class="detail owner">
+        <span>Owner:</span> {{@rental.owner}}
+      </div>
+      <div class="detail type">
+        <span>Type:</span> {{@rental.type}} – {{@rental.category}}
+      </div>
+      <div class="detail location">
+        <span>Location:</span> {{@rental.city}}
+      </div>
+      <div class="detail bedrooms">
+        <span>Number of bedrooms:</span> {{@rental.bedrooms}}
+      </div>
+      <div class="detail description">
+        <p>{{@rental.description}}</p>
+      </div>
+    </div>
+
+    <Map
+      @lat={{@rental.location.lat}}
+      @lng={{@rental.location.lng}}
+      @zoom="12"
+      @width="894"
+      @height="600"
+      alt="A map of {{@rental.title}}"
+      class="large"
+    />
+  </article>
+</template>
 ```
 
 This component is similar to our `<Rental>` component, except for the following differences.
@@ -291,43 +304,53 @@ This component is similar to our `<Rental>` component, except for the following 
 
 Now that we have this template in place, we can add some tests for this new component of ours.
 
-```handlebars { data-filename="tests/integration/components/rental/detailed-test.js" data-diff="-9,-10,-11,+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,-34,+35,+36,-38,+39,+40,+41,+42,+43,+44,+45,-47,-48,-49,-50,-51,-52,+53,+54,-56,+57,+58,+59,+60,+61,+62,+63,+64" }
+```gjs { data-filename="tests/integration/components/rental/detailed-test.gjs" data-diff="-4,+5,+6,+7,+8,+9,+10,+11,+12,-17,-18,-19,-20,-21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33,+34,+35,+36,+37,+38,+39,+40,-42,+43,+44,+45,+46,-48,+49,+50,+51,+52,+53,+54,+55,-57,+58,-60,-61,-62,+63,-66,+67,+68,+69,+70,+71,+72,+73,+74" }
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'super-rentals/tests/helpers';
 import { render } from '@ember/test-helpers';
-import { hbs } from 'ember-cli-htmlbars';
+import Detailed from 'super-rentals/components/rental/detailed';
+import { tracked } from '@glimmer/tracking';
+import RentalDetailed from 'super-rentals/components/rental/detailed';
+
+class State {
+  @tracked rental = {};
+}
+
+const state = new State();
 
 module('Integration | Component | rental/detailed', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function (assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+    // Updating values is achieved using autotracking, just like in app code. For example:
+    // class State { @tracked myProperty = 0; }; const state = new State();
+    // and update using state.myProperty = 1; await rerender();
+    // Handle any actions with function myAction(val) { ... };
   hooks.beforeEach(function () {
-    this.setProperties({
-      rental: {
-        id: 'grand-old-mansion',
-        title: 'Grand Old Mansion',
-        owner: 'Veruca Salt',
-        city: 'San Francisco',
-        location: {
-          lat: 37.7749,
-          lng: -122.4194,
-        },
-        category: 'Estate',
-        type: 'Standalone',
-        bedrooms: 15,
-        image:
-          'https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg',
-        description:
-          'This grand old mansion sits on over 100 acres of rolling hills and dense redwood forests.',
+    state.rental = {
+      id: 'grand-old-mansion',
+      title: 'Grand Old Mansion',
+      owner: 'Veruca Salt',
+      city: 'San Francisco',
+      location: {
+        lat: 37.7749,
+        lng: -122.4194,
       },
-    });
+      category: 'Estate',
+      type: 'Standalone',
+      bedrooms: 15,
+      image:
+        'https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg',
+      description:
+        'This grand old mansion sits on over 100 acres of rolling hills and dense redwood forests.',
+    };
   });
 
-    await render(hbs`<Rental::Detailed />`);
+    await render(<template><Detailed /></template>);
   test('it renders a header with a share button', async function (assert) {
-    await render(hbs`<Rental::Detailed @rental={{this.rental}} />`);
+    await render(<template>
+      <RentalDetailed @rental={{state.rental}} />
+    </template>);
 
     assert.dom().hasText('');
     assert.dom('.jumbo').exists();
@@ -339,13 +362,13 @@ module('Integration | Component | rental/detailed', function (hooks) {
   });
 
     // Template block usage:
-    await render(hbs`
-      <Rental::Detailed>
-        template block text
-      </Rental::Detailed>
-    `);
   test('it renders detailed information about a rental property', async function (assert) {
-    await render(hbs`<Rental::Detailed @rental={{this.rental}} />`);
+    await render(<template>
+      <Detailed>
+        template block text
+      </Detailed>
+      <RentalDetailed @rental={{state.rental}} />
+    </template>);
 
     assert.dom().hasText('template block text');
     assert.dom('article').hasClass('rental');
@@ -378,10 +401,14 @@ We can use the `beforeEach` hook to share some boilerplate code, which allows us
 
 ## Adding a Route Template
 
-Finally, let's add a `rental` template to actually _invoke_ our `<Rental::Detailed>` component, as well as adding an acceptance test for this new behavior in our app.
+Finally, let's add a `rental` template to actually _invoke_ our `<RentalDetailed>` component, as well as adding an acceptance test for this new behavior in our app.
 
-```handlebars { data-filename="app/templates/rental.hbs" }
-<Rental::Detailed @rental={{@model}} />
+```handlebars { data-filename="app/templates/rental.gjs" }
+import RentalDetailed from 'super-rentals/components/rental/detailed';
+
+<template>
+  <RentalDetailed @rental={{@model}} />
+</template>
 ```
 
 ```js { data-filename="tests/acceptance/super-rentals-test.js" data-diff="+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33,+34,+35,+36,+37,+38,+39" }
