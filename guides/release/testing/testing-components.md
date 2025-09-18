@@ -7,20 +7,20 @@ The `style` attribute of the component is bound to its `style` property.
 > You can follow along by generating your own component with `ember generate
 > component pretty-color`.
 
-```javascript {data-filename="app/components/pretty-color.js"}
+```gjs {data-filename="app/components/pretty-color.gjs"}
 import Component from '@glimmer/component';
 
 export default class PrettyColorComponent extends Component {
   get style() {
     return `color: ${this.args.name}`;
   }
-}
-```
 
-```handlebars {data-filename="app/components/pretty-color.hbs"}
-<div style={{this.style}}>
-  Pretty Color: {{@name}}
-</div>
+  <template>
+    <div style={{this.style}}>
+      Pretty Color: {{@name}}
+    </div>
+  </template>
+}
 ```
 
 The `module` from QUnit will scope your tests into groups of tests which can be configured and run independently.
@@ -29,8 +29,24 @@ This will do the necessary setup for testing your component for you,
 including setting up a way to access the rendered DOM of your component later on in the test,
 and cleaning up once your tests in this module are finished.
 
-```javascript {data-filename="tests/integration/components/pretty-color-test.js"}
-import { module } from 'qunit';
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+        If you generated your component using <code>ember generate component pretty-color</code> it will already have generated
+        the following file for you with all the boilerplate needed to get started. We are describing the steps to build to that same
+        boilerplate for educational purposes. 
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="Ember Mascot">
+  </div>
+</div>
+
+
+
+```gjs {data-filename="tests/integration/components/pretty-color-test.gjs"}
+import { module, test } from 'qunit';
 import { setupRenderingTest } from 'my-app-name/tests/helpers';
 
 module('Integration | Component | pretty-color', function(hooks) {
@@ -39,10 +55,12 @@ module('Integration | Component | pretty-color', function(hooks) {
 });
 ```
 
-Inside of your `module` and after setting up the test, we can now start to create our first test case.
-Here, we can use the `QUnit.test` helper and we can give it a descriptive name:
+The first thing to notice about this file is the filename, we are creating a `.gjs` file for a rendering test because we will be using `<template></template>` to render our Component under test and this only works inside `.gjs` files.
 
-```javascript {data-filename="tests/integration/components/pretty-color-test.js"}
+Inside your `module` and after setting up the test, we can now start to create our first test case.
+Here, we can use the QUnit's `test` function, and we can give it a descriptive name:
+
+```gjs {data-filename="tests/integration/components/pretty-color-test.gjs"}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'my-app-name/tests/helpers';
 
@@ -61,79 +79,123 @@ The [ECMAScript 2017 feature async/await](https://developer.mozilla.org/en-US/do
 seemingly synchronous manner.
 We can better see what this means, once we start writing out our first test case:
 
-```javascript {data-filename="tests/integration/components/pretty-color-test.js"}
+```gjs {data-filename="tests/integration/components/pretty-color-test.gjs"}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'my-app-name/tests/helpers';
 import { render } from '@ember/test-helpers';
-import { hbs } from 'ember-cli-htmlbars';
+import PrettyColor from 'my-app-name/components/pretty-color';
 
 module('Integration | Component | pretty-color', function(hooks) {
   setupRenderingTest(hooks);
 
   test('should change colors', async function(assert) {
-    // set the outer context to red
-    this.set('colorValue', 'red');
+    let colorValue = 'red'
 
-    await render(hbs`<PrettyColor @name={{this.colorValue}} />`);
+    await render(<template> <PrettyColor @name={{colorValue}} /> </template>);
 
-    assert.equal(this.element.querySelector('div').getAttribute('style'), 'color: red', 'starts as red');
+    assert.strictEqual(this.element.querySelector('div').getAttribute('style'), 'color: red', 'starts as red');
   });
 });
 ```
 
 Each test can use the `render()` function imported from the `@ember/test-helpers` package to create a new instance of the component by declaring the component in template syntax,
 as we would in our application.
+
 Also notice, the keyword `await` in front of the call to `render`.
 It allows the test which we marked as `async` earlier to wait for any asynchronous behavior to complete before executing the rest of the code below.
 In this case our first assertion will correctly execute after the component has fully rendered.
 
-Next we can test that changing the component's `name` property updates the
-component's `style` attribute and is reflected in the rendered HTML:
+Next we can test to see if changing the component's `name` property updates the
+component's `style` attribute and is reflected in the rendered HTML. Note: we expect this to fail so continue reading after this example if you want to find out why this fails:
 
-```javascript {data-filename="tests/integration/components/pretty-color-test.js"}
+```gjs {data-filename="tests/integration/components/pretty-color-test.gjs"}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'my-app-name/tests/helpers';
 import { render } from '@ember/test-helpers';
-import { hbs } from 'ember-cli-htmlbars';
+import PrettyColor from 'my-app-name/components/pretty-color';
 
 module('Integration | Component | pretty-color', function(hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function(assert) {
-    // set the outer context to red
-    this.set('colorValue', 'red');
+    let colorValue = 'red'
 
-    await render(hbs`<PrettyColor @name={{this.colorValue}} />`);
+    await render(<template> <PrettyColor @name={{colorValue}} /> </template>);
 
-    assert.equal(this.element.querySelector('div').getAttribute('style'), 'color: red', 'starts as red');
+    assert.strictEqual(this.element.querySelector('div').getAttribute('style'), 'color: red', 'starts as red');
 
-    this.set('colorValue', 'blue');
+    colorValue = 'blue';
 
-    assert.equal(this.element.querySelector('div').getAttribute('style'), 'color: blue', 'updates to blue');  });
+    assert.strictEqual(this.element.querySelector('div').getAttribute('style'), 'color: blue', 'updates to blue');  
+  });
 });
 ```
 
-We might also test this component to ensure that the content of its template is being rendered properly:
+This test is now failing with the following error: 
 
-```javascript {data-filename="tests/integration/components/pretty-color-test.js"}
+```
+Expected: "color: blue"
+Result: "color: red"
+```
+
+This means that the `name` attribute never updated the template after we update the value in `colorValue`. This happens because we need to mark data as `@tracked` before we can expect it to update templates automatically. You can read more about the tracking system on the [Autotracking In-Depth](../../in-depth-topics/autotracking-in-depth/) topic.
+
+Also it's worth noting that currently we can only use `@tracked` in the context of a class field, so we need to create an inline class with the data in the test: 
+
+```gjs {data-filename="tests/integration/components/pretty-color-test.gjs"}
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-strict/tests/helpers';
+import { render, rerender } from '@ember/test-helpers';
+import { tracked } from '@glimmer/tracking';
+import PrettyColor from 'ember-strict/components/pretty-color';
+
+module('Integration | Component | pretty-color', function (hooks) {
+  setupRenderingTest(hooks);
+
+  test('it renders', async function (assert) {
+    const data = new class {
+      @tracked colorValue = 'red';
+    };
+
+    await render(<template> <PrettyColor @name={{data.colorValue}} /> </template>);
+
+    assert.strictEqual(this.element.querySelector('div').getAttribute('style'), 'color: red', 'starts as red');
+
+    data.colorValue = 'blue';
+    await rerender();
+
+    assert.strictEqual(this.element.querySelector('div').getAttribute('style'), 'color: blue', 'updates to blue');
+  });
+});
+```
+
+We also needed to add a call to `await rerender()` for this to work. This function returns a promise that will resolve when all the template updates have finished executing. We can await this promise to wait until all templates have updated before continuing to assert against the DOM.
+
+Now that we have data updating correctly in a test, we can start testing other things about this component e.g. we can also test this that the content of its template is being rendered properly:
+
+```gjs {data-filename="tests/integration/components/pretty-color-test.gjs"}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'my-app-name/tests/helpers';
-import { render } from '@ember/test-helpers';
-import { hbs } from 'ember-cli-htmlbars';
+import { render, rerender } from '@ember/test-helpers';
+import { tracked } from '@glimmer/tracking';
+import PrettyColor from 'my-app-name/components/pretty-color';
 
 module('Integration | Component | pretty-color', function(hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function(assert) {
-    this.set('colorValue', 'orange');
+    const data = new class {
+      @tracked colorValue = 'red';
+    };
 
-    await render(hbs`<PrettyColor @name={{this.colorValue}} />`);
+    await render(<template> <PrettyColor @name={{data.colorValue}} /> </template>);
 
-    assert.equal(this.element.textContent.trim(), 'Pretty Color: orange', 'text starts as orange');
+    assert.strictEqual(this.element.textContent.trim(), 'Pretty Color: orange', 'text starts as orange');
 
-    this.set('colorValue', 'green');
+    data.colorValue = 'green';
+    await rerender();
 
-    assert.equal(this.element.textContent.trim(), 'Pretty Color: green', 'text switches to green');
+    assert.strictEqual(this.element.textContent.trim(), 'Pretty Color: green', 'text switches to green');
   });
 });
 ```
@@ -148,49 +210,47 @@ Imagine you have the following component that changes its title when a button is
 > You can follow along by generating your own component with `ember generate
 > component magic-title`.
 
-```javascript {data-filename="app/components/magic-title.js"}
+```gjs {data-filename="app/components/magic-title.gjs"}
 import Component from '@glimmer/component';
+import { on } from '@ember/modifier';
 import { tracked } from '@glimmer/tracking';
-import { action } from '@ember/object';
 
 export default class MagicTitleComponent extends Component {
   @tracked title = 'Hello World';
 
-  @action
-  updateTitle() {
+  updateTitle = () => {
     this.title = 'This is Magic';
   }
+
+  <template>
+    <h2>{{this.title}}</h2>
+
+    <button type="button" class="title-button" {{on "click" this.updateTitle}}>
+      Update Title
+    </button>
+  </template>
 }
-```
-
-```handlebars {data-filename="app/components/magic-title.hbs"}
-<h2>{{this.title}}</h2>
-
-<button type="button" class="title-button" {{on "click" this.updateTitle}}>
-  Update Title
-</button>
 ```
 
 And our test might look like this:
 
-```javascript {data-filename="tests/integration/components/magic-title-test.js"}
+```gjs {data-filename="tests/integration/components/magic-title-test.gjs"}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'my-app-name/tests/helpers';
 import { click, render } from '@ember/test-helpers';
-import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Component | magic-title', function(hooks) {
   setupRenderingTest(hooks);
 
   test('should update title on button click', async function(assert) {
-    await render(hbs`<MagicTitle />`);
+    await render(<template><MagicTitle /></template>);
 
-    assert.equal(this.element.querySelector('h2').textContent.trim(), 'Hello World', 'initial text is hello world');
+    assert.strictEqual(this.element.querySelector('h2').textContent.trim(), 'Hello World', 'initial text is hello world');
 
     // Click on the button
     await click('.title-button');
 
-    assert.equal(this.element.querySelector('h2').textContent.trim(), 'This is Magic', 'title changes after click');
+    assert.strictEqual(this.element.querySelector('h2').textContent.trim(), 'This is Magic', 'title changes after click');
   });
 });
 ```
@@ -209,27 +269,32 @@ passing along the form's data:
 > You can follow along by generating your own component with `ember generate
 > component comment-form`.
 
-```javascript {data-filename="app/components/comment-form.js"}
+```gjs {data-filename="app/components/comment-form.gjs"}
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { action } from '@ember/object';
+import { on } from '@ember/modifier';
 
 export default class CommentFormComponent extends Component {
   @tracked comment = '';
 
-  @action
-  submitComment() {
+  submitComment = (event) => {
     this.args.submitComment({ comment: this.comment });
+    // this prevents the page from refreshing
+    event.preventDefault();
   }
-}
-```
 
-```handlebars {data-filename="app/components/comment-form.hbs"}
-<form {{on "submit" this.submitComment}}>
-  <label for="comment">Comment:</label>
-  <Textarea id="comment" @value={{this.comment}} />
-  <input class="comment-input" type="submit" value="Submit"/>
-</form>
+  updateComment = (event) => {
+    this.comment = event.target.value;
+  }
+
+  <template>
+    <form {{on "submit" this.submitComment}}>
+      <label for="comment">Comment:</label>
+      <textarea id="comment" value={{this.comment}} {{on "input" this.updateComment}}></textarea>
+      <button class="comment-submit" type="submit">Submit</button>
+    </form>
+  </template>
+}
 ```
 
 Here's an example test that asserts that the specified `externalAction` function is invoked when the component's internal `submitComment` action is triggered by making use of a test double (dummy function).
@@ -237,11 +302,10 @@ The value from the external action is captured in a shared variable (if and when
 so that it can be explicitly asserted directly in the test function at the time where we
 expect the closure action to have been called.
 
-```javascript {data-filename="tests/integration/components/comment-form-test.js"}
+```gjs {data-filename="tests/integration/components/comment-form-test.gjs"}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'my-app-name/tests/helpers';
 import { click, fillIn, render } from '@ember/test-helpers';
-import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Component | comment-form', function(hooks) {
   setupRenderingTest(hooks);
@@ -249,17 +313,17 @@ module('Integration | Component | comment-form', function(hooks) {
   test('should trigger external action on form submit', async function(assert) {
     // test double for the external action
     let actual;
-    this.set('externalAction', (data) => {
+    let externalAction = (data) => {
       actual = data;
     });
 
-    await render(hbs`<CommentForm @submitComment={{this.externalAction}} />`);
+    await render(<template><CommentForm @submitComment={{externalAction}} /></template>);
 
     // fill out the form and force an onchange
     await fillIn('textarea', 'You are not a wizard!');
 
     // click the button to submit the form
-    await click('.comment-input');
+    await click('.comment-submit');
 
     let expected = { comment: 'You are not a wizard!' };
     assert.deepEqual(actual, expected, 'submitted value is passed to external action');
@@ -290,7 +354,7 @@ Imagine you have the following component that uses a location service to display
 > You can follow along by generating your own component with `ember generate
 > component location-indicator`.
 
-```javascript {data-filename="app/components/location-indicator.js"}
+```gjs {data-filename="app/components/location-indicator.gjs"}
 import Component from '@glimmer/component';
 import { service } from '@ember/service';
 
@@ -305,23 +369,22 @@ export default class LocationIndicatorComponent extends Component {
   get country() {
     return this.location.getCurrentCountry();
   }
+  <template>
+    You currently are located in {{this.city}}, {{this.country}}
+  </template>
 }
 ```
 
-```handlebars {data-filename="app/components/location-indicator.hbs"}
-You currently are located in {{this.city}}, {{this.country}}
-```
-
 To stub the location service in your test, create a local stub object that extends `Service` from `@ember/service`,
-and register the stub as the service your tests need in the beforeEach function.
+and register the stub as the service your tests need in the `beforeEach()` function.
 In this case we initially force location to "New York".
 
-```javascript {data-filename="tests/integration/components/location-indicator-test.js"}
+```gjs {data-filename="tests/integration/components/location-indicator-test.gjs"}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'my-app-name/tests/helpers';
 import { render } from '@ember/test-helpers';
-import { hbs } from 'ember-cli-htmlbars';
 import Service from '@ember/service';
+import LocationIndicator from 'my-app-name/components/location-indicator';
 
 // Stub location service
 class LocationStub extends Service {
@@ -345,7 +408,7 @@ module('Integration | Component | location-indicator', function(hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(function(assert) {
-    this.owner.register('service:location-service', LocationStub);
+    this.owner.register('service:location', LocationStub);
   });
 });
 ```
@@ -353,12 +416,12 @@ module('Integration | Component | location-indicator', function(hooks) {
 Once the stub service is registered,
 the test needs to check that the stub data from the service is reflected in the component output.
 
-```javascript {data-filename="tests/integration/components/location-indicator-test.js" data-diff="+30,+31,+32,+33,+34,+35"}
+```gjs {data-filename="tests/integration/components/location-indicator-test.gjs" data-diff="+31,+32,+33,+34,+35,+36"}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'my-app-name/tests/helpers';
 import { render } from '@ember/test-helpers';
-import { hbs } from 'ember-cli-htmlbars';
 import Service from '@ember/service';
+import LocationIndicator from 'my-app-name/components/location-indicator';
 
 // Stub location service
 class LocationStub extends Service {
@@ -372,7 +435,7 @@ class LocationStub extends Service {
   getCurrentCity() {
     return this.city;
   }
-  
+
   getCurrentCountry() {
     return this.country;
   }
@@ -382,30 +445,31 @@ module('Integration | Component | location-indicator', function(hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(function(assert) {
-    this.owner.register('service:location-service', LocationStub);
+    this.owner.register('service:location', LocationStub);
   });
 
   test('should reveal current location', async function(assert) {
-    await render(hbs`<LocationIndicator />`);
-    assert.equal(this.element.textContent.trim(),
+    await render(<template><LocationIndicator /></template>);
+    assert.strictEqual(this.element.textContent.trim(),
      'You currently are located in New York, USA');
   });
 });
 ```
 
-In the next example, we'll add another test that validates that the display changes when we modify the values on the service.
+In the next example, we'll add another test that validates that the display changes when we modify the values on the service. Remember to add `@tracked` to the
+values that can change in our subbed service!
 
-```javascript {data-filename="tests/integration/components/location-indicator-test.js" data-diff="+36,+37,+38,+39,+40,+41,+42,+43,+44,+45,+46,+47,+48,+49,+50"}
+```gjs {data-filename="tests/integration/components/location-indicator-test.gjs" data-diff="+38,+39,+40,+41,+42,+43,+44,+45,+46,+47,+48,+49,+50,+51,+52"}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'my-app-name/tests/helpers';
-import { render } from '@ember/test-helpers';
-import { hbs } from 'ember-cli-htmlbars';
+import { render, rerender } from '@ember/test-helpers';
 import Service from '@ember/service';
+import { tracked } from '@glimmer/tracking';
 
 // Stub location service
 class LocationStub extends Service {
-  city = 'New York';
-  country = 'USA';
+  @tracked city = 'New York';
+  @tracked country = 'USA';
   currentLocation = {
     x: 1234,
     y: 5678
@@ -424,27 +488,29 @@ module('Integration | Component | location-indicator', function(hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(function(assert) {
-    this.owner.register('service:location-service', LocationStub);
+    this.owner.register('service:location', LocationStub);
   });
 
   test('should reveal current location', async function(assert) {
-    await render(hbs`<LocationIndicator />`);
-    assert.equal(this.element.textContent.trim(),
+    await render(<template><LocationIndicator /></template>);
+    assert.strictEqual(this.element.textContent.trim(),
      'You currently are located in New York, USA');
   });
 
   test('should change displayed location when current location changes', async function (assert) {
-    await render(hbs`<LocationIndicator />`);
+    await render(<template><LocationIndicator /></template>);
 
-    assert.equal(this.element.textContent.trim(),
+    assert.strictEqual(this.element.textContent.trim(),
      'You currently are located in New York, USA', 'origin location should display');
 
-    this.locationService = this.owner.lookup('service:location-service');
-    this.set('locationService.city', 'Beijing');
-    this.set('locationService.country', 'China');
-    this.set('locationService.currentLocation', { x: 11111, y: 222222 });
+    let locationService = this.owner.lookup('service:location');
+    locationService.city = 'Beijing';
+    locationService.country = 'China';
+    locationService.currentLocation = { x: 11111, y: 222222 };
 
-    assert.equal(this.element.textContent.trim(),
+    await rerender();
+
+    assert.strictEqual(this.element.textContent.trim(),
      'You currently are located in Beijing, China', 'location display should change');
   });
 });
@@ -458,7 +524,7 @@ To use them in your tests, you can `await` any of them to make sure that subsequ
 
 ```javascript
 await click('button.submit-button'); // clicks a button and waits for any async behavior initiated by the click to settle
-assert.equal(this.element.querySelector('.form-message').textContent, 'Your details have been submitted successfully.');
+assert.strictEqual(this.element.querySelector('.form-message').textContent, 'Your details have been submitted successfully.');
 ```
 
 Nearly all of the helpers for DOM interaction from `@ember/test-helpers` return a call to `settled` - a function
@@ -472,40 +538,43 @@ Imagine you have a typeahead component that uses [`Ember.run.debounce`](https://
 > You can follow along by generating your own component with `ember generate
 > component delayed-typeahead`.
 
-```javascript {data-filename="app/components/delayed-typeahead.js"}
+```gjs {data-filename="app/components/delayed-typeahead.gjs"}
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { action } from '@ember/object';
 import { debounce } from '@ember/runloop';
+import { on } from '@ember/modifier';
 
 export default class DelayedTypeaheadComponent extends Component {
   @tracked searchValue = '';
 
-  @action
-  handleTyping() {
+  updateValue = (event) => {
+    this.searchValue = event.target.value;
+  }
+
+  handleTyping = () => {
     // The fetchResults function is passed into the component from its parent
     debounce(this, this.args.fetchResults, this.searchValue, 250);
   }
-};
-```
 
-```handlebars {data-filename="app/components/delayed-typeahead.hbs"}
-<label for="search">Search</label>
-<Input id="search" @value={{this.searchValue}} {{on 'keyup' this.handleTyping}} />
-<ul>
-  {{#each @results as |result|}}
-    <li class="result">{{result.name}}</li>
-  {{/each}}
-</ul>
+  <template>
+    <label for="search">Search</label>
+    <input id="search" value={{this.searchValue}} {{on 'input' this.updateValue}} {{on 'keyup' this.handleTyping}} />
+    <ul>
+      {{#each @results as |result|}}
+        <li class="result">{{result.name}}</li>
+      {{/each}}
+    </ul>
+  </template>
+}
 ```
 
 In your test, use the `settled` helper to wait until your debounce timer is up and then assert that the page is rendered appropriately.
 
-```javascript {data-filename="tests/integration/components/delayed-typeahead-test.js"}
+```gjs {data-filename="tests/integration/components/delayed-typeahead-test.gjs"}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'my-app-name/tests/helpers';
-import { render, settled } from '@ember/test-helpers';
-import { hbs } from 'ember-cli-htmlbars';
+import { render, settled, fillIn } from '@ember/test-helpers';
+import DelayedTypeahead from 'my-app-name/components/delayed-typeahead';
 
 module('Integration | Component | delayed-typeahead', function(hooks) {
   setupRenderingTest(hooks);
@@ -516,24 +585,26 @@ module('Integration | Component | delayed-typeahead', function(hooks) {
   ];
 
   test('should render results after typing a term', async function(assert) {
-    this.set('results', []);
+    const data = new class {
+      @tracked results = [];
+    };
 
     let value;
-    this.set('fetchResults', (data) => {
+    let fetchResults = (data) => {
       value = data;
-      this.set('results', stubResults);
-    });
+      data.results = stubResults;
+    };
 
-    await render(hbs`<DelayedTypeahead @fetchResults={{this.fetchResults}} @results={{this.results}} />`);
-    this.element.querySelector('input').value = 'test';
+    await render(<template><DelayedTypeahead @fetchResults={{fetchResults}} @results={{data.results}} /></template>);
+    await fillIn('input', 'test')
     this.element.querySelector('input').dispatchEvent(new Event('keyup'));
 
     await settled();
-    assert.equal(value, 'test', 'fetch closure action called with search value');
+    assert.strictEqual(value, 'test', 'fetch closure action called with search value');
 
-    assert.equal(this.element.querySelectorAll('.result').length, 2, 'two results rendered');
+    assert.strictEqual(this.element.querySelectorAll('.result').length, 2, 'two results rendered');
   });
 });
 ```
 
-<!-- eof - needed for pages that end in a code block  -->
+Notice that we don't need to call `await rerender()` in this test to make sure the template has updated. This is because the work done in `await rerender()` is fully encapsulated in the `await settled()` so we don't need to call both.
