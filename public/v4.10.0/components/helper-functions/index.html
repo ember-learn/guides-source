@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:image" content="https://blog.emberjs.com/images/logos/e-icon.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@emberjs" />
+    <meta name="twitter:image" content="https://blog.emberjs.com/images/logos/e-icon.png" />
+
+    <meta name="ember-guides/config/environment" content="%7B%22modulePrefix%22%3A%22ember-guides%22%2C%22environment%22%3A%22production%22%2C%22rootURL%22%3A%22%2F%22%2C%22locationType%22%3A%22trailing-history%22%2C%22historySupportMiddleware%22%3Atrue%2C%22EmberENV%22%3A%7B%22EXTEND_PROTOTYPES%22%3Afalse%2C%22FEATURES%22%3A%7B%7D%2C%22_APPLICATION_TEMPLATE_WRAPPER%22%3Afalse%2C%22_DEFAULT_ASYNC_OBSERVERS%22%3Atrue%2C%22_JQUERY_INTEGRATION%22%3Afalse%2C%22_NO_IMPLICIT_ROUTE_MODEL%22%3Atrue%2C%22_TEMPLATE_ONLY_GLIMMER_COMPONENTS%22%3Atrue%7D%2C%22APP%22%3A%7B%7D%2C%22ember-meta%22%3A%7B%22description%22%3A%22Ember.js%20helps%20developers%20be%20more%20productive%20out%20of%20the%20box.%20Designed%20with%20developer%20ergonomics%20in%20mind%2C%20its%20friendly%20APIs%20help%20you%20get%20your%20job%20done%E2%80%94fast.%22%2C%22title%22%3A%22Ember%20Guides%22%7D%2C%22ember-showdown-shiki%22%3A%7B%22theme%22%3A%22github-dark%22%2C%22languages%22%3A%5B%22bash%22%2C%22css%22%2C%22http%22%2C%22javascript%22%2C%22json%22%2C%22json5%22%2C%22ruby%22%2C%22scss%22%2C%22yaml%22%2C%22typescript%22%2C%22glimmer-js%22%2C%22glimmer-ts%22%2C%22handlebars%22%5D%7D%2C%22guidemaker%22%3A%7B%22title%22%3A%22Ember%20Guides%22%2C%22sourceRepo%22%3A%22https%3A%2F%2Fgithub.com%2Fember-learn%2Fguides-source%22%7D%2C%22algolia%22%3A%7B%22algoliaId%22%3A%22Y1OMR4C7MF%22%2C%22algoliaKey%22%3A%225d01c83734dc36754d9e94cbf6f8964d%22%2C%22indexName%22%3A%22ember-guides%22%7D%2C%22showdown%22%3A%7B%22ghCompatibleHeaderId%22%3Atrue%2C%22prefixHeaderId%22%3A%22toc_%22%7D%2C%22deprecationsGuideURL%22%3A%22https%3A%2F%2Fwww.emberjs.com%2Fdeprecations%2F%22%2C%22metricsAdapters%22%3A%5B%7B%22name%22%3A%22GoogleAnalytics%22%2C%22environments%22%3A%5B%22production%22%5D%2C%22config%22%3A%7B%22id%22%3A%22UA-27675533-1%22%2C%22require%22%3A%5B%22linkid%22%5D%7D%7D%5D%2C%22fastboot%22%3A%7B%22hostWhitelist%22%3A%5B%7B%7D%5D%7D%2C%22ember-collapsible-panel%22%3A%7B%7D%7D" />
+<!-- EMBER_CLI_FASTBOOT_TITLE -->  <meta name="ember-cli-head-start" content>  <title>Helper Functions - Components - Ember Guides</title>
+
+  <meta name="description" content="Helper functions are JavaScript functions that you can call from your template. 
+
+Ember's template syntax limits what you can express to keep the structure of your application clear at a glance. When you need to compute something using JavaScript, you can...">
+
+<meta name="referrer" content="unsafe-url">
+
+<!---->
+<!---->
+<!---->
+<!---->
+  <meta property="og:title" content="Helper Functions - Components - Ember Guides">
+
+<!---->
+  <meta property="og:description" content="Helper functions are JavaScript functions that you can call from your template. 
+
+Ember's template syntax limits what you can express to keep the structure of your application clear at a glance. When you need to compute something using JavaScript, you can...">
+
+  <meta property="og:type" content="website">
+
+<!---->
+<meta name="twitter:card" content="summary">
+
+<!---->
+<!---->
+  <meta name="twitter:title" content="Helper Functions - Components - Ember Guides">
+
+<!---->
+  <meta name="twitter:description" content="Helper functions are JavaScript functions that you can call from your template. 
+
+Ember's template syntax limits what you can express to keep the structure of your application clear at a glance. When you need to compute something using JavaScript, you can...">
+
+<!---->
+<!---->
+<!----><meta name="ember-cli-head-end" content>
+
+
+    <link integrity="" rel="stylesheet" href="/assets/vendor-b8277f2f5a0671f1fd06c44e8d28a12a.css">
+<link rel="stylesheet" href="/assets/chunk.3524.1b6fd9a56ed27e4f0776.css"/>
+    <link integrity="" rel="stylesheet" href="/assets/ember-guides-5c8db54c5318a3c5c0e2f055377a6fe6.css">
+
+    <link rel="apple-touch-icon" href="/favicons/apple-touch-icon.png">
+    <link rel="icon" href="/favicons/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicons/icon.svg" type="image/svg+xml">
+    <link rel="manifest" href="/favicons/manifest.webmanifest">
+
+    
+  </head>
+  <body class="application version show version-show">
+    <script type="x/boundary" id="fastboot-body-start"></script>
+<!---->
+
+<header class="es-header" role="banner">
+  <nav class="es-navbar " aria-label="Primary site navigation">
+    <a class="navbar-brand-wrapper" href="https://www.emberjs.com">
+      <img class="navbar-brand" src="/images/ember-logo.svg" alt="home" width="83" height="40">
+    </a>
+
+    <button class="navbar-toggler" aria-expanded="false" type="button">
+      Show Site Navigation
+    </button>
+
+    <ul class="navbar-list">
+        <li class="navbar-list-item dropdown">
+<!---->    <button class="navbar-list-item-dropdown-toggle " aria-expanded="false" type="button">
+      Docs
+    </button>
+<!----></li>
+        <li class="navbar-list-item dropdown">
+<!---->    <button class="navbar-list-item-dropdown-toggle " aria-expanded="false" type="button">
+      Releases
+    </button>
+<!----></li>
+        <li class="navbar-list-item ">
+    <a class="navbar-list-item-link" href="https://blog.emberjs.com">
+      Blog
+    </a>
+<!----></li>
+        <li class="navbar-list-item dropdown">
+<!---->    <button class="navbar-list-item-dropdown-toggle " aria-expanded="false" type="button">
+      Community
+    </button>
+<!----></li>
+        <li class="navbar-list-item dropdown">
+<!---->    <button class="navbar-list-item-dropdown-toggle " aria-expanded="false" type="button">
+      About
+    </button>
+<!----></li>
+    </ul>
+
+      <div class="navbar-end">
+        
+  <div id="ember23395" class="search-input ember-view">  <input id="search-input" placeholder="Search the guides" autocomplete="off" data-test-search-input type="search">
+
+  <div class="ember-tether">
+  
+<!---->  
+</div>
+</div>
+
+      </div>
+  </nav>
+</header>
+<div class="progress-bar" aria-hidden style></div>
+
+<!---->
+<!---->
+
+
+<main>
+  
+<div class="sidebar-container">
+  <nav class="es-sidebar" aria-label="Secondary content navigation" aria-expanded="false">
+  <button class="es-button-secondary es-sidebar-close" aria-label="Close Sidebar" type="button">
+    
+    <svg width="36" height="36" viewbox="0 0 36 36" xmlns="http://www.w3.org/2000/svg"><path d="M12.343 10.929L18 16.585l5.657-5.656a1 1 0 011.414 1.414L19.415 18l5.656 5.657a1 1 0 01-1.414 1.414L18 19.415l-5.657 5.656a1 1 0 01-1.414-1.414L16.585 18l-5.656-5.657a1 1 0 011.414-1.414z" fill="#FFF" fill-rule="evenodd"></path></svg>
+  
+</button>
+  <div class="es-sidebar-content">
+    
+    <label for="version-select" class="visually-hidden">Guides version</label>
+          <div class="ember-basic-dropdown">
+      <div class="ember-view ember-basic-dropdown-trigger
+       ember-basic-dropdown-trigger--in-place
+      
+      
+       ember-power-select-trigger " tabindex="0" aria-controls="ember-power-select-options-ember23396" aria-haspopup="listbox" aria-owns role="button">
+    
+            <span class="ember-power-select-selected-item">
+          
+        4.10 <!---->
+      
+        </span>
+<!----><span class="ember-power-select-status-icon"></span>
+
+    
+  </div>
+
+      <div id="ember-basic-dropdown-content-ember23396" class="ember-basic-dropdown-content-placeholder"></div>
+
+</div>
+
+
+    <nav class="toc-container versions" aria-label="table of contents">
+      <ul class="table-of-contents">
+        <li class="toc-heading">Introduction</li>
+<!---->          <li class="toc-item toc-group" aria-expanded="false">
+            <div id="ember23398" class="cp-Panel cp-is-closed ember-view">
+              <a id="ember23399" class="ember-view section-title" data-test-toc-link="Getting Started" href="/v4.10.0/getting-started">
+                <span class="link-text">
+                  Getting Started
+                </span>
+              </a>
+              <div id="ember23400" class="cp-Panel-body ember-view">
+<!---->
+</div>
+            
+</div>
+          </li>
+          <li class="toc-item toc-group" aria-expanded="false">
+            <div id="ember23401" class="cp-Panel cp-is-closed ember-view">
+              <a id="ember23402" class="ember-view section-title" data-test-toc-link="Tutorial" href="/v4.10.0/tutorial">
+                <span class="link-text">
+                  Tutorial
+                </span>
+              </a>
+              <div id="ember23403" class="cp-Panel-body ember-view">
+<!---->
+</div>
+            
+</div>
+          </li>
+        <li class="toc-heading">Core Concepts</li>
+          <li class="toc-item toc-group" aria-expanded="true">
+            <div id="ember23404" class="cp-Panel cp-is-open ember-view">
+              <a id="ember23405" class="ember-view section-title" data-test-toc-link="Components" href="/v4.10.0/components">
+                <span class="link-text">
+                  Components
+                </span>
+              </a>
+              <div id="ember23406" class="cp-Panel-body cp-is-open ember-view">
+    <div class="cp-Panel-body-inner">
+      
+                <ul class="table-of-contents sub-table-of-contents">
+        <li class="toc-item toc-link ">
+          <a id="ember23407" class="ember-view" data-test-toc-link="Templates are HTML" href="/v4.10.0/components/index">
+            <span class="link-text">
+              Templates are HTML
+            </span>
+          </a>
+        </li>
+              <li class="toc-item toc-link ">
+          <a id="ember23408" class="ember-view" data-test-toc-link="Introducing Components" href="/v4.10.0/components/introducing-components">
+            <span class="link-text">
+              Introducing Components
+            </span>
+          </a>
+        </li>
+              <li class="toc-item toc-link ">
+          <a id="ember23409" class="ember-view" data-test-toc-link="Component Arguments and HTML Attributes" href="/v4.10.0/components/component-arguments-and-html-attributes">
+            <span class="link-text">
+              Component Arguments and HTML Attributes
+            </span>
+          </a>
+        </li>
+              <li class="toc-item toc-link ">
+          <a id="ember23410" class="ember-view" data-test-toc-link="Conditional Content" href="/v4.10.0/components/conditional-content">
+            <span class="link-text">
+              Conditional Content
+            </span>
+          </a>
+        </li>
+              <li class="toc-item toc-link ">
+          <a id="ember23411" class="ember-view" data-test-toc-link="Block Content" href="/v4.10.0/components/block-content">
+            <span class="link-text">
+              Block Content
+            </span>
+          </a>
+        </li>
+              <li class="toc-item toc-link selected">
+          <a id="ember23412" class="ember-view active" data-test-toc-link="Helper Functions" href="/v4.10.0/components/helper-functions">
+            <span class="link-text">
+              Helper Functions
+            </span>
+          </a>
+        </li>
+              <li class="toc-item toc-link ">
+          <a id="ember23413" class="ember-view" data-test-toc-link="Component State and Actions" href="/v4.10.0/components/component-state-and-actions">
+            <span class="link-text">
+              Component State and Actions
+            </span>
+          </a>
+        </li>
+              <li class="toc-item toc-link ">
+          <a id="ember23414" class="ember-view" data-test-toc-link="Looping Through Lists" href="/v4.10.0/components/looping-through-lists">
+            <span class="link-text">
+              Looping Through Lists
+            </span>
+          </a>
+        </li>
+              <li class="toc-item toc-link ">
+          <a id="ember23415" class="ember-view" data-test-toc-link="Template Lifecycle, DOM, and Modifiers" href="/v4.10.0/components/template-lifecycle-dom-and-modifiers">
+            <span class="link-text">
+              Template Lifecycle, DOM, and Modifiers
+            </span>
+          </a>
+        </li>
+              <li class="toc-item toc-link ">
+          <a id="ember23416" class="ember-view" data-test-toc-link="Built-in Components" href="/v4.10.0/components/built-in-components">
+            <span class="link-text">
+              Built-in Components
+            </span>
+          </a>
+        </li>
+      </ul>
+              
+    </div>
+
+</div>
+            
+</div>
+          </li>
+          <li class="toc-item toc-group" aria-expanded="false">
+            <div id="ember23417" class="cp-Panel cp-is-closed ember-view">
+              <a id="ember23418" class="ember-view section-title" data-test-toc-link="Routing" href="/v4.10.0/routing">
+                <span class="link-text">
+                  Routing
+                </span>
+              </a>
+              <div id="ember23419" class="cp-Panel-body ember-view">
+<!---->
+</div>
+            
+</div>
+          </li>
+          <li class="toc-item toc-group" aria-expanded="false">
+            <div id="ember23420" class="cp-Panel cp-is-closed ember-view">
+              <a id="ember23421" class="ember-view section-title" data-test-toc-link="Services" href="/v4.10.0/services">
+                <span class="link-text">
+                  Services
+                </span>
+              </a>
+              <div id="ember23422" class="cp-Panel-body ember-view">
+<!---->
+</div>
+            
+</div>
+          </li>
+          <li class="toc-item toc-group" aria-expanded="false">
+            <div id="ember23423" class="cp-Panel cp-is-closed ember-view">
+              <a id="ember23424" class="ember-view section-title" data-test-toc-link="EmberData" href="/v4.10.0/models">
+                <span class="link-text">
+                  EmberData
+                </span>
+              </a>
+              <div id="ember23425" class="cp-Panel-body ember-view">
+<!---->
+</div>
+            
+</div>
+          </li>
+          <li class="toc-item toc-group" aria-expanded="false">
+            <div id="ember23426" class="cp-Panel cp-is-closed ember-view">
+              <a id="ember23427" class="ember-view section-title" data-test-toc-link="In-Depth Topics" href="/v4.10.0/in-depth-topics">
+                <span class="link-text">
+                  In-Depth Topics
+                </span>
+              </a>
+              <div id="ember23428" class="cp-Panel-body ember-view">
+<!---->
+</div>
+            
+</div>
+          </li>
+        <li class="toc-heading">Application Development</li>
+          <li class="toc-item toc-group" aria-expanded="false">
+            <div id="ember23429" class="cp-Panel cp-is-closed ember-view">
+              <a id="ember23430" class="ember-view section-title" data-test-toc-link="Application Concerns" href="/v4.10.0/applications">
+                <span class="link-text">
+                  Application Concerns
+                </span>
+              </a>
+              <div id="ember23431" class="cp-Panel-body ember-view">
+<!---->
+</div>
+            
+</div>
+          </li>
+          <li class="toc-item toc-group" aria-expanded="false">
+            <div id="ember23432" class="cp-Panel cp-is-closed ember-view">
+              <a id="ember23433" class="ember-view section-title" data-test-toc-link="Accessibility" href="/v4.10.0/accessibility">
+                <span class="link-text">
+                  Accessibility
+                </span>
+              </a>
+              <div id="ember23434" class="cp-Panel-body ember-view">
+<!---->
+</div>
+            
+</div>
+          </li>
+          <li class="toc-item toc-group" aria-expanded="false">
+            <div id="ember23435" class="cp-Panel cp-is-closed ember-view">
+              <a id="ember23436" class="ember-view section-title" data-test-toc-link="Configuration" href="/v4.10.0/configuring-ember">
+                <span class="link-text">
+                  Configuration
+                </span>
+              </a>
+              <div id="ember23437" class="cp-Panel-body ember-view">
+<!---->
+</div>
+            
+</div>
+          </li>
+          <li class="toc-item toc-group" aria-expanded="false">
+            <div id="ember23438" class="cp-Panel cp-is-closed ember-view">
+              <a id="ember23439" class="ember-view section-title" data-test-toc-link="Testing" href="/v4.10.0/testing">
+                <span class="link-text">
+                  Testing
+                </span>
+              </a>
+              <div id="ember23440" class="cp-Panel-body ember-view">
+<!---->
+</div>
+            
+</div>
+          </li>
+          <li class="toc-item toc-group" aria-expanded="false">
+            <div id="ember23441" class="cp-Panel cp-is-closed ember-view">
+              <a id="ember23442" class="ember-view section-title" data-test-toc-link="Addons and Dependencies" href="/v4.10.0/addons-and-dependencies">
+                <span class="link-text">
+                  Addons and Dependencies
+                </span>
+              </a>
+              <div id="ember23443" class="cp-Panel-body ember-view">
+<!---->
+</div>
+            
+</div>
+          </li>
+        <li class="toc-heading">Developer Tools</li>
+          <li class="toc-item toc-group" aria-expanded="false">
+            <div id="ember23444" class="cp-Panel cp-is-closed ember-view">
+              <a id="ember23445" class="ember-view section-title" data-test-toc-link="Ember Inspector" href="/v4.10.0/ember-inspector">
+                <span class="link-text">
+                  Ember Inspector
+                </span>
+              </a>
+              <div id="ember23446" class="cp-Panel-body ember-view">
+<!---->
+</div>
+            
+</div>
+          </li>
+          <li class="toc-item toc-group" aria-expanded="false">
+            <div id="ember23447" class="cp-Panel cp-is-closed ember-view">
+              <a id="ember23448" class="ember-view section-title" data-test-toc-link="Code Editors" href="/v4.10.0/code-editors">
+                <span class="link-text">
+                  Code Editors
+                </span>
+              </a>
+              <div id="ember23449" class="cp-Panel-body ember-view">
+<!---->
+</div>
+            
+</div>
+          </li>
+        <li class="toc-heading">Additional Resources</li>
+          <li class="toc-item toc-group" aria-expanded="false">
+            <div id="ember23450" class="cp-Panel cp-is-closed ember-view">
+              <a id="ember23451" class="ember-view section-title" data-test-toc-link="Upgrading" href="/v4.10.0/upgrading">
+                <span class="link-text">
+                  Upgrading
+                </span>
+              </a>
+              <div id="ember23452" class="cp-Panel-body ember-view">
+<!---->
+</div>
+            
+</div>
+          </li>
+          <li class="toc-item toc-group" aria-expanded="false">
+            <div id="ember23453" class="cp-Panel cp-is-closed ember-view">
+              <a id="ember23454" class="ember-view section-title" data-test-toc-link="Contributing to Ember.js" href="/v4.10.0/contributing">
+                <span class="link-text">
+                  Contributing to Ember.js
+                </span>
+              </a>
+              <div id="ember23455" class="cp-Panel-body ember-view">
+<!---->
+</div>
+            
+</div>
+          </li>
+          <li class="toc-item toc-group" aria-expanded="false">
+            <div id="ember23456" class="cp-Panel cp-is-closed ember-view">
+              <a id="ember23457" class="ember-view section-title" data-test-toc-link="Glossary" href="/v4.10.0/glossary">
+                <span class="link-text">
+                  Glossary
+                </span>
+              </a>
+              <div id="ember23458" class="cp-Panel-body ember-view">
+<!---->
+</div>
+            
+</div>
+          </li>
+</ul>
+    </nav>
+  
+  </div>
+</nav>
+
+<button class="es-button es-sidebar-toggle" aria-label="Toggle Sidebar" type="button">
+    
+  <svg aria-hidden="true" width="36" height="36" viewbox="0 0 36 36" xmlns="http://www.w3.org/2000/svg"><g fill="#FFF" fill-rule="evenodd"><path d="M28 24.5a1 1 0 010 2H13a1 1 0 010-2h15zm0-7a1 1 0 010 2H13a1 1 0 010-2h15zm0-7a1 1 0 010 2H13a1 1 0 010-2h15zM9 24a1.5 1.5 0 110 3 1.5 1.5 0 010-3zm0-7a1.5 1.5 0 110 3 1.5 1.5 0 010-3zm0-7a1.5 1.5 0 110 3 1.5 1.5 0 010-3z"></path></g></svg>
+
+</button>
+  
+  <article class="chapter">
+  <div class="guides-article-wrapper">
+    <div class="guides-article-content">
+        <div class="old-version-warning">
+          <div class="old-version-warning-text">
+            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="exclamation-circle" class="warning-icon" role="img" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 512">
+              <path d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"></path>
+            </svg>
+            <div>
+              <strong>Old Guides - </strong>You are viewing the guides for Ember
+              v4.10.0.
+            </div>
+          </div>
+
+          <a id="ember23459" class="ember-view es-button-secondary old-version-button" href="/release/components/helper-functions">
+            Go to v6.7.0
+          </a>
+        </div>
+
+      <div class="article-title">
+        <h1>
+          Helper Functions
+        </h1>
+
+          <a href="https://github.com/ember-learn/guides-source/edit/master/guides/v4.10.0/components/helper-functions.md" target="_blank" class="edit-page" rel="noopener noreferrer">
+            <svg class="edit-icon" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 512">
+              <path d="M362.7 19.3L314.3 67.7 444.3 197.7l48.4-48.4c25-25 25-65.5 0-90.5L453.3 19.3c-25-25-65.5-25-90.5 0zm-71 71L58.6 323.5c-10.4 10.4-18 23.3-22.2 37.4L1 481.2C-1.5 489.7 .8 498.8 7 505s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L421.7 220.3 291.7 90.3z"></path>
+            </svg>
+          </a>
+      </div>
+      <hr>
+
+      <div><p>Helper functions are JavaScript functions that you can call from your template.</p>
+<p>Ember's template syntax limits what you can express to keep the structure of your application clear at a glance. When you need to compute something using JavaScript, you can use helper functions. It's possible to create your own helpers, locally or just <a href="./#toc_built-in-helpers">use the built-in ones</a>.</p>
+<p>Let's take a look at a generic message component from a messaging app.</p>
+<div><div class="filename handlebars">app/components/message.hbs</div><pre class="shiki github-dark" style="background-color:#1c1e24;color:#e1e4e8" tabindex="0"><code class="language-handlebars line-numbers"><span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">Message::Avatar</span></span>
+<span class="line"><span style="color:#E1E4E8">  @</span><span style="color:#B392F0">title=</span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">@avatarTitle</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#E1E4E8">  @</span><span style="color:#B392F0">initial=</span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">@avatarInitial</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#E1E4E8">  @</span><span style="color:#B392F0">isActive=</span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">@userIsActive</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#B392F0">  class=</span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">if</span><span style="color:#E1E4E8"> @</span><span style="color:#FFAB70">isCurrentUser</span><span style="color:#9ECBFF"> "current-user"</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#E1E4E8">/></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">section</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">  &#x3C;</span><span style="color:#85E89D">Message::Username</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#B392F0">name=</span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">@username</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#B392F0">localTime=</span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">@userLocalTime</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#E1E4E8">  /></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">  {{</span><span style="color:#FFAB70">yield</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#85E89D">section</span><span style="color:#E1E4E8">></span></span></code></pre>
+</div>
+<pre class="shiki github-dark" style="background-color:#1c1e24;color:#e1e4e8" tabindex="0"><code class="language-handlebars line-numbers"><span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">Message</span></span>
+<span class="line"><span style="color:#E1E4E8">  @</span><span style="color:#B392F0">username=</span><span style="color:#9ECBFF">"Tomster"</span></span>
+<span class="line"><span style="color:#E1E4E8">  @</span><span style="color:#B392F0">userIsActive=</span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">true</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#E1E4E8">  @</span><span style="color:#B392F0">userLocalTime=</span><span style="color:#9ECBFF">"4:56pm"</span></span>
+<span class="line"><span style="color:#E1E4E8">  @</span><span style="color:#B392F0">avatarTitle=</span><span style="color:#9ECBFF">"Tomster's avatar"</span></span>
+<span class="line"><span style="color:#E1E4E8">  @</span><span style="color:#B392F0">avatarInitial=</span><span style="color:#9ECBFF">"T"</span></span>
+<span class="line"><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">  &#x3C;</span><span style="color:#85E89D">p</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    Hey Zoey, have you had a chance to look at the EmberConf</span></span>
+<span class="line"><span style="color:#E1E4E8">    brainstorming doc I sent you?</span></span>
+<span class="line"><span style="color:#E1E4E8">  &#x3C;/</span><span style="color:#85E89D">p</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#85E89D">Message</span><span style="color:#E1E4E8">></span></span></code></pre>
+<p>By looking at how we use the <code>&lt;Message&gt;</code> component, we can see that some of the arguments are fairly repetitive. Both <code>@avatarTitle</code> and <code>@avatarInitial</code> are based on the user's <code>@username</code>, but the title has more text, and the initial is only the first letter of the name. We'd rather just pass a username to the <code>&lt;Message&gt;</code> component and <em>compute</em> the value of the title and initial.</p>
+<p>Let's update the component to do that. It'll take a <code>@username</code> argument and calculate the title and initial.</p>
+<p>Since the title is just the <code>@username</code> plus some extra stuff, we can replace <code>@avatarTitle</code> by <em>interpolating</em> the <code>@username</code> argument in a string literal passed to <code>&lt;Message::Avatar&gt;</code>.</p>
+<div><div class="filename handlebars">app/components/message.hbs</div><pre class="shiki github-dark has-diff" style="background-color:#1c1e24;color:#e1e4e8" tabindex="0"><code class="language-handlebars line-numbers"><span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">Message::Avatar</span></span>
+<span class="line diff remove"><span style="color:#E1E4E8">  @</span><span style="color:#B392F0">title=</span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">@avatarTitle</span><span style="color:#79B8FF">}}</span></span>
+<span class="line diff add"><span style="color:#E1E4E8">  @</span><span style="color:#B392F0">title=</span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF">{{@username}}</span><span style="color:#9ECBFF">'s avatar"</span></span>
+<span class="line"><span style="color:#E1E4E8">  @</span><span style="color:#B392F0">initial=</span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">@avatarInitial</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#E1E4E8">  @</span><span style="color:#B392F0">isActive=</span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">@userIsActive</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#B392F0">  class=</span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">if</span><span style="color:#E1E4E8"> @</span><span style="color:#FFAB70">isCurrentUser</span><span style="color:#9ECBFF"> "current-user"</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#E1E4E8">/></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">section</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">  &#x3C;</span><span style="color:#85E89D">Message::Username</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#B392F0">name=</span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">@username</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#B392F0">localTime=</span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">@userLocalTime</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#E1E4E8">  /></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">  {{</span><span style="color:#FFAB70">yield</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#85E89D">section</span><span style="color:#E1E4E8">></span></span></code></pre>
+</div>
+<p>However, to get the first initial of the string, we'll need to use JavaScript. To do that, we'll write a helper function.</p>
+<p>In this case we want a helper function that takes three arguments: a string, a starting position, and a length. The function will return a substring of the original string.</p>
+<h2 id="toc_local-helper-functions">Local Helper Functions <a href="#toc_local-helper-functions"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <path d="M326.61 185.4c59.75 59.8 58.93 155.69.36 214.58-.1.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.7 59.26-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.1-37.1c9.85-9.85 26.8-3.3 27.3 10.6a184.27 184.27 0 0 0 9.7 52.72 16.1 16.1 0 0 1-3.8 16.61l-13.08 13.1c-28.02 28.02-28.9 73.65-1.15 101.95 28.02 28.58 74.08 28.75 102.32.51l67.2-67.19a71.98 71.98 0 0 0-10.34-110.4 16.04 16.04 0 0 1-6.95-12.6 39.83 39.83 0 0 1 11.7-29.81l21.06-21.06a16.06 16.06 0 0 1 20.58-1.73 152.48 152.48 0 0 1 20.52 17.2zM467.55 44.44c-59.26-59.26-155.7-59.27-214.96 0l-67.2 67.2-.36.37c-58.57 58.9-59.39 154.78.36 214.59a152.45 152.45 0 0 0 20.52 17.2 16.07 16.07 0 0 0 20.58-1.74l21.06-21.05a39.83 39.83 0 0 0 11.7-29.8 16.04 16.04 0 0 0-6.95-12.61 71.98 71.98 0 0 1-10.34-110.4l67.2-67.2c28.23-28.23 74.3-28.06 102.32.52 27.75 28.3 26.87 73.93-1.15 101.96l-13.1 13.09a16.1 16.1 0 0 0-3.77 16.6c5.86 17.2 9.04 35 9.69 52.73.5 13.9 17.45 20.44 27.29 10.6l37.1-37.1c59.28-59.26 59.28-155.7 0-214.96z"/>
+      </svg></a> </h2>
+<section aria-labelledby="toc_local-helper-functions">
+<p>It's possible to use plain functions for helpers and modifiers. A plain helper function can be "local" to or defined on components and controllers.</p>
+<div><div class="filename js">app/components/message.js</div><pre class="shiki github-dark" style="background-color:#1c1e24;color:#e1e4e8" tabindex="0"><code class="language-js line-numbers"><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> Component </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> '@glimmer/component'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> { setComponentTemplate } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> '@ember/component'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> { hbs } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> 'ember-cli-htmlbars'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> default</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> Message</span><span style="color:#F97583"> extends</span><span style="color:#B392F0"> Component</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">  substring</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">string</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">start</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">end</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> string.</span><span style="color:#B392F0">substring</span><span style="color:#E1E4E8">(start, end);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+</div>
+<p>We can then use this helper in the component's template to get the first letter of the username.</p>
+<div><div class="filename handlebars">app/components/message.hbs</div><pre class="shiki github-dark has-diff" style="background-color:#1c1e24;color:#e1e4e8" tabindex="0"><code class="language-handlebars line-numbers"><span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">Message::Avatar</span></span>
+<span class="line"><span style="color:#E1E4E8">  @</span><span style="color:#B392F0">title=</span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF">{{@username}}</span><span style="color:#9ECBFF">'s avatar"</span></span>
+<span class="line diff remove"><span style="color:#E1E4E8">  @</span><span style="color:#B392F0">initial=</span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">@avatarTitle</span><span style="color:#79B8FF">}}</span></span>
+<span class="line diff add"><span style="color:#E1E4E8">  @</span><span style="color:#B392F0">initial=</span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">this.substring</span><span style="color:#E1E4E8"> @</span><span style="color:#FFAB70">username</span><span style="color:#FFAB70"> 0</span><span style="color:#FFAB70"> 1</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#E1E4E8">  @</span><span style="color:#B392F0">isActive=</span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">@userIsActive</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#B392F0">  class=</span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">if</span><span style="color:#E1E4E8"> @</span><span style="color:#FFAB70">isCurrentUser</span><span style="color:#9ECBFF"> "current-user"</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#E1E4E8">/></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">section</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">  &#x3C;</span><span style="color:#85E89D">Message::Username</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#B392F0">name=</span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">@username</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#B392F0">localTime=</span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">@userLocalTime</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#E1E4E8">  /></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">  {{</span><span style="color:#FFAB70">yield</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#85E89D">section</span><span style="color:#E1E4E8">></span></span></code></pre>
+</div>
+</section>
+<h3 id="toc_named-arguments">Named Arguments <a href="#toc_named-arguments"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <path d="M326.61 185.4c59.75 59.8 58.93 155.69.36 214.58-.1.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.7 59.26-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.1-37.1c9.85-9.85 26.8-3.3 27.3 10.6a184.27 184.27 0 0 0 9.7 52.72 16.1 16.1 0 0 1-3.8 16.61l-13.08 13.1c-28.02 28.02-28.9 73.65-1.15 101.95 28.02 28.58 74.08 28.75 102.32.51l67.2-67.19a71.98 71.98 0 0 0-10.34-110.4 16.04 16.04 0 0 1-6.95-12.6 39.83 39.83 0 0 1 11.7-29.81l21.06-21.06a16.06 16.06 0 0 1 20.58-1.73 152.48 152.48 0 0 1 20.52 17.2zM467.55 44.44c-59.26-59.26-155.7-59.27-214.96 0l-67.2 67.2-.36.37c-58.57 58.9-59.39 154.78.36 214.59a152.45 152.45 0 0 0 20.52 17.2 16.07 16.07 0 0 0 20.58-1.74l21.06-21.05a39.83 39.83 0 0 0 11.7-29.8 16.04 16.04 0 0 0-6.95-12.61 71.98 71.98 0 0 1-10.34-110.4l67.2-67.2c28.23-28.23 74.3-28.06 102.32.52 27.75 28.3 26.87 73.93-1.15 101.96l-13.1 13.09a16.1 16.1 0 0 0-3.77 16.6c5.86 17.2 9.04 35 9.69 52.73.5 13.9 17.45 20.44 27.29 10.6l37.1-37.1c59.28-59.26 59.28-155.7 0-214.96z"/>
+      </svg></a> </h3>
+<section aria-labelledby="toc_named-arguments">
+<p>Helpers default to using positional arguments, but sometimes it can make the corresponding syntax <code>{{substring @username 0 1}}</code> a little hard to read. We see some numbers at the end but can't tell what exactly they mean. We can use <em>named arguments</em> to make the <code>substring</code> helper easier to read.</p>
+<p>Using named arguments, we could make our template a lot clearer.</p>
+<div><div class="filename handlebars">app/components/message.hbs</div><pre class="shiki github-dark has-diff" style="background-color:#1c1e24;color:#e1e4e8" tabindex="0"><code class="language-handlebars line-numbers"><span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">Message::Avatar</span></span>
+<span class="line"><span style="color:#E1E4E8">  @</span><span style="color:#B392F0">title=</span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF">{{@username}}</span><span style="color:#9ECBFF">'s avatar"</span></span>
+<span class="line diff remove"><span style="color:#E1E4E8">  @</span><span style="color:#B392F0">initial=</span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">substring</span><span style="color:#E1E4E8"> @</span><span style="color:#FFAB70">username</span><span style="color:#FFAB70"> 0</span><span style="color:#FFAB70"> 1</span><span style="color:#79B8FF">}}</span></span>
+<span class="line diff add"><span style="color:#7e8791">  {{! This won't work yet! We need to update the substring helper }}</span></span>
+<span class="line diff add"><span style="color:#E1E4E8">  @</span><span style="color:#B392F0">initial=</span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">substring</span><span style="color:#E1E4E8"> @</span><span style="color:#FFAB70">username</span><span style="color:#FFAB70"> start</span><span style="color:#B392F0">=</span><span style="color:#FFAB70">0</span><span style="color:#FFAB70"> end</span><span style="color:#B392F0">=</span><span style="color:#FFAB70">1</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#E1E4E8">  @</span><span style="color:#B392F0">isActive=</span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">@userIsActive</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#B392F0">  class=</span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">if</span><span style="color:#E1E4E8"> @</span><span style="color:#FFAB70">isCurrentUser</span><span style="color:#9ECBFF"> "current-user"</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#E1E4E8">/></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">section</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">  &#x3C;</span><span style="color:#85E89D">Message::Username</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#B392F0">name=</span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">@username</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#B392F0">localTime=</span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">@userLocalTime</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#E1E4E8">  /></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">  {{</span><span style="color:#FFAB70">yield</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#85E89D">section</span><span style="color:#E1E4E8">></span></span></code></pre>
+</div>
+<p>Helpers take <em>named arguments</em> as a JavaScript object. All named arguments are grouped into an "options object" as the last parameter.</p>
+<div><div class="filename js">app/components/message.js</div><pre class="shiki github-dark has-diff" style="background-color:#1c1e24;color:#e1e4e8" tabindex="0"><code class="language-js line-numbers"><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> Component </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> '@glimmer/component'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> { setComponentTemplate } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> '@ember/component'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> { hbs } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> 'ember-cli-htmlbars'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> default</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> Message</span><span style="color:#F97583"> extends</span><span style="color:#B392F0"> Component</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line diff remove"><span style="color:#B392F0">  substring</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">string</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">start</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">end</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> string.</span><span style="color:#B392F0">substring</span><span style="color:#E1E4E8">(start, end);</span></span>
+<span class="line diff add"><span style="color:#B392F0">  substring</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">string</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">options</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> string.</span><span style="color:#B392F0">substring</span><span style="color:#E1E4E8">(options.start, options.end);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+</div>
+<p>You can mix positional and named arguments to make your templates easy to read:</p>
+<div><div class="filename handlebars">app/components/calculator.hbs</div><pre class="shiki github-dark" style="background-color:#1c1e24;color:#e1e4e8" tabindex="0"><code class="language-handlebars line-numbers"><span class="line"><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">this.calculate</span><span style="color:#FFAB70"> 1</span><span style="color:#FFAB70"> 2</span><span style="color:#FFAB70"> op</span><span style="color:#B392F0">=</span><span style="color:#9ECBFF">"add"</span><span style="color:#79B8FF">}}</span></span></code></pre>
+</div>
+<div><div class="filename js">app/components/calculator.js</div><pre class="shiki github-dark" style="background-color:#1c1e24;color:#e1e4e8" tabindex="0"><code class="language-js line-numbers"><span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> default</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> Calculator</span><span style="color:#F97583"> extends</span><span style="color:#B392F0"> Component</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">  calculate</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">first</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">second</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">options</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#7e8791">    // ...</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+</div>
+</section>
+<h3 id="toc_nested-helpers">Nested Helpers <a href="#toc_nested-helpers"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <path d="M326.61 185.4c59.75 59.8 58.93 155.69.36 214.58-.1.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.7 59.26-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.1-37.1c9.85-9.85 26.8-3.3 27.3 10.6a184.27 184.27 0 0 0 9.7 52.72 16.1 16.1 0 0 1-3.8 16.61l-13.08 13.1c-28.02 28.02-28.9 73.65-1.15 101.95 28.02 28.58 74.08 28.75 102.32.51l67.2-67.19a71.98 71.98 0 0 0-10.34-110.4 16.04 16.04 0 0 1-6.95-12.6 39.83 39.83 0 0 1 11.7-29.81l21.06-21.06a16.06 16.06 0 0 1 20.58-1.73 152.48 152.48 0 0 1 20.52 17.2zM467.55 44.44c-59.26-59.26-155.7-59.27-214.96 0l-67.2 67.2-.36.37c-58.57 58.9-59.39 154.78.36 214.59a152.45 152.45 0 0 0 20.52 17.2 16.07 16.07 0 0 0 20.58-1.74l21.06-21.05a39.83 39.83 0 0 0 11.7-29.8 16.04 16.04 0 0 0-6.95-12.61 71.98 71.98 0 0 1-10.34-110.4l67.2-67.2c28.23-28.23 74.3-28.06 102.32.52 27.75 28.3 26.87 73.93-1.15 101.96l-13.1 13.09a16.1 16.1 0 0 0-3.77 16.6c5.86 17.2 9.04 35 9.69 52.73.5 13.9 17.45 20.44 27.29 10.6l37.1-37.1c59.28-59.26 59.28-155.7 0-214.96z"/>
+      </svg></a> </h3>
+<section aria-labelledby="toc_nested-helpers">
+<p>Sometimes, you might see helpers invoked by placing them inside parentheses,
+<code>()</code>. This means that a Helper is being used inside of another Helper or
+Component. This is referred to as a "nested" Helper Invocation. Parentheses must be used because curly braces <code>{{}}</code> cannot be nested.</p>
+<div><div class="filename handlebars">app/templates/application.hbs</div><pre class="shiki github-dark" style="background-color:#1c1e24;color:#e1e4e8" tabindex="0"><code class="language-handlebars line-numbers"><span class="line"><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">this.sum</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">this.multiply</span><span style="color:#FFAB70"> 2</span><span style="color:#FFAB70"> 4</span><span style="color:#E1E4E8">) </span><span style="color:#FFAB70">2</span><span style="color:#79B8FF">}}</span></span></code></pre>
+</div>
+<p>In this example, we are using a helper to multiply <code>2</code> and <code>4</code> <em>before</em> passing the value into <code>{{sum}}</code>.</p>
+<p>Thus, the output of these combined helpers is <code>10</code>.</p>
+<p>As you move forward with these template guides, keep in mind that a helper can be used anywhere a normal value can be used.</p>
+<p>Many of Ember's built-in helpers (as well as your custom helpers) can be used in nested form.</p>
+</section>
+<h2 id="toc_global-helper-functions">Global Helper Functions <a href="#toc_global-helper-functions"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <path d="M326.61 185.4c59.75 59.8 58.93 155.69.36 214.58-.1.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.7 59.26-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.1-37.1c9.85-9.85 26.8-3.3 27.3 10.6a184.27 184.27 0 0 0 9.7 52.72 16.1 16.1 0 0 1-3.8 16.61l-13.08 13.1c-28.02 28.02-28.9 73.65-1.15 101.95 28.02 28.58 74.08 28.75 102.32.51l67.2-67.19a71.98 71.98 0 0 0-10.34-110.4 16.04 16.04 0 0 1-6.95-12.6 39.83 39.83 0 0 1 11.7-29.81l21.06-21.06a16.06 16.06 0 0 1 20.58-1.73 152.48 152.48 0 0 1 20.52 17.2zM467.55 44.44c-59.26-59.26-155.7-59.27-214.96 0l-67.2 67.2-.36.37c-58.57 58.9-59.39 154.78.36 214.59a152.45 152.45 0 0 0 20.52 17.2 16.07 16.07 0 0 0 20.58-1.74l21.06-21.05a39.83 39.83 0 0 0 11.7-29.8 16.04 16.04 0 0 0-6.95-12.61 71.98 71.98 0 0 1-10.34-110.4l67.2-67.2c28.23-28.23 74.3-28.06 102.32.52 27.75 28.3 26.87 73.93-1.15 101.96l-13.1 13.09a16.1 16.1 0 0 0-3.77 16.6c5.86 17.2 9.04 35 9.69 52.73.5 13.9 17.45 20.44 27.29 10.6l37.1-37.1c59.28-59.26 59.28-155.7 0-214.96z"/>
+      </svg></a> </h2>
+<section aria-labelledby="toc_global-helper-functions">
+<p>Next to local helpers, ember provides a way to use global helpers. We define global helper functions in the <code>app/helpers</code> folder. Once defined, they will be available to use directly inside all templates in your app.</p>
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+        Before Ember 4.5, using global helpers was the only way to define helpers.
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
+  </div>
+</div>
+<p>To implement the helper, we write a JavaScript function that takes its arguments as an <em>array</em>. This is because helpers can also receive <em>named</em>
+arguments, which we'll discuss next.</p>
+<div><div class="filename js">app/helpers/substring.js</div><pre class="shiki github-dark" style="background-color:#1c1e24;color:#e1e4e8" tabindex="0"><code class="language-js line-numbers"><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> { helper } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> '@ember/component/helper'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">function</span><span style="color:#B392F0"> substring</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">args</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">  let</span><span style="color:#E1E4E8"> [string, start, end] </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> args;</span></span>
+<span class="line"><span style="color:#F97583">  return</span><span style="color:#E1E4E8"> string.</span><span style="color:#B392F0">substring</span><span style="color:#E1E4E8">(start, end);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> default</span><span style="color:#B392F0"> helper</span><span style="color:#E1E4E8">(substring);</span></span></code></pre>
+</div>
+<p>We can tighten up the implementation by moving the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment">destructuring</a> into the function's signature.</p>
+<div><div class="filename js">app/helpers/substring.js</div><pre class="shiki github-dark has-diff" style="background-color:#1c1e24;color:#e1e4e8" tabindex="0"><code class="language-js line-numbers"><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> { helper } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> '@ember/component/helper'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line diff add"><span style="color:#F97583">function</span><span style="color:#B392F0"> substring</span><span style="color:#E1E4E8">([</span><span style="color:#FFAB70">string</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">start</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">end</span><span style="color:#E1E4E8">]) {</span></span>
+<span class="line diff remove"><span style="color:#F97583">function</span><span style="color:#B392F0"> substring</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">args</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line diff remove"><span style="color:#F97583">  let</span><span style="color:#E1E4E8"> [string, start, end] </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> args;</span></span>
+<span class="line"><span style="color:#F97583">  return</span><span style="color:#E1E4E8"> string.</span><span style="color:#B392F0">substring</span><span style="color:#E1E4E8">(start, end);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> default</span><span style="color:#B392F0"> helper</span><span style="color:#E1E4E8">(substring);</span></span></code></pre>
+</div>
+<p>We can then use this helper in the component's template to get the first letter of the username.</p>
+<div><div class="filename handlebars">app/components/message.hbs</div><pre class="shiki github-dark has-diff" style="background-color:#1c1e24;color:#e1e4e8" tabindex="0"><code class="language-handlebars line-numbers"><span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">Message::Avatar</span></span>
+<span class="line"><span style="color:#E1E4E8">  @</span><span style="color:#B392F0">title=</span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF">{{@username}}</span><span style="color:#9ECBFF">'s avatar"</span></span>
+<span class="line diff remove"><span style="color:#E1E4E8">  @</span><span style="color:#B392F0">initial=</span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">@avatarTitle</span><span style="color:#79B8FF">}}</span></span>
+<span class="line diff add"><span style="color:#E1E4E8">  @</span><span style="color:#B392F0">initial=</span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">substring</span><span style="color:#E1E4E8"> @</span><span style="color:#FFAB70">username</span><span style="color:#FFAB70"> 0</span><span style="color:#FFAB70"> 1</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#E1E4E8">  @</span><span style="color:#B392F0">isActive=</span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">@userIsActive</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#B392F0">  class=</span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">if</span><span style="color:#E1E4E8"> @</span><span style="color:#FFAB70">isCurrentUser</span><span style="color:#9ECBFF"> "current-user"</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#E1E4E8">/></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">section</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">  &#x3C;</span><span style="color:#85E89D">Message::Username</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#B392F0">name=</span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">@username</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#B392F0">localTime=</span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">@userLocalTime</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#E1E4E8">  /></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">  {{</span><span style="color:#FFAB70">yield</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#85E89D">section</span><span style="color:#E1E4E8">></span></span></code></pre>
+</div>
+</section>
+<h3 id="toc_named-arguments-1">Named arguments <a href="#toc_named-arguments-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <path d="M326.61 185.4c59.75 59.8 58.93 155.69.36 214.58-.1.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.7 59.26-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.1-37.1c9.85-9.85 26.8-3.3 27.3 10.6a184.27 184.27 0 0 0 9.7 52.72 16.1 16.1 0 0 1-3.8 16.61l-13.08 13.1c-28.02 28.02-28.9 73.65-1.15 101.95 28.02 28.58 74.08 28.75 102.32.51l67.2-67.19a71.98 71.98 0 0 0-10.34-110.4 16.04 16.04 0 0 1-6.95-12.6 39.83 39.83 0 0 1 11.7-29.81l21.06-21.06a16.06 16.06 0 0 1 20.58-1.73 152.48 152.48 0 0 1 20.52 17.2zM467.55 44.44c-59.26-59.26-155.7-59.27-214.96 0l-67.2 67.2-.36.37c-58.57 58.9-59.39 154.78.36 214.59a152.45 152.45 0 0 0 20.52 17.2 16.07 16.07 0 0 0 20.58-1.74l21.06-21.05a39.83 39.83 0 0 0 11.7-29.8 16.04 16.04 0 0 0-6.95-12.61 71.98 71.98 0 0 1-10.34-110.4l67.2-67.2c28.23-28.23 74.3-28.06 102.32.52 27.75 28.3 26.87 73.93-1.15 101.96l-13.1 13.09a16.1 16.1 0 0 0-3.77 16.6c5.86 17.2 9.04 35 9.69 52.73.5 13.9 17.45 20.44 27.29 10.6l37.1-37.1c59.28-59.26 59.28-155.7 0-214.96z"/>
+      </svg></a> </h3>
+<section aria-labelledby="toc_named-arguments-1">
+<p>Similar to local helpers, global helpers also can mix positional and named arguments.</p>
+<div><div class="filename handlebars">app/components/message.hbs</div><pre class="shiki github-dark has-diff" style="background-color:#1c1e24;color:#e1e4e8" tabindex="0"><code class="language-handlebars line-numbers"><span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">Message::Avatar</span></span>
+<span class="line"><span style="color:#E1E4E8">  @</span><span style="color:#B392F0">title=</span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF">{{@username}}</span><span style="color:#9ECBFF">'s avatar"</span></span>
+<span class="line diff remove"><span style="color:#E1E4E8">  @</span><span style="color:#B392F0">initial=</span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">substring</span><span style="color:#E1E4E8"> @</span><span style="color:#FFAB70">username</span><span style="color:#FFAB70"> 0</span><span style="color:#FFAB70"> 1</span><span style="color:#79B8FF">}}</span></span>
+<span class="line diff add"><span style="color:#7e8791">  {{! This won't work yet! We need to update the substring helper }}</span></span>
+<span class="line diff add"><span style="color:#E1E4E8">  @</span><span style="color:#B392F0">initial=</span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">substring</span><span style="color:#E1E4E8"> @</span><span style="color:#FFAB70">username</span><span style="color:#FFAB70"> start</span><span style="color:#B392F0">=</span><span style="color:#FFAB70">0</span><span style="color:#FFAB70"> end</span><span style="color:#B392F0">=</span><span style="color:#FFAB70">1</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#E1E4E8">  @</span><span style="color:#B392F0">isActive=</span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">@userIsActive</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#B392F0">  class=</span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">if</span><span style="color:#E1E4E8"> @</span><span style="color:#FFAB70">isCurrentUser</span><span style="color:#9ECBFF"> "current-user"</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#E1E4E8">/></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">section</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">  &#x3C;</span><span style="color:#85E89D">Message::Username</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#B392F0">name=</span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">@username</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#B392F0">localTime=</span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">@userLocalTime</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#E1E4E8">  /></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">  {{</span><span style="color:#FFAB70">yield</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#85E89D">section</span><span style="color:#E1E4E8">></span></span></code></pre>
+</div>
+<div><div class="filename js">app/helpers/substring.js</div><pre class="shiki github-dark" style="background-color:#1c1e24;color:#e1e4e8" tabindex="0"><code class="language-js line-numbers"><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> { helper } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> '@ember/component/helper'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">function</span><span style="color:#B392F0"> substring</span><span style="color:#E1E4E8">([</span><span style="color:#FFAB70">string</span><span style="color:#E1E4E8">], { </span><span style="color:#FFAB70">start</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">end</span><span style="color:#E1E4E8"> }) {</span></span>
+<span class="line"><span style="color:#F97583">  return</span><span style="color:#E1E4E8"> string.</span><span style="color:#B392F0">substring</span><span style="color:#E1E4E8">(start </span><span style="color:#F97583">||</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">, end);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> default</span><span style="color:#B392F0"> helper</span><span style="color:#E1E4E8">(substring);</span></span></code></pre>
+</div>
+</section>
+<h3 id="toc_class-helpers">Class Helpers <a href="#toc_class-helpers"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <path d="M326.61 185.4c59.75 59.8 58.93 155.69.36 214.58-.1.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.7 59.26-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.1-37.1c9.85-9.85 26.8-3.3 27.3 10.6a184.27 184.27 0 0 0 9.7 52.72 16.1 16.1 0 0 1-3.8 16.61l-13.08 13.1c-28.02 28.02-28.9 73.65-1.15 101.95 28.02 28.58 74.08 28.75 102.32.51l67.2-67.19a71.98 71.98 0 0 0-10.34-110.4 16.04 16.04 0 0 1-6.95-12.6 39.83 39.83 0 0 1 11.7-29.81l21.06-21.06a16.06 16.06 0 0 1 20.58-1.73 152.48 152.48 0 0 1 20.52 17.2zM467.55 44.44c-59.26-59.26-155.7-59.27-214.96 0l-67.2 67.2-.36.37c-58.57 58.9-59.39 154.78.36 214.59a152.45 152.45 0 0 0 20.52 17.2 16.07 16.07 0 0 0 20.58-1.74l21.06-21.05a39.83 39.83 0 0 0 11.7-29.8 16.04 16.04 0 0 0-6.95-12.61 71.98 71.98 0 0 1-10.34-110.4l67.2-67.2c28.23-28.23 74.3-28.06 102.32.52 27.75 28.3 26.87 73.93-1.15 101.96l-13.1 13.09a16.1 16.1 0 0 0-3.77 16.6c5.86 17.2 9.04 35 9.69 52.73.5 13.9 17.45 20.44 27.29 10.6l37.1-37.1c59.28-59.26 59.28-155.7 0-214.96z"/>
+      </svg></a> </h3>
+<section aria-labelledby="toc_class-helpers">
+<p>Helpers can also be defined using class syntax. For instance, we could define
+the substring helper using classes instead.</p>
+<div><div class="filename js">app/helpers/substring.js</div><pre class="shiki github-dark has-diff" style="background-color:#1c1e24;color:#e1e4e8" tabindex="0"><code class="language-js line-numbers"><span class="line diff remove"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> { helper } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> '@ember/component/helper'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line diff add"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> Helper </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> '@ember/component/helper'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line diff remove"><span style="color:#F97583">function</span><span style="color:#B392F0"> substring</span><span style="color:#E1E4E8">([</span><span style="color:#FFAB70">string</span><span style="color:#E1E4E8">], { </span><span style="color:#FFAB70">start</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">length</span><span style="color:#E1E4E8"> }) {</span></span>
+<span class="line diff add"><span style="color:#F97583">export</span><span style="color:#F97583"> default</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> Substring</span><span style="color:#F97583"> extends</span><span style="color:#B392F0"> Helper</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line diff add"><span style="color:#B392F0">  compute</span><span style="color:#E1E4E8">([</span><span style="color:#FFAB70">string</span><span style="color:#E1E4E8">], { </span><span style="color:#FFAB70">start</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">end</span><span style="color:#E1E4E8"> }) {</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> string.</span><span style="color:#B392F0">substring</span><span style="color:#E1E4E8">(start </span><span style="color:#F97583">||</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">, end);</span></span>
+<span class="line diff add"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+</div>
+<p>Class helpers are useful when the helper logic is fairly complicated, requires
+fine-grained control of the helper lifecycle, or is <em>stateful</em> (we'll be
+discussing state in the next chapter).</p>
+</section>
+<h2 id="toc_built-in-helpers">Built-in Helpers <a href="#toc_built-in-helpers"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <path d="M326.61 185.4c59.75 59.8 58.93 155.69.36 214.58-.1.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.7 59.26-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.1-37.1c9.85-9.85 26.8-3.3 27.3 10.6a184.27 184.27 0 0 0 9.7 52.72 16.1 16.1 0 0 1-3.8 16.61l-13.08 13.1c-28.02 28.02-28.9 73.65-1.15 101.95 28.02 28.58 74.08 28.75 102.32.51l67.2-67.19a71.98 71.98 0 0 0-10.34-110.4 16.04 16.04 0 0 1-6.95-12.6 39.83 39.83 0 0 1 11.7-29.81l21.06-21.06a16.06 16.06 0 0 1 20.58-1.73 152.48 152.48 0 0 1 20.52 17.2zM467.55 44.44c-59.26-59.26-155.7-59.27-214.96 0l-67.2 67.2-.36.37c-58.57 58.9-59.39 154.78.36 214.59a152.45 152.45 0 0 0 20.52 17.2 16.07 16.07 0 0 0 20.58-1.74l21.06-21.05a39.83 39.83 0 0 0 11.7-29.8 16.04 16.04 0 0 0-6.95-12.61 71.98 71.98 0 0 1-10.34-110.4l67.2-67.2c28.23-28.23 74.3-28.06 102.32.52 27.75 28.3 26.87 73.93-1.15 101.96l-13.1 13.09a16.1 16.1 0 0 0-3.77 16.6c5.86 17.2 9.04 35 9.69 52.73.5 13.9 17.45 20.44 27.29 10.6l37.1-37.1c59.28-59.26 59.28-155.7 0-214.96z"/>
+      </svg></a> </h2>
+<section aria-labelledby="toc_built-in-helpers">
+<p>Below you will find some useful template helpers documented.
+For the full list of available helpers, you can check the <a href="https://api.emberjs.com/ember/4.10.0.0/classes/Ember.Templates.helpers/">template helpers API documentation</a>.</p>
+</section>
+<h3 id="toc_the-get-helper">The <code>get</code> helper <a href="#toc_the-get-helper"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <path d="M326.61 185.4c59.75 59.8 58.93 155.69.36 214.58-.1.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.7 59.26-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.1-37.1c9.85-9.85 26.8-3.3 27.3 10.6a184.27 184.27 0 0 0 9.7 52.72 16.1 16.1 0 0 1-3.8 16.61l-13.08 13.1c-28.02 28.02-28.9 73.65-1.15 101.95 28.02 28.58 74.08 28.75 102.32.51l67.2-67.19a71.98 71.98 0 0 0-10.34-110.4 16.04 16.04 0 0 1-6.95-12.6 39.83 39.83 0 0 1 11.7-29.81l21.06-21.06a16.06 16.06 0 0 1 20.58-1.73 152.48 152.48 0 0 1 20.52 17.2zM467.55 44.44c-59.26-59.26-155.7-59.27-214.96 0l-67.2 67.2-.36.37c-58.57 58.9-59.39 154.78.36 214.59a152.45 152.45 0 0 0 20.52 17.2 16.07 16.07 0 0 0 20.58-1.74l21.06-21.05a39.83 39.83 0 0 0 11.7-29.8 16.04 16.04 0 0 0-6.95-12.61 71.98 71.98 0 0 1-10.34-110.4l67.2-67.2c28.23-28.23 74.3-28.06 102.32.52 27.75 28.3 26.87 73.93-1.15 101.96l-13.1 13.09a16.1 16.1 0 0 0-3.77 16.6c5.86 17.2 9.04 35 9.69 52.73.5 13.9 17.45 20.44 27.29 10.6l37.1-37.1c59.28-59.26 59.28-155.7 0-214.96z"/>
+      </svg></a> </h3>
+<section aria-labelledby="toc_the-get-helper">
+<p>The <a href="https://api.emberjs.com/ember/4.10.0.0/classes/Ember.Templates.helpers/methods/get?anchor=get"><code>{{get}}</code></a>
+helper makes it easy to dynamically look up a property on an object or an element in an array. The second argument to <code>{{get}}</code> can be a string or a number, depending on the object being accessed.</p>
+<p>To access a property on an object with a string key:</p>
+<pre class="shiki github-dark" style="background-color:#1c1e24;color:#e1e4e8" tabindex="0"><code class="language-handlebars line-numbers"><span class="line"><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">get</span><span style="color:#FFAB70"> this.someObject</span><span style="color:#9ECBFF"> "object_key"</span><span style="color:#79B8FF">}}</span></span></code></pre>
+<p>To access the first element in an array:</p>
+<pre class="shiki github-dark" style="background-color:#1c1e24;color:#e1e4e8" tabindex="0"><code class="language-handlebars line-numbers"><span class="line"><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">get</span><span style="color:#FFAB70"> this.someArray</span><span style="color:#FFAB70"> 0</span><span style="color:#79B8FF">}}</span></span></code></pre>
+<p>To access a property on an object with a dynamic key:</p>
+<pre class="shiki github-dark" style="background-color:#1c1e24;color:#e1e4e8" tabindex="0"><code class="language-handlebars line-numbers"><span class="line"><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">get</span><span style="color:#FFAB70"> this.address</span><span style="color:#FFAB70"> this.part</span><span style="color:#79B8FF">}}</span></span></code></pre>
+<p>If the <code>part</code> getter returns "zip", this will display the result of <code>this.address.zip</code>.
+If it returns "city", you get <code>this.address.city</code>.</p>
+</section>
+<h3 id="toc_the-concat-helper">The <code>concat</code> helper <a href="#toc_the-concat-helper"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <path d="M326.61 185.4c59.75 59.8 58.93 155.69.36 214.58-.1.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.7 59.26-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.1-37.1c9.85-9.85 26.8-3.3 27.3 10.6a184.27 184.27 0 0 0 9.7 52.72 16.1 16.1 0 0 1-3.8 16.61l-13.08 13.1c-28.02 28.02-28.9 73.65-1.15 101.95 28.02 28.58 74.08 28.75 102.32.51l67.2-67.19a71.98 71.98 0 0 0-10.34-110.4 16.04 16.04 0 0 1-6.95-12.6 39.83 39.83 0 0 1 11.7-29.81l21.06-21.06a16.06 16.06 0 0 1 20.58-1.73 152.48 152.48 0 0 1 20.52 17.2zM467.55 44.44c-59.26-59.26-155.7-59.27-214.96 0l-67.2 67.2-.36.37c-58.57 58.9-59.39 154.78.36 214.59a152.45 152.45 0 0 0 20.52 17.2 16.07 16.07 0 0 0 20.58-1.74l21.06-21.05a39.83 39.83 0 0 0 11.7-29.8 16.04 16.04 0 0 0-6.95-12.61 71.98 71.98 0 0 1-10.34-110.4l67.2-67.2c28.23-28.23 74.3-28.06 102.32.52 27.75 28.3 26.87 73.93-1.15 101.96l-13.1 13.09a16.1 16.1 0 0 0-3.77 16.6c5.86 17.2 9.04 35 9.69 52.73.5 13.9 17.45 20.44 27.29 10.6l37.1-37.1c59.28-59.26 59.28-155.7 0-214.96z"/>
+      </svg></a> </h3>
+<section aria-labelledby="toc_the-concat-helper">
+<p>We mentioned above that helpers can be nested. This can be
+combined with different dynamic helpers. For example, the
+<a href="https://api.emberjs.com/ember/4.10.0.0/classes/Ember.Templates.helpers/methods/concat?anchor=concat"><code>{{concat}}</code></a>
+helper makes it easy to dynamically send a number of parameters to a component
+or helper as a single parameter in the format of a concatenated string.</p>
+<pre class="shiki github-dark" style="background-color:#1c1e24;color:#e1e4e8" tabindex="0"><code class="language-handlebars line-numbers"><span class="line"><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">get</span><span style="color:#FFAB70"> this.foo</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">concat</span><span style="color:#9ECBFF"> "item"</span><span style="color:#FFAB70"> this.index</span><span style="color:#E1E4E8">)</span><span style="color:#79B8FF">}}</span></span></code></pre>
+<p>This will display the result of <code>this.foo.item1</code> when index is 1, and
+<code>this.foo.item2</code> when index is 2, etc.</p>
+</section>
+<h3 id="toc_the-let-helper">The <code>let</code> helper <a href="#toc_the-let-helper"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <path d="M326.61 185.4c59.75 59.8 58.93 155.69.36 214.58-.1.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.7 59.26-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.1-37.1c9.85-9.85 26.8-3.3 27.3 10.6a184.27 184.27 0 0 0 9.7 52.72 16.1 16.1 0 0 1-3.8 16.61l-13.08 13.1c-28.02 28.02-28.9 73.65-1.15 101.95 28.02 28.58 74.08 28.75 102.32.51l67.2-67.19a71.98 71.98 0 0 0-10.34-110.4 16.04 16.04 0 0 1-6.95-12.6 39.83 39.83 0 0 1 11.7-29.81l21.06-21.06a16.06 16.06 0 0 1 20.58-1.73 152.48 152.48 0 0 1 20.52 17.2zM467.55 44.44c-59.26-59.26-155.7-59.27-214.96 0l-67.2 67.2-.36.37c-58.57 58.9-59.39 154.78.36 214.59a152.45 152.45 0 0 0 20.52 17.2 16.07 16.07 0 0 0 20.58-1.74l21.06-21.05a39.83 39.83 0 0 0 11.7-29.8 16.04 16.04 0 0 0-6.95-12.61 71.98 71.98 0 0 1-10.34-110.4l67.2-67.2c28.23-28.23 74.3-28.06 102.32.52 27.75 28.3 26.87 73.93-1.15 101.96l-13.1 13.09a16.1 16.1 0 0 0-3.77 16.6c5.86 17.2 9.04 35 9.69 52.73.5 13.9 17.45 20.44 27.29 10.6l37.1-37.1c59.28-59.26 59.28-155.7 0-214.96z"/>
+      </svg></a> </h3>
+<section aria-labelledby="toc_the-let-helper">
+<p>Now let's say your template is starting to get a bit cluttered and you want
+to clean up the logic in your templates. This can be achieved with the <code>let</code>
+block helper.
+The <a href="https://api.emberjs.com/ember/4.10.0.0/classes/Ember.Templates.helpers/methods/let?anchor=let"><code>{{let}}</code></a>
+helper lets you create new bindings (or temporary variables) in your template.</p>
+<p>Say your template now looks like this:</p>
+<pre class="shiki github-dark" style="background-color:#1c1e24;color:#e1e4e8" tabindex="0"><code class="language-handlebars line-numbers"><span class="line"><span style="color:#E1E4E8">Welcome back </span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">concat</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">capitalize</span><span style="color:#FFAB70"> this.person.givenName</span><span style="color:#E1E4E8">) </span><span style="color:#9ECBFF">' '</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">capitalize</span><span style="color:#FFAB70"> this.person.familyName</span><span style="color:#E1E4E8">)</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Account Details:</span></span>
+<span class="line"><span style="color:#E1E4E8">Given Name: </span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">capitalize</span><span style="color:#FFAB70"> this.person.givenName</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#E1E4E8">Family Name: </span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">capitalize</span><span style="color:#FFAB70"> this.person.familyName</span><span style="color:#79B8FF">}}</span></span></code></pre>
+<p>As mentioned in the previous section, we use the <code>concat</code> helper to render both
+<code>person.givenName</code> and <code>person.familyName</code> in one go. But we also want to make
+sure that the names are capitalized. It gets a bit repetitive to keep writing
+<code>capitalize</code> and honestly, we might just forget it at some point. Thankfully, we
+can use the <code>{{let}}</code> helper to fix this:</p>
+<pre class="shiki github-dark" style="background-color:#1c1e24;color:#e1e4e8" tabindex="0"><code class="language-handlebars line-numbers"><span class="line"><span style="color:#79B8FF">{{</span><span style="color:#F97583">#let</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">capitalize</span><span style="color:#FFAB70"> this.person.givenName</span><span style="color:#E1E4E8">) (</span><span style="color:#FFAB70">capitalize</span><span style="color:#FFAB70"> this.person.familyName</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#FFAB70">  as</span><span style="color:#E1E4E8"> |</span><span style="color:#FFAB70">givenName</span><span style="color:#FFAB70"> familyName</span><span style="color:#E1E4E8">|</span></span>
+<span class="line"><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#E1E4E8">  Welcome back </span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">concat</span><span style="color:#FFAB70"> givenName</span><span style="color:#9ECBFF"> ' '</span><span style="color:#FFAB70"> familyName</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  Account Details:</span></span>
+<span class="line"><span style="color:#E1E4E8">  Given Name: </span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">givenName</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#E1E4E8">  Family Name: </span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">familyName</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#79B8FF">{{</span><span style="color:#F97583">/let</span><span style="color:#79B8FF">}}</span></span></code></pre>
+<p>Now, as long as your template is wrapped in the <code>let</code> helper, you can access the
+capitalized given name and family name as <code>givenName</code> and <code>familyName</code> instead of
+<code>(capitalize this.person.givenName)</code>.</p>
+</section>
+<h3 id="toc_the-array-helper">The <code>array</code> helper <a href="#toc_the-array-helper"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <path d="M326.61 185.4c59.75 59.8 58.93 155.69.36 214.58-.1.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.7 59.26-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.1-37.1c9.85-9.85 26.8-3.3 27.3 10.6a184.27 184.27 0 0 0 9.7 52.72 16.1 16.1 0 0 1-3.8 16.61l-13.08 13.1c-28.02 28.02-28.9 73.65-1.15 101.95 28.02 28.58 74.08 28.75 102.32.51l67.2-67.19a71.98 71.98 0 0 0-10.34-110.4 16.04 16.04 0 0 1-6.95-12.6 39.83 39.83 0 0 1 11.7-29.81l21.06-21.06a16.06 16.06 0 0 1 20.58-1.73 152.48 152.48 0 0 1 20.52 17.2zM467.55 44.44c-59.26-59.26-155.7-59.27-214.96 0l-67.2 67.2-.36.37c-58.57 58.9-59.39 154.78.36 214.59a152.45 152.45 0 0 0 20.52 17.2 16.07 16.07 0 0 0 20.58-1.74l21.06-21.05a39.83 39.83 0 0 0 11.7-29.8 16.04 16.04 0 0 0-6.95-12.61 71.98 71.98 0 0 1-10.34-110.4l67.2-67.2c28.23-28.23 74.3-28.06 102.32.52 27.75 28.3 26.87 73.93-1.15 101.96l-13.1 13.09a16.1 16.1 0 0 0-3.77 16.6c5.86 17.2 9.04 35 9.69 52.73.5 13.9 17.45 20.44 27.29 10.6l37.1-37.1c59.28-59.26 59.28-155.7 0-214.96z"/>
+      </svg></a> </h3>
+<section aria-labelledby="toc_the-array-helper">
+<p>Using the <a href="https://api.emberjs.com/ember/4.10.0.0/classes/Ember.Templates.helpers/methods/array?anchor=array"><code>{{array}}</code></a> helper,
+you can pass arrays directly from the template as an argument to your components.</p>
+<pre class="shiki github-dark" style="background-color:#1c1e24;color:#e1e4e8" tabindex="0"><code class="language-handlebars line-numbers"><span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">MyComponent</span></span>
+<span class="line"><span style="color:#E1E4E8">  @</span><span style="color:#B392F0">people=</span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">array</span></span>
+<span class="line"><span style="color:#9ECBFF">    'Tom Dale'</span></span>
+<span class="line"><span style="color:#9ECBFF">    'Yehuda Katz'</span></span>
+<span class="line"><span style="color:#FFAB70">    this.myOtherPerson</span></span>
+<span class="line"><span style="color:#79B8FF">  }}</span></span>
+<span class="line"><span style="color:#E1E4E8">/></span></span></code></pre>
+<p>In the component's template, you can then use the <code>people</code> argument as an array:</p>
+<div><div class="filename handlebars">app/components/my-component/template.hbs</div><pre class="shiki github-dark" style="background-color:#1c1e24;color:#e1e4e8" tabindex="0"><code class="language-handlebars line-numbers"><span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">ul</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#79B8FF">  {{</span><span style="color:#F97583">#each</span><span style="color:#FFAB70"> @people</span><span style="color:#79B8FF"> as</span><span style="color:#E1E4E8"> |</span><span style="color:#FFAB70">person</span><span style="color:#E1E4E8">|</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">li</span><span style="color:#E1E4E8">></span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">person</span><span style="color:#79B8FF">}}</span><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#85E89D">li</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#79B8FF">  {{</span><span style="color:#F97583">/each</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#85E89D">ul</span><span style="color:#E1E4E8">></span></span></code></pre>
+</div>
+</section>
+<h3 id="toc_the-hash-helper">The <code>hash</code> helper <a href="#toc_the-hash-helper"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <path d="M326.61 185.4c59.75 59.8 58.93 155.69.36 214.58-.1.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.7 59.26-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.1-37.1c9.85-9.85 26.8-3.3 27.3 10.6a184.27 184.27 0 0 0 9.7 52.72 16.1 16.1 0 0 1-3.8 16.61l-13.08 13.1c-28.02 28.02-28.9 73.65-1.15 101.95 28.02 28.58 74.08 28.75 102.32.51l67.2-67.19a71.98 71.98 0 0 0-10.34-110.4 16.04 16.04 0 0 1-6.95-12.6 39.83 39.83 0 0 1 11.7-29.81l21.06-21.06a16.06 16.06 0 0 1 20.58-1.73 152.48 152.48 0 0 1 20.52 17.2zM467.55 44.44c-59.26-59.26-155.7-59.27-214.96 0l-67.2 67.2-.36.37c-58.57 58.9-59.39 154.78.36 214.59a152.45 152.45 0 0 0 20.52 17.2 16.07 16.07 0 0 0 20.58-1.74l21.06-21.05a39.83 39.83 0 0 0 11.7-29.8 16.04 16.04 0 0 0-6.95-12.61 71.98 71.98 0 0 1-10.34-110.4l67.2-67.2c28.23-28.23 74.3-28.06 102.32.52 27.75 28.3 26.87 73.93-1.15 101.96l-13.1 13.09a16.1 16.1 0 0 0-3.77 16.6c5.86 17.2 9.04 35 9.69 52.73.5 13.9 17.45 20.44 27.29 10.6l37.1-37.1c59.28-59.26 59.28-155.7 0-214.96z"/>
+      </svg></a> </h3>
+<section aria-labelledby="toc_the-hash-helper">
+<p>Using the <a href="https://api.emberjs.com/ember/4.10.0.0/classes/Ember.Templates.helpers/methods/hash?anchor=hash"><code>{{hash}}</code></a>
+helper, you can pass objects directly from the template as an argument to your
+components.</p>
+<pre class="shiki github-dark" style="background-color:#1c1e24;color:#e1e4e8" tabindex="0"><code class="language-handlebars line-numbers"><span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">Greeting</span></span>
+<span class="line"><span style="color:#E1E4E8">  @</span><span style="color:#B392F0">person=</span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">hash</span></span>
+<span class="line"><span style="color:#FFAB70">    givenName</span><span style="color:#B392F0">=</span><span style="color:#9ECBFF">'Jen'</span></span>
+<span class="line"><span style="color:#FFAB70">    familyName</span><span style="color:#B392F0">=</span><span style="color:#9ECBFF">'Weber'</span></span>
+<span class="line"><span style="color:#79B8FF">  }}</span></span>
+<span class="line"><span style="color:#E1E4E8">/></span></span></code></pre>
+<p>In the component's template, you can then use the <code>person</code> object:</p>
+<div><div class="filename handlebars">app/components/greeting/template.hbs</div><pre class="shiki github-dark" style="background-color:#1c1e24;color:#e1e4e8" tabindex="0"><code class="language-handlebars line-numbers"><span class="line"><span style="color:#E1E4E8">Hello, </span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">@person.givenName</span><span style="color:#79B8FF">}}</span><span style="color:#79B8FF"> {{</span><span style="color:#FFAB70">@person.familyName</span><span style="color:#79B8FF">}}</span></span></code></pre>
+</div>
+</section>
+<h3 id="toc_the-in-element-helper">The <code>in-element</code> helper <a href="#toc_the-in-element-helper"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <path d="M326.61 185.4c59.75 59.8 58.93 155.69.36 214.58-.1.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.7 59.26-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.1-37.1c9.85-9.85 26.8-3.3 27.3 10.6a184.27 184.27 0 0 0 9.7 52.72 16.1 16.1 0 0 1-3.8 16.61l-13.08 13.1c-28.02 28.02-28.9 73.65-1.15 101.95 28.02 28.58 74.08 28.75 102.32.51l67.2-67.19a71.98 71.98 0 0 0-10.34-110.4 16.04 16.04 0 0 1-6.95-12.6 39.83 39.83 0 0 1 11.7-29.81l21.06-21.06a16.06 16.06 0 0 1 20.58-1.73 152.48 152.48 0 0 1 20.52 17.2zM467.55 44.44c-59.26-59.26-155.7-59.27-214.96 0l-67.2 67.2-.36.37c-58.57 58.9-59.39 154.78.36 214.59a152.45 152.45 0 0 0 20.52 17.2 16.07 16.07 0 0 0 20.58-1.74l21.06-21.05a39.83 39.83 0 0 0 11.7-29.8 16.04 16.04 0 0 0-6.95-12.61 71.98 71.98 0 0 1-10.34-110.4l67.2-67.2c28.23-28.23 74.3-28.06 102.32.52 27.75 28.3 26.87 73.93-1.15 101.96l-13.1 13.09a16.1 16.1 0 0 0-3.77 16.6c5.86 17.2 9.04 35 9.69 52.73.5 13.9 17.45 20.44 27.29 10.6l37.1-37.1c59.28-59.26 59.28-155.7 0-214.96z"/>
+      </svg></a> </h3>
+<section aria-labelledby="toc_the-in-element-helper">
+<p>Using the <a href="https://api.emberjs.com/ember/4.10.0.0/classes/Ember.Templates.helpers/methods/in-element?anchor=in-element"><code>{{in-element}}</code></a> helper, you can render content into a DOM element that is in a <em>different</em> part of the page. For instance, we might want
+to render a modal, tooltip, or dropdown.</p>
+<p>Suppose we want to show a dropdown menu when the user clicks on a button. The code below shows a <code>&lt;button&gt;</code> element, a placeholder <code>&lt;div&gt;</code> element, and a dropdown component. The argument <code>@show</code>, when set to <code>true</code>, will add the dropdown to the placeholder div.</p>
+<div><div class="filename handlebars">app/components/some-component.hbs</div><pre class="shiki github-dark" style="background-color:#1c1e24;color:#e1e4e8" tabindex="0"><code class="language-handlebars line-numbers"><span class="line"><span style="color:#E1E4E8">  &#x3C;</span><span style="color:#85E89D">button</span></span>
+<span class="line"><span style="color:#B392F0">    type=</span><span style="color:#9ECBFF">"button"</span></span>
+<span class="line"><span style="color:#79B8FF">    {{</span><span style="color:#FFAB70">on</span><span style="color:#9ECBFF"> "click"</span><span style="color:#FFAB70"> this.onClickShowDropdown</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#E1E4E8">  ></span></span>
+<span class="line"><span style="color:#E1E4E8">    More Actions</span></span>
+<span class="line"><span style="color:#E1E4E8">  &#x3C;/</span><span style="color:#85E89D">button</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">  &#x3C;</span><span style="color:#85E89D">div</span><span style="color:#B392F0"> id</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"dropdown-destination"</span><span style="color:#E1E4E8"> /></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  &#x3C;</span><span style="color:#85E89D">MyDropdownComponent</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#B392F0">show=</span><span style="color:#79B8FF">{{</span><span style="color:#FFAB70">this.showDropdown</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#E1E4E8">  /></span></span></code></pre>
+</div>
+<p>When the user clicks on the button, the flag <code>showDropdown</code> will be set to <code>true</code>.</p>
+<div><div class="filename js">app/components/some-component.js</div><pre class="shiki github-dark" style="background-color:#1c1e24;color:#e1e4e8" tabindex="0"><code class="language-js line-numbers"><span class="line"><span style="color:#E1E4E8">  @tracked</span></span>
+<span class="line"><span style="color:#E1E4E8">  showDropdown </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  @action</span></span>
+<span class="line"><span style="color:#B392F0">  onClickShowDropdown</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#79B8FF">    this</span><span style="color:#E1E4E8">.showDropdown </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span></code></pre>
+</div>
+<p>The dropdown component uses the argument <code>@show</code> to activate the <code>in-element</code> helper. We must <strong>provide the destination DOM element</strong> to the helper. In other words, where should the helper render its block content?</p>
+<div><div class="filename handlebars">app/components/my-dropdown-component.hbs</div><pre class="shiki github-dark" style="background-color:#1c1e24;color:#e1e4e8" tabindex="0"><code class="language-handlebars line-numbers"><span class="line"><span style="color:#79B8FF">{{</span><span style="color:#F97583">#if</span><span style="color:#FFAB70"> @show</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#79B8FF">  {{</span><span style="color:#F97583">#in-element</span><span style="color:#FFAB70"> this.destinationElement</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">ul</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">      &#x3C;</span><span style="color:#85E89D">li</span><span style="color:#E1E4E8">>Archive&#x3C;/</span><span style="color:#85E89D">li</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">      &#x3C;</span><span style="color:#85E89D">li</span><span style="color:#E1E4E8">>Mark as Read&#x3C;/</span><span style="color:#85E89D">li</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">      &#x3C;</span><span style="color:#85E89D">li</span><span style="color:#E1E4E8">>Report&#x3C;/</span><span style="color:#85E89D">li</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;/</span><span style="color:#85E89D">ul</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#79B8FF">  {{</span><span style="color:#F97583">/in-element</span><span style="color:#79B8FF">}}</span></span>
+<span class="line"><span style="color:#79B8FF">{{</span><span style="color:#F97583">/if</span><span style="color:#79B8FF">}}</span></span></code></pre>
+</div>
+<div><div class="filename js">app/components/my-dropdown-component.js</div><pre class="shiki github-dark" style="background-color:#1c1e24;color:#e1e4e8" tabindex="0"><code class="language-js line-numbers"><span class="line"><span style="color:#E1E4E8">  get </span><span style="color:#B392F0">destinationElement</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> document.</span><span style="color:#B392F0">querySelector</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'#dropdown-destination'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span></code></pre>
+</div>
+<p>After the user clicks on the button, the final HTML result for the div will be like this:</p>
+<pre class="shiki github-dark" style="background-color:#1c1e24;color:#e1e4e8" tabindex="0"><code class="language-html line-numbers"><span class="line"><span style="color:#E1E4E8">  &#x3C;</span><span style="color:#85E89D">div</span><span style="color:#B392F0"> id</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"dropdown-destination"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">ul</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">      &#x3C;</span><span style="color:#85E89D">li</span><span style="color:#E1E4E8">>Archive&#x3C;/</span><span style="color:#85E89D">li</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">      &#x3C;</span><span style="color:#85E89D">li</span><span style="color:#E1E4E8">>Mark as Read&#x3C;/</span><span style="color:#85E89D">li</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">      &#x3C;</span><span style="color:#85E89D">li</span><span style="color:#E1E4E8">>Report&#x3C;/</span><span style="color:#85E89D">li</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;/</span><span style="color:#85E89D">ul</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">  &#x3C;/</span><span style="color:#85E89D">div</span><span style="color:#E1E4E8">></span></span></code></pre>
+<p>Things to note:</p>
+<ul>
+<li>The destination element needs to exist in the DOM before we use the helper. Otherwise, an error will be thrown if you are in development mode. The error is not thrown in production.</li>
+<li>When the destination element changes, the content defined in <code>in-element</code> will re-render completely.</li>
+<li>By default, the <code>in-element</code> helper replaces the destination element's existing content with the helper's block content. If you want to instead append the block content, you can pass <code>insertBefore=null</code>.</li>
+</ul>
+</section></div>
+
+      <footer>
+  <div class="pagination-wrapper">
+    <div class="previous-wrapper">
+      <img alt="left arrow" src="/images/arrow-icon.svg">
+      <div>
+      <a id="ember23460" class="ember-view previous-guide" href="/v4.10.0/components/block-content">
+        Block Content
+      </a>
+    </div>
+    </div>
+
+    <div class="next-wrapper">
+      <div>
+      <a id="ember23461" class="ember-view next-guide" href="/v4.10.0/components/component-state-and-actions">
+          Component State and Actions
+              </a>
+    </div>
+      <img alt="right arrow" src="/images/arrow-icon.svg">
+    </div>
+</div>
+
+</footer>
+
+    </div>
+    <div class="guides-article-toc">
+        <div class="on-this-page-wrapper">
+    <div class="on-this-page-wrapper-header">On this page</div>
+    <hr>
+    <ul>
+          <li>
+            <a href="#toc_local-helper-functions" class="on-this-page-depth-2">Local Helper Functions</a>
+          </li>
+          <li>
+            <a href="#toc_named-arguments" class="on-this-page-depth-3">Named Arguments</a>
+          </li>
+          <li>
+            <a href="#toc_nested-helpers" class="on-this-page-depth-3">Nested Helpers</a>
+          </li>
+          <li>
+            <a href="#toc_global-helper-functions" class="on-this-page-depth-2">Global Helper Functions</a>
+          </li>
+          <li>
+            <a href="#toc_named-arguments-1" class="on-this-page-depth-3">Named arguments</a>
+          </li>
+          <li>
+            <a href="#toc_class-helpers" class="on-this-page-depth-3">Class Helpers</a>
+          </li>
+          <li>
+            <a href="#toc_built-in-helpers" class="on-this-page-depth-2">Built-in Helpers</a>
+          </li>
+          <li>
+            <a href="#toc_the-get-helper" class="on-this-page-depth-3">The get helper</a>
+          </li>
+          <li>
+            <a href="#toc_the-concat-helper" class="on-this-page-depth-3">The concat helper</a>
+          </li>
+          <li>
+            <a href="#toc_the-let-helper" class="on-this-page-depth-3">The let helper</a>
+          </li>
+          <li>
+            <a href="#toc_the-array-helper" class="on-this-page-depth-3">The array helper</a>
+          </li>
+          <li>
+            <a href="#toc_the-hash-helper" class="on-this-page-depth-3">The hash helper</a>
+          </li>
+          <li>
+            <a href="#toc_the-in-element-helper" class="on-this-page-depth-3">The in-element helper</a>
+          </li>
+    </ul>
+    
+  </div>
+
+    </div>
+  </div>
+</article>
+
+
+</div>
+
+</main>
+
+<footer class="es-footer">
+  <div class="footer-info container">
+  <div class="footer-info-links">
+
+    <img src="/images/ember-logo.svg" height="40px" width="83px" alt role="presentation" class="footer-logo">
+
+    <div class="spacer"></div>
+
+      <a href="https://emberjs.com/team" class="info-link">Team</a>
+      <a href="https://emberjs.com/sponsors" class="info-link">Sponsors</a>
+      <a href="https://emberjs.com/security" class="info-link">Security</a>
+      <a href="https://emberjs.com/about/legal" class="info-link">Legal</a>
+      <a href="https://emberjs.com/logos" class="info-link">Branding</a>
+      <a href="https://emberjs.com/guidelines" class="info-link">Community Guidelines</a>
+  </div>
+  <div class="footer-social hide-on-mobile">
+      <a href="http://twitter.com/emberjs" title="Twitter" aria-label="Official Ember Twitter Account" rel="me">
+        <svg class="undefined"xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><path d="M939.5 227.941q-37 54-90 93v23q0 73-21 145t-64 139q-43 67-103 117t-144 82q-84 32-181 30-151 0-276-81 19 2 43 2 126 0 224-77-59-1-105-36t-64-89q19 3 34 3 24 0 48-6-63-13-104-62t-41-115v-2q38 21 82 23-37-25-59-64t-22-86q0-49 25-91 68 83 164 133t208 55q-5-21-5-41 0-75 53-127t127-53q79 0 132 57 61-12 115-44-21 64-80 100 52-6 104-28z"/></svg> Twitter
+      </a>
+      <a href="https://github.com/emberjs/ember.js" title="GitHub" aria-label="Ember.js github repository" rel="me">
+        <svg class="undefined"xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><path d="M392 643q0 22-7 45t-24 43q-17 20-40 19t-41-19q-18-18-24-43t-7-45q-1-20 7-46t24-43q16-17 41-19t40 19q15 21 24 43t7 46zm357 0q0 22-7 45t-24 43q-17 20-40 19t-41-19q-18-18-24-43t-7-45q-1-20 7-46t24-43q16-17 41-19t40 19q15 21 24 43t7 46zm90 0q0-67-39-114t-104-47q-23 0-109 12-40 6-88 6t-87-6q-85-12-109-12-66 0-104 47t-39 114q0 49 18 85t45 58q27 22 68 33t78 17q37 6 83 4h94q46 0 83-4t78-17q41-13 69-33t45-58q17-38 18-85zm125-99q0 116-34 185-22 43-59 74t-79 48q-42 17-95 27t-96 12q-43 2-93 3-43 0-79-2t-82-7q-46-5-85-17t-77-29q-38-17-67-45t-48-64q-35-69-35-185 0-132 76-221-15-45-15-95 0-64 28-121 61 0 106 22t106 69q82-20 172-20 83 0 157 18 58-46 104-67t105-22q29 57 29 121 0 49-15 94 76 89 76 222z"/></svg> GitHub
+      </a>
+      <a href="https://discordapp.com/invite/zT3asNS" title="Discord" aria-label="Join the Ember Community Discord" rel="me">
+        <svg class="undefined"xmlns="http://www.w3.org/2000/svg" viewBox="0 0 245 240"><path d="M104.4 103.9c-5.7 0-10.2 5-10.2 11.1s4.6 11.1 10.2 11.1c5.7 0 10.2-5 10.2-11.1.1-6.1-4.5-11.1-10.2-11.1zm36.5 0c-5.7 0-10.2 5-10.2 11.1s4.6 11.1 10.2 11.1c5.7 0 10.2-5 10.2-11.1s-4.5-11.1-10.2-11.1z"/><path class="st0" d="M189.5 20h-134C44.2 20 35 29.2 35 40.6v135.2c0 11.4 9.2 20.6 20.5 20.6h113.4l-5.3-18.5 12.8 11.9 12.1 11.2 21.5 19V40.6c0-11.4-9.2-20.6-20.5-20.6zm-38.6 130.6s-3.6-4.3-6.6-8.1c13.1-3.7 18.1-11.9 18.1-11.9-4.1 2.7-8 4.6-11.5 5.9-5 2.1-9.8 3.5-14.5 4.3-9.6 1.8-18.4 1.3-25.9-.1-5.7-1.1-10.6-2.7-14.7-4.3-2.3-.9-4.8-2-7.3-3.4-.3-.2-.6-.3-.9-.5-.2-.1-.3-.2-.4-.3-1.8-1-2.8-1.7-2.8-1.7s4.8 8 17.5 11.8c-3 3.8-6.7 8.3-6.7 8.3-22.1-.7-30.5-15.2-30.5-15.2 0-32.2 14.4-58.3 14.4-58.3 14.4-10.8 28.1-10.5 28.1-10.5l1 1.2c-18 5.2-26.3 13.1-26.3 13.1s2.2-1.2 5.9-2.9c10.7-4.7 19.2-6 22.7-6.3.6-.1 1.1-.2 1.7-.2 6.1-.8 13-1 20.2-.2 9.5 1.1 19.7 3.9 30.1 9.6 0 0-7.9-7.5-24.9-12.7l1.4-1.6s13.7-.3 28.1 10.5c0 0 14.4 26.1 14.4 58.3 0 0-8.5 14.5-30.6 15.2z"/></svg> Discord
+      </a>
+      <a href="https://hachyderm.io/@emberjs" title="Mastodon" aria-label="Official Ember Mastodon Account" rel="me">
+        <svg class="undefined"xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-mastodon" viewBox="0 0 16 16">
+  <path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z"/>
+</svg> Mastodon
+      </a>
+  </div>
+</div>
+
+  <div class="footer-help">
+  <p class="container py-1">
+
+If you want help you can contact us by <a href="mailto:help@emberjs.com?subject=Help">email</a>, 
+open an <a href="https://github.com/ember-learn/ember-website/issues/new"> issue</a>, 
+or  get realtime help by joining the <a href="https://discord.gg/emberjs">Ember Discord</a>.
+
+  </p>
+</div>
+  <div class="footer-statement">
+  <p class="footer-copyright container py-1">
+    © Copyright 2025 - <a href="https://www.tilde.io/" class="footer-copyright">Tilde Inc.</a>
+    <br>
+    Ember.js is free, open source and always will be.
+<!---->  </p>
+</div>
+
+  <hr class="footer-spacer container py-0 my-3">
+
+  <div class="footer-contributions-wrapper container pt-0 pb-3">
+  <div class="footer-contributions">
+    <span>Ember is generously supported by</span>
+    <div class="sponsor-icons">
+        <a href="https://www.netlify.com/" title="Netlify" aria-label="Netlify" class="mr-2">
+          <svg class="footer-contributor-logo"xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 147 40">
+  <radialGradient id="a" cy="0%" r="100.11%" gradientTransform="matrix(0 .9989 -1.152 0 .5 -.5)">
+      <stop offset="0" stop-color="#20c6b7"/>
+      <stop offset="1" stop-color="#4d9abf"/>
+  </radialGradient>
+  <g fill="none" fill-rule="evenodd">
+      <path fill="#0e1e25" d="m53.37 12.978.123 2.198c1.403-1.7 3.245-2.55 5.525-2.55 3.951 0 5.962 2.268 6.032 6.804v12.568h-4.26v-12.322c0-1.207-.26-2.1-.78-2.681-.52-.58-1.371-.87-2.552-.87-1.719 0-3 .78-3.84 2.338v13.535h-4.262v-19.02h4.016zm24.378 19.372c-2.7 0-4.89-.852-6.567-2.557-1.678-1.705-2.517-3.976-2.517-6.812v-.527c0-1.898.365-3.595 1.096-5.089.73-1.494 1.757-2.657 3.078-3.49 1.321-.831 2.794-1.247 4.42-1.247 2.583 0 4.58.826 5.988 2.478 1.41 1.653 2.114 3.99 2.114 7.014v1.723h-12.4c.13 1.57.652 2.812 1.57 3.726s2.073 1.371 3.464 1.371c1.952 0 3.542-.79 4.77-2.373l2.297 2.198c-.76 1.136-1.774 2.018-3.042 2.645-1.269.627-2.692.94-4.27.94zm-.508-16.294c-1.17 0-2.113.41-2.832 1.23-.72.82-1.178 1.963-1.377 3.428h8.12v-.317c-.094-1.43-.474-2.51-1.14-3.243-.667-.732-1.59-1.098-2.771-1.098zm16.765-7.7v4.623h3.35v3.164h-3.35v10.617c0 .726.144 1.25.43 1.573.286.322.798.483 1.535.483a6.55 6.55 0 0 0 1.49-.176v3.305c-.97.27-1.905.404-2.806.404-3.273 0-4.91-1.81-4.91-5.431v-10.776h-3.124v-3.164h3.122v-4.623h4.261zm11.137 23.643h-4.262v-27h4.262zm9.172 0h-4.262v-19.02h4.262zm-4.525-23.96c0-.655.207-1.2.622-1.634.416-.433 1.009-.65 1.78-.65.772 0 1.368.217 1.79.65.42.434.63.979.63 1.635 0 .644-.21 1.18-.63 1.608-.422.428-1.018.642-1.79.642-.771 0-1.364-.214-1.78-.642-.415-.427-.622-.964-.622-1.608zm10.663 23.96v-15.857h-2.894v-3.164h2.894v-1.74c0-2.11.584-3.738 1.753-4.887 1.17-1.148 2.806-1.722 4.91-1.722.749 0 1.544.105 2.386.316l-.105 3.34a8.375 8.375 0 0 0 -1.631-.14c-2.035 0-3.052 1.048-3.052 3.146v1.687h3.858v3.164h-3.858v15.856h-4.261zm17.87-6.117 3.858-12.903h4.542l-7.54 21.903c-1.158 3.199-3.122 4.799-5.893 4.799-.62 0-1.304-.106-2.052-.317v-3.305l.807.053c1.075 0 1.885-.196 2.429-.589.543-.392.973-1.051 1.289-1.977l.613-1.635-6.664-18.932h4.595z"/>
+      <path fill="url(#a)" fill-rule="nonzero" d="m28.589 14.135-.014-.006c-.008-.003-.016-.006-.023-.013a.11.11 0 0 1 -.028-.093l.773-4.726 3.625 3.626-3.77 1.604a.083.083 0 0 1 -.033.006h-.015c-.005-.003-.01-.007-.02-.017a1.716 1.716 0 0 0 -.495-.381zm5.258-.288 3.876 3.876c.805.806 1.208 1.208 1.355 1.674.022.069.04.138.054.209l-9.263-3.923a.728.728 0 0 0 -.015-.006c-.037-.015-.08-.032-.08-.07s.044-.056.081-.071l.012-.005zm5.127 7.003c-.2.376-.59.766-1.25 1.427l-4.37 4.369-5.652-1.177-.03-.006c-.05-.008-.103-.017-.103-.062a1.706 1.706 0 0 0 -.655-1.193c-.023-.023-.017-.059-.01-.092 0-.005 0-.01.002-.014l1.063-6.526.004-.022c.006-.05.015-.108.06-.108a1.73 1.73 0 0 0 1.16-.665c.009-.01.015-.021.027-.027.032-.015.07 0 .103.014l9.65 4.082zm-6.625 6.801-7.186 7.186 1.23-7.56.002-.01c.001-.01.003-.02.006-.029.01-.024.036-.034.061-.044l.012-.005a1.85 1.85 0 0 0 .695-.517c.024-.028.053-.055.09-.06a.09.09 0 0 1 .029 0l5.06 1.04zm-8.707 8.707-.81.81-8.955-12.942a.424.424 0 0 0 -.01-.014c-.014-.019-.029-.038-.026-.06 0-.016.011-.03.022-.042l.01-.013c.027-.04.05-.08.075-.123l.02-.035.003-.003c.014-.024.027-.047.051-.06.021-.01.05-.006.073-.001l9.921 2.046a.164.164 0 0 1 .076.033c.013.013.016.027.019.043a1.757 1.757 0 0 0 1.028 1.175c.028.014.016.045.003.078a.238.238 0 0 0 -.015.045c-.125.76-1.197 7.298-1.485 9.063zm-1.692 1.691c-.597.591-.949.904-1.347 1.03a2 2 0 0 1 -1.206 0c-.466-.148-.869-.55-1.674-1.356l-8.993-8.993 2.349-3.643c.011-.018.022-.034.04-.047.025-.018.061-.01.091 0a2.434 2.434 0 0 0 1.638-.083c.027-.01.054-.017.075.002a.19.19 0 0 1 .028.032l8.999 13.059zm-14.087-10.186-2.063-2.063 4.074-1.738a.084.084 0 0 1 .033-.007c.034 0 .054.034.072.065a2.91 2.91 0 0 0 .13.184l.013.016c.012.017.004.034-.008.05l-2.25 3.493zm-2.976-2.976-2.61-2.61c-.444-.444-.766-.766-.99-1.043l7.936 1.646a.84.84 0 0 0 .03.005c.049.008.103.017.103.063 0 .05-.059.073-.109.092l-.023.01zm-4.056-4.995a2 2 0 0 1 .09-.495c.148-.466.55-.868 1.356-1.674l3.34-3.34a2175.525 2175.525 0 0 0 4.626 6.687c.027.036.057.076.026.106-.146.161-.292.337-.395.528a.16.16 0 0 1 -.05.062c-.013.008-.027.005-.042.002h-.002l-8.949-1.877zm5.68-6.403 4.489-4.491c.423.185 1.96.834 3.333 1.414 1.04.44 1.988.84 2.286.97.03.012.057.024.07.054.008.018.004.041 0 .06a2.003 2.003 0 0 0 .523 1.828c.03.03 0 .073-.026.11l-.014.021-4.56 7.063c-.012.02-.023.037-.043.05-.024.015-.058.008-.086.001a2.274 2.274 0 0 0 -.543-.074c-.164 0-.342.03-.522.063h-.001c-.02.003-.038.007-.054-.005a.21.21 0 0 1 -.045-.051l-4.808-7.013zm5.398-5.398 5.814-5.814c.805-.805 1.208-1.208 1.674-1.355a2 2 0 0 1 1.206 0c.466.147.869.55 1.674 1.355l1.26 1.26-4.135 6.404a.155.155 0 0 1 -.041.048c-.025.017-.06.01-.09 0a2.097 2.097 0 0 0 -1.92.37c-.027.028-.067.012-.101-.003-.54-.235-4.74-2.01-5.341-2.265zm12.506-3.676 3.818 3.818-.92 5.698v.015a.135.135 0 0 1 -.008.038c-.01.02-.03.024-.05.03a1.83 1.83 0 0 0 -.548.273.154.154 0 0 0 -.02.017c-.011.012-.022.023-.04.025a.114.114 0 0 1 -.043-.007l-5.818-2.472-.011-.005c-.037-.015-.081-.033-.081-.071a2.198 2.198 0 0 0 -.31-.915c-.028-.046-.059-.094-.035-.141zm-3.932 8.606 5.454 2.31c.03.014.063.027.076.058a.106.106 0 0 1 0 .057c-.016.08-.03.171-.03.263v.153c0 .038-.039.054-.075.069l-.011.004c-.864.369-12.13 5.173-12.147 5.173s-.035 0-.052-.017c-.03-.03 0-.072.027-.11a.76.76 0 0 0 .014-.02l4.482-6.94.008-.012c.026-.042.056-.089.104-.089l.045.007c.102.014.192.027.283.027.68 0 1.31-.331 1.69-.897a.16.16 0 0 1 .034-.04c.027-.02.067-.01.098.004zm-6.246 9.185 12.28-5.237s.018 0 .035.017c.067.067.124.112.179.154l.027.017c.025.014.05.03.052.056 0 .01 0 .016-.002.025l-1.052 6.462-.004.026c-.007.05-.014.107-.061.107a1.729 1.729 0 0 0 -1.373.847l-.005.008c-.014.023-.027.045-.05.057-.021.01-.048.006-.07.001l-9.793-2.02c-.01-.002-.152-.519-.163-.52z" transform="translate(-.702)"/>
+  </g>
+</svg>
+        </a>
+        <a href="https://www.heroku.com/" title="Heroku" aria-label="Heroku" class="mr-2">
+          <svg class="footer-contributor-logo"xmlns="http://www.w3.org/2000/svg" width="268" height="80" viewBox="0 0 268 80">
+  <path fill="#430098" fill-rule="evenodd" d="M64.8,0 C68.776,0 72,3.224 72,7.2 L72,7.2 L72,72.8 C72,76.776 68.776,80 64.8,80 L64.8,80 L7.2,80 C3.224,80 0,76.776 0,72.8 L0,72.8 L0,7.2 C0,3.224 3.224,0 7.2,0 L7.2,0 Z M64.8,4 L7.2,4 C5.436,4 4,5.435 4,7.2 L4,7.2 L4,72.8 C4,74.564 5.436,76 7.2,76 L7.2,76 L64.8,76 C66.565,76 68,74.564 68,72.8 L68,72.8 L68,7.2 C68,5.435 66.565,4 64.8,4 L64.8,4 Z M19,52 L28,60 L19,68 L19,52 Z M27,12 L27,34.711 C30.994,33.411 36.577,32 42,32 C46.945,32 49.905,33.944 51.517,35.575 C54.814625,38.91 54.995191,43.1202378 55.0003112,43.9159307 L55.0002258,68 L47,68 L47,44.11 C46.961,42.243 46.062,40 42,40 C34.230209,40 25.5570898,43.7328438 24.7166549,44.1028638 L24.651,44.132 L19,46.692 L19,12 L27,12 Z M191.995,25 C198.5525,25 205.37,29.165 205.37,39.15 C205.37,49.135 198.5525,53.3 191.995,53.3 C185.3975,53.2975 178.5825,49.135 178.5825,39.15 C178.5825,29.1675 185.3975,25 191.995,25 Z M251.99,25.5175 L251.99,41.805 C251.99,45.5625 253.205,47.2575 256.155,47.2575 C259.1025,47.2575 260.28,45.5625 260.28,41.805 L260.28,25.5175 L267.5,25.5175 L267.5,41.84 C267.5,49.0625 264.0375,53.1875 256.0775,53.1875 C248.1175,53.1875 244.62,49.0625 244.62,41.84 L244.62,25.5175 L251.99,25.5175 Z M220.94,25.5175 L220.94,35.3925 L228.4575,25.5175 L237.005,25.5175 L227.83,36.2775 L237.815,52.785 L229.4875,52.785 L223.04,41.8775 L220.94,44.31 L220.94,52.785 L213.57,52.785 L213.57,25.5175 L220.94,25.5175 Z M140.25,25.5175 L140.25,31.635 L128.165,31.635 L128.165,36.0575 L136.7875,36.0575 L136.7875,41.805 L128.165,41.805 L128.165,46.8525 L140.8775,46.8525 L140.8775,52.785 L120.7975,52.785 L120.7975,25.5175 L140.25,25.5175 Z M159.6175,25.5175 C166.6175,25.5175 170.8925,27.84 170.8925,34.3975 C170.8925,38.67 169.0875,41.1425 165.5125,42.355 L171.2975,52.7825 L163.4875,52.7825 L158.2175,43.315 L156.19,43.315 L156.19,52.7825 L148.9675,52.7825 L148.9675,25.5175 L159.6175,25.5175 Z M94.87,25.5175 L94.87,35.65 L103.935,35.65 L103.935,25.5175 L111.305,25.5175 L111.305,52.7825 L103.935,52.7825 L103.935,41.765 L94.87,41.765 L94.87,52.7825 L87.5,52.7825 L87.5,25.5175 L94.87,25.5175 Z M191.9925,31.0825 C188.1225,31.0825 185.95,34.14 185.95,39.15 C185.95,44.1625 188.125,47.405 191.9925,47.405 C195.825,47.4025 197.9975,44.1625 197.9975,39.15 C197.9975,34.14 195.8225,31.0825 191.9925,31.0825 Z M159.36,31.485 L156.1925,31.485 L156.1925,37.7125 L159.36,37.7125 C162.3825,37.7125 163.7075,36.865 163.7075,34.58 C163.7075,32.295 162.38,31.485 159.36,31.485 Z M55,12 C54.46,16.544 52.618,20.9 49,25 L49,25 L41,25 C44.144,20.875 46.118,16.534 47,12 L47,12 Z"/>
+</svg>
+        </a>
+        <a href="https://www.fastly.com" title="Fastly" aria-label="Fastly" class="mr-2">
+          <svg class="footer-contributor-logo"enable-background="new 0 0 1709 735" viewBox="0 0 1709 735" xmlns="http://www.w3.org/2000/svg"><g fill="#ff282d"><path d="m1135.107 129.93v405.493h121.802v-61.956h-40.25v-405.303l-81.564.011z"/><path d="m77.437 473.467h41.405v-195.631h-41.405v-53.801l41.405-6.809v-54.462c0-65.969 14.359-94.598 98.487-94.598 18.17 0 39.707 2.683 58.563 6.08l-11.176 66.314c-12.77-2.023-19.104-2.382-27.176-2.382-29.639 0-37.133 2.957-37.133 31.916v47.131h61.541v60.611h-61.541v195.632h40.973v61.946l-163.941.017v-61.964z"/><path d="m1093.617 453.889c-12.759 2.692-23.915 2.368-31.988 2.567-33.557.825-30.658-10.204-30.658-41.844v-136.776h63.873v-60.611h-63.873v-149.061h-81.563v363.358c0 71.341 17.606 103.9 94.339 103.9 18.173 0 43.144-4.676 61.997-8.714z"/><path d="m1600.297 473.8c17.141 0 31.023 13.625 31.023 30.768 0 17.138-13.883 30.76-31.023 30.76-17.141 0-30.941-13.622-30.941-30.76.001-17.143 13.801-30.768 30.941-30.768m0 56.693c14.239 0 25.837-11.688 25.837-25.925 0-14.245-11.598-25.579-25.837-25.579-14.236 0-25.758 11.335-25.758 25.579.001 14.236 11.522 25.925 25.758 25.925m5.713-10.811-6.242-9.141h-4.306v9.141h-6.941v-30.239h12.651c7.473 0 12.133 3.782 12.133 10.468 0 4.914-2.463 8.258-6.327 9.398l7.558 10.372h-8.526zm-10.547-15.207h5.537c3.168 0 5.276-1.229 5.276-4.563 0-3.165-2.109-4.402-5.104-4.402h-5.71v8.965z"/><path d="m847.593 277.725v-10.851c-24.675-4.501-49.178-4.566-62.47-4.566-37.957 0-42.585 20.129-42.585 31.04 0 15.436 5.267 23.782 46.388 32.773 60.107 13.494 120.473 27.573 120.473 102.104 0 70.682-36.377 107.198-112.947 107.198-51.238 0-100.954-10.999-138.888-20.625v-60.909h61.764l-.036 10.821c26.579 5.134 54.448 4.62 68.997 4.62 40.487 0 47.037-21.767 47.037-33.34 0-16.061-11.611-23.774-49.562-31.47-71.5-12.217-128.244-36.628-128.244-109.257 0-68.746 45.979-95.714 122.55-95.714 51.875 0 91.318 8.045 129.272 17.676v60.5z"/><path d="m472.333 331.263-6.207-6.209-31.522 27.47c-1.591-.57-3.293-.897-5.071-.897-8.506 0-15.392 7.089-15.392 15.824 0 8.745 6.886 15.832 15.392 15.832 8.502 0 15.404-7.087 15.404-15.832 0-1.659-.252-3.257-.713-4.76z"/><path d="m597.261 453.889-.053-253.81h-81.562v23.802c-16.799-10.078-35.511-17.285-55.455-20.979h.461v-28.166h9.951v-20.714h-82.125v20.714h9.95v28.166h.566c-78.009 14.361-137.126 82.671-137.126 164.833 0 92.595 75.062 167.657 167.657 167.657 31.602 0 61.155-8.755 86.385-23.955l14.694 23.986h86.152v-81.535h-19.495zm-162.851-.185v-9.588h-9.772v9.561c-43.775-2.551-78.789-37.721-81.073-81.567h9.713v-9.772h-9.663c2.596-43.542 37.466-78.378 81.023-80.917v9.61h9.772v-9.638c42.935 2.295 77.52 35.973 81.257 78.51v2.802h-9.791v9.772h9.793l.001 2.676c-3.717 42.557-38.311 76.256-81.26 78.551z"/><path d="m1463.34 217.225h168.223v60.552h-40.209l-103.17 253.82c-29.569 71.3-78.136 138.408-152.102 138.408-18.186 0-42.396-2.015-59.185-6.049l7.377-74.028c10.773 2.015 24.884 3.341 32.288 3.341 34.301 0 72.993-21.253 85.094-58.257l-104.536-257.233h-40.211v-60.552h168.31v60.552h-40.205l59.223 145.702 59.223-145.702h-40.121v-60.554z"/></g></svg>
+        </a>
+        <a href="https://percy.io" title="Percy" aria-label="Percy" class="mr-2">
+          <svg class="footer-contributor-logo"width="142" height="42" viewBox="0 0 142 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M20.9714 2.79645C9.38911 2.79645 1.15002e-07 2.17034 1.15002e-07 1.39816C1.15002e-07 0.625984 9.38911 4.16326e-07 20.9714 4.16326e-07C32.5536 4.16326e-07 41.9428 0.625984 41.9428 1.39816C41.9428 2.17034 32.5536 2.79645 20.9714 2.79645Z" transform="translate(2.06818 39.2036)" fill="#390156" fill-opacity="0.2"/>
+  <path d="M51.6147 9.25742C51.3857 8.52394 50.7055 8.03104 49.922 8.03104C49.6887 8.03104 49.4604 8.0759 49.2433 8.16438C48.6875 8.39085 47.8206 8.65589 46.7369 8.70517C44.5468 7.14594 39.2359 3.37933 36.085 1.26608C36.085 1.26608 36.5264 2.52208 37.136 4.86861C37.136 4.86861 32.1536 2.11539 28.8366 -6.29924e-09C28.8366 -6.29924e-09 30.076 2.47659 30.1786 3.2785C30.1786 3.2785 26.2337 2.61219 20.4653 1.38946C20.4653 1.38946 24.756 3.737 25.8127 5.15041C25.8127 5.15041 20.6512 4.80824 14.5721 4.46809C14.5721 4.46809 17.6534 5.99517 19.1566 7.22849C19.1566 7.22849 13.646 8.02209 9.44809 8.22298C9.44809 8.22298 12.5616 10.6073 13.8181 11.762C13.8181 11.762 8.57655 13.7897 2.31689 17.3506C2.31689 17.3506 5.61541 17.5106 7.9936 18.2535C7.9936 18.2535 5.12517 20.7343 -1.39458e-09 26.4228C-1.39458e-09 26.4228 3.29119 26.304 5.94662 25.9523C5.94662 25.9523 3.86719 29.1058 1.28155 34.7706C1.28155 34.7706 3.05514 33.6712 4.77272 33.273C4.77272 33.273 4.957 39.6318 8.52942 40.6505L8.53238 40.6461C8.70739 40.7 8.87441 40.719 9.0194 40.719C9.19389 40.719 9.37623 40.6928 9.56154 40.641C10.6953 40.3253 11.5533 39.2364 12.5468 37.9758C12.9131 37.511 13.2908 37.0322 13.6972 36.5697C13.8102 36.9151 13.9567 37.3274 14.1325 37.7435C14.7841 39.2864 15.4821 40.0364 16.2665 40.0364C16.3263 40.0364 16.3868 40.0317 16.4461 40.0226C17.4474 39.8687 18.3755 37.9793 19.1514 36.1514C19.547 35.2198 19.8949 34.2894 20.1316 33.6303C20.1596 33.6321 20.1871 33.633 20.2151 33.6351C22.6249 33.8192 24.1108 36.1522 25.3048 38.0267C26.2047 39.4396 26.9155 40.5556 27.9077 40.6625C27.9774 40.67 28.0469 40.6738 28.1145 40.6738C29.6311 40.6738 30.1641 38.9504 30.839 36.7686C30.8838 36.6234 30.9298 36.4748 30.9769 36.3236C31.1139 36.5868 31.263 36.8621 31.4219 37.1387C32.5309 39.069 33.5127 40.0142 34.4234 40.0285L34.4492 40.0288C35.2045 40.0288 35.7026 39.5346 35.9299 38.5603C36.0998 37.8325 36.136 36.8325 36.1779 35.6744C36.2746 33.0032 36.4078 29.3559 38.2736 26.2214C39.6531 25.3756 41.175 24.6052 42.6686 23.8493C46.1458 22.0894 49.4302 20.4272 51.0778 17.9052C51.9018 16.644 52.3103 15.0963 52.2917 13.3051C52.2752 11.6985 51.9145 10.2171 51.6147 9.25742Z" transform="translate(0.221924 0.18277)" fill="#2B023F"/>
+  <path d="M5.45908 6.81247C2.9605 6.81247 1.31568 7.94975 4.03112e-07 9.33392C0.347559 10.4624 1.2209 12.8886 2.26873 12.7275C3.2899 12.5705 4.8026 8.72634 5.49553 6.8131C5.48355 6.81297 5.47106 6.81247 5.45908 6.81247ZM21.2565 1.60044C18.929 3.82862 17.8377 6.56672 17.1013 8.82918C17.8663 10.3776 19.2046 12.7096 20.3342 12.7275C22.6079 12.7633 20.3924 5.83222 23.2796 9.19409e-07C22.5369 0.50109 21.8517 1.03079 21.2565 1.60044Z" transform="translate(14.3193 26.9798)" fill="#9E66BF"/>
+  <path d="M36.6372 2.57107C35.439 2.26129 34.2877 2.6768 34.0656 3.49927C33.8436 4.32185 34.6349 5.23972 35.833 5.5495C37.0312 5.8594 38.1825 5.44376 38.4046 4.6213C38.6266 3.79884 37.8353 2.88084 36.6372 2.57107ZM43.998 7.52625C43.8216 8.07675 43.5769 8.61237 43.247 9.11736C40.3926 13.4868 31.8983 15.4032 27.5969 19.5209C22.3197 24.5729 23.2535 31.9347 20.5673 31.6452C18.6768 31.4414 17.2586 24.9523 12.8583 24.6161C6.21568 24.1087 4.75745 30.8785 2.02373 31.64C-0.709998 32.4016 -0.313635 25.5367 1.09836 22.4973C2.34515 19.8131 4.58181 16.0503 8.00048 16.9137C10.2626 17.485 7.63553 21.1987 7.63553 21.1987C7.63553 21.1987 12.4197 21.5022 15.3704 17.1994C17.3301 14.3417 23.8225 4.56622 30.33 13.0221C30.33 13.0221 27.7806 5.92519 29.4344 2.47302C30.7915 -0.359727 33.9148 -0.303265 36.7572 0.417239C39.0876 1.00793 40.9342 0.565827 42.0444 0.11351C42.2612 0.0251644 42.4876 0.00147176 42.7028 0.0318446C42.2929 0.051001 41.6627 0.264115 41.2981 1.29415C40.7538 2.83195 43.7142 1.64992 44.3475 4.06034C44.3475 4.06034 44.5423 7.71908 41.4476 7.26966L41.5684 6.47618C41.5684 6.47618 40.5721 7.10343 41.2842 8.34304L41.3983 7.59381C42.0217 7.81284 42.903 7.91946 43.998 7.52625ZM44.3476 4.06034H44.3475V4.06022L44.3476 4.06034Z" transform="translate(7.61865 8.69904)" fill="#D6B5E5"/>
+  <path d="M21.3153 1.34548C18.9679 3.59269 17.878 6.35839 17.1415 8.63194C17.5536 9.45516 18.412 10.7732 18.412 10.7732C18.3671 6.21069 22.269 0.914967 22.9706 6.5798e-07C22.3693 0.425347 21.8107 0.871235 21.3153 1.34548ZM3.67342e-08 9.1411C0.229088 9.79871 0.690224 10.7732 0.690224 10.7732C0.690224 10.7732 2.08651 7.19698 5.47943 6.55814C2.96552 6.57024 1.31864 7.73626 3.67342e-08 9.1411Z" transform="translate(14.2605 27.2348)" fill="#5C007B"/>
+  <path d="M4.30028e-07 9.7449C2.73373 8.98331 4.19195 2.21357 10.8346 2.72096C15.2349 3.0572 16.6531 9.54628 18.5436 9.75007C18.5436 9.75007 17.5246 7.71307 16.7037 5.14196C15.8828 2.57098 13.0853 4.56737e-07 10.5436 4.56737e-07C8.00171 4.56737e-07 5.12157 1.33918 3.51396 4.69519C1.09238 9.75007 4.30028e-07 9.7449 4.30028e-07 9.7449Z" transform="translate(9.6424 30.5942)" fill="#C393DB"/>
+  <path d="M19.3784 7.41123C17.5036 7.65636 12.3633 8.15051 9.40624 8.29204C9.40624 8.29204 10.0791 8.71916 10.6596 9.17273C14.6017 8.8961 19.7189 7.63859 19.3784 7.41123ZM14.0399 11.9447C12.2853 12.6757 7.35372 14.5845 2.27375 17.6107C2.27375 17.6107 2.94479 17.5531 3.57333 17.6107C9.20394 14.5294 14.2454 12.1204 14.0399 11.9447ZM26.0346 5.33315C24.1258 5.21065 18.7688 4.80194 14.5322 4.56475C14.5322 4.56475 15.6156 5.05815 16.6168 5.6215C21.7055 5.91628 26.4433 5.66359 26.0346 5.33315ZM8.21547 18.4362C6.21691 19.9398 3.33098 22.905 0 26.7424C0 26.7424 0.382585 26.5997 0.660993 26.587C5.29206 21.5131 8.36575 18.4772 8.21547 18.4362ZM46.8682 8.82199C46.8682 8.82199 40.1859 4.04564 36.1432 1.33426C36.1432 1.33426 36.4726 1.9208 36.7402 2.82241C40.5088 5.3828 46.8682 8.82199 46.8682 8.82199ZM6.16849 26.135C4.87806 27.6655 3.14953 31.0924 1.50343 34.9534C1.50343 34.9534 1.52622 34.9394 1.56704 34.9149C3.95887 29.8089 6.23404 26.1266 6.16849 26.135ZM37.3579 5.05135C35.8856 4.22674 31.4933 1.64203 28.9185 -3.55019e-10C28.9185 -3.55019e-10 29.4179 0.90123 29.7657 1.68929C32.9885 3.67512 37.4603 5.41885 37.3579 5.05135ZM23.0588 2.98284C21.8164 2.19038 20.4266 1.46458 20.4266 1.46458C24.8258 2.39694 29.0633 3.22469 30.4005 3.46125C30.552 3.84992 27.3119 3.845 23.0588 2.98284Z" fill="#9E66BF"/>
+  <path d="M-1.06821e-07 6.15648e-08L4.37939 2.73251L7.22064 2.50556L-1.06821e-07 6.15648e-08Z" transform="translate(29.577 5.25861)" fill="#5C007B"/>
+  <path d="M7.22031 2.50507L3.14969e-07 2.34524e-07L3.35338 1.58884C4.55471 2.15811 5.86626 2.47028 7.20061 2.50456L7.22031 2.50507Z" transform="translate(29.5771 5.25879)" fill="#9E66BF"/>
+  <path d="M5.95146e-07 -2.46259e-07L6.93562 1.72686L9.96089 0.749448L5.95146e-07 -2.46259e-07Z" transform="translate(21.9153 9.23785)" fill="#5C007B"/>
+  <path d="M9.96074 0.749995L5.59986e-07 1.7625e-07L6.12265 0.992726C6.97461 1.11598 7.83997 1.12405 8.69412 1.01655L9.96074 0.749995Z" transform="translate(21.9153 9.23755)" fill="#9E66BF"/>
+  <path d="M5.72851 4.77127e-07L4.24838 1.0924L6.25666e-07 0.93807L5.72851 4.77127e-07Z" transform="translate(30.034 11.5306)" fill="#5C007B"/>
+  <path d="M5.72822 3.13821e-07L7.43963e-07 0.937652L2.33105 0.867832C3.13395 0.843761 3.92694 0.685721 4.67563 0.400645L5.72822 3.13821e-07Z" transform="translate(30.0344 11.5309)" fill="#9E66BF"/>
+  <path d="M8.9478 -3.00129e-07L6.57559 1.54731L1.37341e-07 0.937061L8.9478 -3.00129e-07Z" transform="translate(15.5197 12.623)" fill="#5C007B"/>
+  <path d="M8.94729 2.20574e-07L-2.75745e-07 0.937652L4.9946 0.859262C6.1645 0.840862 7.32153 0.618926 8.41185 0.203788L8.94729 2.20574e-07Z" transform="translate(15.52 12.6226)" fill="#9E66BF"/>
+  <path d="M8.94679 1.00043e-07L6.54058 1.31027L6.71446e-07 0.937062L8.94679 1.00043e-07Z" transform="translate(25.3356 15.179)" fill="#5C007B"/>
+  <path d="M8.94729 2.10158e-07L6.06182e-07 0.937779L5.07856 0.858002C6.19296 0.840484 7.29513 0.629008 8.33382 0.233657L8.94729 2.10158e-07Z" transform="translate(25.3352 15.1785)" fill="#9E66BF"/>
+  <path d="M10.0719 2.77042e-07L8.39474 2.68308L2.74683e-07 4.68228L10.0719 2.77042e-07Z" transform="translate(15.1758 17.9438)" fill="#5C007B"/>
+  <path d="M-2.20955e-07 4.68208L10.0721 7.49835e-07L8.77679 1.00268C8.00905 1.59691 7.15116 2.07002 6.23404 2.405L-2.20955e-07 4.68208Z" transform="translate(15.1755 17.9439)" fill="#9E66BF"/>
+  <path d="M3.12833e-07 5.56992L6.49958 2.78496L7.97771 -8.31125e-07L3.12833e-07 5.56992Z" transform="translate(8.26013 16.811)" fill="#5C007B"/>
+  <path d="M4.40547e-07 5.5692L7.9775 -7.76923e-07L7.95535 0.032642C7.13056 1.25348 6.01989 2.26398 4.71555 2.98007L4.40547e-07 5.5692Z" transform="translate(8.26025 16.8113)" fill="#9E66BF"/>
+  <path d="M3.98735 2.30868e-07L3.73133 2.78597L9.15609e-08 7.34116L3.98735 2.30868e-07Z" transform="translate(7.21704 22.9347)" fill="#5C007B"/>
+  <path d="M1.09038e-07 7.34091L3.98798 6.42466e-07C3.77138 1.2768 3.28179 2.49448 2.55113 3.57341L1.09038e-07 7.34091Z" transform="translate(7.21674 22.9351)" fill="#9E66BF"/>
+  <path d="M1.29567 0.562707C1.29013 0.867066 0.995623 1.10891 0.637891 1.10261C0.280159 1.09656 -0.00545915 0.844633 7.80438e-05 0.540274C0.00561534 0.235789 0.300119 -0.00605963 0.657851 0.000115796C1.01558 0.00641721 1.30121 0.258222 1.29567 0.562707Z" transform="translate(42.6675 11.6351)" fill="white"/>
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M73.8306 24.4911C73.7528 24.7443 73.6263 24.9221 73.4523 25.022L73.402 25.0477C73.213 25.1269 73.0112 25.1155 72.7735 25.0557C72.0061 24.861 68.4478 24.4498 69.8711 20.1767L70.7151 17.6418L70.5237 17.1492L69.5985 14.8881L63.8032 1.04499C63.6759 0.757617 63.722 0.495948 63.8361 0.31771C63.9539 0.131887 64.1619 0.0379231 64.4558 0.0324454H67.7532C67.9791 0.0324454 68.1714 0.0952288 68.3187 0.212369C68.4665 0.32993 68.5747 0.509432 68.6663 0.730649L72.9204 10.9623L75.9719 0.759302C76.0372 0.514909 76.1529 0.329509 76.309 0.20647C76.4617 0.0859591 76.6569 0.0261244 76.885 0.0261244H80.4063C80.7051 0.0261244 80.9173 0.113347 81.0422 0.275995C81.167 0.444963 81.1837 0.689355 81.0913 1.00369L76.356 16.2833L74.5294 22.2119L73.8306 24.4911ZM59.9452 10.7368H63.5456C64.102 10.7368 64.4291 11.1013 64.2327 11.6647C63.2181 15.111 60.0106 17.4972 56.1809 17.4972C51.2059 17.4972 47.5077 13.686 47.5077 8.74841C47.5077 3.81084 51.2059 -2.44538e-07 56.1809 -2.44538e-07C60.0106 -2.44538e-07 63.2181 2.38578 64.2327 5.83213C64.4291 6.3955 64.102 6.7604 63.5456 6.7604H59.9452C59.5195 6.7604 59.2248 6.56151 58.963 6.19703C58.3741 5.36863 57.3595 4.90428 56.1809 4.90428C54.0538 4.90428 52.417 6.46207 52.417 8.74841C52.417 11.0352 54.0538 12.5925 56.1809 12.5925C57.3595 12.5925 58.3741 12.1286 58.963 11.3335C59.2248 10.9357 59.4866 10.7368 59.9452 10.7368ZM42.3134 0.895825V1.7592C42.7204 1.02855 43.6493 -0.00884887 46.0735 0.0244391C46.2492 0.0265459 46.3907 0.0943857 46.4947 0.203941C46.6475 0.364481 46.7207 0.581485 46.7207 0.862115V4.91229C46.7207 5.18702 46.6641 5.39307 46.5455 5.53043C46.4323 5.66738 46.2629 5.73648 46.0427 5.73648C45.5625 5.7192 45.1047 5.77061 44.6581 5.8907C44.2174 6.01037 43.8162 6.21684 43.4658 6.49705C43.1158 6.78315 42.8344 7.16744 42.6297 7.63558C42.422 8.11088 42.3167 8.68815 42.3134 9.37498L42.2905 13.6944C42.2663 18.2055 38.8686 17.5221 38.0754 17.4757C37.8049 17.4602 37.5947 17.4016 37.4482 17.2528C37.3013 17.1041 37.2277 16.8922 37.2277 16.6178V0.895825C37.2277 0.621515 37.3013 0.409568 37.4482 0.260826C37.5951 0.112084 37.8045 0.0379227 38.0754 0.0379227H41.4656C41.7365 0.0379227 41.9463 0.112084 42.0928 0.260826C42.2401 0.409568 42.3134 0.621094 42.3134 0.895825ZM27.6247 0.00800607C28.8212 0.0134838 29.9195 0.233437 30.9205 0.668708C31.9205 1.10356 32.7854 1.71454 33.5253 2.49659C34.259 3.28413 34.83 4.20313 35.2325 5.26034C35.6349 6.31754 35.8418 7.47377 35.8472 8.72902C35.8472 8.94392 35.8418 9.15292 35.8251 9.35138C35.8143 9.5549 35.7981 9.75336 35.7818 9.95141C35.7494 10.2156 35.6512 10.4082 35.4993 10.5295C35.3469 10.6509 35.1455 10.7111 34.9008 10.7111H24.0031C24.2096 11.3609 24.498 11.8893 24.8784 12.2967C25.2592 12.6987 25.7053 12.9907 26.2051 13.1778C26.7112 13.3649 27.2493 13.453 27.8208 13.453C28.2827 13.4475 28.7284 13.3759 29.1529 13.2275C29.5716 13.0788 29.9358 12.8803 30.235 12.6271C30.3927 12.4952 30.5505 12.3903 30.7028 12.3132C30.8605 12.2365 31.0399 12.1977 31.2463 12.1977L34.3789 12.1648C34.6781 12.1703 34.8954 12.2584 35.0261 12.429C35.1509 12.5997 35.1563 12.8201 35.0315 13.0897C34.602 14.0479 34.0306 14.8515 33.3185 15.4957C32.606 16.1455 31.7794 16.6296 30.8385 16.9604C29.8979 17.2849 28.8704 17.4505 27.7554 17.4505C26.3958 17.4446 25.1722 17.2191 24.0847 16.7784C22.9918 16.3381 22.0617 15.7271 21.2897 14.9341C20.5118 14.1469 19.9192 13.2216 19.5059 12.1703C19.0926 11.1131 18.8858 9.96784 18.8804 8.72902C18.8858 7.49021 19.0981 6.34493 19.5221 5.28815C19.9462 4.23642 20.5443 3.31152 21.3221 2.52398C22.0945 1.73139 23.0189 1.11999 24.0847 0.679664C25.1505 0.239336 26.3304 0.0134838 27.6247 0.00800607ZM4.73196 1.80808C5.39993 1.24134 6.14156 0.801018 6.92564 0.499319C7.74218 0.185823 8.60576 0.0223324 9.48098 0.0223324C11.6472 0.0223324 13.7651 1.00285 15.1851 2.58761C16.6031 4.17026 17.4804 6.35631 17.4804 8.76905C17.4804 11.1818 16.6031 13.3674 15.1851 14.9501C13.7651 16.5344 11.6472 17.5154 9.48098 17.5154C7.8945 17.5154 6.22979 17.0101 5.0699 15.8842L5.07322 21.2495C5.07614 25.7606 1.6514 25.0768 0.858162 25.0308C0.588478 25.0152 0.377473 24.9558 0.230978 24.8075C0.0844829 24.6592 0.0108199 24.4464 0.0108199 24.1725L5.02144e-07 0.919421C5.02144e-07 0.639634 0.0753269 0.419259 0.2264 0.266725C0.377057 0.113769 0.593473 0.0375014 0.871065 0.0375014H3.84966C4.12725 0.0375014 4.34367 0.113769 4.49432 0.266725C4.6454 0.419259 4.71739 0.637527 4.72072 0.919421L4.73196 1.80808ZM13.1991 8.7227C13.1991 6.5948 11.5065 4.86973 9.41855 4.86973C7.33016 4.86973 5.63757 6.5948 5.63757 8.7227C5.63757 10.851 7.33016 12.5761 9.41855 12.5761C11.5065 12.5761 13.1991 10.851 13.1991 8.7227ZM25.292 5.05682C24.6773 5.48619 24.2424 6.1195 23.9869 6.94538H30.9746C30.8006 6.32302 30.5396 5.82202 30.1913 5.44784C29.8492 5.07873 29.4468 4.80905 28.9952 4.64388C28.5437 4.4787 28.0763 4.39611 27.5923 4.40159C26.6729 4.40707 25.9009 4.62197 25.292 5.05682Z" transform="translate(60.8499 8.8685)" fill="#5C007B"/>
+  </svg>
+  
+        </a>
+        <a href="https://dnsimple.link/resolving-emberjs" title="Dnsimple" aria-label="Dnsimple" class="mr-2">
+          <?xml version="1.0" encoding="UTF-8"?>
+  <svg class="footer-contributor-logo"width="460px" height="120px" viewBox="0 0 460 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+      <title>blue</title>
+      <desc>Created with Sketch.</desc>
+      <g id="blue" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+          <path d="M48.5310493,13 C46.3747323,13 44.2184154,13.1137371 42.1755889,13.5686854 L42.1755889,34.7237814 C39.2248394,33.5864106 35.8201285,33.0177253 31.2805139,33.0177253 C15.1648822,33.0177253 2,44.0502216 2,61.7932053 C2,79.9911374 14.0299786,90 31.7344754,90 C40.4732334,90 49.4389722,87.6115214 55,84.6543575 L55,13.5686854 C52.8436831,13.1137371 50.5738758,13 48.5310493,13 L48.5310493,13 Z M32.3807531,79.9855192 C22.665272,79.9855192 16,73.266446 16,62.4927596 C16,51.8349193 23.1171548,45 32.6066946,45 C36.4476987,45 39.9497908,45.4633844 43,47.4327679 L43,78.2478279 C39.6108787,79.5221349 36.1087866,80.1013653 32.3807531,79.9855192 L32.3807531,79.9855192 Z M95.8993289,33 C84.261745,33 74.7919463,37.5436105 70,41.5192698 L70,88.4320487 C72.1677852,88.8864097 74.3355705,89 76.3892617,89 C78.557047,89 80.8389262,88.8864097 82.8926174,88.4320487 L82.8926174,47.7667343 C85.4026846,46.2900609 89.852349,44.8133874 94.8724832,44.8133874 C103.201342,44.8133874 107.993289,48.5618661 107.993289,58.4442191 L107.993289,88.4320487 C110.275168,88.8864097 112.328859,89 114.496644,89 C116.550336,89 118.832215,88.8864097 121,88.4320487 L121,55.3772819 C121,42.9959432 113.355705,33 95.8993289,33 L95.8993289,33 Z M154.427861,90 C169.303483,90 178,83.2007952 178,71.9821074 C178,61.3300199 169.41791,57.3638171 157.631841,55.5506958 C148.363184,54.0775348 145.960199,52.3777336 145.960199,48.8648111 C145.960199,45.4652087 148.935323,43.3121272 155.800995,43.3121272 C162.323383,43.3121272 167.930348,45.2385686 171.706468,47.3916501 C174.338308,45.3518887 176.054726,42.1789264 176.626866,38.2127237 C173.079602,35.7196819 166.099502,33 156.258706,33 C142.527363,33 133.487562,39.7992048 133.487562,49.7713718 C133.487562,61.1033797 142.641791,64.6163022 152.253731,66.0894632 C161.9801,67.5626243 165.069652,69.6023857 165.069652,73.2286282 C165.069652,76.8548708 162.323383,79.6878728 154.656716,79.6878728 C146.074627,79.6878728 141.268657,76.7415507 137.950249,74.361829 C135.20398,76.0616302 133.029851,79.1212724 132,83.2007952 C135.089552,85.8071571 142.298507,90 154.427861,90 L154.427861,90 Z M195.616438,27 C200.157534,27 204,23.2222222 204,18.5 C204,13.7777778 200.157534,10 195.616438,10 C190.842466,10 187,13.7777778 187,18.5 C187,23.2222222 190.842466,27 195.616438,27 L195.616438,27 Z M195.557522,89 C197.743363,89 199.929204,88.8861284 202,88.4306418 L202,34.5693582 C199.929204,34.1138716 197.628319,34 195.557522,34 C193.371681,34 191.185841,34.1138716 189,34.5693582 L189,88.4306418 C191.185841,88.8861284 193.486726,89 195.557522,89 L195.557522,89 Z M279.136729,33 C271.758713,33 265.072386,35.8397566 260.576408,39.2474645 C256.541555,35.3853955 250.546917,33 242.707775,33 C231.294906,33 221.380697,37.7707911 217,41.5192698 L217,88.4320487 C219.190349,88.8864097 221.380697,89 223.455764,89 C225.646113,89 227.951743,88.8864097 230.02681,88.4320487 L230.02681,47.7667343 C232.908847,46.0628803 236.9437,44.8133874 241.209115,44.8133874 C250.085791,44.8133874 253.428954,50.3793103 253.428954,58.1034483 L253.428954,88.4320487 C255.619303,88.8864097 257.809651,89 260.115282,89 C262.190349,89 264.495979,88.8864097 266.571046,88.4320487 L266.571046,54.2413793 C266.571046,52.5375254 266.340483,50.8336714 265.994638,49.2434077 C268.646113,47.0851927 272.335121,44.8133874 277.63807,44.8133874 C286.514745,44.8133874 289.97319,50.3793103 289.97319,58.1034483 L289.97319,88.4320487 C292.048257,88.8864097 294.238606,89 296.544236,89 C298.619303,89 300.924933,88.8864097 303,88.4320487 L303,54.2413793 C303,42.5415822 294.930295,33 279.136729,33 L279.136729,33 Z M340.997854,33 C330.761803,33 322.23176,36.9807976 317,41.3028065 L317,109.431315 C319.274678,109.886263 321.321888,110 323.482833,110 C325.643777,110 327.804721,109.886263 329.851931,109.431315 L329.851931,88.5036928 C333.263948,89.6410635 336.903433,90.0960118 341.45279,90.0960118 C356.465665,90.0960118 370,79.5184638 370,61.3205318 C370,42.6676514 357.48927,33 340.997854,33 L340.997854,33 Z M338.619247,79 C334.439331,79 331.050209,78.3131313 328,76.8249158 L328,47.6329966 C331.276151,45.8013468 334.778243,45 338.506276,45 C348.334728,45 355,51.2962963 355,61.7138047 C355,72.4747475 348.334728,79 338.619247,79 L338.619247,79 Z M388,89 C390.333333,89 392.789474,88.8858859 395,88.4294294 L395,13.5705706 C392.666667,13.1141141 390.210526,13 387.877193,13 C385.54386,13 383.210526,13.1141141 381,13.5705706 L381,88.4294294 C383.45614,88.8858859 385.789474,89 388,89 L388,89 Z M458,57.2988048 C458,42.8784861 447.714286,33 433.2,33 C417.771429,33 406,45.0358566 406,61.7270916 C406,79.3266932 417.657143,90 433.885714,90 C444.742857,90 451.828571,86.0258964 456.4,82.3924303 C455.942857,79.0996016 453.657143,75.4661355 450.8,73.6494024 C447.257143,76.1474104 442.685714,79.2131474 434.8,79.2131474 C425.771429,79.2131474 420.285714,73.7629482 419.257143,64.9063745 L457.542857,64.9063745 C457.885714,61.9541833 458,60.1374502 458,57.2988048 L458,57.2988048 Z M419,57 C419.9163,49.5877193 424.84141,44 432.859031,44 C441.678414,44.1140351 445,50.6140351 445,57 L419,57 Z" id="dnsimple-copy" fill="#1A5EC6"></path>
+      </g>
+  </svg>
+        </a>
+    </div>
+  </div>
+</div>
+</footer>
+<script type="x/boundary" id="fastboot-body-end"></script>
+
+    <script src="/assets/vendor-f43023b3037e03c0f8222dd641286237.js"></script>
+<script src="/assets/chunk.7471.9daaf5ca3e3851a7ccfe.js"></script>
+<script src="/assets/chunk.3524.4aa7fa5b69ff95e90b5c.js"></script>
+    <script src="/assets/ember-guides-bbdf77beeb9f5095a2dc89f0251f55b2.js"></script>
+
+    
+  </body>
+</html>
