@@ -1,0 +1,3 @@
+"use strict";(self.webpackChunk_ember_auto_import_=self.webpackChunk_ember_auto_import_||[]).push([[5050],{209:function(e,n,t){t.r(n)
+var o=Object.freeze(JSON.parse('{"displayName":"CODEOWNERS","name":"codeowners","patterns":[{"include":"#comment"},{"include":"#pattern"},{"include":"#owner"}],"repository":{"comment":{"patterns":[{"begin":"^\\\\s*#","captures":{"0":{"name":"punctuation.definition.comment.codeowners"}},"end":"$","name":"comment.line.codeowners"}]},"owner":{"match":"\\\\S*@\\\\S+","name":"storage.type.function.codeowners"},"pattern":{"match":"^\\\\s*(\\\\S+)","name":"variable.other.codeowners"}},"scopeName":"text.codeowners"}'))
+n.default=[o]}}])
