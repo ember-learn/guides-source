@@ -243,7 +243,7 @@ public
 │       └── teaching-tomster.png
 └── robots.txt
 
-4 directories, 6 files
+5 directories, 6 files
 ```
 
 You can verify that everything is working correctly by navigating to `http://localhost:4200/api/rentals.json`.

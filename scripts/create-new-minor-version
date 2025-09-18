@@ -40,7 +40,7 @@ read -n 1 -s -r -p "Press any key to continue"
 # `-d "."` specifies `.` as the delimiter.
 # `-f N` specifies which of the delimited sections to keep
 # `cut -c 2-` gets rid of the "v" prefix by selecting from the second character onwards.
-CURRENT_VERSION=$(grep "currentVersion" guides/versions.yml | sed "s/currentVersion.*\(v.*\)\"/\1/")
+CURRENT_VERSION=$(grep "currentVersion" guides/versions.yml | sed "s/currentVersion: \(v.*\)/\1/")
 MAJOR_VERSION=$(echo $CURRENT_VERSION | cut -d "." -f 1 | cut -c 2-)
 MINOR_VERSION=$(echo $CURRENT_VERSION | cut -d "." -f 2)
 PATCH_VERSION=$(echo $CURRENT_VERSION | cut -d "." -f 3)
@@ -62,9 +62,9 @@ echo "  DONE"
 # Then we interpolate the new version and replace the closing double quote.
 # We also add the relevant version to the list by using sed's i command.
 echo "🤖 Updating /guides/versions.yml"
-sed -i .bak "s/\(currentVersion:.*v\).*/\1$(echo $NEXT_VERSION)\"/" guides/versions.yml
+sed -i .bak "s/\(currentVersion:.*v\).*/\1$(echo $NEXT_VERSION)/" guides/versions.yml
 sed -i .bak -e "/currentVersion/i \\
-\ \ - \"v$(echo $NEXT_VERSION)\"" guides/versions.yml
+\ \ - v$(echo $NEXT_VERSION)" guides/versions.yml
 rm guides/versions.yml.bak
 echo "  DONE"
 
