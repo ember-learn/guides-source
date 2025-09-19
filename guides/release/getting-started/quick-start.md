@@ -13,8 +13,7 @@ We'll cover these steps:
 
 ## Install Ember
 
-You can install Ember with a single command using npm,
-the Node.js package manager.
+You can install Ember with a single command using [npm](https://docs.npmjs.com/cli),
 Type this into your terminal:
 
 ```bash
