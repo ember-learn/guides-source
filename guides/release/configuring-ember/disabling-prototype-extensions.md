@@ -41,13 +41,13 @@ native arrays with things like a template's `{{#each}}` helper, Ember.js
 will have no way to detect changes to the array and the template will
 not update as the underlying array changes.
 
-You can restore automatic tracking of changes by replacing your native array with a `TrackedArray` from the 'tracked-built-ins' library.
+You can restore automatic tracking of changes by replacing your native array with a `trackedArray` from [@ember/reactive/collections](https://api.emberjs.com/ember/release/modules/@ember%2Freactive%2Fcollections).
 
 ```javascript
-import { TrackedArray } from '@glimmer/tracking';
+import { trackedArray } from '@ember/reactive/collections';
 
 class Ocean {
-  islands = new TrackedArray(['Oahu', 'Kauai']);
+  islands = trackedArray(['Oahu', 'Kauai']);
   
   addIsland(newIsland) {
     this.islands.push(newIsland);
