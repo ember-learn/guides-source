@@ -1,7 +1,7 @@
 Before you start writing any Ember code, it's a good idea to get an overview of how an
 Ember application works.
 
-![ember core concepts](/images/ember-core-concepts/ember-core-concepts.svg)
+![ember core concepts](/images/ember-core-concepts/ember-core-concepts-gjs.svg)
 
 ## Router and Route Handlers
 
@@ -51,8 +51,10 @@ Ember uses templates to build up the user interface in an application.
 If you have written HTML before, you already know how to write a basic Ember
 template. For example:
 
-```handlebars {data-filename="app/templates/welcome.hbs"}
-<div>Hi, this is a valid Ember template!</div>
+```gjs {data-filename="app/templates/welcome.gjs"}
+<template>
+  <div>Hi, this is a valid Ember template!</div>
+</template>
 ```
 
 In addition to static HTML content, Ember uses the syntax of [Handlebars](http://handlebarsjs.com)
@@ -61,17 +63,19 @@ to describe dynamic user interface elements.
 For example, as mentioned before, the route handler makes the model available
 to its template:
 
-```handlebars {data-filename="app/templates/welcome.hbs"}
-{{!-- The model for this route is the current user --}}
+```gjs {data-filename="app/templates/welcome.gjs"}
+<template>
+  {{!-- The model for this route is the current user --}}
 
-<div>
-  Hi <img src="{{@model.profileImage}}" alt="{{@model.name}}'s profile picture"> {{@model.name}},
-  this is a valid Ember template!
-</div>
+  <div>
+    Hi <img src="{{@model.profileImage}}" alt="{{@model.name}}'s profile picture"> {{@model.name}},
+    this is a valid Ember template!
+  </div>
 
-{{#if @model.isAdmin}}
-  <div>Remember, with great power comes great responsibility!</div>
-{{/if}}
+  {{#if @model.isAdmin}}
+    <div>Remember, with great power comes great responsibility!</div>
+  {{/if}}
+</template>
 ```
 
 This example combines several Handlebars features to create a personalized
@@ -98,22 +102,28 @@ For example, the example in the previous section is getting a bit long. We can
 _extract_ the snippet for rendering the user's name and profile picture into
 its own component:
 
-```handlebars {data-filename="app/components/user-profile.hbs"}
-<img src="{{@user.profileImage}}" alt="{{@user.name}}'s profile picture"> {{@user.name}}
+```gjs {data-filename="app/components/user-profile.gjs"}
+<template>
+  <img src="{{@user.profileImage}}" alt="{{@user.name}}'s profile picture"> {{@user.name}}
+</template>
 ```
 
 Doing this allows us to simplify the original template like so:
 
-```handlebars {data-filename="app/templates/welcome.hbs"}
-{{!-- The model for this route is the current user --}}
+```gjs {data-filename="app/templates/welcome.gjs"}
+import UserProfile from 'my-app/components/user-profile';
 
-<div>
-  Hi <UserProfile @user={{@model}} /> this is a valid Ember template!
-</div>
+<template>
+  {{!-- The model for this route is the current user --}}
 
-{{#if @model.isAdmin}}
-  <div>Remember, with great power comes great responsibility!</div>
-{{/if}}
+  <div>
+    Hi <UserProfile @user={{@model}} /> this is a valid Ember template!
+  </div>
+
+  {{#if @model.isAdmin}}
+    <div>Remember, with great power comes great responsibility!</div>
+  {{/if}}
+</template>
 ```
 
 Not only did we clean up the original template to be more readable, we now

@@ -17,29 +17,32 @@ Consider this format:
 
 Note that the unique page title is first. This is because it is the most important piece of information from a contextual perspective. Since a user with a screen reader can interrupt the screen reader as they wish, it introduces less fatigue when the unique page title is first, but provides the additional guidance if it is desired.
 
-A simple way to add page titles is to use the `page-title` helper which comes from the [ember-page-title](https://github.com/ember-cli/ember-page-title) addon that is installed by default in new apps. We can use this helper to set the page title at any point in any template.
+A simple way to add page titles is to use the `pageTitle` helper which comes from the [ember-page-title](https://github.com/ember-cli/ember-page-title) addon that is installed by default in new apps. We can use this helper to set the page title at any point in any template.
 
 For example, if we have a “posts” route, we can set the page title for it like so:
 
+```gjs {data-filename=app/routes/posts.gjs}
+import { pageTitle } from 'ember-page-title';
 
-```handlebars {data-filename=app/routes/posts.hbs}
-{{page-title "Posts - Site Title"}}
-
-{{outlet}}
+<template>
+  {{pageTitle "Posts"}}
+  {{outlet}}
+</template>
 ```
 
 Extending the example, if we have a “post” route that lives within the “posts” route, we could set its page title like so:
 
-```handlebars {data-filename=app/routes/posts/post.hbs}
-{{page-title (concat @model.title " - Site Title")}}
+```gjs {data-filename=app/routes/posts/post.gjs}
+import { pageTitle } from 'ember-page-title';
 
-<h1>{{@model.title}}</h1>
+<template>
+  {{pageTitle @model.title}} {{! e.g.,  "My Title" }}
+
+  <h1>{{@model.title}}</h1>
+</template>
 ```
 
-When your needs become more complex, the following addons facilitate page titles in a more dynamic and maintainable way.
-
-- [ember-cli-head](https://github.com/ronco/ember-cli-head)
-- [ember-cli-document-title](https://github.com/kimroen/ember-cli-document-title)
+Each call to the `{{pageTitle}}` helper will prepend the title string to the existing title all the way up to the root title in `application.gts`.  So, if your application is titled "My App", then the full title for the above example would be "My Title | Posts | My App".
 
 To evaluate more addons to add/manage content in the `<head>` of a page, view this category on [Ember Observer](https://emberobserver.com/categories/header-content).
 
@@ -48,14 +51,14 @@ You can test that page titles are generated correctly by asserting on the value 
 ```javascript {data-filename=tests/acceptance/posts-test.js}
 import { module, test } from 'qunit';
 import { visit, currentURL } from '@ember/test-helpers';
-import { setupApplicationTest } from 'my-app-name/tests/helpers';
+import { setupApplicationTest } from 'my-app/tests/helpers';
 
-module('Acceptance | posts', function(hooks) {
+module('Acceptance | posts', function (hooks) {
   setupApplicationTest(hooks);
 
-  test('visiting /posts', async function(assert) {
+  test('visiting /posts', async function (assert) {
     await visit('/posts');
-    assert.equal(document.title, 'Posts - Site Title');
+    assert.equal(document.title, 'Posts | My App');
   });
 });
 ```

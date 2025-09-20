@@ -10,18 +10,18 @@ Every Ember app comes with [QUnit](http://qunitjs.com/) and [QUnit DOM](https://
 
 To see the power of QUnit DOM, consider this code snippet. It checks whether our button component shows the right label and the right attributes.
 
-```javascript {data-filename=tests/integration/components/simple-button-test.js}
+```gjs {data-filename=tests/integration/components/simple-button-test.gjs}
 /*
   For simplicity, the import, module, and setup statements
   are omitted here. Our component accepts two arguments,
   label (string) and isDisabled (boolean).
 */
 test("should show label", async function (assert) {
-  await render(hbs`
+  await render(<template>
     <SimpleButton
       @label="Hello world!"
     />
-  `);
+  </template>);
   let button = this.element.querySelector("button");
 
   // QUnit
@@ -32,12 +32,12 @@ test("should show label", async function (assert) {
 });
 
 test("should allow disabling the button", async function (assert) {
-  await render(hbs`
+  await render(<template>
     <SimpleButton
       @label="Hello world!"
       @isDisabled={{true}}
     />
-  `);
+  </template>);
   let button = this.element.querySelector("button");
 
   // QUnit
@@ -84,26 +84,28 @@ You want to be able to grab DOM elements in your tests. Since Ember is just Java
 
 Consider the example of a button component again. This time, our component can display a Material icon in addition to the label.
 
-```handlebars {data-filename=app/components/simple-button.hbs}
-<button data-test-button={{@label}} type="button">
-  {{#if @icon}}
-    <i data-test-icon aria-hidden="true" class="material-icons">
-      {{@icon}}
-    </i>
-  {{/if}}
+```gjs {data-filename=app/components/simple-button.gjs}
+<template>
+  <button data-test-button={{@label}} type="button">
+    {{#if @icon}}
+      <i data-test-icon aria-hidden="true" class="material-icons">
+        {{@icon}}
+      </i>
+    {{/if}}
 
-  <span data-test-label>{{@label}}</span>
-</button>
+    <span data-test-label>{{@label}}</span>
+  </button>
+</template>
 ```
 
-```javascript {data-filename=tests/integration/components/simple-button-test.js}
+```gjs {data-filename=tests/integration/components/simple-button-test.gjs}
 test("should show icon and label", async function (assert) {
-  await render(hbs`
+  await render(<template>
     <SimpleButton
       @icon="face"
       @label="Hello world!"
     />
-  `);
+  </template>);
 
   // Bad
   assert.strictEqual(

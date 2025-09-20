@@ -8,7 +8,7 @@ To define a route, run
 ember generate route route-name
 ```
 
-This creates a route file at `app/routes/route-name.js`, a template for the route at `app/templates/route-name.hbs`,
+This creates a route file at `app/routes/route-name.js`, a template for the route at `app/templates/route-name.gjs`,
 and a unit test file at `tests/unit/routes/route-name-test.js`.
 It also adds the route to the router.
 
@@ -42,15 +42,19 @@ Router.map(function() {
 Inside your templates, you can use [`<LinkTo />`](https://api.emberjs.com/ember/release/classes/Ember.Templates.components/methods/LinkTo?anchor=LinkTo) to navigate between
 routes, using the name that you provided to the `route` method.
 
-```handlebars
-<LinkTo @route="index">
-  <img class="logo">
-</LinkTo>
+```gjs
+import { LinkTo } from '@ember/routing';
 
-<nav>
-  <LinkTo @route="about">About</LinkTo>
-  <LinkTo @route="favorites">Favorites</LinkTo>
-</nav>
+<template>
+  <LinkTo @route="index">
+    <img class="logo">
+  </LinkTo>
+
+  <nav>
+    <LinkTo @route="about">About</LinkTo>
+    <LinkTo @route="favorites">Favorites</LinkTo>
+  </nav>
+</template>
 ```
 
 The `<LinkTo />` component will also add an `active` class to the link that
@@ -65,7 +69,7 @@ Router.map(function() {
 ```
 
 The route defined above will by default use the `blog-post.js` route handler,
-the `blog-post.hbs` template, and be referred to as `blog-post` in any
+the `blog-post.gjs` template, and be referred to as `blog-post` in any
 `<LinkTo />` components.
 
 Multi-word route names that break this convention, such as:
@@ -77,7 +81,7 @@ Router.map(function() {
 ```
 
 will still by default use the `blog-post.js` route handler and the
-`blog-post.hbs` template, but will be referred to as `blog_post` in any
+`blog-post.gjs` template, but will be referred to as `blog_post` in any
 `<LinkTo />` components.
 
 ## Nested Routes
@@ -109,17 +113,22 @@ ember generate route posts/new
 And then add the `{{outlet}}` helper to your template where you want the nested
 template to display. You can also add a page title with the current page name (using [page-title helper](../../accessibility/page-template-considerations/#toc_page-title)), this will help users with assistive technology know where they are in the website.
 
-```handlebars {data-filename=templates/posts.hbs}
-{{page-title "Posts - Site Title"}}
-<h1>Posts</h1>
-{{!-- Display posts and other content --}}
-{{outlet}}
+```gjs {data-filename=templates/posts.gjs}
+import { pageTitle } from 'ember-page-title'
+
+<template>
+  {{pageTitle "Posts - Site Title"}}
+
+  <h1>Posts</h1>
+  {{!-- Display posts and other content --}}
+  {{outlet}}
+</template>
 ```
 
 This generates a route for `/posts` and for `/posts/new`. When a user
-visits `/posts`, they'll simply see the `posts.hbs` template. (Below, [index
+visits `/posts`, they'll simply see the `posts.gjs` template. (Below, [index
 routes](#toc_index-routes) explains an important addition to this.) When the
-user visits `posts/new`, they'll see the `posts/new.hbs` template rendered into
+user visits `posts/new`, they'll see the `posts/new.gjs` template rendered into
 the `{{outlet}}` of the `posts` template.
 
 A nested route name includes the names of its ancestors.
@@ -134,7 +143,7 @@ routes, it will load a template with the same name (`application` in
 this case) by default.
 You should put your header, footer, and any other decorative content
 here. All other routes will render
-their templates into the `application.hbs` template's `{{outlet}}`.
+their templates into the `application.gjs` template's `{{outlet}}`.
 
 This route is part of every application, so you don't need to
 specify it in your `app/router.js`.
@@ -200,38 +209,51 @@ replace the `{{outlet}}` in the `posts` template with the
 
 The following scenarios may help with understanding the `index` route:
 
-- The top-level index route is analogous to `index.html`. For example, when someone visits `https://some-ember-app.com`, the contents of the `template/index.hbs` file will be rendered. There is no need to add an entry `this.route('index', { path: '/' });` in `app/router.js` file. The `index` route is implicitly included in order to help reduce verbose declarations in the `app/router.js`. The `app/router.js` file could be empty, and the `index` would still be shown:
+- The top-level index route is analogous to `index.html`. For example, when someone visits `https://some-ember-app.com`, the contents of the `template/index.gjs` file will be rendered. There is no need to add an entry `this.route('index', { path: '/' });` in `app/router.js` file. The `index` route is implicitly included in order to help reduce verbose declarations in the `app/router.js`. The `app/router.js` file could be empty, and the `index` would still be shown:
 
 ```javascript {data-filename=app/router.js}
 Router.map(function() {
 });
 ```
-- When a user navigates to `/posts`, the contents of `index.hbs` will be rendered. This is similar to a user navigating to the child route of `/posts`. `/posts/index` is a child route like `/posts/comments` or `/posts/likes`.
+- When a user navigates to `/posts`, the contents of `index.gjs` will be rendered. This is similar to a user navigating to the child route of `/posts`. `/posts/index` is a child route like `/posts/comments` or `/posts/likes`.
 
 ### When to use an index route
 
 The index route is most helpful for rendering a view when the route has [dynamic segments](#toc_dynamic-segments) defined in it or there are nested routes. In other words, an `index` template is used to show content that should not be present on sibling and child routes. For example, a blog app might have an `index` route that shows a list of all posts, but if a user clicks on a post, they should only see the content for the individual post. Here is how that looks in practice:
 
-A `templates/posts.hbs` file has the following:
+A `templates/posts.gjs` file has the following:
 
-```handlebars {data-filename=templates/posts.hbs}
-{{page-title "Posts"}}
-<h1>This is the posts template, containing headers to show on all child routes</h1>
-{{outlet}}
+```gjs {data-filename=templates/posts.gjs}
+
+import { pageTitle } from 'ember-page-title'
+
+<template>
+  {{pageTitle "Posts"}}
+  <h1>This is the posts template, containing headers to show on all child routes</h1>
+  {{outlet}}
+</template>
 ```
 
-The `templates/posts/index.hbs` file has the following:
+The `templates/posts/index.gjs` file has the following:
 
-```handlebars {data-filename=templates/posts/index.hbs}
-{{page-title "Posts"}}
-<p>This is the posts/index template with a list of posts</p>
+```gjs {data-filename=templates/posts/index.gjs}
+import { pageTitle } from 'ember-page-title'
+
+<template>
+  {{pageTitle "Posts"}}
+  <p>This is the posts/index template with a list of posts</p>
+</template>
 ```
 
-The `templates/posts/post.hbs` file has the following:
+The `templates/posts/post.gjs` file has the following:
 
-```handlebars {data-filename=templates/posts/post.hbs}
-{{page-title "Post"}}
-<p>This is an individual post, from the posts/post template, used when we enter the /posts/:post_id route</p>
+```gjs {data-filename=templates/posts/post.gjs}
+import { pageTitle } from 'ember-page-title'
+
+<template>
+  {{pageTitle "Post"}}
+  <p>This is an individual post, from the posts/post template, used when we enter the /posts/:post_id route</p>
+</template>
 ```
 
 This is equivalent to having the following entry in `app/router.js` file
@@ -247,18 +269,26 @@ Router.map(function() {
 
 When the user navigates to `/posts/123`, the following markup will be seen:
 
-```handlebars {data-filename=templates/posts/post.hbs}
-{{page-title "Posts"}}
-<h1>This is the posts template, containing headers to show on all child routes</h1>
-<p>This is an individual post, from the posts/post template, used when we enter the /posts/:post_id route</p>
+```gjs {data-filename=templates/posts/post.gjs}
+import { pageTitle } from 'ember-page-title'
+
+<template>
+  {{pageTitle "Posts"}}
+  <h1>This is the posts template, containing headers to show on all child routes</h1>
+  <p>This is an individual post, from the posts/post template, used when we enter the /posts/:post_id route</p>
+</template>
 ```
 
 When the user navigates to `/posts/`, the following markup will be seen:
 
-```handlebars {data-filename=templates/posts/index.hbs}
-{{page-title "Posts"}}
-<h1>This is the posts template, containing headers to show on all child routes</h1>
-<p>This is the posts/index template with a list of posts</p>
+```gjs {data-filename=templates/posts/index.gjs}
+import { pageTitle } from 'ember-page-title'
+
+<template>
+  {{pageTitle "Posts"}}
+  <h1>This is the posts template, containing headers to show on all child routes</h1>
+  <p>This is the posts/index template with a list of posts</p>
+</template>
 ```
 
 ## Dynamic Segments
@@ -322,9 +352,13 @@ Router.map(function() {
 });
 ```
 
-```handlebars {data-filename=app/templates/not-found.hbs}
-{{page-title "Not found"}}
-<p>Oops, the page you're looking for wasn't found</p>
+```gjs {data-filename=app/templates/not-found.gjs}
+import { pageTitle } from 'ember-page-title'
+
+<template>
+  {{pageTitle "Not found"}}
+  <p>Oops, the page you're looking for wasn't found</p>
+</template>
 ```
 
 In the above example we have successfully used a wildcard route to handle all routes not managed by our application
