@@ -283,8 +283,12 @@ When you are ready, save the CSS file; our trusty development server should pick
 To match the mockup from our designer, we will also need to download the `teaching-tomster.png` image, which was referenced from our CSS file:
 
 ```css { data-filename=app/styles/app.css }
-.tomster {
+.jumbo {
+  height: 250px;
   background: url(../assets/images/teaching-tomster.png);
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: contain;
   /* ...snip... */
 }
 ```
