@@ -11,10 +11,10 @@ Router.map(function() {
 });
 ```
 
-Here, the `posts` route will render the `posts.hbs` template, and
-the `posts.new` route will render `posts/new.hbs`.
+Here, the `posts` route will render the `posts.gjs` template, and
+the `posts.new` route will render `posts/new.gjs`.
 
 Each template will be rendered into the `{{outlet}}` of its parent route's
 template. For example, the `posts.new` route will render its template into the
-`posts.hbs`'s `{{outlet}}`, and the `posts` route will render its template into
-the `application.hbs`'s `{{outlet}}`.
+`posts.gjs`'s `{{outlet}}`, and the `posts` route will render its template into
+the `application.gjs`'s `{{outlet}}`.

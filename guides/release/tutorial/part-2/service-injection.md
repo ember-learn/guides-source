@@ -45,45 +45,19 @@ For our app, it probably makes the most sense for our share button to automatica
 Now that we have a better understanding of the scope of this feature, let's get to work and generate a `share-button` component.
 
 ```shell
-$ ember generate component share-button --with-component-class
+$ ember generate component share-button -gc
 installing component
-  create app/components/share-button.js
-  create app/components/share-button.hbs
+  create app/components/share-button.gjs
 installing component-test
-  create tests/integration/components/share-button-test.js
+  create tests/integration/components/share-button-test.gjs
 
 Running "lint:fix" script...
 ```
 
-Let's start with the template that was generated for this component. We already have some markup for the share button in the `<Rental::Detailed>` component we made earlier, so let's just copy that over into our new `<ShareButton>` component.
+Let's start with the template that was generated for this component. We already have some markup for the share button in the `<RentalDetailed>` component we made earlier, so let's just copy that over into our new `<ShareButton>` component.
 
-```handlebars { data-filename="app/components/share-button.hbs" data-diff="-1,+2,+3,+4,+5,+6,+7,+8,+9,+10" }
-{{yield}}
-<a
-  ...attributes
-  href={{this.shareURL}}
-  target="_blank"
-  rel="external nofollow noopener noreferrer"
-  class="share button"
->
-  {{yield}}
-</a>
-```
-
-Notice that we added `...attributes` to our `<a>` tag here. As [we learned earlier](../../part-1/reusable-components/) when working on our `<Map>` component, the order of `...attributes` relative to other attributes is significant. We don't want to allow `href`, `target`, or `rel` to be overridden by the invoker, so we specified those attributes after `...attributes`.
-
-But what happens to the `class` attribute? Well, as it turns out, the `class` attribute is the one exception to how these component attributes are overridden! While all other HTML attributes follow the "last-write wins" rule, the values for the `class` attribute are merged together (concatenated) instead. There is a good reason for this: it allows the component to specify whatever classes that _it_ needs, while allowing the invokers of the component to freely add any extra classes that _they_ need for styling purposes.
-
-We also have a `{{yield}}` inside of our `<a>` tag so that we can customize the text for the link later when invoking the `<ShareButton>` component.
-
-## Accessing the Current Page URL
-
-Whew! Let's look at the JavaScript class next.
-
-```js { data-filename="app/components/share-button.js" data-diff="-3,+4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30" }
+```gjs { data-filename="app/components/share-button.gjs" data-diff="+2,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,-30,+31,+32,+33,+34,+35,+36,+37,+38,+39" }
 import Component from '@glimmer/component';
-
-export default class ShareButton extends Component {}
 const TWEET_INTENT = 'https://twitter.com/intent/tweet';
 
 export default class ShareButton extends Component {
@@ -110,66 +84,96 @@ export default class ShareButton extends Component {
 
     return url;
   }
+
+  <template>
+    {{yield}}
+    <a
+      ...attributes
+      href={{this.shareURL}}
+      target="_blank"
+      rel="external nofollow noopener noreferrer"
+      class="share button"
+    >
+      {{yield}}
+    </a>
+  </template>
 }
 ```
+
+Looking at the template section, notice that we added `...attributes` to our `<a>` tag here. As [we learned earlier](../../part-1/reusable-components/) when working on our `<Map>` component, the order of `...attributes` relative to other attributes is significant. We don't want to allow `href`, `target`, or `rel` to be overridden by the invoker, so we specified those attributes after `...attributes`.
+
+But what happens to the `class` attribute? Well, as it turns out, the `class` attribute is the one exception to how these component attributes are overridden! While all other HTML attributes follow the "last-write wins" rule, the values for the `class` attribute are merged together (concatenated) instead. There is a good reason for this: it allows the component to specify whatever classes that _it_ needs, while allowing the invokers of the component to freely add any extra classes that _they_ need for styling purposes.
+
+We also have a `{{yield}}` inside of our `<a>` tag so that we can customize the text for the link later when invoking the `<ShareButton>` component.
+
+## Accessing the Current Page URL
+
+Whew! Let's look at the JavaScript part next.
 
 The key functionality of this class is to build the appropriate URL for the Twitter Web Intent API, which is exposed to the template via the `this.shareURL` getter. It mainly involves "gluing together" the component's arguments and setting the appropriate query params on the resulting URL. Conveniently, the browser provides a handy [`URL` class](https://javascript.info/url) that handles escaping and joining of query params for us.
 
 The other notable functionality of this class has to do with getting the current page's URL and automatically adding it to the Twitter Intent URL. To accomplish this, we defined a `currentURL` getter that simply used the browser's global [`Location` object](https://developer.mozilla.org/en-US/docs/Web/API/Window/location), which we could access at `window.location`. Among other things, it has a `href` property (`window.location.href`) that reports the current page's URL.
 
-Let's put this component to use by invoking it from the `<Rental::Detailed>` component!
+Let's put this component to use by invoking it from the `<RentalDetailed>` component!
 
-```handlebars { data-filename="app/components/rental/detailed.hbs" data-diff="-4,+5,+6,+7,+8,+9,-11,+12" }
-<Jumbo>
-  <h2>{{@rental.title}}</h2>
-  <p>Nice find! This looks like a nice place to stay near {{@rental.city}}.</p>
-  <a href="#" target="_blank" rel="external nofollow noopener noreferrer" class="share button">
-  <ShareButton
-    @text="Check out {{@rental.title}} on Super Rentals!"
-    @hashtags="vacation,travel,authentic,blessed,superrentals"
-    @via="emberjs"
-  >
-    Share on Twitter
-  </a>
-  </ShareButton>
-</Jumbo>
+```gjs { data-filename="app/components/rental/detailed.gjs" data-diff="+4,-10,+11,+12,+13,+14,+15,-17,+18" }
+import Jumbo from 'super-rentals/components/jumbo';
+import RentalImage from 'super-rentals/components/rental/image';
+import Map from 'super-rentals/components/map';
+import ShareButton from 'super-rentals/components/share-button';
 
-<article class="rental detailed">
-  <Rental::Image
-    src={{@rental.image}}
-    alt="A picture of {{@rental.title}}"
-  />
+<template>
+  <Jumbo>
+    <h2>{{@rental.title}}</h2>
+    <p>Nice find! This looks like a nice place to stay near {{@rental.city}}.</p>
+    <a href="#" target="_blank" rel="external nofollow noopener noreferrer" class="share button">
+    <ShareButton
+      @text="Check out {{@rental.title}} on Super Rentals!"
+      @hashtags="vacation,travel,authentic,blessed,superrentals"
+      @via="emberjs"
+    >
+      Share on Twitter
+    </a>
+    </ShareButton>
+  </Jumbo>
 
-  <div class="details">
-    <h3>About {{@rental.title}}</h3>
+  <article class="rental detailed">
+    <RentalImage
+      src={{@rental.image}}
+      alt="A picture of {{@rental.title}}"
+    />
 
-    <div class="detail owner">
-      <span>Owner:</span> {{@rental.owner}}
-    </div>
-    <div class="detail type">
-      <span>Type:</span> {{@rental.type}} – {{@rental.category}}
-    </div>
-    <div class="detail location">
-      <span>Location:</span> {{@rental.city}}
-    </div>
-    <div class="detail bedrooms">
-      <span>Number of bedrooms:</span> {{@rental.bedrooms}}
-    </div>
-    <div class="detail description">
-      <p>{{@rental.description}}</p>
-    </div>
-  </div>
+    <div class="details">
+      <h3>About {{@rental.title}}</h3>
 
-  <Map
-    @lat={{@rental.location.lat}}
-    @lng={{@rental.location.lng}}
-    @zoom="12"
-    @width="894"
-    @height="600"
-    alt="A map of {{@rental.title}}"
-    class="large"
-  />
-</article>
+      <div class="detail owner">
+        <span>Owner:</span> {{@rental.owner}}
+      </div>
+      <div class="detail type">
+        <span>Type:</span> {{@rental.type}} – {{@rental.category}}
+      </div>
+      <div class="detail location">
+        <span>Location:</span> {{@rental.city}}
+      </div>
+      <div class="detail bedrooms">
+        <span>Number of bedrooms:</span> {{@rental.bedrooms}}
+      </div>
+      <div class="detail description">
+        <p>{{@rental.description}}</p>
+      </div>
+    </div>
+
+    <Map
+      @lat={{@rental.location.lat}}
+      @lng={{@rental.location.lng}}
+      @zoom="12"
+      @width="894"
+      @height="600"
+      alt="A map of {{@rental.title}}"
+      class="large"
+    />
+  </article>
+</template>
 ```
 
 With that, we should have a working share button!
@@ -318,10 +322,9 @@ However, during tests, the router is configured to maintain the "logical" URL in
 
 To fix our problem, we would need to do the same. Ember exposes this internal state through the _[router service](https://api.emberjs.com/ember/release/classes/RouterService)_, which we can _[inject](../../../services/#toc_accessing-services)_ into our component:
 
-```js { data-filename="app/components/share-button.js" data-diff="+1,+7,+8,-10,+11" }
-import { service } from '@ember/service';
+```gjs { data-filename="app/components/share-button.gjs" data-diff="+2,+6,+7,-9,+10" }
 import Component from '@glimmer/component';
-
+import { service } from '@ember/service';
 const TWEET_INTENT = 'https://twitter.com/intent/tweet';
 
 export default class ShareButton extends Component {
@@ -351,6 +354,18 @@ export default class ShareButton extends Component {
 
     return url;
   }
+
+  <template>
+    <a
+      ...attributes
+      href={{this.shareURL}}
+      target="_blank"
+      rel="external nofollow noopener noreferrer"
+      class="share button"
+    >
+      {{yield}}
+    </a>
+  </template>
 }
 ```
 
@@ -384,12 +399,12 @@ More importantly, services are designed to be easily _swappable_. In our compone
 
 We will take advantage of this capability in our component test:
 
-```js { data-filename="tests/integration/components/share-button-test.js" data-diff="+3,-7,-8,+9,+10,+11,+12,-14,-15,-16,+17,+18,+19,+20,+21,-23,+24,+25,-27,+28,+29,+30,-32,-33,-34,-35,-36,-37,+38,+39,-41,+42,+43,+44,+45,+46,+47,+48,+49,+50,+51,+52" }
+```gjs { data-filename="tests/integration/components/share-button-test.gjs" data-diff="+3,-7,-8,+9,+10,+11,+12,-14,-15,-16,-17,-18,+19,+20,+21,+22,+23,-25,+26,+27,-29,+30,+31,+32,-34,+35,-37,-38,-39,+40,-43,+44,+45,+46,+47,+48,+49,+50,+51,+52,+53,+54" }
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'super-rentals/tests/helpers';
 import Service from '@ember/service';
 import { render } from '@ember/test-helpers';
-import { hbs } from 'ember-cli-htmlbars';
+import ShareButton from 'super-rentals/components/share-button';
 
 module('Integration | Component | share-button', function (hooks) {
   setupRenderingTest(hooks);
@@ -399,15 +414,17 @@ const MOCK_URL = new URL(
 );
 
   test('it renders', async function (assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+    // Updating values is achieved using autotracking, just like in app code. For example:
+    // class State { @tracked myProperty = 0; }; const state = new State();
+    // and update using state.myProperty = 1; await rerender();
+    // Handle any actions with function myAction(val) { ... };
 class MockRouterService extends Service {
   get currentURL() {
     return '/foo/bar?baz=true#some-section';
   }
 }
 
-    await render(hbs`<ShareButton />`);
+    await render(<template><ShareButton /></template>);
 module('Integration | Component | share-button', function (hooks) {
   setupRenderingTest(hooks);
 
@@ -417,13 +434,13 @@ module('Integration | Component | share-button', function (hooks) {
   });
 
     // Template block usage:
-    await render(hbs`
+  test('basic usage', async function (assert) {
+    await render(<template>
       <ShareButton>
         template block text
       </ShareButton>
-    `);
-  test('basic usage', async function (assert) {
-    await render(hbs`<ShareButton>Tweet this!</ShareButton>`);
+      <ShareButton>Tweet this!</ShareButton>
+    </template>);
 
     assert.dom().hasText('template block text');
     assert
@@ -449,13 +466,13 @@ By using service injections and mocks, Ember allows us to build _loosely coupled
 
 While we are here, let's add some more tests for the various functionalities of the `<ShareButton>` component:
 
-```js { data-filename="tests/integration/components/share-button-test.js" data-diff="-4,+5,+24,+25,+26,+27,+28,+29,-39,-40,-41,-42,+43,+47,+48,+49,+50,+51,+52,+53,+54,+55,+56,+57,+58,+59,+60,+61,+62,+63,+64,+65,+66,+67,+68,+69,+70,+71,+72,+73,+74,+75,+76,+77,+78,+79,+80,+81,+82,+83,+84,+85,+86,+87,+88,+89,+90,+91,+92,+93,+94" }
+```gjs { data-filename="tests/integration/components/share-button-test.gjs" data-diff="-4,+5,+19,+20,+21,+22,+23,+24,+30,-42,-43,-44,-45,+46,+50,+51,+52,+53,+54,+55,+56,+57,+58,+59,+60,+61,+62,+63,+64,+65,+66,+67,+68,+69,+70,+71,+72,+73,+74,+75,+77,+78,+79,+80,+81,+82,+83,+84,+85,+86,+87,+88,+89,+90,+91,+92,+93,+94,+95,+96,+97,+98,+99,+100,+101,+102" }
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'super-rentals/tests/helpers';
 import Service from '@ember/service';
 import { render } from '@ember/test-helpers';
 import { find, render } from '@ember/test-helpers';
-import { hbs } from 'ember-cli-htmlbars';
+import ShareButton from 'super-rentals/components/share-button';
 
 const MOCK_URL = new URL(
   '/foo/bar?baz=true#some-section',
@@ -468,21 +485,24 @@ class MockRouterService extends Service {
   }
 }
 
+function tweetParam(param) {
+  let link = find('a');
+  let url = new URL(link.href);
+  return url.searchParams.get(param);
+}
+
 module('Integration | Component | share-button', function (hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(function () {
     this.owner.register('service:router', MockRouterService);
 
-    this.tweetParam = (param) => {
-      let link = find('a');
-      let url = new URL(link.href);
-      return url.searchParams.get(param);
-    };
   });
 
   test('basic usage', async function (assert) {
-    await render(hbs`<ShareButton>Tweet this!</ShareButton>`);
+    await render(<template>
+      <ShareButton>Tweet this!</ShareButton>
+    </template>);
 
     assert
       .dom('a')
@@ -497,34 +517,37 @@ module('Integration | Component | share-button', function (hooks) {
       .hasClass('button')
       .containsText('Tweet this!');
 
-    assert.strictEqual(this.tweetParam('url'), MOCK_URL.href);
+    assert.strictEqual(tweetParam('url'), MOCK_URL.href);
   });
 
   test('it supports passing @text', async function (assert) {
-    await render(
-      hbs`<ShareButton @text="Hello Twitter!">Tweet this!</ShareButton>`,
-    );
+    await render(<template>
+      <ShareButton @text="Hello Twitter!">Tweet this!</ShareButton>
+    </template>);
 
-    assert.strictEqual(this.tweetParam('text'), 'Hello Twitter!');
+    assert.strictEqual(tweetParam('text'), 'Hello Twitter!');
   });
 
   test('it supports passing @hashtags', async function (assert) {
-    await render(
-      hbs`<ShareButton @hashtags="foo,bar,baz">Tweet this!</ShareButton>`,
-    );
+    await render(<template>
+      <ShareButton @hashtags="foo,bar,baz">Tweet this!</ShareButton>
+    </template>);
 
-    assert.strictEqual(this.tweetParam('hashtags'), 'foo,bar,baz');
+    assert.strictEqual(tweetParam('hashtags'), 'foo,bar,baz');
   });
 
   test('it supports passing @via', async function (assert) {
-    await render(hbs`<ShareButton @via="emberjs">Tweet this!</ShareButton>`);
-    assert.strictEqual(this.tweetParam('via'), 'emberjs');
+    await render(<template>
+      <ShareButton @via="emberjs">Tweet this!</ShareButton>
+    </template>);
+
+    assert.strictEqual(tweetParam('via'), 'emberjs');
   });
 
   test('it supports adding extra classes', async function (assert) {
-    await render(
-      hbs`<ShareButton class="extra things">Tweet this!</ShareButton>`,
-    );
+    await render(<template>
+      <ShareButton class="extra things">Tweet this!</ShareButton>
+    </template>);
 
     assert
       .dom('a')
@@ -535,20 +558,21 @@ module('Integration | Component | share-button', function (hooks) {
   });
 
   test('the target, rel and href attributes cannot be overridden', async function (assert) {
-    await render(
-      hbs`<ShareButton target="_self" rel="" href="/">Not a Tweet!</ShareButton>`,
-    );
+    await render(<template>
+      <ShareButton target="_self" rel="" href="/">Not a Tweet!</ShareButton>
+    </template>);
 
     assert
       .dom('a')
       .hasAttribute('target', '_blank')
       .hasAttribute('rel', 'external nofollow noopener noreferrer')
       .hasAttribute('href', /^https:\/\/twitter\.com\/intent\/tweet/);
-  });
+   });
+
 });
 ```
 
-The main goal here is to test the key functionalities of the component individually. That way, if any of these features regresses in the future, these tests can help pinpoint the source of the problem for us. Because a lot of these tests require parsing the URL and accessing its query params, we setup our own `this.tweetParam` test helper function in the `beforeEach` hook. This pattern allows us to easily share functionality between tests. We were even able to refactor the previous test using this new helper!
+The main goal here is to test the key functionalities of the component individually. That way, if any of these features regresses in the future, these tests can help pinpoint the source of the problem for us. Because a lot of these tests require parsing the URL and accessing its query params, we setup our own `tweetParam` utility test helper function. This pattern allows us to easily share functionality between tests. We were even able to refactor the previous test using this new helper!
 
 With that, everything should be good to go, and our `<ShareButton>` component should now work everywhere!
 

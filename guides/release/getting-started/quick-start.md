@@ -30,7 +30,7 @@ you will have access to a new `ember` command in your terminal.
 You can use the `ember new` command to create a new application.
 
 ```bash
-ember new ember-quickstart --lang en
+ember new ember-quickstart --lang en --strict
 ```
 
 This one command will create a new directory called `ember-quickstart` and set up a new Ember application inside of it.
@@ -86,8 +86,6 @@ Congratulations! You just created and booted your first Ember app.
 
 ## Write some HTML in a template
 
-<feature-flag-on-template-tag>
-
 We will start by editing the `application` template.
 This template is always on screen while the user has your application loaded.
 In your editor, open `app/templates/application.gjs` and change it to the following:
@@ -98,21 +96,6 @@ In your editor, open `app/templates/application.gjs` and change it to the follow
   {{outlet}}
 </template>
 ```
-</feature-flag-on-template-tag>
-
-<feature-flag-off-template-tag>
-
-We will start by editing the `application` template.
-This template is always on screen while the user has your application loaded.
-In your editor, open `app/templates/application.hbs` and change it to the following:
-
-```handlebars {data-filename=app/templates/application.hbs}
-<h1>PeopleTracker</h1>
-
-{{outlet}}
-```
-
-</feature-flag-off-template-tag>
 
 Ember detects the changed file and automatically reloads the page for you in the background.
 You should see that the welcome page has been replaced by "PeopleTracker".
@@ -134,21 +117,7 @@ ember generate route scientists
 
 You'll see output like this:
 
-<feature-flag-off-template-tag>
-```text
-installing route
-  create app/routes/scientists.js
-  create app/templates/scientists.hbs
-updating router
-  add route scientists
-installing route-test
-  create tests/unit/routes/scientists-test.js
-```
-</feature-flag-off-template-tag>
-<feature-flag-on-template-tag>
 ```bash
-# 🚧 Under construction 🚧
-# `ember generate route` has not been updated to produce GJS files yet.
 installing route
   create app/routes/scientists.js
   create app/templates/scientists.gjs
@@ -157,7 +126,6 @@ updating router
 installing route-test
   create tests/unit/routes/scientists-test.js
 ```
-</feature-flag-on-template-tag>
 
 That is Ember telling you that it has created:
 
@@ -166,20 +134,7 @@ That is Ember telling you that it has created:
 3. An entry in the application's router (located in `app/router.js`).
 4. A unit test for this route.
 
-<feature-flag-off-template-tag>
-Open the newly-created template in `app/templates/scientists.hbs` and add the following HTML:
-
-```handlebars {data-filename=app/templates/scientists.hbs}
-{{page-title "Scientists"}}
-<h2>List of Scientists</h2>
-```
-
-In your browser, open [`http://localhost:4200/scientists`](http://localhost:4200/scientists).
-You should see the `<h2>` we put in the `scientists.hbs` template right below the `<h1>` from our `application.hbs` template.
-
-</feature-flag-off-template-tag>
-<feature-flag-on-template-tag>
-Open the newly-created template in `app/templates/scientists.gjs` and add the following HTML:
+Open the newly-created template in `app/templates/scientists.gjs` and add the following code:
 
 ```gjs {data-filename=app/templates/scientists.gjs}
 import { pageTitle } from 'ember-page-title';
@@ -192,8 +147,6 @@ import { pageTitle } from 'ember-page-title';
 
 In your browser, open [`http://localhost:4200/scientists`](http://localhost:4200/scientists).
 You should see the `<h2>` we put in the `scientists.gjs` template right below the `<h1>` from our `application.gjs` template.
-
-</feature-flag-on-template-tag>
 
 Since the scientist route is nested under the application route, Ember will render its content inside the application route template's `{{outlet}}` directive.
 
@@ -224,19 +177,6 @@ the `model()` method supports any library that uses [JavaScript Promises](https:
 Now let's tell Ember how to turn that array of strings into HTML.
 Open the `scientists` template and add the following code to loop through the array and print it:
 
-<feature-flag-off-template-tag>
-```handlebars {data-filename="app/templates/scientists.hbs"}
-<h2>List of Scientists</h2>
-
-<ul>
-  {{#each @model as |scientist|}}
-    <li>{{scientist}}</li>
-  {{/each}}
-</ul>
-```
-</feature-flag-off-template-tag>
-
-<feature-flag-on-template-tag>
 ```gjs {data-filename="app/templates/scientists.gjs"}
 import { pageTitle } from 'ember-page-title';
 
@@ -250,7 +190,6 @@ import { pageTitle } from 'ember-page-title';
   </ul>
 </template>
 ```
-</feature-flag-on-template-tag>
 
 Here, we use the `each` _helper_ to loop over each item in the array we
 provided from the `model()` hook. Ember will render the _block_ contained
@@ -274,30 +213,24 @@ As usual, there's a generator that makes this easy for us.
 Make a new component by typing:
 
 ```bash
-<feature-flag-on-template-tag>
-# 🚧 Under construction 🚧
-# `ember generate component` has not been updated to produce GJS files yet.
-</feature-flag-on-template-tag>
 ember generate component people-list
 ```
 
-<feature-flag-off-template-tag>
-Copy and paste the `scientists` template into the `PeopleList` component's template and edit it to look as follows:
+You'll see output like this:
 
-```handlebars {data-filename=app/components/people-list.hbs}
-<h2>{{@title}}</h2>
-
-<ul>
-  {{#each @people as |person|}}
-    <li>{{person}}</li>
-  {{/each}}
-</ul>
+```bash
+installing component
+  create app/components/people-list.gjs
+installing component-test
+  create tests/integration/components/people-list-test.gjs
 ```
 
-</feature-flag-off-template-tag>
+That is Ember telling you that it has created:
 
-<feature-flag-on-template-tag>
-Copy and paste this part of the `scientists` template into the `PeopleList` component and edit it to look as follows:
+1. A `people-list` component in the `components` folder
+2. A `people-list-test` integration test file that you can use to test your component
+
+Copy and paste this part of the `scientists` template into the newly created `PeopleList` component and edit it to look as follows:
 
 ```gjs {data-filename=app/components/people-list.gjs}
 <template>
@@ -311,8 +244,6 @@ Copy and paste this part of the `scientists` template into the `PeopleList` comp
 </template>
 ```
 
-</feature-flag-on-template-tag>
-
 Note that we've changed the title from a hard-coded string ("List of Scientists")
 to `{{@title}}`. The `@` indicates that `@title` is an argument that will be
 passed into the component, which makes it easier to reuse the same component in
@@ -320,24 +251,6 @@ other parts of the app we are building.
 
 We've also renamed `scientist` to the more-generic `person`,
 decreasing the coupling of our component to where it's used.
-
-<feature-flag-off-template-tag>
-Our component is called `PeopleList`, based on its name on the file system. Please note that the letters P and L are capitalized.
-
-<div class="cta">
-  <div class="cta-note">
-    <div class="cta-note-body">
-      <div class="cta-note-heading">Zoey says...</div>
-      <div class="cta-note-message">
-        A component's name is derived from its file name.
-        We capitalize the first letter and every letter after <code>-</code>, then remove the hyphens.
-        This is known as pascal case.
-      </div>
-    </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="">
-  </div>
-</div>
-</feature-flag-off-template-tag>
 
 Save this template and switch back to the `scientists` template.
 
@@ -353,23 +266,6 @@ In the rest of the code examples in this tutorial, whenever we add or remove cod
 
 Let's replace all our old code with our new componentized version:
 
-<feature-flag-off-template-tag>
-```handlebars {data-filename="app/templates/scientists.hbs" data-diff="-1,-2,-3,-4,-5,-6,-7,+8,+9,+10,+11"}
-<h2>List of Scientists</h2>
-
-<ul>
-  {{#each @model as |scientist|}}
-    <li>{{scientist}}</li>
-  {{/each}}
-</ul>
-<PeopleList 
-  @title="List of Scientists" 
-  @people={{@model}} 
-/>
-```
-</feature-flag-off-template-tag>
-
-<feature-flag-on-template-tag>
 ```gjs {data-filename="app/templates/scientists.gjs" data-diff="+2,-6,-7,-8,-9,-10,-11,+12,+13,+14,+15"}
 import { pageTitle } from 'ember-page-title';
 import PeopleList from '../components/people-list';
@@ -388,7 +284,6 @@ import PeopleList from '../components/people-list';
   />
 </template>
 ```
-</feature-flag-on-template-tag>
 
 Go back to your browser and you should see that the UI looks identical.
 The only difference is that now we've componentized our list into a version that's more reusable and more maintainable.
@@ -406,20 +301,6 @@ user actions like clicks or hovers. Ember makes this easy to do.
 
 First, we can modify the `PeopleList` component to include a button:
 
-<feature-flag-off-template-tag>
-```handlebars {data-filename="app/components/people-list.hbs"}
-<h2>{{@title}}</h2>
-
-<ul>
-  {{#each @people as |person|}}
-    <li>
-      <button type="button">{{person}}</button>
-    </li>
-  {{/each}}
-</ul>
-```
-</feature-flag-off-template-tag>
-<feature-flag-on-template-tag>
 ```gjs {data-filename="app/components/people-list.gjs"}
 <template>
   <h2>{{@title}}</h2>
@@ -433,8 +314,6 @@ First, we can modify the `PeopleList` component to include a button:
   </ul>
 </template>
 ```
-</feature-flag-on-template-tag>
-
 
 Now that we have a button, we need to wire it up to do _something_ when a user
 clicks on it. For simplicity, let's say we want to show an `alert` dialog with
@@ -444,79 +323,6 @@ So far, our `PeopleList` component is purely presentational – it takes some
 inputs as arguments and renders them using a template. To introduce _behavior_
 to our component – handling the button click in this case, we will need to
 attach some JavaScript to the component.
-
-<feature-flag-off-template-tag>
-In addition to the template, a component can also have a JavaScript file for
-this exact purpose. Go ahead and create a `.js` file with the same name and in
-the same directory as our template (`app/components/people-list.js`),
-and paste in the following content:
-
-```javascript {data-filename="app/components/people-list.js"}
-import Component from '@glimmer/component';
-import { action } from '@ember/object';
-
-export default class PeopleListComponent extends Component {
-  @action
-  showPerson(person) {
-    alert(`The person's name is ${person}!`);
-  }
-}
-```
-
-_Note: If you want this file created for you, you may pass the `-gc` flag when running the component generator._
-
-Here, we created a basic component class and added a method that accepts a
-person as an argument and brings up an alert dialog with their name. The
-`@action` _decorator_ indicates we want to use this method as an _action_
-in our template, in response to user interaction.
-
-Now that we have implemented the desired behavior, we can go back to
-the component's template and wire everything up:
-
-```handlebars {data-filename="app/components/people-list.hbs" data-diff="-6,+7"}
-<h2>{{@title}}</h2>
-
-<ul>
-  {{#each @people as |person|}}
-    <li>
-      <button type="button">{{person}}</button>
-      <button type="button" {{on 'click' this.showPerson}}>{{person}}</button>
-    </li>
-  {{/each}}
-</ul>
-```
-
-Here, we used the `on` _modifier_ to attach the `this.showPerson` action to
-the button in the template.
-
-There is a problem with this though – if you tried this in the browser, you
-will quickly discover that clicking on the buttons will bring up an alert
-dialog that said "The person's name is `[Object MouseEvent]`!" – eek!
-
-The cause of this bug is that we wrote our action to take an argument – the
-person's name – and we forgot to pass it. The fix is easy enough:
-
-```handlebars {data-filename="app/components/people-list.hbs" data-diff="-6,+7"}
-<h2>{{@title}}</h2>
-
-<ul>
-  {{#each @people as |person|}}
-    <li>
-      <button type="button" {{on 'click' this.showPerson}}>{{person}}</button>
-      <button type="button" {{on 'click' (fn this.showPerson person)}}>{{person}}</button>
-    </li>
-  {{/each}}
-</ul>
-```
-
-Instead of passing the action to the `on` modifier directly, we used the `fn`
-helper to pass the `person` as an argument which our action expects.
-
-Feel free to try this in the browser. Finally, everything should behave exactly
-as we hoped!
-</feature-flag-off-template-tag>
-
-<feature-flag-on-template-tag>
 
 Let's use the [`on` modifier](../../components/template-lifecycle-dom-and-modifiers/#toc_event-handlers) to handle click events on the button:
 
@@ -598,11 +404,6 @@ export default class extends Component {
   </template>
 }
 ```
-
-</feature-flag-on-template-tag>
-
-
-
 
 ## Building For Production
 
