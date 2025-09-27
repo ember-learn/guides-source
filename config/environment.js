@@ -48,6 +48,8 @@ module.exports = function (environment) {
     guidemaker: {
       title: 'Ember Guides',
       sourceRepo: 'https://github.com/ember-learn/guides-source',
+      gjsVersions: ['v6.7.0'],
+      gjsLink: '/release/components/template-tag-format/',
     },
 
     algolia: {
