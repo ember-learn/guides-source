@@ -24,7 +24,7 @@ categories, and rated according to objective metrics. If you are looking for an 
 
 For newly generated Ember apps, the majority of the build is managed by [Vite](https://vite.dev/) which means that any npm packages or other assets can just be imported as you might expect in a modern build system or bundler.
 
-In preivous versions of Ember (before we moved to using Vite) there were other concepts that you would need to know to include 3rd party packages or assets in your app. If you are working on an Ember app that hasn't yet been upgraded to Vite you should look at [previous versions of this guide](https://guides.emberjs.com/v6.7.0/addons-and-dependencies/) to get more information about the legacy build system.
+In previous versions of Ember (before we moved to using Vite) there were other concepts that you would need to know to include 3rd party packages or assets in your app. If you are working on an Ember app that hasn't yet been upgraded to Vite you should look at [previous versions of this guide](/v6.7.0/addons-and-dependencies/) to get more information about the legacy build system.
 
 To know more about how Vite can be configured, e.g. how it [handles static assets](https://vite.dev/guide/assets), you can consult their guides: [https://vite.dev/guide/](https://vite.dev/guide/)
 
