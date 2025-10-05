@@ -334,8 +334,9 @@ Let's start customizing the things that didn't work for us by default. Specifica
 
 The first thing we want to do is have our builder respect a configurable default host and/or namespace. Adding a namespace prefix happens to be pretty common across Ember apps, so EmberData provides a global config mechanism for host and namespace. Typically you will want to do this either in your store file or app file.
 
-```js { data-filename="app/app.js" data-diff="+6,+7,+8,+9,+10" }
+```js { data-filename="app/app.js" data-diff="+7,+8,+9,+10,+11" }
 import Application from '@ember/application';
+import compatModules from '@embroider/virtual/compat-modules';
 import Resolver from 'ember-resolver';
 import loadInitializers from 'ember-load-initializers';
 import config from 'super-rentals/config/environment';
@@ -346,19 +347,6 @@ setBuildURLConfig({
   namespace: 'api',
 });
 
-/* This is to account for a deprecation that shipped in ember-cli 6.4
-   with ember-data v5.6 which needs a blueprint update to avoid the
-   deprecation that is otherwise irrelevant for tutorial purposes.
-*/
-import { registerDeprecationHandler } from '@ember/debug';
-registerDeprecationHandler((message, options, next) => {
-  if (message.includes('Using WarpDrive with EmberJS requires')) {
-    return;
-  } else {
-    next(message, options);
-  }
-});
-
 if (macroCondition(isDevelopingApp())) {
   importSync('./deprecation-workflow');
 }
@@ -366,10 +354,10 @@ if (macroCondition(isDevelopingApp())) {
 export default class App extends Application {
   modulePrefix = config.modulePrefix;
   podModulePrefix = config.podModulePrefix;
-  Resolver = Resolver;
+  Resolver = Resolver.withModules(compatModules);
 }
 
-loadInitializers(App, config.modulePrefix);
+loadInitializers(App, config.modulePrefix, compatModules);
 ```
 
 Adding the `.json` extension is a bit less common, and doesn't have a declarative configuration API of its own. We could just modify request options directly in place of use, but that would be a bit messy. Instead, let's create a handler to do this for us.

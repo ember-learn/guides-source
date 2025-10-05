@@ -24,7 +24,7 @@ To verify that your installation was successful, run:
 
 ```shell
 $ ember --version
-ember-cli: 6.7.0
+ember-cli: 6.8.0
 node: 18.20.8
 os: linux x64
 ```
@@ -37,27 +37,27 @@ We can create a new project using Ember CLI's `new` command. It follows the patt
 
 ```shell
 $ ember new super-rentals --lang en --strict
-installing classic-build-app-blueprint
-@ember-tooling/classic-build-app-blueprint v6.7.0
-
+installing app-blueprint
 Creating a new Ember app in /home/runner/work/super-rentals-tutorial/super-rentals-tutorial/dist/code/super-rentals:
   create .editorconfig
   create .ember-cli
+  create .env.development
   create .github/workflows/ci.yml
   create .prettierignore
-  create .prettierrc.js
+  create .prettierrc.mjs
   create .stylelintignore
-  create .stylelintrc.js
-  create .template-lintrc.js
+  create .stylelintrc.cjs
+  create .template-lintrc.mjs
   create .watchmanconfig
   create README.md
+  create /home/runner/work/super-rentals-tutorial/super-rentals-tutorial/dist/code/super-rentals/babel.config.cjs
   create /home/runner/work/super-rentals-tutorial/super-rentals-tutorial/dist/code/super-rentals/eslint.config.mjs
   create app/app.js
   create app/components/.gitkeep
+  create app/config/environment.js
   create app/controllers/.gitkeep
   create app/deprecation-workflow.js
   create app/helpers/.gitkeep
-  create app/index.html
   create app/models/.gitkeep
   create app/router.js
   create app/routes/.gitkeep
@@ -69,14 +69,16 @@ Creating a new Ember app in /home/runner/work/super-rentals-tutorial/super-renta
   create config/targets.js
   create ember-cli-build.js
   create .gitignore
+  create index.html
   create package.json
   create public/robots.txt
-  create testem.js
+  create testem.cjs
   create tests/helpers/index.js
   create tests/index.html
   create tests/integration/.gitkeep
   create tests/test-helper.js
   create tests/unit/.gitkeep
+  create vite.config.mjs
 
 Installing packages... This might take a couple of minutes.
 npm: Installing dependencies ...
@@ -110,6 +112,8 @@ super-rentals
 ├── app
 │   ├── components
 │   │   └── .gitkeep
+│   ├── config
+│   │   └── environment.js
 │   ├── controllers
 │   │   └── .gitkeep
 │   ├── helpers
@@ -124,7 +128,6 @@ super-rentals
 │   │   └── application.gjs
 │   ├── app.js
 │   ├── deprecation-workflow.js
-│   ├── index.html
 │   └── router.js
 ├── config
 │   ├── ember-cli-update.json
@@ -144,22 +147,25 @@ super-rentals
 │   └── test-helper.js
 ├── .editorconfig
 ├── .ember-cli
-├── .eslintcache
+├── .env.development
 ├── .gitignore
 ├── .prettierignore
-├── .prettierrc.js
+├── .prettierrc.mjs
 ├── .stylelintignore
-├── .stylelintrc.js
-├── .template-lintrc.js
+├── .stylelintrc.cjs
+├── .template-lintrc.mjs
 ├── .watchmanconfig
 ├── README.md
+├── babel.config.cjs
 ├── ember-cli-build.js
 ├── eslint.config.mjs
+├── index.html
 ├── package.json
 ├── package-lock.json
-└── testem.js
+├── testem.cjs
+└── vite.config.mjs
 
-17 directories, 37 files
+27 directories, 56 files
 ```
 
 We'll learn about the purposes of these files and folders as we go. For now, just know that we'll spend most of our time working within the `app` folder.
@@ -172,11 +178,26 @@ Ember CLI comes with a lot of different commands for a variety of development ta
 $ npm start
 
 > super-rentals@0.0.0 start
-> ember serve
+> vite
+
+Building
+
+Environment: development
 
 building... 
 
-Build successful (9761ms) – Serving on http://localhost:4200/
+
+Build successful (9761ms)
+
+Slowest Nodes (totalTime >= 5%) | Total (avg)
+-+-
+Babel: @embroider/macros (1) | 436ms
+
+
+
+  VITE v6.3.6  ready in 4143 ms
+
+  ➜  Local:   http://localhost:4200/
 ```
 
 The development server is responsible for compiling our app and serving it to the browsers. It may take a while to boot up. Once it's up and running, open your favorite browser and head to <http://localhost:4200>. You should see the following welcome page:
@@ -204,8 +225,8 @@ The development server has a feature called _live reload_, which monitors your a
 As text on the welcome page pointed out, the source code for the page is located in `app/templates/application.gjs`. Let's try to edit that file and replace it with our own content:
 
 ```gjs { data-filename="app/templates/application.gjs" data-diff="-1,-2,-3,-5,-6,-7,-8,-9,-10,-11,+12" }
-import pageTitle from 'ember-page-title/helpers/page-title';
-import WelcomePage from 'ember-welcome-page/components/welcome-page';
+import { pageTitle } from 'ember-page-title';
+import { WelcomePage } from 'ember-welcome-page';
 
 <template>
   {{pageTitle "SuperRentals"}}
