@@ -19,7 +19,7 @@ It would be great for our individual rental pages to be available through predic
 But first things first: we need to add a route for this new page. We can do that by adding a `rental` route to the router.
 
 ```js { data-filename="app/router.js" data-diff="+12" }
-import EmberRouter from '@ember/routing/router';
+import EmberRouter from '@embroider/router';
 import config from 'super-rentals/config/environment';
 
 export default class Router extends EmberRouter {
