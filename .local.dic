@@ -62,6 +62,7 @@ els-addon-typed-templates
 ember-a11y
 ember-a11y-refocus
 ember-a11y-testing
+ember-cli
 ember-cli-cjs-transform
 ember-cli-deprecation-workflow
 ember-cli-document-title
