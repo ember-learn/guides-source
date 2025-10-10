@@ -22,7 +22,7 @@ BelongsTo
 blockquote
 blogPost
 bookmarklet
-Browserlist
+Browserslist
 callouts
 camelize
 centric
@@ -180,6 +180,7 @@ rerender
 rerendering
 rerenders
 RequestManager
+Rollup
 routable
 RunDOC
 runnable
@@ -219,6 +220,7 @@ templating
 TextMate
 todo
 todos
+toolchain
 tooltip
 tooltips
 trackable
