@@ -25,7 +25,7 @@ npm test
 
 ### How to Filter Tests
 
-When you start your dev server and havigate to `/tests` you will be presented with the QUnit interface. At the top of that page you will see a `Filter` input that you can use to run a smaller subset of your tests.
+When you start your development server and navigate to `/tests` you will be presented with the QUnit interface. At the top of that page you will see a `Filter` input that you can use to run a smaller subset of your tests.
 
 You can also click the `Rerun` link beside any of the tests listed in QUnit interface to just rerun that one test. This is especially useful if you are working on a single component and want to run the corresponding unit or integration tests while you develop that component.
 
