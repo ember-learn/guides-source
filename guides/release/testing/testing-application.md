@@ -24,8 +24,9 @@ module('Acceptance | login', function(hooks) {
 
 `module` allows you to scope your tests: Any test setup that is done inside of this scope will
 apply to all test cases contained in this module.
-Scoping your tests with `module` also allows you to execute your tests independently from other tests.
-For example, to only run your tests from your `login` module, run `ember test --module='Acceptance | login'`.
+
+Scoping your tests with `module` also allows you to execute your tests separately from other tests. The QUnit interface shows you a dropdown once you are running your tests that allows you to pick from available modules and filter tests down to the set that you have selected.
+
 `setupApplicationTest` deals with application setup and teardown.
 The `test` function contains an example test.
 
