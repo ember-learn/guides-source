@@ -298,6 +298,13 @@
 - title: "Developer Tools"
   url: "toc-heading_developer-tools"
   is_heading: true
+- title: "Build Tooling"
+  url: "build-tools"
+  pages:
+    - title: "Introduction"
+      url: "index"
+    - title: "Vite"
+      url: "vite"
 - title: "Ember Inspector"
   url: "ember-inspector"
   pages:
