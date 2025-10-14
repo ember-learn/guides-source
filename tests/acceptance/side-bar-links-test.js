@@ -27,7 +27,7 @@ module('Acceptance | side bar links', function (hooks) {
 
   test('release links go to correct page', async function (assert) {
     // Manually update this number when new pages are added or removed
-    assert.expect(125);
+    assert.expect(127);
     await visit('/release');
 
     let store = this.owner.lookup('service:store');

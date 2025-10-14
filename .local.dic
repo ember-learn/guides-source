@@ -52,6 +52,7 @@ debounce
 declaratively
 DefinitelyTyped
 deps
+dev
 draggable
 dropdown
 durations
@@ -180,6 +181,7 @@ rerender
 rerendering
 rerenders
 RequestManager
+rollup
 Rollup
 routable
 RunDOC
@@ -257,5 +259,6 @@ working-with-html-css-and-javascript
 yay
 ZEIT
 userQuestion
+vite
 Vite
 bundler
