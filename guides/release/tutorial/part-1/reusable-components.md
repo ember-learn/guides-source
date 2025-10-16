@@ -16,13 +16,11 @@ While adding the map, you will learn about:
 
 ## Managing Application-level Configurations
 
-We will use the [Mapbox](https://www.mapbox.com) API to generate maps for our rental properties. You can [sign up](https://www.mapbox.com/signup/) for free and without a credit card.
+We will use the [TomTom](https://developer.tomtom.com/map-display-api/documentation/product-information/introduction) API to generate maps for our rental properties. You can [sign up](https://developer.tomtom.com) for free and without a credit card.
 
-Mapbox provides a [static map images API](https://docs.mapbox.com/api/maps/#static-images), which serves map images in PNG format. This means that we can generate the appropriate URL for the parameters we want and render the map using a standard `<img>` tag. Pretty neat!
+TomTom provides a [static map images API](https://developer.tomtom.com/map-display-api/documentation/raster/static-image), which serves map images in PNG format. This means that we can generate the appropriate URL for the parameters we want and render the map using a standard `<img>` tag. Pretty neat!
 
-If you're curious, you can explore the options available on Mapbox by using the [interactive playground](https://docs.mapbox.com/help/interactive-tools/static-api-playground/).
-
-Once you have signed up for the service, grab your _[default public token](https://account.mapbox.com/access-tokens/)_ and paste it into `config/environment.js`:
+Once you have signed up, grab your _[default public token](https://developer.tomtom.com/user/me/apps)_ and paste it into `config/environment.js`:
 
 ```js { data-filename="config/environment.js" data-diff="+48,+49" }
 'use strict';
@@ -72,25 +70,13 @@ module.exports = function (environment) {
     // here you can enable a production-specific feature
   }
 
-  ENV.MAPBOX_ACCESS_TOKEN = 'paste your Mapbox access token here';
+  ENV.TOMTOM_ACCESS_TOKEN = 'paste your TomTom API key here';
 
   return ENV;
 };
 ```
 
 As its name implies, `config/environment.js` is used to _configure_ our app and store API keys like these. These values can be accessed from other parts of our app, and they can have different values depending on the current environment (which might be development, test, or production).
-
-<div class="cta">
-  <div class="cta-note">
-    <div class="cta-note-body">
-      <div class="cta-note-heading">Zoey says...</div>
-      <div class="cta-note-message">
-        <p>If you prefer, you can <a href="https://account.mapbox.com/access-tokens/">create different Mapbox access tokens</a> for use in different environments. At a minimum, the tokens will each need to have the "styles:tiles" scope in order to use Mapbox's static images API.</p>
-      </div>
-    </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="">
-  </div>
-</div>
 
 After saving the changes to our configuration file, we will need to restart our development server to pick up these file changes. Unlike the files we have edited so far, `config/environment.js` is not automatically reloaded.
 
@@ -102,16 +88,31 @@ You can stop the server by finding the terminal window where `npm start` is runn
 $ npm start
 
 > super-rentals@0.0.0 start
-> ember serve
+> vite
+
+Building
+
+Environment: development
 
 building... 
 
-Build successful (13286ms) – Serving on http://localhost:4200/
+
+Build successful (13286ms)
+
+Slowest Nodes (totalTime >= 5%) | Total (avg)
+-+-
+Babel: @embroider/macros (1) | 399ms
+
+
+
+  VITE v7.1.10  ready in 3785 ms
+
+  ➜  Local:   http://localhost:4200/
 ```
 
 ## Generating a Component with a Component Class
 
-With the Mapbox API key in place, let's generate a new component for our map.
+With the TomTom API key in place, let's generate a new component for our map.
 
 ```shell
 $ ember generate component map --component-class=@glimmer/component
@@ -149,7 +150,7 @@ import ENV from 'super-rentals/config/environment';
 
 export default class Map extends Component {
   get token() {
-    return encodeURIComponent(ENV.MAPBOX_ACCESS_TOKEN);
+    return encodeURIComponent(ENV.TOMTOM_ACCESS_TOKEN);
   }
 
   <template>
@@ -158,7 +159,7 @@ export default class Map extends Component {
       <img
         alt="Map image at coordinates {{@lat}},{{@lng}}"
         ...attributes
-        src="https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/{{@lng}},{{@lat}},{{@zoom}}/{{@width}}x{{@height}}@2x?access_token={{this.token}}"
+        src="https://api.tomtom.com/map/1/staticimage?key={{this.token}}&zoom={{@zoom}}&center={{@lng}},{{@lat}}&width={{@width}}&height={{@height}}"
         width={{@width}} height={{@height}}
       >
     </div>
@@ -170,7 +171,7 @@ Here, we import the access token from the config file and return it from a `toke
 
 First, we have a container element for styling purposes.
 
-Then we have an `<img>` tag to request and render the static map image from Mapbox.
+Then we have an `<img>` tag to request and render the static map image from TomTom.
 
 Our component's template contains several values that don't yet exist—`@lat`, `@lng`, `@zoom`, `@width`, and `@height`. These are _[arguments](../../../components/component-arguments-and-html-attributes/#toc_arguments)_ to the `<Map>` component that we will supply when invoking it.
 
@@ -186,7 +187,7 @@ _The ordering is important here!_ Ember applies the attributes in the order that
 
 Since the passed-in `alt` attribute (if any exists) will appear _after_ ours, it will override the value we specified. On the other hand, it is important that we assign `src`, `width`, and `height` after `...attributes`, so that they don't get accidentally overwritten by the invoker.
 
-The `src` attribute interpolates all the required parameters into the URL format for Mapbox's [static map image API](https://docs.mapbox.com/api/maps/#static-images), including the URL-escaped access token from `this.token`.
+The `src` attribute interpolates all the required parameters into the URL format for TomTom's [static map image API](https://developer.tomtom.com/map-display-api/documentation/raster/static-image), including the URL-escaped access token from `this.token`.
 
 Finally, since we are using the `@2x` "retina" image, we should specify the `width` and `height` attributes. Otherwise, the `<img>` will be rendered at twice the size than what we expected!
 
@@ -228,27 +229,27 @@ module('Integration | Component | map', function (hooks) {
       .hasAttribute('height', '120');
 
     let { src } = find('.map img');
-    let token = encodeURIComponent(ENV.MAPBOX_ACCESS_TOKEN);
+    let token = encodeURIComponent(ENV.TOMTOM_ACCESS_TOKEN);
 
     assert.ok(
-      src.startsWith('https://api.mapbox.com/'),
-      'the src starts with "https://api.mapbox.com/"',
+      src.startsWith('https://api.tomtom.com/'),
+      'the src starts with "https://api.tomtom.com/"',
     );
 
     assert.ok(
-      src.includes('-122.4184,37.7797,10'),
-      'the src should include the lng,lat,zoom parameter',
+      src.includes('zoom=10'),
+      'the src should include the zoom parameter',
     );
 
     await render(<template><Map /></template>);
     assert.ok(
-      src.includes('150x120@2x'),
-      'the src should include the width,height and @2x parameter',
+      src.includes('center=-122.4184,37.7797'),
+      'the src should include the lng,lat parameter',
     );
 
     assert.dom().hasText('');
     assert.ok(
-      src.includes(`access_token=${token}`),
+      src.includes(`key=${token}`),
       'the src should include the escaped access token',
     );
   });
@@ -289,14 +290,14 @@ module('Integration | Component | map', function (hooks) {
     assert.dom().hasText('template block text');
     assert
       .dom('.map img')
-      .hasAttribute('src', /^https:\/\/api\.mapbox\.com\//)
+      .hasAttribute('src', /^https:\/\/api\.tomtom\.com\//)
       .hasAttribute('width', '150')
       .hasAttribute('height', '120');
   });
 });
 ```
 
-Note that the `hasAttribute` test helper from [`qunit-dom`](https://github.com/simplabs/qunit-dom/blob/master/API.md) supports using _[regular expressions](https://javascript.info/regexp-introduction)_. We used this feature to confirm that the `src` attribute starts with `https://api.mapbox.com/`, as opposed to requiring it to be an exact match against a string. This allows us to be reasonably confident that the code is working correctly, without being overly-detailed in our tests.
+Note that the `hasAttribute` test helper from [`qunit-dom`](https://github.com/simplabs/qunit-dom/blob/master/API.md) supports using _[regular expressions](https://javascript.info/regexp-introduction)_. We used this feature to confirm that the `src` attribute starts with `https://api.tomtom.com/`, as opposed to requiring it to be an exact match against a string. This allows us to be reasonably confident that the code is working correctly, without being overly-detailed in our tests.
 
 _Fingers crossed..._ Let's run our tests.
 
@@ -352,7 +353,7 @@ Hey! That's a map!
     <div class="cta-note-body">
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
-        <p>If the map image failed to load, make sure you have the correct <code>MAPBOX_ACCESS_TOKEN</code> set in <code>config/environment.js</code>. Don't forget to restart the development and test servers after editing your config file!</p>
+        <p>If the map image failed to load, make sure you have the correct <code>TOMTOM_ACCESS_TOKEN</code> set in <code>config/environment.js</code>. Don't forget to restart the development and test servers after editing your config file!</p>
       </div>
     </div>
     <img src="/images/mascots/zoey.png" role="presentation" alt="">
@@ -407,21 +408,21 @@ From within our JavaScript class, we have access to our component's arguments us
 import Component from '@glimmer/component';
 import ENV from 'super-rentals/config/environment';
 
-const MAPBOX_API = 'https://api.mapbox.com/styles/v1/mapbox/streets-v11/static';
+const TOMTOM_API = 'https://api.tomtom.com/map/1/staticimage';
 
 export default class Map extends Component {
   get src() {
     let { lng, lat, width, height, zoom } = this.args;
 
-    let coordinates = `${lng},${lat},${zoom}`;
-    let dimensions = `${width}x${height}`;
-    let accessToken = `access_token=${this.token}`;
+    let coordinates = `&zoom=${zoom}&center=${lng},${lat}`;
+    let dimensions = `&width=${width}&height=${height}`;
+    let accessToken = `?key=${this.token}`;
 
-    return `${MAPBOX_API}/${coordinates}/${dimensions}@2x?${accessToken}`;
+    return `${TOMTOM_API}${accessToken}${coordinates}${dimensions}`;
   }
 
   get token() {
-    return encodeURIComponent(ENV.MAPBOX_ACCESS_TOKEN);
+    return encodeURIComponent(ENV.TOMTOM_ACCESS_TOKEN);
   }
 
   <template>
@@ -429,7 +430,7 @@ export default class Map extends Component {
       <img
         alt="Map image at coordinates {{@lat}},{{@lng}}"
         ...attributes
-        src="https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/{{@lng}},{{@lat}},{{@zoom}}/{{@width}}x{{@height}}@2x?access_token={{this.token}}"
+        src="https://api.tomtom.com/map/1/staticimage?key={{this.token}}&zoom={{@zoom}}&center={{@lng}},{{@lat}}&width={{@width}}&height={{@height}}"
         src={{this.src}}
         width={{@width}} height={{@height}}
       >
@@ -452,7 +453,7 @@ Ember does this by automatically tracking any variables that were accessed while
 
 Just to be sure, we can add a test for this behavior:
 
-```gjs { data-filename="tests/integration/components/map-test.gjs" data-diff="-3,+4,+7,+55,+56,+57,+58,+59,+60,+61,+62,+63,+64,+65,+66,+67,+68,+69,+70,+71,+72,+73,+74,+75,+76,+77,+78,+79,+80,+81,+82,+83,+84,+85,+86,+87,+88,+89,+90,+91,+92,+93,+94,+95,+96,+97,+98,+99,+100,+101,+102,+103,+104,+105,+106,+107,+108,+109,+110,+111,+112,+113,+114,+115,+116,+117,+118,+119" }
+```gjs { data-filename="tests/integration/components/map-test.gjs" data-diff="-3,+4,+7,+55,+56,+57,+58,+59,+60,+61,+62,+63,+64,+65,+66,+67,+68,+69,+70,+71,+72,+73,+74,+75,+76,+77,+78,+79,+80,+81,+82,+83,+84,+85,+86,+87,+88,+89,+90,+91,+92,+93,+94,+95,+96,+97,+98,+99,+100,+101,+102,+103,+104,+105,+106,+107,+108,+109,+110,+111,+112,+113,+114,+115,+116,+117,+118,+119,+120,+121,+122,+123,+124,+125,+126,+127,+128,+129,+130,+131,+132,+133,+134" }
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'super-rentals/tests/helpers';
 import { render, find } from '@ember/test-helpers';
@@ -484,25 +485,25 @@ module('Integration | Component | map', function (hooks) {
       .hasAttribute('height', '120');
 
     let { src } = find('.map img');
-    let token = encodeURIComponent(ENV.MAPBOX_ACCESS_TOKEN);
+    let token = encodeURIComponent(ENV.TOMTOM_ACCESS_TOKEN);
 
     assert.ok(
-      src.startsWith('https://api.mapbox.com/'),
-      'the src starts with "https://api.mapbox.com/"',
+      src.startsWith('https://api.tomtom.com/'),
+      'the src starts with "https://api.tomtom.com/"',
     );
 
     assert.ok(
-      src.includes('-122.4184,37.7797,10'),
-      'the src should include the lng,lat,zoom parameter',
+      src.includes('zoom=10'),
+      'the src should include the zoom parameter',
     );
 
     assert.ok(
-      src.includes('150x120@2x'),
-      'the src should include the width,height and @2x parameter',
+      src.includes('center=-122.4184,37.7797'),
+      'the src should include the lng,lat parameter',
     );
 
     assert.ok(
-      src.includes(`access_token=${token}`),
+      src.includes(`key=${token}`),
       'the src should include the escaped access token',
     );
   });
@@ -531,13 +532,23 @@ module('Integration | Component | map', function (hooks) {
     let img = find('.map img');
 
     assert.ok(
-      img.src.includes('-122.4194,37.7749,10'),
-      'the src should include the lng,lat,zoom parameter',
+      img.src.includes('zoom=10'),
+      'the src should include the zoom parameter',
     );
 
     assert.ok(
-      img.src.includes('150x120@2x'),
-      'the src should include the width,height and @2x parameter',
+      img.src.includes('-122.4194,37.7749'),
+      'the src should include the lng,lat parameter',
+    );
+
+    assert.ok(
+      img.src.includes('width=150'),
+      'the src should include the width parameter',
+    );
+
+    assert.ok(
+      img.src.includes('height=120'),
+      'the src should include the height parameter',
     );
 
     state.width = 300;
@@ -547,13 +558,23 @@ module('Integration | Component | map', function (hooks) {
     await rerender();
 
     assert.ok(
-      img.src.includes('-122.4194,37.7749,12'),
-      'the src should include the lng,lat,zoom parameter',
+      img.src.includes('-122.4194,37.7749'),
+      'the src should still include the lng,lat parameter',
     );
 
     assert.ok(
-      img.src.includes('300x200@2x'),
-      'the src should include the width,height and @2x parameter',
+      img.src.includes('width=300'),
+      'the src should include the updated width parameter',
+    );
+
+    assert.ok(
+      img.src.includes('height=200'),
+      'the src should include the updated height parameter',
+    );
+
+    assert.ok(
+      img.src.includes('zoom=12'),
+      'the src should include the updated zoom parameter',
     );
 
     state.lat = 47.6062;
@@ -562,13 +583,8 @@ module('Integration | Component | map', function (hooks) {
     await rerender();
 
     assert.ok(
-      img.src.includes('-122.3321,47.6062,12'),
-      'the src should include the lng,lat,zoom parameter',
-    );
-
-    assert.ok(
-      img.src.includes('300x200@2x'),
-      'the src should include the width,height and @2x parameter',
+      img.src.includes('center=-122.3321,47.6062'),
+      'the src should include the updated lng,lat parameter',
     );
   });
 
@@ -603,7 +619,7 @@ module('Integration | Component | map', function (hooks) {
 
     assert
       .dom('.map img')
-      .hasAttribute('src', /^https:\/\/api\.mapbox\.com\//)
+      .hasAttribute('src', /^https:\/\/api\.tomtom\.com\//)
       .hasAttribute('width', '150')
       .hasAttribute('height', '120');
   });

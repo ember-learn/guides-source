@@ -25,7 +25,7 @@ This time, we would like the page to be served on the `/about` URL. In order to 
 The place to manage what pages are available is the _router_. Go ahead and open `app/router.js` and make the following change:
 
 ```js { data-filename="app/router.js" data-diff="-9,+10,+11,+12" }
-import EmberRouter from '@ember/routing/router';
+import EmberRouter from '@embroider/router';
 import config from 'super-rentals/config/environment';
 
 export default class Router extends EmberRouter {
@@ -72,7 +72,7 @@ We're on a roll! While we're at it, let's add our third page. This time, things 
 We want to keep the existing URLs for the new website, but we don't want to have to type `getting-in-touch` all over the new codebase! Fortunately, we can have the best of both worlds:
 
 ```js { data-filename="app/router.js" data-diff="+11" }
-import EmberRouter from '@ember/routing/router';
+import EmberRouter from '@embroider/router';
 import config from 'super-rentals/config/environment';
 
 export default class Router extends EmberRouter {
