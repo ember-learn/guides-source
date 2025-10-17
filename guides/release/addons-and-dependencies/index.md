@@ -11,7 +11,7 @@ datepicker that aren't specific to Ember apps.
 Addons are JavaScript packages that integrate with Ember. For example, [`ember-concurrency`](https://github.com/machty/ember-concurrency) provides a concurrency primitive that you can use in your Ember app as well as a [Babel](https://babeljs.io/) plugin that makes it easier to use in an Ember application. You can install it just like any other npm package:
 
 ```bash
-npm install --save-dev ember-cli-sass
+npm install --save-dev ember-concurrency
 ```
 
 And then follow any additional instructions in the README of the addon. Some addons (like `ember-concurrency`) will give instructions for extra steps that you might need like installing a Babel plugin so it's always worthwhile reading the installation documentation.
