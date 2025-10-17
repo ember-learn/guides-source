@@ -1,0 +1,115 @@
+This section covers the common details and "gotchas" of using TypeScript with Ember.
+
+## Registries
+
+Ember makes heavy use of string-based APIs to allow for a high degree of dynamicness. With some [limitations][get-set], you can nonetheless use TypeScript very effectively to get auto-complete/IntelliSense as well as to accurately type-check your applications by using **registries**.
+
+Here's an example defining a Shopping Cart Service in the Ember Service registry:
+
+```typescript {data-filename="app/services/shopping-cart.ts"}
+export default class ShoppingCartService extends Service {
+  //...
+}
+
+declare module '@ember/service' {
+  interface Registry {
+    'shopping-cart': ShoppingCartService;
+  }
+}
+```
+
+This registry definition allows for type-safe lookups in string-based APIs. For example, [the `Owner.lookup` method][owner-lookup] uses this "registration"—a mapping from the string `'shopping-cart'` to the service type, `ShoppingCartService`—to provide the correct type:
+
+```typescript
+import type Owner from '@ember/owner';
+
+function dynamicLookup(owner: Owner) {
+  let cart = owner.lookup('service:shopping-cart');
+  cart.add('hamster feed');
+}
+```
+
+For examples, see:
+
+- [Service][service] registry
+- [Controller][controller] registry
+
+## Decorators
+
+Ember makes heavy use of decorators, and TypeScript does not support deriving type information from Ember's legacy decorators.
+
+As a result, whenever using a decorator to declare a class field the framework sets up for you, you should mark it with [`declare`][declare]. That includes all service injections (`@service`), controller injections (`@inject`) as well as all EmberData attributes (`@attr`) and relationships (`@belongsTo` and `@hasMany`).
+
+Normally, `TypeScript` determines whether a property is definitely not `null` or `undefined` by checking what you do in the constructor. In the case of legacy decorators, though, TypeScript does not have visibility into how the decorated properties are initialized. The `declare` annotation informs TypeScript that a declaration is defined somewhere else, outside its scope.
+
+Additionally, _you_ are responsible to write the type correctly. TypeScript does not use legacy decorator information at all in its type information. If you write `@service foo` or even `@service('foo') foo`, _Ember_ knows that this resolves at runtime to the service `Foo`, but TypeScript does not and—for now—_cannot_.
+
+This means that you are responsible to provide this type information, and that you are responsible to make sure that the information remains correct and up-to-date.
+
+For examples, see:
+
+- [`@service`][service]
+- [`@inject`][controller]
+- EmberData [`@attr`][model-attr]
+- EmberData [`@belongsTo`][model-belongsto]
+- EmberData [`@hasMany`][model-hasmany]
+
+## Hook Types and Autocomplete
+
+Let's imagine a component which just logs the names of its arguments when it is first constructed. First, we must define the [Signature][] and pass it into our component, then we can use the `Args` member in our Signature to set the type of `args` in the constructor:
+
+```gts {data-filename="app/components/args-display.gts"}
+import type Owner from '@ember/owner';
+import Component from '@glimmer/component';
+
+const log = console.log.bind(console);
+
+export interface ArgsDisplaySignature {
+  Args: {
+    arg1: string;
+    arg2: number;
+    arg3: boolean;
+  };
+}
+
+export default class ArgsDisplay extends Component<ArgsDisplaySignature> {
+  constructor(owner: Owner, args: ArgsDisplaySignature['Args']) {
+    super(owner, args);
+    Object.keys(args).forEach(log);
+  }
+}
+```
+
+Notice that we have to start by calling `super` with `owner` and `args`. This may be a bit different from what you're used to in Ember or other frameworks, but is normal for sub-classes in TypeScript today. If the compiler just accepted any `...arguments`, a lot of potentially _very_ unsafe invocations would go through. So, instead of using `...arguments`, we explicitly pass the _specific_ arguments and make sure their types match up with what the super-class expects.
+
+The types for `owner` here and `args` line up with what the `constructor` for Glimmer components expects. The `owner` is specified as `Owner`, imported from the `@ember/owner` module. The `args` are the `Args` from the Signature we defined.
+
+Additionally, the types of the arguments passed to subclassed methods will _not_ autocomplete as you may expect. This is because in JavaScript, a subclass may legally override a superclass method to accept different arguments. Ember's lifecycle hooks, however, are called by the framework itself, and thus the arguments and return type should always match the superclass. Unfortunately, TypeScript does not and _cannot_ know that, so we have to provide the types directly.
+
+Accordingly, we have to provide the types for hooks ourselves:
+
+```typescript {data-filename="app/routes/my.ts"}
+import Route from '@ember/routing/route';
+import Transition from '@ember/routing/transition';
+
+export default class MyRoute extends Route {
+  beforeModel(transition: Transition) {
+    // ...
+  }
+}
+```
+
+<!-- Internal links -->
+
+[controller]: ../../core-concepts/routing/#toc_controller-injections-and-lookups
+[get-set]: ../../additional-resources/legacy/#toc_classic-get-or-set-methods
+[model-attr]: ../../core-concepts/ember-data/#toc_attr
+[model-belongsto]: ../../core-concepts/ember-data/#toc_belongsto
+[model-hasmany]: ../../core-concepts/ember-data/#toc_hasMany
+[owner-lookup]: https://api.emberjs.com/ember/6.7.0/classes/Owner/methods/lookup?anchor=lookup
+[service]: ../../core-concepts/services/#toc_using-services
+[signature]: ../../core-concepts/invokables/#toc_signature-basics
+
+<!-- External links -->
+
+[declare]: https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#the-usedefineforclassfields-flag-and-the-declare-property-modifier
