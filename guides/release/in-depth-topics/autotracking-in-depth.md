@@ -322,12 +322,12 @@ Generally, you should try to create classes with their tracked properties
 enumerated and decorated with `@tracked`, instead of relying on dynamically
 created POJOs. In some cases however, if your usage of properties on POJOs is
 too dynamic, you may not be able to enumerate every single property that could
-be tracked. In this case, you can use `TrackedObject` from `tracked-built-ins`:
+be tracked. In this case, you can use `trackedObject` from [@ember/reactive/collections](https://api.emberjs.com/ember/release/modules/@ember%2Freactive%2Fcollections):
 
 ```js
-import { TrackedObject } from 'tracked-built-ins';
+import { trackedObject } from '@ember/reactive/collections';
 
-let obj = new TrackedObject({
+let obj = trackedObject({
   a: 1,
   b: 2,
 })
@@ -337,21 +337,21 @@ obj.c = 3;
 ```
 
 All property reading and writing on this object is automatically tracked.
-`TrackedObject` is "shallowly" tracked. `obj.c = 4` would be tracked, but
+`trackedObject` is "shallowly" tracked. `obj.c = 4` would be tracked, but
 `obj.c.somethingDeeper = 5` would not be tracked unless you've also made sure
-that the contents of `obj.c` is itself another `TrackedObject`.
+that the contents of `obj.c` is itself another `trackedObject`.
 
 
 #### Arrays
 
-When you want to track the contents of an Array, you can use `TrackedArray` from
-`tracked-built-ins`:
+When you want to track the contents of an Array, you can use `trackedArray` from [@ember/reactive/collections](https://api.emberjs.com/ember/release/modules/@ember%2Freactive%2Fcollections):
+
 
 ```js
-import { TrackedArray } from 'tracked-built-ins';
+import { trackedArray } from '@ember/reactive/collections';
 
 class ShoppingList {
-  items = new TrackedArray([]);
+  items = trackedArray([]);
 
   addItem(item) {
     this.items.push(item);
@@ -359,7 +359,7 @@ class ShoppingList {
 }
 ```
 
-`TrackedArray` supports all the normal native `Array` methods, ensuring that
+`trackedArray` supports all the normal native `Array` methods, ensuring that
 their reads and writes are tracked.
 
 ## Caching of tracked properties

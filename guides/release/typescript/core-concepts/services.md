@@ -6,10 +6,10 @@ Let's take this example from elsewhere in the [Ember Guides][example-location]:
 
 ```typescript {data-filename="app/services/shopping-cart.ts"}
 import Service from '@ember/service';
-import { TrackedSet } from 'tracked-built-ins';
+import { trackedSet } from '@ember/reactive/collections';
 
 export default class ShoppingCartService extends Service {
-  items = new TrackedSet();
+  items = trackedSet();
 
   add(item) {
     this.items.add(item);
