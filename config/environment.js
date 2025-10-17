@@ -48,8 +48,7 @@ module.exports = function (environment) {
     guidemaker: {
       title: 'Ember Guides',
       sourceRepo: 'https://github.com/ember-learn/guides-source',
-      // TODO turn this back on before merging the Vite branch
-      // gjsVersions: ['v6.7.0'],
+      gjsVersions: ['v6.7.0'],
       gjsLink: '/release/components/template-tag-format/',
     },
 
