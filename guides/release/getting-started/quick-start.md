@@ -11,14 +11,16 @@ We'll cover these steps:
 5. Building your app to be deployed to production.
 6. Deploying your app to Netlify.
 
-## Install Ember
+## Install ember-cli
 
-You can install Ember with a single command using [npm](https://docs.npmjs.com/cli),
+You can install `ember-cli` globally with a single command using [npm](https://docs.npmjs.com/cli),
 Type this into your terminal:
 
 ```bash
 npm install -g ember-cli
 ```
+
+This will make the `ember` script available everywhere on your computer. If you prefer not to install `ember-cli` globally you can run whenever you need to using `npx ember-cli`. Most places in this guide assume that you have installed `ember-cli` globally so if you ever see a command like `ember new` remember that you can always run `npx ember-cli new` instead.
 
 Don't have npm? [Learn how to install Node.js and npm here](https://docs.npmjs.com/getting-started/installing-node).
 For a full list of dependencies necessary for an Ember CLI project, visit the [Ember CLI Guides - Installing](https://cli.emberjs.com/release/basic-use/).
@@ -57,11 +59,13 @@ After a few seconds, you should see output that looks like this:
 
 ```shell
 > ember-quickstart@0.0.0 start
-> ember serve
+> vite
 
-building... 
+  VITE v6.3.6  ready in 1202 ms
 
-Build successful (9761ms) – Serving on http://localhost:4200/
+  ➜  Local:   http://localhost:4200/
+  ➜  Network: use --host to expose
+  ➜  press h + enter to show help
 ```
 
 (To stop the server at any time, type Ctrl-C in your terminal.)
@@ -97,7 +101,7 @@ In your editor, open `app/templates/application.gjs` and change it to the follow
 </template>
 ```
 
-Ember detects the changed file and automatically reloads the page for you in the background.
+Vite detects the changed file and automatically reloads the page for you in the background.
 You should see that the welcome page has been replaced by "PeopleTracker".
 You also added an `{{outlet}}` to this page,
 which means that any route will be rendered in that place.
@@ -413,21 +417,17 @@ it's time to get it ready to deploy to our users.
 To do so, run the following command:
 
 ```bash
-ember build --environment=production
+npm run build
 ```
 
-The `build` command packages up all of the assets that make up your
+The `scripts.build` script in your `package.json` runs `vite build`, which packages up all of the assets that make up your
 application&mdash;JavaScript, templates, CSS, web fonts, images, and
 more.
 
-In this case, we told Ember to build for the production environment via the `--environment` flag.
+In this case, we told Vite to build for the production environment because running `vite build` without specifying a `--mode` defaults to `--mode production`.
 This creates an optimized bundle that's ready to upload to your web host.
 Once the build finishes,
 you'll find all of the concatenated and minified assets in your application's `dist/` directory.
-
-The Ember community values collaboration and building common tools that everyone relies on.
-If you're interested in deploying your app to production in a fast and reliable way,
-check out the [Ember CLI Deploy](http://ember-cli-deploy.com/) addon.
 
 If you deploy your application to an Apache web server, first create a new virtual host for the application.
 To make sure all routes are handled by `index.html`,
@@ -477,7 +477,7 @@ Now you are ready to deploy your app to production on Netlify platform. There ar
 You may need to re-create your `dist` directory to include changes made to `_redirects` file by running this command
 
 ```bash
-ember build --environment=production
+npm run build
 ```
 
 Once you are logged-in to your Netlify account and in the "Sites" section, you should see the Netlify drag and drop area

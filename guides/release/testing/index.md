@@ -14,46 +14,20 @@ Writing tests is also a fun activity, a nice change of pace from delivering feat
 
 You have a few options for running tests.
 
-First, you can run the test suite by entering the command `ember test`, or `ember t`, in your terminal. This will run the suite just once.
+First, you can run the test suite by entering the command `npm test` in your terminal. This will run the suite just once using the test command that is specified in your `package.json` `scripts.test` entry.
 
 Running a local development server (through `npm start`), you can visit the `/tests` URI. This will render the `tests/index.html` template. This will also auto-update as you are changing files in your app.
 
 ```bash
 # Run all tests once
-ember test
-ember t
+npm test
 ```
 
 ### How to Filter Tests
 
-When you are working on a single component or page, you will want only a small subset of tests to run after every file change. To specify which tests to run, you can add `--module` or `--filter` option to your command.
+When you start your development server and navigate to `/tests` you will be presented with the QUnit interface. At the top of that page you will see a `Filter` input that you can use to run a smaller subset of your tests.
 
-The `--module` option allows you to select a **module**—a group of tests that you specified in `module()` in QUnit.
-
-```bash
-# Button component example
-ember test --module="Integration | Component | simple-button"
-
-# Run tests for a location service
-ember t -m="Unit | Service | location"
-```
-
-The `--filter` option is more versatile. You can provide a phrase to match against the modules and test descriptions. A test description is what appears in `test()` in QUnit.
-
-```bash
-# Button component example
-ember test --filter="should show icon and label"
-
-# Test everything related to your dashboard
-ember t -f="Dashboard"
-
-# Run integration tests
-ember t -f="Integration"
-```
-
-In QUnit, you can exclude tests by adding an exclamation point to the beginning of the filter, e.g. `ember test --filter="!Acceptance"`.
-
-To learn more about options for testing, you can visit [Ember CLI Documentation](https://ember-cli.com/testing) or type `ember help test` in the command line.
+You can also click the `Rerun` link beside any of the tests listed in QUnit interface to just rerun that one test. This is especially useful if you are working on a single component and want to run the corresponding unit or integration tests while you develop that component.
 
 ## How to Debug Tests
 

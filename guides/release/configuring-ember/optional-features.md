@@ -7,15 +7,7 @@ To give the project a path forward when a breaking change is mandatory, we've re
 
 This addon does nothing by default, but provides a command-line interface to enable and disable breaking changes in Ember.
 
-## Installation
-
-To get started with optional features, you must install the addon:
-
-```bash
-ember install @ember/optional-features
-```
-
-This will make three new commands available to Ember CLI within your project, `feature:list`, `feature:enable`, and `feature:disable`.
+`@ember/optional-features` is installed by default when generating a new ember application.
 
 ## Listing features
 
