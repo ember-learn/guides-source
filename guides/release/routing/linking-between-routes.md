@@ -16,7 +16,7 @@ Router.map(function() {
 });
 ```
 
-```handlebars {data-filename=app/templates/photos.gjs}
+```gjs {data-filename=app/templates/photos.gjs}
 import { LinkTo } from '@ember/routing';
 <template>
   <ul>
@@ -59,7 +59,7 @@ behavior can be customized within `PhotoEditRoute`'s `serialize` hook.
 Alternatively, you can explicitly provide a serialized `id`, in place of
 passing a model object:
 
-```handlebars {data-filename=app/templates/photos.gjs}
+```gjs {data-filename=app/templates/photos.gjs}
 <LinkTo @route="photos.edit" @model="1">First Photo Ever</LinkTo>
 ```
 
@@ -96,7 +96,7 @@ will be given the `active` CSS class. For example, if you were at the URL
 
 The CSS class name used for active classes can be customized for a single use of `<LinkTo />` by passing an `@activeClass` argument:
 
-```handlebars {data-filename=app/templates/photos.gjs}
+```gjs {data-filename=app/templates/photos.gjs}
 import { LinkTo } from '@ember/routing';
 <template>
   <ul>
@@ -152,7 +152,7 @@ URL.
 
 For example, if we are currently on `/photos/2`, then the following template:
 
-```handlebars {data-filename=app/templates/photos/photo.gjs}
+```gjs {data-filename=app/templates/photos/photo.gjs}
 import { LinkTo } from '@ember/routing';
 <template>
   {{#each this.photo.comments as |comment|}}
@@ -191,11 +191,11 @@ To solve this problem, or maybe to cross-link comments from photos other than
 the currently active one, you can pass an array of model objects using the
 `@models` argument and the `{{array}}` helper:
 
-```handlebars {data-filename=app/templates/photos.gjs}
+```gjs {data-filename=app/templates/photos.gjs}
 import { LinkTo } from '@ember/routing';
 <template>
   <h1>Latest Comments</h1>
-  
+
   <ul>
     {{#each this.latestComments as |comment|}}
       <li>
@@ -219,7 +219,7 @@ argument. Therefore, it is an error to pass _both_ arguments at the same time.
 The `@query` argument, along with the `{{hash}}` helper, can be used to set
 query params on a link:
 
-```handlebars
+```gjs
 // Explicitly set target query params
 <LinkTo @route="posts" @query={{hash direction="asc"}}>Sort</LinkTo>
 
@@ -236,9 +236,9 @@ example, it is quite common to want to add additional CSS classes to the
 generated link tag, or specifying the appropriate ARIA attributes. You can
 simply pass them along with the invocation:
 
-```handlebars {data-filename=app/templates/photos/edit.gjs}
+```gjs {data-filename=app/templates/photos/edit.gjs}
 import { LinkTo } from '@ember/routing';
-<template>  
+<template>
   <LinkTo @route="photos" class="btn btn-primary" role="button" aria-pressed="false">
     Discard Changes
   </LinkTo>
@@ -255,7 +255,7 @@ browser's history when transitioning between routes. However, to replace the
 current entry in the browser's history instead, you can use the `@replace`
 option:
 
-```handlebars
+```gjs
 <LinkTo @route="photo.comment" @model={{this.topComment}} @replace={{true}}>
   Top comment for the current photo
 </Link>
