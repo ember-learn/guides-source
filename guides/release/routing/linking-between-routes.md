@@ -193,12 +193,19 @@ the currently active one, you can pass an array of model objects using the
 
 ```gjs {data-filename=app/templates/photos.gjs}
 import { LinkTo } from '@ember/routing';
+import { array } from '@ember/helper';
+
+export default class {
+  get latestComments() {
+    return this.model.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 5);
+  }
+}
 
 <template>
   <h1>Latest Comments</h1>
 
   <ul>
-    {{#each @controller.latestComments as |comment|}}
+    {{#each this.latestComments as |comment|}}
       <li>
         <LinkTo @route="photos.photo.comment" @models={{array comment.photo comment}}>
           {{excerpt comment.body}}...
