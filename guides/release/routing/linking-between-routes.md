@@ -193,11 +193,12 @@ the currently active one, you can pass an array of model objects using the
 
 ```gjs {data-filename=app/templates/photos.gjs}
 import { LinkTo } from '@ember/routing';
+
 <template>
   <h1>Latest Comments</h1>
 
   <ul>
-    {{#each this.latestComments as |comment|}}
+    {{#each @controller.latestComments as |comment|}}
       <li>
         <LinkTo @route="photos.photo.comment" @models={{array comment.photo comment}}>
           {{excerpt comment.body}}...
