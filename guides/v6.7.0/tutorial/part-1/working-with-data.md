@@ -418,7 +418,7 @@ Awesome! Now we're in business.
 
 ## Loops and Local Variables in Templates with `{{#each}}`
 
-The last change we'll need to make is to our `index.hbs` route template, where we invoke our `<Rental>` components. Previously, we were passing in `@rental` as `@model` to our components. However, `@model` is no longer a single object, but rather, an array! So, we'll need to change this template to account for that.
+The last change we'll need to make is to our `index.gjs` route template, where we invoke our `<Rental>` components. Previously, we were passing in `@rental` as `@model` to our components. However, `@model` is no longer a single object, but rather, an array! So, we'll need to change this template to account for that.
 
 Let's see how.
 
