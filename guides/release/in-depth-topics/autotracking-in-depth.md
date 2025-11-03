@@ -403,7 +403,7 @@ getter is very expensive, however, you will want to cache the value and
 retrieve it when the dependencies haven't changed. You want to recompute only
 if a dependency has been updated.
 
-Ember's [@cached decorator](https://github.com/ember-polyfills/ember-cache-primitive-polyfill) lets
+Ember's [@cached decorator](https://api.emberjs.com/ember/6.8/functions/@glimmer%2Ftracking/cached) lets
 you cache (or "memoize") a getter by simply marking it as `@cached`.
 
 With this in mind, let's introduce caching to `aspectRatio`:
@@ -444,7 +444,5 @@ From the value of `count`, we see that, this time, `aspectRatio` was calculated
 only twice.
 
 In general, you should avoid using @cached unless you have confirmed that the getter you are decorating is computationally expensive, since @cached adds a small amount of overhead to the getter.
-
-The @cached decorator was released in Ember 4.1. If you want to leverage this API between versions 3.13 and 4.1, you can install [ember-cached-decorator-polyfill](https://github.com/ember-polyfills/ember-cached-decorator-polyfill) to your project.
 
 <!-- eof - needed for pages that end in a code block  -->
