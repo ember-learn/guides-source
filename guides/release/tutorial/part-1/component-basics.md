@@ -48,8 +48,7 @@ When invoking a component, Ember will replace the component tag with the content
 
 Let's try it out by editing the index template:
 
-```gjs { data-filename="app/templates/index.gjs" data-diff="-1,+2,+3,-6,-7,+8,-12,+13" }
-import { LinkTo } from '@ember/routing'; 
+```gjs { data-filename="app/templates/index.gjs" data-diff="+2,-5,-6,+7,-11,+12" }
 import { LinkTo } from '@ember/routing';
 import Jumbo from 'super-rentals/components/jumbo';
 
