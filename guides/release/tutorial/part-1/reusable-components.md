@@ -404,7 +404,7 @@ From within our JavaScript class, we have access to our component's arguments us
   </div>
 </div>
 
-```js { data-filename="app/components/map.gjs" data-diff="+4,+5,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,-26,+27" }
+```gjs { data-filename="app/components/map.gjs" data-diff="+4,+5,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,-26,+27" }
 import Component from '@glimmer/component';
 import ENV from 'super-rentals/config/environment';
 
@@ -447,7 +447,7 @@ Note that we did not mark our getter as `@tracked`. Unlike instance variables, g
 
 That being said, the values _produced_ by getters can certainly change. In our case, the value produced by our `src` getter depends on the values of `lat`, `lng`, `width`, `height` and `zoom` from `this.args`. Whenever these _dependencies_ get updated, we would expect `{{this.src}}` from our template to be updated accordingly.
 
-Ember does this by automatically tracking any variables that were accessed while computing a getter's value. As long as the dependencies themselves are marked as `@tracked`, Ember knows exactly when to invalidate and re-render any templates that may potentially contain any "stale" and outdated getter values. This feature is also known as _[auto-track](../../../in-depth-topics/autotracking-in-depth/)_. All arguments that can be accessed from `this.args` (in other words, `this.args.*`) are implicitly marked as `@tracked` by the Glimmer component superclass. Since we inherited from that superclass, everything Just Works™.
+Ember does this by automatically tracking any variables that were accessed while computing a getter's value. As long as the dependencies themselves are marked as `@tracked`, Ember knows exactly when to invalidate and re-render any templates that may potentially contain any "stale" and outdated getter values. This feature is also known as _[auto-track](../../../in-depth-topics/autotracking-in-depth/)_. All arguments that can be accessed from `this.args` (in other words, `this.args.*`) are implicitly marked as `@tracked` by the Glimmer component superclass. Since we inherited from that superclass, everything Just Works!
 
 ## Getting JavaScript Values into the Test Context
 

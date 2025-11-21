@@ -96,7 +96,7 @@ Get started by typing:
 Happy coding!
 ```
 
-This should have created a new folder for us called `super-rentals`. We can navigate into it using the `cd` command.
+This should have created a new folder for us called `super-rentals`. We can navigate into it using the `cd` command:
 
 ```shell
 $ cd super-rentals
@@ -250,7 +250,7 @@ Again, if you still have your browser tab open, your tab will automatically re-r
 
 ## Working with HTML, CSS and Assets in an Ember App
 
-Create a `app/templates/index.gjs` file and paste the following markup.
+Create a `app/templates/index.gjs` file and paste the following markup:
 
 ```gjs { data-filename="app/templates/index.gjs" }
 <template>
