@@ -62,14 +62,12 @@ or application instance initializers (with the former being much more common).
 For example, an application initializer could register a `Logger` factory with the key `logger:main`:
 
 ```javascript {data-filename=app/initializers/logger.js}
-import EmberObject from '@ember/object';
-
 export function initialize(application) {
-  let Logger = EmberObject.extend({
+  class Logger {
     log(m) {
       console.log(m);
     }
-  });
+  }
 
   application.register('logger:main', Logger);
 }
@@ -118,12 +116,10 @@ register your factories as non-singletons using the `singleton: false` option.
 In the following example, the `Message` class is registered as a non-singleton:
 
 ```javascript {data-filename=app/initializers/notification.js}
-import EmberObject from '@ember/object';
-
 export function initialize(application) {
-  let Message = EmberObject.extend({
-    text: ''
-  });
+  class Message {
+    text = '';
+  }
 
   application.register('notification:message', Message, { singleton: false });
 }
@@ -141,14 +137,12 @@ Once a factory is registered, it can be "injected" where it is needed.
 Factories can be injected into whole "types" of factories with _type injections_. For example:
 
 ```javascript {data-filename=app/initializers/logger.js}
-import EmberObject from '@ember/object';
-
 export function initialize(application) {
-  let Logger = EmberObject.extend({
+  class Logger {
     log(m) {
       console.log(m);
     }
-  });
+  }
 
   application.register('logger:main', Logger);
   application.inject('route', 'logger', 'logger:main');
@@ -190,9 +184,7 @@ This includes all of Ember's major framework classes, such as components, helper
 
 ### Ad Hoc Injections
 
-Dependency injections can also be declared directly on Ember classes using `inject`.
-Currently, `inject` supports injecting controllers (via `import { inject } from '@ember/controller';`)
-and services (via `import { service } from '@ember/service';`).
+Dependency injections can also be declared directly on Ember classes using `service` (via `import { service } from '@ember/service';`).
 
 The following code injects the `shopping-cart` service on the `cart-contents` component as the property `cart`:
 
@@ -261,7 +253,7 @@ on a song's `audioType`.
 
 ```javascript {data-filename=app/components/play-audio.js}
 import Component from '@glimmer/component';
-import { getOwner } from '@ember/application';
+import { getOwner } from '@ember/owner';
 
 // Usage:
 //
