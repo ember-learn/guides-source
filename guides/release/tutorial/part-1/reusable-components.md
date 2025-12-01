@@ -92,12 +92,12 @@ $ npm start
 
 Building
 
+Environment: development
+
 Building
 
 Environment: development
 
-Environment: development
-
 building... 
 
 building... 
@@ -108,8 +108,7 @@ Build successful (13286ms)
 
 Slowest Nodes (totalTime >= 5%) | Total (avg)
 -+-
-Babel: @embroider/macros (1) | 636ms
-
+Babel: @embroider/macros (1) | 561ms
 
 
 
@@ -118,11 +117,11 @@ Build successful (13286ms)
 
 Slowest Nodes (totalTime >= 5%) | Total (avg)
 -+-
-Babel: @embroider/macros (1) | 630ms
+Babel: @embroider/macros (1) | 586ms
 
 
 
-  VITE v7.2.4  ready in 4279 ms
+  VITE v7.2.4  ready in 3668 ms
 
   ➜  Local:   http://localhost:4200/
 ```
