@@ -221,11 +221,12 @@ Build successful (9761ms)
 
 Slowest Nodes (totalTime >= 5%) | Total (avg)
 -+-
-Babel: @embroider/macros (1) | 390ms
+Babel: @embroider/macros (1) | 410ms
+Babel: ember-tracked-storage-polyfill (1) | 26ms
 
 
 
-  VITE v7.2.6  ready in 3761 ms
+  VITE v7.2.6  ready in 4022 ms
 
   ➜  Local:   http://localhost:4200/
 ```
