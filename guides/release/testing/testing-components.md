@@ -574,6 +574,7 @@ In your test, use the `settled` helper to wait until your debounce timer is up a
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'my-app-name/tests/helpers';
 import { render, settled, fillIn } from '@ember/test-helpers';
+import { tracked } from '@glimmer/tracking';
 import DelayedTypeahead from 'my-app-name/components/delayed-typeahead';
 
 module('Integration | Component | delayed-typeahead', function(hooks) {
