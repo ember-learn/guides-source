@@ -102,11 +102,11 @@ Build successful (13286ms)
 
 Slowest Nodes (totalTime >= 5%) | Total (avg)
 -+-
-Babel: @embroider/macros (1) | 401ms
+Babel: @embroider/macros (1) | 403ms
 
 
 
-  VITE v7.3.0  ready in 3762 ms
+  VITE v7.3.0  ready in 3833 ms
 
   ➜  Local:   http://localhost:4200/
 ```
