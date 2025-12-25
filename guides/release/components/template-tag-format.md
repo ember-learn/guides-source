@@ -260,6 +260,54 @@ export default CustomSelect;
 
 This can be a powerful refactoring technique to break up large components into smaller ones. (where it makes sense!)
 
+## Low-level format
+
+All of template-tag format can be represented in it's pure javascript form using `template` from either `@ember/template-compiler` or `@ember/template-compiler/runtime`.
+
+Creating a template-only component via the runtime compiler:
+
+```gjs
+import { template } from '@ember/template-compiler/runtime';
+
+const hello = 'Greetings';
+
+export default template(`{{hello}}`, {
+  scope: () => ({ hello }),
+});
+```
+
+And a class-component:
+
+```gjs
+import { template } from "@ember/template-compiler";
+
+const message = "Hello there";
+
+class Example extends Component {
+  static {
+    template(
+      "Hello {{message}}",
+      {
+        component: this,
+        scope: () => ({ message }),
+      },
+    );
+  }
+
+}
+```
+
+If in an environment with compilation, omitting the `/runtime` at the end of the import allows ahead-of-time compilation to occur on components created with `template()` for better runtime performance.
+
+Without specifying `/runtime`, there are additional restrictions required for the argument passed to `template()`:
+- it must be a string literal
+
+With the `/runtime`, the argument passed to `template()` can be an expression, for example:
+```js
+/* someValue could be from anywhere */ 
+export default default template(someValue);
+```
+
 ## Testing
 
 Historically, Ember's integration tests have been written using the `hbs` tagged template literal. This is no longer necessary with the template tag format. Instead, use the `<template>` tag to define a template to render.
