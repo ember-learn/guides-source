@@ -24,8 +24,8 @@ To verify that your installation was successful, run:
 
 ```shell
 $ ember --version
-ember-cli: 6.8.0
-node: 18.20.8
+ember-cli: 6.9.1
+node: 20.19.6
 os: linux x64
 ```
 
@@ -61,6 +61,7 @@ Creating a new Ember app in /home/runner/work/super-rentals-tutorial/super-renta
   create app/models/.gitkeep
   create app/router.js
   create app/routes/.gitkeep
+  create app/services/.gitkeep
   create app/styles/app.css
   create /home/runner/work/super-rentals-tutorial/super-rentals-tutorial/dist/code/super-rentals/app/templates/application.gjs
   create config/ember-cli-update.json
@@ -122,6 +123,8 @@ super-rentals
 │   │   └── .gitkeep
 │   ├── routes
 │   │   └── .gitkeep
+│   ├── services
+│   │   └── .gitkeep
 │   ├── styles
 │   │   └── app.css
 │   ├── templates
@@ -134,6 +137,29 @@ super-rentals
 │   ├── environment.js
 │   ├── optional-features.json
 │   └── targets.js
+├── dist
+│   ├── @embroider
+│   │   └── virtual
+│   │       ├── app.css
+│   │       ├── test-support.css
+│   │       ├── test-support.js
+│   │       ├── vendor.css
+│   │       └── vendor.js
+│   ├── assets
+│   │   ├── app-BjOtgFWK.js
+│   │   ├── app-BsLReVUA.css
+│   │   ├── main-RAbakfok.js
+│   │   ├── modules-4-12-fT4Xp44s.js
+│   │   ├── tests-BkAoEM92.js
+│   │   └── tests-DwNWl6nq.css
+│   ├── ember-welcome-page
+│   │   └── images
+│   │       └── construction.png
+│   ├── tests
+│   │   └── index.html
+│   ├── index.html
+│   ├── robots.txt
+│   └── testem.js
 ├── public
 │   └── robots.txt
 ├── tests
@@ -145,6 +171,9 @@ super-rentals
 │   │   └── .gitkeep
 │   ├── index.html
 │   └── test-helper.js
+├── tmp
+│   └── compat-prebuild
+│       └── .stage2-output
 ├── .editorconfig
 ├── .ember-cli
 ├── .env.development
@@ -165,7 +194,7 @@ super-rentals
 ├── testem.cjs
 └── vite.config.mjs
 
-27 directories, 56 files
+28 directories, 58 files
 ```
 
 We'll learn about the purposes of these files and folders as we go. For now, just know that we'll spend most of our time working within the `app` folder.
@@ -189,13 +218,14 @@ building...
 
 Build successful (9761ms)
 
+
 Slowest Nodes (totalTime >= 5%) | Total (avg)
 -+-
-Babel: @embroider/macros (1) | 436ms
+Babel: @embroider/macros (1) | 397ms
 
 
 
-  VITE v6.3.6  ready in 4143 ms
+  VITE v7.3.0  ready in 3804 ms
 
   ➜  Local:   http://localhost:4200/
 ```

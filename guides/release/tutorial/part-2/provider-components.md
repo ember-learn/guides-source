@@ -1,6 +1,6 @@
 <!-- Heads up! This is a generated file, do not edit directly. You can find the source at https://github.com/ember-learn/super-rentals-tutorial/blob/master/src/markdown/tutorial/part-2/12-provider-components.md -->
 
-In this chapter, we'll work on adding a new search feature, and refactor our `index.hbs` template into a new component along the way. We'll learn about a new pattern for passing data around between components, too! Once we're done, our page will look like this:
+In this chapter, we'll work on adding a new search feature, and refactor our `index.gjs` template into a new component along the way. We'll learn about a new pattern for passing data around between components, too! Once we're done, our page will look like this:
 
 <!-- TODO: make this a gif instead -->
 
@@ -58,7 +58,7 @@ Awesome, one step done. Now, this input looks great, but it doesn't actually _do
 
 In order to make our search box actually work, we are going to need to retain and store the text that the user types in when they use the search box. This text is the search query, and it is a piece of _[state](../../../components/component-state-and-actions/)_ that is going to change whenever the user types something into the search box.
 
-But where are we going to put this newly-introduced piece of state? In order to wire up the search box, we need a place to store the search query. At the moment, our search box lives on the `index.hbs` route template, which doesn't have a good place to store this search query state. Darn, this would be so much easier to do if we had a component, because we could just store the state directly on the component!
+But where are we going to put this newly-introduced piece of state? In order to wire up the search box, we need a place to store the search query. At the moment, our search box lives on the `index.gjs` route template, which doesn't have a good place to store this search query state. Darn, this would be so much easier to do if we had a component, because we could just store the state directly on the component!
 
 Wait...why don't we just refactor the search box into a component? Once we do that, this will all be a bit easier—hooray!
 
