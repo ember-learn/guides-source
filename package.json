@@ -95,7 +95,7 @@
     "guidemaker": "^4.0.4",
     "guidemaker-ember-template": "^4.2.0",
     "loader.js": "^4.7.0",
-    "lodash": "^4.17.21",
+    "lodash": "^4.17.23",
     "markdown-link-extractor": "1.2.3",
     "mocha": "^10.1.0",
     "node-fetch": "^2.6.7",
