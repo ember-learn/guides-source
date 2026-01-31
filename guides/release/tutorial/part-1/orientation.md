@@ -217,7 +217,7 @@ Build successful (9761ms)
 
 Slowest Nodes (totalTime >= 5%) | Total (avg)
 -+-
-Babel: @embroider/macros (1) | 412ms
+Babel: @embroider/macros (1) | 403ms
 
 
 
