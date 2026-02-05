@@ -124,7 +124,7 @@
     "tracked-built-ins": "^3.3.0",
     "unified": "^9.2.1",
     "walk-sync": "^2.0.2",
-    "webpack": "^5.96.1"
+    "webpack": "^5.104.1"
   },
   "engines": {
     "node": ">= 18"
