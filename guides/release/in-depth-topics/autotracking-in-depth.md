@@ -55,13 +55,10 @@ like `this.greeting` or `@name` argument, that's less clear. It appears
 should probably change, right? At the least, we should _check_ to see if it
 should change.
 
-In order to tell Ember a value might change, we need to mark it as _trackable_.
-Trackable values are values that:
+If a value can change and the change should cause Ember to re-render, then
+the value should be tracked.
 
-1. Can change over their component’s lifetime and
-2. Should cause Ember to rerender if and when they change
-
-We can do this by marking the field with the `@tracked` decorator:
+To track such values, we mark them with the `@tracked` decorator:
 
 ```gjs {data-filename=app/components/hello.gjs data-diff="+2,-5,+6"}
 import Component from '@glimmer/component';
