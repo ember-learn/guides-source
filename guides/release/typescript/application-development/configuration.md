@@ -4,7 +4,7 @@ If you use the `--typescript` flag when generating your Ember app, we generate a
 
 ```json {data-filename="tsconfig.json"}
 {
-  "extends": "@tsconfig/ember/tsconfig.json",
+  "extends": "@ember/app-tsconfig",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
@@ -21,7 +21,7 @@ If you use the `--typescript` flag when generating your Ember app, we generate a
 }
 ```
 
-The default `tsconfig.json` extends the [`"@tsconfig/ember/tsconfig.json"`][ember-tsconfig] base, which includes TypeScript compiler options to enable TypeScript development in an Ember app plus some useful default configurations for strictness to ensure type-safety and compatibility with Ember's types.
+The default `tsconfig.json` extends the [`"@ember/app-tsconfig"`][ember-tsconfig] base, which includes TypeScript compiler options to enable TypeScript development in an Ember app plus some useful default configurations for strictness to ensure type-safety and compatibility with Ember's types.
 
 Additionally, the generated `tsconfig.json` includes [`"baseUrl"`][tsconfig-baseUrl] and [`"paths"`][tsconfig-paths] configuration specific to your app. This configuration allows Ember's classic package layout, which is not resolvable with the Node resolution algorithm, to work with TypeScript.
 
@@ -67,7 +67,7 @@ return require('@embroider/compat').compatBuild(app, Webpack, {
 <!-- External links -->
 
 [devtool]: https://webpack.js.org/configuration/devtool/
-[ember-tsconfig]: https://www.npmjs.com/package/@tsconfig/ember
+[ember-tsconfig]: https://github.com/ember-cli/tsconfigs
 [embroider]: https://github.com/embroider-build/embroider
 [tsconfig-baseUrl]: https://www.typescriptlang.org/tsconfig#baseUrl
 [tsconfig-exclude]: https://www.typescriptlang.org/tsconfig#exclude
