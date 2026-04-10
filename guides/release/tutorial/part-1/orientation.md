@@ -24,8 +24,8 @@ To verify that your installation was successful, run:
 
 ```shell
 $ ember --version
-ember-cli: 6.10.2
-node: 20.20.0
+ember-cli: 6.12.0
+node: 20.20.2
 os: linux x64
 ```
 
@@ -66,7 +66,7 @@ Creating a new Ember app in /home/runner/work/super-rentals-tutorial/super-renta
   create config/environment.js
   create config/optional-features.json
   create config/targets.js
-  create ember-cli-build.js
+  create ember-cli-build.mjs
   create eslint.config.mjs
   create .gitignore
   create index.html
@@ -143,12 +143,12 @@ super-rentals
 │   │       ├── vendor.css
 │   │       └── vendor.js
 │   ├── assets
+│   │   ├── app-BISwlnwN.js
 │   │   ├── app-BsLReVUA.css
-│   │   ├── app-CKAa86VN.js
-│   │   ├── main-DmTazFdc.js
-│   │   ├── modules-4-12-xn995FO5.js
+│   │   ├── main-CDDwmLqn.js
+│   │   ├── modules-4-12-BSDS5iUo.js
 │   │   ├── tests-CFFHI-JI.css
-│   │   └── tests-CgnkKLpt.js
+│   │   └── tests-DSpZ64Wc.js
 │   ├── ember-welcome-page
 │   │   └── construction.png
 │   ├── tests
@@ -182,7 +182,7 @@ super-rentals
 ├── .watchmanconfig
 ├── README.md
 ├── babel.config.mjs
-├── ember-cli-build.js
+├── ember-cli-build.mjs
 ├── eslint.config.mjs
 ├── index.html
 ├── package.json
@@ -217,11 +217,11 @@ Build successful (9761ms)
 
 Slowest Nodes (totalTime >= 5%) | Total (avg)
 -+-
-Babel: @embroider/macros (1) | 370ms
+Babel: @embroider/macros (1) | 337ms
 
 
 
-  VITE v7.3.1  ready in 3267 ms
+  VITE v7.3.2  ready in 3176 ms
 
   ➜  Local:   http://localhost:4200/
 ```
