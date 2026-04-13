@@ -152,3 +152,145 @@ export default class CartContentsComponent extends Component {
 ```
 
 <!-- eof - needed for pages that end in a code block  -->
+
+### Accessing services from native classes
+
+If you want to access a service from a plain JavaScript class, you'll need to get a reference to the "[owner](https://api.emberjs.com/ember/release/modules/@ember%2Fowner)" object, which is responsible for managing services.
+
+First, we can define a class that accesses services as described above:
+
+```javascript {data-filename=app/components/cart-contents/vanilla-class.js}
+import { service } from '@ember/service';
+
+export class VanillaClass {
+  @service shoppingCart;
+
+  someMethod() {
+    // Now you can use the service
+    this.shoppingCart.add(/* ... */);
+  }
+}
+```
+
+And then to wire up `VanillaClass` to work with `@service`, you'll need to implement a ceremony:
+
+```javascript {data-filename=app/components/cart-contents/index.js}
+import { getOwner, setOwner } from '@ember/owner';
+import { VanillaClass } from './vanilla-class';
+
+export default class CartContentsComponent extends Component {
+  @cached
+  get vanillaClass() {
+    const instance = new VanillaClass();
+
+    setOwner(instance, getOwner(this));
+
+    return instance;
+  }
+}
+```
+
+In reality, this could be any framework-construct: a service, route, controller, etc -- in this case we use a component, but this could also be done in another vanilla class that's already be wired up.
+The pattern here is to use a [`@cached`](https://api.emberjs.com/ember/5.3/functions/@glimmer%2Ftracking/cached) getter to ensure a stable reference to the class, and then using [`setOwner`]( https://api.emberjs.com/ember/5.3/functions/@ember%2Fowner/setOwner) and [`getOwner`](https://api.emberjs.com/ember/5.3/functions/@ember%2Fowner/getOwner), we finish the wiring ceremony needed to make native classes work with services.
+
+
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+
+Note that a stable reference in this situation means that when the property is accessed multiple times the same reference is returned. Without the `@cached` decorator, a new `VanillaClass` would be instantiated upon each access of the getter.
+
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
+  </div>
+</div>
+
+The exact way in which the wiring ceremony is done is up to you, but it often depends on what is needed, and community libraries may abstract away all of these if they wish.
+
+#### With arguments
+
+If your native class needs arguments, we can change the above example to instantiate the class like this:
+
+```javascript {data-filename=app/components/cart-contents/index.js}
+import { setOwner, getOwner } from '@ember/owner';
+
+import { VanillaClass } from './vanilla-class';
+
+export default class CartContentsComponent extends Component {
+  @cached
+  get vanillaClass() {
+    const instance = new VanillaClass(this.args.foo);
+
+    setOwner(instance, getOwner(this));
+
+    return instance;
+  }
+}
+```
+
+Back in the `VanillaClass` itself, you must store the value somewhere, via the constructor:
+
+```javascript {data-filename=app/components/cart-contents/vanilla-class.js}
+import { getOwner } from '@ember/owner';
+import { service } from '@ember/service';
+
+export class VanillaClass {
+  @service shoppingCart;
+
+  constructor(foo) {
+    this.foo = foo;
+  }
+
+  /* ... */
+}
+```
+
+In this situation, when the component's `@foo` argument changes (accessed in JavaScript via `this.args.foo`), a new `VanillaClass` will be instantiated and wired up if it was accessed.
+
+#### Reactive arguments
+
+Sometimes you'll want `@tracked` state to retain its reactivity when passing to a native class, so for that you'll need to use an anonymous arrow function.
+
+
+```javascript {data-filename=app/components/cart-contents/index.js}
+import { setOwner, getOwner } from '@ember/owner';
+
+import { VanillaClass } from './vanilla-class';
+
+export default class CartContentsComponent extends Component {
+  @cached
+  get vanillaClass() {
+    const instance = new VanillaClass(() => this.args.foo);
+
+    setOwner(instance, getOwner(this));
+
+    return instance;
+  }
+}
+```
+
+Back in the `VanillaClass` itself, you must store the value somewhere and possibly provide yourself an easy way to access the value:
+
+```javascript {data-filename=app/components/cart-contents/vanilla-class.js}
+import { service } from '@ember/service';
+
+export class VanillaClass {
+  @service shoppingCart;
+
+  constructor(fooFunction) {
+    this.fooFunction = fooFunction;
+  }
+
+  get foo() {
+    return this.fooFunction();
+  }
+
+  /* ... */
+}
+```
+
+With this technique, the tracked data provided by `this.arg.foo` is lazily evaluated in `VanillaClass`, allowing the `VanillaClass` to participate in lazy evaluation and auto-tracking like every where else you may be used to in an app.
+
