@@ -1,31 +1,13 @@
-By default, Ember.js will extend the prototypes of native JavaScript
-arrays to implement the `Ember.Enumerable`, `Ember.MutableEnumerable`,
-`Ember.MutableArray` and `Ember.Array` interfaces. This polyfills
-ECMAScript 5 array methods in browsers that do not implement them, adds
-convenience methods and properties to built-in arrays, and makes array
-mutations observable.
+Historically, Ember.js extended the prototypes of native JavaScript arrays to implement the Ember.Enumerable, Ember.MutableEnumerable, Ember.MutableArray, and Ember.Array interfaces. This added convenience methods and properties to built-in arrays, and made array mutations observable.
 
-This is the extent to which Ember.js enhances native prototypes. We have
-carefully weighed the trade-offs involved with changing these prototypes,
-and recommend that most Ember.js developers use them. These extensions
-significantly reduce the amount of boilerplate code that must be typed.
+However, as of Ember-cli 4.9.0, prototype extensions are disabled by default in new Ember applications. This change was made to align more closely with standard JavaScript behavior and to avoid potential conflicts with other libraries or future language features.
 
-However, we understand that there are cases where your Ember.js
-application may be embedded in an environment beyond your control. The
-most common scenarios are when authoring third-party JavaScript that is
-embedded directly in other pages, or when transitioning an application
-piecemeal to a more modern Ember.js architecture.
-
-In those cases, where you can't or don't want to modify native
-prototypes, Ember.js allows you to completely disable the extensions
-described above.
-
-To do so, simply set the `EmberENV.EXTEND_PROTOTYPES` flag to `false`:
+If you have an existing application that relies on prototype extensions, you can still enable them by setting the `EmberENV.EXTEND_PROTOTYPES` flag to `true` in your `config/environment.js` file:
 
 ```javascript {data-filename=config/environment.js}
 ENV = {
   EmberENV: {
-    EXTEND_PROTOTYPES: false
+    EXTEND_PROTOTYPES: true
   }
 }
 ```
@@ -37,7 +19,7 @@ for in your application's configuration like so:
 ENV = {
   EmberENV: {
     EXTEND_PROTOTYPES: {
-      Array: false
+      Array: true
     }
   }
 }
