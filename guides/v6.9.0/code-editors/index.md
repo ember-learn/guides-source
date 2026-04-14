@@ -37,19 +37,8 @@ Prettier is an opinionated code formatting tool. It enforces a consistent style 
 
 ### Typed Glimmer Templates
 
-<div class="cta">
-  <div class="cta-note">
-    <div class="cta-note-body">
-      <div class="cta-note-heading">Zoey says...</div>
-      <div class="cta-note-message">
-        This is not installed as part of the extension pack but should be considered for Ember projects built with TypeScript. Learn more about <a href="https://typed-ember.gitbook.io/glint/">Glint here</a>.
-      </div>
-    </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="">
-  </div>
-</div>
-
-[Glint](https://marketplace.visualstudio.com/items?itemName=typed-ember.glint-vscode) is a set of tools to aid in developing code that uses the Glimmer VM for rendering, such as Ember.js v3.24+ and GlimmerX projects.
+[Glint](https://marketplace.visualstudio.com/items?itemName=typed-ember.glint2-vscode) - 
+Incorporate Glimmer templates into TypeScript-powered tooling for a project, enabling them to participate in rich editor features such as: info on hover, go to definition, symbol renaming, finding references, and auto completions. This is not installed as part of the extension pack but should be considered for Ember projects built with TypeScript.
 
 ## Vim and Neovim
 
