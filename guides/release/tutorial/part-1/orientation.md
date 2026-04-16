@@ -148,7 +148,7 @@ super-rentals
 │   │   ├── main-CDDwmLqn.js
 │   │   ├── modules-4-12-BSDS5iUo.js
 │   │   ├── tests-CFFHI-JI.css
-│   │   └── tests-DSpZ64Wc.js
+│   │   └── tests-DQRpglZe.js
 │   ├── ember-welcome-page
 │   │   └── construction.png
 │   ├── tests
@@ -217,11 +217,11 @@ Build successful (9761ms)
 
 Slowest Nodes (totalTime >= 5%) | Total (avg)
 -+-
-Babel: @embroider/macros (1) | 334ms
+Babel: @embroider/macros (1) | 328ms
 
 
 
-  VITE v7.3.2  ready in 3218 ms
+  VITE v7.3.2  ready in 3171 ms
 
   ➜  Local:   http://localhost:4200/
 ```
