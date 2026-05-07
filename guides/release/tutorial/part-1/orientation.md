@@ -24,8 +24,8 @@ To verify that your installation was successful, run:
 
 ```shell
 $ ember --version
-ember-cli: 6.10.0
-node: 20.20.0
+ember-cli: 6.12.0
+node: 20.20.2
 os: linux x64
 ```
 
@@ -66,7 +66,7 @@ Creating a new Ember app in /home/runner/work/super-rentals-tutorial/super-renta
   create config/environment.js
   create config/optional-features.json
   create config/targets.js
-  create ember-cli-build.js
+  create ember-cli-build.mjs
   create eslint.config.mjs
   create .gitignore
   create index.html
@@ -143,12 +143,14 @@ super-rentals
 │   │       ├── vendor.css
 │   │       └── vendor.js
 │   ├── assets
-│   │   ├── app-BQizcYp5.js
-│   │   ├── app-BsLReVUA.css
-│   │   ├── main-BrJmI0E2.js
-│   │   ├── modules-4-12-1Tpr-lU6.js
-│   │   ├── tests-Bfhe-jay.js
-│   │   └── tests-CFFHI-JI.css
+│   │   ├── app-DgioD2rk.css
+│   │   ├── app-kH0EqUK0.js
+│   │   ├── dist-BUdT4Swa.js
+│   │   ├── main-BINtkAbW.js
+│   │   ├── manager-C2ILo-5D.js
+│   │   ├── modules-4-12-BPXQYON-.js
+│   │   ├── tests-BdSWFklr.css
+│   │   └── tests-CIHkQsCT.js
 │   ├── ember-welcome-page
 │   │   └── construction.png
 │   ├── tests
@@ -182,7 +184,7 @@ super-rentals
 ├── .watchmanconfig
 ├── README.md
 ├── babel.config.mjs
-├── ember-cli-build.js
+├── ember-cli-build.mjs
 ├── eslint.config.mjs
 ├── index.html
 ├── package.json
@@ -190,7 +192,7 @@ super-rentals
 ├── testem.cjs
 └── vite.config.mjs
 
-26 directories, 57 files
+26 directories, 59 files
 ```
 
 We'll learn about the purposes of these files and folders as we go. For now, just know that we'll spend most of our time working within the `app` folder.
@@ -217,11 +219,11 @@ Build successful (9761ms)
 
 Slowest Nodes (totalTime >= 5%) | Total (avg)
 -+-
-Babel: @embroider/macros (1) | 417ms
+Babel: @embroider/macros (1) | 330ms
 
 
 
-  VITE v7.3.1  ready in 3542 ms
+  VITE v8.0.11  ready in 3171 ms
 
   ➜  Local:   http://localhost:4200/
 ```
