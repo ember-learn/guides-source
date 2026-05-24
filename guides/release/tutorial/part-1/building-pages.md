@@ -2,7 +2,7 @@
 
 In this chapter, you will build the first few pages of your Ember app and set up links between them. By the end of this chapter, you should have two new pages – an about page and a contact page. These pages will be linked to from your landing page:
 
-<img src="/images/tutorial/part-1/building-pages/index-with-link@2x.png" alt="The Super Rentals app (homepage) by the end of the chapter" width="1024" height="251">
+<img src="/images/tutorial/part-1/building-pages/index-with-link@2x.png" alt="The Super Rentals app (homepage) by the end of the chapter" width="1024" height="100">
 
 <img src="/images/tutorial/part-1/building-pages/about-with-link@2x.png" alt="The Super Rentals app (about page) by the end of the chapter" width="1024" height="275">
 
@@ -197,7 +197,7 @@ However, when clicking on one of these special links, Ember will intercept the c
 
 <!-- TODO: make this a gif instead -->
 
-<img src="/images/tutorial/part-1/building-pages/index-with-link@2x.png" alt="Index page after adding the link" width="1024" height="251">
+<img src="/images/tutorial/part-1/building-pages/index-with-link@2x.png" alt="Index page after adding the link" width="1024" height="100">
 
 <img src="/images/tutorial/part-1/building-pages/about-with-link@2x.png" alt="About page after adding the link" width="1024" height="275">
 

@@ -24,7 +24,7 @@ To verify that your installation was successful, run:
 
 ```shell
 $ ember --version
-ember-cli: 7.0.0
+ember-cli: 7.0.1
 node: 20.20.2
 os: linux x64
 ```
@@ -213,19 +213,16 @@ Environment: development
 building... 
 
 
-
 Build successful (9761ms)
 
 
 Slowest Nodes (totalTime >= 5%) | Total (avg)
 -+-
-@embroider/compat/app (1) | 222ms
-Babel: @embroider/macros (1) | 211ms
-@embroider/compat/addons (1) | 100ms
+Babel: @embroider/macros (1) | 345ms
 
 
 
-  VITE v8.0.14  ready in 2269 ms
+  VITE v8.0.14  ready in 3201 ms
 
   ➜  Local:   http://localhost:4200/
 ```
