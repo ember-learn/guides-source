@@ -165,12 +165,12 @@ Build successful (13286ms)
 
 Slowest Nodes (totalTime >= 5%) | Total (avg)
 -+-
-Babel: @embroider/macros (1) | 307ms
+Babel: @embroider/macros (1) | 305ms
 
 
-4:17:17 AM [vite] (client) Re-optimizing dependencies because lockfile has changed
+4:51:57 AM [vite] (client) Re-optimizing dependencies because lockfile has changed
 
-  VITE v8.0.14  ready in 3205 ms
+  VITE v8.0.14  ready in 3280 ms
 
   ➜  Local:   http://localhost:4200/
 ```
