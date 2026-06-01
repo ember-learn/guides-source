@@ -22,11 +22,7 @@ In addition to the usual packages added with `ember new`, the following packages
 - `@types/qunit` - TypeScript type definitions for QUnit.
 - `@types/rsvp` - TypeScript type definitions for RSVP.
 - `@warp-drive/core-types` - shared core types, type utilities and constants for the WarpDrive and EmberData packages.
-
-<!--
-TODO: Uncomment this line when we add Glint docs
-- `@glint/*` – a set of packages to support type-checking in templates.
-  -->
+- `@glint/ember-tsc`, `@glint/template`, and `@glint/tsserver-plugin` – [Glint][glint], the template-aware type-checker. `ember-tsc --noEmit` is wired to the `lint:types` script; the `@glint/tsserver-plugin` package augments the TypeScript Server in your editor with template-aware diagnostics.
 
 <div class="cta">
   <div class="cta-note">
@@ -52,7 +48,7 @@ In addition to the usual files added with `ember new`, we also add:
 
 Additionally:
 
-- `package.json` will have a `lint:types` script to check types with the command line.
+- `package.json` will have a `lint:types` script (`ember-tsc --noEmit`) to check both TypeScript and templates with the command line.
 - `ember-cli-build.js` will be configured to transform TypeScript at build-time.
 - `.ember-cli` has `isTypeScriptProject` set to true, which will force the blueprint generators to generate TypeScript rather than JavaScript by default.
 - `.eslintrc.js` will be configured for TypeScript.
@@ -68,5 +64,9 @@ To convert an existing app to TypeScript, you'll need to make the changes descri
 [environment-types]: ../additional-resources/faq/#toc_environment-configuration-typings
 [global-types]: ../additional-resources/faq/#toc_global-types-for-your-project
 [tsconfig]: ../application-development/configuration/#toc_tsconfigjson
+
+<!-- External links -->
+
+[glint]: https://typed-ember.gitbook.io/glint/
 
 <!-- External links -->
