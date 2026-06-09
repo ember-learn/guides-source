@@ -9,7 +9,7 @@ Fortunately, Ember provides a way for projects to deal with deprecations in an o
 
 ## Deprecation Workflow
 
-The default application blueprint includes the [ember-cli-depprecation-workflow](https://github.com/ember-cli/ember-cli-deprecation-workflow) addon. The file `app/deprecation-workflow.js` contains configuration for managing which deprecations you prefer to silence, log, or throw.
+The default application blueprint includes the [ember-cli-deprecation-workflow](https://github.com/ember-cli/ember-cli-deprecation-workflow) addon. The file `app/deprecation-workflow.js` contains configuration for managing which deprecations you prefer to silence, log, or throw.
 
 The recommended strategy is:
 
