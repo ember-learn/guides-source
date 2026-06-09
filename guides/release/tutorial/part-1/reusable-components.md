@@ -24,7 +24,7 @@ Let's add it to our app:
 
 ```shell
 $ npm install maplibre-gl --save-dev
-../../..                                 |  +24 ++
+../../..                                 |  +25 +++
 devDependencies:
 + maplibre-gl 5.24.0
 ```
@@ -166,12 +166,12 @@ Build successful (13286ms)
 
 Slowest Nodes (totalTime >= 5%) | Total (avg)
 -+-
-Babel: @embroider/macros (1) | 319ms
+Babel: @embroider/macros (1) | 322ms
 
 
-5:02:24 AM [vite] (client) Re-optimizing dependencies because lockfile has changed
+4:25:03 AM [vite] (client) Re-optimizing dependencies because lockfile has changed
 
-  VITE v8.0.16  ready in 3247 ms
+  VITE v8.0.16  ready in 3312 ms
 
   ➜  Local:   http://localhost:4200/
 ```
