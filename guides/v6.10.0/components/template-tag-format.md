@@ -1,10 +1,20 @@
-The template tag format is a powerful, new way to write components in Ember. It's a single-file format that combines the component's JavaScript and Glimmer template code. The `<template>` tag is used to keep a clear separation between the template language and the JavaScript around it.
+The template tag format is the default way to write components in Ember. It's a single-file format that combines the component's JavaScript and Glimmer template code. The `<template>` tag is used to keep a clear separation between the template language and the JavaScript around it.
 
 Template tag components use the file extension `.gjs`. This abbreviation is short for "Glimmer JavaScript". The file extension `.gts` is also supported for TypeScript components.
 
-This new format is [the official future of Ember's component authoring story](https://rfcs.emberjs.com/id/0779-first-class-component-templates/), and is stable and usable today. The RFC is currently in the "Accepted" stage, and work is ongoing to get it to "Ready for Release". We expect it to become the recommended and default way of authoring all Ember apps in the near future, once we are satisfied that we have sufficiently polished up all the corners of the implementation.
+Template Tag became the default component authoring format [starting at Ember 6.8](https://rfcs.emberjs.com/id/0779-first-class-component-templates/).
 
-> Can't wait to get started? Head over to the [installation section](#toc_installation) to begin using template tag components in your apps and addons today.
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+       Before the creation of Template Tag, components were authored as paired JS and HBS files. The HBS in these files has some different behaviors than modern Template Tag. The [Strict Handlebars RFC](https://rfcs.emberjs.com/id/0496-handlebars-strict-mode/) explains what changed between HBS and GJS.
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
+  </div>
+</div>
 
 ## Writing template tag components
 
@@ -90,7 +100,7 @@ The example above demonstrates defining a "Message" template-only component. The
     <div class="cta-note-body">
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
-        The components that are imported are not required to use the new template tag format. This is intentional, and very powerful, as it <strong>allows incremental adoption</strong> of the new format.
+        The components that are imported are not required to use template tag format. This is intentional, and very powerful, as it <strong>allows incremental conversion</strong> from the older HBS format.
         <br><br>
         The only prerequisite is that the component is defined using the <a href="https://rfcs.emberjs.com/id/0481-component-templates-co-location">template-colocation structure</a> instead of splitting up the JavaScript and Glimmer template files into separate folders.
       </div>
@@ -399,14 +409,6 @@ module('Integration | Component | avatar', function (hooks) {
 ```
 
 Notice how the same semantics now apply to tests as well: local values in scope can be referenced directly, and invokables from your own app or addons need to be imported.
-
-## Installation
-
-Install the [ember-template-imports](https://github.com/ember-template-imports/ember-template-imports) addon to start using template tag components. This addon provides all the build tooling required to support the new component authoring format.
-
-```bash
-npm add --save-dev ember-template-imports
-```
 
 ### Integration with external tooling
 
