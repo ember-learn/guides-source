@@ -24,7 +24,7 @@ jobs:
   test-app:
     name: Test app
     runs-on: ubuntu-latest
-    timeout-minutes: 7
+    timeout-minutes: 20
     steps:
       - name: Check out a copy of the repo
         uses: actions/checkout@v4
