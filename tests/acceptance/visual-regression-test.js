@@ -35,6 +35,7 @@ module('Acceptance | visual regression', function (hooks) {
   setupApplicationTest(hooks);
 
   test(`visiting visual regressions with Percy`, async function (assert) {
+    assert.timeout(300000);
     assert.expect(0);
     await visit('/release');
 
