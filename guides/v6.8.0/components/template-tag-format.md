@@ -1,10 +1,20 @@
-The template tag format is a powerful, new way to write components in Ember. It's a single-file format that combines the component's JavaScript and Glimmer template code. The `<template>` tag is used to keep a clear separation between the template language and the JavaScript around it.
+The template tag format is the default way to write components in Ember. It's a single-file format that combines the component's JavaScript and Glimmer template code. The `<template>` tag is used to keep a clear separation between the template language and the JavaScript around it.
 
 Template tag components use the file extension `.gjs`. This abbreviation is short for "Glimmer JavaScript". The file extension `.gts` is also supported for TypeScript components.
 
-This new format is [the official future of Ember's component authoring story](https://rfcs.emberjs.com/id/0779-first-class-component-templates/), and is stable and usable today. The RFC is currently in the "Accepted" stage, and work is ongoing to get it to "Ready for Release". We expect it to become the recommended and default way of authoring all Ember apps in the near future, once we are satisfied that we have sufficiently polished up all the corners of the implementation.
+Template Tag became the default component authoring format [starting at Ember 6.8](https://rfcs.emberjs.com/id/0779-first-class-component-templates/).
 
-> Can't wait to get started? Head over to the [installation section](#toc_installation) to begin using template tag components in your apps and addons today.
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+       Before the creation of Template Tag, components were authored as paired JS and HBS files. The HBS in these files has some different behaviors than modern Template Tag. The [Strict Handlebars RFC](https://rfcs.emberjs.com/id/0496-handlebars-strict-mode/) explains what changed between HBS and GJS.
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
+  </div>
+</div>
 
 ## Writing template tag components
 
@@ -90,7 +100,7 @@ The example above demonstrates defining a "Message" template-only component. The
     <div class="cta-note-body">
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
-        The components that are imported are not required to use the new template tag format. This is intentional, and very powerful, as it <strong>allows incremental adoption</strong> of the new format.
+        The components that are imported are not required to use template tag format. This is intentional, and very powerful, as it <strong>allows incremental conversion</strong> from the older HBS format.
         <br><br>
         The only prerequisite is that the component is defined using the <a href="https://rfcs.emberjs.com/id/0481-component-templates-co-location">template-colocation structure</a> instead of splitting up the JavaScript and Glimmer template files into separate folders.
       </div>
@@ -260,6 +270,117 @@ export default CustomSelect;
 
 This can be a powerful refactoring technique to break up large components into smaller ones. (where it makes sense!)
 
+## Low-level, Pure-JavaScript format
+
+All of template-tag format has an equivalent pure-JS representation.
+
+The template-only-component case converts like this:
+
+```gjs
+// ----- GJS Syntax ------------------------
+import { pageTitle } from "ember-page-title";
+
+const LandingPage = <template>
+  {{pageTitle "Welcome"}}
+  <h1>Welcome</h1>
+</template>;
+
+// ------ Equivalent JS Syntax -------------
+import { pageTitle } from "ember-page-title";
+import { template } from '@ember/template-compiler';
+
+const LandingPage = template(`{{pageTitle "Welcome"}}
+<h1>Welcome</h1>`, {
+  scope: () => ({ pageTitle })
+})
+```
+
+And the class-based-component case converts likes this:
+
+
+```gjs
+// ------ GJS Syntax ---------------
+import { pageTitle } from "ember-page-title";
+
+class LandingPage extends Component {
+  <template>
+    {{pageTitle "Welcome"}}
+    <h1>Welcome</h1>
+  </template>
+}
+
+// ------ Equivalent JS Syntax -------------
+import { pageTitle } from "ember-page-title";
+import { template } from '@ember/template-compiler';
+
+class LandingPage extends Component {
+  static {
+    template(`{{pageTitle "Welcome"}}
+<h1>Welcome</h1>`, {
+      component: this,
+      scope: () => ({ pageTitle })
+    });
+  }
+}
+```
+
+Just like the `<template></template>` syntax, `template()` from `@ember/template-compiler` can be build-time optimized, so you're not allowed to use any syntax other than string literals for the first argument. For example:
+
+```js
+import { template } from '@ember/template-compiler';
+
+// This is OK because the first argument to template() is a string literal:
+const LandingPage = template(`{{pageTitle "Welcome"}}
+<h1>Welcome</h1>`, {
+  scope: () => ({ pageTitle })
+})
+
+// This is a build error because the first argument is not a string literal:
+const LandingPage = template(buildTemplate(), {
+  scope: () => ({ pageTitle })
+})
+
+function buildTemplate() {
+  return `{{pageTitle "Welcome"}}
+<h1>Welcome</h1>`;
+}
+```
+
+If you want to relax this restriction, you can opt-in to runtime template compilation instead. This is more expensive at runtime and pulls additional template-compilation code into your app. But it's appropriate for dynamic environments like interactive development tools:
+
+```js
+// Notice the different import path here:
+import { template } from '@ember/template-compiler/runtime';
+
+// This is now OK because no static build-time analysis will 
+// be performed, and you can use arbitrary code to produce a 
+// string value at runtime.
+const LandingPage = template(buildTemplate(), {
+  scope: () => ({ pageTitle })
+})
+
+function buildTemplate() {
+  return `{{pageTitle "Welcome"}}
+<h1>Welcome</h1>`;
+}
+```
+
+### Scope Arguments
+
+The `<template>` syntax in GJS is able to "see" outer JavaScript scope (like the value of `pageTitle` in the examples above). When we convert the template to a JavaScript string, that's no longer possible, so we need to add either the `scope` or `eval` arguments. The examples above use `scope`, which is best when you know precisely which values from JavaScript scope are needed inside the template. For more dynamic situations, you can alternatively pass `eval`:
+
+```js
+import { template } from '@ember/template-compiler/runtime';
+
+template(someArbitraryTemplateString(), {
+  eval() {
+    return eval(arguments[0]);
+  }
+})
+```
+
+The above example is the *only* way you should implement the `eval` callback. It uses `arguments` instead of an explicitly-named function parameter because otherwise that parameter could shadow the value that the template compiler is trying to retrieve from an outer scope.
+
 ## Testing
 
 Historically, Ember's integration tests have been written using the `hbs` tagged template literal. This is no longer necessary with the template tag format. Instead, use the `<template>` tag to define a template to render.
@@ -288,14 +409,6 @@ module('Integration | Component | avatar', function (hooks) {
 ```
 
 Notice how the same semantics now apply to tests as well: local values in scope can be referenced directly, and invokables from your own app or addons need to be imported.
-
-## Installation
-
-Install the [ember-template-imports](https://github.com/ember-template-imports/ember-template-imports) addon to start using template tag components. This addon provides all the build tooling required to support the new component authoring format.
-
-```bash
-npm add --save-dev ember-template-imports
-```
 
 ### Integration with external tooling
 
