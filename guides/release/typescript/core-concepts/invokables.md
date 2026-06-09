@@ -661,50 +661,45 @@ Nearly anything you can do with a “regular” TypeScript function or class, yo
 We can make a component accept a [generic][generic] type, or use [union][union] types.
 With these tools at our disposal, we can even define our signatures to [make illegal states un-representable][illegal].
 
-To see this in practice, consider a list component which yields back out instances of the same type it provides, and provides the appropriate element target based on a `type` argument.
-Yielding back out the same type passed in will use generics, and providing an appropriate element target for `...attributes` can use a union type.
+### Union Types
+
+To see this in practice, consider a list component that provides the appropriate element target based on a `type` argument.
 
 Here is how that might look, using a class-backed component rather than a template-only component, since the only places TypeScript allows us to name new generic types are on functions and classes:
 
 ```gts
 import Component from '@glimmer/component';
 
-interface OrderedList<T> {
+interface OrderedList {
   Args: {
-    items: Array<T>;
+    names: Array<string>;
     type: 'ordered';
-  };
-  Blocks: {
-    default: [item: T];
   };
   Element: HTMLOListElement;
 }
 
-interface UnorderedList<T> {
+interface UnorderedList {
   Args: {
-    items: Array<T>;
+    names: Array<string>;
     type: 'unordered';
-  };
-  Blocks: {
-    default: [item: T];
   };
   Element: HTMLUListElement;
 }
 
-type ListSignature<T> = OrderedList<T> | UnorderedList<T>;
+type ListSignature = OrderedList | UnorderedList;
 
-export default class List<T> extends Component<ListSignature<T>> {
+export default class List extends Component<ListSignature> {
   <template>
     {{#if (isOrdered @type)}}
       <ol ...attributes>
-        {{#each @items as |item|}}
-          <li>{{yield item}}</li>
+        {{#each @names as |name|}}
+          <li>{{name}}</li>
         {{/each}}
       </ol>
     {{else}}
       <ul ...attributes>
-        {{#each @items as |item|}}
-          <li>{{yield item}}</li>
+        {{#each @names as |name|}}
+          <li>{{name}}</li>
         {{/each}}
       </ul>
     {{/if}}
@@ -719,16 +714,133 @@ function isOrdered(type: 'ordered' | 'unordered'): type is 'ordered' {
 If you are using Glint, when this component is invoked, the `@type` argument will determine what kinds of modifiers are legal to apply to it. For example, if you defined a modifier `reverse` which required an `HTMLOListElement`, this invocation would be rejected:
 
 ```handlebars
-<List @items={{array 1 2 3}} @type='unordered' {{reverse}} as |item|>
-  The item is
-  {{item}}.
-</List>
+<List @items={{array 1 2 3}} @type='unordered' {{reverse}} />
 ```
 
-The same approach with generics works for class-based helpers and class-based modifiers.
-Function-based helpers and modifiers can also use generics, but by using them on the function definition rather than via a signature.
 One caveat: particularly complicated union types in signatures can sometimes become too complex for Glint/TypeScript to resolve when invoking in a template.
 In those cases, your best bet is to find a simpler way to structure the types while preserving type safety.
+
+### Generic Types
+You can use generic types to improve Intellisense and type checking for consumers of your component:
+
+```ts {data-filename="app/components/list.ts"}
+import Component from '@glimmer/component';
+
+interface ListSignature<T>{
+  Args: {
+    items: T[];
+  };
+  Blocks: {
+    default: [item: T]
+  }
+}
+
+export default class List<T> extends Component<ListSignature<T>>{
+ ...
+}
+```
+
+```hbs {data-filename="app/components/list.hbs"}
+<ul>
+  {{#each @items as |item|}}
+    <li>{{yield item}}</li>
+  {{/each}}
+</ul>
+```
+
+When consuming this component, Glint can infer the type of the yielded value to be the same as the type of `@items`:
+
+```gts {data-filename="app/components/list-consumer.gts"}
+const people = [
+  {
+    id: 1,
+    name: 'John'
+  },
+  {
+    id: 2,
+    name: 'Jane'
+  }
+];
+
+const Consumer = <template>
+  <List @items={{people}} as |person| >
+    {{person.username}} {{!-- This will throw a type error because 'username' is not defined on our items --}}
+    {{person.name}}
+  </List>
+</template>
+```
+
+Function-based helpers and modifiers can also use generics, but by using them on the function definition rather than via a signature.
+The same approach with generics works for class-based helpers and class-based modifiers.
+
+You can also use generic types when yielding a contextual component by creating a property on the class that implements the generic type on the relevant component:
+
+```gts {data-filename="app/components/contextual-list.gts"}
+import Component from '@glimmer/component';
+import type { WithBoundArgs } from '@glint/template';
+
+interface ListItemSignature<T>{
+  Args: {
+    item: T;
+  };
+  Blocks: {
+    default: [item: T]
+  }
+}
+
+class ListItem<T> extends Component<ListItemSignature<T>>{
+  <template>
+    <li>
+      {{yield @item}}
+    </li>
+  </template>
+}
+
+interface ListSignature<T>{
+  Args: {
+    items: T[];
+  };
+  Blocks: {
+    default: [WithBoundArgs<typeof ListItem<T>, 'item'>]
+  }
+}
+
+export default class List<T> extends Component<ListSignature<T>>{
+  ListItemComponent = ListItem<T>;
+  
+  <template>
+    <ul>
+      {{#each @items as |item|}}
+        {{yield (component this.ListItemComponent item=item) }}
+      {{/each}}
+    </ul>
+  </template>
+}
+```
+
+When consuming this component, and it's yielded contextual component, Glint will again infer the type of the yielded value to be the same as the type of `@items`:
+```gts {data-filename="app/components/contextual-list-consumer.gts"}
+const items = [
+  {
+    id: 1,
+    name: 'John'
+  },
+  {
+    id: 2,
+    name: 'Jane'
+  }
+];
+
+const Consumer = <template>
+  <List @items={{items}} as |ListItem|>
+    <ListItem as |person|>
+      {{person.username}} {{!-- This will throw a type error because 'username' is not defined on our items --}}
+      {{person.name}}
+    </ListItem>
+  </List>
+</template>
+```
+
 
 <!-- Internal links -->
 
