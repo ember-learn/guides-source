@@ -151,6 +151,18 @@
   pages:
     - title: "Autotracking In-Depth"
       url: "autotracking-in-depth"
+    - title: "Reactivity"
+      url: "reactivity"
+      isAdvanced: true
+      pages:
+        - title: "Thinking in Reactivity"
+          url: "index"
+        - title: "Root State"
+          url: "root-state"
+        - title: "Derived State"
+          url: "derived-state"
+        - title: "Reactivity and the Outside World"
+          url: "outside-world"
     - title: "Patterns for Components"
       url: "patterns-for-components"
     - title: "Patterns for Actions"
