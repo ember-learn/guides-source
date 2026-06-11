@@ -52,6 +52,9 @@ debounce
 declaratively
 DefinitelyTyped
 deps
+destroyables
+destructor
+destructors
 dev
 draggable
 dropdown
@@ -136,6 +139,9 @@ LSP
 Mapbox
 TomTom
 MDN
+memoization
+memoize
+memoized
 metaprogramming
 misspelt
 mixin
@@ -173,6 +179,7 @@ PRs
 readme
 readonly
 recognizers
+recomputation
 recursing
 Redux
 relayout
@@ -196,9 +203,11 @@ screencasting
 selectable
 self-referentiality
 serverless
+Signalium
 singularize
 Splattributes
 SSR
+Starbeam
 stateful
 subclassed
 subclasses
@@ -218,6 +227,7 @@ synergistically
 syntaxes
 tagless
 TalkBack
+TC39
 teardown
 template-lifecycle-dom-and-modifiers
 templating
@@ -237,6 +247,7 @@ typechecker
 typings
 UIs
 un-representable
+uncached
 unordered
 unsilence
 unstyled
