@@ -80,22 +80,3 @@ window.addEventListener('error', function(error) {
   });
 });
 ```
-
-### Errors within `run` Backburner
-
-[Backburner.js](https://github.com/ebryn/backburner.js) has support for stitching the stacktraces together so that you can
-track down where an error thrown by `run` is being initiated from. Unfortunately,
-this is quite slow and is not appropriate for production or even normal development.
-
-To enable full stacktrace mode in Backburner, and thus determine the stack of the task
-when it was scheduled onto the run loop, you can set:
-
-```javascript {data-filename=app/app.js}
-import { run } from '@ember/runloop';
-
-run.backburner.DEBUG = true;
-```
-
-Once the `DEBUG` value is set to `true`, when you are at a breakpoint you can navigate
-back up the stack to the `flush` method in and check the `errorRecordedForStack.stack`
-value, which will be the captured stack when this job was scheduled.
