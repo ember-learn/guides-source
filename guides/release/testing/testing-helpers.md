@@ -56,15 +56,18 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'my-app-name/tests/helpers';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
+import { trackedObject } from '@ember/reactive/collections';
 
 module('Integration | Helper | format currency', function(hooks) {
   setupRenderingTest(hooks);
 
   test('formats 199 with $ as currency sign', async function(assert) {
-    this.set('value', 199);
-    this.set('sign', '$');
+    const data = trackedObject({
+      value: 199,
+      sign: '$',
+    });
 
-    await render(hbs`{{format-currency value sign=sign}}`);
+    await render(hbs`{{format-currency data.value sign=data.sign}}`);
 
     assert.equal(this.element.textContent.trim(), '$1.99');
   });
@@ -76,21 +79,25 @@ We can now also properly test if a helper will respond to property changes.
 ```javascript {data-filename=tests/integration/helpers/format-currency-test.js}
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'my-app-name/tests/helpers';
-import { render } from '@ember/test-helpers';
+import { render, rerender } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Helper | format currency', function(hooks) {
   setupRenderingTest(hooks);
 
   test('formats 199 with $ as currency sign', async function(assert) {
-    this.set('value', 199);
-    this.set('sign', '$');
+    const data = trackedObject({
+      value: 199,
+      sign: '$',
+    });
 
-    await render(hbs`{{format-currency value sign=sign}}`);
+    await render(hbs`{{format-currency data.value sign=data.sign}}`);
 
     assert.equal(this.element.textContent.trim(), '$1.99');
 
-    this.set('sign', '€');
+    data.sign = '€';
+
+    await rerender();
 
     assert.equal(this.element.textContent.trim(), '€1.99', 'Value is formatted with €');
   });
