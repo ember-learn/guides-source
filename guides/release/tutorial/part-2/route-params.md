@@ -403,7 +403,7 @@ We can use the `beforeEach` hook to share some boilerplate code, which allows us
 
 Finally, let's add a `rental` template to actually _invoke_ our `<RentalDetailed>` component, as well as adding an acceptance test for this new behavior in our app.
 
-```handlebars { data-filename="app/templates/rental.gjs" }
+```gjs { data-filename="app/templates/rental.gjs" }
 import RentalDetailed from 'super-rentals/components/rental/detailed';
 
 <template>

@@ -172,7 +172,7 @@ export default class ScientistsRoute extends Route {
 ```
 
 This code example uses a feature of JavaScript called classes.
-Learn more with this [overview of the latest JavaScript features](https://ponyfoo.com/articles/es6).
+Learn more with this [overview of the latest JavaScript features](https://web.dev/series/baseline-newly-available).
 
 In a route's `model()` method, you return whatever data you want to make available to the template.
 If you need to fetch data asynchronously,
@@ -266,7 +266,7 @@ We're going to tell our component:
 
 We'll need to make some changes to the code we wrote before.
 
-In the rest of the code examples in this tutorial, whenever we add or remove code, we will show a "diff." The lines you need to remove have a minus sign in front of them, and the lines you should add have a plus sign. If you are using a screen reader while you go through the Guides, we recommend using Firefox and NVDA or Safari and VoiceOver for the best experience.
+In the rest of the code examples in this tutorial, whenever we add or remove code, we will show a "diff." The lines you need to remove will be highlighted in red, and the lines you should add will be highlighted in green. If you are using a screen reader while you go through the Guides, we recommend using Firefox and NVDA or Safari and VoiceOver for the best experience.
 
 Let's replace all our old code with our new componentized version:
 
@@ -458,7 +458,7 @@ First you need to [sign up for a Netlify account](https://app.netlify.com/signup
 
 **Configuring Netlify URL handling**
 
-The next step is to let the web app server know how to handle URLs. There are 2 ways to do so.
+The next step is to let the web app server know how to handle URLs. There are two ways to do so.
 
 One, you can create a file in your `ember-quickstart/public` folder called
 `_redirects`. Add `/* /index.html 200` to the first line and save the file. 
@@ -474,23 +474,23 @@ Now you are ready to deploy your app to production on Netlify platform. There ar
 
 **Deploying to Netlify using drag and drop**
 
-You may need to re-create your `dist` directory to include changes made to `_redirects` file by running this command
+You may need to re-create your `dist` directory to include changes made to `_redirects` file by running this command:
 
 ```bash
 npm run build
 ```
 
-Once you are logged-in to your Netlify account and in the "Sites" section, you should see the Netlify drag and drop area
+Once you are logged-in to your Netlify account and in the "Sites" section, you should see the Netlify drag and drop area:
 
   ![Netlify Drag and Drop Area](/images/quick-guide/netlify/drag-and-drop/02.png)
 
-Next, locate your `dist` folder on your local machine and drag and drop it into this area
+Next, locate your `dist` folder on your local machine and drag and drop it into this area.
 
-When your files have been successfully uploaded, you should see the status of your deployment in the "Getting started" section
+When your files have been successfully uploaded, you should see the status of your deployment in the "Getting started" section:
 
 ![Getting Started using Drag and Drop on Netlify](/images/quick-guide/netlify/drag-and-drop/03.png)
 
-Once you see "Your site is deployed" as shown above, your website is now live and you can click on the link provided above the "Getting started" section to view your site
+Once you see "Your site is deployed" as shown above, your website is now live and you can click on the link provided above the "Getting started" section to view your site:
 
 ![View your site on Netlify](/images/quick-guide/netlify/drag-and-drop/04.png)
 
@@ -498,29 +498,29 @@ Congratulations! Your site is now live and in production!
 
 **Deploying to Netlify using Git (specifically GitHub)**
 
-Make sure you are logged-in to your Netlify account and in the "Sites" section
+Make sure you are logged-in to your Netlify account and in the "Sites" section.
 
 Click the button that says "New site from Git".
 
 ![Netlify Continuous Deployment Git](/images/quick-guide/netlify/github/new-site-from-git.png)
 
-Click the "GitHub" button under "Continuous Deployment" to connect to your GitHub account. Please note you will be taken to a series of GitHub login screens and asked to select your GitHub preferences related to Netlify
+Click the "GitHub" button under "Continuous Deployment" to connect to your GitHub account. Please note you will be taken to a series of GitHub login screens and asked to select your GitHub preferences related to Netlify:
 
 ![Netlify choose your GitHub repository to deploy](/images/quick-guide/netlify/github/connect-to-github.png)
 
-Once you have successfully connected your GitHub account with Netlify, you should see a list of repositories to choose from. Select or search for your GitHub repository that you wish to deploy
+Once you have successfully connected your GitHub account with Netlify, you should see a list of repositories to choose from. Select or search for your GitHub repository that you wish to deploy:
 
 ![Netlify Ember Default Deploy Settings](/images/quick-guide/netlify/github/select-github-repo.png)
 
-If you have successfully selected your repo and it is an Ember application, Netlify will automatically generate the deploy settings as shown below. These instructions assume you do not want to change any of the default settings generated by Netlify. So if everything looks good to you, go ahead and click the "Deploy site" button
+If you have successfully selected your repo and it is an Ember application, Netlify will automatically generate the deploy settings as shown below. These instructions assume you do not want to change any of the default settings generated by Netlify. So if everything looks good to you, go ahead and click the "Deploy site" button:
 
 ![Netlify GitHub Deploy Overview](/images/quick-guide/netlify/github/github-create-new-site.png)
 
-Once you click the "Deploy site" button, you will be taken to your website "Overview" and you should see the status of your deployment
+Once you click the "Deploy site" button, you will be taken to your website "Overview" and you should see the status of your deployment:
 
 ![Netlify GitHub Deploy Confirmation](/images/quick-guide/netlify/github/github-deploy-confirmation.png)
 
-Once you see "Your site is deployed" as shown above, your website is now live and you can click on the link provided above the "Getting started" section to view your site
+Once you see "Your site is deployed" as shown above, your website is now live and you can click on the link provided above the "Getting started" section to view your site:
 
 ![View your site on Netlify](/images/quick-guide/netlify/github/github-live.png)
 
