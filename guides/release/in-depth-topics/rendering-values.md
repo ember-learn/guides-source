@@ -103,6 +103,25 @@ or via a property on some object
   <this.someComponent />
 </template>
 ```
+```ts
+import { ComponentLike } from '@glint/template'; // only needed if you're using typescript
+import MyOtherComponent from 'my-app/components/my-other-component';
+import MySuccessComponent from 'my-app/components/my-success-component';
+
+export default class MyComponent extends Component {
+  @tracked status: string;
+
+  get someComponent(): ComponentLike<MyComponentArgs> {
+    // if you're using typescript, any returned component must have been defined as
+    // class MyComponent extends Component<MyComponentArgs> {}
+    if (this.status == 'success') {
+      return MySuccessComponent;
+    } else {
+      return MyOtherComponent;
+    }
+  }
+}
+```
 or via an argument passed to a component
 ```gjs
 <template>
