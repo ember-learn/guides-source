@@ -7,6 +7,7 @@ ActiveSupport
 acyclic
 Algolia
 Americentric
+Astro
 asynchronicity
 asynchrony
 auto-rollup
@@ -52,6 +53,8 @@ debounce
 declaratively
 DefinitelyTyped
 deps
+destructor
+destructors
 dev
 draggable
 dropdown
@@ -177,6 +180,7 @@ recursing
 Redux
 relayout
 renderer
+REPL
 repo
 repos
 rerender
@@ -250,6 +254,7 @@ viewport
 vim-ember-hbs
 vim-javascript
 vim-js-pretty-template
+Vitepress
 VM
 VoiceOver
 voilà
