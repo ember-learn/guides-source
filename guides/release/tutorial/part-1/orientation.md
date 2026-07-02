@@ -24,7 +24,7 @@ To verify that your installation was successful, run:
 
 ```shell
 $ ember --version
-ember-cli: 7.0.1
+ember-cli: 7.1.0
 node: 20.20.2
 os: linux x64
 ```
@@ -143,13 +143,13 @@ super-rentals
 │   │       ├── vendor.css
 │   │       └── vendor.js
 │   ├── assets
-│   │   ├── app-B6l08xmA.js
 │   │   ├── app-DgioD2rk.css
-│   │   ├── main-CKz1Vul6.js
-│   │   ├── modules-4-12-DhdP37ee.js
+│   │   ├── app-RZ8hFebF.js
+│   │   ├── main-BBlFga1o.js
+│   │   ├── manager-BAVJWJGN.js
+│   │   ├── modules-4-12-BNVgHXiU.js
 │   │   ├── tests-C0U09n5o.css
-│   │   ├── tests-D5wpAa3i.js
-│   │   └── views-Dqx3eGc9.js
+│   │   └── tests-CmM9OR_2.js
 │   ├── ember-welcome-page
 │   │   └── construction.png
 │   ├── tests
@@ -218,11 +218,11 @@ Build successful (9761ms)
 
 Slowest Nodes (totalTime >= 5%) | Total (avg)
 -+-
-Babel: @embroider/macros (1) | 304ms
+Babel: @embroider/macros (1) | 302ms
 
 
 
-  VITE v8.1.2  ready in 3120 ms
+  VITE v8.1.2  ready in 2960 ms
 
   ➜  Local:   http://localhost:4200/
 ```
