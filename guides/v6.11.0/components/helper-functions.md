@@ -301,18 +301,6 @@ discussing state in the next chapter), or requiring access to a [service](../../
 
 ## Built-in and Common Helpers
 
-<div class="cta">
-  <div class="cta-note">
-    <div class="cta-note-body">
-      <div class="cta-note-heading">Zoey says...</div>
-      <div class="cta-note-message">
-        Unlike nearly everything else in  template tag (`.gjs`) files, these helpers do not need to be explicitly imported.
-      </div>
-    </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="">
-  </div>
-</div>
-
 Below you will find some useful template helpers documented.
 For the full list of available helpers, you can check the [template helpers API](https://api.emberjs.com/ember/6.11.0/classes/Ember.Templates.helpers/) and [@ember/helpers](https://api.emberjs.com/ember/6.11.0/classes/@ember%2Fhelper) documentation.
 
