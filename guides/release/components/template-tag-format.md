@@ -9,7 +9,7 @@ Template Tag became the default component authoring format [starting at Ember 6.
     <div class="cta-note-body">
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
-       Before the creation of Template Tag, components were authored as paired JS and HBS files. The HBS in these files has some different behaviors than modern Template Tag. The [Strict Handlebars RFC](https://rfcs.emberjs.com/id/0496-handlebars-strict-mode/) explains what changed between HBS and GJS.
+       Before the creation of Template Tag, components were authored as paired JS and HBS files. The HBS in these files has some different behaviors than modern Template Tag. The <a href="https://rfcs.emberjs.com/id/0496-handlebars-strict-mode/">Strict Handlebars RFC</a> explains what changed between HBS and GJS.
       </div>
     </div>
     <img src="/images/mascots/zoey.png" role="presentation" alt="">
