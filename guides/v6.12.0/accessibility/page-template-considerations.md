@@ -42,7 +42,7 @@ import { pageTitle } from 'ember-page-title';
 </template>
 ```
 
-Each call to the `{{pageTitle}}` helper will prepend the title string to the existing title all the way up to the root title in `application.gts`.  So, if your application is titled "My App", then the full title for the above example would be "My Title | Posts | My App".
+Each call to the `{{pageTitle}}` helper will prepend the title string to the existing title all the way up to the root title in `application.gjs`.  So, if your application is titled "My App", then the full title for the above example would be "My Title | Posts | My App".
 
 To evaluate more addons to add/manage content in the `<head>` of a page, view this category on [Ember Observer](https://emberobserver.com/categories/header-content).
 
