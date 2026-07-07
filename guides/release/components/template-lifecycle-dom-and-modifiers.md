@@ -1,182 +1,32 @@
-For the most part, you should be able to build Ember applications without directly manipulating the DOM. Before considering directly accessing the DOM, it's always best to first consider whether there's an Ember-native way to accomplish your goal.
+## DOM Manipulation: You Often Don't Need It
 
-## Thinking About Updates
+For the most part, you should be able to build Ember applications without directly manipulating the DOM. It's better to use the Ember-provided templating language, because it will automatically be kept up to date in an efficient way as your state changes.
 
-In most cases, the best way to think about your component's output is to assume that it will be re-executed from the top every time anything changes in your application.
-
-For example, consider an `Article` component that takes `@title` and `@body` arguments.
-
-```gjs {data-filename=app/components/article.gjs}
-<template>
-  <article>
-    <header><h1>{{@title}}</h1></header>
-    <section>{{@body}}</section>
-  </article>
-</template>
-```
-
-Assuming an `article` route with a model that looks like:
-
-```json
-{
-  "title": "Hello world",
-  "body": "This is the first article"
-}
-```
-
-This component would be invoked this way:
-
-```gjs {data-filename=app/templates/article.gjs}
-import Article from 'my-app/components/components/article';
-
-<template>
-  <Article @title={{@model.title}} @body={{@model.body}}>
-</template>
-```
-
-The first time the `Article` component is rendered, it would produce this output:
-
-```html
-<article>
-  <header><h1>Hello world</h1></header>
-  <section>This is the first article</section>
-</article>
-```
-
-In a way, this is like substitution: references to `@title` in the component's template are replaced by the value passed in from the outside.
-
-If the model changes to:
-
-```json
-{
-  "title": "Hello world",
-  "body": "This is the first article. [UPDATE] I am so excited!"
-}
-```
-
-the output will be updated to:
-
-```html
-<article>
-  <header><h1>Hello world</h1></header>
-  <section>This is the first article. [UPDATE] I am so excited!</section>
-</article>
-```
-
-Think of this as evaluating the template from scratch, substituting in the new values, and updating the output with the new contents.
-
-<div class="cta">
-  <div class="cta-note">
-    <div class="cta-note-body">
-      <div class="cta-note-heading">Zoey says...</div>
-      <div class="cta-note-message">
-        In practice, Ember avoids updating parts of the DOM that haven't changed,
-        which means that the user's selection state, cursor and scroll position,
-        and other state won't change for no reason.
-      </div>
-    </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="">
-  </div>
-</div>
-
-In general, before reaching for direct DOM manipulation, you should see whether you can model the changes that you want by writing a single template that applies no matter what the input is.
-
-## Manipulating Attributes
-
-The same philosophy that applies to changing text also applies to changing attributes.
-
-For example, let's say we want to enhance our `Article` component to include a `title` attribute on the `<article>` tag.
-
-```gjs {data-filename=app/components/article.gjs}
-<template>
-  <article title="{{@title}}">
-    <header><h1>{{@title}}</h1></header>
-    <section>{{@body}}</section>
-  </article>
-</template>
-```
-
-With the model:
-
-```json
-{
-  "title": "Hello world",
-  "body": "This is the first article. [UPDATE] I am so excited!"
-}
-```
-
-the output will be:
-
-```html
-<article title="Hello world">
-  <header><h1>Hello world</h1></header>
-  <section>This is the first article. [UPDATE] I am so excited!</section>
-</article>
-```
-
-Just like in previous examples, you can think of attribute changes as substitution. If the model changes to:
-
-```json {data-filename="input" data-diff="-2,+3"}
-{
-  "title": "Hello world",
-  "title": "Hello world!",
-  "body": "This is the first article. [UPDATE] I am so excited!"
-}
-```
-
-the output will be updated to:
-
-```html {data-filename="output" data-diff="-1,+2,-3,+4"}
-<article title="Hello world">
-<article title="Hello world!">
-  <header><h1>Hello world</h1></header>
-  <header><h1>Hello world!</h1></header>
-  <section>This is the first article. [UPDATE] I am so excited!</section>
-</article>
-```
-
-## Conditional Attributes
-
-So far, we've talked about how to populate an attribute with the value of a variable. But what if we
-want the value of an attribute to differ based upon whether the variable is truthy or falsy?
-
-For example, let's say we want the `class` on a `<div>` to be `superuser` if the `@isAdmin` variable
-is true, but `standard` if the `@isAdmin` variable is false.
-
-We could accomplish this requirement by using the `if` helper inside of an attribute:
+### Render content to the page using curlies in templates:
 
 ```gjs
-<template>
-  <div class={{if @isAdmin "superuser" "standard"}}>
-    Welcome to my app.
-  </div>
-</template>
+<title>{{@title}}</title>
 ```
 
-Instead of thinking about changing the class imperatively when the `@isAdmin` variable changes, we
-can think about how to build a template that produces the right output in both cases, and leave it
-up to Ember to figure out how to update the HTML output.
+### Set HTML attributes directly in templates:
 
-## Summary: The Principle of Substitution
+```gjs
+<a href={{@link}}>
+```
 
-In summary, when you're trying to update a piece of text or an attribute in your component, think
-of the Principle of Substitution, and write a template that produces the right HTML when you
-substitute all of the variables in the template with the current values of the variables.
+### Concatenated and Conditional HTML attributes work in templates:
 
-Whenever any of those variables change, Ember will automatically update the HTML efficiently without
-blowing away browser state unnecessarily.
+```gjs
+<div class="example {{@customClass}} {{if @highlighted 'highlighted' ''}}">
+```
 
-The advantage to writing components this way is that there is no way to make a mistake and forget to
-update the output correctly in some situations. As long as the template produces the right HTML for
-its inputs, the output will remain up to date.
+## When You Do Need DOM Manipulation, use Modifiers
 
-This approach works great when you're trying to produce output that can be represented in HTML. But
-what about aspects of your component that aren't represented in HTML, like event handlers? In those
-cases, Ember tries to stick to the spirit of the Principle of Substitution, and allow you to write
-templates as if they only ran one time, and then automatically keep the output up to date for you.
+Ember's basic primitive for interacting with the DOM is called a `modifier`. You invoke a modifier inside curlies directly on an HTML Element (or Component):
 
-The rest of this guide describes how to enhance your templates with event handlers, custom DOM
-properties and other kinds of custom JavaScript.
+```gjs
+<div {{on "click" this.doSomething}}>
+```
 
 ## Event Handlers
 
@@ -319,7 +169,7 @@ Now add the functionality to focus the element:
 ```js {data-filename="app/modifiers/autofocus.js"}
 import { modifier } from "ember-modifier";
 
-export default modifier(element => element.focus());
+export default modifier((element) => element.focus());
 ```
 
 And that's it! Now we can import and use our custom `{{autofocus}}` modifier throughout our application.
@@ -485,7 +335,7 @@ Let's start with the DOM structure of a super-simple component that would remove
 We don't want to use `{{on "click"}}` here because we want the opposite behavior: do something whenever the user clicks _outside_ of the `<div>`. To accomplish that, we'll register a `click` handler on the entire document and then hit-test it, looking something like this:
 
 ```js
-document.addEventListener("click", event => {
+document.addEventListener("click", (event) => {
   if (!element.contains(event.target)) {
     // do something
   }
@@ -494,7 +344,7 @@ document.addEventListener("click", event => {
 
 The most important difference between this example and the cases we've seen so far is that we need to remove the `click` event handler from the document when this element is destroyed.
 
-To accomplish this, we can create a `on-click-outside` modifier that sets up the event listener after the element is first inserted and removes the event listener when the element is removed. 
+To accomplish this, we can create a `on-click-outside` modifier that sets up the event listener after the element is first inserted and removes the event listener when the element is removed.
 
 Generate the new modifier:
 
