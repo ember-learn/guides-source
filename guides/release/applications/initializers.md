@@ -18,47 +18,6 @@ Any asynchronous loading conditions (e.g. user authorization) are almost always
 better handled in your application route's hooks,
 which allows for DOM interaction while waiting for conditions to resolve.
 
-## Application Initializers
-
-Application initializers can be created with Ember CLI's `initializer` generator:
-
-```bash
-ember generate initializer shopping-cart
-```
-
-Let's customize the `shopping-cart` initializer to inject a `cart` property into all the routes in your application:
-
-```javascript {data-filename=app/initializers/shopping-cart.js}
-export function initialize(application) {
-  application.inject('route', 'cart', 'service:shopping-cart');
-};
-
-export default {
-  initialize
-};
-```
-
-## Application Instance Initializers
-
-Application instance initializers can be created with Ember CLI's `instance-initializer` generator:
-
-```bash
-ember generate instance-initializer logger
-```
-
-Let's add some simple logging to indicate that the instance has booted:
-
-```javascript {data-filename=app/instance-initializers/logger.js}
-export function initialize(applicationInstance) {
-  let logger = applicationInstance.lookup('logger:main');
-  logger.log('Hello from the instance initializer!');
-}
-
-export default {
-  initialize
-};
-```
-
 ## Specifying Initializer Order
 
 If you'd like to control the order in which initializers run, you can use the `before` and/or `after` options:
