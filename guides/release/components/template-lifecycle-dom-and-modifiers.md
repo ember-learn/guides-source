@@ -324,8 +324,9 @@ export default modifier(element => element.focus());
 
 And that's it! Now we can import and use our custom `{{autofocus}}` modifier throughout our application.
 
-Read more about the `ember-modifier` APIs at [ember-modifiers:
-Usage](https://github.com/ember-modifier/ember-modifier#usage).
+Read more about writing your own modifiers—including cleanup, re-running on
+state changes, and the class-based API—in the next chapter, [Element
+Modifiers](../element-modifiers/).
 
 ## Communicating Between Elements in a Component
 
