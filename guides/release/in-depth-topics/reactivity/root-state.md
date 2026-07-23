@@ -57,9 +57,7 @@ optimization is usually imaginary. When a derivation really is expensive, you
 can [cache it](../derived-state/#toc_caching) instead of promoting it to root
 state.
 
-A useful instinct from the
-[Solid](https://docs.solidjs.com/concepts/intro-to-reactivity) and
-[Starbeam](https://starbeamjs.com/) communities: a well-factored reactive
+A useful instinct: a well-factored reactive
 application has surprisingly _little_ root state. A search page might have
 exactly two root values - the query string and the raw results - while
 everything else on screen (filtered lists, counts, empty-state flags, disabled
@@ -67,7 +65,7 @@ buttons) is derived.
 
 ## Writes, Equality, and Dirtying
 
-When does a write actually invalidate things? In Ember today, the answer is
+When does a write actually invalidate things? By default, the answer is
 simple: _every_ assignment to a tracked property dirties it, even if you
 assign the value it already had.
 
@@ -77,14 +75,11 @@ this.count = this.count; // still invalidates everything that consumed `count`
 
 Consumers re-evaluate, and the renderer re-checks the DOM it produced. The DOM
 itself won't change if the final values are equal, but the recomputation
-happens. Other systems make the opposite choice: Solid's signals compare the
-new value to the old one - `===` by default - and do nothing if they're equal,
-cutting invalidation off at the source. Signalium's `signal()` behaves
-similarly.
+happens.
 
-[RFC #1071](https://github.com/emberjs/rfcs/pull/1071) brings that dial to
-Ember. The decorator accepts an options form, `@tracked({ equals })`, that
-skips invalidation entirely when the old and new values are equal:
+When a write that changes nothing shouldn't dirty anything, the decorator
+accepts an options form, `@tracked({ equals })`, that skips invalidation
+entirely when the old and new values are equal:
 
 ```js
 import { tracked } from '@glimmer/tracking';
@@ -122,18 +117,6 @@ every consumer, and the renderer re-evaluates everything downstream just to
 conclude that nothing changed. An equality check cuts that work off at the
 root. The flip side: the check itself runs on every write, so for values that
 really do change on most writes, the default is the cheaper choice.
-
-<div class="cta">
-  <div class="cta-note">
-    <div class="cta-note-body">
-      <div class="cta-note-heading">Zoey says...</div>
-      <div class="cta-note-message">
-        The <code>@tracked({ equals })</code> form and the <code>tracked()</code> function described later on this page come from <a href="https://github.com/emberjs/rfcs/pull/1071">RFC #1071</a>, which is <a href="https://github.com/emberjs/ember.js/pull/21471">implemented</a> but has not yet shipped in a stable Ember release. Until it ships, you can get equality-checking behavior by guarding the write yourself: <code>if (next !== this.count) this.count = next;</code>
-      </div>
-    </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="">
-  </div>
-</div>
 
 Because dirtying is per-property, the _granularity_ of your root state
 determines the granularity of updates. Three tracked properties invalidate
@@ -199,8 +182,8 @@ places.
 
 Root state is an implementation detail. The code that _uses_ your state
 shouldn't know (or care) which parts are stored and which are computed. A
-pattern used heavily in Starbeam's documentation - and just as good in Ember -
-is to keep reactive storage private and expose a domain-shaped public API:
+good pattern is to keep reactive storage private and expose a domain-shaped
+public API:
 
 ```js
 import { trackedMap } from '@ember/reactive/collections';
@@ -327,10 +310,9 @@ full pattern.
 
 ## Reactive Values Without Classes
 
-[RFC #1071](https://github.com/emberjs/rfcs/pull/1071) also overloads
-`tracked` to work as a plain function. Called with a value instead of applied
-as a decorator, it returns a standalone reactive value - root state that isn't
-attached to any class:
+`tracked` also works as a plain function. Called with a value instead of
+applied as a decorator, it returns a standalone reactive value - root state
+that isn't attached to any class:
 
 ```js
 import { tracked } from '@glimmer/tracking';

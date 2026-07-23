@@ -7,11 +7,9 @@ You have been using Ember's reactivity system, called _autotracking_, since
 your first `@tracked` property. The guides in this section go deeper than the
 API: they cover how to _think_ about reactivity, so that you can design state
 that stays correct as your application grows. These ideas are not unique to
-Ember - systems like [Solid](https://www.solidjs.com/),
-[Starbeam](https://starbeamjs.com/), [Signalium](https://signalium.dev/), and
-the [TC39 Signals proposal](https://github.com/tc39/proposal-signals) are
-built on the same foundations - so learning them will help you reason about UI
-state in any framework.
+Ember - the broader JavaScript ecosystem calls them _signals_, and most modern
+frameworks are built on the same foundations - so learning them will help you
+reason about UI state in any framework.
 
 ## The Three Layers of Reactive State
 
@@ -159,34 +157,7 @@ don't know the model:
   offer one; the [Reactivity and the Outside World](./outside-world/) guide
   explains why, and what to do instead.
 
-## The Same Ideas, Elsewhere
-
-If you've used other reactive systems - or read about "signals," which is what
-the broader JavaScript ecosystem calls these ideas - here is how the
-vocabulary maps:
-
-| Framework / library | Root state              | Derived state            | Outputs                  |
-| ------------------- | ----------------------- | ------------------------ | ------------------------ |
-| Ember               | `@tracked`, `tracked()` | getters, `@cached`       | templates (the renderer) |
-| Svelte              | `$state`                | `$derived`               | templates, `$effect`     |
-| Vue                 | `ref`, `reactive`       | `computed`               | templates, `watch`       |
-| Angular             | `signal`                | `computed`               | templates, `effect`      |
-| Solid               | `createSignal`          | functions, `createMemo`  | JSX, `createEffect`      |
-| Starbeam            | cells, `reactive`       | formulas, getters        | renderer, resources      |
-| Signalium           | `signal`                | `reactive` functions     | watchers, relays         |
-
-A note on the comparisons: these tools don't all sit at the same level of
-abstraction. Starbeam and Signalium are reactivity libraries rather than full
-application frameworks, and Solid - though you can build applications with
-it - is significantly lower-level than Ember. It's often described as a
-framework for building frameworks, which is why it hands you primitives like
-`createEffect` directly, where Ember routes the same job through the renderer
-and lifecycle-managed constructs.
-
-The other differences are mostly at the edges: when computation happens
-(Solid's effects are eager; Ember and Signalium are lazy), and how outputs are
-expressed. The core - consume on read, invalidate on write, derive everything
-you can - is the same everywhere.
+## Where to Go from Here
 
 The rest of this section works through each layer of the model:
 

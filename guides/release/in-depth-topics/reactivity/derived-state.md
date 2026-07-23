@@ -78,8 +78,8 @@ changes," you are looking for something other than derived state - see
 
 A derivation's job is to compute a value from its inputs. It must not _change_
 anything - and above all, it must not write to tracked state. This rule is
-universal across reactive systems (Solid's documentation gives the same
-warning about memos), and Ember enforces it: writing to a tracked value that
+universal across reactive systems, and Ember enforces it: writing to a
+tracked value that
 has already been read during the current render throws a development-mode
 error:
 
@@ -118,9 +118,9 @@ framework.
 ## Caching
 
 By default, a getter recomputes every time it is read. This surprises people
-coming from systems whose derivations are memoized by default, like Solid's
-`createMemo` and Signalium's `reactive` functions - but it's the right
-default, because most derivations are cheap and a cache has its own costs.
+coming from systems whose derivations are memoized by default - but it's the
+right default, because most derivations are cheap and a cache has its own
+costs.
 Recomputing `this.items.length` is faster than checking whether a cached copy
 is still valid.
 
@@ -146,8 +146,7 @@ inputs is invalidated; then the next read recomputes.
 
 Note what `@cached` does _not_ do: it doesn't compare the new result to the
 old one. If `transactions` is invalidated but the sorted output happens to
-come out identical, consumers downstream are still re-evaluated. Some systems
-(Solid's memos, Signalium) add an equality cutoff here; Ember today does not.
+come out identical, consumers downstream are still re-evaluated.
 
 Beyond raw cost, there are two more good reasons to reach for `@cached`:
 

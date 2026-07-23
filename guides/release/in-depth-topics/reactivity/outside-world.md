@@ -17,44 +17,39 @@ Everything in between stays pure.
 ## Rendering Is the Effect
 
 In some reactive systems, you wire outputs yourself with an _effect_
-primitive. Solid's `createEffect`, for example, re-runs a function whenever
-the reactive values it read change. If you ask "where is Ember's
-`createEffect`?", the first answer is: **you've been using it all along - it's
-the renderer.**
+primitive: a function that re-runs whenever the reactive values it read
+change. If you ask "where is Ember's effect primitive?", the first answer is:
+**you've been using it all along - it's the renderer.**
 
 A template is a declaration of effects: every `{{expression}}` and every
 attribute binding is a tiny "when this value changes, update that DOM" rule.
-The renderer plays the same role Signalium assigns to its _watchers_: it is
-the exit point of the graph, the thing that actively pulls on your derivations
-and pushes the results into the world. You write the pure part; the framework
-owns the part that touches the world - batching, scheduling before paint, and
-updating only the DOM whose inputs actually changed.
+The renderer is the exit point of the graph, the thing that actively pulls on
+your derivations and pushes the results into the world. You write the pure
+part; the framework owns the part that touches the world - batching,
+scheduling before paint, and updating only the DOM whose inputs actually
+changed.
 
-## Why There Is No `createEffect`
+## Why There Is No Effect Primitive
 
 The second answer is that the omission is deliberate, and the reasons are
-instructive. You can find most of them stated as _warnings_ in the
-documentation of frameworks that have effects:
+instructive:
 
 - **Effects are eager.** An effect must re-run on every change to its inputs,
   whether or not anyone needs the result, breaking the lazy, pull-based
-  economics that make the rest of the system cheap. (Signalium, which is lazy
-  like Ember, allows watchers but tells you never to create them inside
-  reactive code.)
+  economics that make the rest of the system cheap.
 - **Effect ordering is undefined.** When one change triggers several effects,
-  the execution order is unspecified - Solid's documentation says plainly that
-  it "should not be relied upon." Correctness that depends on effect order is
-  a latent bug.
+  the execution order is unspecified. Correctness that depends on effect
+  order is a latent bug.
 - **Effects that write state are a trap.** The most common effect mistake is
   using one to _sync_ state: "when X changes, update Y." Now Y is stale until
   the effect runs, can disagree with X, and if the effect's write triggers
-  another effect, you have a cascade or an infinite loop. Solid's own guides
-  answer this with "use `createMemo` instead" - that is: _derive, don't sync_.
-  In Ember, [the getter was the answer all along](../derived-state/), and the
+  another effect, you have a cascade or an infinite loop. The answer is to
+  _derive, don't sync_:
+  in Ember, [the getter was the answer all along](../derived-state/), and the
   backtracking assertion makes write-during-derivation a loud error rather
   than a quiet bug.
 - **Almost every "effect" is something more specific.** Look closely at real
-  `createEffect` calls and you find: derived values (should be getters), DOM
+  effect code and you find: derived values (should be getters), DOM
   manipulation (should be scoped to an element), and lifecycle-bound processes
   like subscriptions (should be tied to an owner's lifetime, with cleanup).
   Ember provides each of those as a dedicated, managed construct instead of
@@ -125,10 +120,8 @@ remaining," "is the store open," a formatted timestamp - and every one of them
 updates each second, while the actual side effect (one interval, one cleanup)
 stays in one place.
 
-This setup-plus-cleanup-plus-reactive-state package is what Starbeam calls a
-_resource_, and its docs model the same example almost identically: a `Clock`
-resource whose `setInterval` is started in setup and cleared in cleanup. In
-the Ember ecosystem, the
+This setup-plus-cleanup-plus-reactive-state package is commonly called a
+_resource_. In the Ember ecosystem, the
 [ember-resources](https://github.com/NullVoxPopuli/ember-resources) library
 offers resources as values you can use right in components and templates; a
 built-in equivalent is an active area of design. A service with a destructor,
@@ -224,10 +217,7 @@ export default class Profile extends Component {
 Once async state is _data_, it stops being a special case: "show a spinner
 while pending" is just another derivation, the same `{{#if}}` as anything
 else. This "reactive promise" shape - status, value, and error as reactive
-fields - is where the whole ecosystem has converged. Signalium builds it in as
-`ReactivePromise` (with `isPending`, `isResolved`, `value`, and friends),
-Solid's resources and Starbeam's resources wrap it in lifetime management, and
-in Ember it's available today via libraries like
+fields - is available ready-made from libraries like
 [ember-resources](https://github.com/NullVoxPopuli/ember-resources) and
 [WarpDrive](https://docs.warp-drive.io/)'s request state - or in a dozen lines
 of your own, as above.
