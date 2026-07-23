@@ -14,6 +14,9 @@ The shape to keep in mind:
 
 Everything in between stays pure.
 
+We'll start with outputs - that's where Ember differs most from other
+reactive systems - and work back around to inputs.
+
 ## Rendering Is the Effect
 
 In some reactive systems, you wire outputs yourself with an _effect_
@@ -224,7 +227,9 @@ of your own, as above.
 
 Note one limitation of the example as written: the request is created in a
 field initializer, so it captures `userId` once and won't re-fetch if the
-argument changes. Re-running an effect when its reactive inputs change is
+argument changes - the construction-time snapshot trap described in
+[Deferring Consumption](../derived-state/#toc_deferring-consumption).
+Re-running an effect when its reactive inputs change is
 exactly the job of the managed constructs from earlier - a modifier (if
 there's a sensible element) or a resource. That's the general rule of this
 guide closing the loop: **when an effect needs to respond to the graph, give

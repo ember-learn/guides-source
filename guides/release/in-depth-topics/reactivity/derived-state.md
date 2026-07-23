@@ -135,7 +135,7 @@ class Report {
 
   @cached
   get sortedByAmount() {
-    return [...this.transactions].sort((a, b) => b.amount - a.amount);
+    return this.transactions.toSorted((a, b) => b.amount - a.amount);
   }
 }
 ```
@@ -243,7 +243,10 @@ is always safe.
 
 Reading a tracked value consumes it _right now_. Both of Ember's derivation
 tools - getters and functions - work by _deferring_ that read: nothing runs
-when they're defined, only when someone asks for the result.
+when they're defined, only when someone asks for the result. This is the
+[laziness from earlier](#toc_derivations-are-lazy) seen from the consumer's
+side: deferring the read is what places consumption in the right tracking
+context.
 
 You've been deferring with getters all along; it's the default style when
 working with classes. A getter's body runs when the property is read, so its
@@ -300,6 +303,8 @@ class Filter {
 }
 
 export default class SearchResults extends Component {
+  @tracked query = '';
+
   filter = new Filter(this.args.items, this.query);
 }
 ```
@@ -323,6 +328,8 @@ class Filter {
 }
 
 export default class SearchResults extends Component {
+  @tracked query = '';
+
   filter = new Filter(
     () => this.args.items,
     () => this.query

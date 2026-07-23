@@ -63,6 +63,40 @@ exactly two root values - the query string and the raw results - while
 everything else on screen (filtered lists, counts, empty-state flags, disabled
 buttons) is derived.
 
+## Root State Is Not a Cache for Someone Else's Truth
+
+A special case of "could I compute this instead?" arises with _data that
+arrives from elsewhere_: arguments passed to your component, records from your
+data layer, the current route. The reactive system already tracks these.
+Copying them into your own tracked properties creates the synchronization
+problem all over again:
+
+```js
+// 🛑 Don't: copying an argument into root state
+class UserCard extends Component {
+  @tracked displayName = this.args.user.name;
+}
+```
+
+This captures `name` once and goes stale when the argument changes. Deriving
+stays current automatically:
+
+```js
+// ✅ Do: derive from the argument
+class UserCard extends Component {
+  get displayName() {
+    return this.args.user.name ?? 'Anonymous';
+  }
+}
+```
+
+If you genuinely need "the argument, until the user edits it locally" (a form
+draft, for example), that's _new_ root state whose initial value happens to
+come from elsewhere. Create it explicitly in response to a user action, not by
+mirroring the argument on every change. The
+[Patterns for Components](../../patterns-for-components/) guide shows several
+shapes of this.
+
 ## Writes, Equality, and Dirtying
 
 When does a write actually invalidate things? By default, the answer is
@@ -121,9 +155,11 @@ really do change on most writes, the default is the cheaper choice.
 Because dirtying is per-property, the _granularity_ of your root state
 determines the granularity of updates. Three tracked properties invalidate
 independently; one tracked object replaced wholesale invalidates everything
-that read any part of it. Neither is wrong - but it's a dial you control.
+that read any part of it. Reactive systems thrive on fine-grained changes:
+prefer shapes that let you write exactly the piece that changed, and keep the
+_identity_ of everything else stable.
 
-## Mutable Data: Replace or Track the Collection
+## Mutable Data: Track the Collection
 
 `@tracked` tracks _assignments to the property_, not mutations inside the
 value. Pushing into a plain array or setting a key on a plain object is
@@ -139,16 +175,7 @@ class ShoppingList {
 }
 ```
 
-You have two good options here. The first is to treat values as immutable and
-_replace_ them, which keeps all change flowing through the one tracked write:
-
-```js
-addItem = (item) => {
-  this.items = [...this.items, item];
-};
-```
-
-The second is to use a tracked collection from
+The right tool here is a tracked collection from
 [`@ember/reactive/collections`](https://api.emberjs.com/ember/release/modules/@ember%2Freactive%2Fcollections),
 which tracks reads and writes of its _contents_ at fine granularity:
 
@@ -174,9 +201,25 @@ objects stored _inside_ it are ordinary objects unless you wrap them too. See
 for the full tour of `trackedObject`, `trackedArray`, `trackedMap`, and
 `trackedSet`.
 
-Prefer replacement for small values and value-like data. Prefer tracked
-collections when a collection is long-lived, large, or mutated from many
-places.
+You may also see code that _replaces_ the value instead, assigning a
+brand-new array to the tracked property:
+
+```js
+addItem = (item) => {
+  this.items = this.items.concat(item); // works, but has caveats
+};
+```
+
+The assignment is a tracked write, so this updates - but it is the coarsest
+change there is. Every consumer of `items` invalidates, even ones that only
+cared about one entry, and the array's identity changes on every update,
+which defeats downstream `===` checks and caches (see
+[stable identity](../derived-state/#toc_caching)). "One item changed" becomes
+"everything changed." Retain identity wherever possible: keep one long-lived
+tracked collection and mutate it, so the system invalidates only what
+actually changed. Replacement is best reserved for genuinely value-like data
+- a string, a date, a small tuple - where the new value simply _is_ a
+different value.
 
 ## Keep Root State Private, Expose Meaning
 
@@ -194,7 +237,7 @@ export class Cart {
 
   // Public API: domain-shaped, read-only, derived
   get items() {
-    return [...this.#items.values()];
+    return Array.from(this.#items.values());
   }
 
   get isEmpty() {
@@ -252,6 +295,10 @@ export default class Checkout extends Component {
   };
 }
 ```
+
+Day to day, prefer mutation: it keeps the instance's identity stable and
+invalidation precise. Reach for replacement only when you genuinely mean
+"this is a whole new thing," as `startOver` does above.
 
 Because these are plain classes, their lifetime is ordinary JavaScript
 lifetime: an instance lives as long as something references it. Create one in
@@ -409,36 +456,8 @@ be module-scoped almost always wants to be a service, which is created and
 destroyed per application instance (and per test). The exception is demos and
 scratch code, where module state's brevity is the point.
 
-## Root State Is Not a Cache for Someone Else's Truth
-
-A special case of "could I compute this instead?" arises with _data that
-arrives from elsewhere_: arguments passed to your component, records from your
-data layer, the current route. The reactive system already tracks these.
-Copying them into your own tracked properties creates the synchronization
-problem all over again:
-
-```js
-// 🛑 Don't: copying an argument into root state
-class UserCard extends Component {
-  @tracked displayName = this.args.user.name;
-}
-```
-
-This captures `name` once and goes stale when the argument changes. Deriving
-stays current automatically:
-
-```js
-// ✅ Do: derive from the argument
-class UserCard extends Component {
-  get displayName() {
-    return this.args.user.name ?? 'Anonymous';
-  }
-}
-```
-
-If you genuinely need "the argument, until the user edits it locally" (a form
-draft, for example), that's _new_ root state whose initial value happens to
-come from elsewhere. Create it explicitly in response to a user action, not by
-mirroring the argument on every change. The
-[Patterns for Components](../../patterns-for-components/) guide shows several
-shapes of this.
+To sum up: store only what you can't compute, decide how writes should dirty
+it, pick the shape that fits (a tracked property, a collection, a class, a
+standalone value), and give it an owner whose lifetime matches the state's.
+Everything else in your application should be
+[derived state](../derived-state/) - which is the subject of the next guide.

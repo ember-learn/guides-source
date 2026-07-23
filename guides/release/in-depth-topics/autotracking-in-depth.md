@@ -348,9 +348,9 @@ All property reading and writing on this object is automatically tracked.
 `obj.c.somethingDeeper = 5` would not be tracked unless you've also made sure
 that the contents of `obj.c` is itself another `trackedObject`.
 
-For guidance on when to reach for a tracked collection versus replacing a
-value wholesale, see
-[Root State](../reactivity/root-state/#toc_mutable-data-replace-or-track-the-collection).
+For guidance on why tracked collections are preferred over replacing values
+wholesale, see
+[Root State](../reactivity/root-state/#toc_mutable-data-track-the-collection).
 
 
 #### Arrays

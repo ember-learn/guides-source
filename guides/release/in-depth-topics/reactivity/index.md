@@ -17,7 +17,8 @@ Every reactive application is built from three layers:
 
 - **Root state** is the values that change directly, because a user clicked
   something, a server responded, or time passed. In Ember, root state is what
-  you mark with `@tracked`.
+  you mark with `@tracked` or store in a tracked collection such as
+  `trackedArray`.
 - **Derived state** is the values computed _from_ root state, or from other
   derived state. When you change a piece of root state, you don't tell the
   derived values to update - they just do. In Ember, derived state is
@@ -36,13 +37,13 @@ Here is what all three layers look like in a single component:
 
 ```gjs {data-filename=app/components/cart.gjs}
 import Component from '@glimmer/component';
-import { tracked } from '@glimmer/tracking';
+import { trackedArray } from '@ember/reactive/collections';
 import { on } from '@ember/modifier';
 import { fn } from '@ember/helper';
 
 export default class Cart extends Component {
   // Root state: the values that change directly
-  @tracked items = [];
+  items = trackedArray([]);
 
   // Derived state: computed from root state
   get subtotal() {
@@ -59,7 +60,7 @@ export default class Cart extends Component {
 
   addItem = (item) => {
     // Events write to root state; everything else updates on its own
-    this.items = [...this.items, item];
+    this.items.push(item);
   };
 
   // Output: the rendered page
@@ -72,7 +73,8 @@ export default class Cart extends Component {
 }
 ```
 
-Notice the proportions in this component: one tracked property, three getters.
+Notice the proportions in this component: one piece of root state, three
+getters.
 This is typical of well-designed reactive code, and it is the most important
 habit this section hopes to teach: **most of your state should be derived, and
 only the irreducible minimum should be root state.** The
@@ -92,10 +94,10 @@ operations:
 
 That's the whole trick! When Ember renders `{{this.total}}` in the component
 above, it evaluates `total`, which reads `subtotal` and `tax`, which read
-`items` - and because `items` is tracked, that read is _consumed_. Later, when
-`addItem` assigns to `this.items`, the write _invalidates_ the rendered
-output, and Ember schedules a rerender of exactly the parts of the DOM that
-consumed it.
+`items` - and because `items` is a tracked collection, those reads are
+_consumed_. Later, when `addItem` pushes into `this.items`, the write
+_invalidates_ the rendered output, and Ember schedules a rerender of exactly
+the parts of the DOM that consumed it.
 
 Two properties of this design are worth internalizing.
 
