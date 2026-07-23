@@ -1,6 +1,11 @@
-Root state is the foundation of the reactive graph: the values that change _directly_, rather than being computed from something else. Everything else in your application—derived values, rendered DOM—is a consequence of root state. That makes designing your root state the highest-leverage decision in managing UI state: get it right, and the rest of your code becomes formulas that can't fall out of sync.
+Root state is the foundation of the reactive graph: the values that change
+_directly_, rather than being computed from something else. Everything else in
+your application - derived values, rendered DOM - is a consequence of root
+state. That makes designing your root state the highest-leverage decision you
+make when managing UI state. Get it right, and the rest of your code becomes
+formulas that can't fall out of sync.
 
-In Ember, you create root state by marking storage as tracked:
+In Ember, you create root state by marking a property as tracked:
 
 ```js
 import { tracked } from '@glimmer/tracking';
@@ -11,16 +16,21 @@ class Draft {
 }
 ```
 
-A write to a tracked property is the _only_ way anything changes in a reactive application. Every update you see on screen traces back to some event handler, timer, or response callback assigning to root state.
+A write to a tracked property is the _only_ way anything changes in a reactive
+application. Every update you see on screen traces back to some event handler,
+timer, or response callback assigning to root state.
 
 ## What Qualifies as Root State
 
 A value belongs in root state only if _both_ of these are true:
 
-1. It changes over time, in response to the outside world (user input, network responses, timers).
+1. It changes over time, in response to the outside world (user input, network
+   responses, timers).
 2. It cannot be computed from other state.
 
-The second rule is the one that gets violated in practice, and it's worth being strict about. Ask of every tracked property: _could I compute this instead?_
+The second rule is the one that gets broken most often in practice, and it's
+worth being strict about. For every tracked property, ask yourself: _could I
+compute this instead?_
 
 ```js
 class Cart {
@@ -36,49 +46,118 @@ class Cart {
 }
 ```
 
-The tracked `itemCount` looks harmless, but it creates a second source of truth. Now every code path that changes `items` must also remember to update `itemCount`, forever. Once two copies of the truth exist, they _will_ disagree eventually, and that bug class simply doesn't exist for the getter. Storing derived values is sometimes pitched as an optimization—but autotracking already recomputes lazily and only when inputs change, so the optimization is usually imaginary. (When a derivation really is expensive, [cache it](../derived-state/#toc_caching)—don't promote it to root state.)
+The tracked `itemCount` looks harmless, but it creates a second source of
+truth. Every code path that changes `items` must now also remember to update
+`itemCount`, forever. Once two copies of the truth exist, they will eventually
+disagree - and that whole class of bug simply doesn't exist for the getter.
 
-A useful instinct from the [Solid](https://docs.solidjs.com/concepts/intro-to-reactivity) and [Starbeam](https://starbeamjs.com/) communities: a well-factored reactive application has surprisingly _little_ root state. A search page might have exactly two root values—the query string and the raw results—while everything else on screen (filtered lists, counts, empty-state flags, disabled buttons) is derived.
+Storing derived values is sometimes pitched as an optimization. However,
+autotracking already recomputes lazily, and only when inputs change, so the
+optimization is usually imaginary. When a derivation really is expensive, you
+can [cache it](../derived-state/#toc_caching) instead of promoting it to root
+state.
+
+A useful instinct from the
+[Solid](https://docs.solidjs.com/concepts/intro-to-reactivity) and
+[Starbeam](https://starbeamjs.com/) communities: a well-factored reactive
+application has surprisingly _little_ root state. A search page might have
+exactly two root values - the query string and the raw results - while
+everything else on screen (filtered lists, counts, empty-state flags, disabled
+buttons) is derived.
 
 ## Writes, Equality, and Dirtying
 
-When does a write actually invalidate things? In Ember today, the answer is simple: _every_ assignment to a tracked property dirties it, even if you assign the value it already had.
+When does a write actually invalidate things? In Ember today, the answer is
+simple: _every_ assignment to a tracked property dirties it, even if you
+assign the value it already had.
 
 ```js
 this.count = this.count; // still invalidates everything that consumed `count`
 ```
 
-Consumers re-evaluate, and the renderer re-checks the DOM it produced (the DOM itself won't change if the final values are equal, but the recomputation happens). Other systems make the opposite choice: Solid's signals and Signalium's `signal()` compare the new value to the old one—with `===` by default—and do nothing if they're equal, cutting invalidation off at the source.
+Consumers re-evaluate, and the renderer re-checks the DOM it produced. The DOM
+itself won't change if the final values are equal, but the recomputation
+happens. Other systems make the opposite choice: Solid's signals compare the
+new value to the old one - `===` by default - and do nothing if they're equal,
+cutting invalidation off at the source. Signalium's `signal()` behaves
+similarly.
+
+[RFC #1071](https://github.com/emberjs/rfcs/pull/1071) brings that dial to
+Ember. The decorator accepts an options form, `@tracked({ equals })`, that
+skips invalidation entirely when the old and new values are equal:
+
+```js
+import { tracked } from '@glimmer/tracking';
+
+class Player {
+  @tracked({ equals: (a, b) => a === b }) score = 0;
+
+  reset = () => {
+    this.score = 0; // if score was already 0, nothing invalidates
+  };
+}
+```
+
+Without options, `@tracked` keeps its historical always-dirty behavior, so
+existing code is unaffected.
+
+When is custom equality worth it? The default is fine for most state - a
+write usually happens because something actually changed. Custom equality
+pays off when writes frequently _don't_ change the value:
+
+- **High-frequency events that usually land on the same value.** Writing the
+  current scroll direction (`'up'` or `'down'`) on every scroll event, or the
+  current breakpoint name on every resize: the event fires constantly, but
+  the value only changes at the moment of reversal or crossing.
+- **Data that is re-fetched but rarely different.** Polling a server returns
+  a fresh object every time. By reference it is always "new"; by content it
+  is almost always the same as last time.
+- **Value-like objects.** Dates, durations, coordinates: two distinct
+  instances can represent the same value. Comparing by content - for example,
+  `(a, b) => a.getTime() === b.getTime()` for dates - reflects what the value
+  _means_ rather than where it lives in memory.
+
+In each of these cases, without an equality check every write invalidates
+every consumer, and the renderer re-evaluates everything downstream just to
+conclude that nothing changed. An equality check cuts that work off at the
+root. The flip side: the check itself runs on every write, so for values that
+really do change on most writes, the default is the cheaper choice.
 
 <div class="cta">
   <div class="cta-note">
     <div class="cta-note-body">
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
-        <a href="https://github.com/emberjs/rfcs/pull/1071">RFC #1071</a> (accepted, not yet released) brings configurable equality to Ember: <code>@tracked({ equals: (a, b) => a === b })</code>, and a <code>tracked()</code> function for creating reactive values outside of classes. Until it ships, you can get equality-checking behavior by guarding the write yourself: <code>if (next !== this.count) this.count = next;</code>
+        The <code>@tracked({ equals })</code> form and the <code>tracked()</code> function described later on this page come from <a href="https://github.com/emberjs/rfcs/pull/1071">RFC #1071</a>, which is <a href="https://github.com/emberjs/ember.js/pull/21471">implemented</a> but has not yet shipped in a stable Ember release. Until it ships, you can get equality-checking behavior by guarding the write yourself: <code>if (next !== this.count) this.count = next;</code>
       </div>
     </div>
     <img src="/images/mascots/zoey.png" role="presentation" alt="">
   </div>
 </div>
 
-Because dirtying is per-property, the _granularity_ of your root state determines the granularity of updates. Three tracked properties invalidate independently; one tracked object replaced wholesale invalidates everything that read any part of it. Neither is wrong—but it's a dial you control.
+Because dirtying is per-property, the _granularity_ of your root state
+determines the granularity of updates. Three tracked properties invalidate
+independently; one tracked object replaced wholesale invalidates everything
+that read any part of it. Neither is wrong - but it's a dial you control.
 
 ## Mutable Data: Replace or Track the Collection
 
-`@tracked` tracks _assignments to the property_, not mutations inside the value. Pushing into a plain array or setting a key on a plain object is invisible to the system:
+`@tracked` tracks _assignments to the property_, not mutations inside the
+value. Pushing into a plain array or setting a key on a plain object is
+invisible to the system:
 
 ```js
 class ShoppingList {
   @tracked items = [];
 
   addItem(item) {
-    this.items.push(item); // 🛑 not tracked — nothing updates
+    this.items.push(item); // 🛑 not tracked - nothing updates
   }
 }
 ```
 
-You have two good options. The first is to treat values as immutable and _replace_ them, which keeps all change flowing through the one tracked write:
+You have two good options here. The first is to treat values as immutable and
+_replace_ them, which keeps all change flowing through the one tracked write:
 
 ```js
 addItem = (item) => {
@@ -86,7 +165,9 @@ addItem = (item) => {
 };
 ```
 
-The second is to use a tracked collection from [`@ember/reactive/collections`](https://api.emberjs.com/ember/release/modules/@ember%2Freactive%2Fcollections), which tracks reads and writes of its _contents_ at fine granularity:
+The second is to use a tracked collection from
+[`@ember/reactive/collections`](https://api.emberjs.com/ember/release/modules/@ember%2Freactive%2Fcollections),
+which tracks reads and writes of its _contents_ at fine granularity:
 
 ```js
 import { trackedArray } from '@ember/reactive/collections';
@@ -100,13 +181,26 @@ class ShoppingList {
 }
 ```
 
-Note that the property itself no longer needs `@tracked`—the collection carries its own reactivity, and the property is never reassigned. Tracked collections are shallow: `trackedObject`'s properties are tracked, but objects stored _inside_ it are ordinary objects unless you wrap them too. See [Autotracking In-Depth](../../autotracking-in-depth/#toc_plain-old-javascript-objects-pojos) for the full tour of `trackedObject`, `trackedArray`, `trackedMap`, and `trackedSet`.
+Note that the property itself no longer needs `@tracked`. The collection
+carries its own reactivity, and the property is never reassigned. Two details
+worth knowing: the collection functions _copy_ the data you pass in, so
+mutating the tracked collection never mutates the original; and tracked
+collections are shallow - `trackedObject`'s properties are tracked, but
+objects stored _inside_ it are ordinary objects unless you wrap them too. See
+[Autotracking In-Depth](../../autotracking-in-depth/#toc_plain-old-javascript-objects-pojos)
+for the full tour of `trackedObject`, `trackedArray`, `trackedMap`, and
+`trackedSet`.
 
-Prefer replacement for small values and value-like data; prefer tracked collections when a collection is long-lived, large, or mutated from many places.
+Prefer replacement for small values and value-like data. Prefer tracked
+collections when a collection is long-lived, large, or mutated from many
+places.
 
 ## Keep Root State Private, Expose Meaning
 
-Root state is an implementation detail. The code that _uses_ your state shouldn't know (or care) which parts are stored and which are computed. A pattern used heavily in Starbeam's documentation—and just as good in Ember—is to keep reactive storage private and expose a domain-shaped public API:
+Root state is an implementation detail. The code that _uses_ your state
+shouldn't know (or care) which parts are stored and which are computed. A
+pattern used heavily in Starbeam's documentation - and just as good in Ember -
+is to keep reactive storage private and expose a domain-shaped public API:
 
 ```js
 import { trackedMap } from '@ember/reactive/collections';
@@ -139,15 +233,97 @@ export class Cart {
 }
 ```
 
-Consumers read `cart.total` and call `cart.add(product)`—ordinary JavaScript, fully reactive, with no way to corrupt the internal storage. If you later change how items are stored, nothing outside the class notices. Classes like this need no framework machinery at all; they work in components, services, route models, and plain unit tests alike.
+Consumers read `cart.total` and call `cart.add(product)` - ordinary
+JavaScript, fully reactive, with no way to corrupt the internal storage. If
+you later change how items are stored, nothing outside the class notices.
+Classes like this need no framework machinery at all; they work in components,
+services, route models, and plain unit tests alike.
+
+## Reactive Values Without Classes
+
+[RFC #1071](https://github.com/emberjs/rfcs/pull/1071) also overloads
+`tracked` to work as a plain function. Called with a value instead of applied
+as a decorator, it returns a standalone reactive value - root state that isn't
+attached to any class:
+
+```js
+import { tracked } from '@glimmer/tracking';
+
+const count = tracked(0);
+
+count.value;     // reading consumes, like any tracked property
+count.value = 1; // writing invalidates consumers
+```
+
+Unlike the decorator, a standalone value checks equality by default (using
+`Object.is`), so assigning the value it already holds invalidates nothing. You
+can pass your own comparison with `tracked(initial, { equals })` - useful in
+exactly the situations described in
+[Writes, Equality, and Dirtying](#toc_writes-equality-and-dirtying) above. For
+example, a poll that returns a fresh object every time:
+
+```js
+import { tracked } from '@glimmer/tracking';
+
+const serverStatus = tracked(
+  { state: 'ok', pendingJobs: 0 },
+  {
+    equals: (a, b) =>
+      a.state === b.state && a.pendingJobs === b.pendingJobs,
+  }
+);
+
+// Each response is a brand-new object, so the default `Object.is`
+// would treat every poll as a change. With `equals`, consumers only
+// invalidate when the contents actually changed.
+serverStatus.value = await fetchStatus();
+```
+
+Beyond `.value` there are function shorthands: `get()` and `set(value)`, plus
+`update((current) => next)` - which writes based on the current value
+_without_ consuming it - and `freeze()`, which prevents all further writes.
+
+For application code, classes with `@tracked` remain the primary tool. The
+function form fills the gaps a decorator can't reach: function-based helpers
+and modifiers, tests that want a reactive value without ceremony, and demos.
+It also pairs well with the private-storage pattern above, as a truly private
+reactive field:
+
+```js
+import { tracked } from '@glimmer/tracking';
+
+export class Toggle {
+  #state = tracked(false);
+
+  get isOn() {
+    return this.#state.value;
+  }
+
+  toggle = () => {
+    this.#state.value = !this.#state.value;
+  };
+}
+```
+
+The function form is also a good mental model for the decorator itself: you
+can think of each `@tracked` property as syntactic sugar over one of these
+values - one per property, per instance - where reading the property reads
+`.value` and assigning it writes `.value` (with equality checking turned off,
+for historical compatibility).
 
 ## Where Root State Lives
 
-Root state needs an owner—something whose lifetime matches the state's lifetime:
+Root state needs an owner - something whose lifetime matches the state's
+lifetime:
 
-- **Component state** belongs on the component (or on plain classes the component creates). It's created and thrown away with the component instance. See [Component State and Actions](../../../components/component-state-and-actions/).
-- **Application-wide state** belongs in a [service](../../../services/), which lives as long as the application and can be injected anywhere.
-- **URL-driven state** (the current route, query params) belongs in the router—reach for it via route models and query params rather than copying it into tracked properties.
+- **Component state** belongs on the component, or on plain classes the
+  component creates. It's created and thrown away with the component instance.
+  See [Component State and Actions](../../../components/component-state-and-actions/).
+- **Application-wide state** belongs in a [service](../../../services/), which
+  lives as long as the application and can be injected anywhere.
+- **URL-driven state** (the current route, query params) belongs in the
+  router. Reach for it via route models and query params rather than copying
+  it into tracked properties.
 
 One place root state should generally _not_ live is module scope:
 
@@ -158,11 +334,20 @@ import { trackedObject } from '@ember/reactive/collections';
 export const settings = trackedObject({ theme: 'light' });
 ```
 
-It works—reactivity doesn't care where storage lives—but modules are only evaluated once, so this state silently persists across acceptance and integration tests, leaking one test's writes into the next. State that would be module-scoped almost always wants to be a service, which is created and destroyed per application instance (and per test). The exception is demos and scratch code, where module state's brevity is the point.
+It works - reactivity doesn't care where storage lives - but modules are only
+evaluated once, so this state silently persists across acceptance and
+integration tests, leaking one test's writes into the next. State that would
+be module-scoped almost always wants to be a service, which is created and
+destroyed per application instance (and per test). The exception is demos and
+scratch code, where module state's brevity is the point.
 
 ## Root State Is Not a Cache for Someone Else's Truth
 
-A special case of "could I compute this instead?" arises with _data that arrives from elsewhere_—arguments passed to your component, records from your data layer, the current route. The reactive system already tracks these. Copying them into your own tracked properties creates the synchronization problem again:
+A special case of "could I compute this instead?" arises with _data that
+arrives from elsewhere_: arguments passed to your component, records from your
+data layer, the current route. The reactive system already tracks these.
+Copying them into your own tracked properties creates the synchronization
+problem all over again:
 
 ```js
 // 🛑 Don't: copying an argument into root state
@@ -171,7 +356,8 @@ class UserCard extends Component {
 }
 ```
 
-This captures `name` once and goes stale when the argument changes. Deriving stays current automatically:
+This captures `name` once and goes stale when the argument changes. Deriving
+stays current automatically:
 
 ```js
 // ✅ Do: derive from the argument
@@ -182,4 +368,9 @@ class UserCard extends Component {
 }
 ```
 
-If you genuinely need "the argument, until the user edits it locally" (a form draft, for example), that's _new_ root state whose initial value happens to come from elsewhere—create it explicitly in response to a user action, not by mirroring the argument on every change. The [Patterns for Components](../../patterns-for-components/) guide shows several shapes of this.
+If you genuinely need "the argument, until the user edits it locally" (a form
+draft, for example), that's _new_ root state whose initial value happens to
+come from elsewhere. Create it explicitly in response to a user action, not by
+mirroring the argument on every change. The
+[Patterns for Components](../../patterns-for-components/) guide shows several
+shapes of this.

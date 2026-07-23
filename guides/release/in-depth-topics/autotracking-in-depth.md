@@ -1,7 +1,9 @@
 Autotracking is how Ember's _reactivity_ model works - how it decides what to
-rerender, and when. This guide covers tracking in more depth, including how it
-can be used in various types of classes, and how it interacts with arrays and
-POJOs.
+rerender, and when. This guide covers the mechanics of tracking in more depth,
+including how it can be used in various types of classes, and how it interacts
+with arrays and POJOs. For the concepts behind the system - and guidance on
+designing your application's state - see
+[Thinking in Reactivity](../reactivity/).
 
 ## Autotracking Basics
 
@@ -195,7 +197,10 @@ export default class HelloComponent extends Component {
 
 This will also trigger a rerender. No matter where the update occurs, updating
 a tracked property will let Ember know to rerender any affected portion of the
-app.
+app. Writing to tracked state from callbacks like this is the standard way
+data from the outside world enters Ember's reactivity system - see
+[Reactivity and the Outside World](../reactivity/outside-world/) for more on
+this pattern.
 
 ### Tracking Through Methods
 
@@ -266,6 +271,8 @@ Tracked properties can also be applied to your own custom classes, and used
 within your components and routes:
 
 ```js {data-filename=src/utils/person.js}
+import { tracked } from '@glimmer/tracking';
+
 export default class Person {
   @tracked title;
   @tracked name;
@@ -314,7 +321,7 @@ export default class ApplicationRouteComponent extends Component {
 ```
 
 As long as the properties are tracked, and accessed when rendering the template
-directly or indirectly, everything should update as expected
+directly or indirectly, everything should update as expected.
 
 ### Plain Old JavaScript Objects (POJOs)
 
@@ -341,6 +348,10 @@ All property reading and writing on this object is automatically tracked.
 `obj.c.somethingDeeper = 5` would not be tracked unless you've also made sure
 that the contents of `obj.c` is itself another `trackedObject`.
 
+For guidance on when to reach for a tracked collection versus replacing a
+value wholesale, see
+[Root State](../reactivity/root-state/#toc_mutable-data-replace-or-track-the-collection).
+
 
 #### Arrays
 
@@ -361,6 +372,27 @@ class ShoppingList {
 
 `trackedArray` supports all the normal native `Array` methods, ensuring that
 their reads and writes are tracked.
+
+#### Maps and Sets
+
+`trackedMap`, `trackedSet`, `trackedWeakMap`, and `trackedWeakSet` round out
+the collections, following the same pattern:
+
+```js
+import { trackedMap } from '@ember/reactive/collections';
+
+class Cart {
+  quantities = trackedMap();
+
+  add(productId) {
+    let current = this.quantities.get(productId) ?? 0;
+    this.quantities.set(productId, current + 1);
+  }
+}
+```
+
+Each collection supports all the methods of its native counterpart, ensuring
+that their reads and writes are tracked.
 
 ## Caching of tracked properties
 
@@ -403,7 +435,7 @@ getter is very expensive, however, you will want to cache the value and
 retrieve it when the dependencies haven't changed. You want to recompute only
 if a dependency has been updated.
 
-Ember's [@cached decorator](https://api.emberjs.com/ember/6.8/functions/@glimmer%2Ftracking/cached) lets
+Ember's [@cached decorator](https://api.emberjs.com/ember/release/functions/@glimmer%2Ftracking/cached) lets
 you cache (or "memoize") a getter by simply marking it as `@cached`.
 
 With this in mind, let's introduce caching to `aspectRatio`:
@@ -443,6 +475,10 @@ console.log(count); // 2
 From the value of `count`, we see that, this time, `aspectRatio` was calculated
 only twice.
 
-In general, you should avoid using @cached unless you have confirmed that the getter you are decorating is computationally expensive, since @cached adds a small amount of overhead to the getter.
+In general, you should avoid using `@cached` unless you have confirmed that
+the getter you are decorating is computationally expensive, since `@cached`
+adds a small amount of overhead to the getter. Beyond performance, there are
+a couple of situations where caching changes behavior in useful ways - see
+[Derived State](../reactivity/derived-state/#toc_caching) for details.
 
 <!-- eof - needed for pages that end in a code block  -->
