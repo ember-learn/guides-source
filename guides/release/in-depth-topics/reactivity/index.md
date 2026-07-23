@@ -13,24 +13,17 @@ the [TC39 Signals proposal](https://github.com/tc39/proposal-signals) are
 built on the same foundations - so learning them will help you reason about UI
 state in any framework.
 
-## The Spreadsheet Mental Model
+## The Three Layers of Reactive State
 
-The oldest and best mental model for reactivity is a spreadsheet.
+Every reactive application is built from three layers:
 
-In a spreadsheet, some cells contain plain _values_ that you type in:
-`A1 = 5`, `A2 = 10`. Other cells contain _formulas_ that reference those
-values: `A3 = A1 + A2`. When you change `A1`, you don't tell `A3` to update -
-it just does. A formula can also reference other formulas, building up a whole
-graph of computation that stays consistent no matter which value you edit.
-
-Every reactive system is this spreadsheet, generalized:
-
-- **Root state** is the cells you type into: the values that change directly,
-  because a user clicked something, a server responded, or time passed. In
-  Ember, root state is what you mark with `@tracked`.
-- **Derived state** is the formulas: values computed _from_ root state, or
-  from other derived state. In Ember, derived state is ordinary getters,
-  functions, and template expressions.
+- **Root state** is the values that change directly, because a user clicked
+  something, a server responded, or time passed. In Ember, root state is what
+  you mark with `@tracked`.
+- **Derived state** is the values computed _from_ root state, or from other
+  derived state. When you change a piece of root state, you don't tell the
+  derived values to update - they just do. In Ember, derived state is
+  ordinary getters, functions, and template expressions.
 - **Outputs** are where your data meets the outside world: the rendered DOM,
   the document title, a chart drawn on a canvas. In Ember, the primary output
   is your templates. The renderer watches everything your templates read, and
@@ -53,7 +46,7 @@ export default class Cart extends Component {
   // Root state: the values that change directly
   @tracked items = [];
 
-  // Derived state: formulas over root state
+  // Derived state: computed from root state
   get subtotal() {
     return this.items.reduce((sum, item) => sum + item.price, 0);
   }
@@ -199,8 +192,8 @@ The rest of this section works through each layer of the model:
 
 - [Root State](./root-state/) - what should (and should not) be root state,
   and how to design it.
-- [Derived State](./derived-state/) - formulas: laziness, purity, caching, and
-  composition.
+- [Derived State](./derived-state/) - laziness, purity, caching, composition,
+  and deferring consumption.
 - [Reactivity and the Outside World](./outside-world/) - outputs, side
   effects, async, and the edges of the graph.
 

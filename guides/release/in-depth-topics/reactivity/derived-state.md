@@ -1,6 +1,6 @@
-Derived state is the formula layer of the reactive graph: everything computed
-_from_ [root state](../root-state/). In a healthy Ember application, this is
-most of your state - and in Ember, it requires no special API at all. An
+Derived state is everything computed _from_ [root state](../root-state/). In
+a healthy Ember application, this is most of your state - and in Ember, it
+requires no special API at all. An
 ordinary getter, an ordinary function, an ordinary template expression: if it
 reads tracked state, it is derived state, and it stays up to date
 automatically.
@@ -90,8 +90,7 @@ previously in the same computation.
 
 This is sometimes called the _backtracking assertion_: render evaluates your
 derivations top to bottom, and a write partway through would invalidate output
-that was already produced - the reactive equivalent of a spreadsheet formula
-that edits other cells. The fix is never to find a sneakier place for the
+that was already produced. The fix is never to find a sneakier place for the
 write; it's to restructure so the write isn't needed:
 
 ```js
@@ -163,7 +162,7 @@ Beyond raw cost, there are two more good reasons to reach for `@cached`:
 See [Autotracking In-Depth](../../autotracking-in-depth/#toc_caching-of-tracked-properties)
 for a step-by-step illustration of the caching behavior.
 
-## Composition: Build Big Formulas from Small Ones
+## Composition: Build Big Derivations from Small Ones
 
 Because derivations are just getters and functions, they compose the way all
 JavaScript composes - and the dependency graph follows along. Prefer many
@@ -186,9 +185,18 @@ get headline() {
 Each step is independently readable, testable, and reusable - and invalidation
 stays precise, because each layer only consumes what it actually reads.
 
-Derivations don't have to live on classes, either. A plain function that reads
-tracked state is a derivation too, and in template tag files you can use one
-directly as a helper:
+For derived state that several components need, the same composition rule
+applies one level up: put the root state _and_ its derivations together in a
+class (as in the `Cart` example in
+[Root State](../root-state/#toc_keep-root-state-private-expose-meaning)) or a
+[service](../../../services/), and let components consume the finished
+getters.
+
+## Derivations Outside of Classes
+
+Derivations don't have to live on classes. A plain function that reads tracked
+state is a derivation too, and in template tag files you can use one directly
+as a helper:
 
 ```gjs {data-filename=app/components/roster.gjs}
 import Component from '@glimmer/component';
@@ -216,12 +224,134 @@ is invalidated. Pure functions like this - parameterized derivations - are the
 most reusable form of derived state. See
 [Helper Functions](../../../components/helper-functions/) for more.
 
-For derived state that several components need, the same composition rule
-applies one level up: put the root state _and_ its derivations together in a
-class (as in the `Cart` example in
-[Root State](../root-state/#toc_keep-root-state-private-expose-meaning)) or a
-[service](../../../services/), and let components consume the finished
-getters.
+The same idea scales up to module scope. A function that takes reactive data
+as arguments can be shared across your whole application:
+
+```js {data-filename=app/utils/cart-math.js}
+export function subtotal(items) {
+  return items.reduce((sum, item) => sum + item.price, 0);
+}
+```
+
+Wherever this runs during a reactive computation - a template, a getter,
+another function - reading `items` entangles the caller with that data, and
+the result stays live. Note the contrast with module-scoped _state_, which
+[should generally be avoided](../root-state/#toc_where-root-state-lives): a
+derivation function holds no state of its own, so sharing it at module scope
+is always safe.
+
+## Deferring Consumption
+
+Reading a tracked value consumes it _right now_. Both of Ember's derivation
+tools - getters and functions - work by _deferring_ that read: nothing runs
+when they're defined, only when someone asks for the result.
+
+You've been deferring with getters all along; it's the default style when
+working with classes. A getter's body runs when the property is read, so its
+tracked reads are consumed by whoever is reading - the template, another
+getter - at exactly the moment they matter:
+
+```js
+class Profile {
+  @tracked name = 'zoey';
+
+  // Defining this reads (and consumes) nothing...
+  get displayName() {
+    return this.name.toUpperCase();
+  }
+}
+
+let profile = new Profile();
+
+// ...consumption happens here, in the reader's context
+profile.displayName;
+```
+
+Sometimes you need the same deferral for a value you're handing to someone
+else, somewhere a getter can't reach - like a constructor argument. That's
+the job of a plain function, usually an arrow function: wrap the read, and
+nothing is consumed until the function is called.
+
+```js
+let name = this.person.name;          // reads (and consumes) immediately
+let getName = () => this.person.name; // reads nothing - yet
+```
+
+Arrow functions capture `this` and their surrounding scope, which makes them
+_portable_ derivations: you can hand one to another object, and every call
+re-reads the current value from wherever the state actually lives.
+
+This matters most in constructors and field initializers, because they run
+exactly once, when an object is created. Any tracked value they read is
+captured as a one-time snapshot - the same trap as
+[copying arguments into root state](../root-state/#toc_root-state-is-not-a-cache-for-someone-elses-truth).
+Passing functions instead keeps the connection live:
+
+```js
+// 🛑 Don't: values are read once, at construction, and go stale
+class Filter {
+  constructor(items, query) {
+    this.items = items;
+    this.query = query;
+  }
+
+  get results() {
+    return this.items.filter((item) => item.matches(this.query));
+  }
+}
+
+export default class SearchResults extends Component {
+  filter = new Filter(this.args.items, this.query);
+}
+```
+
+```js
+// ✅ Do: values are read on every use, through the functions
+class Filter {
+  #getItems;
+  #getQuery;
+
+  constructor(getItems, getQuery) {
+    this.#getItems = getItems;
+    this.#getQuery = getQuery;
+  }
+
+  get results() {
+    return this.#getItems().filter((item) =>
+      item.matches(this.#getQuery())
+    );
+  }
+}
+
+export default class SearchResults extends Component {
+  filter = new Filter(
+    () => this.args.items,
+    () => this.query
+  );
+}
+```
+
+In the first version, `Filter` sees the items and query from the moment the
+component was constructed, forever. In the second, every read of
+`filter.results` calls the two functions, which read the component's _current_
+tracked state. Consumption flows through the function call, so `results` stays
+just as live as a getter defined on the component itself.
+
+The guideline: pass a plain value when the receiver should see a snapshot;
+pass a function when the receiver should keep seeing the current value over
+time.
+
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+        You rarely need this technique in templates. Component arguments are already lazy: <code>@items={{this.items}}</code> isn't consumed until the child actually reads <code>this.args.items</code>. Deferring with functions is a tool for plain JavaScript, where evaluation is eager.
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
+  </div>
+</div>
 
 ## Thinking in Derivations
 
@@ -248,7 +378,7 @@ selectPlan = (plan) => {
   this.total = this.price - this.discount;
 };
 
-// ✅ Do: the handler records one fact; formulas do the rest
+// ✅ Do: the handler records one fact; getters do the rest
 selectPlan = (plan) => {
   this.selectedPlan = plan;
 };
@@ -270,5 +400,5 @@ In the first version, `total` is only correct if every code path that touches
 any input remembers to recompute it. In the second, `total` _cannot_ be wrong.
 Toggling `isAnnual` from a completely different part of the app updates it
 automatically, through code that was written without any knowledge of that
-future feature. That's the payoff of the formula layer, and it's why "derive,
+future feature. That's the payoff of derived state, and it's why "derive,
 don't sync" is the central habit of reactive programming.

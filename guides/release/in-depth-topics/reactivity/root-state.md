@@ -3,7 +3,7 @@ _directly_, rather than being computed from something else. Everything else in
 your application - derived values, rendered DOM - is a consequence of root
 state. That makes designing your root state the highest-leverage decision you
 make when managing UI state. Get it right, and the rest of your code becomes
-formulas that can't fall out of sync.
+derived values that can't fall out of sync.
 
 In Ember, you create root state by marking a property as tracked:
 
@@ -238,6 +238,92 @@ JavaScript, fully reactive, with no way to corrupt the internal storage. If
 you later change how items are stored, nothing outside the class notices.
 Classes like this need no framework machinery at all; they work in components,
 services, route models, and plain unit tests alike.
+
+## Classes Are Root State, Too
+
+Step back and look at what `Cart` is: tracked storage plus the getters
+derived from it, bundled behind one reference. From the outside, an _instance_
+of `Cart` is a single reactive value - root state that happens to be
+non-primitive. A tracked property can hold a number or a string; it can just
+as well hold a `Cart`.
+
+That gives you two levels of granularity, and the dirtying rule from earlier
+applies to both:
+
+- **Mutate the instance** - call `cart.add(product)` - and only consumers of
+  the affected internal state invalidate.
+- **Replace the instance** - assign a new `Cart` to a tracked property - and
+  everything that read any part of it invalidates. That's a "reset all" in a
+  single write:
+
+```js
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
+
+export default class Checkout extends Component {
+  // The reference is root state; so is the storage inside the instance
+  @tracked cart = new Cart();
+
+  startOver = () => {
+    this.cart = new Cart();
+  };
+}
+```
+
+Because these are plain classes, their lifetime is ordinary JavaScript
+lifetime: an instance lives as long as something references it. Create one in
+a component field, and it lives and dies with the component. Create one per
+row of a table, and each lives as long as its row is rendered. No framework
+registration is needed - garbage collection is the cleanup.
+
+The exception is a class that starts an external process: a timer, a
+subscription, a socket. Garbage collection won't stop those, so tie the
+instance's lifetime to its owner with the tools from
+[`@ember/destroyable`](https://api.emberjs.com/ember/release/modules/@ember%2Fdestroyable):
+
+```js {data-filename=app/components/dashboard.gjs}
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
+import {
+  associateDestroyableChild,
+  registerDestructor,
+} from '@ember/destroyable';
+
+class Poller {
+  @tracked lastReading = null;
+
+  constructor() {
+    let timer = setInterval(() => this.poll(), 5000);
+    registerDestructor(this, () => clearInterval(timer));
+  }
+
+  async poll() {
+    let response = await fetch('/api/readings/latest');
+    this.lastReading = await response.json();
+  }
+}
+
+export default class Dashboard extends Component {
+  poller = associateDestroyableChild(this, new Poller());
+
+  <template>
+    Latest reading: {{this.poller.lastReading.temperature}}
+  </template>
+}
+```
+
+`registerDestructor` gives `Poller` its cleanup; `associateDestroyableChild`
+links it to the component, so when the component is destroyed, the poller is
+destroyed with it. The
+[Reactivity and the Outside World](../outside-world/) guide covers this
+pattern - effects tied to a lifetime - in depth.
+
+One more design rule for state classes: when a class needs to read state that
+lives somewhere else (component arguments, another class's tracked fields),
+have it accept _functions_ rather than values, so that it reads the current
+state on every use instead of a snapshot from construction time. See
+[Deferring Consumption](../derived-state/#toc_deferring-consumption) for the
+full pattern.
 
 ## Reactive Values Without Classes
 
