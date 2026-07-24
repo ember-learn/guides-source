@@ -5,7 +5,7 @@ state, and the framework figures out when and what to update.
 
 You have been using Ember's reactivity system, called _autotracking_, since
 your first `@tracked` property. The guides in this section go deeper than the
-API: they cover how to _think_ about reactivity, so that you can design state
+API: they cover how to think about reactivity, so that you can design state
 that stays correct as your application grows. These ideas are not unique to
 Ember - the broader JavaScript ecosystem calls them _signals_, and most modern
 frameworks are built on the same foundations - so learning them will help you
@@ -15,15 +15,15 @@ reason about UI state in any framework.
 
 Every reactive application is built from three layers:
 
-- **Root state** is the values that change directly, because a user clicked
+- _Root state_ is the values that change directly, because a user clicked
   something, a server responded, or time passed. In Ember, root state is what
   you mark with `@tracked` or store in a tracked collection such as
   `trackedArray`.
-- **Derived state** is the values computed _from_ root state, or from other
+- _Derived state_ is the values computed from root state, or from other
   derived state. When you change a piece of root state, you don't tell the
   derived values to update - they just do. In Ember, derived state is
   ordinary getters, functions, and template expressions.
-- **Outputs** are where your data meets the outside world: the rendered DOM,
+- _Outputs_ are where your data meets the outside world: the rendered DOM,
   the document title, a chart drawn on a canvas. In Ember, the primary output
   is your templates. The renderer watches everything your templates read, and
   updates the DOM when any of it changes.
@@ -73,37 +73,34 @@ export default class Cart extends Component {
 }
 ```
 
-Notice the proportions in this component: one piece of root state, three
-getters.
-This is typical of well-designed reactive code, and it is the most important
-habit this section hopes to teach: **most of your state should be derived, and
-only the irreducible minimum should be root state.** The
+Notice that this component has one piece of root state and three getters.
+This is typical of well-designed reactive code, and it points at the most
+important habit these guides hope to teach: most of your state should be
+derived, and only the irreducible minimum should be root state. The
 [Root State](./root-state/) and [Derived State](./derived-state/) guides
 develop this idea in detail.
 
 ## The Two Fundamental Operations
 
 Underneath every reactive system - autotracking included - are just two
-operations:
-
-- **Consume**: when a value is _read_ while something reactive is being
-  computed (a template rendering, a cached getter evaluating), the system
-  records that the computation used that value.
-- **Invalidate** (or _dirty_): when a value is _written_, the system marks
-  every computation that consumed it as out of date.
+operations. When a value is read while something reactive is being computed
+(a template rendering, a cached getter evaluating), the system records that
+the computation used that value. This is called _consuming_. When a value is
+written, the system marks every computation that consumed it as out of date.
+This is called _invalidating_, or _dirtying_.
 
 That's the whole trick! When Ember renders `{{this.total}}` in the component
 above, it evaluates `total`, which reads `subtotal` and `tax`, which read
 `items` - and because `items` is a tracked collection, those reads are
-_consumed_. Later, when `addItem` pushes into `this.items`, the write
-_invalidates_ the rendered output, and Ember schedules a rerender of exactly
+consumed. Later, when `addItem` pushes into `this.items`, the write
+invalidates the rendered output, and Ember schedules a rerender of exactly
 the parts of the DOM that consumed it.
 
-Two properties of this design are worth internalizing.
+Two properties of this design come up again and again.
 
-First, **dependencies are discovered at runtime, every time.** You never
-declare what a getter depends on; the system records what it _actually reads_
-during each evaluation. This means even conditional dependencies just work:
+First, dependencies are discovered at runtime, every time. You never declare
+what a getter depends on; the system records what it actually reads during
+each evaluation. This means even conditional dependencies just work:
 
 ```js
 get displayName() {
@@ -116,45 +113,43 @@ anything, because `displayName` never read it. If `useNickname` becomes
 `true`, the next evaluation reads `nickname`, and from then on changes to it
 propagate. The dependency graph rewires itself on every run.
 
-Second, **tracking is synchronous.** The system can only observe reads that
-happen _while_ a reactive computation is running. If you read tracked state in
-a callback that runs later - after an `await`, or inside a `setTimeout` - that
-read happens outside any tracking context, and nothing is consumed. This is
-rarely a problem in practice, since templates, getters, and helpers are all
-synchronous, but it explains a whole class of "why didn't this update?" bugs.
-The [Reactivity and the Outside World](./outside-world/) guide covers this
-boundary in detail.
+Second, tracking is synchronous. The system can only observe reads that
+happen while a reactive computation is running. If you read tracked state in
+a callback that runs later - after an `await`, or inside a `setTimeout` -
+that read happens outside any tracking context, and nothing is consumed. This
+is rarely a problem in practice, since templates, getters, and helpers are
+all synchronous, but it explains a whole class of "why didn't this update?"
+bugs. The [Reactivity and the Outside World](./outside-world/) guide covers
+this boundary in detail.
 
 ## Pull, Not Push
 
 There are two ways a reactive system can respond to a write:
 
-- A **push**-based system eagerly re-runs every affected computation the
-  moment a value changes.
-- A **pull**-based (or _lazy_) system merely marks affected computations as
-  out of date, and recomputes them only when someone actually needs their
-  result.
+- A _push_-based system eagerly re-runs every affected computation the moment
+  a value changes.
+- A _pull_-based (or lazy) system merely marks affected computations as out
+  of date, and recomputes them only when someone actually needs their result.
 
-Autotracking is pull-based. When you write to a tracked property, _no user
-code runs_. Your getters are not re-evaluated; nothing is recomputed. The
-write just lets the renderer know that something it consumed is out of date.
-Later - asynchronously, but before the browser paints - the renderer
+Autotracking is pull-based. When you write to a tracked property, no user
+code runs at all. Your getters are not re-evaluated; nothing is recomputed.
+The write just lets the renderer know that something it consumed is out of
+date. Later - asynchronously, but before the browser paints - the renderer
 re-evaluates the expressions in your templates and updates the DOM.
 
-This has practical consequences that are easy to feel but hard to place if you
-don't know the model:
+This has practical consequences that are easy to feel but hard to place if
+you don't know the model:
 
-- **Writes are cheap, and they coalesce.** Setting ten tracked properties in
-  one event handler causes one rerender, not ten. You don't need to batch
+- Writes are cheap, and they coalesce. Setting ten tracked properties in one
+  event handler causes one rerender, not ten, so you don't need to batch
   updates yourself.
-- **Unused state is free.** A derived value that nothing currently reads is
-  never computed, no matter how often its inputs change. Work scales with
-  what's on the page, not with what's in your data.
-- **Reading state never observes a half-applied update.** Because derivations
-  run on demand rather than in a notification cascade, there is no window
-  where `tax` has updated but `subtotal` hasn't. Your data is always
-  internally consistent.
-- **There is no "re-run this code when X changes" primitive.** In a push-based
+- Unused state is free. A derived value that nothing currently reads is never
+  computed, no matter how often its inputs change. Work scales with what's on
+  the page, not with what's in your data.
+- Reading state never observes a half-applied update. Because derivations run
+  on demand rather than in a notification cascade, there is no window where
+  `tax` has updated but `subtotal` hasn't.
+- There is no "re-run this code when X changes" primitive. In a push-based
   system you might reach for an _effect_ for that. Ember deliberately doesn't
   offer one; the [Reactivity and the Outside World](./outside-world/) guide
   explains why, and what to do instead.

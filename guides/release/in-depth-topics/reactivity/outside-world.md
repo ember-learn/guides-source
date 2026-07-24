@@ -1,16 +1,17 @@
 The reactive graph - [root state](../root-state/) at the bottom,
-[derived state](../derived-state/) above it - is a closed, pure world: values
-in, values out, no surprises. But applications exist to affect the world
-outside that graph: paint pixels, play audio, talk to servers, listen to
-sockets. This guide is about the edges of the graph - how data gets in, how it
-gets out, and why Ember draws those edges where it does.
+[derived state](../derived-state/) above it - is deliberately
+self-contained: values in, values out, no side effects. But applications
+exist to affect the world outside that graph: paint pixels, play audio, talk
+to servers, listen to sockets. This guide is about the edges of the graph -
+how data gets in, how it gets out, and why Ember draws those edges where it
+does.
 
 The shape to keep in mind:
 
-- **Inputs** write to root state: event handlers, response callbacks,
+- Inputs write to root state: event handlers, response callbacks,
   subscription messages, timers.
-- **Outputs** read the graph and act on the world. In Ember, the output is
-  the renderer; other side effects are _managed effects_, covered below.
+- Outputs read the graph and act on the world. In Ember, the output is the
+  renderer; other side effects are managed effects, covered below.
 
 Everything in between stays pure.
 
@@ -21,8 +22,8 @@ reactive systems - and work back around to inputs.
 
 In some reactive systems, you wire outputs yourself with an _effect_
 primitive: a function that re-runs whenever the reactive values it read
-change. If you ask "where is Ember's effect primitive?", the first answer is:
-**you've been using it all along - it's the renderer.**
+change. If you ask "where is Ember's effect primitive?", the first answer is
+that you've been using it all along - it's the renderer.
 
 A template is a declaration of effects: every `{{expression}}` and every
 attribute binding is a tiny "when this value changes, update that DOM" rule.
@@ -37,36 +38,36 @@ changed.
 The second answer is that the omission is deliberate, and the reasons are
 instructive:
 
-- **Effects are eager.** An effect must re-run on every change to its inputs,
+- Effects are eager. An effect must re-run on every change to its inputs,
   whether or not anyone needs the result, breaking the lazy, pull-based
   economics that make the rest of the system cheap.
-- **Effect ordering is undefined.** When one change triggers several effects,
-  the execution order is unspecified. Correctness that depends on effect
-  order is a latent bug.
-- **Effects that write state are a trap.** The most common effect mistake is
-  using one to _sync_ state: "when X changes, update Y." Now Y is stale until
+- Effect ordering is undefined. When one change triggers several effects, the
+  execution order is unspecified. Correctness that depends on effect order is
+  a latent bug.
+- Effects that write state are a trap. The most common effect mistake is
+  using one to sync state: "when X changes, update Y." Now Y is stale until
   the effect runs, can disagree with X, and if the effect's write triggers
   another effect, you have a cascade or an infinite loop. The answer is to
-  _derive, don't sync_:
-  in Ember, [the getter was the answer all along](../derived-state/), and the
+  derive instead of syncing: in Ember,
+  [the getter was the answer all along](../derived-state/), and the
   backtracking assertion makes write-during-derivation a loud error rather
   than a quiet bug.
-- **Almost every "effect" is something more specific.** Look closely at real
-  effect code and you find: derived values (should be getters), DOM
-  manipulation (should be scoped to an element), and lifecycle-bound processes
-  like subscriptions (should be tied to an owner's lifetime, with cleanup).
-  Ember provides each of those as a dedicated, managed construct instead of
-  one general escape hatch.
+- Almost every "effect" is something more specific. Look closely at real
+  effect code and you find derived values (should be getters), DOM
+  manipulation (should be scoped to an element), and lifecycle-bound
+  processes like subscriptions (should be tied to an owner's lifetime, with
+  cleanup). Ember provides each of those as a dedicated, managed construct
+  instead of one general escape hatch.
 
 ## Managed Effects: Attached to a Lifetime
 
-Rendering is the only true _output_ in Ember - but it isn't the only side
-effect. When you do need to act on the world yourself, Ember's tools all share
-one design: the effect is attached to something with a _lifetime_, runs with
-cleanup, and re-runs through the same autotracking as everything else.
+Rendering is the only true output in Ember - but it isn't the only side
+effect. When you do need to act on the world yourself, Ember's tools all
+share one design: the effect is attached to something with a lifetime, runs
+with cleanup, and re-runs through the same autotracking as everything else.
 
-**Modifiers** are effects scoped to a DOM element. They run when the element
-is rendered, re-run (after cleanup) when tracked state they consumed changes,
+Modifiers are effects scoped to a DOM element. They run when the element is
+rendered, re-run (after cleanup) when tracked state they consumed changes,
 and clean up when the element goes away:
 
 ```js {data-filename=app/modifiers/draw-chart.js}
@@ -93,7 +94,7 @@ cannot run before there's an element, cannot leak after the element is gone,
 and declares in the template exactly where its impact lands. See
 [Template Lifecycle, DOM, and Modifiers](../../../components/template-lifecycle-dom-and-modifiers/).
 
-**Destroyables** cover lifecycle-bound work with no element. Anything with an
+Destroyables cover lifecycle-bound work with no element. Anything with an
 owner - components, services, helpers - can pair setup with guaranteed
 teardown via `registerDestructor` from
 [`@ember/destroyable`](https://api.emberjs.com/ember/release/modules/@ember%2Fdestroyable):
@@ -119,9 +120,9 @@ export default class ClockService extends Service {
 ```
 
 Any getter, anywhere in the app, can now derive from `clock.now` - "seconds
-remaining," "is the store open," a formatted timestamp - and every one of them
-updates each second, while the actual side effect (one interval, one cleanup)
-stays in one place.
+remaining," "is the store open," a formatted timestamp - and every one of
+them updates each second, while the actual side effect (one interval, one
+cleanup) stays in one place.
 
 This setup-plus-cleanup-plus-reactive-state package is commonly called a
 _resource_. In the Ember ecosystem, the
@@ -143,23 +144,23 @@ this.socket.addEventListener('message', (event) => {
 ```
 
 Writes from the outside are always safe. The backtracking assertion only
-restricts writes _during_ a reactive computation (inside getters and
-templates). An event callback runs outside any computation, so it can write as
-much as it likes, and all the writes coalesce into a single rerender.
+restricts writes during a reactive computation (inside getters and
+templates). An event callback runs outside any computation, so it can write
+as much as it likes, and all the writes coalesce into a single rerender.
 
 The clock service above is the full input pattern in miniature: an external
 process (the interval) feeds the graph through one tracked write, and cleanup
-is bound to a lifetime. Subscriptions, `ResizeObserver`s, `BroadcastChannel`s -
-they all take this shape: **subscribe with cleanup; on each notification,
-write root state; derive everything else.**
+is bound to a lifetime. Subscriptions, `ResizeObserver`s,
+`BroadcastChannel`s - they all take the same shape. Subscribe with cleanup,
+write root state on each notification, and derive everything else.
 
 ## Async: Tracking Stops at `await`
 
-Tracking contexts are synchronous. The system records reads that happen
-_while_ a template expression or cached getter is computing - and a
-computation, in JavaScript, ends at the first `await`. Code after an `await`
-(or inside `setTimeout`, or a `.then()` callback) runs later, outside the
-computation that started it, so nothing it reads is consumed:
+Tracking contexts are synchronous. The system records reads that happen while
+a template expression or cached getter is computing - and a computation, in
+JavaScript, ends at the first `await`. Code after an `await` (or inside
+`setTimeout`, or a `.then()` callback) runs later, outside the computation
+that started it, so nothing it reads is consumed:
 
 ```js
 // 🛑 The renderer cannot see through this
@@ -168,10 +169,10 @@ get userName() {
 }
 ```
 
-Derivations must be synchronous. The reactive way to handle async work follows
-from the input rule above: the _request_ is a side effect; its _progress_ is
-root state. Run the effect at a lifetime boundary, and write each phase of it
-into tracked properties:
+Derivations must be synchronous. The reactive way to handle async work
+follows from the input rule above: the request is a side effect, and its
+progress is root state. Run the effect at a lifetime boundary, and write each
+phase of it into tracked properties:
 
 ```gjs {data-filename=app/components/profile.gjs}
 import Component from '@glimmer/component';
@@ -217,24 +218,23 @@ export default class Profile extends Component {
 }
 ```
 
-Once async state is _data_, it stops being a special case: "show a spinner
+Once async state is data, it stops being a special case: "show a spinner
 while pending" is just another derivation, the same `{{#if}}` as anything
 else. This "reactive promise" shape - status, value, and error as reactive
 fields - is available ready-made from libraries like
 [ember-resources](https://github.com/NullVoxPopuli/ember-resources) and
-[WarpDrive](https://docs.warp-drive.io/)'s request state - or in a dozen lines
-of your own, as above.
+[WarpDrive](https://docs.warp-drive.io/)'s request state - or in a dozen
+lines of your own, as above.
 
 Note one limitation of the example as written: the request is created in a
 field initializer, so it captures `userId` once and won't re-fetch if the
 argument changes - the construction-time snapshot trap described in
 [Deferring Consumption](../derived-state/#toc_deferring-consumption).
-Re-running an effect when its reactive inputs change is
-exactly the job of the managed constructs from earlier - a modifier (if
-there's a sensible element) or a resource. That's the general rule of this
-guide closing the loop: **when an effect needs to respond to the graph, give
-it a lifetime the framework manages; when the world needs to update the graph,
-write root state.**
+Re-running an effect when its reactive inputs change is exactly the job of
+the managed constructs from earlier - a modifier (if there's a sensible
+element) or a resource. When an effect needs to respond to the graph, give it
+a lifetime the framework manages; when the world needs to update the graph,
+write root state.
 
 ## Choosing the Right Edge
 

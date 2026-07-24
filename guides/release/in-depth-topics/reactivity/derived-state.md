@@ -1,9 +1,8 @@
-Derived state is everything computed _from_ [root state](../root-state/). In
-a healthy Ember application, this is most of your state - and in Ember, it
-requires no special API at all. An
-ordinary getter, an ordinary function, an ordinary template expression: if it
-reads tracked state, it is derived state, and it stays up to date
-automatically.
+Derived state is everything computed from [root state](../root-state/). In a
+healthy Ember application, this is most of your state - and in Ember, it
+requires no special API at all. An ordinary getter, an ordinary function, an
+ordinary template expression: if it reads tracked state, it is derived state,
+and it stays up to date automatically.
 
 ```js
 import { tracked } from '@glimmer/tracking';
@@ -35,8 +34,8 @@ itself, by watching what each computation reads while it runs.
 
 ## Derivations Are Lazy
 
-The most important thing to understand about derived state in Ember:
-**changing root state does not run your getters.** A write to `@tracked` state
+The most important thing to understand about derived state in Ember is that
+changing root state does not run your getters. A write to `@tracked` state
 only marks the things that consumed it as out of date. The getter runs again
 when - and only when - something actually reads it. If nothing reads it, it
 never runs.
@@ -61,27 +60,26 @@ search.query = 'Hello, world!';
 search.normalizedQuery; // logs "computing!" - exactly once
 ```
 
-This is _pull-based_ reactivity, described in
+This is pull-based reactivity, described in
 [Thinking in Reactivity](../), and it's why you can be generous with derived
 state. A getter that nothing currently displays costs nothing, no matter how
 often its inputs change. Ten getters reading the same tracked property add no
 overhead to writes. Work happens at read time, driven by what the page
 actually needs.
 
-The corollary: **never rely on a getter running for its timing.** A derivation
-may run once, many times, or never; it may run later than you expect or more
-often than you expect. If you find yourself wanting "run this code _when_ X
-changes," you are looking for something other than derived state - see
-[Reactivity and the Outside World](../outside-world/).
+One consequence is that you should never rely on when, or whether, a getter
+runs. A derivation may run once, many times, or never; it may run later than
+you expect or more often than you expect. If you find yourself wanting "run
+this code when X changes," you are looking for something other than derived
+state - see [Reactivity and the Outside World](../outside-world/).
 
 ## Derivations Must Be Pure
 
-A derivation's job is to compute a value from its inputs. It must not _change_
+A derivation's job is to compute a value from its inputs. It must not change
 anything - and above all, it must not write to tracked state. This rule is
 universal across reactive systems, and Ember enforces it: writing to a
-tracked value that
-has already been read during the current render throws a development-mode
-error:
+tracked value that has already been read during the current render throws a
+development-mode error:
 
 ```text
 Error: You attempted to update `count`, but it had already been used
@@ -89,9 +87,9 @@ previously in the same computation.
 ```
 
 This is sometimes called the _backtracking assertion_: render evaluates your
-derivations top to bottom, and a write partway through would invalidate output
-that was already produced. The fix is never to find a sneakier place for the
-write; it's to restructure so the write isn't needed:
+derivations top to bottom, and a write partway through would invalidate
+output that was already produced. When you hit this error, restructure the
+code so the write isn't needed:
 
 ```js
 // 🛑 Don't: a "derivation" that pushes its result somewhere else
@@ -111,8 +109,8 @@ get resultCount() {
 }
 ```
 
-Purity is also what makes derived state effortless to test: `new Search()`,
-set some properties, assert on some getters. No rendering, no waiting, no
+Purity is also what makes derived state easy to test: `new Search()`, set
+some properties, assert on some getters. No rendering, no waiting, no
 framework.
 
 ## Caching
@@ -120,11 +118,10 @@ framework.
 By default, a getter recomputes every time it is read. This surprises people
 coming from systems whose derivations are memoized by default - but it's the
 right default, because most derivations are cheap and a cache has its own
-costs.
-Recomputing `this.items.length` is faster than checking whether a cached copy
-is still valid.
+costs. Recomputing `this.items.length` is faster than checking whether a
+cached copy is still valid.
 
-When a derivation _is_ genuinely expensive - sorting thousands of rows,
+When a derivation is genuinely expensive - sorting thousands of rows,
 building a chart's dataset - mark it with `@cached`:
 
 ```js
@@ -144,18 +141,18 @@ A `@cached` getter remembers its result along with everything it consumed
 while computing it. Reads return the cached value until one of those consumed
 inputs is invalidated; then the next read recomputes.
 
-Note what `@cached` does _not_ do: it doesn't compare the new result to the
-old one. If `transactions` is invalidated but the sorted output happens to
-come out identical, consumers downstream are still re-evaluated.
+Note what `@cached` does not do: it doesn't compare the new result to the old
+one. If `transactions` is invalidated but the sorted output happens to come
+out identical, consumers downstream are still re-evaluated.
 
 Beyond raw cost, there are two more good reasons to reach for `@cached`:
 
-- **Stable identity.** An uncached getter that returns a fresh array or object
-  on every read can defeat downstream `===` checks and cause child components
-  to see "new" values that are deep-equal to the old ones. Caching makes the
-  derivation return the _same_ object until its inputs actually change.
-- **Once-per-change semantics.** If a derivation must observably run at most
-  once per change (because it allocates, logs, or is just very hot), `@cached`
+- Stable identity. An uncached getter that returns a fresh array or object on
+  every read can defeat downstream `===` checks and cause child components to
+  see "new" values that are deep-equal to the old ones. Caching makes the
+  derivation return the same object until its inputs actually change.
+- Once-per-change semantics. If a derivation must observably run at most once
+  per change (because it allocates, logs, or is just very hot), `@cached`
   guarantees that.
 
 See [Autotracking In-Depth](../../autotracking-in-depth/#toc_caching-of-tracked-properties)
@@ -181,11 +178,11 @@ get headline() {
 }
 ```
 
-Each step is independently readable, testable, and reusable - and invalidation
+Each step is independently readable, testable, and reusable, and invalidation
 stays precise, because each layer only consumes what it actually reads.
 
 For derived state that several components need, the same composition rule
-applies one level up: put the root state _and_ its derivations together in a
+applies one level up: put the root state and its derivations together in a
 class (as in the `Cart` example in
 [Root State](../root-state/#toc_keep-root-state-private-expose-meaning)) or a
 [service](../../../services/), and let components consume the finished
@@ -193,9 +190,9 @@ getters.
 
 ## Derivations Outside of Classes
 
-Derivations don't have to live on classes. A plain function that reads tracked
-state is a derivation too, and in template tag files you can use one directly
-as a helper:
+Derivations don't have to live on classes. A plain function that reads
+tracked state is a derivation too, and in template tag files you can use one
+directly as a helper:
 
 ```gjs {data-filename=app/components/roster.gjs}
 import Component from '@glimmer/component';
@@ -217,10 +214,10 @@ export default class Roster extends Component {
 }
 ```
 
-`initials` doesn't read tracked state itself, but it participates in the graph
-all the same: it's re-evaluated for a person whenever the `name` passed to it
-is invalidated. Pure functions like this - parameterized derivations - are the
-most reusable form of derived state. See
+`initials` doesn't read tracked state itself, but it participates in the
+graph all the same: it's re-evaluated for a person whenever the `name` passed
+to it is invalidated. Pure functions like this - parameterized derivations -
+are the most reusable form of derived state. See
 [Helper Functions](../../../components/helper-functions/) for more.
 
 The same idea scales up to module scope. A function that takes reactive data
@@ -234,14 +231,14 @@ export function subtotal(items) {
 
 Wherever this runs during a reactive computation - a template, a getter,
 another function - reading `items` entangles the caller with that data, and
-the result stays live. Note the contrast with module-scoped _state_, which
+the result stays live. Note the contrast with module-scoped state, which
 [should generally be avoided](../root-state/#toc_where-root-state-lives): a
 derivation function holds no state of its own, so sharing it at module scope
 is always safe.
 
 ## Deferring Consumption
 
-Reading a tracked value consumes it _right now_. Both of Ember's derivation
+Reading a tracked value consumes it immediately. Both of Ember's derivation
 tools - getters and functions - work by _deferring_ that read: nothing runs
 when they're defined, only when someone asks for the result. This is the
 [laziness from earlier](#toc_derivations-are-lazy) seen from the consumer's
@@ -280,7 +277,7 @@ let getName = () => this.person.name; // reads nothing - yet
 ```
 
 Arrow functions capture `this` and their surrounding scope, which makes them
-_portable_ derivations: you can hand one to another object, and every call
+portable derivations: you can hand one to another object, and every call
 re-reads the current value from wherever the state actually lives.
 
 This matters most in constructors and field initializers, because they run
@@ -339,13 +336,13 @@ export default class SearchResults extends Component {
 
 In the first version, `Filter` sees the items and query from the moment the
 component was constructed, forever. In the second, every read of
-`filter.results` calls the two functions, which read the component's _current_
-tracked state. Consumption flows through the function call, so `results` stays
-just as live as a getter defined on the component itself.
+`filter.results` calls the two functions, which read the component's current
+tracked state. Consumption flows through the function call, so `results`
+stays just as live as a getter defined on the component itself.
 
-The guideline: pass a plain value when the receiver should see a snapshot;
-pass a function when the receiver should keep seeing the current value over
-time.
+As a guideline, pass a plain value when the receiver should see a snapshot,
+and pass a function when the receiver should keep seeing the current value
+over time.
 
 <div class="cta">
   <div class="cta-note">
@@ -363,17 +360,16 @@ time.
 
 When a new piece of UI state shows up, try these options in order:
 
-1. **Can it be an expression in the template?**
+1. Can it be an expression in the template?
    `{{if @isAdmin "superuser"}}` needs no JavaScript at all.
-2. **Can it be a getter or pure function?** This covers nearly everything
-   else.
-3. **Is it genuinely new information that arrives from outside?** Only then is
-   it [root state](../root-state/).
+2. Can it be a getter or pure function? This covers nearly everything else.
+3. Is it genuinely new information that arrives from outside? Only then is it
+   [root state](../root-state/).
 
-A symptom worth watching for: an event handler that updates several tracked
+A symptom to watch for: an event handler that updates several tracked
 properties "to keep them consistent" is almost always storing derivations.
-Move the consistency into getters, and let the handler write the one fact that
-actually changed:
+Move the consistency into getters, and let the handler write the one fact
+that actually changed:
 
 ```js
 // 🛑 Don't: the handler maintains derived state by hand
@@ -403,7 +399,7 @@ get total() {
 ```
 
 In the first version, `total` is only correct if every code path that touches
-any input remembers to recompute it. In the second, `total` _cannot_ be wrong.
+any input remembers to recompute it. In the second, `total` cannot be wrong.
 Toggling `isAnnual` from a completely different part of the app updates it
 automatically, through code that was written without any knowledge of that
 future feature. That's the payoff of derived state, and it's why "derive,
