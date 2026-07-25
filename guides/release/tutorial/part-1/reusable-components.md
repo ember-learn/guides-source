@@ -24,9 +24,9 @@ Let's add it to our app:
 
 ```shell
 $ npm install maplibre-gl --save-dev
-../../..                                 |  +25 +++
+../../..                                 |  +22 ++
 devDependencies:
-+ maplibre-gl 5.24.0
++ maplibre-gl 6.0.0
 ```
 
 Now let's generate a new component for our map.
@@ -64,7 +64,7 @@ Let's update our component to render an interactive map:
 ```gjs { data-filename="app/components/map.gjs" data-diff="+2,+3,+4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19,-23,+24,+25,+26" }
 import Component from '@glimmer/component';
 import { modifier } from 'ember-modifier';
-import maplibregl from 'maplibre-gl';
+import * as maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 
 const MAP_STYLE = 'https://tiles.openfreemap.org/styles/liberty';
@@ -94,7 +94,7 @@ export default class Map extends Component {
 
 There is a lot going on here! Let's work through it piece by piece.
 
-First, we have imports for `modifier` from `ember-modifier`, `maplibregl` from `maplibre-gl`, and the MapLibre CSS file. The CSS provides the map controls and visual elements that MapLibre renders — without it, the map buttons and overlays won't look right.
+First, we have imports for `modifier` from `ember-modifier`, `maplibregl` from `maplibre-gl`, and the MapLibre CSS file. The `import * as maplibregl` syntax collects everything the library exports into a single `maplibregl` object, which is how MapLibre's own documentation recommends importing it. The CSS provides the map controls and visual elements that MapLibre renders — without it, the map buttons and overlays won't look right.
 
 Next, we define a `MAP_STYLE` constant pointing to [OpenFreeMap](https://openfreemap.org/), an open-source tile server that provides free map tiles with no API key required.
 
@@ -166,12 +166,12 @@ Build successful (13286ms)
 
 Slowest Nodes (totalTime >= 5%) | Total (avg)
 -+-
-Babel: @embroider/macros (1) | 235ms
+Babel: @embroider/macros (1) | 300ms
 
 
-3:38:16 AM [vite] (client) Re-optimizing dependencies because lockfile has changed
+3:21:15 PM [vite] (client) Re-optimizing dependencies because lockfile has changed
 
-  VITE v8.1.5  ready in 2355 ms
+  VITE v8.1.5  ready in 3065 ms
 
   ➜  Local:   http://localhost:4200/
 ```
@@ -203,7 +203,7 @@ To safely set a computed style string that we control, we use `trustHTML` from `
 import Component from '@glimmer/component';
 import { modifier } from 'ember-modifier';
 import { trustHTML } from '@ember/template';
-import maplibregl from 'maplibre-gl';
+import * as maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 
 const MAP_STYLE = 'https://tiles.openfreemap.org/styles/liberty';
@@ -382,7 +382,7 @@ Next, we use `...attributes` to allow the invoker to further customize the map `
 import Component from '@glimmer/component';
 import { modifier } from 'ember-modifier';
 import { trustHTML } from '@ember/template';
-import maplibregl from 'maplibre-gl';
+import * as maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 
 const MAP_STYLE = 'https://tiles.openfreemap.org/styles/liberty';
@@ -641,7 +641,7 @@ Now update `map.gjs` to import `ENV` from `super-rentals/config/environment` and
 import Component from '@glimmer/component';
 import { modifier } from 'ember-modifier';
 import { trustHTML } from '@ember/template';
-import maplibregl from 'maplibre-gl';
+import * as maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 
 const MAP_STYLE = 'https://tiles.openfreemap.org/styles/liberty';
