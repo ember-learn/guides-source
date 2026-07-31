@@ -25,16 +25,8 @@ Let's add it to our app:
 ```shell
 $ npm install maplibre-gl --save-dev
 ../../..                                 |  +22 ++
- WARN  Issues with peer dependencies found
-dist/code/super-rentals
-└─┬ vite 8.1.5
-  └─┬ rolldown 1.1.5
-    └─┬ @rolldown/binding-wasm32-wasi 1.1.5
-      └─┬ @napi-rs/wasm-runtime 1.2.0
-        ├── ✕ unmet peer @emnapi/core@^2.0.0-alpha.3: found 1.11.1
-        └── ✕ unmet peer @emnapi/runtime@^2.0.0-alpha.3: found 1.11.1
 devDependencies:
-+ maplibre-gl 6.0.0
++ maplibre-gl 6.1.0
 ```
 
 Now let's generate a new component for our map.
@@ -174,12 +166,12 @@ Build successful (13286ms)
 
 Slowest Nodes (totalTime >= 5%) | Total (avg)
 -+-
-Babel: @embroider/macros (1) | 305ms
+Babel: @embroider/macros (1) | 197ms
 
 
-3:21:24 AM [vite] (client) Re-optimizing dependencies because lockfile has changed
+3:46:23 AM [vite] (client) Re-optimizing dependencies because lockfile has changed
 
-  VITE v8.1.5  ready in 3017 ms
+  VITE v8.2.0  ready in 1849 ms
 
   ➜  Local:   http://localhost:4200/
 ```
