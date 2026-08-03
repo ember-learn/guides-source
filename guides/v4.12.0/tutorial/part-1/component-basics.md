@@ -2,7 +2,7 @@
 
 In this chapter, you will _[refactor](../../../components/introducing-components/#toc_breaking-it-into-pieces)_ your existing templates to use components. We will also be adding a site-wide navigation bar:
 
-<img src="/images/tutorial/part-1/component-basics/index-with-nav@2x.png" alt="The Super Rentals app by the end of the chapter" width="1024" height="314">
+<img src="/images/tutorial/part-1/component-basics/index-with-nav@2x.png" alt="The Super Rentals app by the end of the chapter" width="1024" height="315">
 
 In doing so, you will learn about:
 
@@ -73,7 +73,7 @@ Let's try it out by editing the index template:
 
 After saving the changes, your page should automatically reload, and, _voilà_... nothing changed? Well, that's exactly what we wanted to happen this time! We successfully _[refactored](../../../components/introducing-components/#toc_breaking-components-down-further)_ our index template to use the `<Jumbo>` component, and everything still works as expected. And the tests still pass!
 
-<img src="/images/tutorial/part-1/component-basics/index@2x.png" alt="Index page – nothing changed" width="1024" height="250">
+<img src="/images/tutorial/part-1/component-basics/index@2x.png" alt="Index page – nothing changed" width="1024" height="251">
 
 <img src="/images/tutorial/part-1/component-basics/pass@2x.png" alt="Tests still passing after the refactor" width="1024" height="512">
 
@@ -119,9 +119,9 @@ Let's do the same for our other two pages as well.
 
 After saving, everything should look exactly the same as before, and all the tests should still pass. Very nice!
 
-<img src="/images/tutorial/part-1/component-basics/about@2x.png" alt="About page – nothing changed" width="1024" height="274">
+<img src="/images/tutorial/part-1/component-basics/about@2x.png" alt="About page – nothing changed" width="1024" height="275">
 
-<img src="/images/tutorial/part-1/component-basics/contact@2x.png" alt="Contact page – nothing changed" width="1024" height="444">
+<img src="/images/tutorial/part-1/component-basics/contact@2x.png" alt="Contact page – nothing changed" width="1024" height="445">
 
 <img src="/images/tutorial/part-1/component-basics/pass-2@2x.png" alt="Tests still passing another round of refactor" width="1024" height="512">
 
@@ -135,6 +135,8 @@ Before we move on to the next component, let's write an automated test for our `
 $ ember generate component-test jumbo
 installing component-test
   create tests/integration/components/jumbo-test.js
+
+Running "lint:fix" script...
 ```
 
 Here, we used the generator to generate a _[component test](../../../testing/testing-components/)_, also known as a rendering test. These are used to render and test a single component at a time. This is in contrast to the acceptance tests that we wrote earlier, which have to navigate and render entire pages worth of content.
@@ -248,7 +250,7 @@ Next, we will add our `<NavBar>` component to the top of each page:
 
 Voilà, we made another component!
 
-<img src="/images/tutorial/part-1/component-basics/index-with-nav@2x.png" alt="Index page with nav" width="1024" height="314">
+<img src="/images/tutorial/part-1/component-basics/index-with-nav@2x.png" alt="Index page with nav" width="1024" height="315">
 
 <div class="cta">
   <div class="cta-note">

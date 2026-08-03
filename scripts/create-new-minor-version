@@ -40,7 +40,7 @@ read -n 1 -s -r -p "Press any key to continue"
 # `-d "."` specifies `.` as the delimiter.
 # `-f N` specifies which of the delimited sections to keep
 # `cut -c 2-` gets rid of the "v" prefix by selecting from the second character onwards.
-CURRENT_VERSION=$(grep "currentVersion" guides/versions.yml | sed "s/currentVersion.*\(v.*\)\"/\1/")
+CURRENT_VERSION=$(grep "currentVersion" guides/versions.yml | sed "s/currentVersion: \(v.*\)/\1/")
 MAJOR_VERSION=$(echo $CURRENT_VERSION | cut -d "." -f 1 | cut -c 2-)
 MINOR_VERSION=$(echo $CURRENT_VERSION | cut -d "." -f 2)
 PATCH_VERSION=$(echo $CURRENT_VERSION | cut -d "." -f 3)
@@ -48,6 +48,8 @@ NEXT_VERSION=$MAJOR_VERSION.$(($MINOR_VERSION+1)).$PATCH_VERSION
 
 # Copy the current release guides into the appropriate version-numbered folder.
 # `-r` is for recursive, so all directory content is copied.
+echo "🤖 Removing any directories for $CURRENT_VERSION"
+rm -rf guides/$CURRENT_VERSION
 echo "🤖 Copying release to $CURRENT_VERSION"
 cp -r guides/release guides/$CURRENT_VERSION
 echo "  DONE"
@@ -60,15 +62,18 @@ echo "  DONE"
 # Then we interpolate the new version and replace the closing double quote.
 # We also add the relevant version to the list by using sed's i command.
 echo "🤖 Updating /guides/versions.yml"
-sed -i .bak "s/\(currentVersion:.*v\).*/\1$(echo $NEXT_VERSION)\"/" guides/versions.yml
+sed -i .bak "s/\(currentVersion:.*v\).*/\1$(echo $NEXT_VERSION)/" guides/versions.yml
 sed -i .bak -e "/currentVersion/i \\
-\ \ - \"v$(echo $NEXT_VERSION)\"" guides/versions.yml
+\ \ - v$(echo $NEXT_VERSION)" guides/versions.yml
 rm guides/versions.yml.bak
 echo "  DONE"
 
+echo "What version of EmberData is being released (e.g. 5.3.0)? NOTE: This is not the one that was released this week, it is the one we want the snapshotted previous release to point to. Double check this as it might not be the same version as Ember."
+read -r EMBER_DATA_CURRENT_VERSION
+
 # Update version numbers in links
 echo "🤖 Updating version number for links in /guides/$CURRENT_VERSION/**/*.md"
-node scripts/update-version-links guides/$CURRENT_VERSION $(echo $CURRENT_VERSION | cut -d "v" -f2) --silent
+node scripts/update-version-links guides/$CURRENT_VERSION $(echo $CURRENT_VERSION | cut -d "v" -f2) $(echo $EMBER_DATA_CURRENT_VERSION | cut -d "v" -f2) --silent
 echo "  DONE"
 
 echo

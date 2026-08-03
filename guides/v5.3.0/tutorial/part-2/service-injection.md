@@ -4,7 +4,7 @@ As promised, we will now work on implementing the share button!
 
 <!-- TODO: make this a gif instead -->
 
-<img src="/images/tutorial/part-2/service-injection/share-button@2x.png" alt="The working share button by the end of the chapter" width="1024" height="1381">
+<img src="/images/tutorial/part-2/service-injection/share-button@2x.png" alt="The working share button by the end of the chapter" width="1024" height="1382">
 
 While adding the share button, you will learn about:
 
@@ -51,6 +51,8 @@ installing component
   create app/components/share-button.hbs
 installing component-test
   create tests/integration/components/share-button-test.js
+
+Running "lint:fix" script...
 ```
 
 Let's start with the template that was generated for this component. We already have some markup for the share button in the `<Rental::Detailed>` component we made earlier, so let's just copy that over into our new `<ShareButton>` component.
@@ -172,7 +174,7 @@ Let's put this component to use by invoking it from the `<Rental::Detailed>` com
 
 With that, we should have a working share button!
 
-<img src="/images/tutorial/part-2/service-injection/share-button@2x.png" alt="A share button that works!" width="1024" height="1381">
+<img src="/images/tutorial/part-2/service-injection/share-button@2x.png" alt="A share button that works!" width="1024" height="1382">
 
 <div class="cta">
   <div class="cta-note">
@@ -238,7 +240,7 @@ module('Acceptance | super rentals', function (hooks) {
 
     assert.strictEqual(
       tweetURL.searchParams.get('url'),
-      `${window.location.origin}/rentals/grand-old-mansion`
+      `${window.location.origin}/rentals/grand-old-mansion`,
     );
   });
 
@@ -393,7 +395,7 @@ module('Integration | Component | share-button', function (hooks) {
   setupRenderingTest(hooks);
 const MOCK_URL = new URL(
   '/foo/bar?baz=true#some-section',
-  window.location.origin
+  window.location.origin,
 );
 
   test('it renders', async function (assert) {
@@ -409,7 +411,7 @@ class MockRouterService extends Service {
 module('Integration | Component | share-button', function (hooks) {
   setupRenderingTest(hooks);
 
-    assert.dom(this.element).hasText('');
+    assert.dom().hasText('');
   hooks.beforeEach(function () {
     this.owner.register('service:router', MockRouterService);
   });
@@ -423,7 +425,7 @@ module('Integration | Component | share-button', function (hooks) {
   test('basic usage', async function (assert) {
     await render(hbs`<ShareButton>Tweet this!</ShareButton>`);
 
-    assert.dom(this.element).hasText('template block text');
+    assert.dom().hasText('template block text');
     assert
       .dom('a')
       .hasAttribute('target', '_blank')
@@ -457,7 +459,7 @@ import { hbs } from 'ember-cli-htmlbars';
 
 const MOCK_URL = new URL(
   '/foo/bar?baz=true#some-section',
-  window.location.origin
+  window.location.origin,
 );
 
 class MockRouterService extends Service {
@@ -500,7 +502,7 @@ module('Integration | Component | share-button', function (hooks) {
 
   test('it supports passing @text', async function (assert) {
     await render(
-      hbs`<ShareButton @text="Hello Twitter!">Tweet this!</ShareButton>`
+      hbs`<ShareButton @text="Hello Twitter!">Tweet this!</ShareButton>`,
     );
 
     assert.strictEqual(this.tweetParam('text'), 'Hello Twitter!');
@@ -508,7 +510,7 @@ module('Integration | Component | share-button', function (hooks) {
 
   test('it supports passing @hashtags', async function (assert) {
     await render(
-      hbs`<ShareButton @hashtags="foo,bar,baz">Tweet this!</ShareButton>`
+      hbs`<ShareButton @hashtags="foo,bar,baz">Tweet this!</ShareButton>`,
     );
 
     assert.strictEqual(this.tweetParam('hashtags'), 'foo,bar,baz');
@@ -521,7 +523,7 @@ module('Integration | Component | share-button', function (hooks) {
 
   test('it supports adding extra classes', async function (assert) {
     await render(
-      hbs`<ShareButton class="extra things">Tweet this!</ShareButton>`
+      hbs`<ShareButton class="extra things">Tweet this!</ShareButton>`,
     );
 
     assert
@@ -534,7 +536,7 @@ module('Integration | Component | share-button', function (hooks) {
 
   test('the target, rel and href attributes cannot be overridden', async function (assert) {
     await render(
-      hbs`<ShareButton target="_self" rel="" href="/">Not a Tweet!</ShareButton>`
+      hbs`<ShareButton target="_self" rel="" href="/">Not a Tweet!</ShareButton>`,
     );
 
     assert

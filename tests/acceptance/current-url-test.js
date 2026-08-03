@@ -14,7 +14,7 @@ module('Acceptance | current url', function (hooks) {
       currentVersion.indexOf('v') + 1 || 0,
       currentVersion.lastIndexOf('.') === currentVersion.indexOf('.')
         ? currentVersion.length
-        : currentVersion.lastIndexOf('.')
+        : currentVersion.lastIndexOf('.'),
     );
     assert.dom('.ember-basic-dropdown-trigger').hasText(currentVersion);
   });
@@ -29,7 +29,7 @@ module('Acceptance | current url', function (hooks) {
       currentVersion.indexOf('v') + 1 || 0,
       currentVersion.lastIndexOf('.') === currentVersion.indexOf('.')
         ? currentVersion.length
-        : currentVersion.lastIndexOf('.')
+        : currentVersion.lastIndexOf('.'),
     );
     assert.dom('.ember-basic-dropdown-trigger').hasText(currentVersion);
   });

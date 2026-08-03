@@ -7,52 +7,57 @@ for each item in the list.
 For instance, in a messaging app, we could have a `<Message>` component that we
 repeat for each message that the users have sent to each other.
 
-```handlebars {data-filename="app/components/messages.hbs"}
-<div class="messages">
-  <Message
-    @username="Tomster"
-    @userIsActive={{true}}
-    @userLocalTime="4:56pm"
-  >
-    <p>
-      Hey Zoey, have you had a chance to look at the EmberConf
-      brainstorming doc I sent you?
-    </p>
-  </Message>
-  <Message
-    @username="Zoey"
-    @userIsActive={{true}}
-  >
-    <p>Hey!</p>
+```gjs {data-filename="app/components/messages.gjs"}
+import Message from 'my-app/components/message';
+import NewMessageInput from 'my-app/components/new-message-input';
 
-    <p>
-      I love the ideas! I'm really excited about where this year's
-      EmberConf is going, I'm sure it's going to be the best one yet.
-      Some quick notes:
-    </p>
+<template>
+  <div class="messages">
+    <Message
+      @username="Tomster"
+      @userIsActive={{true}}
+      @userLocalTime="4:56pm"
+    >
+      <p>
+        Hey Zoey, have you had a chance to look at the EmberConf
+        brainstorming doc I sent you?
+      </p>
+    </Message>
+    <Message
+      @username="Zoey"
+      @userIsActive={{true}}
+    >
+      <p>Hey!</p>
 
-    <ul>
-      <li>
-        Definitely agree that we should double the coffee budget this
-        year (it really is impressive how much we go through!)
-      </li>
-      <li>
-        A blimp would definitely make the venue very easy to find, but
-        I think it might be a bit out of our budget. Maybe we could
-        rent some spotlights instead?
-      </li>
-      <li>
-        We absolutely will need more hamster wheels, last year's line
-        was <em>way</em> too long. Will get on that now before rental
-        season hits its peak.
-      </li>
-    </ul>
+      <p>
+        I love the ideas! I'm really excited about where this year's
+        EmberConf is going, I'm sure it's going to be the best one yet.
+        Some quick notes:
+      </p>
 
-    <p>Let me know when you've nailed down the dates!</p>
-  </Message>
+      <ul>
+        <li>
+          Definitely agree that we should double the coffee budget this
+          year (it really is impressive how much we go through!)
+        </li>
+        <li>
+          A blimp would definitely make the venue very easy to find, but
+          I think it might be a bit out of our budget. Maybe we could
+          rent some spotlights instead?
+        </li>
+        <li>
+          We absolutely will need more hamster wheels, last year's line
+          was <em>way</em> too long. Will get on that now before rental
+          season hits its peak.
+        </li>
+      </ul>
 
-  <NewMessageInput />
-</div>
+      <p>Let me know when you've nailed down the dates!</p>
+    </Message>
+
+    <NewMessageInput />
+  </div>
+</template>
 ```
 
 First, we would add a component class and extract the parts of each `<Message>`
@@ -60,10 +65,16 @@ component that are different into an array on that class. We would extract the
 username, active value, local time, and the yielded content for each message.
 For the yielded content, since it's plain HTML, we can extract it as a string.
 
-```js {data-filename="app/components/messages.js"}
+Then, we can add an `{{each}}` helper to the template by passing
+`this.messages` to it. `{{each}}` will receive each message as its first block
+param, and we can use that item in the block for the loop.
+
+
+```gjs {data-filename="app/components/messages.gjs"}
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { action } from '@ember/object';
+import Message from 'my-app/components/message';
+import NewMessageInput from 'my-app/components/new-message-input';
 
 export default class MessagesComponent extends Component {
   @tracked messages = [
@@ -111,68 +122,23 @@ export default class MessagesComponent extends Component {
       `
     }
   ];
-}
-```
 
-Then, we can add an `{{each}}` helper to the template by passing
-`this.messages` to it. `{{each}}` will receive each message as its first block
-param, and we can use that item in the template block for the loop.
-
-```handlebars {data-filename="app/components/messages.hbs" data-diff="+2,+3,+4,+5,+6,+7,+8,+9,+10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,-33,-34,-35,-36,-37,-38,-39,-40,-41,-42,-43,-44,-45,-46,-47,-48,-49,-50,-51"}
-<div class="messages">
-  {{#each this.messages as |message|}}
-    <Message
-      @username={{message.username}}
-      @userIsActive={{message.active}}
-      @userLocaltime={{message.localTime}}
-    >
-      {{{message.content}}}
-    </Message>
-  {{/each}}
-  <Message
-    @username="Tomster"
-    @userIsActive={{true}}
-    @userLocalTime="4:56pm"
-  >
-    <p>
-      Hey Zoey, have you had a chance to look at the EmberConf
-      brainstorming doc I sent you?
-    </p>
-  </Message>
-  <Message
-    @username="Zoey"
-    @userIsActive={{true}}
-  >
-    <p>Hey!</p>
-
-    <p>
-      I love the ideas! I'm really excited about where this year's
-      EmberConf is going, I'm sure it's going to be the best one yet.
-      Some quick notes:
-    </p>
-
-    <ul>
-      <li>
-        Definitely agree that we should double the coffee budget this
-        year (it really is impressive how much we go through!)
-      </li>
-      <li>
-        A blimp would definitely make the venue very easy to find, but
-        I think it might be a bit out of our budget. Maybe we could
-        rent some spotlights instead?
-      </li>
-      <li>
-        We absolutely will need more hamster wheels, last year's line
-        was <em>way</em> too long. Will get on that now before rental
-        season hits its peak.
-      </li>
-    </ul>
-
-    <p>Let me know when you've nailed down the dates!</p>
-  </Message>
+  <template>
+    <div class="messages">
+      {{#each this.messages as |message|}}
+        <Message
+          @username={{message.username}}
+          @userIsActive={{message.active}}
+          @userLocaltime={{message.localTime}}
+        >
+          {{{message.content}}}
+        </Message>
+      {{/each}}
+    </div>
 
   <NewMessageInput />
-</div>
+  </template>
+}
 ```
 
 Notice that we used triple curly brackets around `{{{message.content}}}`. This
@@ -208,33 +174,16 @@ Next, let's add a way for the user to send a new message. First, we need to
 add an action for creating the new message. We'll add this to the
 `<NewMessageInput />` component:
 
-```handlebars {data-filename="app/components/new-message-input.hbs" data-diff="-1,+2,-3,+4"}
-<form>
-<form {{on "submit" this.createMessage}}>
-  <input>
-  <Input @value={{this.message}}>
-  <button type="submit">
-    Send
-  </button>
-</form>
-```
-
-We're using the `submit` event on the form itself here rather than adding a
-`click` event handler to the button since it is about submitting the form as a
-whole. We also updated the `input` tag to instead use the built in `<Input>`
-component, which automatically updates the value we pass to `@value`. Next,
-let's add the component class:
-
-```javascript {data-filename="app/components/new-message-input.js"}
+```gjs {data-filename="app/components/new-message-input.gjs"}
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { action } from '@ember/object';
+import { on } from '@ember/modifier';
+import { Input } from '@ember/component';
 
 export default class NewMessageInputComponent extends Component {
   @tracked message;
 
-  @action
-  createMessage(event) {
+  createMessage = (event) => {
     event.preventDefault();
 
     if (this.message && this.args.onCreate) {
@@ -243,9 +192,23 @@ export default class NewMessageInputComponent extends Component {
       // reset the message input
       this.message = '';
     }
-  }
+  };
+
+  <template>
+    <form {{on "submit" this.createMessage}}>
+      <Input @value={{this.message}}>
+      <button type="submit">
+        Send
+      </button>
+    </form>
+  </template>
 }
 ```
+
+We're using the `submit` event on the form itself here rather than adding a
+`click` event handler to the button since it is about submitting the form as a
+whole. We also use the built in `<Input>`
+component, which automatically updates the value we pass to `@value`. 
 
 This action uses the `onCreate` argument to expose a public API for defining
 what happens when a message is created. This way, the `<NewMessageInput>`
@@ -253,45 +216,17 @@ component doesn't have to worry about the external details - it can focus on
 getting the new message input.
 
 Next, we'll update the parent component to use this new argument.
-
-```handlebars {data-filename="app/components/messages.hbs" data-diff="-12,+13"}
-<div class="messages">
-  {{#each this.messages as |message|}}
-    <Message
-      @username={{message.username}}
-      @userIsActive={{message.active}}
-      @userLocaltime={{message.localTime}}
-    >
-      {{{message.content}}}
-    </Message>
-  {{/each}}
-
-  <NewMessageInput />
-  <NewMessageInput @onCreate={{this.addMessage}} />
-</div>
-```
-
-And in the component class, we'll add the `addMessage` action. This action will
+In the component class, we'll add the `addMessage` action. This action will
 create the new message from the text that the `<NewMessageInput>` component
 gives us, and push it into the messages array.
 
-```js {data-filename="app/components/messages.js"}
+```gjs {data-filename="app/components/messages.gjs" data-diff="+53,+54,+55,+56,+57,+58,+59,-74,+75"}
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { action } from '@ember/object';
+import Message from 'my-app/components/message';
+import NewMessageInput from 'my-app/components/new-message-input';
 
 export default class MessagesComponent extends Component {
-  username = 'Zoey';
-
-  @action
-  addMessage(messageText) {
-    this.messages = [...this.messages, {
-      username: this.username,
-      active: true,
-      content: `<p>${messageText}</p>`
-    }];
-  }
-
   @tracked messages = [
     {
       username: 'Tomster',
@@ -337,6 +272,31 @@ export default class MessagesComponent extends Component {
       `
     }
   ];
+
+  addMessage = (messageText) => {
+    this.messages = [...this.messages, {
+      username: this.username,
+      active: true,
+      content: `<p>${messageText}</p>`
+    }];
+  }
+
+  <template>
+    <div class="messages">
+      {{#each this.messages as |message|}}
+        <Message
+          @username={{message.username}}
+          @userIsActive={{message.active}}
+          @userLocaltime={{message.localTime}}
+        >
+          {{{message.content}}}
+        </Message>
+      {{/each}}
+    </div>
+
+  <NewMessageInput />
+  <NewMessageInput @onCreate={{this.addMessage}} />
+  </template>
 }
 ```
 
@@ -349,7 +309,7 @@ The index of each item in the array is provided as a second block param. This
 can be useful at times if you need the index, for instance if you needed to
 print positions in a queue
 
-```javascript
+```gjs
 import Component from '@glimmer/component';
 
 export default class SomeComponent extends Component {
@@ -358,15 +318,15 @@ export default class SomeComponent extends Component {
     { name: 'Jen' },
     { name: 'Rob' }
   ];
-}
-```
 
-```handlebars
-<ul>
-  {{#each this.queue as |person index|}}
-    <li>Hello, {{person.name}}! You're number {{index}} in line</li>
-  {{/each}}
-</ul>
+  <template>
+    <ul>
+      {{#each this.queue as |person index|}}
+        <li>Hello, {{person.name}}! You're number {{index}} in line</li>
+      {{/each}}
+    </ul>
+  </template>
+}
 ```
 
 ### Empty Lists
@@ -375,12 +335,21 @@ The [`{{#each}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.
 helper can also have a corresponding `{{else}}`. The contents of this block will
 render if the array passed to `{{#each}}` is empty:
 
-```handlebars
-{{#each this.people as |person|}}
-  Hello, {{person.name}}!
-{{else}}
-  Sorry, nobody is here.
-{{/each}}
+```gjs
+const people = [
+  {
+    name: "Shelly Sails",
+    age: 42
+  }
+];
+
+<template>
+  {{#each people as |person|}}
+    Hello, {{person.name}}!
+  {{else}}
+    Sorry, nobody is here.
+  {{/each}}
+</template>
 ```
 
 ## Looping Through Objects
@@ -390,7 +359,7 @@ object rather than an array, similar to JavaScript's `for...in` loop. We can use
 the [`{{#each-in}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/each-in?anchor=each-in)
 helper to do this:
 
-```javascript {data-filename=/app/components/store-categories.js}
+```gjs {data-filename=/app/components/store-categories.gjs}
 import Component from '@glimmer/component';
 
 export default class StoreCategoriesComponent extends Component {
@@ -401,21 +370,21 @@ export default class StoreCategoriesComponent extends Component {
     'Bourbons': ['Bulleit', 'Four Roses', 'Woodford Reserve'],
     'Ryes': ['WhistlePig', 'High West']
   };
-}
-```
 
-```handlebars {data-filename=/app/components/store-categories.hbs}
-<ul>
-  {{#each-in this.categories as |category products|}}
-    <li>{{category}}
-      <ol>
-        {{#each products as |product|}}
-          <li>{{product}}</li>
-        {{/each}}
-      </ol>
-    </li>
-  {{/each-in}}
-</ul>
+  <template>
+    <ul>
+      {{#each-in this.categories as |category products|}}
+        <li>{{category}}
+          <ol>
+            {{#each products as |product|}}
+              <li>{{product}}</li>
+            {{/each}}
+          </ol>
+        </li>
+      {{/each-in}}
+    </ul>
+  </template>
+}
 ```
 
 The template inside of the `{{#each-in}}` block is repeated once for each key in the passed object.
@@ -450,18 +419,27 @@ should use `Object.keys` to get an array, sort that array with the built-in Java
 tools, and use the [`{{#each}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/each?anchor=each)
 helper instead.
 
-### Empty Lists
+### Empty Object
 
 The [`{{#each-in}}`](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/each-in?anchor=each-in)
 helper can have a matching `{{else}}`. The contents of this block will render if
 the object is empty, null, or undefined:
 
-```handlebars
-{{#each-in this.people as |name person|}}
-  Hello, {{name}}! You are {{person.age}} years old.
-{{else}}
-  Sorry, nobody is here.
-{{/each-in}}
+```gjs
+const developer = {
+  name: "Shelly Sails",
+  age: 42
+};
+
+<template>
+  <ul>
+    {{#each-in developer as |key value|}}
+      <li>{{key}}: {{value}}</li>
+    {{else}}
+      <li>Nothing to see here</li>
+    {{/each-in}}
+  </ul>
+</template>
 ```
 
 <!-- eof - needed for pages that end in a code block  -->

@@ -2,7 +2,7 @@
 
 In this chapter, we will remove the hard-coded data from our `<Rental>` component. By the end, your app would finally be displaying real data that came from the server:
 
-<img src="/images/tutorial/part-1/working-with-data/three-properties@2x.png" alt="The Super Rentals app by the end of the chapter" width="1024" height="1129">
+<img src="/images/tutorial/part-1/working-with-data/three-properties@2x.png" alt="The Super Rentals app by the end of the chapter" width="1024" height="1130">
 
 In this chapter, you will learn about:
 
@@ -427,7 +427,7 @@ Inside of the block we have access to the item of the _current_ iteration with t
 
 Now, let's go over to our browser and see what our index route looks like with this change.
 
-<img src="/images/tutorial/part-1/working-with-data/three-properties@2x.png" alt="Three different rental properties" width="1024" height="1129">
+<img src="/images/tutorial/part-1/working-with-data/three-properties@2x.png" alt="Three different rental properties" width="1024" height="1130">
 
 Hooray! Finally we're seeing different rental properties in our list. And we got to play with `fetch` and write a loop. Pretty productive, if you ask me.
 

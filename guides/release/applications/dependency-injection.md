@@ -192,7 +192,7 @@ This includes all of Ember's major framework classes, such as components, helper
 
 Dependency injections can also be declared directly on Ember classes using `inject`.
 Currently, `inject` supports injecting controllers (via `import { inject } from '@ember/controller';`)
-and services (via `import { inject } from '@ember/service';`).
+and services (via `import { service } from '@ember/service';`).
 
 The following code injects the `shopping-cart` service on the `cart-contents` component as the property `cart`:
 
@@ -251,9 +251,9 @@ export default {
 
 ### Getting an Application Instance from a Factory Instance
 
-[`Ember.getOwner`](https://api.emberjs.com/ember/release/classes/@ember%2Fapplication/methods/getOwner?anchor=getOwner) will retrieve the application instance that "owns" an
+[`getOwner`](https://api.emberjs.com/ember/release/functions/@ember%2Fowner/getOwner) will retrieve the application instance that "owns" an
 object. This means that framework objects like components, helpers, and routes
-can use [`Ember.getOwner`](https://api.emberjs.com/ember/release/classes/@ember%2Fapplication/methods/getOwner?anchor=getOwner) to perform lookups through their application
+can use [`getOwner`](https://api.emberjs.com/ember/release/functions/@ember%2Fowner/getOwner) to perform lookups through their application
 instance at runtime.
 
 For example, this component plays songs with different audio services based

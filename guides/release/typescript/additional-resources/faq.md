@@ -21,7 +21,7 @@ These are all fallbacks, of course, you should use the types supplied directly w
 
 At the root of your application or addon, we include a `types/<your project>` directory with an `index.d.ts` file in it. Anything which is part of your project but which must be declared globally can go in this file. For example, if you have data attached to the `Window` object when the page is loaded (for bootstrapping or whatever other reason), this is a good place to declare it.
 
-We automatically configure `index.d.ts` to be ready for [Glint][], which will make type checking work with Ember's templates. The default configuration only supports Ember's classic pairing of separate `.ts` and `.hbs` files, but Glint also supports the `<template>` format with `.gts` files. See the [corresponding package README][glint-environment-ember-template-imports] for more details. (Once Ember enables `<template>` by default, so will our Glint configuration!)
+We automatically configure `index.d.ts` to be ready for [Glint][], which makes type checking work with Ember's templates. Glint targets template-tag (`.gts` / `.gjs`) authoring, where templates are tied to a backing module via import resolution.
 
 ### Environment configuration typings
 
@@ -83,7 +83,6 @@ You can enable TypeScript's current strictest configuration by including the `@t
 [assertion-function]: https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#assertion-functions
 [debug-assert]: https://api.emberjs.com/ember/release/functions/@ember%2Fdebug/assert
 [DefinitelyTyped]: https://github.com/DefinitelyTyped/DefinitelyTyped
-[glint-environment-ember-template-imports]: https://github.com/typed-ember/glint/tree/main/packages/environment-ember-template-imports#readme
 [glint]: https://typed-ember.gitbook.io/glint
 [tsconfig-paths]: https://www.typescriptlang.org/tsconfig#paths
 [type-narrowing]: https://www.typescriptlang.org/docs/handbook/2/narrowing.html

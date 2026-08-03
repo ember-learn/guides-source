@@ -150,6 +150,7 @@ The guides are spellchecked and linted for markdown consistency. You can test yo
 Markdown issues that will generate errors include:
 - Lists and text must be left justified, otherwise the linter will generate indentation errors
 - Missing URL reference definitions
+- Heading levels should increment by exactly one level at a time (e.g., h1 → h2 → h3) and should not skip levels (e.g., h1 → h3 is not allowed)
 
 Most other markdown errors should be self explanatory.
 

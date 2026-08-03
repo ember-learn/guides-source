@@ -1,23 +1,46 @@
 In a template, you can use `if` to conditionally render content.
 There are 2 styles of `if`: **block** and **inline**.
 
-```handlebars
-{{#if this.thingIsTrue}}
-  Content for the block form of "if"
-{{/if}}
+```gjs
+<template>
+  {{#if this.thingIsTrue}}
+    Content for the block form of "if"
+  {{/if}}
 
-<div class={{if this.thingIsTrue "value-if-true" "value-if-false"}}>
-  This div used the inline "if" to calculate the class to use.
-</div>
+  <div class={{if this.thingIsTrue "value-if-true" "value-if-false"}}>
+    This div used the inline "if" to calculate the class to use.
+  </div>
+</template>
 ```
 
 Additionally, you can use template helpers like `concat` within a conditional. For the example below, if `@color` has a truthy value, such as `'navy'`, the div classes will include `badge-navy`:
 
-```handlebars
-<div class="badge {{if @color (concat 'badge-' @color)}}">
-  Badge Text
-</div>
+```gjs
+import { concat } from '@ember/helper';
+
+<template>
+  <div class="badge {{if @color (concat 'badge-' @color)}}">
+    Badge Text
+  </div>
+</template>
 ```
+
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+        <p>
+          Helpers like `concat` in Ember are regular JavaScript functions that 
+          return a value, in this case a string.
+          The section on Helper Functions goes into more detail about how to use them and create your own.
+        </p>
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
+  </div>
+</div>
+
 
 ## Block `if`
 
@@ -25,17 +48,21 @@ Additionally, you can use template helpers like `concat` within a conditional. F
 
 Let's take a look at two components that display a person's username.
 
-```handlebars {data-filename="app/components/received-message/username.hbs"}
-<h4 class="username">
-  Tomster
-  <span class="local-time">their local time is 4:56pm</span>
-</h4>
+```gjs {data-filename="app/components/received-message/username.gjs"}
+<template>
+  <h4 class="username">
+    Tomster
+    <span class="local-time">their local time is 4:56pm</span>
+  </h4>
+<template>
 ```
 
-```handlebars {data-filename="app/components/sent-message/username.hbs"}
-<h4 class="username">
-  Zoey
-</h4>
+```gjs {data-filename="app/components/sent-message/username.gjs"}
+<template>
+  <h4 class="username">
+    Zoey
+  </h4>
+</template>
 ```
 
 The components look similar, don't they?
@@ -43,11 +70,13 @@ The first component shows extra information about the user's local time.
 
 Let's say we tried to create a single `username` component.
 
-```handlebars {data-filename="app/components/username.hbs"}
-<h4 class="username">
-  {{@name}}
-  <span class="local-time">their local time is {{@localTime}}</span>
-</h4>
+```gjs {data-filename="app/components/username.gjs"}
+<template>
+  <h4 class="username">
+    {{@name}}
+    <span class="local-time">their local time is {{@localTime}}</span>
+  </h4>
+<template>
 ```
 
 If the `<Username>` tag doesn't specify a `@localTime` argument,
@@ -56,13 +85,28 @@ we will see an extra, incomplete text, `their local time is `, on the screen.
 What we need is a way to display the local time if `@localTime` exists.
 We can do this with an `if`.
 
-```handlebars {data-filename="app/components/username.hbs"}
-<h4 class="username">
-  {{@name}}
-  {{#if @localTime}}
-    <span class="local-time">their local time is {{@localTime}}</span>
-  {{/if}}
-</h4>
+```gjs {data-filename="app/components/username.gjs"}
+<template>
+  <h4 class="username">
+    {{@name}}
+    {{#if @localTime}}
+      <span class="local-time">their local time is {{@localTime}}</span>
+    {{/if}}
+  </h4>
+</template>
+```
+
+Now we can use this component like so:
+
+```gjs
+import Username from 'my-app/components/username';
+
+<template>
+  {{!-- call it with @localTime  --}}
+  <Username @name="Tomster" @localTime="10:32am" >
+  {{!-- or without  --}}
+  <Username @name="Tomster" />
+</template>
 ```
 
 <div class="cta">
@@ -84,10 +128,12 @@ We can do this with an `if`.
 
 ### Usage
 
-```handlebars {data-filename="app/components/my-component.hbs"}
-{{#if condition}}
-  {{!-- some content --}}
-{{/if}}
+```gjs {data-filename="app/components/my-component.gjs"}
+<template>
+  {{#if condition}}
+    {{!-- some content --}}
+  {{/if}}
+</template>
 ```
 
 This is the syntax for an `if` statement in block form.
@@ -96,22 +142,24 @@ If the `condition` is true, Ember will render the content that is inside the blo
 Like many programming languages, Ember also allows you to write `if else` and
 `if else if` statements in a template.
 
-```handlebars {data-filename="app/components/my-component.hbs"}
-{{#if condition}}
-  {{!-- some content --}}
-{{else}}
-  {{!-- some other content --}}
-{{/if}}
+```gjs {data-filename="app/components/my-component.gjs"}
+<template>
+  {{#if condition}}
+    {{!-- some content --}}
+  {{else}}
+    {{!-- some other content --}}
+  {{/if}}
 
-{{#if condition1}}
-  ...
-{{else if condition2}}
-  ...
-{{else if condition3}}
-  ...
-{{else}}
-  ...
-{{/if}}
+  {{#if condition1}}
+    ...
+  {{else if condition2}}
+    ...
+  {{else if condition3}}
+    ...
+  {{else}}
+    ...
+  {{/if}}
+</template>
 ```
 
 
@@ -124,26 +172,30 @@ Sometimes, you will want to conditionally set an argument or attribute.
 For instance, consider two components that display a user's avatar.
 One is for a recipient and the other for a sender.
 
-```handlebars {data-filename="app/components/received-message/avatar.hbs"}
-<aside>
-  <div
-    class="avatar is-active"
-    title="Tomster's avatar"
-  >
-    T
-  </div>
-</aside>
+```gjs {data-filename="app/components/received-message/avatar.gjs"}
+<template>
+  <aside>
+    <div
+      class="avatar is-active"
+      title="Tomster's avatar"
+    >
+      T
+    </div>
+  </aside>
+</template>
 ```
 
-```handlebars {data-filename="app/components/sent-message/avatar.hbs"}
-<aside class="current-user">
-  <div
-    class="avatar"
-    title="Zoey's avatar"
-  >
-    Z
-  </div>
-</aside>
+```gjs {data-filename="app/components/sent-message/avatar.gjs"}
+<template>
+  <aside class="current-user">
+    <div
+      class="avatar"
+      title="Zoey's avatar"
+    >
+      Z
+    </div>
+  </aside>
+</template>
 ```
 
 Again, the two components look similar.
@@ -162,33 +214,43 @@ Let's use `...attributes` to apply the `current-user` class.
 We take these API designs into account and end up with a reusable component.
 The component uses an inline `if` to conditionally apply the `is-active` class.
 
-```handlebars {data-filename="app/components/avatar.hbs"}
-<aside ...attributes>
-  <div
-    class="avatar {{if @isActive "is-active"}}"
-    title={{@title}}
-  >
-    {{@initial}}
-  </div>
-</aside>
+```gjs {data-filename="app/components/avatar.gjs"}
+<template>
+  <aside ...attributes>
+    <div
+      class="avatar {{if @isActive "is-active"}}"
+      title={{@title}}
+    >
+      {{@initial}}
+    </div>
+  </aside>
+</template>
 ```
 
 Afterwards, we can refactor the initial components.
 
-```handlebars {data-filename="app/components/received-message/avatar.hbs"}
-<Avatar
-  @isActive={{true}}
-  @title="Tomster's avatar"
-  @initial="T"
-/>
+```gjs {data-filename="app/components/received-message/avatar.gjs"}
+import Avatar from 'my-app/components/avatar';
+
+<template>
+  <Avatar
+    @isActive={{true}}
+    @title="Tomster's avatar"
+    @initial="T"
+  />
+</template>
 ```
 
-```handlebars {data-filename="app/components/sent-message/avatar.hbs"}
-<Avatar
-  class="current-user"
-  @title="Zoey's avatar"
-  @initial="Z"
-/>
+```gjs {data-filename="app/components/sent-message/avatar.gjs"}
+import Avatar from 'my-app/components/avatar';
+
+<template>
+  <Avatar
+    class="current-user"
+    @title="Zoey's avatar"
+    @initial="Z"
+  />
+</template>
 ```
 
 <div class="cta">
@@ -211,8 +273,10 @@ Afterwards, we can refactor the initial components.
 
 ### Usage
 
-```handlebars {data-filename="app/components/my-component.hbs"}
-{{if condition value}}
+```gjs {data-filename="app/components/my-component.gjs"}
+<template>
+  {{if condition value}}
+</template>
 ```
 
 This is the syntax for an `if` statement in inline form.
@@ -221,8 +285,10 @@ If the `condition` is true, Ember will use `value` at the invocation site.
 Ember also allows you to write an `if else` statement in inline form.
 It looks similar to a ternary operator.
 
-```handlebars {data-filename="app/components/my-component.hbs"}
-{{if condition value1 value2}}
+```gjs {data-filename="app/components/my-component.gjs"}
+<template>
+  {{if condition value1 value2}}
+</template>
 ```
 
 

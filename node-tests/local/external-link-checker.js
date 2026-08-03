@@ -50,13 +50,13 @@ describe('check all external links in markdown files', function () {
         .filter((link) => link.startsWith('http')) // should have more robust regex
         .filter((link) => {
           const canSkipCheck = doNotCheckList.some((address) =>
-            link.startsWith(address)
+            link.startsWith(address),
           );
           return !canSkipCheck;
         })
         .filter(
           (link) =>
-            !(skipApiUrls && link.toLowerCase().includes('api.emberjs.com'))
+            !(skipApiUrls && link.toLowerCase().includes('api.emberjs.com')),
         )
         .map(mapToLocalUrl)
         .map(removeTrailingApostrophe)

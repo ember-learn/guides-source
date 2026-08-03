@@ -109,7 +109,7 @@ Data comes bundled with
 [Ember Inflector](https://github.com/stefanpenner/ember-inflector), an
 ActiveSupport::Inflector compatible library for inflecting words
 between plural and singular forms. Irregular or uncountable
-pluralizations can be specified via `Ember.Inflector.inflector`.
+pluralizations can be specified via `Inflector.inflector`.
 
 To do this, create an [Initializer](../../applications/initializers/) file containing your customizations. The Ember CLI's `initializer` generator can be used `ember generate initializer custom-inflector-rules` to create the file. Update its content as follows:
 

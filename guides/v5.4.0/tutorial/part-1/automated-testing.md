@@ -33,6 +33,8 @@ Once we are done patting ourselves on the back, go ahead and run the following c
 $ ember generate acceptance-test super-rentals
 installing acceptance-test
   create tests/acceptance/super-rentals-test.js
+
+Running "lint:fix" script...
 ```
 
 This is called a _[generator](https://cli.emberjs.com/release/basic-use/cli-commands/#generatemorefiles)_ command in Ember CLI. Generators automatically create files for us based on Ember's conventions and populate them with the appropriate boilerplate content, similar to how `ember new` initially created a skeleton app for us. It typically follows the pattern `ember generate <type> <name>`, where `<type>` is the kind of thing we are generating, and `<name>` is what we want to call it.

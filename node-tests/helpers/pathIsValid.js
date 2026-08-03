@@ -27,7 +27,7 @@ module.exports = function pathIsValid(filepath, link) {
 
   let normalized = computeLinkRelativeToWorkingDir(
     cleanedFilepath,
-    cleanedLink
+    cleanedLink,
   );
   normalized = handleImageEdgeCases(normalized, link);
 

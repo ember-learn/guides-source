@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function (environment) {
-  let ENV = {
+  const ENV = {
     modulePrefix: 'ember-guides',
     environment,
     rootURL: '/',
@@ -9,13 +9,10 @@ module.exports = function (environment) {
     historySupportMiddleware: true,
 
     EmberENV: {
+      EXTEND_PROTOTYPES: false,
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
         // e.g. 'with-controller': true
-      },
-      EXTEND_PROTOTYPES: {
-        // Prevent Ember Data from overriding Date.parse.
-        Date: false,
       },
     },
 
@@ -29,9 +26,30 @@ module.exports = function (environment) {
         'Ember.js helps developers be more productive out of the box. Designed with developer ergonomics in mind, its friendly APIs help you get your job done—fast.',
     },
 
+    'ember-showdown-shiki': {
+      theme: 'github-dark',
+      languages: [
+        'bash',
+        'css',
+        'http',
+        'javascript',
+        'json',
+        'json5',
+        'ruby',
+        'scss',
+        'yaml',
+        'typescript',
+        'glimmer-js',
+        'glimmer-ts',
+        'handlebars',
+      ],
+    },
+
     guidemaker: {
       title: 'Ember Guides',
       sourceRepo: 'https://github.com/ember-learn/guides-source',
+      gjsVersions: ['v6.7.0'],
+      gjsLink: '/release/components/template-tag-format/',
     },
 
     algolia: {

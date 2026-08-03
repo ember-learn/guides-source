@@ -34,8 +34,6 @@ Much of the power of promises comes from the fact that they can be
 chained together to perform sequential asynchronous operations:
 
 ```javascript
-import fetch from 'fetch';
-
 let usernamesPromise = fetch('/usernames.json');
 
 usernamesPromise.then(response => response.json())

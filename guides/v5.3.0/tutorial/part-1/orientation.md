@@ -24,8 +24,8 @@ To verify that your installation was successful, run:
 
 ```shell
 $ ember --version
-ember-cli: 4.5.0
-node: 14.19.1
+ember-cli: 5.3.0
+node: 18.18.0
 os: linux x64
 ```
 
@@ -38,7 +38,7 @@ We can create a new project using Ember CLI's `new` command. It follows the patt
 ```shell
 $ ember new super-rentals --lang en
 installing app
-Ember CLI v4.5.0
+Ember CLI v5.3.0
 
 Creating a new Ember app in /home/runner/work/super-rentals-tutorial/super-rentals-tutorial/dist/code/super-rentals:
   create .editorconfig
@@ -48,6 +48,8 @@ Creating a new Ember app in /home/runner/work/super-rentals-tutorial/super-renta
   create .github/workflows/ci.yml
   create .prettierignore
   create .prettierrc.js
+  create .stylelintignore
+  create .stylelintrc.js
   create .template-lintrc.js
   create .watchmanconfig
   create README.md
@@ -75,7 +77,6 @@ Creating a new Ember app in /home/runner/work/super-rentals-tutorial/super-renta
   create tests/integration/.gitkeep
   create tests/test-helper.js
   create tests/unit/.gitkeep
-  create vendor/.gitkeep
 
 Installing packages... This might take a couple of minutes.
 npm: Installing dependencies ...
@@ -140,8 +141,6 @@ super-rentals
 │   │   └── .gitkeep
 │   ├── index.html
 │   └── test-helper.js
-├── vendor
-│   └── .gitkeep
 ├── .editorconfig
 ├── .ember-cli
 ├── .eslintcache
@@ -150,6 +149,8 @@ super-rentals
 ├── .gitignore
 ├── .prettierignore
 ├── .prettierrc.js
+├── .stylelintignore
+├── .stylelintrc.js
 ├── .template-lintrc.js
 ├── .watchmanconfig
 ├── README.md
@@ -158,17 +159,17 @@ super-rentals
 ├── package-lock.json
 └── testem.js
 
-17 directories, 36 files
+16 directories, 37 files
 ```
 
 We'll learn about the purposes of these files and folders as we go. For now, just know that we'll spend most of our time working within the `app` folder.
 
 ## Starting and Stopping the Development Server
 
-Ember CLI comes with a lot of different commands for a variety of development tasks, such as the `ember new` command that we saw earlier. It also comes with a _development server_, which we can launch with the `ember server` command:
+Ember CLI comes with a lot of different commands for a variety of development tasks, such as the `ember new` command that we saw earlier. It also comes with a _development server_, which we can launch with the `ember serve` command:
 
 ```shell
-$ ember server
+$ ember serve
 building... 
 
 Build successful (9761ms) – Serving on http://localhost:4200/
@@ -176,7 +177,7 @@ Build successful (9761ms) – Serving on http://localhost:4200/
 
 The development server is responsible for compiling our app and serving it to the browsers. It may take a while to boot up. Once it's up and running, open your favorite browser and head to <http://localhost:4200>. You should see the following welcome page:
 
-<img src="/images/tutorial/part-1/orientation/welcome@2x.png" alt="Welcome to Ember!" width="1024" height="906">
+<img src="/images/tutorial/part-1/orientation/welcome@2x.png" alt="Welcome to Ember!" width="1024" height="919">
 
 <div class="cta">
   <div class="cta-note">
@@ -190,7 +191,7 @@ The development server is responsible for compiling our app and serving it to th
   </div>
 </div>
 
-You can exit out of the development server at any time by typing `Ctrl + C` into the terminal window where `ember server` is running. That is, typing the "C" key on your keyboard _while_ holding down the "Ctrl" key at the same time. Once it has stopped, you can start it back up again with the same `ember server` command. We recommend having two terminal windows open: one to run the server in background, another to type other Ember CLI commands.
+You can exit out of the development server at any time by typing `Ctrl + C` into the terminal window where `ember serve` is running. That is, typing the "C" key on your keyboard _while_ holding down the "Ctrl" key at the same time. Once it has stopped, you can start it back up again with the same `ember server` command. We recommend having two terminal windows open: one to run the server in background, another to type other Ember CLI commands.
 
 ## Editing Files and Live Reload
 
@@ -201,9 +202,9 @@ As text on the welcome page pointed out, the source code for the page is located
 ```handlebars { data-filename="app/templates/application.hbs" data-diff="-1,-2,-3,-4,-5,-6,-7,+8" }
 {{page-title "SuperRentals"}}
 
-{{!-- The following component displays Ember's default welcome message. --}}
+{{! The following component displays Ember's default welcome message. }}
 <WelcomePage />
-{{!-- Feel free to remove this! --}}
+{{! Feel free to remove this! }}
 
 {{outlet}}
 Hello World!!!

@@ -1,6 +1,6 @@
 ### What is a Controller?
 
-A [Controller](https://api.emberjs.com/ember/release/classes/Ember.Controller) is routable object which receives a single property from the Route – `model` – which is the return value of the Route's [`model()`](https://api.emberjs.com/ember/release/classes/Route/methods/model?anchor=model) method.
+A [Controller](https://api.emberjs.com/ember/release/classes/Ember.Controller) is a routable object which receives a single property from the Route – `model` – which is the return value of the Route's [`model()`](https://api.emberjs.com/ember/release/classes/Route/methods/model?anchor=model) method.
 
 The model is passed from the Route to the Controller by default using the [`setupController()`](https://api.emberjs.com/ember/release/classes/Route/methods/setupController?anchor=setupController) function. The Controller is then often used to decorate the model with display properties such as retrieving the full name from a name model.
 

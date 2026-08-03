@@ -177,21 +177,10 @@ Since regular property access “just works”, you should migrate to using norm
 
 In the few cases where you _do_ need to use `get`, you can chain `get` calls instead of using deep key lookups. So `this.get('a.b.c')` becomes `this.get('a').get('b').get('c')`. In reality, though, it's unlikely you've got that many nested proxies, so the code might end up looking more like `this.get('a').b.c`.
 
-## Prototype Extensions
-
-You can enable types for Ember's prototype extensions by adding the following to your [global types][global-types]:
-
-```typescript {data-filename="types/global.d.ts"}
-declare global {
-  interface Array<T> extends Ember.ArrayPrototypeExtensions<T> {}
-  interface Function extends Ember.FunctionPrototypeExtensions {}
-}
-```
 
 <!-- Internal links -->
 
 [components]: ../../core-concepts/invokables/#toc_glimmer-components
-[global-types]: ../../additional-resources/faq/#toc_global-types-for-your-project
 [migrate-from-computed]: ../../../upgrading/current-edition/tracked-properties/
 [migrate-from-mixins]: ../../../upgrading/current-edition/native-classes/#toc_mixins
 [migrating-from-classic-classes]: ../../../upgrading/current-edition/native-classes/

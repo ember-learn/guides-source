@@ -91,6 +91,34 @@ will be given the `active` CSS class. For example, if you were at the URL
 </ul>
 ```
 
+The CSS class name used for active classes can be customized for a single use of `<LinkTo />` by passing an `@activeClass` argument:
+
+```handlebars {data-filename=app/templates/photos.hbs}
+<ul>
+  {{#each this.photos as |p|}}
+    <li>
+      <LinkTo @route="photos.edit" @model={{p}} @activeClass="font-bold">{{p.title}}</LinkTo>
+    </li>
+  {{/each}}
+</ul>
+```
+
+will result in:
+
+```html
+<ul>
+  <li>
+    <a href="/photos/1">Happy Kittens</a>
+  </li>
+  <li>
+    <a href="/photos/2" class="font-bold">Puppy Running</a>
+  </li>
+  <li>
+    <a href="/photos/3">Mountain Landscape</a>
+  </li>
+</ul>
+```
+
 ### Multiple Dynamic Segments
 
 Sometimes, you may need to generate links for nested routes which can

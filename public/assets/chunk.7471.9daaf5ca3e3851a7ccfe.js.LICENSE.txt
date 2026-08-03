@@ -1,0 +1,22 @@
+/*!
+ * @overview RSVP - a tiny implementation of Promises/A+.
+ * @copyright Copyright (c) 2016 Yehuda Katz, Tom Dale, Stefan Penner and contributors
+ * @license   Licensed under MIT license
+ *            See https://raw.githubusercontent.com/tildeio/rsvp.js/master/LICENSE
+ * @version   3.6.2
+ */
+
+/*!
+ * is-plain-object <https://github.com/jonschlinkert/is-plain-object>
+ *
+ * Copyright (c) 2014-2017, Jon Schlinkert.
+ * Released under the MIT License.
+ */
+
+/*! algoliasearch.umd.js | 4.24.0 | © Algolia, inc. | https://github.com/algolia/algoliasearch-client-javascript */
+
+/*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */
+
+/*! showdown v 2.1.0 - 21-04-2022 */
+
+/*! tether 2.0.0 */

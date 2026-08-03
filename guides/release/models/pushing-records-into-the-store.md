@@ -136,7 +136,6 @@ so it can be accessed by other parts of your application.
 import Route from '@ember/routing/route';
 import { service } from '@ember/service';
 import { action } from '@ember/object';
-import fetch from 'fetch';
 
 export default class ConfirmPaymentRoute extends Route {
   @service store;

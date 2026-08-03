@@ -2,7 +2,7 @@
 
 In this chapter, we will remove the hard-coded data from our `<Rental>` component. By the end, your app would finally be displaying real data that came from the server:
 
-<img src="/images/tutorial/part-1/working-with-data/three-properties@2x.png" alt="The Super Rentals app by the end of the chapter" width="1024" height="1129">
+<img src="/images/tutorial/part-1/working-with-data/three-properties@2x.png" alt="The Super Rentals app by the end of the chapter" width="1024" height="1130">
 
 In this chapter, you will learn about:
 
@@ -67,22 +67,28 @@ So, now that we've prepared some model data for our route, let's use it in our t
 
 To test that this is working, let's modify our template and try to render the `title` property from our model:
 
-```handlebars { data-filename="app/templates/index.hbs" data-diff="+7,+8" }
-<Jumbo>
-  <h2>Welcome to Super Rentals!</h2>
-  <p>We hope you find exactly what you're looking for in a place to stay.</p>
-  <LinkTo @route="about" class="button">About Us</LinkTo>
-</Jumbo>
+```gjs { data-filename="app/templates/index.gjs" data-diff="+12,+13" }
+import { LinkTo } from '@ember/routing';
+import Jumbo from 'super-rentals/components/jumbo';
+import Rental from 'super-rentals/components/rental';
 
-<h1>{{@model.title}}</h1>
+<template>
+  <Jumbo>
+    <h2>Welcome to Super Rentals!</h2>
+    <p>We hope you find exactly what you're looking for in a place to stay.</p>
+    <LinkTo @route="about" class="button">About Us</LinkTo>
+  </Jumbo>
 
-<div class="rentals">
-  <ul class="results">
-    <li><Rental /></li>
-    <li><Rental /></li>
-    <li><Rental /></li>
-  </ul>
-</div>
+  <h1>{{@model.title}}</h1>
+
+  <div class="rentals">
+    <ul class="results">
+      <li><Rental /></li>
+      <li><Rental /></li>
+      <li><Rental /></li>
+    </ul>
+  </div>
+</template>
 ```
 
 If we look at our page in the browser, we should see our model data reflected as a new header.
@@ -97,69 +103,80 @@ Let's try it out.
 
 First, let's pass in our model to our `<Rental>` component as the `@rental` argument. We will also remove the extraneous `<h1>` tag we added earlier, now that we know things are working:
 
-```handlebars { data-filename="app/templates/index.hbs" data-diff="-7,-8,-11,-12,-13,+14,+15,+16" }
-<Jumbo>
-  <h2>Welcome to Super Rentals!</h2>
-  <p>We hope you find exactly what you're looking for in a place to stay.</p>
-  <LinkTo @route="about" class="button">About Us</LinkTo>
-</Jumbo>
+```gjs { data-filename="app/templates/index.gjs" data-diff="-12,-13,-16,-17,-18,+19,+20,+21" }
+import { LinkTo } from '@ember/routing';
+import Jumbo from 'super-rentals/components/jumbo';
+import Rental from 'super-rentals/components/rental';
 
-<h1>{{@model.title}}</h1>
+<template>
+  <Jumbo>
+    <h2>Welcome to Super Rentals!</h2>
+    <p>We hope you find exactly what you're looking for in a place to stay.</p>
+    <LinkTo @route="about" class="button">About Us</LinkTo>
+  </Jumbo>
 
-<div class="rentals">
-  <ul class="results">
-    <li><Rental /></li>
-    <li><Rental /></li>
-    <li><Rental /></li>
-    <li><Rental @rental={{@model}} /></li>
-    <li><Rental @rental={{@model}} /></li>
-    <li><Rental @rental={{@model}} /></li>
-  </ul>
-</div>
+  <h1>{{@model.title}}</h1>
+
+  <div class="rentals">
+    <ul class="results">
+      <li><Rental /></li>
+      <li><Rental /></li>
+      <li><Rental /></li>
+      <li><Rental @rental={{@model}} /></li>
+      <li><Rental @rental={{@model}} /></li>
+      <li><Rental @rental={{@model}} /></li>
+    </ul>
+  </div>
+</template>
 ```
 
 By passing in `@model` into the `<Rental>` component as the `@rental` argument, we will have access to our "Grand Old Mansion" model object in the `<Rental>` component's template! Now, we can replace our hard-coded values in this component by using the values that live on our `@rental` model.
 
-```handlebars { data-filename="app/components/rental.hbs" data-diff="-3,-4,+5,+6,-9,+10,-12,+13,-16,+17,-20,+21,-24,+25,-29,-30,+31,+32,-36,+37" }
-<article class="rental">
-  <Rental::Image
-    src="https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg"
-    alt="A picture of Grand Old Mansion"
-    src={{@rental.image}}
-    alt="A picture of {{@rental.title}}"
-  />
-  <div class="details">
-    <h3>Grand Old Mansion</h3>
-    <h3>{{@rental.title}}</h3>
-    <div class="detail owner">
-      <span>Owner:</span> Veruca Salt
-      <span>Owner:</span> {{@rental.owner}}
+```gjs { data-filename="app/components/rental.gjs" data-diff="-7,-8,+9,+10,-13,+14,-16,+17,-20,+21,-24,+25,-28,+29,-33,-34,+35,+36,-40,+41" }
+import RentalImage from 'super-rentals/components/rental/image';
+import Map from 'super-rentals/components/map';
+
+<template>
+  <article class="rental">
+    <RentalImage
+      src="https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg"
+      alt="A picture of Grand Old Mansion"
+      src={{@rental.image}}
+      alt="A picture of {{@rental.title}}"
+    />
+    <div class="details">
+      <h3>Grand Old Mansion</h3>
+      <h3>{{@rental.title}}</h3>
+      <div class="detail owner">
+        <span>Owner:</span> Veruca Salt
+        <span>Owner:</span> {{@rental.owner}}
+      </div>
+      <div class="detail type">
+        <span>Type:</span> Standalone
+        <span>Type:</span> {{@rental.type}}
+      </div>
+      <div class="detail location">
+        <span>Location:</span> San Francisco
+        <span>Location:</span> {{@rental.city}}
+      </div>
+      <div class="detail bedrooms">
+        <span>Number of bedrooms:</span> 15
+        <span>Number of bedrooms:</span> {{@rental.bedrooms}}
+      </div>
     </div>
-    <div class="detail type">
-      <span>Type:</span> Standalone
-      <span>Type:</span> {{@rental.type}}
-    </div>
-    <div class="detail location">
-      <span>Location:</span> San Francisco
-      <span>Location:</span> {{@rental.city}}
-    </div>
-    <div class="detail bedrooms">
-      <span>Number of bedrooms:</span> 15
-      <span>Number of bedrooms:</span> {{@rental.bedrooms}}
-    </div>
-  </div>
-  <Map
-    @lat="37.7749"
-    @lng="-122.4194"
-    @lat={{@rental.location.lat}}
-    @lng={{@rental.location.lng}}
-    @zoom="9"
-    @width="150"
-    @height="150"
-    alt="A map of Grand Old Mansion"
-    alt="A map of {{@rental.title}}"
-  />
-</article>
+    <Map
+      @lat="37.7749"
+      @lng="-122.4194"
+      @lat={{@rental.location.lat}}
+      @lng={{@rental.location.lng}}
+      @zoom="9"
+      @width="150"
+      @height="150"
+      alt="A map of Grand Old Mansion"
+      alt="A map of {{@rental.title}}"
+    />
+  </article>
+</template>
 ```
 
 Since the model object contains exactly the same data as the previously-hard-coded "Grand Old Mansion", the page should look exactly the same as before the change.
@@ -170,21 +187,22 @@ Now, we have one last thing to do: update the tests to reflect this change.
 
 Because component tests are meant to render and test a single component in isolation from the rest of the app, they do not perform any routing, which means we won't have access to the same data returned from the `model` hook.
 
-Therefore, in our `<Rental>` component's test, we will have to feed the data into it some other way. We can do this using the `setProperties` we learned about from the [previous chapter](../reusable-components/).
+Therefore, in our `<Rental>` component's test, we will have to feed the data into it some other way. We can do this using the same `State` mechanism we learned about from the [previous chapter](../reusable-components/).
 
-```js { data-filename="tests/integration/components/rental-test.js" data-diff="-10,+11,+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30" }
+```gjs { data-filename="tests/integration/components/rental-test.gjs" data-diff="+5,-11,+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33" }
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'super-rentals/tests/helpers';
 import { render } from '@ember/test-helpers';
-import { hbs } from 'ember-cli-htmlbars';
+import Rental from 'super-rentals/components/rental';
+import { tracked } from '@glimmer/tracking';
 
 module('Integration | Component | rental', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders information about a rental property', async function (assert) {
-    await render(hbs`<Rental />`);
-    this.setProperties({
-      rental: {
+    await render(<template><Rental /></template>);
+    class State { 
+      @tracked rental = {
         title: 'Grand Old Mansion',
         owner: 'Veruca Salt',
         city: 'San Francisco',
@@ -199,10 +217,12 @@ module('Integration | Component | rental', function (hooks) {
           'https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg',
         description:
           'This grand old mansion sits on over 100 acres of rolling hills and dense redwood forests.',
-      },
-    });
+      };
+    };
 
-    await render(hbs`<Rental @rental={{this.rental}} />`);
+    const state = new State();
+
+    await render(<template><Rental @rental={{state.rental}} /></template>);
 
     assert.dom('article').hasClass('rental');
     assert.dom('article h3').hasText('Grand Old Mansion');
@@ -243,7 +263,7 @@ public
 │       └── teaching-tomster.png
 └── robots.txt
 
-4 directories, 6 files
+5 directories, 6 files
 ```
 
 You can verify that everything is working correctly by navigating to `http://localhost:4200/api/rentals.json`.
@@ -298,7 +318,7 @@ Before we go any further, let's pause for a second to look at the server's data 
 {
   "data": [
     {
-      "type": "rentals",
+      "type": "rental",
       "id": "grand-old-mansion",
       "attributes": {
         "title": "Grand Old Mansion",
@@ -315,7 +335,7 @@ Before we go any further, let's pause for a second to look at the server's data 
       }
     },
     {
-      "type": "rentals",
+      "type": "rental",
       "id": "urban-living",
       "attributes": {
         "title": "Urban Living",
@@ -332,7 +352,7 @@ Before we go any further, let's pause for a second to look at the server's data 
       }
     },
     {
-      "type": "rentals",
+      "type": "rental",
       "id": "downtown-charm",
       "attributes": {
         "title": "Downtown Charm",
@@ -398,27 +418,33 @@ Awesome! Now we're in business.
 
 ## Loops and Local Variables in Templates with `{{#each}}`
 
-The last change we'll need to make is to our `index.hbs` route template, where we invoke our `<Rental>` components. Previously, we were passing in `@rental` as `@model` to our components. However, `@model` is no longer a single object, but rather, an array! So, we'll need to change this template to account for that.
+The last change we'll need to make is to our `index.gjs` route template, where we invoke our `<Rental>` components. Previously, we were passing in `@rental` as `@model` to our components. However, `@model` is no longer a single object, but rather, an array! So, we'll need to change this template to account for that.
 
 Let's see how.
 
-```handlebars { data-filename="app/templates/index.hbs" data-diff="-9,-10,-11,+12,+13,+14" }
-<Jumbo>
-  <h2>Welcome to Super Rentals!</h2>
-  <p>We hope you find exactly what you're looking for in a place to stay.</p>
-  <LinkTo @route="about" class="button">About Us</LinkTo>
-</Jumbo>
+```gjs { data-filename="app/templates/index.gjs" data-diff="-14,-15,-16,+17,+18,+19" }
+import { LinkTo } from '@ember/routing';
+import Jumbo from 'super-rentals/components/jumbo';
+import Rental from 'super-rentals/components/rental';
 
-<div class="rentals">
-  <ul class="results">
-    <li><Rental @rental={{@model}} /></li>
-    <li><Rental @rental={{@model}} /></li>
-    <li><Rental @rental={{@model}} /></li>
-    {{#each @model as |rental|}}
-      <li><Rental @rental={{rental}} /></li>
-    {{/each}}
-  </ul>
-</div>
+<template>
+  <Jumbo>
+    <h2>Welcome to Super Rentals!</h2>
+    <p>We hope you find exactly what you're looking for in a place to stay.</p>
+    <LinkTo @route="about" class="button">About Us</LinkTo>
+  </Jumbo>
+
+  <div class="rentals">
+    <ul class="results">
+      <li><Rental @rental={{@model}} /></li>
+      <li><Rental @rental={{@model}} /></li>
+      <li><Rental @rental={{@model}} /></li>
+      {{#each @model as |rental|}}
+        <li><Rental @rental={{rental}} /></li>
+      {{/each}}
+    </ul>
+  </div>
+</template>
 ```
 
 We can use the `{{#each}}...{{/each}}` syntax to iterate and loop through the array returned by the model hook. For each iteration through the array—for each item in the array—we will render the block that is passed to it once. In our case, the block is our `<Rental>` component, surrounded by `<li>` tags.
@@ -427,7 +453,7 @@ Inside of the block we have access to the item of the _current_ iteration with t
 
 Now, let's go over to our browser and see what our index route looks like with this change.
 
-<img src="/images/tutorial/part-1/working-with-data/three-properties@2x.png" alt="Three different rental properties" width="1024" height="1129">
+<img src="/images/tutorial/part-1/working-with-data/three-properties@2x.png" alt="Three different rental properties" width="1024" height="1130">
 
 Hooray! Finally we're seeing different rental properties in our list. And we got to play with `fetch` and write a loop. Pretty productive, if you ask me.
 

@@ -183,7 +183,7 @@ export default function() {
         city: "Seattle",
         "property-type": "Condo",
         bedrooms: 1,
-        image: "https://upload.wikimedia.org/wikipedia/commons/0/0e/Alfonso_13_Highrise_Tegucigalpa.jpg",
+        image: "https://upload.wikimedia.org/wikipedia/commons/2/20/Seattle_-_Barnes_and_Bell_Buildings.jpg",
         description: "A commuters dream. This rental is within walking distance of 2 bus stops and the Metro."
       }
     },

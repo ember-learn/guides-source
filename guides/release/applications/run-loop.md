@@ -1,6 +1,22 @@
-**Note:**
-* _For basic Ember app development scenarios, you don't need to understand the run loop or use it directly. All common paths are paved nicely for you and don't require working with the run loop._
-* _However, the run loop will be helpful to understand the internals of Ember and to assist in customized performance tuning by manually batching costly work._
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading" data-test-es-note-heading="">Zoey says...</div>
+      <div class="cta-note-message">
+      
+        <p>
+          For basic Ember app development scenarios, you don't need to understand the run loop or use it directly. All common paths are paved nicely for you and don't require working with the run loop.
+        </p>
+        
+        <p>
+          However, the run loop will be helpful to understand the internals of Ember and to assist in customized performance tuning by manually batching costly work.
+        </p>
+      
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
+  </div>
+</div>
 
 Ember's internals and most of the code you will write in your applications takes place in a run loop.
 The run loop is used to batch, and order (or reorder) work in a way that is most effective and efficient.
@@ -83,9 +99,13 @@ class Image {
 
 and a template to display its attributes:
 
-```handlebars
-{{this.width}}
-{{this.aspectRatio}}
+```gjs
+let profilePhoto = new Image({ width: 250, height: 500 });
+
+<template>
+  {{profilePhoto.width}}
+  {{profilePhoto.aspectRatio}}
+</template>
 ```
 
 If we execute the following code without the run loop:
@@ -169,13 +189,15 @@ which will make you a better Ember developer.
 
 You should begin a run loop when the callback fires.
 
-The `Ember.run` method can be used to create a run loop.
-In this example, `Ember.run` is used to handle an online
+The `run()` method, imported from `@ember/runloop`, can be used to create a run loop.
+In this example, `run()` is used to handle an online
 event (browser gains internet access) and run some Ember code.
 
 ```javascript
+import { run } from '@ember/runloop';
+
 window.addEventListener('online', () => {
-  Ember.run(() => {  // begin loop
+  run(() => {  // begin loop
     // Code that results in jobs being scheduled goes here
   }); // end loop, jobs are flushed and executed
 });
@@ -185,15 +207,17 @@ window.addEventListener('online', () => {
 
 ## What happens if I forget to start a run loop in an async handler?
 
-As mentioned above, you should wrap any non-Ember async callbacks in `Ember.run`.
+As mentioned above, you should wrap any non-Ember async callbacks in `run()`.
 If you don't, Ember will try to approximate a beginning and end for you.
 Consider the following callback:
 
 ```javascript
+import { run } from '@ember/runloop';
+
 window.addEventListener('online', () => {
   console.log('Doing things...');
 
-  Ember.run.schedule('actions', () => {
+  run.schedule('actions', () => {
     // Do more things
   });
 });
@@ -207,26 +231,28 @@ These automatically created run loops we call _autoruns_.
 Here is some pseudocode to describe what happens using the example above:
 
 ```javascript
+import { run } from '@ember/runloop';
+
 window.addEventListener('online', () => {
   // 1. autoruns do not change the execution of arbitrary code in a callback.
   //    This code is still run when this callback is executed and will not be
   //    scheduled on an autorun.
   console.log('Doing things...');
 
-  Ember.run.schedule('actions', () => {
+  run.schedule('actions', () => {
     // 2. schedule notices that there is no currently available run loop so it
     //    creates one. It schedules it to close and flush queues on the next
     //    turn of the JS event loop.
-    if (! Ember.run.hasOpenRunLoop()) {
-      Ember.run.begin();
+    if (! run.hasOpenRunLoop()) {
+      run.begin();
       nextTick(() => {
-        Ember.run.end()
+        run.end()
       }, 0);
     }
 
     // 3. There is now a run loop available so schedule adds its item to the
     //    given queue
-    Ember.run.schedule('actions', () => {
+    run.schedule('actions', () => {
       // Do more things
     });
 
@@ -234,7 +260,7 @@ window.addEventListener('online', () => {
 
   // 4. This schedule sees the autorun created by schedule above as an available
   //    run loop and adds its item to the given queue.
-  Ember.run.schedule('afterRender', () => {
+  run.schedule('afterRender', () => {
     // Do yet more things
   });
 });
@@ -242,5 +268,5 @@ window.addEventListener('online', () => {
 
 ## Where can I find more information?
 
-Check out the [Ember.run](https://api.emberjs.com/ember/release/classes/@ember%2Frunloop) API documentation,
+Check out the [`@ember/runloop`](https://api.emberjs.com/ember/release/classes/@ember%2Frunloop) API documentation,
 as well as the [Backburner library](https://github.com/ebryn/backburner.js/) that powers the run loop.

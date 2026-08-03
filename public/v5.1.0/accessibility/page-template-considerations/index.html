@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:image" content="https://blog.emberjs.com/images/logos/e-icon.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@emberjs" />
+    <meta name="twitter:image" content="https://blog.emberjs.com/images/logos/e-icon.png" />
+
+    <meta name="ember-guides/config/environment" content="%7B%22modulePrefix%22%3A%22ember-guides%22%2C%22environment%22%3A%22production%22%2C%22rootURL%22%3A%22%2F%22%2C%22locationType%22%3A%22trailing-history%22%2C%22historySupportMiddleware%22%3Atrue%2C%22EmberENV%22%3A%7B%22EXTEND_PROTOTYPES%22%3Afalse%2C%22FEATURES%22%3A%7B%7D%2C%22_APPLICATION_TEMPLATE_WRAPPER%22%3Afalse%2C%22_DEFAULT_ASYNC_OBSERVERS%22%3Atrue%2C%22_JQUERY_INTEGRATION%22%3Afalse%2C%22_NO_IMPLICIT_ROUTE_MODEL%22%3Atrue%2C%22_TEMPLATE_ONLY_GLIMMER_COMPONENTS%22%3Atrue%7D%2C%22APP%22%3A%7B%7D%2C%22ember-meta%22%3A%7B%22description%22%3A%22Ember.js%20helps%20developers%20be%20more%20productive%20out%20of%20the%20box.%20Designed%20with%20developer%20ergonomics%20in%20mind%2C%20its%20friendly%20APIs%20help%20you%20get%20your%20job%20done%E2%80%94fast.%22%2C%22title%22%3A%22Ember%20Guides%22%7D%2C%22ember-showdown-shiki%22%3A%7B%22theme%22%3A%22github-dark%22%2C%22languages%22%3A%5B%22bash%22%2C%22css%22%2C%22http%22%2C%22javascript%22%2C%22json%22%2C%22json5%22%2C%22ruby%22%2C%22scss%22%2C%22yaml%22%2C%22typescript%22%2C%22glimmer-js%22%2C%22glimmer-ts%22%2C%22handlebars%22%5D%7D%2C%22guidemaker%22%3A%7B%22title%22%3A%22Ember%20Guides%22%2C%22sourceRepo%22%3A%22https%3A%2F%2Fgithub.com%2Fember-learn%2Fguides-source%22%7D%2C%22algolia%22%3A%7B%22algoliaId%22%3A%22Y1OMR4C7MF%22%2C%22algoliaKey%22%3A%225d01c83734dc36754d9e94cbf6f8964d%22%2C%22indexName%22%3A%22ember-guides%22%7D%2C%22showdown%22%3A%7B%22ghCompatibleHeaderId%22%3Atrue%2C%22prefixHeaderId%22%3A%22toc_%22%7D%2C%22deprecationsGuideURL%22%3A%22https%3A%2F%2Fwww.emberjs.com%2Fdeprecations%2F%22%2C%22metricsAdapters%22%3A%5B%7B%22name%22%3A%22GoogleAnalytics%22%2C%22environments%22%3A%5B%22production%22%5D%2C%22config%22%3A%7B%22id%22%3A%22UA-27675533-1%22%2C%22require%22%3A%5B%22linkid%22%5D%7D%7D%5D%2C%22fastboot%22%3A%7B%22hostWhitelist%22%3A%5B%7B%7D%5D%7D%2C%22ember-collapsible-panel%22%3A%7B%7D%7D" />
+<!-- EMBER_CLI_FASTBOOT_TITLE -->  <meta name="ember-cli-head-start" content>  <title>Page Template Considerations - Accessibility - Ember Guides</title>
+
+  <meta name="description" content="When considering an application's page or view structure, there are a few primary concerns that should be planned for: 
+
+- page title
+- skip navigation links
+- focus management Page Title 
+
+Each page (what is rendered for a unique URL) should have a page...">
+
+<meta name="referrer" content="unsafe-url">
+
+<!---->
+<!---->
+<!---->
+<!---->
+  <meta property="og:title" content="Page Template Considerations - Accessibility - Ember Guides">
+
+<!---->
+  <meta property="og:description" content="When considering an application's page or view structure, there are a few primary concerns that should be planned for: 
+
+- page title
+- skip navigation links
+- focus management Page Title 
+
+Each page (what is rendered for a unique URL) should have a page...">
+
+  <meta property="og:type" content="website">
+
+<!---->
+<meta name="twitter:card" content="summary">
+
+<!---->
+<!---->
+  <meta name="twitter:title" content="Page Template Considerations - Accessibility - Ember Guides">
+
+<!---->
+  <meta name="twitter:description" content="When considering an application's page or view structure, there are a few primary concerns that should be planned for: 
+
+- page title
+- skip navigation links
+- focus management Page Title 
+
+Each page (what is rendered for a unique URL) should have a page...">
+
+<!---->
+<!---->
+<!----><meta name="ember-cli-head-end" content>
+
+
+    <link integrity="" rel="stylesheet" href="/assets/vendor-b8277f2f5a0671f1fd06c44e8d28a12a.css">
+<link rel="stylesheet" href="/assets/chunk.3524.1b6fd9a56ed27e4f0776.css"/>
+    <link integrity="" rel="stylesheet" href="/assets/ember-guides-5c8db54c5318a3c5c0e2f055377a6fe6.css">
+
+    <link rel="apple-touch-icon" href="/favicons/apple-touch-icon.png">
+    <link rel="icon" href="/favicons/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicons/icon.svg" type="image/svg+xml">
+    <link rel="manifest" href="/favicons/manifest.webmanifest">
+
+    
+  </head>
+  <body class="application version show version-show">
+    <script type="x/boundary" id="fastboot-body-start"></script>
+<!---->
+
+<header class="es-header" role="banner">
+  <nav class="es-navbar " aria-label="Primary site navigation">
+    <a class="navbar-brand-wrapper" href="https://www.emberjs.com">
+      <img class="navbar-brand" src="/images/ember-logo.svg" alt="home" width="83" height="40">
+    </a>
+
+    <button class="navbar-toggler" aria-expanded="false" type="button">
+      Show Site Navigation
+    </button>
+
+    <ul class="navbar-list">
+        <li class="navbar-list-item dropdown">
+<!---->    <button class="navbar-list-item-dropdown-toggle " aria-expanded="false" type="button">
+      Docs
+    </button>
+<!----></li>
+        <li class="navbar-list-item dropdown">
+<!---->    <button class="navbar-list-item-dropdown-toggle " aria-expanded="false" type="button">
+      Releases
+    </button>
+<!----></li>
+        <li class="navbar-list-item ">
+    <a class="navbar-list-item-link" href="https://blog.emberjs.com">
+      Blog
+    </a>
+<!----></li>
+        <li class="navbar-list-item dropdown">
+<!---->    <button class="navbar-list-item-dropdown-toggle " aria-expanded="false" type="button">
+      Community
+    </button>
+<!----></li>
+        <li class="navbar-list-item dropdown">
+<!---->    <button class="navbar-list-item-dropdown-toggle " aria-expanded="false" type="button">
+      About
+    </button>
+<!----></li>
+    </ul>
+
+      <div class="navbar-end">
+        
+  <div id="ember3" class="search-input ember-view"></div></div></nav></header><script type="x/boundary" id="fastboot-body-end"></script>
+
+    <script src="/assets/vendor-f43023b3037e03c0f8222dd641286237.js"></script>
+<script src="/assets/chunk.7471.9daaf5ca3e3851a7ccfe.js"></script>
+<script src="/assets/chunk.3524.4aa7fa5b69ff95e90b5c.js"></script>
+    <script src="/assets/ember-guides-bbdf77beeb9f5095a2dc89f0251f55b2.js"></script>
+
+    
+  </body>
+</html>

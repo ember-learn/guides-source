@@ -90,7 +90,7 @@ module('Unit | Service | flash-messages', function(hooks) {
 });
 ```
 
-By calling `setupTest()`, you gain access to a few things. First is Ember's [Dependency Injection](../../applications/dependency-injection/) system. In short, you can [look up](https://api.emberjs.com/ember/release/classes/ApplicationInstance/methods/lookup?anchor=lookup) anything in your application, with a little help from `this.owner`. Second, you gain access to some common utility functions, `this.get()` and `this.set()`, in your tests. Finally, you can use `pauseTest()` to [debug your tests](../#toc_how-to-debug-tests).
+By calling `setupTest()`, you gain access to a few things. First is Ember's [Dependency Injection](../../applications/dependency-injection/) system. In short, you can [look up](https://api.emberjs.com/ember/release/classes/ApplicationInstance/methods/lookup?anchor=lookup) anything in your application, with a little help from `this.owner`. Also, you can use `pauseTest()` to [debug your tests](../#toc_how-to-debug-tests).
 
 
 ## Rendering Tests
@@ -147,7 +147,7 @@ Here are more examples where rendering tests are ideal:
 
 In order for rendering tests to work, you must call [`setupRenderingTest()`](https://github.com/emberjs/ember-qunit#setup-rendering-tests) and pass the `hooks` object.
 
-What does `setupRenderingTest()` do? First, it uses `setupTest()` behind the scenes. Just like in [Unit Tests](../test-types/#toc_what-to-watch-out-for), you have access to `this.owner`, `this.get()`, `this.set()`, and `pauseTest()`.
+What does `setupRenderingTest()` do? First, it uses `setupTest()` behind the scenes. Just like in [Unit Tests](../test-types/#toc_what-to-watch-out-for), you have access to `this.owner` and `pauseTest()`.
 
 In addition, `setupRenderingTest()` allows Ember's renderer to use helpers for rendering and DOM interaction, such as `render`, `click`, and `fillIn`. You can also use `this.element` to access the DOM element that results from `render`.
 

@@ -95,10 +95,10 @@ After saving the changes to our configuration file, we will need to restart our 
 
 <!-- TODO: https://github.com/ember-cli/ember-cli/issues/8782 -->
 
-You can stop the server by finding the terminal window where `ember server` is running, then type `Ctrl + C`. That is, typing the "C" key on your keyboard _while_ holding down the "Ctrl" key at the same time. Once it has stopped, you can start it back up again with the same `ember server` command.
+You can stop the server by finding the terminal window where `ember serve` is running, then type `Ctrl + C`. That is, typing the "C" key on your keyboard _while_ holding down the "Ctrl" key at the same time. Once it has stopped, you can start it back up again with the same `ember server` command.
 
 ```shell
-$ ember server
+$ ember serve
 building... 
 
 Build successful (13286ms) – Serving on http://localhost:4200/

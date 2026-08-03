@@ -2,7 +2,7 @@
 
 Now that we are fetching real data from our "server", let's add a new feature — dedicated pages for each of our rentals:
 
-<img src="/images/tutorial/part-2/route-params/grand-old-mansion@2x.png" alt="The Super Rentals app (rentals page) by the end of the chapter" width="1024" height="1381">
+<img src="/images/tutorial/part-2/route-params/grand-old-mansion@2x.png" alt="The Super Rentals app (rentals page) by the end of the chapter" width="1024" height="1382">
 
 While adding these rental pages, you will learn about:
 
@@ -81,7 +81,7 @@ Since we know that we're linking to the `rental` route that we just created, we 
 
 Let's see this in action. If we go back to our browser and refresh the page, we should see our links, but something isn't quite right yet!
 
-<img src="/images/tutorial/part-2/route-params/broken-links@2x.png" alt="Broken links" width="1024" height="1129">
+<img src="/images/tutorial/part-2/route-params/broken-links@2x.png" alt="Broken links" width="1024" height="1130">
 
 The links are all pointing to `/rentals/undefined`. Yikes! This is because `<LinkTo>` tries to use the `id` property from our model in order to replace the dynamic segment and generate the URL.
 
@@ -224,10 +224,12 @@ Next, let's make a `<Rental::Detailed>` component.
 $ ember generate component rental/detailed
 installing component
   create app/components/rental/detailed.hbs
-  skip app/components/rental/detailed.js
+  skip app/components/rental/detailed.ts
   tip to add a class, run `ember generate component-class rental/detailed`
 installing component-test
   create tests/integration/components/rental/detailed-test.js
+
+Running "lint:fix" script...
 ```
 
 ```handlebars { data-filename="app/components/rental/detailed.hbs" data-diff="-1,+2,+3,+4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,+22,+23,+24,+25,+26,+27,+28,+29,+30,+31,+32,+33,+34,+35,+36,+37,+38,+39,+40,+41,+42,+43,+44,+45" }
@@ -327,7 +329,7 @@ module('Integration | Component | rental/detailed', function (hooks) {
   test('it renders a header with a share button', async function (assert) {
     await render(hbs`<Rental::Detailed @rental={{this.rental}} />`);
 
-    assert.dom(this.element).hasText('');
+    assert.dom().hasText('');
     assert.dom('.jumbo').exists();
     assert.dom('.jumbo h2').containsText('Grand Old Mansion');
     assert
@@ -345,7 +347,7 @@ module('Integration | Component | rental/detailed', function (hooks) {
   test('it renders detailed information about a rental property', async function (assert) {
     await render(hbs`<Rental::Detailed @rental={{this.rental}} />`);
 
-    assert.dom(this.element).hasText('template block text');
+    assert.dom().hasText('template block text');
     assert.dom('article').hasClass('rental');
     assert.dom('article h3').containsText('About Grand Old Mansion');
     assert.dom('article .detail.owner').containsText('Veruca Salt');
@@ -472,7 +474,7 @@ module('Acceptance | super rentals', function (hooks) {
 
 Now, when we visit `http://localhost:4200/rentals/grand-old-mansion`, this is what we see:
 
-<img src="/images/tutorial/part-2/route-params/grand-old-mansion@2x.png" alt="A dedicated page for the Grand Old Mansion" width="1024" height="1381">
+<img src="/images/tutorial/part-2/route-params/grand-old-mansion@2x.png" alt="A dedicated page for the Grand Old Mansion" width="1024" height="1382">
 
 And if we run our tests now...
 
