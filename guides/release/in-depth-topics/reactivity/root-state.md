@@ -125,8 +125,19 @@ class Player {
 }
 ```
 
-Without options, `@tracked` keeps its historical always-dirty behavior, so
-existing code is unaffected.
+Without options, `@tracked` has always-dirty behavior.
+
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+        <code>@tracked({ equals })</code> and the <code>tracked()</code> function described later on this page are new in Ember 7.3.
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
+  </div>
+</div>
 
 Most state doesn't need custom equality, because a write usually happens
 when something actually changed. It pays off when writes frequently don't
@@ -341,7 +352,7 @@ export default class Dashboard extends Component {
 `registerDestructor` gives `Poller` its cleanup; `associateDestroyableChild`
 links it to the component, so when the component is destroyed, the poller is
 destroyed with it. The
-[Reactivity and the Outside World](../outside-world/) guide covers this
+[Inputs and Outputs](../inputs-and-outputs/) guide covers this
 pattern - effects tied to a lifetime - in depth.
 
 One more design rule for state classes: when a class needs to read state that
@@ -368,8 +379,26 @@ count.value = 1; // writing invalidates consumers
 
 Unlike the decorator, a standalone value checks equality by default (using
 `Object.is`), so assigning the value it already holds invalidates nothing.
-You can pass your own comparison with `tracked(initial, { equals })`, which
-is useful in exactly the situations described in
+This is the one place the two forms of `tracked` disagree, and it's easy to
+trip over. The same-looking write behaves differently in each:
+
+```js
+class Counter {
+  @tracked count = 0;
+}
+let counter = new Counter();
+counter.count = 0; // dirties: the decorator does not check equality
+
+const count = tracked(0);
+count.value = 0;   // does nothing: the value is already 0
+```
+
+If you need the two forms to match, give the decorator an equality check
+(`@tracked({ equals: Object.is })`), or opt the standalone value out of
+checking with `equals: () => false`.
+
+You can also pass your own comparison with `tracked(initial, { equals })`,
+which is useful in exactly the situations described in
 [Writes, Equality, and Dirtying](#toc_writes-equality-and-dirtying) above.
 For example, a poll that returns a fresh object every time:
 

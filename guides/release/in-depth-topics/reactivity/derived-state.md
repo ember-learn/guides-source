@@ -71,7 +71,7 @@ One consequence is that you should never rely on when, or whether, a getter
 runs. A derivation may run once, many times, or never; it may run later than
 you expect or more often than you expect. If you find yourself wanting "run
 this code when X changes," you are looking for something other than derived
-state - see [Reactivity and the Outside World](../outside-world/).
+state - see [Inputs and Outputs](../inputs-and-outputs/).
 
 ## Derivations Must Be Pure
 
@@ -86,10 +86,10 @@ Error: You attempted to update `count`, but it had already been used
 previously in the same computation.
 ```
 
-This is sometimes called the _backtracking assertion_: render evaluates your
-derivations top to bottom, and a write partway through would invalidate
-output that was already produced. When you hit this error, restructure the
-code so the write isn't needed:
+This error is the _backtracking assertion_: render evaluates your derivations
+top to bottom, and a write partway through would invalidate output that was
+already produced. When you hit it, restructure the code so the write isn't
+needed:
 
 ```js
 // 🛑 Don't: a "derivation" that pushes its result somewhere else

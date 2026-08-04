@@ -119,7 +119,7 @@ a callback that runs later - after an `await`, or inside a `setTimeout` -
 that read happens outside any tracking context, and nothing is consumed. This
 is rarely a problem in practice, since templates, getters, and helpers are
 all synchronous, but it explains a whole class of "why didn't this update?"
-bugs. The [Reactivity and the Outside World](./outside-world/) guide covers
+bugs. The [Inputs and Outputs](./inputs-and-outputs/) guide covers
 this boundary in detail.
 
 ## Pull, Not Push
@@ -151,7 +151,7 @@ you don't know the model:
   `tax` has updated but `subtotal` hasn't.
 - There is no "re-run this code when X changes" primitive. In a push-based
   system you might reach for an _effect_ for that. Ember deliberately doesn't
-  offer one; the [Reactivity and the Outside World](./outside-world/) guide
+  offer one; the [Inputs and Outputs](./inputs-and-outputs/) guide
   explains why, and what to do instead.
 
 ## Where to Go from Here
@@ -162,7 +162,7 @@ The rest of this section works through each layer of the model:
   and how to design it.
 - [Derived State](./derived-state/) - laziness, purity, caching, composition,
   and deferring consumption.
-- [Reactivity and the Outside World](./outside-world/) - outputs, side
+- [Inputs and Outputs](./inputs-and-outputs/) - inputs, outputs, side
   effects, async, and the edges of the graph.
 
 For the mechanics of `@tracked` itself - updating, custom classes, arrays and

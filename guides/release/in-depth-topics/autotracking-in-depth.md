@@ -199,7 +199,7 @@ This will also trigger a rerender. No matter where the update occurs, updating
 a tracked property will let Ember know to rerender any affected portion of the
 app. Writing to tracked state from callbacks like this is the standard way
 data from the outside world enters Ember's reactivity system - see
-[Reactivity and the Outside World](../reactivity/outside-world/) for more on
+[Inputs and Outputs](../reactivity/inputs-and-outputs/) for more on
 this pattern.
 
 ### Tracking Through Methods
