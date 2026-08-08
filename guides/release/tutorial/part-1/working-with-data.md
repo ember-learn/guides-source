@@ -132,7 +132,7 @@ import Rental from 'super-rentals/components/rental';
 
 By passing in `@model` into the `<Rental>` component as the `@rental` argument, we will have access to our "Grand Old Mansion" model object in the `<Rental>` component's template! Now, we can replace our hard-coded values in this component by using the values that live on our `@rental` model.
 
-```gjs { data-filename="app/components/rental.gjs" data-diff="-7,-8,+9,+10,-13,+14,-16,+17,-20,+21,-24,+25,-28,+29,-33,-34,+35,+36,-40,+41" }
+```gjs { data-filename="app/components/rental.gjs" data-diff="-7,-8,+9,+10,-13,+14,-16,+17,-20,+21,-24,+25,-28,+29,-33,-34,+35,+36,-41,+42" }
 import RentalImage from 'super-rentals/components/rental/image';
 import Map from 'super-rentals/components/map';
 
@@ -172,8 +172,9 @@ import Map from 'super-rentals/components/map';
       @zoom="9"
       @width="150"
       @height="150"
-      alt="A map of Grand Old Mansion"
-      alt="A map of {{@rental.title}}"
+      role="img"
+      aria-label="A map of Grand Old Mansion"
+      aria-label="A map of {{@rental.title}}"
     />
   </article>
 </template>
