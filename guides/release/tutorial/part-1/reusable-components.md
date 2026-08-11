@@ -26,7 +26,7 @@ Let's add it to our app:
 $ npm install maplibre-gl --save-dev
 ../../..                                 |  +22 ++
 devDependencies:
-+ maplibre-gl 6.2.0
++ maplibre-gl 6.3.0
 ```
 
 Now let's generate a new component for our map.
@@ -166,12 +166,12 @@ Build successful (13286ms)
 
 Slowest Nodes (totalTime >= 5%) | Total (avg)
 -+-
-Babel: @embroider/macros (1) | 306ms
+Babel: @embroider/macros (1) | 300ms
 
 
-2:15:29 AM [vite] (client) Re-optimizing dependencies because lockfile has changed
+2:26:20 AM [vite] (client) Re-optimizing dependencies because lockfile has changed
 
-  VITE v8.2.1  ready in 3073 ms
+  VITE v8.2.1  ready in 3014 ms
 
   ➜  Local:   http://localhost:4200/
 ```
