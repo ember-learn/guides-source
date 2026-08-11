@@ -618,3 +618,41 @@ When adding new sources of asynchrony to your app, like:
 
 it's convenient to make `settled()` aware of that async work so that all your existing tests will wait for it to complete. For this, you can use [@ember/test-waiters](https://github.com/emberjs/ember-test-waiters). See [the @ember/test-waiters readme](https://github.com/emberjs/ember-test-waiters) for detailed examples.
 
+#### Why test waiters matter
+
+Ember's testing framework tracks several built-in sources of asynchrony automatically&mdash;timers, AJAX requests, route transitions, render operations, and anything scheduled in the run loop. When you `await` a test helper like `click()` or `visit()`, Ember waits for all of these tracked operations to finish before continuing to the next line of your test. This is the concept of "settledness."
+
+However, Ember cannot automatically track async operations that happen outside its run loop. When these operations extend beyond their expected boundaries, they become "leaks" that can cause:
+
+- **Flaky test failures** that are difficult to reproduce
+- **Failures in unrelated tests** when leaked async from one test interferes with another
+- **Hidden real failures** when assertions run against stale state
+
+Test waiters bridge this gap by telling Ember's test infrastructure about your custom async work, so `settled()` knows to wait for it.
+
+#### What needs test waiters?
+
+Built-in Ember operations (Ember core, EmberData, and most Ember addons) already participate in settledness automatically. You need to add test waiters for:
+
+- **`new Promise`** &mdash; Promises created outside of Ember's tracked async
+- **`requestAnimationFrame`** &mdash; Browser animation frame callbacks
+- **`setTimeout` / `setInterval`** &mdash; Native timer APIs (as opposed to `later` / `debounce` from `@ember/runloop`)
+- **`ResizeObserver`** &mdash; Browser resize observation callbacks
+- **Non-Ember library async** &mdash; Async callbacks, event listeners, or hooks from third-party libraries
+
+#### Signs you're missing a test waiter
+
+If you notice any of these symptoms, a missing test waiter is a likely culprit:
+
+- Flaky tests that intermittently pass or fail
+- Needing `waitFor` or `waitUntil` from `@ember/test-helpers` outside of intentionally testing loading/pending states
+- [Test isolation validation](https://github.com/emberjs/ember-qunit/blob/main/docs/TEST_ISOLATION_VALIDATION.md) errors like _"Test is not isolated (async execution is extending beyond the duration of the test)"_
+
+#### Test isolation
+
+When tests are well-isolated, async operations complete within the boundaries they are expected to:
+
+1. **Within a test (step-level):** When you `await` a test helper like `click()`, all async operations triggered by that action settle before execution continues to the next line.
+2. **Between tests (test-level):** When a test completes, all async operations are settled before the next test begins.
+
+If you use [ember-qunit](https://github.com/emberjs/ember-qunit), you can enable [test isolation validation](https://github.com/emberjs/ember-qunit/blob/main/docs/TEST_ISOLATION_VALIDATION.md) to automatically detect cases where async leaks beyond a test's boundaries. This makes it much easier to catch missing test waiters before they cause hard-to-debug flaky failures.
