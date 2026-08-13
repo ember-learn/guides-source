@@ -169,9 +169,9 @@ Slowest Nodes (totalTime >= 5%) | Total (avg)
 Babel: @embroider/macros (1) | 300ms
 
 
-2:26:20 AM [vite] (client) Re-optimizing dependencies because lockfile has changed
+2:42:54 AM [vite] (client) Re-optimizing dependencies because lockfile has changed
 
-  VITE v8.2.1  ready in 3014 ms
+  VITE v8.2.1  ready in 3079 ms
 
   ➜  Local:   http://localhost:4200/
 ```
