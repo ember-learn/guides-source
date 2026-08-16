@@ -23,10 +23,10 @@ We will use [MapLibre GL JS](https://maplibre.org/), an open-source mapping libr
 Let's add it to our app:
 
 ```shell
-$ npm install maplibre-gl --save-dev
+$ npm install maplibre-gl@6 --save-dev
 ../../..                                 |  +22 ++
 devDependencies:
-+ maplibre-gl 6.3.0
++ maplibre-gl 6.4.0
 ```
 
 Now let's generate a new component for our map.
@@ -61,23 +61,23 @@ However, in the case of our `<Map>` component, we are pretty sure that we are go
 
 Let's update our component to render an interactive map:
 
-```gjs { data-filename="app/components/map.gjs" data-diff="+2,+3,+4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19,-23,+24,+25,+26" }
+```gjs { data-filename="app/components/map.gjs" data-diff="+2,+3,+4,+5,+6,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19,-23,+24,+25,+26,+27" }
 import Component from '@glimmer/component';
 import { modifier } from 'ember-modifier';
-import * as maplibregl from 'maplibre-gl';
+import { Map as MapLibreGLMap, Marker } from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 
 const MAP_STYLE = 'https://tiles.openfreemap.org/styles/liberty';
 
 const displayMap = modifier((element, [lat, lng, zoom]) => {
-  const map = new maplibregl.Map({
+  const map = new MapLibreGLMap({
     container: element,
     style: MAP_STYLE,
     center: [lng, lat],
     zoom,
   });
 
-  new maplibregl.Marker().setLngLat([lng, lat]).addTo(map);
+  new Marker().setLngLat([lng, lat]).addTo(map);
 
   return () => map.remove();
 });
@@ -87,6 +87,7 @@ export default class Map extends Component {
     {{yield}}
     <div class="map"
       {{displayMap @lat @lng @zoom}}
+      style="width: 500px; height: 500px;"
     ></div>
   </template>
 }
@@ -94,13 +95,13 @@ export default class Map extends Component {
 
 There is a lot going on here! Let's work through it piece by piece.
 
-First, we have imports for `modifier` from `ember-modifier`, `maplibregl` from `maplibre-gl`, and the MapLibre CSS file. The `import * as maplibregl` syntax collects everything the library exports into a single `maplibregl` object, which is how MapLibre's own documentation recommends importing it. The CSS provides the map controls and visual elements that MapLibre renders — without it, the map buttons and overlays won't look right.
+First, we have imports for `modifier` from `ember-modifier`, `Map` (aliased as `MapLibreGLMap` so as not to conflict with the component class name) and `Marker` from `maplibre-gl`, and the MapLibre CSS file. The CSS provides the map controls and visual elements that MapLibre renders — without it, the map buttons and overlays won't look right.
 
 Next, we define a `MAP_STYLE` constant pointing to [OpenFreeMap](https://openfreemap.org/), an open-source tile server that provides free map tiles with no API key required.
 
 The heart of this component is `displayMap`, a custom _[modifier](../../../components/template-lifecycle-dom-and-modifiers/)_ created with the `modifier()` function from `ember-modifier`. A modifier is a way to run JavaScript code that directly interacts with a specific DOM element. When Ember renders `<div {{displayMap ...}}>`, our modifier function is called with two arguments: the DOM element itself, and an array of any positional arguments passed in the template. Here we use destructuring — `[lat, lng, zoom]` — to unpack that array directly in the function signature.
 
-Inside the modifier, we use `maplibregl` exactly as we would in plain JavaScript: instantiate a `new maplibregl.Map()`, pass it the container element, the OpenFreeMap style URL, and the coordinates, then add a `Marker` at the same position to visually pin the location. No Ember-specific APIs are needed — it is just regular JavaScript library usage.
+Inside the modifier, we use `maplibregl` exactly as we would in plain JavaScript: instantiate a `new MapLibreGLMap()`, pass it the container element, the OpenFreeMap style URL, and the coordinates, then add a `Marker` at the same position to visually pin the location. No Ember-specific APIs are needed — it is just regular JavaScript library usage.
 
 Finally, the modifier returns a _cleanup function_, `() => map.remove()`. Ember automatically calls this function when the element is removed from the DOM — for instance, when the user navigates to a different page. Returning a cleanup function is how modifiers signal to Ember what teardown work needs to happen.
 
@@ -166,12 +167,12 @@ Build successful (13286ms)
 
 Slowest Nodes (totalTime >= 5%) | Total (avg)
 -+-
-Babel: @embroider/macros (1) | 300ms
+Babel: @embroider/macros (1) | 308ms
 
 
-2:42:54 AM [vite] (client) Re-optimizing dependencies because lockfile has changed
+3:44:21 PM [vite] (client) Re-optimizing dependencies because lockfile has changed
 
-  VITE v8.2.1  ready in 3079 ms
+  VITE v8.2.1  ready in 3122 ms
 
   ➜  Local:   http://localhost:4200/
 ```
@@ -180,7 +181,7 @@ Babel: @embroider/macros (1) | 300ms
 
 ## Sizing the Map with inline styles
 
-Our map renders, but it does not have a defined size yet. We want the caller to be able to pass `@width` and `@height` arguments to control the map's dimensions.
+Our map renders, but it is a fixed size. We want the caller to be able to pass `@width` and `@height` arguments to control the map's dimensions.
 
 The natural way to set a size is through an inline `style` attribute. You might try:
 
@@ -199,24 +200,24 @@ Ember warns about dynamic string interpolation inside `style` attributes because
 
 To safely set a computed style string that we control, we use `trustHTML` from `@ember/template`. This function takes a string and marks it as _trusted HTML_, which tells Ember it can be used in HTML attribute contexts without further escaping:
 
-```gjs { data-filename="app/components/map.gjs" data-diff="+3,+23,+24,+25,+26,+30" }
+```gjs { data-filename="app/components/map.gjs" data-diff="+3,+23,+24,+25,+26,-30,+31" }
 import Component from '@glimmer/component';
 import { modifier } from 'ember-modifier';
 import { trustHTML } from '@ember/template';
-import * as maplibregl from 'maplibre-gl';
+import { Map as MapLibreGLMap, Marker } from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 
 const MAP_STYLE = 'https://tiles.openfreemap.org/styles/liberty';
 
 const displayMap = modifier((element, [lat, lng, zoom]) => {
-  const map = new maplibregl.Map({
+  const map = new MapLibreGLMap({
     container: element,
     style: MAP_STYLE,
     center: [lng, lat],
     zoom,
   });
 
-  new maplibregl.Marker().setLngLat([lng, lat]).addTo(map);
+  new Marker().setLngLat([lng, lat]).addTo(map);
 
   return () => map.remove();
 });
@@ -229,6 +230,7 @@ export default class Map extends Component {
   <template>
     <div class="map"
       {{displayMap @lat @lng @zoom}}
+      style="width: 500px; height: 500px;"
       style={{this.mapSize}}
     ></div>
   </template>
@@ -382,20 +384,20 @@ Next, we use `...attributes` to allow the invoker to further customize the map `
 import Component from '@glimmer/component';
 import { modifier } from 'ember-modifier';
 import { trustHTML } from '@ember/template';
-import * as maplibregl from 'maplibre-gl';
+import { Map as MapLibreGLMap, Marker } from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 
 const MAP_STYLE = 'https://tiles.openfreemap.org/styles/liberty';
 
 const displayMap = modifier((element, [lat, lng, zoom]) => {
-  const map = new maplibregl.Map({
+  const map = new MapLibreGLMap({
     container: element,
     style: MAP_STYLE,
     center: [lng, lat],
     zoom,
   });
 
-  new maplibregl.Marker().setLngLat([lng, lat]).addTo(map);
+  new Marker().setLngLat([lng, lat]).addTo(map);
 
   return () => map.remove();
 });
@@ -641,14 +643,14 @@ Now update `map.gjs` to import `ENV` from `super-rentals/config/environment` and
 import Component from '@glimmer/component';
 import { modifier } from 'ember-modifier';
 import { trustHTML } from '@ember/template';
-import * as maplibregl from 'maplibre-gl';
+import { Map as MapLibreGLMap, Marker } from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 
 const MAP_STYLE = 'https://tiles.openfreemap.org/styles/liberty';
 import ENV from 'super-rentals/config/environment';
 
 const displayMap = modifier((element, [lat, lng, zoom]) => {
-  const map = new maplibregl.Map({
+  const map = new MapLibreGLMap({
     container: element,
     style: MAP_STYLE,
     style: ENV.MAP_TILE_STYLE,
@@ -656,7 +658,7 @@ const displayMap = modifier((element, [lat, lng, zoom]) => {
     zoom,
   });
 
-  new maplibregl.Marker().setLngLat([lng, lat]).addTo(map);
+  new Marker().setLngLat([lng, lat]).addTo(map);
 
   return () => map.remove();
 });
