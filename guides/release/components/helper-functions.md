@@ -302,7 +302,7 @@ discussing state in the next chapter), or requiring access to a [service](../../
 ## Built-in and Common Helpers
 
 Below you will find some useful template helpers documented.
-For the full list of available helpers, you can check the [template helpers API](https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/) and [@ember/helpers](https://api.emberjs.com/ember/release/classes/@ember%2Fhelper) documentation.
+For the full list of available helpers, you can check the [Ember Helper](https://api.emberjs.com/ember/release/modules/@ember%2Fhelper) documentation.
 
 ### The `get` helper
 
@@ -426,6 +426,11 @@ const person = { givenName: 'George', familyName: 'Washington' };
 Now, as long as your template is wrapped in the `let` helper, you can access the
 capitalized given name and family name as `givenName` and `familyName` instead of
 `(capitalize this.person.givenName)`.
+
+Notice that `let` did not need to be imported. It's a core feature of the
+templating language. Everything on the [Keywords
+List](https://api.emberjs.com/ember/release/modules/@ember%2Fhelper) is always
+available without an explicit import.
 
 ### The `array` helper
 
