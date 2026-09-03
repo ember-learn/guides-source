@@ -27,7 +27,7 @@ $ npm install maplibre-gl@6 --save-dev
  WARN  deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.
 ../../..                                 |  +22 ++
 devDependencies:
-+ maplibre-gl 6.6.0
++ maplibre-gl 6.7.0
 ```
 
 Now let's generate a new component for our map.
@@ -168,12 +168,12 @@ Build successful (13286ms)
 
 Slowest Nodes (totalTime >= 5%) | Total (avg)
 -+-
-Babel: @embroider/macros (1) | 232ms
+Babel: @embroider/macros (1) | 319ms
 
 
-4:18:38 AM [vite] (client) Re-optimizing dependencies because lockfile has changed
+4:16:48 AM [vite] (client) Re-optimizing dependencies because lockfile has changed
 
-  VITE v8.2.2  ready in 2115 ms
+  VITE v8.2.2  ready in 3147 ms
 
   ➜  Local:   http://localhost:4200/
 ```
