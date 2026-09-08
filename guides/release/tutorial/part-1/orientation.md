@@ -213,16 +213,19 @@ Environment: development
 building... 
 
 
+
 Build successful (9761ms)
 
 
 Slowest Nodes (totalTime >= 5%) | Total (avg)
 -+-
-Babel: @embroider/macros (1) | 300ms
+Babel: @embroider/macros (1) | 240ms
+@embroider/compat/app (1) | 220ms
+@embroider/compat/addons (1) | 113ms
 
 
 
-  VITE v8.2.2  ready in 3063 ms
+  VITE v8.2.2  ready in 2652 ms
 
   ➜  Local:   http://localhost:4200/
 ```
