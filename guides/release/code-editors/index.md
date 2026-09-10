@@ -127,3 +127,17 @@ Various tools for working with Ember.js projects.
 ## Sublime Text
 
 A sophisticated text editor for code, markup and prose.
+
+### Syntax Highlighting
+
+Use [Package Control](https://packagecontrol.io) to install 3 packages: [`GJS`, `GTS`](https://github.com/ijlee2/sublime-syntax-definition-template-tag), and `Handlebars`.
+
+1. Open Sublime Text.
+1. Open Package Control by pressing <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> (Mac) or <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> (Windows). Alternatively, in the menu bar, click on `Sublime Text` > `Settings` > `Package Control`.
+1. Type `install` in the search bar so that you can quickly find and select `Package Control: Install Package`.
+1. Search for `GJS`, then select to install. Repeat the step for `GTS` and `Handlebars`.
+1. Restart Sublime Text.
+
+### Language Server
+
+Use [Package Control](https://packagecontrol.io) to install 3 packages: `LSP`, [`LSP-ember`](https://github.com/ijlee2/LSP-ember), and `LSP-typescript`. Restart Sublime Text.
