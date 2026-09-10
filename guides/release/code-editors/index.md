@@ -127,9 +127,3 @@ Various tools for working with Ember.js projects.
 ## Sublime Text
 
 A sophisticated text editor for code, markup and prose.
-
-[ember-cli-sublime-snippets](https://github.com/terminalvelocity/ember-cli-sublime-snippets) -
-Ember CLI snippets for Sublime Text 3.
-
-[ember-component-template-split-view](https://github.com/mmitchellgarcia/ember-component-template-split-view) -
-Super simple Sublime Text plugin that will let you open corresponding template or route files with Ember.js components.
