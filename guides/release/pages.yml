@@ -116,11 +116,17 @@
       isAdvanced: true
     - title: "Controllers"
       url: "controllers"
-- title: "Services"
-  url: "services"
+- title: "Application State"
+  url: "application-state"
   pages:
-    - title: Overview
+    - title: "Lifetimes of State"
       url: "index"
+    - title: "State in Plain Classes"
+      url: "state-in-plain-classes"
+    - title: "Application-Wide State"
+      url: "application-wide-state"
+    - title: "Services"
+      url: "services"
 - title: "EmberData"
   url: "models"
   pages:

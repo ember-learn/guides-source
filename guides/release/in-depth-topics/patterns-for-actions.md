@@ -183,7 +183,7 @@ then confirms. In the first case, we'll find the user's account and delete it.
 
 We'll implement an action on the parent component called
 `deleteAccount()` that, when called, gets a hypothetical `login`
-[service](../../services/) and calls the service's `deleteUser()`
+[service](../../application-state/services/) and calls the service's `deleteUser()`
 method. We'll go over services later on - for now, think of it as an API
 that manages the user's login and information.
 

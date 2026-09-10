@@ -52,6 +52,7 @@ debounce
 declaratively
 DefinitelyTyped
 deps
+destructor
 dev
 draggable
 dropdown
@@ -137,6 +138,7 @@ LSP
 Mapbox
 TomTom
 MDN
+matchMedia
 metaprogramming
 misspelt
 mixin
@@ -239,6 +241,7 @@ typings
 UIs
 un-representable
 unordered
+unrendered
 unsilence
 unstyled
 untracked
