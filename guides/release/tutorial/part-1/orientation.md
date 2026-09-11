@@ -143,13 +143,13 @@ super-rentals
 │   │       ├── vendor.css
 │   │       └── vendor.js
 │   ├── assets
-│   │   ├── app-DUxVkZU2.js
+│   │   ├── app-DCqy_7W-.js
 │   │   ├── app-DgioD2rk.css
-│   │   ├── main-DPcv5p2n.js
-│   │   ├── manager-DS6eIz_Z.js
-│   │   ├── modules-4-12-CDn41xJd.js
-│   │   ├── tests-C0U09n5o.css
-│   │   └── tests-DKIiHD_m.js
+│   │   ├── main-C5Dw2R1o.js
+│   │   ├── manager-Ci-HFkmF.js
+│   │   ├── modules-4-12-CEmhGuYA.js
+│   │   ├── tests-BHuRzFII.js
+│   │   └── tests-C0U09n5o.css
 │   ├── ember-welcome-page
 │   │   └── construction.png
 │   ├── tests
@@ -218,11 +218,11 @@ Build successful (9761ms)
 
 Slowest Nodes (totalTime >= 5%) | Total (avg)
 -+-
-Babel: @embroider/macros (1) | 241ms
+Babel: @embroider/macros (1) | 313ms
 
 
 
-  VITE v8.2.2  ready in 2115 ms
+  VITE v8.3.0  ready in 3112 ms
 
   ➜  Local:   http://localhost:4200/
 ```
