@@ -1,7 +1,8 @@
 Autotracking is how Ember's _reactivity_ model works - how it decides what to
-rerender, and when. This guide covers tracking in more depth, including how it
-can be used in various types of classes, and how it interacts with arrays and
-POJOs.
+rerender, and when. This guide covers the mechanics of tracking in more depth,
+including how it can be used in various types of classes, and how it interacts
+with arrays and POJOs.
+For the concepts behind the system, and for guidance on designing the state of your application, read [Thinking in Reactivity](../reactivity/).
 
 ## Autotracking Basics
 
@@ -194,6 +195,8 @@ export default class HelloComponent extends Component {
 This will also trigger a rerender. No matter where the update occurs, updating
 a tracked property will let Ember know to rerender any affected portion of the
 app.
+A write to tracked state from a callback like this is how data from the outside world enters the reactivity system.
+[Inputs and Outputs](../reactivity/inputs-and-outputs/) covers this pattern.
 
 ### Tracking Through Methods
 
@@ -263,6 +266,8 @@ Tracked properties can also be applied to your own custom classes, and used
 within your components and routes:
 
 ```js {data-filename=src/utils/person.js}
+import { tracked } from '@glimmer/tracking';
+
 export default class Person {
   @tracked title;
   @tracked name;
@@ -309,7 +314,7 @@ export default class ApplicationRouteComponent extends Component {
 ```
 
 As long as the properties are tracked, and accessed when rendering the template
-directly or indirectly, everything should update as expected
+directly or indirectly, everything should update as expected.
 
 ### Plain Old JavaScript Objects (POJOs)
 
@@ -336,6 +341,8 @@ All property reading and writing on this object is automatically tracked.
 `obj.c.somethingDeeper = 5` would not be tracked unless you've also made sure
 that the contents of `obj.c` is itself another `trackedObject`.
 
+[Root State](../reactivity/root-state/#toc_mutable-data-track-the-collection) explains why a tracked collection is a better choice than replacing the whole value.
+
 
 #### Arrays
 
@@ -356,6 +363,26 @@ class ShoppingList {
 
 `trackedArray` supports all the normal native `Array` methods, ensuring that
 their reads and writes are tracked.
+
+#### Maps and Sets
+
+`trackedMap`, `trackedSet`, `trackedWeakMap`, and `trackedWeakSet` follow the same pattern:
+
+```js
+import { trackedMap } from '@ember/reactive/collections';
+
+class Cart {
+  quantities = trackedMap();
+
+  add(productId) {
+    let current = this.quantities.get(productId) ?? 0;
+    this.quantities.set(productId, current + 1);
+  }
+}
+```
+
+Each collection supports all the methods of its native counterpart.
+Reads and writes through those methods are tracked.
 
 ## Caching of tracked properties
 
@@ -398,7 +425,7 @@ getter is very expensive, however, you will want to cache the value and
 retrieve it when the dependencies haven't changed. You want to recompute only
 if a dependency has been updated.
 
-Ember's [@cached decorator](https://api.emberjs.com/ember/6.8/functions/@glimmer%2Ftracking/cached) lets
+Ember's [@cached decorator](https://api.emberjs.com/ember/release/functions/@glimmer%2Ftracking/cached) lets
 you cache (or "memoize") a getter by simply marking it as `@cached`.
 
 With this in mind, let's introduce caching to `aspectRatio`:
@@ -438,6 +465,9 @@ console.log(count); // 2
 From the value of `count`, we see that, this time, `aspectRatio` was calculated
 only twice.
 
-In general, you should avoid using @cached unless you have confirmed that the getter you are decorating is computationally expensive, since @cached adds a small amount of overhead to the getter.
+`@cached` adds a small amount of overhead to the getter.
+Use it only when you have confirmed that the getter is computationally expensive.
+Caching also changes behavior in two useful ways that are not about performance.
+[Derived State](../reactivity/derived-state/#toc_caching) describes them.
 
 <!-- eof - needed for pages that end in a code block  -->
