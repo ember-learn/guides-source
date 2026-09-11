@@ -24,7 +24,7 @@ To verify that your installation was successful, run:
 
 ```shell
 $ ember --version
-ember-cli: 6.12.0
+ember-cli: 7.2.0
 node: 20.20.2
 os: linux x64
 ```
@@ -143,14 +143,13 @@ super-rentals
 │   │       ├── vendor.css
 │   │       └── vendor.js
 │   ├── assets
+│   │   ├── app-DCqy_7W-.js
 │   │   ├── app-DgioD2rk.css
-│   │   ├── app-kH0EqUK0.js
-│   │   ├── dist-BUdT4Swa.js
-│   │   ├── main-BINtkAbW.js
-│   │   ├── manager-C2ILo-5D.js
-│   │   ├── modules-4-12-BPXQYON-.js
-│   │   ├── tests-BdSWFklr.css
-│   │   └── tests-CIHkQsCT.js
+│   │   ├── main-C5Dw2R1o.js
+│   │   ├── manager-Ci-HFkmF.js
+│   │   ├── modules-4-12-CEmhGuYA.js
+│   │   ├── tests-BHuRzFII.js
+│   │   └── tests-C0U09n5o.css
 │   ├── ember-welcome-page
 │   │   └── construction.png
 │   ├── tests
@@ -192,7 +191,7 @@ super-rentals
 ├── testem.cjs
 └── vite.config.mjs
 
-26 directories, 59 files
+26 directories, 58 files
 ```
 
 We'll learn about the purposes of these files and folders as we go. For now, just know that we'll spend most of our time working within the `app` folder.
@@ -219,11 +218,11 @@ Build successful (9761ms)
 
 Slowest Nodes (totalTime >= 5%) | Total (avg)
 -+-
-Babel: @embroider/macros (1) | 330ms
+Babel: @embroider/macros (1) | 313ms
 
 
 
-  VITE v8.0.11  ready in 3171 ms
+  VITE v8.3.0  ready in 3112 ms
 
   ➜  Local:   http://localhost:4200/
 ```
