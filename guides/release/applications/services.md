@@ -1,3 +1,3 @@
 ---
-redirect: services
+redirect: application-state/services
 ---
