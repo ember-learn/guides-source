@@ -84,6 +84,8 @@
       url: "looping-through-lists"
     - title: Template Lifecycle, DOM, and Modifiers
       url: template-lifecycle-dom-and-modifiers
+    - title: "Element Modifiers"
+      url: "element-modifiers"
     - title: "Built-in Components"
       url: "built-in-components"
     - title: "Template Tag Format"
