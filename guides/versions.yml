@@ -93,7 +93,8 @@ allVersions:
   - v7.0.0
   - v7.1.0
   - v7.2.0
-currentVersion: v7.2.0
+  - v7.3.0
+currentVersion: v7.3.0
 ltsVersions:
   - v6.8.0
   - v6.12.0
