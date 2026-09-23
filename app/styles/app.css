@@ -113,40 +113,35 @@ code {
   z-index: 10;
 }
 
-/* Fix diff formatting */
+/*
+  Diff formatting for Shiki (ember-showdown-shiki).
+  Show +/- beside line numbers so diffs are not color-only (#2090).
+  Colors match .shiki .line.add / .line.remove in ember-showdown-shiki.
 
-code[data-diff] .diff-deletion {
-  background-color: rgb(144 84 84 / 70%);
+  Use a fixed-width gutter for every line in a diff block so code stays
+  aligned whether the line is added, removed, or unchanged.
+*/
+pre.has-diff code.line-numbers .line::before {
+  width: 5ch;
+  margin-right: 1rem;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
 }
 
-code[data-diff] .diff-insertion {
-  background-color: rgb(93 125 93 / 50%);
+pre.has-diff code.line-numbers .line:not(.add):not(.remove)::before {
+  content: "\00a0\00a0" counter(step);
 }
 
-code[data-diff] .diff-deletion .diff-deletion,
-code[data-diff] .diff-deletion .diff-insertion,
-code[data-diff] .diff-insertion .diff-deletion,
-code[data-diff] .diff-insertion .diff-insertion {
-  background-color: transparent;
+pre.has-diff code.line-numbers .line.add::before {
+  content: "+ " counter(step);
+  color: rgb(16 185 129);
+  font-weight: 600;
 }
 
-code[data-diff] .diff-deletion > .diff-operator,
-code[data-diff] .diff-insertion > .diff-operator {
-  display: none;
-}
-
-code[data-diff] .diff-deletion::before {
-  content: "-";
-  margin-left: -1ch;
-  background-color: rgb(144 84 84 / 70%);
-  color: #f8f8f2;
-}
-
-code[data-diff] .diff-insertion::before {
-  content: "+";
-  margin-left: -1ch;
-  background-color: rgb(93 125 93 / 50%);
-  color: #f8f8f2;
+pre.has-diff code.line-numbers .line.remove::before {
+  content: "- " counter(step);
+  color: rgb(244 63 94);
+  font-weight: 600;
 }
 
 /* Fix <Foo::Bar> */
