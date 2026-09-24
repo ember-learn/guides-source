@@ -297,7 +297,7 @@ export default class Substring extends Helper {
 
 Class helpers are useful when the helper logic is fairly complicated, requires
 fine-grained control of the helper lifecycle, is _stateful_ (we'll be
-discussing state in the next chapter), or requiring access to a [service](../../services/).
+discussing state in the next chapter), or requiring access to a [service](../../application-state/services/).
 
 ## Built-in and Common Helpers
 
