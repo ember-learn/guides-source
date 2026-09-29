@@ -24,7 +24,7 @@ For example, here we add the `Type` brand to the `user` model:
 
 ```ts {data-filename="app/models/user.ts" data-diff="+2,+5"}
 import Model from "@ember-data/model";
-import type { Type } from "@warp-drive/core-types/symbols";
+import type { Type } from "@warp-drive/core/types/symbols";
 
 export default class User extends Model {
   declare [Type]: "user";
@@ -52,7 +52,7 @@ So, for example, you might write a class like this:
 
 ```typescript {data-filename="app/models/user.ts"}
 import Model, { attr } from "@ember-data/model";
-import type { Type } from "@warp-drive/core-types/symbols";
+import type { Type } from "@warp-drive/core/types/symbols";
 import CustomType from "@my-app/transforms/custom-transform";
 
 export default class User extends Model {
@@ -76,7 +76,7 @@ One way to make this safer is to supply a default value using the `defaultValue`
 
 ```typescript {data-filename="app/models/user.ts"}
 import Model, { attr } from "@ember-data/model";
-import type { Type } from "@warp-drive/core-types/symbols";
+import type { Type } from "@warp-drive/core/types/symbols";
 import CustomType from "@my-app/transforms/custom-transform";
 
 export default class User extends Model {
@@ -97,7 +97,7 @@ If the `@belongsTo` is `{ async: true }` (the default), the type is `AsyncBelong
 ```ts {data-filename="app/models/user.ts"}
 import Model, { belongsTo, AsyncBelongsTo } from "@ember-data/model";
 import type Address from "./address";
-import type { Type } from "@warp-drive/core-types/symbols";
+import type { Type } from "@warp-drive/core/types/symbols";
 
 export default class User extends Model {
   @belongsTo<Address>("address", { async: true, inverse: null })
@@ -116,7 +116,7 @@ If the `@belongsTo` is `{ async: false }`, the type you should use is `Model | n
 ```ts {data-filename="app/models/user.ts"}
 import Model, { belongsTo } from "@ember-data/model";
 import type Address from "./address";
-import type { Type } from "@warp-drive/core-types/symbols";
+import type { Type } from "@warp-drive/core/types/symbols";
 
 export default class User extends Model {
   @belongsTo<Address>("address", { async: false, inverse: null })
@@ -133,7 +133,7 @@ If the `@hasMany` is `{ async: true }` (the default), the type is `AsyncHasMany<
 ```ts {data-filename="app/models/user.ts"}
 import Model, { hasMany, AsyncHasMany } from "@ember-data/model";
 import type Post from "./post";
-import type { Type } from "@warp-drive/core-types/symbols";
+import type { Type } from "@warp-drive/core/types/symbols";
 
 export default class User extends Model {
   @hasMany<Post>("post", { async: true, inverse: "author" })
@@ -150,7 +150,7 @@ If the `@hasMany` is `{ async: false }`, the type is `HasMany<Model>`, where `Mo
 ```ts {data-filename="app/models/user.ts"}
 import Model, { hasMany, HasMany } from "@ember-data/model";
 import type Post from "./post";
-import type { Type } from "@warp-drive/core-types/symbols";
+import type { Type } from "@warp-drive/core/types/symbols";
 
 export default class User extends Model {
   @hasMany<Post>("post", { async: false, inverse: "author" })
@@ -177,7 +177,7 @@ When accessing `this.belongsTo` or `this.hasMany` from within a model, you'll ne
 ```ts {data-filename="app/models/user.ts"}
 import Model, { hasMany, AsyncHasMany } from "@ember-data/model";
 import type Post from "./post";
-import type { Type } from "@warp-drive/core-types/symbols";
+import type { Type } from "@warp-drive/core/types/symbols";
 
 export default class User extends Model {
   @hasMany<Post>("post", { async: true, inverse: "author" })
@@ -204,7 +204,7 @@ Transforms with a `Type` brand will have their type and options validated.
 ### Example: Typing a Transform
 
 ```ts {data-filename="app/transforms/big-int.ts"}
-import type { Type } from "@warp-drive/core-types/symbols";
+import type { Type } from "@warp-drive/core/types/symbols";
 
 export default class BigIntTransform {
   deserialize(serialized: string): BigInt | null {
@@ -227,7 +227,7 @@ export default class BigIntTransform {
 ```ts {data-filename="app/models/user.ts"}
 import Model, { attr } from "@ember-data/model";
 import type { StringTransform } from "@ember-data/serializer/transforms";
-import type { Type } from "@warp-drive/core-types/symbols";
+import type { Type } from "@warp-drive/core/types/symbols";
 
 export default class User extends Model {
   @attr<StringTransform>("string") declare name: string;
