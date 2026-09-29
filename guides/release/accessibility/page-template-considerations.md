@@ -65,7 +65,7 @@ module('Acceptance | posts', function (hooks) {
 
 ## Skip Navigation Links
 
-A skip navigation link, or skip link, is a useful feature for users who want to bypass content that is repeated on multiple pages (i.e., a site header). This can especially helpful to users with assistive technology, who have to browse website content in a more linear fashion, but it can also be useful for power users who prefer to navigate websites only using a keyboard.
+A skip navigation link, or skip link, is a useful feature for users who want to bypass content that is repeated on multiple pages (i.e., a site header). This can especially helpful to users with assistive technology, who have to browse website content in a more linear fashion, but it can also be useful for power users who prefer to navigate websites only using a keyboard. It is also necessary for applications that have accessibility compliance requirements. See [Understanding Bypass Blocks](https://www.w3.org/WAI/WCAG22/Understanding/bypass-blocks.html) for more information about this [WCAG](https://www.w3.org/TR/WCAG22/) Success Criterion.
 
 <img width="675px" title="Skip Main Content Example" alt="A visual representation of how the skip link works in the browser" src="/images/accessibility/page-template-considerations/skip-main-content.png"/>
 
