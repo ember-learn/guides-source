@@ -16,14 +16,17 @@ Router.map(function() {
 });
 ```
 
-```handlebars {data-filename=app/templates/photos.hbs}
-<ul>
-  {{#each this.photos as |p|}}
-    <li>
-      <LinkTo @route="photos.edit" @model={{p}}>{{p.title}}</LinkTo>
-    </li>
-  {{/each}}
-</ul>
+```gjs {data-filename=app/templates/photos.gjs}
+import { LinkTo } from '@ember/routing';
+<template>
+  <ul>
+    {{#each this.photos as |p|}}
+      <li>
+        <LinkTo @route="photos.edit" @model={{p}}>{{p.title}}</LinkTo>
+      </li>
+    {{/each}}
+  </ul>
+</template>
 ```
 
 The `@route` argument is the name of the route to link to, and the `@model`
@@ -56,7 +59,7 @@ behavior can be customized within `PhotoEditRoute`'s `serialize` hook.
 Alternatively, you can explicitly provide a serialized `id`, in place of
 passing a model object:
 
-```handlebars {data-filename=app/templates/photos.hbs}
+```gjs {data-filename=app/templates/photos.gjs}
 <LinkTo @route="photos.edit" @model="1">First Photo Ever</LinkTo>
 ```
 
@@ -93,14 +96,17 @@ will be given the `active` CSS class. For example, if you were at the URL
 
 The CSS class name used for active classes can be customized for a single use of `<LinkTo />` by passing an `@activeClass` argument:
 
-```handlebars {data-filename=app/templates/photos.hbs}
-<ul>
-  {{#each this.photos as |p|}}
-    <li>
-      <LinkTo @route="photos.edit" @model={{p}} @activeClass="font-bold">{{p.title}}</LinkTo>
-    </li>
-  {{/each}}
-</ul>
+```gjs {data-filename=app/templates/photos.gjs}
+import { LinkTo } from '@ember/routing';
+<template>
+  <ul>
+    {{#each this.photos as |p|}}
+      <li>
+        <LinkTo @route="photos.edit" @model={{p}} @activeClass="font-bold">{{p.title}}</LinkTo>
+      </li>
+    {{/each}}
+  </ul>
+</template>
 ```
 
 will result in:
@@ -146,12 +152,15 @@ URL.
 
 For example, if we are currently on `/photos/2`, then the following template:
 
-```handlebars {data-filename=app/templates/photos/photo.hbs}
-{{#each this.photo.comments as |comment|}}
-  <LinkTo @route="photos.photo.comment" @model={{comment}}>
-    {{excerpt comment.body}}...
-  </LinkTo>
-{{/each}}
+```gjs {data-filename=app/templates/photos/photo.gjs}
+import { LinkTo } from '@ember/routing';
+<template>
+  {{#each this.photo.comments as |comment|}}
+    <LinkTo @route="photos.photo.comment" @model={{comment}}>
+      {{excerpt comment.body}}...
+    </LinkTo>
+  {{/each}}
+</template>
 ```
 
 ...will render something like this:
@@ -182,18 +191,29 @@ To solve this problem, or maybe to cross-link comments from photos other than
 the currently active one, you can pass an array of model objects using the
 `@models` argument and the `{{array}}` helper:
 
-```handlebars {data-filename=app/templates/photos.hbs}
-<h1>Latest Comments</h1>
+```gjs {data-filename=app/templates/photos.gjs}
+import { LinkTo } from '@ember/routing';
+import { array } from '@ember/helper';
 
-<ul>
-  {{#each this.latestComments as |comment|}}
-    <li>
-      <LinkTo @route="photos.photo.comment" @models={{array comment.photo comment}}>
-        {{excerpt comment.body}}...
-      </LinkTo>
-    </li>
-  {{/each}}
-</ul>
+export default class {
+  get latestComments() {
+    return this.model.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 5);
+  }
+}
+
+<template>
+  <h1>Latest Comments</h1>
+
+  <ul>
+    {{#each this.latestComments as |comment|}}
+      <li>
+        <LinkTo @route="photos.photo.comment" @models={{array comment.photo comment}}>
+          {{excerpt comment.body}}...
+        </LinkTo>
+      </li>
+    {{/each}}
+  </ul>
+</template>
 ```
 
 Here, we are passing an array of model objects (the photo, then the comment),
@@ -207,7 +227,7 @@ argument. Therefore, it is an error to pass _both_ arguments at the same time.
 The `@query` argument, along with the `{{hash}}` helper, can be used to set
 query params on a link:
 
-```handlebars
+```gjs
 // Explicitly set target query params
 <LinkTo @route="posts" @query={{hash direction="asc"}}>Sort</LinkTo>
 
@@ -224,10 +244,13 @@ example, it is quite common to want to add additional CSS classes to the
 generated link tag, or specifying the appropriate ARIA attributes. You can
 simply pass them along with the invocation:
 
-```handlebars {data-filename=app/templates/photos/edit.hbs}
-<LinkTo @route="photos" class="btn btn-primary" role="button" aria-pressed="false">
-  Discard Changes
-</LinkTo>
+```gjs {data-filename=app/templates/photos/edit.gjs}
+import { LinkTo } from '@ember/routing';
+<template>
+  <LinkTo @route="photos" class="btn btn-primary" role="button" aria-pressed="false">
+    Discard Changes
+  </LinkTo>
+</template>
 ```
 
 CSS classes passed this way will be _in addition to_ the standard `ember-view`
@@ -240,7 +263,7 @@ browser's history when transitioning between routes. However, to replace the
 current entry in the browser's history instead, you can use the `@replace`
 option:
 
-```handlebars
+```gjs
 <LinkTo @route="photo.comment" @model={{this.topComment}} @replace={{true}}>
   Top comment for the current photo
 </Link>
