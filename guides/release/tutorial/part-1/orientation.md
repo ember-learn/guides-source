@@ -222,7 +222,7 @@ Babel: @embroider/macros (1) | 302ms
 
 
 
-  VITE v8.3.1  ready in 3060 ms
+  VITE v8.3.1  ready in 3004 ms
 
   ➜  Local:   http://localhost:4200/
 ```
