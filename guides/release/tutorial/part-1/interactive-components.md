@@ -226,11 +226,10 @@ Finally, we added the `@action` decorator to our method. This indicates to Ember
 
 With that, it's time to wire this up in the template section:
 
-```gjs { data-filename="app/components/rental/image.gjs" data-diff="+4,-15,+16,-19,+20,-22,+23,-26,+27" }
+```gjs { data-filename="app/components/rental/image.gjs" data-diff="-14,+15,-18,+19,-21,+22,-25,+26" }
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
-import { on } from '@ember/modifier';
 
 export default class RentalImage extends Component {
   @tracked isLarge = false;
@@ -263,7 +262,7 @@ We changed two things here.
 
 First, since we wanted to make our component interactive, we switched the containing tag from `<div>` to `<button>` (this is important for accessibility reasons). By using the correct semantic tag, we will also get focusability and keyboard interaction handling "for free".
 
-Next, we used the `{{on}}` _[modifier](../../../components/template-lifecycle-dom-and-modifiers/#toc_event-handlers)_ to attach `this.toggleSize` as a click handler on the button. The `{{on}}` modifier is imported from the `@ember/modifier` package, which is part of Ember.
+Next, we used the `{{on}}` _[modifier](../../../components/template-lifecycle-dom-and-modifiers/#toc_event-handlers)_ to attach `this.toggleSize` as a click handler on the button. The `{{on}}` modifier is a built-in keyword in Ember.
 
 With that, we have created our first _interactive_ component. Go ahead and try it in the browser!
 
@@ -337,11 +336,10 @@ Let's clean up our template before moving on. We introduced a lot of duplication
 
 These changes are buried deep within the large amount of duplicated code. We can reduce the duplication by using an `{{if}}` _[expression](../../../components/conditional-content/#toc_inline-if)_ instead:
 
-```gjs { data-filename="app/components/rental/image.gjs" data-diff="-14,-15,-16,+17,+18,+19,-21,-22,-23,-24,+25,-27,-28,+29,+30" }
+```gjs { data-filename="app/components/rental/image.gjs" data-diff="-13,-14,-15,+16,+17,+18,-20,-21,-22,-23,+24,-26,-27,+28,+29" }
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
-import { on } from '@ember/modifier';
 
 export default class RentalImage extends Component {
   @tracked isLarge = false;
@@ -376,11 +374,10 @@ The expression version of `{{if}}` takes two arguments. The first argument is th
 
 Optionally, `{{if}}` can take a third argument for what the expression should evaluate into if the condition is false. This means we could rewrite the button label like so:
 
-```gjs { data-filename="app/components/rental/image.gjs" data-diff="-16,-17,-18,-19,-20,+21" }
+```gjs { data-filename="app/components/rental/image.gjs" data-diff="-15,-16,-17,-18,-19,+20" }
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
-import { on } from '@ember/modifier';
 
 export default class RentalImage extends Component {
   @tracked isLarge = false;
