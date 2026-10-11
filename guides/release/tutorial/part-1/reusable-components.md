@@ -168,14 +168,15 @@ Build successful (13286ms)
 
 Slowest Nodes (totalTime >= 5%) | Total (avg)
 -+-
-Babel: @embroider/macros (1) | 240ms
+Babel: @embroider/macros (1) | 306ms
 
 
-5:41:37 AM [vite] (client) Re-optimizing dependencies because lockfile has changed
+5:39:27 AM [vite] (client) Re-optimizing dependencies because lockfile has changed
 
-  VITE v8.3.4  ready in 2423 ms
+  VITE v8.3.4  ready in 3142 ms
 
   ➜  Local:   http://localhost:4200/
+  ➜  Network: use --host to expose
 ```
 
 <img src="/images/tutorial/part-1/reusable-components/pass@2x.png" alt="Tests passing with the initial &lt;Map&gt; tests" width="1024" height="768">
