@@ -55,7 +55,7 @@ Additionally:
 
 ## Publishing
 
-When you publish an addon written in TypeScript, the `.ts` files will be consumed and transpiled by Babel as part of building the host application the same way `.js` files are, in order to meet the requirements of the application's `config/targets.js`. This means that no special steps are required for your source code to be consumed by users of your addon.
+When you publish an addon written in TypeScript, the `.ts` files will be consumed and transpiled by Babel as part of building the host application the same way `.js` files are, in order to meet the application's [build targets][build-targets]. This means that no special steps are required for your source code to be consumed by users of your addon.
 
 ### Publishing Notes for V1 Addons
 
@@ -153,6 +153,7 @@ declare module 'addon/templates/*' {
 
 <!-- Internal links -->
 
+[build-targets]: ../../../configuring-ember/build-targets/
 [global-types]: ../../additional-resources/faq/#toc_global-types-for-your-project
 [publishing-v1]: ./#toc_publishing-notes-for-v1-addons
 [tsconfig]: ../configuration/#toc_tsconfigjson
