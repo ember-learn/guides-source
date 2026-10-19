@@ -103,9 +103,9 @@ export default class MyRoute extends Route {
 
 [controller]: ../../core-concepts/routing/#toc_controller-injections-and-lookups
 [get-set]: ../../additional-resources/legacy/#toc_classic-get-or-set-methods
-[model-attr]: ../../core-concepts/ember-data/#toc_attr
-[model-belongsto]: ../../core-concepts/ember-data/#toc_belongsto
-[model-hasmany]: ../../core-concepts/ember-data/#toc_hasMany
+[model-attr]: ../../core-concepts/ember-data/#toc_attributes
+[model-belongsto]: ../../core-concepts/ember-data/#toc_async-belongsto-relationships
+[model-hasmany]: ../../core-concepts/ember-data/#toc_async-hasmany-relationships
 [owner-lookup]: https://api.emberjs.com/ember/release/classes/Owner/methods/lookup?anchor=lookup
 [service]: ../../core-concepts/services/#toc_using-services
 [signature]: ../../core-concepts/invokables/#toc_signature-basics
