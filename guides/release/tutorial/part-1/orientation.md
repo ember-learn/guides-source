@@ -135,16 +135,13 @@ super-rentals
 │   ├── optional-features.json
 │   └── targets.js
 ├── dist
-│   ├── @embroider
-│   │   └── virtual
-│   │       ├── app.css
-│   │       ├── test-support.css
-│   │       ├── test-support.js
-│   │       ├── vendor.css
-│   │       └── vendor.js
 │   ├── assets
 │   │   ├── app-B85jO3oc.css
 │   │   ├── app-DLabWhqC.js
+│   │   ├── embroider-virtual-app-BhnpFSdG.css
+│   │   ├── embroider-virtual-test-support-D8T8Uzkl.js
+│   │   ├── embroider-virtual-vendor-B_SY1GJM.css
+│   │   ├── embroider-virtual-vendor-FZ9pEbul.js
 │   │   ├── main-KBE5BkU0.js
 │   │   ├── modules-4-12-CZ2KNjg4.js
 │   │   ├── rolldown-runtime-XKyaHtl9.js
@@ -191,7 +188,7 @@ super-rentals
 ├── testem.cjs
 └── vite.config.mjs
 
-26 directories, 58 files
+24 directories, 57 files
 ```
 
 We'll learn about the purposes of these files and folders as we go. For now, just know that we'll spend most of our time working within the `app` folder.
@@ -218,11 +215,11 @@ Build successful (9761ms)
 
 Slowest Nodes (totalTime >= 5%) | Total (avg)
 -+-
-Babel: @embroider/macros (1) | 236ms
+Babel: @embroider/macros (1) | 390ms
 
 
 
-  VITE v8.3.5  ready in 2335 ms
+  VITE v8.3.5  ready in 3491 ms
 
   ➜  Local:   http://localhost:4200/
 ```
