@@ -24,7 +24,7 @@ To verify that your installation was successful, run:
 
 ```shell
 $ ember --version
-ember-cli: 6.12.0
+ember-cli: 7.3.0
 node: 20.20.2
 os: linux x64
 ```
@@ -135,22 +135,18 @@ super-rentals
 │   ├── optional-features.json
 │   └── targets.js
 ├── dist
-│   ├── @embroider
-│   │   └── virtual
-│   │       ├── app.css
-│   │       ├── test-support.css
-│   │       ├── test-support.js
-│   │       ├── vendor.css
-│   │       └── vendor.js
 │   ├── assets
-│   │   ├── app-DgioD2rk.css
-│   │   ├── app-kH0EqUK0.js
-│   │   ├── dist-BUdT4Swa.js
-│   │   ├── main-BINtkAbW.js
-│   │   ├── manager-C2ILo-5D.js
-│   │   ├── modules-4-12-BPXQYON-.js
-│   │   ├── tests-BdSWFklr.css
-│   │   └── tests-CIHkQsCT.js
+│   │   ├── app-B85jO3oc.css
+│   │   ├── app-DLabWhqC.js
+│   │   ├── embroider-virtual-app-BhnpFSdG.css
+│   │   ├── embroider-virtual-test-support-D8T8Uzkl.js
+│   │   ├── embroider-virtual-vendor-B_SY1GJM.css
+│   │   ├── embroider-virtual-vendor-FZ9pEbul.js
+│   │   ├── main-KBE5BkU0.js
+│   │   ├── modules-4-12-CZ2KNjg4.js
+│   │   ├── rolldown-runtime-XKyaHtl9.js
+│   │   ├── tests-C0U09n5o.css
+│   │   └── tests-HvHweYuj.js
 │   ├── ember-welcome-page
 │   │   └── construction.png
 │   ├── tests
@@ -192,7 +188,7 @@ super-rentals
 ├── testem.cjs
 └── vite.config.mjs
 
-26 directories, 59 files
+24 directories, 57 files
 ```
 
 We'll learn about the purposes of these files and folders as we go. For now, just know that we'll spend most of our time working within the `app` folder.
@@ -219,11 +215,11 @@ Build successful (9761ms)
 
 Slowest Nodes (totalTime >= 5%) | Total (avg)
 -+-
-Babel: @embroider/macros (1) | 330ms
+Babel: @embroider/macros (1) | 192ms
 
 
 
-  VITE v8.0.11  ready in 3171 ms
+  VITE v8.3.5  ready in 1925 ms
 
   ➜  Local:   http://localhost:4200/
 ```
