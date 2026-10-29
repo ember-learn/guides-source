@@ -1,3 +1,3 @@
 ---
-redirect: upgrading/current-edition/templates
+redirect: reference/templates
 ---
