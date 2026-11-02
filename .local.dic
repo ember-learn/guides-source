@@ -55,6 +55,7 @@ declaratively
 DefinitelyTyped
 deps
 dev
+DevTools
 draggable
 dropdown
 durations
@@ -137,6 +138,7 @@ linters
 lookups
 LSP
 Mapbox
+TestMu
 TomTom
 MDN
 metaprogramming
