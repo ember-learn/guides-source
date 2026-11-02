@@ -11,6 +11,7 @@ These accessibility learning resources will provide additional support to the de
 
 - [Accessibility Insights](https://accessibilityinsights.io/)- Use FastPass to find common, high-impact issues 
 - [aXe extension for Chrome](https://chrome.google.com/webstore/detail/axe/lhdoppojpmngadmnindnejefpokejbdd)
+- [TestMu AI Accessibility DevTools](https://chromewebstore.google.com/detail/testmu-ai-accessibility-d/mmbbmjhbidfflcbiffppojapgonepmab)- Free Chrome extension (sign-in required) that runs axe-core checks against WCAG 2.0, 2.1 and 2.2
 - [Accessibility Support](https://a11ysupport.io/)- Find out if your code will work with assistive tech
 - [How and where to report accessibility bugs](https://www.digitala11y.com/how-where-to-report-accessibility-bugs/)
 
