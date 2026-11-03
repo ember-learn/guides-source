@@ -161,6 +161,8 @@
       url: "native-classes-in-depth"
     - title: "Rendering Values"
       url: "rendering-values"
+    - title: "Rendering Components"
+      url: "rendering-components"
 
 - title: "Application Development"
   url: "toc-heading_application-development"
