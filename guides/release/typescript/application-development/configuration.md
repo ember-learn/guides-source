@@ -33,7 +33,7 @@ In general, you may customize your TypeScript build process as usual using the `
 
    Note that any changes you _do_ make to `"outDir"` and `"noEmit"` won't have any effect on how _Ember_ builds your application. The build pipeline will continue to use its own temp folder.
 
-1. Since your application is built by Babel, and only _type-checked_ by TypeScript, we set the [`"target"`][tsconfig-target] key in [`"@tsconfig/ember/tsconfig.json"`][ember-tsconfig] to the current version of the ECMAScript standard so that type-checking uses the latest and greatest from the JavaScript standard library. The Babel configuration in your app's `config/targets.js` and any included polyfills will determine the final build output.
+1. Since your application is built by Babel, and only _type-checked_ by TypeScript, we set the [`"target"`][tsconfig-target] key in [`"@tsconfig/ember/tsconfig.json"`][ember-tsconfig] to the current version of the ECMAScript standard so that type-checking uses the latest and greatest from the JavaScript standard library. Your app's [build targets][build-targets] and any included polyfills will determine the final build output.
 
 1. If you make changes to the paths included in or excluded from the build via your `tsconfig.json` (using the [`"include"`][tsconfig-include], [`"exclude"`][tsconfig-exclude], or [`"files"`][tsconfig-files] keys), you will need to restart the server to take the changes into account: the build pipeline does not currently watch the `tsconfig.json` file.
 
@@ -63,6 +63,8 @@ return require('@embroider/compat').compatBuild(app, Webpack, {
 ```
 
 <!-- Internal links -->
+
+[build-targets]: ../../../configuring-ember/build-targets/
 
 <!-- External links -->
 

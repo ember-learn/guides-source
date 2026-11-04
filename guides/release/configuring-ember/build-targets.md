@@ -6,34 +6,39 @@ Why does this matter? Over-transpiling to very old JavaScript increases bundle s
 
 If you need to update the defaults for any reason (i.e. need to target a very legacy browser), you can set the targets for your app and the compiler applies only the minimal transforms and polyfills required for those browsers.
 
-If you open `config/targets.js`, you will find the following code:
+Your app's targets are in the `browserslist` key of `package.json`:
 
-```javascript {data-filename=config/targets.js}
-"use strict";
-
-const browsers = [
-  "last 1 Chrome versions",
-  "last 1 Firefox versions",
-  "last 1 Safari versions",
-];
-
-module.exports = {
-  browsers,
-};
+```json {data-filename=package.json}
+{
+  "browserslist": [
+    "last 1 Chrome versions",
+    "last 1 Firefox versions",
+    "last 1 Safari versions"
+  ]
+}
 ```
 
-If you inspect your compiled code after running a build with `npm run build`, you'll see that many modern features (like arrow functions and async/await) preserved when your targets support them.
+If you inspect your compiled code after running a build with `npm run build`, you'll see that many modern features (like arrow functions and async/await) are preserved when your targets support them.
 
-This feature is backed by [Browserslist](https://github.com/ai/browserslist) and [Can I Use](https://caniuse.com/).
+This feature is backed by [Browserslist](https://github.com/browserslist/browserslist) and [Can I Use](https://caniuse.com/).
 These websites track usage stats of browsers, so you can use complex queries based on the user base of every browser.
 
 If you want to target all browsers with more than a 4% market share in Canada,
-you'd have the following options:
+you could use:
 
-```javascript {data-filename=config/targets.js}
-module.exports = {
-  browsers: ["> 4% in CA"],
-};
+```json {data-filename=package.json}
+{
+  "browserslist": ["> 4% in CA"]
+}
 ```
 
+Other tools that read Browserslist, like Autoprefixer, use the same list.
+See the [Browserslist documentation](https://github.com/browserslist/browserslist#queries) for more queries, and for other places to put the list, such as a `.browserslistrc` file.
+
 It is very important that you properly configure the targets of your app so you get the smallest and fastest code possible.
+
+## Apps with `config/targets.js`
+
+Older apps set their targets in `config/targets.js`.
+It still works, and it takes precedence over the `browserslist` key, but the build prints a warning about it.
+To move over, copy the `browsers` array into the `browserslist` key of `package.json` and delete `config/targets.js`.
