@@ -5,91 +5,6 @@ In the rest of this guide, we emphasize the happy path of working with Ember in 
 
 The rest of this page is dedicated to helping you understand how Ember's types and the classic Ember system interact.
 
-## Classic Ember Components
-
-Many of the same considerations as discussed in the [TypeScript Guides for Glimmer Components][components] apply to classic Ember Components. However, there are several additional considerations:
-
-- Classic Ember Components support both named and positional arguments. If you supply `Args` in the component signature as an object shape the same way you would for a Glimmer component, those arguments will be treated as _named_ arguments. If you are using _positional_ arguments, you must specify the `Positional` key in the `Args` interface and specify any named arguments under the `Named` key.
-
-- Classic Ember component arguments are merged with the properties on the class, rather than being supplied separately as `this.args`. As a result, they require more boilerplate to incorporate: we must use [interface merging][merge] to represent that the arguments and the properties of the class are the same. (This also means that there is no support for type-powered completion with JSDoc for classic Ember Components, because TypeScript does not support interface merging with JSDoc.)
-
-- The `Element` for a classic Ember component should be the same as the [`tagName`][tagName] for the component—but this is not type-checked.
-
-If the `AudioPlayer` component shown above were a classic Ember component, we would define its signature and backing class like this:
-
-```typescript {data-filename="app/components/audio-player.ts"}
-import Component from '@ember/component';
-import { tracked } from '@glimmer/tracking';
-import { action } from '@ember/object';
-
-interface AudioPlayerNamedArgs {
-  /** The url for the audio to be played */
-  srcUrl: string;
-}
-
-interface AudioPlayerSignature {
-  Args: AudioPlayerNamedArgs;
-  Blocks: {
-    fallback: [srcUrl: string];
-    title: [];
-  };
-  Element: HTMLAudioElement;
-}
-
-export default interface AudioPlayer extends AudioPlayerNamedArgs {}
-export default class AudioPlayer extends Component<AudioPlayerSignature> {
-  tagName = 'audio';
-
-  @tracked isPlaying = false;
-
-  @action
-  play() {
-    this.isPlaying = true;
-  }
-
-  @action
-  pause() {
-    this.isPlaying = false;
-  }
-}
-```
-
-And if we add a positional argument, things get even funkier because there isn't a way to splat the `Positional` arguments tuple onto the class interface:
-
-```typescript {data-filename="app/components/audio-player.ts"}
-import Component from '@ember/component';
-import { tracked } from '@glimmer/tracking';
-import { action } from '@ember/object';
-
-interface AudioPlayerNamedArgs {
-  /** The url for the audio to be played */
-  srcUrl: string;
-}
-
-interface AudioPlayerSignature {
-  Args: {
-    Named: AudioPlayerNamedArgs;
-    Positional: [myPositionalArg: string];
-  };
-  Blocks: {
-    fallback: [srcUrl: string];
-    title: [];
-  };
-  Element: HTMLAudioElement;
-}
-
-export default interface AudioPlayer extends AudioPlayerNamedArgs {}
-export default class AudioPlayer extends Component<AudioPlayerSignature> {
-  tagName = 'audio';
-  static positionalParams = ['myPositionalArg'];
-  declare myPositionalArg: string;
-
-  // ...the same code as before
-}
-```
-
-In general, while we do support classic Ember Components for the sake of backwards compatibility and migration, we strongly recommend that you [migrate away from classic Ember Components][migrating-from-classic-components] to Glimmer Components.
-
 ## EmberObject
 
 When working with the legacy Ember object model, `EmberObject`, there are a number of caveats and limitations you need to be aware of. For today, these caveats and limitations apply to any classes which extend directly from `EmberObject`, or which extend classes which _themselves_ extend `EmberObject`.
@@ -118,56 +33,23 @@ While we describe here how to use types with classic (mixin-based) classes insof
 
 ## Computed Properties
 
-There are two variants of Ember's computed properties you may encounter:
+You may encounter Ember's computed properties in the decorator form on native classes:
 
-- the decorator form used with native classes
-- the callback form used with classic classes (based on `EmberObject`)
+```typescript {data-filename="app/utils/user-profile.ts"}
+import { computed } from '@ember/object';
 
-### Decorator form
-
-```typescript {data-filename="app/components/user-profile.ts"}
-import Component from '@ember/component';
-import { computed } from '@ember/object/computed';
-
-export default class UserProfile extends Component {
+export default class UserProfile {
   name = 'Chris';
   age = 33;
 
   @computed('name', 'age')
   get bio() {
-    return `${this.name} is `${this.age}` years old!`;
+    return `${this.name} is ${this.age} years old!`;
   }
 }
 ```
 
-Note that it is impossible for `@computed` to know whether the keys you pass to it are allowed or not. For this reason, we recommend you [migrate away from computed properties][migrate-from-computed].
-
-### Callback form
-
-Computed properties in the classic object model take a callback instead. In these cases, you will need to explicitly write out a `this` type for computed property callbacks for `get` and `set` to type-check correctly:
-
-```typescript {data-filename="app/components/user-profile.ts" data-diff="-8,+9"}
-import Component from '@ember/component';
-import { computed } from '@ember/object/computed';
-
-const UserProfile = Component.extend({
-  name: 'Chris',
-  age: 32,
-
-  bio: computed('name', 'age', function() {
-  bio: computed('name', 'age', function(this: UserProfile) {
-    return `${this.get('name')} is `${this.get('age')}` years old!`;
-  }),
-})
-
-export default UserProfile;
-```
-
-The [`this` type][this], tells TS to use `UserProfile` for `get` and `set` lookups; otherwise `this.get` would not know the types of `'name'` or `'age'` or even be able to suggest them for autocompletion.
-
-Note that this _does not always work_: you may get warnings from TypeScript about the item being defined in terms of itself.
-
-For this reason, we strongly recommend you [migrate away from computed properties][migrate-from-computed] and [migrate away from classic classes][migrating-from-classic-classes] before converting to TypeScript.
+Note that it is impossible for `@computed` to know whether the keys you pass to it are allowed or not. For this reason, we recommend you [migrate away from computed properties][migrate-from-computed] and [migrate away from classic classes][migrating-from-classic-classes] before converting to TypeScript.
 
 ## Classic `get` or `set` methods
 
@@ -180,15 +62,10 @@ In the few cases where you _do_ need to use `get`, you can chain `get` calls ins
 
 <!-- Internal links -->
 
-[components]: ../../core-concepts/invokables/#toc_glimmer-components
 [migrate-from-computed]: ../../../upgrading/current-edition/tracked-properties/
 [migrate-from-mixins]: ../../../upgrading/current-edition/native-classes/#toc_mixins
 [migrating-from-classic-classes]: ../../../upgrading/current-edition/native-classes/
-[migrating-from-classic-components]: ../../../upgrading/current-edition/glimmer-components/
 
 <!-- External links -->
 
-[merge]: https://www.typescriptlang.org/docs/handbook/declaration-merging.html#merging-interfaces
 [octane]: https://emberjs.com/editions/octane/
-[tagName]: https://api.emberjs.com/ember/release/classes/Component#html-tag
-[this]: https://www.typescriptlang.org/docs/handbook/2/functions.html#declaring-this-in-a-function

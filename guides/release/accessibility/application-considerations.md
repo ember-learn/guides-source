@@ -45,7 +45,6 @@ There are some existing Ember addons that may help you make your app more access
 Here are some examples of accessibility-focused addons created by many people throughout the Ember community:
 
 - [ember-a11y-landmarks](https://github.com/ember-a11y/ember-a11y-landmarks) - Ember addon to help with landmark roles for better accessibility
-- [ember-component-focus](https://github.com/ember-a11y/ember-component-focus) - A mixin for adding methods to your Ember components that help you manage the currently focused element.
 - [ember-steps](https://github.com/rwjblue/ember-steps) - Declarative create wizards, tabbed UIs, and more
 - [ember-page-title](https://github.com/tim-evans/ember-page-title) - Page title management for Ember.js Apps
 - [ember-self-focused](https://github.com/linkedin/self-focused/tree/master/packages/ember-self-focused) - Focus on route on transition
