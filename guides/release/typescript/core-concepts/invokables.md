@@ -335,10 +335,6 @@ import playWhen from 'my-app/modifiers/play-when';
 }
 ```
 
-## Classic Ember Components
-
-See ["Working With Ember Classic"][classic-components].
-
 ## Helpers
 
 Helpers in Ember are just functions or classes with a well-defined interface, which means they largely Just Work™ with TypeScript. However, there are a couple things you'll want to watch out for.
@@ -727,7 +723,6 @@ In those cases, your best bet is to find a simpler way to structure the types wh
 <!-- Internal links -->
 
 [audio-player-section]: ../../../components/template-lifecycle-dom-and-modifiers/#toc_communicating-between-elements-in-a-component
-[classic-components]: ../../additional-resources/legacy/#toc_classic-ember-components
 [components]: ../../../components/introducing-components/
 [helpers]: ../../../components/helper-functions/
 [modifiers]: ../../../components/template-lifecycle-dom-and-modifiers/
