@@ -105,10 +105,10 @@ declare module '@ember/service' {
 
 <!-- Internal links -->
 
-[example-location]: ../../../services/#toc_defining-services
+[example-location]: ../../../application-state/services/#toc_defining-services
 [decorators]: ../../additional-resources/gotchas/#toc_decorators
 [registries]: ../../additional-resources/gotchas/#toc_registries
-[services]: ../../../services/
+[services]: ../../../application-state/services/
 
 <!-- External links -->
 

@@ -199,7 +199,7 @@ export default class BlogPostsIndexRoute extends Route {
     <div class="cta-note-body">
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
-        You can read more about service injection in the <a href="../services/#toc_accessing-services"><i>Accessing Services</i></a> guide.
+        You can read more about service injection in the <a href="../application-state/services/#toc_accessing-services"><i>Accessing Services</i></a> guide.
       </div>
     </div>
     <img src="/images/mascots/zoey.png" role="presentation" alt="">
