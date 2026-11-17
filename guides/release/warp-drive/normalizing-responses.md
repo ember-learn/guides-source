@@ -166,11 +166,11 @@ export const NormalizeResponseHandler = {
 
 ## Request Bodies
 
-The JSON:API builders for saving data do not set the request body.
+The `updateRecord` builder does not set the request body.
 You set it yourself, so you control exactly what goes to the server.
 
-The `serializeResources` and `serializePatch` functions give you JSON:API data to start from.
-The [Creating, Updating and Deleting](../creating-updating-and-deleting-records/) guide shows both.
+The `serializePatch` function gives you the changed fields as a JSON:API document.
+The [Creating, Updating and Deleting](../creating-updating-and-deleting-records/#toc_persisting-changes) guide shows how to use it.
 
 If your server expects another format, build the body yourself.
 For example, a builder can turn the changes of a record into the format of your API:

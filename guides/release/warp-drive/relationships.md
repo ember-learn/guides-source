@@ -338,24 +338,46 @@ The links of a `hasMany` are available as `post.comments.links`.
 
 ### Creating Records with Relationships
 
-When you create a record, you can pass related records as fields:
+To create a record that relates to another record, put the relationship in the body of the request.
+This builder creates a comment for a blog post:
 
-```javascript
-let post = this.store.peekRecord('blog-post', '1');
+```javascript {data-filename=app/builders/comment.js}
+import { buildBaseURL } from '@warp-drive/utilities';
 
-let comment = this.store.createRecord('comment', {
-  body: 'Nice post!',
-  blogPost: post,
-});
+export function createComment(post, attributes) {
+  return {
+    url: buildBaseURL({ resourcePath: 'comments' }),
+    method: 'POST',
+    body: JSON.stringify({
+      data: {
+        type: 'comment',
+        attributes,
+        relationships: {
+          blogPost: { data: { type: 'blog-post', id: post.id } },
+        },
+      },
+    }),
+    op: 'createRecord',
+    cacheOptions: { types: ['comment'] },
+  };
+}
 ```
 
-Save the comment with the `createRecord` builder, as shown in
-[Creating, Updating and Deleting](../creating-updating-and-deleting-records/#toc_creating-records).
+```javascript
+import { createComment } from 'my-app/builders/comment';
 
-`post` is an immutable record, so it only shows data from the server.
-`post.comments` does not include the new comment yet.
-After the server saves the comment, the relationship in the response updates the cache.
+let post = this.store.peekRecord('blog-post', '1');
+
+const { content } = await this.store.request(
+  createComment(post, { body: 'Nice post!' }),
+);
+const comment = content.data;
+```
+
+The server responds with the saved comment and its `blogPost` relationship.
 Because the relationship has an inverse, `post.comments` then includes the new comment.
+
+The [Creating, Updating and Deleting](../creating-updating-and-deleting-records/#toc_creating-records) guide explains the parts of the builder.
 
 ### Readonly Nested Data
 

@@ -31,8 +31,8 @@ levelName[Type] = 'level-name';
 The store registers the schema and the derivation, as shown in
 [Defining Schemas](../../warp-drive/schemas/#toc_derived-fields).
 
-Records that you create with `store.createRecord` are editable.
-The test creates a player, changes its level, and checks the `levelName`:
+The test puts a player in the cache with `store.cache.put`, as a response from the server does.
+Then it puts a new level in the cache and checks that `levelName` follows:
 
 ```javascript {data-filename=tests/unit/schemas/player-test.js}
 import { module, test } from 'qunit';
@@ -43,11 +43,22 @@ module('Unit | Schema | player', function (hooks) {
 
   test('levelName changes at level 5', function (assert) {
     const store = this.owner.lookup('service:store');
-    const player = store.createRecord('player', { level: 4 });
 
+    store.cache.put({
+      content: {
+        data: { type: 'player', id: '1', attributes: { level: 4 } },
+      },
+    });
+
+    const player = store.peekRecord('player', '1');
     assert.strictEqual(player.levelName, 'Noob');
 
-    player.level = 5;
+    store.cache.put({
+      content: {
+        data: { type: 'player', id: '1', attributes: { level: 5 } },
+      },
+    });
+
     assert.strictEqual(player.levelName, 'Professional');
   });
 });

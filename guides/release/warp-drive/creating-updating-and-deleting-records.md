@@ -1,63 +1,70 @@
-You change data with two steps.
-First, you change a record in the store.
-Then, you send a request that saves the change on the server.
+You change data on the server with requests.
+WarpDrive puts each response in the cache, and the records in your app update.
 
-The builders in this guide come from `@warp-drive/utilities/json-api`.
 To make `store` available, you can [inject the `store` service](../#toc_injecting-the-store).
 
 ## Creating Records
 
-Call `store.createRecord()` to create a new record:
+To create a record, send a request with the data for the new record.
+Write a builder for the request:
 
-```javascript
-let post = this.store.createRecord('post', {
-  title: 'Rails is Omakase',
-  body: 'Lorem ipsum',
-});
+```javascript {data-filename=app/builders/post.js}
+import { buildBaseURL } from '@warp-drive/utilities';
+
+export function createPost(attributes) {
+  return {
+    url: buildBaseURL({ resourcePath: 'posts' }),
+    method: 'POST',
+    body: JSON.stringify({ data: { type: 'post', attributes } }),
+    op: 'createRecord',
+    cacheOptions: { types: ['post'] },
+  };
+}
 ```
 
-A new record is editable.
-You can set its fields until you save it:
+`buildBaseURL` makes the URL from the `host` and `namespace` of your app and the `resourcePath`.
+The body is a JSON:API document without an `id`, because the server assigns one.
+
+Pass the result of the builder to `store.request()`:
 
 ```javascript
-post.title = 'Ember is Omakase';
+import { createPost } from 'my-app/builders/post';
+
+const { content } = await this.store.request(
+  createPost({ title: 'Rails is Omakase', body: 'Lorem ipsum' }),
+); // => POST to '/posts'
+
+const post = content.data;
+post.id; // => the ID from the server
 ```
 
-The new record only exists in your app.
-To save it on the server, use the
-[`createRecord`](https://warp-drive.io/api/@warp-drive/utilities/json-api/functions/createRecord) builder.
+The server responds with the saved record, including its new `id`.
+WarpDrive puts the response in the cache, and `content.data` is the new record.
 
-The builder sets the URL and the method, but it does not set the body.
-You decide what to send.
-The `serializeResources` function gives you the record as a JSON:API document:
-
-```javascript
-import { cacheKeyFor } from '@warp-drive/core';
-import { createRecord, serializeResources } from '@warp-drive/utilities/json-api';
-
-let post = this.store.createRecord('post', {
-  title: 'Rails is Omakase',
-  body: 'Lorem ipsum',
-});
-
-const request = createRecord(post);
-request.body = JSON.stringify(
-  serializeResources(this.store.cache, cacheKeyFor(post)),
-);
-
-await this.store.request(request); // => POST to '/posts'
-```
-
-`cacheKeyFor(post)` returns the key that the cache uses for the record.
-
-The builder sets the `Accept` header, but it does not set `Content-Type`.
+The builder does not set the `Content-Type` header.
 Most JSON:API servers reject a body without that header.
 Add it once for all requests with a handler, as shown in
 [Request Handlers](../request-handlers/#toc_content-type).
 
-The server responds with the saved record, including its new `id`.
-WarpDrive puts the response in the cache and updates `post`.
-After the request, `post.id` has the ID from the server.
+### Lists After a Create
+
+A list that the store already loaded does not know about the new record.
+The `op` and `cacheOptions` of the builder solve this.
+After a `createRecord` request succeeds, the store marks every cached request for the type `post` as stale.
+
+A request joins that group when it has the same `cacheOptions.types`:
+
+```javascript {data-filename=app/builders/post.js}
+import { query } from '@warp-drive/utilities/json-api';
+
+export function queryPosts(params) {
+  const request = query('post', params);
+  request.cacheOptions.types = ['post'];
+  return request;
+}
+```
+
+The next time your app requests the list, the store loads it from the server again.
 
 ## Updating Records
 
@@ -90,7 +97,8 @@ To save the change, use the
 Pass `{ patch: true }` to send a `PATCH` request.
 Without it, the builder sends a `PUT` request.
 
-The `serializePatch` function gives you only the fields that changed:
+The `serializePatch` function gives you only the fields that changed.
+`cacheKeyFor(editable)` returns the key that the cache uses for the record:
 
 ```javascript
 import { cacheKeyFor } from '@warp-drive/core';

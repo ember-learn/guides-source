@@ -17,12 +17,14 @@ The JSON:API builders in `@warp-drive/utilities/json-api` follow these URL conve
 | ---------------- | -------------- | --------- | ------------------ |
 | Find             | `findRecord`   | GET       | /posts/123         |
 | Query            | `query`        | GET       | /posts?category=js |
-| Create           | `createRecord` | POST      | /posts             |
 | Update           | `updateRecord` | PUT       | /posts/123         |
 | Update (`patch`) | `updateRecord` | PATCH     | /posts/123         |
 | Delete           | `deleteRecord` | DELETE    | /posts/123         |
 
 The builders pluralize the type to make the path, so the type `post` uses the path `/posts`.
+
+To create a record, write your own builder for the `POST` request, as shown in
+[Creating, Updating and Deleting](../creating-updating-and-deleting-records/#toc_creating-records).
 
 ### Host and Namespace
 
