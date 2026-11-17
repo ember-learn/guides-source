@@ -31,8 +31,8 @@ levelName[Type] = 'level-name';
 The store registers the schema and the derivation, as shown in
 [Defining Schemas](../../warp-drive/schemas/#toc_derived-fields).
 
-The test puts a player in the cache with `store.cache.put`, as a response from the server does.
-Then it puts a new level in the cache and checks that `levelName` follows:
+The test puts a player in the store with `store.push`, as a response from the server does.
+Then it pushes a new level and checks that `levelName` follows:
 
 ```javascript {data-filename=tests/unit/schemas/player-test.js}
 import { module, test } from 'qunit';
@@ -44,19 +44,14 @@ module('Unit | Schema | player', function (hooks) {
   test('levelName changes at level 5', function (assert) {
     const store = this.owner.lookup('service:store');
 
-    store.cache.put({
-      content: {
-        data: { type: 'player', id: '1', attributes: { level: 4 } },
-      },
+    const player = store.push({
+      data: { type: 'player', id: '1', attributes: { level: 4 } },
     });
 
-    const player = store.peekRecord('player', '1');
     assert.strictEqual(player.levelName, 'Noob');
 
-    store.cache.put({
-      content: {
-        data: { type: 'player', id: '1', attributes: { level: 5 } },
-      },
+    store.push({
+      data: { type: 'player', id: '1', attributes: { level: 5 } },
     });
 
     assert.strictEqual(player.levelName, 'Professional');
@@ -67,8 +62,8 @@ module('Unit | Schema | player', function (hooks) {
 ## Testing Records Loaded from the Server
 
 Records from the server are immutable, and they can have relationships.
-To test them, put a JSON:API document in the cache with `store.cache.put`.
-Then read the records with `store.peekRecord`.
+To test them, push a JSON:API document into the store with `store.push`.
+`push` returns the records.
 No network request happens.
 
 Assume that a `user` belongs to a `profile`:
@@ -111,27 +106,23 @@ module('Unit | Schema | user', function (hooks) {
   test('a user has a profile', function (assert) {
     const store = this.owner.lookup('service:store');
 
-    store.cache.put({
-      content: {
-        data: {
-          type: 'user',
-          id: '1',
-          attributes: { name: 'Zoey' },
-          relationships: {
-            profile: { data: { type: 'profile', id: '1' } },
-          },
+    const user = store.push({
+      data: {
+        type: 'user',
+        id: '1',
+        attributes: { name: 'Zoey' },
+        relationships: {
+          profile: { data: { type: 'profile', id: '1' } },
         },
-        included: [
-          {
-            type: 'profile',
-            id: '1',
-            attributes: { bio: 'Ember mascot' },
-          },
-        ],
       },
+      included: [
+        {
+          type: 'profile',
+          id: '1',
+          attributes: { bio: 'Ember mascot' },
+        },
+      ],
     });
-
-    const user = store.peekRecord('user', '1');
 
     assert.strictEqual(user.name, 'Zoey');
     assert.strictEqual(user.profile.bio, 'Ember mascot');
@@ -154,18 +145,14 @@ module('Unit | Schema | user editing', function (hooks) {
   test('edits only show on the editable copy', async function (assert) {
     const store = this.owner.lookup('service:store');
 
-    store.cache.put({
-      content: {
-        data: {
-          type: 'user',
-          id: '1',
-          attributes: { name: 'Zoey' },
-          relationships: { profile: { data: null } },
-        },
+    const user = store.push({
+      data: {
+        type: 'user',
+        id: '1',
+        attributes: { name: 'Zoey' },
+        relationships: { profile: { data: null } },
       },
     });
-
-    const user = store.peekRecord('user', '1');
     const editable = await checkout(user);
 
     editable.name = 'Tomster';

@@ -166,35 +166,34 @@ export const NormalizeResponseHandler = {
 
 ## Request Bodies
 
-The `updateRecord` builder does not set the request body.
-You set it yourself, so you control exactly what goes to the server.
+Your builders make the body of each request, so you control exactly what goes to the server.
+The [Creating, Updating and Deleting](../creating-updating-and-deleting-records/#toc_persisting-changes) guide
+shows builders that send JSON:API documents.
 
-The `serializePatch` function gives you the changed fields as a JSON:API document.
-The [Creating, Updating and Deleting](../creating-updating-and-deleting-records/#toc_persisting-changes) guide shows how to use it.
+If your server expects another format, make that format in the builder.
+For example, this builder sends the changed attributes under a `user` key:
 
-If your server expects another format, build the body yourself.
-For example, a builder can turn the changes of a record into the format of your API:
+```javascript {data-filename=app/builders/user.js}
+import { recordIdentifierFor } from '@warp-drive/core';
+import { buildBaseURL } from '@warp-drive/utilities';
 
-```javascript {data-filename=app/builders/update-user.js}
-import { cacheKeyFor } from '@warp-drive/core';
-import { updateRecord } from '@warp-drive/utilities/json-api';
-
-export function updateUser(store, user) {
-  const changes = store.cache.changedAttrs(cacheKeyFor(user));
-  const body = {};
-
-  for (const [name, [, newValue]] of Object.entries(changes)) {
-    body[name] = newValue;
-  }
-
-  const request = updateRecord(user, { patch: true });
-  request.body = JSON.stringify({ user: body });
-  return request;
+/** PATCH /users/:id */
+export function updateUser(user, attributes) {
+  return {
+    url: buildBaseURL({
+      op: 'updateRecord',
+      identifier: { type: 'user', id: user.id },
+      resourcePath: 'users',
+    }),
+    method: 'PATCH',
+    body: JSON.stringify({ user: attributes }),
+    op: 'updateRecord',
+    records: [recordIdentifierFor(user)],
+  };
 }
 ```
 
-`changedAttrs` returns an object.
-Each key is a changed field, and each value is an array of `[oldValue, newValue]`.
+The handler that converts the responses of your server also converts the response to this request.
 
 To learn more, read [Handlers](https://warp-drive.io/guides/the-manual/requests/handlers)
 and [Builders](https://warp-drive.io/guides/the-manual/requests/builders) in the WarpDrive guides.

@@ -90,11 +90,11 @@ Write a builder for the endpoint and send it with `store.request()`.
 If the response is a JSON:API document, the store puts every record in it into the cache:
 
 ```javascript {data-filename=app/builders/confirm-payment.js}
+/** POST /api/process-payment */
 export function confirmPayment(data) {
   return {
     url: '/api/process-payment',
     method: 'POST',
-    headers: new Headers({ 'Content-Type': 'application/vnd.api+json' }),
     body: JSON.stringify(data),
   };
 }

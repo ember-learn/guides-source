@@ -316,15 +316,21 @@ In a template, you can loop over a `hasMany` directly:
 </template>
 ```
 
-To load the related records with the parent record, use the `include` option of the builder:
+To load the related records with the parent record, use the `include` option in your builder:
 
-```javascript
+```javascript {data-filename=app/builders/blog-post.js}
 import { findRecord } from '@warp-drive/utilities/json-api';
 
-// GET /blog-posts/1?include=comments
-const { content } = await this.store.request(
-  findRecord('blog-post', '1', { include: ['comments'] }),
-);
+/** GET /blog-posts/:id?include=comments */
+export function getBlogPostWithComments(id) {
+  return findRecord('blog-post', id, { include: ['comments'] });
+}
+```
+
+```javascript
+import { getBlogPostWithComments } from 'my-app/builders/blog-post';
+
+const { content } = await this.store.request(getBlogPostWithComments('1'));
 const post = content.data;
 ```
 
@@ -344,6 +350,7 @@ This builder creates a comment for a blog post:
 ```javascript {data-filename=app/builders/comment.js}
 import { buildBaseURL } from '@warp-drive/utilities';
 
+/** POST /comments */
 export function createComment(post, attributes) {
   return {
     url: buildBaseURL({ resourcePath: 'comments' }),
@@ -365,8 +372,6 @@ export function createComment(post, attributes) {
 
 ```javascript
 import { createComment } from 'my-app/builders/comment';
-
-let post = this.store.peekRecord('blog-post', '1');
 
 const { content } = await this.store.request(
   createComment(post, { body: 'Nice post!' }),

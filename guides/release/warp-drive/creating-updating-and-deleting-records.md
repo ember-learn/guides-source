@@ -11,6 +11,7 @@ Write a builder for the request:
 ```javascript {data-filename=app/builders/post.js}
 import { buildBaseURL } from '@warp-drive/utilities';
 
+/** POST /posts */
 export function createPost(attributes) {
   return {
     url: buildBaseURL({ resourcePath: 'posts' }),
@@ -22,8 +23,12 @@ export function createPost(attributes) {
 }
 ```
 
-`buildBaseURL` makes the URL from the `host` and `namespace` of your app and the `resourcePath`.
 The body is a JSON:API document without an `id`, because the server assigns one.
+
+Most JSON:API servers reject a body without the `Content-Type` header.
+The builder does not set it.
+The `JsonApiHandler` from [Request Handlers](../request-handlers/#toc_content-type)
+adds the header to every request, so add that handler to your store first.
 
 Pass the result of the builder to `store.request()`:
 
@@ -41,30 +46,18 @@ post.id; // => the ID from the server
 The server responds with the saved record, including its new `id`.
 WarpDrive puts the response in the cache, and `content.data` is the new record.
 
-The builder does not set the `Content-Type` header.
-Most JSON:API servers reject a body without that header.
-Add it once for all requests with a handler, as shown in
-[Request Handlers](../request-handlers/#toc_content-type).
-
 ### Lists After a Create
 
 A list that the store already loaded does not know about the new record.
 The `op` and `cacheOptions` of the builder solve this.
-After a `createRecord` request succeeds, the store marks every cached request for the type `post` as stale.
+After a `createRecord` request succeeds, the store marks every list that is registered for the type `post` as stale.
 
-A request joins that group when it has the same `cacheOptions.types`:
+A list is registered when its builder has the same `cacheOptions.types`, as shown in
+[Finding Records](../finding-records/#toc_retrieving-multiple-records).
+A list on screen loads again when its `<Request>` component has `@autorefresh`, as shown in
+[Rendering a Request](../finding-records/#toc_rendering-a-request).
 
-```javascript {data-filename=app/builders/post.js}
-import { query } from '@warp-drive/utilities/json-api';
-
-export function queryPosts(params) {
-  const request = query('post', params);
-  request.cacheOptions.types = ['post'];
-  return request;
-}
-```
-
-The next time your app requests the list, the store loads it from the server again.
+The form that creates the post does not need to know which lists exist.
 
 ## Updating Records
 
@@ -78,7 +71,6 @@ To change a record, check out an editable copy with `checkout()`.
 ```javascript
 import { checkout } from '@warp-drive/core/reactive';
 
-let post = this.store.peekRecord('post', '1');
 let editable = await checkout(post);
 
 editable.title = 'A new post';
@@ -88,86 +80,98 @@ editable.title; // => 'A new post'
 ```
 
 The change only shows on the editable copy.
-The original record still shows the data from the server.
+The original record, and every other part of your app, still shows the data from the server.
 
 ## Persisting Changes
 
-To save the change, use the
-[`updateRecord`](https://warp-drive.io/api/@warp-drive/utilities/json-api/functions/updateRecord) builder.
-Pass `{ patch: true }` to send a `PATCH` request.
-Without it, the builder sends a `PUT` request.
+To save a change, write a builder for a `PATCH` request.
+The builder takes the record and the attributes to save:
 
-The `serializePatch` function gives you only the fields that changed.
-`cacheKeyFor(editable)` returns the key that the cache uses for the record:
+```javascript {data-filename=app/builders/post.js}
+import { recordIdentifierFor } from '@warp-drive/core';
+import { buildBaseURL } from '@warp-drive/utilities';
+
+/** PATCH /posts/:id */
+export function updatePost(post, attributes) {
+  return {
+    url: buildBaseURL({
+      op: 'updateRecord',
+      identifier: { type: 'post', id: post.id },
+      resourcePath: 'posts',
+    }),
+    method: 'PATCH',
+    body: JSON.stringify({
+      data: { type: 'post', id: post.id, attributes },
+    }),
+    op: 'updateRecord',
+    records: [recordIdentifierFor(post)],
+  };
+}
+```
+
+The body holds only the attributes that you pass, so the request sends only what changed.
+
+`recordIdentifierFor(post)` returns the key that the cache uses for the record.
+The `op` and `records` properties tell the cache which record the request saves.
 
 ```javascript
-import { cacheKeyFor } from '@warp-drive/core';
-import { serializePatch, updateRecord } from '@warp-drive/utilities/json-api';
+import { updatePost } from 'my-app/builders/post';
 
-const request = updateRecord(editable, { patch: true });
-request.body = JSON.stringify(
-  serializePatch(this.store.cache, cacheKeyFor(editable)),
-);
-
-await this.store.request(request); // => PATCH to '/posts/1'
+await this.store.request(
+  updatePost(editable, { title: editable.title }),
+); // => PATCH to '/posts/1'
 ```
 
 The server responds with the updated record.
-WarpDrive puts the response in the cache.
-When the cache has the same values as the editable copy, WarpDrive commits the changes.
-Now `post.title` is `'A new post'` too.
+WarpDrive puts the response in the cache, and the editable copy has no unsaved changes.
+Now `post.title` is `'A new post'` too, in every list and component that shows the post.
 
 ### Editing in a Form
 
 Bind the form to the editable copy.
 Do not copy record fields into `@tracked` properties: the editable copy already holds the form state.
 
-This route loads the post and checks it out:
+This route loads the post and checks it out.
+`getPost` is a builder that calls `findRecord('post', id)`:
 
 ```javascript {data-filename=app/routes/posts/edit.js}
 import Route from '@ember/routing/route';
 import { service } from '@ember/service';
 import { checkout } from '@warp-drive/core/reactive';
-import { findRecord } from '@warp-drive/utilities/json-api';
+import { getPost } from 'my-app/builders/post';
 
 export default class PostsEditRoute extends Route {
   @service store;
 
   async model(params) {
-    const { content } = await this.store.request(
-      findRecord('post', params.post_id),
-    );
+    const { content } = await this.store.request(getPost(params.post_id));
     return checkout(content.data);
   }
 }
 ```
 
-The component reads the form data on submit, writes it to the copy, and saves the copy:
+The component writes each change to the copy, and saves the copy on submit:
 
 ```gjs {data-filename=app/components/edit-post.gjs}
 import Component from '@glimmer/component';
 import { service } from '@ember/service';
 import { on } from '@ember/modifier';
-import { cacheKeyFor } from '@warp-drive/core';
-import { serializePatch, updateRecord } from '@warp-drive/utilities/json-api';
+import { updatePost } from 'my-app/builders/post';
 
 export default class EditPost extends Component {
   @service store;
   @service router;
 
+  setTitle = (event) => {
+    this.args.post.title = event.target.value;
+  };
+
   save = async (event) => {
     event.preventDefault();
 
     const post = this.args.post;
-    const formData = new FormData(event.target);
-    post.title = formData.get('title');
+    await this.store.request(updatePost(post, { title: post.title }));
 
-    const request = updateRecord(post, { patch: true });
-    request.body = JSON.stringify(
-      serializePatch(this.store.cache, cacheKeyFor(post)),
-    );
-
-    await this.store.request(request);
     this.router.transitionTo('posts.show', post.id);
   };
 
@@ -175,7 +179,7 @@ export default class EditPost extends Component {
     <form {{on "submit" this.save}}>
       <label>
         Title
-        <input name="title" value={{@post.title}} />
+        <input value={{@post.title}} {{on "input" this.setTitle}} />
       </label>
       <button type="submit">Save</button>
     </form>
@@ -190,8 +194,12 @@ The route passes the editable copy to the component as `@post`.
 You can check if an editable copy has changes that you have not saved yet:
 
 ```javascript
-this.store.cache.hasChangedAttrs(cacheKeyFor(editable)); // => true
-this.store.cache.changedAttrs(cacheKeyFor(editable)); // => { title: ['Rails is Omakase', 'A new post'] }
+import { recordIdentifierFor } from '@warp-drive/core';
+
+const key = recordIdentifierFor(editable);
+
+this.store.cache.hasChangedAttrs(key); // => true
+this.store.cache.changedAttrs(key); // => { title: ['Rails is Omakase', 'A new post'] }
 ```
 
 `changedAttrs` returns an object.
@@ -200,10 +208,19 @@ Each key is a changed field, and each value is an array of `[oldValue, newValue]
 To discard the changes, roll them back in the cache:
 
 ```javascript
-this.store.cache.rollbackAttrs(cacheKeyFor(editable));
+this.store.cache.rollbackAttrs(key);
 
 editable.title; // => 'Rails is Omakase'
 ```
+
+### Lists After an Update
+
+Every list that holds the record shows the saved change.
+But the cache does not know what the filter of a list means.
+If the change moves the record into or out of a filtered list, that list does not change on its own.
+
+You can load the list again, or you can change the cached list yourself.
+[Patching The Cache](https://warp-drive.io/guides/the-manual/mutations/operations) in the WarpDrive guides shows both.
 
 ## Handling Validation Errors
 
@@ -213,7 +230,7 @@ For a JSON:API server, `error.content.errors` is the list of errors:
 
 ```javascript
 try {
-  await this.store.request(request);
+  await this.store.request(updatePost(post, { title: post.title }));
 } catch (error) {
   const errors = error.content?.errors ?? [];
   // show the errors to the user
@@ -228,15 +245,22 @@ The editable copy keeps the changes, so the user can fix them and try again.
 
 ## Deleting Records
 
-To delete a record, send a request from the
-[`deleteRecord`](https://warp-drive.io/api/@warp-drive/utilities/json-api/functions/deleteRecord) builder:
+To delete a record, send a request from a builder that calls
+[`deleteRecord`](https://warp-drive.io/api/@warp-drive/utilities/json-api/functions/deleteRecord):
 
-```javascript
+```javascript {data-filename=app/builders/post.js}
 import { deleteRecord } from '@warp-drive/utilities/json-api';
 
-let post = this.store.peekRecord('post', '1');
+/** DELETE /posts/:id */
+export function deletePost(post) {
+  return deleteRecord(post);
+}
+```
 
-await this.store.request(deleteRecord(post)); // => DELETE to '/posts/1'
+```javascript
+import { deletePost } from 'my-app/builders/post';
+
+await this.store.request(deletePost(post)); // => DELETE to '/posts/1'
 ```
 
 The request tells the cache which record it deletes.

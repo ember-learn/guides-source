@@ -146,13 +146,12 @@ New Ember apps include a `store` service in `app/services/store.js`:
 ```javascript {data-filename=app/services/store.js}
 import { useRecommendedStore } from '@warp-drive/core';
 import { JSONAPICache } from '@warp-drive/json-api';
+import { JsonApiHandler } from 'my-app/handlers/json-api';
 import { PersonSchema } from 'my-app/schemas/person';
 
 const Store = useRecommendedStore({
   cache: JSONAPICache,
-  handlers: [
-    // -- your handlers here
-  ],
+  handlers: [JsonApiHandler],
   schemas: [PersonSchema],
 });
 
@@ -163,6 +162,9 @@ The `useRecommendedStore` function creates a store class with the recommended de
 The `cache` option sets how the store caches responses.
 `JSONAPICache` understands responses in the [JSON:API](https://jsonapi.org) format.
 The `schemas` option lists the schemas of your app.
+The `handlers` option lists your handlers.
+The `JsonApiHandler` adds the JSON:API headers to every request, as shown in
+[Request Handlers](./request-handlers/#toc_content-type).
 
 To use the store, import the [`service` decorator](https://api.emberjs.com/ember/release/functions/@ember%2Fservice/service) and inject a `store` property into your class.
 Here is an example in a route:
@@ -170,13 +172,13 @@ Here is an example in a route:
 ```javascript {data-filename=app/routes/people.js}
 import Route from "@ember/routing/route";
 import { service } from "@ember/service";
-import { query } from "@warp-drive/utilities/json-api";
+import { getPeople } from "my-app/builders/person";
 
 export default class PeopleRoute extends Route {
   @service store;
 
   async model() {
-    const { content } = await this.store.request(query("person"));
+    const { content } = await this.store.request(getPeople());
     return content.data;
   }
 }
@@ -199,18 +201,28 @@ export default class PeopleRoute extends Route {
 You ask the store for data with `store.request()`.
 You pass it a request object.
 A **builder** is a function that creates the request object for you.
+Your app has one builder for each request that it makes:
 
-```javascript
+```javascript {data-filename=app/builders/person.js}
 import { findRecord } from '@warp-drive/utilities/json-api';
 
-const { content } = await this.store.request(findRecord('person', '1'));
+/** GET /people/:id */
+export function getPerson(id) {
+  return findRecord('person', id);
+}
+```
+
+```javascript
+import { getPerson } from 'my-app/builders/person';
+
+const { content } = await this.store.request(getPerson('1'));
 const person = content.data;
 ```
 
-The `findRecord` builder creates a `GET` request for `/people/1`.
-WarpDrive ships builders for the common JSON:API requests.
-You can also write your own builders.
-The [Finding Records](./finding-records/) guide shows how.
+`findRecord` is a general builder from WarpDrive.
+It creates a `GET` request for `/people/1`.
+Your own builder gives the request a name, and keeps the details of your API in one place.
+The [Finding Records](./finding-records/) guide shows how to write builders.
 
 ## Handlers
 
@@ -248,7 +260,7 @@ You cannot set their fields directly.
 This keeps each record equal to the data on the server.
 
 To change a record, you check out an editable copy.
-You edit the copy, and then save it with a request.
+You edit the copy, and then save the change with a request.
 When the server accepts the change, the cache updates the record.
 The [Creating, Updating and Deleting](./creating-updating-and-deleting-records/) guide shows each step.
 

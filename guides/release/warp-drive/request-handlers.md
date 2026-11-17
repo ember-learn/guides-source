@@ -11,20 +11,21 @@ Handlers and builders replace the adapters of older EmberData versions.
 
 ## Configuring URLs
 
-The JSON:API builders in `@warp-drive/utilities/json-api` follow these URL conventions:
+`@warp-drive/utilities/json-api` has general builders that you call inside your own builders.
+They follow these URL conventions:
 
-| Action           | Builder        | HTTP Verb | URL                |
-| ---------------- | -------------- | --------- | ------------------ |
-| Find             | `findRecord`   | GET       | /posts/123         |
-| Query            | `query`        | GET       | /posts?category=js |
-| Update           | `updateRecord` | PUT       | /posts/123         |
-| Update (`patch`) | `updateRecord` | PATCH     | /posts/123         |
-| Delete           | `deleteRecord` | DELETE    | /posts/123         |
+| Action | Builder        | HTTP Verb | URL        |
+| ------ | -------------- | --------- | ---------- |
+| Find   | `findRecord`   | GET       | /posts/123 |
+| Delete | `deleteRecord` | DELETE    | /posts/123 |
 
 The builders pluralize the type to make the path, so the type `post` uses the path `/posts`.
 
-To create a record, write your own builder for the `POST` request, as shown in
-[Creating, Updating and Deleting](../creating-updating-and-deleting-records/#toc_creating-records).
+For a list, or to create or update a record, write the request object yourself.
+[Finding Records](../finding-records/#toc_retrieving-multiple-records) and
+[Creating, Updating and Deleting](../creating-updating-and-deleting-records/#toc_creating-records) show how.
+The `buildBaseURL` function from `@warp-drive/utilities` makes the URL.
+It uses the same `host` and `namespace` as the general builders.
 
 ### Host and Namespace
 
@@ -41,33 +42,26 @@ setBuildURLConfig({
 ```
 
 Now `findRecord('post', '1')` requests `https://api.example.com/api/v1/posts/1`.
+`buildBaseURL({ resourcePath: 'posts' })` returns `https://api.example.com/api/v1/posts`.
 
 ### Options for One Request
 
-Each builder also takes options for one request.
+Each general builder also takes options for one request.
 For example, the `resourcePath` option replaces the path that the builder makes from the type:
 
-```javascript
+```javascript {data-filename=app/builders/person.js}
 import { findRecord } from '@warp-drive/utilities/json-api';
 
-// GET /person/1 instead of /people/1
-const { content } = await this.store.request(
-  findRecord('person', '1', { resourcePath: 'person' }),
-);
+/** GET /person/:id instead of /people/:id */
+export function getPerson(id) {
+  return findRecord('person', id, { resourcePath: 'person' });
+}
 ```
 
 The builders also accept the `host` and `namespace` options.
 They override the values from `setBuildURLConfig` for that request.
 
-If you need the same option in many places, write your own builder that calls the built-in one:
-
-```javascript {data-filename=app/builders/person.js}
-import { findRecord } from '@warp-drive/utilities/json-api';
-
-export function findPerson(id) {
-  return findRecord('person', id, { resourcePath: 'person' });
-}
-```
+Because the option is in your builder, every part of your app that calls `getPerson` uses the same URL.
 
 ## Writing a Handler
 
@@ -121,8 +115,9 @@ Copy the headers into a new `Headers` object, add yours, and pass on a new reque
 ### Content Type
 
 JSON:API servers expect the `application/vnd.api+json` media type in the `Accept` and `Content-Type` headers.
-The JSON:API builders set `Accept`, but they do not set `Content-Type`.
-A request with a body needs both, so add them in one handler:
+The general builders set `Accept`, but they do not set `Content-Type`.
+A request object that you write yourself has neither.
+Add both headers in one handler, so that no builder can forget them:
 
 ```javascript {data-filename=app/handlers/json-api.js}
 const JSON_API = 'application/vnd.api+json';
@@ -139,7 +134,7 @@ export const JsonApiHandler = {
 ```
 
 Add `JsonApiHandler` to the `handlers` option of the store.
-Your own builders then do not need to set these headers.
+Your builders then do not need to set these headers.
 
 ### Other Headers
 

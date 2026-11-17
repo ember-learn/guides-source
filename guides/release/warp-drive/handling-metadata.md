@@ -3,20 +3,26 @@ Metadata is data about the response itself, not about one record.
 
 Pagination is a common example.
 Imagine a blog with far more posts than you can show at once.
-You might query it like this:
+A builder requests the first page:
 
-```javascript
-import { query } from '@warp-drive/utilities/json-api';
+```javascript {data-filename=app/builders/post.js}
+import { buildBaseURL, buildQueryParams } from '@warp-drive/utilities';
 
-// GET /posts?limit=10&offset=0
-const { content } = await this.store.request(
-  query('post', { limit: 10, offset: 0 }),
-);
+/** GET /posts?limit=10 (the first page) */
+export function getPosts() {
+  const url = buildBaseURL({ resourcePath: 'posts' });
+
+  return {
+    url: `${url}?${buildQueryParams({ limit: 10 })}`,
+    method: 'GET',
+    op: 'query',
+    cacheOptions: { types: ['post'] },
+  };
+}
 ```
 
-To get the next page, you change the offset by 10.
-But how do you know how many pages there are?
-Your server needs to return the total number of posts as metadata.
+How do you know how many pages there are, and how do you get the next one?
+Your server needs to return the total number of posts as metadata, and a link to the next page.
 
 In JSON:API, metadata goes in the top-level `meta` member of the response:
 
@@ -44,9 +50,9 @@ In JSON:API, metadata goes in the top-level `meta` member of the response:
 Besides `data`, it has the `meta` and `links` of the response:
 
 ```javascript
-const { content } = await this.store.request(
-  query('post', { limit: 10, offset: 0 }),
-);
+import { getPosts } from 'my-app/builders/post';
+
+const { content } = await this.store.request(getPosts());
 
 content.data; // => an array of post records
 content.meta.total; // => 100
@@ -60,15 +66,13 @@ To use the metadata in a template, return the whole document from the `model` ho
 ```javascript {data-filename=app/routes/posts.js}
 import Route from '@ember/routing/route';
 import { service } from '@ember/service';
-import { query } from '@warp-drive/utilities/json-api';
+import { getPosts } from 'my-app/builders/post';
 
 export default class PostsRoute extends Route {
   @service store;
 
   async model() {
-    const { content } = await this.store.request(
-      query('post', { limit: 10, offset: 0 }),
-    );
+    const { content } = await this.store.request(getPosts());
     return content;
   }
 }
@@ -100,14 +104,15 @@ nextPage.data; // => the next 10 posts
 `next()` resolves with `null` if there is no next link.
 The document also has `prev()`, `first()`, and `last()`.
 
+Follow the links for every page after the first.
+Your builder then does not need a `page` or `offset` argument, and your app does not need to know how the server pages its lists.
+
 ### Metadata on Relationships
 
 A relationship can have its own `meta` and `links`, too.
 For a `hasMany`, you read them on the relationship:
 
 ```javascript
-let post = this.store.peekRecord('post', '1');
-
 post.comments.meta; // => the meta of the comments relationship
 post.comments.links; // => the links of the comments relationship
 ```
