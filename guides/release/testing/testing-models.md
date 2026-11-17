@@ -1,113 +1,197 @@
-_Container testing methods and computed properties follow previous patterns shown
-in [Testing Basics](../unit-testing-basics/) because Model extends EmberObject._
+You can test [WarpDrive](../../models/) schemas, derivations, and handlers in unit tests.
+Unit tests use the `setupTest` helper.
+They do not render anything.
 
-[EmberData](https://github.com/emberjs/data) Models can be tested in a module that uses the `setupTest` helper.
+In each test, get the real store with `this.owner.lookup('service:store')`.
+The store has the schemas, derivations, and handlers of your app, so the test checks your real setup.
 
-Let's assume we have a `Player` model that has `level` and `levelName`
-attributes. We want to call `levelUp()` to increment the `level` and assign a
-new `levelName` when the player reaches level 5.
+## Testing Derived Fields
 
-> You can follow along by generating your own model with `ember generate model player`.
+Let's assume we have a `player` schema with a `level` field.
+A derived field, `levelName`, returns `'Professional'` when the level is 5 or more:
 
-```javascript {data-filename=app/models/player.js}
-import Model, { attr } from '@ember-data/model';
+```javascript {data-filename=app/schemas/player.js}
+import { withDefaults } from '@warp-drive/core/reactive';
+import { Type } from '@warp-drive/core/types/symbols';
 
-export default class Player extends Model {
-  @attr('number', { defaultValue: 0 }) level;
-  @attr('string', { defaultValue: 'Noob' }) levelName;
+export const PlayerSchema = withDefaults({
+  type: 'player',
+  fields: [
+    { kind: 'field', name: 'level' },
+    { kind: 'derived', name: 'levelName', type: 'level-name' },
+  ],
+});
 
-  levelUp() {
-    let newLevel = this.level++;
-    if (newLevel === 5) {
-      this.levelName = 'Professional';
-    }
-  }
+export function levelName(player) {
+  return player.level >= 5 ? 'Professional' : 'Noob';
 }
+levelName[Type] = 'level-name';
 ```
 
-Now let's create a test which will call `levelUp` on the player when they are
-level 4 to assert that the `levelName` changes. We will use `module` together with the `setupTest` helper method:
+The store registers the schema and the derivation, as shown in
+[Defining Schemas](../../models/defining-models/#toc_derived-fields).
 
-```javascript {data-filename=tests/unit/models/player-test.js}
+Records that you create with `store.createRecord` are editable.
+The test creates a player, changes its level, and checks the `levelName`:
+
+```javascript {data-filename=tests/unit/schemas/player-test.js}
 import { module, test } from 'qunit';
 import { setupTest } from 'my-app-name/tests/helpers';
-import { run } from '@ember/runloop';
 
-module('Unit | Model | player', function(hooks) {
+module('Unit | Schema | player', function (hooks) {
   setupTest(hooks);
 
-  // Specify the other units that are required for this test.
-  test('should increment level when told to', function(assert) {
-    const player = run(() =>
-      this.owner.lookup('service:store').createRecord('player')
-    );
+  test('levelName changes at level 5', function (assert) {
+    const store = this.owner.lookup('service:store');
+    const player = store.createRecord('player', { level: 4 });
 
-    // wrap asynchronous call in run loop
-    run(() => player.levelUp());
+    assert.strictEqual(player.levelName, 'Noob');
 
-    assert.equal(player.level, 5, 'level gets incremented');
-    assert.equal(
-      player.levelName,
-      'Professional',
-      'new level is called professional'
-    );
+    player.level = 5;
+    assert.strictEqual(player.levelName, 'Professional');
   });
 });
 ```
 
-Also note, how both creating a record and updating properties on the record through the `levelUp` method requires
-us to wrap these operations into a `run` function. You can read more the Ember run loop [over here](../../applications/run-loop/).
+## Testing Records Loaded from the Server
 
-## Testing Relationships
+Records from the server are immutable, and they can have relationships.
+To test them, put a JSON:API document in the cache with `store.cache.put`.
+Then read the records with `store.peekRecord`.
+No network request happens.
 
-For relationships you probably only want to test that the relationship
-declarations are setup properly.
+Assume that a `user` belongs to a `profile`:
 
-Assume that a `User` can own a `Profile`.
+```javascript {data-filename=app/schemas/user.js}
+import { withDefaults } from '@warp-drive/core/reactive';
 
-> You can follow along by generating your own user and profile models with `ember generate model user` and `ember generate model profile`.
-
-```javascript {data-filename=app/models/profile.js}
-import Model from '@ember-data/model';
-
-export default class ProfileModel extends Model {}
+export const UserSchema = withDefaults({
+  type: 'user',
+  fields: [
+    { kind: 'field', name: 'name' },
+    {
+      kind: 'belongsTo',
+      name: 'profile',
+      type: 'profile',
+      options: { async: false, inverse: null, linksMode: true },
+    },
+  ],
+});
 ```
 
-```javascript {data-filename=app/models/user.js}
-import Model, { belongsTo } from '@ember-data/model';
+```javascript {data-filename=app/schemas/profile.js}
+import { withDefaults } from '@warp-drive/core/reactive';
 
-export default class UserModel extends Model {
-  @belongsTo('profile') profile;
-}
+export const ProfileSchema = withDefaults({
+  type: 'profile',
+  fields: [{ kind: 'field', name: 'bio' }],
+});
 ```
 
-Then you could test that the relationship by looking it up on the `user` model which it is part of.
+This test checks that the relationship points to the right profile:
 
-```javascript {data-filename=tests/unit/models/user-test.js}
+```javascript {data-filename=tests/unit/schemas/user-test.js}
 import { module, test } from 'qunit';
 import { setupTest } from 'my-app-name/tests/helpers';
-import { get } from '@ember/object';
 
-module('Unit | Model | user', function(hooks) {
+module('Unit | Schema | user', function (hooks) {
   setupTest(hooks);
 
-  test('should own a profile', function(assert) {
-    const User = this.owner.lookup('service:store').modelFor('user');
+  test('a user has a profile', function (assert) {
+    const store = this.owner.lookup('service:store');
 
-    // lookup the relationship on the user model
-    const relationship = get(User, 'relationshipsByName').get('profile');
+    store.cache.put({
+      content: {
+        data: {
+          type: 'user',
+          id: '1',
+          attributes: { name: 'Zoey' },
+          relationships: {
+            profile: { data: { type: 'profile', id: '1' } },
+          },
+        },
+        included: [
+          {
+            type: 'profile',
+            id: '1',
+            attributes: { bio: 'Ember mascot' },
+          },
+        ],
+      },
+    });
 
-    assert.equal(relationship.key, 'profile', 'has relationship with profile');
-    assert.equal(
-      relationship.kind,
-      'belongsTo',
-      'kind of relationship is belongsTo'
-    );
+    const user = store.peekRecord('user', '1');
+
+    assert.strictEqual(user.name, 'Zoey');
+    assert.strictEqual(user.profile.bio, 'Ember mascot');
   });
 });
 ```
 
-_EmberData contains extensive tests around the functionality of
-relationships, so you probably don't need to duplicate those tests. You could
-look at the [EmberData tests](https://github.com/emberjs/data/tree/master/packages/-ember-data/tests) for examples of deeper relationship testing if you
-feel the need to do it._
+## Testing Edits
+
+To test code that edits a loaded record, check out an editable copy, as your app does:
+
+```javascript {data-filename=tests/unit/schemas/user-edit-test.js}
+import { module, test } from 'qunit';
+import { setupTest } from 'my-app-name/tests/helpers';
+import { checkout } from '@warp-drive/core/reactive';
+
+module('Unit | Schema | user editing', function (hooks) {
+  setupTest(hooks);
+
+  test('edits only show on the editable copy', async function (assert) {
+    const store = this.owner.lookup('service:store');
+
+    store.cache.put({
+      content: {
+        data: {
+          type: 'user',
+          id: '1',
+          attributes: { name: 'Zoey' },
+          relationships: { profile: { data: null } },
+        },
+      },
+    });
+
+    const user = store.peekRecord('user', '1');
+    const editable = await checkout(user);
+
+    editable.name = 'Tomster';
+
+    assert.strictEqual(editable.name, 'Tomster');
+    assert.strictEqual(user.name, 'Zoey');
+  });
+});
+```
+
+## Testing Handlers
+
+A handler is an object with a `request` method.
+You can call it directly with a request and a `next` function.
+Use `assert.step` to record what reaches `next`:
+
+```javascript {data-filename=tests/unit/handlers/json-suffix-test.js}
+import { module, test } from 'qunit';
+import { JsonSuffixHandler } from 'my-app-name/handlers/json-suffix';
+
+module('Unit | Handler | json-suffix', function () {
+  test('it adds .json to the url', async function (assert) {
+    const context = { request: { url: '/api/rentals', method: 'GET' } };
+
+    await JsonSuffixHandler.request(context, (request) => {
+      assert.step(request.url);
+      return Promise.resolve({ content: null });
+    });
+
+    assert.verifySteps(['/api/rentals.json']);
+  });
+});
+```
+
+To check how your app behaves with a real server response, write an
+[application test](../testing-application/) instead.
+Application tests run the whole request chain.
+
+_WarpDrive has extensive tests of its own, so you do not need to test that relationships or the cache work.
+Test the schemas, derivations, transformations, and handlers that you write._

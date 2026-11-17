@@ -1,262 +1,183 @@
-In EmberData, an Adapter determines how data is persisted to a
-backend data store. Things such as the backend host, URL format
-and headers used to talk to a REST API can all be configured
-in an adapter.
+WarpDrive sends every request through a chain of _handlers_.
+A handler can change a request before it goes to the server.
+It can also change the response before it goes into the cache.
 
-EmberData's default Adapter has some built-in assumptions about
-how a [REST API should look](http://jsonapi.org/). If your backend conventions
-differ from those assumptions, EmberData allows either slight adjustments
-or you can switch to a different adapter if your backend works noticeably
-differently.
+Builders and handlers work together:
 
-_(If you're looking to adjust how the data sent to the backend is formatted,
-check the [serializer](../customizing-serializers/) page.)_
+- A builder describes one request: its URL, method, headers, and body.
+- A handler applies a rule to many requests, such as adding an `Authorization` header.
 
-Extending Adapters is a natural process in EmberData. Ember takes the
-position that you should extend an adapter to add different
-functionality. This results in code that is
-more testable, easier to understand and reduces bloat for people who
-may want to subclass your adapter.
+Handlers and builders replace the adapters of older EmberData versions.
 
-If your backend has some consistent rules you can define an
-`adapter:application`. The `adapter:application` will get priority over
-the default Adapter, however it will still be superseded by model
-specific Adapters.
+## Configuring URLs
 
-```javascript {data-filename=app/adapters/application.js}
-import JSONAPIAdapter from '@ember-data/adapter/json-api';
+The JSON:API builders in `@warp-drive/utilities/json-api` follow these URL conventions:
 
-export default class ApplicationAdapter extends JSONAPIAdapter {
-  // Application specific overrides go here
-}
-```
+| Action           | Builder        | HTTP Verb | URL                |
+| ---------------- | -------------- | --------- | ------------------ |
+| Find             | `findRecord`   | GET       | /posts/123         |
+| Query            | `query`        | GET       | /posts?category=js |
+| Create           | `createRecord` | POST      | /posts             |
+| Update           | `updateRecord` | PUT       | /posts/123         |
+| Update (`patch`) | `updateRecord` | PATCH     | /posts/123         |
+| Delete           | `deleteRecord` | DELETE    | /posts/123         |
 
-If there is a model that does not follow the backend's typical conventions, you
-can create an adapter that is specific to that model. The model-specific adapter
-will override the rules in the `application` adapter.
+The builders pluralize the type to make the path, so the type `post` uses the path `/posts`.
 
-To create a model-specific adapter, run the command `ember generate adapter <model-name>`.
-For example, suppose there is a `post` model that needs to talk to the `v1` API
-in the backend. We can run `ember generate adapter post` to create the adapter,
-then specify the `post` adapter's namespace:
+### Host and Namespace
 
-```javascript {data-filename=app/adapters/post.js}
-import JSONAPIAdapter from '@ember-data/adapter/json-api';
+If your API lives on another domain, or under a path prefix, set the `host` and the `namespace`.
+Call `setBuildURLConfig` once, for example in `app/app.js`:
 
-export default class PostAdapter extends JSONAPIAdapter {
-  namespace = 'api/v1';
-}
-```
+```javascript {data-filename=app/app.js}
+import { setBuildURLConfig } from '@warp-drive/utilities/json-api';
 
-EmberData comes with several built-in adapters.
-Feel free to use these adapters as a starting point for creating your own custom adapter.
-
-- [`Adapter`](https://api.emberjs.com/ember-data/release/classes/Adapter) is the basic adapter
-with no functionality. It is generally a good starting point if you
-want to create an adapter that is radically different from the other
-Ember adapters.
-
-- [`JSONAPIAdapter`](https://api.emberjs.com/ember-data/release/classes/JSONAPIAdapter)
-The `JSONAPIAdapter` is the default adapter and follows JSON:API
-conventions to communicate with an HTTP server by transmitting JSON
-via XHR.
-
-- [`RESTAdapter`](https://api.emberjs.com/ember-data/release/classes/RESTAdapter)
-The `RESTAdapter` allows your store to communicate with an HTTP server
-by transmitting JSON via XHR. Before EmberData 2.0 this adapter was the default.
-
-
-## Customizing the JSONAPIAdapter
-
-The
-[JSONAPIAdapter](https://api.emberjs.com/ember-data/release/classes/JSONAPIAdapter)
-has a handful of hooks that are commonly used to extend it to work
-with non-standard backends.
-
-### URL Conventions
-
-The `JSONAPIAdapter` is smart enough to determine the URLs it
-communicates with based on the name of the model. For example, if you
-ask for a `Post` by ID:
-
-```javascript
-store.findRecord('post', 1).then(function(post) {
+setBuildURLConfig({
+  host: 'https://api.example.com',
+  namespace: 'api/v1',
 });
 ```
 
-The JSON:API adapter will automatically send a `GET` request to `/posts/1`.
+Now `findRecord('post', '1')` requests `https://api.example.com/api/v1/posts/1`.
 
-The actions you can take on a record map onto the following URLs in the
-JSON:API adapter:
+### Options for One Request
 
-<table>
-  <thead>
-    <tr><th>Action</th><th>HTTP Verb</th><th>URL</th></tr>
-  </thead>
-  <tbody>
-    <tr><th>Find</th><td>GET</td><td>/posts/123</td></tr>
-    <tr><th>Find All</th><td>GET</td><td>/posts</td></tr>
-    <tr><th>Update</th><td>PATCH</td><td>/posts/123</td></tr>
-    <tr><th>Create</th><td>POST</td><td>/posts</td></tr>
-    <tr><th>Delete</th><td>DELETE</td><td>/posts/123</td></tr>
-  </tbody>
-</table>
+Each builder also takes options for one request.
+For example, the `resourcePath` option replaces the path that the builder makes from the type:
 
-#### Pluralization Customization
+```javascript
+import { findRecord } from '@warp-drive/utilities/json-api';
 
-To facilitate pluralizing model names when generating route URLs Ember
-Data comes bundled with
-[Ember Inflector](https://github.com/stefanpenner/ember-inflector), an
-ActiveSupport::Inflector compatible library for inflecting words
-between plural and singular forms. Irregular or uncountable
-pluralizations can be specified via `Inflector.inflector`.
+// GET /person/1 instead of /people/1
+const { content } = await this.store.request(
+  findRecord('person', '1', { resourcePath: 'person' }),
+);
+```
 
-To do this, create an [Initializer](../../applications/initializers/) file containing your customizations. The Ember CLI's `initializer` generator can be used `ember generate initializer custom-inflector-rules` to create the file. Update its content as follows:
+The builders also accept the `host` and `namespace` options.
+They override the values from `setBuildURLConfig` for that request.
 
-```javascript {data-filename=app/initializers/custom-inflector-rules.js}
-import Inflector from 'ember-inflector';
+If you need the same option in many places, write your own builder that calls the built-in one:
 
-export function initialize(/* application */) {
-  const inflector = Inflector.inflector;
+```javascript {data-filename=app/builders/person.js}
+import { findRecord } from '@warp-drive/utilities/json-api';
 
-  // Tell the inflector that the plural of "campus" is "campuses"
-  inflector.irregular('campus', 'campuses');
-
-  // Tell the inflector that the plural of "advice" is "advice"
-  inflector.uncountable('advice');
+export function findPerson(id) {
+  return findRecord('person', id, { resourcePath: 'person' });
 }
+```
 
-export default {
-  name: 'custom-inflector-rules',
-  initialize
+## Writing a Handler
+
+A handler is an object with a `request` method.
+The method gets a `context` and a `next` function:
+
+- `context.request` is the request object.
+- `next(request)` passes a request to the next handler, and returns a promise for the response.
+
+Requests are immutable, so a handler makes a copy when it wants to change something.
+This handler adds `.json` to the end of every URL:
+
+```javascript {data-filename=app/handlers/json-suffix.js}
+export const JsonSuffixHandler = {
+  request(context, next) {
+    const { request } = context;
+    const updatedRequest = Object.assign({}, request, {
+      url: request.url + '.json',
+    });
+
+    return next(updatedRequest);
+  },
 };
 ```
 
-The JSON:API adapter will now make requests for `Campus` models to
-`/campuses` and `/campuses/1` (instead of `/campus/` and `/campus/1`),
-and requests for `advice` to `/advice` and `/advice/1` (instead of
-`/advices/` and `/advices/1`).
+Add the handler to the `handlers` option of the store:
 
-When specifying irregular inflection rules for compound words, only the final word or phrase should be specified. For example, to specify the plural of `redCow` as `redKine` or `red-cow` as `red-kine`, only the final word segments `cow` and `kine` should be specified:
+```javascript {data-filename=app/services/store.js}
+import { useRecommendedStore } from '@warp-drive/core';
+import { JSONAPICache } from '@warp-drive/json-api';
+import { JsonSuffixHandler } from 'my-app/handlers/json-suffix';
+import { PostSchema } from 'my-app/schemas/post';
 
-```javascript
-inflector.irregular('cow', 'kine');
+const Store = useRecommendedStore({
+  cache: JSONAPICache,
+  handlers: [JsonSuffixHandler],
+  schemas: [PostSchema],
+});
+
+export default Store;
 ```
 
-#### Endpoint Path Customization
+The handlers run in the order of the array.
+After your handlers, the store adds a `Fetch` handler that sends the request to the server.
 
-The `namespace` property can be used to prefix requests with a
-specific URL namespace.
+## Headers Customization
 
-```javascript {data-filename=app/adapters/application.js}
-import JSONAPIAdapter from '@ember-data/adapter/json-api';
+Some APIs need extra headers, such as an API key.
+A handler can add them to every request.
+Copy the headers into a new `Headers` object, add yours, and pass on a new request:
 
-export default class ApplicationAdapter extends JSONAPIAdapter {
-  namespace = 'api/1';
-}
+```javascript {data-filename=app/handlers/api-key.js}
+export const ApiKeyHandler = {
+  request(context, next) {
+    const headers = new Headers(context.request.headers);
+    headers.append('API_KEY', 'secret key');
+
+    return next(Object.assign({}, context.request, { headers }));
+  },
+};
 ```
 
-Requests for `person` would now target `https://api.emberjs.com/api/1/people/1`.
+### Handlers That Use Services
 
+Sometimes a header comes from a service, such as the token of a session service.
+A handler is not created by Ember, so it does not get services on its own.
 
-#### Host Customization
+Pass a function as the `handlers` option.
+The function gets the store, which has an owner.
+Give that owner to your handler with `setOwner`:
 
-By default, the adapter will target the current domain. If you would
-like to specify a new domain you can do so by setting the `host`
-property on the adapter.
-
-```javascript {data-filename=app/adapters/application.js}
-import JSONAPIAdapter from '@ember-data/adapter/json-api';
-
-export default class ApplicationAdapter extends JSONAPIAdapter {
-  host = 'https://api.example.com';
-}
-```
-
-Requests for `person` would now target `https://api.example.com/people/1`.
-
-
-#### Path Customization
-
-By default, the `JSONAPIAdapter` will attempt to pluralize and dasherize
-the model name to generate the path name. If this convention does not
-conform to your backend you can override the `pathForType` method.
-
-For example, if you did not want to pluralize model names and needed
-underscore_case instead of dash-case you could override the
-`pathForType` method like this:
-
-```javascript {data-filename=app/adapters/application.js}
-import JSONAPIAdapter from '@ember-data/adapter/json-api';
-
-export default class ApplicationAdapter extends JSONAPIAdapter {
-  pathForType(type) {
-    return type.replace(/-/g, '_'); // blog-post-comment becomes blog_post_comment 
-  }
-}
-```
-
-Requests for `person` would now target `/person/1`.
-Requests for `user-profile` would now target `/user_profile/1`.
-
-#### Headers customization
-
-Some APIs require HTTP headers, e.g. to provide an API key. Arbitrary
-headers can be set as key/value pairs on the `JSONAPIAdapter`'s `headers`
-object and EmberData will send them along with each ajax request.
-
-```javascript {data-filename=app/adapters/application.js}
-import JSONAPIAdapter from '@ember-data/adapter/json-api';
-
-export default class ApplicationAdapter extends JSONAPIAdapter {
-  headers = {
-    'API_KEY': 'secret key',
-    'ANOTHER_HEADER': 'Some header value'
-  };
-}
-```
-
-You can combine tracked properties with ES6 getters to make `headers` dynamic. For example, you may have a `session` service with a tracked property called `authToken`:
-
-```javascript {data-filename=app/adapters/application.js}
-import JSONAPIAdapter from '@ember-data/adapter/json-api';
+```javascript {data-filename=app/handlers/auth.js}
 import { service } from '@ember/service';
 
-export default class ApplicationAdapter extends JSONAPIAdapter {
+export class AuthHandler {
   @service session;
 
-  get headers() {
-    return {
-      'API_KEY': this.session.authToken,
-      'ANOTHER_HEADER': 'Some header value'
-    };
+  request(context, next) {
+    const headers = new Headers(context.request.headers);
+    headers.append('Authorization', `Bearer ${this.session.accessToken}`);
+
+    return next(Object.assign({}, context.request, { headers }));
   }
 }
 ```
 
-[Getters](../../in-depth-topics/autotracking-in-depth/) recompute with each
-access, so you could just as easily rely upon another dynamic value such as
-`document.cookie`.
+```javascript {data-filename=app/services/store.js}
+import { getOwner, setOwner } from '@ember/owner';
+import { useRecommendedStore } from '@warp-drive/core';
+import { JSONAPICache } from '@warp-drive/json-api';
+import { AuthHandler } from 'my-app/handlers/auth';
+import { PostSchema } from 'my-app/schemas/post';
 
-```javascript {data-filename=app/adapters/application.js}
-import JSONAPIAdapter from '@ember-data/adapter/json-api';
-import { get } from '@ember/object';
+const Store = useRecommendedStore({
+  cache: JSONAPICache,
+  handlers: (store) => {
+    const authHandler = new AuthHandler();
+    setOwner(authHandler, getOwner(store));
+    return [authHandler];
+  },
+  schemas: [PostSchema],
+});
 
-export default class ApplicationAdapter extends JSONAPIAdapter {
-  get headers() {
-    return {
-      'API_KEY': get(document.cookie.match(/apiKey\=([^;]*)/), '1'),
-      'ANOTHER_HEADER': 'Some header value'
-    };
-  }
-}
+export default Store;
 ```
 
-## Community Adapters
+The store calls this function once, the first time it sends a request.
 
-If none of the built-in EmberData Adapters work for your backend,
-be sure to check out some of the community maintained EmberData
-Adapters. Some good places to look for EmberData Adapters include:
+To learn more, read [Handlers](https://warp-drive.io/guides/the-manual/requests/handlers)
+and the [authentication handler cookbook](https://warp-drive.io/guides/the-manual/cookbook/auth-handlers) in the WarpDrive guides.
 
-- [Ember Observer](http://emberobserver.com/categories/data)
-- [GitHub](https://github.com/search?q=ember+data+adapter&ref=cmdform)
+## Responses in Other Formats
+
+If your API does not use JSON:API, a handler can convert its responses.
+The [Normalizing Responses](../customizing-serializers/) guide shows how.

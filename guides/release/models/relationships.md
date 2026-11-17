@@ -1,509 +1,359 @@
-EmberData includes several built-in relationship types to help you
-define how your models relate to each other.
+A schema can describe how its records relate to records of other types.
+WarpDrive has two relationship fields:
+
+- `belongsTo` links a record to one other record.
+- `hasMany` links a record to a list of other records.
+
+A relationship field has a `type`, which is the type of the related records.
+It also has `options`.
+In current WarpDrive schemas, every relationship uses these options:
+
+- `async: false` means that the related records come with the parent record. You read them without a promise.
+- `inverse` is the name of the matching field on the related type, or `null` if there is none.
+- `linksMode: true` tells WarpDrive to load the relationship with the same requests as everything else.
+
+<div class="cta">
+  <div class="cta-note">
+    <div class="cta-note-body">
+      <div class="cta-note-heading">Zoey says...</div>
+      <div class="cta-note-message">
+        Relationship support in WarpDrive schemas is still growing. The <a href="https://warp-drive.io/guides/the-manual/misc/links-mode">LinksMode guide</a> on warp-drive.io describes what works today and what comes next.
+      </div>
+    </div>
+    <img src="/images/mascots/zoey.png" role="presentation" alt="">
+  </div>
+</div>
 
 ### One-to-One
 
-To declare a one-to-one relationship between two models, use
-`belongsTo`:
+To declare a one-to-one relationship between two types, use
+`belongsTo` on both sides:
 
-```javascript {data-filename=app/models/user.js}
-import Model, { belongsTo } from '@ember-data/model';
+```javascript {data-filename=app/schemas/user.js}
+import { withDefaults } from '@warp-drive/core/reactive';
 
-export default class UserModel extends Model {
-  @belongsTo('profile') profile;
-}
+export const UserSchema = withDefaults({
+  type: 'user',
+  fields: [
+    { kind: 'field', name: 'name' },
+    {
+      kind: 'belongsTo',
+      name: 'profile',
+      type: 'profile',
+      options: { async: false, inverse: 'user', linksMode: true },
+    },
+  ],
+});
 ```
 
-```javascript {data-filename=app/models/profile.js}
-import Model, { belongsTo } from '@ember-data/model';
+```javascript {data-filename=app/schemas/profile.js}
+import { withDefaults } from '@warp-drive/core/reactive';
 
-export default class ProfileModel extends Model {
-  @belongsTo('user') user;
-}
+export const ProfileSchema = withDefaults({
+  type: 'profile',
+  fields: [
+    { kind: 'field', name: 'bio' },
+    {
+      kind: 'belongsTo',
+      name: 'user',
+      type: 'user',
+      options: { async: false, inverse: 'profile', linksMode: true },
+    },
+  ],
+});
 ```
+
+Each `inverse` names the field on the other side.
+Because of this, WarpDrive keeps both sides in sync.
+When `user.profile` points to a profile, that profile's `user` points back to the user.
 
 ### One-to-Many
 
-To declare a one-to-many relationship between two models, use
-`belongsTo` in combination with `hasMany`, like this:
+To declare a one-to-many relationship, use `belongsTo` on one side and
+`hasMany` on the other side:
 
-```javascript {data-filename=app/models/blog-post.js}
-import Model, { hasMany } from '@ember-data/model';
+```javascript {data-filename=app/schemas/blog-post.js}
+import { withDefaults } from '@warp-drive/core/reactive';
 
-export default class BlogPostModel extends Model {
-  @hasMany('comment') comments;
-}
+export const BlogPostSchema = withDefaults({
+  type: 'blog-post',
+  fields: [
+    { kind: 'field', name: 'title' },
+    {
+      kind: 'hasMany',
+      name: 'comments',
+      type: 'comment',
+      options: { async: false, inverse: 'blogPost', linksMode: true },
+    },
+  ],
+});
 ```
 
-```javascript {data-filename=app/models/comment.js}
-import Model, { belongsTo } from '@ember-data/model';
+```javascript {data-filename=app/schemas/comment.js}
+import { withDefaults } from '@warp-drive/core/reactive';
 
-export default class CommentModel extends Model {
-  @belongsTo('blog-post') blogPost;
-}
+export const CommentSchema = withDefaults({
+  type: 'comment',
+  fields: [
+    { kind: 'field', name: 'body' },
+    {
+      kind: 'belongsTo',
+      name: 'blogPost',
+      type: 'blog-post',
+      options: { async: false, inverse: 'comments', linksMode: true },
+    },
+  ],
+});
 ```
 
 ### Many-to-Many
 
-To declare a many-to-many relationship between two models, use
-`hasMany`:
+To declare a many-to-many relationship, use `hasMany` on both sides:
 
-```javascript {data-filename=app/models/blog-post.js}
-import Model, { hasMany } from '@ember-data/model';
+```javascript {data-filename=app/schemas/blog-post.js}
+import { withDefaults } from '@warp-drive/core/reactive';
 
-export default class BlogPostModel extends Model {
-  @hasMany('tag') tags;
-}
+export const BlogPostSchema = withDefaults({
+  type: 'blog-post',
+  fields: [
+    { kind: 'field', name: 'title' },
+    {
+      kind: 'hasMany',
+      name: 'tags',
+      type: 'tag',
+      options: { async: false, inverse: 'blogPosts', linksMode: true },
+    },
+  ],
+});
 ```
 
-```javascript {data-filename=app/models/tag.js}
-import Model, { hasMany } from '@ember-data/model';
+```javascript {data-filename=app/schemas/tag.js}
+import { withDefaults } from '@warp-drive/core/reactive';
 
-export default class TagModel extends Model {
-  @hasMany('blog-post') blogPosts;
-}
+export const TagSchema = withDefaults({
+  type: 'tag',
+  fields: [
+    { kind: 'field', name: 'name' },
+    {
+      kind: 'hasMany',
+      name: 'blogPosts',
+      type: 'blog-post',
+      options: { async: false, inverse: 'tags', linksMode: true },
+    },
+  ],
+});
 ```
 
-### Explicit Inverses
+### Relationships Without an Inverse
 
-EmberData will do its best to discover which relationships map to one
-another. In the one-to-many code above, for example, EmberData can figure out that
-changing the `comments` relationship should update the `blogPost`
-relationship on the inverse because `blogPost` is the only relationship to
-that model.
+Sometimes only one side needs to know about the other.
+For example, a comment has an author, but you never list the comments of a user.
+Set `inverse` to `null`:
 
-However, sometimes you may have multiple `belongsTo`/`hasMany`s for
-the same type. You can specify which property on the related model is
-the inverse using `belongsTo` or `hasMany`'s `inverse`
-option. Relationships without an inverse can be indicated as such by
-including `{ inverse: null }`.
+```javascript {data-filename=app/schemas/comment.js}
+import { withDefaults } from '@warp-drive/core/reactive';
 
-```javascript {data-filename=app/models/comment.js}
-import Model, { belongsTo } from '@ember-data/model';
-
-export default class CommentModel extends Model {
-  @belongsTo('blog-post', { inverse: null }) onePost;
-  @belongsTo('blog-post') twoPost;
-  @belongsTo('blog-post') redPost;
-  @belongsTo('blog-post') bluePost;
-}
+export const CommentSchema = withDefaults({
+  type: 'comment',
+  fields: [
+    { kind: 'field', name: 'body' },
+    {
+      kind: 'belongsTo',
+      name: 'author',
+      type: 'user',
+      options: { async: false, inverse: null, linksMode: true },
+    },
+  ],
+});
 ```
 
-```javascript {data-filename=app/models/blog-post.js}
-import Model, { hasMany } from '@ember-data/model';
-
-export default class BlogPostModel extends Model {
-  @hasMany('comment', {
-    inverse: 'redPost'
-  })
-  comments;
-}
-```
+A relationship without an inverse is also useful for large lists.
+For example, a user can have thousands of activities.
+If the relationship has no inverse, each activity you load does not change the list on the user.
 
 ### Reflexive Relations
 
-When you want to define a reflexive relation (a model that has a relationship to
-itself), you must explicitly define the inverse relationship. If there
-is no inverse relationship then you can set the inverse to `null`.
+A record can relate to other records of the same type.
+For example, a folder can have a parent folder and child folders:
 
-Here's an example of a one-to-many reflexive relationship:
+```javascript {data-filename=app/schemas/folder.js}
+import { withDefaults } from '@warp-drive/core/reactive';
 
-```javascript {data-filename=app/models/folder.js}
-import Model, { belongsTo, hasMany } from '@ember-data/model';
-
-export default class FolderModel extends Model {
-  @hasMany('folder', { inverse: 'parent' }) children;
-  @belongsTo('folder', { inverse: 'children' }) parent;
-}
-```
-
-Here's an example of a one-to-one reflexive relationship:
-
-```javascript {data-filename=app/models/user.js}
-import Model, { attr, belongsTo } from '@ember-data/model';
-
-export default class UserModel extends Model {
-  @attr('string') name;
-  @belongsTo('user', { inverse: 'bestFriend' }) bestFriend;
-}
-```
-
-You can also define a reflexive relationship that doesn't have an inverse:
-
-```javascript {data-filename=app/models/folder.js}
-import Model, { belongsTo } from '@ember-data/model';
-
-export default class FolderModel extends Model {
-  @belongsTo('folder', { inverse: null }) parent;
-}
+export const FolderSchema = withDefaults({
+  type: 'folder',
+  fields: [
+    { kind: 'field', name: 'name' },
+    {
+      kind: 'belongsTo',
+      name: 'parent',
+      type: 'folder',
+      options: { async: false, inverse: 'children', linksMode: true },
+    },
+    {
+      kind: 'hasMany',
+      name: 'children',
+      type: 'folder',
+      options: { async: false, inverse: 'parent', linksMode: true },
+    },
+  ],
+});
 ```
 
 ### Polymorphism
 
-Polymorphism is a powerful concept which allows a developer
-to abstract common functionality into a base class. Consider the
-following example: a user with multiple payment methods. They
-could have a linked PayPal account, and a couple credit cards on
-file.
+A polymorphic relationship can point to records of more than one type.
+For example, a user can have pets that are cats or dogs.
+Add `polymorphic: true` to the options of the field that holds the different types.
+On each concrete type, add `as` with the name of the shared abstract type.
 
-Note that, for polymorphism to work, EmberData expects a
-"type" declaration polymorphic type via the reserved `type`
-property on the model. Confused? See the API response below.
+```javascript {data-filename=app/schemas/user.js}
+import { withDefaults } from '@warp-drive/core/reactive';
 
-First, let's look at the model definitions:
-
-```javascript {data-filename=app/models/user.js}
-import Model, { hasMany } from '@ember-data/model';
-
-export default class UserModel extends Model {
-  @hasMany('payment-method', { polymorphic: true }) paymentMethods;
-}
+export const UserSchema = withDefaults({
+  type: 'user',
+  fields: [
+    {
+      kind: 'hasMany',
+      name: 'pets',
+      type: 'pet',
+      options: {
+        async: false,
+        inverse: 'owner',
+        polymorphic: true,
+        linksMode: true,
+      },
+    },
+  ],
+});
 ```
 
-```javascript {data-filename=app/models/payment-method.js}
-import Model, { belongsTo } from '@ember-data/model';
+```javascript {data-filename=app/schemas/cat.js}
+import { withDefaults } from '@warp-drive/core/reactive';
 
-export default class PaymentMethodModel extends Model {
-  @belongsTo('user', { inverse: 'paymentMethods' }) user;
-}
+export const CatSchema = withDefaults({
+  type: 'cat',
+  fields: [
+    { kind: 'field', name: 'name' },
+    {
+      kind: 'belongsTo',
+      name: 'owner',
+      type: 'user',
+      options: { async: false, inverse: 'pets', as: 'pet', linksMode: true },
+    },
+  ],
+});
 ```
 
-```javascript {data-filename=app/models/payment-method-cc.js}
-import { attr } from '@ember-data/model';
-import PaymentMethod from './payment-method';
+A `dog` schema has the same `owner` field.
+The server sends the real type of each pet, such as `cat` or `dog`.
+To learn more, read [Polymorphism](https://warp-drive.io/guides/the-manual/relational-data/features/polymorphism) in the WarpDrive guides.
 
-export default class PaymentMethodCcModel extends PaymentMethod {
-  @attr last4;
+### Relationship Data from the Server
 
-  get obfuscatedIdentifier() {
-    return `**** **** **** ${this.last4}`;
-  }
-}
-```
+The server sends relationships in the `relationships` member of a JSON:API resource.
+For a relationship in links mode, the payload needs one of these:
 
-```javascript {data-filename=app/models/payment-method-paypal.js}
-import { attr } from '@ember-data/model';
-import PaymentMethod from './payment-method'
+- a `links.related` URL that WarpDrive can use to load the relationship, or
+- the related records in the `included` member of the same response.
 
-export default class PaymentMethodPaypalModel extends PaymentMethod {
-  @attr linkedEmail;
-
-  get obfuscatedIdentifier() {
-    let last5 = this.linkedEmail
-      .split('')
-      .reverse()
-      .slice(0, 5)
-      .reverse()
-      .join('');
-
-    return `••••${last5}`;
-  }
-}
-```
-
-And our API might setup these relationships like so:
+Here is a blog post response with its comments included:
 
 ```json
 {
   "data": {
-    "id": "8675309",
-    "type": "user",
-    "attributes": {
-      "name": "Anfanie Farmeo"
-    },
+    "type": "blog-post",
+    "id": "1",
+    "attributes": { "title": "Rails is Omakase" },
     "relationships": {
-      "payment-methods": {
-        "data": [
-          {
-            "id": "1",
-            "type": "payment-method-paypal"
-          },
-          {
-            "id": "2",
-            "type": "payment-method-cc"
-          },
-          {
-            "id": "3",
-            "type": "payment-method-apple-pay"
-          }
-        ]
+      "comments": {
+        "links": { "related": "/blog-posts/1/comments" },
+        "data": [{ "type": "comment", "id": "1" }]
       }
     }
   },
   "included": [
     {
+      "type": "comment",
       "id": "1",
-      "type": "payment-method-paypal",
-      "attributes": {
-        "linked-email": "ryan@gosling.io"
-      }
-    },
-    {
-      "id": "2",
-      "type": "payment-method-cc",
-      "attributes": {
-        "last4": "1335"
-      }
-    },
-    {
-      "id": "3",
-      "type": "payment-method-apple-pay",
-      "attributes": {
-        "last4": "5513"
+      "attributes": { "body": "Nice post!" },
+      "relationships": {
+        "blogPost": { "data": { "type": "blog-post", "id": "1" } }
       }
     }
   ]
 }
 ```
 
-### Readonly Nested Data
+An empty relationship is valid too.
+Use `"data": null` for an empty `belongsTo` and `"data": []` for an empty `hasMany`.
 
-Some models may have properties that are deeply nested objects of
-readonly data. The naïve solution would be to define models for each
-nested object and use `hasMany` and `belongsTo` to recreate the nested
-relationship. However, since readonly data will never need to be
-updated and saved this often results in the creation of a great deal
-of code for very little benefit. An alternate approach is to define
-these relationships using an attribute with no transform
-(`@attr`). This makes it easy to access readonly values in
-other objects and templates without the overhead of defining
-extraneous models.
-
-### Creating Records
-
-Let's assume that we have a `blog-post` and a `comment` model. A single blog post can have several comments linked to it. The correct relationship is shown below:
-
-```javascript {data-filename=app/models/blog-post.js}
-import Model, { hasMany } from '@ember-data/model';
-
-export default class BlogPostModel extends Model {
-  @hasMany('comment') comments;
-}
-```
-
-```javascript {data-filename=app/models/comment.js}
-import Model, { belongsTo } from '@ember-data/model';
-
-export default class CommentModel extends Model {
-  @belongsTo('blog-post') blogPost;
-}
-```
-
-Now, suppose we want to add comments to an existing blogPost. We can do this in two ways, but for both of them, we first need to look up a blog post that is already loaded in the store, using its id:
-
-```javascript
-let myBlogPost = this.store.peekRecord('blog-post', 1);
-```
-
-Now we can either set the `belongsTo` relationship in our new comment, or, update the blogPost's `hasMany` relationship. As you might observe, we don't need to set both `hasMany` and `belongsTo` for a record. EmberData will do that for us.
-
-First, let's look at setting the `belongsTo` relationship in our new comment:
-
-```javascript
-let comment = this.store.createRecord('comment', {
-  blogPost: myBlogPost
-});
-comment.save();
-```
-
-In the above snippet, we have referenced `myBlogPost` while creating the record. This will let Ember know that the newly created comment belongs to `myBlogPost`.
-This will create a new `comment` record and save it to the server. EmberData will also update `myBlogPost` to include our newly created comment in its `comments` relationship.
-
-The second way of doing the same thing is to link the two records together by updating the blogPost's `hasMany` relationship as shown below:
-
-```javascript
-let comment = this.store.createRecord('comment', {});
-let comments = await myBlogPost.comments;
-comments.push(comment);
-comment.save().then(function() {
-  myBlogPost.save();
-});
-```
-
-In this above case, the new comment's `belongsTo` relationship will be automatically set to the parent blogPost.
-
-Although `createRecord` is fairly straightforward, the only thing to watch out for
-is that you cannot assign a promise as a relationship, currently.
-
-For example, if you want to set the `author` property of a blogPost, this would **not** work
-if the `user` with id isn't already loaded into the store:
-
-```javascript
-this.store.createRecord('blog-post', {
-  title: 'Rails is Omakase',
-  body: 'Lorem ipsum',
-  author: this.store.findRecord('user', 1)
-});
-```
-
-However, you can easily set the relationship after the promise has fulfilled:
-
-```javascript
-let blogPost = this.store.createRecord('blog-post', {
-  title: 'Rails is Omakase',
-  body: 'Lorem ipsum'
-});
-
-this.store.findRecord('user', 1).then(function(user) {
-  blogPost.author = user;
-});
-```
+If your API does not send related links, a [handler](../customizing-serializers/) can add them to the response.
 
 ### Retrieving Related Records
 
-When you request data from the server for a model that has relationships with one or more others,
-you may want to retrieve records corresponding to those related models at the same time.
-For example, when retrieving a blog post, you may need to access the comments associated
-with the post as well.
-The [JSON:API specification allows](http://jsonapi.org/format/#fetching-includes)
-servers to accept a query parameter with the key `include` as a request to
-include those related records in the response returned to the client.
-The value of the parameter should be a comma-separated list of names of the
-relationships required.
-
-If you are using an adapter that supports JSON:API, such as Ember's default [`JSONAPIAdapter`](https://api.emberjs.com/ember-data/release/classes/JSONAPIAdapter),
-you can easily add the `include` parameter to the server requests created by
-the `findRecord()`, `findAll()`,
-`query()` and `queryRecord()` methods.
-
-`findRecord()` and `findAll()` each take an `options` argument in which you can
-specify the `include` parameter.
-For example, given a `post` model that has a `hasMany` relationship with a `comment` model,
-when retrieving a specific post we can have the server also return that post's comments
-as follows:
-
-```javascript {data-filename=app/routes/post.js}
-import Route from '@ember/routing/route';
-import { service } from '@ember/service';
-
-export default class PostRoute extends Route {
-  @service store;
-  model(params) {
-    return this.store.findRecord('post', params.post_id, {
-      include: 'comments'
-    });
-  }
-}
-```
-
-The post's comments would then be available in your template as `model.comments`.
-
-Nested relationships can be specified in the `include` parameter as a dot-separated sequence of relationship names.
-So to request both the post's comments and the authors of those comments the request
-would look like this:
-
-```javascript {data-filename=app/routes/post.js}
-import Route from '@ember/routing/route';
-import { service } from '@ember/service';
-
-export default class PostRoute extends Route {
-  @service store;
-  model(params) {
-    return this.store.findRecord('post', params.post_id, {
-      include: 'comments,comments.author'
-    });
-  }
-}
-```
-
-The `query()` and `queryRecord()` methods each take a `query` argument that is
-serialized directly into the URL query string and the `include` parameter may
-form part of that argument.
-For example:
-
-```javascript {data-filename=app/routes/adele.js}
-import Route from '@ember/routing/route';
-import { service } from '@ember/service';
-
-export default class AdeleRoute extends Route {
-  @service store;
-  model() {
-    // GET to /artists?filter[name]=Adele&include=albums
-    return this.store
-      .query('artist', {
-        filter: { name: 'Adele' },
-        include: 'albums'
-      })
-      .then(function(artists) {
-        return artists[0];
-      });
-  }
-}
-```
-
-### Updating Existing Records
-
-Sometimes we want to set relationships on already existing records. We can simply set a `belongsTo` relationship:
+Relationships with `async: false` are not promises.
+You read them like any other field:
 
 ```javascript
-let blogPost = this.store.peekRecord('blog-post', 1);
-let comment = this.store.peekRecord('comment', 1);
-comment.blogPost = blogPost;
-comment.save();
+let comment = this.store.peekRecord('comment', '1');
+let post = comment.blogPost; // => a blog-post record
+
+let comments = post.comments; // => an array of comment records
+comments.length; // => 1
 ```
 
-Alternatively, we could update the `hasMany` relationship by pushing a record into the relationship:
+In a template, you can loop over a `hasMany` directly:
+
+```gjs {data-filename=app/templates/blog-post.gjs}
+<template>
+  <ul>
+    {{#each @model.comments as |comment|}}
+      <li>{{comment.body}}</li>
+    {{/each}}
+  </ul>
+</template>
+```
+
+To load the related records with the parent record, use the `include` option of the builder:
 
 ```javascript
-let blogPost = this.store.peekRecord('blog-post', 1);
-let comment = this.store.peekRecord('comment', 1);
-let comments = await blogPost.comments;
-comments.push(comment);
-blogPost.save();
+import { findRecord } from '@warp-drive/utilities/json-api';
+
+// GET /blog-posts/1?include=comments
+const { content } = await this.store.request(
+  findRecord('blog-post', '1', { include: ['comments'] }),
+);
+const post = content.data;
 ```
 
-### Removing Relationships
-
-To remove a `belongsTo` relationship, we can set it to `null`, which will also remove it from the `hasMany` side:
+To load a `hasMany` again from its related link, call `reload()` on it:
 
 ```javascript
-let comment = this.store.peekRecord('comment', 1);
-comment.blogPost = null;
-comment.save();
+await post.comments.reload(); // => GET /blog-posts/1/comments
 ```
 
-It is also possible to remove a record from a `hasMany` relationship:
+The links of a `hasMany` are available as `post.comments.links`.
+
+### Creating Records with Relationships
+
+When you create a record, you can pass related records as fields:
 
 ```javascript
-let blogPost = this.store.peekRecord('blog-post', 1);
-let commentToRemove = this.store.peekRecord('comment', 1);
-let comments = await blogPost.comments;
-blogPost.comments = comments.filter((comment) => comment !== commentToRemove);
-blogPost.save();
+let post = this.store.peekRecord('blog-post', '1');
+
+let comment = this.store.createRecord('comment', {
+  body: 'Nice post!',
+  blogPost: post,
+});
 ```
 
-As in the earlier examples, the comment's `belongsTo` relationship will also be cleared by EmberData.
+Because the relationship has an inverse, `post.comments` now includes the new comment.
+Save the comment with the `createRecord` builder, as shown in
+[Creating, Updating and Deleting](../creating-updating-and-deleting-records/#toc_creating-records).
 
-### Relationships as Promises
+### Readonly Nested Data
 
-While working with relationships it is important to remember that they return promises.
-
-For example, if we were to work on a blogPost's asynchronous comments, we would have to wait until the promise has fulfilled:
-
-```javascript
-let blogPost = this.store.peekRecord('blog-post', 1);
-
-let comments = await blogPost.comments;
-// now we can work with the comments
-```
-
-The same applies to `belongsTo` relationships:
-
-```javascript
-let comment = this.store.peekRecord('comment', 1);
-
-let blogPost = await comment.blogPost;
-// the blogPost is available here
-```
-
-Handlebars templates will automatically be updated to reflect a resolved promise. We can display a list of comments in a blogPost like so:
-
-```handlebars
-<ul>
-  {{#each this.blogPost.comments as |comment|}}
-    <li>{{comment.id}}</li>
-  {{/each}}
-</ul>
-```
-
-EmberData will query the server for the appropriate records and re-render the template once the data is received.
+Sometimes the server sends nested data that is not its own record type, such as a location or a list of tags.
+You do not need a relationship for this.
+Store the data in a normal field, as shown in
+[Defining Schemas](../defining-models/#toc_read-only-nested-data).

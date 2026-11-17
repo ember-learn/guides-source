@@ -1,145 +1,231 @@
+You change data with two steps.
+First, you change a record in the store.
+Then, you send a request that saves the change on the server.
+
+The builders in this guide come from `@warp-drive/utilities/json-api`.
+To make `store` available, you can [inject the `store` service](../#toc_injecting-the-store).
+
 ## Creating Records
 
-You can create records by calling the
-[`createRecord()`](https://api.emberjs.com/ember-data/release/classes/Store/methods/createRecord?anchor=createRecord)
-method on the store.
+Call `store.createRecord()` to create a new record:
 
 ```javascript
-this.store.createRecord('post', {
+let post = this.store.createRecord('post', {
   title: 'Rails is Omakase',
-  body: 'Lorem ipsum'
+  body: 'Lorem ipsum',
 });
 ```
 
-To make `store` available, you can [inject the `store` service](../#toc_injecting-the-store).
+A new record is editable.
+You can set its fields until you save it:
+
+```javascript
+post.title = 'Ember is Omakase';
+```
+
+The new record only exists in your app.
+To save it on the server, use the
+[`createRecord`](https://warp-drive.io/api/@warp-drive/utilities/json-api/functions/createRecord) builder.
+
+The builder sets the URL and the method, but it does not set the body.
+You decide what to send.
+The `serializeResources` function gives you the record as a JSON:API document:
+
+```javascript
+import { cacheKeyFor } from '@warp-drive/core';
+import { createRecord, serializeResources } from '@warp-drive/utilities/json-api';
+
+let post = this.store.createRecord('post', {
+  title: 'Rails is Omakase',
+  body: 'Lorem ipsum',
+});
+
+const request = createRecord(post);
+request.body = JSON.stringify(
+  serializeResources(this.store.cache, cacheKeyFor(post)),
+);
+
+await this.store.request(request); // => POST to '/posts'
+```
+
+`cacheKeyFor(post)` returns the key that the cache uses for the record.
+
+The server responds with the saved record, including its new `id`.
+WarpDrive puts the response in the cache and updates `post`.
+After the request, `post.id` has the ID from the server.
 
 ## Updating Records
 
-Making changes to EmberData records is as simple as setting the attribute you
-want to change:
+Records that come from the server are immutable.
+If you set a field on one, WarpDrive throws an error.
+This keeps the record equal to the data on the server.
+
+To change a record, check out an editable copy with `checkout()`.
+`checkout()` returns a promise that resolves with the editable copy:
 
 ```javascript
-this.store.findRecord('post', 1).then(function(post) {
-  // ...after the record has loaded
-  post.title = 'A new post';
-});
+import { checkout } from '@warp-drive/core/reactive';
+
+let post = this.store.peekRecord('post', '1');
+let editable = await checkout(post);
+
+editable.title = 'A new post';
+
+post.title; // => 'Rails is Omakase'
+editable.title; // => 'A new post'
 ```
 
-## Persisting Records
+The change only shows on the editable copy.
+The original record still shows the data from the server.
 
-Records in EmberData are persisted on a per-instance basis.
-Call [`save()`](https://api.emberjs.com/ember-data/release/classes/Model/methods/save?anchor=save)
-on any instance of `Model` and it will make a network request.
+## Persisting Changes
 
-EmberData takes care of tracking the state of each record for
-you. This allows EmberData to treat newly created records differently
-from existing records when saving.
+To save the change, use the
+[`updateRecord`](https://warp-drive.io/api/@warp-drive/utilities/json-api/functions/updateRecord) builder.
+Pass `{ patch: true }` to send a `PATCH` request.
+Without it, the builder sends a `PUT` request.
 
-By default, EmberData will `POST` newly created records to their type URL.
+The `serializePatch` function gives you only the fields that changed:
 
 ```javascript
-let post = store.createRecord('post', {
-  title: 'Rails is Omakase',
-  body: 'Lorem ipsum'
-});
+import { cacheKeyFor } from '@warp-drive/core';
+import { serializePatch, updateRecord } from '@warp-drive/utilities/json-api';
 
-post.save(); // => POST to '/posts'
+const request = updateRecord(editable, { patch: true });
+request.body = JSON.stringify(
+  serializePatch(this.store.cache, cacheKeyFor(editable)),
+);
+
+await this.store.request(request); // => PATCH to '/posts/1'
 ```
 
-Records that already exist on the backend are updated using the HTTP `PATCH` verb.
+The server responds with the updated record.
+WarpDrive puts the response in the cache.
+When the cache has the same values as the editable copy, WarpDrive commits the changes.
+Now `post.title` is `'A new post'` too.
 
-```javascript
-store.findRecord('post', 1).then(function(post) {
-  post.title; // => "Rails is Omakase"
+### Editing in a Form
 
-  post.title = 'A new post';
+Bind the form to the editable copy.
+Do not copy record fields into `@tracked` properties: the editable copy already holds the form state.
 
-  post.save(); // => PATCH to '/posts/1'
-});
+This route loads the post and checks it out:
+
+```javascript {data-filename=app/routes/posts/edit.js}
+import Route from '@ember/routing/route';
+import { service } from '@ember/service';
+import { checkout } from '@warp-drive/core/reactive';
+import { findRecord } from '@warp-drive/utilities/json-api';
+
+export default class PostsEditRoute extends Route {
+  @service store;
+
+  async model(params) {
+    const { content } = await this.store.request(
+      findRecord('post', params.post_id),
+    );
+    return checkout(content.data);
+  }
+}
 ```
 
-You can tell if a record has outstanding changes that have not yet been
-saved by checking its
-[`hasDirtyAttributes`](https://api.emberjs.com/ember-data/release/classes/Model/properties/hasDirtyAttributes?anchor=hasDirtyAttributes)
-property. You can also see which parts of
-the record were changed and what the original value was using the
-[`changedAttributes()`](https://api.emberjs.com/ember-data/release/classes/Model/methods/changedAttributes?anchor=changedAttributes)
-method. `changedAttributes` returns an object, whose keys are the changed
-properties and values are an array of values `[oldValue, newValue]`.
+The component reads the form data on submit, writes it to the copy, and saves the copy:
 
-```javascript
-person.isAdmin; // => false
-person.hasDirtyAttributes; // => false
-person.isAdmin = true;
-person.hasDirtyAttributes; // => true
-person.changedAttributes(); // => { isAdmin: [false, true] }
+```gjs {data-filename=app/components/edit-post.gjs}
+import Component from '@glimmer/component';
+import { service } from '@ember/service';
+import { on } from '@ember/modifier';
+import { cacheKeyFor } from '@warp-drive/core';
+import { serializePatch, updateRecord } from '@warp-drive/utilities/json-api';
+
+export default class EditPost extends Component {
+  @service store;
+  @service router;
+
+  save = async (event) => {
+    event.preventDefault();
+
+    const post = this.args.post;
+    const formData = new FormData(event.target);
+    post.title = formData.get('title');
+
+    const request = updateRecord(post, { patch: true });
+    request.body = JSON.stringify(
+      serializePatch(this.store.cache, cacheKeyFor(post)),
+    );
+
+    await this.store.request(request);
+    this.router.transitionTo('posts.show', post.id);
+  };
+
+  <template>
+    <form {{on "submit" this.save}}>
+      <label>
+        Title
+        <input name="title" value={{@post.title}} />
+      </label>
+      <button type="submit">Save</button>
+    </form>
+  </template>
+}
 ```
 
-At this point, you can either persist your changes via `save()` or you can roll back your changes using [`rollbackAttributes()`](https://api.emberjs.com/ember-data/release/classes/Model/methods/rollbackAttributes?anchor=rollbackAttributes).
+The route passes the editable copy to the component as `@post`.
+
+### Discarding Changes
+
+You can check if an editable copy has changes that you have not saved yet:
 
 ```javascript
-person.hasDirtyAttributes; // => true
-person.changedAttributes(); // => { isAdmin: [false, true] }
+this.store.cache.hasChangedAttrs(cacheKeyFor(editable)); // => true
+this.store.cache.changedAttrs(cacheKeyFor(editable)); // => { title: ['Rails is Omakase', 'A new post'] }
+```
 
-person.rollbackAttributes();
+`changedAttrs` returns an object.
+Each key is a changed field, and each value is an array of `[oldValue, newValue]`.
 
-person.hasDirtyAttributes; // => false
-person.isAdmin; // => false
-person.changedAttributes(); // => {}
+To discard the changes, roll them back in the cache:
+
+```javascript
+this.store.cache.rollbackAttrs(cacheKeyFor(editable));
+
+editable.title; // => 'Rails is Omakase'
 ```
 
 ## Handling Validation Errors
 
-If the backend server returns validation errors after trying to save, they will
-be available on the `errors` property of your model. Here's how you might display
-the errors from saving a blog post in your template:
-
-```handlebars
-{{#each this.post.errors.title as |error|}}
-  <div class="error">{{error.message}}</div>
-{{/each}}
-{{#each this.post.errors.body as |error|}}
-  <div class="error">{{error.message}}</div>
-{{/each}}
-```
-
-## Promises
-
-[`save()`](https://api.emberjs.com/ember-data/release/classes/Model/methods/save?anchor=save) returns
-a promise, which makes it easy to asynchronously handle success and failure
-scenarios. Here's a common pattern:
+If the server rejects the change, the promise from `store.request()` rejects.
+The error has a `content` property with the body of the response.
+For a JSON:API server, `error.content.errors` is the list of errors:
 
 ```javascript
-// Assumed to have already injected the router and store services
-const newPost = this.store.createRecord('post', {
-  title: 'Rails is Omakase',
-  body: 'Lorem ipsum'
-});
-
 try {
-  await newPost.save();
-  this.router.transitionTo('posts.show', newPost.id);
+  await this.store.request(request);
 } catch (error) {
-  // Handle error
+  const errors = error.content?.errors ?? [];
+  // show the errors to the user
 }
 ```
 
+Each error in the list has a `detail` message.
+It can also have a `source.pointer` that names the field, such as `/data/attributes/title`.
+You can show the messages next to the matching inputs.
+
+The editable copy keeps the changes, so the user can fix them and try again.
+
 ## Deleting Records
 
-Deleting records is as straightforward as creating records. Call [`deleteRecord()`](https://api.emberjs.com/ember-data/release/classes/Model/methods/deleteRecord?anchor=deleteRecord)
-on any instance of `Model`. This flags the record as `isDeleted`. The
-deletion can then be persisted using `save()`. Alternatively, you can use
-the [`destroyRecord`](https://api.emberjs.com/ember-data/release/classes/Model/methods/destroyRecord?anchor=destroyRecord) method to delete and persist at the same time.
+To delete a record, first mark it as deleted with `store.deleteRecord()`.
+Then send the
+[`deleteRecord`](https://warp-drive.io/api/@warp-drive/utilities/json-api/functions/deleteRecord) request:
 
 ```javascript
-let post = store.peekRecord('post', 1);
-post.deleteRecord();
-post.isDeleted; // => true
-post.save(); // => DELETE to /posts/1
+import { deleteRecord } from '@warp-drive/utilities/json-api';
 
-// OR
-post = store.peekRecord('post', 2);
-post.destroyRecord(); // => DELETE to /posts/2
+let post = this.store.peekRecord('post', '1');
+
+this.store.deleteRecord(post);
+await this.store.request(deleteRecord(post)); // => DELETE to '/posts/1'
 ```
 
-<!-- eof - needed for pages that end in a code block  -->
+After the server confirms the delete, WarpDrive removes the record from the cache.
