@@ -237,6 +237,8 @@ A change to that record shows everywhere in your UI.
 
 By default, the store uses the `Cache-Control` and `Expires` headers of a response
 to decide when cached data is stale.
+If a response has neither header, the store reloads the data in the background after 30 seconds.
+After 15 minutes, it waits for a new response.
 To learn more, read the [WarpDrive caching guide](https://warp-drive.io/guides/the-manual/caching/).
 
 ## Records Are Immutable

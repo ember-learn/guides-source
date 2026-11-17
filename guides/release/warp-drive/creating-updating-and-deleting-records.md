@@ -50,6 +50,11 @@ await this.store.request(request); // => POST to '/posts'
 
 `cacheKeyFor(post)` returns the key that the cache uses for the record.
 
+The builder sets the `Accept` header, but it does not set `Content-Type`.
+Most JSON:API servers reject a body without that header.
+Add it once for all requests with a handler, as shown in
+[Request Handlers](../request-handlers/#toc_content-type).
+
 The server responds with the saved record, including its new `id`.
 WarpDrive puts the response in the cache and updates `post`.
 After the request, `post.id` has the ID from the server.
@@ -215,17 +220,18 @@ The editable copy keeps the changes, so the user can fix them and try again.
 
 ## Deleting Records
 
-To delete a record, first mark it as deleted with `store.deleteRecord()`.
-Then send the
-[`deleteRecord`](https://warp-drive.io/api/@warp-drive/utilities/json-api/functions/deleteRecord) request:
+To delete a record, send a request from the
+[`deleteRecord`](https://warp-drive.io/api/@warp-drive/utilities/json-api/functions/deleteRecord) builder:
 
 ```javascript
 import { deleteRecord } from '@warp-drive/utilities/json-api';
 
 let post = this.store.peekRecord('post', '1');
 
-this.store.deleteRecord(post);
 await this.store.request(deleteRecord(post)); // => DELETE to '/posts/1'
 ```
 
-After the server confirms the delete, WarpDrive removes the record from the cache.
+The request tells the cache which record it deletes.
+After the server confirms the delete, WarpDrive removes the record from the cache
+and from every list that holds it.
+If the request fails, the record stays as it was.

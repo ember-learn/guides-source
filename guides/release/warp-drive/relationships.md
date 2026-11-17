@@ -286,6 +286,8 @@ Here is a blog post response with its comments included:
 
 An empty relationship is valid too.
 Use `"data": null` for an empty `belongsTo` and `"data": []` for an empty `hasMany`.
+A relationship with no `data` member and no related link is not valid.
+WarpDrive cannot tell if the relationship is empty or if the server left it out.
 
 If your API does not send related links, a [handler](../normalizing-responses/) can add them to the response.
 
@@ -347,9 +349,13 @@ let comment = this.store.createRecord('comment', {
 });
 ```
 
-Because the relationship has an inverse, `post.comments` now includes the new comment.
 Save the comment with the `createRecord` builder, as shown in
 [Creating, Updating and Deleting](../creating-updating-and-deleting-records/#toc_creating-records).
+
+`post` is an immutable record, so it only shows data from the server.
+`post.comments` does not include the new comment yet.
+After the server saves the comment, the relationship in the response updates the cache.
+Because the relationship has an inverse, `post.comments` then includes the new comment.
 
 ### Readonly Nested Data
 

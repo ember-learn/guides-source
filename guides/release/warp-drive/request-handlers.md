@@ -113,9 +113,35 @@ After your handlers, the store adds a `Fetch` handler that sends the request to 
 
 ## Headers Customization
 
-Some APIs need extra headers, such as an API key.
-A handler can add them to every request.
-Copy the headers into a new `Headers` object, add yours, and pass on a new request:
+A handler can add headers to every request.
+Copy the headers into a new `Headers` object, add yours, and pass on a new request.
+
+### Content Type
+
+JSON:API servers expect the `application/vnd.api+json` media type in the `Accept` and `Content-Type` headers.
+The JSON:API builders set `Accept`, but they do not set `Content-Type`.
+A request with a body needs both, so add them in one handler:
+
+```javascript {data-filename=app/handlers/json-api.js}
+const JSON_API = 'application/vnd.api+json';
+
+export const JsonApiHandler = {
+  request(context, next) {
+    const headers = new Headers(context.request.headers);
+    headers.set('Accept', JSON_API);
+    headers.set('Content-Type', JSON_API);
+
+    return next(Object.assign({}, context.request, { headers }));
+  },
+};
+```
+
+Add `JsonApiHandler` to the `handlers` option of the store.
+Your own builders then do not need to set these headers.
+
+### Other Headers
+
+Some APIs need extra headers, such as an API key:
 
 ```javascript {data-filename=app/handlers/api-key.js}
 export const ApiKeyHandler = {

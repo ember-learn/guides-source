@@ -78,8 +78,9 @@ You read the fields with dot notation, such as `person.firstName`.
 Fields are reactive.
 When a field changes, Ember updates every template that shows it.
 
-A record throws an error if you read a field that its schema does not list.
+In development, a record throws an error if you read a field that its schema does not list.
 This helps you find typos early.
+In a production build, the read returns `undefined`.
 
 ### Read-only Nested Data
 
@@ -101,6 +102,9 @@ export const PlaceSchema = withDefaults({
 ```handlebars
 {{@model.location.latitude}}
 ```
+
+WarpDrive does not track changes inside the value of a `field`.
+For an object or an array of simple values that must be reactive, use the `object` or `array` kind instead.
 
 If the nested data has a fixed shape of its own, you can describe it with a `schema-object` field.
 Read [Complex Fields](https://warp-drive.io/guides/the-manual/schemas/complex-fields) in the WarpDrive guides to learn how.
@@ -183,11 +187,13 @@ Sometimes the type of a value from the server is not the type you want in your c
 For example, the server sends a date as a string, but your code wants a `Date` object.
 A _transformation_ converts the value in both directions.
 
-A transformation is an object with three functions:
+A transformation is an object with these functions:
 
 - `hydrate` converts the value from the cache into the value your app reads.
 - `serialize` converts the value your app writes into the value for the cache.
-- `defaultValue` returns the value to use when the server sends nothing.
+- `defaultValue` is optional. It returns the cache value to use when the server sends nothing.
+
+WarpDrive calls `hydrate` each time you read the field, so keep these functions fast and free of side effects.
 
 ### Custom Transforms
 
