@@ -89,7 +89,7 @@ export default class PhotosRoute extends Route {
 ### EmberData example
 
 EmberData is a powerful (but optional) library included by default in new Ember apps.
-In the next example, we will use EmberData's [`findAll`](https://api.emberjs.com/ember-data/release/classes/Store/methods/findAll?anchor=findAll) method, which returns a Promise, and resolves with an array of [EmberData records](../../models/).
+In the next example, we will use EmberData's [`findAll`](https://warp-drive.io/api/@warp-drive/core/classes/Store#findall) method, which returns a Promise, and resolves with an array of [EmberData records](../../warp-drive/).
 
 ```javascript {data-filename=app/routes/favorite-posts.js}
 import Route from '@ember/routing/route';
@@ -104,7 +104,7 @@ export default class FavoritePostsRoute extends Route {
 }
 ```
 
-Note that EmberData also has a feature called a [`Model`](https://api.emberjs.com/ember-data/release/classes/Model), but it's a separate concept from a route's [`model`](https://api.emberjs.com/ember/release/classes/Route/methods/model?anchor=model) hook.
+Note that EmberData also has a feature called a [`Model`](https://warp-drive.io/api/@warp-drive/legacy/model/classes/Model), but it's a separate concept from a route's [`model`](https://api.emberjs.com/ember/release/classes/Route/methods/model?anchor=model) hook.
 
 ## Multiple Models
 

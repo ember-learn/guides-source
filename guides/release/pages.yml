@@ -121,13 +121,13 @@
   pages:
     - title: Overview
       url: "index"
-- title: "EmberData"
-  url: "models"
+- title: "WarpDrive"
+  url: "warp-drive"
   pages:
     - title: "Introduction"
       url: "index"
-    - title: "Defining Models"
-      url: "defining-models"
+    - title: "Defining Schemas"
+      url: "schemas"
     - title: "Finding Records"
       url: "finding-records"
     - title: "Creating, Updating and Deleting"
@@ -140,11 +140,11 @@
     - title: "Handling Metadata"
       url: "handling-metadata"
       isAdvanced: true
-    - title: "Customizing Adapters"
-      url: "customizing-adapters"
+    - title: "Request Handlers"
+      url: "request-handlers"
       isAdvanced: true
-    - title: "Customizing Serializers"
-      url: "customizing-serializers"
+    - title: "Normalizing Responses"
+      url: "normalizing-responses"
       isAdvanced: true
 - title: "In-Depth Topics"
   url: "in-depth-topics"
@@ -242,8 +242,8 @@
       url: "testing-controllers"
     - title: "Testing Routes"
       url: "testing-routes"
-    - title: "Testing Models"
-      url: "testing-models"
+    - title: "Testing WarpDrive Data"
+      url: "testing-warp-drive-data"
 - title: "Addons and Dependencies"
   url: "addons-and-dependencies"
   pages:

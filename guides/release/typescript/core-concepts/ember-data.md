@@ -259,17 +259,17 @@ The process for adding EmberData types to an existing TypeScript app is a work i
 <!-- Internal links -->
 
 [decorator]: ../../additional-resources/gotchas/#toc_decorators
-[ED-guides]: ../../../models/
-[model-attrs]: ../../../models/defining-models/
+[ED-guides]: ../../../warp-drive/
+[model-attrs]: ../../../warp-drive/schemas/
 [transforms]: ./#toc_transforms
-[transform-guides]: ../../../models/defining-models/#toc_custom-transforms
+[transform-guides]: ../../../warp-drive/schemas/#toc_transformations
 
 <!-- External links -->
 
 [brand]: https://github.com/emberjs/data/blob/main/guides/typescript/2-why-brands.md
-[ED-api-docs]: https://api.emberjs.com/ember-data/release
+[ED-api-docs]: https://warp-drive.io/api/
 [ED-ts-guides]: https://github.com/emberjs/data/blob/main/guides/typescript/index.md
 [import-no-cycle]: https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-cycle.md
 [optional]: https://www.typescriptlang.org/docs/handbook/2/objects.html#optional-properties
-[transform-api-docs]: https://api.emberjs.com/ember-data/release/classes/Transform
+[transform-api-docs]: https://warp-drive.io/api/@warp-drive/legacy/serializer/transform/classes/Transform
 [type-only-imports]: https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-8.html
