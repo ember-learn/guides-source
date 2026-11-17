@@ -122,12 +122,12 @@
     - title: Overview
       url: "index"
 - title: "WarpDrive"
-  url: "models"
+  url: "warp-drive"
   pages:
     - title: "Introduction"
       url: "index"
     - title: "Defining Schemas"
-      url: "defining-models"
+      url: "schemas"
     - title: "Finding Records"
       url: "finding-records"
     - title: "Creating, Updating and Deleting"
@@ -141,10 +141,10 @@
       url: "handling-metadata"
       isAdvanced: true
     - title: "Request Handlers"
-      url: "customizing-adapters"
+      url: "request-handlers"
       isAdvanced: true
     - title: "Normalizing Responses"
-      url: "customizing-serializers"
+      url: "normalizing-responses"
       isAdvanced: true
 - title: "In-Depth Topics"
   url: "in-depth-topics"
@@ -243,7 +243,7 @@
     - title: "Testing Routes"
       url: "testing-routes"
     - title: "Testing WarpDrive Data"
-      url: "testing-models"
+      url: "testing-warp-drive-data"
 - title: "Addons and Dependencies"
   url: "addons-and-dependencies"
   pages:

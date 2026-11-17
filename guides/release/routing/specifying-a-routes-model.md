@@ -89,7 +89,7 @@ export default class PhotosRoute extends Route {
 ### EmberData example
 
 EmberData is a powerful (but optional) library included by default in new Ember apps.
-In the next example, we will use EmberData's [`findAll`](https://api.emberjs.com/ember-data/release/classes/Store/methods/findAll?anchor=findAll) method, which returns a Promise, and resolves with an array of [EmberData records](../../models/).
+In the next example, we will use EmberData's [`findAll`](https://api.emberjs.com/ember-data/release/classes/Store/methods/findAll?anchor=findAll) method, which returns a Promise, and resolves with an array of [EmberData records](../../warp-drive/).
 
 ```javascript {data-filename=app/routes/favorite-posts.js}
 import Route from '@ember/routing/route';

@@ -11,7 +11,7 @@ Some of these features that you'll learn about in the guides are:
 * [Components](../components/) - The fundamental construct used in Ember applications, used to create reusable UI elements and define the layout and the functionality of the app.
 * [Routing](../routing/) - A central part of an Ember application. Enables developers to drive the application state from the URL.
 * [Services](../services/) - The way to store long-term state in your application and pass it around.
-* [EmberData](../models/) - EmberData provides a consistent way to communicate with external APIs and manage application state
+* [EmberData](../warp-drive/) - EmberData provides a consistent way to communicate with external APIs and manage application state
 * [Ember Inspector](../ember-inspector/) - A browser extension, or bookmarklet, to inspect your application live. It's also useful for spotting Ember applications in the wild.
 
 ## Organization

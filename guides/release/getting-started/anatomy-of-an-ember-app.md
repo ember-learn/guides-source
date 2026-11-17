@@ -32,7 +32,7 @@ model to keep track of who is currently logged in.
 A model typically persists information to a web server, although models can be
 configured to save to anywhere else, such as the browser's Local Storage.
 
-By default new Ember apps include [EmberData](../../models/), which is a
+By default new Ember apps include [EmberData](../../warp-drive/), which is a
 separate data library that integrates with Ember and provides a solid,
 conventional model layer. We'll see EmberData in action in the tutorial in
 the next section.
