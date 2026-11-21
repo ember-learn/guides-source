@@ -52,7 +52,7 @@ The data and endpoints we setup here will come into play later in the tutorial, 
 Install the Mirage addon as follows:
 
 ```bash
-ember install ember-cli-mirage
+ember install ember-cli-mirage@2.4.0
 ```
 
 Our primary focus with mirage will be in the `config.js` file, which is where we can define our API endpoints and our data.
