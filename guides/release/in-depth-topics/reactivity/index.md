@@ -1,28 +1,28 @@
-In a reactive system, when your data changes, everything computed from that data updates, including the page.
-You describe the output for a given state, and the framework decides when to update and what to update.
+When your data changes, everything derived from that data updates, including the page itself.
+You declare what the output is for any given state, and the framework decides when and what to update.
 
-Ember's reactivity system is called _autotracking_.
-If you have written a `@tracked` property, you have used it.
-The guides in this section are less about the API and more about how to design state that stays correct as an application grows.
-The same ideas appear in other frameworks, where they are usually called _signals_.
+You have used Ember's reactivity system, called _autotracking_, since your first `@tracked` property.
+The guides in this section cover how to think about reactivity, so that you can design state that stays correct as your application grows.
+The broader JavaScript ecosystem calls these ideas _signals_, and most modern frameworks are built on the same foundations.
 
 ## The Three Layers of Reactive State
 
-A reactive application has three layers:
+Every reactive application is built from three layers:
 
 - _Root state_ is the values that change directly, because a user clicked something, a server responded, or time passed.
   In Ember, root state is what you mark with `@tracked` or store in a tracked collection such as `trackedArray`.
-- _Derived state_ is the values computed from root state, or from other derived state.
+- _Derived state_ is the values derived from root state, or from other derived state.
   When you change a piece of root state, you do not tell the derived values to update. They update on their own.
   In Ember, derived state is ordinary getters, functions, and template expressions.
-- _Outputs_ are the places where your data leaves the application, such as the rendered DOM, the document title, or a chart drawn on a canvas.
-  In Ember, the main output is your templates.
+- _Outputs_ are where your data meets the outside world: the rendered DOM, the document title, a chart drawn on a canvas.
+  In Ember, the primary output is your templates.
   The renderer watches everything your templates read, and updates the DOM when any of it changes.
 
-Data flows in one direction, from root state, through derived state, to the outputs.
-Events such as clicks, responses, and timers write to root state.
+Data flows in one direction: root state at the bottom, derivations stacked on top, outputs at the edge.
+Events from the outside world, such as clicks, responses, and timers, write to root state.
+Everything above stays consistent on its own.
 
-Here are all three layers in one component:
+Here is what all three layers look like in a single component:
 
 ```gjs {data-filename=app/components/cart.gjs}
 import Component from '@glimmer/component';
@@ -34,7 +34,7 @@ export default class Cart extends Component {
   // Root state: the values that change directly
   items = trackedArray([]);
 
-  // Derived state: computed from root state
+  // Derived state: derived from root state
   get subtotal() {
     return this.items.reduce((sum, item) => sum + item.price, 0);
   }
@@ -48,7 +48,7 @@ export default class Cart extends Component {
   }
 
   addItem = (item) => {
-    // Events write to root state
+    // Events write to root state; everything else updates on its own
     this.items.push(item);
   };
 
@@ -63,12 +63,12 @@ export default class Cart extends Component {
 ```
 
 This component has one piece of root state and three getters.
-Most reactive code looks like this: a small amount of root state, and everything else derived from it.
-The [Root State](./root-state/) and [Derived State](./derived-state/) guides explain how to get there.
+That ratio is typical: derive most of your state, and keep as little root state as you can.
+The [Root State](./root-state/) and [Derived State](./derived-state/) guides develop this idea in detail.
 
-## Consuming and Invalidating
+## The Two Fundamental Operations
 
-Autotracking, like other reactive systems, has two basic operations.
+Underneath every reactive system, autotracking included, are two operations.
 When a value is read while something reactive is being computed, the system records that the computation used that value.
 A template rendering and a cached getter evaluating are both examples of such a computation.
 This is called _consuming_.
@@ -80,8 +80,12 @@ Because `items` is a tracked collection, those reads are consumed.
 Later, when `addItem` pushes into `this.items`, the write invalidates the rendered output.
 Ember then schedules a rerender of only the parts of the DOM that consumed it.
 
+Two properties of this design are worth knowing.
+
+First, dependencies are discovered at runtime, every time.
 You never declare what a getter depends on.
-The system records what the getter reads each time it runs, so conditional dependencies work:
+The system records what it reads during each evaluation.
+This means even conditional dependencies work:
 
 ```js
 get displayName() {
@@ -90,15 +94,16 @@ get displayName() {
 ```
 
 While `useNickname` is `false`, changes to `nickname` do not invalidate anything, because `displayName` never read it.
-If `useNickname` becomes `true`, the next evaluation reads `nickname`, and from then on changes to `nickname` do invalidate `displayName`.
+If `useNickname` becomes `true`, the next evaluation reads `nickname`, and from then on changes to it propagate.
+The dependency graph rewires itself on every run.
 
-Tracking is also synchronous.
+Second, tracking is synchronous.
 The system can only observe reads that happen while a reactive computation is running.
 If you read tracked state in a callback that runs later, after an `await` or inside a `setTimeout`, that read happens outside any tracking context.
 Nothing is consumed.
-Templates, getters, and helpers are all synchronous, so this is rarely a problem.
-When something does not update and you cannot tell why, check for a read after an `await`.
-The [Inputs and Outputs](./inputs-and-outputs/) guide has more on this.
+This is rarely a problem in practice, since templates, getters, and helpers are all synchronous.
+It does explain a whole class of "why did this not update?" bugs.
+The [Inputs and Outputs](./inputs-and-outputs/) guide covers this boundary in detail.
 
 ## Pull, Not Push
 
@@ -109,25 +114,27 @@ There are two ways a reactive system can respond to a write:
   It recomputes them only when someone needs their result.
 
 Autotracking is pull-based.
-When you write to a tracked property, your getters do not run.
-The write only tells the renderer that something it consumed is out of date.
-Later, asynchronously but before the browser paints, the renderer re-evaluates the affected expressions in your templates and updates the DOM.
+When you write to a tracked property, your getters are not re-evaluated, and nothing is recomputed.
+The write lets the renderer know that something it consumed is out of date.
+Later, asynchronously but before the browser paints, the renderer re-evaluates the expressions in your templates and updates the DOM.
 
-In practice this means:
+This has practical consequences:
 
-- If you set ten tracked properties in one event handler, you get one rerender, not ten.
-  You do not need to batch updates yourself.
-- A derived value that nothing reads is never computed, no matter how often its inputs change.
-- A read never sees a half-applied update.
-  Derivations run on demand, so there is no moment where `tax` is updated but `subtotal` is not.
-- There is no way to say "run this code when X changes".
-  Push-based systems offer an _effect_ for that.
-  Ember does not, and the [Inputs and Outputs](./inputs-and-outputs/) guide explains why, and what to do instead.
+- Writes are cheap, and they coalesce.
+  Setting ten tracked properties in one event handler causes one rerender, not ten, so you do not need to batch updates yourself.
+- Unused state is free.
+  A derived value that nothing currently reads is never evaluated, no matter how often its inputs change.
+- Reading state never observes a half-applied update.
+  Because derivations run on demand rather than in a notification cascade, there is no window where `tax` has updated but `subtotal` has not.
+- There is no "re-run this code when X changes" primitive.
+  In a push-based system you might reach for an _effect_ for that. Ember deliberately does not offer one, and the [Inputs and Outputs](./inputs-and-outputs/) guide explains why, and what to do instead.
 
 ## Where to Go from Here
 
-- [Root State](./root-state/) covers what belongs in root state and how to design it.
-- [Derived State](./derived-state/) covers laziness, purity, caching, and composition.
-- [Inputs and Outputs](./inputs-and-outputs/) covers side effects and async.
+The rest of this section works through each layer of the model:
 
-For the details of `@tracked` itself, see [Autotracking In-Depth](../autotracking-in-depth/).
+- [Root State](./root-state/) covers what belongs in root state, what does not, and how to design it.
+- [Derived State](./derived-state/) covers laziness, purity, caching, composition, and deferring consumption.
+- [Inputs and Outputs](./inputs-and-outputs/) covers inputs, outputs, side effects, async, and the edges of the graph.
+
+For the mechanics of `@tracked` itself, such as updating, custom classes, arrays and objects, and `@cached`, see [Autotracking In-Depth](../autotracking-in-depth/).

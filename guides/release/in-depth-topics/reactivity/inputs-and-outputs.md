@@ -9,10 +9,10 @@ Everything between an input and an output is a derivation, and derivations have 
 ## Rendering Is the Effect
 
 Some reactive systems provide an _effect_ primitive.
-An effect is a function that runs again when a reactive value that it read changes.
-The timing differs between frameworks.
-Some effects even run synchronously after an output is calculated, which can cause more output calculations.
-Ember does not provide an effect primitive, because the renderer does this job.
+An effect is a function that runs again whenever a reactive value it read changes.
+Effects in other frameworks have different timings.
+Some even run synchronously after an "output" calculation, which may cause further "output" calculations.
+Ember does not provide an effect primitive because the renderer does this job.
 
 A template is a set of effects.
 Each `{{expression}}` and each attribute binding tells the renderer to update one part of the DOM when the values it reads change.
@@ -22,14 +22,14 @@ The renderer batches these updates, schedules them before the browser paints, an
 
 A general effect primitive has three problems:
 
-- An effect runs on every change to its inputs, whether or not anything needs the result. The rest of the system is lazy, which is good for performance, and effects are not.
-- When one change triggers several effects, the order that they run in is not specified. Code that depends on that order has a bug.
-- Effects that write state fall out of sync. An effect that copies X into Y leaves Y stale until the effect runs, so Y can disagree with X. If the write triggers another effect, the effects cascade or loop. Derive Y from X with a getter instead, as described in [Derived State](../derived-state/).
+- An effect runs on every change to its inputs, whether or not anything needs the result. The rest of the system is lazy (an ideal performance-related trait), and effects undo that.
+- When one change triggers several effects, the order they run in is not specified. Code that depends on that order has a bug.
+- Effects that write state fall out of sync. An effect that copies X into Y leaves Y stale until the effect runs, and Y can disagree with X. If the write triggers another effect, the effects cascade or loop. Derive Y from X with a getter instead, as described in [Derived State](../derived-state/). The backtracking assertion reports a write during a derivation as an error.
 
-Most uses of an effect also have a better home.
-Derived values belong in getters, and DOM manipulation belongs in a modifier.
-Processes such as subscriptions belong to an owner that cleans them up.
-The rest of this guide describes the tool for each.
+Ember provides a tool for each job instead, described below.
+Derived values belong in getters.
+DOM manipulation belongs in a modifier.
+Processes such as subscriptions belong to an owner, with cleanup.
 
 ## Managed Effects: Attached to a Lifetime
 
@@ -37,7 +37,7 @@ When your code must act on the world, use a tool that ties the work to a lifetim
 The work starts when the lifetime starts, cleans up when it ends, and runs again through autotracking like everything else.
 
 A modifier is an effect scoped to a DOM element.
-Use modifiers sparingly, and avoid _setting_ tracked state in them.
+Modifiers should be used sparingly, and should avoid _setting_ tracked state.
 A modifier runs when the element renders.
 It cleans up and runs again when tracked state it consumed changes.
 It cleans up when the element is removed:
@@ -62,12 +62,12 @@ import drawChart from 'my-app/modifiers/draw-chart';
 ```
 
 The modifier runs again when `@chartData` changes.
-It cannot run before the element exists, and its cleanup runs when the element is removed.
+It cannot run before the element exists, and it cannot leak after the element is gone.
+The template shows where its effect lands.
 [Template Lifecycle, DOM, and Modifiers](../../../components/template-lifecycle-dom-and-modifiers/) covers modifiers in detail.
 
-For work that has no element, use a destructor.
-Ember destroys components, services, and class-based helpers when they are no longer needed.
-Any of them can register cleanup with `registerDestructor` from [`@ember/destroyable`](https://api.emberjs.com/ember/release/modules/@ember%2Fdestroyable):
+A destroyable covers work with no element.
+Any object that Ember destroys, such as a component, a service, or a class-based helper, can register cleanup with `registerDestructor` from [`@ember/destroyable`](https://api.emberjs.com/ember/release/modules/@ember%2Fdestroyable):
 
 ```js {data-filename=app/services/clock.js}
 import Service from '@ember/service';
@@ -110,7 +110,7 @@ this.socket.addEventListener('message', (event) => {
 ```
 
 A write from outside the graph is always allowed.
-The backtracking assertion only applies during a reactive computation, that is, while a template and the getters that it reads are evaluated.
+The backtracking assertion restricts writes only during a reactive computation, that is, inside a getter or a template.
 An event callback is not a computation, so it can write as many properties as it needs to.
 The writes are batched into one rerender.
 
@@ -126,10 +126,10 @@ Subscriptions, `ResizeObserver`s, and `BroadcastChannel`s follow the same steps.
       <div class="cta-note-heading">Zoey says...</div>
       <div class="cta-note-message">
         <p>
-          Some argue that autotracking <em>should</em> work within async, and that any behavior that relies on <code>await</code> to detach from a tracking frame is a bug. There are experiments around this using <a href="https://github.com/tc39/proposal-async-context">AsyncContext</a>, but so far, they are just experiments.
+          Some argue that auto-tracking <em>should</em> work within async, and any behavior that relies on using <code>await</code> to detach from a tracking frame is actually a bug. There are experiments around this using <a href="https://github.com/tc39/proposal-async-context">AsyncContext</a>, but so far, they are just experiments.
         </p>
         <p>
-          So while, today, autotracking stops at an <code>await</code>, it may not in the future. If you find yourself reaching for <code>await</code> to fix "problems", consider if a different approach can work.
+          So while, today, auto-tracking stops at an <code>await</code>, it may not in the future. If you find yourself reaching for <code>await</code> to fix "problems", consider if a different approach can work.
         </p>
       </div>
     </div>
@@ -199,12 +199,11 @@ export default class Profile extends Component {
 }
 ```
 
-The state of the request is now tracked data, and the loading message is an `{{#if}}` on that data.
-You do not need to write this class yourself.
-[reactiveweb](https://github.com/universal-ember/reactiveweb) provides `getPromiseState`, and [WarpDrive](https://docs.warp-drive.io/) provides `getRequestState` and `getPromiseState`.
-They cover more cases than the class above, and are better suited to general use.
+The async state is now data.
+The loading message is a derivation like any other, an `{{#if}}` on a tracked property.
+The class above holds status, value, and error as reactive fields.
+Libraries such as [reactiveweb](https://github.com/universal-ember/reactiveweb) (`getPromiseState`) and [WarpDrive](https://docs.warp-drive.io/) (`getRequestState` / `getPromiseState`) provide this as a utility that covers more use cases, and is better suited to general use.
 
-The example above has a problem, however.
-The request is created in a field initializer, so it reads `userId` once and does not fetch again when the argument changes.
+The above example has a problem, however -- the request is created in a field initializer, so it reads `userId` once and does not fetch again when the argument changes.
 [Deferring Consumption](../derived-state/#toc_deferring-consumption) describes this snapshot problem.
 To run an effect again when its inputs change, use one of the managed tools above: a modifier when an element is involved, or a resource otherwise.
