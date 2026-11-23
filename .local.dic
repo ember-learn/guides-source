@@ -7,6 +7,7 @@ ActiveSupport
 acyclic
 Algolia
 Americentric
+Astro
 asynchronicity
 asynchrony
 auto-rollup
@@ -190,6 +191,7 @@ recursing
 Redux
 relayout
 renderer
+REPL
 repo
 repos
 rerender
@@ -268,6 +270,7 @@ viewport
 vim-ember-hbs
 vim-javascript
 vim-js-pretty-template
+Vitepress
 VM
 VoiceOver
 voilà
