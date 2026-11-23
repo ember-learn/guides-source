@@ -316,13 +316,10 @@
   pages:
     - title: "Template Reference"
       url: "templates"
-      skip-toc: true
     - title: "Component Reference"
       url: "components"
-      skip-toc: true
     - title: "TypeScript Reference"
       url: "typescript"
-      skip-toc: true
 
 - title: "Developer Tools"
   url: "toc-heading_developer-tools"
