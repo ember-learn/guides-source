@@ -34,7 +34,7 @@ export default class Cart extends Component {
   // Root state: the values that change directly
   items = trackedArray([]);
 
-  // Derived state: derived from root state
+  // Derived state
   get subtotal() {
     return this.items.reduce((sum, item) => sum + item.price, 0);
   }
