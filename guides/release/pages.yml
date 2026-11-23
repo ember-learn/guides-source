@@ -311,8 +311,6 @@
 - title: "Reference"
   url: "toc-heading_reference"
   is_heading: true
-- title: "Template Reference"
-  url: "reference"
   pages:
     - title: "Template Reference"
       url: "templates"
