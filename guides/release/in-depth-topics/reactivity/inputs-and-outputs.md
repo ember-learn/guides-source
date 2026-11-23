@@ -20,16 +20,12 @@ The renderer batches these updates, schedules them before the browser paints, an
 
 ## Why There Is No Effect Primitive
 
-A general effect primitive has three problems:
+A general effect primitive has four problems:
 
 - An effect runs on every change to its inputs, whether or not anything needs the result. The rest of the system is lazy (an ideal performance-related trait), and effects undo that.
 - When one change triggers several effects, the order they run in is not specified. Code that depends on that order has a bug.
 - Effects that write state fall out of sync. An effect that copies X into Y leaves Y stale until the effect runs, and Y can disagree with X. If the write triggers another effect, the effects cascade or loop. Derive Y from X with a getter instead, as described in [Derived State](../derived-state/). The backtracking assertion reports a write during a derivation as an error.
-
-Ember provides a tool for each job instead, described below.
-Derived values belong in getters.
-DOM manipulation belongs in a modifier.
-Processes such as subscriptions belong to an owner, with cleanup.
+- Derived values belong in getters. DOM manipulation belongs in a modifier. Processes such as subscriptions belong to an owner, with cleanup. Ember provides a tool for each, described below.
 
 ## Managed Effects: Attached to a Lifetime
 

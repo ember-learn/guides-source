@@ -178,7 +178,6 @@ class ShoppingList {
 
 Note that the property itself no longer needs `@tracked`.
 The collection carries its own reactivity, and the property is never reassigned.
-There are two details to know.
 The collection functions copy the data you pass in, so mutating the tracked collection never mutates the original.
 Tracked collections are shallow: the properties of a `trackedObject` are tracked, but objects stored inside it are ordinary objects unless you wrap them too.
 See [Autotracking In-Depth](../../autotracking-in-depth/#toc_plain-old-javascript-objects-pojos) for the full tour of `trackedObject`, `trackedArray`, `trackedMap`, and `trackedSet`.
