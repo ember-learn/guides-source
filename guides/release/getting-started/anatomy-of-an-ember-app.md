@@ -39,7 +39,7 @@ the next section.
 
 You can also provide your own model layer using other data libraries such as
 [Redux](https://github.com/ember-redux/ember-redux) or
-[Apollo](https://github.com/ember-graphql/ember-apollo-client), or create your
+[Glimmer Apollo](https://github.com/josemarluedke/glimmer-apollo), or create your
 own model layer using the tools that Ember provides for state, such as
 [autotracking](../../components/component-state-and-actions/). We'll learn more
 about these tools throughout the guides.

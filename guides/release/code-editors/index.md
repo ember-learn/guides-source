@@ -41,18 +41,6 @@ See instructions on [ember-tooling/snippets](https://github.com/ember-tooling/sn
 
 ### Typed Glimmer Templates
 
-<div class="cta">
-  <div class="cta-note">
-    <div class="cta-note-body">
-      <div class="cta-note-heading">Zoey says...</div>
-      <div class="cta-note-message">
-        This is not installed as part of the extension pack but should be considered for Ember projects built with TypeScript. Learn more about <a href="https://typed-ember.gitbook.io/glint/">Glint here</a>.
-      </div>
-    </div>
-    <img src="/images/mascots/zoey.png" role="presentation" alt="">
-  </div>
-</div>
-
 [Glint](https://marketplace.visualstudio.com/items?itemName=typed-ember.glint-vscode) is a set of tools to aid in developing code that uses the Glimmer VM for rendering, such as Ember.js v3.24+ and GlimmerX projects.
 
 ## Neovim
@@ -130,14 +118,14 @@ A sophisticated text editor for code, markup and prose.
 
 ### Syntax Highlighting
 
-Use [Package Control](https://packagecontrol.io) to install 3 packages: [`GJS`, `GTS`](https://github.com/ijlee2/sublime-syntax-definition-template-tag), and `Handlebars`.
+Use [Package Control](https://packagecontrol.io) to install 2 packages: [Template Tag](https://github.com/ijlee2/sublime-syntax-definition-template-tag) and Handlebars.
 
 1. Open Sublime Text.
 1. Open Package Control by pressing <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> (Mac) or <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> (Windows). Alternatively, in the menu bar, click on `Sublime Text` > `Settings` > `Package Control`.
-1. Type `install` in the search bar so that you can quickly find and select `Package Control: Install Package`.
-1. Search for `GJS`, then select to install. Repeat the step for `GTS` and `Handlebars`.
+1. Type `install` in the search bar so that you can find and select `Package Control: Install Package`.
+1. Search for `Template Tag`, then select to install. Repeat steps 2-3 for `Handlebars`.
 1. Restart Sublime Text.
 
 ### Language Server
 
-Use [Package Control](https://packagecontrol.io) to install 3 packages: `LSP`, [`LSP-ember`](https://github.com/ijlee2/LSP-ember), and `LSP-typescript`. Restart Sublime Text.
+Use [Package Control](https://packagecontrol.io) to install 3 packages: LSP, [LSP-ember](https://github.com/ijlee2/LSP-ember), and LSP-typescript. Restart Sublime Text.

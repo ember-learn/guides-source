@@ -115,7 +115,7 @@ This can be a powerful refactoring technique to break up large components into s
 
 ## Importing components, helpers, and modifiers
 
-In Ember templates, **“invokables”** are things you can *invoke* in a template. These include [components](./introducing-components/), [helpers](./helper-functions/), and [modifiers](./template-lifecycle-dom-and-modifiers/). In the template tag format, most invokables need to be in JavaScript scope. Therefore your module must either define them or import them.
+In Ember templates, **“invokables”** are things you can *invoke* in a template. These include [components](../introducing-components/), [helpers](../helper-functions/), and [modifiers](../template-lifecycle-dom-and-modifiers/). In the template tag format, most invokables need to be in JavaScript scope. Therefore your module must either define them or import them.
 
 ### Built-in invokables
 

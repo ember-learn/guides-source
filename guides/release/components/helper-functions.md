@@ -1,6 +1,6 @@
 Helper functions are JavaScript functions that you can call from your template.
 
-Ember's template syntax limits what you can express to keep the structure of your application clear at a glance. When you need to compute something using JavaScript, you can use helper functions. Helper functions are just plain JavaScript, so it's possible to create your own helpers. You can define functions locally or import them like any other JavaScript code.  Ember also ships with a few [common functions](./#toc_built-in-helpers) you can import as well.
+Ember's template syntax limits what you can express to keep the structure of your application clear at a glance. When you need to compute something using JavaScript, you can use helper functions. Helper functions are just plain JavaScript, so it's possible to create your own helpers. You can define functions locally or import them like any other JavaScript code.  Ember also ships with a few [common functions](./#toc_built-in-and-common-helpers) you can import as well.
 
 Let's take a look at a generic message component from a messaging app.
 
