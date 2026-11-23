@@ -63,7 +63,7 @@ export default class Cart extends Component {
 ```
 
 This component has one piece of root state and three getters.
-That ratio is typical: derive most of your state, and keep as little root state as you can.
+That ratio is expected: derive as much of your states as possilbe and keep as little root state as you can.
 The [Root State](./root-state/) and [Derived State](./derived-state/) guides develop this idea in detail.
 
 ## The Two Fundamental Operations
@@ -80,7 +80,7 @@ Because `items` is a tracked collection, those reads are consumed.
 Later, when `addItem` pushes into `this.items`, the write invalidates the rendered output.
 Ember then schedules a rerender of only the parts of the DOM that consumed it.
 
-Two properties of this design are worth knowing.
+Two properties of this design especially important to know:
 
 First, dependencies are discovered at runtime, every time.
 You never declare what a getter depends on.
