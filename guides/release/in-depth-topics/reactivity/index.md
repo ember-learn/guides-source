@@ -1,13 +1,9 @@
-Reactivity is at the heart of every modern UI framework.
-When your data changes, everything computed from that data updates, including the page itself.
+When your data changes, everything derived from that data updates, including the page itself.
 You declare what the output is for any given state, and the framework decides when and what to update.
 
 You have used Ember's reactivity system, called _autotracking_, since your first `@tracked` property.
-The guides in this section go deeper than the API.
-They cover how to think about reactivity, so that you can design state that stays correct as your application grows.
-These ideas are not unique to Ember.
-The broader JavaScript ecosystem calls them _signals_, and most modern frameworks are built on the same foundations.
-Learning them will help you reason about UI state in any framework.
+The guides in this section cover how to think about reactivity, so that you can design state that stays correct as your application grows.
+The broader JavaScript ecosystem calls these ideas _signals_, and most modern frameworks are built on the same foundations.
 
 ## The Three Layers of Reactive State
 
@@ -15,7 +11,7 @@ Every reactive application is built from three layers:
 
 - _Root state_ is the values that change directly, because a user clicked something, a server responded, or time passed.
   In Ember, root state is what you mark with `@tracked` or store in a tracked collection such as `trackedArray`.
-- _Derived state_ is the values computed from root state, or from other derived state.
+- _Derived state_ is the values derived from root state, or from other derived state.
   When you change a piece of root state, you do not tell the derived values to update. They update on their own.
   In Ember, derived state is ordinary getters, functions, and template expressions.
 - _Outputs_ are where your data meets the outside world: the rendered DOM, the document title, a chart drawn on a canvas.
@@ -38,7 +34,7 @@ export default class Cart extends Component {
   // Root state: the values that change directly
   items = trackedArray([]);
 
-  // Derived state: computed from root state
+  // Derived state
   get subtotal() {
     return this.items.reduce((sum, item) => sum + item.price, 0);
   }
@@ -67,9 +63,7 @@ export default class Cart extends Component {
 ```
 
 This component has one piece of root state and three getters.
-That ratio is typical of well-designed reactive code, and it points at the most important habit in these guides.
-Derive most of your state.
-Keep only the irreducible minimum as root state.
+That ratio is expected: derive as much of your state as possible and keep as little root state as you can.
 The [Root State](./root-state/) and [Derived State](./derived-state/) guides develop this idea in detail.
 
 ## The Two Fundamental Operations
@@ -86,7 +80,7 @@ Because `items` is a tracked collection, those reads are consumed.
 Later, when `addItem` pushes into `this.items`, the write invalidates the rendered output.
 Ember then schedules a rerender of only the parts of the DOM that consumed it.
 
-Two properties of this design come up again and again.
+Two properties of this design are especially important to know:
 
 First, dependencies are discovered at runtime, every time.
 You never declare what a getter depends on.
@@ -120,17 +114,16 @@ There are two ways a reactive system can respond to a write:
   It recomputes them only when someone needs their result.
 
 Autotracking is pull-based.
-When you write to a tracked property, no user code runs at all.
-Your getters are not re-evaluated, and nothing is recomputed.
+When you write to a tracked property, your getters are not re-evaluated, and nothing is recomputed.
 The write lets the renderer know that something it consumed is out of date.
 Later, asynchronously but before the browser paints, the renderer re-evaluates the expressions in your templates and updates the DOM.
 
-This has practical consequences that are easy to feel but hard to place if you do not know the model:
+This has practical consequences:
 
 - Writes are cheap, and they coalesce.
   Setting ten tracked properties in one event handler causes one rerender, not ten, so you do not need to batch updates yourself.
 - Unused state is free.
-  A derived value that nothing currently reads is never computed, no matter how often its inputs change. Work scales with what is on the page, not with what is in your data.
+  A derived value that nothing currently reads is never evaluated, no matter how often its inputs change.
 - Reading state never observes a half-applied update.
   Because derivations run on demand rather than in a notification cascade, there is no window where `tax` has updated but `subtotal` has not.
 - There is no "re-run this code when X changes" primitive.

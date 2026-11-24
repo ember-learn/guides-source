@@ -1,8 +1,6 @@
-Root state is the foundation of the reactive graph.
-It is the set of values that change directly, rather than being computed from something else.
+Root state is the set of values that change directly, rather than being derived from something else.
 Everything else in your application, including derived values and rendered DOM, is a consequence of root state.
-That makes the design of your root state the most important decision you make when you manage UI state.
-When you get it right, the rest of your code becomes derived values that cannot fall out of sync.
+When you get the design of your root state right, the rest of your code becomes derived values that cannot fall out of sync.
 
 In Ember, you create root state by marking a property as tracked:
 
@@ -15,7 +13,7 @@ class Draft {
 }
 ```
 
-A write to a tracked property is the only way anything changes in a reactive application.
+A write to root state is the only way anything changes in a reactive application.
 Every update you see on screen traces back to an event handler, a timer, or a response callback that assigns to root state.
 
 ## What Qualifies as Root State
@@ -23,19 +21,24 @@ Every update you see on screen traces back to an event handler, a timer, or a re
 A value belongs in root state only if both of these are true:
 
 1. It changes over time, in response to the outside world. User input, network responses, and timers are examples.
-2. It cannot be computed from other state.
+2. It cannot be derived from other state.
 
 The second rule is the one that gets broken most often in practice.
-For every tracked property, ask yourself: _could I compute this instead?_
+For every tracked property, ask yourself: _could I derive this instead?_
 
 ```js
+// Avoid: this is derived state stored as root state
+class Cart {
+  @tracked items = [];
+  @tracked itemCount = 0;
+}
+```
+
+```js
+// Prefer: derive it
 class Cart {
   @tracked items = [];
 
-  // Avoid: this is derived state stored as root state
-  @tracked itemCount = 0;
-
-  // Prefer: derive it
   get itemCount() {
     return this.items.length;
   }
@@ -51,13 +54,13 @@ Storing derived values is sometimes pitched as an optimization.
 However, autotracking already recomputes lazily, and only when inputs change, so the optimization is usually imaginary.
 When a derivation is expensive, you can [cache it](../derived-state/#toc_caching) instead of promoting it to root state.
 
-As a rule of thumb, a well-factored reactive application has surprisingly little root state.
+As a rule of thumb, a well-factored reactive application has little root state.
 A search page might have two root values: the query string and the raw results.
 Everything else on screen is derived, such as filtered lists, counts, empty-state flags, and disabled buttons.
 
 ## Root State Is Not a Cache for Someone Else's Truth
 
-A special case of "could I compute this instead?" arises with data that arrives from elsewhere.
+A special case of "could I derive this instead?" arises with data that arrives from elsewhere.
 Arguments passed to your component, records from your data layer, and the current route are examples.
 The reactive system already tracks these.
 Copying them into your own tracked properties creates the synchronization problem all over again:
@@ -84,7 +87,6 @@ class UserCard extends Component {
 Sometimes you need "the argument, until the user edits it locally", as in a form draft.
 That is new root state whose initial value happens to come from elsewhere.
 Create it explicitly in response to a user action, not by mirroring the argument on every change.
-The [Patterns for Components](../../patterns-for-components/) guide shows several shapes of this.
 
 ## Writes, Equality, and Dirtying
 
@@ -142,7 +144,6 @@ For values that do change on most writes, the default is the cheaper choice.
 Because dirtying is per-property, the granularity of your root state determines the granularity of updates.
 Three tracked properties invalidate independently.
 One tracked object replaced wholesale invalidates everything that read any part of it.
-Reactive systems thrive on fine-grained changes.
 Prefer shapes that let you write the one piece that changed, and keep the identity of everything else stable.
 
 ## Mutable Data: Track the Collection
@@ -177,7 +178,6 @@ class ShoppingList {
 
 Note that the property itself no longer needs `@tracked`.
 The collection carries its own reactivity, and the property is never reassigned.
-Two details to know.
 The collection functions copy the data you pass in, so mutating the tracked collection never mutates the original.
 Tracked collections are shallow: the properties of a `trackedObject` are tracked, but objects stored inside it are ordinary objects unless you wrap them too.
 See [Autotracking In-Depth](../../autotracking-in-depth/#toc_plain-old-javascript-objects-pojos) for the full tour of `trackedObject`, `trackedArray`, `trackedMap`, and `trackedSet`.
@@ -428,7 +428,4 @@ But modules are evaluated once, so this state persists across acceptance and int
 State that would be module-scoped almost always wants to be a service, which is created and destroyed per application instance, and so per test.
 The exception is demos and scratch code, where the brevity of module state is the point.
 
-To sum up: store only what you cannot compute, and decide how writes dirty it.
-Pick the shape that fits: a tracked property, a collection, a class, or a standalone value.
-Give it an owner whose lifetime matches the lifetime of the state.
 Everything else in your application is [derived state](../derived-state/), which is the subject of the next guide.

@@ -1,5 +1,5 @@
 Derived state is everything derived from [root state](../root-state/).
-In a healthy Ember application, most and nearly all of your state is derived.
+In a healthy Ember application, most, if not nearly all, of your state is derived.
 Derived state requires no special API -- any usage of an ordinary getter, an ordinary function, or an ordinary template expression that reads tracked state is derived state.
 Derived state stays up to date on its own.
 
@@ -26,9 +26,9 @@ class Search {
 }
 ```
 
-The getters are solely native JavaScript, [get](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get).
+The getters are solely native JavaScript, [`get`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get).
 
-Because `summary` reads from `hasQuery` and `visibleResults`, and because those eventually access root state, any `{{ }}` regions in the template that access summary will _become entangled with_ or _consume_ `query` and `results`, and updates will happen automatically.
+Because `summary` reads from `hasQuery` and `visibleResults`, and because those eventually access root state, any `{{ }}` regions in the template that access `summary` will _become entangled with_ or _consume_ `query` and `results`, and updates will happen automatically.
 
 ## Derivations Are Lazy
 
@@ -77,8 +77,8 @@ This rule is universal across reactive systems, and Ember enforces it.
 A write to a tracked value that was already read during the current render throws a development-mode error:
 
 ```text
-Error: You attempted to update `count`, but it had already been used
-previously in the same computation.
+Error: You attempted to update `count` on `Counter`, but it had already been
+used previously in the same computation.
 ```
 
 This error is the _backtracking assertion_.
@@ -110,7 +110,7 @@ Call `new Search()`, set some properties, and assert on some getters.
 
 By default, a getter recomputes every time it is read.
 Most derivations are cheap and a cache can cost more than re-deriving.
-for example, recomputing a `this.items.length` is faster than checking whether a cached copy is still valid.
+For example, recomputing `this.items.length` is faster than checking whether a cached copy is still valid.
 
 When a derivation is expensive, such as sorting thousands of rows or building the dataset for a chart, mark it with `@cached`:
 
@@ -128,11 +128,12 @@ class Report {
 ```
 
 A `@cached` getter remembers its result along with all roots of state it consumed while computing it.
-Reads return the cached value until one of those consumed roots of states is invalidated.
+Reads return the cached value until one of those consumed roots of state is invalidated.
 
 Note what `@cached` does not do.
 It does not compare the new result to the old one.
-If `transactions` is invalidated but the sorted output comes out identical, consumers downstream are still re-evaluated. To prevent this, the roots of state should be configured for value equality (see [`@tracked`](https://api.emberjs.com/ember/release/functions/@glimmer%2Ftracking/tracked/). 
+If `transactions` is invalidated but the sorted output comes out identical, consumers downstream are still re-evaluated.
+To prevent this, the roots of state should be configured for value equality (see [`@tracked`](https://api.emberjs.com/ember/release/functions/@glimmer%2Ftracking/tracked/)).
 
 Beyond raw cost, there are two more good reasons to reach for `@cached`:
 
@@ -369,5 +370,3 @@ get total() {
 In the first version, `total` is only correct if every code path that touches any input remembers to recompute it.
 In the second, `total` cannot be wrong.
 Toggling `isAnnual` from a different part of the app updates it, through code that was written without any knowledge of that future feature.
-That is the payoff of derived state.
-It is why "derive, do not sync" is the central habit of reactive programming.
