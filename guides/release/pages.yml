@@ -309,14 +309,13 @@
           url: "legacy"
 
 - title: "Reference"
-  url: "toc-heading_reference"
-  is_heading: true
+  url: "reference"
   pages:
-    - title: "Template Reference"
+    - title: "Template"
       url: "templates"
-    - title: "Component Reference"
+    - title: "Component"
       url: "components"
-    - title: "TypeScript Reference"
+    - title: "TypeScript"
       url: "typescript"
 
 - title: "Developer Tools"
