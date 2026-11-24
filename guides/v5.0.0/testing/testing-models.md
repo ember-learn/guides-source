@@ -77,7 +77,7 @@ export default class ProfileModel extends Model {}
 import Model, { belongsTo } from '@ember-data/model';
 
 export default class UserModel extends Model {
-  @belongsTo('profile') profile;
+  @belongsTo('profile', { async: false, inverse: null }) profile;
 }
 ```
 
