@@ -233,11 +233,10 @@ Now, if we try running our tests, they should all pass after making this change.
 
 Now that we have our component all set up, we can finally wire up our search box and store our search query! Let's create a component class to store our query state and handle events from the `form` element and wire up our query state in the component template:
 
-```gjs { data-filename="app/components/rentals.gjs" data-diff="+2,+3,+4,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19,+20,+21,-24,+25,-28,+29,+31" }
+```gjs { data-filename="app/components/rentals.gjs" data-diff="+2,+3,+7,+8,+9,+10,+11,+12,+13,+14,+15,+16,+17,+18,+19,+20,-23,+24,-27,+28,+30" }
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
-import { on } from '@ember/modifier';
 import Rental from 'super-rentals/components/rental';
 
 export default class Rentals extends Component {
@@ -321,11 +320,10 @@ In our component template, we are not actually _rendering_ anything. Instead, we
 
 Well, in order to answer this question, let's look at how the data that we're yielding is being used in the `<Rentals>` component.
 
-```gjs { data-filename="app/components/rentals.gjs" data-diff="+6,-34,-35,-36,+37,+38,+39,+40,+41" }
+```gjs { data-filename="app/components/rentals.gjs" data-diff="+5,-33,-34,-35,+36,+37,+38,+39,+40" }
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
-import { on } from '@ember/modifier';
 import Rental from 'super-rentals/components/rental';
 import RentalsFilter from 'super-rentals/components/rentals/filter';
 
