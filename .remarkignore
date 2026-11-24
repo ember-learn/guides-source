@@ -11,4 +11,6 @@ guides/v5*/**/*.md
 
 # redirect only files
 guides/release/working-with-javascript
-
+guides/release/models
+guides/release/testing/testing-models.md
+guides/release/typescript/core-concepts/ember-data.md

@@ -121,31 +121,6 @@
   pages:
     - title: Overview
       url: "index"
-- title: "EmberData"
-  url: "models"
-  pages:
-    - title: "Introduction"
-      url: "index"
-    - title: "Defining Models"
-      url: "defining-models"
-    - title: "Finding Records"
-      url: "finding-records"
-    - title: "Creating, Updating and Deleting"
-      url: "creating-updating-and-deleting-records"
-    - title: "Relationships"
-      url: "relationships"
-    - title: "Pushing Records into the Store"
-      url: "pushing-records-into-the-store"
-      isAdvanced: true
-    - title: "Handling Metadata"
-      url: "handling-metadata"
-      isAdvanced: true
-    - title: "Customizing Adapters"
-      url: "customizing-adapters"
-      isAdvanced: true
-    - title: "Customizing Serializers"
-      url: "customizing-serializers"
-      isAdvanced: true
 - title: "In-Depth Topics"
   url: "in-depth-topics"
   pages:
@@ -256,8 +231,6 @@
       url: "testing-controllers"
     - title: "Testing Routes"
       url: "testing-routes"
-    - title: "Testing Models"
-      url: "testing-models"
 - title: "Addons and Dependencies"
   url: "addons-and-dependencies"
   pages:
@@ -281,8 +254,6 @@
           url: "routing"
         - title: "TypeScript: Services"
           url: "services"
-        - title: "TypeScript and EmberData"
-          url: "ember-data"
     - title: "TypeScript: Application Development"
       url: "application-development"
       pages:
