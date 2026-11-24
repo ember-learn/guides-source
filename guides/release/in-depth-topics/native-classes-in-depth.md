@@ -720,7 +720,7 @@ after overriding. This allows the super class method to continue operating as it
 normally would.
 
 One common example is when overriding the
-[`normalizeResponse()`](https://api.emberjs.com/ember-data/release/classes/JSONAPISerializer/methods/normalizeResponse?anchor=normalizeResponse)
+[`normalizeResponse()`](https://warp-drive.io/api/@warp-drive/legacy/serializer/json-api/classes/JSONAPISerializer)
 hook in one of EmberData's serializers.
 
 A handy shortcut for this is to use a "spread operator", like `...arguments`:

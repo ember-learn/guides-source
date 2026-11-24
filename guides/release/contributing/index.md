@@ -31,9 +31,9 @@ At the top of the page (for the package, method, or class), you will find the wo
 
 You can open the link to find a comment block. Make a pull request to update the comment block. The API Guides may take a few weeks to update while the future release is finalized.
 
-Here is an example of updating a method. At the top of the section for [`store.createRecord()`](https://api.emberjs.com/ember-data/release/classes/Store/methods/createRecord?anchor=createRecord), you can find the words "Defined in."
+Here is an example of updating a method. The API docs for WarpDrive (EmberData) are on [warp-drive.io](https://warp-drive.io/api/). In the section for [`store.request()`](https://warp-drive.io/api/@warp-drive/core/classes/Store#request), you can find the words "Defined in."
 
-Next to the words is, once again, the link to the source code [`ds-model-store.ts`](https://github.com/emberjs/data/blob/master/packages/store/addon/-private/system/ds-model-store.ts).
+Next to the words is, once again, the link to the source code [`store-service.ts`](https://github.com/warp-drive-data/warp-drive/blob/main/warp-drive-packages/core/src/store/-private/store-service.ts).
 
 Please follow the contributing guide in the specific repo. (Here is an example of the [contributing guide for Ember.js](https://github.com/emberjs/ember.js/blob/master/CONTRIBUTING.md).)
 The contributing guide may further describe how you can edit files, commit messages, and run linting and testing.

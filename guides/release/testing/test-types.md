@@ -18,7 +18,7 @@ Let's take a look at each type and when you might use one over another.
 
 Unit tests check the **correctness of individual methods and functions**. Given an input, does the method return the right output? Since unit tests can check code at the method level, they can form the **foundation of your test suite**. Unit tests are also **extremely fast** by nature.
 
-Unit tests get created automatically when you use Ember CLI to create [adapters](../../models/customizing-adapters/), controllers, initializers, [models](../../models/defining-models/), [serializers](../../models/customizing-serializers/), [services](../../services/), and utilities. We encourage you to read the rest of the documentation to learn writing tests for each.
+Unit tests get created automatically when you use Ember CLI to create [adapters](../../warp-drive/request-handlers/), controllers, initializers, [models](../../warp-drive/schemas/), [serializers](../../warp-drive/normalizing-responses/), [services](../../services/), and utilities. We encourage you to read the rest of the documentation to learn writing tests for each.
 
 ### Why Use Them?
 
@@ -62,8 +62,8 @@ module('Unit | Utility | math-library', function() {
 Here are more examples where unit tests are ideal:
 
 - Inside a controller, a computed property continues to filter `this.model` correctly after an action is taken
-- Check how [`normalize()`](https://api.emberjs.com/ember-data/release/classes/JSONAPISerializer/methods/normalize?anchor=normalize) in a serializer receives data
-- Check how [`serialize()`](https://api.emberjs.com/ember-data/release/classes/JSONAPISerializer/methods/serialize?anchor=serialize) in a serializer sends data
+- Check how [`normalize()`](https://warp-drive.io/api/@warp-drive/legacy/serializer/json-api/classes/JSONAPISerializer) in a serializer receives data
+- Check how [`serialize()`](https://warp-drive.io/api/@warp-drive/legacy/serializer/json-api/classes/JSONAPISerializer) in a serializer sends data
 - A [cron](https://en.wikipedia.org/wiki/Cron) utility parses an input string into an object that can be used for UI
 
 ### What to Watch Out for
