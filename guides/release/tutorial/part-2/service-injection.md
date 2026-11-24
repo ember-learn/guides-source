@@ -15,11 +15,11 @@ While adding the share button, you will learn about:
 
 ## Scoping the Feature
 
-In order to be able to share on Twitter, we'll need to make use of the Twitter [Web Intent API](https://developer.twitter.com/en/docs/twitter-for-websites/tweet-button/guides/web-intent.html).
+In order to be able to share on X (formerly Twitter), we'll need to make use of the X [Web Intent API](https://developer.x.com/en/docs/x-for-websites/tweet-button/guides/web-intent).
 
-Conveniently, this API doesn't require us to procure any API keys; all we need to do is link to `https://twitter.com/intent/tweet`. This link will prompt the user to compose a new tweet. The API also supports us pre-populating the tweet with some text, hashtag suggestions, or even a link, all through the use of special query params.
+Conveniently, this API doesn't require us to procure any API keys; all we need to do is link to `https://twitter.com/intent/tweet`. This link will prompt the user to compose a new post. The API also supports us pre-populating the post with some text, hashtag suggestions, or even a link, all through the use of special query params.
 
-For instance, let's say we would like to suggest a tweet with the following content:
+For instance, let's say we would like to suggest a post with the following content:
 
 ```plain
 Check out Grand Old Mansion on Super Rentals! https://super-rentals.example/rentals/grand-old-mansion
@@ -36,7 +36,7 @@ https://twitter.com/intent/tweet?
   via=emberjs
 ```
 
-Of course, the user will still have the ability to edit the tweet, or they can decide to just not tweet it at all.
+Of course, the user will still have the ability to edit the post, or they can decide to just not post it at all.
 
 For our app, it probably makes the most sense for our share button to automatically share the current page's URL.
 
@@ -110,9 +110,9 @@ We also have a `{{yield}}` inside of our `<a>` tag so that we can customize the 
 
 Whew! Let's look at the JavaScript part next.
 
-The key functionality of this class is to build the appropriate URL for the Twitter Web Intent API, which is exposed to the template via the `this.shareURL` getter. It mainly involves "gluing together" the component's arguments and setting the appropriate query params on the resulting URL. Conveniently, the browser provides a handy [`URL` class](https://javascript.info/url) that handles escaping and joining of query params for us.
+The key functionality of this class is to build the appropriate URL for the X Web Intent API, which is exposed to the template via the `this.shareURL` getter. It mainly involves "gluing together" the component's arguments and setting the appropriate query params on the resulting URL. Conveniently, the browser provides a handy [`URL` class](https://javascript.info/url) that handles escaping and joining of query params for us.
 
-The other notable functionality of this class has to do with getting the current page's URL and automatically adding it to the Twitter Intent URL. To accomplish this, we defined a `currentURL` getter that simply used the browser's global [`Location` object](https://developer.mozilla.org/en-US/docs/Web/API/Window/location), which we could access at `window.location`. Among other things, it has a `href` property (`window.location.href`) that reports the current page's URL.
+The other notable functionality of this class has to do with getting the current page's URL and automatically adding it to the X Intent URL. To accomplish this, we defined a `currentURL` getter that simply used the browser's global [`Location` object](https://developer.mozilla.org/en-US/docs/Web/API/Window/location), which we could access at `window.location`. Among other things, it has a `href` property (`window.location.href`) that reports the current page's URL.
 
 Let's put this component to use by invoking it from the `<RentalDetailed>` component!
 
@@ -132,7 +132,7 @@ import ShareButton from 'super-rentals/components/share-button';
       @hashtags="vacation,travel,authentic,blessed,superrentals"
       @via="emberjs"
     >
-      Share on Twitter
+      Share on X
     </a>
     </ShareButton>
   </Jumbo>
@@ -235,7 +235,7 @@ module('Acceptance | super rentals', function (hooks) {
     assert.dom('h1').containsText('SuperRentals');
     assert.dom('h2').containsText('Grand Old Mansion');
     assert.dom('.rental.detailed').exists();
-    assert.dom('.share.button').hasText('Share on Twitter');
+    assert.dom('.share.button').hasText('Share on X');
 
     let button = find('.share.button');
 
@@ -300,9 +300,9 @@ The main thing we want to confirm here, from an acceptance test level, is that 1
 
 Therefore, the best we could do is to look at the `href` attribute of the link, and check that it has roughly the things we expect in there. To do that, we used the `find` test helper to find the element, and used the browser's `URL` API to parse its `href` attribute into an object that is easier to work with.
 
-The `href` attribute contains the Twitter Intent URL, which we confirmed by checking that the `host` portion of the URL matches `twitter.com`. We could be _more_ specific, such as checking that it matches `https://twitter.com/intent/tweet` exactly. However, if we include too many specific details in our acceptance test, it may fail unexpectedly in the future as the `<ShareButton>` component's implementation evolves, resulting in a _brittle_ test that needs to be constantly updated. Those details are better tested in isolation with component tests, which we will add later.
+The `href` attribute contains the X Intent URL, which we confirmed by checking that the `host` portion of the URL matches `twitter.com`. We could be _more_ specific, such as checking that it matches `https://twitter.com/intent/tweet` exactly. However, if we include too many specific details in our acceptance test, it may fail unexpectedly in the future as the `<ShareButton>` component's implementation evolves, resulting in a _brittle_ test that needs to be constantly updated. Those details are better tested in isolation with component tests, which we will add later.
 
-The main event here is that we wanted to confirm the Twitter Intent URL includes a link to our current page's URL. We checked that by comparing its `url` query param to the expected URL, using `window.location.origin` to get the current protocol, hostname and port, which should be `http://localhost:4200`.
+The main event here is that we wanted to confirm the X Intent URL includes a link to our current page's URL. We checked that by comparing its `url` query param to the expected URL, using `window.location.origin` to get the current protocol, hostname and port, which should be `http://localhost:4200`.
 
 If we run the tests in the browser, everything should...
 
@@ -439,7 +439,7 @@ module('Integration | Component | share-button', function (hooks) {
       <ShareButton>
         template block text
       </ShareButton>
-      <ShareButton>Tweet this!</ShareButton>
+      <ShareButton>Post this!</ShareButton>
     </template>);
 
     assert.dom().hasText('template block text');
@@ -453,7 +453,7 @@ module('Integration | Component | share-button', function (hooks) {
       )
       .hasClass('share')
       .hasClass('button')
-      .containsText('Tweet this!');
+      .containsText('Post this!');
   });
 });
 ```
@@ -501,7 +501,7 @@ module('Integration | Component | share-button', function (hooks) {
 
   test('basic usage', async function (assert) {
     await render(<template>
-      <ShareButton>Tweet this!</ShareButton>
+      <ShareButton>Post this!</ShareButton>
     </template>);
 
     assert
@@ -515,22 +515,22 @@ module('Integration | Component | share-button', function (hooks) {
       .hasAttribute('href', /^https:\/\/twitter\.com\/intent\/tweet/)
       .hasClass('share')
       .hasClass('button')
-      .containsText('Tweet this!');
+      .containsText('Post this!');
 
     assert.strictEqual(tweetParam('url'), MOCK_URL.href);
   });
 
   test('it supports passing @text', async function (assert) {
     await render(<template>
-      <ShareButton @text="Hello Twitter!">Tweet this!</ShareButton>
+      <ShareButton @text="Hello X!">Post this!</ShareButton>
     </template>);
 
-    assert.strictEqual(tweetParam('text'), 'Hello Twitter!');
+    assert.strictEqual(tweetParam('text'), 'Hello X!');
   });
 
   test('it supports passing @hashtags', async function (assert) {
     await render(<template>
-      <ShareButton @hashtags="foo,bar,baz">Tweet this!</ShareButton>
+      <ShareButton @hashtags="foo,bar,baz">Post this!</ShareButton>
     </template>);
 
     assert.strictEqual(tweetParam('hashtags'), 'foo,bar,baz');
@@ -538,7 +538,7 @@ module('Integration | Component | share-button', function (hooks) {
 
   test('it supports passing @via', async function (assert) {
     await render(<template>
-      <ShareButton @via="emberjs">Tweet this!</ShareButton>
+      <ShareButton @via="emberjs">Post this!</ShareButton>
     </template>);
 
     assert.strictEqual(tweetParam('via'), 'emberjs');
@@ -546,7 +546,7 @@ module('Integration | Component | share-button', function (hooks) {
 
   test('it supports adding extra classes', async function (assert) {
     await render(<template>
-      <ShareButton class="extra things">Tweet this!</ShareButton>
+      <ShareButton class="extra things">Post this!</ShareButton>
     </template>);
 
     assert
@@ -559,7 +559,7 @@ module('Integration | Component | share-button', function (hooks) {
 
   test('the target, rel and href attributes cannot be overridden', async function (assert) {
     await render(<template>
-      <ShareButton target="_self" rel="" href="/">Not a Tweet!</ShareButton>
+      <ShareButton target="_self" rel="" href="/">Not a Post!</ShareButton>
     </template>);
 
     assert
