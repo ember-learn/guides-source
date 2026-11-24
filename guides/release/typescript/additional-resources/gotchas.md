@@ -38,7 +38,7 @@ For examples, see:
 
 Ember makes heavy use of decorators, and TypeScript does not support deriving type information from Ember's legacy decorators.
 
-As a result, whenever using a decorator to declare a class field the framework sets up for you, you should mark it with [`declare`][declare]. That includes all service injections (`@service`), controller injections (`@inject`) as well as all EmberData attributes (`@attr`) and relationships (`@belongsTo` and `@hasMany`).
+As a result, whenever using a decorator to declare a class field the framework sets up for you, you should mark it with [`declare`][declare]. That includes all service injections (`@service`) and controller injections (`@inject`).
 
 Normally, `TypeScript` determines whether a property is definitely not `null` or `undefined` by checking what you do in the constructor. In the case of legacy decorators, though, TypeScript does not have visibility into how the decorated properties are initialized. The `declare` annotation informs TypeScript that a declaration is defined somewhere else, outside its scope.
 
@@ -50,9 +50,6 @@ For examples, see:
 
 - [`@service`][service]
 - [`@inject`][controller]
-- EmberData [`@attr`][model-attr]
-- EmberData [`@belongsTo`][model-belongsto]
-- EmberData [`@hasMany`][model-hasmany]
 
 ## Hook Types and Autocomplete
 
@@ -103,9 +100,6 @@ export default class MyRoute extends Route {
 
 [controller]: ../../core-concepts/routing/#toc_controller-injections-and-lookups
 [get-set]: ../../additional-resources/legacy/#toc_classic-get-or-set-methods
-[model-attr]: ../../core-concepts/ember-data/#toc_attributes
-[model-belongsto]: ../../core-concepts/ember-data/#toc_async-belongsto-relationships
-[model-hasmany]: ../../core-concepts/ember-data/#toc_async-hasmany-relationships
 [owner-lookup]: https://api.emberjs.com/ember/release/classes/Owner/methods/lookup?anchor=lookup
 [service]: ../../core-concepts/services/#toc_using-services
 [signature]: ../../core-concepts/invokables/#toc_signature-basics
