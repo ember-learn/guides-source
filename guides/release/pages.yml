@@ -307,6 +307,17 @@
           url: "faq"
         - title: "TypeScript: Working with Ember Classic"
           url: "legacy"
+
+- title: "Reference"
+  url: "reference"
+  pages:
+    - title: "Template"
+      url: "templates"
+    - title: "Component"
+      url: "components"
+    - title: "TypeScript"
+      url: "typescript"
+
 - title: "Developer Tools"
   url: "toc-heading_developer-tools"
   is_heading: true
